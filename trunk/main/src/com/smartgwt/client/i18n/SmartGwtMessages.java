@@ -142,6 +142,204 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String calendar_weekViewTitle();
 
   /**
+   * Translated "Basic Colors:".
+   * 
+   * @return translated "Basic Colors:"
+   */
+  @DefaultMessage("Basic Colors:")
+  @Key("colorPicker_basicColorLabel")
+  String colorPicker_basicColorLabel();
+
+  /**
+   * Translated "The Blue component of the selected color".
+   * 
+   * @return translated "The Blue component of the selected color"
+   */
+  @DefaultMessage("The Blue component of the selected color")
+  @Key("colorPicker_blueFieldPrompt")
+  String colorPicker_blueFieldPrompt();
+
+  /**
+   * Translated "Blue".
+   * 
+   * @return translated "Blue"
+   */
+  @DefaultMessage("Blue")
+  @Key("colorPicker_blueFieldTitle")
+  String colorPicker_blueFieldTitle();
+
+  /**
+   * Translated "Cancel".
+   * 
+   * @return translated "Cancel"
+   */
+  @DefaultMessage("Cancel")
+  @Key("colorPicker_cancelButtonTitle")
+  String colorPicker_cancelButtonTitle();
+
+  /**
+   * Translated "The Green component of the selected color".
+   * 
+   * @return translated "The Green component of the selected color"
+   */
+  @DefaultMessage("The Green component of the selected color")
+  @Key("colorPicker_greenFieldPrompt")
+  String colorPicker_greenFieldPrompt();
+
+  /**
+   * Translated "Green".
+   * 
+   * @return translated "Green"
+   */
+  @DefaultMessage("Green")
+  @Key("colorPicker_greenFieldTitle")
+  String colorPicker_greenFieldTitle();
+
+  /**
+   * Translated "The selected color&#39;s HTML coding".
+   * 
+   * @return translated "The selected color&#39;s HTML coding"
+   */
+  @DefaultMessage("The selected color&#39;s HTML coding")
+  @Key("colorPicker_htmlFieldPrompt")
+  String colorPicker_htmlFieldPrompt();
+
+  /**
+   * Translated "HTML".
+   * 
+   * @return translated "HTML"
+   */
+  @DefaultMessage("HTML")
+  @Key("colorPicker_htmlFieldTitle")
+  String colorPicker_htmlFieldTitle();
+
+  /**
+   * Translated "The Hue (base tone) of the selected color".
+   * 
+   * @return translated "The Hue (base tone) of the selected color"
+   */
+  @DefaultMessage("The Hue (base tone) of the selected color")
+  @Key("colorPicker_hueFieldPrompt")
+  String colorPicker_hueFieldPrompt();
+
+  /**
+   * Translated "Hue".
+   * 
+   * @return translated "Hue"
+   */
+  @DefaultMessage("Hue")
+  @Key("colorPicker_hueFieldTitle")
+  String colorPicker_hueFieldTitle();
+
+  /**
+   * Translated "<< Less".
+   * 
+   * @return translated "<< Less"
+   */
+  @DefaultMessage("<< Less")
+  @Key("colorPicker_lessButtonTitle")
+  String colorPicker_lessButtonTitle();
+
+  /**
+   * Translated "The Luminosity (brightness) of the selected color".
+   * 
+   * @return translated "The Luminosity (brightness) of the selected color"
+   */
+  @DefaultMessage("The Luminosity (brightness) of the selected color")
+  @Key("colorPicker_lumFieldPrompt")
+  String colorPicker_lumFieldPrompt();
+
+  /**
+   * Translated "Lum".
+   * 
+   * @return translated "Lum"
+   */
+  @DefaultMessage("Lum")
+  @Key("colorPicker_lumFieldTitle")
+  String colorPicker_lumFieldTitle();
+
+  /**
+   * Translated "More >>".
+   * 
+   * @return translated "More >>"
+   */
+  @DefaultMessage("More >>")
+  @Key("colorPicker_moreButtonTitle")
+  String colorPicker_moreButtonTitle();
+
+  /**
+   * Translated "OK".
+   * 
+   * @return translated "OK"
+   */
+  @DefaultMessage("OK")
+  @Key("colorPicker_okButtonTitle")
+  String colorPicker_okButtonTitle();
+
+  /**
+   * Translated "Opacity:".
+   * 
+   * @return translated "Opacity:"
+   */
+  @DefaultMessage("Opacity:")
+  @Key("colorPicker_opacitySliderLabel")
+  String colorPicker_opacitySliderLabel();
+
+  /**
+   * Translated "The Red component of the selected color".
+   * 
+   * @return translated "The Red component of the selected color"
+   */
+  @DefaultMessage("The Red component of the selected color")
+  @Key("colorPicker_redFieldPrompt")
+  String colorPicker_redFieldPrompt();
+
+  /**
+   * Translated "Red".
+   * 
+   * @return translated "Red"
+   */
+  @DefaultMessage("Red")
+  @Key("colorPicker_redFieldTitle")
+  String colorPicker_redFieldTitle();
+
+  /**
+   * Translated "The Saturation (color purity) of the selected color".
+   * 
+   * @return translated "The Saturation (color purity) of the selected color"
+   */
+  @DefaultMessage("The Saturation (color purity) of the selected color")
+  @Key("colorPicker_satFieldPrompt")
+  String colorPicker_satFieldPrompt();
+
+  /**
+   * Translated "Sat".
+   * 
+   * @return translated "Sat"
+   */
+  @DefaultMessage("Sat")
+  @Key("colorPicker_satFieldTitle")
+  String colorPicker_satFieldTitle();
+
+  /**
+   * Translated "Select a Color".
+   * 
+   * @return translated "Select a Color"
+   */
+  @DefaultMessage("Select a Color")
+  @Key("colorPicker_selectTitle")
+  String colorPicker_selectTitle();
+
+  /**
+   * Translated "Selected Color:".
+   * 
+   * @return translated "Selected Color:"
+   */
+  @DefaultMessage("Selected Color:")
+  @Key("colorPicker_selectedColorLabel")
+  String colorPicker_selectedColorLabel();
+
+  /**
    * Translated "Add formula column...".
    * 
    * @return translated "Add formula column..."
@@ -196,11 +394,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dateChooser_cancelButtonTitle();
 
   /**
-   * Translated "1".
+   * Translated "0".
    * 
-   * @return translated "1"
+   * @return translated "0"
    */
-  @DefaultMessage("1")
+  @DefaultMessage("0")
   @Key("dateChooser_firstDayOfWeek")
   String dateChooser_firstDayOfWeek();
 
@@ -250,11 +448,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dateItem_pickerIconPrompt();
 
   /**
-   * Translated "YMD".
+   * Translated "null".
    * 
-   * @return translated "YMD"
+   * @return translated "null"
    */
-  @DefaultMessage("YMD")
+  @DefaultMessage("null")
   @Key("dateItem_selectorFormat")
   String dateItem_selectorFormat();
 
@@ -2039,6 +2237,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Right align selection")
   @Key("richTextEditor_alignRightPrompt")
   String richTextEditor_alignRightPrompt();
+
+  /**
+   * Translated "Set selection background color".
+   * 
+   * @return translated "Set selection background color"
+   */
+  @DefaultMessage("Set selection background color")
+  @Key("richTextEditor_backgroundColorPrompt")
+  String richTextEditor_backgroundColorPrompt();
 
   /**
    * Translated "Make selection bold".
