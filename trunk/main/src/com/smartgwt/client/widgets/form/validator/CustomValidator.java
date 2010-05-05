@@ -67,13 +67,12 @@ public abstract class CustomValidator extends Validator {
                self.@com.smartgwt.client.widgets.form.validator.CustomValidator::formItem = @com.smartgwt.client.widgets.form.fields.FormItemFactory::getFormItem(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             } else {
                 if (item.__ref && @com.smartgwt.client.data.DataSourceField::isDataSourceField(Lcom/google/gwt/core/client/JavaScriptObject;)(item)) {
-                    return @com.smartgwt.client.data.DataSourceField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
+                    self.@com.smartgwt.client.widgets.form.validator.CustomValidator::dataSourceField = @com.smartgwt.client.data.DataSourceField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
                 } else {
                     var dataSourceField = isc.addProperties({}, item);
                     if (dataSourceField.__ref) delete dataSourceField.__ref;
                     self.@com.smartgwt.client.widgets.form.validator.CustomValidator::dataSourceField = @com.smartgwt.client.data.DataSourceField::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dataSourceField);
                 }
-                self.@com.smartgwt.client.widgets.form.validator.CustomValidator::dataSourceField = @com.smartgwt.client.data.DataSourceField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(dataSourceField);
             }
             if(record != null) {
                 self.@com.smartgwt.client.widgets.form.validator.CustomValidator::record = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
