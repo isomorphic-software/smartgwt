@@ -3519,12 +3519,13 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     public void setWidth(String width) {
-        assert width.indexOf("100%") == -1 : "Use setWidth(\"*\") rather than setWidth(\"100%\")";
+        if("100%".equals(width)) width = "*";
         assert width.indexOf("%") == -1 : "FormItems do not support percent sizing.";
         setAttribute("width", width);
     }
 
     public void setHeight(String height) {
+        if("100%".equals(height)) height = "*";
         assert height.indexOf("%") == -1 : "FormItems do not support percent sizing.";
         setAttribute("height", height);
     }
