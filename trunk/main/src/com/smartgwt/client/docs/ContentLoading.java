@@ -10,7 +10,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.HTMLFlow#handleError
  * @see com.smartgwt.client.widgets.HTMLFlow#transformHTML
  * @see com.smartgwt.client.widgets.HTMLFlow#contentLoaded
- * @see com.smartgwt.client.widgets.HTMLFlow#contentLoaded
+ * @see com.smartgwt.client.widgets.HTMLFlow
  * @see com.smartgwt.client.widgets.ViewLoader#getHttpMethod
  * @see com.smartgwt.client.widgets.HTMLFlow#getContentsURL
  * @see com.smartgwt.client.widgets.HTMLFlow#getLoadingMessage

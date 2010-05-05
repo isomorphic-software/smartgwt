@@ -14,7 +14,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#setAccessKey
  * @see com.smartgwt.client.widgets.Canvas#setTabIndex
  * @see com.smartgwt.client.widgets.Canvas#focusChanged
- * @see com.smartgwt.client.widgets.Canvas#focusChanged
+ * @see 
  * @see com.smartgwt.client.widgets.form.DynamicForm#getAutoFocus
  * @see com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus
  * @see com.smartgwt.client.widgets.form.DynamicForm#getCanFocus

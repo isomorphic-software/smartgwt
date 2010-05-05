@@ -49,7 +49,7 @@ package com.smartgwt.client.docs;
  * will have a memory leak due to suspended transactions. <P> Note also that there is no requirement that the relogin
  * process blocks user interaction. Applications that access multiple services may choose to simply show an unobtrusive
  * error indication such that the user can log back in at his leisure, or even log the user back in automatically.
- * @see com.smartgwt.client.data.DataSourceField#getChildTagName
+ * @see 
  * @see com.smartgwt.client.rpc.RPCManager#loginRequired
  * @see com.smartgwt.client.rpc.RPCRequest#getContainsCredentials
  */

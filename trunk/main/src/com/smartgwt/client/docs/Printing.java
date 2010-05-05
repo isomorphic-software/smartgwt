@@ -14,8 +14,8 @@ package com.smartgwt.client.docs;
  * created.
  * @see com.smartgwt.client.widgets.Canvas#getPrintHTML
  * @see com.smartgwt.client.util.PrintProperties
- * @see com.smartgwt.client.util.PrintProperties
- * @see com.smartgwt.client.util.PrintProperties
+ * @see com.smartgwt.client.widgets.PrintCanvas
+ * @see com.smartgwt.client.widgets.PrintWindow
  * @see com.smartgwt.client.widgets.Canvas#printComponents
  * @see com.smartgwt.client.widgets.Canvas#getPrintPreview
  * @see com.smartgwt.client.widgets.Canvas#showPrintPreview

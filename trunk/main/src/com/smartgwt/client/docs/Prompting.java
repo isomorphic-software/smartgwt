@@ -3,9 +3,9 @@ package com.smartgwt.client.docs;
 
 /**
  * Objects / methods used for displaying prompts and warnings to the user via (possibly modal)  isc Dialog objects.
- * @see com.smartgwt.client.types.OperatorId
- * @see com.smartgwt.client.types.OperatorId
- * @see com.smartgwt.client.types.OperatorId
+ * @see 
+ * @see 
+ * @see 
  * @see com.smartgwt.client.util.isc#showPrompt
  * @see com.smartgwt.client.util.isc#clearPrompt
  * @see com.smartgwt.client.util.isc#warn
