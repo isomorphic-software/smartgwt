@@ -200,7 +200,7 @@ public class Criterion extends Criteria {
     }
     
     public void markAdvancedCriteria() {
-        setAttribute("_constructor", "Criterion");
+        setAttribute("_constructor", "AdvancedCriteria");
     }
     
     public void unmarkAdvancedCriteria() {
