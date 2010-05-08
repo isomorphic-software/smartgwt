@@ -1301,13 +1301,24 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * super-lightweight TabSet implementation may not use a separate Canvas per Tab, and code that accesses an
      * manipulates Tabs as Canvases won't be compatible with that implementation.
      *
-     * @param tab
+     * @param ID the tab ID
      * @return the tab Canvas, or null if not found or TabSet not drawn yet
      */
     public native Tab getTab(String ID) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getTab(ID);
         return ret == null ? null : @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+    /**
+     * Get the index of a tab from the tabID. 
+     *
+     * @param ID the tab ID
+     * @return  the index of the tab, or -1 if not found
+     */
+    public native int getTabNumber(String ID) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getTabNumber(ID);
     }-*/;
 
     /**
