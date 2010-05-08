@@ -5469,8 +5469,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
              var jObj = this.__ref;
              var jPP = printProperties == null ? null :
              			@com.smartgwt.client.util.PrintProperties::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(printProperties);
-             jObj.@com.smartgwt.client.widgets.Canvas::getPrintHTMLJSCB(Lcom/smartgwt/client/util/PrintProperties;Lcom/google/gwt/core/client/JavaScriptObject;)(jPP,callback);
-        	 return null;
+             var ret = jObj.@com.smartgwt.client.widgets.Canvas::getPrintHTMLJSCB(Lcom/smartgwt/client/util/PrintProperties;Lcom/google/gwt/core/client/JavaScriptObject;)(jPP,callback);
+        	 return ret;
          });
          
 	}-*/;
@@ -6785,37 +6785,39 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }-*/;
     
     
-    /**
+   /**
      * Retrieves printable HTML for this component and all printable subcomponents.
      * By default any Canvas with children will simply collect the printable HTML of its
      * children by calling getPrintHTML() on each child that has shouldPrint set to true and is not
-     * omitted as a control. The return type of this method is void because the print html is to be applied
-     * to {@link com.smartgwt.client.util.PrintHTMLCallback}. This allows for providing a printable view for asynch interfaces
+     * omitted as a control.
+     *
+     * If overriding this method for a custom component, you should <b>either</b> return a String of printable HTML string directly <b>or</b> return null,
+     * and call {@link PrintHTMLCallback#setHTML(String)}. This allows for providing a printable view for asynch interfaces
      * - for example fetching records that aren't yet loaded for the print view, etc
-     *  
+     *
      *  <b>Note: this is an override point.</b>
      * @param printProperties properties to configure printing behavior - may be null
      * @param callback to fire. Generated HTML should be passed to the execute method of the callback.
      */
-	public native void getPrintHTML(PrintProperties printProperties, PrintHTMLCallback callback) /*-{
+	public native String getPrintHTML(PrintProperties printProperties, PrintHTMLCallback callback) /*-{
 	
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ppJS = printProperties == null ? null : printProperties.@com.smartgwt.client.util.PrintProperties::getJsObj()();
         
-        self.__getPrintHTML(
+        var ret = self.__getPrintHTML(
         		ppJS,
 		        callback == null ? null :  
 			        $entry(function (HTML) {
 			        	callback.@com.smartgwt.client.util.PrintHTMLCallback::setHTML(Ljava/lang/String;)(HTML);
 			        })
          );
-         
+        return ret === undefined ? null : ret;
 	}-*/;
 	
 
-	private void getPrintHTMLJSCB(PrintProperties printProperties, final JavaScriptObject jscallback) {
+	private String getPrintHTMLJSCB(PrintProperties printProperties, final JavaScriptObject jscallback) {
 		if (jscallback == null) {
-			getPrintHTML(printProperties, null);
+			return getPrintHTML(printProperties, null);
 		} else {
 			PrintHTMLCallback jcb = new PrintHTMLCallback() {
 				public void setHTML (String HTML) {
@@ -6825,7 +6827,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 					canvas.fireCallback(jscallback, ["HTML", "callback"], [HTML,jscallback]);
 				}-*/;
 			};
-			getPrintHTML(printProperties, jcb);
+			return getPrintHTML(printProperties, jcb);
 		}
 	}
 
