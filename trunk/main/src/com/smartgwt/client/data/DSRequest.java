@@ -132,8 +132,9 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-     * End row of requested results, used only with fetch operations. <p> Note that startRow and endRow are zero-based, so
-     * startRow: 0, endRow: 1 is a request for the first two records.
+     * End row of requested results, used only with fetch operations. <p> Note that startRow and endRow are zero-based,
+     * inclusive at the beginning and exclusive at the end (like substring), so startRow: 0, endRow: 1 is a request for the
+     * first record.
      *
      * @param endRow endRow Default value is null
      */
@@ -142,8 +143,9 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-     * End row of requested results, used only with fetch operations. <p> Note that startRow and endRow are zero-based, so
-     * startRow: 0, endRow: 1 is a request for the first two records.
+     * End row of requested results, used only with fetch operations. <p> Note that startRow and endRow are zero-based,
+     * inclusive at the beginning and exclusive at the end (like substring), so startRow: 0, endRow: 1 is a request for the
+     * first record.
      *
      *
      * @return Integer
@@ -510,7 +512,8 @@ public class DSRequest extends RPCRequest {
 
     /**
      * Starting row of requested results, used only with fetch operations.  If unset, 0 is assumed. <p> Note that startRow and
-     * endRow are zero-based, so startRow: 0, endRow: 1 is a request for the first two records.
+     * endRow are zero-based, inclusive at the beginning and exclusive at the end (like substring), so startRow: 0, endRow: 1
+     * is a request for the first record.
      *
      * @param startRow startRow Default value is null
      */
@@ -520,7 +523,8 @@ public class DSRequest extends RPCRequest {
 
     /**
      * Starting row of requested results, used only with fetch operations.  If unset, 0 is assumed. <p> Note that startRow and
-     * endRow are zero-based, so startRow: 0, endRow: 1 is a request for the first two records.
+     * endRow are zero-based, inclusive at the beginning and exclusive at the end (like substring), so startRow: 0, endRow: 1
+     * is a request for the first record.
      *
      *
      * @return Integer

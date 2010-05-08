@@ -347,13 +347,14 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
 
     /**
      * If true, multiple values may be selected. <P> The SelectItem will either render as a drop-down allowing multiple
-     * options, or a multi-row list of options similar to a small headerless {@link com.smartgwt.client.widgets.grid.ListGrid},
-     * based on the {@link com.smartgwt.client.types.MultipleAppearance} setting. <P> The logical value of the formItem, as
-     * retrieved by {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue getValue()} and set via {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setValue setValue()}, is an Array of Strings reflecting the selected
-     * values. <P> Note: <code>multiple:true</code> SelectItems do not currently support optionDataSource binding.  You can get
-     * around this by calling {@link com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData} directly and calling
-     * {@link com.smartgwt.client.data.List#getValueMap dsResponse.data.getValueMap()} to obtain a valueMap.
+     * selections, or a multi-row list of options similar to a small headerless {@link
+     * com.smartgwt.client.widgets.grid.ListGrid}, based on the {@link com.smartgwt.client.types.MultipleAppearance} setting.
+     * <P> The logical value of the formItem, as retrieved by {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue
+     * getValue()} and set via {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue setValue()}, is an Array of
+     * Strings reflecting the selected values. <P> Note: <code>multiple:true</code> SelectItems do not currently support
+     * optionDataSource binding.  You can get around this by calling {@link com.smartgwt.client.data.DataSource#fetchData
+     * DataSource.fetchData} directly and calling {@link com.smartgwt.client.data.List#getValueMap
+     * dsResponse.data.getValueMap()} to obtain a valueMap.
      *
      * @param multiple multiple Default value is false
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -364,13 +365,14 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
 
     /**
      * If true, multiple values may be selected. <P> The SelectItem will either render as a drop-down allowing multiple
-     * options, or a multi-row list of options similar to a small headerless {@link com.smartgwt.client.widgets.grid.ListGrid},
-     * based on the {@link com.smartgwt.client.types.MultipleAppearance} setting. <P> The logical value of the formItem, as
-     * retrieved by {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue getValue()} and set via {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setValue setValue()}, is an Array of Strings reflecting the selected
-     * values. <P> Note: <code>multiple:true</code> SelectItems do not currently support optionDataSource binding.  You can get
-     * around this by calling {@link com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData} directly and calling
-     * {@link com.smartgwt.client.data.List#getValueMap dsResponse.data.getValueMap()} to obtain a valueMap.
+     * selections, or a multi-row list of options similar to a small headerless {@link
+     * com.smartgwt.client.widgets.grid.ListGrid}, based on the {@link com.smartgwt.client.types.MultipleAppearance} setting.
+     * <P> The logical value of the formItem, as retrieved by {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue
+     * getValue()} and set via {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue setValue()}, is an Array of
+     * Strings reflecting the selected values. <P> Note: <code>multiple:true</code> SelectItems do not currently support
+     * optionDataSource binding.  You can get around this by calling {@link com.smartgwt.client.data.DataSource#fetchData
+     * DataSource.fetchData} directly and calling {@link com.smartgwt.client.data.List#getValueMap
+     * dsResponse.data.getValueMap()} to obtain a valueMap.
      *
      *
      * @return Boolean
