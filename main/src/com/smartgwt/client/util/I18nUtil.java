@@ -345,6 +345,8 @@ public class I18nUtil {
             $wnd.isc.DateRangeItem.addProperties({toTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateRangeItem_toTitle()()});
             $wnd.isc.DateRangeDialog.addProperties({headerTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateRangeDialog_headerTitle()()});
             $wnd.isc.MiniDateRangeItem.addProperties({pickerIconPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::miniDateRangeItem_pickerIconPrompt()()});
+            $wnd.isc.MiniDateRangeItem.addProperties({fromDateOnlyPrefix: messages.@com.smartgwt.client.i18n.SmartGwtMessages::miniDateRangeItem_fromDateOnlyPrefix()()});
+            $wnd.isc.MiniDateRangeItem.addProperties({toDateOnlyPrefix: messages.@com.smartgwt.client.i18n.SmartGwtMessages::miniDateRangeItem_toDateOnlyPrefix()()});
             $wnd.isc.RelativeDateItem.addProperties({todayTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_todayTitle()()});
             $wnd.isc.RelativeDateItem.addProperties({millisecondsAgoTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_millisecondsAgoTitle()()});
             $wnd.isc.RelativeDateItem.addProperties({secondsAgoTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_secondsAgoTitle()()});

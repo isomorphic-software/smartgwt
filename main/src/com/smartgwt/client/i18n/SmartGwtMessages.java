@@ -1537,6 +1537,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String menuButton_title();
 
   /**
+   * Translated "Since".
+   * 
+   * @return translated "Since"
+   */
+  @DefaultMessage("Since")
+  @Key("miniDateRangeItem_fromDateOnlyPrefix")
+  String miniDateRangeItem_fromDateOnlyPrefix();
+
+  /**
    * Translated "Show Date Chooser".
    * 
    * @return translated "Show Date Chooser"
@@ -1544,6 +1553,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Show Date Chooser")
   @Key("miniDateRangeItem_pickerIconPrompt")
   String miniDateRangeItem_pickerIconPrompt();
+
+  /**
+   * Translated "Before".
+   * 
+   * @return translated "Before"
+   */
+  @DefaultMessage("Before")
+  @Key("miniDateRangeItem_toDateOnlyPrefix")
+  String miniDateRangeItem_toDateOnlyPrefix();
 
   /**
    * Translated "Add Level".
