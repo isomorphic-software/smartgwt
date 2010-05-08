@@ -81,6 +81,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.DataSource#getServerType
  * @see com.smartgwt.client.data.DataSource#getTableName
  * @see com.smartgwt.client.data.DataSource#getDbName
+ * @see com.smartgwt.client.data.DataSource#getConfigBean
  * @see com.smartgwt.client.data.DataSource#getServerObject
  * @see com.smartgwt.client.data.OperationBinding#getRequestProperties
  * @see com.smartgwt.client.types.DSDataFormat
