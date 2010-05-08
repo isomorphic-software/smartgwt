@@ -64,9 +64,8 @@ public class GridRowExpansionRelatedRecordsSample extends ShowcasePanel {
                 countryGrid.setHeight(224);
                 countryGrid.setCellHeight(22);
                 countryGrid.setDataSource(getRelatedDataSource(record));
+                countryGrid.fetchRelatedData(record, SupplyCategoryXmlDS.getInstance());
 
-
-                countryGrid.setAutoFetchData(true);
                 countryGrid.setCanEdit(true);
                 countryGrid.setModalEditing(true);
                 countryGrid.setEditEvent(ListGridEditEvent.CLICK);
