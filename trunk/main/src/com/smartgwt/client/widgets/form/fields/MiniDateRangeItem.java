@@ -94,6 +94,27 @@ public class MiniDateRangeItem extends StaticTextItem {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * Format for displaying dates in to the user.   Defaults to the system-wide default established by 
+     * setDefaultDisplayFormat.
+     *
+     * @param dateDisplayFormat dateDisplayFormat Default value is null
+     */
+    public void setDateDisplayFormat(DateDisplayFormat dateDisplayFormat) {
+        setAttribute("dateDisplayFormat", dateDisplayFormat.getValue());
+    }
+
+    /**
+     * Format for displaying dates in to the user.   Defaults to the system-wide default established by 
+     * setDefaultDisplayFormat.
+     *
+     *
+     * @return DateDisplayFormat
+     */
+    public DateDisplayFormat getDateDisplayFormat()  {
+        return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateDisplayFormat"));
+    }
+
+    /**
      * Icon that launches a {@link com.smartgwt.client.widgets.DateChooser} for choosing an absolute date.
      *
      * @param pickerIcon pickerIcon Default value is null
@@ -176,6 +197,25 @@ public class MiniDateRangeItem extends StaticTextItem {
     }-*/;
             
     /**
+     * Returns true if the specified criterion contains: <ul><li>A single "lessThan" or "greaterThan" criterion on this
+     * field</li>     <li>An "and" type criterion containing a "lessThan" and a "greaterThan" criterion on         this
+     * field</li> </ul>
+     * @param criterion criterion to test
+     *
+     * @return returns true if this criterion can be edited by this item
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
+     */
+    public native Boolean canEditCriterion(Criterion criterion) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.canEditCriterion(criterion.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+            
+    /**
      * Returns the Criterion entered in the fields shown in the  {@link
      * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getRangeDialog rangeDialog}. <P> If both dates are entered, a
      * Criterion with an "and" {@link com.smartgwt.client.types.OperatorId operator} will be returned with both a "greaterThan"
@@ -190,6 +230,34 @@ public class MiniDateRangeItem extends StaticTextItem {
         var ret = self.getCriterion();
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.Criterion::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+            
+    /**
+     * Overridden to return true: dateRangeItems always generate AdvancedCriteria.
+     *
+     * @return true
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
+     */
+    public native Boolean hasAdvancedCriteria() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.hasAdvancedCriteria();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+            
+    /**
+     * Applies the specified criterion to this item for editing. Applies any specified "greaterThan" operator criterion or
+     * sub-criterion to our {@link com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getFromField fromField} and any
+     * specified "lessThan" operator criterion or sub-criterion to our {@link
+     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getToField toField}.
+     * @param criterion criterion to edit
+     */
+    public native void setCriterion(Criterion criterion) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.setCriterion(criterion.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
     // ********************* Static Methods ***********************
