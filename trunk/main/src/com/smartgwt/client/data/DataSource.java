@@ -529,6 +529,37 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+     * For DataSources of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "hibernate", the name of a
+     * Spring  bean to query to obtain Hibernate Configuration for this particular DataSource.  Note that this is intended for
+     * DataSource-specific configuration overrides for unusual  circumstances, such as a DataSource whose physical data store
+     * is a completely  different database to that used by other DataSources.  See the  {@link
+     * com.smartgwt.client.docs.HibernateIntegration Integration with Hibernate} article for more  information
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param configBean configBean Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     */
+    public void setConfigBean(String configBean)  throws IllegalStateException {
+        setAttribute("configBean", configBean, false);
+    }
+
+    /**
+     * For DataSources of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "hibernate", the name of a
+     * Spring  bean to query to obtain Hibernate Configuration for this particular DataSource.  Note that this is intended for
+     * DataSource-specific configuration overrides for unusual  circumstances, such as a DataSource whose physical data store
+     * is a completely  different database to that used by other DataSources.  See the  {@link
+     * com.smartgwt.client.docs.HibernateIntegration Integration with Hibernate} article for more  information
+     *
+     *
+     * @return String
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     */
+    public String getConfigBean()  {
+        return getAttributeAsString("configBean");
+    }
+
+    /**
      * Decides under what conditions the {@link com.smartgwt.client.data.ResultSet} cache should be dropped when the {@link
      * com.smartgwt.client.data.ResultSet#getCriteria criteria} changes.
      * <p><b>Note : </b> This is an advanced setting</p>
