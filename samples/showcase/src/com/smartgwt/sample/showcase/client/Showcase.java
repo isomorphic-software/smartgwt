@@ -252,7 +252,7 @@ public class Showcase implements EntryPoint, HistoryListener {
             label.setHeight(50);
             label.setValign(VerticalAlignment.CENTER);
             label.setAlign(Alignment.CENTER);
-            label.setContents("Firebug can make the Showcase run slow.For the best performance, we suggest disabling Firebug for this site.");
+            label.setContents("Firebug can make the Showcase run slow. For the best performance, we suggest disabling Firebug for this site.");
 
             Window fbWindow = new Window();
             fbWindow.setTitle("Firebug Detected");
