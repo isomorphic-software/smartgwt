@@ -14,7 +14,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CountryData;
 
 public class CustomHeaderMenuSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "This example illustrates how you can customize ";
+    private static final String DESCRIPTION = "This example illustrates how you can customize header context menus.";
 
     public static class Factory implements PanelFactory {
         private String id;
