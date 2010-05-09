@@ -48,7 +48,7 @@ public class SmartGwtLinker extends AbstractLinker {
 
             //if encounter ISC_Core.js or Page.js (when inheriting SmartGwtDebug.gwt.xml), inject the appropriate
             //isomorphicDir var so that users don't need to explicitly specify this in their host html file.
-            if (partialPath.endsWith("ISC_Core.js") || partialPath.endsWith("Page.js")) {
+            if (partialPath.endsWith("/ISC_Core.js") || partialPath.endsWith("/Page.js")) {
 
                 String contents = getContents(emittedArtifact, logger);
                 int insertIdx = contents.indexOf("*/") + 2;
