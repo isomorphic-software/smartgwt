@@ -181,8 +181,8 @@ public class MiniDateRangeItem extends StaticTextItem {
             
     /**
      * Whether the DateRangeDialog opened when the  {@link
-     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getPickerIcon pickerIcon} is clicked should display 
-     * RelativeDateItems or {@link com.smartgwt.client.widgets.form.fields.DateItem}s.
+     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getPickerIcon pickerIcon} is clicked should display  {@link
+     * com.smartgwt.client.widgets.form.fields.RelativeDateItem}s or {@link com.smartgwt.client.widgets.form.fields.DateItem}s.
      *
      * @return true
      */
@@ -315,9 +315,37 @@ public class MiniDateRangeItem extends StaticTextItem {
         if(valueJS == null) return null;
         var startJS = valueJS.start;
         var endJS = valueJS.end;
-        var start = startJS == null || startJS === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(startJS.getTime());
-        var end = endJS == null || endJS === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(endJS.getTime());
-        return @com.smartgwt.client.widgets.form.fields.DateRange::new(Ljava/util/Date;Ljava/util/Date;)(start, end);
+
+        var dateRangeJ = @com.smartgwt.client.data.DateRange::new();
+        if(startJS == null || startJS === undefined) {
+            //do nothing as null is the default
+        } else {
+            if($wnd.isA.Date(startJS)) {
+                var start = @com.smartgwt.client.util.JSOHelper::toDate(D)(startJS.getTime());
+                dateRangeJ.@com.smartgwt.client.data.DateRange::setStartDate(Ljava/util/Date;)(start);
+            } else if($wnd.isA.String(startJS)) {
+                var start = @com.smartgwt.client.data.RelativeDate::new(Ljava/lang/String;)(startJS);
+                dateRangeJ.@com.smartgwt.client.data.DateRange::setRelativeStartDate(Lcom/smartgwt/client/data/RelativeDate;)(start);
+            } else if(startJS.value) {
+                var start = @com.smartgwt.client.data.RelativeDate::new(Ljava/lang/String;)(startJS.value);
+                dateRangeJ.@com.smartgwt.client.data.DateRange::setRelativeStartDate(Lcom/smartgwt/client/data/RelativeDate;)(start);
+            }
+        }
+        if(endJS == null || endJS === undefined) {
+            //do nothing as null is the default
+        } else {
+            if($wnd.isA.Date(endJS)) {
+                var end = @com.smartgwt.client.util.JSOHelper::toDate(D)(endJS.getTime());
+                dateRangeJ.@com.smartgwt.client.data.DateRange::setEndDate(Ljava/util/Date;)(end);
+            } else if($wnd.isA.String(startJS)) {
+                var end = @com.smartgwt.client.data.RelativeDate::new(Ljava/lang/String;)(endJS);
+                dateRangeJ.@com.smartgwt.client.data.DateRange::setRelativeEndDate(Lcom/smartgwt/client/data/RelativeDate;)(end);
+            } else if(endJS.value) {
+                var end = @com.smartgwt.client.data.RelativeDate::new(Ljava/lang/String;)(endJS.value);
+                dateRangeJ.@com.smartgwt.client.data.DateRange::setRelativeEndDate(Lcom/smartgwt/client/data/RelativeDate;)(end);
+            }
+        }
+        return dateRangeJ;
     }-*/;
 
     /**
@@ -328,11 +356,7 @@ public class MiniDateRangeItem extends StaticTextItem {
      */
     public native void setValue(DateRange value) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var start = value.@com.smartgwt.client.widgets.form.fields.DateRange::getStart()();
-        var end = value.@com.smartgwt.client.widgets.form.fields.DateRange::getEnd()();
-        var startJS = start == null ? null : @com.smartgwt.client.util.JSOHelper::toDateJS(Ljava/util/Date;)(start);
-        var endJS = end == null ? null : @com.smartgwt.client.util.JSOHelper::toDateJS(Ljava/util/Date;)(end);
-        var valueJS = {start:startJS, end:endJS};
+        var valueJS = this.@com.smartgwt.client.data.DateRange::getJsObj()();
         self.setValue(valueJS);
     }-*/;
 

@@ -530,8 +530,9 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
             
     /**
      * Returns the type of editor to use for the field. <P> Default behavior is to use the  editorType for a custom operator,
-     * otherwise,  use RelativeDateItem for before/after/between operators on date fields, otherwise,  use the same editor as
-     * would be chosen by a {@link com.smartgwt.client.widgets.form.SearchForm}.
+     * otherwise,  use {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem} for before/after/between operators on
+     * date fields, otherwise,  use the same editor as would be chosen by a {@link
+     * com.smartgwt.client.widgets.form.SearchForm}.
      * @param fieldName DataSourceField definition
      * @param operatorId {@link com.smartgwt.client.types.OperatorId} for the chosen operator
      *
