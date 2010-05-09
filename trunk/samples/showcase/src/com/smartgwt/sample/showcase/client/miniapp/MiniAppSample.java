@@ -73,7 +73,7 @@ public class MiniAppSample extends ShowcasePanel {
                 animateOutline.animateRect(0, 0, Page.getWidth(), Page.getHeight(), new AnimationCallback() {
                     public void execute(boolean earlyFinish) {
                         animateOutline.hide();
-                        final FullyScreenApplication appWindow = new FullyScreenApplication();
+                        final FullScreenApplication appWindow = new FullScreenApplication();
                         appWindow.addCloseClickHandler(new CloseClickHandler() {
                             public void onCloseClick(CloseClientEvent event) {
                                 animateOutline.setRect(0, 0, Page.getWidth(), Page.getHeight());
@@ -101,10 +101,10 @@ public class MiniAppSample extends ShowcasePanel {
         return layout;
     }
 
-    class FullyScreenApplication extends Window {
+    class FullScreenApplication extends Window {
 
 
-        FullyScreenApplication() {
+        FullScreenApplication() {
             setTitle("Demo Application");
             setHeaderIcon("silk/layout_content.png");
             setWidth100();

@@ -4,8 +4,13 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.ComboBoxItem;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
+import com.smartgwt.client.widgets.grid.CellFormatter;
+import com.smartgwt.client.widgets.grid.HoverCustomizer;
+import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
+import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
 
 import java.util.LinkedHashMap;
 
@@ -33,7 +38,7 @@ public class ComboBoxStyledSample extends ShowcasePanel {
     public Canvas getViewPanel() {
 
         final DynamicForm form = new DynamicForm();
-        form.setWidth(250);       
+        form.setWidth(250);
 
         ComboBoxItem cbItem = new ComboBoxItem();
         cbItem.setTitle("Select");
@@ -83,7 +88,44 @@ public class ComboBoxStyledSample extends ShowcasePanel {
                 "<span style='color:#00FF00;'>Green</span>",
                 "<span style='color:#0000FF;'>Blue</span>");
 
-        form.setFields(cbItem, selectItem, selectItem2);
+        ComboBoxItem comboBoxItem = new ComboBoxItem("itemName", "Custom");
+        comboBoxItem.setOptionDataSource(ItemSupplyXmlDS.getInstance());
+        comboBoxItem.setWidth(260);
+
+        ListGrid pickListProperties = new ListGrid();
+        pickListProperties.setCellHeight(50);
+        pickListProperties.setCanHover(true);
+        pickListProperties.setShowHover(true);
+        pickListProperties.setCellFormatter(new CellFormatter() {
+            @Override
+            public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
+                String descStr = record.getAttribute("description");
+                if (descStr == null) descStr = "[no description]";
+
+                String itemName = record.getAttribute("itemName");
+                String unitCost = record.getAttribute("unitCost");
+
+                String styleStr = "font-family:arial;font-size:11px;white-space:nowrap;overflow:hidden;";
+                String retStr = "<table>" +
+                        "<tr><td ><span style='" + styleStr + "width:170px;float:left'>" + itemName + "<span></td>" +
+                        "<td align='right'><span style='" + styleStr + "width:50px;float:right;font-weight:bold'>" + unitCost + "<span></td></tr>" +
+                        "<tr><td colSpan=2><span style='" + styleStr + "width:220px;float:left'>" + descStr + "</span></td></tr></table>";
+                return retStr;
+
+            }
+        });
+        pickListProperties.setHoverCustomizer(new HoverCustomizer() {
+            @Override
+            public String hoverHTML(Object value, ListGridRecord record, int rowNum, int colNum) {
+                String descStr = record.getAttribute("description");
+                if (descStr == null) descStr = "[no description]";
+                return descStr;
+            }
+        });
+
+        comboBoxItem.setPickListProperties(pickListProperties);
+
+        form.setFields(cbItem, selectItem, selectItem2, comboBoxItem);
         return form;
     }
 

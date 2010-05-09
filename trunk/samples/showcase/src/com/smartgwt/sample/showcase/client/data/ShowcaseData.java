@@ -19,6 +19,7 @@ import com.smartgwt.sample.showcase.client.effects.animation.*;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.*;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.*;
 import com.smartgwt.sample.showcase.client.forms.*;
+import com.smartgwt.sample.showcase.client.forms.controls.DateControlsSample;
 import com.smartgwt.sample.showcase.client.forms.controls.FormVariousControlsSample;
 import com.smartgwt.sample.showcase.client.forms.dependencies.*;
 import com.smartgwt.sample.showcase.client.forms.details.FormHintsSample;
@@ -130,15 +131,10 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Grid Summaries", "grid-summaries-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("New Samples", "new-category", "root", "silk/new.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Checkbox Tree", "tree-checkbox-new-category", "new-category", null, new CheckboxTreeSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Grid Cell Widgets", "grid-cell-widgets-new-category", "new-category", null, new GridCellWidgetsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("RollOver Controls", "grid-appearance-rollover-controls-new-category", "new-category", null, new RollOverControlsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("ToolStrip", "toolstrip-new-category", "new-category", null, new ToolStripSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("ToolStrip (Vertical)", "toolstrip-vertical-new-category", "new-category", null, new ToolStripVerticalSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Big Filter", "grid-big-filter-new-category", "new-category", null, new GridBigFilterSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Animated Selection", "grid-appearance-animated-selection-new-category", "new-category", null, new AnimatedSelectionSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Sections Drag Reorder", "sections-drag-reorder-new-category", "new-category", null, new SectionsReorderSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Row Numbering", "grid-row-numbering-new-category", "new-category", null, new RowNumberingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Date Range Filtering", "daterange-filtering-new-category", "new-category", null, new GridDateRangeFilterSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Multi-Select Item", "multi-select-new-category", "new-category", null, new SelectMultipleSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Date Range Selection", "date-range-new-category", "new-category", null, new DateControlsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Custom ComboBox Styling", "styled-combobox-new-category", "new-category", null, new ComboBoxStyledSample.Factory(), true, idSuffix),
 
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
 
@@ -151,6 +147,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Selected Value", "selected-value-combobox-category", "combobox-category", null, new SelectedValueComboBoxSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Add on the fly", "select-other-combobox-category", "combobox-category", null, new SelectOtherFieldSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Picktree", "picktree-combobox-category", "combobox-category", null, new PickTreeFieldSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Multi-Select", "multi-select-combobox-category", "combobox-category", null, new SelectMultipleSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Grids", "grid-category", "root", "silk/application_view_detail.png", null, true, idSuffix),
                     new ExplorerTreeNode("Appearance", "grid-appearance-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
@@ -201,20 +198,23 @@ public class ShowcaseData {
                     new ExplorerTreeNode("New Records", "grid-autofit-new-records", "grid-autofit-category", null, new AutofitNewRecordsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Filter", "grid-autofit-filter", "grid-autofit-category", null, new AutofitFilterSample.Factory(), true, idSuffix),
 
-                    new ExplorerTreeNode("Sort & Filter", "grid-sortfilter-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Sort", "grid-sortfilter-sort", "grid-sortfilter-category", null, new GridSortSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Multilevel Sort", "grid-multilevel-sort", "grid-sortfilter-category", null, new MultiLevelSortSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Disable Sort", "grid-sortfilter-disable-sort", "grid-sortfilter-category", null, new DisableSortSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Sort Arrows", "grid-sortfilter-sort-arrows", "grid-sortfilter-category", null, new SortArrowsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Data-Aware Sort", "grid-sortfilter-datatypes", "grid-sortfilter-category", null, new SortDataTypesSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Filter", "grid-sortfilter-filter", "grid-sortfilter-category", null, new GridFilterSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Live Filter", "grid-sortfilter-live-filter", "grid-sortfilter-category", null, new GridLiveFilterSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Adaptive Filter", "grid-sortfilter-adaptive-filter", "grid-sortfilter-category", "crystal/16/actions/show_table_row.png", new AdaptiveFilterSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Adaptive Sort", "grid-sortfilter-adaptive-sort", "grid-sortfilter-category", "crystal/16/actions/resizerow.png", new AdaptiveSortSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Custom Filter", "grid-custom-filter-builder", "grid-sortfilter-category", null, new GridFilterBulderSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Nested Filter", "grid-nested-filter-builder", "grid-sortfilter-category", null, new GridNestedFilterBulderSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Big Filter", "grid-big-filter", "grid-sortfilter-category", null, new GridBigFilterSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Disable Filter", "grid-sortfilter-disable-filter", "grid-sortfilter-category", null, new GridDisableFilterSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Sorting", "grid-sort-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),                    
+                    new ExplorerTreeNode("Sort", "grid-sort-sort", "grid-sort-category", null, new GridSortSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Multilevel Sort", "grid-multilevel-sort", "grid-sort-category", null, new MultiLevelSortSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Disable Sort", "grid-sort-disable-sort", "grid-sort-category", null, new DisableSortSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Sort Arrows", "grid-sort-sort-arrows", "grid-sort-category", null, new SortArrowsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Data-Aware Sort", "grid-sort-datatypes", "grid-sort-category", null, new SortDataTypesSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Adaptive Sort", "grid-sort-adaptive-sort", "grid-sort-category", "crystal/16/actions/resizerow.png", new AdaptiveSortSample.Factory(), true, idSuffix),
+
+                    new ExplorerTreeNode("Filtering", "grid-filter-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Custom Filter", "grid-custom-filter-builder", "grid-filter-category", null, new GridFilterBulderSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Nested Filter", "grid-nested-filter-builder", "grid-filter-category", null, new GridNestedFilterBulderSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Big Filter", "grid-big-filter", "grid-filter-category", null, new GridBigFilterSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Disable Filter", "grid-sortfilter-disable-filter", "grid-filter-category", null, new GridDisableFilterSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Filter", "grid-sortfilter-filter", "grid-filter-category", null, new GridFilterSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Live Filter", "grid-sortfilter-live-filter", "grid-filter-category", null, new GridLiveFilterSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Adaptive Filter", "grid-sortfilter-adaptive-filter", "grid-filter-category", "crystal/16/actions/show_table_row.png", new AdaptiveFilterSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Date Range Filtering", "grid-daterange-filtering", "grid-filter-category", null, new GridDateRangeFilterSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Editing", "grid-editing-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Edit by Row", "grid-editing-row", "grid-editing-category", null, new GridEditByRowSample.Factory(), true, idSuffix),
@@ -431,6 +431,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Dialogs", "controls-category-dialogs", "controls-category", null, new DialogsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Slider", "controls-category-slider", "controls-category", null, new SliderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Progressbar", "controls-category-progressbar", "controls-category", null, new ProgressBarSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Date Chooser", "controls-category-datechooser", "controls-category", null, new DateChooserSample.Factory(), true, idSuffix),
 
 
                     new ExplorerTreeNode("Data Integration", "data-integration-category", "root", "silk/connect.png", null, true, idSuffix),
