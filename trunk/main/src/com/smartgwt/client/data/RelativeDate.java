@@ -20,6 +20,15 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.core.DataClass;
 import com.smartgwt.client.util.JSOHelper;
 
+/**
+ * This class is used used to specify a period of time. For example, a RelativeDateString that represents "one year from today" has an string
+ * representation as "+1y".
+ *
+ * @see #RelativeDate(String)
+ *
+ * @see com.smartgwt.client.data.DateRange#setRelativeStartDate(RelativeDate)
+ * @see com.smartgwt.client.data.DateRange#setRelativeEndDate(RelativeDate)
+ */
 public class RelativeDate extends DataClass {
     private String value;
 
@@ -69,7 +78,7 @@ public class RelativeDate extends DataClass {
     public static RelativeDate START_OF_TOMORROW = new RelativeDate("$startOfTomorrow");
 
     /**
-     * Builtin option for the end of tomorrow (one millisecond before the {@link START_OF_TOMORROW})
+     * Builtin option for the end of tomorrow (one millisecond before the {@link #START_OF_TOMORROW})
      */
     public static RelativeDate END_OF_TOMORROW = new RelativeDate("$endOfTomorrow");
 
@@ -101,13 +110,37 @@ public class RelativeDate extends DataClass {
     /**
      * Builtin option for the end of the current year 
      */
-    public static RelativeDate END_OF_YEAR = new RelativeDate("$endOfYear");    
+    public static RelativeDate END_OF_YEAR = new RelativeDate("$endOfYear");
 
-
+    /**
+     * The argument passed to the constructor is of known format used to specify a period of time.
+     * For example, a RelativeDate that represents "one year from today" has a value "+1y".
+     *
+     *<P>
+     * The string value is comprised of the following parts:
+     * <ul>
+     * <li>direction: the direction in which the quantity applies - one of + or - </li>
+     * <li>quantity: the number of units of time to apply - a number </li>
+     * <li>timeUnit: the timeUnit to use - one of ms, s, mn, h, d, w, m, q, y, dc, c that correspond to
+     * millisecond, second, minute, hour, day, week, month, quarter, year, decade and century respectively.
+     * Time units can be specifed as upper case or lowercase.
+     * </li>
+     * <li>[qualifier]: an optional timeUnit encapsulated in square-brackets and used to offset
+     *      the calculation - eg. if +1d is "plus one day", +1d[W] is "plus one day from the
+     *      end of the week" </li>
+     * </ul>
+     * <P>
+     * @param value string representation of the relative date
+     */
     public RelativeDate(String value) {
+        //TODO add regex based assert to validate base syntax, along supported with built in types
         this.value = value;
     }
 
+    /**
+     * @return the string representation of the relative date
+     * @see #RelativeDate(String)
+     */
     public String getValue() {
         return value;
     }
