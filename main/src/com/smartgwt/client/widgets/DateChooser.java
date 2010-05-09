@@ -615,31 +615,6 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     }
 
     /**
-     * If this property is set to true the previous and next year buttons will render out the  previous and next month button
-     * icons twice rather than using the {@link com.smartgwt.client.widgets.DateChooser#getPrevYearIcon prevYearIcon} and
-     * {@link com.smartgwt.client.widgets.DateChooser#getNextYearIcon nextYearIcon}. <P> Set to <code>true</code> by default as
-     * not all skins contain media for the year icons.
-     *
-     * @param showDoubleYearIcon showDoubleYearIcon Default value is true
-     */
-    public void setShowDoubleYearIcon(Boolean showDoubleYearIcon) {
-        setAttribute("showDoubleYearIcon", showDoubleYearIcon, true);
-    }
-
-    /**
-     * If this property is set to true the previous and next year buttons will render out the  previous and next month button
-     * icons twice rather than using the {@link com.smartgwt.client.widgets.DateChooser#getPrevYearIcon prevYearIcon} and
-     * {@link com.smartgwt.client.widgets.DateChooser#getNextYearIcon nextYearIcon}. <P> Set to <code>true</code> by default as
-     * not all skins contain media for the year icons.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowDoubleYearIcon()  {
-        return getAttributeAsBoolean("showDoubleYearIcon");
-    }
-
-    /**
      * Determines whether the "Today" button will be displayed, allowing the user to select  the current date.
      *
      * @param showTodayButton showTodayButton Default value is true
