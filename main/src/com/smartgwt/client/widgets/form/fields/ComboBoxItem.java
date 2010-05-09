@@ -1061,6 +1061,17 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
         });
     }-*/;
 
+    /**
+     * Set the properties to be applied to the pickList created for this Form Item.
+     *
+     * @param pickListProperties the pick list properties
+     */
+    public void setPickListProperties(ListGrid pickListProperties) {
+        JavaScriptObject configJS = pickListProperties.getConfig();
+        JSOHelper.deleteAttribute(configJS, "ID");
+        setAttribute("pickListProperties", configJS);
+    }    
+
 }
 
 
