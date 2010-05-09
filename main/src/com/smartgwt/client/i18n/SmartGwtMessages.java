@@ -2167,6 +2167,69 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String relativeDateItem_pickerIconPrompt();
 
   /**
+   * Translated "Current day of last month".
+   * 
+   * @return translated "Current day of last month"
+   */
+  @DefaultMessage("Current day of last month")
+  @Key("relativeDateItem_presetOptions_minus_1m")
+  String relativeDateItem_presetOptions_minus_1m();
+
+  /**
+   * Translated "Current day of last week".
+   * 
+   * @return translated "Current day of last week"
+   */
+  @DefaultMessage("Current day of last week")
+  @Key("relativeDateItem_presetOptions_minus_1w")
+  String relativeDateItem_presetOptions_minus_1w();
+
+  /**
+   * Translated "Current day of next month".
+   * 
+   * @return translated "Current day of next month"
+   */
+  @DefaultMessage("Current day of next month")
+  @Key("relativeDateItem_presetOptions_plus_1m")
+  String relativeDateItem_presetOptions_plus_1m();
+
+  /**
+   * Translated "Current day of next week".
+   * 
+   * @return translated "Current day of next week"
+   */
+  @DefaultMessage("Current day of next week")
+  @Key("relativeDateItem_presetOptions_plus_1w")
+  String relativeDateItem_presetOptions_plus_1w();
+
+  /**
+   * Translated "Today".
+   * 
+   * @return translated "Today"
+   */
+  @DefaultMessage("Today")
+  @Key("relativeDateItem_presetOptions_today")
+  String relativeDateItem_presetOptions_today();
+
+  /**
+   * Translated "Tomorrow".
+   * 
+   * @return translated "Tomorrow"
+   */
+  @DefaultMessage("Tomorrow")
+  @Key("relativeDateItem_presetOptions_tomorrow")
+  String relativeDateItem_presetOptions_tomorrow();
+
+  /**
+   * Translated "Yesterday".
+   * 
+   * @return translated "Yesterday"
+   */
+  @DefaultMessage("Yesterday")
+  @Key("relativeDateItem_presetOptions_yesterday")
+  String relativeDateItem_presetOptions_yesterday();
+
+  /**
    * Translated "N seconds ago".
    * 
    * @return translated "N seconds ago"
