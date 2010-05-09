@@ -24,4 +24,7 @@ with this module. You will need to still manually include the JS files in your h
     <inherits name="com.smartgwt.SmartGwtNoSmartClient"/>
     <inherits name="com.smartclient.debug.SmartClientDebugNoScript"/>
 
+	<define-linker name="smartgwt" class="com.smartgwt.linker.SmartGwtLinker" />
+  	<add-linker name="smartgwt" />
+
 </module>

@@ -14,4 +14,7 @@ any of the SmartClient JavaScript files if you are inheriting this module
     <inherits name="com.smartgwt.SmartGwtNoSmartClient"/>
     <inherits name="com.smartclient.debug.SmartClientDebug"/>
     <inherits name="com.smartclient.theme.enterprise.Enterprise"/>
+
+	<define-linker name="smartgwt" class="com.smartgwt.linker.SmartGwtLinker" />
+  	<add-linker name="smartgwt" />    
 </module>
