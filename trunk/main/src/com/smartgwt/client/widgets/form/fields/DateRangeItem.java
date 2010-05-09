@@ -56,7 +56,8 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * Allows a user to select an absolute or relative range of dates via two RelativeDateItems (if {@link
+ * Allows a user to select an absolute or relative range of dates via two {@link
+ * com.smartgwt.client.widgets.form.fields.RelativeDateItem}s (if {@link
  * com.smartgwt.client.widgets.form.fields.DateRangeItem#getAllowRelativeDates allowRelativeDates} is true) or two {@link
  * com.smartgwt.client.widgets.form.fields.DateRangeItem#getDateItems DateItems}.
  */
@@ -95,7 +96,8 @@ public class DateRangeItem extends CanvasItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Whether to allow the user to specify relative dates (via RelativeDateItems) or whether dates are absolute (via {@link
+     * Whether to allow the user to specify relative dates (via {@link
+     * com.smartgwt.client.widgets.form.fields.RelativeDateItem}s) or whether dates are absolute (via {@link
      * com.smartgwt.client.widgets.form.fields.DateItem}s).
      *
      * @param allowRelativeDates allowRelativeDates Default value is false
@@ -105,7 +107,8 @@ public class DateRangeItem extends CanvasItem {
     }
 
     /**
-     * Whether to allow the user to specify relative dates (via RelativeDateItems) or whether dates are absolute (via {@link
+     * Whether to allow the user to specify relative dates (via {@link
+     * com.smartgwt.client.widgets.form.fields.RelativeDateItem}s) or whether dates are absolute (via {@link
      * com.smartgwt.client.widgets.form.fields.DateItem}s).
      *
      *
@@ -303,6 +306,15 @@ public class DateRangeItem extends CanvasItem {
     }
 
     /**
+     * Set the field name.
+     *
+     * @param fieldName the field name
+     */
+    public void setFieldName(String fieldName) {
+        setAttribute("fieldName", fieldName);
+    }
+
+    /**
      * Initial value for the "to" date.
      *
      *
@@ -324,25 +336,53 @@ public class DateRangeItem extends CanvasItem {
         if(valueJS == null) return null;
         var startJS = valueJS.start;
         var endJS = valueJS.end;
-        var start = startJS == null || startJS === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(startJS.getTime());
-        var end = endJS == null || endJS === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(endJS.getTime());
-        return @com.smartgwt.client.widgets.form.fields.DateRange::new(Ljava/util/Date;Ljava/util/Date;)(start, end);
+
+        var dateRangeJ = @com.smartgwt.client.data.DateRange::new();
+        if(startJS == null || startJS === undefined) {
+            //do nothing as null is the default
+        } else {
+            if($wnd.isA.Date(startJS)) {
+                var start = @com.smartgwt.client.util.JSOHelper::toDate(D)(startJS.getTime());
+                dateRangeJ.@com.smartgwt.client.data.DateRange::setStartDate(Ljava/util/Date;)(start);
+            } else if($wnd.isA.String(startJS)) {
+                var start = @com.smartgwt.client.data.RelativeDate::new(Ljava/lang/String;)(startJS);
+                dateRangeJ.@com.smartgwt.client.data.DateRange::setRelativeStartDate(Lcom/smartgwt/client/data/RelativeDate;)(start);
+            } else if(startJS.value) {
+                var start = @com.smartgwt.client.data.RelativeDate::new(Ljava/lang/String;)(startJS.value);
+                dateRangeJ.@com.smartgwt.client.data.DateRange::setRelativeStartDate(Lcom/smartgwt/client/data/RelativeDate;)(start);
+            }
+        }
+        if(endJS == null || endJS === undefined) {
+            //do nothing as null is the default
+        } else {
+            if($wnd.isA.Date(endJS)) {
+                var end = @com.smartgwt.client.util.JSOHelper::toDate(D)(endJS.getTime());
+                dateRangeJ.@com.smartgwt.client.data.DateRange::setEndDate(Ljava/util/Date;)(end);
+            } else if($wnd.isA.String(startJS)) {
+                var end = @com.smartgwt.client.data.RelativeDate::new(Ljava/lang/String;)(endJS);
+                dateRangeJ.@com.smartgwt.client.data.DateRange::setRelativeEndDate(Lcom/smartgwt/client/data/RelativeDate;)(end);
+            } else if(endJS.value) {
+                var end = @com.smartgwt.client.data.RelativeDate::new(Ljava/lang/String;)(endJS.value);
+                dateRangeJ.@com.smartgwt.client.data.DateRange::setRelativeEndDate(Lcom/smartgwt/client/data/RelativeDate;)(end);
+            }
+        }
+        return dateRangeJ;
     }-*/;
 
     /**
-     * Sets the value for this dateRangeItem.  The value parameter is a  {@link com.smartgwt.client.widgets.form.fields.DateRange DateRange} object
+     * Sets the value for this dateRangeItem.  The value parameter is a  {@link com.smartgwt.client.data.DateRange DateRange} object
      * that optionally includes both start and end values.
      *
      * @param value the new value for this item
      */
     public native void setValue(DateRange value) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var start = value.@com.smartgwt.client.widgets.form.fields.DateRange::getStart()();
-        var end = value.@com.smartgwt.client.widgets.form.fields.DateRange::getEnd()();
-        var startJS = start == null ? null : @com.smartgwt.client.util.JSOHelper::toDateJS(Ljava/util/Date;)(start);
-        var endJS = end == null ? null : @com.smartgwt.client.util.JSOHelper::toDateJS(Ljava/util/Date;)(end);
-        var valueJS = {start:startJS, end:endJS};
-        self.setValue(valueJS);
+        var valueJS = value.@com.smartgwt.client.core.JsObject::getJsObj()();
+        if(self.setValue) {
+            self.setValue(valueJS);
+        } else {
+            self.defaultValue = valueJS;
+        }  
     }-*/;
 
 }
