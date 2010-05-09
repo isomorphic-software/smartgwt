@@ -2457,7 +2457,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-     * * Return the HTML to display in cells of this field. <P> Given the raw value for this field as taken from the
+     * Return the HTML to display in cells of this field. <P> Given the raw value for this field as taken from the
      * record Formatter to apply to the static values displayed in cells for this field. <P> <i>Example usage</i>:
      * formatting a currency value stored in cents (so "100" to "$1.00")<br> The value passed to this method is the raw
      * value for the cell.<br> Takes precedence over <code>formatCellValue</code> defined at the grid level for cells in

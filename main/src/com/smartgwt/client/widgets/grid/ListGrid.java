@@ -10494,6 +10494,54 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return new RecordList(dataJS);
     }
 
+    /**
+     * Formatter to apply to values displayed within cells.
+     * <br><br>
+     * The value passed to this method is either the field value found in the cell record or, if there are unsaved edits, the current user-entered value for the cell.
+     * <b>NOTE</b>: unsaved user edits may contain nulls, bad values or values of the wrong type, so formatters used for editable data should be bulletproof.
+     * <br><br>
+     * Note that this formatter will not be applied to the value displayed within editors for cells - use formatEditorValue to achieve this.
+     * <br><br>
+     * If formatCellValue is defined at the field level for some cell being edited, the field level method will be used to format the edit value and this method will not be called for that cell.
+     *
+     * @param formatter Formatter to apply to values displayed within cells
+     */
+    public native void setCellFormatter(CellFormatter formatter) /*-{
+        var self;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            self =  this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+             self = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        self.formatCellValue = $debox($entry(function(value, record, rowNum, colNum) {
+            var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            var valueJ = $wnd.SmartGWT.convertToJavaType(value);
+            return formatter.@com.smartgwt.client.widgets.grid.CellFormatter::format(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(valueJ, recordJ, rowNum, colNum);
+        }));
+    }-*/;
+
+    /**
+     * HTML to be shown in hovers over cells in the column described by this field. Note that the "value" passed to the HoverCustomizer
+     * callback will be null when the HoverCustomizer is applied to the ListGrid. However when applied to a ListGridField, the appropriate field
+     * value will be passed.
+     *
+     * @param hoverCustomizer the hover customizer
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setHoverCustomizer(HoverCustomizer)
+     */
+    public native void setHoverCustomizer(HoverCustomizer hoverCustomizer) /*-{
+        var self;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            self =  this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+             self = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        self.cellHoverHTML = $debox($entry(function(record, rowNum, colNum) {
+            var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            var valueJ = null;
+            return hoverCustomizer.@com.smartgwt.client.widgets.grid.HoverCustomizer::hoverHTML(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(valueJ, recordJ, rowNum, colNum);
+        }));
+    }-*/;
+
 
 
     // ********************* DataBoundComponent Properties / Attributes ***********************
