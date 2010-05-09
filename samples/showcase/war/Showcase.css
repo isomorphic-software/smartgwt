@@ -4,6 +4,13 @@
     font-size:18px;
 }
 
+.exampleSeparator {
+    border-bottom: 2px solid gray;
+    background-color:white; color:black;
+    font-weight: bold;
+    text-align: left;
+}
+
 /* Buttons*/
 .cssButton {
     padding:2px;
