@@ -6,15 +6,15 @@ import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.HistoryListener;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.smartgwt.client.core.KeyIdentifier;
+import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.TabBarControls;
+import com.smartgwt.client.types.VerticalAlignment;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.ImgButton;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.events.ClickEvent;
-import com.smartgwt.client.widgets.events.ShowContextMenuEvent;
-import com.smartgwt.client.widgets.events.ShowContextMenuHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;
@@ -175,7 +175,7 @@ public class Showcase implements EntryPoint, HistoryListener {
             public void onTabSelected(TabSelectedEvent event) {
                 Tab selectedTab = event.getTab();
                 String historyToken = selectedTab.getAttribute("historyToken");
-                if(historyToken != null) {
+                if (historyToken != null) {
                     History.newItem(historyToken, false);
                 } else {
                     History.newItem("main", false);
@@ -192,7 +192,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
         valueMap.put("EnterpriseBlue", "Enterprise Blue");
         valueMap.put("Enterprise", "Enterprise Gray");
-	    valueMap.put("Graphite", "Graphite");
+        valueMap.put("Graphite", "Graphite");
 
 
         selectItem.setValueMap(valueMap);
@@ -230,24 +230,6 @@ public class Showcase implements EntryPoint, HistoryListener {
         mainPanel.setHeight100();
         mainPanel.setWidth100();
 
-        if(SC.hasFirebug()) {
-            Label label = new Label();
-            label.setContents("<p>Firebug can make the Showcase run slow.</p><p>For the best performance, we suggest disabling Firebug for this site.</p>");
-            label.setWidth100();
-            label.setHeight("auto");
-            label.setMargin(20);
-            Window fbWindow = new Window();
-            fbWindow.setShowHeader(false);
-            fbWindow.addItem(label);
-            fbWindow.setWidth(220);
-            fbWindow.setHeight(130);
-
-            LayoutSpacer spacer = new LayoutSpacer();
-            spacer.setWidth100();
-            mainPanel.addMember(spacer);
-            mainPanel.addMember(fbWindow);
-        }
-
         TileView tileView = new TileView(mainPanel);
         mainPanel.addMember(tileView);
 
@@ -263,6 +245,24 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         hLayout.addMember(canvas);
         main.addMember(hLayout);
+
+        if (SC.hasFirebug()) {
+            Label label = new Label();
+            label.setWidth100();
+            label.setHeight(50);
+            label.setValign(VerticalAlignment.CENTER);
+            label.setAlign(Alignment.CENTER);
+            label.setContents("Firebug can make the Showcase run slow.For the best performance, we suggest disabling Firebug for this site.");
+
+            Window fbWindow = new Window();
+            fbWindow.setTitle("Firebug Detected");
+            fbWindow.setWidth100();
+            fbWindow.setHeight(80);
+            fbWindow.addItem(label);
+            fbWindow.setRedrawOnResize(true);
+            main.addMember(fbWindow);
+        }
+
         main.draw();
 
         // Add history listener
