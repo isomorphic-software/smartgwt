@@ -25,7 +25,7 @@ import java.util.Date;
 
 /**
  * A class specifying a range of dates. Values are start and end. If either value is omitted, the range is assumed to be open-ended in that direction -
- * so if dateRange.start is omitted, the range will include any date earlier than the value specified in dateRange.end.
+ * so if the start date is omitted, the range will include any date earlier than the value specified in end date.
  */
 public class DateRange extends JsObject {
     private Date startDate;
@@ -36,46 +36,88 @@ public class DateRange extends JsObject {
 
     public DateRange() {
     }
-        
 
+    /**
+     * Returns the start date or null if open ended. If the underlying start date is specified as a {@link #setRelativeStartDate(RelativeDate) relativeStartDate},
+     * the date is converted to an absolute value and returned.
+     *
+     * @return the start date
+     */
     public Date getStartDate() {
-        if(startDate != null) return startDate;
-        if(relativeStartDate != null) return RelativeDateItem.getAbsoluteDate(relativeStartDate);
+        if (startDate != null) return startDate;
+        if (relativeStartDate != null) return RelativeDateItem.getAbsoluteDate(relativeStartDate);
         return null;
     }
 
+    /**
+     * Set the start date of the range.
+     *
+     * @param startDate the start date
+     */
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
         this.relativeStartDate = null;
     }
 
+    /**
+     * Returns the end date or null if open ended. If the underlying end date is specified as a {@link #setRelativeEndDate(RelativeDate) relativeEndDate},
+     * the date is converted to an absolute value and returned.
+     *
+     * @return the end date
+     */
     public Date getEndDate() {
-        return endDate;
+        if (endDate != null) return endDate;
+        if (relativeEndDate != null) return RelativeDateItem.getAbsoluteDate(relativeEndDate);
+        return null;
     }
 
+    /**
+     * Set the end date of the range.
+     *
+     * @param endDate the end date
+     */
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
         this.relativeEndDate = null;
     }
 
+    /**
+     * Returns the relative start date of the range, or null if not specified.
+     *
+     * @return the relative start date
+     */
     public RelativeDate getRelativeStartDate() {
         return relativeStartDate;
     }
 
+    /**
+     * Set the relative start date of the range.
+     *
+     * @param relativeStartDate the relative start date
+     */
     public void setRelativeStartDate(RelativeDate relativeStartDate) {
         this.relativeStartDate = relativeStartDate;
         this.startDate = null;
     }
 
+    /**
+     * Returns the relative end date of the range, or null if not specified.
+     *
+     * @return the relative end date
+     */
     public RelativeDate getRelativeEndDate() {
         return relativeEndDate;
     }
 
+    /**
+     * Set the relative end date of the range.
+     *
+     * @param relativeEndDate the relative end date
+     */
     public void setRelativeEndDate(RelativeDate relativeEndDate) {
         this.relativeEndDate = relativeEndDate;
         this.endDate = null;
     }
-
 
     @Override
     public JavaScriptObject getJsObj() {
@@ -84,7 +126,7 @@ public class DateRange extends JsObject {
             JSOHelper.setAttribute(jsObj, "start", startDate);
         }
         if (relativeStartDate != null) {
-            if(relativeStartDate.getValue().startsWith("$")) {
+            if (relativeStartDate.getValue().startsWith("$")) {
                 JSOHelper.setAttribute(jsObj, "start", relativeStartDate.getValue());
             } else {
                 JSOHelper.setAttribute(jsObj, "start", relativeStartDate.getJsObj());
@@ -94,7 +136,7 @@ public class DateRange extends JsObject {
             JSOHelper.setAttribute(jsObj, "end", endDate);
         }
         if (relativeEndDate != null) {
-            if(relativeEndDate.getValue().startsWith("$")) {
+            if (relativeEndDate.getValue().startsWith("$")) {
                 JSOHelper.setAttribute(jsObj, "end", relativeEndDate.getValue());
             } else {
                 JSOHelper.setAttribute(jsObj, "end", relativeEndDate.getJsObj());
