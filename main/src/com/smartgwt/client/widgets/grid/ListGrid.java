@@ -8243,7 +8243,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return Whether to allow editing this cell
      */
     protected native boolean canEditCell(int rowNum, int colNum) /*-{
-
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self._canEditCell(rowNum, colNum);
     }-*/;
@@ -8260,7 +8259,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return Array of MenuItem
      */
     protected native MenuItem[] getHeaderContextMenuItems(Integer fieldNum) /*-{
-
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var index = fieldNum == null ? null : fieldNum.@java.lang.Integer::intValue()();
         var menuItemsJS = self.__getHeaderContextMenuItems(index);
@@ -8286,6 +8284,15 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return self._getBaseStyle(record == null ? null : record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum, colNum);
     }-*/;
 
+    /**
+     * Set the properties generated field that displays the current row number when {@link #setShowRowNumbers(Boolean) showRowNumbers} is true.
+     * For example you can change the default width of the row number column if you have data that exceeds 4 digits to accommodate the width of, say, 10000.
+     *
+     * @param rowNumberFieldProperties the row number field properties
+     */
+    public void setRowNumberFieldProperties(ListGridRecord rowNumberFieldProperties) {
+        setAttribute("rowNumberFieldProperties", rowNumberFieldProperties, true);
+    }
 
     /**
      * If {@link ListGrid#setShowGridSummary(Boolean)} is true, and a
