@@ -87,7 +87,7 @@ public class JSON {
      * @return object encoded as a JSON String
      */
     public static native String encode(JavaScriptObject object, JSONEncoder settings) /*-{
-        return $wnd.isc.JSON.encode(object, settings);
+        return $wnd.isc.JSON.encode(object, settings.@com.smartgwt.client.util.JSONEncoder::getJsObj()());
     }-*/;
 
     /**
