@@ -118,6 +118,8 @@ public class JsObject {
 
         //convert javascript data types into corresponding Java wrapper types
         //int -> Integer, float -> Float, boolean -> Boolean and date - > java.util.Date
+        // NOTE: SmartClient Developer Console relies on $wnd.SmartGWT being set
+        // to detect if SmartGWT is running
         $wnd.SmartGWT ={};
         $wnd.SmartGWT.convertToJavaType = function(obj) {
                 if(obj == null || obj === undefined) return null;
