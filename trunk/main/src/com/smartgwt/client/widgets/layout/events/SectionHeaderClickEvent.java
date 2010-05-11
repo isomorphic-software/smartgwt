@@ -132,7 +132,7 @@ public class SectionHeaderClickEvent extends BrowserEvent<SectionHeaderClickHand
      */
     public  native SectionStackSection getSection() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var retVal = @com.smartgwt.client.widgets.layout.SectionStackSection::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.section);
+        var retVal = @com.smartgwt.client.widgets.layout.SectionStackSection::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.section.getSectionConfig());
         return retVal;
     }-*/;
 }
