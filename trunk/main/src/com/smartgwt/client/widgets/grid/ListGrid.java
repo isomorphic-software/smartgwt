@@ -8290,7 +8290,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param rowNumberFieldProperties the row number field properties
      */
-    public void setRowNumberFieldProperties(ListGridRecord rowNumberFieldProperties) {
+    public void setRowNumberFieldProperties(ListGridField rowNumberFieldProperties) {
         setAttribute("rowNumberFieldProperties", rowNumberFieldProperties, true);
     }
 
