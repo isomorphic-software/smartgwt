@@ -293,7 +293,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Grid Cell Widgets", "grid-cell-widgets", "grid-category", null, new GridCellWidgetsSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Tree", "tree-category", "root", "silk/chart_organisation.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Dragging", "tree-appearance-category", "tree-category", "pieces/16/cube_blue.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Appearance", "tree-appearance-category", "tree-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Node Titles", "tree-appearance-node-titles", "tree-appearance-category", null, new NodeTitlesTreeSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Multiple Columns", "tree-appearance-multicolumns", "tree-appearance-category", null, new MultipleColumnsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Connectors", "tree-appearance-connectors", "tree-appearance-category", null, new TreeConnectorsSample.Factory(), true, idSuffix),

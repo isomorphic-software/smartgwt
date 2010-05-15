@@ -1,6 +1,7 @@
 package com.smartgwt.sample.showcase.client.grid.grouping;
 
 import com.smartgwt.client.types.Alignment;
+import com.smartgwt.client.types.GroupStartOpen;
 import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
@@ -50,7 +51,7 @@ public class GridDynamicGroupingSample extends ShowcasePanel {
         countryGrid.setShowAllRecords(true);
         countryGrid.setCellHeight(22);
 
-        countryGrid.setGroupStartOpen("all");
+        countryGrid.setGroupStartOpen(GroupStartOpen.ALL);
         countryGrid.setGroupByField("continent");
         countryGrid.setDataSource(dataSource);
 

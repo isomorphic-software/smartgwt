@@ -4,6 +4,7 @@ import com.google.gwt.i18n.client.NumberFormat;
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.Alignment;
+import com.smartgwt.client.types.GroupStartOpen;
 import com.smartgwt.client.types.RecordSummaryFunctionType;
 import com.smartgwt.client.types.SummaryFunctionType;
 import com.smartgwt.client.widgets.Canvas;
@@ -115,13 +116,14 @@ public class GridSummariesSample extends ShowcasePanel {
         final ListGrid listGrid = new ListGrid();
 
         listGrid.setWidth(600);
-        listGrid.setHeight(400);
+        listGrid.setHeight(520);
         listGrid.setAutoFetchData(true);
 
         listGrid.setShowAllRecords(true);
         listGrid.setDataSource(dataSource);
         listGrid.setCanEdit(true);
         listGrid.setGroupByField("category");
+        listGrid.setGroupStartOpen(GroupStartOpen.ALL); 
         listGrid.setShowGridSummary(true);
         listGrid.setShowGroupSummary(true);
 
