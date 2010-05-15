@@ -94,8 +94,7 @@ public class GridDateRangeFilterSample extends ShowcasePanel {
         searchButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                Criterion criteria = rangeItem.getCriterion();
-                SC.debugger();
+                Criterion criteria = rangeItem.getCriterion();                
                 grid1.fetchData(criteria);
             }
         });

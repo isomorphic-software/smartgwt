@@ -2,6 +2,7 @@ package com.smartgwt.sample.showcase.client.grid.grouping;
 
 import com.google.gwt.i18n.client.NumberFormat;
 import com.smartgwt.client.types.Alignment;
+import com.smartgwt.client.types.GroupStartOpen;
 import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.*;
@@ -45,7 +46,7 @@ public class GridCustomGroupingSample extends ShowcasePanel {
         countryGrid.setShowAllRecords(true);
         countryGrid.setCellHeight(22);
         countryGrid.setDataSource(dataSource);
-        countryGrid.setGroupStartOpen("all");
+        countryGrid.setGroupStartOpen(GroupStartOpen.ALL);
         countryGrid.setGroupByField("population");
         countryGrid.setAutoFetchData(true);
 
