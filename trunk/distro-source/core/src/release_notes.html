@@ -28,6 +28,7 @@
    <body>
       <h1>Smart GWT Release Notes</h1>
       <ul>
+            <li><a href="#2_2">2.2</a></li>
             <li><a href="#2_1">2.1</a></li>
             <li><a href="#2_0">2.0</a></li>
             <li><a href="#1_3">1.3</a></li>
@@ -36,6 +37,92 @@
             <li><a href="#1_0_b2">1.0 b2</a></li>
       </ul>
       <hr/>
+
+ <a name="2_2"></a>
+      <h2>Release Notes for Smart GWT 2.2</h2>
+        <ul>
+            <li><div><b>Selenium support</b></div></li>
+            <li><div>Added <b>DateRangeItem</b>, <b>MiniDateRangeItem</b> and <b>Relative Date</b> support to DynamicForm</div></li>
+            <li><div>Removed need for setting <b>isomorphicDir</b> variable in host html file</div></li>
+            <li><div><b>Javadoc enhancements</b> : Over 200 API's now have relevant Showcase example in the @see links</div></li>
+            <li><div>New <a href="http://www.smartclient.com/smartgwt/showcase/" target="_blank">Showcase</a> samples under the "New Samples" side nav</div></li>
+            <li>
+                <div><b>ListGrid enhancements &amp; fixes</b>
+                    <ul>
+                        <li>Performance improvements</li>
+                        <li>Editable grid related fixes</li>
+                        <li><div>Added ListGrid.isPartiallySelected(record) API.</div></li>
+                        <li><div>Changed the default recordComponentPoolingMode to "viewport"</div></li>
+                        <li><div>Enhancements to make grouping / editing / autoSaveEdits:false work better</div></li>
+                        <li>Setting canFilter:false on an image field now results in no icon in filterEditor</li>
+                        <li>With multi-level grouping and groupTitleField set, subgroups now shows indentation</li>
+                        <li><div>Support for showHintInField for editable ListGrid fields</div></li>
+                        <li><div>Make the "select all" checkbox header be disabled only when all rows aren't cached. As soon as all rows become cached, enable it.</div></li>
+                        <li>For a user-created field, offer a "Remove [summary|formula] field" context menu item that removes the field (not just hides it)</li>
+                        <li>Fixed row-numbering when grouped - now skips group-header rows when counting</li>
+                        <li>Fixes for unnecessary fetches when scrolling to data provided via an ResultSet initialized with a sparse array</li>
+                        <li>Fixed show/hideField and freeze/unfreezeField with recordComponents</li>
+                        <li><div>Fix of issue where shorter total column length than overall grid length was causing the rolloverCanvas to be misaligned</div></li>
+                        <li>Fixed sorting when grouped</li>
+                        <li><div>Fix for issue where rollOver styling could get stuck on the first row edited if modal editing was true</div></li>
+                        <li><div>Fix for issue where selectionState wasn't properly re-applied after grouping</div></li>
+                        <li><div>Fixed recordComponentsByCell bug that misaligned controls on scroll</div></li>
+                        <li><div>Fix getSortState() always returned null for the current sort-field</div></li>
+                        <li><div>Fix virtualScrolling and recordComponents in the presence of a frozen body</div></li>
+                        <li><div>Fix for issue where setViewState was not allowing user-shown fields to get passed as visible to the component.</div></li>
+                        <li><div>With checkbox selection and summary rows, summary rows are no longer selectable (no checkbox appear)</div></li>
+                        <li><div>Fix issue where checkbox field hover was wrongly appearing for all rows instead of just the checkbox header</div></li>
+                        <li><div>Fix issue where collapsing a record that also had a recordComponent would remove the first component embedded on the record</div></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>TreeGrid enhancements &amp; fixes</b>
+                    <ul>
+                        <li><div>Support separateFolders without forcing sorting by title</div></li>
+                        <li><div>New attribute sortFoldersBeforeLeaves</div></li>
+                        <li><div>New property Tree.indexByLevel causes us to maintain an set of indices of nodes, one for each level of the Tree </div></li>
+                        <li><div>New method Tree.getLevelNodes() returns the set of nodes at a particular level of the Tree, or optionally at a particular level below an arbitrary node in the Tree.</div></li>
+                        <li><div>Fixed Tree sort normalizer not handling floats correctly</div></li>
+                        <li><div>Fixes related to reparenting nodes</div></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>FilterBuilder enhancements &amp; fixes</b>
+                    <ul>
+                        <li><div>Various enhancements</div></li>
+                        <li><div>Fixed occasional bad drawing problem in Chrome/Windows and Chrome/Safari/Mac</div></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <div><b>DynamicForm enhancements &amp; fixes</b>
+                    <ul>
+                        <li><div>Support for FormItem cell height</div></li>
+                        <li><div>DynamicForm editing of AdvancedCriteria now supported</div></li>
+                        <li><div>Fix for validation errors not being displayed properly when a FileItem is included on a form</div></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>Other enhancements &amp; fixes</b>
+                    <ul>
+                        <li><div>i18n enhancements</div></li>
+                        <li><div>In Safari / Chrome in strict mode we have to use "pointer" rather than "hand" to get the pointy-finger cursor</div></li>
+                        <li><div>Fixed Development Mode issue with callbacks having a boolean return value</div></li>
+                        <li><div>Fixed timezone bug with dateTime formatting</div></li>
+                        <li>Better Transitional Doctype support</li>
+                        <li><div>Dev Console Enhancements : Ability to capture Selenium scLocator string for last clicked element</div></li>
+                        <li><div>Support DataSource.cacheAllData which causes a DataSource to load and cache all available data for a DataSource the first time there is a request to fetch data.</div></li>
+                        <li><div>Added DataSource.cacheMaxAge</div></li>
+                        <li><div>Allow reordering of ResultSets: implement the methods on ResultSet necessary to allow client-side reorder</div></li>
+                        <li><div>Error reporting improvements. JS stack traces are logged for non-IE browsers as well</div></li>
+                    </ul>
+                </div>
+            </li>
+         </ul>
 
     <a name="2_1"></a>
       <h2>Release Notes for Smart GWT 2.1</h2>
