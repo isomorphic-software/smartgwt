@@ -7621,11 +7621,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.selectionChanged = $entry(function(){
-                   var param = {"record" : arguments[0], "state" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.grid.events.SelectionEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+        obj.selectionChanged = $entry(function(){
+               var param = {"record" : arguments[0], "state" : arguments[1]};
+               var event = @com.smartgwt.client.widgets.grid.events.SelectionEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+               selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+           });
         }
    }-*/;
             
@@ -8589,14 +8589,14 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param group the group
      */
-    public void setGroupStartOpen(String group) {
+    public void setGroupStartOpen(GroupStartOpen group) {
         setAttribute("groupStartOpen", group, true);
     }
 
     /**
      * @param groupValues Array of values that should be opened
      */
-    public void setGroupStartOpen(String... groupValues) {
+    public void setGroupStartOpen(GroupStartOpen... groupValues) {
         setAttribute("groupStartOpen", groupValues, true);
     }
 
