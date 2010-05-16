@@ -190,6 +190,8 @@ public class RPCManager {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
+        
+    // ***********************************************************        
 
 
     /**
