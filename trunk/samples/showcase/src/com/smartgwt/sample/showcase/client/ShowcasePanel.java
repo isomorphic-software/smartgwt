@@ -28,8 +28,17 @@ public abstract class ShowcasePanel extends VLayout {
         setWidth100();
         setHeight100();
 
-        final String sourceURL = (getSourceUrl() == null) ? getSourceGenUrl() : getSourceUrl();
-        if (sourceURL != null) {
+        SourceEntity[] sourceUrls = getSourceUrls();
+        if(sourceUrls == null)
+        {
+            String sourceUrl = getSourceGenUrl();
+            if(sourceUrl != null) {
+                SourceEntity sourceEntity = new SourceEntity("Source", sourceUrl);
+                sourceUrls = new SourceEntity[] {sourceEntity};
+            }
+        }
+
+        if (sourceUrls != null) {
 
             ToolStrip topBar = new ToolStrip();
             topBar.setWidth100();
@@ -50,9 +59,10 @@ public abstract class ShowcasePanel extends VLayout {
             ToolStripButton sourceButton = new ToolStripButton();
             sourceButton.setTitle("View Source");
             sourceButton.setIcon("silk/page_white_cup.png");
+            final SourceEntity[] finalSourceUrls = sourceUrls;
             sourceButton.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
-                    showSource(sourceURL, 640, 600);
+                    showSource(finalSourceUrls, 640, 600);
                 }
             });
             topBar.addMember(sourceButton);
@@ -114,7 +124,7 @@ public abstract class ShowcasePanel extends VLayout {
         return false;
     }
 
-    public String getSourceUrl() {
+    public SourceEntity[] getSourceUrls() {
         return null;
     }
 
@@ -146,7 +156,7 @@ public abstract class ShowcasePanel extends VLayout {
 
     public abstract Canvas getViewPanel();
 
-    private void showSource(String sourceURL, int width, int height) {
+    private void showSource(SourceEntity[] sourceUrls, int width, int height) {
 
         final Window win = new Window();
         win.setTitle("Source");
@@ -171,8 +181,11 @@ public abstract class ShowcasePanel extends VLayout {
         tabs.setTabBarPosition(Side.TOP);
         tabs.setWidth100();
         tabs.setHeight100();
+        for (int i = 0; i < sourceUrls.length; i++) {
+            SourceEntity sourceUrl = sourceUrls[i];
+            tabs.addTab(buildSourceTab(sourceUrl));
+        }
 
-        tabs.addTab(buildSourceTab("Source", "silk/page_white_cup.png", sourceURL));
         int lastPeriodIndex = getClass().getName().lastIndexOf('.');
         String simpleClassName = getClass().getName().substring(lastPeriodIndex + 1);
         String[] dataURLs = DataURLRecords.getDataURLs(simpleClassName);
@@ -180,8 +193,7 @@ public abstract class ShowcasePanel extends VLayout {
             for (String dataURL : dataURLs) {
                 String url = "sourcegen/" + dataURL + ".html";
                 int lastSlashIndex = dataURL.lastIndexOf('/');
-                String tabTitle;
-                tabTitle = lastSlashIndex >= 0 ? dataURL.substring(lastSlashIndex + 1) : dataURL;
+                String tabTitle = lastSlashIndex >= 0 ? dataURL.substring(lastSlashIndex + 1) : dataURL;
                 tabs.addTab(buildSourceTab(tabTitle, "silk/page_white_cup.png", url));
             }
         }
@@ -200,8 +212,19 @@ public abstract class ShowcasePanel extends VLayout {
         win.show();
     }
 
-    public Tab buildSourceTab(String title, String icon, String url) {
+    public Tab buildSourceTab(SourceEntity sourceEntity) {
+        HTMLPane tabPane = new HTMLPane();
+        tabPane.setWidth100();
+        tabPane.setHeight100();
+        tabPane.setContentsURL(sourceEntity.getUrl());
+        tabPane.setContentsType(ContentsType.PAGE);
 
+        Tab tab = new Tab(sourceEntity.getTitle(), "silk/script_go.png");
+        tab.setPane(tabPane);
+        return tab;
+    }
+
+    public Tab buildSourceTab(String title, String icon, String url) {
         HTMLPane tabPane = new HTMLPane();
         tabPane.setWidth100();
         tabPane.setHeight100();
