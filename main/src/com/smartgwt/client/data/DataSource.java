@@ -1700,6 +1700,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         }
         return retVal;
     }-*/;
+        
+    // ***********************************************************        
 
 
     protected native void onInit() /*-{

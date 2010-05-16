@@ -708,6 +708,8 @@ public class RPCRequest extends DataClass {
     public static native void create() /*-{
         $wnd.isc.RPCRequest.create();
     }-*/;
+        
+    // ***********************************************************        
 
 
 

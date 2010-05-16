@@ -397,6 +397,8 @@ public class Page {
     public static native void setSkinDir(String URL) /*-{
         $wnd.isc.Page.setSkinDir(URL);
     }-*/;
+        
+    // ***********************************************************        
 
 
    /**
