@@ -246,6 +246,8 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
    }-*/;
 
     // ********************* Static Methods ***********************
+        
+    // ***********************************************************        
 
 
     public Canvas getCanvas() {

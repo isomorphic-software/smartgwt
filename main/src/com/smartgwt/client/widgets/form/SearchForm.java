@@ -116,6 +116,19 @@ public class SearchForm extends DynamicForm {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
+    /**
+     * Class level method to set the default properties of this class. If set, then all subsequent instances of this
+     * class will automatically have the default properties that were set when this method was called. This is a powerful
+     * feature that eliminates the need for users to create a separate hierarchy of subclasses that only alter the default
+     * properties of this class. Can also be used for skinning / styling purposes. 
+     *
+     * @param searchFormProperties properties that should be used as new defaults when instances of this class are created
+     */
+    public static native void setDefaultProperties(SearchForm searchFormProperties) /*-{
+        $wnd.isc.SearchForm.addProperties(searchFormProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
+    }-*/;
+        
+    // ***********************************************************        
 
 }
 

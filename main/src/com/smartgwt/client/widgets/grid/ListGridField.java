@@ -2363,6 +2363,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
    }-*/;
 
     // ********************* Static Methods ***********************
+        
+    // ***********************************************************        
 
 
     /**

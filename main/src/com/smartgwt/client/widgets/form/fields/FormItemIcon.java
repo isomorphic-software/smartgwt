@@ -319,6 +319,8 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     }-*/;
 
     // ********************* Static Methods ***********************
+        
+    // ***********************************************************        
 
 
     public boolean equals(Object o) {

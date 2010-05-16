@@ -138,6 +138,8 @@ public class LinkItem extends StaticTextItem {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
+        
+    // ***********************************************************        
 
 
     public HandlerRegistration addClickHandler(com.smartgwt.client.widgets.form.fields.events.ClickHandler handler) {

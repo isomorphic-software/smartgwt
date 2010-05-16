@@ -73,6 +73,8 @@ public class Hover {
     public static native void hide() /*-{
         $wnd.isc.Hover.hide();
     }-*/;
+        
+    // ***********************************************************        
 
 }
 
