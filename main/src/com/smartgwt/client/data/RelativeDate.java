@@ -137,6 +137,11 @@ public class RelativeDate extends DataClass {
         this.value = value;
     }
 
+    public RelativeDate(JavaScriptObject jsObj) {
+        super(jsObj);
+        value = JSOHelper.getAttribute(jsObj, "value");
+    }
+
     /**
      * @return the string representation of the relative date
      * @see #RelativeDate(String)

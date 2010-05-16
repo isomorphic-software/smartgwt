@@ -708,6 +708,21 @@ public class RelativeDateItem extends CanvasItem {
 
 
     /**
+     * Returns the RelativeDate for the current value.
+     *
+     * @return the RelativeDate for the current value or null if not set
+     */
+    public native RelativeDate getRelativeDate() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal = self.getRelativeDate();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.data.RelativeDate::new(Lcom/google/gwt/core/client/JavaScriptObject;)(retVal);
+        }
+    }-*/;
+    
+    /**
      * Converts a RelativeDate to a concrete Date.
      * @param relativeDate the relative date to convert
      *
