@@ -72,7 +72,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     public ListGrid(){
-        setModalEditing(true);scClassName = "ListGrid";
+        setModalEditing(true);setAlternateRecordStyles(true);scClassName = "ListGrid";
     }
 
     public ListGrid(JavaScriptObject jsObj){
@@ -7621,11 +7621,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-        obj.selectionChanged = $entry(function(){
-               var param = {"record" : arguments[0], "state" : arguments[1]};
-               var event = @com.smartgwt.client.widgets.grid.events.SelectionEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-               selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-           });
+            obj.selectionChanged = $entry(function(){
+                   var param = {"record" : arguments[0], "state" : arguments[1]};
+                   var event = @com.smartgwt.client.widgets.grid.events.SelectionEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
         }
    }-*/;
             
