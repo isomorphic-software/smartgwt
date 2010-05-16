@@ -79,6 +79,7 @@ import com.smartgwt.sample.showcase.client.tree.*;
 import com.smartgwt.sample.showcase.client.tree.appearance.MultipleColumnsSample;
 import com.smartgwt.sample.showcase.client.tree.appearance.NodeTitlesTreeSample;
 import com.smartgwt.sample.showcase.client.tree.appearance.TreeConnectorsSample;
+import com.smartgwt.sample.showcase.client.tree.appearance.TreePreferencesSample;
 import com.smartgwt.sample.showcase.client.tree.databinding.ChildrenArraysTreeSample;
 import com.smartgwt.sample.showcase.client.tree.databinding.LoadOnDemandTreeSample;
 import com.smartgwt.sample.showcase.client.tree.databinding.LocalDataTreeSample;
@@ -132,9 +133,11 @@ public class ShowcaseData {
 
                     new ExplorerTreeNode("New Samples", "new-category", "root", "silk/new.png", null, true, idSuffix),
                     new ExplorerTreeNode("Date Range Filtering", "daterange-filtering-new-category", "new-category", null, new GridDateRangeFilterSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Multi-Select Item", "multi-select-new-category", "new-category", null, new SelectMultipleSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Date Range Selection", "date-range-new-category", "new-category", null, new DateControlsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Grid Preferences", "grid-preferences-new-category", "new-category", null, new GridPreferencesSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Tree Preferences", "tree-preferences-new-category", "new-category", null, new TreePreferencesSample.Factory(), true, idSuffix),                    
                     new ExplorerTreeNode("Custom ComboBox Styling", "styled-combobox-new-category", "new-category", null, new ComboBoxStyledSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Multi-Select Item", "multi-select-new-category", "new-category", null, new SelectMultipleSample.Factory(), true, idSuffix),
 
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
 
@@ -151,6 +154,7 @@ public class ShowcaseData {
 
                     new ExplorerTreeNode("Grids", "grid-category", "root", "silk/application_view_detail.png", null, true, idSuffix),
                     new ExplorerTreeNode("Appearance", "grid-appearance-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Grid Preferences", "grid-appearance-preferences", "grid-appearance-category", null, new GridPreferencesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Alternate Records", "grid-appearance-alternate", "grid-appearance-category", null, new AlternateRecordStyleSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Column Order", "grid-appearance-columnorder", "grid-appearance-category", null, new ColumnOrderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Column Size", "grid-appearance-columnsize", "grid-appearance-category", null, new ColumnSizeSample.Factory(), true, idSuffix),
@@ -294,6 +298,7 @@ public class ShowcaseData {
 
                     new ExplorerTreeNode("Tree", "tree-category", "root", "silk/chart_organisation.png", null, true, idSuffix),
                     new ExplorerTreeNode("Appearance", "tree-appearance-category", "tree-category", "pieces/16/cube_blue.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Tree Preferences", "tree-apperannce-preferneces", "tree-category", null, new TreePreferencesSample.Factory(), true, idSuffix),                    
                     new ExplorerTreeNode("Node Titles", "tree-appearance-node-titles", "tree-appearance-category", null, new NodeTitlesTreeSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Multiple Columns", "tree-appearance-multicolumns", "tree-appearance-category", null, new MultipleColumnsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Connectors", "tree-appearance-connectors", "tree-appearance-category", null, new TreeConnectorsSample.Factory(), true, idSuffix),
