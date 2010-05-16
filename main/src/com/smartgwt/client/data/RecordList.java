@@ -17,16 +17,14 @@
 package com.smartgwt.client.data;
 
 
-
-import com.smartgwt.client.core.*;
-import com.smartgwt.client.util.JSOHelper;
-
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.smartgwt.client.core.BaseClass;
+import com.smartgwt.client.util.JSOHelper;
 
 import java.util.Comparator;
-import java.util.Map;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * An an ordered collection of Records. <P> This class is expected by list-oriented display
@@ -798,7 +796,45 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
         return @com.smartgwt.client.data.RecordList::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
+    /**
+     * Sort this ResultSet by a property of each record. <P> Sorting is performed on the client for a ResultSet that has a full
+     * cache for the current filter criteria.  Otherwise, sorting is performed by the server, and changing the sort order will
+     * invalidate the cache. <P> <b>NOTE:</b> normalizers are not supported by ResultSets in "paged" mode
+     * @param property name of the property to sort by
+     * @param up true == sort ascending, false == sort descending
+     * @param normalizer May be specified as a callbac with signature <code>normalize(item, propertyName)</code>, where
+     * <code>item</code> is reference to the item in the array, <code>propertyName</code> is the
+     * property by which the array is being sorted. Normalizer function should return the value normalized for sorting.
+     */
+    public native void sortByProperty(String property, boolean up, SortNormalizer normalizer) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.sortByProperty(property, up, normalizer == null ? null : $debox($entry(function(record, propertyName) {
+                var recordJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+                var value = normalizer.@com.smartgwt.client.data.RecordList$SortNormalizer::normalize(Lcom/smartgwt/client/data/Record;Ljava/lang/String;)(recordJ, propertyName);
+                if(value == null) return null;
+                if(typeof value == 'string') {
+                    return value;
+                } else {
+                    return @com.smartgwt.client.data.RecordList::normalizedValue(Ljava/lang/Number;)(value);
+                }
+            })));
+        return this;
+    }-*/;
 
+    private static double normalizedValue(Number number) {
+        return number.doubleValue();
+    }
+
+    /**
+     * Multi-Property sort. Sort this ResultSet by a list of {@link com.smartgwt.client.data.SortSpecifier}'s.
+     *
+     * @param sortSpecifiers a list of {@link com.smartgwt.client.data.SortSpecifier} objects, one per sort-field and direction
+     */
+    public native void setSort(SortSpecifier... sortSpecifiers)/*-{
+        var sortSpecifiersJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(sortSpecifiers);
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.setSort(sortSpecifiersJS);
+    }-*/;
 
     /**
      * Get a map of the form <code>{ item[idField] -&gt; item[displayField] }</code>, for all  items in the list.  Note that if
@@ -815,7 +851,7 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
         return mapJS == null ? null : @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(mapJS);
     }-*/;
 
-      /**
+     /**
      * Add a DataChanged handler.
      * <p>
      * Notification fired when data changes in some way. Note that this will only fire when items are added, removed or
@@ -850,8 +886,16 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
         return getRange(0, getLength());
     }
 
-    // ********************* Static Methods ***********************
-
+    public interface SortNormalizer {
+        /**
+         * The normalization function.
+         *
+         * @param record    the record to normalize
+         * @param fieldName name of the field on which sorting occurred
+         * @return normalized value for sorting (a java numeric primitive type or String)
+         */
+        Object normalize(Record record, String fieldName);
+    }
 }
 
 

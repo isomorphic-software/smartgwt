@@ -349,15 +349,19 @@ public class MiniDateRangeItem extends StaticTextItem {
     }-*/;
 
     /**
-     * Sets the value for this dateRangeItem.  The value parameter is a  {@link DateRange DateRange} object
+     * Sets the value for this dateRangeItem.  The value parameter is a  {@link com.smartgwt.client.data.DateRange DateRange} object
      * that optionally includes both start and end values.
      *
      * @param value the new value for this item
      */
     public native void setValue(DateRange value) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var valueJS = this.@com.smartgwt.client.data.DateRange::getJsObj()();
-        self.setValue(valueJS);
+        var valueJS = value.@com.smartgwt.client.core.JsObject::getJsObj()();
+        if(self.setValue) {
+            self.setValue(valueJS);
+        } else {
+            self.defaultValue = valueJS;
+        }
     }-*/;
 
 }

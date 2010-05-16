@@ -420,8 +420,10 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     /**
-     * Optional target canvas for this menu. Available as a parameter to dynamic menuItem configuration methods such as {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#checkIf MenuItem.checkIf}. <P> If this item has any {@link
+     * Optional target canvas for this menu.  Available as a parameter to dynamic menuItem configuration methods such as {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#checkIf MenuItem.checkIf}. <P> Whenever a Menu is shown as a contextMenu by a
+     * widget due to {@link com.smartgwt.client.widgets.Canvas#getContextMenu contextMenu} being set, <code>menu.target</code>
+     * is automatically set to the widget that showed the contextMenu. <P> If this item has any {@link
      * com.smartgwt.client.widgets.menu.MenuItem#getSubmenu submenus} the <code>target</code> will be propagated down to these
      * child menus.
      *
@@ -432,8 +434,10 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     /**
-     * Optional target canvas for this menu. Available as a parameter to dynamic menuItem configuration methods such as {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#checkIf MenuItem.checkIf}. <P> If this item has any {@link
+     * Optional target canvas for this menu.  Available as a parameter to dynamic menuItem configuration methods such as {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#checkIf MenuItem.checkIf}. <P> Whenever a Menu is shown as a contextMenu by a
+     * widget due to {@link com.smartgwt.client.widgets.Canvas#getContextMenu contextMenu} being set, <code>menu.target</code>
+     * is automatically set to the widget that showed the contextMenu. <P> If this item has any {@link
      * com.smartgwt.client.widgets.menu.MenuItem#getSubmenu submenus} the <code>target</code> will be propagated down to these
      * child menus.
      *
