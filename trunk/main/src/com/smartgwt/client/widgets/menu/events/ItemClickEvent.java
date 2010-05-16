@@ -136,7 +136,7 @@ public class ItemClickEvent extends BrowserEvent<ItemClickHandler>  implements C
 
 
     /**
-     * pointer to the item in question
+     * Pointer to the item in question.
      *
      * @return pointer to the item in question
      */
@@ -147,7 +147,7 @@ public class ItemClickEvent extends BrowserEvent<ItemClickHandler>  implements C
     }-*/;
 
     /**
-     * pointer to the item in question as a Record. This method should be called if the Menu is data bound.
+     * Pointer to the item in question as a Record. This method should be called if the Menu is data bound.
      *
      * @return pointer to the selected record in question
      */
@@ -156,4 +156,6 @@ public class ItemClickEvent extends BrowserEvent<ItemClickHandler>  implements C
         var retVal = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
         return retVal;
     }-*/;
+
+
 }
