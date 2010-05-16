@@ -54,6 +54,7 @@
     </target>
 
     <target name="build" depends="write_ver,compile" description="Build and package this project">
+        <copyfile src="src/com/smartgwt/client/i18n/SmartGwtMessages_fr_FR.properties" dest="src/com/smartgwt/client/i18n/SmartGwtMessages_fr.properties"/>
         <mkdir dir="${smartgwt.build.lib}"/>
         <gwt.jar>
             <fileset dir="src">
