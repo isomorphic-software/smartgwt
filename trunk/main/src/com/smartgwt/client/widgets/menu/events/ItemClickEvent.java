@@ -142,10 +142,18 @@ public class ItemClickEvent extends BrowserEvent<ItemClickHandler>  implements C
      */
     public  native MenuItem getItem() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            var retVal = @com.smartgwt.client.widgets.menu.MenuItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);            
-            return retVal;
-
+        var retVal = @com.smartgwt.client.widgets.menu.MenuItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
+        return retVal;
     }-*/;
 
-
+    /**
+     * pointer to the item in question as a Record. This method should be called if the Menu is data bound.
+     *
+     * @return pointer to the selected record in question
+     */
+    public  native Record getRecord() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var retVal = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
+        return retVal;
+    }-*/;
 }

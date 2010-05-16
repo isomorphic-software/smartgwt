@@ -43,6 +43,26 @@ public class ToolStripButton extends StretchImgButton {
         scClassName = "ToolStripButton";
     }
 
+    /**
+     * Constructor.
+     * @param title title of the button
+     */
+    public ToolStripButton(String title) {
+        this();
+        setTitle(title);
+    }
+
+    /**
+     * Constructor.
+     * @param title title of the button
+     * @param icon the button icon
+     */
+    public ToolStripButton(String title, String icon) {
+        this();
+        setTitle(title);
+        setIcon(icon);
+    }
+
     public ToolStripButton(JavaScriptObject jsObj){
         super(jsObj);
     }

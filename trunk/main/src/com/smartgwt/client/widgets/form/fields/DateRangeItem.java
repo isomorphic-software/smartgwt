@@ -382,7 +382,7 @@ public class DateRangeItem extends CanvasItem {
             self.setValue(valueJS);
         } else {
             self.defaultValue = valueJS;
-        }  
+        }
     }-*/;
 
 }
