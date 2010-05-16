@@ -131,4 +131,26 @@ public class SelectionEvent extends BrowserEvent<SelectionChangedHandler>  {
     }-*/;
 
 
+    /**
+     * The selection associated with the listGrid. Alias for {@link #getRecord()}
+     *
+     * @return the selection
+     */
+    public ListGridRecord[] getSelection() {
+        return ((ListGrid) getSource()).getSelection();
+    }
+
+    /**
+     * Return the first selected record in this component.<br><br> This method is appropriate if <code>{@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSelectionType selectionType}</code> is <code>"single"</code>, or if you
+     * only care about the first selected record in a multiple-record selection. To access all selected records, use
+     * <code>{@link com.smartgwt.client.widgets.grid.ListGrid#getSelection ListGrid.getSelection}</code> instead.
+     *
+     * @return first selected record, or null if nothing selected
+     */
+    public ListGridRecord getSelectedRecord() {
+        return ((ListGrid) getSource()).getSelectedRecord();
+    }
+
+
 }

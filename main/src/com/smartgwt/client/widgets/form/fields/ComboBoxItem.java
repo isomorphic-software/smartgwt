@@ -1069,7 +1069,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     public void setPickListProperties(ListGrid pickListProperties) {
         JavaScriptObject configJS = pickListProperties.getConfig();
         JSOHelper.deleteAttribute(configJS, "ID");
-        JSOHelper.deleteAttribute(configJS, "alternateRecordStyles");        
+        JSOHelper.deleteAttribute(configJS, "alternateRecordStyles");
         setAttribute("pickListProperties", configJS);
     }    
 
