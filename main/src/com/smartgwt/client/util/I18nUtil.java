@@ -67,6 +67,8 @@ public class I18nUtil {
         if($wnd.isc.Operators){
             $wnd.isc.Operators.addClassProperties({equalsTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_equalsTitle()()});
             $wnd.isc.Operators.addClassProperties({notEqualTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_notEqualTitle()()});
+            $wnd.isc.Operators.addClassProperties({iEqualsTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_iEqualsTitle()()});
+            $wnd.isc.Operators.addClassProperties({iNotEqualTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_iNotEqualTitle()()});
             $wnd.isc.Operators.addClassProperties({greaterThanTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_greaterThanTitle()()});
             $wnd.isc.Operators.addClassProperties({lessThanTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_lessThanTitle()()});
             $wnd.isc.Operators.addClassProperties({betweenTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_betweenTitle()()});

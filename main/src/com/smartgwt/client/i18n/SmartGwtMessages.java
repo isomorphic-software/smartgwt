@@ -1825,6 +1825,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String operators_iEndsWithTitle();
 
   /**
+   * Translated "equals (disregard case)".
+   * 
+   * @return translated "equals (disregard case)"
+   */
+  @DefaultMessage("equals (disregard case)")
+  @Key("operators_iEqualsTitle")
+  String operators_iEqualsTitle();
+
+  /**
    * Translated "does not contain".
    * 
    * @return translated "does not contain"
@@ -1841,6 +1850,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("does not end with")
   @Key("operators_iNotEndsWithTitle")
   String operators_iNotEndsWithTitle();
+
+  /**
+   * Translated "not equal (disregard case)".
+   * 
+   * @return translated "not equal (disregard case)"
+   */
+  @DefaultMessage("not equal (disregard case)")
+  @Key("operators_iNotEqualTitle")
+  String operators_iNotEqualTitle();
 
   /**
    * Translated "does not start with".
@@ -2644,11 +2662,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String validator_mustBeLessThan();
 
   /**
-   * Translated "Must be more than $min characters".
+   * Translated "Must be at least $min characters".
    * 
-   * @return translated "Must be more than $min characters"
+   * @return translated "Must be at least $min characters"
    */
-  @DefaultMessage("Must be more than $min characters")
+  @DefaultMessage("Must be at least $min characters")
   @Key("validator_mustBeLongerThan")
   String validator_mustBeLongerThan();
 
