@@ -3,17 +3,20 @@ package com.smartgwt.sample.showcase.client.grid.appearance;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.IButton;
-import com.smartgwt.client.widgets.events.ClickEvent;
-import com.smartgwt.client.widgets.events.ClickHandler;
+import com.smartgwt.client.widgets.form.DynamicForm;
+import com.smartgwt.client.widgets.form.fields.CheckboxItem;
+import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;
+import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CountryData;
 
 public class AlternateRecordStyleSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "This sample illustrates alternate record styles to create ledger effect for easier reading";
+    private static final String DESCRIPTION = "This sample illustrates alternate record styles to create ledger effect for easier reading. To disable alternate " +
+            "record styles ListGrid.setAlternateRecordStyles(false) can be called.";
 
     public static class Factory implements PanelFactory {
         private String id;
@@ -35,7 +38,7 @@ public class AlternateRecordStyleSample extends ShowcasePanel {
 
     public Canvas getViewPanel() {
 
-        Canvas canvas = new Canvas();
+        VLayout layout = new VLayout(10);
 
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(500);
@@ -55,29 +58,25 @@ public class AlternateRecordStyleSample extends ShowcasePanel {
         countryGrid.setFields(countryCodeField, nameField, capitalField, continentField);
         countryGrid.setCanResizeFields(true);
         countryGrid.setData(CountryData.getRecords());
-        canvas.addChild(countryGrid);
+        layout.addMember(countryGrid);
 
-        IButton hideCapital = new IButton("Hide Capitals");
-        hideCapital.setLeft(0);
-        hideCapital.setTop(240);
-        hideCapital.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                countryGrid.hideField("capital");
+        DynamicForm form = new DynamicForm();
+        form.setWidth(300);
+
+        CheckboxItem checkboxItem = new CheckboxItem("cbItem", "Alternate Record Styles");
+        checkboxItem.setWidth(150);
+        checkboxItem.setValue(true);
+        checkboxItem.addChangeHandler(new ChangeHandler() {
+            @Override
+            public void onChange(ChangeEvent event) {
+                boolean checked = (Boolean) event.getValue();
+                countryGrid.setAlternateRecordStyles(checked);
             }
         });
-        canvas.addChild(hideCapital);
+        form.setItems(checkboxItem);
+        layout.addMember(form);
 
-        IButton showCapitals = new IButton("Show Capitals");
-        showCapitals.setLeft(120);
-        showCapitals.setTop(240);
-        showCapitals.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                countryGrid.showField("capital");
-            }
-        });
-        canvas.addChild(showCapitals);
-
-        return canvas;
+        return layout;
     }
 
 
