@@ -11,7 +11,7 @@ package com.smartgwt.client.docs;
  * href='http://www.hibernate.org/hib_docs/v3/reference/en/html_single/#persistent-classes-dynamicmodels'
  * onclick="window.open('http://www.hibernate.org/hib_docs/v3/reference/en/html_single/#persistent-classes-dynamicmodels');return
  * false;">"dynamic model"</a>&#010 mode is used.  This is enabled via {@link
- * com.smartgwt.client.data.DataSource#getServerType serverType}:"hibernate".&#010 </ul>&#010 <P>&#010 <b>Hibernate
+ * com.smartgwt.client.docs.serverds.DataSource#serverType serverType}:"hibernate".&#010 </ul>&#010 <P>&#010 <b>Hibernate
  * Configuration</b>&#010 <P>&#010 You can provide Hibernate configuration to the Smart GWT server in three ways:&#010
  * <ul>&#010 <li>You can place a traditional <code>hibernate.cfg.xml</code> file somewhere on the &#010    
  * classpath</li>&#010 <li>You can have Smart GWT look up a Hibernate <code>Configuration</code> to use.  This &#010    
@@ -20,8 +20,8 @@ package com.smartgwt.client.docs;
  * file, prefixed with <code>hibernate.config</code>.  For&#010     example: <pre>&#010       
  * hibernate.config.lookupStyle: spring&#010        hibernate.config.bean: mySessionFactory&#010 </pre></li>&#010 <li>You
  * can provide a Hibernate configuration at the level of individual DataSources, by &#010     specifying a {@link
- * com.smartgwt.client.data.DataSource#getConfigBean configBean} on the dataSource (this is only &#010     applicable if
- * you are using Spring; see below)</li>&#010 </ul>&#010 If you choose to have Smart GWT lookup the Hibernate
+ * com.smartgwt.client.docs.serverds.DataSource#configBean configBean} on the dataSource (this is only &#010     applicable
+ * if you are using Spring; see below)</li>&#010 </ul>&#010 If you choose to have Smart GWT lookup the Hibernate
  * configuration, and you specify a &#010 {@link com.smartgwt.client.docs.serverds.ServerObject#lookupStyle lookupStyle} of
  * "spring", Smart GWT will make use of a&#010 Hibernate <code>SessionFactory</code> configured by Spring.  It is possible
  * to set up multiple&#010 Hibernate configurations in Spring, and to map individual DataSources to different &#010

@@ -8,11 +8,11 @@ package com.smartgwt.client.docs;
  * user-written SQL and additional business logic of any complexity.  {@link com.smartgwt.client.docs.SqlVsJPA This
  * article} compares the built-in SQL DataSource to other persistence approaches based on Javabeans. <P> To use the
  * built-in SQL engine, declare a {@link com.smartgwt.client.data.DataSource} in XML format with {@link
- * com.smartgwt.client.data.DataSource#getServerType serverType} set to "sql", and place it in the shared dataSources
+ * com.smartgwt.client.docs.serverds.DataSource#serverType serverType} set to "sql", and place it in the shared dataSources
  * directory ([webroot]/shared/ds by default) in a file called "[dataSourceId].ds.xml". <p> You can then use the {@link
  * com.smartgwt.client.docs.AdminConsole Admin Console} to configure database access, as well as to automatically create
  * and populate a database table based on your DataSource. By default, DataSources will use the "default database" from the
- * admin console, however you can set {@link com.smartgwt.client.data.DataSource#getDbName dbName} to the name of a
+ * admin console, however you can set {@link com.smartgwt.client.docs.serverds.DataSource#dbName dbName} to the name of a
  * specific database configuration you have configured via the Admin Console. <P> The list of databases known to work with
  * the the built-in SQL logic is as follows: <p> <table class='normal'> <tr><td width=40></td><td width=200><i>HSQLDB
  * 1.7.x, 1.8.x</i></td><td></td></tr> <tr><td></td><td><i>IBM DB2 8.x, 9.x</i></td><td></td></tr> <tr><td></td><td><i>MS

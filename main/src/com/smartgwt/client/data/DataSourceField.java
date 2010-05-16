@@ -847,9 +847,9 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * For a DataSource with {@link com.smartgwt.client.data.DataSource#getServerType serverType:"sql"} with a field of type
-     * "sequence", the name of the SQL sequence that should be used when inserting new records into this table. <P> Note that
-     * this is never required for SQL tables that are generated from Smart GWT DataSources (a default sequence name of
+     * For a DataSource with {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType:"sql"} with a field of
+     * type "sequence", the name of the SQL sequence that should be used when inserting new records into this table. <P> Note
+     * that this is never required for SQL tables that are generated from Smart GWT DataSources (a default sequence name of
      * tableName + "_" + columnName is chosen), and is  never required for databases where inserting null into a sequence
      * column is sufficient (MySQL, SQL Server, DB2 and others).   <P> You would only need to set sequenceName if you are
      * integrating with a pre-existing table stored in a database where the sequence must be named for insertion to work
@@ -863,9 +863,9 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * For a DataSource with {@link com.smartgwt.client.data.DataSource#getServerType serverType:"sql"} with a field of type
-     * "sequence", the name of the SQL sequence that should be used when inserting new records into this table. <P> Note that
-     * this is never required for SQL tables that are generated from Smart GWT DataSources (a default sequence name of
+     * For a DataSource with {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType:"sql"} with a field of
+     * type "sequence", the name of the SQL sequence that should be used when inserting new records into this table. <P> Note
+     * that this is never required for SQL tables that are generated from Smart GWT DataSources (a default sequence name of
      * tableName + "_" + columnName is chosen), and is  never required for databases where inserting null into a sequence
      * column is sufficient (MySQL, SQL Server, DB2 and others).   <P> You would only need to set sequenceName if you are
      * integrating with a pre-existing table stored in a database where the sequence must be named for insertion to work
