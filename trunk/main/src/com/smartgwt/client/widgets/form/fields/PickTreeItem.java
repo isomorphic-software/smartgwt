@@ -224,7 +224,7 @@ public class PickTreeItem extends CanvasItem {
 
     /**
      * If specified, the tree of possible options will be derived from the dataSource as a ResultTree, rather than using
-     * this.valueTree.  Options can be loaded on demand or up front according tp {@link
+     * this.valueTree.  Options can be loaded on demand or up front according to {@link
      * com.smartgwt.client.widgets.form.fields.PickTreeItem#getLoadDataOnDemand loadDataOnDemand}. <p><b>Note : </b>
      * This is an advanced setting</p>
      *
