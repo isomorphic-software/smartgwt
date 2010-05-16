@@ -15,8 +15,8 @@ package com.smartgwt.client.docs;
  * just:&#010 <pre>&#010 &lt;MyListGrid width="500"/&gt;&#010 </pre>&#010 Note: you may need to restart your servlet
  * engine/J2EE container before this example will&#010 work.&#010 <P>&#010 The attributes set directly on the DataSource
  * tag have special meaning for a component&#010 schema definition:&#010 <ul>&#010 <li>{@link
- * com.smartgwt.client.data.DataSource#getServerType serverType}="component" indicates this DataSource describes&#010 a
- * component, as opposed to a SQL table or other data provider&#010 <li>{@link com.smartgwt.client.data.DataSource#getID
+ * com.smartgwt.client.docs.serverds.DataSource#serverType serverType}="component" indicates this DataSource describes&#010
+ * a component, as opposed to a SQL table or other data provider&#010 <li>{@link com.smartgwt.client.data.DataSource#getID
  * ID} means the tagName that will be used to create your custom&#010 component.  This must match the first component of
  * the filename (ID="MyListGrid" means the&#010 filename must be MyListGrid.ds.xml) and typically also matches the name of
  * the class.&#010 <li>{@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}="ListGrid" inherits the

@@ -197,8 +197,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * For a DataSource with serverType: "sql" or serverType: "hibernate", automatically derive the dataSource's schema (field
-     * definitions) from the SQL table specified in  {@link com.smartgwt.client.data.DataSource#getTableName tableName}.  This
-     * causes Smart GWT to create a "super" DataSource, which this dataSource then automatically {@link
+     * definitions) from the SQL table specified in  {@link com.smartgwt.client.docs.serverds.DataSource#tableName tableName}. 
+     * This causes Smart GWT to create a "super" DataSource, which this dataSource then automatically {@link
      * com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}.  This allows you to  override auto-derived schema as
      * required. <p> This property is only applicable if you are using the Smart GWT server.
      *
@@ -211,8 +211,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * For a DataSource with serverType: "sql" or serverType: "hibernate", automatically derive the dataSource's schema (field
-     * definitions) from the SQL table specified in  {@link com.smartgwt.client.data.DataSource#getTableName tableName}.  This
-     * causes Smart GWT to create a "super" DataSource, which this dataSource then automatically {@link
+     * definitions) from the SQL table specified in  {@link com.smartgwt.client.docs.serverds.DataSource#tableName tableName}. 
+     * This causes Smart GWT to create a "super" DataSource, which this dataSource then automatically {@link
      * com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}.  This allows you to  override auto-derived schema as
      * required. <p> This property is only applicable if you are using the Smart GWT server.
      *
@@ -250,7 +250,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * This property has different meanings depending on the {@link com.smartgwt.client.data.DataSource#getServerType
+     * This property has different meanings depending on the {@link com.smartgwt.client.docs.serverds.DataSource#serverType
      * serverType}: <p> <b>For DataSources with serverType "hibernate"</b><br> The name of the Java bean or POJO class that is
      * mapped in Hibernate.  This will typically  be the fully-qualified class name - eg <code>com.foo.MyClass</code> - but it
      * may be the  simple class name - just <code>MyClass</code> - or it may be some other value.  It all  depends on how your
@@ -288,7 +288,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * This property has different meanings depending on the {@link com.smartgwt.client.data.DataSource#getServerType
+     * This property has different meanings depending on the {@link com.smartgwt.client.docs.serverds.DataSource#serverType
      * serverType}: <p> <b>For DataSources with serverType "hibernate"</b><br> The name of the Java bean or POJO class that is
      * mapped in Hibernate.  This will typically  be the fully-qualified class name - eg <code>com.foo.MyClass</code> - but it
      * may be the  simple class name - just <code>MyClass</code> - or it may be some other value.  It all  depends on how your
@@ -529,37 +529,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * For DataSources of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "hibernate", the name of a
-     * Spring  bean to query to obtain Hibernate Configuration for this particular DataSource.  Note that this is intended for
-     * DataSource-specific configuration overrides for unusual  circumstances, such as a DataSource whose physical data store
-     * is a completely  different database to that used by other DataSources.  See the  {@link
-     * com.smartgwt.client.docs.HibernateIntegration Integration with Hibernate} article for more  information
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param configBean configBean Default value is null
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
-     */
-    public void setConfigBean(String configBean)  throws IllegalStateException {
-        setAttribute("configBean", configBean, false);
-    }
-
-    /**
-     * For DataSources of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "hibernate", the name of a
-     * Spring  bean to query to obtain Hibernate Configuration for this particular DataSource.  Note that this is intended for
-     * DataSource-specific configuration overrides for unusual  circumstances, such as a DataSource whose physical data store
-     * is a completely  different database to that used by other DataSources.  See the  {@link
-     * com.smartgwt.client.docs.HibernateIntegration Integration with Hibernate} article for more  information
-     *
-     *
-     * @return String
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
-     */
-    public String getConfigBean()  {
-        return getAttributeAsString("configBean");
-    }
-
-    /**
      * Decides under what conditions the {@link com.smartgwt.client.data.ResultSet} cache should be dropped when the {@link
      * com.smartgwt.client.data.ResultSet#getCriteria criteria} changes.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -674,32 +643,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource Smart GWT SQL engine} for persistence, which
-     * database configuration to use.  Database configurations can be created using the "Databases" tab in the Developer
-     * Console.  If unset, the default database configuration is used (which is also settable using the "Databases" tab).
-     *
-     * @param dbName dbName Default value is null
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
-     */
-    public void setDbName(String dbName)  throws IllegalStateException {
-        setAttribute("dbName", dbName, false);
-    }
-
-    /**
-     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource Smart GWT SQL engine} for persistence, which
-     * database configuration to use.  Database configurations can be created using the "Databases" tab in the Developer
-     * Console.  If unset, the default database configuration is used (which is also settable using the "Databases" tab).
-     *
-     *
-     * @return String
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
-     */
-    public String getDbName()  {
-        return getAttributeAsString("dbName");
-    }
-
-    /**
      * Indicates that for server responses, for any data being interpreted as DataSource records,  only data that corresponds
      * to declared fields should be retained; any extra fields should be discarded. <P> For {@link
      * com.smartgwt.client.data.DataSource#getDataFormat JSON} data, this means extra properties in selected objects are
@@ -805,10 +748,10 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * Allows you to specify an arbitrary prefix string to apply to all json format responses  sent from the server to this
-     * application.<br> The inclusion of such a prefix ensures your code is not directly executable outside of your
+     * application. <P> The inclusion of such a prefix ensures your code is not directly executable outside of your
      * application, as a preventative measure against <a href='http://www.google.com/search?q=javascript+hijacking'
-     * onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>.
-     * <br> Only applies to responses formatted as json objects. Does not apply to responses returned via scriptInclude type
+     * onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>. <P>
+     * Only applies to responses formatted as json objects. Does not apply to responses returned via scriptInclude type
      * transport.<br> Note: If the prefix / suffix served by your backend is not a constant, you can use  {@link
      * com.smartgwt.client.data.OperationBinding#getDataFormat dataFormat:"custom"} instead and explicitly parse the prefix out
      * as part of {@link com.smartgwt.client.data.DataSource#transformResponse transformResponse()}.
@@ -823,10 +766,10 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * Allows you to specify an arbitrary prefix string to apply to all json format responses  sent from the server to this
-     * application.<br> The inclusion of such a prefix ensures your code is not directly executable outside of your
+     * application. <P> The inclusion of such a prefix ensures your code is not directly executable outside of your
      * application, as a preventative measure against <a href='http://www.google.com/search?q=javascript+hijacking'
-     * onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>.
-     * <br> Only applies to responses formatted as json objects. Does not apply to responses returned via scriptInclude type
+     * onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>. <P>
+     * Only applies to responses formatted as json objects. Does not apply to responses returned via scriptInclude type
      * transport.<br> Note: If the prefix / suffix served by your backend is not a constant, you can use  {@link
      * com.smartgwt.client.data.OperationBinding#getDataFormat dataFormat:"custom"} instead and explicitly parse the prefix out
      * as part of {@link com.smartgwt.client.data.DataSource#transformResponse transformResponse()}.
@@ -840,10 +783,10 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * Allows you to specify an arbitrary suffix string to apply to all json format responses  sent from the server to this
-     * application.<br> The inclusion of such a suffix ensures your code is not directly executable outside of your
+     * application. <P> The inclusion of such a suffix ensures your code is not directly executable outside of your
      * application, as a preventative measure against <a href='http://www.google.com/search?q=javascript+hijacking'
-     * onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>.
-     * <br> Only applies to responses formatted as json objects. Does not apply to responses returned via scriptInclude type
+     * onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>. <P>
+     * Only applies to responses formatted as json objects. Does not apply to responses returned via scriptInclude type
      * transport.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -856,10 +799,10 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * Allows you to specify an arbitrary suffix string to apply to all json format responses  sent from the server to this
-     * application.<br> The inclusion of such a suffix ensures your code is not directly executable outside of your
+     * application. <P> The inclusion of such a suffix ensures your code is not directly executable outside of your
      * application, as a preventative measure against <a href='http://www.google.com/search?q=javascript+hijacking'
-     * onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>.
-     * <br> Only applies to responses formatted as json objects. Does not apply to responses returned via scriptInclude type
+     * onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>. <P>
+     * Only applies to responses formatted as json objects. Does not apply to responses returned via scriptInclude type
      * transport.
      *
      *
@@ -916,8 +859,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * For dataSources of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "sql", determines whether we
-     * qualify column names with table names in any SQL we generate.  This property can be overridden on specific
+     * For dataSources of {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType} "sql", determines whether
+     * we qualify column names with table names in any SQL we generate.  This property can be overridden on specific
      * operationBindings.
      *
      * @param qualifyColumnNames qualifyColumnNames Default value is true
@@ -928,8 +871,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * For dataSources of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "sql", determines whether we
-     * qualify column names with table names in any SQL we generate.  This property can be overridden on specific
+     * For dataSources of {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType} "sql", determines whether
+     * we qualify column names with table names in any SQL we generate.  This property can be overridden on specific
      * operationBindings.
      *
      *
@@ -937,40 +880,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      */
     public Boolean getQualifyColumnNames()  {
         return getAttributeAsBoolean("qualifyColumnNames");
-    }
-
-    /**
-     * If set, tells the SQL engine to quote column names in all generated DML and DDL  statements for this dataSource.  This
-     * will ensure that queries generated against tables that do not follow the database product's natural column-naming
-     * conventions  will still work. <p> In general we recommend that you allow the database to use its natural naming scheme
-     * when creating tables (put more simply, just do not quote column names in the  <code>CREATE TABLE</code> statement); if
-     * you do this, you will not need to worry about  quoting column names when querying.  However, if you are dealing with
-     * pre-existing  tables, or do not have control over the database naming conventions used, this property may become
-     * necessary. <p> <b>Note:</b> Only applicable to dataSources of {@link com.smartgwt.client.data.DataSource#getServerType
-     * serverType} "sql".
-     *
-     * @param quoteColumnNames quoteColumnNames Default value is true
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-     */
-    public void setQuoteColumnNames(Boolean quoteColumnNames)  throws IllegalStateException {
-        setAttribute("quoteColumnNames", quoteColumnNames, false);
-    }
-
-    /**
-     * If set, tells the SQL engine to quote column names in all generated DML and DDL  statements for this dataSource.  This
-     * will ensure that queries generated against tables that do not follow the database product's natural column-naming
-     * conventions  will still work. <p> In general we recommend that you allow the database to use its natural naming scheme
-     * when creating tables (put more simply, just do not quote column names in the  <code>CREATE TABLE</code> statement); if
-     * you do this, you will not need to worry about  quoting column names when querying.  However, if you are dealing with
-     * pre-existing  tables, or do not have control over the database naming conventions used, this property may become
-     * necessary. <p> <b>Note:</b> Only applicable to dataSources of {@link com.smartgwt.client.data.DataSource#getServerType
-     * serverType} "sql".
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getQuoteColumnNames()  {
-        return getAttributeAsBoolean("quoteColumnNames");
     }
 
     /**
@@ -1138,30 +1047,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * For a DataSource stored in .xml format on the ISC server, indicates what server-side connector to use to execute
-     * requests, that is, what happens if you call dsRequest.execute() in server code.
-     *
-     * @param serverType serverType Default value is "generic"
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
-     */
-    public void setServerType(DSServerType serverType)  throws IllegalStateException {
-        setAttribute("serverType", serverType.getValue(), false);
-    }
-
-    /**
-     * For a DataSource stored in .xml format on the ISC server, indicates what server-side connector to use to execute
-     * requests, that is, what happens if you call dsRequest.execute() in server code.
-     *
-     *
-     * @return DSServerType
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
-     */
-    public DSServerType getServerType()  {
-        return EnumUtil.getEnum(DSServerType.values(), getAttribute("serverType"));
-    }
-
-    /**
      * For an XML DataSource, URN of the WebService to use to invoke operations.  This URN comes from the "targetNamespace"
      * attribute of the &lt;wsdl:definitions&gt; element in a WSDL (Web Service Description Language) document, and serves as
      * the unique identifier of the service. <P> Having loaded a WebService using {@link
@@ -1274,30 +1159,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      */
     public Boolean getStrictSQLFiltering()  {
         return getAttributeAsBoolean("strictSQLFiltering");
-    }
-
-    /**
-     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource Smart GWT SQL engine} for persistence, what
-     * database table name to use.  The default is to use the DataSource ID as the table name.
-     *
-     * @param tableName tableName Default value is null
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
-     */
-    public void setTableName(String tableName)  throws IllegalStateException {
-        setAttribute("tableName", tableName, false);
-    }
-
-    /**
-     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource Smart GWT SQL engine} for persistence, what
-     * database table name to use.  The default is to use the DataSource ID as the table name.
-     *
-     *
-     * @return String
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
-     */
-    public String getTableName()  {
-        return getAttributeAsString("tableName");
     }
 
     /**

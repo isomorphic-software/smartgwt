@@ -78,10 +78,10 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.DataSource#getDataFormat
  * @see com.smartgwt.client.data.DataSource#getDataProtocol
  * @see com.smartgwt.client.data.DataSource#getRequestProperties
- * @see com.smartgwt.client.data.DataSource#getServerType
- * @see com.smartgwt.client.data.DataSource#getTableName
- * @see com.smartgwt.client.data.DataSource#getDbName
- * @see com.smartgwt.client.data.DataSource#getConfigBean
+ * @see com.smartgwt.client.docs.serverds.DataSource#serverType
+ * @see com.smartgwt.client.docs.serverds.DataSource#tableName
+ * @see com.smartgwt.client.docs.serverds.DataSource#dbName
+ * @see com.smartgwt.client.docs.serverds.DataSource#configBean
  * @see com.smartgwt.client.data.DataSource#getServerObject
  * @see com.smartgwt.client.data.OperationBinding#getRequestProperties
  * @see com.smartgwt.client.types.DSDataFormat
