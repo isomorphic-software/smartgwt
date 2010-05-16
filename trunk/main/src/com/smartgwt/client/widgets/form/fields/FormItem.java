@@ -3068,6 +3068,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }-*/;
 
     // ********************* Static Methods ***********************
+        
+    // ***********************************************************        
 
 
     public void setAttribute(String attribute, String value) {

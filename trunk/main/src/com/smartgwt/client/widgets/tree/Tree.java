@@ -987,6 +987,8 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }-*/;
 
     // ********************* Static Methods ***********************
+        
+    // ***********************************************************        
 
 
     /**

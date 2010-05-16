@@ -231,6 +231,8 @@ public class CalendarEvent extends Record {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
+        
+    // ***********************************************************        
 
 
     public void setEventId(Integer eventId) {

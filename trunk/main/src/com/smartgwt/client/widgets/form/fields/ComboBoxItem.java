@@ -539,6 +539,8 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     }-*/;
 
     // ********************* Static Methods ***********************
+        
+    // ***********************************************************        
 
 
     static {
