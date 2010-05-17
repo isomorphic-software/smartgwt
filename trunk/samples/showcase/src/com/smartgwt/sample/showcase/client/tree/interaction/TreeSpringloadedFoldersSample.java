@@ -76,7 +76,6 @@ public class TreeSpringloadedFoldersSample extends ShowcasePanel {
         employeeTreeGrid.setHeight(400);
         employeeTreeGrid.setNodeIcon("icons/16/person.png");
         employeeTreeGrid.setFolderIcon("icons/16/person.png");
-        employeeTreeGrid.setAutoFetchData(true);
         employeeTreeGrid.setCanReorderRecords(true);
         employeeTreeGrid.setCanAcceptDroppedRecords(true);
         employeeTreeGrid.setShowOpenIcons(false);

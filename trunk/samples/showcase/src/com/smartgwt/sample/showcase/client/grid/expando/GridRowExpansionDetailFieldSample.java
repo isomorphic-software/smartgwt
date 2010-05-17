@@ -39,7 +39,7 @@ public class GridRowExpansionDetailFieldSample extends ShowcasePanel {
             @Override
             protected Canvas getExpansionComponent(ListGridRecord record) {
                 Canvas canvas = super.getExpansionComponent(record);
-                canvas.setPadding(5);
+                canvas.setMargin(5);
                 return canvas;
             }
         };

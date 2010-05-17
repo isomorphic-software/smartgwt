@@ -35,6 +35,7 @@ public class AnimatedSelectionSample extends ShowcasePanel {
 
 
         ListGrid countryGrid = new ListGrid();
+        countryGrid.setAlternateRecordStyles(false);
 
         countryGrid.setWidth(500);
         countryGrid.setHeight(224);

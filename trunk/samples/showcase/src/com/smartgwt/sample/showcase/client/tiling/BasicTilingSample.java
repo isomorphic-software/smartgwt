@@ -37,6 +37,8 @@ public class BasicTilingSample extends ShowcasePanel {
         tileGrid.setTileHeight(165);
         tileGrid.setHeight(400);
         tileGrid.setWidth100();
+        tileGrid.setCanDrag(true);
+        tileGrid.setCanAcceptDrop(true);
         tileGrid.setShowAllRecords(true);
         tileGrid.setData(CarData.getRecords());
 

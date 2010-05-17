@@ -102,6 +102,7 @@ public class GridCellWidgetsSample extends ShowcasePanel {
         };
         countryGrid.setShowRecordComponents(true);        
         countryGrid.setShowRecordComponentsByCell(true);
+        countryGrid.setCanRemoveRecords(true);
 
         countryGrid.setWidth(550);
         countryGrid.setHeight(224);
