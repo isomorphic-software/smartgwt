@@ -397,6 +397,7 @@ public class Tab extends RefDataClass {
     }
 
     private static TabSet getTabSet(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         Object ref = JSOHelper.getAttributeAsObject((JavaScriptObject) jsObj, SC.REF);
         if(ref instanceof Tab) {
             return ((Tab) ref).getTabSet();

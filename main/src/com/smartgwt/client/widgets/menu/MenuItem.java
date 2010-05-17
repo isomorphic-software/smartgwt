@@ -487,7 +487,9 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.dynamicTitle = $debox($entry(function(target, menu, item) {
             var targetJ;
-            if(@com.smartgwt.client.widgets.tab.Tab::isTab(Lcom/google/gwt/core/client/JavaScriptObject;)(target)) {
+            if(target == null) {
+                targetJ = null;
+            } else if(@com.smartgwt.client.widgets.tab.Tab::isTab(Lcom/google/gwt/core/client/JavaScriptObject;)(target)) {
                 targetJ = @com.smartgwt.client.widgets.tab.Tab::getTabSet(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
             } else {
                 targetJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
@@ -507,7 +509,9 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.dynamicIcon = $debox($entry(function(target, menu, item) {
             var targetJ;
-            if(@com.smartgwt.client.widgets.tab.Tab::isTab(Lcom/google/gwt/core/client/JavaScriptObject;)(target)) {
+            if(target == null) {
+                targetJ = null;
+            } else if(@com.smartgwt.client.widgets.tab.Tab::isTab(Lcom/google/gwt/core/client/JavaScriptObject;)(target)) {
                 targetJ = @com.smartgwt.client.widgets.tab.Tab::getTabSet(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
             } else {
                 targetJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
