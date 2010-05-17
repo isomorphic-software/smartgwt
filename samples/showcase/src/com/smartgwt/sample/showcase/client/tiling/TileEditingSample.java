@@ -57,6 +57,8 @@ public class TileEditingSample extends ShowcasePanel {
         tileGrid.setTileHeight(205);
         tileGrid.setHeight(400);
         tileGrid.setSelectionType(SelectionStyle.SINGLE);
+        tileGrid.setCanDrag(true);
+        tileGrid.setCanAcceptDrop(true);
         tileGrid.setShowAllRecords(true);
         tileGrid.setDataSource(AnimalXmlDS.getInstance());
 

@@ -59,6 +59,8 @@ public class FilterSortTilingSample extends ShowcasePanel {
         tileGrid.setTileWidth(150);
         tileGrid.setTileHeight(205);
         tileGrid.setHeight(400);
+        tileGrid.setCanDrag(true);
+        tileGrid.setCanAcceptDrop(true);
         tileGrid.setShowAllRecords(true);
         tileGrid.setDataSource(AnimalXmlDS.getInstance());
         tileGrid.setAutoFetchData(true);

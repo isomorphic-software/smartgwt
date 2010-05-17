@@ -32,10 +32,8 @@ public class AutoArrangeEventsCalendarSample extends ShowcasePanel {
     }
 
     public Canvas getViewPanel() {
-
         Calendar calendar = new Calendar();
         calendar.setData(CalendarOverlappingData.getRecords());
-        calendar.setAutoFetchData(true);
 
         //the following are the Calendar's defaults and would still have been set without this code
         calendar.setEventAutoArrange(true);

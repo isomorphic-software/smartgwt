@@ -35,6 +35,7 @@ public class PickerControlsSample extends ShowcasePanel {
     public Canvas getViewPanel() {
 
         final DynamicForm form = new DynamicForm();
+        form.setMargin(10);
         form.setAutoFocus(true);
         form.setWidth(400);
         form.setTitleWidth(100);

@@ -5,6 +5,7 @@ import com.smartgwt.client.widgets.DateChooser;
 import com.smartgwt.client.widgets.events.DataChangedEvent;
 import com.smartgwt.client.widgets.events.DataChangedHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
+import com.smartgwt.client.widgets.form.fields.BlurbItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
@@ -37,16 +38,15 @@ public class DateChooserSample extends ShowcasePanel {
 
         DynamicForm form = new DynamicForm();
         form.setWidth(300);
-        final TextItem textItem = new TextItem("textItem", "Selected Date");
-        textItem.setWidth(250);
-        form.setItems(textItem);
+        final BlurbItem blurbItem = new BlurbItem();
+        form.setItems(blurbItem);
 
         final DateChooser dateChooser = new DateChooser();
         dateChooser.setWidth(100);
         dateChooser.addDataChangedHandler(new DataChangedHandler() {
             @Override
             public void onDataChanged(DataChangedEvent event) {
-                textItem.setValue(dateChooser.getData());
+                blurbItem.setValue("Selected date : " + dateChooser.getData());
             }
         });
 

@@ -65,7 +65,6 @@ public class MenuAppearanceSample extends ShowcasePanel {
 
         final MenuItem activateMenu = new MenuItem("Activate");
         activateMenu.setDynamicTitleFunction(new MenuItemStringFunction() {
-
             public String execute(final Canvas aTarget, final Menu aMenu, final MenuItem aItem) {
                 if (Math.random() > 0.5) {
                     return "De-Activate Blacklist";
@@ -74,14 +73,6 @@ public class MenuAppearanceSample extends ShowcasePanel {
                 }
             }
         });
-
-        activateMenu.addClickHandler(new ClickHandler() {
-
-            public void onClick(final MenuItemClickEvent event) {
-                //processStateChangeEvent();
-            }
-        });
-
         menu.setItems(activateMenu, newItem, openItem, separator, saveItem, saveAsItem,
                 separator, recentDocItem, separator, exportItem, separator, printItem);
 

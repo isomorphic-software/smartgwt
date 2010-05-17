@@ -25,6 +25,7 @@ import com.smartgwt.client.widgets.events.CloseClientEvent;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
+import com.smartgwt.sample.showcase.client.SourceEntity;
 
 public class MiniAppSample extends ShowcasePanel {
 
@@ -118,8 +119,18 @@ public class MiniAppSample extends ShowcasePanel {
         }
     }
 
-    public String getSourceUrl() {
-        return null;
+    @Override
+    public SourceEntity[] getSourceUrls() {
+        return new SourceEntity[] {
+                new SourceEntity("Application.java", "source/miniapp/Application.java.html"),
+                new SourceEntity("CategoryTreeGrid.java", "source/miniapp/CategoryTreeGrid.java.html"),
+                new SourceEntity("HelpPane.java", "source/miniapp/HelpPane.java.html"),
+                new SourceEntity("ItemDetailTabPane.java", "source/miniapp/ItemDetailTabPane.java.html"),
+                new SourceEntity("ItemListGrid.java", "source/miniapp/ItemListGrid.java.html"),
+                new SourceEntity("SearchForm.java", "source/miniapp/SearchForm.java.html"),
+                new SourceEntity("ItemSupplyXmlDS.java", "sourcegen/data/ItemSupplyXmlDS.java.html"),
+                new SourceEntity("SupplyCategoryXmlDS.java", "sourcegen/data/SupplyCategoryXmlDS.java.html")
+        };
     }
 
     public String getSourceGenUrl() {
