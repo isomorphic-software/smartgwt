@@ -1,0 +1,12 @@
+<module>
+
+    <!-- Inherit the core Web Toolkit stuff.                        -->
+    <inherits name='com.google.gwt.user.User'/>
+
+    <inherits name="com.smartgwt.SmartGwt"/>
+
+    <entry-point class='com.mycompany.client.HelloWorld'/>
+
+    <stylesheet src='HelloWorld.css'/>
+
+</module>

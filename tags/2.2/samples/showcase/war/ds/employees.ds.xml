@@ -1,0 +1,33 @@
+<DataSource
+    ID="employees"
+    serverType="sql"
+    tableName="employeeTable"
+    recordName="employee"
+    testFileName="/examples/shared/ds/test_data/employees.data.xml"
+
+>
+    <fields>
+        <field name="Name"            title="Name"            type="text"     length="128"/>
+        <field name="EmployeeId"      title="Employee ID"     type="integer"  primaryKey="true"  required="true"/>
+        <field name="ReportsTo"       title="Manager"         type="integer"  required="true" 
+               foreignKey="employees.EmployeeId"  rootValue="1"/>
+        <field name="Job"             title="Title"           type="text"     length="128"/> 
+        <field name="Email"           title="Email"           type="text"     length="128"/>
+        <field name="EmployeeType"    title="Employee Type"   type="text"     length="40"/>
+        <field name="EmployeeStatus"  title="Status"          type="text"     length="40"/>
+        <field name="Salary"          title="Salary"          type="float"/>
+        <field name="OrgUnit"         title="Org Unit"        type="text"     length="128"/>
+        <field name="Gender"          title="Gender"          type="text"     length="7">
+            <valueMap>
+                <value>male</value>
+                <value>female</value>
+            </valueMap>
+        </field>
+        <field name="MaritalStatus"   title="Marital Status"  type="text"     length="10">
+            <valueMap>
+                <value>married</value>
+                <value>single</value>
+            </valueMap>
+        </field>
+    </fields>
+</DataSource>

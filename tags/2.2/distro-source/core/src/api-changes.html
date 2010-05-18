@@ -1,0 +1,890 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SmartGWT - API Change History</title>    
+    <style>
+         body {
+            background-color: white;
+            color: #333333;
+            font-family: arial,helvetica,sans-serif;
+            font-size: 12px;
+            margin: 20px;
+         }
+
+         li {
+            margin-bottom: 0.5em;
+         }
+
+         li div {
+            margin-top: 0.2em;
+         }
+
+         code {
+            font-size: medium;
+         }
+      </style>
+
+</head>
+<body bgcolor="#ffffff">
+<h1>SmartGWT - API Change History</h1>
+<ul>
+<li>
+<a href="#2.2">2.1 to 2.2</a>
+</li>
+</ul>
+<hr>
+<a name="2.2"></a>
+<h2>2.1 to 2.2</h2>
+<li>
+<nobr><code>SmartGWT</code></nobr>
+</li>
+<h3>Modified Classes:</h3>
+
+<h4>
+<code>com.smartgwt.client.data.AdvancedCriteria</code>
+</h4>
+<blockquote>
+
+<h5>New Constructors:</h5>
+<ul>
+
+<li>
+<nobr><code>public AdvancedCriteria(com.smartgwt.client.data.Criterion)</code></nobr>
+</li>
+<li>
+<nobr><code>public AdvancedCriteria(com.smartgwt.client.types.OperatorId)</code></nobr>
+</li>
+<li>
+<nobr><code>public AdvancedCriteria(com.smartgwt.client.types.OperatorId, com.smartgwt.client.data.Criterion[])</code></nobr>
+</li>
+<li>
+<nobr><code>public AdvancedCriteria(java.lang.String, com.smartgwt.client.types.OperatorId, java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public AdvancedCriteria(java.lang.String, com.smartgwt.client.types.OperatorId, java.lang.Boolean[])</code></nobr>
+</li>
+<li>
+<nobr><code>public AdvancedCriteria(java.lang.String, com.smartgwt.client.types.OperatorId, java.lang.Float)</code></nobr>
+</li>
+<li>
+<nobr><code>public AdvancedCriteria(java.lang.String, com.smartgwt.client.types.OperatorId, java.lang.Float[])</code></nobr>
+</li>
+<li>
+<nobr><code>public AdvancedCriteria(java.lang.String, com.smartgwt.client.types.OperatorId, java.lang.Integer)</code></nobr>
+</li>
+<li>
+<nobr><code>public AdvancedCriteria(java.lang.String, com.smartgwt.client.types.OperatorId, java.lang.Integer[])</code></nobr>
+</li>
+<li>
+<nobr><code>public AdvancedCriteria(java.lang.String, com.smartgwt.client.types.OperatorId, java.lang.String[])</code></nobr>
+</li>
+<li>
+<nobr><code>public AdvancedCriteria(java.lang.String, com.smartgwt.client.types.OperatorId, java.util.Date)</code></nobr>
+</li>
+<li>
+<nobr><code>public AdvancedCriteria(java.lang.String, com.smartgwt.client.types.OperatorId, java.util.Date[])</code></nobr>
+</li>
+</ul>
+</blockquote>
+
+<h4>
+<code>com.smartgwt.client.data.DSRequest</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.String getExportTitleSeparatorChar()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getOperationId()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.types.TextMatchStyle getTextMatchStyle()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setExportTitleSeparatorChar(java.lang.String)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.data.DataSource</code>
+</h4>
+<blockquote>
+
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public static com.smartgwt.client.data.Criteria combineCriteria(com.smartgwt.client.data.Criteria, com.smartgwt.client.data.Criteria)</code></nobr>
+</li>
+<li>
+<nobr><code>public static com.smartgwt.client.data.Criteria combineCriteria(com.smartgwt.client.data.Criteria, com.smartgwt.client.data.Criteria, com.smartgwt.client.types.CriteriaCombineOperator, com.smartgwt.client.types.TextMatchStyle)</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.data.Criteria convertRelativeDates(com.smartgwt.client.data.Criteria)</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.data.Criteria convertRelativeDates(com.smartgwt.client.data.Criteria, java.lang.String, int)</code></nobr>
+</li>
+<li>
+<nobr><code>public void exportClientData(java.lang.Object[], com.smartgwt.client.data.DSRequest)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getAutoCacheAllData()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getAutoConvertRelativeDates()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getCacheAllData()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.data.Record[] getCacheData()</code></nobr>
+</li>
+<li>
+<nobr><code>public int getCacheMaxAge()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getUseTestDataFetch()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean hasAllData()</code></nobr>
+</li>
+<li>
+<nobr><code>public void invalidateCache()</code></nobr>
+</li>
+<li>
+<nobr><code>public void performCustomOperation(java.lang.String, com.smartgwt.client.data.Record)</code></nobr>
+</li>
+<li>
+<nobr><code>public void performCustomOperation(java.lang.String, com.smartgwt.client.data.Record, com.smartgwt.client.data.DSCallback, com.smartgwt.client.data.DSRequest)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setAutoCacheAllData(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setAutoConvertRelativeDates(java.lang.Boolean) throws java.lang.IllegalStateException</code></nobr>
+</li>
+<li>
+<nobr><code>public void setCacheAllData(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setCacheData(com.smartgwt.client.data.Record[]) throws java.lang.IllegalStateException</code></nobr>
+</li>
+<li>
+<nobr><code>public void setCacheMaxAge(int)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setUseTestDataFetch(java.lang.Boolean)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.data.DataSourceField</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.smartgwt.client.types.DateDisplayFormat getDisplayFormat()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setDisplayFormat(com.smartgwt.client.types.DateDisplayFormat)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.rpc.RPCRequest</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.Boolean getDownloadResult()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getDownloadToNewWindow()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setDownloadResult(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setDownloadToNewWindow(java.lang.Boolean)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.types.DSOperationType</code>
+</h4>
+<blockquote>
+<h5>New Fields:</h5>
+<ul>
+<li>
+<nobr><code>public static final com.smartgwt.client.types.DSOperationType CUSTOM</code></nobr>
+</li>
+<li>
+<nobr><code>public static final com.smartgwt.client.types.DSOperationType VALIDATE</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.types.ExportFormat</code>
+</h4>
+<blockquote>
+<h5>New Fields:</h5>
+<ul>
+<li>
+<nobr><code>public static final com.smartgwt.client.types.ExportFormat OOXML</code></nobr>
+</li>
+<li>
+<nobr><code>public static final com.smartgwt.client.types.ExportFormat XLS</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.types.FieldType</code>
+</h4>
+<blockquote>
+<h5>New Fields:</h5>
+<ul>
+<li>
+<nobr><code>public static final com.smartgwt.client.types.FieldType CREATOR</code></nobr>
+</li>
+<li>
+<nobr><code>public static final com.smartgwt.client.types.FieldType CREATORTIMESTAMP</code></nobr>
+</li>
+<li>
+<nobr><code>public static final com.smartgwt.client.types.FieldType MODIFIER</code></nobr>
+</li>
+<li>
+<nobr><code>public static final com.smartgwt.client.types.FieldType MODIFIERTIMESTAMP</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.types.OperatorId</code>
+</h4>
+<blockquote>
+<h5>New Fields:</h5>
+<ul>
+<li>
+<nobr><code>public static final com.smartgwt.client.types.OperatorId CONTAINS_FIELD</code></nobr>
+</li>
+<li>
+<nobr><code>public static final com.smartgwt.client.types.OperatorId ENDS_WITH_FIELD</code></nobr>
+</li>
+<li>
+<nobr><code>public static final com.smartgwt.client.types.OperatorId GREATER_OR_EQUAL_FIELD</code></nobr>
+</li>
+<li>
+<nobr><code>public static final com.smartgwt.client.types.OperatorId GREATER_THAN_FIELD</code></nobr>
+</li>
+<li>
+<nobr><code>public static final com.smartgwt.client.types.OperatorId IEQUALS</code></nobr>
+</li>
+<li>
+<nobr><code>public static final com.smartgwt.client.types.OperatorId INOT_EQUAL</code></nobr>
+</li>
+<li>
+<nobr><code>public static final com.smartgwt.client.types.OperatorId LESS_OR_EQUAL_FIELD</code></nobr>
+</li>
+<li>
+<nobr><code>public static final com.smartgwt.client.types.OperatorId LESS_THAN_FIELD</code></nobr>
+</li>
+<li>
+<nobr><code>public static final com.smartgwt.client.types.OperatorId STARTS_WITH_FIELD</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.types.RowEndEditAction</code>
+</h4>
+<blockquote>
+<h5>New Fields:</h5>
+<ul>
+<li>
+<nobr><code>public static final com.smartgwt.client.types.RowEndEditAction NONE</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.util.JSONEncoder</code>
+</h4>
+
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.Boolean getShowDebugOutput()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setSerializeInstances(com.smartgwt.client.types.JSONInstanceSerializationMode)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setShowDebugOutput(java.lang.Boolean)</code></nobr>
+</li>
+</ul>
+
+
+<h4>
+<code>com.smartgwt.client.widgets.Canvas</code>
+</h4>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.smartgwt.client.types.LocatorStrategy getLocateChildrenBy()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.types.LocatorTypeStrategy getLocateChildrenType()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.types.LocatorStrategy getLocatePeersBy()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.types.LocatorTypeStrategy getLocatePeersType()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setLocateChildrenBy(com.smartgwt.client.types.LocatorStrategy)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setLocateChildrenType(com.smartgwt.client.types.LocatorTypeStrategy)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setLocatePeersBy(com.smartgwt.client.types.LocatorStrategy)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setLocatePeersType(com.smartgwt.client.types.LocatorTypeStrategy)</code></nobr>
+</li>
+</ul>
+
+<h4>
+<code>com.smartgwt.client.widgets.Img</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.Boolean getUsePNGFix()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setUsePNGFix(java.lang.Boolean) throws java.lang.IllegalStateException</code></nobr>
+</li>
+</ul>
+</blockquote>
+
+
+<h4>
+<code>com.smartgwt.client.widgets.form.DynamicForm</code>
+</h4>
+
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public void setValuesAsCriteria(com.smartgwt.client.data.Criterion)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.FilterBuilder</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.String getEditorType(com.smartgwt.client.data.DataSourceField, com.smartgwt.client.types.OperatorId)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getMissingFieldPrompt()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setMissingFieldPrompt(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.CanvasItem</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.Boolean canEditCriterion(com.smartgwt.client.data.Criterion)</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.data.Criterion getCriterion()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean hasAdvancedCriteria()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setCriterion(com.smartgwt.client.data.Criterion)</code></nobr>
+</li>
+</ul>
+</blockquote>
+
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.FormItem</code>
+</h4>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.Boolean canEditCriterion(com.smartgwt.client.data.Criterion)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Integer getCellHeight()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.widgets.form.fields.FormItemIcon getIcon(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getLocateItemBy()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getMultipleValueSeparator()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getPickerIconName()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.widgets.grid.ListGridRecord getSelectedRecord()</code></nobr>
+</li>
+<li>
+<nobr><code>public int getVisibleHeight()</code></nobr>
+</li>
+<li>
+<nobr><code>public int getVisibleWidth()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean hasAdvancedCriteria()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setCellHeight(java.lang.Integer)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setCriterion(com.smartgwt.client.data.Criterion)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setHoverVAlign(com.smartgwt.client.types.VerticalAlignment)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setLocateItemBy(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setMultipleValueSeparator(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setPickerIconName(java.lang.String)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.FormItemIcon</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.String getName()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setName(java.lang.String)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.SelectItem</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.smartgwt.client.types.MultipleAppearance getMultipleAppearance()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setMultipleAppearance(com.smartgwt.client.types.MultipleAppearance)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.TextAreaItem</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.Boolean getChangeOnKeypress()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setChangeOnKeypress(java.lang.Boolean)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.TextItem</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.Boolean getChangeOnKeypress()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setChangeOnKeypress(java.lang.Boolean)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.validator.CustomValidator</code>
+</h4>
+<blockquote>
+<h5>New Fields:</h5>
+<ul>
+<li>
+<nobr><code>protected com.smartgwt.client.data.DataSourceField dataSourceField</code></nobr>
+</li>
+<li>
+<nobr><code>protected com.smartgwt.client.widgets.form.fields.FormItem formItem</code></nobr>
+</li>
+<li>
+<nobr><code>protected com.smartgwt.client.data.Record record</code></nobr>
+</li>
+</ul>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.smartgwt.client.data.DataSourceField getDataSourceField()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.widgets.form.fields.FormItem getFormItem()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.data.Record getRecord()</code></nobr>
+</li>
+
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.validator.Validator</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.smartgwt.client.types.ValidatorType getType()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setType(com.smartgwt.client.types.ValidatorType)</code></nobr>
+</li>
+</ul>
+</blockquote>
+
+<h4>
+<code>com.smartgwt.client.widgets.grid.ListGrid</code>
+</h4>
+<blockquote>
+<h5>Removed Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.Boolean getShowAlternateStyle()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setRecordComponentPoolingMode(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setShowAlternateStyle(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean showRecordComponent(com.smartgwt.client.widgets.grid.ListGridRecord)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean showRecordComponent(com.smartgwt.client.widgets.grid.ListGridRecord, int)</code></nobr>
+</li>
+</ul>
+<h5>Method Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public java.lang.String getRecordComponentPoolingMode()<br>
+<b>new:</b>public com.smartgwt.client.types.RecordComponentPoolingMode getRecordComponentPoolingMode()</code></nobr>
+</p>
+</blockquote>
+
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.Boolean getCanPickFields()</code></nobr>
+</li>
+<li>
+<nobr><code>public int getDrawnRowHeight(int)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getLocateColumnsBy()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getLocateRowsBy()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getNormalBaseStyle()</code></nobr>
+</li>
+<li>
+<nobr><code>public int getNormalCellHeight()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.data.RecordList getOriginalRecordList()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.data.ResultSet getOriginalResultSet()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getPoolComponentsPerColumn()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.widgets.grid.ListGridRecord[] getSelection(boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getTallBaseStyle()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean isPartiallySelected(com.smartgwt.client.widgets.grid.ListGridRecord)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean isSelected(com.smartgwt.client.widgets.grid.ListGridRecord)</code></nobr>
+</li>
+
+<li>
+<nobr><code>public void setCanPickFields(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setLocateColumnsBy(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setLocateRowsBy(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setNormalBaseStyle(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
+</li>
+<li>
+<nobr><code>public void setNormalCellHeight(int)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setPoolComponentsPerColumn(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setRecordComponentPoolingMode(com.smartgwt.client.types.RecordComponentPoolingMode)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setTallBaseStyle(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
+</li>
+<li>
+<nobr><code>protected boolean showRecordComponent(com.smartgwt.client.widgets.grid.ListGridRecord, java.lang.Integer)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.grid.ListGridField</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.smartgwt.client.data.Criteria getOptionCriteria()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getPrompt()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getShowAlternateStyle()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setOptionCriteria(com.smartgwt.client.data.Criteria)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setShowAlternateStyle(java.lang.Boolean)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.layout.Layout</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.smartgwt.client.types.LocatorStrategy getLocateMembersBy()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.types.LocatorTypeStrategy getLocateMembersType()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setLocateMembersBy(com.smartgwt.client.types.LocatorStrategy)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setLocateMembersType(com.smartgwt.client.types.LocatorTypeStrategy)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.layout.SectionStack</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.smartgwt.client.types.LocatorStrategy getLocateSectionsBy()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.types.LocatorTypeStrategy getLocateSectionsType()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setLocateSectionsBy(com.smartgwt.client.types.LocatorStrategy)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setLocateSectionsType(com.smartgwt.client.types.LocatorTypeStrategy)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.menu.Menu</code>
+</h4>
+
+<h4>
+<code>com.smartgwt.client.widgets.menu.MenuBar</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public void showMenu(int)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.menu.MenuButton</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public void showMenu()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.tab.Tab</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.smartgwt.client.widgets.tab.TabSet getTabSet()</code></nobr>
+</li>
+
+<li>
+<nobr><code>public void setTabSet(com.smartgwt.client.widgets.tab.TabSet)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.tab.TabSet</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.String getLocateTabsBy()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setLocateTabsBy(java.lang.String)</code></nobr>
+</li>
+</ul>
+</blockquote>
+
+<h4>
+<code>com.smartgwt.client.widgets.tree.Tree</code>
+</h4>
+<blockquote>
+
+
+<li>
+<nobr><code>public com.smartgwt.client.types.LoadState getLoadState(com.smartgwt.client.widgets.tree.TreeNode)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getSeparateFolders()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getSortFoldersBeforeLeaves()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean isLoaded(com.smartgwt.client.widgets.tree.TreeNode)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setSeparateFolders(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setSortFoldersBeforeLeaves(java.lang.Boolean)</code></nobr>
+</li>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.tree.TreeGrid</code>
+</h4>
+<blockquote>
+
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public int getExtraIconGap()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getSortFoldersBeforeLeaves()</code></nobr>
+</li>
+
+<li>
+<nobr><code>public void setExtraIconGap(int) throws java.lang.IllegalStateException</code></nobr>
+</li>
+<li>
+<nobr><code>public void setSortFoldersBeforeLeaves(java.lang.Boolean) throws java.lang.IllegalStateException</code></nobr>
+</li>
+</ul>
+</blockquote>
+</blockquote>
+
+<h3>New Classes:</h3>
+<ul>
+<li>
+<nobr><code>com.smartgwt.client.data.Criterion</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.CriteriaCombineOperator</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.JSONInstanceSerializationMode</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.LoadState</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.LocatorStrategy</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.LocatorTypeStrategy</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.MultipleAppearance</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.RecordComponentPoolingMode</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.ValidatorType</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.form.fields.DateRange</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.form.fields.DateRangeItem</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.form.fields.MiniDateRangeItem</code></nobr>
+</li>
+</ul>
+<hr>
+</body>
+</html>

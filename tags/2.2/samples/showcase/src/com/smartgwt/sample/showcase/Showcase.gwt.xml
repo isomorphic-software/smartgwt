@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 1.6.4//EN" "http://google-web-toolkit.googlecode.com/svn/tags/1.6.4/distro-source/core/src/gwt-module.dtd">
+
+<module rename-to="showcase">
+
+    <inherits name='com.google.gwt.user.User'/>
+    <inherits name="com.google.gwt.core.Core"/>
+    <inherits name="com.google.gwt.user.History"/>
+
+    <inherits name="com.smartgwt.SmartGwtNoScript"/>
+    <inherits name="com.smartgwt.tools.SmartGwtTools"/>
+    <inherits name="com.smartclient.theme.enterprise.EnterpriseResources"/>
+    <inherits name="com.smartclient.theme.enterpriseblue.EnterpriseBlueResources"/>
+    <inherits name="com.smartclient.theme.graphite.GraphiteResources"/>
+
+    <entry-point class='com.smartgwt.sample.showcase.client.Showcase'/>
+
+    <!-- english language, independent of country -->
+    <extend-property name="locale" values="en"/>
+
+
+<!--german-->
+<!--
+    <extend-property name="locale" values="de"/>
+
+    -->
+<!--french in france -->
+<!--
+    <extend-property name="locale" values="fr_FR"/>
+
+    -->
+<!--greek (hellenic)-->
+<!--
+    <extend-property name="locale" values="el"/>
+
+    -->
+<!--spanish -->
+<!--
+    <extend-property name="locale" values="es"/>
+
+    -->
+<!--norwegian bokmal / norway-->
+<!--
+    <extend-property name="locale" values="es"/>
+
+    -->
+<!--polish-->
+<!--
+    <extend-property name="locale" values="pl"/>
+
+    -->
+<!--portuguese-->
+<!--
+    <extend-property name="locale" values="pt"/>
+
+    -->
+<!--russian / russia-->
+<!--
+    <extend-property name="locale" values="ru_RU"/>
+
+    -->
+<!--chinese / china-->
+<!--
+    <extend-property name="locale" values="zh_CN"/>
+
+    -->
+<!--italian -->
+<!--
+    <extend-property name="locale" values="it"/>
+
+    -->
+<!--romanian / romania -->
+<!--
+    <extend-property name="locale" values="ro_RO"/>
+
+    -->
+<!--portuguese / brazil-->
+<!--
+    <extend-property name="locale" values="pt_BR"/>
+
+    -->
+
+
+</module>
