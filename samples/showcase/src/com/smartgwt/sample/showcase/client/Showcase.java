@@ -19,6 +19,7 @@ import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;
+import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.Layout;
 import com.smartgwt.client.widgets.layout.LayoutSpacer;
@@ -50,6 +51,14 @@ public class Showcase implements EntryPoint, HistoryListener {
     private Menu contextMenu;
 
     public void onModuleLoad() {
+
+
+        ListGrid prot = new ListGrid();
+        prot.setCanGroupBy(false);
+        prot.setBaseStyle("myGrid");
+
+        ListGrid.setDefaultProperties(prot);
+
 
         final String initToken = History.getToken();
 
@@ -205,7 +214,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         selectItem.setShowTitle(false);
         selectItem.addChangeHandler(new ChangeHandler() {
             public void onChange(ChangeEvent event) {
-                Cookies.setCookie("skin_name", (String) event.getValue());
+                Cookies.setCookie("skin_name_2_2", (String) event.getValue());
                 com.google.gwt.user.client.Window.Location.reload();
             }
         });
