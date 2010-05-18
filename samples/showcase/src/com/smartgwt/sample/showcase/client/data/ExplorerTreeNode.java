@@ -18,7 +18,7 @@ public class ExplorerTreeNode extends TreeNode {
 
         setFactory(factory);
         
-        if(nodeID.equals("featured-category")) {
+        if(nodeID.equals("featured-category") || nodeID.equals("new-category")) {
             setIsOpen(true);
         }
     }
