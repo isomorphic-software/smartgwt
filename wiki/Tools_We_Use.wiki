@@ -8,5 +8,8 @@ Here are some of the tools we use for developing SmartGWT.
 = SmartSVN =
 [http://www.syntevo.com/index.html SmartSVN] by Syntevo is a feature rich and very usable SVN client. Some of us use OSX as our primary development platform and SmartSVN is definitely the best SVN client for OSX  based on our evaluation. 
 
-= Delta Walker Compare & Merge tool == 
+= Delta Walker Compare & Merge tool =
 [http://www.deltopia.com/ DeltaWalker] is an excellent file and folder compare and synchronization tool. We have tried Araxis Merge and Beyond Compare but find Delta Walker to be the best with a lot of excellent features and has a very user friendly interface.
+
+= OmniGraffle =
+[http://www.omnigroup.com/products/omnigraffle/ OmniGraffle] is a very powerful diagramming, charting, and visualization tool for Mac OS X.  
