@@ -16,6 +16,7 @@
 
 package com.smartgwt.client.widgets.form.fields;
 
+import com.smartgwt.client.core.*;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
@@ -25,6 +26,16 @@ import com.google.gwt.core.client.JavaScriptObject;
  */
 public class ColorPickerItem extends FormItem {
 
+    public static ColorPickerItem getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
+        RefDataClass obj = RefDataClass.getRef(jsObj);
+        if(obj != null) {
+            obj.setJsObj(jsObj);
+            return (ColorPickerItem) obj;
+        } else {
+            return new ColorPickerItem(jsObj);
+        }
+    }
 
     public ColorPickerItem() {
         setType("color");
@@ -33,6 +44,19 @@ public class ColorPickerItem extends FormItem {
     public ColorPickerItem(JavaScriptObject jsObj) {
         super(jsObj);
     }
+
+    public ColorPickerItem(String name) {
+        setName(name);
+        setType("color");
+    }
+
+    public ColorPickerItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("color");
+    }
+
+
 
 
 }
