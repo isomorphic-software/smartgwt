@@ -9,15 +9,22 @@ import com.smartgwt.client.widgets.events.ClickHandler;
  */
 public class TransferImgButton extends ImgButton {
 
-    public static TransferImg LEFT = new TransferImg("[SKIN]/TransferIcons/left.png");
-    public static TransferImg LEFT_ALL = new TransferImg("[SKIN]/TransferIcons/left_all.png");
-    public static TransferImg RIGHT = new TransferImg("[SKIN]/TransferIcons/right.png");
-    public static TransferImg RIGHT_ALL = new TransferImg("[SKIN]/TransferIcons/right_all.png");
-    public static TransferImg UP = new TransferImg("[SKIN]/TransferIcons/up.png");
-    public static TransferImg UP_FIRST = new TransferImg("[SKIN]/TransferIcons/up_first.png");
-    public static TransferImg DOWN = new TransferImg("[SKIN]/TransferIcons/down.png");
-    public static TransferImg DOWN_LAST = new TransferImg("[SKIN]/TransferIcons/down_last.png");
-    public static TransferImg DELETE = new TransferImg("[SKIN]/TransferIcons/delete.png");
+    private static String IMG_TYPE = getImgType();
+
+    private static native String getImgType() /*-{
+        var imgType = $wnd.isc.transferImgType;
+        return imgType == null || imgType === undefined ? "png" : imgType;
+    }-*/;
+
+    public static TransferImg LEFT = new TransferImg("[SKIN]/TransferIcons/left." + IMG_TYPE);
+    public static TransferImg LEFT_ALL = new TransferImg("[SKIN]/TransferIcons/left_all." + IMG_TYPE);
+    public static TransferImg RIGHT = new TransferImg("[SKIN]/TransferIcons/right." + IMG_TYPE);
+    public static TransferImg RIGHT_ALL = new TransferImg("[SKIN]/TransferIcons/right_all." + IMG_TYPE);
+    public static TransferImg UP = new TransferImg("[SKIN]/TransferIcons/up." + IMG_TYPE);
+    public static TransferImg UP_FIRST = new TransferImg("[SKIN]/TransferIcons/up_first." + IMG_TYPE);
+    public static TransferImg DOWN = new TransferImg("[SKIN]/TransferIcons/down." + IMG_TYPE);
+    public static TransferImg DOWN_LAST = new TransferImg("[SKIN]/TransferIcons/down_last." + IMG_TYPE);
+    public static TransferImg DELETE = new TransferImg("[SKIN]/TransferIcons/delete." + IMG_TYPE);
 
     /**
      * Create a new HeaderControl with the specific icon.
