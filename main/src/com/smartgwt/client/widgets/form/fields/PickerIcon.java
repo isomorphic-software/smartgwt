@@ -28,11 +28,18 @@ import com.smartgwt.client.widgets.form.fields.events.FormItemClickHandler;
  */
 public class PickerIcon extends FormItemIcon {
 
-    public static Picker CLEAR = new Picker("[SKIN]/pickers/clear_picker.png");
-    public static Picker COMBO_BOX = new Picker("[SKIN]/pickers/comboBoxPicker.png");
-    public static Picker DATE = new Picker("[SKIN]/pickers/date_picker.png");
-    public static Picker REFRESH = new Picker("[SKIN]/pickers/refresh_picker.png");
-    public static Picker SEARCH = new Picker("[SKIN]/pickers/search_picker.png");
+    private static String IMG_TYPE = getImgType();
+
+    private static native String getImgType() /*-{
+        var imgType = $wnd.isc.pickerImgType;
+        return imgType == null || imgType === undefined ? "png" : imgType;
+    }-*/;
+
+    public static Picker CLEAR = new Picker("[SKIN]/pickers/clear_picker." + IMG_TYPE);
+    public static Picker COMBO_BOX = new Picker("[SKIN]/pickers/comboBoxPicker." + IMG_TYPE);
+    public static Picker DATE = new Picker("[SKIN]/pickers/date_picker." + IMG_TYPE);
+    public static Picker REFRESH = new Picker("[SKIN]/pickers/refresh_picker." + IMG_TYPE);
+    public static Picker SEARCH = new Picker("[SKIN]/pickers/search_picker." + IMG_TYPE);
 
     /**
      * Create a new HeaderControl with the specific icon.
