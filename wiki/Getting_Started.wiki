@@ -13,6 +13,8 @@ Remove any pre-existing imports of standard GWT themes.  These contain CSS setti
 
 Alternatively, the distribution includes a basic "helloworld" sample project that you can use as a starting point.
 
+*For Smart GWT Pro/EE*, download [http://forums.smartclient.com/showthread.php?t=4839 from here] instead.  Pro/EE packages include sample projects demonstrating various integration approaches (Spring, Hibernate, JPA, SQL, ..).  You can import these projects into Eclipse, build them with Ant, or follow step-by-step instructions to add Pro/EE features to an existing project (see the README in each sample).
+
 All documentation, including JavaDoc and conceptual overviews, is linked from [http://forums.smartclient.com/showthread.php?t=8159 the Smart GWT FAQ].
 
 Use Google's [http://code.google.com/webtoolkit/gettingstarted.html getting start guide] if you are not already familiar with GWT.  Alternatively, several users have created [Tutorials] of the setup process.
