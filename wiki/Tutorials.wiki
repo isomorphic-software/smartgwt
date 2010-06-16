@@ -2,6 +2,7 @@
 
 Various SmartGWT tutorials and resources from the web.
 
+*For Smart GWT Pro/EE*, download [http://forums.smartclient.com/showthread.php?t=4839 from here] instead.  Pro/EE packages include sample projects demonstrating various integration approaches (Spring, Hibernate, JPA, SQL, ..).  You can import these projects into Eclipse, build them with Ant, or follow step-by-step instructions to add Pro/EE features to an existing project (see the README in each sample).
 
 = Tutorials =
  * Running SmartGWT with Google App Engine (GAE) : http://forums.smartclient.com/showthread.php?t=5258
