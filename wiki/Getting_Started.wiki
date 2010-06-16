@@ -1,10 +1,20 @@
 #labels Featured
-Gettting Started
+Getting Started
 
 = Introduction =
 
-The distribution includes a basic "helloworld" sample under the "samples" directory that you can use as a starting point for your project. 
+To install into an existing GWT project, add smartgwt.jar to your classpath and add
+{{{
+  <inherits name="com.smartgwt.SmartGwt"/>
+}}}
+to your .gwt.xml file.
+
+Remove any pre-existing imports of standard GWT themes.  These contain CSS settings that style fundamental HTML elements (eg TD - table cell) and interfere with Smart GWT and other widgets.
+
+Alternatively, the distribution includes a basic "helloworld" sample project that you can use as a starting point.
+
+All documentation, including JavaDoc and conceptual overviews, is linked from [http://forums.smartclient.com/showthread.php?t=8159 the Smart GWT FAQ].
+
+Use Google's [http://code.google.com/webtoolkit/gettingstarted.html getting start guide] if you are not already familiar with GWT.  Alternatively, several users have created [Tutorials] of the setup process.
 
 *You must use GWT 1.5.3 (or greater).* Earlier versions of GWT are not supported.
-
-Several tutorials for setting up common development tools (Eclipse, NetBeans, etc) are available as sticky threads on the [http://forums.smartclient.com/forumdisplay.php?f=14 SmartGWT Forums].  This is also the best place to ask technical questions.
