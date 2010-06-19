@@ -54,7 +54,8 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-public class TabDeselectedEvent extends BrowserEvent<TabDeselectedHandler>  {
+public class TabDeselectedEvent extends BrowserEvent<TabDeselectedHandler>  implements Cancellable {
+    private boolean cancel = false;
 
     /**
      * Handler type.
@@ -109,11 +110,24 @@ public class TabDeselectedEvent extends BrowserEvent<TabDeselectedHandler>  {
     }
 
 
+    /**
+     * return false to cancel the tab deselection
+     */
+    public void cancel() {
+        cancel = true;
+    }
 
     /**
-     * number of the tab
+     * @return true if cancelled
+     */
+    public boolean isCancelled() {
+        return cancel;
+    }
+
+    /**
+     * number of the deselected tab
      *
-     * @return number of the tab
+     * @return number of the deselected tab
      */
     public  native int getTabNum() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
@@ -121,9 +135,9 @@ public class TabDeselectedEvent extends BrowserEvent<TabDeselectedHandler>  {
     }-*/;
 
     /**
-     * pane for this tab
+     * pane for this deselected tab
      *
-     * @return pane for this tab
+     * @return pane for this deselected tab
      */
     public  native Canvas getTabPane() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
@@ -131,9 +145,9 @@ public class TabDeselectedEvent extends BrowserEvent<TabDeselectedHandler>  {
     }-*/;
 
     /**
-     * id of the tab
+     * id of the deselected tab
      *
-     * @return id of the tab
+     * @return id of the deselected tab
      */
     public  native String getID() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
@@ -141,13 +155,23 @@ public class TabDeselectedEvent extends BrowserEvent<TabDeselectedHandler>  {
     }-*/;
 
     /**
-     * the tab object (not tab button instance)
+     * the deselected tab object (not tab button instance)
      *
-     * @return the tab object (not tab button instance)
+     * @return the deselected tab object (not tab button instance)
      */
     public  native Tab getTab() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
         return @com.smartgwt.client.widgets.tab.Tab::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tab);
+    }-*/;
+
+    /**
+     * the tab object being selected
+     *
+     * @return the tab object being selected
+     */
+    public  native Tab getNewTab() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        return @com.smartgwt.client.widgets.tab.Tab::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.newTab);
     }-*/;
 
 
