@@ -140,6 +140,26 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     /**
+     * How many tiles should be present in a line when printing?
+     *
+     * @param printTilesPerLine printTilesPerLine Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setPrintTilesPerLine(Integer printTilesPerLine)  throws IllegalStateException {
+        setAttribute("printTilesPerLine", printTilesPerLine, false);
+    }
+
+    /**
+     * How many tiles should be present in a line when printing?
+     *
+     *
+     * @return Integer
+     */
+    public Integer getPrintTilesPerLine()  {
+        return getAttributeAsInt("printTilesPerLine");
+    }
+
+    /**
      * Defines a tileGrid's clickable-selection behavior.
      *
      * @param selectionType selectionType Default value is Selection.MULTIPLE
