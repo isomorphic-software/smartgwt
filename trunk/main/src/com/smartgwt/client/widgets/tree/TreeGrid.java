@@ -771,8 +771,9 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * The amount of indentation (in pixels) to add to a node's icon/title for each level          down in this tree's
-     * hierarchy.
+     * The amount of indentation (in pixels) to add to a node's icon/title for each level down in this tree's hierarchy. <p>
+     * This value is ignored when {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is
+     * <code>true</code> because fixed-size images are used to render the connectors.
      *
      * @param indentSize indentSize Default value is 20
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -782,8 +783,9 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * The amount of indentation (in pixels) to add to a node's icon/title for each level          down in this tree's
-     * hierarchy.
+     * The amount of indentation (in pixels) to add to a node's icon/title for each level down in this tree's hierarchy. <p>
+     * This value is ignored when {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is
+     * <code>true</code> because fixed-size images are used to render the connectors.
      *
      *
      * @return int
@@ -976,6 +978,35 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
+     * If specified, the selection object for this list will use this property to mark records as selected.  In other words, if
+     * this attribute were set to <code>"isSelected"</code> any records in the listGrid data where <code>"isSelected"</code> is
+     * <code>true</code> will show up as selected in the grid. Similarly if records are selected within the grid after the grid
+     * has been created, this property will be set to true on the selected records.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param selectionProperty selectionProperty Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setSelectionProperty(String selectionProperty)  throws IllegalStateException {
+        setAttribute("selectionProperty", selectionProperty, false);
+    }
+
+    /**
+     * If specified, the selection object for this list will use this property to mark records as selected.  In other words, if
+     * this attribute were set to <code>"isSelected"</code> any records in the listGrid data where <code>"isSelected"</code> is
+     * <code>true</code> will show up as selected in the grid. Similarly if records are selected within the grid after the grid
+     * has been created, this property will be set to true on the selected records.
+     *
+     *
+     * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public String getSelectionProperty()  {
+        return getAttributeAsString("selectionProperty");
+    }
+
+    /**
      * If specified, this attribute will override {@link com.smartgwt.client.widgets.tree.Tree#getSeparateFolders
      * separateFolders} on the data for this treeGrid. <P> Specifies whether folders and leaves should be segregated in the
      * treeGrid display. Use {@link com.smartgwt.client.widgets.tree.TreeGrid#getSortFoldersBeforeLeaves
@@ -1135,8 +1166,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
     /**
      * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true, this property determines
-     * whether we should show showing vertical continuation lines for each level of indenting within the tree. Setting to false
-     * will show only the hierarchy lines are only shown for the most indented path ("sparse" connectors).
+     * whether we should show vertical continuation lines for each level of indenting within the tree. Setting to false will
+     * show only the hierarchy lines are only shown for the most indented path ("sparse" connectors).
      *
      * @param showFullConnectors showFullConnectors Default value is true
      */
@@ -1146,8 +1177,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
     /**
      * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true, this property determines
-     * whether we should show showing vertical continuation lines for each level of indenting within the tree. Setting to false
-     * will show only the hierarchy lines are only shown for the most indented path ("sparse" connectors).
+     * whether we should show vertical continuation lines for each level of indenting within the tree. Setting to false will
+     * show only the hierarchy lines are only shown for the most indented path ("sparse" connectors).
      *
      *
      * @return Boolean
