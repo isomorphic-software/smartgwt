@@ -95,7 +95,9 @@ public class MiniDateRangeItem extends StaticTextItem {
 
     /**
      * Format for displaying dates in to the user.   Defaults to the system-wide default established by 
-     * setDefaultDisplayFormat.
+     * setDefaultDisplayFormat. <P> If this attribute is unset, the display value is formatted intellegently according to the
+     * dates involved.  For example, if both dates appear in the same month, the value will be  formatted as <code>Month date1
+     * - date2, Year</code> and, if in different months of the same year, <code>Month1 date1 - Month2 date2, Year</code>.
      *
      * @param dateDisplayFormat dateDisplayFormat Default value is null
      */
@@ -105,7 +107,9 @@ public class MiniDateRangeItem extends StaticTextItem {
 
     /**
      * Format for displaying dates in to the user.   Defaults to the system-wide default established by 
-     * setDefaultDisplayFormat.
+     * setDefaultDisplayFormat. <P> If this attribute is unset, the display value is formatted intellegently according to the
+     * dates involved.  For example, if both dates appear in the same month, the value will be  formatted as <code>Month date1
+     * - date2, Year</code> and, if in different months of the same year, <code>Month1 date1 - Month2 date2, Year</code>.
      *
      *
      * @return DateDisplayFormat

@@ -94,7 +94,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     // ********************* Properties / Attributes ***********************
 
     /**
-     * When true, when a menu item is chosen (via mouse click or keyboard), the menu is not  automatically hidden, staying in
+     * When false, when a menu item is chosen (via mouse click or keyboard), the menu is not  automatically hidden, staying in
      * place for further interactivity
      *
      * @param autoDismiss autoDismiss Default value is true
@@ -104,7 +104,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     /**
-     * When true, when a menu item is chosen (via mouse click or keyboard), the menu is not  automatically hidden, staying in
+     * When false, when a menu item is chosen (via mouse click or keyboard), the menu is not  automatically hidden, staying in
      * place for further interactivity
      *
      *

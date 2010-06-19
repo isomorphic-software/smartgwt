@@ -110,8 +110,10 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanSelectAll
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectionType
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectionProperty
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanDragSelect
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanDragSelectText
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getSelectionProperty
  * @see com.smartgwt.client.widgets.menu.Menu#getCanSelectParentItems
  * @see com.smartgwt.client.widgets.tile.TileGrid#getSelectionType
  * @see com.smartgwt.client.types.SelectionStyle

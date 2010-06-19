@@ -8,6 +8,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.DynamicForm#validate
  * @see com.smartgwt.client.widgets.form.DynamicForm#valuesAreValid
  * @see com.smartgwt.client.widgets.form.DynamicForm#validateData
+ * @see com.smartgwt.client.widgets.grid.ListGrid#clearRowErrors
  * @see com.smartgwt.client.widgets.form.validator.Validator#addValidator
  * @see com.smartgwt.client.widgets.form.validator.Validator#addValidators
  * @see com.smartgwt.client.widgets.form.validator.Validator#addValidatorDefinition

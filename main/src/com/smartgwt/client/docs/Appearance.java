@@ -7,6 +7,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.TextItem#getHint
  * @see com.smartgwt.client.widgets.form.fields.ButtonItem#setTitle
  * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getCellStyle
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getCellCSSText
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle
  * @see com.smartgwt.client.grid.GridRenderer#getCellStyle
  * @see com.smartgwt.client.grid.GridRenderer#cellIsEnabled
  * @see com.smartgwt.client.grid.GridRenderer#refreshCellStyle
@@ -85,6 +87,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.ButtonItem#getHeight
  * @see com.smartgwt.client.widgets.form.fields.ButtonItem#getBaseStyle
  * @see com.smartgwt.client.widgets.form.fields.ButtonItem#getShowTitle
+ * @see #getStyleName
+ * @see #getBodyStyleName
  * @see com.smartgwt.client.widgets.form.fields.SelectItem#getHeight
  * @see com.smartgwt.client.widgets.form.fields.SelectItem#getMultiple
  * @see com.smartgwt.client.widgets.form.fields.SelectOtherItem#getSeparatorTitle
@@ -191,6 +195,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getFrozenBaseStyle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getShowRollOver
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectionType
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectionProperty
  * @see com.smartgwt.client.widgets.grid.ListGrid#getShowHeader
  * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderBarStyle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderBackgroundColor
@@ -208,6 +213,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSkinImgDir
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSortAscendingImage
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSortDescendingImage
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getSelectionProperty
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getIndentSize
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getExtraIconGap
  * @see com.smartgwt.client.widgets.tile.TileLayout#getAnimateTileChange

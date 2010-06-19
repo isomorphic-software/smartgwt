@@ -56,7 +56,18 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * Form item which renders a Canvas inline in a DynamicForm instance.
+ * Form item which renders a Canvas inline in a DynamicForm instance.&#010 <P>&#010 CanvasItem is {@link
+ * com.smartgwt.client.widgets.form.fields.FormItem#getShouldSaveValue shouldSaveValue}:false by default, meaning that&#010
+ * no value from the CanvasItem will be present in  values and no value will be&#010 saved when {@link
+ * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData} is called.&#010 <P>&#010 The simplest way to
+ * have a CanvasItem contribute a value to the data that a form saves is&#010 retrieve a value directly from the managed
+ * Canvas and then call&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#setValue DynamicForm.setValue} immediately
+ * before calling&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#saveData saveData()}.  &#010 <P>&#010 For
+ * example if you were to embed a {@link com.smartgwt.client.widgets.Slider} widget into a form via a CanvasItem, your&#010
+ * code to save might be:&#010 <pre>&#010   <i>formId</i>.setValue("<i>canvasItemFieldName</i>",
+ * <i>sliderId</i>.getValue());&#010   <i>formId</i>.saveData();&#010 </pre>&#010 Note that there is a pre-existing {@link
+ * com.smartgwt.client.widgets.form.fields.SliderItem} so this approach is not necessary for&#010 embedding a Slider into a
+ * DynamicForm, just use SliderItem.
  */
 public class CanvasItem extends FormItem {
 

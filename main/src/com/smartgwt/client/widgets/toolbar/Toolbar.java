@@ -202,6 +202,16 @@ public abstract class Toolbar extends Layout  implements com.smartgwt.client.wid
                });
         }
    }-*/;
+            
+    /**
+     * Called when one of the buttons receives a double-click event
+     * @param item pointer to the button in question
+     * @param itemNum number of the button in question
+     */
+    public native void itemDoubleClick(Button item, int itemNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.itemDoubleClick(item.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), itemNum);
+    }-*/;
     /**
      * Add a itemDragResized handler.
      * <p>

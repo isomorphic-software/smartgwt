@@ -666,8 +666,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * normalCellHeight}  {@link com.smartgwt.client.widgets.grid.ListGrid#getNormalBaseStyle normalBaseStyle} will be used.
      * For grids with variable, or modified cell heights, {@link com.smartgwt.client.widgets.grid.ListGrid#getTallBaseStyle
      * tallBaseStyle} will be used.  <P> Note also that enabling {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getFastCellUpdates fastCellUpdates} will cause the tallBaseStyle to be used
-     * rather than {@link com.smartgwt.client.widgets.grid.ListGrid#getNormalCellUpdates normalCellUpdates}.
+     * com.smartgwt.client.widgets.grid.ListGrid#getFastCellUpdates fastCellUpdates} will cause the <cod>tallBaseStyle</code>
+     * to be used rather than {@link com.smartgwt.client.widgets.grid.ListGrid#getNormalBaseStyle normalBaseStyle}.
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getBaseStyle()  {
@@ -1904,9 +1904,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * How far should we render rows ahead of the currently visible area?  This is expressed as a ratio from viewport size to
-     * rendered area size.<br><br>  Tweaking drawAheadRatio allows you to make tradeoffs between continuous scrolling speed vs
-     * initial render time and render time when scrolling by large amounts.<br><br> NOTE: Only applies when showAllRows is
-     * false.
+     * rendered area size. <P> Tweaking drawAheadRatio allows you to make tradeoffs between continuous scrolling speed vs
+     * initial render time and render time when scrolling by large amounts. <P> NOTE: Only applies when showAllRows is false.
      *
      * @param drawAheadRatio drawAheadRatio Default value is 1.3
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_dataoperations_fetch" target="examples">Databound fetch Example</a>
@@ -1917,9 +1916,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * How far should we render rows ahead of the currently visible area?  This is expressed as a ratio from viewport size to
-     * rendered area size.<br><br>  Tweaking drawAheadRatio allows you to make tradeoffs between continuous scrolling speed vs
-     * initial render time and render time when scrolling by large amounts.<br><br> NOTE: Only applies when showAllRows is
-     * false.
+     * rendered area size. <P> Tweaking drawAheadRatio allows you to make tradeoffs between continuous scrolling speed vs
+     * initial render time and render time when scrolling by large amounts. <P> NOTE: Only applies when showAllRows is false.
      *
      *
      * @return float
@@ -2472,21 +2470,25 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Advanced property to improve performance for dynamic styling of gridRenderer cells at the expense of slightly slower
-     * drawing. <P> <code>fastCellUpdates</code> speeds up the dynamic styling system used by rollovers, selections, and custom
-     * styling that calls {@link com.smartgwt.client.grid.GridRenderer#refreshCellStyle GridRenderer.refreshCellStyle}, at the
-     * cost of slightly slower draw() and redraw() times. <P> This property is enabled by default in Internet Explorer and only
-     * has an effect in that browser. <P> Notes: <ul> <li>If any cell styles specify a a background image URL, the URL will be
-     * resolved relative     to the page location rather than the location of the CSS stylesheet. This means cell     styles
-     * with a background URL should either supply a fully qualified path, or the     background image media should be made
-     * available at a second location for IE.</li> <li>fastCellUpdates will not work if the styles involved are in an external
-     * stylesheet loaded     from a remote host. Either the stylesheet containing cell styles needs to be loaded     from the
-     * same host as the main page, or the cell styles need to be inlined in the html      of the bootstrap page.</li> </ul>
-     * Also note that this property can effect the baseStyle used for for listGrid bodies. See {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle ListGrid.getBaseStyle}.
+     * <b>Note: This property only has an effect in Internet Explorer</b> <P> Advanced property to improve performance for
+     * dynamic styling of gridRenderer cells in Internet Explorer, at the expense of slightly slower initial drawing, and some 
+     * limitations on supported styling options. <P> <code>fastCellUpdates</code> speeds up the dynamic styling system used by
+     * rollovers, selections, and custom styling that calls {@link com.smartgwt.client.grid.GridRenderer#refreshCellStyle
+     * GridRenderer.refreshCellStyle}, at the cost of slightly slower draw() and redraw() times. <P> Notes: <ul> <li>When this
+     * property is set, ListGrid cells may be styled using the      {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getTallBaseStyle tallBaseStyle}. See {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle ListGrid.getBaseStyle} for      more information.</li> <li>If any
+     * cell styles specify a a background image URL, the URL will be resolved relative     to the page location rather than the
+     * location of the CSS stylesheet. This means cell     styles with a background URL should either supply a fully qualified
+     * path, or the     background image media should be made available at a second location for IE.</li> <li>fastCellUpdates
+     * will not work if the styles involved are in an external stylesheet loaded     from a remote host. Either the stylesheet
+     * containing cell styles needs to be loaded     from the same host as the main page, or the cell styles need to be inlined
+     * in the html      of the bootstrap page.</li> <li>fastCellUpdates will not work if the css styles for cells are defined
+     * in     a <code>.css</code> file loaded via <code>@import</code>. Instead the <code>.css</code>     file should be loaded
+     * via a <code>&lt;link ...&gt;</code> tag.</li> </ul>
      * Setter for {@link com.smartgwt.client.grid.GridRenderer#getFastCellUpdates fastCellUpdates}. Has no effect in browsers other than Internet Explorer.
      *
-     * @param fastCellUpdates whether to enable fastCellUpdates.. Default value is varies
+     * @param fastCellUpdates whether to enable fastCellUpdates.. Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setFastCellUpdates(Boolean fastCellUpdates)  throws IllegalStateException {
@@ -3908,7 +3910,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * "Normal" baseStyle for this listGrid. Only applies if {@link com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle
      * baseStyle} is  set to null. <P> If <code>baseStyle</code> is unset, this property will be used as a base cell style if
      * the grid is showing fixed height rows, and the specified cellHeight matches {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getNormalCellHeight normalCellHeight} (and  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getNormalCellHeight normalCellHeight} (and in Internet Explorer, {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getFastCellUpdates fastCellUpdates} is false). Otherwise {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getTallBaseStyle tallBaseStyle} will be used. <P> Having separate styles
      * defined for fixed vs. variable height rows allows the developer to specify css which is designed to render at a specific
@@ -3926,7 +3928,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * "Normal" baseStyle for this listGrid. Only applies if {@link com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle
      * baseStyle} is  set to null. <P> If <code>baseStyle</code> is unset, this property will be used as a base cell style if
      * the grid is showing fixed height rows, and the specified cellHeight matches {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getNormalCellHeight normalCellHeight} (and  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getNormalCellHeight normalCellHeight} (and in Internet Explorer, {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getFastCellUpdates fastCellUpdates} is false). Otherwise {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getTallBaseStyle tallBaseStyle} will be used. <P> Having separate styles
      * defined for fixed vs. variable height rows allows the developer to specify css which is designed to render at a specific
@@ -4594,6 +4596,35 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * If specified, the selection object for this list will use this property to mark records as selected.  In other words, if
+     * this attribute were set to <code>"isSelected"</code> any records in the listGrid data where <code>"isSelected"</code> is
+     * <code>true</code> will show up as selected in the grid. Similarly if records are selected within the grid after the grid
+     * has been created, this property will be set to true on the selected records.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param selectionProperty selectionProperty Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setSelectionProperty(String selectionProperty)  throws IllegalStateException {
+        setAttribute("selectionProperty", selectionProperty, false);
+    }
+
+    /**
+     * If specified, the selection object for this list will use this property to mark records as selected.  In other words, if
+     * this attribute were set to <code>"isSelected"</code> any records in the listGrid data where <code>"isSelected"</code> is
+     * <code>true</code> will show up as selected in the grid. Similarly if records are selected within the grid after the grid
+     * has been created, this property will be set to true on the selected records.
+     *
+     *
+     * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public String getSelectionProperty()  {
+        return getAttributeAsString("selectionProperty");
+    }
+
+    /**
      * Defines a listGrid's clickable-selection behavior.   <P> The default selection appearance is governed by {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}: if selectionAppearance is
      * "checkbox", this will be "simple", otherwise, this will be "multiple".
@@ -4670,9 +4701,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Whether all rows should be drawn all at once, or only rows visible in the viewport.<br><br> Drawing all rows causes
-     * longer initial rendering time, but allows smoother vertical scrolling. With a very large number of rows, showAllRows
-     * will become too slow.
+     * Whether all rows should be drawn all at once, or only rows visible in the viewport. <P> Drawing all rows causes longer
+     * initial rendering time, but allows smoother vertical scrolling. With a very large number of rows, showAllRows will
+     * become too slow. <P> See also {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAheadRatio drawAheadRatio} and
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAllMaxCells drawAllMaxCells}.
      *
      * @param showAllRecords showAllRecords Default value is false
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_autofit_rows" target="examples">Rows Example</a>
@@ -4682,9 +4714,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Whether all rows should be drawn all at once, or only rows visible in the viewport.<br><br> Drawing all rows causes
-     * longer initial rendering time, but allows smoother vertical scrolling. With a very large number of rows, showAllRows
-     * will become too slow.
+     * Whether all rows should be drawn all at once, or only rows visible in the viewport. <P> Drawing all rows causes longer
+     * initial rendering time, but allows smoother vertical scrolling. With a very large number of rows, showAllRows will
+     * become too slow. <P> See also {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAheadRatio drawAheadRatio} and
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAllMaxCells drawAllMaxCells}.
      *
      *
      * @return Boolean
@@ -5517,7 +5550,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * baseStyle} is  set to null. <P> If <code>baseStyle</code> is unset, this property will be used as a base cell style
      * unless the grid is showing fixed height rows with a specified cellHeight that matches {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getNormalCellHeight normalCellHeight}, in which case {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getNormalBaseStyle normalBaseStyle} will be used.
+     * com.smartgwt.client.widgets.grid.ListGrid#getNormalBaseStyle normalBaseStyle} will be used. Note that in Internet
+     * Explorer if {@link com.smartgwt.client.widgets.grid.ListGrid#getFastCellUpdates fastCellUpdates} is true,
+     * <code>tallBaseStyle</code> will also be used even if the cellHeight matches the specified <code>normalCellHeight</code>
+     * for the grid.
      *
      * @param tallBaseStyle tallBaseStyle Default value is "cell"
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -5531,7 +5567,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * baseStyle} is  set to null. <P> If <code>baseStyle</code> is unset, this property will be used as a base cell style
      * unless the grid is showing fixed height rows with a specified cellHeight that matches {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getNormalCellHeight normalCellHeight}, in which case {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getNormalBaseStyle normalBaseStyle} will be used.
+     * com.smartgwt.client.widgets.grid.ListGrid#getNormalBaseStyle normalBaseStyle} will be used. Note that in Internet
+     * Explorer if {@link com.smartgwt.client.widgets.grid.ListGrid#getFastCellUpdates fastCellUpdates} is true,
+     * <code>tallBaseStyle</code> will also be used even if the cellHeight matches the specified <code>normalCellHeight</code>
+     * for the grid.
      *
      *
      * @return String
@@ -5857,7 +5896,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Should content within cells be allowed to wrap?
+     * Should content within cells be allowed to wrap? <P> Even if content is allowed to wrap, if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights fixedRecordHeights} is set, the content will be clipped
+     * off at the cell boundary.  Either set a larger, fixed {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHeight
+     * cellHeight} to reveal more content, or set {@link com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights
+     * fixedRecordHeights} to false to allow auto-sizing.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param wrapCells wrapCells Default value is false
@@ -5868,7 +5911,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Should content within cells be allowed to wrap?
+     * Should content within cells be allowed to wrap? <P> Even if content is allowed to wrap, if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights fixedRecordHeights} is set, the content will be clipped
+     * off at the cell boundary.  Either set a larger, fixed {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHeight
+     * cellHeight} to reveal more content, or set {@link com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights
+     * fixedRecordHeights} to false to allow auto-sizing.
      *
      *
      * @return Boolean
