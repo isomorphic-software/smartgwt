@@ -198,6 +198,66 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
+     * Title for the "Match All" (and) operator
+     *
+     * @param matchAllTitle matchAllTitle Default value is "Match All"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setMatchAllTitle(String matchAllTitle)  throws IllegalStateException {
+        setAttribute("matchAllTitle", matchAllTitle, false);
+    }
+
+    /**
+     * Title for the "Match All" (and) operator
+     *
+     *
+     * @return String
+     */
+    public String getMatchAllTitle()  {
+        return getAttributeAsString("matchAllTitle");
+    }
+
+    /**
+     * Title for the "Match Any" (or) operator
+     *
+     * @param matchAnyTitle matchAnyTitle Default value is "Match Any"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setMatchAnyTitle(String matchAnyTitle)  throws IllegalStateException {
+        setAttribute("matchAnyTitle", matchAnyTitle, false);
+    }
+
+    /**
+     * Title for the "Match Any" (or) operator
+     *
+     *
+     * @return String
+     */
+    public String getMatchAnyTitle()  {
+        return getAttributeAsString("matchAnyTitle");
+    }
+
+    /**
+     * Title for the "Match None" (not) operator
+     *
+     * @param matchNoneTitle matchNoneTitle Default value is "Match None"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setMatchNoneTitle(String matchNoneTitle)  throws IllegalStateException {
+        setAttribute("matchNoneTitle", matchNoneTitle, false);
+    }
+
+    /**
+     * Title for the "Match None" (not) operator
+     *
+     *
+     * @return String
+     */
+    public String getMatchNoneTitle()  {
+        return getAttributeAsString("matchNoneTitle");
+    }
+
+    /**
      * The message to display next to fieldNames that do not exist in the available dataSource.
      *
      * @param missingFieldPrompt missingFieldPrompt Default value is "[missing field definition]"

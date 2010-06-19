@@ -1780,6 +1780,26 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
    }-*/;
             
     /**
+     * Return the current focus item for this form. If this form is drawn and has focus, this is the currently focused item. If
+     * the form does not have focus or is undrawn this is the item that last had focus, or would have focus if the item were
+     * drawn/given focus. Therefore note that this method can validly return an item which doesn't currently have focus. <P>
+     * May be null.
+     *
+     * @return returns the item that has the focus, or null if no item is currently focused
+     * @see com.smartgwt.client.docs.Focus Focus overview and related methods
+     */
+    public native FormItem getFocusItem() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getFocusItem();
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.form.fields.FormItem::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+            
+    /**
      * Return an AdvancedCriteria object based on the current set of values within this form. <p> Similar to {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria DynamicForm.getValuesAsCriteria}, except the returned
      * criteria object is guaranteed to be an AdvancedCriteria object, even if none of the form's fields has a specified {@link
