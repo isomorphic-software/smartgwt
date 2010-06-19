@@ -14,7 +14,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCellHeight
  * @see com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights
  * @see com.smartgwt.client.widgets.grid.ListGrid#getFixedFieldWidths
- * @see com.smartgwt.client.widgets.grid.ListGrid#getWrapCells
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCellPadding
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAlternateRecordStyles
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAlternateRecordFrequency

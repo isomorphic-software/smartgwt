@@ -121,7 +121,8 @@ public class MenuButton extends Button {
     }
 
     /**
-     * The menu to show.
+     * The menu to show. <P> For a menu button with no menu (menu: null) the up/down arrow image can be suppressed by setting
+     * {@link com.smartgwt.client.widgets.menu.MenuButton#getShowMenuButtonImage showMenuButtonImage}: <code>false</code>.
      *
      * @param menu menu Default value is null
      */
@@ -130,7 +131,8 @@ public class MenuButton extends Button {
     }
 
     /**
-     * The menu to show.
+     * The menu to show. <P> For a menu button with no menu (menu: null) the up/down arrow image can be suppressed by setting
+     * {@link com.smartgwt.client.widgets.menu.MenuButton#getShowMenuButtonImage showMenuButtonImage}: <code>false</code>.
      *
      *
      * @return Menu
@@ -232,8 +234,8 @@ public class MenuButton extends Button {
     }
 
     /**
-     * show menu button image (up / down arrowhead) for this menu button
-     * Setter for the 'showMenuButtonImage' property - shows/hides the menu button image at runtime
+     * Show menu button image (up / down arrowhead) for this menu button.
+     * Setter for the 'showMenuButtonImage' property - shows/hides the menu button image at runtime.
      *
      * @param showMenuButtonImage Should the image be shown. Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -243,7 +245,7 @@ public class MenuButton extends Button {
     }
 
     /**
-     * show menu button image (up / down arrowhead) for this menu button
+     * Show menu button image (up / down arrowhead) for this menu button.
      *
      *
      * @return Boolean

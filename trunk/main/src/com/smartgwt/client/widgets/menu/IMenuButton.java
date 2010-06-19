@@ -121,7 +121,8 @@ public class IMenuButton extends StretchImgButton {
     }
 
     /**
-     * The menu to show.
+     * The menu to show. <P> For a menu button with no menu (menu: null) the up/down arrow image can be suppressed by setting
+     * {@link com.smartgwt.client.widgets.menu.MenuButton#getShowMenuButtonImage showMenuButtonImage}: <code>false</code>.
      *
      * @param menu menu Default value is null
      */
@@ -130,7 +131,8 @@ public class IMenuButton extends StretchImgButton {
     }
 
     /**
-     * The menu to show.
+     * The menu to show. <P> For a menu button with no menu (menu: null) the up/down arrow image can be suppressed by setting
+     * {@link com.smartgwt.client.widgets.menu.MenuButton#getShowMenuButtonImage showMenuButtonImage}: <code>false</code>.
      *
      *
      * @return Menu
@@ -232,6 +234,27 @@ public class IMenuButton extends StretchImgButton {
     }
 
     /**
+     * Show menu button image (up / down arrowhead) for this menu button.
+     * Setter for the 'showMenuButtonImage' property - shows/hides the menu button image at runtime.
+     *
+     * @param showMenuButtonImage Should the image be shown. Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowMenuButtonImage(Boolean showMenuButtonImage)  throws IllegalStateException {
+        setAttribute("showMenuButtonImage", showMenuButtonImage, false);
+    }
+
+    /**
+     * Show menu button image (up / down arrowhead) for this menu button.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowMenuButtonImage()  {
+        return getAttributeAsBoolean("showMenuButtonImage");
+    }
+
+    /**
      * Default title for the button.
      *
      * @param title title Default value is "Show Menu"
@@ -251,15 +274,6 @@ public class IMenuButton extends StretchImgButton {
     }
 
     // ********************* Methods ***********************
-            
-    /**
-     * Setter for the 'showMenuButtonImage' property - shows/hides the menu button image at runtime
-     * @param show Should the image be shown
-     */
-    public native void setShowMenuButtonImage(boolean show) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setShowMenuButtonImage(show);
-    }-*/;
 
     // ********************* Static Methods ***********************
     /**
