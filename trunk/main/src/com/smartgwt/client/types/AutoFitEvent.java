@@ -37,7 +37,7 @@ public enum AutoFitEvent implements ValueEnum {
 
     private String value;
 
-    ExportFormat(String value) {
+    AutoFitEvent(String value) {
         this.value = value;
     }
 

@@ -38,7 +38,7 @@ public enum AutoFitWidthApproach implements ValueEnum {
 
     private String value;
 
-    ExportFormat(String value) {
+    AutoFitWidthApproach(String value) {
         this.value = value;
     }
 
