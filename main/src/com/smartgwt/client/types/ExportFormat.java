@@ -41,12 +41,7 @@ public enum ExportFormat implements ValueEnum {
     XLS("xls"),
 
     /**
-     * Export data in native Microsoft Excel 2007 (OOXML) format
-     */
-    XLSX("xlsx"),
-
-    /**
-     * Alias for XLSX
+     * Export data in native Microsoft Excel 2007 (XLSX) format
      */
     OOXML("ooxml");
 
