@@ -9422,7 +9422,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public native void unfreezeField(String fieldName) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.freezeField(fieldName);
+        self.unfreezeField(fieldName);
     }-*/;
 
     /**
@@ -9432,7 +9432,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public native void unfreezeField(int colNum) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.freezeField(colNum);
+        self.unfreezeField(colNum);
     }-*/;
 
     /**
