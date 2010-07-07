@@ -51,15 +51,6 @@ public class Showcase implements EntryPoint, HistoryListener {
     private Menu contextMenu;
 
     public void onModuleLoad() {
-
-
-        ListGrid prot = new ListGrid();
-        prot.setCanGroupBy(false);
-        prot.setBaseStyle("myGrid");
-
-        ListGrid.setDefaultProperties(prot);
-
-
         final String initToken = History.getToken();
 
         //setup overall layout / viewport
