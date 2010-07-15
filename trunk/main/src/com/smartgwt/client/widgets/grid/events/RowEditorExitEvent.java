@@ -158,14 +158,16 @@ public class RowEditorExitEvent extends BrowserEvent<RowEditorExitHandler>  impl
 
 
     /**
-     * edit values for the current row
+     * Return the edit values for the current row.
      *
-     * @return edit values for the current row
+     * @return edit values for the current row. The key of the map is the field name and the value is the new field value
      */
-    //TODO
-    public native JavaScriptObject getEditValues() /*-{
+    public native Map getNewValues() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.editValues;
+        var value =  jsObj.newValues;
+        if(value == null) return null;
+        var valueJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
+        return valueJ;
     }-*/;
 
 
