@@ -53,7 +53,7 @@ public class SmartGwtLinker extends AbstractLinker {
                 String contents = getContents(emittedArtifact, logger);
                 int insertIdx = contents.indexOf("*/") + 2;
                 StringBuffer sb = new StringBuffer(contents);
-                sb.insert(insertIdx, "\nif(!isomorphicDir){var isomorphicDir = '" + context.getModuleName() + "/sc/';}\n");
+                sb.insert(insertIdx, "\nif(!isomorphicDir){isomorphicDir = '" + context.getModuleName() + "/sc/';}\n");
 
                 toReturn.remove(emittedArtifact);
                 toReturn.add(emitString(logger, sb.toString(), partialPath));

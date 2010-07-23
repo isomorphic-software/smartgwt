@@ -184,7 +184,7 @@
             <globmapper from="*.xml" to="*.xml.js"/>
         </copy>
 
-        <echo file="${smartgwt.build.out}/temp/initsc.js">if(!isomorphicDir){var isomorphicDir = "sc/";}</echo>
+        <echo file="${smartgwt.build.out}/temp/initsc.js">if(!isomorphicDir){isomorphicDir = "sc/";}</echo>
         <echo file="${smartgwt.build.out}/temp/Log.html"><![CDATA[
 <!--======================================================================
     Isomorphic SmartClient Developer Console
