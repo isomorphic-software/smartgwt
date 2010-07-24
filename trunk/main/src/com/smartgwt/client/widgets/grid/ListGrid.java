@@ -8050,7 +8050,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public native String getValueIcon(ListGridField field, Object value, ListGridRecord record) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.getValueIcon(field.@com.smartgwt.client.core.DataClass::getJsObj()(), value, record.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return self.getValueIcon(field.@com.smartgwt.client.core.DataClass::getJsObj()(), value, record.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
     /**
