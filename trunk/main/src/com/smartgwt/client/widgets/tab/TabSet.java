@@ -1459,21 +1459,21 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     /**
      * Apply a new {@link com.smartgwt.client.widgets.tab.Tab#getPane pane} to an existing tab in this tabSet
      * @param tabIndex Tab to update
-     * @param pane new Pane for the tab
+     * @param pane new Pane for the tab. pass null to drop existing pane
      */
     public native void setTabPane(int tabIndex, Canvas pane) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setTabPane(tabIndex, pane.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+        self.setTabPane(tabIndex, pane == null ? null : pane.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
 
     /**
      * Apply a new {@link com.smartgwt.client.widgets.tab.Tab#getPane pane} to an existing tab in this tabSet
      * @param tabID Tab to update
-     * @param pane new Pane for the tab
+     * @param pane new Pane for the tab. pass null to drop existing pane
      */
     public native void setTabPane(String tabID, Canvas pane) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setTabPane(tabID, pane.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+        self.setTabPane(tabID, pane == null ? null : pane.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
 
     /**
