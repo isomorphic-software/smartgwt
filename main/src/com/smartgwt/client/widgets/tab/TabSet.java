@@ -1177,16 +1177,28 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         self.enableTab(tabJS);
     }-*/;
 
+    /**
+     * Set the pane for a tab. NOTE: the old pane for the tab is not destroy()d
+     *
+     * @param tabIndex the tab index
+     * @param pane the new pane for the tab
+     */
     public native void updateTab(int tabIndex, Canvas pane) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var paneJS = pane.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var paneJS = pane == null ? null : pane.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.updateTab(tabIndex, paneJS);
     }-*/;
 
+    /**
+     * Set the pane for a tab. NOTE: the old pane for the tab is not destroy()d
+     *
+     * @param tab the tab
+     * @param pane the new pane for the tab
+     */
     public native void updateTab(Tab tab, Canvas pane) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var tabJS = tab.@com.smartgwt.client.widgets.tab.Tab::getJsObj()();
-        var paneJS = pane.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var paneJS = pane == null ? null : pane.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.updateTab(tabJS, paneJS);
     }-*/;
 
