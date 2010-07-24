@@ -8027,7 +8027,30 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             return dataSourceJ == null ? null : dataSourceJ.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         });
         
+        self.__getValueIcon = self.getValueIcon;
+        self.getValueIcon = $entry(function(field, value, record) {
+            var jObj = this.__ref;
+            var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
+            var valueJ = $wnd.SmartGWT.convertToJavaType(value);
+            var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            var icon = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getValueIcon(Lcom/smartgwt/client/widgets/grid/ListGridField;Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;)(fieldJ, valueJ, recordJ);
+            return icon;
+        });
+    }-*/;
 
+    /**
+     * Returns the appropriate valueIcon for a cell based on the field and the data value for the  cell. Default implementation
+     * returns null if {@link com.smartgwt.client.widgets.grid.ListGridField#getSuppressValueIcon suppressValueIcon} is true
+     * otherwise looks at {@link com.smartgwt.client.widgets.grid.ListGridField#getValueIcons valueIcons}.
+     * @param field field associated with the cell
+     * @param value data value for the cell's record in this field.
+     * @param record record associated with this cell
+     *
+     * @return the value icon
+     */
+    public native String getValueIcon(ListGridField field, Object value, ListGridRecord record) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.getValueIcon(field.@com.smartgwt.client.core.DataClass::getJsObj()(), value, record.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
     /**
@@ -8656,7 +8679,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * @param groupValues Array of values that should be opened
      */
-    public void setGroupStartOpen(GroupStartOpen... groupValues) {
+    public void setGroupStartOpen(Object... groupValues) {
         setAttribute("groupStartOpen", groupValues, true);
     }
 
