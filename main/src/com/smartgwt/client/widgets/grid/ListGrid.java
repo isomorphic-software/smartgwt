@@ -8030,6 +8030,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         self.__getValueIcon = self.getValueIcon;
         self.getValueIcon = $entry(function(field, value, record) {
             var jObj = this.__ref;
+            if(jObj == null || jObj === undefined) return this.__getValueIcon(field, value, record);
             var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
             var valueJ = $wnd.SmartGWT.convertToJavaType(value);
             var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
@@ -8050,7 +8051,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public native String getValueIcon(ListGridField field, Object value, ListGridRecord record) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getValueIcon(field.@com.smartgwt.client.core.DataClass::getJsObj()(), value, record.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return self.__getValueIcon(field.@com.smartgwt.client.core.DataClass::getJsObj()(), value, record.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
     /**
