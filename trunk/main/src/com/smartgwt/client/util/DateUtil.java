@@ -36,7 +36,7 @@ public class DateUtil {
      * 
      * @param whether time and datetimes should account for daylight savings time in this application
      */
-    public native void setAdjustForDST(boolean adjustForDST) /*-{
+    public static native void setAdjustForDST(boolean adjustForDST) /*-{
 		$wnd.isc.Time.adjustForDST = adjustForDST;
 	}-*/;
 
