@@ -5467,16 +5467,16 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
 	protected native void onInit () /*-{
-	
+
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        
+
         self.__willAcceptDrop = self.willAcceptDrop;
         self.willAcceptDrop = $debox($entry(function() {
             var jObj = this.__ref;
             var retVal = jObj.@com.smartgwt.client.widgets.Canvas::willAcceptDrop()();
             return retVal.@java.lang.Boolean::booleanValue()();
         }));
-         
+
         self.__getPrintHTML = self.getPrintHTML;
         self.getPrintHTML = $entry(function(printProperties,callback) {
              var jObj = this.__ref;
@@ -5485,8 +5485,30 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
              var ret = jObj.@com.smartgwt.client.widgets.Canvas::getPrintHTMLJSCB(Lcom/smartgwt/client/util/PrintProperties;Lcom/google/gwt/core/client/JavaScriptObject;)(jPP,callback);
         	 return ret;
          });
-         
+
 	}-*/;
+
+    /**
+     * Create a databound component corresponding to the passed jsObj.
+     *
+     * @param jsObj the javascript object
+     * @return the databound component
+     */
+    private static native DataBoundComponent getOrCreateDBC(JavaScriptObject jsObj) /*-{
+        if(jsObj == null) return null;
+        var obj = jsObj.__ref;
+        if(obj == null || obj === undefined) {
+            if($wnd.isc.isA.ListGrid(jsObj)) return @com.smartgwt.client.widgets.grid.ListGrid::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
+            if($wnd.isc.isA.DynamicForm(jsObj)) return @com.smartgwt.client.widgets.form.DynamicForm::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
+            if($wnd.isc.isA.DetailViewer(jsObj)) return @com.smartgwt.client.widgets.viewer.DetailViewer::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
+            if($wnd.isc.isA.Calendar(jsObj)) return @com.smartgwt.client.widgets.calendar.Calendar::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
+            if($wnd.isc.isA.ColumnTree(jsObj)) return @com.smartgwt.client.widgets.grid.ColumnTree::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
+            if($wnd.isc.isA.TileGrid(jsObj)) return @com.smartgwt.client.widgets.tile.TileGrid::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
+            return @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
+        } else {
+            return obj;
+        }
+    }-*/;
 
     /**
      * Multiple styles are currently not supported. This method essentially calls {@link #setStyleName(String)}
