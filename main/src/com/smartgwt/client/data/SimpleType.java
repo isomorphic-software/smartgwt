@@ -66,8 +66,8 @@ import com.google.gwt.event.shared.HasHandlers;
  * com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents}. <P> Note that the term "simpleType" is used in the
  * same sense as in <a href='XML Schema' onclick="window.open('XML Schema');return
  * false;">http://www.w3.org/TR/xmlschema-0/</a>, and {@link com.smartgwt.client.data.XMLTools#loadXMLSchema
- * XMLTools.loadXMLSchema} will create new SimpleType definitions. <P> An
- * ${isc.DocUtils.linkForExampleId('customSimpleType', 'example')} is here.
+ * XMLTools.loadXMLSchema} will create new SimpleType definitions. <P> An <a
+ * href="http://www.smartclient.com/smartgwt/showcase/#form_validation_custom_types" target="examples">example</a> is here.
  */
 public class SimpleType extends BaseClass {
 
@@ -274,7 +274,7 @@ public class SimpleType extends BaseClass {
         self.normalDisplayFormatter = $debox($entry(function(value, field, component, record) {
             var valueJ = $wnd.SmartGWT.convertToJavaType(value);
             var fieldJ = @com.smartgwt.client.data.SimpleType::toDataClass(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
-            var componentJ = (component == null || component === undefined) ? null : @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
+            var componentJ = (component == null || component === undefined) ? null : @com.smartgwt.client.widgets.Canvas::getOrCreateDBC(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
             var recordJ = (record == null || record === undefined) ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             return formatter.@com.smartgwt.client.data.SimpleTypeFormatter::format(Ljava/lang/Object;Lcom/smartgwt/client/core/DataClass;Lcom/smartgwt/client/widgets/DataBoundComponent;Lcom/smartgwt/client/data/Record;)(valueJ, fieldJ, componentJ, recordJ);
         }));
@@ -294,7 +294,7 @@ public class SimpleType extends BaseClass {
         self.shortDisplayFormatter = $debox($entry(function(value, field, component, record) {
             var valueJ = $wnd.SmartGWT.convertToJavaType(value);
             var fieldJ = @com.smartgwt.client.data.SimpleType::toDataClass(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
-            var componentJ = (component == null || component === undefined) ? null : @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
+            var componentJ = (component == null || component === undefined) ? null : @com.smartgwt.client.widgets.Canvas::getOrCreateDBC(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
             var recordJ = (record == null || record === undefined) ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             return formatter.@com.smartgwt.client.data.SimpleTypeFormatter::format(Ljava/lang/Object;Lcom/smartgwt/client/core/DataClass;Lcom/smartgwt/client/widgets/DataBoundComponent;Lcom/smartgwt/client/data/Record;)(valueJ, fieldJ, componentJ, recordJ);
         }));
