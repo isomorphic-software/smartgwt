@@ -3939,8 +3939,21 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(val)) return val.@java.lang.Integer::intValue()();
             if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::floatValue()();
             if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
-            $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the FormItemValueParser::parseValue');
             return val;
+        }));
+    }-*/;
+
+    /**
+     * Set the FormItem Value Icon mapper that allows the developer to specify the image source for an icon to be displayed for the current form item value.
+     * Takes precedence over {@link com.smartgwt.client.widgets.form.fields.FormItem#setValueIcons(java.util.Map)}.
+     *
+     * @param valueIconMapper the valueIconMapper
+     */
+    public native void setValueIconMapper(ValueIconMapper valueIconMapper)/*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.getValueIcon = $debox($entry(function(value) {
+            var valueJ =  $wnd.SmartGWT.convertToJavaType(value);
+            return valueIconMapper.@com.smartgwt.client.widgets.form.ValueIconMapper::getValueIcon(Ljava/lang/Object;)(valueJ);
         }));
     }-*/;
 
