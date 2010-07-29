@@ -75,8 +75,8 @@ import com.google.gwt.event.shared.HasHandlers;
  * Other properties common to all FormItems are&#010 documented on the {@link
  * com.smartgwt.client.widgets.form.fields.FormItem} class, and properties specific to particular FormItems are&#010
  * documented on the respective FormItems.  &#010 <P>&#010 NOTE: For very simple forms consisting of exactly one item, you
- * still use a DynamicForm.&#010 See the "fontSelector" form in the ${isc.DocUtils.linkForExampleId('toolstrip', 'Toolstrip
- * example')}.
+ * still use a DynamicForm.&#010 See the "fontSelector" form in the <a
+ * href="http://www.smartclient.com/smartgwt/showcase/#toolstrip" target="examples">Toolstrip example</a>.
  */
 public class DynamicForm extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.form.events.HasSubmitValuesHandlers, com.smartgwt.client.widgets.form.events.HasItemChangeHandlers, com.smartgwt.client.widgets.form.events.HasItemChangedHandlers, com.smartgwt.client.widgets.form.events.HasItemKeyPressHandlers, com.smartgwt.client.widgets.form.events.HasFormSubmitFailedHandlers {
 
@@ -3390,6 +3390,16 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         }
         return new RecordList(dataJS);
     }
+    
+    public native void exportClientData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportClientData();
+    }-*/;
+
+    public native void exportClientData(DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportClientData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
 
 }
 

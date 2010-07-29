@@ -1262,6 +1262,16 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         }
         return new RecordList(dataJS);
     }
+    
+    public native void exportClientData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportClientData();
+    }-*/;
+
+    public native void exportClientData(DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportClientData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
 
 }
 
