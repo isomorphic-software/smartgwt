@@ -62,7 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * <pre>&#010 &lt;TabSet&gt;&#010    &lt;tabs&gt;&#010        &lt;Tab title="tab1" pane="pane1"/&gt;&#010        &lt;Tab
  * title="tab2"/&gt;&#010    &lt;/tabs&gt;&#010 &lt;/TabSet&gt;&#010 </pre>
  */
-public class Tab extends RefDataClass {
+public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.tab.events.HasTabDeselectedHandlers {
 
     public static Tab getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -226,6 +226,45 @@ public class Tab extends RefDataClass {
     }
 
     // ********************* Methods ***********************
+    /**
+     * Add a tabDeselected handler.
+     * <p>
+     * Optional handler to fire when a tab is deselected. Returning false will cancel the new selection, leaving this tab
+     * selected. As with {@link com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler TabSet.tabSelected} this method
+     * only fires when the tabset is drawn.
+     *
+     * @param handler the tabDeselected handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addTabDeselectedHandler(com.smartgwt.client.widgets.tab.events.TabDeselectedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabObjectDeselectedEvent.getType()) == 0) setupTabDeselectedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tab.events.TabObjectDeselectedEvent.getType());
+    }
+
+    private native void setupTabDeselectedEvent() /*-{
+        var obj = null;
+            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+            var selfJ = this;
+            obj.tabDeselected = $debox($entry(function(){
+                var param = {"tabSet" : arguments[0], "tab" : arguments[1], "newTab" : arguments[2]};
+                var event = @com.smartgwt.client.widgets.tab.events.TabObjectDeselectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+   }-*/;
+            
+    /**
+     * Optional handler to fire when a tab is selected. As with {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler TabSet.tabSelected} this method only fires when the tabset
+     * is drawn.
+     * @param tabSet the tabSet containing the tab.
+     * @param tab pointer to the selected tab
+     */
+    public native void tabSelected(TabSet tabSet, Tab tab) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.tabSelected(tabSet.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), tab.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
 
     // ********************* Static Methods ***********************
         
@@ -397,7 +436,6 @@ public class Tab extends RefDataClass {
     }
 
     private static TabSet getTabSet(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
         Object ref = JSOHelper.getAttributeAsObject((JavaScriptObject) jsObj, SC.REF);
         if(ref instanceof Tab) {
             return ((Tab) ref).getTabSet();
