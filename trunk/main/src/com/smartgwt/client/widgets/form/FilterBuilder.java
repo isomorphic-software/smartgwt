@@ -150,7 +150,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setFieldDataSource(DataSource fieldDataSource)  throws IllegalStateException {
-        setAttribute("fieldDataSource", fieldDataSource.getOrCreateJsObj(), false);
+        setAttribute("fieldDataSource", fieldDataSource == null ? null : fieldDataSource.getOrCreateJsObj(), false);
     }
 
     /**

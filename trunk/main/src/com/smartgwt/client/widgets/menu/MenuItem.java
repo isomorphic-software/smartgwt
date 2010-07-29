@@ -319,7 +319,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_submenus" target="examples">Sub Menus Example</a>
      */
     public void setSubmenu(Menu submenu) {
-        setAttribute("submenu", submenu.getOrCreateJsObj());
+        setAttribute("submenu", submenu == null ? null : submenu.getOrCreateJsObj());
     }
 
     /**

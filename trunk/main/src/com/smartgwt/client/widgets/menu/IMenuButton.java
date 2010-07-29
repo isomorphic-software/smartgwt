@@ -127,7 +127,7 @@ public class IMenuButton extends StretchImgButton {
      * @param menu menu Default value is null
      */
     public void setMenu(Menu menu) {
-        setAttribute("menu", menu.getOrCreateJsObj(), true);
+        setAttribute("menu", menu == null ? null : menu.getOrCreateJsObj(), true);
     }
 
     /**

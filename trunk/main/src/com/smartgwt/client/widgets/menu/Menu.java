@@ -430,7 +430,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      * @param target target Default value is null
      */
     public void setTarget(Canvas target) {
-        setAttribute("target", target.getOrCreateJsObj(), true);
+        setAttribute("target", target == null ? null : target.getOrCreateJsObj(), true);
     }
 
     /**

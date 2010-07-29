@@ -211,7 +211,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * @param data Tree to show. Default value is null
      */
     public void setData(Tree data) {
-        setAttribute("data", data.getOrCreateJsObj(), true);
+        setAttribute("data", data == null ? null : data.getOrCreateJsObj(), true);
     }
 
     /**

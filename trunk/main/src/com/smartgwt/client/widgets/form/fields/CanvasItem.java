@@ -112,7 +112,7 @@ public class CanvasItem extends FormItem {
      * @param canvas canvas Default value is null
      */
     public void setCanvas(Canvas canvas) {
-        setAttribute("canvas", canvas.getOrCreateJsObj());
+        setAttribute("canvas", canvas == null ? null : canvas.getOrCreateJsObj());
     }
 
     /**
