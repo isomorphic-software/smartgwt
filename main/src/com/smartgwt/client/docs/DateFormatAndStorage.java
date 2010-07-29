@@ -33,8 +33,10 @@ package com.smartgwt.client.docs;
  * objects, but only the time information is displayed to the user. Time formatting is handled by the {@link
  * java.lang.String} class APIs. By default times are displayed to users in the display timezone set up via {@link
  * java.lang.String#setDefaultDisplayTimezone Time.setDefaultDisplayTimezone} [if not explicitly set, defaults to native
- * browser local time].<br> When communicating with a non Smart GWT server via an "xml" DataSource, time field values in
- * requests will be serialized out as full times in UTC using the standard <a target=_blank
+ * browser local time]. Note that depending on the specific date being displayed, a Daylight Savings Time offset may also
+ * be applied based on the browser locale. To disable this behavior set {@link java.lang.String#adjustForDST adjustForDST}
+ * to false.<br> When communicating with a non Smart GWT server via an "xml" DataSource, time field values in requests will
+ * be serialized out as full times in UTC using the standard <a target=_blank
  * href="http://www.w3.org/TR/xmlschema-2/#dateTime">XML Schema date / time format</a> - <code>HH:MM:SS</code>. Note that
  * the flag {@link com.smartgwt.client.data.DataSource#serializeTimeAsDatetime serializeTimeAsDatetime} may be set to
  * serialize all times as full datetimes rather than just time strings. Time values received from the server in responses

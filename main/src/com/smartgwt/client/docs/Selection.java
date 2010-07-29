@@ -103,6 +103,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.DataBoundComponent#selectAllRecords
  * @see com.smartgwt.client.widgets.DataBoundComponent#deselectAllRecords
  * @see com.smartgwt.client.widgets.DataBoundComponent#anySelected
+ * @see com.smartgwt.client.widgets.DataBoundComponent#selectionUpdated
  * @see com.smartgwt.client.widgets.toolbar.Toolbar#selectButton
  * @see com.smartgwt.client.widgets.toolbar.Toolbar#deselectButton
  * @see com.smartgwt.client.widgets.form.fields.PickTreeItem#getCanSelectParentItems

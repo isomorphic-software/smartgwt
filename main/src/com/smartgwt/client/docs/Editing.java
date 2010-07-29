@@ -140,6 +140,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#rowEditorExit
  * @see com.smartgwt.client.widgets.grid.ListGrid#formatEditorValue
  * @see com.smartgwt.client.widgets.grid.ListGrid#parseEditorValue
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#startEditingNew
  * @see com.smartgwt.client.widgets.calendar.Calendar#getEventSnapGap
  * @see com.smartgwt.client.widgets.calendar.Calendar#getShowQuickEventDialog
  * @see com.smartgwt.client.widgets.calendar.Calendar#getEventEditorFields

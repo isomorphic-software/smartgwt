@@ -59,22 +59,23 @@ package com.smartgwt.client.docs;
  * absolutely incorrect to represent every  individual DataSource operation - or even every DataSource - as a separate
  * Struts Action  or Spring Controller, because this implies different URLs for different operations.  All  DataSource
  * operations should go through a single URL in order to allow  {@link com.smartgwt.client.rpc.RPCManager transaction
- * queuing} - see these  ${isc.DocUtils.linkForExampleId('transactionsFolder', 'Queuing examples')}.</li> </ul> <P> For
- * more information on the DMI subsystem, see the DMI class and the  ${isc.DocUtils.linkForExampleId('DMI', 'DMI example')}
- * in the Feature Explorer. <P> Note that, as you continue to integrate your prototype with your backend, you can use a
- * mixture of DataSources that have been fully integrated with your backend and DataSources that are running in
- * "client-only" mode (see {@link com.smartgwt.client.docs.ClientOnlyDataSources}). <P> <b>Important methods for handling
- * DataSource requests</b> <P> The basic flow of logic for handling DataSource requests is: <P> <table class="normal"
- * border=1 width="700"> <tr> <td>1. Determine operation type (Fetch, Add, Update, Remove) for a single request.  Not 
- * necessary if you follow the recommendations for  {@link com.smartgwt.client.docs.WriteCustomDataSource writing a custom
- * DataSource} and provide your  implementation via <code>executeFetch(), executeAdd()</code>, et al.</td>
+ * queuing} - see these  @see <a href="http://www.smartclient.com/smartgwtee/showcase/#transactionsFolder"
+ * target="examples">Queuing examples</a>.</li> </ul> <P> For more information on the DMI subsystem, see the DMI class and
+ * the  <a href="http://www.smartclient.com/smartgwtee/showcase/#dmi" target="examples">DMI example</a> in the Feature
+ * Explorer. <P> Note that, as you continue to integrate your prototype with your backend, you can use a mixture of
+ * DataSources that have been fully integrated with your backend and DataSources that are running in "client-only" mode
+ * (see {@link com.smartgwt.client.docs.ClientOnlyDataSources}). <P> <b>Important methods for handling DataSource
+ * requests</b> <P> The basic flow of logic for handling DataSource requests is: <P> <table class="normal" border=1
+ * width="700"> <tr> <td>1. Determine operation type (Fetch, Add, Update, Remove) for a single request.  Not  necessary if
+ * you follow the recommendations for  {@link com.smartgwt.client.docs.WriteCustomDataSource writing a custom DataSource}
+ * and provide your  implementation via <code>executeFetch(), executeAdd()</code>, et al.</td>
  * <td>dsRequest.getOperationType()</td> </tr> <tr> <td>2. Get inbound values (Add, Update) and/or criteria (Fetch, Update,
  * Remove) for this request.</td> <td>dsRequest.getFieldValue()<br> dsRequest.getValues()<br>  dsRequest.getCriteria()</td>
  * </tr> <tr> <td>3. Business logic, validation, calls to data and service tiers... anything you can code. </td>
  * <td><b>execute custom logic</b></td> </tr> <tr> <td>4. Set status and data for the response.</td>
  * <td>dsResponse.setStatus()<br> dsResponse.setData()</td> </tr> </table> <P> For more information, see the {@link
- * com.smartgwt.client.rpc.RPCManager RPCManager documentation}, and the  ${isc.DocUtils.linkForExampleId('ormDataSource',
- * 'Custom ORM DataSource example')}.
+ * com.smartgwt.client.rpc.RPCManager RPCManager documentation}, and the  <a
+ * href="http://www.smartclient.com/smartgwtee/showcase/#orm_ds" target="examples">Custom ORM DataSource example</a>.
  * @see com.smartgwt.client.data.DataSource#getDataFormat
  * @see com.smartgwt.client.data.DataSource#getDataProtocol
  * @see com.smartgwt.client.data.DataSource#getRequestProperties

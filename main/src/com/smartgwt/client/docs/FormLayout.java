@@ -33,7 +33,8 @@ package com.smartgwt.client.docs;
  * accommodate the form. <li> Ensure that the form can always render at a designed minimum size by reducing the number of
  * cases of variable-sized text, and testing remaining cases across all supported skins.  For example, move help text into
  * hovers on help icons, or clip  long text values at a maximum length and provide a hover to see the rest. </ol> Several
- * examples of Form Layout are available ${isc.DocUtils.linkForExampleId('formsLayout', 'here')}.
+ * examples of Form Layout are available @see <a href="http://www.smartclient.com/smartgwtee/showcase/#formsLayout"
+ * target="examples">here</a>.
  * @see com.smartgwt.client.widgets.form.DynamicForm#getItemLayout
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getWidth
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getHeight

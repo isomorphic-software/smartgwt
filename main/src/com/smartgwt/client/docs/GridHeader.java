@@ -9,6 +9,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#setHeaderHeight
  * @see com.smartgwt.client.widgets.grid.ListGrid#setShowHeader
  * @see com.smartgwt.client.widgets.grid.ListGrid#headerClick
+ * @see com.smartgwt.client.widgets.grid.ListGrid#headerDoubleClick
  * @see com.smartgwt.client.widgets.grid.ListGrid#displayHeaderContextMenu
  * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderContextMenuItems
  * @see com.smartgwt.client.widgets.grid.ListGrid#getHeader

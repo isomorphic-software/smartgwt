@@ -63,16 +63,17 @@ package com.smartgwt.client.docs;
  * recordXPath selects a list of &lt;item&gt; elements.  Since the intended values&#010 for each DataSource field appear as
  * simple subelements of each &lt;item&gt; element (eg&#010 &lt;description&gt;), the field name is sufficient to select
  * the correct values, and no&#010 explicit valueXPath needs to be specified.&#010 <P>&#010 A running version of this
- * example is available here: <a href="http://www.smartclient.com/smartgwt/showcase/#rss_xml_integration_category"
- * target="examples">RSS Feed</a>.  Further&#010 examples of simple XML or JSON data loading using files stored on disk as
- * the&#010 "service" to contact: the ${isc.DocUtils.linkForExampleId('simpleJSON', 'Simple JSON')} example shows
- * loading&#010 data from a JSON file into a databound grid, and the&#010 ${isc.DocUtils.linkForExampleId('xpathBinding',
- * 'XPath Binding example')} shows loading XML and processing it with&#010 XPaths.&#010 <P>&#010 <H4>Round Tripping:
- * Loading, Editing and Saving</H4>&#010 <P>&#010 For WSDL web services, see the {@link
- * com.smartgwt.client.docs.WsdlBinding WSDL binding topic} first.&#010 <P>&#010 When a user triggers a DSRequest (eg,
- * completes an inline edit in a grid), the request&#010 data will be sent to the dataURL.  The {@link
- * com.smartgwt.client.docs.DataSourceOperations DataSource protocol}&#010 describes request and response data expected for
- * each operation type.  &#010 <P>&#010 By using settings such as {@link
+ * example is available here: <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_rss"
+ * target="examples">RSS Feed Example</a>.  Further&#010 examples of simple XML or JSON data loading using files stored on
+ * disk as the&#010 "service" to contact: the <a
+ * href="http://www.smartclient.com/smartgwt/showcase/#json_integration_category_simple" target="examples">Simple JSON</a>
+ * example shows loading&#010 data from a JSON file into a databound grid, and the&#010 <a
+ * href="http://www.smartclient.com/smartgwt/showcase/#xpath_xml_integration_category" target="examples">XPath Binding
+ * example</a> shows loading XML and processing it with&#010 XPaths.&#010 <P>&#010 <H4>Round Tripping: Loading, Editing and
+ * Saving</H4>&#010 <P>&#010 For WSDL web services, see the {@link com.smartgwt.client.docs.WsdlBinding WSDL binding topic}
+ * first.&#010 <P>&#010 When a user triggers a DSRequest (eg, completes an inline edit in a grid), the request&#010 data
+ * will be sent to the dataURL.  The {@link com.smartgwt.client.docs.DataSourceOperations DataSource protocol}&#010
+ * describes request and response data expected for each operation type.  &#010 <P>&#010 By using settings such as {@link
  * com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol}, you can control how&#010 DSRequests are sent to
  * your backend so that you can handle them most easily.  By using the&#010 same properties used to initially load data
  * (eg&#010 {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}), you can control how Smart GWT
@@ -98,15 +99,17 @@ package com.smartgwt.client.docs;
  * data</b>&#010 <P>&#010 A {@link com.smartgwt.client.data.DSResponse} is created from the response data by using
  * XPath&#010 expressions declared in the schema ({@link com.smartgwt.client.data.OperationBinding#getRecordXPath
  * recordXPath} and &#010 {@link com.smartgwt.client.data.DataSourceField#getValueXPath valueXPath}) to extract DataSource
- * record and field&#010 values.&#010 <P>&#010 See the ${isc.DocUtils.linkForExampleId('xmlEditSave', '"Edit and Save"')}
- * example for sample XML responses for&#010 all four operationTypes.  &#010 <P>&#010 Similar to input processing, by
- * default DataSource layer metadata, such as&#010 {@link com.smartgwt.client.data.DSResponse#getStartRow startRow}, is not
- * extracted from the response data.  You can&#010 implement {@link com.smartgwt.client.data.DataSource#transformResponse
- * DataSource.transformResponse} to fill out the metadata fields of&#010 the {@link com.smartgwt.client.data.DSResponse},
- * in order to allow more DataSource features, such as paging and&#010 validation errors, to be used with a web service
- * that supports such features.  &#010 <P>&#010 See the ${isc.DocUtils.linkForExampleId('xmlServerValidationErrors',
- * 'XML')} and &#010 ${isc.DocUtils.linkForExampleId('jsonServerValidationErrors', 'JSON')} versions of the
- * transformResponse()&#010 example for an example of providing validation errors in XML or JSON responses.
+ * record and field&#010 values.&#010 <P>&#010 See the <a
+ * href="http://www.smartclient.com/smartgwt/showcase/#edit_save_xml_integration_category" target="examples">"Edit and
+ * Save"</a> example for sample XML responses for&#010 all four operationTypes.  &#010 <P>&#010 Similar to input
+ * processing, by default DataSource layer metadata, such as&#010 {@link com.smartgwt.client.data.DSResponse#getStartRow
+ * startRow}, is not extracted from the response data.  You can&#010 implement {@link
+ * com.smartgwt.client.data.DataSource#transformResponse DataSource.transformResponse} to fill out the metadata fields
+ * of&#010 the {@link com.smartgwt.client.data.DSResponse}, in order to allow more DataSource features, such as paging
+ * and&#010 validation errors, to be used with a web service that supports such features.  &#010 <P>&#010 See the @see <a
+ * href="http://www.smartclient.com/smartgwtee/showcase/#xmlServerValidationErrors" target="examples">XML</a> and &#010 <a
+ * href="http://www.smartclient.com/smartgwt/showcase/#form_validation_server_json" target="examples">JSON</a> versions of
+ * the transformResponse()&#010 example for an example of providing validation errors in XML or JSON responses.
  * @see com.smartgwt.client.data.DataSourceField#getFieldValue
  * @see com.smartgwt.client.data.DataSource#getDataFormat
  * @see com.smartgwt.client.data.DataSource#getDataProtocol

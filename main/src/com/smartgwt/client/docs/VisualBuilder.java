@@ -61,20 +61,20 @@ package com.smartgwt.client.docs;
  * defaultComponents.xml.  customComponents.xml is empty and is intended for developers to add&#010 their own components. 
  * defaultComponents.xml can also be customized, but the base version&#010 will change between Smart GWT releases.&#010
  * <P>&#010 As can be seen by looking at defaultComponents.xml, components are specified using a tree&#010 structure
- * similar to that shown in the &#010 ${isc.DocUtils.linkForExampleId('treeLoadXML', 'tree XML loading example')}.  The
- * properties that can be set on&#010 nodes are:&#010 <ul>&#010 <li> <code>className</code>: name of the Smart GWT Class on
- * which  create() will be&#010 called in order to construct the component.  <code>className</code> can be omitted to
- * create&#010 a folder that cannot be dropped&#010 <li> <code>title</code>: title for the node&#010 <li>
- * <code>defaults</code>: an Object specifying defaults to be passed to&#010  create().&#010 For example, you could add an
- * "EditableGrid" node by using <code>className:"ListGrid"</code>&#010 and specifying:&#010 <pre>&#010 &lt;defaults
- * canEdit="true"/&gt;</pre>&#010 NOTE: if you set any defaults that are not Canvas properties, you need to provide
- * explicit&#010 type as documented under <i>Custom Properties</i> for {@link com.smartgwt.client.docs.ComponentXML}.&#010
- * <li> <code>children</code>: components that should appear as children in the tree under this&#010 node&#010 <li>
- * <code>icon</code>: icon to show in the Visual Builder component tree (if desired)&#010 <li>
- * <code>iconWidth/Height/Size</code>: dimensions of the icon in pixels ("iconSize" sets&#010 both)&#010 <li>
- * <code>showDropIcon</code>: for components that allow children, whether to show a&#010 special drop icon on valid drop
- * (like {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons}).&#010 </ul>&#010 <P>&#010 In
- * order to use custom classes in Visual Builder, you must modify&#010
+ * similar to that shown in the &#010 <a href="http://www.smartclient.com/smartgwtee/showcase/#treeLoadXML"
+ * target="examples">tree XML loading example</a>.  The properties that can be set on&#010 nodes are:&#010 <ul>&#010 <li>
+ * <code>className</code>: name of the Smart GWT Class on which  create() will be&#010 called in order to construct the
+ * component.  <code>className</code> can be omitted to create&#010 a folder that cannot be dropped&#010 <li>
+ * <code>title</code>: title for the node&#010 <li> <code>defaults</code>: an Object specifying defaults to be passed
+ * to&#010  create().&#010 For example, you could add an "EditableGrid" node by using
+ * <code>className:"ListGrid"</code>&#010 and specifying:&#010 <pre>&#010 &lt;defaults canEdit="true"/&gt;</pre>&#010 NOTE:
+ * if you set any defaults that are not Canvas properties, you need to provide explicit&#010 type as documented under
+ * <i>Custom Properties</i> for {@link com.smartgwt.client.docs.ComponentXML}.&#010 <li> <code>children</code>: components
+ * that should appear as children in the tree under this&#010 node&#010 <li> <code>icon</code>: icon to show in the Visual
+ * Builder component tree (if desired)&#010 <li> <code>iconWidth/Height/Size</code>: dimensions of the icon in pixels
+ * ("iconSize" sets&#010 both)&#010 <li> <code>showDropIcon</code>: for components that allow children, whether to show
+ * a&#010 special drop icon on valid drop (like {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons
+ * showDropIcons}).&#010 </ul>&#010 <P>&#010 In order to use custom classes in Visual Builder, you must modify&#010
  * <code>[webroot]/tools/visualBuilder/globalDependencies.xml</code> to include:&#010 <ul>&#010 <li> the JavaScript class
  * definition for the custom class (in other words, the&#010 {@link com.smartgwt.client.util.isc#defineClass defineClass()}
  * call)&#010 <li> a {@link com.smartgwt.client.docs.ComponentSchema component schema} for the custom component&#010
