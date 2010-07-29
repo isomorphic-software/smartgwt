@@ -92,8 +92,8 @@ import com.google.gwt.event.shared.HasHandlers;
  * editing} and {@link com.smartgwt.client.widgets.form.DynamicForm#saveData saving}, grid-based {@link
  * com.smartgwt.client.widgets.grid.ListGrid#getCanEdit editing} and {@link
  * com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell saving}, and custom interactions provided by <a
- * href="http://www.smartclient.com/smartgwt/showcase/#pattern_reuse_grid_form_category" target="examples">Pattern
- * Reuse</a> custom databinding-capable components.
+ * href="http://www.smartclient.com/smartgwt/showcase/#pattern_reuse_grid_form_category" target="examples">Pattern Reuse
+ * Example</a> custom databinding-capable components.
  */
 public class DataSource extends BaseClass  implements com.smartgwt.client.data.events.HasHandleErrorHandlers {
 
@@ -475,6 +475,36 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+     * Name of the field that has the most pertinent numeric, date, or enum value, for use when a {@link
+     * com.smartgwt.client.widgets.DataBoundComponent} needs to show a short summary of a record. <P> For example, for a
+     * DataSource of employees, good choices might be the "salary" field, "hire date" or "status" (active, vacation, on leave,
+     * etc). <p> Unlike {@link com.smartgwt.client.data.DataSource#getTitleField titleField}, dataField is not automatically
+     * determined in the absence of an explicit setting.
+     *
+     * @param dataField dataField Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
+     */
+    public void setDataField(String dataField)  throws IllegalStateException {
+        setAttribute("dataField", dataField, false);
+    }
+
+    /**
+     * Name of the field that has the most pertinent numeric, date, or enum value, for use when a {@link
+     * com.smartgwt.client.widgets.DataBoundComponent} needs to show a short summary of a record. <P> For example, for a
+     * DataSource of employees, good choices might be the "salary" field, "hire date" or "status" (active, vacation, on leave,
+     * etc). <p> Unlike {@link com.smartgwt.client.data.DataSource#getTitleField titleField}, dataField is not automatically
+     * determined in the absence of an explicit setting.
+     *
+     *
+     * @return String
+     * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
+     */
+    public String getDataField()  {
+        return getAttributeAsString("dataField");
+    }
+
+    /**
      * Indicates the format to be used for HTTP requests and responses when fulfilling DSRequests (eg, when {@link
      * com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData} is called).
      *
@@ -567,6 +597,36 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+     * Name of the field that has a long description of the record, or has the primary text data value for a record that
+     * represents an email message, SMS, log or similar. <p> For example, for a DataSource representing employees, a field
+     * containing the employee's "bio" might be a good choice, or for an email message, the message body. <p> If
+     * descriptionField is unset, it defaults to any field named "description" or "desc" in the record, or the first long text
+     * field (greater than 255 characters) in the record, or null if no such field exists.
+     *
+     * @param descriptionField descriptionField Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
+     */
+    public void setDescriptionField(String descriptionField)  throws IllegalStateException {
+        setAttribute("descriptionField", descriptionField, false);
+    }
+
+    /**
+     * Name of the field that has a long description of the record, or has the primary text data value for a record that
+     * represents an email message, SMS, log or similar. <p> For example, for a DataSource representing employees, a field
+     * containing the employee's "bio" might be a good choice, or for an email message, the message body. <p> If
+     * descriptionField is unset, it defaults to any field named "description" or "desc" in the record, or the first long text
+     * field (greater than 255 characters) in the record, or null if no such field exists.
+     *
+     *
+     * @return String
+     * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
+     */
+    public String getDescriptionField()  {
+        return getAttributeAsString("descriptionField");
+    }
+
+    /**
      * Indicates that for server responses, for any data being interpreted as DataSource records,  only data that corresponds
      * to declared fields should be retained; any extra fields should be discarded. <P> For {@link
      * com.smartgwt.client.data.DataSource#getDataFormat JSON} data, this means extra properties in selected objects are
@@ -650,6 +710,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param iconField iconField Default value is see below
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
      */
     public void setIconField(String iconField)  throws IllegalStateException {
         setAttribute("iconField", iconField, false);
@@ -665,9 +726,40 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
      */
     public String getIconField()  {
         return getAttributeAsString("iconField");
+    }
+
+    /**
+     * Name of the field that has the second most pertinent piece of textual information in the record, for use when a {@link
+     * com.smartgwt.client.widgets.DataBoundComponent} needs to show a short summary of a record. <p> For example, for a
+     * DataSource of employees, a "job title" field would probably be the second most pertinent text field aside from the
+     * employee's "full name". <p> Unlike {@link com.smartgwt.client.data.DataSource#getTitleField titleField}, infoField is
+     * not automatically determined in the absence of an explicit setting.
+     *
+     * @param infoField infoField Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
+     */
+    public void setInfoField(String infoField)  throws IllegalStateException {
+        setAttribute("infoField", infoField, false);
+    }
+
+    /**
+     * Name of the field that has the second most pertinent piece of textual information in the record, for use when a {@link
+     * com.smartgwt.client.widgets.DataBoundComponent} needs to show a short summary of a record. <p> For example, for a
+     * DataSource of employees, a "job title" field would probably be the second most pertinent text field aside from the
+     * employee's "full name". <p> Unlike {@link com.smartgwt.client.data.DataSource#getTitleField titleField}, infoField is
+     * not automatically determined in the absence of an explicit setting.
+     *
+     *
+     * @return String
+     * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
+     */
+    public String getInfoField()  {
+        return getAttributeAsString("infoField");
     }
 
     /**
@@ -734,6 +826,30 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      */
     public String getJsonSuffix()  {
         return getAttributeAsString("jsonSuffix");
+    }
+
+    /**
+     * When true, indicates that fields in this DataSource will never be positively updated to the null value; they may arrive
+     * at null values by being omitted, but we will  not send actual null values in update requests.  When false (the default),
+     * null is  not treated in any special way.
+     *
+     * @param noNullUpdates noNullUpdates Default value is false
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setNoNullUpdates(Boolean noNullUpdates)  throws IllegalStateException {
+        setAttribute("noNullUpdates", noNullUpdates, false);
+    }
+
+    /**
+     * When true, indicates that fields in this DataSource will never be positively updated to the null value; they may arrive
+     * at null values by being omitted, but we will  not send actual null values in update requests.  When false (the default),
+     * null is  not treated in any special way.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getNoNullUpdates()  {
+        return getAttributeAsBoolean("noNullUpdates");
     }
 
     /**
@@ -1058,6 +1174,30 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+     * When true, indicates that any updates for this DataSource include only those fields  that have actually changed (and
+     * primaryKey fields); when false (the default), all  field values are included in updates, whether they have changed or
+     * not
+     *
+     * @param sparseUpdates sparseUpdates Default value is false
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setSparseUpdates(Boolean sparseUpdates)  throws IllegalStateException {
+        setAttribute("sparseUpdates", sparseUpdates, false);
+    }
+
+    /**
+     * When true, indicates that any updates for this DataSource include only those fields  that have actually changed (and
+     * primaryKey fields); when false (the default), all  field values are included in updates, whether they have changed or
+     * not
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSparseUpdates()  {
+        return getAttributeAsBoolean("sparseUpdates");
+    }
+
+    /**
      * [A] If set to true, both client and server-side advanced filtering used by Smart GWT will follow&#010 SQL99 behavior for
      * dealing with NULL values, which is often counter-intuitive to users.&#010 Specifically, when a field has NULL value, all
      * of the following expressions are false:&#010 <pre>&#010    field == "someValue"  (normally false)&#010    field !=
@@ -1137,6 +1277,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param titleField titleField Default value is see below
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
      */
     public void setTitleField(String titleField)  throws IllegalStateException {
         setAttribute("titleField", titleField, false);
@@ -1150,6 +1291,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
      */
     public String getTitleField()  {
         return getAttributeAsString("titleField");
@@ -1445,35 +1587,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     public native void invalidateCache() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.invalidateCache();
-    }-*/;
-            
-    /**
-     * Perform a custom DataSource operation against this DataSource.  A custom operation is anything that is not one of the 4
-     * CRUD operations - generally, something that is more  complex than a fetch or an update to a single record. 
-     * <code>customOperation</code>s  are an alternative to using {@link com.smartgwt.client.rpc.RPCRequest RPCs}; anything
-     * that can be sent to the server as a plain RPC can instead be framed as a DataSource  <code>customOperation</code>.
-     * @param operationId the operation ID
-     * @param data data to pass to the server
-     */
-    public native void performCustomOperation(String operationId, Record data) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.performCustomOperation(operationId, data.@com.smartgwt.client.core.DataClass::getJsObj()());
-    }-*/;
-
-    /**
-     * Perform a custom DataSource operation against this DataSource.  A custom operation is anything that is not one of the 4
-     * CRUD operations - generally, something that is more  complex than a fetch or an update to a single record. 
-     * <code>customOperation</code>s  are an alternative to using {@link com.smartgwt.client.rpc.RPCRequest RPCs}; anything
-     * that can be sent to the server as a plain RPC can instead be framed as a DataSource  <code>customOperation</code>.
-     * @param operationId the operation ID
-     * @param data data to pass to the server
-     * @param callback callback to invoke on completion
-     * @param requestProperties additional properties to set on                                                       the DSRequest that will be issued
-     * @see com.smartgwt.client.docs.Operations Operations overview and related methods
-     */
-    public native void performCustomOperation(String operationId, Record data, DSCallback callback, DSRequest requestProperties) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.performCustomOperation(operationId, data.@com.smartgwt.client.core.DataClass::getJsObj()(), callback, requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
             
     /**
@@ -2696,6 +2809,31 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     public native void exportClientData(Object[] data, DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.exportClientData(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(data), requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+    /**
+     * Perform a custom DataSource operation against this DataSource.  A custom operation is anything that is not one of the 4
+     * CRUD operations - generally, something that is more  complex than a fetch or an update to a single record. 
+     * <code>customOperation</code>s  are an alternative to using {@link com.smartgwt.client.rpc.RPCRequest RPCs}; anything
+     * that can be sent to the server as a plain RPC can instead be framed as a DataSource  <code>customOperation</code>.
+     * @param operationId the operation ID
+     * @param data data to pass to the server
+     * @param callback callback to invoke on completion
+     * @param requestProperties additional properties to set on                                                       the DSRequest that will be issued
+     * @see com.smartgwt.client.docs.Operations Operations overview and related methods
+     */
+    public native void performCustomOperation(String operationId, Record data, DSCallback callback, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.performCustomOperation(
+            operationId, 
+            data.@com.smartgwt.client.core.DataClass::getJsObj()(),
+            $entry(function (dsResponse, data, dsRequest) {
+                var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
+                var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
+                if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
+            }),
+            requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()()
+            );
     }-*/;
 
 }
