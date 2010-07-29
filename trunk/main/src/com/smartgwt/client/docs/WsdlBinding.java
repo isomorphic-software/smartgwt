@@ -13,9 +13,9 @@ package com.smartgwt.client.docs;
  * by using {@link com.smartgwt.client.data.XMLTools#loadWSDL XMLTools.loadWSDL} or the&#010 {@link loadWSDLTag
  * &lt;isc:loadWSDL&gt; JSP tag} to load the service definition, then&#010 invoking methods on the resulting {@link
  * com.smartgwt.client.data.WebService} object.&#010 <P>&#010 {@link com.smartgwt.client.data.WebService#callOperation
- * WebService.callOperation} can be used to manually invoke operations for&#010 custom processing (example using
- * ${isc.DocUtils.linkForExampleId('wsdlOperation', 'public zipcode service')},&#010 examples using .NET at&#010 <a
- * href='/examples/databinding/dotNET/temperatureConvert.jsp'
+ * WebService.callOperation} can be used to manually invoke operations for&#010 custom processing (example using <a
+ * href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_generic" target="examples">public
+ * zipcode service</a>,&#010 examples using .NET at&#010 <a href='/examples/databinding/dotNET/temperatureConvert.jsp'
  * onclick="window.open('/examples/databinding/dotNET/temperatureConvert.jsp');return
  * false;">/examples/databinding/dotNET/temperatureConvert.jsp</a>).&#010 <P>&#010 <b>Fetch-only DataSource
  * binding</b>&#010 <P>&#010 To bind a component to a web service operation, call&#010 <P>&#010 &nbsp;&nbsp;{@link
@@ -39,8 +39,8 @@ package com.smartgwt.client.docs;
  * WSDL tab in the Developer Console can provide a clean, simplified view of any &#010 WSDL file, making it easier to pick
  * out the appropriate <code>operationName</code> and&#010 <code>elementName</code> parameters to pass to
  * <code>getFetchDS()</code> and other&#010 {@link com.smartgwt.client.data.WebService} methods.&#010 <P>&#010 Take a look
- * at the ${isc.DocUtils.linkForExampleId('wsdlBinding', 'Google SOAP Search example')} and the&#010 <a
- * href='/examples/databinding/dotNET/customerSearch.jsp'
+ * at the <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_generic"
+ * target="examples">Google SOAP Search example</a> and the&#010 <a href='/examples/databinding/dotNET/customerSearch.jsp'
  * onclick="window.open('/examples/databinding/dotNET/customerSearch.jsp');return false;">.NET example</a>&#010
  * (/examples/databinding/dotNET/customerSearch.jsp).&#010 <P>&#010 <b>Binding with Customized Presentation</b>&#010
  * <P>&#010 Because XML Schema lacks key presentation metadata such as user-viewable titles, typically&#010 you cannot
@@ -60,8 +60,9 @@ package com.smartgwt.client.docs;
  * and transform it with&#010 {@link com.smartgwt.client.data.DataSource#transformResponse transformResponse()}&#010 <li>
  * transform the inbound data, if necessary, in order to add metadata such as&#010 {@link
  * com.smartgwt.client.data.DSRequest#getStartRow startRow} for paging, or a sessionId for a service requiring
- * authentication&#010 </ul>&#010 These techniques are shown in the ${isc.DocUtils.linkForExampleId('wsdlBinding', 'Google
- * SOAP Search example')}.&#010 <P>&#010 <b>XML Schema Reuse</b>&#010 <P>&#010 Having loaded a WSDL file, all of the XML
+ * authentication&#010 </ul>&#010 These techniques are shown in the <a
+ * href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_generic" target="examples">Google
+ * SOAP Search example</a>.&#010 <P>&#010 <b>XML Schema Reuse</b>&#010 <P>&#010 Having loaded a WSDL file, all of the XML
  * Schema definitions within the service definition&#010 get translated to Smart GWT {@link
  * com.smartgwt.client.data.DataSource DataSources} and&#010 {@link com.smartgwt.client.data.SimpleType SimpleTypes} via
  * the rules described by {@link com.smartgwt.client.data.XMLTools#loadXMLSchema XMLTools.loadXMLSchema},&#010 and are
