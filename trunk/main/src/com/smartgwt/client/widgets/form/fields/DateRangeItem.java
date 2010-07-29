@@ -226,8 +226,8 @@ public class DateRangeItem extends CanvasItem {
     // ********************* Methods ***********************
             
     /**
-     * Returns true if the specified criterion contains: <ul><li>A single "lessThan" or "greaterThan" criterion on this
-     * field</li>     <li>An "and" type criterion containing a "lessThan" and a "greaterThan" criterion on         this
+     * Returns true if the specified criterion contains: <ul><li>A single "lessOrEqual" or "greaterOrEqual" criterion on this
+     * field</li>     <li>An "and" type criterion containing a "lessOrEqual" and a "greaterOrEqual" criterion on         this
      * field</li> </ul>
      * @param criterion criterion to test
      *
@@ -261,9 +261,9 @@ public class DateRangeItem extends CanvasItem {
     }-*/;
             
     /**
-     * Applies the specified criterion to this item for editing. Applies any specified "greaterThan" operator criterion or
+     * Applies the specified criterion to this item for editing. Applies any specified "greaterOrEqual" operator criterion or
      * sub-criterion to our {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getFromField fromField} and any
-     * specified "lessThan" operator criterion or sub-criterion to our {@link
+     * specified "lessOrEqual" operator criterion or sub-criterion to our {@link
      * com.smartgwt.client.widgets.form.fields.DateRangeItem#getToField toField}.
      * @param criterion criterion to edit
      */
@@ -305,15 +305,6 @@ public class DateRangeItem extends CanvasItem {
      */
     public void setToDate(java.util.Date toDate) {
         setAttribute("toDate", toDate);
-    }
-
-    /**
-     * Set the field name.
-     *
-     * @param fieldName the field name
-     */
-    public void setFieldName(String fieldName) {
-        setAttribute("fieldName", fieldName);
     }
 
     /**

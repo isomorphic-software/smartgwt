@@ -157,7 +157,7 @@ public class RowEditorExitEvent extends BrowserEvent<RowEditorExitHandler>  impl
     }-*/;
 
 
-    /**
+   /**
      * Return the edit values for the current row.
      *
      * @return edit values for the current row. The key of the map is the field name and the value is the new field value

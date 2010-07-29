@@ -201,8 +201,8 @@ public class MiniDateRangeItem extends StaticTextItem {
     }-*/;
             
     /**
-     * Returns true if the specified criterion contains: <ul><li>A single "lessThan" or "greaterThan" criterion on this
-     * field</li>     <li>An "and" type criterion containing a "lessThan" and a "greaterThan" criterion on         this
+     * Returns true if the specified criterion contains: <ul><li>A single "lessOrEqual" or "greaterOrEqual" criterion on this
+     * field</li>     <li>An "and" type criterion containing a "lessOrEqual" and a "greaterOrEqual" criterion on         this
      * field</li> </ul>
      * @param criterion criterion to test
      *
@@ -222,9 +222,9 @@ public class MiniDateRangeItem extends StaticTextItem {
     /**
      * Returns the Criterion entered in the fields shown in the  {@link
      * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getRangeDialog rangeDialog}. <P> If both dates are entered, a
-     * Criterion with an "and" {@link com.smartgwt.client.types.OperatorId operator} will be returned with both a "greaterThan"
-     * and "lessThan" sub-criteria.  If either date is omitted, only the "greaterThan" (from date) or "lessThan" (to date)
-     * Criterion is returned.
+     * Criterion with an "and" {@link com.smartgwt.client.types.OperatorId operator} will be returned with both a
+     * "greaterOrEqual" and "lessOrEqual" sub-criteria.  If either date is omitted, only the "greaterOrEqual" (from date) or
+     * "lessOrEqual" (to date) Criterion is returned.
      *
      * @return 
      * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
@@ -253,9 +253,9 @@ public class MiniDateRangeItem extends StaticTextItem {
     }-*/;
             
     /**
-     * Applies the specified criterion to this item for editing. Applies any specified "greaterThan" operator criterion or
+     * Applies the specified criterion to this item for editing. Applies any specified "greaterOrEqual" operator criterion or
      * sub-criterion to our {@link com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getFromField fromField} and any
-     * specified "lessThan" operator criterion or sub-criterion to our {@link
+     * specified "lessOrEqual" operator criterion or sub-criterion to our {@link
      * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getToField toField}.
      * @param criterion criterion to edit
      */
