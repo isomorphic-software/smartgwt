@@ -59,7 +59,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * A ListGrid is a {@link com.smartgwt.client.widgets.DataBoundComponent} that displays a list of objects in a grid, where
  * each row represents one object and each cell in the row represents one property.
  */
-public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasHeaderClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDropHandlers, com.smartgwt.client.widgets.grid.events.HasRecordExpandHandlers, com.smartgwt.client.widgets.grid.events.HasRecordCollapseHandlers, com.smartgwt.client.widgets.grid.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.grid.events.HasDrawAreaChangedHandlers, com.smartgwt.client.widgets.grid.events.HasFieldStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasEditFailedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasCellOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasCellClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowOutHandlers, com.smartgwt.client.widgets.grid.events.HasRowOverHandlers, com.smartgwt.client.widgets.grid.events.HasRowContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellHoverHandlers, com.smartgwt.client.widgets.grid.events.HasRowHoverHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionChangedHandlers {
+public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasHeaderClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDropHandlers, com.smartgwt.client.widgets.grid.events.HasRecordExpandHandlers, com.smartgwt.client.widgets.grid.events.HasRecordCollapseHandlers, com.smartgwt.client.widgets.grid.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.grid.events.HasDrawAreaChangedHandlers, com.smartgwt.client.widgets.grid.events.HasFieldStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasEditFailedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasCellOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasCellClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowOutHandlers, com.smartgwt.client.widgets.grid.events.HasRowOverHandlers, com.smartgwt.client.widgets.grid.events.HasRowContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellHoverHandlers, com.smartgwt.client.widgets.grid.events.HasRowHoverHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionChangedHandlers, com.smartgwt.client.widgets.grid.events.HasHeaderDoubleClickHandlers {
 
     public static ListGrid getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -429,6 +429,31 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu headerContextMenu} for this
+     * grid,  and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAutoFitFields canAutoFitFields} is true, this
+     * attribute will be shown as the menu  item title for an item to perform a one-time autoFit of all visible fields via the
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#autoFitField ListGrid.autoFitField} method.
+     *
+     * @param autoFitAllText autoFitAllText Default value is "Auto Fit All Columns"
+     */
+    public void setAutoFitAllText(String autoFitAllText) {
+        setAttribute("autoFitAllText", autoFitAllText, true);
+    }
+
+    /**
+     * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu headerContextMenu} for this
+     * grid,  and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAutoFitFields canAutoFitFields} is true, this
+     * attribute will be shown as the menu  item title for an item to perform a one-time autoFit of all visible fields via the
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#autoFitField ListGrid.autoFitField} method.
+     *
+     *
+     * @return String
+     */
+    public String getAutoFitAllText()  {
+        return getAttributeAsString("autoFitAllText");
+    }
+
+    /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData autoFitData} is set to <code>"vertical"</code> or
      * <code>"both"</code>  this property specifies the number of additional records for which the grid  will expand. If more
      * records are present, scrolling will be introduced to reach them as normal.
@@ -451,6 +476,99 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public Integer getAutoFitExtraRecords()  {
         return getAttributeAsInt("autoFitExtraRecords");
+    }
+
+    /**
+     * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu headerContextMenu} for this
+     * grid,  and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAutoFitFields canAutoFitFields} is true, this
+     * attribute will be shown as the menu  item title for an item to perform a one-time autoFit of the field to its title or
+     * content via a call to {@link com.smartgwt.client.widgets.grid.ListGrid#autoFitField ListGrid.autoFitField}.
+     *
+     * @param autoFitFieldText autoFitFieldText Default value is "Auto Fit"
+     */
+    public void setAutoFitFieldText(String autoFitFieldText) {
+        setAttribute("autoFitFieldText", autoFitFieldText, true);
+    }
+
+    /**
+     * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu headerContextMenu} for this
+     * grid,  and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAutoFitFields canAutoFitFields} is true, this
+     * attribute will be shown as the menu  item title for an item to perform a one-time autoFit of the field to its title or
+     * content via a call to {@link com.smartgwt.client.widgets.grid.ListGrid#autoFitField ListGrid.autoFitField}.
+     *
+     *
+     * @return String
+     */
+    public String getAutoFitFieldText()  {
+        return getAttributeAsString("autoFitFieldText");
+    }
+
+    /**
+     * Enables autofitting of fields to values or titles. This property may be overridden on a per-field basis via {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidth autoFitWidth}. The {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFitWidthApproach autoFitWidthApproach} controls whether fitting is to
+     * values, titles  or both. <P> If  width is also set on the field, it will be taken as a minimum width. {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getMinFieldWith minFieldWith} will also be respected. <P> Autofitting will be
+     * performed: <ul>  <li> whenever the dataset is completely changed or rows are added or removed  <li> whenever a field
+     * which is autofitting is changed </ul> Autofitting behavior continues until the user resizes the field manually, at which
+     * point it stops. The user can also perform a one-time auto-fit of fields via the header context menu if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanAutoFitFields canAutoFitFields} is enabled. <P> When autofitting to
+     * column values, values from the rendered set of rows will be used to calculate the required column width - this may not
+     * match the complete set of data for the grid when rendering rows incrementally. See {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowAllRecords showAllRecords} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDrawAheadRatio drawAheadRatio}) to control incremental rendering of rows.
+     * <P> Note that the following field types will not auto-fit by default: <code>"boolean"</code> <code>"icon"</code>,
+     * <code>"image"</code>, <code>"date"</code>, <code>"time"</code>, <code>"datetime"</code>. These field types usually have
+     * an implied width making auto-fit unnecessary. You can enable autoFit on these field types by explicitly setting {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getAutoFitFieldWidth autoFitFieldWidth} to true on the fields. Also note
+     * that for <code>"image"</code> fields, autofitting will only work if the  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getImageWidth imageWidth} is specified. <P> Using this feature has a
+     * performance penalty roughly comparable to always rendering  one additional field per field where autofitting is enabled.
+     * Specifically, enabling it for all fields would be comparable to <i>both</i> doubling the number of fields <i>and</i>
+     * disabling {@link com.smartgwt.client.widgets.grid.ListGrid#getShowAllColumns horizontal incremental rendering}. In a
+     * grid where only half the fields are normally visible and hence only half are normally rendered, this would be roughly 4
+     * times slower overall. <P> Which fields are currently autofitting is saved as part of the  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getViewState view state} of the ListGrid.
+     *
+     * @param autoFitFieldWidths autoFitFieldWidths Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setAutoFitFieldWidths(Boolean autoFitFieldWidths)  throws IllegalStateException {
+        setAttribute("autoFitFieldWidths", autoFitFieldWidths, false);
+    }
+
+    /**
+     * Enables autofitting of fields to values or titles. This property may be overridden on a per-field basis via {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidth autoFitWidth}. The {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFitWidthApproach autoFitWidthApproach} controls whether fitting is to
+     * values, titles  or both. <P> If  width is also set on the field, it will be taken as a minimum width. {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getMinFieldWith minFieldWith} will also be respected. <P> Autofitting will be
+     * performed: <ul>  <li> whenever the dataset is completely changed or rows are added or removed  <li> whenever a field
+     * which is autofitting is changed </ul> Autofitting behavior continues until the user resizes the field manually, at which
+     * point it stops. The user can also perform a one-time auto-fit of fields via the header context menu if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanAutoFitFields canAutoFitFields} is enabled. <P> When autofitting to
+     * column values, values from the rendered set of rows will be used to calculate the required column width - this may not
+     * match the complete set of data for the grid when rendering rows incrementally. See {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowAllRecords showAllRecords} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDrawAheadRatio drawAheadRatio}) to control incremental rendering of rows.
+     * <P> Note that the following field types will not auto-fit by default: <code>"boolean"</code> <code>"icon"</code>,
+     * <code>"image"</code>, <code>"date"</code>, <code>"time"</code>, <code>"datetime"</code>. These field types usually have
+     * an implied width making auto-fit unnecessary. You can enable autoFit on these field types by explicitly setting {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getAutoFitFieldWidth autoFitFieldWidth} to true on the fields. Also note
+     * that for <code>"image"</code> fields, autofitting will only work if the  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getImageWidth imageWidth} is specified. <P> Using this feature has a
+     * performance penalty roughly comparable to always rendering  one additional field per field where autofitting is enabled.
+     * Specifically, enabling it for all fields would be comparable to <i>both</i> doubling the number of fields <i>and</i>
+     * disabling {@link com.smartgwt.client.widgets.grid.ListGrid#getShowAllColumns horizontal incremental rendering}. In a
+     * grid where only half the fields are normally visible and hence only half are normally rendered, this would be roughly 4
+     * times slower overall. <P> Which fields are currently autofitting is saved as part of the  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getViewState view state} of the ListGrid.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAutoFitFieldWidths()  {
+        return getAttributeAsBoolean("autoFitFieldWidths");
     }
 
     /**
@@ -566,6 +684,29 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * When a user requests column autofitting via the  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderContextMenuItems header contextmenu} or via a  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderAutoFitEvent mouse gesture}, what autofit approach is used.
+     *
+     * @param autoFitWidthApproach autoFitWidthApproach Default value is "value"
+     */
+    public void setAutoFitWidthApproach(AutoFitWidthApproach autoFitWidthApproach) {
+        setAttribute("autoFitWidthApproach", autoFitWidthApproach.getValue(), true);
+    }
+
+    /**
+     * When a user requests column autofitting via the  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderContextMenuItems header contextmenu} or via a  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderAutoFitEvent mouse gesture}, what autofit approach is used.
+     *
+     *
+     * @return AutoFitWidthApproach
+     */
+    public AutoFitWidthApproach getAutoFitWidthApproach()  {
+        return EnumUtil.getEnum(AutoFitWidthApproach.values(), getAttribute("autoFitWidthApproach"));
+    }
+
+    /**
      * If this ListGrid is editable, should edits be saved out when the user finishes editing a row (or a cell if {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell saveByCell} is true). <P> The default of <code>true</code>
      * indicates that edits will be {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell automatically saved} as the
@@ -659,14 +800,14 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * cell is displaying an edit value that has not yet been saved (see      {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits}) return this value.</li> <li>Otherwise return
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordBaseStyleProperty record[listGrid.recordBaseStyleProperty]},  
-     * if defined, otherwise {@link com.smartgwt.client.widgets.grid.ListGridField#getBaseStyle field.baseStyle}. </ul> If no
-     * custom style is found for the cell as described above, the default baseStyle will be returned. If {@link
+     * if defined, otherwise {@link com.smartgwt.client.widgets.grid.ListGridField#getBaseStyle field.baseStyle}.</li> </ul> If
+     * no custom style is found for the cell as described above, the default baseStyle will be returned. If {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle baseStyle} is specified this will be used. Otherwise for grids
      * showing fixed height rows which match {@link com.smartgwt.client.widgets.grid.ListGrid#getNormalCellHeight
      * normalCellHeight}  {@link com.smartgwt.client.widgets.grid.ListGrid#getNormalBaseStyle normalBaseStyle} will be used.
      * For grids with variable, or modified cell heights, {@link com.smartgwt.client.widgets.grid.ListGrid#getTallBaseStyle
      * tallBaseStyle} will be used.  <P> Note also that enabling {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getFastCellUpdates fastCellUpdates} will cause the <cod>tallBaseStyle</code>
+     * com.smartgwt.client.widgets.grid.ListGrid#getFastCellUpdates fastCellUpdates} will cause the <code>tallBaseStyle</code>
      * to be used rather than {@link com.smartgwt.client.widgets.grid.ListGrid#getNormalBaseStyle normalBaseStyle}.
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -936,6 +1077,29 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public Boolean getCanAcceptDroppedRecords()  {
         return getAttributeAsBoolean("canAcceptDroppedRecords");
+    }
+
+    /**
+     * Whether the user able to autofit specific columns to their data and/or title via a context menu item or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderAutoFitEvent headerAutoFitEvent}. <P> Autofitting can also be
+     * programmatically enabled by setting  autoFitWidth.
+     *
+     * @param canAutoFitFields canAutoFitFields Default value is true
+     */
+    public void setCanAutoFitFields(Boolean canAutoFitFields) {
+        setAttribute("canAutoFitFields", canAutoFitFields, true);
+    }
+
+    /**
+     * Whether the user able to autofit specific columns to their data and/or title via a context menu item or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderAutoFitEvent headerAutoFitEvent}. <P> Autofitting can also be
+     * programmatically enabled by setting  autoFitWidth.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanAutoFitFields()  {
+        return getAttributeAsBoolean("canAutoFitFields");
     }
 
     /**
@@ -3134,6 +3298,28 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * Event on a ListGrid header that triggers auto fitting to data and/or title. <P> Note that if sorting is enabled for the
+     * field and the headerAutoFitEvent is "click", both sorting and autofit occur on a click.
+     *
+     * @param headerAutoFitEvent headerAutoFitEvent Default value is "doubleClick"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setHeaderAutoFitEvent(AutoFitEvent headerAutoFitEvent)  throws IllegalStateException {
+        setAttribute("headerAutoFitEvent", headerAutoFitEvent.getValue(), false);
+    }
+
+    /**
+     * Event on a ListGrid header that triggers auto fitting to data and/or title. <P> Note that if sorting is enabled for the
+     * field and the headerAutoFitEvent is "click", both sorting and autofit occur on a click.
+     *
+     *
+     * @return AutoFitEvent
+     */
+    public AutoFitEvent getHeaderAutoFitEvent()  {
+        return EnumUtil.getEnum(AutoFitEvent.values(), getAttribute("headerAutoFitEvent"));
+    }
+
+    /**
      * BackgroundColor for the header toolbar. Typically this is set to match the color of the header buttons.
      *
      * @param headerBackgroundColor headerBackgroundColor Default value is "#CCCCCC"
@@ -3785,7 +3971,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * property dictates the number of records which can be expanded simultaneously.  If the expanded record count hits the
      * value of this property, further attempts to expand records will result in a popup warning (see {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getMaxExpandedRecordsPrompt maxExpandedRecordsPrompt}) and expansion will be
-     * cancelled. <P>The default value is null, meaning there is no limit on the number of expanded records.
+     * cancelled. <P> The default value is null, meaning there is no limit on the number of expanded records.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param maxExpandedRecords maxExpandedRecords Default value is null
@@ -3800,7 +3986,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * property dictates the number of records which can be expanded simultaneously.  If the expanded record count hits the
      * value of this property, further attempts to expand records will result in a popup warning (see {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getMaxExpandedRecordsPrompt maxExpandedRecordsPrompt}) and expansion will be
-     * cancelled. <P>The default value is null, meaning there is no limit on the number of expanded records.
+     * cancelled. <P> The default value is null, meaning there is no limit on the number of expanded records.
      *
      *
      * @return Integer
@@ -3985,6 +4171,27 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public String getNullGroupTitle()  {
         return getAttributeAsString("nullGroupTitle");
+    }
+
+    /**
+     * The string to display in the body of a listGrid with an empty data array, if showEmptyMessage is true.
+     *
+     * @param offlineMessage offlineMessage Default value is "This data not available while offline"
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_empty_grid" target="examples">Empty grid Example</a>
+     */
+    public void setOfflineMessage(String offlineMessage) {
+        setAttribute("offlineMessage", offlineMessage, true);
+    }
+
+    /**
+     * The string to display in the body of a listGrid with an empty data array, if showEmptyMessage is true.
+     *
+     *
+     * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_empty_grid" target="examples">Empty grid Example</a>
+     */
+    public String getOfflineMessage()  {
+        return getAttributeAsString("offlineMessage");
     }
 
     /**
@@ -4184,6 +4391,27 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * If set to false on a record, selection of that record is disallowed.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param recordCanSelectProperty recordCanSelectProperty Default value is "canSelect"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setRecordCanSelectProperty(String recordCanSelectProperty)  throws IllegalStateException {
+        setAttribute("recordCanSelectProperty", recordCanSelectProperty, false);
+    }
+
+    /**
+     * If set to false on a record, selection of that record is disallowed.
+     *
+     *
+     * @return String
+     */
+    public String getRecordCanSelectProperty()  {
+        return getAttributeAsString("recordCanSelectProperty");
+    }
+
+    /**
      * The method of {@link com.smartgwt.client.types.RecordComponentPoolingMode component-pooling} to employ for  {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents recordComponents}. <P> The default mode is "viewport",
      * which means that recordComponents are destroyed as soon  their record leaves the viewport.   <P> For the most efficient
@@ -4232,12 +4460,14 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * the component appear within the cell. Valid options are  <ul><li><code>"within"</code>: the component will be rendered
      * inside the record / cell.  {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} may be set to specify where the
      * component should render within  the row or cell. Note that if unset, the component will show up at the top/left edge 
-     * for components embedded within an entire row, or for per-cell components, cell  align and valign will be respected.</li>
-     * <li><code>"expand"</code>: the component will be written into the cell below the  normal cell content, causing the cell
-     * to expand vertically to accomodate it. <li><code>null</code>: If this attribute is unset, we will default to showing 
-     * recordComponents with position <code>"within"</code> if   {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponentsByCell showRecordComponentsByCell} is true, otherwise
-     * using <code>"expand"</code>  logic. </ul>
+     * for components embedded within an entire row, or for per-cell components, cell  align and valign will be respected. 
+     * Note also that, when rendering components "within"  cells, specified component heights will be respected and will change
+     * the height of the   row.  However, if you want components to completely fill a cell at it's default height,   set
+     * height: "100%" or rows will render at the default height of the component. </li>  <li><code>"expand"</code>: the
+     * component will be written into the cell below the  normal cell content, causing the cell to expand vertically to
+     * accomodate it. <li><code>null</code>: If this attribute is unset, we will default to showing  recordComponents with
+     * position <code>"within"</code> if   {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponentsByCell
+     * showRecordComponentsByCell} is true, otherwise using <code>"expand"</code>  logic. </ul>
      *
      * @param recordComponentPosition recordComponentPosition Default value is null
      */
@@ -4250,12 +4480,14 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * the component appear within the cell. Valid options are  <ul><li><code>"within"</code>: the component will be rendered
      * inside the record / cell.  {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} may be set to specify where the
      * component should render within  the row or cell. Note that if unset, the component will show up at the top/left edge 
-     * for components embedded within an entire row, or for per-cell components, cell  align and valign will be respected.</li>
-     * <li><code>"expand"</code>: the component will be written into the cell below the  normal cell content, causing the cell
-     * to expand vertically to accomodate it. <li><code>null</code>: If this attribute is unset, we will default to showing 
-     * recordComponents with position <code>"within"</code> if   {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponentsByCell showRecordComponentsByCell} is true, otherwise
-     * using <code>"expand"</code>  logic. </ul>
+     * for components embedded within an entire row, or for per-cell components, cell  align and valign will be respected. 
+     * Note also that, when rendering components "within"  cells, specified component heights will be respected and will change
+     * the height of the   row.  However, if you want components to completely fill a cell at it's default height,   set
+     * height: "100%" or rows will render at the default height of the component. </li>  <li><code>"expand"</code>: the
+     * component will be written into the cell below the  normal cell content, causing the cell to expand vertically to
+     * accomodate it. <li><code>null</code>: If this attribute is unset, we will default to showing  recordComponents with
+     * position <code>"within"</code> if   {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponentsByCell
+     * showRecordComponentsByCell} is true, otherwise using <code>"expand"</code>  logic. </ul>
      *
      *
      * @return EmbeddedPosition
@@ -4980,6 +5212,27 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public Boolean getShowHover()  {
         return getAttributeAsBoolean("showHover");
+    }
+
+    /**
+     * Indicates whether the text of the offlineMessage property should be displayed if no data is available because we do not
+     * have a suitable offline cache
+     *
+     * @param showOfflineMessage showOfflineMessage Default value is true
+     */
+    public void setShowOfflineMessage(Boolean showOfflineMessage) {
+        setAttribute("showOfflineMessage", showOfflineMessage, true);
+    }
+
+    /**
+     * Indicates whether the text of the offlineMessage property should be displayed if no data is available because we do not
+     * have a suitable offline cache
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowOfflineMessage()  {
+        return getAttributeAsBoolean("showOfflineMessage");
     }
 
     /**
@@ -5980,6 +6233,18 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native void addEmbeddedComponent(Canvas component, ListGridRecord record, int rowNum, int colNum, EmbeddedPosition position) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addEmbeddedComponent(component.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum, colNum, position.@com.smartgwt.client.types.EmbeddedPosition::getValue()());
+    }-*/;
+            
+    /**
+     * Programmatically cause a field to auto-fit horizontally to it's contents or title. <P> Does not establish permanent
+     * auto-fitting - use {@link com.smartgwt.client.widgets.grid.ListGrid#setAutoFitWidth ListGrid.setAutoFitWidth} to do so.
+     * @param fieldName 
+     *
+     * @return new width in pixels
+     */
+    public native int autoFitField(String fieldName) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.autoFitField(fieldName);
     }-*/;
             
     /**
@@ -7020,6 +7285,42 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
+    /**
+     * Add a headerDoubleClick handler.
+     * <p>
+     * Handle a double click in the list header. <P> By default, calls {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#autoFitField ListGrid.autoFitField} if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanAutoFitFields canAutoFitFields} is true and  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFitHeaderEvent autoFitHeaderEvent} is <code>"doubleClick"</code>.
+     *
+     * @param handler the headerDoubleClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addHeaderDoubleClickHandler(com.smartgwt.client.widgets.grid.events.HeaderDoubleClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.grid.events.HeaderDoubleClickEvent.getType()) == 0) setupHeaderDoubleClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.HeaderDoubleClickEvent.getType());
+    }
+
+    private native void setupHeaderDoubleClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({headerDoubleClick:$entry(function(){
+                        var param = {"fieldNum" : arguments[0]};
+                        var event = @com.smartgwt.client.widgets.grid.events.HeaderDoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.headerDoubleClick = $entry(function(){
+                   var param = {"fieldNum" : arguments[0]};
+                   var event = @com.smartgwt.client.widgets.grid.events.HeaderDoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
+        }
+   }-*/;
             
     /**
      * Identifies whether the passed-in field is the specially generated {@link
@@ -7302,7 +7603,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
             
     /**
-     * Resize a particular field to a new width.
+     * Resize a particular field to a new width. Note that this method  will also set {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidth autoFitWidth} to false if it was previously true.
      * @param fieldNum Number of the field to resize
      * @param newWidth New width of the field
      */
@@ -7645,7 +7947,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * <p>
      * Called when (row-based) selection changes within this grid. Note this method fires for each record for which selection
      * is modified - so when a user clicks inside a grid this method will typically fire twice (once for the old record being
-     * deselected, and once for the new record being selected).
+     * deselected, and once for the new record being selected). <P> NOTE: For updating other components based on selections or
+     * triggering selection-oriented events within an application, see the {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#selectionUpdated selectionUpdated} event which is likely more suitable.
      *
      * @param handler the selectionChanged handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -7675,6 +7979,16 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                });
         }
    }-*/;
+            
+    /**
+     * Setter for  autoFitWidth. Enables or disables dynamic autoFitWidth behavior on the specified field.
+     * @param fieldName field to auto-fit
+     * @param autoFit Should autoFitWidth be enabled or disabled?
+     */
+    public native void setAutoFitWidth(String fieldName, boolean autoFit) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setAutoFitWidth(fieldName, autoFit);
+    }-*/;
             
     /**
      * Sets some presentation properties (visibility, width, userFormula and userSummary) of the  listGrid fields based on the
@@ -8046,6 +8360,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @param field field associated with the cell
      * @param value data value for the cell's record in this field.
      * @param record record associated with this cell
+     *
+     * <b> Note :</b> This is an override point
      *
      * @return the value icon
      */
@@ -10634,6 +10950,24 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
 
 
+    /**
+     * Perform a one-time horizontal auto-fit of the fields passed. Fields will be sized to match their contents or title (as
+     * specified in {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitWidthApproach autoFitWidthApproach}) Does not
+     * establish permanent auto-fitting - use {@link com.smartgwt.client.widgets.grid.ListGrid#setAutoFitWidth
+     * ListGrid.setAutoFitWidth} to do so.
+     * @param fields Array of fields to auto fit. If this parameter  is not passed, autoFitting will occur on all visible fields unless they
+     * are of   the following types:   <ul>   <li>boolean</li>   <li>icon</li>   <li>image</li>   <li>date</li>   <li>time</li>
+     *   <li>datetime</li>   </ul>
+     */
+    public native void autoFitFields(ListGridField... fields) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        fieldsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(fields);
+        self.autoFitFields(fieldsJS);
+    }-*/;
+            
+
+
+
 
     // ********************* DataBoundComponent Properties / Attributes ***********************
 
@@ -11131,6 +11465,16 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }
         return new RecordList(dataJS);
     }
+    
+    public native void exportClientData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportClientData();
+    }-*/;
+
+    public native void exportClientData(DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportClientData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
 
 }
 
