@@ -124,6 +124,27 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+     * Enables autofitting to values or titles for this field.. This overrides the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldWidths autoFitFieldWidths} attribute on a per-field basis.
+     *
+     * @param autoFitWidth autoFitWidth Default value is null
+     */
+    public void setAutoFitWidth(Boolean autoFitWidth) {
+        setAttribute("autoFitWidth", autoFitWidth);
+    }
+
+    /**
+     * Enables autofitting to values or titles for this field.. This overrides the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldWidths autoFitFieldWidths} attribute on a per-field basis.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAutoFitWidth()  {
+        return getAttributeAsBoolean("autoFitWidth");
+    }
+
+    /**
      * Whether this field should be automatically frozen when other fields are frozen.  When true, the field will be
      * automatically frozen to the extreme of the grid.  The automatically generated {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField checkbox}, {@link
@@ -552,9 +573,11 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * value for this field.  This approach can be used for situations where field values need a stored value to displayed
      * value mapping, but the set of all possible values is too large to load as a ValueMap - see {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} for more details on this approach. 
-     * Note that if this field is editable this will also be applied to this field's editors. <p> The display value for a
-     * record with a specified <code>displayField</code> can be  picked up via {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getDisplayValue ListGrid.getDisplayValue}.
+     * Note that if this field is editable this will also be applied to this field's editors.  <a
+     * href="http://www.smartclient.com/smartgwtee/showcase/#large_valuemap_sql" target="examples">This sample</a> illustrates
+     * this approach achieved via a server-side SQL join. <p> The display value for a record with a specified
+     * <code>displayField</code> can be  picked up via {@link com.smartgwt.client.widgets.grid.ListGrid#getDisplayValue
+     * ListGrid.getDisplayValue}.
      *
      * @param displayField displayField Default value is null
      */
@@ -570,9 +593,11 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * value for this field.  This approach can be used for situations where field values need a stored value to displayed
      * value mapping, but the set of all possible values is too large to load as a ValueMap - see {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} for more details on this approach. 
-     * Note that if this field is editable this will also be applied to this field's editors. <p> The display value for a
-     * record with a specified <code>displayField</code> can be  picked up via {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getDisplayValue ListGrid.getDisplayValue}.
+     * Note that if this field is editable this will also be applied to this field's editors.  <a
+     * href="http://www.smartclient.com/smartgwtee/showcase/#large_valuemap_sql" target="examples">This sample</a> illustrates
+     * this approach achieved via a server-side SQL join. <p> The display value for a record with a specified
+     * <code>displayField</code> can be  picked up via {@link com.smartgwt.client.widgets.grid.ListGrid#getDisplayValue
+     * ListGrid.getDisplayValue}.
      *
      *
      * @return String

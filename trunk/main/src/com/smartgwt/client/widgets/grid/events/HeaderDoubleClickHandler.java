@@ -14,32 +14,10 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
+package com.smartgwt.client.widgets.grid.events;
+import com.google.gwt.event.shared.EventHandler;
 
-/**
- * Is this page being viewed in landscape or portrait orientation? Typically used with mobile
- * devices.
- */
+public interface HeaderDoubleClickHandler extends EventHandler {
 
-public enum PageOrientation implements ValueEnum {
-
-    /**
-     * Landscape orientation: page is wider than it is tall.
-     */
-    LANDSCAPE("landscape"),
-
-    /**
-     * Portrait orientation: page is taller than it is wide.
-     */
-    PORTRAIT("portrait");
-    private String value;
-
-    PageOrientation(String value) {
-        this.value = value;
-    }
-    
-    public String getValue() {
-        return this.value;
-    }
+    void onHeaderDoubleClick(com.smartgwt.client.widgets.grid.events.HeaderDoubleClickEvent event);
 }
-
