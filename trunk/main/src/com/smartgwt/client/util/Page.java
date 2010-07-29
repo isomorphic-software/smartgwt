@@ -170,6 +170,22 @@ public class Page {
     }-*/;
             
     /**
+     * Is the current page wider than it is tall ("landscape" orientation) or the reverse  ("portrait" orientation). Note that
+     * the {@link com.smartgwt.client.types.PageEvent orientationChange page event} will be fired whenever the page orientation
+     * changes. <P> This method is typically useful for apps developed for display on mobile devices, though it will also
+     * return a valid value when running against a desktop browser. See also {@link com.smartgwt.client.docs.MobileDevelopment
+     * this discussion} on building applications for mobile devices
+     *
+     * @return current page orientation
+     */
+    public static native PageOrientation getOrientation() /*-{
+        var ret = $wnd.isc.Page.getOrientation();
+        if(ret == null || ret === undefined) return null;
+        var enumValues = @com.smartgwt.client.types.PageOrientation::values()();
+        return @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(enumValues, ret);
+    }-*/;
+            
+    /**
      * Get the height of the window contents as they have been drawn.  If the page scrolls, this may be larger than the
      * page.getHeight().
      *
