@@ -62,7 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * <pre>&#010 &lt;TabSet&gt;&#010    &lt;tabs&gt;&#010        &lt;Tab title="tab1" pane="pane1"/&gt;&#010        &lt;Tab
  * title="tab2"/&gt;&#010    &lt;/tabs&gt;&#010 &lt;/TabSet&gt;&#010 </pre>
  */
-public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.tab.events.HasTabDeselectedHandlers {
+public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.tab.events.HasTabDeselectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabSelectedHandlers {
 
     public static Tab getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -237,8 +237,8 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      * @return {@link HandlerRegistration} used to remove this handler
      */
     public HandlerRegistration addTabDeselectedHandler(com.smartgwt.client.widgets.tab.events.TabDeselectedHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabObjectDeselectedEvent.getType()) == 0) setupTabDeselectedEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.tab.events.TabObjectDeselectedEvent.getType());
+        if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabDeselectedEvent.getType()) == 0) setupTabDeselectedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tab.events.TabDeselectedEvent.getType());
     }
 
     private native void setupTabDeselectedEvent() /*-{
@@ -247,24 +247,37 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
             var selfJ = this;
             obj.tabDeselected = $debox($entry(function(){
                 var param = {"tabSet" : arguments[0], "tab" : arguments[1], "newTab" : arguments[2]};
-                var event = @com.smartgwt.client.widgets.tab.events.TabObjectDeselectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                var event = @com.smartgwt.client.widgets.tab.events.TabDeselectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
             }));
    }-*/;
-            
     /**
+     * Add a tabSelected handler.
+     * <p>
      * Optional handler to fire when a tab is selected. As with {@link
      * com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler TabSet.tabSelected} this method only fires when the tabset
      * is drawn.
-     * @param tabSet the tabSet containing the tab.
-     * @param tab pointer to the selected tab
+     *
+     * @param handler the tabSelected handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
-    public native void tabSelected(TabSet tabSet, Tab tab) /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.tabSelected(tabSet.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), tab.@com.smartgwt.client.core.DataClass::getJsObj()());
-    }-*/;
+    public HandlerRegistration addTabSelectedHandler(com.smartgwt.client.widgets.tab.events.TabSelectedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabSelectedEvent.getType()) == 0) setupTabSelectedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tab.events.TabSelectedEvent.getType());
+    }
+
+    private native void setupTabSelectedEvent() /*-{
+        var obj = null;
+            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+            var selfJ = this;
+            obj.tabSelected = $entry(function(){
+                var param = {"tabSet" : arguments[0], "tab" : arguments[1]};
+                var event = @com.smartgwt.client.widgets.tab.events.TabSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
+   }-*/;
 
     // ********************* Static Methods ***********************
         
