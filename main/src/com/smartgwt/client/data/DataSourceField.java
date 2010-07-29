@@ -318,7 +318,10 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * The default date formatter to use for displaying this field.  Only applicable to fields of  type "date" and "datetime"
+     * The default date formatter to use for displaying this field.  Only applicable to fields of  type "date" and "datetime". 
+     * Note that this property is honored when exporting directly to  Excel spreadsheets (ie, when using XLS or XLSX/OOXML
+     * form, <b>not</b> CSV); "date" and "datetime" fields with this property set will deliver real dates and formatting
+     * information to Excel, rather than formatted strings or unformatted dates.
      *
      * @param displayFormat displayFormat Default value is null
      */
@@ -327,7 +330,10 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * The default date formatter to use for displaying this field.  Only applicable to fields of  type "date" and "datetime"
+     * The default date formatter to use for displaying this field.  Only applicable to fields of  type "date" and "datetime". 
+     * Note that this property is honored when exporting directly to  Excel spreadsheets (ie, when using XLS or XLSX/OOXML
+     * form, <b>not</b> CSV); "date" and "datetime" fields with this property set will deliver real dates and formatting
+     * information to Excel, rather than formatted strings or unformatted dates.
      *
      *
      * @return DateDisplayFormat
