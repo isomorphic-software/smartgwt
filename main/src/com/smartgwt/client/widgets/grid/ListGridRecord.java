@@ -152,7 +152,7 @@ public class ListGridRecord extends Record {
      * @param backgroundComponent backgroundComponent Default value is null
      */
     public void setBackgroundComponent(Canvas backgroundComponent) {
-        setAttribute("backgroundComponent", backgroundComponent.getOrCreateJsObj());
+        setAttribute("backgroundComponent", backgroundComponent == null ? null : backgroundComponent.getOrCreateJsObj());
     }
 
     /**
@@ -273,7 +273,7 @@ public class ListGridRecord extends Record {
      * @param detailDS detailDS Default value is null
      */
     public void setDetailDS(DataSource detailDS) {
-        setAttribute("detailDS", detailDS.getOrCreateJsObj());
+        setAttribute("detailDS", detailDS == null ? null : detailDS.getOrCreateJsObj());
     }
 
     /**

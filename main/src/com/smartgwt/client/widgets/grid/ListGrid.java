@@ -755,7 +755,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setBackgroundComponent(Canvas backgroundComponent)  throws IllegalStateException {
-        setAttribute("backgroundComponent", backgroundComponent.getOrCreateJsObj(), false);
+        setAttribute("backgroundComponent", backgroundComponent == null ? null : backgroundComponent.getOrCreateJsObj(), false);
     }
 
     /**
@@ -5734,7 +5734,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setSummaryRowDataSource(DataSource summaryRowDataSource)  throws IllegalStateException {
-        setAttribute("summaryRowDataSource", summaryRowDataSource.getOrCreateJsObj(), false);
+        setAttribute("summaryRowDataSource", summaryRowDataSource == null ? null : summaryRowDataSource.getOrCreateJsObj(), false);
     }
 
     /**

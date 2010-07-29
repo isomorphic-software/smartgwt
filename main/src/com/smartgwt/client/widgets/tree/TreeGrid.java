@@ -636,7 +636,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * @param data Tree to show. Default value is null
      */
     public void setData(Tree data) {
-        setAttribute("data", data.getOrCreateJsObj(), true);
+        setAttribute("data", data == null ? null : data.getOrCreateJsObj(), true);
     }
 
     /**

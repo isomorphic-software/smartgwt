@@ -905,7 +905,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_contextmenu" target="examples">Context menus Example</a>
      */
     public void setContextMenu(Menu contextMenu) {
-        setAttribute("contextMenu", contextMenu.getOrCreateJsObj(), true);
+        setAttribute("contextMenu", contextMenu == null ? null : contextMenu.getOrCreateJsObj(), true);
     }
 
     /**
@@ -3053,7 +3053,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param valuesManager valuesManager Default value is null
      */
     public void setValuesManager(ValuesManager valuesManager) {
-        setAttribute("valuesManager", valuesManager.getOrCreateJsObj(), true);
+        setAttribute("valuesManager", valuesManager == null ? null : valuesManager.getOrCreateJsObj(), true);
     }
 
     /**
