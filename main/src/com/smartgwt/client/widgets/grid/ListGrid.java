@@ -9198,6 +9198,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native void startEditingNew(Record defaultRecordValue) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var defaultValuesJS = defaultRecordValue.@com.smartgwt.client.data.Record::getJsObj()();
+        delete defaultValuesJS['__ref'];
         self.startEditingNew(defaultValuesJS);
     }-*/;
 
