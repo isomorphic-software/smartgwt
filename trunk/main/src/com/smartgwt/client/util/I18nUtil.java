@@ -30,11 +30,16 @@ public class I18nUtil {
         if(!initialized) {
             initialized = true;
             SmartGwtMessages messages = GWT.create(SmartGwtMessages.class);
-            doInit(messages);
+            initMessages(messages);
         }
     }
 
-    private static native void doInit(SmartGwtMessages messages) /*-{
+    /**
+     * Initialize Smart GWT with i18n translations.
+     *
+     * @param messages the SmartGWT messages
+     */
+    public static native void initMessages(SmartGwtMessages messages) /*-{
 
         if($wnd.isc.Dialog) {
             $wnd.isc.Dialog.addClassProperties({OK_BUTTON_TITLE: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dialog_OkButtonTitle()()});
