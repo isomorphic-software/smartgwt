@@ -8971,6 +8971,17 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * Field to group grid records by. After initialization, use {@link com.smartgwt.client.widgets.grid.ListGrid#groupBy}  to
+     * update the grouping field list, instead of modifying groupByField directly.
+     *
+     * @param field groupByField Default value is see below
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setGroupByField(String field) throws IllegalStateException {
+        setAttribute("groupByField", field, false);
+    }
+
+    /**
      * List of fields to group grid records. If only a single field is used, that field may be specified as a string.
      * After initialization, use {@link com.smartgwt.client.widgets.grid.ListGrid#groupBy}  to update the grouping field
      * list, instead of modifying groupByField directly.
@@ -8978,7 +8989,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @param field groupByField Default value is see below
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setGroupByField(String field) throws IllegalStateException {
+    public void setGroupByField(String... field) throws IllegalStateException {
         setAttribute("groupByField", field, false);
     }
 
