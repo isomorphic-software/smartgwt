@@ -29,9 +29,9 @@
 		<isset property="${env.SC_VER}" />
     </condition>
 	
-	<property name="smartgwt.version" value="2.3" />
+	<property name="smartgwt.version" value="2.4-trunk" />
 	<property name="smartgwt.version.major" value="2" />
-	<property name="smartgwt.version.minor" value="3" />
+	<property name="smartgwt.version.minor" value="4-trunk" />
 	<property name="smartgwt.previous_version" value="2.2" />
 
     <condition property="smartgwt.tools.check" value="${env.SMARTGWT_TOOLS}" else="${smartgwt.root}/../tools">
