@@ -28,7 +28,6 @@ public class I18nUtil {
      */
     public static void init() {
         if(!initialized) {
-            initialized = true;
             SmartGwtMessages messages = GWT.create(SmartGwtMessages.class);
             initMessages(messages);
         }
@@ -382,5 +381,6 @@ public class I18nUtil {
                                                         "+1m" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_plus_1m()()
                                                         }});
         }
+        @com.smartgwt.client.util.I18nUtil::initialized = true;
     }-*/;
 }
