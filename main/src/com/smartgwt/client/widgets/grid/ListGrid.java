@@ -8367,7 +8367,21 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public native String getValueIcon(ListGridField field, Object value, ListGridRecord record) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.__getValueIcon(field.@com.smartgwt.client.core.DataClass::getJsObj()(), value, record.@com.smartgwt.client.core.DataClass::getJsObj()());
+        var valueJS;
+        if(value == null || @com.smartgwt.client.util.JSOHelper::isJavaString(Ljava/lang/Object;)(value) ) {
+            valueJS = value;
+        } else if(@com.smartgwt.client.util.JSOHelper::isJavaBoolean(Ljava/lang/Object;)(value)) {
+            valueJS = value.@java.lang.Boolean::booleanValue()();
+        } else if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(value)) {
+            valueJS = value.@java.lang.Integer::intValue()();
+        } else if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(value)) {
+            valueJS = value.@java.lang.Number::floatValue()();
+        } else if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(value)) {
+            valueJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(value);
+        } else {
+            valueJS = value;
+        }
+        return self.__getValueIcon(field.@com.smartgwt.client.core.DataClass::getJsObj()(), valueJS, record.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
     /**

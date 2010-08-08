@@ -495,6 +495,14 @@ public class JSOHelper {
         return obj instanceof String;
     }
 
+    /**
+     * @param obj the object
+     * @return true if object is a Java Integer
+     */
+    public static boolean isJavaBoolean(Object obj) {
+        return obj instanceof Boolean;
+    }
+
     private static native JavaScriptObject doConvertToJavaScriptDate(double time) /*-{
         var dateJS = $wnd.Date.create();
         dateJS.setTime(time);
