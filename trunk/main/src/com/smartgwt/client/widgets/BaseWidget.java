@@ -49,6 +49,8 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
     private static native void init()/*-{
         @com.smartgwt.client.core.JsObject::initialize()();
         $wnd.isc.setAutoDraw(false);
+        
+        
     }-*/;
 
     protected String id;
@@ -153,7 +155,25 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
             var jObj = this.__ref;
             return jObj.@com.smartgwt.client.widgets.BaseWidget::getInnerHTML()();
         };
-
+        
+        if (self.shouldRedrawOnResize == $wnd.isc.Canvas.getPrototype().shouldRedrawOnResize) {
+        	self.shouldRedrawOnResize = function(deltaX, deltaY) {
+        		var redrawOnResize = self.redrawOnResize;
+        		if (redrawOnResize == null) {
+        			redrawOnResize = !((self.children != null && self.children.length > 0 &&
+										!self.allowContentAndChildren) ||
+										// we want to redrawOnResize if we have dynamic content
+										// Check for getInnerHTML() having been overridden for this (javascript) Canvas subclass
+										// This handles SC subclasses (EG detailViewer) where redrawOnResize is required.
+										// If the developer overrides the java getInnerHTML() method rely on them
+										// explicitly setting redrawOnResize if required.
+										(self.__getInnerHTML == $wnd.isc.Canvas.getPrototype().getInnerHTML &&
+										!$wnd.isc.isA.Function(self.contents)));
+				}
+				return redrawOnResize;
+			}
+    	}
+        
         self.__draw = self.draw;
         self.draw = function() {
             var jObj = this.__ref;
