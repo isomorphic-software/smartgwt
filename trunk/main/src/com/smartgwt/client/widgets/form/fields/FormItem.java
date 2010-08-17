@@ -2693,6 +2693,38 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.Criterion::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
+
+    /**
+     * Override this method if you need to provide a specialized criterion from this formItem when creating an AdvancedCriteria
+     * via {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria DynamicForm.getValuesAsCriteria}. <P> This
+     * API is provided to allow you to specify a more complex criterion than the  "field-operator-value" criterions that are
+     * built-in.  Note that the built-in behavior is generally quite flexible and powerful enough for most requirements.  An
+     * example of a case where you might want to override this method is if you wanted to implement a date range  selection
+     * (ie, date &gt; x AND date &lt; y) on a form that was combining its other criteria  fields with an "or" operator. <P>
+     * Note that this method is part of the criteria editing subsystem: if overridden, it is likely that you will want to also
+     * override {@link com.smartgwt.client.widgets.form.fields.FormItem#hasAdvancedCriteria FormItem.hasAdvancedCriteria} to
+     * ensure this method is called by the form, and to support editing of existing advanced criteria you may also need to
+     * override {@link com.smartgwt.client.widgets.form.fields.FormItem#canEditCriterion FormItem.canEditCriterion} and  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setCriterion FormItem.setCriterion}. <P> The default implementation
+     * will return a criterion including the form item value, fieldName and specified {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator}, or a default operator derived from the form item
+     * data type if no explicit operator is specified.
+     * @param textMatchStyle If passed assume the textMatchStyle   will be used when performing a fetch operation with these criteria. This may
+     * impact   the criterion's operator property.
+     *
+     * @return criterion object based on this fields current edited value(s).
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
+     */
+    public native Criterion getCriterion(TextMatchStyle textMatchStyle) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret = self.getCriterion(textMatchStyle.@com.smartgwt.client.types.TextMatchStyle::getValue()());
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.data.Criterion::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
             
     /**
      * Returns the {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} for this form item. If

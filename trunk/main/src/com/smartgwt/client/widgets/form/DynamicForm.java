@@ -1814,6 +1814,24 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.AdvancedCriteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
+
+    /**
+     * Return an AdvancedCriteria object based on the current set of values within this form. <p> Similar to {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria DynamicForm.getValuesAsCriteria}, except the returned
+     * criteria object is guaranteed to be an AdvancedCriteria object, even if none of the form's fields has a specified {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator}
+     * @param textMatchStyle If specified the text match style will be used to   generate the appropriate <code>operator</code> for per field
+     * criteria.
+     *
+     * @return a {@link com.smartgwt.client.data.AdvancedCriteria} based on the form's current values
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
+     */
+    public native AdvancedCriteria getValuesAsAdvancedCriteria(TextMatchStyle textMatchStyle) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getValuesAsAdvancedCriteria(textMatchStyle.@com.smartgwt.client.types.TextMatchStyle::getValue()());
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.data.AdvancedCriteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
             
     /**
      * Return whether this form currently has any validation errors.<br> Validation errors are set up automatically by
@@ -3390,12 +3408,69 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         }
         return new RecordList(dataJS);
     }
+
+    /**
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
+     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
+     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
+     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
+     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
+     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
+     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
+     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
+     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
+     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
+     */
+    public native void exportData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData();
+    }-*/;
+
+    /**
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
+     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
+     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
+     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
+     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
+     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
+     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
+     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
+     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
+     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
+     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void exportData(DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
     
+   /**
+    * Exports this component's data with client-side formatters applied, so is suitable for 
+    * direct display to users.  This feature requires the SmartClient server, but does not 
+    * rely on any server-side DataSources.
+    * <P>To export unformatted data from this component's dataSource, see 
+    * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
+    * which does not include client-side formatters, 
+    * but relies on both the SmartClient server and server-side DataSources.
+    * @see com.smartgwt.client.data.DataSource#exportClientData
+    */
     public native void exportClientData() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportClientData();
     }-*/;
 
+   /**
+    * Exports this component's data with client-side formatters applied, so is suitable for 
+    * direct display to users.  This feature requires the SmartClient server, but does not 
+    * rely on any server-side DataSources.
+    * <P>To export unformatted data from this component's dataSource, see
+    * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
+    * which does not include client-side formatters, 
+    * but relies on both the SmartClient server and server-side DataSources.
+    * @param requestProperties Request properties for the export
+    * @see com.smartgwt.client.data.DataSource#exportClientData
+    */
     public native void exportClientData(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportClientData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
