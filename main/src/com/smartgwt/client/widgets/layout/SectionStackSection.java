@@ -73,7 +73,7 @@ public class SectionStackSection extends RefDataClass {
     }
 
     public SectionStackSection(){
-        
+        setID(com.smartgwt.client.util.SC.generateID("SectionStackSection"));
     }
 
     public SectionStackSection(JavaScriptObject jsObj){
@@ -82,7 +82,7 @@ public class SectionStackSection extends RefDataClass {
 
     public SectionStackSection(String title) {
         setTitle(title);
-        
+        setID(com.smartgwt.client.util.SC.generateID("SectionStackSection"));
     }
 
     // ********************* Properties / Attributes ***********************
