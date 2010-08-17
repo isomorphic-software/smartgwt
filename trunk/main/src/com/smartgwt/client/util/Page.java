@@ -413,6 +413,47 @@ public class Page {
     public static native void setSkinDir(String URL) /*-{
         $wnd.isc.Page.setSkinDir(URL);
     }-*/;
+            
+    /**
+     * This method only applies to browsers who support the special viewport meta html tag such as Safari running on the
+     * iPhone. <P> This method will dynamically change the viewport configuration, allowing you to set an initial size or scale
+     * level and enable / disable user-scaling. Typically this method will be called with a value for scale, width or height
+     * rather than passing in values for all three properties.<br> See the apple documentation about configuring the viewport
+     * for more information:
+     * @externalLink{http://developer.apple.com/safari/library/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html}
+     * <P> <i>Note:</i> Modifying the width/height or initial scale of the viewport has 2 user-visible effects: <ul> <li>HTML
+     * elements may reflow to fit the specified size (or the implied size calculated     from the specified scale level and the
+     * native device size).</li> <li>If the user has not scaled the application explicitly, and no other scaling or sizing    
+     * attributes were specified via a viewport meta tag for this page, the application will     zoom to specified scale
+     * level(or the scale level required to fit the specified viewport     size to the device's screen).</li> </ul>
+     */
+    public static native void updateViewport() /*-{
+        $wnd.isc.Page.updateViewport();
+    }-*/;
+
+    /**
+     * This method only applies to browsers who support the special viewport meta html tag such as Safari running on the
+     * iPhone. <P> This method will dynamically change the viewport configuration, allowing you to set an initial size or scale
+     * level and enable / disable user-scaling. Typically this method will be called with a value for scale, width or height
+     * rather than passing in values for all three properties.<br> See the apple documentation about configuring the viewport
+     * for more information:
+     * @externalLink{http://developer.apple.com/safari/library/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html}
+     * <P> <i>Note:</i> Modifying the width/height or initial scale of the viewport has 2 user-visible effects: <ul> <li>HTML
+     * elements may reflow to fit the specified size (or the implied size calculated     from the specified scale level and the
+     * native device size).</li> <li>If the user has not scaled the application explicitly, and no other scaling or sizing    
+     * attributes were specified via a viewport meta tag for this page, the application will     zoom to specified scale
+     * level(or the scale level required to fit the specified viewport     size to the device's screen).</li> </ul>
+     * @param scale Desired scale level where 1 indicates no scaling (each css pixel    will be displayed using 1px on the physical device).
+     * Pass in null to avoid setting   this property.
+     * @param width Desired viewport width in pixels. This indicates how many pixels   should fit within the device screen. Pass in null to
+     * avoid setting this property.
+     * @param height Desired viewport height in pixels. This indicates how many pixels   should fit within the device screen. Pass in null to
+     * avoid setting this property.
+     * @param scalable Should the user be able to scale the application (using   pinch gestures, double tapping, rotating the device, etc.)?
+     */
+    public static native void updateViewport(float scale, int width, int height, boolean scalable) /*-{
+        $wnd.isc.Page.updateViewport(scale, width, height, scalable);
+    }-*/;
         
     // ***********************************************************        
 

@@ -196,34 +196,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * For a DataSource with serverType: "sql" or serverType: "hibernate", automatically derive the dataSource's schema (field
-     * definitions) from the SQL table specified in  {@link com.smartgwt.client.docs.serverds.DataSource#tableName tableName}. 
-     * This causes Smart GWT to create a "super" DataSource, which this dataSource then automatically {@link
-     * com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}.  This allows you to  override auto-derived schema as
-     * required. <p> This property is only applicable if you are using the Smart GWT server.
-     *
-     * @param autoDeriveSchema autoDeriveSchema Default value is null
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-     */
-    public void setAutoDeriveSchema(Boolean autoDeriveSchema)  throws IllegalStateException {
-        setAttribute("autoDeriveSchema", autoDeriveSchema, false);
-    }
-
-    /**
-     * For a DataSource with serverType: "sql" or serverType: "hibernate", automatically derive the dataSource's schema (field
-     * definitions) from the SQL table specified in  {@link com.smartgwt.client.docs.serverds.DataSource#tableName tableName}. 
-     * This causes Smart GWT to create a "super" DataSource, which this dataSource then automatically {@link
-     * com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}.  This allows you to  override auto-derived schema as
-     * required. <p> This property is only applicable if you are using the Smart GWT server.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getAutoDeriveSchema()  {
-        return getAttributeAsBoolean("autoDeriveSchema");
-    }
-
-    /**
      * If set, titles are automatically derived from {@link com.smartgwt.client.data.DataSourceField#getName field.name} for
      * any  field that does not have a {@link com.smartgwt.client.data.DataSourceField#getTitle field.title} and is not marked
      * {@link com.smartgwt.client.data.DataSourceField#getHidden hidden}:true, by calling the method {@link
@@ -632,9 +604,10 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * com.smartgwt.client.data.DataSource#getDataFormat JSON} data, this means extra properties in selected objects are
      * dropped. <P> By default, for DMI DSResponses, DSResponse.data is filtered on the server to just the set of fields
      * defined on the DataSource.  This type of filtering can also be enabled for non-DMI DSResponses (see the overview in
-     * DMI).  Setting this property to <code>false</code> disables this filtering for this DataSource only.  This setting
-     * overrides the configuration in <code>server.properties</code>.  This setting can be overridden by {@link
-     * com.smartgwt.client.docs.serverds.ServerObject#dropExtraFields dropExtraFields}.
+     * {@link com.smartgwt.client.data.DataSource#getDmiOverview DMI}).  Setting this property to <code>false</code> disables
+     * this filtering for this DataSource only.  This setting overrides the configuration in <code>server.properties</code>. 
+     * This setting can be overridden by {@link com.smartgwt.client.docs.serverds.ServerObject#dropExtraFields
+     * dropExtraFields}.
      *
      * @param dropExtraFields dropExtraFields Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -650,9 +623,10 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * com.smartgwt.client.data.DataSource#getDataFormat JSON} data, this means extra properties in selected objects are
      * dropped. <P> By default, for DMI DSResponses, DSResponse.data is filtered on the server to just the set of fields
      * defined on the DataSource.  This type of filtering can also be enabled for non-DMI DSResponses (see the overview in
-     * DMI).  Setting this property to <code>false</code> disables this filtering for this DataSource only.  This setting
-     * overrides the configuration in <code>server.properties</code>.  This setting can be overridden by {@link
-     * com.smartgwt.client.docs.serverds.ServerObject#dropExtraFields dropExtraFields}.
+     * {@link com.smartgwt.client.data.DataSource#getDmiOverview DMI}).  Setting this property to <code>false</code> disables
+     * this filtering for this DataSource only.  This setting overrides the configuration in <code>server.properties</code>. 
+     * This setting can be overridden by {@link com.smartgwt.client.docs.serverds.ServerObject#dropExtraFields
+     * dropExtraFields}.
      *
      *
      * @return Boolean
@@ -831,7 +805,14 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * When true, indicates that fields in this DataSource will never be positively updated to the null value; they may arrive
      * at null values by being omitted, but we will  not send actual null values in update requests.  When false (the default),
-     * null is  not treated in any special way.
+     * null is  not treated in any special way. <p> For add operations, setting this value causes null-assigned fields to be
+     * completely  removed from the request.  For update operations, the null assignment is replaced with the field's {@link
+     * com.smartgwt.client.data.DataSourceField#getNullReplacementValue nullReplacementValue}, if one is declared.  If no
+     * <code>nullReplacementValue</code> is declared for the field, the null  assignment is replaced with the DataSource's
+     * {@link com.smartgwt.client.data.DataSource#getNullStringValue nullStringValue},  {@link
+     * com.smartgwt.client.data.DataSource#getNullIntegerValue nullIntegerValue}, {@link
+     * com.smartgwt.client.data.DataSource#getNullFloatValue nullFloatValue}  or {@link
+     * com.smartgwt.client.data.DataSource#getNullDateValue nullDateValue}, depending on the field type.
      *
      * @param noNullUpdates noNullUpdates Default value is false
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -843,13 +824,144 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * When true, indicates that fields in this DataSource will never be positively updated to the null value; they may arrive
      * at null values by being omitted, but we will  not send actual null values in update requests.  When false (the default),
-     * null is  not treated in any special way.
+     * null is  not treated in any special way. <p> For add operations, setting this value causes null-assigned fields to be
+     * completely  removed from the request.  For update operations, the null assignment is replaced with the field's {@link
+     * com.smartgwt.client.data.DataSourceField#getNullReplacementValue nullReplacementValue}, if one is declared.  If no
+     * <code>nullReplacementValue</code> is declared for the field, the null  assignment is replaced with the DataSource's
+     * {@link com.smartgwt.client.data.DataSource#getNullStringValue nullStringValue},  {@link
+     * com.smartgwt.client.data.DataSource#getNullIntegerValue nullIntegerValue}, {@link
+     * com.smartgwt.client.data.DataSource#getNullFloatValue nullFloatValue}  or {@link
+     * com.smartgwt.client.data.DataSource#getNullDateValue nullDateValue}, depending on the field type.
      *
      *
      * @return Boolean
      */
     public Boolean getNoNullUpdates()  {
         return getAttributeAsBoolean("noNullUpdates");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.data.DataSource#getNoNullUpdates noNullUpdates} is set, the value to use for any boolean
+     * field that has a null value assigned on an update operation, and does not specify an explicit {@link
+     * com.smartgwt.client.data.DataSourceField#getNullReplacementValue nullReplacementValue}.
+     *
+     * @param nullBooleanValue nullBooleanValue Default value is false
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setNullBooleanValue(Boolean nullBooleanValue)  throws IllegalStateException {
+        setAttribute("nullBooleanValue", nullBooleanValue, false);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.data.DataSource#getNoNullUpdates noNullUpdates} is set, the value to use for any boolean
+     * field that has a null value assigned on an update operation, and does not specify an explicit {@link
+     * com.smartgwt.client.data.DataSourceField#getNullReplacementValue nullReplacementValue}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getNullBooleanValue()  {
+        return getAttributeAsBoolean("nullBooleanValue");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.data.DataSource#getNoNullUpdates noNullUpdates} is set, the value to use for any date or
+     * time field that has a null value assigned on an update operation, and does not specify an explicit {@link
+     * com.smartgwt.client.data.DataSourceField#getNullReplacementValue nullReplacementValue}. <p> Unlike strings and numbers,
+     * there is no "natural" choice for a null replacement value  for dates.  The default value we have chosen is midnight on
+     * January 1st 1970, simply  because this is "the epoch" - the value that is returned by calling "new Date(0)"
+     *
+     * @param nullDateValue nullDateValue Default value is See below
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setNullDateValue(java.util.Date nullDateValue)  throws IllegalStateException {
+        setAttribute("nullDateValue", nullDateValue, false);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.data.DataSource#getNoNullUpdates noNullUpdates} is set, the value to use for any date or
+     * time field that has a null value assigned on an update operation, and does not specify an explicit {@link
+     * com.smartgwt.client.data.DataSourceField#getNullReplacementValue nullReplacementValue}. <p> Unlike strings and numbers,
+     * there is no "natural" choice for a null replacement value  for dates.  The default value we have chosen is midnight on
+     * January 1st 1970, simply  because this is "the epoch" - the value that is returned by calling "new Date(0)"
+     *
+     *
+     * @return java.util.Date
+     */
+    public java.util.Date getNullDateValue()  {
+        return getAttributeAsDate("nullDateValue");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.data.DataSource#getNoNullUpdates noNullUpdates} is set, the value to use for any float
+     * field that has a null value assigned on an update operation, and does not specify an explicit {@link
+     * com.smartgwt.client.data.DataSourceField#getNullReplacementValue nullReplacementValue}.
+     *
+     * @param nullFloatValue nullFloatValue Default value is 0.0
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setNullFloatValue(float nullFloatValue)  throws IllegalStateException {
+        setAttribute("nullFloatValue", nullFloatValue, false);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.data.DataSource#getNoNullUpdates noNullUpdates} is set, the value to use for any float
+     * field that has a null value assigned on an update operation, and does not specify an explicit {@link
+     * com.smartgwt.client.data.DataSourceField#getNullReplacementValue nullReplacementValue}.
+     *
+     *
+     * @return float
+     */
+    public float getNullFloatValue()  {
+        return getAttributeAsFloat("nullFloatValue");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.data.DataSource#getNoNullUpdates noNullUpdates} is set, the value to use for any integer
+     * field that has a null value assigned on an update operation, and does not specify an explicit {@link
+     * com.smartgwt.client.data.DataSourceField#getNullReplacementValue nullReplacementValue}.
+     *
+     * @param nullIntegerValue nullIntegerValue Default value is 0
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setNullIntegerValue(int nullIntegerValue)  throws IllegalStateException {
+        setAttribute("nullIntegerValue", nullIntegerValue, false);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.data.DataSource#getNoNullUpdates noNullUpdates} is set, the value to use for any integer
+     * field that has a null value assigned on an update operation, and does not specify an explicit {@link
+     * com.smartgwt.client.data.DataSourceField#getNullReplacementValue nullReplacementValue}.
+     *
+     *
+     * @return int
+     */
+    public int getNullIntegerValue()  {
+        return getAttributeAsInt("nullIntegerValue");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.data.DataSource#getNoNullUpdates noNullUpdates} is set, the value to use for any text
+     * field that has a null value assigned on an update operation, and does not specify an explicit {@link
+     * com.smartgwt.client.data.DataSourceField#getNullReplacementValue nullReplacementValue}.
+     *
+     * @param nullStringValue nullStringValue Default value is ""
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setNullStringValue(String nullStringValue)  throws IllegalStateException {
+        setAttribute("nullStringValue", nullStringValue, false);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.data.DataSource#getNoNullUpdates noNullUpdates} is set, the value to use for any text
+     * field that has a null value assigned on an update operation, and does not specify an explicit {@link
+     * com.smartgwt.client.data.DataSourceField#getNullReplacementValue nullReplacementValue}.
+     *
+     *
+     * @return String
+     */
+    public String getNullStringValue()  {
+        return getAttributeAsString("nullStringValue");
     }
 
     /**
@@ -1475,6 +1587,29 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         var ret = self.convertRelativeDates(criteria.@com.smartgwt.client.core.DataClass::getJsObj()(), timezoneOffset, firstDayOfWeek);
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+            
+    /**
+     * Perform a "fetch" DataSource operation against this DataSource, sending search criteria, retrieving matching records and
+     * exporting the results.  See  {@link com.smartgwt.client.data.OperationBinding#getExportResults exportResults} or {@link
+     * com.smartgwt.client.data.DSRequest#getExportResults exportResults} and for more information.
+     */
+    public native void exportData() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.exportData();
+    }-*/;
+
+    /**
+     * Perform a "fetch" DataSource operation against this DataSource, sending search criteria, retrieving matching records and
+     * exporting the results.  See  {@link com.smartgwt.client.data.OperationBinding#getExportResults exportResults} or {@link
+     * com.smartgwt.client.data.DSRequest#getExportResults exportResults} and for more information.
+     * @param criteria search criteria
+     * @param requestProperties additional properties to set on                                                       the DSRequest that will be issued
+     * @see com.smartgwt.client.docs.Operations Operations overview and related methods
+     */
+    public native void exportData(Criteria criteria, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.exportData(criteria.@com.smartgwt.client.core.DataClass::getJsObj()(), requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
             
     /**

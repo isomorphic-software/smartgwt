@@ -422,13 +422,13 @@ public class DSRequest extends RPCRequest {
      * <code>operationId</code> {@link com.smartgwt.client.data.OperationBinding#getOperationId on the operationBinding} which
      * will cause that operationBinding to be used for dsRequests containing a matching <code>operationId</code>. This allows
      * all the possible settings of an <code>operationBinding</code>, including {@link
-     * com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation} or DMI settings, to be switched on a per-component
-     * or per-request basis.   <P> For example, by setting the <code>fetchOperation</code> on a particular ListGrid, you could
-     * cause it to invoke a different server method via DMI, different {@link
-     * com.smartgwt.client.data.OperationBinding#getDataURL dataURL} or different {@link
-     * com.smartgwt.client.data.OperationBinding#getWsOperation web service operation}. <P> The <code>operationId</code> can
-     * also be directly received by the server in order to affect behavior.  When using the Smart GWT Server,
-     * <code>operationId</code> can be accessed via dsRequest.getOperationId().  The {@link
+     * com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation} or {@link
+     * com.smartgwt.client.data.DSRequest#getDmiOverview DMI} settings, to be switched on a per-component or per-request basis.
+     * <P> For example, by setting the <code>fetchOperation</code> on a particular ListGrid, you could cause it to invoke a
+     * different server method via DMI, different {@link com.smartgwt.client.data.OperationBinding#getDataURL dataURL} or
+     * different {@link com.smartgwt.client.data.OperationBinding#getWsOperation web service operation}. <P> The
+     * <code>operationId</code> can also be directly received by the server in order to affect behavior.  When using the Smart
+     * GWT Server, <code>operationId</code> can be accessed via dsRequest.getOperationId().  The {@link
      * com.smartgwt.client.data.RestDataSource} will also send the <code>operationId</code> to the server as part of the {@link
      * com.smartgwt.client.data.RestDataSource#getMetaDataPrefix request metadata}.   <P> Note that if you {@link
      * com.smartgwt.client.data.DataSource#fetchData manually invoke} a DataSource operation, you can also specify operationId
@@ -453,13 +453,13 @@ public class DSRequest extends RPCRequest {
      * <code>operationId</code> {@link com.smartgwt.client.data.OperationBinding#getOperationId on the operationBinding} which
      * will cause that operationBinding to be used for dsRequests containing a matching <code>operationId</code>. This allows
      * all the possible settings of an <code>operationBinding</code>, including {@link
-     * com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation} or DMI settings, to be switched on a per-component
-     * or per-request basis.   <P> For example, by setting the <code>fetchOperation</code> on a particular ListGrid, you could
-     * cause it to invoke a different server method via DMI, different {@link
-     * com.smartgwt.client.data.OperationBinding#getDataURL dataURL} or different {@link
-     * com.smartgwt.client.data.OperationBinding#getWsOperation web service operation}. <P> The <code>operationId</code> can
-     * also be directly received by the server in order to affect behavior.  When using the Smart GWT Server,
-     * <code>operationId</code> can be accessed via dsRequest.getOperationId().  The {@link
+     * com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation} or {@link
+     * com.smartgwt.client.data.DSRequest#getDmiOverview DMI} settings, to be switched on a per-component or per-request basis.
+     * <P> For example, by setting the <code>fetchOperation</code> on a particular ListGrid, you could cause it to invoke a
+     * different server method via DMI, different {@link com.smartgwt.client.data.OperationBinding#getDataURL dataURL} or
+     * different {@link com.smartgwt.client.data.OperationBinding#getWsOperation web service operation}. <P> The
+     * <code>operationId</code> can also be directly received by the server in order to affect behavior.  When using the Smart
+     * GWT Server, <code>operationId</code> can be accessed via dsRequest.getOperationId().  The {@link
      * com.smartgwt.client.data.RestDataSource} will also send the <code>operationId</code> to the server as part of the {@link
      * com.smartgwt.client.data.RestDataSource#getMetaDataPrefix request metadata}.   <P> Note that if you {@link
      * com.smartgwt.client.data.DataSource#fetchData manually invoke} a DataSource operation, you can also specify operationId

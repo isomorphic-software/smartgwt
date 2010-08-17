@@ -512,20 +512,21 @@ public class DataSourceField extends DataClass {
      * For use with the Smart GWT server when populating Java Beans / POJOs based on data contained in a DSRequest,
      * <code>javaClass</code> specifies the fully qualified Java className to be created and passed to the setter for the Java
      * Bean Property with the same name as this field.   <code>javaClass</code> is used both when manually calling
-     * DataSource.setProperties() and when auto-populating POJO arguments of a DMI method. <P> The Java class to create does
-     * not normally have to be specified: Smart GWT will use Java reflection to inspect the type of argument expected by a
-     * setter method and will attempt conversion of inbound data to that type.  As described in the documentation for
-     * DataTools.setProperties(), this works for almost all typical cases.  However <code>field.javaClass</code> is useful for:
-     * <ul> <li> subobject of abstract or interface type: in this case Java Reflection is not sufficient to discover the
-     * concrete type that should be instantiated, and <code>javaClass</code> should be set instead.</li> <li> subobject of
-     * Collection or Map type, when Java generics are not used or the Collection member type or Map value type is abstract. 
-     * When Java generics are used (for example the setter takes an argument is of type Collection&lt;SomePOJO&gt; or
-     * Map&lt;KeyType,SomePOJO&gt;, Smart GWT will automatically attempt to convert inbound data to the type of the members of
-     * the Collection or values of the Map.  Without generics, <code>javaClass</code> needs to be specified.  Note that
-     * <code>javaClass</code> will take precedence over generics if both  are used. Also note that {@link
-     * com.smartgwt.client.data.DataSourceField#getJavaCollectionClass javaCollectionClass} can be specified if a particular
-     * Collection or Map type is needed, and {@link com.smartgwt.client.data.DataSourceField#getJavaKeyClass javaKeyClass} can
-     * be specified for a field of type <code>java.util.Map</code>.</li> </ul>
+     * DataSource.setProperties() and when auto-populating POJO arguments of a {@link
+     * com.smartgwt.client.data.DataSourceField#getDmiOverview DMI} method. <P> The Java class to create does not normally have
+     * to be specified: Smart GWT will use Java reflection to inspect the type of argument expected by a setter method and will
+     * attempt conversion of inbound data to that type.  As described in the documentation for DataTools.setProperties(), this
+     * works for almost all typical cases.  However <code>field.javaClass</code> is useful for: <ul> <li> subobject of abstract
+     * or interface type: in this case Java Reflection is not sufficient to discover the concrete type that should be
+     * instantiated, and <code>javaClass</code> should be set instead.</li> <li> subobject of Collection or Map type, when Java
+     * generics are not used or the Collection member type or Map value type is abstract.  When Java generics are used (for
+     * example the setter takes an argument is of type Collection&lt;SomePOJO&gt; or Map&lt;KeyType,SomePOJO&gt;, Smart GWT
+     * will automatically attempt to convert inbound data to the type of the members of the Collection or values of the Map. 
+     * Without generics, <code>javaClass</code> needs to be specified.  Note that <code>javaClass</code> will take precedence
+     * over generics if both  are used. Also note that {@link com.smartgwt.client.data.DataSourceField#getJavaCollectionClass
+     * javaCollectionClass} can be specified if a particular Collection or Map type is needed, and {@link
+     * com.smartgwt.client.data.DataSourceField#getJavaKeyClass javaKeyClass} can be specified for a field of type
+     * <code>java.util.Map</code>.</li> </ul>
      *
      * @param javaClass javaClass Default value is null
      */
@@ -537,20 +538,21 @@ public class DataSourceField extends DataClass {
      * For use with the Smart GWT server when populating Java Beans / POJOs based on data contained in a DSRequest,
      * <code>javaClass</code> specifies the fully qualified Java className to be created and passed to the setter for the Java
      * Bean Property with the same name as this field.   <code>javaClass</code> is used both when manually calling
-     * DataSource.setProperties() and when auto-populating POJO arguments of a DMI method. <P> The Java class to create does
-     * not normally have to be specified: Smart GWT will use Java reflection to inspect the type of argument expected by a
-     * setter method and will attempt conversion of inbound data to that type.  As described in the documentation for
-     * DataTools.setProperties(), this works for almost all typical cases.  However <code>field.javaClass</code> is useful for:
-     * <ul> <li> subobject of abstract or interface type: in this case Java Reflection is not sufficient to discover the
-     * concrete type that should be instantiated, and <code>javaClass</code> should be set instead.</li> <li> subobject of
-     * Collection or Map type, when Java generics are not used or the Collection member type or Map value type is abstract. 
-     * When Java generics are used (for example the setter takes an argument is of type Collection&lt;SomePOJO&gt; or
-     * Map&lt;KeyType,SomePOJO&gt;, Smart GWT will automatically attempt to convert inbound data to the type of the members of
-     * the Collection or values of the Map.  Without generics, <code>javaClass</code> needs to be specified.  Note that
-     * <code>javaClass</code> will take precedence over generics if both  are used. Also note that {@link
-     * com.smartgwt.client.data.DataSourceField#getJavaCollectionClass javaCollectionClass} can be specified if a particular
-     * Collection or Map type is needed, and {@link com.smartgwt.client.data.DataSourceField#getJavaKeyClass javaKeyClass} can
-     * be specified for a field of type <code>java.util.Map</code>.</li> </ul>
+     * DataSource.setProperties() and when auto-populating POJO arguments of a {@link
+     * com.smartgwt.client.data.DataSourceField#getDmiOverview DMI} method. <P> The Java class to create does not normally have
+     * to be specified: Smart GWT will use Java reflection to inspect the type of argument expected by a setter method and will
+     * attempt conversion of inbound data to that type.  As described in the documentation for DataTools.setProperties(), this
+     * works for almost all typical cases.  However <code>field.javaClass</code> is useful for: <ul> <li> subobject of abstract
+     * or interface type: in this case Java Reflection is not sufficient to discover the concrete type that should be
+     * instantiated, and <code>javaClass</code> should be set instead.</li> <li> subobject of Collection or Map type, when Java
+     * generics are not used or the Collection member type or Map value type is abstract.  When Java generics are used (for
+     * example the setter takes an argument is of type Collection&lt;SomePOJO&gt; or Map&lt;KeyType,SomePOJO&gt;, Smart GWT
+     * will automatically attempt to convert inbound data to the type of the members of the Collection or values of the Map. 
+     * Without generics, <code>javaClass</code> needs to be specified.  Note that <code>javaClass</code> will take precedence
+     * over generics if both  are used. Also note that {@link com.smartgwt.client.data.DataSourceField#getJavaCollectionClass
+     * javaCollectionClass} can be specified if a particular Collection or Map type is needed, and {@link
+     * com.smartgwt.client.data.DataSourceField#getJavaKeyClass javaKeyClass} can be specified for a field of type
+     * <code>java.util.Map</code>.</li> </ul>
      *
      *
      * @return String
