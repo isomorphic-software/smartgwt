@@ -145,6 +145,31 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+     * When a user requests column autofitting via the  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getGetHeaderContextMenuItems header contextmenu} or via a  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getHeaderAutoFitEvent mouse gesture}, what autofit approach is used. If
+     * set, this setting overrides the autoFitWidthApproach specified at the ListGrid level.
+     *
+     * @param autoFitWidthApproach autoFitWidthApproach Default value is null
+     */
+    public void setAutoFitWidthApproach(AutoFitWidthApproach autoFitWidthApproach) {
+        setAttribute("autoFitWidthApproach", autoFitWidthApproach.getValue());
+    }
+
+    /**
+     * When a user requests column autofitting via the  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getGetHeaderContextMenuItems header contextmenu} or via a  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getHeaderAutoFitEvent mouse gesture}, what autofit approach is used. If
+     * set, this setting overrides the autoFitWidthApproach specified at the ListGrid level.
+     *
+     *
+     * @return AutoFitWidthApproach
+     */
+    public AutoFitWidthApproach getAutoFitWidthApproach()  {
+        return EnumUtil.getEnum(AutoFitWidthApproach.values(), getAttribute("autoFitWidthApproach"));
+    }
+
+    /**
      * Whether this field should be automatically frozen when other fields are frozen.  When true, the field will be
      * automatically frozen to the extreme of the grid.  The automatically generated {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField checkbox}, {@link
