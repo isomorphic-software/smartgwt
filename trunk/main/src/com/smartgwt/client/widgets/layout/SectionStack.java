@@ -387,7 +387,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      * instantiate this class, giving the following properties on init: <ul> <li><code>layout</code>: the SectionStack
      * <li><code>expanded</code>: true or false <li><code>hidden</code>: true or false <li><code>title</code>: section title
      * </ul> From then on, when the sectionHeader is clicked on, it should call {@link
-     * com.smartgwt.client.widgets.layout.SectionStack#sectionHeaderClick SectionStack.sectionHeaderClick}. <br> Whenever the
+     * com.smartgwt.client.widgets.layout.SectionStack#sectionHeaderClick SectionStack.sectionHeaderClick}. <P> Whenever the
      * section is hidden or shown, sectionHeader.setExpanded(true|false) will be called if implemented.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -405,7 +405,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      * instantiate this class, giving the following properties on init: <ul> <li><code>layout</code>: the SectionStack
      * <li><code>expanded</code>: true or false <li><code>hidden</code>: true or false <li><code>title</code>: section title
      * </ul> From then on, when the sectionHeader is clicked on, it should call {@link
-     * com.smartgwt.client.widgets.layout.SectionStack#sectionHeaderClick SectionStack.sectionHeaderClick}. <br> Whenever the
+     * com.smartgwt.client.widgets.layout.SectionStack#sectionHeaderClick SectionStack.sectionHeaderClick}. <P> Whenever the
      * section is hidden or shown, sectionHeader.setExpanded(true|false) will be called if implemented.
      *
      *
@@ -434,6 +434,26 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      */
     public Boolean getShowExpandControls()  {
         return getAttributeAsBoolean("showExpandControls");
+    }
+
+    /**
+     * Default CSS style for the SectionStack as a whole.
+     *
+     * @param styleName styleName Default value is "sectionStack"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setStyleName(String styleName)  throws IllegalStateException {
+        setAttribute("styleName", styleName, false);
+    }
+
+    /**
+     * Default CSS style for the SectionStack as a whole.
+     *
+     *
+     * @return String
+     */
+    public String getStyleName()  {
+        return getAttributeAsString("styleName");
     }
 
     /**
