@@ -246,7 +246,7 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
             obj.tabDeselected = $debox($entry(function(){
-                var param = {"tabSet" : arguments[0], "tab" : arguments[1], "newTab" : arguments[2]};
+                var param = {"tabSet" : arguments[0], "tabNum" : arguments[1], "tabPane" : arguments[2], "ID" : arguments[3], "tab" : arguments[4], "newTab" : arguments[5]};
                 var event = @com.smartgwt.client.widgets.tab.events.TabDeselectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
@@ -273,7 +273,7 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
             obj.tabSelected = $entry(function(){
-                var param = {"tabSet" : arguments[0], "tab" : arguments[1]};
+                var param = {"tabSet" : arguments[0], "tabNum" : arguments[1], "tabPane" : arguments[2], "ID" : arguments[3], "tab" : arguments[4]};
                 var event = @com.smartgwt.client.widgets.tab.events.TabSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
