@@ -14,7 +14,7 @@ package com.smartgwt.client.docs;
  * bookmark the&#010 "javascript:" expression above to make this easier).&#010 <P>&#010 Log messages are of the
  * format:&#010 <P>&#010 &nbsp;&nbsp;&nbsp;<i>timestamp</i>:<i>priority</i>:<i>category</i>:<i>message</i>&#010 <P>&#010
  * For example, the following log message:&#010 <pre>&#010     11:59:25:806:INFO:Page:Page loading complete.</pre>&#010
- * Occured at 11:59:25 local time and 806 milliseconds.  It's priority was <code>INFO</code>,&#010 it occurred in the
+ * Occurred at 11:59:25 local time and 806 milliseconds.  It's priority was <code>INFO</code>,&#010 it occurred in the
  * category <i>Page</i>, and the message is "Page loading complete.".&#010 <P>&#010 Each logging <i>category</i> has a
  * <i>priority</i> associated with it.  If a message's&#010 priority is lower than the current priority for the category it
  * is logged in, the&#010 message will be suppressed (will not appear in the "Results" pane).  &#010 <p>&#010 It is
@@ -30,8 +30,8 @@ package com.smartgwt.client.docs;
  * onclick="window.open('http://www.getfirebug.com/');return false;">Firebug</a> extensions for FireFox.  "Console2"
  * simply&#010 replaces the default FireFox JavaScript console with a more functional console;&#010 Firebug aims to be a
  * true debugger.  Both tools will typically load or identify the correct&#010 file and line number where a JS error
- * occured.&#010 <P>&#010 In Internet Explorer, when JS errors occur, Smart GWT is able to report full stack traces&#010 in
- * the Developer Console.  This can be invaluable when your code triggers a JS error&#010 in the Smart GWT libraries
+ * occurred.&#010 <P>&#010 In Internet Explorer, when JS errors occur, Smart GWT is able to report full stack traces&#010
+ * in the Developer Console.  This can be invaluable when your code triggers a JS error&#010 in the Smart GWT libraries
  * themselves, or when it is unclear how your code is being&#010 called.  Stack traces from Internet Explorer should
  * <i>always</i> be included in issue&#010 reports sent to Isomorphic Software, if at all possible. &#010 <P>&#010
  * <h4>Inspecting application state</h4>&#010 <P>&#010 The "Evaluate JS Expression" area of the Results Pane in the
