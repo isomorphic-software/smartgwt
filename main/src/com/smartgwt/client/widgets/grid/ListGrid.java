@@ -72,7 +72,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     public ListGrid(){
-        setModalEditing(true);setAlternateRecordStyles(true);scClassName = "ListGrid";
+        setModalEditing(true);scClassName = "ListGrid";
     }
 
     public ListGrid(JavaScriptObject jsObj){
@@ -454,6 +454,58 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldWidths autoFitFieldWidths} is enabled and the
+     * calculated field sizes are wide enough that horizontal scrolling would be introduced, this attribute may be set to an
+     * array of fieldNames, causing those fields to be clipped rather than forcing horizontal scrollbars to appear.
+     *
+     * @param autoFitClipFields autoFitClipFields Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setAutoFitClipFields(String[] autoFitClipFields)  throws IllegalStateException {
+        setAttribute("autoFitClipFields", autoFitClipFields, false);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldWidths autoFitFieldWidths} is enabled and the
+     * calculated field sizes are wide enough that horizontal scrolling would be introduced, this attribute may be set to an
+     * array of fieldNames, causing those fields to be clipped rather than forcing horizontal scrollbars to appear.
+     *
+     *
+     * @return String
+     */
+    public String[] getAutoFitClipFields()  {
+        return getAttributeAsStringArray("autoFitClipFields");
+    }
+
+    /**
+     * The field to expand if {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldWidths autoFitFieldWidths} is
+     * enabled and auto-fitting will not fill all available horizontal space. <P> This is enabled automatically if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldWidths autoFitFieldWidths} is enabled, and if unset, will
+     * default to the text field with the longest  {@link com.smartgwt.client.data.DataSourceField#getLength length} if length
+     * is set, otherwise, the first text field with no width specified.
+     *
+     * @param autoFitExpandField autoFitExpandField Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setAutoFitExpandField(String autoFitExpandField)  throws IllegalStateException {
+        setAttribute("autoFitExpandField", autoFitExpandField, false);
+    }
+
+    /**
+     * The field to expand if {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldWidths autoFitFieldWidths} is
+     * enabled and auto-fitting will not fill all available horizontal space. <P> This is enabled automatically if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldWidths autoFitFieldWidths} is enabled, and if unset, will
+     * default to the text field with the longest  {@link com.smartgwt.client.data.DataSourceField#getLength length} if length
+     * is set, otherwise, the first text field with no width specified.
+     *
+     *
+     * @return String
+     */
+    public String getAutoFitExpandField()  {
+        return getAttributeAsString("autoFitExpandField");
+    }
+
+    /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData autoFitData} is set to <code>"vertical"</code> or
      * <code>"both"</code>  this property specifies the number of additional records for which the grid  will expand. If more
      * records are present, scrolling will be introduced to reach them as normal.
@@ -505,29 +557,31 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Enables autofitting of fields to values or titles. This property may be overridden on a per-field basis via {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidth autoFitWidth}. The {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidth autoFitWidth}.<br> The {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getAutoFitWidthApproach autoFitWidthApproach} controls whether fitting is to
-     * values, titles  or both. <P> If  width is also set on the field, it will be taken as a minimum width. {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getMinFieldWith minFieldWith} will also be respected. <P> Autofitting will be
-     * performed: <ul>  <li> whenever the dataset is completely changed or rows are added or removed  <li> whenever a field
-     * which is autofitting is changed </ul> Autofitting behavior continues until the user resizes the field manually, at which
-     * point it stops. The user can also perform a one-time auto-fit of fields via the header context menu if {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getCanAutoFitFields canAutoFitFields} is enabled. <P> When autofitting to
-     * column values, values from the rendered set of rows will be used to calculate the required column width - this may not
-     * match the complete set of data for the grid when rendering rows incrementally. See {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getShowAllRecords showAllRecords} and {@link
+     * values, titles  or both. This property may also be overridden on a per field basis. <P> If  width is also set on the
+     * field, it will be taken as a minimum width. {@link com.smartgwt.client.widgets.grid.ListGrid#getMinFieldWith
+     * minFieldWith} will also be respected. <P> Autofitting will be performed: <ul>  <li> whenever the dataset is completely
+     * changed or rows are added or removed  <li> whenever a field which is autofitting is changed </ul> Autofitting behavior
+     * continues until the user resizes the field manually, at which point it stops. The user can also perform a one-time
+     * auto-fit of fields via the header context menu if {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAutoFitFields
+     * canAutoFitFields} is enabled. <P> When autofitting to column values, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDefaultFieldWidth ListGrid.getDefaultFieldWidth} will be called to
+     * determine the space required for a field's values. This method uses values from the rendered set of rows to calculate
+     * the required column width. The values used not match the complete set of data for the grid when rendering rows
+     * incrementally. See {@link com.smartgwt.client.widgets.grid.ListGrid#getShowAllRecords showAllRecords} and {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getDrawAheadRatio drawAheadRatio}) to control incremental rendering of rows.
-     * <P> Note that the following field types will not auto-fit by default: <code>"boolean"</code> <code>"icon"</code>,
-     * <code>"image"</code>, <code>"date"</code>, <code>"time"</code>, <code>"datetime"</code>. These field types usually have
-     * an implied width making auto-fit unnecessary. You can enable autoFit on these field types by explicitly setting {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getAutoFitFieldWidth autoFitFieldWidth} to true on the fields. Also note
-     * that for <code>"image"</code> fields, autofitting will only work if the  {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getImageWidth imageWidth} is specified. <P> Using this feature has a
-     * performance penalty roughly comparable to always rendering  one additional field per field where autofitting is enabled.
-     * Specifically, enabling it for all fields would be comparable to <i>both</i> doubling the number of fields <i>and</i>
-     * disabling {@link com.smartgwt.client.widgets.grid.ListGrid#getShowAllColumns horizontal incremental rendering}. In a
-     * grid where only half the fields are normally visible and hence only half are normally rendered, this would be roughly 4
-     * times slower overall. <P> Which fields are currently autofitting is saved as part of the  {@link
+     * <P> Note that for <code>icon</code> type fields, the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFitIconFields autoFitIconFields}  property setting may turn on
+     * auto-fit-width behavior for specific fields by default, even if <code>autoFitFieldWidths</code> is false for the grid as
+     * a whole. <P> Using this feature has a performance penalty roughly comparable to always rendering  one additional field
+     * per field where autofitting is enabled.  Specifically, enabling it for all fields would be comparable to <i>both</i>
+     * doubling the number of fields <i>and</i> disabling {@link com.smartgwt.client.widgets.grid.ListGrid#getShowAllColumns
+     * horizontal incremental rendering}. In a grid where only half the fields are normally visible and hence only half are
+     * normally rendered, this would be roughly 4 times slower overall.<br> This performance penalty is a result of {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDefaultFieldWidth ListGrid.getDefaultFieldWidth} having to render out the
+     * data set offscreen and measure the rendered content - it does not apply for cases where this method can return a simple
+     * fixed values (as with icon fields). <P> Which fields are currently autofitting is saved as part of the  {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getViewState view state} of the ListGrid.
      *
      * @param autoFitFieldWidths autoFitFieldWidths Default value is null
@@ -539,29 +593,31 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Enables autofitting of fields to values or titles. This property may be overridden on a per-field basis via {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidth autoFitWidth}. The {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidth autoFitWidth}.<br> The {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getAutoFitWidthApproach autoFitWidthApproach} controls whether fitting is to
-     * values, titles  or both. <P> If  width is also set on the field, it will be taken as a minimum width. {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getMinFieldWith minFieldWith} will also be respected. <P> Autofitting will be
-     * performed: <ul>  <li> whenever the dataset is completely changed or rows are added or removed  <li> whenever a field
-     * which is autofitting is changed </ul> Autofitting behavior continues until the user resizes the field manually, at which
-     * point it stops. The user can also perform a one-time auto-fit of fields via the header context menu if {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getCanAutoFitFields canAutoFitFields} is enabled. <P> When autofitting to
-     * column values, values from the rendered set of rows will be used to calculate the required column width - this may not
-     * match the complete set of data for the grid when rendering rows incrementally. See {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getShowAllRecords showAllRecords} and {@link
+     * values, titles  or both. This property may also be overridden on a per field basis. <P> If  width is also set on the
+     * field, it will be taken as a minimum width. {@link com.smartgwt.client.widgets.grid.ListGrid#getMinFieldWith
+     * minFieldWith} will also be respected. <P> Autofitting will be performed: <ul>  <li> whenever the dataset is completely
+     * changed or rows are added or removed  <li> whenever a field which is autofitting is changed </ul> Autofitting behavior
+     * continues until the user resizes the field manually, at which point it stops. The user can also perform a one-time
+     * auto-fit of fields via the header context menu if {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAutoFitFields
+     * canAutoFitFields} is enabled. <P> When autofitting to column values, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDefaultFieldWidth ListGrid.getDefaultFieldWidth} will be called to
+     * determine the space required for a field's values. This method uses values from the rendered set of rows to calculate
+     * the required column width. The values used not match the complete set of data for the grid when rendering rows
+     * incrementally. See {@link com.smartgwt.client.widgets.grid.ListGrid#getShowAllRecords showAllRecords} and {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getDrawAheadRatio drawAheadRatio}) to control incremental rendering of rows.
-     * <P> Note that the following field types will not auto-fit by default: <code>"boolean"</code> <code>"icon"</code>,
-     * <code>"image"</code>, <code>"date"</code>, <code>"time"</code>, <code>"datetime"</code>. These field types usually have
-     * an implied width making auto-fit unnecessary. You can enable autoFit on these field types by explicitly setting {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getAutoFitFieldWidth autoFitFieldWidth} to true on the fields. Also note
-     * that for <code>"image"</code> fields, autofitting will only work if the  {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getImageWidth imageWidth} is specified. <P> Using this feature has a
-     * performance penalty roughly comparable to always rendering  one additional field per field where autofitting is enabled.
-     * Specifically, enabling it for all fields would be comparable to <i>both</i> doubling the number of fields <i>and</i>
-     * disabling {@link com.smartgwt.client.widgets.grid.ListGrid#getShowAllColumns horizontal incremental rendering}. In a
-     * grid where only half the fields are normally visible and hence only half are normally rendered, this would be roughly 4
-     * times slower overall. <P> Which fields are currently autofitting is saved as part of the  {@link
+     * <P> Note that for <code>icon</code> type fields, the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFitIconFields autoFitIconFields}  property setting may turn on
+     * auto-fit-width behavior for specific fields by default, even if <code>autoFitFieldWidths</code> is false for the grid as
+     * a whole. <P> Using this feature has a performance penalty roughly comparable to always rendering  one additional field
+     * per field where autofitting is enabled.  Specifically, enabling it for all fields would be comparable to <i>both</i>
+     * doubling the number of fields <i>and</i> disabling {@link com.smartgwt.client.widgets.grid.ListGrid#getShowAllColumns
+     * horizontal incremental rendering}. In a grid where only half the fields are normally visible and hence only half are
+     * normally rendered, this would be roughly 4 times slower overall.<br> This performance penalty is a result of {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDefaultFieldWidth ListGrid.getDefaultFieldWidth} having to render out the
+     * data set offscreen and measure the rendered content - it does not apply for cases where this method can return a simple
+     * fixed values (as with icon fields). <P> Which fields are currently autofitting is saved as part of the  {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getViewState view state} of the ListGrid.
      *
      *
@@ -569,6 +625,53 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public Boolean getAutoFitFieldWidths()  {
         return getAttributeAsBoolean("autoFitFieldWidths");
+    }
+
+    /**
+     * Smart GWT listGrids have special logic to automatically size fields that are displayed as an icon - that is fields with 
+     * {@link com.smartgwt.client.types.ListGridFieldType type:"icon"}, fields displaying only {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getShowValueIconOnly value icons}, and boolean fields (which are rendered
+     * as a checkmark type icon by default. <P> This attribute controls this behavior - governing whether icon fields should be
+     * sized to fit their content (icon), title, or whether to disable this  behavior. Setting this value to
+     * <code>"title"</code> or <code>"iconWidth"</code> will cause {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidth autoFitWidth} to be enabled by default for all  icon
+     * fields with the {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidthApproach autoFitWidthApproach} set
+     * to  <code>"value"</code> or <code>"both"</code> as appropriate. Note that the width required for the icons is calculated
+     * by {@link com.smartgwt.client.widgets.grid.ListGrid#getDefaultFieldWidth ListGrid.getDefaultFieldWidth} which performs a
+     * simple calculation based on the specified icon width for these types of fields. <P> This setting governs default
+     * behavior for icon fields - for specific fields within a grid, this default behavior can be overridden by setting an
+     * explicit {@link com.smartgwt.client.widgets.grid.ListGridField#getWidth width} or explicitly enabling {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidth autoFitWidth} and setting {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidthApproach autoFitWidthApproach} on the field in question.
+     *
+     * @param autoFitIconFields autoFitIconFields Default value is "title"
+     */
+    public void setAutoFitIconFields(AutoFitIconFieldType autoFitIconFields) {
+        setAttribute("autoFitIconFields", autoFitIconFields.getValue(), true);
+    }
+
+    /**
+     * Smart GWT listGrids have special logic to automatically size fields that are displayed as an icon - that is fields with 
+     * {@link com.smartgwt.client.types.ListGridFieldType type:"icon"}, fields displaying only {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getShowValueIconOnly value icons}, and boolean fields (which are rendered
+     * as a checkmark type icon by default. <P> This attribute controls this behavior - governing whether icon fields should be
+     * sized to fit their content (icon), title, or whether to disable this  behavior. Setting this value to
+     * <code>"title"</code> or <code>"iconWidth"</code> will cause {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidth autoFitWidth} to be enabled by default for all  icon
+     * fields with the {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidthApproach autoFitWidthApproach} set
+     * to  <code>"value"</code> or <code>"both"</code> as appropriate. Note that the width required for the icons is calculated
+     * by {@link com.smartgwt.client.widgets.grid.ListGrid#getDefaultFieldWidth ListGrid.getDefaultFieldWidth} which performs a
+     * simple calculation based on the specified icon width for these types of fields. <P> This setting governs default
+     * behavior for icon fields - for specific fields within a grid, this default behavior can be overridden by setting an
+     * explicit {@link com.smartgwt.client.widgets.grid.ListGridField#getWidth width} or explicitly enabling {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidth autoFitWidth} and setting {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidthApproach autoFitWidthApproach} on the field in question.
+     *
+     *
+     * @return AutoFitIconFieldType
+     */
+    public AutoFitIconFieldType getAutoFitIconFields()  {
+        return EnumUtil.getEnum(AutoFitIconFieldType.values(), getAttribute("autoFitIconFields"));
     }
 
     /**
@@ -4465,7 +4568,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * the height of the   row.  However, if you want components to completely fill a cell at it's default height,   set
      * height: "100%" or rows will render at the default height of the component. </li>  <li><code>"expand"</code>: the
      * component will be written into the cell below the  normal cell content, causing the cell to expand vertically to
-     * accomodate it. <li><code>null</code>: If this attribute is unset, we will default to showing  recordComponents with
+     * accommodate it. <li><code>null</code>: If this attribute is unset, we will default to showing  recordComponents with
      * position <code>"within"</code> if   {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponentsByCell
      * showRecordComponentsByCell} is true, otherwise using <code>"expand"</code>  logic. </ul>
      *
@@ -4485,7 +4588,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * the height of the   row.  However, if you want components to completely fill a cell at it's default height,   set
      * height: "100%" or rows will render at the default height of the component. </li>  <li><code>"expand"</code>: the
      * component will be written into the cell below the  normal cell content, causing the cell to expand vertically to
-     * accomodate it. <li><code>null</code>: If this attribute is unset, we will default to showing  recordComponents with
+     * accommodate it. <li><code>null</code>: If this attribute is unset, we will default to showing  recordComponents with
      * position <code>"within"</code> if   {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponentsByCell
      * showRecordComponentsByCell} is true, otherwise using <code>"expand"</code>  logic. </ul>
      *
@@ -6916,42 +7019,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.expandRecord(record.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-            
-    /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
-     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
-     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
-     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
-     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
-     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
-     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
-     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
-     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
-     */
-    public native void exportData() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.exportData();
-    }-*/;
-
-    /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
-     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
-     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
-     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
-     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
-     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
-     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
-     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
-     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
-     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
-     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
-     */
-    public native void exportData(DSRequest requestProperties) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
-    }-*/;
     /**
      * Add a fieldStateChanged handler.
      * <p>
@@ -7027,6 +7094,25 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var ret = self.getCriteria();
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+            
+    /**
+     * Method to calculate and return the default width of a field. This method is called to calculate the size of each field's
+     * content as part of the  {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldWidths field auto fit} behavior.
+     * <P> The default implementation varies by {@link com.smartgwt.client.types.ListGridFieldType field type}.  For fields of
+     * type <code>"icon"</code>, or fields which show only a  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getValueIcons valueIcon} as a value, and for boolean fields which show a
+     * checkbox value, the width will be calculated based on the icon size and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getIconFieldPadding iconFieldPadding}. For other fields the width will be
+     * calculated based on the rendered width of content. Note that for  <code>"image"</code> type fields, this method will
+     * rely on the {@link com.smartgwt.client.widgets.grid.ListGridField#getImageWidth imageWidth} being specified.
+     * @param field Field for which the size should be determined
+     *
+     * @return default size required for the field's content.
+     */
+    public native int getDefaultFieldWidth(ListGridField field) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getDefaultFieldWidth(field.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
             
     /**
@@ -11504,12 +11590,69 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }
         return new RecordList(dataJS);
     }
+
+    /**
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
+     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
+     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
+     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
+     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
+     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
+     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
+     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
+     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
+     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
+     */
+    public native void exportData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData();
+    }-*/;
+
+    /**
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
+     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
+     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
+     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
+     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
+     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
+     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
+     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
+     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
+     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
+     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void exportData(DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
     
+   /**
+    * Exports this component's data with client-side formatters applied, so is suitable for 
+    * direct display to users.  This feature requires the SmartClient server, but does not 
+    * rely on any server-side DataSources.
+    * <P>To export unformatted data from this component's dataSource, see 
+    * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
+    * which does not include client-side formatters, 
+    * but relies on both the SmartClient server and server-side DataSources.
+    * @see com.smartgwt.client.data.DataSource#exportClientData
+    */
     public native void exportClientData() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportClientData();
     }-*/;
 
+   /**
+    * Exports this component's data with client-side formatters applied, so is suitable for 
+    * direct display to users.  This feature requires the SmartClient server, but does not 
+    * rely on any server-side DataSources.
+    * <P>To export unformatted data from this component's dataSource, see
+    * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
+    * which does not include client-side formatters, 
+    * but relies on both the SmartClient server and server-side DataSources.
+    * @param requestProperties Request properties for the export
+    * @see com.smartgwt.client.data.DataSource#exportClientData
+    */
     public native void exportClientData(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportClientData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
