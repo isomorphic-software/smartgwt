@@ -35,24 +35,24 @@ package com.smartgwt.client.docs;
  * via a .cfg.xml file as described above, for on-the-fly mappings.&#010 </ul>&#010 <P>&#010 <b>Mapping
  * DSRequest/DSResponse to Hibernate</b>&#010 <P>&#010 This integration strategy uses the server-side Java APIs described
  * in&#010 {@link com.smartgwt.client.docs.ServerDataIntegration}.  Two complete examples of Hibernate integration are&#010
- * provided in the SDK, one using DMI and one using {@link com.smartgwt.client.rpc.RPCManager} dispatch.  Both&#010 are
- * accessible from the SDK Explorer as Examples->Server Integration, and both include&#010 sample Hibernate configuration
- * as well as a sample UI capable of loading and saving data.&#010 <ul>&#010 <li>&#010 <a
- * href='/examples/server_integration/index.html#customDataSourceIntegrationHibernate'
+ * provided in the SDK, one using {@link com.smartgwt.client.docs.DmiOverview DMI} and one using {@link
+ * com.smartgwt.client.rpc.RPCManager} dispatch.  Both&#010 are accessible from the SDK Explorer as Examples->Server
+ * Integration, and both include&#010 sample Hibernate configuration as well as a sample UI capable of loading and saving
+ * data.&#010 <ul>&#010 <li>&#010 <a href='/examples/server_integration/index.html#customDataSourceIntegrationHibernate'
  * onclick="window.open('/examples/server_integration/index.html#customDataSourceIntegrationHibernate');return
  * false;">"Custom DataSource Integration with Hibernate"</a> &#010 shows how to create a .jsp that uses RPCManager
  * dispatch to implement all four DataSource&#010 request {@link com.smartgwt.client.data.DSRequest#getOperationType
  * operationType}s via Hibernate for a sample bean.&#010 <li>&#010 <a
  * href='/examples/server_integration/index.html#springDSHiberateDMI'
  * onclick="window.open('/examples/server_integration/index.html#springDSHiberateDMI');return false;">"Spring DataSource
- * Integration using DMI to Hibernate"</a>&#010 shows how to use Smart GWT Direct Method Invocation (DMI) to implement all
- * four&#010 DataSource operations with Hibernate.  This particular example uses&#010 {@link
- * com.smartgwt.client.docs.SpringIntegration Spring}-based lookup of the target for DMI, however, the same&#010 approach
- * will work without Spring - see other DMI examples on the same page for non-Spring&#010 methods of DMI target
- * lookup.&#010 </ul>&#010 As discussed under DMI, whether to use DMI or RPCManager dispatch is largely a matter&#010 of
- * preference, however if you are already using Spring, a DMI-based approach is probably&#010 a better fit.&#010 <P>&#010
- * <b>serverType:"hibernate"</b>&#010 <P>&#010 As with DataSources using Smart GWT's built-in {@link
- * com.smartgwt.client.docs.SqlDataSource SQL engine}, you&#010 need only {@link
+ * Integration using DMI to Hibernate"</a>&#010 shows how to use Smart GWT Direct Method Invocation ({@link
+ * com.smartgwt.client.docs.DmiOverview DMI}) to implement all four&#010 DataSource operations with Hibernate.  This
+ * particular example uses&#010 {@link com.smartgwt.client.docs.SpringIntegration Spring}-based lookup of the target for
+ * DMI, however, the same&#010 approach will work without Spring - see other DMI examples on the same page for
+ * non-Spring&#010 methods of DMI target lookup.&#010 </ul>&#010 As discussed under DMI, whether to use DMI or RPCManager
+ * dispatch is largely a matter&#010 of preference, however if you are already using Spring, a DMI-based approach is
+ * probably&#010 a better fit.&#010 <P>&#010 <b>serverType:"hibernate"</b>&#010 <P>&#010 As with DataSources using Smart
+ * GWT's built-in {@link com.smartgwt.client.docs.SqlDataSource SQL engine}, you&#010 need only {@link
  * com.smartgwt.client.docs.DataSourceDeclaration create a DataSource} in XML format - no Java&#010 classes or other
  * configuration are required.  The {@link com.smartgwt.client.docs.AdminConsole Admin Console}'s&#010 "Import DataSources"
  * section can be used to import test data into serverType:"hibernate"&#010 DataSources in the same manner as

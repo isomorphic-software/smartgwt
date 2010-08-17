@@ -7,7 +7,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.DataSource#getUseFlatFields
  * @see com.smartgwt.client.data.DataSource#getShowLocalFieldsOnly
  * @see com.smartgwt.client.data.DataSource#getUseParentFieldOrder
- * @see com.smartgwt.client.data.DataSource#getAutoDeriveSchema
+ * @see com.smartgwt.client.docs.serverds.DataSource#autoDeriveSchema
+ * @see com.smartgwt.client.docs.serverds.DataSource#schemaBean
  */
 public interface Fields {
 }

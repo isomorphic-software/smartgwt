@@ -28,18 +28,19 @@ package com.smartgwt.client.docs;
  * style="color:red;font-weight:bold;">NOTE:</span> request processing engines such as Struts may parse the inbound request
  * before Smart GWT receives it.  If you are creating an RPCManager object inside of a Struts Action and the file being
  * uploaded is not available via <code>dsRequest.getUploadedFile()</code>, this is likely to be the problem, and you should
- * use Smart GWT DMI instead. <P> Server-side validation errors may be provided, including validation errors for the
- * uploaded file (such as too large or invalid content), and will be displayed in the form that attempted an upload. <P> Be
- * aware of the following special concerns when processing file uploads: <ul> <li> if you provide your own Java Servlet or
- * JSP that creates an instance of RPCManager in order process Smart GWT requests, many APIs of the HttpServletRequest are
- * not safe to call before you have created the RPCManager, passing in the HttpServletRequest.  These include getReader(),
- * getParameter() and other commonly called methods.  This is a limitation of Java Servlets, not specific to Smart GWT <li>
- * unlike other DataSource "add" and "update" operations, you are not expected to return the file as part of the data
- * returned in the DSResponse </ul> <P> <b>Multi file upload: MultiFileItem</b> <P> The MultiFileItem provides an interface
- * for a user to save one or more files that are related to a DataSource record, where each file is represented by a record
- * in a related DataSource. <P> See the MultiFileItem docs for details. <P> <b>Upload without the Smart GWT Server</b> <P>
- * If it is acceptable that the application will do a full-page reload after the upload completes, you can simply: <ul>
- * <li> set {@link com.smartgwt.client.widgets.form.DynamicForm#getEncoding encoding} to "multipart" <li> include an {@link
+ * use Smart GWT {@link com.smartgwt.client.docs.DmiOverview DMI} instead. <P> Server-side validation errors may be
+ * provided, including validation errors for the uploaded file (such as too large or invalid content), and will be
+ * displayed in the form that attempted an upload. <P> Be aware of the following special concerns when processing file
+ * uploads: <ul> <li> if you provide your own Java Servlet or JSP that creates an instance of RPCManager in order process
+ * Smart GWT requests, many APIs of the HttpServletRequest are not safe to call before you have created the RPCManager,
+ * passing in the HttpServletRequest.  These include getReader(), getParameter() and other commonly called methods.  This
+ * is a limitation of Java Servlets, not specific to Smart GWT <li> unlike other DataSource "add" and "update" operations,
+ * you are not expected to return the file as part of the data returned in the DSResponse </ul> <P> <b>Multi file upload:
+ * MultiFileItem</b> <P> The MultiFileItem provides an interface for a user to save one or more files that are related to a
+ * DataSource record, where each file is represented by a record in a related DataSource. <P> See the MultiFileItem docs
+ * for details. <P> <b>Upload without the Smart GWT Server</b> <P> If it is acceptable that the application will do a
+ * full-page reload after the upload completes, you can simply: <ul> <li> set {@link
+ * com.smartgwt.client.widgets.form.DynamicForm#getEncoding encoding} to "multipart" <li> include an {@link
  * com.smartgwt.client.widgets.form.fields.UploadItem} to get a basic HTML upload control <li> set {@link
  * com.smartgwt.client.widgets.form.DynamicForm#getAction action} to a URL where you have deployed server-side code to
  * handle the upload <li> call {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm DynamicForm.submitForm} to

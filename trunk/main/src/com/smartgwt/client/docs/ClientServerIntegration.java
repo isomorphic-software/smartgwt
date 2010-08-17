@@ -48,25 +48,26 @@ package com.smartgwt.client.docs;
  * target="examples">Visual Builder wizards</a> or the Batch DataSource            Generator tool.  Or, generate tables
  * from DataSource definitions you create by            hand</li>   </ul>     <li>If your ultimate storage is not SQL,
  * write a          {@link com.smartgwt.client.docs.WriteCustomDataSource custom DataSource}</li>     <li>Whether or not
- * your storage is SQL, add business logic either declaratively in the          DataSource definition, via DMI, or any
- * combination of the two:   <ul><li>The &lt;criteria&gt; and &lt;values&gt; properties of an {@link
- * com.smartgwt.client.data.OperationBinding}           allow you to dynamically set data values at transaction-processing
- * time, using            built-in {@link com.smartgwt.client.docs.VelocitySupport Velocity support}</li>      
- * <li>Override the <code>validate()</code> method of the DataSource to provide extra           custom validations - just
- * call <code>super</code> to obtain the list of errors            derived from Smart GWT validations, then add to that
- * list as required with your           own custom code</li>       <li>Override the <code>execute()</code> method of the
- * DataSource to add extra processing           either before or after the Smart GWT processing</li>       <li>Use 
- * Transaction Chaining to dynamically set           data values according to the results of earlier transactions</li>     
- * <li>For SQL DataSources, use {@link com.smartgwt.client.docs.CustomQuerying SQL Templating} to change,            add to
- * or even completely replace the SQL sent to the database, and to implement           special query requirements</li>     
- * <li>For Hibernate DataSources, use {@link com.smartgwt.client.data.OperationBinding#getCustomHQL custom HQL queries}    
- * to implement special query requirements</li>   </ul>         Read more about the server-side request processing flow and
- * how to customize it in         {@link com.smartgwt.client.docs.ServerDataIntegration the server integration overview}.
- * </ul> </ul> <ul> <li>If you do not have a Java server</li>   <ul><li>If you are not obliged to use a pre-existing
- * network protocol, use the            {@link com.smartgwt.client.data.RestDataSource}</li>       <li>Otherwise, use
- * {@link com.smartgwt.client.docs.ClientDataIntegration client-side data integration} features           to create a
- * custom client-side DataSource that adapts the DataSource protocol to            your existing services</li>   </ul>
- * </ul> <p><br> <b>RPCs: Unstructured Server Communication</b> <P> Smart GWT also supports "unstructured" client-server
+ * your storage is SQL, add business logic either declaratively in the          DataSource definition, via {@link
+ * com.smartgwt.client.docs.DmiOverview DMI}, or any combination of the two:   <ul><li>The &lt;criteria&gt; and
+ * &lt;values&gt; properties of an {@link com.smartgwt.client.data.OperationBinding}           allow you to dynamically set
+ * data values at transaction-processing time, using            built-in {@link com.smartgwt.client.docs.VelocitySupport
+ * Velocity support}</li>       <li>Override the <code>validate()</code> method of the DataSource to provide extra         
+ * custom validations - just call <code>super</code> to obtain the list of errors            derived from Smart GWT
+ * validations, then add to that list as required with your           own custom code</li>       <li>Override the
+ * <code>execute()</code> method of the DataSource to add extra processing           either before or after the Smart GWT
+ * processing</li>       <li>Use  Transaction Chaining to dynamically set           data values according to the results of
+ * earlier transactions</li>       <li>For SQL DataSources, use {@link com.smartgwt.client.docs.CustomQuerying SQL
+ * Templating} to change,            add to or even completely replace the SQL sent to the database, and to implement      
+ * special query requirements</li>       <li>For Hibernate DataSources, use {@link
+ * com.smartgwt.client.data.OperationBinding#getCustomHQL custom HQL queries}           to implement special query
+ * requirements</li>   </ul>         Read more about the server-side request processing flow and how to customize it in    
+ * {@link com.smartgwt.client.docs.ServerDataIntegration the server integration overview}. </ul> </ul> <ul> <li>If you do
+ * not have a Java server</li>   <ul><li>If you are not obliged to use a pre-existing network protocol, use the           
+ * {@link com.smartgwt.client.data.RestDataSource}</li>       <li>Otherwise, use {@link
+ * com.smartgwt.client.docs.ClientDataIntegration client-side data integration} features           to create a custom
+ * client-side DataSource that adapts the DataSource protocol to            your existing services</li>   </ul> </ul>
+ * <p><br> <b>RPCs: Unstructured Server Communication</b> <P> Smart GWT also supports "unstructured" client-server
  * operations.  These  {@link com.smartgwt.client.rpc.RPCRequest}s (Remote Procedure Call Requests) are a low-level, very
  * flexible  mechanism for custom client-server communications.  In an nutshell, RPCRequests: <ul> <li> may contain
  * arbitrary data <li> are always initiated by custom code (a call to {@link com.smartgwt.client.rpc.RPCManager#send
