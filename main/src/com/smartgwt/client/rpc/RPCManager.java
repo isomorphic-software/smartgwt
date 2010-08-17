@@ -56,50 +56,65 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * RPCManager is a static singleton class that manages transparent client/server RPC (remote procedure call).  This class
- * provides a generic, low-level client/server communication integration point.  You can use it to send arbitrary data to a
- * URL of your choosing on the server and optionally be called back with server-returned data when the server replies.  
- * You can process the RPC request in a JSP, Servlet or Filter on the server. <P> Smart GWT's powerful {@link
- * com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents} automatically issue RPCs as necessary, based on the 
- * {@link com.smartgwt.client.docs.DataSourceOperations DataSource protocol}.  To integrate DataBoundComponents with your
- * server, {@link com.smartgwt.client.docs.ClientServerIntegration start here}. <P> <u>Simple example (client code):</u>
- * <P><code> var data = { here: "is some data", to: ["send to the server"]};<br> RPCManager.sendRequest({ data: data,
- * callback: "myCallback(data)", actionURL: "/rpcHandler.jsp"});<br> function myCallback(data) { alert("response from the
- * server: " + data); } </code><br><br> <u>Simple example (server code: /rpcHandler.jsp):</u> <br><br><code> RPCManager rpc
- * = new RPCManager(request, response, out);<br> Object data = rpc.getData();<br> System.out.println("client sent: " +
- * data.toString());<br> rpc.send("here's a response");<br> </code> <P> Note that, while the example above uses the Smart
- * GWT Java Server, the RPCManager is also capable of issuing RPCs that do not require a Smart GWT server.  See {@link
- * com.smartgwt.client.docs.ClientDataIntegration Client-Side Data Integration} for details. <P> <u><b>Queuing</b></u> <br>
- * Because of browser limitations on the total number of simultaneous HTTP connections to a given server, batching multiple
- * RPC requests into a single HTTP request is highly advisable whenever possible.  The RPCManager provides a queuing
- * mechanism that allows this. <br><br> <u>Queuing example (client code):</u> <br><br><code> RPCManager.startQueue();<br>
- * RPCManager.send("a string of data", "myCallback(data)", {actionURL: "/rpcHandler.jsp"});<br> RPCManager.sendRequest({
- * data: ["some", "more data", 2], callback: "myCallback(data)", actionURL: "/rpcHandler.jsp"});<br>
- * RPCManager.sendRequest({ data: "different callback", callback: "myCallback2(data)", actionURL: "/rpcHandler.jsp"});<br>
- * RPCManager.sendQueue()<br> function myCallback(data) { alert("response from the server: " + data); }<br> function
- * myCallback2(data) { alert("response from the server (other callback): " + data); } </code><br><br> <u>Queuing example
- * (server code: /rpcHandler.jsp):</u> <br><br><code> RPCManager rpc = new RPCManager(request, response, out);<br>
- * for(Iterator i = rpc.getRequests().iterator(); i.hasNext();) {<br> &nbsp;&nbsp;&nbsp;&nbsp;RPCRequest rpcRequest =
- * (RPCRequest)i.next();<br> &nbsp;&nbsp;&nbsp;&nbsp;Object data = rpcRequest.getData();<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("client sent:" + data.toString());<br> &nbsp;&nbsp;&nbsp;&nbsp;//send back
- * the data sent to us by the client<br> &nbsp;&nbsp;&nbsp;&nbsp;rpc.send(rpcRequest, new RPCResponse(data));<br> }<br>
- * </code> <br><br> <u><b>Error Handling</b></u> <br> The {@link com.smartgwt.client.rpc.RPCResponse} object has an integer
- * status field that the RPCManager inspects when the response is received from the server. If the value of this field is
- * less than zero, the request is considered to have failed.  Otherwise it is considered to have succeeded.  This value is
- * settable via the setStatus() method call on the RPCResponse server-side object. <br><br> If the status field shows a
- * failure, the RPCManager will, by default, show a dialog with the contents of the {@link
- * com.smartgwt.client.rpc.RPCRequest#getData data} field (which is assumed to contain a  meaningful description of the
- * error that occurred).  If you specified a callback in your RPCRequest, it will <b>not</b> be called if the status shows
- * a failure (see below for how to change this). <br><br> If the status field shows success, the RPCManager takes no
- * special action. <br><br> The built-in status codes and default behavior are there for convenience.  You can choose to
- * completely ignore it and handle errors as you see fit (for example by encoding them into the data field returned by the
- * server, and always setting the RPCResponse status field to a success value).  In fact, the status field is automatically
- * set to a success code (RPCResponse.STATUS_SUCCESS) by the constructor of the RPCResponse object on the server.  <br><br>
- * If you choose to use the status field, but want to handle the errors yourself in your callback (and suppress the default
- * error dialog popped up by the RPCManager), simply specify the {@link
- * com.smartgwt.client.rpc.RPCRequest#getWillHandleError willHandleError:true} on your RPCRequest object.  This allows you
- * to use the RPCManager.sendError() convenience methods on the server without the default error handling behavior on the
- * client.
+ * RPCManager is a static singleton class that manages transparent client/server RPC (remote&#010 procedure call).  This
+ * class provides a generic, low-level client/server communication&#010 integration point.&#010 <P>&#010 Smart GWT's
+ * powerful databinding subsystem (see {@link com.smartgwt.client.data.DataSource}, &#010 {@link
+ * com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents}) automatically make use of this class to issue&#010
+ * RPCs as necessary, based on the &#010 {@link com.smartgwt.client.docs.DataSourceOperations DataSource protocol}. To
+ * integrate DataBoundComponents&#010 with your server, {@link com.smartgwt.client.docs.ClientServerIntegration start
+ * here}.&#010 <P>&#010 For arbitrary client/server interactions outside of the DataSource subsystem, the&#010 Smart GWT
+ * server also provides the {@link com.smartgwt.client.rpc.RPCManager#getDmiOverview Direct Method Invocation}
+ * feature.&#010 <P>&#010 The RPCManager class can also be used <i>directly</i> to send data to a URL of your&#010 choosing
+ * and optionally be called back with server-returned data when the server replies.&#010 <P>&#010 The Smart GWT {@link
+ * com.smartgwt.client.rpc.RPCManager#getIscServer server code} has APIs for processing RPC requests &#010 providing
+ * features such as automatic Java &lt;--&gt; JavaScript object translation &#010 and handling of queued requests.<br>&#010
+ * The {@link com.smartgwt.client.rpc.RPCManager#getServletDetails IDACall servlet} makes use of these features to handle
+ * standard&#010 {@link com.smartgwt.client.data.DataSource} requests and DMI calls. Developers can also override the&#010
+ * <code>actionURL</code> of specific requests and use these APIs directly in a &#010 JSP, Servlet or Filter.&#010 <P>&#010
+ * Note: the client-side RPCManager class can also be used without the Smart GWT server.&#010 For an overview of
+ * client/server interactions without the Smart GWT server, see&#010 {@link com.smartgwt.client.docs.NonJavaBackend this
+ * overview}.&#010 <P>&#010 <u>Simple arbitrary Remote Procedure Call example (client code):</u>&#010 &#010 &#010 <P>&#010
+ * <code>&#010 <pre>&#010  RPCRequest request = new RPCRequest();&#010  // Note data could be a String, Map or Record&#010 
+ * request.setData("Some data to send to the client");&#010  request.setActionURL("/rpcHandler.jsp");&#010 &#010 
+ * RPCManager.sendRequest(request, &#010      new RPCCallback () {&#010          public void execute(RPCResponse response,
+ * Object rawData, RPCRequest request) {&#010              SC.say("Response from the server:" + rawData);&#010         
+ * }&#010      }&#010  );&#010 </pre>&#010 </code>&#010 &#010 <P>&#010 <u>Simple arbitrary Remote Procedure Call example
+ * (server code: /rpcHandler.jsp):</u>&#010 <br><br><code>&#010 RPCManager rpc = new RPCManager(request, response,
+ * out);<br>&#010 Object data = rpc.getData();<br>&#010 System.out.println("client sent: " + data.toString());<br>&#010
+ * rpc.send("here's a response");<br>&#010 </code>&#010 <P>&#010 <u><b>Queuing</b></u>&#010 <br>&#010 Because of browser
+ * limitations on the total number of simultaneous HTTP connections to a given&#010 server, batching multiple RPC requests
+ * into a single HTTP request is highly advisable whenever&#010 possible.  The RPCManager provides a queuing mechanism that
+ * allows this.&#010 <br><br>&#010 <u>Queuing example (client code):</u>&#010 &#010 &#010 <br><br><code><pre>&#010  boolean
+ * wasQueuing = RPCManager.startQueue();&#010  &#010  RPCCallback callback = new RPCCallback() {&#010      public void
+ * execute(RPCResponse response, Object rawData, RPCRequest request) {&#010          Window.alert("response from server:" +
+ * rawData);&#010      }&#010  };&#010   &#010  RPCRequest request1 = new RPCRequest();&#010 
+ * request1.setActionURL("/rpcHandler.jsp");&#010  request1.setData("A String of Data");&#010 
+ * RPCManager.sendRequest(request1, callback);&#010   &#010  RPCRequest request2 = new RPCRequest();&#010 
+ * request2.setActionURL("/rpcHandler.jsp");&#010  request2.setData("Another String of Data");&#010 
+ * RPCManager.sendRequest(request2, callback);&#010   &#010  if (!wasQueuing) RPCManager.sendQueue();&#010
+ * </pre></code>&#010 &#010 <p>&#010 <u>Queuing example (server code: /rpcHandler.jsp):</u>&#010 <br><br><code>&#010
+ * RPCManager rpc = new RPCManager(request, response, out);<br>&#010 for(Iterator i = rpc.getRequests().iterator();
+ * i.hasNext();) {<br>&#010 &nbsp;&nbsp;&nbsp;&nbsp;RPCRequest rpcRequest = (RPCRequest)i.next();<br>&#010
+ * &nbsp;&nbsp;&nbsp;&nbsp;Object data = rpcRequest.getData();<br>&#010 &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("client
+ * sent:" + data.toString());<br>&#010 &nbsp;&nbsp;&nbsp;&nbsp;//send back the data sent to us by the client<br>&#010
+ * &nbsp;&nbsp;&nbsp;&nbsp;rpc.send(rpcRequest, new RPCResponse(data));<br>&#010 }<br>&#010 </code>&#010 <br><br>&#010
+ * <u><b>Error Handling</b></u>&#010 <br>&#010 The {@link com.smartgwt.client.rpc.RPCResponse} object has an integer status
+ * field that the RPCManager inspects when&#010 the response is received from the server. If the value of this field is
+ * less than zero, the&#010 request is considered to have failed.  Otherwise it is considered to have succeeded.  This&#010
+ * value is settable via the setStatus() method call on the RPCResponse server-side object.&#010 <br><br>&#010 If the
+ * status field shows a failure, the RPCManager will, by default, show a dialog with the&#010 contents of the {@link
+ * com.smartgwt.client.rpc.RPCRequest#getData data} field (which is assumed to contain a &#010 meaningful description of
+ * the error that occurred).  If you specified a callback in your&#010 RPCRequest, it will <b>not</b> be called if the
+ * status shows a failure (see below for how to&#010 change this).&#010 <br><br>&#010 If the status field shows success,
+ * the RPCManager takes no special action.&#010 <br><br>&#010 The built-in status codes and default behavior are there for
+ * convenience.  You can choose to&#010 completely ignore it and handle errors as you see fit (for example by encoding them
+ * into the data&#010 field returned by the server, and always setting the RPCResponse status field to a success&#010
+ * value).  In fact, the status field is automatically set to a success code&#010 (RPCResponse.STATUS_SUCCESS) by the
+ * constructor of the RPCResponse object on the server. &#010 <br><br>&#010 If you choose to use the status field, but want
+ * to handle the errors yourself in your callback&#010 (and suppress the default error dialog popped up by the RPCManager),
+ * simply specify the&#010 {@link com.smartgwt.client.rpc.RPCRequest#getWillHandleError willHandleError:true} on your
+ * RPCRequest object.  This&#010 allows you to use the RPCManager.sendError() convenience methods on the server without
+ * the&#010 default error handling behavior on the client.
  */
 public class RPCManager {
 
@@ -547,7 +562,7 @@ public class RPCManager {
             var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcResponse);
             var requestJ = @com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcRequest);
             if(callback != null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(responseJ, data, requestJ);
-        }), requestParams == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(requestParams));
+        }), requestParams == null ? null : requestParams.@com.smartgwt.client.rpc.RPCRequest::getJsObj());
     }-*/;
 
     /**
@@ -578,7 +593,7 @@ public class RPCManager {
             var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcResponse);
             var requestJ = @com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcRequest);
             if(callback != null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(responseJ, data, requestJ);
-        }), requestParams == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(requestParams));
+        }), requestParams == null ? null : requestParams.@com.smartgwt.client.rpc.RPCRequest::getJsObj());
     }-*/;
 
     /**
