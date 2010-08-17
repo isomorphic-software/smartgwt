@@ -451,6 +451,33 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     }
 
     /**
+     * When applying filter criteria to pickList data, what type of matching to use. <P> For a databound pickList ({@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getOptionDataSource optionDataSource} set),
+     * <code>textMatchStyle</code> is sent to the server as {@link com.smartgwt.client.data.DSRequest#getTextMatchStyle
+     * textMatchStyle}. <P> For a non-databound pickList, <code>textMatchStyle</code> is applied by  {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#filterClientPickListData ComboBoxItem.filterClientPickListData}.
+     *
+     * @param textMatchStyle textMatchStyle Default value is "startsWith"
+     */
+    public void setTextMatchStyle(TextMatchStyle textMatchStyle) {
+        setAttribute("textMatchStyle", textMatchStyle.getValue());
+    }
+
+    /**
+     * When applying filter criteria to pickList data, what type of matching to use. <P> For a databound pickList ({@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getOptionDataSource optionDataSource} set),
+     * <code>textMatchStyle</code> is sent to the server as {@link com.smartgwt.client.data.DSRequest#getTextMatchStyle
+     * textMatchStyle}. <P> For a non-databound pickList, <code>textMatchStyle</code> is applied by  {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#filterClientPickListData ComboBoxItem.filterClientPickListData}.
+     *
+     *
+     * @return TextMatchStyle
+     */
+    public TextMatchStyle getTextMatchStyle()  {
+        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("textMatchStyle"));
+    }
+
+    /**
      * If this form item maps data values to display values by retrieving the  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} values from an  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, this property  denotes the the
@@ -693,33 +720,6 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
         return getAttributeAsInt("pickListWidth");
     }
 
-    /**
-     * When applying filter criteria to pickList data, what type of matching to use.  Legal values are "substring"
-     * (value contains user input) or "startsWith" (value starts with user input.  Both matches are case insensitive.
-     * <P> For a databound pickList ({@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource
-     * optionDataSource} set), <code>textMatchStyle</code> is sent to the server as {@link
-     * com.smartgwt.client.data.DSRequest#getTextMatchStyle textMatchStyle}. <P> For a non-databound pickList,
-     * <code>textMatchStyle</code> is applied by  {@link com.smartgwt.client.widgets.form.fields.PickList#filterClientPickListData}.
-     *
-     * @param textMatchStyle textMatchStyle Default value is "startsWith"
-     */
-    public void setTextMatchStyle(TextMatchStyle textMatchStyle) {
-        setAttribute("textMatchStyle", textMatchStyle.getValue());
-    }
-
-    /**
-     * When applying filter criteria to pickList data, what type of matching to use.  Legal values are "substring"
-     * (value contains user input) or "startsWith" (value starts with user input.  Both matches are case insensitive.
-     * <P> For a databound pickList ({@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource
-     * optionDataSource} set), <code>textMatchStyle</code> is sent to the server as {@link
-     * com.smartgwt.client.data.DSRequest#getTextMatchStyle textMatchStyle}. <P> For a non-databound pickList,
-     * <code>textMatchStyle</code> is applied by  {@link com.smartgwt.client.widgets.form.fields.PickList#filterClientPickListData}.
-     *
-     * @return TextMatchStyle
-     */
-    public TextMatchStyle getTextMatchStyle() {
-        return TextMatchStyle.valueOf(getAttributeAsString("textMatchStyle"));
-    }
 
     /**
      * Base Style for pickList cells.  As with ListGrid Cells, will have 'over', 'selected' and 'disabled' appended on
