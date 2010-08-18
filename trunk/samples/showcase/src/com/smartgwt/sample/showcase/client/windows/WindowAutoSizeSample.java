@@ -58,8 +58,8 @@ public class WindowAutoSizeSample extends ShowcasePanel {
 
     public Canvas getViewPanel() {
         Canvas canvasMain = new Canvas();
-        canvasMain.addChild(createWin("Auto-sizing window", true, 300, 190, 0));
-        canvasMain.addChild(createWin("Normal window", false, 220, 250, 320));
+        canvasMain.addChild(createWin("Auto-sizing window", true, 300, 200, 0));
+        canvasMain.addChild(createWin("Normal window", false, 200, 200, 320));
         return canvasMain;
     }
 }
