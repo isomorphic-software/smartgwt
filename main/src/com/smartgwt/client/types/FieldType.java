@@ -108,6 +108,13 @@ public enum FieldType implements ValueEnum {
      */
     IMAGEFILE("imageFile"),
 
+	/**
+	 * Fields of this type can contain any data value and have no default formatting or validation behavior. 
+	 * This is useful as the parent type for SimpleTypes where you do not want any of the standard validation or 
+	 * formatting logic to be inherited from the standard built-in types.
+	 */
+	ANY("any"),
+	
     /**
      * Fields of this type are automatically populated by the Smart GWT Server                
      * with the current authenticated userId as part of add and update operations.
