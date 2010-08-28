@@ -85,7 +85,6 @@ public class FormSplittingSample extends ShowcasePanel {
         nextShipment.setName("nextShipment");
         nextShipment.setTitle("Next Shipment");
         nextShipment.setUseTextField(true);
-        nextShipment.setDefaultValue(256);
         
         form1.setFields(inStock, nextShipment);
         stock.setPane(form1);
@@ -96,7 +95,6 @@ public class FormSplittingSample extends ShowcasePanel {
         submit.setTitle("Submit");
         submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-                vm.setValues(new HashMap());
 				vm.validate();
 				if (form1.hasErrors()) {
 					theTabs.selectTab(1);
@@ -111,6 +109,10 @@ public class FormSplittingSample extends ShowcasePanel {
         vLayout.addMember(theTabs);
         vLayout.addMember(submit);
 
+        vm.setValues(new HashMap<String,String>() {{
+            put("price", "low");
+            put("nextShipment", "256");
+        }});
         return vLayout;
     }
 
