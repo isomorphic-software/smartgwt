@@ -299,6 +299,10 @@ public abstract class BaseClass {
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 
+    public Map getAttributeAsMap(String property) {
+        return JSOHelper.getAttributeAsMap(getOrCreateJsObj(), property);
+    }
+
 
     protected void setAttribute(String attribute, String value, boolean allowPostCreate) {
         if (!isCreated()) {
