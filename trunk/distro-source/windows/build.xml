@@ -49,6 +49,7 @@
 			<!-- doc -->
 			<zipfileset dir="${smartgwt.build.out}" prefix="${project.distname}">
 				<include name="doc" />
+				<include name="doc/*.html" />
 				<include name="doc/html/**" />
 				<include name="doc/css/**" />
 				<include name="doc/javadoc/**" />
