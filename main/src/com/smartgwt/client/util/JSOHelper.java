@@ -472,8 +472,7 @@ public class JSOHelper {
     	if (javaObj instanceof Map) {
     		return (Map) javaObj;
     	} else {
-    		throw new Exception("convertToMap - unable to convert JavaScript object passed in to a Map"
-    				+ SC.echo(object));
+    		throw new Exception("convertToMap - unable to convert JavaScript object passed in to a Map");
     	}
     }
     
