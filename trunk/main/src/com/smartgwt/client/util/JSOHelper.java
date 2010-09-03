@@ -27,6 +27,7 @@ import com.smartgwt.client.data.ResultSet;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.widgets.BaseWidget;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -347,7 +348,13 @@ public class JSOHelper {
 
     public static Map getAttributeAsMap(JavaScriptObject elem, String attr) {
 	    JavaScriptObject value = getAttributeAsJavaScriptObject(elem, attr);
-        return value == null ? null : convertToMap(value);
+	    if (value == null) return null;
+	    try {
+	    	return convertToMap(value);
+	    } catch (Exception e) {
+	    	SC.logWarn(e.getMessage());
+	    	return null;
+	    }
     }
 
     public static JavaScriptObject[] listToArray(List list) {
@@ -426,20 +433,84 @@ public class JSOHelper {
     }
 
     private static void doAddToMap(Map map, String key, Object value) {
-        map.put(key, value);
+    	 map.put(key, value);
     }
 
-    public static native Map convertToMap(JavaScriptObject jsObj) /*-{
-        var mapJ = @java.util.LinkedHashMap::new()();
-        for(var k in jsObj) {
-            if($wnd.isA.String(k)){
-                var value = jsObj[k];               
-                var valueJ = $wnd.SmartGWT.convertToJavaType(value);
-                @com.smartgwt.client.util.JSOHelper::doAddToMap(Ljava/util/Map;Ljava/lang/String;Ljava/lang/Object;)(mapJ, k, valueJ);
-            }
-        }
-        return mapJ;
+    /**
+     * Convert a JavaScriptObject to the appropriate type of JavaObject.
+     * Simple JavaScript objects (key:value pairs) will be converted to Map instances.
+     * JavaScript Arrays will be returned as a List or an Object Array depending on the listAsArray
+     * parameter
+     * Conversion is recursive, nested JavaScript objects and arrays will have their members converted
+     * as well
+     * JavaScript dates will be returned as Java Dates
+     * Simple Javascript types such as integers, floats and strings will be returned as the equivalent
+     * java object class (String, Integer, etc)
+     * 
+     * @param object JavaScriptObject to convert
+     * @param listAsArray Should arrays be converted to Object[] or List
+     * @return converted Java object. May be a Map, a List or an Object[] depending on the underlying JS
+     *   type.
+     */
+    public native static Object convertToJava(JavaScriptObject object, boolean listAsArray) /*-{
+    	return $wnd.SmartGWT.convertToJavaObject(object, listAsArray);
     }-*/;
+    
+    public static Object convertToJava(JavaScriptObject object) {
+    	return convertToJava(object, false);
+    }
+    
+    /**
+     * Convert a Javascript object containing key:value pairs to a Map.
+     * @param object
+     * @param listAsArray
+     * @return
+     * @throws Exception
+     */
+    public static Map convertToMap(JavaScriptObject object, boolean listAsArray) throws Exception {
+    	Object javaObj = convertToJava(object, listAsArray);
+    	if (javaObj instanceof Map) {
+    		return (Map) javaObj;
+    	} else {
+    		throw new Exception("convertToMap - unable to convert JavaScript object passed in to a Map"
+    				+ SC.echo(object));
+    	}
+    }
+    
+    public static Map convertToMap(JavaScriptObject jsObj) throws Exception {
+    	return convertToMap(jsObj, false);
+    }
+
+    
+    /**
+     * Convert a Javascript object to an Object[]. If the Javascript object is not an array
+     * in Javascript, a new array will be created containing the converted object as the only entry.
+     * @param object
+     * @return
+     */
+    public static Object[] convertToArray(JavaScriptObject object) {
+    	Object javaObj = convertToJava(object, true);
+    	if (!(javaObj instanceof Object[])) {
+    		javaObj = new Object[] {javaObj};
+    	}
+    	return (Object[])javaObj;
+    }
+    
+    /**
+     * Convert a Javascript object to a List. If the Javascript object is not an array
+     * in Javascript, a new List will be created containing the converted object as the only entry.
+     * @param object
+     * @return
+     */
+    public static List convertToList(JavaScriptObject object) {
+    	Object javaObj = convertToJava(object, false);
+    	if (!(javaObj instanceof List)) {
+    		List list = new ArrayList();
+    		list.add(javaObj);
+    		javaObj = list;
+    	}
+    	return (List)javaObj;
+    }
  
     public static JavaScriptObject convertToJavaScriptDate(Date date) {
         if(date == null) return null;
