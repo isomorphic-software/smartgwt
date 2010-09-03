@@ -503,6 +503,24 @@ public class SC {
     public static native void logEchoAll(Canvas canvas, String message) /*-{
     	$wnd.isc.logEchoAll(canvas.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()(), message);
 	}-*/;
+    
+    /**
+     * Returns the passed in JavaScript object as a string
+     * @param object
+     * @return
+     */
+    public static native String echo(JavaScriptObject object) /*-{
+    	return $wnd.isc.Log.echo(object);
+    }-*/;
+    /**
+     * Returns the passed in JavaScript object as a string (including serializing members
+     * one level deep for javascript arrays and nested objects)
+     * @param object
+     * @return
+     */
+    public static native String echoAll(JavaScriptObject object) /*-{
+		return $wnd.isc.Log.echoAll(object);
+	}-*/;
 
     private static void requiresServerComponents() {
         String message = "This functionality requires SmartGWT server components";
