@@ -157,6 +157,49 @@ public class JsObject {
                 }
         };
         
+        $wnd.SmartGWT.convertToJavaObject = function (object, listAsArray) {
+    		if (object == null) return null;
+    		
+	    	if (!$wnd.isc.isA.Object(object)) {
+    		
+	    		return $wnd.SmartGWT.convertToJavaType(object);
+	    	} else if ($wnd.isc.isA.Date(object)) {
+
+	    		return @com.smartgwt.client.util.JSOHelper::toDate(D)(object.getTime());
+	    	} else if ($wnd.isc.isAn.Array(object)) {
+	    		
+	    		var convertedArray = [];
+	    		for (var i = 0; i < object.length; i++) {
+	    			convertedArray[i] =  $wnd.SmartGWT.convertToJavaObject(object[i]);
+	    		}
+	    		// now we've converted all our members and we need to return a Java array or List
+	    		if (listAsArray) {
+	    			return  @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(convertedArray);
+	    		} else {
+	    			
+	    			var javaList = @java.util.ArrayList::new()();
+	    			for (var i = 0; i < convertedArray.length; i++) {
+	    				javaList.@java.util.ArrayList::add(Ljava/lang/Object;)(convertedArray[i]);
+	    			}
+	    			return javaList;
+	    		}
+	    	 } else {
+	    	 	
+	    	 	// convert to a map
+	    	 	var javaMap = @java.util.HashMap::new()();
+	    	 	for (var fieldName in object) {
+	    	 		// Not sure whether this could really happen
+	    	 		if(!$wnd.isA.String(fieldName)){
+	    	 			continue;
+	    	 		}
+	    	 		var convertedVal = $wnd.SmartGWT.convertToJavaObject(object[fieldName]);
+ 					@com.smartgwt.client.util.JSOHelper::doAddToMap(Ljava/util/Map;Ljava/lang/String;Ljava/lang/Object;)(javaMap, fieldName, convertedVal);
+	    	 	}
+	    	 	return javaMap;
+	    	 }
+        };
+    
+        
         $wnd.isc.RPCManager.__fireReplyCallback = $wnd.isc.RPCManager.fireReplyCallback;
         $wnd.isc.RPCManager.fireReplyCallback = function (callback, request, response, data) {
         	// convert primitives (number / bool) to Objects before firing callbacks
