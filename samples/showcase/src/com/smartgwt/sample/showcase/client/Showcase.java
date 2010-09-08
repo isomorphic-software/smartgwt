@@ -268,7 +268,8 @@ public class Showcase implements EntryPoint, HistoryListener {
         // Add history listener
         History.addHistoryListener(this);
 
-        RootPanel.getBodyElement().removeChild(RootPanel.get("loadingWrapper").getElement());
+        RootPanel p = RootPanel.get("loadingWrapper");
+        if (p != null) RootPanel.getBodyElement().removeChild(p.getElement());
     }
 
     private Menu createContextMenu() {
@@ -334,7 +335,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         return menu;
     }
 
-    private void showSample(TreeNode node) {
+    protected void showSample(TreeNode node) {
         boolean isExplorerTreeNode = node instanceof ExplorerTreeNode;
         if (node instanceof CommandTreeNode) {
             CommandTreeNode commandTreeNode = (CommandTreeNode) node;

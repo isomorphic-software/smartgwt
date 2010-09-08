@@ -156,7 +156,7 @@ public abstract class ShowcasePanel extends VLayout {
 
     public abstract Canvas getViewPanel();
 
-    private void showSource(SourceEntity[] sourceUrls, int width, int height) {
+    protected void showSource(SourceEntity[] sourceUrls, int width, int height) {
 
         final Window win = new Window();
         win.setTitle("Source");

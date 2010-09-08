@@ -13,15 +13,6 @@
           </not>
         </condition>
 
-	<property name="test.ant.file" location="${smartgwt.root}/${project.tail}/build.xml" />
-    <echo  message="${test.ant.file}"/>
-    <condition property="project.valid">
-		<equals arg1="${ant.file}" arg2="${test.ant.file}"
-                  casesensitive="${gwt.build.iscasesensitivefs}"/>
-	</condition>
-
-    <fail unless="project.valid" message="This build file is in an inconsistent state." />
-
 	<!-- Global Properties -->
 	<property environment="env" />
     <property name="SC_HOME" value="${env.SC_HOME}"/>
