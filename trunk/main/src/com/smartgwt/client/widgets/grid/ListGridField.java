@@ -58,6 +58,8 @@ import com.google.gwt.event.shared.HasHandlers;
 /**
  * An ordinary JavaScript object containing properties that configures the display of and interaction with the columns of a
  * {@link com.smartgwt.client.widgets.grid.ListGrid}.
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getFields
+ * @see com.smartgwt.client.widgets.grid.ListGrid#setFields
  */
 public class ListGridField extends DataClass  implements com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasChangeHandlers, com.smartgwt.client.widgets.grid.events.HasChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers {
 
@@ -106,6 +108,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchDisplayMap autoFetchDisplayMap}, but defined on a per-field basis.
      *
      * @param autoFetchDisplayMap autoFetchDisplayMap Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setAutoFetchDisplayMap
      */
     public void setAutoFetchDisplayMap(Boolean autoFetchDisplayMap) {
         setAttribute("autoFetchDisplayMap", autoFetchDisplayMap);
@@ -118,6 +121,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchDisplayMap
      */
     public Boolean getAutoFetchDisplayMap()  {
         return getAttributeAsBoolean("autoFetchDisplayMap");
@@ -211,6 +215,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * instead.
      *
      * @param baseStyle baseStyle Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setRecordBaseStyleProperty
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_grid_cells" target="examples">Grid cells Example</a>
      */
@@ -226,6 +231,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getRecordBaseStyleProperty
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_grid_cells" target="examples">Grid cells Example</a>
      */
@@ -258,6 +264,9 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * Can this field be edited? May be overridden by setting the      'canEdit' property at the listGrid level
      *
      * @param canEdit canEdit Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setCanEdit
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setRecordEditProperty
+     * @see com.smartgwt.client.widgets.grid.ListGrid#canEditCell
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_editing_disable" target="examples">Disable editing Example</a>
      */
@@ -270,6 +279,9 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getCanEdit
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getRecordEditProperty
+     * @see com.smartgwt.client.widgets.grid.ListGrid#canEditCell
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_editing_disable" target="examples">Disable editing Example</a>
      */
@@ -326,6 +338,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * com.smartgwt.client.docs.FrozenFields}.
      *
      * @param canFreeze canFreeze Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderContextMenuItems
      * @see com.smartgwt.client.docs.FrozenFields FrozenFields overview and related methods
      */
     public void setCanFreeze(Boolean canFreeze) {
@@ -338,6 +351,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderContextMenuItems
      * @see com.smartgwt.client.docs.FrozenFields FrozenFields overview and related methods
      */
     public Boolean getCanFreeze()  {
@@ -348,6 +362,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * Determines whether this field will be groupable in the header context menu.
      *
      * @param canGroupBy canGroupBy Default value is true
+     * @see com.smartgwt.client.widgets.grid.ListGrid#groupBy
      */
     public void setCanGroupBy(Boolean canGroupBy) {
         setAttribute("canGroupBy", canGroupBy);
@@ -358,6 +373,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.grid.ListGrid#groupBy
      */
     public Boolean getCanGroupBy()  {
         return getAttributeAsBoolean("canGroupBy");
@@ -367,6 +383,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * Whether this field can be hidden via the header context menu.
      *
      * @param canHide canHide Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderContextMenuItems
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setCanHide(Boolean canHide) {
@@ -378,6 +395,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderContextMenuItems
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getCanHide()  {
@@ -420,6 +438,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * instructions will sort the listGrid by this  column.
      *
      * @param canSort canSort Default value is true
+     * @see com.smartgwt.client.widgets.grid.ListGrid#sort
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setCanSort
      */
     public void setCanSort(Boolean canSort) {
         setAttribute("canSort", canSort);
@@ -431,6 +451,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.grid.ListGrid#sort
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getCanSort
      */
     public Boolean getCanSort()  {
         return getAttributeAsBoolean("canSort");
@@ -572,6 +594,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param defaultIconSrc defaultIconSrc Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setIcons
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public void setDefaultIconSrc(String defaultIconSrc) {
@@ -584,6 +607,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getIcons
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public String getDefaultIconSrc()  {
@@ -639,6 +663,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param editorIconHeight editorIconHeight Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setIcons
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public void setEditorIconHeight(Integer editorIconHeight) {
@@ -653,6 +678,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getIcons
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public Integer getEditorIconHeight()  {
@@ -667,6 +693,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param editorIconWidth editorIconWidth Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setIcons
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public void setEditorIconWidth(Integer editorIconWidth) {
@@ -681,6 +708,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getIcons
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public Integer getEditorIconWidth()  {
@@ -803,6 +831,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * emptyCellValue for all empty fields in the grid.
      *
      * @param emptyCellValue emptyCellValue Default value is "&amp;nbsp;"
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setEmptyCellValue
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_empty_values" target="examples">Empty values Example</a>
      */
     public void setEmptyCellValue(String emptyCellValue) {
@@ -816,6 +845,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getEmptyCellValue
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_empty_values" target="examples">Empty values Example</a>
      */
     public String getEmptyCellValue()  {
@@ -1106,6 +1136,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * icons} displayed  in the editor.
      *
      * @param iconHeight iconHeight Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setIcon
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setIcons
      */
     public void setIconHeight(Integer iconHeight) {
         setAttribute("iconHeight", iconHeight);
@@ -1122,6 +1154,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getIcon
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getIcons
      */
     public Integer getIconHeight()  {
         return getAttributeAsInt("iconHeight");
@@ -1132,6 +1166,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * <code>"left"</code> or <code>"right"</code>
      *
      * @param iconOrientation iconOrientation Default value is "left"
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setIcon
      */
     public void setIconOrientation(String iconOrientation) {
         setAttribute("iconOrientation", iconOrientation);
@@ -1143,6 +1178,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getIcon
      */
     public String getIconOrientation()  {
         return getAttributeAsString("iconOrientation");
@@ -1154,6 +1190,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * com.smartgwt.client.widgets.StatefulCanvas#getIconSize iconSize})
      *
      * @param iconSize iconSize Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setIcon
      */
     public void setIconSize(Integer iconSize) {
         setAttribute("iconSize", iconSize);
@@ -1166,6 +1203,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getIcon
      */
     public Integer getIconSize()  {
         return getAttributeAsInt("iconSize");
@@ -1175,6 +1213,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * Pixels between icon and title text.
      *
      * @param iconSpacing iconSpacing Default value is 6
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setIcon
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setIconSpacing(int iconSpacing) {
@@ -1186,6 +1225,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return int
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getIcon
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public int getIconSpacing()  {
@@ -1198,6 +1238,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param iconVAlign iconVAlign Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setIcons
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public void setIconVAlign(String iconVAlign) {
@@ -1210,6 +1251,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getIcons
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public String getIconVAlign()  {
@@ -1226,6 +1268,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * icons} displayed  in the editor.
      *
      * @param iconWidth iconWidth Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setIcon
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setIcons
      */
     public void setIconWidth(Integer iconWidth) {
         setAttribute("iconWidth", iconWidth);
@@ -1242,6 +1286,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getIcon
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getIcons
      */
     public Integer getIconWidth()  {
         return getAttributeAsInt("iconWidth");
@@ -1253,6 +1299,9 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * <code>record.logoHeight</code> will control the height of the image.
      *
      * @param imageHeight imageHeight Default value is 16
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setImageSize
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setImageSize
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setImageWidth
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public void setImageHeight(int imageHeight) {
@@ -1266,6 +1315,9 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return int
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getImageSize
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getImageSize
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getImageWidth
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public int getImageHeight()  {
@@ -1279,6 +1331,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * <code>record.logoSize</code> will control the size of the image.
      *
      * @param imageSize imageSize Default value is 16
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setImageWidth
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setImageHeight
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public void setImageSize(int imageSize) {
@@ -1293,6 +1347,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return int
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getImageWidth
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getImageHeight
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public int getImageSize()  {
@@ -1369,6 +1425,9 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * <code>record.logoWidth</code> will control the width of the image.
      *
      * @param imageWidth imageWidth Default value is 16
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setImageSize
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setImageSize
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setImageHeight
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public void setImageWidth(int imageWidth) {
@@ -1382,6 +1441,9 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return int
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getImageSize
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getImageSize
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getImageHeight
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public int getImageWidth()  {
@@ -1421,6 +1483,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param isRemoveField isRemoveField Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setCanRemoveRecords
      */
     public void setIsRemoveField(Boolean isRemoveField) {
         setAttribute("isRemoveField", isRemoveField);
@@ -1434,6 +1497,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getCanRemoveRecords
      */
     public Boolean getIsRemoveField()  {
         return getAttributeAsBoolean("isRemoveField");
@@ -1444,6 +1508,10 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * com.smartgwt.client.widgets.grid.ListGridRecord#getLinkText linkText}.
      *
      * @param linkText linkText Default value is null
+     * @see com.smartgwt.client.types.ListGridFieldType
+     * @see com.smartgwt.client.types.FieldType
+     * @see com.smartgwt.client.widgets.grid.ListGridRecord#setLinkText
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setLinkTextProperty
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_link_image" target="examples">Link (image) Example</a>
      */
     public void setLinkText(String linkText) {
@@ -1456,6 +1524,10 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return String
+     * @see com.smartgwt.client.types.ListGridFieldType
+     * @see com.smartgwt.client.types.FieldType
+     * @see com.smartgwt.client.widgets.grid.ListGridRecord#getLinkText
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getLinkTextProperty
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_link_image" target="examples">Link (image) Example</a>
      */
     public String getLinkText()  {
@@ -1614,6 +1686,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * enabling both client and server side validation.
      *
      * @param required required Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setValidators
      * @see com.smartgwt.client.docs.GridValidation GridValidation overview and related methods
      */
     public void setRequired(Boolean required) {
@@ -1627,6 +1700,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getValidators
      * @see com.smartgwt.client.docs.GridValidation GridValidation overview and related methods
      */
     public Boolean getRequired()  {
@@ -1697,6 +1771,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * If using an icon for this button, whether to switch the icon image if the button becomes disabled.
      *
      * @param showDisabledIcon showDisabledIcon Default value is true
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setIcon
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setShowDisabledIcon(Boolean showDisabledIcon) {
@@ -1708,6 +1783,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getIcon
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public Boolean getShowDisabledIcon()  {
@@ -1718,6 +1794,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
      *
      * @param showDownIcon showDownIcon Default value is false
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setIcon
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setShowDownIcon(Boolean showDownIcon) {
@@ -1729,6 +1806,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getIcon
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public Boolean getShowDownIcon()  {
@@ -1762,6 +1840,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * will be displayed when the canvas has focus, otherwise a separate <code>"Focused"</code> icon will be displayed
      *
      * @param showFocusedIcon showFocusedIcon Default value is false
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setIcon
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setShowFocusedIcon(Boolean showFocusedIcon) {
@@ -1775,6 +1854,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getIcon
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public Boolean getShowFocusedIcon()  {
@@ -1870,6 +1950,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * If using an icon for this button, whether to switch the icon image on mouse rollover.
      *
      * @param showRollOverIcon showRollOverIcon Default value is false
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setIcon
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setShowRollOverIcon(Boolean showRollOverIcon) {
@@ -1881,6 +1962,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getIcon
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public Boolean getShowRollOverIcon()  {
@@ -1891,6 +1973,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * If using an icon for this button, whether to switch the icon image when the button becomes selected.
      *
      * @param showSelectedIcon showSelectedIcon Default value is false
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setIcon
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setShowSelectedIcon(Boolean showSelectedIcon) {
@@ -1902,6 +1985,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getIcon
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public Boolean getShowSelectedIcon()  {
@@ -1917,6 +2001,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * editors displayed in this field.
      *
      * @param showValueIconOnly showValueIconOnly Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setValueIcons
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setSuppressValueIcon
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public void setShowValueIconOnly(Boolean showValueIconOnly) {
@@ -1933,6 +2019,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getValueIcons
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getSuppressValueIcon
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public Boolean getShowValueIconOnly()  {
@@ -1948,6 +2036,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param summaryTitle summaryTitle Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setTitle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setSummaryTitle(String summaryTitle) {
@@ -1964,6 +2053,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      * @return Optional string method to return a long summary title for this field, if a dynamic summary title is required for this
      * field.
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getTitle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSummaryTitle()  {
@@ -1975,6 +2065,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * written out into this field's cells.
      *
      * @param suppressValueIcon suppressValueIcon Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setValueIcons
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setShowValueIconOnly
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public void setSuppressValueIcon(Boolean suppressValueIcon) {
@@ -1987,6 +2079,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getValueIcons
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getShowValueIconOnly
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public Boolean getSuppressValueIcon()  {
@@ -2028,6 +2122,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * the HTML for the field title.
      *
      * @param title title Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getFieldTitle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTitle(String title) {
@@ -2041,6 +2136,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getFieldTitle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTitle()  {
@@ -2051,6 +2147,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * ListGrids picks a renderer for the view and edit mode of a field based on this attribute.
      *
      * @param type type Default value is "text"
+     * @see com.smartgwt.client.types.ListGridFieldType
+     * @see com.smartgwt.client.types.FieldType
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setType(ListGridFieldType type) {
@@ -2062,6 +2160,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return ListGridFieldType
+     * @see com.smartgwt.client.types.ListGridFieldType
+     * @see com.smartgwt.client.types.FieldType
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public ListGridFieldType getType()  {
@@ -2150,6 +2250,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * com.smartgwt.client.widgets.grid.ListGrid#getValueIconLeftPadding valueIconLeftPadding}
      *
      * @param valueIconLeftPadding valueIconLeftPadding Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setValueIcons
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public void setValueIconLeftPadding(Integer valueIconLeftPadding) {
@@ -2162,6 +2263,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getValueIcons
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public Integer getValueIconLeftPadding()  {
@@ -2198,6 +2300,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * com.smartgwt.client.widgets.grid.ListGrid#getValueIconRightPadding valueIconRightPadding}
      *
      * @param valueIconRightPadding valueIconRightPadding Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setValueIcons
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public void setValueIconRightPadding(Integer valueIconRightPadding) {
@@ -2210,6 +2313,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getValueIcons
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public Integer getValueIconRightPadding()  {
@@ -2222,6 +2326,9 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * com.smartgwt.client.widgets.grid.ListGridField#getValueIconWidth valueIconWidth} and {ListGridField.valueIconHeight}
      *
      * @param valueIconSize valueIconSize Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setValueIconSize
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setValueIconWidth
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setValueIconHeight
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public void setValueIconSize(Integer valueIconSize) {
@@ -2235,6 +2342,9 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getValueIconSize
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getValueIconWidth
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getValueIconHeight
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public Integer getValueIconSize()  {
