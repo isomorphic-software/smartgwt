@@ -110,6 +110,8 @@ public class Applet extends BrowserPlugin {
      *
      * @param alt alt Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.plugins.Applet#setAltHTML
+     * @see com.smartgwt.client.widgets.plugins.Applet#setUseTag
      */
     public void setAlt(String alt)  throws IllegalStateException {
         setAttribute("alt", alt, false);
@@ -121,6 +123,8 @@ public class Applet extends BrowserPlugin {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.plugins.Applet#getAltHTML
+     * @see com.smartgwt.client.widgets.plugins.Applet#getUseTag
      */
     public String getAlt()  {
         return getAttributeAsString("alt");
@@ -131,6 +135,8 @@ public class Applet extends BrowserPlugin {
      *
      * @param altHTML altHTML Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.plugins.Applet#setAlt
+     * @see com.smartgwt.client.widgets.plugins.Applet#setUseTag
      */
     public void setAltHTML(String altHTML)  throws IllegalStateException {
         setAttribute("altHTML", altHTML, false);
@@ -141,6 +147,8 @@ public class Applet extends BrowserPlugin {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.plugins.Applet#getAlt
+     * @see com.smartgwt.client.widgets.plugins.Applet#getUseTag
      */
     public String getAltHTML()  {
         return getAttributeAsString("altHTML");
@@ -151,6 +159,8 @@ public class Applet extends BrowserPlugin {
      *
      * @param archive archive Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.plugins.Applet#setCode
+     * @see com.smartgwt.client.widgets.plugins.Applet#setCodeBase
      */
     public void setArchive(String archive)  throws IllegalStateException {
         setAttribute("archive", archive, false);
@@ -161,6 +171,8 @@ public class Applet extends BrowserPlugin {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.plugins.Applet#getCode
+     * @see com.smartgwt.client.widgets.plugins.Applet#getCodeBase
      */
     public String getArchive()  {
         return getAttributeAsString("archive");
@@ -178,6 +190,7 @@ public class Applet extends BrowserPlugin {
      *
      * @param classID classID Default value is see below
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.plugins.Applet#setObjectCodeBase
      */
     public void setClassID(String classID)  throws IllegalStateException {
         setAttribute("classID", classID, false);
@@ -195,6 +208,7 @@ public class Applet extends BrowserPlugin {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.plugins.Applet#getObjectCodeBase
      */
     public String getClassID()  {
         return getAttributeAsString("classID");
@@ -205,6 +219,8 @@ public class Applet extends BrowserPlugin {
      *
      * @param code code Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.plugins.Applet#setCodeBase
+     * @see com.smartgwt.client.widgets.plugins.Applet#setArchive
      */
     public void setCode(String code)  throws IllegalStateException {
         setAttribute("code", code, false);
@@ -215,6 +231,8 @@ public class Applet extends BrowserPlugin {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.plugins.Applet#getCodeBase
+     * @see com.smartgwt.client.widgets.plugins.Applet#getArchive
      */
     public String getCode()  {
         return getAttributeAsString("code");
@@ -225,6 +243,8 @@ public class Applet extends BrowserPlugin {
      *
      * @param codeBase codeBase Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.plugins.Applet#setCode
+     * @see com.smartgwt.client.widgets.plugins.Applet#setArchive
      */
     public void setCodeBase(String codeBase)  throws IllegalStateException {
         setAttribute("codeBase", codeBase, false);
@@ -235,6 +255,8 @@ public class Applet extends BrowserPlugin {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.plugins.Applet#getCode
+     * @see com.smartgwt.client.widgets.plugins.Applet#getArchive
      */
     public String getCodeBase()  {
         return getAttributeAsString("codeBase");
@@ -266,6 +288,7 @@ public class Applet extends BrowserPlugin {
      *
      * @param mayScript mayScript Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.plugins.Applet#setScriptable
      */
     public void setMayScript(Boolean mayScript)  throws IllegalStateException {
         setAttribute("mayScript", mayScript, false);
@@ -277,6 +300,7 @@ public class Applet extends BrowserPlugin {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.plugins.Applet#getScriptable
      */
     public Boolean getMayScript()  {
         return getAttributeAsBoolean("mayScript");
@@ -289,6 +313,7 @@ public class Applet extends BrowserPlugin {
      *
      * @param name name Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.plugins.Applet#getPluginHandle
      */
     public void setName(String name)  throws IllegalStateException {
         setAttribute("name", name, false);
@@ -301,6 +326,7 @@ public class Applet extends BrowserPlugin {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.plugins.Applet#getPluginHandle
      */
     public String getName()  {
         return getAttributeAsString("name");
@@ -318,6 +344,7 @@ public class Applet extends BrowserPlugin {
      *
      * @param objectCodeBase objectCodeBase Default value is see below
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.plugins.Applet#setClassID
      */
     public void setObjectCodeBase(String objectCodeBase)  throws IllegalStateException {
         setAttribute("objectCodeBase", objectCodeBase, false);
@@ -335,6 +362,7 @@ public class Applet extends BrowserPlugin {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.plugins.Applet#getClassID
      */
     public String getObjectCodeBase()  {
         return getAttributeAsString("objectCodeBase");
@@ -346,6 +374,7 @@ public class Applet extends BrowserPlugin {
      *
      * @param scriptable scriptable Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.plugins.Applet#setMayScript
      */
     public void setScriptable(Boolean scriptable)  throws IllegalStateException {
         setAttribute("scriptable", scriptable, false);
@@ -357,6 +386,7 @@ public class Applet extends BrowserPlugin {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.plugins.Applet#getMayScript
      */
     public Boolean getScriptable()  {
         return getAttributeAsBoolean("scriptable");

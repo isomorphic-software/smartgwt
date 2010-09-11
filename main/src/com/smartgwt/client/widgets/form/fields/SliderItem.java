@@ -143,6 +143,7 @@ public class SliderItem extends CanvasItem {
      * Sets the {@link com.smartgwt.client.widgets.Slider#getMaxValue maximum value} of the slider
      *
      * @param maxValue the new maximum value. Default value is 100
+     * @see com.smartgwt.client.widgets.Slider#setFlipValues
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      */
     public void setMaxValue(float maxValue) {
@@ -155,6 +156,7 @@ public class SliderItem extends CanvasItem {
      *
      *
      * @return float
+     * @see com.smartgwt.client.widgets.Slider#getFlipValues
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      */
     public float getMaxValue()  {
@@ -167,6 +169,7 @@ public class SliderItem extends CanvasItem {
      * Sets the {@link com.smartgwt.client.widgets.Slider#getMinValue minimum value} of the slider
      *
      * @param minValue the new minimum value. Default value is 1
+     * @see com.smartgwt.client.widgets.Slider#setFlipValues
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      */
     public void setMinValue(float minValue) {
@@ -179,6 +182,7 @@ public class SliderItem extends CanvasItem {
      *
      *
      * @return float
+     * @see com.smartgwt.client.widgets.Slider#getFlipValues
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      */
     public float getMinValue()  {

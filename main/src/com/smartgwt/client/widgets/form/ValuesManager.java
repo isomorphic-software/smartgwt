@@ -108,6 +108,8 @@ public class ValuesManager extends BaseClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param disableValidation disableValidation Default value is null
+     * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
+     * @see com.smartgwt.client.widgets.form.DynamicForm#submit
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public void setDisableValidation(Boolean disableValidation) {
@@ -120,6 +122,8 @@ public class ValuesManager extends BaseClass {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
+     * @see com.smartgwt.client.widgets.form.DynamicForm#submit
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public Boolean getDisableValidation()  {

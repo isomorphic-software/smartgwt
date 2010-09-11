@@ -248,6 +248,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param canDragEventField canDragEventField Default value is "canEdit"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public void setCanDragEventField(String canDragEventField)  throws IllegalStateException {
         setAttribute("canDragEventField", canDragEventField, false);
@@ -258,6 +259,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public String getCanDragEventField()  {
         return getAttributeAsString("canDragEventField");
@@ -308,6 +310,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param canEditField canEditField Default value is "canEdit"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public void setCanEditField(String canEditField)  throws IllegalStateException {
         setAttribute("canEditField", canEditField, false);
@@ -318,6 +321,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public String getCanEditField()  {
         return getAttributeAsString("canEditField");
@@ -520,6 +524,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param endDateField endDateField Default value is "endDate"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public void setEndDateField(String endDateField)  throws IllegalStateException {
         setAttribute("endDateField", endDateField, false);
@@ -530,6 +535,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public String getEndDateField()  {
         return getAttributeAsString("endDateField");
@@ -671,6 +677,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param eventTypeField eventTypeField Default value is "eventType"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public void setEventTypeField(String eventTypeField)  throws IllegalStateException {
         setAttribute("eventTypeField", eventTypeField, false);
@@ -682,6 +689,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public String getEventTypeField()  {
         return getAttributeAsString("eventTypeField");
@@ -784,6 +792,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param leadingDateField leadingDateField Default value is "leadingDate"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public void setLeadingDateField(String leadingDateField)  throws IllegalStateException {
         setAttribute("leadingDateField", leadingDateField, false);
@@ -794,6 +803,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public String getLeadingDateField()  {
         return getAttributeAsString("leadingDateField");
@@ -824,6 +834,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param nameField nameField Default value is "name"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public void setNameField(String nameField)  throws IllegalStateException {
         setAttribute("nameField", nameField, false);
@@ -834,6 +845,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public String getNameField()  {
         return getAttributeAsString("nameField");
@@ -1200,6 +1212,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param startDateField startDateField Default value is "startDate"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public void setStartDateField(String startDateField)  throws IllegalStateException {
         setAttribute("startDateField", startDateField, false);
@@ -1210,6 +1223,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public String getStartDateField()  {
         return getAttributeAsString("startDateField");
@@ -1240,6 +1254,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param trailingDateField trailingDateField Default value is "trailingDate"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public void setTrailingDateField(String trailingDateField)  throws IllegalStateException {
         setAttribute("trailingDateField", trailingDateField, false);
@@ -1250,6 +1265,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public String getTrailingDateField()  {
         return getAttributeAsString("trailingDateField");
@@ -1326,8 +1342,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
      * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
-     * specified as a String acceptable to {@link java.lang.String#parseInput Time.parseInput}. <P> Both start and end time
-     * must fall on a 30 minute increment (eg 9:30, but not 9:45).
+     * specified as a String acceptable to String. <P> Both start and end time must fall on a 30 minute increment (eg 9:30, but
+     * not 9:45).
      *
      * @param workdayEnd workdayEnd Default value is "5:00pm"
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -1339,8 +1355,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
      * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
-     * specified as a String acceptable to {@link java.lang.String#parseInput Time.parseInput}. <P> Both start and end time
-     * must fall on a 30 minute increment (eg 9:30, but not 9:45).
+     * specified as a String acceptable to String. <P> Both start and end time must fall on a 30 minute increment (eg 9:30, but
+     * not 9:45).
      *
      *
      * @return String
@@ -1352,8 +1368,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
      * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
-     * specified as a String acceptable to {@link java.lang.String#parseInput Time.parseInput}. <P> Both start and end time
-     * must fall on a 30 minute increment (eg 9:30, but not 9:45).
+     * specified as a String acceptable to String. <P> Both start and end time must fall on a 30 minute increment (eg 9:30, but
+     * not 9:45).
      *
      * @param workdayStart workdayStart Default value is "9:00am"
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -1365,8 +1381,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
      * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
-     * specified as a String acceptable to {@link java.lang.String#parseInput Time.parseInput}. <P> Both start and end time
-     * must fall on a 30 minute increment (eg 9:30, but not 9:45).
+     * specified as a String acceptable to String. <P> Both start and end time must fall on a 30 minute increment (eg 9:30, but
+     * not 9:45).
      *
      *
      * @return String
@@ -1767,6 +1783,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * Gets the day of the week (0-6) that the mouse is currently over.
      *
      * @return the day that the mouse is currently over
+     * @see com.smartgwt.client.widgets.calendar.Calendar#getActiveTime
      */
     public native int getActiveDay() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

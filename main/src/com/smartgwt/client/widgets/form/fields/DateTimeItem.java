@@ -100,6 +100,7 @@ public class DateTimeItem extends DateItem {
      * ensure the DateItem is able to parse user-entered date strings back into Dates</B>
      *
      * @param displayFormat displayFormat Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.DateTimeItem#setInputFormat
      */
     public void setDisplayFormat(DateDisplayFormat displayFormat) {
         setAttribute("displayFormat", displayFormat.getValue());
@@ -114,6 +115,7 @@ public class DateTimeItem extends DateItem {
      *
      *
      * @return DateDisplayFormat
+     * @see com.smartgwt.client.widgets.form.fields.DateTimeItem#getInputFormat
      */
     public DateDisplayFormat getDisplayFormat()  {
         return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("displayFormat"));
@@ -124,10 +126,11 @@ public class DateTimeItem extends DateItem {
      * property can be used to specify the input format for date strings.  If unset, the input format will be determined based
      * on the specified {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} if possible
      * (see {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat DateItem.getInputFormat}), otherwise picked
-     * up from the Date class (see  Date.setInputFormat). <P> Should be set to a standard {@link java.lang.String} or a
-     * function which will take a date string as a parameter and return a Javascript Date object.
+     * up from the Date class (see  Date.setInputFormat). <P> Should be set to a standard String or a function which will take
+     * a date string as a parameter and return a Javascript Date object.
      *
      * @param inputFormat inputFormat Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.DateItem#setDisplayFormat
      */
     public void setInputFormat(String inputFormat) {
         setAttribute("inputFormat", inputFormat);
@@ -138,11 +141,12 @@ public class DateTimeItem extends DateItem {
      * property can be used to specify the input format for date strings.  If unset, the input format will be determined based
      * on the specified {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} if possible
      * (see {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat DateItem.getInputFormat}), otherwise picked
-     * up from the Date class (see  Date.setInputFormat). <P> Should be set to a standard {@link java.lang.String} or a
-     * function which will take a date string as a parameter and return a Javascript Date object.
+     * up from the Date class (see  Date.setInputFormat). <P> Should be set to a standard String or a function which will take
+     * a date string as a parameter and return a Javascript Date object.
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat
      */
     public String getInputFormat()  {
         return getAttributeAsString("inputFormat");

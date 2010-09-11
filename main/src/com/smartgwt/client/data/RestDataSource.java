@@ -119,7 +119,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * <b>JSON formatted responses:</b>&#010 <P>&#010 JSON format responses are expected to contain the same data / meta-data
  * as XMLresponses,&#010 encapsulated a simple object with a <code>"response"</code> attribute.<br>&#010 The response to a
  * "fetch" request would therefore have this format:<br>&#010 <pre>&#010 {    &#010    response:{&#010       status:0,&#010
- * startRows:0,&#010       endRow:76,&#010       totalRows:546,&#010       data:[&#010           {field1:"value",
+ * startRow:0,&#010       endRow:76,&#010       totalRows:546,&#010       data:[&#010           {field1:"value",
  * field2:"value"},&#010           {field1:"value", field2:"value"},&#010           <i>... 75 total records ...</i>&#010   
  * ]&#010    }&#010 }&#010 </pre>&#010 The structure successful for "add", "update" and "remove" responses would be
  * similar, though&#010 the data array would be expected to contain only a single object, representing the values as&#010

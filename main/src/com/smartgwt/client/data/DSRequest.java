@@ -59,6 +59,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * Request sent to the server to initiate a  {@link com.smartgwt.client.docs.DataSourceOperations DataSource operation}. 
  * All properties which are legal on {@link com.smartgwt.client.rpc.RPCRequest} are legal, in addition to the properties
  * listed here.
+ * @see com.smartgwt.client.rpc.RPCRequest
  */
 public class DSRequest extends RPCRequest {
 
@@ -750,7 +751,7 @@ public class DSRequest extends RPCRequest {
     public native SortSpecifier[] getSortBy() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var sortSpec = self.sortBy;
-        if($wnd.isA.String(sortSpec)) {
+        if($wnd.isc.isA.String(sortSpec)) {
             return @com.smartgwt.client.data.SortSpecifier::convertToArray(Ljava/lang/String;)(sortSpec);
         } else {
             return @com.smartgwt.client.data.SortSpecifier::convertToArray(Lcom/google/gwt/core/client/JavaScriptObject;)(sortSpec);
@@ -804,6 +805,25 @@ public class DSRequest extends RPCRequest {
             return getData() == null ? null : new Criteria(getData());
         } else {
             throw new IllegalStateException("This method should only be called during FETCH operations");
+        }
+    }
+    
+    public static DSRequest[] convertToDSRequestArray(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new DSRequest[]{};
+        }
+        if (JSOHelper.isArray(nativeArray)) {
+            JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
+            DSRequest[] objects = new DSRequest[componentsj.length];
+            for (int i = 0; i < componentsj.length; i++) {
+                JavaScriptObject componentJS = componentsj[i];
+                objects[i] = DSRequest.getOrCreateRef(componentJS);
+            }
+            return objects;
+        } else {
+            DSRequest[] ret = new DSRequest[1];
+            ret[0] = DSRequest.getOrCreateRef(nativeArray);
+            return ret;
         }
     }
 

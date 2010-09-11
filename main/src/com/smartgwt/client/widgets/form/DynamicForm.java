@@ -114,6 +114,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * Sets the {@link com.smartgwt.client.widgets.form.DynamicForm#getAction action} for this form.
      *
      * @param action New action URL. Default value is "#"
+     * @see com.smartgwt.client.rpc.RPCManager
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
      */
     public void setAction(String action) {
@@ -127,6 +128,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      *
      * @return String
+     * @see com.smartgwt.client.rpc.RPCManager
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
      */
     public String getAction()  {
@@ -164,6 +166,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * that to put focus in a different item you can explicitly call  <code>dynamicForm.focusInItem(<i>itemName</i>)</code>
      *
      * @param autoFocus autoFocus Default value is false
+     * @see com.smartgwt.client.widgets.form.DynamicForm#focusInItem
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
     public void setAutoFocus(Boolean autoFocus) {
@@ -176,6 +179,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.DynamicForm#focusInItem
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
     public Boolean getAutoFocus()  {
@@ -286,7 +290,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * Width of border for the table that form is drawn in. This is primarily used for debugging form layout.
      *
      * @param cellBorder cellBorder Default value is 0
-     * @see com.smartgwt.client.docs.TableLayout TableLayout overview and related methods
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public void setCellBorder(int cellBorder) {
         setAttribute("cellBorder", cellBorder, true);
@@ -297,7 +301,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      *
      * @return int
-     * @see com.smartgwt.client.docs.TableLayout TableLayout overview and related methods
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public int getCellBorder()  {
         return getAttributeAsInt("cellBorder");
@@ -307,7 +311,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * The amount of empty space, in pixels, surrounding each form item within its cell in the layout grid.
      *
      * @param cellPadding cellPadding Default value is 2
-     * @see com.smartgwt.client.docs.TableLayout TableLayout overview and related methods
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public void setCellPadding(int cellPadding) {
         setAttribute("cellPadding", cellPadding, true);
@@ -318,7 +322,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      *
      * @return int
-     * @see com.smartgwt.client.docs.TableLayout TableLayout overview and related methods
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public int getCellPadding()  {
         return getAttributeAsInt("cellPadding");
@@ -329,6 +333,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * any) will still run on attempted save.
      *
      * @param disableValidation disableValidation Default value is null
+     * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
+     * @see com.smartgwt.client.widgets.form.DynamicForm#submit
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public void setDisableValidation(Boolean disableValidation) {
@@ -341,6 +347,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
+     * @see com.smartgwt.client.widgets.form.DynamicForm#submit
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public Boolean getDisableValidation()  {
@@ -428,7 +436,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * that aren't filling the available room, until there is no more free space, in which case the form as a whole overflows.
      *
      * @param fixedColWidths fixedColWidths Default value is false
-     * @see com.smartgwt.client.docs.TableLayout TableLayout overview and related methods
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public void setFixedColWidths(Boolean fixedColWidths) {
         setAttribute("fixedColWidths", fixedColWidths, true);
@@ -442,7 +450,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      *
      * @return Boolean
-     * @see com.smartgwt.client.docs.TableLayout TableLayout overview and related methods
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public Boolean getFixedColWidths()  {
         return getAttributeAsBoolean("fixedColWidths");
@@ -499,6 +507,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * Text alignment for hovers shown for items
      *
      * @param itemHoverAlign itemHoverAlign Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setHoverAlign
      */
     public void setItemHoverAlign(Alignment itemHoverAlign) {
         setAttribute("itemHoverAlign", itemHoverAlign.getValue(), true);
@@ -509,6 +518,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      *
      * @return Alignment
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getHoverAlign
      */
     public Alignment getItemHoverAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("itemHoverAlign"));
@@ -518,6 +528,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * If the user rolls over an item, how long a delay before we fire any hover action / show a hover for that item?
      *
      * @param itemHoverDelay itemHoverDelay Default value is 500
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setHoverDelay
      */
     public void setItemHoverDelay(int itemHoverDelay) {
         setAttribute("itemHoverDelay", itemHoverDelay, true);
@@ -528,6 +539,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      *
      * @return int
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getHoverDelay
      */
     public int getItemHoverDelay()  {
         return getAttributeAsInt("itemHoverDelay");
@@ -537,6 +549,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * A default height for hovers shown for items
      *
      * @param itemHoverHeight itemHoverHeight Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setHoverHeight
      */
     public void setItemHoverHeight(Integer itemHoverHeight) {
         setAttribute("itemHoverHeight", itemHoverHeight, true);
@@ -547,6 +560,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getHoverHeight
      */
     public Integer getItemHoverHeight()  {
         return getAttributeAsInt("itemHoverHeight");
@@ -556,6 +570,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * Opacity for hovers shown for items
      *
      * @param itemHoverOpacity itemHoverOpacity Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setHoverOpacity
      */
     public void setItemHoverOpacity(Integer itemHoverOpacity) {
         setAttribute("itemHoverOpacity", itemHoverOpacity, true);
@@ -566,6 +581,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getHoverOpacity
      */
     public Integer getItemHoverOpacity()  {
         return getAttributeAsInt("itemHoverOpacity");
@@ -575,6 +591,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * CSS Style for hovers shown for items
      *
      * @param itemHoverStyle itemHoverStyle Default value is "formHover"
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setHoverStyle
      */
     public void setItemHoverStyle(String itemHoverStyle) {
         setAttribute("itemHoverStyle", itemHoverStyle, true);
@@ -585,6 +602,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getHoverStyle
      */
     public String getItemHoverStyle()  {
         return getAttributeAsString("itemHoverStyle");
@@ -594,6 +612,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * Vertical text alignment for hovers shown for items
      *
      * @param itemHoverVAlign itemHoverVAlign Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setHoverVAlign
      */
     public void setItemHoverVAlign(Integer itemHoverVAlign) {
         setAttribute("itemHoverVAlign", itemHoverVAlign, true);
@@ -604,6 +623,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getHoverVAlign
      */
     public Integer getItemHoverVAlign()  {
         return getAttributeAsInt("itemHoverVAlign");
@@ -613,6 +633,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * A default width for hovers shown for items
      *
      * @param itemHoverWidth itemHoverWidth Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setHoverWidth
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_hovers" target="examples">Hovers Example</a>
      */
     public void setItemHoverWidth(Integer itemHoverWidth) {
@@ -624,6 +645,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getHoverWidth
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_hovers" target="examples">Hovers Example</a>
      */
     public Integer getItemHoverWidth()  {
@@ -746,7 +768,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * Minimum width of a form column.
      *
      * @param minColWidth minColWidth Default value is 20
-     * @see com.smartgwt.client.docs.TableLayout TableLayout overview and related methods
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public void setMinColWidth(int minColWidth) {
         setAttribute("minColWidth", minColWidth, true);
@@ -757,7 +779,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      *
      * @return int
-     * @see com.smartgwt.client.docs.TableLayout TableLayout overview and related methods
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public int getMinColWidth()  {
         return getAttributeAsInt("minColWidth");
@@ -768,7 +790,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * column, so to display two form elements per row (each having a title and item), you would set this property to 4.
      *
      * @param numCols numCols Default value is 2
-     * @see com.smartgwt.client.docs.TableLayout TableLayout overview and related methods
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public void setNumCols(int numCols) {
         setAttribute("numCols", numCols, true);
@@ -780,7 +802,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      *
      * @return int
-     * @see com.smartgwt.client.docs.TableLayout TableLayout overview and related methods
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public int getNumCols()  {
         return getAttributeAsInt("numCols");
@@ -1025,7 +1047,9 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * controls whether multiple sections can be expanded at once.
      *
      * @param sectionVisibilityMode sectionVisibilityMode Default value is "multiple"
-     * @see com.smartgwt.client.docs.TableLayout TableLayout overview and related methods
+     * @see com.smartgwt.client.types.VisibilityMode
+     * @see com.smartgwt.client.widgets.form.fields.SectionItem
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public void setSectionVisibilityMode(VisibilityMode sectionVisibilityMode) {
         setAttribute("sectionVisibilityMode", sectionVisibilityMode.getValue(), true);
@@ -1037,7 +1061,9 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      *
      * @return VisibilityMode
-     * @see com.smartgwt.client.docs.TableLayout TableLayout overview and related methods
+     * @see com.smartgwt.client.types.VisibilityMode
+     * @see com.smartgwt.client.widgets.form.fields.SectionItem
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public VisibilityMode getSectionVisibilityMode()  {
         return EnumUtil.getEnum(VisibilityMode.values(), getAttribute("sectionVisibilityMode"));
@@ -1138,8 +1164,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}<code>:"left"</code> creates a compact
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
      * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
-     * determines whether fields  with validation errors should have special styling applied to them. See {@link
-     * java.lang.String} for a  discussion for how error styling is calculated.
+     * determines whether fields  with validation errors should have special styling applied to them. See String for a 
+     * discussion for how error styling is calculated.
      *
      * @param showErrorIcons showErrorIcons Default value is true
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
@@ -1174,8 +1200,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}<code>:"left"</code> creates a compact
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
      * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
-     * determines whether fields  with validation errors should have special styling applied to them. See {@link
-     * java.lang.String} for a  discussion for how error styling is calculated.
+     * determines whether fields  with validation errors should have special styling applied to them. See String for a 
+     * discussion for how error styling is calculated.
      *
      *
      * @return Boolean
@@ -1211,8 +1237,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}<code>:"left"</code> creates a compact
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
      * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
-     * determines whether fields  with validation errors should have special styling applied to them. See {@link
-     * java.lang.String} for a  discussion for how error styling is calculated.
+     * determines whether fields  with validation errors should have special styling applied to them. See String for a 
+     * discussion for how error styling is calculated.
      *
      * @param showErrorStyle showErrorStyle Default value is true
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
@@ -1247,8 +1273,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}<code>:"left"</code> creates a compact
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
      * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
-     * determines whether fields  with validation errors should have special styling applied to them. See {@link
-     * java.lang.String} for a  discussion for how error styling is calculated.
+     * determines whether fields  with validation errors should have special styling applied to them. See String for a 
+     * discussion for how error styling is calculated.
      *
      *
      * @return Boolean
@@ -1284,8 +1310,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}<code>:"left"</code> creates a compact
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
      * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
-     * determines whether fields  with validation errors should have special styling applied to them. See {@link
-     * java.lang.String} for a  discussion for how error styling is calculated.
+     * determines whether fields  with validation errors should have special styling applied to them. See String for a 
+     * discussion for how error styling is calculated.
      *
      * @param showErrorText showErrorText Default value is false
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
@@ -1320,8 +1346,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}<code>:"left"</code> creates a compact
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
      * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
-     * determines whether fields  with validation errors should have special styling applied to them. See {@link
-     * java.lang.String} for a  discussion for how error styling is calculated.
+     * determines whether fields  with validation errors should have special styling applied to them. See String for a 
+     * discussion for how error styling is calculated.
      *
      *
      * @return Boolean
@@ -1562,6 +1588,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * change on validation failure.
      *
      * @param validateOnChange validateOnChange Default value is false
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setValidateOnChange
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public void setValidateOnChange(Boolean validateOnChange) {
@@ -1577,6 +1604,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getValidateOnChange
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public Boolean getValidateOnChange()  {
@@ -1589,6 +1617,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * validation in response to user interaction - if true at either level, validation will occur on editorExit.
      *
      * @param validateOnExit validateOnExit Default value is false
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setValidateOnExit
      */
     public void setValidateOnExit(Boolean validateOnExit) {
         setAttribute("validateOnExit", validateOnExit, true);
@@ -1601,6 +1630,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getValidateOnExit
      */
     public Boolean getValidateOnExit()  {
         return getAttributeAsBoolean("validateOnExit");
@@ -1621,6 +1651,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * in <code>[webroot]/examples/struts</code> for usage examples.
      *
      * @param validationURL validationURL Default value is null
+     * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
+     * @see com.smartgwt.client.widgets.form.DynamicForm#submit
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public void setValidationURL(String validationURL) {
@@ -1643,6 +1675,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
+     * @see com.smartgwt.client.widgets.form.DynamicForm#submit
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public String getValidationURL()  {
@@ -1728,7 +1762,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * Clears the value for some field via a call to {@link com.smartgwt.client.widgets.form.fields.FormItem#clearValue
      * FormItem.clearValue} if appropriate. If there is no item associated with the field name, the field will just be cleared
      * within our stored set of values.
-     * @param fieldName Name of the field being cleared. A {@link java.lang.String} may be used for  clearing details of nested data structures.
+     * @param fieldName Name of the field being cleared. A String may be used for  clearing details of nested data structures.
      */
     public native void clearValue(String fieldName) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -2029,7 +2063,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
             
     /**
      * Sets the value for some field
-     * @param fieldName Name of the field being updated. A {@link java.lang.String} may                           be passed to set nested values
+     * @param fieldName Name of the field being updated. A String may                           be passed to set nested values
      * @param value New value.
      */
     public native void setValue(String fieldName, String value) /*-{
@@ -2270,18 +2304,20 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      * @param cellSpacing the cellSpacing
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @deprecated use {@link #setCellPadding(int)} instead
      */
     public void setCellSpacing(int cellSpacing) throws IllegalStateException {
-        setAttribute("cellSpacing", cellSpacing, false);
+        setCellPadding(cellSpacing);
     }
 
     /**
      * Return the cellSpacing.
      *
      * @return the cellSpacing
+     * @deprecated use {@link #getCellPadding()} instead
      */
     public int getCellSpacing() {
-        return getAttributeAsInt("cellSpacing");
+        return getCellPadding();
     }
 
     /**

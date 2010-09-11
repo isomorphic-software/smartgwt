@@ -94,6 +94,7 @@ public class ActiveXControl extends BrowserPlugin {
      *
      * @param classID classID Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.plugins.ActiveXControl#setUuid
      */
     public void setClassID(String classID)  throws IllegalStateException {
         setAttribute("classID", classID, false);
@@ -106,6 +107,7 @@ public class ActiveXControl extends BrowserPlugin {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.plugins.ActiveXControl#getUuid
      */
     public String getClassID()  {
         return getAttributeAsString("classID");
@@ -139,6 +141,8 @@ public class ActiveXControl extends BrowserPlugin {
      *
      * @param id id Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.plugins.ActiveXControl#getPluginHandle
+     * @see com.smartgwt.client.widgets.plugins.ActiveXControl#getPluginID
      */
     public void setId(String id)  throws IllegalStateException {
         setAttribute("id", id, false);
@@ -152,6 +156,8 @@ public class ActiveXControl extends BrowserPlugin {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.plugins.ActiveXControl#getPluginHandle
+     * @see com.smartgwt.client.widgets.plugins.ActiveXControl#getPluginID
      */
     public String getId()  {
         return getAttributeAsString("id");

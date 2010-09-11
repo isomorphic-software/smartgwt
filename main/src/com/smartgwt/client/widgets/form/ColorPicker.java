@@ -118,6 +118,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      *
      * @param autoCenterOnShow autoCenterOnShow Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.form.ColorPicker#setAutoPosition
      */
     public void setAutoCenterOnShow(Boolean autoCenterOnShow)  throws IllegalStateException {
         setAttribute("autoCenterOnShow", autoCenterOnShow, false);
@@ -129,6 +130,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.ColorPicker#getAutoPosition
      */
     public Boolean getAutoCenterOnShow()  {
         return getAttributeAsBoolean("autoCenterOnShow");
@@ -142,6 +144,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      *
      * @param autoPosition autoPosition Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.form.ColorPicker#setAutoCenterOnShow
      */
     public void setAutoPosition(Boolean autoPosition)  throws IllegalStateException {
         setAttribute("autoPosition", autoPosition, false);
@@ -155,6 +158,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.ColorPicker#getAutoCenterOnShow
      */
     public Boolean getAutoPosition()  {
         return getAttributeAsBoolean("autoPosition");
@@ -532,6 +536,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * Returns the Blue element of the currently-selected color, as an integer from 0-255
      *
      * @return blue color component
+     * @see com.smartgwt.client.widgets.form.ColorPicker#setBlue
      */
     public native int getBlue() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -542,6 +547,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * Returns the Green element of the currently-selected color, as an integer from 0-255
      *
      * @return green color component
+     * @see com.smartgwt.client.widgets.form.ColorPicker#setGreen
      */
     public native int getGreen() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -553,6 +559,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * hash sign, followed by the red, green and blue elements of the color in 2-digit hex form - for example "#F17F1D"
      *
      * @return HTML color value
+     * @see com.smartgwt.client.widgets.form.ColorPicker#setHtmlColor
      */
     public native String getHtmlColor() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -563,6 +570,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * Returns the Hue of the currently-selected color, as an integer from 0-239
      *
      * @return hue value
+     * @see com.smartgwt.client.widgets.form.ColorPicker#setHue
      */
     public native int getHue() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -573,6 +581,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * Returns the Luminosity (brightness) of the currently-selected color, as an  integer from 0-240
      *
      * @return luminosity value
+     * @see com.smartgwt.client.widgets.form.ColorPicker#setLuminosity
      */
     public native int getLuminosity() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -583,6 +592,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * Returns the Red element of the currently-selected color, as an integer from 0-255
      *
      * @return red color component
+     * @see com.smartgwt.client.widgets.form.ColorPicker#setRed
      */
     public native int getRed() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -593,6 +603,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * Returns the Saturation of the currently-selected color, as an integer from 0-240
      *
      * @return saturation value
+     * @see com.smartgwt.client.widgets.form.ColorPicker#setSaturation
      */
     public native int getSaturation() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

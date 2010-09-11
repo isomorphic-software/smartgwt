@@ -58,6 +58,7 @@ import com.google.gwt.event.shared.HasHandlers;
 /**
  * Similar to a {@link com.smartgwt.client.widgets.tile.TileLayout}, but by default lays out tiles in 'flow' mode instead
  * of 'fit' mode.
+ * @see com.smartgwt.client.widgets.tile.TileLayout#getLayoutPolicy
  */
 public class FlowLayout extends TileLayout {
 

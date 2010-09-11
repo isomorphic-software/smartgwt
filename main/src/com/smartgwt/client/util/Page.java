@@ -95,6 +95,9 @@ public class Page {
      * defaultUnsupportedBrowserURL}. <p> This method is commonly called as part of the {@link
      * com.smartgwt.client.docs.Skinning skinning} logic after page load.
      * @param URL URL of redirect page. May include Isomorphic special directories      such as [SKIN].
+     * @see com.smartgwt.client.util.Page#unsupportedBrowserAction
+     * @see com.smartgwt.client.util.Page#getUnsupportedBrowserPromptString
+     * @see com.smartgwt.client.util.Page#defaultUnsupportedBrowserURL
      */
     public static native void checkBrowserAndRedirect(String URL) /*-{
         $wnd.isc.Page.checkBrowserAndRedirect(URL);
@@ -258,6 +261,7 @@ public class Page {
      * be overridden to return a different message.
      *
      * @return Unsupported browser message.
+     * @see com.smartgwt.client.util.Page#checkBrowserAndRedirect
      */
     public static native String getUnsupportedBrowserPromptString() /*-{
         return $wnd.isc.Page.getUnsupportedBrowserPromptString();

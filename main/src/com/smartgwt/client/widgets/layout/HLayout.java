@@ -59,6 +59,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * A subclass of Layout that applies a sizing policy along the horizontal axis, interpreting  percent and "*" sizes as
  * proportions of the width of the layout. HLayouts will set any members  that do not have explicit heights to match the
  * layout.
+ * @see com.smartgwt.client.widgets.layout.Layout#getHPolicy
  */
 public class HLayout extends Layout {
 

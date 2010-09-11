@@ -1,15 +1,133 @@
+/*
+ * Smart GWT (GWT for SmartClient)
+ * Copyright 2008 and beyond, Isomorphic Software, Inc.
+ *
+ * Smart GWT is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License version 3
+ * as published by the Free Software Foundation.  Smart GWT is also
+ * available under typical commercial license terms - see
+ * http://smartclient.com/license
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ */
+ 
 package com.smartgwt.client.data;
 
-import com.google.gwt.core.client.JavaScriptObject;
-import com.smartgwt.client.util.SC;
-import com.smartgwt.client.types.OperatorId;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Iterator;
-import com.smartgwt.client.util.JSOHelper;
 
+
+import com.smartgwt.client.event.*;
+import com.smartgwt.client.core.*;
+import com.smartgwt.client.types.*;
+import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.widgets.*;
+import com.smartgwt.client.widgets.events.*;
+import com.smartgwt.client.widgets.form.*;
+import com.smartgwt.client.widgets.form.validator.*;
+import com.smartgwt.client.widgets.form.fields.*;
+import com.smartgwt.client.widgets.tile.*;
+import com.smartgwt.client.widgets.tile.events.*;
+import com.smartgwt.client.widgets.grid.*;
+import com.smartgwt.client.widgets.grid.events.*;
+import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tab.*;
+import com.smartgwt.client.widgets.toolbar.*;
+import com.smartgwt.client.widgets.tree.*;
+import com.smartgwt.client.widgets.tree.events.*;
+import com.smartgwt.client.widgets.viewer.*;
+import com.smartgwt.client.widgets.calendar.*;
+import com.smartgwt.client.widgets.calendar.events.*;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
+import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.user.client.Element;
+import com.smartgwt.client.util.*;
+import com.google.gwt.event.shared.*;
+import com.google.gwt.event.shared.HasHandlers;
+
+/**
+ * An object representing a criterion to apply to a record.   <P> A criterion is part of the definition of an {@link
+ * com.smartgwt.client.data.AdvancedCriteria} object, which is used to filter records according to search criteria.  <P> A
+ * criterion consists of an {@link com.smartgwt.client.data.Criterion#getOperator operator} and typically a {@link
+ * com.smartgwt.client.data.DataSourceField#getName fieldName} from a {@link com.smartgwt.client.data.Record} and a {@link
+ * com.smartgwt.client.data.Criterion#getValue value} to compare to.  However some operators either don't require a value
+ * (eg, isNull) or act on other criteria rather than directly on a {@link com.smartgwt.client.data.Record}'s fields (eg,
+ * the "and" and "or" logical operators).
+ */
 public class Criterion extends Criteria {
+
+    public static Criterion getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
+        return new Criterion(jsObj);
+    }
+
+    public Criterion(){
+        
+    }
+
+    public Criterion(JavaScriptObject jsObj){
+        super(jsObj);
+    }
+
+    // ********************* Properties / Attributes ***********************
+
+    /**
+     * Name of the field in each {@link com.smartgwt.client.data.Record} that this criterion applies to.  Not applicable for a
+     * criterion with {@link com.smartgwt.client.data.Criterion#getCriteria sub-criteria}.
+     *
+     * @param fieldName fieldName Default value is null
+     */
+    public void setFieldName(String fieldName) {
+        setAttribute("fieldName", fieldName);
+    }
+
+    /**
+     * Name of the field in each {@link com.smartgwt.client.data.Record} that this criterion applies to.  Not applicable for a
+     * criterion with {@link com.smartgwt.client.data.Criterion#getCriteria sub-criteria}.
+     *
+     *
+     * @return String
+     */
+    public String getFieldName()  {
+        return getAttributeAsString("fieldName");
+    }
+
+    /**
+     * Operator this criterion applies.
+     *
+     * @param operator operator Default value is null
+     */
+    public void setOperator(OperatorId operator) {
+        setAttribute("operator", operator.getValue());
+    }
+
+    /**
+     * Operator this criterion applies.
+     *
+     *
+     * @return OperatorId
+     */
+    public OperatorId getOperator()  {
+        return EnumUtil.getEnum(OperatorId.values(), getAttribute("operator"));
+    }
+
+    // ********************* Methods ***********************
+
+    // ********************* Static Methods ***********************
+        
+    // ***********************************************************        
+
+
     public Criterion(Criterion c) {
         Object o;
         o = c.getAttributeAsObject("operator");
@@ -22,19 +140,12 @@ public class Criterion extends Criteria {
         if (o != null) setAttribute("value", o);
     }
 
-    public Criterion(JavaScriptObject jsObj) {
-        super(jsObj);
-    }
-
     public Criterion(OperatorId operator, Criterion[] criterias) {
         buildCriterionFromList(operator, criterias);
     }
     
     public Criterion(OperatorId operator) {
         setAttribute("operator", operator.getValue());
-    }
-    
-    public Criterion() {
     }
     
     public Criterion(String fieldName, OperatorId operator) {
@@ -206,4 +317,10 @@ public class Criterion extends Criteria {
     public void unmarkAdvancedCriteria() {
         JSOHelper.deleteAttributeIfExists(jsObj, "_constructor");
     }
+
 }
+
+
+
+
+

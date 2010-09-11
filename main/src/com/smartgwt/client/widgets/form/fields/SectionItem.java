@@ -61,6 +61,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * hidden as a group when the section is expanded or collapsed.  Clicking on a <code>SectionItem</code> will expand or
  * collapse the section. <P> To make a form where only one section is expanded at a time, set {@link
  * com.smartgwt.client.widgets.form.DynamicForm#getSectionVisibilityMode sectionVisibilityMode} to "mutex".
+ * @see com.smartgwt.client.widgets.form.DynamicForm#getSectionVisibilityMode
  */
 public class SectionItem extends CanvasItem {
 

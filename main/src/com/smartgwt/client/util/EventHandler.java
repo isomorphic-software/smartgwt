@@ -79,6 +79,9 @@ import com.google.gwt.event.shared.HasHandlers;
  * not interfere with native event handling when events occur outside of a target widget. You can therefore have HTML that
  * is not ISC-based on the same page as widget objects that will react to native events as you would expect. <p> You can
  * use isc.Event as an alias for isc.EventHandler.
+ * @see com.smartgwt.client.types.PageEvent
+ * @see com.smartgwt.client.util.Page#setEvent
+ * @see com.smartgwt.client.util.Page#clearEvent
  */
 public class EventHandler {
 
@@ -121,6 +124,7 @@ public class EventHandler {
      * returns something meaningful during a drag and drop interaction.
      *
      * @return The dragTarget.
+     * @see com.smartgwt.client.widgets.Canvas#getDragTarget
      */
     public static native Canvas getDragTarget() /*-{
         var ret = $wnd.isc.EventHandler.getDragTarget();
