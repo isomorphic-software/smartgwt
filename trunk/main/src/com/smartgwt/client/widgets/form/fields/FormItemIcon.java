@@ -58,6 +58,7 @@ import com.google.gwt.event.shared.HasHandlers;
 /**
  * Form item icon descriptor objects used by Form Items to specify the appearance and  behavior of icons displayed after
  * the item in the page flow.
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getIcons
  */
 public class FormItemIcon extends DataClass  implements com.smartgwt.client.widgets.form.fields.events.HasFormItemClickHandlers {
 
@@ -81,6 +82,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      * property will be used instead.
      *
      * @param height height Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setIconHeight
      */
     public void setHeight(Integer height) {
         setAttribute("height", height);
@@ -92,6 +94,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getIconHeight
      */
     public Integer getHeight()  {
         return getAttributeAsInt("height");
@@ -148,6 +151,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param prompt prompt Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setIconPrompt
      */
     public void setPrompt(String prompt) {
         setAttribute("prompt", prompt);
@@ -159,6 +163,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getIconPrompt
      */
     public String getPrompt()  {
         return getAttributeAsString("prompt");
@@ -169,6 +174,8 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showFocused showFocused Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setShowFocusedIcons
+     * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#setShowFocusedWithItem
      */
     public void setShowFocused(Boolean showFocused) {
         setAttribute("showFocused", showFocused);
@@ -179,6 +186,8 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getShowFocusedIcons
+     * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#getShowFocusedWithItem
      */
     public Boolean getShowFocused()  {
         return getAttributeAsBoolean("showFocused");
@@ -193,6 +202,8 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showFocusedWithItem showFocusedWithItem Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setShowFocusedIcons
+     * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#setShowFocused
      */
     public void setShowFocusedWithItem(Boolean showFocusedWithItem) {
         setAttribute("showFocusedWithItem", showFocusedWithItem);
@@ -207,6 +218,8 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getShowFocusedIcons
+     * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#getShowFocused
      */
     public Boolean getShowFocusedWithItem()  {
         return getAttributeAsBoolean("showFocusedWithItem");
@@ -217,6 +230,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showOver showOver Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setShowOverIcons
      */
     public void setShowOver(Boolean showOver) {
         setAttribute("showOver", showOver);
@@ -227,6 +241,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getShowOverIcons
      */
     public Boolean getShowOver()  {
         return getAttributeAsBoolean("showOver");
@@ -238,6 +253,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      *  "_Over" or "_Disabled" if appropriate to show the icons over or disabled state.
      *
      * @param src src Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setDefaultIconSrc
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_icons" target="examples">Icons Example</a>
      */
     public void setSrc(String src) {
@@ -251,6 +267,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getDefaultIconSrc
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_icons" target="examples">Icons Example</a>
      */
     public String getSrc()  {
@@ -262,6 +279,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      * property will be used instead.
      *
      * @param width width Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setIconWidth
      */
     public void setWidth(Integer width) {
         setAttribute("width", width);
@@ -273,6 +291,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getIconWidth
      */
     public Integer getWidth()  {
         return getAttributeAsInt("width");

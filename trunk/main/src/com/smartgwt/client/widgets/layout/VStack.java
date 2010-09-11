@@ -58,6 +58,7 @@ import com.google.gwt.event.shared.HasHandlers;
 /**
  * A subclass of Layout that simply stacks members on the vertical axis without trying to manage their height.  On the
  * horizontal axis, any members that do not have explicit widths will be sized to match the width of the stack.
+ * @see com.smartgwt.client.widgets.layout.Layout#getVPolicy
  */
 public class VStack extends Layout {
 

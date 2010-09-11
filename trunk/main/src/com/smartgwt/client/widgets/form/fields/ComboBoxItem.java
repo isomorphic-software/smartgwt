@@ -237,6 +237,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param filterLocally filterLocally Default value is false
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setFilterLocally
      */
     public void setFilterLocally(Boolean filterLocally) {
         setAttribute("filterLocally", filterLocally);
@@ -250,6 +251,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getFilterLocally
      */
     public Boolean getFilterLocally()  {
         return getAttributeAsBoolean("filterLocally");
@@ -365,6 +367,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHintInField showHintInField Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setHint
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowHintInField(Boolean showHintInField) {
@@ -377,6 +380,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getHint
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowHintInField()  {

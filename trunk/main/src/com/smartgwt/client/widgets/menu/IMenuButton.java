@@ -171,6 +171,7 @@ public class IMenuButton extends StretchImgButton {
      *
      * @param menuButtonImage menuButtonImage Default value is "[SKIN]menu_button.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.menu.MenuButton#setMenuButtonImageUp
      */
     public void setMenuButtonImage(String menuButtonImage)  throws IllegalStateException {
         setAttribute("menuButtonImage", menuButtonImage, false);
@@ -183,6 +184,7 @@ public class IMenuButton extends StretchImgButton {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.menu.MenuButton#getMenuButtonImageUp
      */
     public String getMenuButtonImage()  {
         return getAttributeAsString("menuButtonImage");
@@ -196,6 +198,7 @@ public class IMenuButton extends StretchImgButton {
      *
      * @param menuButtonImageUp menuButtonImageUp Default value is "[SKIN]menu_button_up.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.menu.MenuButton#setMenuButtonImage
      */
     public void setMenuButtonImageUp(String menuButtonImageUp)  throws IllegalStateException {
         setAttribute("menuButtonImageUp", menuButtonImageUp, false);
@@ -208,6 +211,7 @@ public class IMenuButton extends StretchImgButton {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.menu.MenuButton#getMenuButtonImage
      */
     public String getMenuButtonImageUp()  {
         return getAttributeAsString("menuButtonImageUp");

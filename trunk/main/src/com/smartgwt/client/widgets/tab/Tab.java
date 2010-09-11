@@ -104,6 +104,7 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      * canCloseTabs}
      *
      * @param canClose canClose Default value is null
+     * @see com.smartgwt.client.widgets.tab.TabSet#closeClick
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_closeable" target="examples">Closeable Tabs Example</a>
      */
     public void setCanClose(Boolean canClose) {
@@ -119,6 +120,7 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.tab.TabSet#closeClick
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_closeable" target="examples">Closeable Tabs Example</a>
      */
     public Boolean getCanClose()  {
@@ -185,6 +187,8 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      * com.smartgwt.client.widgets.tab.Tab#getTitle title} will be used instead
      *
      * @param pickerTitle pickerTitle Default value is null
+     * @see com.smartgwt.client.widgets.tab.TabSet#setShowTabPicker
+     * @see com.smartgwt.client.widgets.tab.Tab#setTitle
      */
     public void setPickerTitle(String pickerTitle) {
         setAttribute("pickerTitle", pickerTitle);
@@ -197,6 +201,8 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker
+     * @see com.smartgwt.client.widgets.tab.Tab#getTitle
      */
     public String getPickerTitle()  {
         return getAttributeAsString("pickerTitle");

@@ -138,6 +138,7 @@ public class Flashlet extends BrowserPlugin {
      *
      * @param name name Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.plugins.Flashlet#getPluginHandle
      */
     public void setName(String name)  throws IllegalStateException {
         setAttribute("name", name, false);
@@ -150,6 +151,7 @@ public class Flashlet extends BrowserPlugin {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.plugins.Flashlet#getPluginHandle
      */
     public String getName()  {
         return getAttributeAsString("name");

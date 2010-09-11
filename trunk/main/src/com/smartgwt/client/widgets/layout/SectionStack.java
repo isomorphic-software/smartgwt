@@ -484,6 +484,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      * Whether multiple sections can be visible at once
      *
      * @param visibilityMode visibilityMode Default value is "mutex"
+     * @see com.smartgwt.client.types.VisibilityMode
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_sections_expand_collapse" target="examples">Expand / Collapse Example</a>
      */
     public void setVisibilityMode(VisibilityMode visibilityMode) {
@@ -495,6 +496,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      *
      *
      * @return VisibilityMode
+     * @see com.smartgwt.client.types.VisibilityMode
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_sections_expand_collapse" target="examples">Expand / Collapse Example</a>
      */
     public VisibilityMode getVisibilityMode()  {

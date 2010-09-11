@@ -66,6 +66,12 @@ import com.google.gwt.event.shared.HasHandlers;
  * HLayout or VLayout).  Resizer bars override membersMargin spacing. <br><br>  Like other Canvas subclasses, Layout and
  * Stack components may have % width and height values. To create a dynamically-resizing layout that occupies the entire
  * page (or entire parent component), set width and height to "100%".
+ * @see com.smartgwt.client.types.LayoutPolicy
+ * @see com.smartgwt.client.widgets.layout.VLayout
+ * @see com.smartgwt.client.widgets.layout.HLayout
+ * @see com.smartgwt.client.widgets.layout.VStack
+ * @see com.smartgwt.client.widgets.layout.HStack
+ * @see com.smartgwt.client.widgets.layout.LayoutSpacer
  */
 public class Layout extends Canvas {
 
@@ -234,6 +240,7 @@ public class Layout extends Canvas {
      *
      * @param dropLineThickness dropLineThickness Default value is 2
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.layout.Layout
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_drag_move" target="examples">Drag move Example</a>
      */
@@ -248,6 +255,7 @@ public class Layout extends Canvas {
      *
      *
      * @return int
+     * @see com.smartgwt.client.widgets.layout.Layout
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_drag_move" target="examples">Drag move Example</a>
      */
@@ -354,6 +362,11 @@ public class Layout extends Canvas {
      * Method to force a reflow of the layout after directly assigning a value to any of the layout*Margin properties. Takes no arguments.
      *
      * @param layoutMargin layoutMargin Default value is null
+     * @see com.smartgwt.client.widgets.layout.Layout#setLayoutLeftMargin
+     * @see com.smartgwt.client.widgets.layout.Layout#setLayoutRightMargin
+     * @see com.smartgwt.client.widgets.layout.Layout#setLayoutBottomMargin
+     * @see com.smartgwt.client.widgets.layout.Layout#setLayoutTopMargin
+     * @see com.smartgwt.client.widgets.layout.Layout#setPaddingAsLayoutMargin
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_user_sizing" target="examples">User Sizing Example</a>
      */
     public void setLayoutMargin(Integer layoutMargin) {
@@ -369,6 +382,11 @@ public class Layout extends Canvas {
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.layout.Layout#getLayoutLeftMargin
+     * @see com.smartgwt.client.widgets.layout.Layout#getLayoutRightMargin
+     * @see com.smartgwt.client.widgets.layout.Layout#getLayoutBottomMargin
+     * @see com.smartgwt.client.widgets.layout.Layout#getLayoutTopMargin
+     * @see com.smartgwt.client.widgets.layout.Layout#getPaddingAsLayoutMargin
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_user_sizing" target="examples">User Sizing Example</a>
      */
     public Integer getLayoutMargin()  {
@@ -646,6 +664,9 @@ public class Layout extends Canvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param resizeBarClass resizeBarClass Default value is "Splitbar"
+     * @see com.smartgwt.client.widgets.Splitbar
+     * @see com.smartgwt.client.widgets.ImgSplitbar
+     * @see com.smartgwt.client.widgets.layout.Layout#setResizeBarSize
      */
     public void setResizeBarClass(String resizeBarClass) {
         setAttribute("resizeBarClass", resizeBarClass, true);
@@ -665,6 +686,9 @@ public class Layout extends Canvas {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.Splitbar
+     * @see com.smartgwt.client.widgets.ImgSplitbar
+     * @see com.smartgwt.client.widgets.layout.Layout#getResizeBarSize
      */
     public String getResizeBarClass()  {
         return getAttributeAsString("resizeBarClass");

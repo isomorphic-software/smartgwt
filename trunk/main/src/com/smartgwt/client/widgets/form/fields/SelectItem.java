@@ -60,6 +60,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * from a <code>dataSource</code> or a <code>valueMap</code>. <P> Note that to select the first option as a default value
  * for the item, {@link com.smartgwt.client.widgets.form.fields.SelectItem#getDefaultToFirstOption defaultToFirstOption}
  * may be set.
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getValueMap
  */
 public class SelectItem extends FormItem  implements PickList, com.smartgwt.client.widgets.form.fields.events.HasDataArrivedHandlers {
 
@@ -183,6 +184,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * CompoundFormItem_skinning} discussion for special skinning considerations.
      *
      * @param controlStyle controlStyle Default value is "selectItemControl", [IRA]
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setControlStyle(String controlStyle) {
@@ -195,6 +197,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getControlStyle()  {
@@ -306,6 +309,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param filterLocally filterLocally Default value is false
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setFilterLocally
      */
     public void setFilterLocally(Boolean filterLocally) {
         setAttribute("filterLocally", filterLocally);
@@ -319,6 +323,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getFilterLocally
      */
     public Boolean getFilterLocally()  {
         return getAttributeAsBoolean("filterLocally");
@@ -476,6 +481,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * Base CSS class name for a form item's picker icon cell. If unset inherits from  this items <code>controlStyle</code>.
      *
      * @param pickerIconStyle pickerIconStyle Default value is "selectItemPickerIcon", [IRA]
+     * @see com.smartgwt.client.widgets.form.fields.SelectItem#setControlStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setPickerIconStyle(String pickerIconStyle) {
@@ -487,6 +493,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.form.fields.SelectItem#getControlStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getPickerIconStyle()  {
@@ -522,6 +529,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showFocused showFocused Default value is true, [IRWA]
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowFocused(Boolean showFocused) {
@@ -533,6 +541,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowFocused()  {
@@ -545,6 +554,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHintInField showHintInField Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setHint
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowHintInField(Boolean showHintInField) {
@@ -557,6 +567,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getHint
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowHintInField()  {
@@ -639,6 +650,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * for special skinning considerations.
      *
      * @param textBoxStyle textBoxStyle Default value is "selectItemText", [IRA]
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextBoxStyle(String textBoxStyle) {
@@ -651,6 +663,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTextBoxStyle()  {
@@ -1243,7 +1256,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
         var value = self.getValue();
         if(value == null) {
             value = [];
-        } else if(!$wnd.isA.Array(value)) {
+        } else if(!$wnd.isc.isA.Array(value)) {
             value = [value];
         }
         return  @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(value);

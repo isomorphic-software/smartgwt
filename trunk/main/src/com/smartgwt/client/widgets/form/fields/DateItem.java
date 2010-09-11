@@ -139,6 +139,7 @@ public class DateItem extends FormItem {
      * to parse user-entered date strings back into Dates</B>
      *
      * @param displayFormat displayFormat Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.DateItem#setInputFormat
      */
     public void setDisplayFormat(DateDisplayFormat displayFormat) {
         setAttribute("displayFormat", displayFormat.getValue());
@@ -154,6 +155,7 @@ public class DateItem extends FormItem {
      *
      *
      * @return DateDisplayFormat
+     * @see com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat
      */
     public DateDisplayFormat getDisplayFormat()  {
         return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("displayFormat"));
@@ -235,10 +237,11 @@ public class DateItem extends FormItem {
      * property can be used to specify the input format for date strings.  If unset, the input format will be determined based
      * on the specified {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} if possible
      * (see {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat DateItem.getInputFormat}), otherwise picked
-     * up from the Date class (see  Date.setInputFormat). <P> Should be set to a standard {@link java.lang.String} or a
-     * function which will take a date string as a parameter and return a Javascript Date object.
+     * up from the Date class (see  Date.setInputFormat). <P> Should be set to a standard String or a function which will take
+     * a date string as a parameter and return a Javascript Date object.
      *
      * @param inputFormat inputFormat Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.DateItem#setDisplayFormat
      */
     public void setInputFormat(String inputFormat) {
         setAttribute("inputFormat", inputFormat);
@@ -249,19 +252,20 @@ public class DateItem extends FormItem {
      * property can be used to specify the input format for date strings.  If unset, the input format will be determined based
      * on the specified {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} if possible
      * (see {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat DateItem.getInputFormat}), otherwise picked
-     * up from the Date class (see  Date.setInputFormat). <P> Should be set to a standard {@link java.lang.String} or a
-     * function which will take a date string as a parameter and return a Javascript Date object.
+     * up from the Date class (see  Date.setInputFormat). <P> Should be set to a standard String or a function which will take
+     * a date string as a parameter and return a Javascript Date object.
      *
      *
      * @return If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
-     * method returns a standard {@link java.lang.String}, or parsing function, determining how values entered by the user are
-     * to be converted to Javascript Date objects. <P> If an explicit {@link
-     * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} has been specified it will be returned. <P>
-     * Otherwise, if an explicit {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} has
-     * been specified as one of <code>toUSShortDate</code>, <code>toEuropeanShortDate</code> or <code>toJapanShortDate</code>
-     * this method will return the appropriate DateInputFormat to parse strings entered in the specified displayFormat. <P> If
-     * no inputFormat can be derived, the method will return null, meaning the standard input format for Date objects
-     * (specified via  Date.setInputFormat) will be used.
+     * method returns a standard String, or parsing function, determining how values entered by the user are to be converted to
+     * Javascript Date objects. <P> If an explicit {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat
+     * inputFormat} has been specified it will be returned. <P> Otherwise, if an explicit {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} has been specified as one of
+     * <code>toUSShortDate</code>, <code>toEuropeanShortDate</code> or <code>toJapanShortDate</code> this method will return
+     * the appropriate DateInputFormat to parse strings entered in the specified displayFormat. <P> If no inputFormat can be
+     * derived, the method will return null, meaning the standard input format for Date objects (specified via 
+     * Date.setInputFormat) will be used.
+     * @see com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat
      */
     public String getInputFormat()  {
         return getAttributeAsString("inputFormat");
@@ -416,6 +420,7 @@ public class DateItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param useMask useMask Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.DateItem#setMaskDateSeparator
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public void setUseMask(Boolean useMask) {

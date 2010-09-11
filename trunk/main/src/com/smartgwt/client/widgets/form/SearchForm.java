@@ -59,6 +59,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * A SearchForm is a DynamicForm specialized for a user to enter search criteria. <P> All DynamicForm properties and
  * methods work on SearchForm.  SearchForm extends and specializes DynamicForm for searching, for example, SearchForm sets
  * <code>hiliteRequiredFields</code> false by default because fields are typically required in a search.
+ * @see com.smartgwt.client.widgets.form.DynamicForm
  */
 public class SearchForm extends DynamicForm {
 

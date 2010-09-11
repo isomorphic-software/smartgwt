@@ -59,6 +59,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * A subclass of Layout that applies a sizing policy along the vertical axis, interpreting  percent and "*" sizes as
  * proportions of the height of the layout. VLayouts will set any  members that do not have explicit widths to match the
  * layout.
+ * @see com.smartgwt.client.widgets.layout.Layout#getVPolicy
  */
 public class VLayout extends Layout {
 

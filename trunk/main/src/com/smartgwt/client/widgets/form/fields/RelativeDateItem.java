@@ -279,14 +279,14 @@ public class RelativeDateItem extends CanvasItem {
      *
      *
      * @return If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
-     * method returns a standard {@link java.lang.String}, or parsing function, determining how values entered by the user are
-     * to be converted to Javascript Date objects. <P> If an explicit {@link
-     * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} has been specified it will be returned. <P>
-     * Otherwise, if an explicit {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} has
-     * been specified as one of <code>toUSShortDate</code>, <code>toEuropeanShortDate</code> or <code>toJapanShortDate</code>
-     * this method will return the appropriate DateInputFormat to parse strings entered in the specified displayFormat. <P> If
-     * no inputFormat can be derived, the method will return null, meaning the standard input format for Date objects
-     * (specified via  Date.setInputFormat) will be used.
+     * method returns a standard String, or parsing function, determining how values entered by the user are to be converted to
+     * Javascript Date objects. <P> If an explicit {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat
+     * inputFormat} has been specified it will be returned. <P> Otherwise, if an explicit {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} has been specified as one of
+     * <code>toUSShortDate</code>, <code>toEuropeanShortDate</code> or <code>toJapanShortDate</code> this method will return
+     * the appropriate DateInputFormat to parse strings entered in the specified displayFormat. <P> If no inputFormat can be
+     * derived, the method will return null, meaning the standard input format for Date objects (specified via 
+     * Date.setInputFormat) will be used.
      */
     public String getInputFormat()  {
         return getAttributeAsString("inputFormat");

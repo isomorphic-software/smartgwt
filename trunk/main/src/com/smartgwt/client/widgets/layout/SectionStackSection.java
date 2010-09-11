@@ -102,6 +102,7 @@ public class SectionStackSection extends RefDataClass {
      * When explicitly set to false, disallows drop before this member in the Layout.
      *
      * @param canDropBefore canDropBefore Default value is null
+     * @see com.smartgwt.client.widgets.layout.Layout
      * @see com.smartgwt.client.docs.LayoutMember LayoutMember overview and related methods
      */
     public void setCanDropBefore(Boolean canDropBefore) {
@@ -121,16 +122,15 @@ public class SectionStackSection extends RefDataClass {
     }
 
     /**
-     * Optional ID for the section. By default this will be applied to the generated  SectionStackHeader widget as a standard
-     * widget ID, meaning it should be unique within a page. To disable this behavior, set {@link
-     * com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs useGlobalSectionIDs} to false. <P>
-     * <b>Backcompat Note</b>: Section stack sections may be uniquely identified within a stack via the {@link
-     * com.smartgwt.client.widgets.layout.SectionStackSection#getName name} attribute (introduced in Jan 2010). Prior to this,
-     * the section ID attribute was used in this way (and would not be applied to the section header  as a widget ID). For
-     * backwards compatibility this is still supported: If  <code>section.name</code> is unspecified for a section but
-     * <code>section.ID</code> is set, the ID will be used as a default name attribute for the section. You can also disable
-     * the standard behavior of having the <code>section.ID</code> being applied to the generated section header (thereby
-     * avoiding the page-level uniqueness requirement) by setting  {@link
+     * Optional ID for the section. If {@link com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs
+     * useGlobalSectionIDs} is true, this property will be applied to the generated SectionStackHeader widget as a standard
+     * widget ID, meaning it should be unique within a page. <P> <b>Backcompat Note</b>: Section stack sections may be uniquely
+     * identified within a stack via the {@link com.smartgwt.client.widgets.layout.SectionStackSection#getName name} attribute
+     * (introduced in Jan 2010). Prior to this, the section ID attribute was used in this way (and would not be applied to the
+     * section header  as a widget ID). For backwards compatibility this is still supported: If  <code>section.name</code> is
+     * unspecified for a section but <code>section.ID</code> is set, the ID will be used as a default name attribute for the
+     * section. For backwards compatibility we also disable the standard behavior of having the <code>section.ID</code> being
+     * applied to the generated section header (thereby avoiding the page-level uniqueness requirement) by defaulting  {@link
      * com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs useGlobalSectionIDs} to false.
      *
      * @param ID ID Default value is null
@@ -140,16 +140,15 @@ public class SectionStackSection extends RefDataClass {
     }
 
     /**
-     * Optional ID for the section. By default this will be applied to the generated  SectionStackHeader widget as a standard
-     * widget ID, meaning it should be unique within a page. To disable this behavior, set {@link
-     * com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs useGlobalSectionIDs} to false. <P>
-     * <b>Backcompat Note</b>: Section stack sections may be uniquely identified within a stack via the {@link
-     * com.smartgwt.client.widgets.layout.SectionStackSection#getName name} attribute (introduced in Jan 2010). Prior to this,
-     * the section ID attribute was used in this way (and would not be applied to the section header  as a widget ID). For
-     * backwards compatibility this is still supported: If  <code>section.name</code> is unspecified for a section but
-     * <code>section.ID</code> is set, the ID will be used as a default name attribute for the section. You can also disable
-     * the standard behavior of having the <code>section.ID</code> being applied to the generated section header (thereby
-     * avoiding the page-level uniqueness requirement) by setting  {@link
+     * Optional ID for the section. If {@link com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs
+     * useGlobalSectionIDs} is true, this property will be applied to the generated SectionStackHeader widget as a standard
+     * widget ID, meaning it should be unique within a page. <P> <b>Backcompat Note</b>: Section stack sections may be uniquely
+     * identified within a stack via the {@link com.smartgwt.client.widgets.layout.SectionStackSection#getName name} attribute
+     * (introduced in Jan 2010). Prior to this, the section ID attribute was used in this way (and would not be applied to the
+     * section header  as a widget ID). For backwards compatibility this is still supported: If  <code>section.name</code> is
+     * unspecified for a section but <code>section.ID</code> is set, the ID will be used as a default name attribute for the
+     * section. For backwards compatibility we also disable the standard behavior of having the <code>section.ID</code> being
+     * applied to the generated section header (thereby avoiding the page-level uniqueness requirement) by defaulting  {@link
      * com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs useGlobalSectionIDs} to false.
      *
      *
@@ -163,7 +162,9 @@ public class SectionStackSection extends RefDataClass {
      * Identifier for the section.  This can be used later in calls to {@link com.smartgwt.client.widgets.layout.SectionStack}
      * APIs such as {@link com.smartgwt.client.widgets.layout.SectionStack#expandSection SectionStack.expandSection} and {@link
      * com.smartgwt.client.widgets.layout.SectionStack#collapseSection SectionStack.collapseSection}. Note that if no name is
-     * specified for the section, one will be auto-generated when the section is created.
+     * specified for the section, one will be auto-generated when the section is created. This property should be a string
+     * which may be used as a valid JavaScript identifier (should start with a letter and not contain space or special
+     * characters such as "*").
      *
      * @param name name Default value is null
      */
@@ -175,7 +176,9 @@ public class SectionStackSection extends RefDataClass {
      * Identifier for the section.  This can be used later in calls to {@link com.smartgwt.client.widgets.layout.SectionStack}
      * APIs such as {@link com.smartgwt.client.widgets.layout.SectionStack#expandSection SectionStack.expandSection} and {@link
      * com.smartgwt.client.widgets.layout.SectionStack#collapseSection SectionStack.collapseSection}. Note that if no name is
-     * specified for the section, one will be auto-generated when the section is created.
+     * specified for the section, one will be auto-generated when the section is created. This property should be a string
+     * which may be used as a valid JavaScript identifier (should start with a letter and not contain space or special
+     * characters such as "*").
      *
      *
      * @return String
@@ -221,7 +224,7 @@ public class SectionStackSection extends RefDataClass {
         if(stack == null || !stack.isDrawn()) {
             setAttribute("title", title);
         } else {
-            stack.setSectionTitle(getID(), title);
+            stack.setSectionTitle(getName(), title);
         }
     }
 
@@ -234,7 +237,7 @@ public class SectionStackSection extends RefDataClass {
         if(stack == null || !stack.isDrawn()) {
             return getAttributeAsString("title");
         } else {
-            return stack.getSection(getID()).getAttribute("title");
+            return stack.getSection(getName()).getAttribute("title");
         }
     }
 
@@ -251,9 +254,9 @@ public class SectionStackSection extends RefDataClass {
             setAttribute("expanded", expanded);
         } else {
             if(expanded) {
-                stack.expandSection(getID());
+                stack.expandSection(getName());
             } else {
-                stack.collapseSection(getID());
+                stack.collapseSection(getName());
             }
         }
     }
@@ -269,9 +272,9 @@ public class SectionStackSection extends RefDataClass {
             setAttribute("hidden", hidden);
         } else {
             if(hidden) {
-                stack.hideSection(getID());
+                stack.hideSection(getName());
             } else {
-                stack.showSection(getID());
+                stack.showSection(getName());
             }
         }
     }

@@ -123,6 +123,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * "<span>" + isc.Canvas.imgHTML("myIcon.png") + " Tab Title</span>"&#010 </pre>
      *
      * @param canCloseTabs canCloseTabs Default value is null
+     * @see com.smartgwt.client.widgets.tab.TabSet#closeClick
      */
     public void setCanCloseTabs(Boolean canCloseTabs) {
         setAttribute("canCloseTabs", canCloseTabs, true);
@@ -141,6 +142,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.tab.TabSet#closeClick
      */
     public Boolean getCanCloseTabs()  {
         return getAttributeAsBoolean("canCloseTabs");
@@ -302,6 +304,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      *
      * @param pickerButtonHSrc pickerButtonHSrc Default value is "[SKIN]hpicker.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.tab.TabSet#setSymmetricPickerButton
      */
     public void setPickerButtonHSrc(String pickerButtonHSrc)  throws IllegalStateException {
         setAttribute("pickerButtonHSrc", pickerButtonHSrc, false);
@@ -319,6 +322,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.tab.TabSet#getSymmetricPickerButton
      */
     public String getPickerButtonHSrc()  {
         return getAttributeAsString("pickerButtonHSrc");
@@ -362,6 +366,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      *
      * @param pickerButtonSrc pickerButtonSrc Default value is "[SKIN]/picker.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.tab.TabSet#setSymmetricPickerButton
      */
     public void setPickerButtonSrc(String pickerButtonSrc)  throws IllegalStateException {
         setAttribute("pickerButtonSrc", pickerButtonSrc, false);
@@ -379,6 +384,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.tab.TabSet#getSymmetricPickerButton
      */
     public String getPickerButtonSrc()  {
         return getAttributeAsString("pickerButtonSrc");
@@ -396,6 +402,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      *
      * @param pickerButtonVSrc pickerButtonVSrc Default value is "[SKIN]vpicker.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.tab.TabSet#setSymmetricPickerButton
      */
     public void setPickerButtonVSrc(String pickerButtonVSrc)  throws IllegalStateException {
         setAttribute("pickerButtonVSrc", pickerButtonVSrc, false);
@@ -413,6 +420,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.tab.TabSet#getSymmetricPickerButton
      */
     public String getPickerButtonVSrc()  {
         return getAttributeAsString("pickerButtonVSrc");
@@ -463,6 +471,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      *
      * @param scrollerHSrc scrollerHSrc Default value is "[SKIN]hscroll.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.tab.TabSet#setSymmetricScroller
      */
     public void setScrollerHSrc(String scrollerHSrc)  throws IllegalStateException {
         setAttribute("scrollerHSrc", scrollerHSrc, false);
@@ -487,6 +496,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.tab.TabSet#getSymmetricScroller
      */
     public String getScrollerHSrc()  {
         return getAttributeAsString("scrollerHSrc");
@@ -512,6 +522,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      *
      * @param scrollerSrc scrollerSrc Default value is "[SKIN]/scroll.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.tab.TabSet#setSymmetricScroller
      */
     public void setScrollerSrc(String scrollerSrc)  throws IllegalStateException {
         setAttribute("scrollerSrc", scrollerSrc, false);
@@ -537,6 +548,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.tab.TabSet#getSymmetricScroller
      */
     public String getScrollerSrc()  {
         return getAttributeAsString("scrollerSrc");
@@ -561,6 +573,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      *
      * @param scrollerVSrc scrollerVSrc Default value is "[SKIN]vscroll.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.tab.TabSet#setSymmetricScroller
      */
     public void setScrollerVSrc(String scrollerVSrc)  throws IllegalStateException {
         setAttribute("scrollerVSrc", scrollerVSrc, false);
@@ -585,6 +598,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.tab.TabSet#getSymmetricScroller
      */
     public String getScrollerVSrc()  {
         return getAttributeAsString("scrollerVSrc");

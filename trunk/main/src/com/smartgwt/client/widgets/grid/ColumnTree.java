@@ -152,6 +152,8 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param customIconOpenProperty customIconOpenProperty Default value is "showOpenIcon"
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#setCustomIconProperty
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#setShowCustomIconOpen
      */
     public void setCustomIconOpenProperty(String customIconOpenProperty) {
         setAttribute("customIconOpenProperty", customIconOpenProperty, true);
@@ -163,6 +165,8 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconOpen
      */
     public String getCustomIconOpenProperty()  {
         return getAttributeAsString("customIconOpenProperty");

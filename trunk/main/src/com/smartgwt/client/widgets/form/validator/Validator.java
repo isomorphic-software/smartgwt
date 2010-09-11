@@ -66,6 +66,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * are very flexible and can be used to perform virtually any kind of formatting check that doesn't involve some large
  * external dataset. <p> Custom validators can be reused on the client by adding them to the global validator list, via the
  * {@link com.smartgwt.client.widgets.form.validator.Validator#addValidator Validator.addValidator} method.
+ * @see com.smartgwt.client.types.ValidatorType
  */
 public class Validator extends DataClass {
 
@@ -246,6 +247,26 @@ public class Validator extends DataClass {
     public String[] getDependentFields()  {
         return getAttributeAsStringArray("dependentFields");
     }
+    
+    public static Validator[] convertToValidatorArray(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new Validator[]{};
+        }
+        if (JSOHelper.isArray(nativeArray)) {
+            JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
+            Validator[] objects = new Validator[componentsj.length];
+            for (int i = 0; i < componentsj.length; i++) {
+                JavaScriptObject componentJS = componentsj[i];
+                objects[i] = Validator.getOrCreateRef(componentJS);
+            }
+            return objects;
+        } else {
+            Validator[] ret = new Validator[1];
+            ret[0] = Validator.getOrCreateRef(nativeArray);
+            return ret;
+        }
+    }
+
 
 }
 

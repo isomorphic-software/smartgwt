@@ -163,6 +163,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * Defines a tileGrid's clickable-selection behavior.
      *
      * @param selectionType selectionType Default value is Selection.MULTIPLE
+     * @see com.smartgwt.client.types.SelectionStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_editing_category" target="examples">Editing Example</a>
      */
@@ -175,6 +176,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      *
      *
      * @return SelectionStyle
+     * @see com.smartgwt.client.types.SelectionStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_editing_category" target="examples">Editing Example</a>
      */
@@ -308,12 +310,13 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }-*/;
             
     /**
-     * Returns a snapshot of the current presentation of this grid's fields as  a {@link java.lang.String} object. <P> This
-     * object can be passed to {@link com.smartgwt.client.widgets.tile.TileGrid#setFieldState TileGrid.setFieldState} to reset
-     * this grid's fields to the current state. <P> Note that the information stored includes the current width and visibility
-     * of each of this  grid's fields.
+     * Returns a snapshot of the current presentation of this grid's fields as  a String object. <P> This object can be passed
+     * to {@link com.smartgwt.client.widgets.tile.TileGrid#setFieldState TileGrid.setFieldState} to reset this grid's fields to
+     * the current state. <P> Note that the information stored includes the current width and visibility of each of this 
+     * grid's fields.
      *
      * @return current state of this grid's fields.
+     * @see com.smartgwt.client.widgets.tile.TileGrid#setFieldState
      */
     public native String getFieldState() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -458,8 +461,8 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
             
     /**
      * Sets some presentation properties (visibility, width, userFormula and userSummary) of the  grid fields based on the
-     * {@link java.lang.String} object passed in.<br> Used to restore previous state retrieved from the grid by a call to
-     * {@link com.smartgwt.client.widgets.tile.TileGrid#getFieldState TileGrid.getFieldState}.
+     * String object passed in.<br> Used to restore previous state retrieved from the grid by a call to {@link
+     * com.smartgwt.client.widgets.tile.TileGrid#getFieldState TileGrid.getFieldState}.
      * @param fieldState state to apply to the grid's fields.
      */
     public native void setFieldState(String fieldState) /*-{
