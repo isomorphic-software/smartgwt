@@ -64,6 +64,9 @@ import com.google.gwt.event.shared.HasHandlers;
  * com.smartgwt.client.widgets.grid.ListGridField} apply to TreeGridField as well. <p> This class documents just those
  * properties that are specific to TreeGridFields - see {@link com.smartgwt.client.widgets.grid.ListGridField} for the set
  * of inherited properties.
+ * @see com.smartgwt.client.widgets.grid.ListGridField
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getFields
+ * @see com.smartgwt.client.widgets.grid.ListGrid#setFields
  */
 public class TreeGridField extends ListGridField {
 

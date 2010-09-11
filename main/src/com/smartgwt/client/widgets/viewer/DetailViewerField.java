@@ -137,6 +137,8 @@ public class DetailViewerField extends DataClass {
      * <code>record.logoHeight</code> will control the height of the image.
      *
      * @param imageHeight imageHeight Default value is null
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setImageSize
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setImageWidth
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public void setImageHeight(Integer imageHeight) {
@@ -150,6 +152,8 @@ public class DetailViewerField extends DataClass {
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getImageSize
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getImageWidth
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public Integer getImageHeight()  {
@@ -162,6 +166,8 @@ public class DetailViewerField extends DataClass {
      * <code>record.logoSize</code> will control the size of the image.
      *
      * @param imageSize imageSize Default value is null
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setImageWidth
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setImageHeight
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public void setImageSize(Integer imageSize) {
@@ -175,6 +181,8 @@ public class DetailViewerField extends DataClass {
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getImageWidth
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getImageHeight
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public Integer getImageSize()  {
@@ -211,6 +219,8 @@ public class DetailViewerField extends DataClass {
      * <code>record.logoWidth</code> will control the width of the image.
      *
      * @param imageWidth imageWidth Default value is null
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setImageSize
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setImageHeight
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public void setImageWidth(Integer imageWidth) {
@@ -224,6 +234,8 @@ public class DetailViewerField extends DataClass {
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getImageSize
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getImageHeight
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public Integer getImageWidth()  {
@@ -257,6 +269,7 @@ public class DetailViewerField extends DataClass {
      * this field.  So, by default, the title of a field is the value of its "name" property.
      *
      * @param title title Default value is null
+     * @see com.smartgwt.client.widgets.viewer.DetailViewer#setFieldIdProperty
      */
     public void setTitle(String title) {
         setAttribute("title", title);
@@ -269,6 +282,7 @@ public class DetailViewerField extends DataClass {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.viewer.DetailViewer#getFieldIdProperty
      */
     public String getTitle()  {
         return getAttributeAsString("title");

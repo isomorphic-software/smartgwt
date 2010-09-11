@@ -148,6 +148,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      * The contents of a canvas or label widget. Any HTML string is acceptable.
      *
      * @param contents contents Default value is "&nbsp;"
+     * @see com.smartgwt.client.widgets.HTMLFlow#setDynamicContents
      */
     public void setContents(String contents) {
         setAttribute("contents", contents, true);
@@ -158,6 +159,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.HTMLFlow#getDynamicContents
      */
     public String getContents()  {
         return getAttributeAsString("contents");
@@ -211,6 +213,8 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dynamicContents dynamicContents Default value is false
+     * @see com.smartgwt.client.widgets.HTMLFlow#setContents
+     * @see com.smartgwt.client.widgets.Canvas#setDynamicContentsVars
      * 
      */
     public void setDynamicContents(Boolean dynamicContents) {
@@ -241,6 +245,8 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.HTMLFlow#getContents
+     * @see com.smartgwt.client.widgets.Canvas#getDynamicContentsVars
      * 
      */
     public Boolean getDynamicContents()  {
@@ -295,24 +301,26 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     }
 
     /**
-     * HTML to show while content is being fetched, active only if the <code>contentsURL</code> property has been set. <P> The
-     * loading message will show both during the initial load of content, and during reload if the contents are reloaded or the
-     * contentsURL changed.  For a first-time only loading message, initialize the <code>contents</code> property instead.<br>
-     * Note: the <code>loadingMessage</code> is never displayed when loading complete web pages  rather than HTML fragments
-     * (see {@link com.smartgwt.client.widgets.HTMLFlow#getContentsType contentsType}).
+     * HTML to show while content is being fetched, active only if the <code>contentsURL</code> property has been set. Use
+     * <code>"\${loadingImage}"</code> to include {@link com.smartgwt.client.widgets.Canvas#loadingImageSrc a loading image}.
+     * <P> The loading message will show both during the initial load of content, and during reload if the contents are
+     * reloaded or the contentsURL changed.  For a first-time only loading message, initialize the <code>contents</code>
+     * property instead.<br> Note: the <code>loadingMessage</code> is never displayed when loading complete web pages  rather
+     * than HTML fragments (see {@link com.smartgwt.client.widgets.HTMLFlow#getContentsType contentsType}).
      *
-     * @param loadingMessage loadingMessage Default value is null
+     * @param loadingMessage loadingMessage Default value is "&amp;nbsp;\${loadingImage}"
      */
     public void setLoadingMessage(String loadingMessage) {
         setAttribute("loadingMessage", loadingMessage, true);
     }
 
     /**
-     * HTML to show while content is being fetched, active only if the <code>contentsURL</code> property has been set. <P> The
-     * loading message will show both during the initial load of content, and during reload if the contents are reloaded or the
-     * contentsURL changed.  For a first-time only loading message, initialize the <code>contents</code> property instead.<br>
-     * Note: the <code>loadingMessage</code> is never displayed when loading complete web pages  rather than HTML fragments
-     * (see {@link com.smartgwt.client.widgets.HTMLFlow#getContentsType contentsType}).
+     * HTML to show while content is being fetched, active only if the <code>contentsURL</code> property has been set. Use
+     * <code>"\${loadingImage}"</code> to include {@link com.smartgwt.client.widgets.Canvas#loadingImageSrc a loading image}.
+     * <P> The loading message will show both during the initial load of content, and during reload if the contents are
+     * reloaded or the contentsURL changed.  For a first-time only loading message, initialize the <code>contents</code>
+     * property instead.<br> Note: the <code>loadingMessage</code> is never displayed when loading complete web pages  rather
+     * than HTML fragments (see {@link com.smartgwt.client.widgets.HTMLFlow#getContentsType contentsType}).
      *
      *
      * @return String

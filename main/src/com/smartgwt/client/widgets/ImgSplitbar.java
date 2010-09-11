@@ -60,6 +60,8 @@ import com.google.gwt.event.shared.HasHandlers;
  * class,   widgets of this class can be displayed as a resize-bar for widgets   in Layouts where showResizeBar is set to
  * true. Provides a different appearance from  the <code>Splitbar</code> class.<br>  To specify the resizeBar class for
  * some layout, use the {@link com.smartgwt.client.widgets.layout.Layout#getResizeBarClass resizeBarClass}  property.
+ * @see com.smartgwt.client.widgets.layout.Layout
+ * @see com.smartgwt.client.widgets.Splitbar
  */
 public class ImgSplitbar extends Img {
 
@@ -142,6 +144,7 @@ public class ImgSplitbar extends Img {
      *
      * @param hSrc hSrc Default value is [SKIN]hgrip.png
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.ImgSplitbar#setSrc
      */
     public void setHSrc(String hSrc)  throws IllegalStateException {
         setAttribute("hSrc", hSrc, false);
@@ -153,6 +156,7 @@ public class ImgSplitbar extends Img {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.ImgSplitbar#getSrc
      */
     public String getHSrc()  {
         return getAttributeAsString("hSrc");
@@ -232,6 +236,7 @@ public class ImgSplitbar extends Img {
      *
      * @param vSrc vSrc Default value is [SKIN]vgrip.png
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.ImgSplitbar#setSrc
      */
     public void setVSrc(String vSrc)  throws IllegalStateException {
         setAttribute("vSrc", vSrc, false);
@@ -243,6 +248,7 @@ public class ImgSplitbar extends Img {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.ImgSplitbar#getSrc
      */
     public String getVSrc()  {
         return getAttributeAsString("vSrc");

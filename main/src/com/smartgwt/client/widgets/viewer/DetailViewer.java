@@ -360,16 +360,18 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     }
 
     /**
-     * The string to display in the body of a detailViewer which is loading records.
+     * The string to display in the body of a detailViewer which is loading records. Use <code>"\${loadingImage}"</code> to
+     * include {@link com.smartgwt.client.widgets.Canvas#loadingImageSrc a loading image}.
      *
-     * @param loadingMessage loadingMessage Default value is "&nbsp;"
+     * @param loadingMessage loadingMessage Default value is "&amp;nbsp;\${loadingImage}"
      */
     public void setLoadingMessage(String loadingMessage) {
         setAttribute("loadingMessage", loadingMessage, true);
     }
 
     /**
-     * The string to display in the body of a detailViewer which is loading records.
+     * The string to display in the body of a detailViewer which is loading records. Use <code>"\${loadingImage}"</code> to
+     * include {@link com.smartgwt.client.widgets.Canvas#loadingImageSrc a loading image}.
      *
      *
      * @return String
@@ -551,6 +553,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showEmptyMessage showEmptyMessage Default value is true
+     * @see com.smartgwt.client.widgets.viewer.DetailViewer#setEmptyMessage
      */
     public void setShowEmptyMessage(Boolean showEmptyMessage) {
         setAttribute("showEmptyMessage", showEmptyMessage, true);
@@ -562,6 +565,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.viewer.DetailViewer#getEmptyMessage
      */
     public Boolean getShowEmptyMessage()  {
         return getAttributeAsBoolean("showEmptyMessage");

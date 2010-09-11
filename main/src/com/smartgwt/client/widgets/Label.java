@@ -150,6 +150,7 @@ public class Label extends Button {
      * Changes the contents of a widget to newContents, an HTML string. <P> When {@link com.smartgwt.client.widgets.Canvas#getDynamicContents dynamicContents} is set, <code>setContents()</code> can also be called with no arguments to cause contents to be re-evaluated.
      *
      * @param contents an HTML string to be set as the contents of this widget. Default value is "&nbsp;"
+     * @see com.smartgwt.client.widgets.Label#setDynamicContents
      */
     public void setContents(String contents) {
         setAttribute("contents", contents, true);
@@ -160,6 +161,7 @@ public class Label extends Button {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.Label#getDynamicContents
      */
     public String getContents()  {
         return getAttributeAsString("contents");
@@ -189,6 +191,8 @@ public class Label extends Button {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dynamicContents dynamicContents Default value is false
+     * @see com.smartgwt.client.widgets.Label#setContents
+     * @see com.smartgwt.client.widgets.Canvas#setDynamicContentsVars
      * 
      */
     public void setDynamicContents(Boolean dynamicContents) {
@@ -219,6 +223,8 @@ public class Label extends Button {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.Label#getContents
+     * @see com.smartgwt.client.widgets.Canvas#getDynamicContentsVars
      * 
      */
     public Boolean getDynamicContents()  {

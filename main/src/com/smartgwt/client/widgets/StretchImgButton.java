@@ -904,6 +904,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param state new state. Default value is ""
+     * @see com.smartgwt.client.types.State
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
     public void setState(State state) {
@@ -921,6 +922,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      *
      *
      * @return Return the state of this StatefulCanvas
+     * @see com.smartgwt.client.types.State
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
     public State getState()  {
