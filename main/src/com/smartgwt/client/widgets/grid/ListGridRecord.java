@@ -80,6 +80,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * {@link com.smartgwt.client.docs.Editing editValues vs saved values} when directly modifying&#010 ListGridRecords.&#010
  * <P>&#010 See the attributes in the API tab for the full list of special properties on&#010 ListGridRecords that will
  * affect the grid's behavior.
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getData
  */
 public class ListGridRecord extends Record {
 
@@ -414,6 +415,10 @@ public class ListGridRecord extends Record {
      * com.smartgwt.client.widgets.grid.ListGridField#getLinkText linkText}.
      *
      * @param linkText linkText Default value is null
+     * @see com.smartgwt.client.types.ListGridFieldType
+     * @see com.smartgwt.client.types.FieldType
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setLinkText
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setLinkTextProperty
      */
     public void setLinkText(String linkText) {
         setAttribute("linkText", linkText);
@@ -425,6 +430,10 @@ public class ListGridRecord extends Record {
      *
      *
      * @return String
+     * @see com.smartgwt.client.types.ListGridFieldType
+     * @see com.smartgwt.client.types.FieldType
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getLinkText
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getLinkTextProperty
      */
     public String getLinkText()  {
         return getAttributeAsString("linkText");
