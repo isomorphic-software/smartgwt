@@ -134,6 +134,69 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
+     * If this form item has a specified {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
+     * optionDataSource} and  {@link com.smartgwt.client.widgets.form.fields.FormItem#getFetchMissingValues fetchMissingValues}
+     * is true, this property may be set to true to ensure a fetch will occur against the optionDataSource to retrieve the
+     * related record even if {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} is unset.
+     * <P> An example of a use case where this might be set would be if {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#formatValue FormItem.formatValue} or {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#formatEditorValue FormItem.formatEditorValue} were written to display
+     * properties from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getSelectedRecord selected record}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param alwaysFetchMissingValues alwaysFetchMissingValues Default value is false
+     */
+    public void setAlwaysFetchMissingValues(Boolean alwaysFetchMissingValues) {
+        setAttribute("alwaysFetchMissingValues", alwaysFetchMissingValues);
+    }
+
+    /**
+     * If this form item has a specified {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
+     * optionDataSource} and  {@link com.smartgwt.client.widgets.form.fields.FormItem#getFetchMissingValues fetchMissingValues}
+     * is true, this property may be set to true to ensure a fetch will occur against the optionDataSource to retrieve the
+     * related record even if {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} is unset.
+     * <P> An example of a use case where this might be set would be if {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#formatValue FormItem.formatValue} or {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#formatEditorValue FormItem.formatEditorValue} were written to display
+     * properties from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getSelectedRecord selected record}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAlwaysFetchMissingValues()  {
+        return getAttributeAsBoolean("alwaysFetchMissingValues");
+    }
+
+    /**
+     * Is this form item focusable? Setting this property to true on an otherwise non-focusable element such as a {@link
+     * com.smartgwt.client.widgets.form.fields.StaticTextItem} will cause the item to be included in the page's tab order and
+     * respond to keyboard events.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canFocus canFocus Default value is null
+     * @see com.smartgwt.client.docs.Focus Focus overview and related methods
+     */
+    public void setCanFocus(Boolean canFocus) {
+        setAttribute("canFocus", canFocus);
+    }
+
+    /**
+     * Is this form item focusable? Setting this property to true on an otherwise non-focusable element such as a {@link
+     * com.smartgwt.client.widgets.form.fields.StaticTextItem} will cause the item to be included in the page's tab order and
+     * respond to keyboard events.
+     *
+     *
+     * @return Returns true for items that can accept keyboard focus such as data items  ({@link
+     * com.smartgwt.client.widgets.form.fields.TextItem TextItems}, {@link com.smartgwt.client.widgets.form.fields.TextAreaItem
+     * TextAreaItems}, etc),  {@link com.smartgwt.client.widgets.form.fields.CanvasItem CanvasItems} with a focusable canvas,
+     * or items where {@link com.smartgwt.client.widgets.form.fields.FormItem#getCanFocus canFocus} was explicitly set to true.
+     * @see com.smartgwt.client.docs.Focus Focus overview and related methods
+     */
+    public Boolean getCanFocus()  {
+        return getAttributeAsBoolean("canFocus");
+    }
+
+    /**
      * If specified, this property will govern the height of the cell in which this form item is rendered. Will not apply when
      * the containing DynamicForm sets <code>itemLayout:"absolute"</code>.
      *
@@ -305,6 +368,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Set this item to be enabled or disabled at runtime.
      *
      * @param disabled true if this item should be disabled. Default value is false
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setDisabled
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_dep_enable_disable" target="examples">Enable & Disable Example</a>
      */
@@ -320,6 +384,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setDisabled
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_dep_enable_disable" target="examples">Enable & Disable Example</a>
      */
@@ -437,6 +502,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Height of the error icon, if we're showing icons when validation errors occur.
      *
      * @param errorIconHeight errorIconHeight Default value is 16
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setShowErrorIcon
      */
     public void setErrorIconHeight(int errorIconHeight) {
         setAttribute("errorIconHeight", errorIconHeight);
@@ -447,6 +513,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return int
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorIcon
      */
     public int getErrorIconHeight()  {
         return getAttributeAsInt("errorIconHeight");
@@ -456,6 +523,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * URL of the image to show as an error icon, if we're showing icons when validation errors occur.
      *
      * @param errorIconSrc errorIconSrc Default value is "[SKIN]/DynamicForm/validation_error_icon.png"
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setShowErrorIcon
      */
     public void setErrorIconSrc(String errorIconSrc) {
         setAttribute("errorIconSrc", errorIconSrc);
@@ -466,6 +534,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorIcon
      */
     public String getErrorIconSrc()  {
         return getAttributeAsString("errorIconSrc");
@@ -475,6 +544,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Height of the error icon, if we're showing icons when validation errors occur.
      *
      * @param errorIconWidth errorIconWidth Default value is 16
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setShowErrorIcon
      */
     public void setErrorIconWidth(int errorIconWidth) {
         setAttribute("errorIconWidth", errorIconWidth);
@@ -485,6 +555,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return int
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorIcon
      */
     public int getErrorIconWidth()  {
         return getAttributeAsInt("errorIconWidth");
@@ -518,39 +589,55 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} is specified for this item,
-     * should the item  perform a fetch on the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
-     * optionDataSource} to retrieve the display value for the item when {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue} is called with a value for which we do not
-     * already have a mapped display value? <P> As noted under {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, you may <b>also</b> specify a
-     * ValueMap and it will be consulted first before fetching from the <code>optionDataSource</code>.
+     * If this form item has a specified {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
+     * optionDataSource}, should the item ever perform a fetch against this dataSource to retrieve the related record. <P> The
+     * fetch occurs if the item value is non null on initial draw of the form or whever setValue() is called. Once the fetch
+     * completes, the returned record  is available via the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getSelectedRecord FormItem.getSelectedRecord} api. <P> By default, a
+     * fetch will only occur if {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} is
+     * specified, and the item does not have an explicit {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap
+     * valueMap} containing the data value as a key.<br> However you can also set {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getAlwaysMissingFetchValues alwaysMissingFetchValues} to have a fetch
+     * occur even if no <code>displayField</code> is specified. This ensures  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getSelectedRecord FormItem.getSelectedRecord} will return a record if
+     * possible - useful for custom formatter functions, etc.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param fetchMissingValues fetchMissingValues Default value is true
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setOptionDataSource
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getSelectedRecord
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setFilterLocally
      */
     public void setFetchMissingValues(Boolean fetchMissingValues) {
         setAttribute("fetchMissingValues", fetchMissingValues);
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} is specified for this item,
-     * should the item  perform a fetch on the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
-     * optionDataSource} to retrieve the display value for the item when {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue} is called with a value for which we do not
-     * already have a mapped display value? <P> As noted under {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, you may <b>also</b> specify a
-     * ValueMap and it will be consulted first before fetching from the <code>optionDataSource</code>.
+     * If this form item has a specified {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
+     * optionDataSource}, should the item ever perform a fetch against this dataSource to retrieve the related record. <P> The
+     * fetch occurs if the item value is non null on initial draw of the form or whever setValue() is called. Once the fetch
+     * completes, the returned record  is available via the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getSelectedRecord FormItem.getSelectedRecord} api. <P> By default, a
+     * fetch will only occur if {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} is
+     * specified, and the item does not have an explicit {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap
+     * valueMap} containing the data value as a key.<br> However you can also set {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getAlwaysMissingFetchValues alwaysMissingFetchValues} to have a fetch
+     * occur even if no <code>displayField</code> is specified. This ensures  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getSelectedRecord FormItem.getSelectedRecord} will return a record if
+     * possible - useful for custom formatter functions, etc.
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getSelectedRecord
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getFilterLocally
      */
     public Boolean getFetchMissingValues()  {
         return getAttributeAsBoolean("fetchMissingValues");
     }
 
     /**
-     * If this form item is mapping data values to a display value by fetching them from a  dataSource (see {@link
+     * If this form item is mapping data values to a display value by fetching records from a  dataSource (see {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField}  and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getFetchMissingValues fetchMissingValues}), setting this property to
@@ -567,7 +654,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * If this form item is mapping data values to a display value by fetching them from a  dataSource (see {@link
+     * If this form item is mapping data values to a display value by fetching records from a  dataSource (see {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField}  and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getFetchMissingValues fetchMissingValues}), setting this property to
@@ -640,6 +727,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Set the hint text for this item
      *
      * @param hint new hint for the item. Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setHintStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_hints" target="examples">Hints Example</a>
      */
@@ -653,6 +741,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getHintStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_hints" target="examples">Hints Example</a>
      */
@@ -665,6 +754,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Set the hintStyle for this item
      *
      * @param hintStyle new style for hint text. Default value is "formHint"
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setHint
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setHintStyle(String hintStyle) {
@@ -676,6 +766,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getHint
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getHintStyle()  {
@@ -686,6 +777,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Text alignment  for text displayed in this item's hover canvas, if shown.
      *
      * @param hoverAlign hoverAlign Default value is null
+     * @see com.smartgwt.client.widgets.form.DynamicForm#setItemHoverAlign
      */
     public void setHoverAlign(Alignment hoverAlign) {
         setAttribute("hoverAlign", hoverAlign.getValue());
@@ -696,6 +788,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return Alignment
+     * @see com.smartgwt.client.widgets.form.DynamicForm#getItemHoverAlign
      */
     public Alignment getHoverAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("hoverAlign"));
@@ -727,6 +820,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Option to specify a height for any hover shown for this item.
      *
      * @param hoverHeight hoverHeight Default value is null
+     * @see com.smartgwt.client.widgets.form.DynamicForm#setItemHoverHeight
      */
     public void setHoverHeight(Integer hoverHeight) {
         setAttribute("hoverHeight", hoverHeight);
@@ -737,6 +831,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.form.DynamicForm#getItemHoverHeight
      */
     public Integer getHoverHeight()  {
         return getAttributeAsInt("hoverHeight");
@@ -746,6 +841,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Opacity for any hover shown for this item
      *
      * @param hoverOpacity hoverOpacity Default value is null
+     * @see com.smartgwt.client.widgets.form.DynamicForm#setItemHoverOpacity
      */
     public void setHoverOpacity(Integer hoverOpacity) {
         setAttribute("hoverOpacity", hoverOpacity);
@@ -756,6 +852,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.form.DynamicForm#getItemHoverOpacity
      */
     public Integer getHoverOpacity()  {
         return getAttributeAsInt("hoverOpacity");
@@ -765,6 +862,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Explicit CSS Style for any hover shown for this item.
      *
      * @param hoverStyle hoverStyle Default value is null
+     * @see com.smartgwt.client.widgets.form.DynamicForm#setItemHoverStyle
      */
     public void setHoverStyle(String hoverStyle) {
         setAttribute("hoverStyle", hoverStyle);
@@ -775,6 +873,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.form.DynamicForm#getItemHoverStyle
      */
     public String getHoverStyle()  {
         return getAttributeAsString("hoverStyle");
@@ -784,6 +883,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Vertical text alignment  for text displayed in this item's hover canvas, if shown.
      *
      * @param hoverVAlign hoverVAlign Default value is null
+     * @see com.smartgwt.client.widgets.form.DynamicForm#setItemHoverVAlign
      */
     public void setHoverVAlign(VerticalAlignment hoverVAlign) {
         setAttribute("hoverVAlign", hoverVAlign.getValue());
@@ -794,6 +894,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return VerticalAlignment
+     * @see com.smartgwt.client.widgets.form.DynamicForm#getItemHoverVAlign
      */
     public VerticalAlignment getHoverVAlign()  {
         return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("hoverVAlign"));
@@ -803,6 +904,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Option to specify a width for any hover shown for this item.
      *
      * @param hoverWidth hoverWidth Default value is null
+     * @see com.smartgwt.client.widgets.form.DynamicForm#setItemHoverWidth
      */
     public void setHoverWidth(Integer hoverWidth) {
         setAttribute("hoverWidth", hoverWidth);
@@ -813,6 +915,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.form.DynamicForm#getItemHoverWidth
      */
     public Integer getHoverWidth()  {
         return getAttributeAsInt("hoverWidth");
@@ -1424,6 +1527,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showDisabled showDisabled Default value is true
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowDisabled(Boolean showDisabled) {
@@ -1435,6 +1539,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowDisabled()  {
@@ -1468,7 +1573,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * compact validation error display consisting of just an icon, to the left of the item with the error message available
      * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
      * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
-     * them. See {@link java.lang.String} for a  discussion for how error styling is calculated.
+     * them. See String for a  discussion for how error styling is calculated.
      *
      * @param showErrorIcon showErrorIcon Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -1504,7 +1609,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * compact validation error display consisting of just an icon, to the left of the item with the error message available
      * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
      * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
-     * them. See {@link java.lang.String} for a  discussion for how error styling is calculated.
+     * them. See String for a  discussion for how error styling is calculated.
      *
      *
      * @return Boolean
@@ -1541,9 +1646,10 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * compact validation error display consisting of just an icon, to the left of the item with the error message available
      * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
      * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
-     * them. See {@link java.lang.String} for a  discussion for how error styling is calculated.
+     * them. See String for a  discussion for how error styling is calculated.
      *
      * @param showErrorStyle showErrorStyle Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowErrorStyle(Boolean showErrorStyle) {
@@ -1577,10 +1683,11 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * compact validation error display consisting of just an icon, to the left of the item with the error message available
      * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
      * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
-     * them. See {@link java.lang.String} for a  discussion for how error styling is calculated.
+     * them. See String for a  discussion for how error styling is calculated.
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowErrorStyle()  {
@@ -1614,7 +1721,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * compact validation error display consisting of just an icon, to the left of the item with the error message available
      * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
      * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
-     * them. See {@link java.lang.String} for a  discussion for how error styling is calculated.
+     * them. See String for a  discussion for how error styling is calculated.
      *
      * @param showErrorText showErrorText Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -1650,7 +1757,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * compact validation error display consisting of just an icon, to the left of the item with the error message available
      * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
      * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
-     * them. See {@link java.lang.String} for a  discussion for how error styling is calculated.
+     * them. See String for a  discussion for how error styling is calculated.
      *
      *
      * @return Boolean
@@ -1665,6 +1772,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showFocused showFocused Default value is false
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowFocused(Boolean showFocused) {
@@ -1676,6 +1784,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowFocused()  {
@@ -2013,6 +2122,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * for special skinning considerations.
      *
      * @param textBoxStyle textBoxStyle Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextBoxStyle(String textBoxStyle) {
@@ -2025,6 +2135,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTextBoxStyle()  {
@@ -2107,6 +2218,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * form layouts}, but titles on top do not.
      *
      * @param titleOrientation titleOrientation Default value is Canvas.LEFT
+     * @see com.smartgwt.client.widgets.form.DynamicForm#setTitleOrientation
      */
     public void setTitleOrientation(TitleOrientation titleOrientation) {
         setAttribute("titleOrientation", titleOrientation.getValue());
@@ -2119,6 +2231,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return TitleOrientation
+     * @see com.smartgwt.client.widgets.form.DynamicForm#getTitleOrientation
      */
     public TitleOrientation getTitleOrientation()  {
         return EnumUtil.getEnum(TitleOrientation.values(), getAttribute("titleOrientation"));
@@ -2128,6 +2241,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Base CSS class name for a form item's title.
      *
      * @param titleStyle titleStyle Default value is "formTitle"
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      */
     public void setTitleStyle(String titleStyle) {
         setAttribute("titleStyle", titleStyle);
@@ -2138,6 +2252,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getCellStyle
      */
     public String getTitleStyle()  {
         return getAttributeAsString("titleStyle");
@@ -2196,6 +2311,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * - displaying errors and rejecting the change on validation failure.
      *
      * @param validateOnChange validateOnChange Default value is false
+     * @see com.smartgwt.client.widgets.form.DynamicForm#setValidateOnChange
      */
     public void setValidateOnChange(Boolean validateOnChange) {
         setAttribute("validateOnChange", validateOnChange);
@@ -2209,6 +2325,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.DynamicForm#getValidateOnChange
      */
     public Boolean getValidateOnChange()  {
         return getAttributeAsBoolean("validateOnChange");
@@ -2220,6 +2337,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * validator will be fired on editorExit.
      *
      * @param validateOnExit validateOnExit Default value is false
+     * @see com.smartgwt.client.widgets.form.DynamicForm#setValidateOnExit
      */
     public void setValidateOnExit(Boolean validateOnExit) {
         setAttribute("validateOnExit", validateOnExit);
@@ -2232,6 +2350,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.DynamicForm#getValidateOnExit
      */
     public Boolean getValidateOnExit()  {
         return getAttributeAsBoolean("validateOnExit");
@@ -2269,6 +2388,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * specify a height for the value icon written out.
      *
      * @param valueIconHeight valueIconHeight Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setValueIconWidth
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setValueIconSize
      */
     public void setValueIconHeight(Integer valueIconHeight) {
         setAttribute("valueIconHeight", valueIconHeight);
@@ -2280,6 +2401,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getValueIconWidth
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getValueIconSize
      */
     public Integer getValueIconHeight()  {
         return getAttributeAsInt("valueIconHeight");
@@ -2290,6 +2413,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * form item cell
      *
      * @param valueIconLeftPadding valueIconLeftPadding Default value is 0
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setValueIcons
      */
     public void setValueIconLeftPadding(int valueIconLeftPadding) {
         setAttribute("valueIconLeftPadding", valueIconLeftPadding);
@@ -2301,6 +2425,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return int
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons
      */
     public int getValueIconLeftPadding()  {
         return getAttributeAsInt("valueIconLeftPadding");
@@ -2311,6 +2436,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * item
      *
      * @param valueIconRightPadding valueIconRightPadding Default value is 3
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setValueIcons
      */
     public void setValueIconRightPadding(int valueIconRightPadding) {
         setAttribute("valueIconRightPadding", valueIconRightPadding);
@@ -2322,6 +2448,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return int
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons
      */
     public int getValueIconRightPadding()  {
         return getAttributeAsInt("valueIconRightPadding");
@@ -2335,6 +2462,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * specified.
      *
      * @param valueIconSize valueIconSize Default value is 16
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setValueIconWidth
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setValueIconHeight
      */
     public void setValueIconSize(int valueIconSize) {
         setAttribute("valueIconSize", valueIconSize);
@@ -2349,6 +2478,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return int
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getValueIconWidth
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getValueIconHeight
      */
     public int getValueIconSize()  {
         return getAttributeAsInt("valueIconSize");
@@ -2359,6 +2490,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * specify a width for the value icon written out.
      *
      * @param valueIconWidth valueIconWidth Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setValueIconHeight
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setValueIconSize
      */
     public void setValueIconWidth(Integer valueIconWidth) {
         setAttribute("valueIconWidth", valueIconWidth);
@@ -2370,6 +2503,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getValueIconHeight
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getValueIconSize
      */
     public Integer getValueIconWidth()  {
         return getAttributeAsInt("valueIconWidth");
@@ -2764,9 +2899,12 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }-*/;
             
     /**
-     * get the record returned from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
+     * Get the record returned from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
      * optionDataSource} when {@link com.smartgwt.client.widgets.form.fields.FormItem#getFetchMissingValues fetchMissingValues}
-     * is true, and the missing value is fetched. Note: If the item is initialized with a value,  this will return null.
+     * is true, and the missing value is fetched. <P> {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getFetchMissingValues fetchMissingValues} kicks off the fetch when the
+     * form item is initialized with a non null value or when setValue() is called on the item. Note that this method will
+     * return null before the fetch completes, or if no record is found in the optionDataSource matching the underlying value.
      *
      * @return selected record
      */
@@ -2889,6 +3027,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Is this item disabled?
      *
      * @return disabledtrue if this item is be disabled
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getDisabled
      * @see com.smartgwt.client.docs.Enable Enable overview and related methods
      */
     public native Boolean isDisabled() /*-{
@@ -3028,6 +3167,32 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public native void setCriterion(Criterion criterion) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.setCriterion(criterion.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+            
+    /**
+     * If this field has a specified {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
+     * optionDataSource}, should we perform a fetch against that dataSource to find the record that matches this field's value?
+     * <P> If the value is non-null, this method is called when the item is first rendered  or whenever the value is changed
+     * via a call to {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue}. If it returns  true,
+     * a fetch will be dispatched against the optionDataSource to get the record matching the value <P> When the fetch
+     * completes, if a record was found that matches the data value (and the form item value has not subsequently changed
+     * again),  the item will be re-rendered to reflect any changes to the display value, and the record matching the value
+     * will be available via  getSelectedRecord. <P> Default behavior will return false if  fetchMissingValues is  set to
+     * false. Otherwise it will return true if  alwaysFetchMissingValues is set to true, or if a {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} is specified for this item and the item 
+     * value is not already present in the item's valueMap.
+     * @param newValue The new data value of the item.
+     *
+     * @return should we fetch the record matching the new value from the   item's optionDataSource?
+     */
+    public native Boolean shouldFetchMissingValue(Object newValue) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.shouldFetchMissingValue(newValue);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
     }-*/;
             
     /**

@@ -181,6 +181,31 @@ public class MiniDateRangeItem extends StaticTextItem {
         return getAttributeAsBoolean("shouldSaveValue");
     }
 
+    /**
+     * Base CSS class name for a form item's text box element. <P> NOTE: See the {@link CompoundFormItem_skinning} discussion
+     * for special skinning considerations.
+     *
+     * @param textBoxStyle textBoxStyle Default value is "textItem"
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setTextBoxStyle(String textBoxStyle) {
+        setAttribute("textBoxStyle", textBoxStyle);
+    }
+
+    /**
+     * Base CSS class name for a form item's text box element. <P> NOTE: See the {@link CompoundFormItem_skinning} discussion
+     * for special skinning considerations.
+     *
+     *
+     * @return String
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getCellStyle
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public String getTextBoxStyle()  {
+        return getAttributeAsString("textBoxStyle");
+    }
+
     // ********************* Methods ***********************
             
     /**
@@ -326,10 +351,10 @@ public class MiniDateRangeItem extends StaticTextItem {
         if(startJS == null || startJS === undefined) {
             //do nothing as null is the default
         } else {
-            if($wnd.isA.Date(startJS)) {
+            if($wnd.isc.isA.Date(startJS)) {
                 var start = @com.smartgwt.client.util.JSOHelper::toDate(D)(startJS.getTime());
                 dateRangeJ.@com.smartgwt.client.data.DateRange::setStartDate(Ljava/util/Date;)(start);
-            } else if($wnd.isA.String(startJS)) {
+            } else if($wnd.isc.isA.String(startJS)) {
                 var start = @com.smartgwt.client.data.RelativeDate::new(Ljava/lang/String;)(startJS);
                 dateRangeJ.@com.smartgwt.client.data.DateRange::setRelativeStartDate(Lcom/smartgwt/client/data/RelativeDate;)(start);
             } else if(startJS.value) {
@@ -340,10 +365,10 @@ public class MiniDateRangeItem extends StaticTextItem {
         if(endJS == null || endJS === undefined) {
             //do nothing as null is the default
         } else {
-            if($wnd.isA.Date(endJS)) {
+            if($wnd.isc.isA.Date(endJS)) {
                 var end = @com.smartgwt.client.util.JSOHelper::toDate(D)(endJS.getTime());
                 dateRangeJ.@com.smartgwt.client.data.DateRange::setEndDate(Ljava/util/Date;)(end);
-            } else if($wnd.isA.String(startJS)) {
+            } else if($wnd.isc.isA.String(startJS)) {
                 var end = @com.smartgwt.client.data.RelativeDate::new(Ljava/lang/String;)(endJS);
                 dateRangeJ.@com.smartgwt.client.data.DateRange::setRelativeEndDate(Lcom/smartgwt/client/data/RelativeDate;)(end);
             } else if(endJS.value) {
