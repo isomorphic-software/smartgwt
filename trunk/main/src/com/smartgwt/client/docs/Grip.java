@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to Grip.
  * @see com.smartgwt.client.widgets.StretchImg#getShowGrip
  * @see com.smartgwt.client.widgets.StretchImg#getGripImgSuffix
  * @see com.smartgwt.client.widgets.StretchImg#getShowDownGrip

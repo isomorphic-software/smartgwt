@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to Fields.
  * @see com.smartgwt.client.data.DataSource#getFields
  * @see com.smartgwt.client.data.DataSource#getInheritsFrom
  * @see com.smartgwt.client.data.DataSource#getUseFlatFields

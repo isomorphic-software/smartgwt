@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to RowEffects.
  * @see com.smartgwt.client.widgets.grid.ListGrid#getShowRollOverCanvas
  * @see com.smartgwt.client.widgets.grid.ListGrid#getRollOverCanvas
  * @see com.smartgwt.client.widgets.grid.ListGrid#getRollUnderCanvas

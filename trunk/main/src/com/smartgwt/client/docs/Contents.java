@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to Contents.
  * @see com.smartgwt.client.widgets.HTMLFlow#getContents
  * @see com.smartgwt.client.widgets.HTMLFlow#getDynamicContents
  * @see com.smartgwt.client.widgets.Canvas#getContents

@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to LayoutPolicy.
  * @see com.smartgwt.client.widgets.tile.TileLayout#getLayoutPolicy
  * @see com.smartgwt.client.widgets.tile.TileLayout#getOrientation
  * @see com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine

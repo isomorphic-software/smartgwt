@@ -61,7 +61,6 @@ package com.smartgwt.client.docs;
  * the JavaScript global "top") and call a global method you have declared as a callback.
  * @see com.smartgwt.client.widgets.form.fields.UploadItem
  * @see com.smartgwt.client.widgets.form.fields.FileItem
- * @see 
  * @see com.smartgwt.client.widgets.MultiFilePicker
  * @see com.smartgwt.client.widgets.form.fields.ViewFileItem
  */

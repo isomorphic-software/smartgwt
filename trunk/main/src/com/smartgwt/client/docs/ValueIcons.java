@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to ValueIcons.
  * @see com.smartgwt.client.widgets.form.fields.FormItem#setValueIcons
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getValueIcon
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons

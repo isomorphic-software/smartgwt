@@ -38,8 +38,8 @@ package com.smartgwt.client.docs;
  * taking full advantage of DataSource-agnostic features of the Smart GWT Server, like validation, queuing, transaction
  * chaining, support for Velocity templating, and so on.</li> <li>Custom validation can be added by writing a custom
  * DataSource (extending SQLDataSource or HibernateDataSource if appropriate) and overriding its <code>validate()</code>
- * method,  as described {@link com.smartgwt.client.data.DataSource#getServerConstructor here}.</li> <li>General custom
- * business logic can be added in a number of ways, both declaratively and programmatically:</li> <ul>   <li>The
+ * method,  as described {@link com.smartgwt.client.docs.serverds.DataSource#serverConstructor here}.</li> <li>General
+ * custom business logic can be added in a number of ways, both declaratively and programmatically:</li> <ul>   <li>The
  * &lt;criteria&gt; and &lt;values&gt; properties of an {@link com.smartgwt.client.data.OperationBinding}        allow you
  * to dynamically set data values at transaction-processing time, using        built-in {@link
  * com.smartgwt.client.docs.VelocitySupport Velocity support}</li>   <li>Override the <code>execute()</code> method of the

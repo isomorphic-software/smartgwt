@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to ViewState.
  * @see com.smartgwt.client.widgets.grid.ListGrid#getFieldState
  * @see com.smartgwt.client.widgets.grid.ListGrid#setFieldState
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectedState
@@ -18,12 +19,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tree.TreeGrid#setViewState
  * @see com.smartgwt.client.widgets.tile.TileGrid#setFieldState
  * @see com.smartgwt.client.widgets.tile.TileGrid#getFieldState
- * @see java.lang.String
- * @see java.lang.String
- * @see java.lang.String
- * @see java.lang.String
- * @see java.lang.String
- * @see java.lang.String
  */
 public interface ViewState {
 }

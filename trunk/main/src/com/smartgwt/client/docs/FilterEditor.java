@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to FilterEditor.
  * @see com.smartgwt.client.widgets.grid.ListGrid#focusInFilterEditor
  * @see com.smartgwt.client.widgets.grid.ListGrid#filterByEditor
  * @see com.smartgwt.client.widgets.grid.ListGrid#setShowFilterEditor

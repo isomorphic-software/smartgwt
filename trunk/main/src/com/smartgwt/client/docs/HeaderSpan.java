@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to HeaderSpan.
  * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderSpanContextMenuItems
  * @see com.smartgwt.client.widgets.grid.ListGrid#setHeaderSpans
  * @see com.smartgwt.client.widgets.grid.ListGrid#setHeaderSpanTitle

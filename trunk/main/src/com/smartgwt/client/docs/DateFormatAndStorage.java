@@ -20,29 +20,27 @@ package com.smartgwt.client.docs;
  * dateFormat}. <P> Fields of type {@link com.smartgwt.client.types.FieldType datetime} are dates with full time
  * information. System wide formatting for datetimes may be controlled via the  Date.setShortDatetimeDisplayFormat method,
  * or at a component level by <code>datetimeFormatter</code> or <code>field.displayFormat</code> attributes. DateTimes
- * willbe displayed to the user in local time as set up via  {@link java.lang.String#setDefaultDisplayTimezone
- * Time.setDefaultDisplayTimezone}. Note that if not explicitly set, this will default to the browser native timezone. <P>
- * On the client datetime type fields are stored as JavaScript Date objects.  When communicating with a non Smart GWT
- * server via an "xml" DataSource, datetime field values in requests will be serialized out as full datetimes in UTC using
- * the standard <a target=_blank href="http://www.w3.org/TR/xmlschema-2/#dateTime">XML Schema date format</a> -
- * <code>YYYY-MM-DDTHH:MM:SS</code>. Date values received from the server in responses are expected to also be in XML
- * Schema date format - and assumed to be in UTC time unless an explicit timezone offset is specified on the datetime
- * string (EG:<code>2006-01-10T12:22:04-04:00</code>). As with dates, "json" format dataSources use the same XML Schema
- * format by default but may use JavaScript date instantiation strings instead. <P> Fields of type {@link
- * com.smartgwt.client.types.FieldType time} are logical time values. These are stored on the client as JavaScript date
- * objects, but only the time information is displayed to the user. Time formatting is handled by the {@link
- * java.lang.String} class APIs. By default times are displayed to users in the display timezone set up via {@link
- * java.lang.String#setDefaultDisplayTimezone Time.setDefaultDisplayTimezone} [if not explicitly set, defaults to native
- * browser local time]. Note that depending on the specific date being displayed, a Daylight Savings Time offset may also
- * be applied based on the browser locale. To disable this behavior set {@link java.lang.String#adjustForDST adjustForDST}
- * to false.<br> When communicating with a non Smart GWT server via an "xml" DataSource, time field values in requests will
- * be serialized out as full times in UTC using the standard <a target=_blank
- * href="http://www.w3.org/TR/xmlschema-2/#dateTime">XML Schema date / time format</a> - <code>HH:MM:SS</code>. Note that
- * the flag {@link com.smartgwt.client.data.DataSource#serializeTimeAsDatetime serializeTimeAsDatetime} may be set to
- * serialize all times as full datetimes rather than just time strings. Time values received from the server in responses
- * are expected to be in the same format, in UTC, or with an explicit timezone offset specified (for example
- * <code>"22:01:45-01:00"</code>) <P> When communicating with the Smart GWT server fields of type <code>date</code>,
- * <code>datetime</code> and <code>time</code> are all automatically translated to Java date objects on the server side.
+ * willbe displayed to the user in local time as set up via  String. Note that if not explicitly set, this will default to
+ * the browser native timezone. <P> On the client datetime type fields are stored as JavaScript Date objects.  When
+ * communicating with a non Smart GWT server via an "xml" DataSource, datetime field values in requests will be serialized
+ * out as full datetimes in UTC using the standard <a target=_blank href="http://www.w3.org/TR/xmlschema-2/#dateTime">XML
+ * Schema date format</a> - <code>YYYY-MM-DDTHH:MM:SS</code>. Date values received from the server in responses are
+ * expected to also be in XML Schema date format - and assumed to be in UTC time unless an explicit timezone offset is
+ * specified on the datetime string (EG:<code>2006-01-10T12:22:04-04:00</code>). As with dates, "json" format dataSources
+ * use the same XML Schema format by default but may use JavaScript date instantiation strings instead. <P> Fields of type
+ * {@link com.smartgwt.client.types.FieldType time} are logical time values. These are stored on the client as JavaScript
+ * date objects, but only the time information is displayed to the user. Time formatting is handled by the String class
+ * APIs. By default times are displayed to users in the display timezone set up via String [if not explicitly set, defaults
+ * to native browser local time]. Note that depending on the specific date being displayed, a Daylight Savings Time offset
+ * may also be applied based on the browser locale. To disable this behavior set String to false.<br> When communicating
+ * with a non Smart GWT server via an "xml" DataSource, time field values in requests will be serialized out as full times
+ * in UTC using the standard <a target=_blank href="http://www.w3.org/TR/xmlschema-2/#dateTime">XML Schema date / time
+ * format</a> - <code>HH:MM:SS</code>. Note that the flag {@link
+ * com.smartgwt.client.data.DataSource#serializeTimeAsDatetime serializeTimeAsDatetime} may be set to serialize all times
+ * as full datetimes rather than just time strings. Time values received from the server in responses are expected to be in
+ * the same format, in UTC, or with an explicit timezone offset specified (for example <code>"22:01:45-01:00"</code>) <P>
+ * When communicating with the Smart GWT server fields of type <code>date</code>, <code>datetime</code> and
+ * <code>time</code> are all automatically translated to Java date objects on the server side.
  */
 public interface DateFormatAndStorage {
 }

@@ -36,6 +36,13 @@ package com.smartgwt.client.docs;
  * examples of Form Layout are available @see <a href="http://www.smartclient.com/smartgwtee/showcase/#formsLayout"
  * target="examples">here</a>.
  * @see com.smartgwt.client.widgets.form.DynamicForm#getItemLayout
+ * @see com.smartgwt.client.widgets.form.DynamicForm#getNumCols
+ * @see com.smartgwt.client.widgets.form.DynamicForm#getFixedColWidths
+ * @see com.smartgwt.client.widgets.form.DynamicForm#getColWidths
+ * @see com.smartgwt.client.widgets.form.DynamicForm#getMinColWidth
+ * @see com.smartgwt.client.widgets.form.DynamicForm#getCellPadding
+ * @see com.smartgwt.client.widgets.form.DynamicForm#getCellBorder
+ * @see com.smartgwt.client.widgets.form.DynamicForm#getSectionVisibilityMode
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getWidth
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getHeight
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getColSpan

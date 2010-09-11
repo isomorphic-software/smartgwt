@@ -6,19 +6,20 @@ package com.smartgwt.client.docs;
  * Smart GWT supports declarative, XPath-based binding of visual components to any server&#010 capable of returning XML or
  * JSON responses over HTTP, without the need for the&#010 {@link com.smartgwt.client.docs.ServerDataIntegration Smart GWT
  * server}.&#010 <P>&#010 This approach is called Client-Side Data Integration, which means:&#010 <ul>&#010 <li> You {@link
- * com.smartgwt.client.docs.DataSourceDeclaration create DataSources} in JavaScript &#010 which describe the data to be
- * loaded and manipulated in the user interface. The&#010 JavaScript that creates these DataSources may be dynamically
- * generated and/or existing&#010 metadata may be {@link metadataImport imported}.&#010 <li> You configure DataSources, via
- * property and method overrides, to send appropriate&#010 HTTP requests to your server, and to parse HTTP responses from
- * your server, in order to&#010 fulfill the 4 core operations of the {@link com.smartgwt.client.docs.DataSourceOperations
- * DataSource Protocol}.&#010 <li> These DataSources are then bound to &#010 {@link
- * com.smartgwt.client.widgets.DataBoundComponent databinding-capable UI components}, which can provide a variety of&#010
- * complete user interactions (form-based editing, grid-based editing, load on demand, ..)&#010 based on these 4 core
- * operations&#010 </ul>&#010 <P>&#010 <h4>Approaches and platforms</h4>&#010 <P>&#010 <B>WSDL integration (.NET and
- * others)</B>&#010 <P>&#010 If you have pre-existing WSDL services or would like to generate web services for&#010 Smart
- * GWT to consume, the {@link com.smartgwt.client.docs.WsdlBinding WSDL Binding Overview} covers possible&#010
- * approaches.&#010 <P>&#010 WSDL binding is the most popular approach for integration with the .NET platform.&#010 You can
- * &#010 <a href='http://www.google.com/search?q=create+web+service+visual+studio'
+ * com.smartgwt.client.docs.DataSourceDeclaration create DataSources} &#010 &#010 programmatically in Java (with <code>new
+ * DataSource()</code>)&#010 which describe the data to be loaded and manipulated in the user interface. The&#010
+ * JavaScript that creates these DataSources may be dynamically generated and/or existing&#010 metadata may be {@link
+ * metadataImport imported}.&#010 <li> You configure DataSources, via property and method overrides, to send
+ * appropriate&#010 HTTP requests to your server, and to parse HTTP responses from your server, in order to&#010 fulfill
+ * the 4 core operations of the {@link com.smartgwt.client.docs.DataSourceOperations DataSource Protocol}.&#010 <li> These
+ * DataSources are then bound to &#010 {@link com.smartgwt.client.widgets.DataBoundComponent databinding-capable UI
+ * components}, which can provide a variety of&#010 complete user interactions (form-based editing, grid-based editing,
+ * load on demand, ..)&#010 based on these 4 core operations&#010 </ul>&#010 <P>&#010 <h4>Approaches and
+ * platforms</h4>&#010 <P>&#010 <B>WSDL integration (.NET and others)</B>&#010 <P>&#010 If you have pre-existing WSDL
+ * services or would like to generate web services for&#010 Smart GWT to consume, the {@link
+ * com.smartgwt.client.docs.WsdlBinding WSDL Binding Overview} covers possible&#010 approaches.&#010 <P>&#010 WSDL binding
+ * is the most popular approach for integration with the .NET platform.&#010 You can &#010 <a
+ * href='http://www.google.com/search?q=create+web+service+visual+studio'
  * onclick="window.open('http://www.google.com/search?q=create+web+service+visual+studio');return false;">use Visual Studio
  * to create web services</a>&#010 from existing server-side methods, and then use Smart GWT's &#010 {@link
  * com.smartgwt.client.docs.WsdlBinding WSDL Binding} system to connect to those web services.  &#010 <P>&#010 Here are a

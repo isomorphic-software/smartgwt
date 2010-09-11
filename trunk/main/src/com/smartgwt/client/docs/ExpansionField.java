@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to ExpansionField.
  * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionField
  * @see com.smartgwt.client.widgets.grid.ListGrid#isExpansionField
  * @see com.smartgwt.client.widgets.grid.ListGrid#canExpandRecord

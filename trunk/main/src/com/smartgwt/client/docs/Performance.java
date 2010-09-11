@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to Performance.
  * @see com.smartgwt.client.grid.GridRenderer#getShowAllRows
  * @see com.smartgwt.client.grid.GridRenderer#getShowAllColumns
  * @see com.smartgwt.client.grid.GridRenderer#getDrawAllMaxCells

@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to MouseEvents.
  * @see com.smartgwt.client.util.EventHandler#getTarget
  * @see com.smartgwt.client.util.EventHandler#getDragTarget
  * @see com.smartgwt.client.util.EventHandler#getX

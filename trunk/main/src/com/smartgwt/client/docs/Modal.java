@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to Modal.
  * @see com.smartgwt.client.widgets.Window#flash
  * @see com.smartgwt.client.widgets.Window#getIsModal
  * @see com.smartgwt.client.widgets.Window#getModalMask

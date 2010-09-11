@@ -2,11 +2,12 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to Hovers.
  * @see com.smartgwt.client.widgets.form.DynamicForm#itemHoverHTML
  * @see com.smartgwt.client.widgets.form.DynamicForm#titleHoverHTML
  * @see com.smartgwt.client.widgets.form.fields.FormItem#stopHover
- * @see com.smartgwt.client.widgets.form.fields.FormItem#itemHover
- * @see com.smartgwt.client.widgets.form.fields.FormItem#titleHover
+ * @see com.smartgwt.client.widgets.form.fields.events.ItemHoverEvent
+ * @see com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent
  * @see com.smartgwt.client.widgets.form.fields.FormItem#titleHoverHTML
  * @see com.smartgwt.client.widgets.form.fields.FormItem#itemHoverHTML
  * @see com.smartgwt.client.widgets.form.DynamicForm#getItemHoverDelay

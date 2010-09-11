@@ -6,7 +6,7 @@ package com.smartgwt.client.docs;
  * purposes, such as integration with certain legacy systems.  Normal form usage contacts the server via  {@link
  * com.smartgwt.client.docs.DataBoundComponentMethods DataBound Component Methods}, through the RPCManager system.
  * @see com.smartgwt.client.widgets.form.DynamicForm#submitForm
- * @see com.smartgwt.client.widgets.form.DynamicForm#submitValues
+ * @see com.smartgwt.client.widgets.form.events.SubmitValuesEvent
  * @see com.smartgwt.client.widgets.form.SearchForm#search
  * @see com.smartgwt.client.widgets.form.ValuesManager#submitValues
  * @see com.smartgwt.client.widgets.form.DynamicForm#cancel
