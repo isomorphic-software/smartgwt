@@ -9,6 +9,7 @@
 		<copy file="${smartgwt.tools.lib}/css/javadoc/stylesheet.css" todir="${smartgwt.build.out}/doc/javadoc" overwrite="true"/>
 		<copy file="${smartgwt.root}/samples/showcase/build-distro.xml" tofile="${smartgwt.build.out}/samples/showcase/build.xml" overwrite="true"/>
 		<copy file="${smartgwt.root}/samples/showcase/README.txt" todir="${smartgwt.build.out}/samples/showcase/" overwrite="true"/>
+		<copy file="${smartgwt.root}/doc/SmartGWT_Quick_Start_Guide.pdf" todir="${smartgwt.build.out}/doc/" overwrite="true" failonerror="false"/>
 
 
 		<mkdir dir="${smartgwt.build.dist}" />
@@ -50,6 +51,7 @@
 			<zipfileset dir="${smartgwt.build.out}" prefix="${project.distname}">
 				<include name="doc" />
 				<include name="doc/*.html" />
+				<include name="doc/*.pdf" />
 				<include name="doc/html/**" />
 				<include name="doc/css/**" />
 				<include name="doc/javadoc/**" />
