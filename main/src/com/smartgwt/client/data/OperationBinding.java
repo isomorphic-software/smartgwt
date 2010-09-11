@@ -74,6 +74,12 @@ public class OperationBinding extends DataClass {
         super(jsObj);
     }
 
+    public OperationBinding(DSOperationType operationType, String dataURL) {
+        setOperationType(operationType);
+		setDataURL(dataURL);
+        
+    }
+
     // ********************* Properties / Attributes ***********************
 
     /**
@@ -113,6 +119,7 @@ public class OperationBinding extends DataClass {
      * {@link com.smartgwt.client.data.DataSource#getCallbackParam callbackParam}.
      *
      * @param callbackParam callbackParam Default value is "callback"
+     * @see com.smartgwt.client.data.DataSource#setCallbackParam
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setCallbackParam(String callbackParam) {
@@ -126,6 +133,7 @@ public class OperationBinding extends DataClass {
      *
      *
      * @return String
+     * @see com.smartgwt.client.data.DataSource#getCallbackParam
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public String getCallbackParam()  {
@@ -173,6 +181,7 @@ public class OperationBinding extends DataClass {
      * server-side DSRequest and DSResponse objects should be used to access request data and form responses.
      *
      * @param dataProtocol dataProtocol Default value is "getParams"
+     * @see com.smartgwt.client.types.DSProtocol
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setDataProtocol(DSProtocol dataProtocol) {
@@ -198,6 +207,7 @@ public class OperationBinding extends DataClass {
      *
      *
      * @return DSProtocol
+     * @see com.smartgwt.client.types.DSProtocol
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public DSProtocol getDataProtocol()  {
@@ -214,6 +224,8 @@ public class OperationBinding extends DataClass {
      * the query parameter name expected by your JSON service provider.
      *
      * @param dataTransport dataTransport Default value is RPCManager.defaultTransport
+     * @see com.smartgwt.client.types.RPCTransport
+     * @see com.smartgwt.client.data.DataSource#setCallbackParam
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setDataTransport(RPCTransport dataTransport) {
@@ -231,6 +243,8 @@ public class OperationBinding extends DataClass {
      *
      *
      * @return RPCTransport
+     * @see com.smartgwt.client.types.RPCTransport
+     * @see com.smartgwt.client.data.DataSource#getCallbackParam
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public RPCTransport getDataTransport()  {
@@ -265,6 +279,30 @@ public class OperationBinding extends DataClass {
     }
 
     /**
+     * HTTP parameters that should be submitted with every DSRequest. <P> Useful for authenticated services that require a
+     * sessionId with every request. <P> Can be set for all operations of a given DataSource as DataSource.defaultParams.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param defaultParams defaultParams Default value is null
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     */
+    public void setDefaultParams(Map defaultParams) {
+        setAttribute("defaultParams", defaultParams);
+    }
+
+    /**
+     * HTTP parameters that should be submitted with every DSRequest. <P> Useful for authenticated services that require a
+     * sessionId with every request. <P> Can be set for all operations of a given DataSource as DataSource.defaultParams.
+     *
+     *
+     * @return Map
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     */
+    public Map getDefaultParams()  {
+        return getAttributeAsMap("defaultParams");
+    }
+
+    /**
      * The format in which the data should be exported.  Default is "csv". See {@link com.smartgwt.client.types.ExportFormat}
      * for more information.
      *
@@ -283,6 +321,29 @@ public class OperationBinding extends DataClass {
      */
     public ExportFormat getExportAs()  {
         return EnumUtil.getEnum(ExportFormat.values(), getAttribute("exportAs"));
+    }
+
+    /**
+     * The list of field-names to export.  If provided, the field-list in the exported output is  limited and sorted as per the
+     * list. <P> If exportFields is not provided, the exported output includes all visible fields  from the DataSource
+     * (field.hidden=false), sorted in the order they're defined.
+     *
+     * @param exportFields exportFields Default value is null
+     */
+    public void setExportFields(String... exportFields) {
+        setAttribute("exportFields", exportFields);
+    }
+
+    /**
+     * The list of field-names to export.  If provided, the field-list in the exported output is  limited and sorted as per the
+     * list. <P> If exportFields is not provided, the exported output includes all visible fields  from the DataSource
+     * (field.hidden=false), sorted in the order they're defined.
+     *
+     *
+     * @return String
+     */
+    public String[] getExportFields()  {
+        return getAttributeAsStringArray("exportFields");
     }
 
     /**
@@ -450,35 +511,6 @@ public class OperationBinding extends DataClass {
     }
 
     /**
-     * Specifies, for this operationBinding only, the list of field names that should be returned to the client.  Typically
-     * this will be a subset of the {@link com.smartgwt.client.data.DataSource#getFields fields}, but note  that this is not a
-     * requirement; <code>outputs</code> can include fields that are not defined in the DataSource's field list.  In this case,
-     * the server will return extra fields even if  {@link com.smartgwt.client.data.DataSource#getDropExtraFields
-     * dropExtraFields} is true. <p> You specify this property as a string containing a comma-separated list of field names 
-     * (eg, "foo, bar, baz")
-     *
-     * @param outputs outputs Default value is null
-     */
-    public void setOutputs(String outputs) {
-        setAttribute("outputs", outputs);
-    }
-
-    /**
-     * Specifies, for this operationBinding only, the list of field names that should be returned to the client.  Typically
-     * this will be a subset of the {@link com.smartgwt.client.data.DataSource#getFields fields}, but note  that this is not a
-     * requirement; <code>outputs</code> can include fields that are not defined in the DataSource's field list.  In this case,
-     * the server will return extra fields even if  {@link com.smartgwt.client.data.DataSource#getDropExtraFields
-     * dropExtraFields} is true. <p> You specify this property as a string containing a comma-separated list of field names 
-     * (eg, "foo, bar, baz")
-     *
-     *
-     * @return String
-     */
-    public String getOutputs()  {
-        return getAttributeAsString("outputs");
-    }
-
-    /**
      * Configures {@link com.smartgwt.client.data.DataSource#getPreventHTTPCaching preventHTTPCaching} on a per-operationType
      * basis.
      *
@@ -569,6 +601,69 @@ public class OperationBinding extends DataClass {
      */
     public String getRecordXPath()  {
         return getAttributeAsString("recordXPath");
+    }
+
+    /**
+     * Additional properties to pass through to the {@link com.smartgwt.client.data.DSRequest} created for this operation. Note
+     * that these will be cumulative with and will override on a per-property basis any properties set via {@link
+     * com.smartgwt.client.data.DataSource#getRequestProperties requestProperties}. <p> These properties are applied before
+     * {@link com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest} is called.
+     *
+     * @param requestProperties requestProperties Default value is null
+     * @see com.smartgwt.client.data.DSRequest
+     * @see com.smartgwt.client.data.DataSource#setRequestProperties
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     */
+    public void setRequestProperties(DSRequest requestProperties) {
+        setAttribute("requestProperties", requestProperties.getJsObj());
+    }
+
+    /**
+     * Additional properties to pass through to the {@link com.smartgwt.client.data.DSRequest} created for this operation. Note
+     * that these will be cumulative with and will override on a per-property basis any properties set via {@link
+     * com.smartgwt.client.data.DataSource#getRequestProperties requestProperties}. <p> These properties are applied before
+     * {@link com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest} is called.
+     *
+     *
+     * @return DSRequest
+     * @see com.smartgwt.client.data.DSRequest
+     * @see com.smartgwt.client.data.DataSource#getRequestProperties
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     */
+    public DSRequest getRequestProperties()  {
+        return new DSRequest(getAttributeAsJavaScriptObject("requestProperties"));
+    }
+
+    /**
+     * Optional schema describing how to extract DataSource records from the XML elements selected. <P> Once a set of XML
+     * elements have been selected via <code>recordXPath</code> or <code>recordName</code>, those elements are normally
+     * transformed to JavaScript objects using the <code>fields</code> of the DataSource that owns the operationBinding.  A
+     * <code>responseDataSchema</code> can be specified instead if the XML differs in some way between different DataSource
+     * operations, such that different values for {@link com.smartgwt.client.data.DataSourceField#getValueXPath
+     * field.valueXPath} may be necessary to extract the same DataSource record from slightly different XML structures.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param responseDataSchema responseDataSchema Default value is null
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     */
+    public void setResponseDataSchema(DataSource responseDataSchema) {
+        setAttribute("responseDataSchema", responseDataSchema == null ? null : responseDataSchema.getOrCreateJsObj());
+    }
+
+    /**
+     * Optional schema describing how to extract DataSource records from the XML elements selected. <P> Once a set of XML
+     * elements have been selected via <code>recordXPath</code> or <code>recordName</code>, those elements are normally
+     * transformed to JavaScript objects using the <code>fields</code> of the DataSource that owns the operationBinding.  A
+     * <code>responseDataSchema</code> can be specified instead if the XML differs in some way between different DataSource
+     * operations, such that different values for {@link com.smartgwt.client.data.DataSourceField#getValueXPath
+     * field.valueXPath} may be necessary to extract the same DataSource record from slightly different XML structures.
+     *
+     *
+     * @return DataSource
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     */
+    public DataSource getResponseDataSchema()  {
+        return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("responseDataSchema"));
     }
 
     /**
@@ -711,6 +806,55 @@ public class OperationBinding extends DataClass {
         return getAttributeAsString("wsOperation");
     }
 
+    /**
+     * Optional object declaring namespace prefixes for use in {@link com.smartgwt.client.data.OperationBinding#getRecordXPath
+     * recordXPath} and&#010 {@link com.smartgwt.client.data.DataSourceField#getValueXPath valueXPath} XPath expressions.&#010
+     * <P>&#010 <code>xmlNamespaces</code> should be specified as a mapping from namespace prefix to&#010 namespace URI, for
+     * example:&#010 <pre>&#010    xmlNamespaces : {&#010        az :
+     * "http://webservices.amazon.com/AWSECommerceService/2005-03-23"&#010    }&#010 </pre>&#010 By default, all namespaces
+     * declared on the document element (outermost element of the&#010 response) are made available with the prefix used in the
+     * document itself.&#010 <P>&#010 Then, for non-WSDL-described XML results, if there is a default namespace on the
+     * document&#010 element, it is made available with the special prefix "default".&#010 <P>&#010 For results of
+     * WSDL-described operations, the prefix "service" means the service namespace,&#010 that is, the "targetNamespace" on the
+     * &lt;definitions&gt; element from the WSDL file.  The prefix&#010 "schema" means the namespace of the outermost element
+     * in the output message for the current&#010 operation.  "default" will be the schema namespace if there is one, otherwise
+     * the service&#010 namespace.&#010 <P>&#010 For basic information on XML Namespaces and their use in XPath, try the
+     * following search:&#010 <a href="http://www.google.com/search?q=XPath+xml+namespaces" target="_blank"&#010
+     * >http://www.google.com/search?q=XPath+xml+namespaces</a>
+     *
+     * @param xmlNamespaces xmlNamespaces Default value is null
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#yahoo_xml_integration_category" target="examples">Yahoo! XML Services Example</a>
+     */
+    public void setXmlNamespaces(XmlNamespaces xmlNamespaces) {
+        setAttribute("xmlNamespaces", xmlNamespaces.getJsObj());
+    }
+
+    /**
+     * Optional object declaring namespace prefixes for use in {@link com.smartgwt.client.data.OperationBinding#getRecordXPath
+     * recordXPath} and&#010 {@link com.smartgwt.client.data.DataSourceField#getValueXPath valueXPath} XPath expressions.&#010
+     * <P>&#010 <code>xmlNamespaces</code> should be specified as a mapping from namespace prefix to&#010 namespace URI, for
+     * example:&#010 <pre>&#010    xmlNamespaces : {&#010        az :
+     * "http://webservices.amazon.com/AWSECommerceService/2005-03-23"&#010    }&#010 </pre>&#010 By default, all namespaces
+     * declared on the document element (outermost element of the&#010 response) are made available with the prefix used in the
+     * document itself.&#010 <P>&#010 Then, for non-WSDL-described XML results, if there is a default namespace on the
+     * document&#010 element, it is made available with the special prefix "default".&#010 <P>&#010 For results of
+     * WSDL-described operations, the prefix "service" means the service namespace,&#010 that is, the "targetNamespace" on the
+     * &lt;definitions&gt; element from the WSDL file.  The prefix&#010 "schema" means the namespace of the outermost element
+     * in the output message for the current&#010 operation.  "default" will be the schema namespace if there is one, otherwise
+     * the service&#010 namespace.&#010 <P>&#010 For basic information on XML Namespaces and their use in XPath, try the
+     * following search:&#010 <a href="http://www.google.com/search?q=XPath+xml+namespaces" target="_blank"&#010
+     * >http://www.google.com/search?q=XPath+xml+namespaces</a>
+     *
+     *
+     * @return XmlNamespaces
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#yahoo_xml_integration_category" target="examples">Yahoo! XML Services Example</a>
+     */
+    public XmlNamespaces getXmlNamespaces()  {
+        return new XmlNamespaces(getAttributeAsJavaScriptObject("xmlNamespaces"));
+    }
+
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
@@ -718,88 +862,23 @@ public class OperationBinding extends DataClass {
     // ***********************************************************        
 
 
-
-    public OperationBinding(DSOperationType operationType, String dataURL) {
-        setOperationType(operationType);
-        setDataURL(dataURL);
-    }
-
-    /**
-    * The list of field-names to export.  If provided, the field-list in the exported output is &#010 limited and sorted as per the list.&#010 <P>&#010 If exportFields is not provided, the exported output includes all visible fields &#010 from the DataSource (field.hidden=false), sorted in the order they're defined.
-    *
-    * @param exportFields exportFields Default value is null
-    */
-    public void setExportFields(String[]exportFields) {
-        setAttribute("exportFields", exportFields);
-    }
-    /**
-     * The list of field-names to export.  If provided, the field-list in the exported output is &#010 limited and sorted as per the list.&#010 <P>&#010 If exportFields is not provided, the exported output includes all visible fields &#010 from the DataSource (field.hidden=false), sorted in the order they're defined.
-     *
-     * @return the export fields
-     *
-     */
-    public String[] getExportFields()  {
-        return getAttributeAsStringArray("exportFields");
-    }
-
-    /**
-     * Optional object declaring namespace prefixes for use in OperationBinding.recordXPath and
-     * DataSourceField.valueXPath XPath expressions. xmlNamespaces should be specified as a mapping from namespace
-     * prefix to namespace URI, for example: <br>
-     * <p/>
-     * xmlNamespaces : { az : "http://webservices.amazon.com/AWSECommerceService/2005-03-23" } <br> By default, all
-     * namespaces declared on the document element (outermost element of the response) are made available with the
-     * prefix used in the document itself. Then, for non-WSDL-described XML results, if there is a default namespace on
-     * the document element, it is made available with the special prefix "default". <br>
-     * <p/>
-     * For results of WSDL-described operations, the prefix "service" means the service namespace, that is, the
-     * "targetNamespace" on the element from the WSDL file. The prefix "schema" means the namespace of the outermost
-     * element in the output message for the current operation. "default" will be the schema namespace if there is one,
-     * otherwise the service namespace. <br> For basic information on XML Namespaces and their use in XPath, try the
-     * following search: http://www.google.com/search?q=XPath+xml+namespaces
-     *
-     * @param xmlNamespaces xml namespaces
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-     */
-    public void setXmlNamespaces(XmlNamespaces xmlNamespaces) {
-        setAttribute("xmlNamespaces", xmlNamespaces);
-    }
-
-    /**
-     * HTTP parameters that should be submitted with every DSRequest. <br> Useful for authenticated services that
-     * require a sessionId with every request. <br> Can be set for all operations of a given DataSource as
-     * DataSource.defaultParams.
-     *
-     * @param defaultParams the default params
-     */
-    public void setDefaultParams(Map defaultParams) {
-        setAttribute("defaultParams", defaultParams);
-    }
-
-    /**
-     * Additional properties to pass through to the {@link DSRequest} created for this operation. Note that these will be cumulative
-     * with and will override on a per-property basis any properties set via DataSource.requestProperties.
-     * <br>
-     * These properties are applied before {@link DataSource#transformRequest} is called.
-     *
-     * @param requestProperties the request properties. Default is null.
-     */
-    public void setRequestProperties (DSRequest requestProperties) {
-        setAttribute("requestProperties", requestProperties);
-    }
-
-    /**
-     * Optional schema describing how to extract DataSource records from the XML elements selected.
-     * <br>
-     * Once a set of XML elements have been selected via recordXPath or recordName, those elements are normally transformed to
-     * JavaScript objects using the fields of the DataSource that owns the operationBinding. An responseDataSchema can be specified
-     * instead if the XML differs in some way between different DataSource operations, such that different values for field.valueXPath
-     * may be necessary to extract the same DataSource record from slightly different XML structures.
-     *
-     * @param responseDataSchema the response schema. Default is null
-     */
-    public void setResponseDataSchema(DataSource responseDataSchema) {
-        setAttribute("responseDataSchema", responseDataSchema);            
+    public static OperationBinding[] convertToOperationBindingArray(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new OperationBinding[]{};
+        }
+        if (JSOHelper.isArray(nativeArray)) {
+            JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
+            OperationBinding[] objects = new OperationBinding[componentsj.length];
+            for (int i = 0; i < componentsj.length; i++) {
+                JavaScriptObject componentJS = componentsj[i];
+                objects[i] = OperationBinding.getOrCreateRef(componentJS);
+            }
+            return objects;
+        } else {
+            OperationBinding[] ret = new OperationBinding[1];
+            ret[0] = OperationBinding.getOrCreateRef(nativeArray);
+            return ret;
+        }
     }
 
 }
