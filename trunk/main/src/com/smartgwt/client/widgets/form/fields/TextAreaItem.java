@@ -160,6 +160,31 @@ public class TextAreaItem extends FormItem {
     }
 
     /**
+     * When generating a print-view of the component containing this TextArea, should the form item expand to accomodate its
+     * value? If set to false the text box not expand to fit its content in the print view, instead showing exactly as it does
+     * in the live form, possibly with scrollbars.
+     *
+     * @param printFullText printFullText Default value is true
+     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
+     */
+    public void setPrintFullText(Boolean printFullText) {
+        setAttribute("printFullText", printFullText);
+    }
+
+    /**
+     * When generating a print-view of the component containing this TextArea, should the form item expand to accomodate its
+     * value? If set to false the text box not expand to fit its content in the print view, instead showing exactly as it does
+     * in the live form, possibly with scrollbars.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
+     */
+    public Boolean getPrintFullText()  {
+        return getAttributeAsBoolean("printFullText");
+    }
+
+    /**
      * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured
      * on a per-FormItem basis.  Normally all items in a form default to the value of {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
@@ -191,6 +216,7 @@ public class TextAreaItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHintInField showHintInField Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setHint
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowHintInField(Boolean showHintInField) {
@@ -204,6 +230,7 @@ public class TextAreaItem extends FormItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getHint
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowHintInField()  {

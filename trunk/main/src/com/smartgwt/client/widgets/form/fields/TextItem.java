@@ -175,6 +175,7 @@ public class TextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param keyPressFilter new keyPress filter for the item. Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.TextItem#setCharacterCasing
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_keypress_filter" target="examples">KeyPress Filters Example</a>
      */
     public void setKeyPressFilter(String keyPressFilter) {
@@ -189,6 +190,7 @@ public class TextItem extends FormItem {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.form.fields.TextItem#getCharacterCasing
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_keypress_filter" target="examples">KeyPress Filters Example</a>
      */
     public String getKeyPressFilter()  {
@@ -235,6 +237,7 @@ public class TextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param mask mask to apply to text item. Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.TextItem#setKeyPressFilter
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_masking" target="examples">Text - Masked Example</a>
      */
     public void setMask(String mask) {
@@ -259,6 +262,7 @@ public class TextItem extends FormItem {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.form.fields.TextItem#getKeyPressFilter
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_masking" target="examples">Text - Masked Example</a>
      */
     public String getMask()  {
@@ -348,6 +352,31 @@ public class TextItem extends FormItem {
     }
 
     /**
+     * When generating a print-view of the component containing this TextItem, should the form item expand to accomodate its
+     * value? If set to false the text box will not expand to fit its content in the print view, instead showing exactly as it
+     * does in the live form.
+     *
+     * @param printFullText printFullText Default value is false
+     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
+     */
+    public void setPrintFullText(Boolean printFullText) {
+        setAttribute("printFullText", printFullText);
+    }
+
+    /**
+     * When generating a print-view of the component containing this TextItem, should the form item expand to accomodate its
+     * value? If set to false the text box will not expand to fit its content in the print view, instead showing exactly as it
+     * does in the live form.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
+     */
+    public Boolean getPrintFullText()  {
+        return getAttributeAsBoolean("printFullText");
+    }
+
+    /**
      * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured
      * on a per-FormItem basis.  Normally all items in a form default to the value of {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
@@ -378,6 +407,7 @@ public class TextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHintInField showHintInField Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setHint
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowHintInField(Boolean showHintInField) {
@@ -390,6 +420,7 @@ public class TextItem extends FormItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getHint
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowHintInField()  {
