@@ -330,7 +330,7 @@ public class DateRangeItem extends CanvasItem {
         var startJS = valueJS.start;
         var endJS = valueJS.end;
 
-        var dateRangeJ = @com.smartgwt.client.data.DateRange::new();
+        var dateRangeJ = @com.smartgwt.client.data.DateRange::new()();
         if(startJS == null || startJS === undefined) {
             //do nothing as null is the default
         } else {
