@@ -63,6 +63,10 @@ import com.google.gwt.event.shared.HasHandlers;
  * context menu support because they have distinct regions or because they have a default set of context menu actions
  * available. <p> If you want a button that pops up a menu when clicked, or a bar of such buttons, see the MenuButton and
  * MenuBar classes.
+ * @see com.smartgwt.client.widgets.menu.Menu#getData
+ * @see com.smartgwt.client.widgets.Canvas#getContextMenu
+ * @see com.smartgwt.client.widgets.menu.MenuButton
+ * @see com.smartgwt.client.widgets.menu.MenuBar
  */
 public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.events.HasItemClickHandlers {
 
@@ -94,10 +98,32 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     // ********************* Properties / Attributes ***********************
 
     /**
+     * Explicitly disable alternateRecordStyles at the menu level by default so setting to true for all ListGrids will not
+     * impact menus' appearance.
+     *
+     * @param alternateRecordStyles alternateRecordStyles Default value is false
+     */
+    public void setAlternateRecordStyles(Boolean alternateRecordStyles) {
+        setAttribute("alternateRecordStyles", alternateRecordStyles, true);
+    }
+
+    /**
+     * Explicitly disable alternateRecordStyles at the menu level by default so setting to true for all ListGrids will not
+     * impact menus' appearance.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAlternateRecordStyles()  {
+        return getAttributeAsBoolean("alternateRecordStyles");
+    }
+
+    /**
      * When false, when a menu item is chosen (via mouse click or keyboard), the menu is not  automatically hidden, staying in
      * place for further interactivity
      *
      * @param autoDismiss autoDismiss Default value is true
+     * @see com.smartgwt.client.widgets.menu.Menu#setCascadeAutoDismiss
      */
     public void setAutoDismiss(Boolean autoDismiss) {
         setAttribute("autoDismiss", autoDismiss, true);
@@ -109,9 +135,31 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.menu.Menu#getCascadeAutoDismiss
      */
     public Boolean getAutoDismiss()  {
         return getAttributeAsBoolean("autoDismiss");
+    }
+
+    /**
+     * When false, when a user clicks outside the menu, or hits the Escape key, this menu will not be automatically hidden,
+     * staying in place for further interactivity.
+     *
+     * @param autoDismissOnBlur autoDismissOnBlur Default value is true
+     */
+    public void setAutoDismissOnBlur(Boolean autoDismissOnBlur) {
+        setAttribute("autoDismissOnBlur", autoDismissOnBlur, true);
+    }
+
+    /**
+     * When false, when a user clicks outside the menu, or hits the Escape key, this menu will not be automatically hidden,
+     * staying in place for further interactivity.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAutoDismissOnBlur()  {
+        return getAttributeAsBoolean("autoDismissOnBlur");
     }
 
     /**
@@ -132,6 +180,25 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      */
     public Boolean getAutoDraw()  {
         return getAttributeAsBoolean("autoDraw");
+    }
+
+    /**
+     * CSS style for a normal cell
+     *
+     * @param baseStyle baseStyle Default value is "menu"
+     */
+    public void setBaseStyle(String baseStyle) {
+        setAttribute("baseStyle", baseStyle, true);
+    }
+
+    /**
+     * CSS style for a normal cell
+     *
+     *
+     * @return String
+     */
+    public String getBaseStyle()  {
+        return getAttributeAsString("baseStyle");
     }
 
     /**
@@ -157,6 +224,27 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      */
     public Boolean getCanSelectParentItems()  {
         return getAttributeAsBoolean("canSelectParentItems");
+    }
+
+    /**
+     * When true any generated submenus will inherit {@link com.smartgwt.client.widgets.menu.Menu#getAutoDismiss autoDismiss}
+     * from this menu.
+     *
+     * @param cascadeAutoDismiss cascadeAutoDismiss Default value is true
+     */
+    public void setCascadeAutoDismiss(Boolean cascadeAutoDismiss) {
+        setAttribute("cascadeAutoDismiss", cascadeAutoDismiss, true);
+    }
+
+    /**
+     * When true any generated submenus will inherit {@link com.smartgwt.client.widgets.menu.Menu#getAutoDismiss autoDismiss}
+     * from this menu.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCascadeAutoDismiss()  {
+        return getAttributeAsBoolean("cascadeAutoDismiss");
     }
 
     /**
@@ -551,6 +639,14 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }-*/;
 
     // ********************* Static Methods ***********************
+            
+    /**
+     * Hide all menus that are currently open. This method is useful to hide the current set of menus including submenus, and
+     * dismiss the menu's clickMask.
+     */
+    public static native void hideAllMenus() /*-{
+        $wnd.isc.Menu.hideAllMenus();
+    }-*/;
     /**
      * Class level method to set the default properties of this class. If set, then all subsequent instances of this
      * class will automatically have the default properties that were set when this method was called. This is a powerful
