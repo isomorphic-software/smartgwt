@@ -277,6 +277,26 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     }
 
     /**
+     * Last year that may be selected.
+     *
+     * @param endYear endYear Default value is 2015
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setEndYear(int endYear)  throws IllegalStateException {
+        setAttribute("endYear", endYear, false);
+    }
+
+    /**
+     * Last year that may be selected.
+     *
+     *
+     * @return int
+     */
+    public int getEndYear()  {
+        return getAttributeAsInt("endYear");
+    }
+
+    /**
      * Day of the week to show in the first column.  0=Sunday, 1=Monday, ..., 6=Saturday.
      *
      * @param firstDayOfWeek firstDayOfWeek Default value is 0
@@ -421,6 +441,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
      *
      * @param nextYearIcon nextYearIcon Default value is "[SKIN]doubleArrow_right.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.DateChooser#setShowDoubleYearIcon
      */
     public void setNextYearIcon(String nextYearIcon)  throws IllegalStateException {
         setAttribute("nextYearIcon", nextYearIcon, false);
@@ -431,6 +452,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.DateChooser#getShowDoubleYearIcon
      */
     public String getNextYearIcon()  {
         return getAttributeAsString("nextYearIcon");
@@ -540,6 +562,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
      *
      * @param prevYearIcon prevYearIcon Default value is "[SKIN]doubleArrow_left.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.DateChooser#setShowDoubleYearIcon
      */
     public void setPrevYearIcon(String prevYearIcon)  throws IllegalStateException {
         setAttribute("prevYearIcon", prevYearIcon, false);
@@ -550,6 +573,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.DateChooser#getShowDoubleYearIcon
      */
     public String getPrevYearIcon()  {
         return getAttributeAsString("prevYearIcon");
@@ -671,6 +695,26 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
      */
     public String getSkinImgDir()  {
         return getAttributeAsString("skinImgDir");
+    }
+
+    /**
+     * Earliest year that may be selected.
+     *
+     * @param startYear startYear Default value is 1995
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setStartYear(int startYear)  throws IllegalStateException {
+        setAttribute("startYear", startYear, false);
+    }
+
+    /**
+     * Earliest year that may be selected.
+     *
+     *
+     * @return int
+     */
+    public int getStartYear()  {
+        return getAttributeAsInt("startYear");
     }
 
     /**
