@@ -749,6 +749,7 @@ public class ImgButton extends Img {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param state new state. Default value is ""
+     * @see com.smartgwt.client.types.State
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
     public void setState(State state) {
@@ -766,6 +767,7 @@ public class ImgButton extends Img {
      *
      *
      * @return Return the state of this StatefulCanvas
+     * @see com.smartgwt.client.types.State
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
     public State getState()  {

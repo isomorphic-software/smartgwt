@@ -218,6 +218,10 @@ public class TreeNode extends ListGridRecord {
      * of this property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty}.
      *
      * @param name name Default value is null, but see below
+     * @see com.smartgwt.client.widgets.tree.Tree#setNameProperty
+     * @see com.smartgwt.client.widgets.tree.Tree#setPathDelim
+     * @see com.smartgwt.client.widgets.tree.Tree#getPath
+     * @see com.smartgwt.client.widgets.tree.Tree#getTitle
      */
     public void setName(String name) {
         setAttribute("name", name);
@@ -239,6 +243,10 @@ public class TreeNode extends ListGridRecord {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.tree.Tree#getNameProperty
+     * @see com.smartgwt.client.widgets.tree.Tree#getPathDelim
+     * @see com.smartgwt.client.widgets.tree.Tree#getPath
+     * @see com.smartgwt.client.widgets.tree.Tree#getTitle
      */
     public String getName()  {
         return getAttributeAsString("name");
@@ -255,6 +263,8 @@ public class TreeNode extends ListGridRecord {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showDropIcon showDropIcon Default value is false
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#setCustomIconProperty
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#setShowCustomIconDrop
      */
     public void setShowDropIcon(Boolean showDropIcon) {
         setAttribute("showDropIcon", showDropIcon);
@@ -271,6 +281,8 @@ public class TreeNode extends ListGridRecord {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconDrop
      */
     public Boolean getShowDropIcon()  {
         return getAttributeAsBoolean("showDropIcon");
@@ -286,6 +298,8 @@ public class TreeNode extends ListGridRecord {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showOpenIcon showOpenIcon Default value is false
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#setCustomIconProperty
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#setShowCustomIconOpen
      */
     public void setShowOpenIcon(Boolean showOpenIcon) {
         setAttribute("showOpenIcon", showOpenIcon);
@@ -301,6 +315,8 @@ public class TreeNode extends ListGridRecord {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconOpen
      */
     public Boolean getShowOpenIcon()  {
         return getAttributeAsBoolean("showOpenIcon");
@@ -313,6 +329,8 @@ public class TreeNode extends ListGridRecord {
      * of this property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty titleProperty}.
      *
      * @param title title Default value is null
+     * @see com.smartgwt.client.widgets.tree.Tree#setTitleProperty
+     * @see com.smartgwt.client.widgets.tree.Tree#getTitle
      */
     public void setTitle(String title) {
         setAttribute("title", title);
@@ -326,6 +344,8 @@ public class TreeNode extends ListGridRecord {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.tree.Tree#getTitleProperty
+     * @see com.smartgwt.client.widgets.tree.Tree#getTitle
      */
     public String getTitle()  {
         return getAttributeAsString("title");
@@ -410,6 +430,7 @@ public class TreeNode extends ListGridRecord {
     //TODO getChildren
 
 }
+
 
 
 

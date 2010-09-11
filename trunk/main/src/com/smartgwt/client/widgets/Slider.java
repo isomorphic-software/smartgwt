@@ -286,6 +286,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Sets the {@link com.smartgwt.client.widgets.Slider#getMaxValue maximum value} of the slider
      *
      * @param maxValue the new maximum value. Default value is 100
+     * @see com.smartgwt.client.widgets.Slider#setFlipValues
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
     public void setMaxValue(float maxValue) {
@@ -298,6 +299,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      *
      *
      * @return float
+     * @see com.smartgwt.client.widgets.Slider#getFlipValues
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
     public float getMaxValue()  {
@@ -310,6 +312,8 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Sets the {@link com.smartgwt.client.widgets.Slider#getMaxValueLabel maxValueLabel} property of the slider
      *
      * @param maxValueLabel new label text. Default value is null
+     * @see com.smartgwt.client.widgets.Slider#setShowRange
+     * @see com.smartgwt.client.widgets.Slider#setMaxValue
      */
     public void setMaxValueLabel(String maxValueLabel) {
         setAttribute("maxValueLabel", maxValueLabel, true);
@@ -321,6 +325,8 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.Slider#getShowRange
+     * @see com.smartgwt.client.widgets.Slider#getMaxValue
      */
     public String getMaxValueLabel()  {
         return getAttributeAsString("maxValueLabel");
@@ -332,6 +338,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Sets the {@link com.smartgwt.client.widgets.Slider#getMinValue minimum value} of the slider
      *
      * @param minValue the new minimum value. Default value is 1
+     * @see com.smartgwt.client.widgets.Slider#setFlipValues
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
     public void setMinValue(float minValue) {
@@ -344,6 +351,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      *
      *
      * @return float
+     * @see com.smartgwt.client.widgets.Slider#getFlipValues
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
     public float getMinValue()  {
@@ -355,6 +363,8 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * displayed.
      *
      * @param minValueLabel minValueLabel Default value is null
+     * @see com.smartgwt.client.widgets.Slider#setShowRange
+     * @see com.smartgwt.client.widgets.Slider#setMinValue
      */
     public void setMinValueLabel(String minValueLabel) {
         setAttribute("minValueLabel", minValueLabel, true);
@@ -366,6 +376,8 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.Slider#getShowRange
+     * @see com.smartgwt.client.widgets.Slider#getMinValue
      */
     public String getMinValueLabel()  {
         return getAttributeAsString("minValueLabel");
@@ -448,6 +460,8 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Sets the {@link com.smartgwt.client.widgets.Slider#getShowRange showRange} property of the slider
      *
      * @param showRange show the slider range?. Default value is true
+     * @see com.smartgwt.client.widgets.Slider#setMinValueLabel
+     * @see com.smartgwt.client.widgets.Slider#setMaxValueLabel
      */
     public void setShowRange(Boolean showRange) {
         setAttribute("showRange", showRange, true);
@@ -459,6 +473,8 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.Slider#getMinValueLabel
+     * @see com.smartgwt.client.widgets.Slider#getMaxValueLabel
      */
     public Boolean getShowRange()  {
         return getAttributeAsBoolean("showRange");
@@ -470,6 +486,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Sets the {@link com.smartgwt.client.widgets.Slider#getShowTitle showTitle} property of the slider
      *
      * @param showTitle show the slider title?. Default value is true
+     * @see com.smartgwt.client.widgets.Slider#setTitle
      */
     public void setShowTitle(Boolean showTitle) {
         setAttribute("showTitle", showTitle, true);
@@ -481,6 +498,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.Slider#getTitle
      */
     public Boolean getShowTitle()  {
         return getAttributeAsBoolean("showTitle");
@@ -492,6 +510,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Sets the {@link com.smartgwt.client.widgets.Slider#getShowValue showValue} property of the slider
      *
      * @param showValue show the slider value?. Default value is true
+     * @see com.smartgwt.client.widgets.Slider#setValue
      */
     public void setShowValue(Boolean showValue) {
         setAttribute("showValue", showValue, true);
@@ -503,6 +522,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.Slider#getValue
      */
     public Boolean getShowValue()  {
         return getAttributeAsBoolean("showValue");
@@ -609,6 +629,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Sets the {@link com.smartgwt.client.widgets.Slider#getTitle title} of the slider
      *
      * @param title new title for the slider. Default value is "Set Value"
+     * @see com.smartgwt.client.widgets.Slider#setShowTitle
      */
     public void setTitle(String title) {
         setAttribute("title", title, true);
@@ -619,6 +640,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.Slider#getShowTitle
      */
     public String getTitle()  {
         return getAttributeAsString("title");
@@ -649,6 +671,8 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackImageType trackImageType} property of the slider
      *
      * @param trackImageType new trackImageType. Default value is "stretch"
+     * @see com.smartgwt.client.types.ImageStyle
+     * @see com.smartgwt.client.widgets.StretchImg#setImageType
      */
     public void setTrackImageType(ImageStyle trackImageType) {
         setAttribute("trackImageType", trackImageType.getValue(), true);
@@ -659,6 +683,8 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      *
      *
      * @return ImageStyle
+     * @see com.smartgwt.client.types.ImageStyle
+     * @see com.smartgwt.client.widgets.StretchImg#getImageType
      */
     public ImageStyle getTrackImageType()  {
         return EnumUtil.getEnum(ImageStyle.values(), getAttribute("trackImageType"));
@@ -684,6 +710,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackSrc trackSrc} property of the slider
      *
      * @param trackSrc new trackSrc. Default value is "track.gif"
+     * @see com.smartgwt.client.widgets.Slider#setTrackImageType
      */
     public void setTrackSrc(String trackSrc) {
         setAttribute("trackSrc", trackSrc, true);
@@ -709,6 +736,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.Slider#getTrackImageType
      */
     public String getTrackSrc()  {
         return getAttributeAsString("trackSrc");
@@ -740,6 +768,10 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Sets the slider value to newValue and moves the slider thumb to the appropriate position for this value. Sends the 'sliderMove' event to the sliderTarget.
      *
      * @param value the new value. Default value is 1
+     * @see com.smartgwt.client.widgets.Slider#setMinValue
+     * @see com.smartgwt.client.widgets.Slider#setMaxValue
+     * @see com.smartgwt.client.widgets.Slider#setFlipValues
+     * @see com.smartgwt.client.widgets.Slider#setShowValue
      */
     public void setValue(float value) {
         setAttribute("value", value, true);
@@ -751,6 +783,10 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      *
      *
      * @return Returns the current slider value.
+     * @see com.smartgwt.client.widgets.Slider#getMinValue
+     * @see com.smartgwt.client.widgets.Slider#getMaxValue
+     * @see com.smartgwt.client.widgets.Slider#getFlipValues
+     * @see com.smartgwt.client.widgets.Slider#getShowValue
      */
     public float getValue()  {
         return getAttributeAsFloat("value");

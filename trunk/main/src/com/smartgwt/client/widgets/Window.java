@@ -171,6 +171,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Color of the Window body. Overrides the background color specified in the style.
      *
      * @param bodyColor bodyColor Default value is "#FFFFFF"
+     * @see com.smartgwt.client.widgets.Window#flash
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setBodyColor(String bodyColor) {
@@ -182,6 +183,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.Window#flash
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getBodyColor()  {
@@ -214,6 +216,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * showing, the Window can't be drag-repositioned regardless of this setting.
      *
      * @param canDragReposition canDragReposition Default value is true
+     * @see com.smartgwt.client.widgets.Window#setShowHeader
      */
     public void setCanDragReposition(Boolean canDragReposition) {
         setAttribute("canDragReposition", canDragReposition, true);
@@ -225,6 +228,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.Window#getShowHeader
      */
     public Boolean getCanDragReposition()  {
         return getAttributeAsBoolean("canDragReposition");
@@ -235,6 +239,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * icon in the footer.
      *
      * @param canDragResize canDragResize Default value is false
+     * @see com.smartgwt.client.widgets.Window#setShowResizer
      */
     public void setCanDragResize(Boolean canDragResize) {
         setAttribute("canDragResize", canDragResize, true);
@@ -246,6 +251,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.Window#getShowResizer
      */
     public Boolean getCanDragResize()  {
         return getAttributeAsBoolean("canDragResize");
@@ -311,6 +317,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      * @param contentsType contentsType Default value is "page"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.Window#setSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setContentsType(String contentsType)  throws IllegalStateException {
@@ -325,6 +332,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.Window#getSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getContentsType()  {
@@ -363,6 +371,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * <P> If unset default behavior depends on whether a close / cancel button is visible for this item.
      *
      * @param dismissOnEscape dismissOnEscape Default value is null
+     * @see com.smartgwt.client.widgets.Window#shouldDismissOnEscape
      */
     public void setDismissOnEscape(Boolean dismissOnEscape) {
         setAttribute("dismissOnEscape", dismissOnEscape, true);
@@ -375,6 +384,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.Window#shouldDismissOnEscape
      */
     public Boolean getDismissOnEscape()  {
         return getAttributeAsBoolean("dismissOnEscape");
@@ -385,6 +395,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * <b>Note:</b> Applies only to modal windows.
      *
      * @param dismissOnOutsideClick dismissOnOutsideClick Default value is false
+     * @see com.smartgwt.client.widgets.Window#setIsModal
      */
     public void setDismissOnOutsideClick(Boolean dismissOnOutsideClick) {
         setAttribute("dismissOnOutsideClick", dismissOnOutsideClick, true);
@@ -396,6 +407,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.Window#getIsModal
      */
     public Boolean getDismissOnOutsideClick()  {
         return getAttributeAsBoolean("dismissOnOutsideClick");
@@ -473,6 +485,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Highlight color for the Window body (shown when the body is flashed).
      *
      * @param hiliteBodyColor hiliteBodyColor Default value is "#EEEEEE"
+     * @see com.smartgwt.client.widgets.Window#flash
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setHiliteBodyColor(String hiliteBodyColor) {
@@ -484,6 +497,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.Window#flash
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getHiliteBodyColor()  {
@@ -698,6 +712,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      * @param modalMaskOpacity modalMaskOpacity Default value is 50
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.Window#setModalMask
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setModalMaskOpacity(int modalMaskOpacity)  throws IllegalStateException {
@@ -709,6 +724,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return int
+     * @see com.smartgwt.client.widgets.Window#getModalMask
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getModalMaskOpacity()  {
@@ -720,6 +736,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      * @param modalMaskStyle modalMaskStyle Default value is "modalMask"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.Window#setModalMask
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setModalMaskStyle(String modalMaskStyle)  throws IllegalStateException {
@@ -731,6 +748,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.Window#getModalMask
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getModalMaskStyle()  {
@@ -948,6 +966,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      * @param showModalMask showModalMask Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.Window#setModalMask
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowModalMask(Boolean showModalMask)  throws IllegalStateException {
@@ -959,6 +978,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.Window#getModalMask
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowModalMask()  {
@@ -1040,6 +1060,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Sets the URL of the contents to display in the body of the window, redrawing if necessary.
      *
      * @param src URL of new contents to be displayed in the window body. Default value is null
+     * @see com.smartgwt.client.widgets.Window#setContentsType
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setSrc(String src) {
@@ -1054,6 +1075,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.Window#getContentsType
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSrc()  {
@@ -1120,6 +1142,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * @param newMember the canvas object to be added to the layout
      * @param position the position in the layout to place newMember (starts with 0);                                  if omitted, it will be
      * added at the last position
+     * @see com.smartgwt.client.widgets.Window#addMembers
      */
     public native void addMember(Canvas newMember, int position) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

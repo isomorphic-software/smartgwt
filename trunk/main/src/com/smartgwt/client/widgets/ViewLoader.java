@@ -73,6 +73,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * set that as the current view. Top-level in this case means that the UI component is not contained in another UI
  * component as a member or child. <p> The ViewLoader relies on the XMLHttpRequest object which can be disabled by
  * end-users in some supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
+ * @see com.smartgwt.client.rpc.RPCRequest#getEvalResult
  */
 public class ViewLoader extends Label {
 
@@ -147,9 +148,10 @@ public class ViewLoader extends Label {
     }
 
     /**
-     * Message to show while the view is loading
+     * Message to show while the view is loading. Use <code>"\${loadingImage}"</code> to include {@link
+     * com.smartgwt.client.widgets.Canvas#loadingImageSrc a loading image}.
      *
-     * @param loadingMessage loadingMessage Default value is "Loading View..."
+     * @param loadingMessage loadingMessage Default value is "Loading View...&amp;nbsp;\${loadingImage}"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setLoadingMessage(String loadingMessage)  throws IllegalStateException {
@@ -157,7 +159,8 @@ public class ViewLoader extends Label {
     }
 
     /**
-     * Message to show while the view is loading
+     * Message to show while the view is loading. Use <code>"\${loadingImage}"</code> to include {@link
+     * com.smartgwt.client.widgets.Canvas#loadingImageSrc a loading image}.
      *
      *
      * @return String

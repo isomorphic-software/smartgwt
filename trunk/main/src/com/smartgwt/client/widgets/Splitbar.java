@@ -61,6 +61,8 @@ import com.google.gwt.event.shared.HasHandlers;
  * in Layouts where showResizeBar is set to true. Provides a different appearance from  the <code>ImgSplitbar</code>
  * class.<br>  To specify the resizeBar class for some layout, use the {@link
  * com.smartgwt.client.widgets.layout.Layout#getResizeBarClass resizeBarClass}  property.
+ * @see com.smartgwt.client.widgets.layout.Layout
+ * @see com.smartgwt.client.widgets.ImgSplitbar
  */
 public class Splitbar extends StretchImg {
 
@@ -207,6 +209,8 @@ public class Splitbar extends StretchImg {
      *
      * @param hSrc hSrc Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.StretchImg#setSrc
+     * @see com.smartgwt.client.widgets.StretchImg#setVSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setHSrc(String hSrc)  throws IllegalStateException {
@@ -219,6 +223,8 @@ public class Splitbar extends StretchImg {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.StretchImg#getSrc
+     * @see com.smartgwt.client.widgets.StretchImg#getVSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getHSrc()  {
@@ -330,6 +336,8 @@ public class Splitbar extends StretchImg {
      *
      * @param src src Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.StretchImg#setHSrc
+     * @see com.smartgwt.client.widgets.StretchImg#setVSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setSrc(String src)  throws IllegalStateException {
@@ -345,6 +353,8 @@ public class Splitbar extends StretchImg {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.StretchImg#getHSrc
+     * @see com.smartgwt.client.widgets.StretchImg#getVSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSrc()  {
@@ -393,6 +403,8 @@ public class Splitbar extends StretchImg {
      *
      * @param vSrc vSrc Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.StretchImg#setSrc
+     * @see com.smartgwt.client.widgets.StretchImg#setVSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setVSrc(String vSrc)  throws IllegalStateException {
@@ -405,6 +417,8 @@ public class Splitbar extends StretchImg {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.StretchImg#getSrc
+     * @see com.smartgwt.client.widgets.StretchImg#getVSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getVSrc()  {

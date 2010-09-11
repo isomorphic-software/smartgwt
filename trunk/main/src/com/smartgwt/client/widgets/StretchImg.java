@@ -135,6 +135,8 @@ public class StretchImg extends StatefulCanvas {
      * com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
      *
      * @param hSrc hSrc Default value is null
+     * @see com.smartgwt.client.widgets.StretchImg#setSrc
+     * @see com.smartgwt.client.widgets.StretchImg#setVSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setHSrc(String hSrc) {
@@ -147,6 +149,8 @@ public class StretchImg extends StatefulCanvas {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.StretchImg#getSrc
+     * @see com.smartgwt.client.widgets.StretchImg#getVSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getHSrc()  {
@@ -305,6 +309,8 @@ public class StretchImg extends StatefulCanvas {
      * Changes the base {@link com.smartgwt.client.widgets.StretchImg#getSrc src} for this stretchImg, redrawing if necessary.
      *
      * @param src new URL for the image. Default value is null
+     * @see com.smartgwt.client.widgets.StretchImg#setHSrc
+     * @see com.smartgwt.client.widgets.StretchImg#setVSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setSrc(String src) {
@@ -320,6 +326,8 @@ public class StretchImg extends StatefulCanvas {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.StretchImg#getHSrc
+     * @see com.smartgwt.client.widgets.StretchImg#getVSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSrc()  {
@@ -354,6 +362,8 @@ public class StretchImg extends StatefulCanvas {
      * com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
      *
      * @param vSrc vSrc Default value is null
+     * @see com.smartgwt.client.widgets.StretchImg#setSrc
+     * @see com.smartgwt.client.widgets.StretchImg#setVSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setVSrc(String vSrc) {
@@ -366,6 +376,8 @@ public class StretchImg extends StatefulCanvas {
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.StretchImg#getSrc
+     * @see com.smartgwt.client.widgets.StretchImg#getVSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getVSrc()  {
