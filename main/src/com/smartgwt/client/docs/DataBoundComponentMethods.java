@@ -8,18 +8,6 @@ package com.smartgwt.client.docs;
  * Method saves the record currently being edited in the form, transparently handling the trip to the server, standard
  * error conditions such as validation errors (whether the validation error happens on the client or server), and update of
  * client-side caches. <P> Action Methods are available on DataBoundComponents.
- * @see #fetchData
- * @see #filterData
- * @see #fetchRelatedData
- * @see #removeSelectedData
- * @see #anySelected
- * @see #getSelection
- * @see #selectRecord
- * @see #selectRecords
- * @see #selectAllRecords
- * @see #deselectRecord
- * @see #deselectRecords
- * @see #deselectAllRecords
  * @see com.smartgwt.client.widgets.form.DynamicForm#editNewRecord
  * @see com.smartgwt.client.widgets.form.DynamicForm#editRecord
  * @see com.smartgwt.client.widgets.form.DynamicForm#editSelectedData
@@ -62,7 +50,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tree.TreeGrid#filterData
  * @see com.smartgwt.client.widgets.tile.TileGrid#exportData
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#exportData
- * @see com.smartgwt.client.widgets.DataBoundComponent#exportData
  */
 public interface DataBoundComponentMethods {
 }

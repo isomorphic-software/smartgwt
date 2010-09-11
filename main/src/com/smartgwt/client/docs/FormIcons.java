@@ -2,10 +2,11 @@
 package com.smartgwt.client.docs;
 
 /**
- * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#click
+ * The following APIs are all related to FormIcons.
+ * @see com.smartgwt.client.widgets.form.fields.events.FormItemIconClickEvent
  * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#keyPress
- * @see com.smartgwt.client.widgets.form.fields.FormItem#iconClick
- * @see com.smartgwt.client.widgets.form.fields.FormItem#iconKeyPress
+ * @see com.smartgwt.client.widgets.form.fields.events.IconClickEvent
+ * @see com.smartgwt.client.widgets.form.fields.events.IconKeyPressEvent
  * @see com.smartgwt.client.widgets.form.fields.FormItemIcon
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getIcons
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getDefaultIconSrc

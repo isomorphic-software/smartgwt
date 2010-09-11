@@ -56,20 +56,20 @@ package com.smartgwt.client.docs;
  * com.smartgwt.client.widgets.Img#getSrc src} and {@link com.smartgwt.client.widgets.Button#getIcon icon}, are&#010
  * specially interpreted in Smart GWT to allow for simpler and more uniform image URLs,&#010 and to allow applications to
  * be restructured more easily.&#010 <P>&#010 Unlike the URL used with an HTML &lt;IMG&gt; element, the image URL passed to
- * a Smart GWT&#010 component is not assumed to be relative to the current page.  See {@link java.lang.String} for a&#010
- * full explanation of the default application image directory, and the meaning of the "[SKIN]"&#010 prefix.&#010 <P>&#010
- * <h4>Specifying Image URLs</h4>&#010 <P>&#010 Default image URLs for Smart GWT components are specified in
- * <code>load_skin.js</code> via&#010 JavaScript, using calls to  Class.addProperties and&#010  Class.changeDefaults.  For
- * example, the <code>load_skin.js</code> file&#010 from the "Smart GWT" sample skin includes the following code to
- * establish the media used by&#010 {@link com.smartgwt.client.widgets.Window#getMinimizeButton minimizeButton}:&#010
- * <pre>&#010    isc.Window.changeDefaults("minimizeButtonDefaults", { &#010         src:"[SKIN]/Window/minimize.png"&#010 
- * });&#010 </pre>&#010 <P>&#010 <h4>Specifying Image Sizes</h4>&#010 <P>&#010 Many Smart GWT components must know some
- * image sizes in advance, in order to allow those&#010 components to autosize to data or content.&#010 <P>&#010 For
- * example, the {@link com.smartgwt.client.widgets.tab.ImgTab}s used in {@link com.smartgwt.client.widgets.tab.TabSet}s are
- * capable of automatically sizing&#010 to a variable length {@link com.smartgwt.client.widgets.tab.Tab#getTitle title}. 
- * To make this possible, Smart GWT must know the&#010 sizes of the images used as "endcaps" on each tab in advance.&#010
- * <P>&#010 Like image URLs, image sizes are specified in <code>load_skin.js</code>.  The following code&#010 sample
- * establishes the default size of the "endcaps" for tabs, by setting a default value&#010 for {@link
+ * a Smart GWT&#010 component is not assumed to be relative to the current page.  See String for a&#010 full explanation of
+ * the default application image directory, and the meaning of the "[SKIN]"&#010 prefix.&#010 <P>&#010 <h4>Specifying Image
+ * URLs</h4>&#010 <P>&#010 Default image URLs for Smart GWT components are specified in <code>load_skin.js</code> via&#010
+ * JavaScript, using calls to  Class.addProperties and&#010  Class.changeDefaults.  For example, the
+ * <code>load_skin.js</code> file&#010 from the "Smart GWT" sample skin includes the following code to establish the media
+ * used by&#010 {@link com.smartgwt.client.widgets.Window#getMinimizeButton minimizeButton}:&#010 <pre>&#010   
+ * isc.Window.changeDefaults("minimizeButtonDefaults", { &#010         src:"[SKIN]/Window/minimize.png"&#010    });&#010
+ * </pre>&#010 <P>&#010 <h4>Specifying Image Sizes</h4>&#010 <P>&#010 Many Smart GWT components must know some image sizes
+ * in advance, in order to allow those&#010 components to autosize to data or content.&#010 <P>&#010 For example, the
+ * {@link com.smartgwt.client.widgets.tab.ImgTab}s used in {@link com.smartgwt.client.widgets.tab.TabSet}s are capable of
+ * automatically sizing&#010 to a variable length {@link com.smartgwt.client.widgets.tab.Tab#getTitle title}.  To make this
+ * possible, Smart GWT must know the&#010 sizes of the images used as "endcaps" on each tab in advance.&#010 <P>&#010 Like
+ * image URLs, image sizes are specified in <code>load_skin.js</code>.  The following code&#010 sample establishes the
+ * default size of the "endcaps" for tabs, by setting a default value&#010 for {@link
  * com.smartgwt.client.widgets.tab.ImgTab#getCapSize capSize}:&#010 <pre>&#010     isc.ImgTab.addProperties({&#010        
  * capSize:4&#010     })&#010 </pre>&#010 <P>&#010 <h4>CSS usage in Smart GWT</h4>&#010 <P>&#010 In Smart GWT, screen
  * layout and sizing are controlled via JavaScript, and appearance via&#010 CSS and images.  &#010 <P>&#010 CSS borders,
@@ -77,29 +77,28 @@ package com.smartgwt.client.docs;
  * sizing or layout.  Unlike HTML elements, a Smart GWT&#010 component will always have the exact size you specify via
  * JavaScript, regardless of browser&#010 platform, browser compatibility mode, or borders, margins, or padding, all of
  * which normally&#010 affect the final size of an HTML element. &#010 <P>&#010 For this reason, Smart GWT skinning
- * requires only novice-level familiarity with CSS, as CSS&#010 is used principally for colors and fonts.  See {@link
- * java.lang.String this discussion} for&#010 further details on what properties should be set via CSS vs via
- * JavaScript.&#010 <P>&#010 <h4>Statefulness and Suffixes</h4>&#010 <P>&#010 Some components or areas within components,
- * including buttons and the cells within a grid, are&#010 "stateful", meaning that they can be in one of a set of states
- * each of which has a distinct&#010 visual appearance.&#010 <P>&#010 Stateful components switch the CSS styles or image
- * URLs they are using as they transition&#010 from state to state, appending state information as suffixes on the style
- * names or URL.&#010 See {@link com.smartgwt.client.widgets.Img#getSrc src} and {@link
- * com.smartgwt.client.widgets.Button#getBaseStyle baseStyle} for details and examples.&#010 <P>&#010 Smart GWT has
- * built-in logic to manage a series of state transitions, such as:&#010 <ul>&#010 <li> "rollover": showing a different
- * appearance when the mouse is over a component&#010 <li> "button down": showing a different appearance when the mouse is
- * pressed over a&#010 component&#010 <li> "disabled": showing a different appearance when a component cannot be interacted
- * with&#010 <li> "selected": showing one of a set of components in a different state to indicate&#010 selection&#010
- * </ul>&#010 Flags on some components, such as {@link com.smartgwt.client.widgets.ImgButton#getShowRollOver showRollOver},
- * allow you to control whether the&#010 component will switch CSS style or image URL when the component transitions into a
- * given state.&#010 <P>&#010 <h4>StretchImg: 3-segment stretchable images</h4>&#010 <P>&#010 A {@link
- * com.smartgwt.client.widgets.StretchImg} is Smart GWT component that renders out a compound image composed of 3&#010
- * image files: two fixed-size endcaps images and a stretchable center segment.  Like stateful&#010 components, the names
- * of each image segment is appended to the image URL as a suffix.  See&#010 {@link
- * com.smartgwt.client.widgets.StretchImg#getSrc src} for details.&#010 <P>&#010 <h4>EdgedCanvas</h4>&#010 <P>&#010 Similar
- * to a StretchImg, an {@link com.smartgwt.client.widgets.EdgedCanvas} provides an image-based decorative edge&#010 around
- * and/or behind another component, with up to 9 segments (a 3x3 grid).  Decorative&#010 edges can be added to any
- * component by setting {@link com.smartgwt.client.widgets.Canvas#getShowEdges showEdges:true}.&#010 EdgedCanvas is also
- * used to construct dropshadows, which can be enabled on any component via&#010 {@link
+ * requires only novice-level familiarity with CSS, as CSS&#010 is used principally for colors and fonts.  See String
+ * for&#010 further details on what properties should be set via CSS vs via JavaScript.&#010 <P>&#010 <h4>Statefulness and
+ * Suffixes</h4>&#010 <P>&#010 Some components or areas within components, including buttons and the cells within a grid,
+ * are&#010 "stateful", meaning that they can be in one of a set of states each of which has a distinct&#010 visual
+ * appearance.&#010 <P>&#010 Stateful components switch the CSS styles or image URLs they are using as they transition&#010
+ * from state to state, appending state information as suffixes on the style names or URL.&#010 See {@link
+ * com.smartgwt.client.widgets.Img#getSrc src} and {@link com.smartgwt.client.widgets.Button#getBaseStyle baseStyle} for
+ * details and examples.&#010 <P>&#010 Smart GWT has built-in logic to manage a series of state transitions, such as:&#010
+ * <ul>&#010 <li> "rollover": showing a different appearance when the mouse is over a component&#010 <li> "button down":
+ * showing a different appearance when the mouse is pressed over a&#010 component&#010 <li> "disabled": showing a different
+ * appearance when a component cannot be interacted with&#010 <li> "selected": showing one of a set of components in a
+ * different state to indicate&#010 selection&#010 </ul>&#010 Flags on some components, such as {@link
+ * com.smartgwt.client.widgets.ImgButton#getShowRollOver showRollOver}, allow you to control whether the&#010 component
+ * will switch CSS style or image URL when the component transitions into a given state.&#010 <P>&#010 <h4>StretchImg:
+ * 3-segment stretchable images</h4>&#010 <P>&#010 A {@link com.smartgwt.client.widgets.StretchImg} is Smart GWT component
+ * that renders out a compound image composed of 3&#010 image files: two fixed-size endcaps images and a stretchable center
+ * segment.  Like stateful&#010 components, the names of each image segment is appended to the image URL as a suffix. 
+ * See&#010 {@link com.smartgwt.client.widgets.StretchImg#getSrc src} for details.&#010 <P>&#010 <h4>EdgedCanvas</h4>&#010
+ * <P>&#010 Similar to a StretchImg, an {@link com.smartgwt.client.widgets.EdgedCanvas} provides an image-based decorative
+ * edge&#010 around and/or behind another component, with up to 9 segments (a 3x3 grid).  Decorative&#010 edges can be
+ * added to any component by setting {@link com.smartgwt.client.widgets.Canvas#getShowEdges showEdges:true}.&#010
+ * EdgedCanvas is also used to construct dropshadows, which can be enabled on any component via&#010 {@link
  * com.smartgwt.client.widgets.Canvas#getShowShadow showShadow:true}.&#010 <P>&#010 <h4>Multiple looks for the same
  * component type</h4>&#010 <P>&#010 In some cases you need to create two variations in appearance for a component with the
  * same&#010 behavior.  For example, you may want to create a specialized Window, called "PaletteWindow",&#010 that behaves

@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to CellStyling.
  * @see com.smartgwt.client.grid.GridRenderer#getCellHeight
  * @see com.smartgwt.client.grid.GridRenderer#getFixedRowHeights
  * @see com.smartgwt.client.grid.GridRenderer#getWrapCells

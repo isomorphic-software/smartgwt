@@ -2,14 +2,11 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to Grouping.
  * @see com.smartgwt.client.widgets.grid.ListGridField#getGroupValue
  * @see com.smartgwt.client.widgets.grid.ListGridField#getGroupTitle
  * @see com.smartgwt.client.widgets.grid.ListGrid#groupBy
  * @see com.smartgwt.client.widgets.grid.ListGrid#getOriginalData
- * @see 
- * @see #getGroupMembers
- * @see #getGroupTitle
- * @see #getGroupValue
  * @see com.smartgwt.client.widgets.grid.ListGrid#getOriginalData
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupTree
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupStartOpen

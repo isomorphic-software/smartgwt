@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to FormValues.
  * @see com.smartgwt.client.widgets.form.DynamicForm#setValues
  * @see com.smartgwt.client.widgets.form.DynamicForm#rememberValues
  * @see com.smartgwt.client.widgets.form.DynamicForm#resetValues

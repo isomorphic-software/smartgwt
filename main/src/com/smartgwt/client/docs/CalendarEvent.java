@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to CalendarEvent.
  * @see com.smartgwt.client.widgets.calendar.Calendar#getNameField
  * @see com.smartgwt.client.widgets.calendar.Calendar#getDescriptionField
  * @see com.smartgwt.client.widgets.calendar.Calendar#getStartDateField

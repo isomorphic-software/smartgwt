@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to ClientData.
  * @see com.smartgwt.client.data.DataSource#setCacheAllData
  * @see com.smartgwt.client.data.DataSource#setCacheData
  * @see com.smartgwt.client.data.DataSource#invalidateCache

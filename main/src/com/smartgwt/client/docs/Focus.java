@@ -7,6 +7,7 @@ package com.smartgwt.client.docs;
  * clicked on or tabbed to.
  * @see com.smartgwt.client.widgets.form.DynamicForm#getFocusItem
  * @see com.smartgwt.client.widgets.form.DynamicForm#focusInItem
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getCanFocus
  * @see com.smartgwt.client.widgets.form.fields.FormItem#focusInItem
  * @see com.smartgwt.client.widgets.form.fields.FormItem#blurItem
  * @see com.smartgwt.client.widgets.Canvas#focus
@@ -14,11 +15,12 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#containsFocus
  * @see com.smartgwt.client.widgets.Canvas#setAccessKey
  * @see com.smartgwt.client.widgets.Canvas#setTabIndex
- * @see com.smartgwt.client.widgets.Canvas#focusChanged
- * @see 
+ * @see com.smartgwt.client.widgets.events.FocusChangedEvent
+ * @see com.smartgwt.client.widgets.Canvas#TAB_INDEX_FLOOR
  * @see com.smartgwt.client.widgets.form.DynamicForm#getAutoFocus
  * @see com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus
  * @see com.smartgwt.client.widgets.form.DynamicForm#getCanFocus
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getCanFocus
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getAccessKey
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getTabIndex
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getGlobalTabIndex

@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to AutoFitData.
  * @see com.smartgwt.client.widgets.grid.ListGrid#setAutoFitData
  * @see com.smartgwt.client.widgets.grid.ListGrid#setAutoFitExtraRecords
  * @see com.smartgwt.client.widgets.grid.ListGrid#setAutoFitMaxRecords

@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to TabBarScrolling.
  * @see com.smartgwt.client.widgets.tab.TabSet#getSymmetricScroller
  * @see com.smartgwt.client.widgets.tab.TabSet#getScrollerSrc
  * @see com.smartgwt.client.widgets.tab.TabSet#getScrollerHSrc

@@ -85,27 +85,15 @@ package com.smartgwt.client.docs;
  * com.smartgwt.client.widgets.form.fields.FormItem} APIs, editors have the following properties: <P> -
  * <code>rowNum</code>: The rowNum of the record being edited.<br> - <code>colNum</code>: The colNum of the cell being
  * edited.<br> - <code>grid</code>: A pointer back to the listGrid containing the record.
- * @see #setEditValue
- * @see #getEditValue
- * @see #getEditedRecord
- * @see #getEditedCell
- * @see #getEditValues
- * @see #clearEditValue
- * @see #saveEdits
- * @see #getAllEditCells
- * @see #discardAllEdits
- * @see #recordHasChanges
- * @see #hasChanges
- * @see #saveAllEdits
  * @see com.smartgwt.client.widgets.form.DynamicForm#getEditorType
  * @see com.smartgwt.client.widgets.grid.ListGridField#defaultDynamicValue
- * @see com.smartgwt.client.widgets.grid.ListGridField#editorEnter
- * @see com.smartgwt.client.widgets.grid.ListGridField#editorExit
+ * @see com.smartgwt.client.widgets.grid.events.EditorEnterEvent
+ * @see com.smartgwt.client.widgets.grid.events.EditorExitEvent
  * @see com.smartgwt.client.widgets.grid.ListGridField#cellChanged
  * @see com.smartgwt.client.widgets.grid.ListGridField#formatEditorValue
  * @see com.smartgwt.client.widgets.grid.ListGridField#parseEditorValue
- * @see com.smartgwt.client.widgets.grid.ListGridField#change
- * @see com.smartgwt.client.widgets.grid.ListGridField#changed
+ * @see com.smartgwt.client.widgets.grid.events.ChangeEvent
+ * @see com.smartgwt.client.widgets.grid.events.ChangedEvent
  * @see com.smartgwt.client.widgets.grid.ListGrid#canEditCell
  * @see com.smartgwt.client.widgets.grid.ListGrid#startEditing
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEditorValueMap
@@ -131,13 +119,13 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#hasChanges
  * @see com.smartgwt.client.widgets.grid.ListGrid#cellHasChanges
  * @see com.smartgwt.client.widgets.grid.ListGrid#saveAllEdits
- * @see com.smartgwt.client.widgets.grid.ListGrid#cellChanged
- * @see com.smartgwt.client.widgets.grid.ListGrid#editComplete
- * @see com.smartgwt.client.widgets.grid.ListGrid#editFailed
- * @see com.smartgwt.client.widgets.grid.ListGrid#editorEnter
- * @see com.smartgwt.client.widgets.grid.ListGrid#rowEditorEnter
- * @see com.smartgwt.client.widgets.grid.ListGrid#editorExit
- * @see com.smartgwt.client.widgets.grid.ListGrid#rowEditorExit
+ * @see com.smartgwt.client.widgets.grid.events.CellSavedEvent
+ * @see com.smartgwt.client.widgets.grid.events.EditCompleteEvent
+ * @see com.smartgwt.client.widgets.grid.events.EditFailedEvent
+ * @see com.smartgwt.client.widgets.grid.events.EditorEnterEvent
+ * @see com.smartgwt.client.widgets.grid.events.RowEditorEnterEvent
+ * @see com.smartgwt.client.widgets.grid.events.EditorExitEvent
+ * @see com.smartgwt.client.widgets.grid.events.RowEditorExitEvent
  * @see com.smartgwt.client.widgets.grid.ListGrid#formatEditorValue
  * @see com.smartgwt.client.widgets.grid.ListGrid#parseEditorValue
  * @see com.smartgwt.client.widgets.tree.TreeGrid#startEditingNew

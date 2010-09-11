@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to Animation.
  * @see com.smartgwt.client.widgets.tree.TreeGrid#shouldAnimateFolder
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderMaxRows
  * @see com.smartgwt.client.widgets.Canvas#animateMove
@@ -11,6 +12,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#animateScroll
  * @see com.smartgwt.client.widgets.Canvas#animateShow
  * @see com.smartgwt.client.widgets.Canvas#animateHide
+ * @see com.smartgwt.client.widgets.Canvas#loadingImageSrc
+ * @see com.smartgwt.client.widgets.Canvas#loadingImageSize
  * @see com.smartgwt.client.widgets.Slider#getAnimateThumb
  * @see com.smartgwt.client.widgets.Slider#getAnimateThumbTime
  * @see com.smartgwt.client.widgets.Slider#getAnimateThumbInit

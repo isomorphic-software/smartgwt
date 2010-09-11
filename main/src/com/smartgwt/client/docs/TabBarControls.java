@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to TabBarControls.
  * @see com.smartgwt.client.widgets.tab.Tab#getPickerTitle
  * @see com.smartgwt.client.widgets.tab.TabSet#getTabBarControls
  * @see com.smartgwt.client.widgets.tab.TabSet#getShowTabScroller

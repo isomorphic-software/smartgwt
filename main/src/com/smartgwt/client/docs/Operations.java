@@ -56,10 +56,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.DataSource#performCustomOperation
  * @see com.smartgwt.client.rpc.RPCManager#handleError
  * @see com.smartgwt.client.data.DSRequest#getOperationId
- * @see com.smartgwt.client.widgets.DataBoundComponent#getFetchOperation
- * @see com.smartgwt.client.widgets.DataBoundComponent#getUpdateOperation
- * @see com.smartgwt.client.widgets.DataBoundComponent#getAddOperation
- * @see com.smartgwt.client.widgets.DataBoundComponent#getRemoveOperation
  */
 public interface Operations {
 }

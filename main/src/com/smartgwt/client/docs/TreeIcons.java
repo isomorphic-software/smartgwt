@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to TreeIcons.
  * @see com.smartgwt.client.widgets.tree.TreeGrid#setNodeIcon
  * @see com.smartgwt.client.widgets.tree.TreeNode#getIcon
  * @see com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon

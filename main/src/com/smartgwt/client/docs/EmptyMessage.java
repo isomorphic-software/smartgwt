@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to EmptyMessage.
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#getShowEmptyMessage
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#getEmptyMessage
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#getEmptyMessageStyle

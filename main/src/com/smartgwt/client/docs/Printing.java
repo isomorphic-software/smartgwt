@@ -21,6 +21,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#showPrintPreview
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getPrintTitleStyle
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getPrintTextBoxStyle
+ * @see com.smartgwt.client.widgets.form.fields.TextItem#getPrintFullText
+ * @see com.smartgwt.client.widgets.form.fields.TextAreaItem#getPrintFullText
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#getPrintCellStyle
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#getPrintLabelStyle
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#getPrintHeaderStyle

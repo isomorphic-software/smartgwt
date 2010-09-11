@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to LayoutMargin.
  * @see com.smartgwt.client.widgets.layout.Layout#setLayoutMargin
  * @see com.smartgwt.client.widgets.tile.TileLayout#getTileMargin
  * @see com.smartgwt.client.widgets.tile.TileLayout#getTileHMargin
@@ -9,7 +10,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tile.TileLayout#getLayoutMargin
  * @see com.smartgwt.client.widgets.tile.TileLayout#getPaddingAsLayoutMargin
  * @see com.smartgwt.client.widgets.tile.TileLayout#getExpandMargins
- * @see #getLayoutMargin
  * @see com.smartgwt.client.widgets.layout.Layout#getPaddingAsLayoutMargin
  * @see com.smartgwt.client.widgets.layout.Layout#getLayoutMargin
  * @see com.smartgwt.client.widgets.layout.Layout#getLayoutLeftMargin

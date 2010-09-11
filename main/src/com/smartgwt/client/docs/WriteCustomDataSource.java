@@ -47,15 +47,16 @@ package com.smartgwt.client.docs;
  * DataSource instance to the system - its fields, validations, security constraints, special data operations,  transaction
  * chaining expressions and so on (see the {@link com.smartgwt.client.data.DataSource DataSource docs}  for full details).
  * <p> One property that is always required for a custom DataSource is  {@link
- * com.smartgwt.client.data.DataSource#getServerConstructor serverConstructor}.  This fully-qualified class  name tells
- * Smart GWT what to instantiate when data operations for this DataSource arrive on the server - in other words, it is how
- * you tell Smart GWT to use your custom class.   In the <a href="http://www.smartclient.com/smartgwtee/showcase/#orm_ds"
- * target="examples">ORM DataSource example</a>, on the  <code>ormDataSource_country</code> tab, you will see how we use
- * this property to tie the <code>ormDataSource_country</code> DataSource <em>instance</em> to the 
- * <code>ormDataSource</code> DataSource <em>implementation</em>. <p> Finally, if your data model is based on Javabeans, or
- * on POJOs that broadly follow the  Javabean conventions (basically, if they have private state variables accessible via
- * public  getters and setters), Smart GWT can automatically generate basic DataSource definitions  for your beans that
- * will only need minimal change (ie, specifying a  <code>serverConstructor</code>) to be fully operational.  Both the  <a
+ * com.smartgwt.client.docs.serverds.DataSource#serverConstructor serverConstructor}.  This fully-qualified class  name
+ * tells Smart GWT what to instantiate when data operations for this DataSource arrive on the server - in other words, it
+ * is how you tell Smart GWT to use your custom class.   In the <a
+ * href="http://www.smartclient.com/smartgwtee/showcase/#orm_ds" target="examples">ORM DataSource example</a>, on the 
+ * <code>ormDataSource_country</code> tab, you will see how we use this property to tie the
+ * <code>ormDataSource_country</code> DataSource <em>instance</em> to the  <code>ormDataSource</code> DataSource
+ * <em>implementation</em>. <p> Finally, if your data model is based on Javabeans, or on POJOs that broadly follow the 
+ * Javabean conventions (basically, if they have private state variables accessible via public  getters and setters), Smart
+ * GWT can automatically generate basic DataSource definitions  for your beans that will only need minimal change (ie,
+ * specifying a  <code>serverConstructor</code>) to be fully operational.  Both the  <a
  * href="http://www.smartclient.com/smartgwtee/showcase/#javabeanWizard" target="examples">Visual Builder Javabean
  * Wizard</a> and the Batch DataSource  Generator can create DataSource descriptors from existing beans. <p> <b>Server
  * framework features relevant to custom DataSources</b> <P> The vast majority of the Smart GWT Server framework's key

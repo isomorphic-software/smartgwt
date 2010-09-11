@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to WebService.
  * @see com.smartgwt.client.data.WebService#getOperationNames
  * @see com.smartgwt.client.data.WebService#getSchema
  * @see com.smartgwt.client.data.WebService#callOperation
@@ -10,7 +11,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.WebService
  * @see com.smartgwt.client.data.WebService#get
  * @see com.smartgwt.client.data.WebService#getByName
- * @see #getSchemaNamespace
  * @see com.smartgwt.client.data.WebService#getServiceNamespace
  */
 public interface WebService {

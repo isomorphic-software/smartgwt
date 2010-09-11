@@ -12,8 +12,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#getHSnapPosition
  * @see com.smartgwt.client.widgets.Canvas#getVSnapPosition
  * @see com.smartgwt.client.widgets.Canvas#shouldSnapOnDrop
- * @see com.smartgwt.client.widgets.DataBoundComponent#transferRecords
- * @see com.smartgwt.client.widgets.DataBoundComponent#transferSelectedData
  * @see com.smartgwt.client.util.EventHandler#getDragRect
  * @see com.smartgwt.client.widgets.Canvas#getEventEdge
  * @see com.smartgwt.client.grid.GridRenderer#getSnapToCells
@@ -57,7 +55,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.layout.Layout#getShowDragPlaceHolder
  * @see com.smartgwt.client.widgets.layout.Layout#getPlaceHolderProperties
  * @see com.smartgwt.client.widgets.layout.Layout#getPlaceHolderDefaults
- * @see 
  * @see com.smartgwt.client.types.DragAppearance
  * @see com.smartgwt.client.types.DragIntersectStyle
  */

@@ -2,7 +2,8 @@
 package com.smartgwt.client.docs;
 
 /**
- * @see com.smartgwt.client.widgets.Window#closeClick
+ * The following APIs are all related to Buttons.
+ * @see com.smartgwt.client.widgets.events.CloseClientEvent
  * @see com.smartgwt.client.widgets.Dialog#saveData
  * @see com.smartgwt.client.widgets.Dialog#closeClick
  * @see com.smartgwt.client.widgets.Dialog#cancelClick

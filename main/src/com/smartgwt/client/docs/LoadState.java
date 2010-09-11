@@ -2,8 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
- * @see #loadChildren
- * @see #unloadChildren
+ * The following APIs are all related to LoadState.
  * @see com.smartgwt.client.widgets.tree.Tree#getLoadState
  * @see com.smartgwt.client.widgets.tree.Tree#isLoaded
  * @see com.smartgwt.client.widgets.tree.Tree#loadChildren

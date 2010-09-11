@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * The following APIs are all related to ImageEdges.
  * @see com.smartgwt.client.widgets.EdgedCanvas
  * @see com.smartgwt.client.widgets.Canvas#getShowEdges
  * @see com.smartgwt.client.widgets.Canvas#getEdgeSize
