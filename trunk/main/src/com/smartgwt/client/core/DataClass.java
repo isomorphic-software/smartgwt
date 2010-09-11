@@ -85,6 +85,10 @@ public class DataClass extends JsObject {
     public Double getAttributeAsDouble(String property) {
         return JSOHelper.getAttributeAsDouble(jsObj, property);
     }
+    
+    public double[] getAttributeAsDoubleArray(String property) {
+        return JSOHelper.getAttributeAsDoubleArray(jsObj, property);
+    }
 
     public void setAttribute(String property, int[] value) {
         JSOHelper.setAttribute(jsObj, property, value);
@@ -130,6 +134,10 @@ public class DataClass extends JsObject {
 
     public void setAttribute(String property, Date value) {
         JSOHelper.setAttribute(jsObj, property, value);
+    }
+    
+    public void setAttribute(String property, double[] value) {
+    	JSOHelper.setAttribute(jsObj, property, value);
     }
 
     public void setAttribute(String property, Boolean value) {
