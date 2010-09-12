@@ -1400,7 +1400,11 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
         JSOHelper.deleteAttribute(configJS, "ID");
         JSOHelper.deleteAttribute(configJS, "alternateRecordStyles");
         setAttribute("pickListProperties", configJS);
-    }    
+    }
+
+    public void setOptionFilterContext(DSRequest dsRequestProperties) {
+        setAttribute("optionFilterContext", dsRequestProperties);
+    }
 
 }
 

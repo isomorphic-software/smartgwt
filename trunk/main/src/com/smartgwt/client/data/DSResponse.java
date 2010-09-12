@@ -208,12 +208,18 @@ public class DSResponse extends RPCResponse {
      * @return the errors map
      */
     public Map getErrors() {
+    	
         //internally the errors object can be a JSO, or single values array
         JavaScriptObject jsObj = getAttributeAsJavaScriptObject("errors");
         if(JSOHelper.isArray(jsObj)) {
             jsObj = JSOHelper.getJSOArrayValue(jsObj, 0);
         }
-        return JSOHelper.convertToMap(jsObj);
+        try {
+        	return JSOHelper.convertToMap(jsObj);
+        } catch (Exception e) {
+        	e.printStackTrace();
+        	return null;
+		}
     }
 
     /**

@@ -209,6 +209,25 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
     }
 
     /**
+     * Specifies the prompt to be displayed when the mouse hovers over the tab.
+     *
+     * @param prompt prompt Default value is null
+     */
+    public void setPrompt(String prompt) {
+        setAttribute("prompt", prompt);
+    }
+
+    /**
+     * Specifies the prompt to be displayed when the mouse hovers over the tab.
+     *
+     *
+     * @return String
+     */
+    public String getPrompt()  {
+        return getAttributeAsString("prompt");
+    }
+
+    /**
      * You can specify an explicit width for the tab using this property.  Note that tabs automatically size to make room for
      * the full title, but if you want to e.g. specify a uniform width for all tabs in a TabSet, this property enables you to
      * do so.

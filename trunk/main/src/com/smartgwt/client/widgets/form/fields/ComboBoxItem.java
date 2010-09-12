@@ -1077,7 +1077,11 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
         JSOHelper.deleteAttribute(configJS, "ID");
         JSOHelper.deleteAttribute(configJS, "alternateRecordStyles");
         setAttribute("pickListProperties", configJS);
-    }    
+    }
+
+    public void setOptionFilterContext(DSRequest dsRequestProperties) {
+        setAttribute("optionFilterContext", dsRequestProperties);
+    }
 
 }
 
