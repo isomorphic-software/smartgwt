@@ -94,6 +94,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell saving}, and custom interactions provided by <a
  * href="http://www.smartclient.com/smartgwt/showcase/#pattern_reuse_grid_form_category" target="examples">Pattern Reuse
  * Example</a> custom databinding-capable components.
+ * @see com.smartgwt.client.widgets.DataBoundComponent
  */
 public class DataSource extends BaseClass  implements com.smartgwt.client.data.events.HasHandleErrorHandlers {
 
@@ -265,7 +266,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @param cacheData Array of records to apply as the client-side cache. Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCacheData(Record[] cacheData)  throws IllegalStateException {
+    public void setCacheData(Record... cacheData)  throws IllegalStateException {
         setAttribute("cacheData", cacheData, false);
     }
 
@@ -307,6 +308,9 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param callbackParam callbackParam Default value is "callback"
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.data.DataSource#setDataFormat
+     * @see com.smartgwt.client.data.DataSource#setOperationBindings
+     * @see com.smartgwt.client.data.OperationBinding#setCallbackParam
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#edit_save_xml_integration_category" target="examples">Edit and Save Example</a>
      */
@@ -320,6 +324,9 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return String
+     * @see com.smartgwt.client.data.DataSource#getDataFormat
+     * @see com.smartgwt.client.data.DataSource#getOperationBindings
+     * @see com.smartgwt.client.data.OperationBinding#getCallbackParam
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#edit_save_xml_integration_category" target="examples">Edit and Save Example</a>
      */
@@ -362,6 +369,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param childrenField childrenField Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.data.DataSourceField#setChildrenProperty
      * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
      */
     public void setChildrenField(String childrenField)  throws IllegalStateException {
@@ -383,6 +391,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return String
+     * @see com.smartgwt.client.data.DataSourceField#getChildrenProperty
      * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
      */
     public String getChildrenField()  {
@@ -430,6 +439,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param criteriaPolicy criteriaPolicy Default value is "dropOnShortening"
+     * @see com.smartgwt.client.data.DataSource#compareCriteria
      */
     public void setCriteriaPolicy(CriteriaPolicy criteriaPolicy) {
         setAttribute("criteriaPolicy", criteriaPolicy.getValue(), true);
@@ -441,6 +451,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return CriteriaPolicy
+     * @see com.smartgwt.client.data.DataSource#compareCriteria
      */
     public CriteriaPolicy getCriteriaPolicy()  {
         return EnumUtil.getEnum(CriteriaPolicy.values(), getAttribute("criteriaPolicy"));
@@ -515,6 +526,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param dataTransport dataTransport Default value is RPCManager.defaultTransport
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.types.RPCTransport
+     * @see com.smartgwt.client.data.DataSource#setCallbackParam
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setDataTransport(RPCTransport dataTransport)  throws IllegalStateException {
@@ -532,6 +545,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return RPCTransport
+     * @see com.smartgwt.client.types.RPCTransport
+     * @see com.smartgwt.client.data.DataSource#getCallbackParam
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public RPCTransport getDataTransport()  {
@@ -675,6 +690,37 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+     * Namespaces definitions to add to the root element of outbound XML messages sent to a web&#010 service, as a mapping from
+     * namespace prefix to namespace URI.&#010 <P>&#010 The default value is:&#010 <pre>&#010   globalNamespaces : {&#010     
+     * xsi: "http://www.w3.org/2001/XMLSchema-instance",&#010      xsd: "http://www.w3.org/2001/XMLSchema"&#010   },&#010
+     * </pre>&#010 This default value allows the use of the xsi:type and xsi:nil attributes without further&#010
+     * declarations.&#010 <P>&#010 Note that some web services will only accept specific revisions of the XML Schema URI.&#010
+     * If xsi-namespaced attributes seem to be ignored by an older webservice, try the URI&#010
+     * "http://www.w3.org/1999/XMLSchema-instance" instead.
+     *
+     * @param globalNamespaces globalNamespaces Default value is ...
+     */
+    public void setGlobalNamespaces(Map globalNamespaces) {
+        setAttribute("globalNamespaces", globalNamespaces, true);
+    }
+
+    /**
+     * Namespaces definitions to add to the root element of outbound XML messages sent to a web&#010 service, as a mapping from
+     * namespace prefix to namespace URI.&#010 <P>&#010 The default value is:&#010 <pre>&#010   globalNamespaces : {&#010     
+     * xsi: "http://www.w3.org/2001/XMLSchema-instance",&#010      xsd: "http://www.w3.org/2001/XMLSchema"&#010   },&#010
+     * </pre>&#010 This default value allows the use of the xsi:type and xsi:nil attributes without further&#010
+     * declarations.&#010 <P>&#010 Note that some web services will only accept specific revisions of the XML Schema URI.&#010
+     * If xsi-namespaced attributes seem to be ignored by an older webservice, try the URI&#010
+     * "http://www.w3.org/1999/XMLSchema-instance" instead.
+     *
+     *
+     * @return Map
+     */
+    public Map getGlobalNamespaces()  {
+        return getAttributeAsMap("globalNamespaces");
+    }
+
+    /**
      * Designates a field of {@link com.smartgwt.client.types.FieldType type}:"image" as the field to use when rendering a
      * record as an image, for example, in a {@link com.smartgwt.client.widgets.tile.TileGrid}. <p> For example, for a
      * DataSource of employees, a "photo" field of type "image" should be designated as the iconField. <p> If not explicitly
@@ -737,6 +783,72 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+     * ID of another DataSource this DataSource inherits its {@link com.smartgwt.client.data.DataSource#getFields fields} from.
+     * <P> Local fields (fields defined in this DataSource) are added to inherited fields  to form the full set of fields. 
+     * Fields with the same name are merged in the same way that {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getFields databound component fields} are merged with DataSource fields.
+     * <P> The default order of the combined fields is new local fields first (including any fields present in the parent
+     * DataSource which the local DataSource re-declares), then parent fields.  You can set {@link
+     * com.smartgwt.client.data.DataSource#getUseParentFieldOrder useParentFieldOrder} to instead use the parent's field order,
+     * with new local fields appearing last.  You can set {@link com.smartgwt.client.data.DataSource#getShowLocalFieldsOnly
+     * showLocalFieldsOnly} to have all non-local fields hidden. <P> Note that <b>only fields are inherited</b> - other
+     * properties such as dataURL and dataFormat are not.  You can use ordinary inheritance, that is, creating a subclass of
+     * DataSource, in order to share properties such as dataURL across a series of DataSources that also inherit fields from
+     * each other via <code>inheritsFrom</code>. <P> This feature can be used for: <ul> <li>creating a customized view (eg,
+     * only certain fields shown) which will be used by multiple {@link com.smartgwt.client.widgets.DataBoundComponent
+     * databound components}. <li>adding presentation-specific attributes to metadata that has been automatically derived from
+     * {@link com.smartgwt.client.data.XMLTools#loadXMLSchema XML Schema} or other metadata formats <li>modeling object
+     * subclassing and extension in server-side code and storage systems <li>modeling relational database joins, and the
+     * equivalents in other systems <li>creating hooks for others to customize your application in a maintainable way.  For
+     * example, if you have a dataSource "employee", you can create a dataSource "customizedEmployee" which inherits from
+     * "employee" but does not initially define any fields, and bind all {@link com.smartgwt.client.widgets.DataBoundComponent
+     * databound components} to "customizedEmployee".  Customizations of fields (including appearance changes, field order, new
+     * fields, hiding of fields, and custom validation rules) can be added to "customizedEmployee", so that they are kept
+     * separately from the original field data and have the best possible chance of working with future versions of the
+     * "employee" dataSource. </ul>
+     *
+     * @param inheritsFrom inheritsFrom Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#featured-xsd-ds" target="examples">Schema Chaining Example</a>
+     */
+    public void setInheritsFrom(String inheritsFrom)  throws IllegalStateException {
+        setAttribute("inheritsFrom", inheritsFrom, false);
+    }
+
+    /**
+     * ID of another DataSource this DataSource inherits its {@link com.smartgwt.client.data.DataSource#getFields fields} from.
+     * <P> Local fields (fields defined in this DataSource) are added to inherited fields  to form the full set of fields. 
+     * Fields with the same name are merged in the same way that {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getFields databound component fields} are merged with DataSource fields.
+     * <P> The default order of the combined fields is new local fields first (including any fields present in the parent
+     * DataSource which the local DataSource re-declares), then parent fields.  You can set {@link
+     * com.smartgwt.client.data.DataSource#getUseParentFieldOrder useParentFieldOrder} to instead use the parent's field order,
+     * with new local fields appearing last.  You can set {@link com.smartgwt.client.data.DataSource#getShowLocalFieldsOnly
+     * showLocalFieldsOnly} to have all non-local fields hidden. <P> Note that <b>only fields are inherited</b> - other
+     * properties such as dataURL and dataFormat are not.  You can use ordinary inheritance, that is, creating a subclass of
+     * DataSource, in order to share properties such as dataURL across a series of DataSources that also inherit fields from
+     * each other via <code>inheritsFrom</code>. <P> This feature can be used for: <ul> <li>creating a customized view (eg,
+     * only certain fields shown) which will be used by multiple {@link com.smartgwt.client.widgets.DataBoundComponent
+     * databound components}. <li>adding presentation-specific attributes to metadata that has been automatically derived from
+     * {@link com.smartgwt.client.data.XMLTools#loadXMLSchema XML Schema} or other metadata formats <li>modeling object
+     * subclassing and extension in server-side code and storage systems <li>modeling relational database joins, and the
+     * equivalents in other systems <li>creating hooks for others to customize your application in a maintainable way.  For
+     * example, if you have a dataSource "employee", you can create a dataSource "customizedEmployee" which inherits from
+     * "employee" but does not initially define any fields, and bind all {@link com.smartgwt.client.widgets.DataBoundComponent
+     * databound components} to "customizedEmployee".  Customizations of fields (including appearance changes, field order, new
+     * fields, hiding of fields, and custom validation rules) can be added to "customizedEmployee", so that they are kept
+     * separately from the original field data and have the best possible chance of working with future versions of the
+     * "employee" dataSource. </ul>
+     *
+     *
+     * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#featured-xsd-ds" target="examples">Schema Chaining Example</a>
+     */
+    public String getInheritsFrom()  {
+        return getAttributeAsString("inheritsFrom");
+    }
+
+    /**
      * Allows you to specify an arbitrary prefix string to apply to all json format responses  sent from the server to this
      * application. <P> The inclusion of such a prefix ensures your code is not directly executable outside of your
      * application, as a preventative measure against <a href='http://www.google.com/search?q=javascript+hijacking'
@@ -749,6 +861,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param jsonPrefix jsonPrefix Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.data.OperationBinding#setDataFormat
+     * @see com.smartgwt.client.data.OperationBinding#setDataTransport
      */
     public void setJsonPrefix(String jsonPrefix)  throws IllegalStateException {
         setAttribute("jsonPrefix", jsonPrefix, false);
@@ -766,6 +880,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return String
+     * @see com.smartgwt.client.data.OperationBinding#getDataFormat
+     * @see com.smartgwt.client.data.OperationBinding#getDataTransport
      */
     public String getJsonPrefix()  {
         return getAttributeAsString("jsonPrefix");
@@ -782,6 +898,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param jsonSuffix jsonSuffix Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.data.OperationBinding#setDataFormat
+     * @see com.smartgwt.client.data.OperationBinding#setDataTransport
      */
     public void setJsonSuffix(String jsonSuffix)  throws IllegalStateException {
         setAttribute("jsonSuffix", jsonSuffix, false);
@@ -797,6 +915,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return String
+     * @see com.smartgwt.client.data.OperationBinding#getDataFormat
+     * @see com.smartgwt.client.data.OperationBinding#getDataTransport
      */
     public String getJsonSuffix()  {
         return getAttributeAsString("jsonSuffix");
@@ -847,6 +967,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param nullBooleanValue nullBooleanValue Default value is false
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.data.DataSource#setNoNullUpdates
+     * @see com.smartgwt.client.data.DataSourceField#setNullReplacementValue
      */
     public void setNullBooleanValue(Boolean nullBooleanValue)  throws IllegalStateException {
         setAttribute("nullBooleanValue", nullBooleanValue, false);
@@ -859,6 +981,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.data.DataSource#getNoNullUpdates
+     * @see com.smartgwt.client.data.DataSourceField#getNullReplacementValue
      */
     public Boolean getNullBooleanValue()  {
         return getAttributeAsBoolean("nullBooleanValue");
@@ -873,6 +997,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param nullDateValue nullDateValue Default value is See below
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.data.DataSource#setNoNullUpdates
+     * @see com.smartgwt.client.data.DataSourceField#setNullReplacementValue
      */
     public void setNullDateValue(java.util.Date nullDateValue)  throws IllegalStateException {
         setAttribute("nullDateValue", nullDateValue, false);
@@ -887,6 +1013,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return java.util.Date
+     * @see com.smartgwt.client.data.DataSource#getNoNullUpdates
+     * @see com.smartgwt.client.data.DataSourceField#getNullReplacementValue
      */
     public java.util.Date getNullDateValue()  {
         return getAttributeAsDate("nullDateValue");
@@ -899,6 +1027,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param nullFloatValue nullFloatValue Default value is 0.0
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.data.DataSource#setNoNullUpdates
+     * @see com.smartgwt.client.data.DataSourceField#setNullReplacementValue
      */
     public void setNullFloatValue(float nullFloatValue)  throws IllegalStateException {
         setAttribute("nullFloatValue", nullFloatValue, false);
@@ -911,6 +1041,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return float
+     * @see com.smartgwt.client.data.DataSource#getNoNullUpdates
+     * @see com.smartgwt.client.data.DataSourceField#getNullReplacementValue
      */
     public float getNullFloatValue()  {
         return getAttributeAsFloat("nullFloatValue");
@@ -923,6 +1055,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param nullIntegerValue nullIntegerValue Default value is 0
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.data.DataSource#setNoNullUpdates
+     * @see com.smartgwt.client.data.DataSourceField#setNullReplacementValue
      */
     public void setNullIntegerValue(int nullIntegerValue)  throws IllegalStateException {
         setAttribute("nullIntegerValue", nullIntegerValue, false);
@@ -935,6 +1069,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return int
+     * @see com.smartgwt.client.data.DataSource#getNoNullUpdates
+     * @see com.smartgwt.client.data.DataSourceField#getNullReplacementValue
      */
     public int getNullIntegerValue()  {
         return getAttributeAsInt("nullIntegerValue");
@@ -947,6 +1083,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param nullStringValue nullStringValue Default value is ""
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.data.DataSource#setNoNullUpdates
+     * @see com.smartgwt.client.data.DataSourceField#setNullReplacementValue
      */
     public void setNullStringValue(String nullStringValue)  throws IllegalStateException {
         setAttribute("nullStringValue", nullStringValue, false);
@@ -959,9 +1097,99 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return String
+     * @see com.smartgwt.client.data.DataSource#getNoNullUpdates
+     * @see com.smartgwt.client.data.DataSourceField#getNullReplacementValue
      */
     public String getNullStringValue()  {
         return getAttributeAsString("nullStringValue");
+    }
+
+    /**
+     * Optional array of OperationBindings, which provide instructions to the DataSource about how each&#010 DSOperation is to
+     * be performed.&#010 <P>&#010 When using the Smart GWT Server, OperationBindings are specified in your DataSource&#010
+     * descriptor (.ds.xml file) and control server-side behavior such as what Java object to route&#010 DSRequest to ({@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#serverObject serverObject}) or customizations to SQL / HQL
+     * queries&#010 ({@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} and {@link
+     * com.smartgwt.client.data.OperationBinding#getCustomHQL customHQL}).  See the &#010 @see <a
+     * href="http://www.smartclient.com/smartgwtee/showcase/#javaDataIntegration" target="examples">Java Integration
+     * samples</a>.&#010 <P>&#010 For DataSources bound to WSDL-described web services using&#010 {@link
+     * com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace}, OperationBindings are used to bind each
+     * DataSource&#010 {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} to an&#010 {@link
+     * com.smartgwt.client.data.OperationBinding#getWsOperation operation} of a WSDL-described &#010 {@link
+     * com.smartgwt.client.data.WebService web service}, so that a DataSource can both fetch and save data to a web&#010
+     * service.&#010 <P>&#010 For example, this code accomplishes part of the binding to the &#010 <a
+     * href='http://www.google.com/search?q=sforce+partner+wsdl'
+     * onclick="window.open('http://www.google.com/search?q=sforce+partner+wsdl');return false;">SalesForce partner web
+     * services</a>&#010 <pre>&#010 isc.DataSource.create({&#010    serviceNamespace : "urn:partner.soap.sforce.com",&#010   
+     * operationBindings : [&#010        { operationType:"fetch", wsOperation:"query", recordName: "sObject" },&#010        {
+     * operationType:"update", wsOperation:"update", recordName: "SaveResult" },&#010        { operationType:"add",
+     * wsOperation:"create", recordName: "SaveResult" },&#010        { operationType:"remove", wsOperation:"delete",
+     * recordName: "DeleteResult" }&#010    ],&#010    ...&#010 }); &#010 </pre>&#010 NOTE: additional code is required to
+     * handle authentication and other details, see the&#010 complete code in
+     * smartclientSDK/examples/databinding/SalesForce.&#010 <P>&#010 For DataSources that contact non-WSDL-described XML or
+     * JSON services, OperationBindings can&#010 be used to separately configure the URL, HTTP method, input and output
+     * processing for each&#010 operationType.  This makes it possible to fetch JSON data from one URL for the "fetch"&#010
+     * operationType and save to a web service for the "update" operationType, while appearing as a&#010 single integrated
+     * DataSource to a {@link com.smartgwt.client.widgets.DataBoundComponent} such as an&#010 {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanEdit editable ListGrid}.&#010 <P>&#010 If no operationBinding is defined
+     * for a given DataSource operation, all of the properties&#010 which are valid on the operationBinding are checked for on
+     * the DataSource itself.  &#010 <P>&#010 This also means that for a read-only DataSource, that is, a DataSource only
+     * capable of fetch&#010 operations, operationBindings need not be specified, and instead all operationBinding&#010
+     * properties can be set on the DataSource itself.  An example of using OperationBinding&#010 properties directly on the
+     * DataSource in order to read an RSS feed can be found here:&#010 <P>&#010
+     * ${isc.DocUtils.linkForStandaloneExample('/examples/databinding/rss_databinding.html',
+     * '/examples/databinding/rss_databinding.html')}
+     *
+     * @param operationBindings operationBindings Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.data.OperationBinding
+     */
+    public void setOperationBindings(OperationBinding... operationBindings)  throws IllegalStateException {
+        setAttribute("operationBindings", operationBindings, false);
+    }
+
+    /**
+     * Optional array of OperationBindings, which provide instructions to the DataSource about how each&#010 DSOperation is to
+     * be performed.&#010 <P>&#010 When using the Smart GWT Server, OperationBindings are specified in your DataSource&#010
+     * descriptor (.ds.xml file) and control server-side behavior such as what Java object to route&#010 DSRequest to ({@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#serverObject serverObject}) or customizations to SQL / HQL
+     * queries&#010 ({@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} and {@link
+     * com.smartgwt.client.data.OperationBinding#getCustomHQL customHQL}).  See the &#010 @see <a
+     * href="http://www.smartclient.com/smartgwtee/showcase/#javaDataIntegration" target="examples">Java Integration
+     * samples</a>.&#010 <P>&#010 For DataSources bound to WSDL-described web services using&#010 {@link
+     * com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace}, OperationBindings are used to bind each
+     * DataSource&#010 {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} to an&#010 {@link
+     * com.smartgwt.client.data.OperationBinding#getWsOperation operation} of a WSDL-described &#010 {@link
+     * com.smartgwt.client.data.WebService web service}, so that a DataSource can both fetch and save data to a web&#010
+     * service.&#010 <P>&#010 For example, this code accomplishes part of the binding to the &#010 <a
+     * href='http://www.google.com/search?q=sforce+partner+wsdl'
+     * onclick="window.open('http://www.google.com/search?q=sforce+partner+wsdl');return false;">SalesForce partner web
+     * services</a>&#010 <pre>&#010 isc.DataSource.create({&#010    serviceNamespace : "urn:partner.soap.sforce.com",&#010   
+     * operationBindings : [&#010        { operationType:"fetch", wsOperation:"query", recordName: "sObject" },&#010        {
+     * operationType:"update", wsOperation:"update", recordName: "SaveResult" },&#010        { operationType:"add",
+     * wsOperation:"create", recordName: "SaveResult" },&#010        { operationType:"remove", wsOperation:"delete",
+     * recordName: "DeleteResult" }&#010    ],&#010    ...&#010 }); &#010 </pre>&#010 NOTE: additional code is required to
+     * handle authentication and other details, see the&#010 complete code in
+     * smartclientSDK/examples/databinding/SalesForce.&#010 <P>&#010 For DataSources that contact non-WSDL-described XML or
+     * JSON services, OperationBindings can&#010 be used to separately configure the URL, HTTP method, input and output
+     * processing for each&#010 operationType.  This makes it possible to fetch JSON data from one URL for the "fetch"&#010
+     * operationType and save to a web service for the "update" operationType, while appearing as a&#010 single integrated
+     * DataSource to a {@link com.smartgwt.client.widgets.DataBoundComponent} such as an&#010 {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanEdit editable ListGrid}.&#010 <P>&#010 If no operationBinding is defined
+     * for a given DataSource operation, all of the properties&#010 which are valid on the operationBinding are checked for on
+     * the DataSource itself.  &#010 <P>&#010 This also means that for a read-only DataSource, that is, a DataSource only
+     * capable of fetch&#010 operations, operationBindings need not be specified, and instead all operationBinding&#010
+     * properties can be set on the DataSource itself.  An example of using OperationBinding&#010 properties directly on the
+     * DataSource in order to read an RSS feed can be found here:&#010 <P>&#010
+     * ${isc.DocUtils.linkForStandaloneExample('/examples/databinding/rss_databinding.html',
+     * '/examples/databinding/rss_databinding.html')}
+     *
+     *
+     * @return OperationBinding
+     * @see com.smartgwt.client.data.OperationBinding
+     */
+    public OperationBinding[] getOperationBindings()  {
+        return OperationBinding.convertToOperationBindingArray(getAttributeAsJavaScriptObject("operationBindings"));
     }
 
     /**
@@ -1017,6 +1245,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param qualifyColumnNames qualifyColumnNames Default value is true
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.serverds.OperationBinding#qualifyColumnNames
      */
     public void setQualifyColumnNames(Boolean qualifyColumnNames)  throws IllegalStateException {
         setAttribute("qualifyColumnNames", qualifyColumnNames, false);
@@ -1029,6 +1258,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.serverds.OperationBinding#qualifyColumnNames
      */
     public Boolean getQualifyColumnNames()  {
         return getAttributeAsBoolean("qualifyColumnNames");
@@ -1060,6 +1290,36 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      */
     public String getRecordXPath()  {
         return getAttributeAsString("recordXPath");
+    }
+
+    /**
+     * Additional properties to pass through to the {@link com.smartgwt.client.data.DSRequest}s made by this DataSource. <p>
+     * These properties are applied before {@link com.smartgwt.client.data.DataSource#transformRequest
+     * DataSource.transformRequest} is called.
+     *
+     * @param requestProperties requestProperties Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.data.DSRequest
+     * @see com.smartgwt.client.data.OperationBinding#setRequestProperties
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     */
+    public void setRequestProperties(DSRequest requestProperties)  throws IllegalStateException {
+        setAttribute("requestProperties", requestProperties.getJsObj(), false);
+    }
+
+    /**
+     * Additional properties to pass through to the {@link com.smartgwt.client.data.DSRequest}s made by this DataSource. <p>
+     * These properties are applied before {@link com.smartgwt.client.data.DataSource#transformRequest
+     * DataSource.transformRequest} is called.
+     *
+     *
+     * @return DSRequest
+     * @see com.smartgwt.client.data.DSRequest
+     * @see com.smartgwt.client.data.OperationBinding#getRequestProperties
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     */
+    public DSRequest getRequestProperties()  {
+        return new DSRequest(getAttributeAsJavaScriptObject("requestProperties"));
     }
 
     /**
@@ -1113,6 +1373,31 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         return getAttributeAsInt("resultBatchSize");
     }
 
+    /**
+     * Class for ResultSets used by this datasource.  If null, defaults to using {@link com.smartgwt.client.data.ResultSet}.
+     * <P> This can be set to a custom subclass of ResultSet that, for example, hangs onto to extra information necessary for
+     * integration with web services.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param resultSetClass resultSetClass Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setResultSetClass(String resultSetClass)  throws IllegalStateException {
+        setAttribute("resultSetClass", resultSetClass, false);
+    }
+
+    /**
+     * Class for ResultSets used by this datasource.  If null, defaults to using {@link com.smartgwt.client.data.ResultSet}.
+     * <P> This can be set to a custom subclass of ResultSet that, for example, hangs onto to extra information necessary for
+     * integration with web services.
+     *
+     *
+     * @return String
+     */
+    public String getResultSetClass()  {
+        return getAttributeAsString("resultSetClass");
+    }
+
 
     /**
      * For a DataSource derived from WSDL or XML schema, the XML namespace this schema belongs to.  This is a read-only
@@ -1156,46 +1441,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      */
     public Boolean getSendExtraFields()  {
         return getAttributeAsBoolean("sendExtraFields");
-    }
-
-    /**
-     * Specifies the fully-qualified name of the DataSource subclass that should be instantiated server-side for this
-     * dataSource. This property allows you to write and use custom DataSource  subclasses on the server. <p> One reason you
-     * might wish to do this would be to override the validate() method to provide  some arbitrary custom validation (such as
-     * complex database lookups, validation embedded in  legacy applications, etc).  It is also possible - though obviously a
-     * more substantial task - to override the execute() method in your custom DataSource.  This is one way of creating  a
-     * completely customized DataSource implementation. <p> <b>Note:</b> If you use this property, you are responsible for
-     * making sure that it refers to a valid server-side class that extends
-     * <code>com.isomorphic.datasource.BasicDataSource</code>. If your implementation relies on methods or state only present
-     * in certain specialized  subclasses of DataSource (for example, you want the normal behavior and features of a 
-     * HibernateDataSource, but with a specialized validate() method), then you should extend the  subclass rather than the
-     * base class.
-     *
-     * @param serverConstructor serverConstructor Default value is null
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-     */
-    public void setServerConstructor(String serverConstructor)  throws IllegalStateException {
-        setAttribute("serverConstructor", serverConstructor, false);
-    }
-
-    /**
-     * Specifies the fully-qualified name of the DataSource subclass that should be instantiated server-side for this
-     * dataSource. This property allows you to write and use custom DataSource  subclasses on the server. <p> One reason you
-     * might wish to do this would be to override the validate() method to provide  some arbitrary custom validation (such as
-     * complex database lookups, validation embedded in  legacy applications, etc).  It is also possible - though obviously a
-     * more substantial task - to override the execute() method in your custom DataSource.  This is one way of creating  a
-     * completely customized DataSource implementation. <p> <b>Note:</b> If you use this property, you are responsible for
-     * making sure that it refers to a valid server-side class that extends
-     * <code>com.isomorphic.datasource.BasicDataSource</code>. If your implementation relies on methods or state only present
-     * in certain specialized  subclasses of DataSource (for example, you want the normal behavior and features of a 
-     * HibernateDataSource, but with a specialized validate() method), then you should extend the  subclass rather than the
-     * base class.
-     *
-     *
-     * @return String
-     */
-    public String getServerConstructor()  {
-        return getAttributeAsString("serverConstructor");
     }
 
     /**
@@ -1807,7 +2052,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
             
     /**
      * Combines two criteria (either simple criteria objects or AdvancedCriteria) using the  "outerOperator".  Note that the
-     * combined criteria object will be an AdvancedCriteria unless <ul> <li>both input criteria objects are simple, and</li>
+     * combined criteria object will be an AdvancedCriteria unless: <ul> <li>both input criteria objects are simple, and</li>
      * <li>the "outerOperator" is "and", and</li> <li>there is no collision of key names on the two criteria</li> </ul>
      * @param criteria1 first criteria object
      * @param criteria2 second criteria object
@@ -1823,7 +2068,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * Combines two criteria (either simple criteria objects or AdvancedCriteria) using the  "outerOperator".  Note that the
-     * combined criteria object will be an AdvancedCriteria unless <ul> <li>both input criteria objects are simple, and</li>
+     * combined criteria object will be an AdvancedCriteria unless: <ul> <li>both input criteria objects are simple, and</li>
      * <li>the "outerOperator" is "and", and</li> <li>there is no collision of key names on the two criteria</li> </ul>
      * @param criteria1 first criteria object
      * @param criteria2 second criteria object
@@ -1959,7 +2204,12 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @return the default params
      */
     public Map getDefaultParams() {
-        return JSOHelper.convertToMap(getAttributeAsJavaScriptObject("defaultParams"));
+        try {
+        	return JSOHelper.convertToMap(getAttributeAsJavaScriptObject("defaultParams"));
+        } catch (Exception e) {
+        	e.printStackTrace();
+        	return null;
+		}
     }
 
     /**
@@ -2079,18 +2329,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }-*/;
 
     /**
-     * Additional properties to pass through to the {@link com.smartgwt.client.data.DSRequest}s made by this DataSource.
-     * <p> These properties are applied before {@link com.smartgwt.client.data.DataSource#transformRequest} is called.
-     *
-     * @param requestProperties requestProperties Default value is null
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-     */
-    public void setRequestProperties(DSRequest requestProperties) throws IllegalStateException {
-        setAttribute("requestProperties", requestProperties, false);
-    }
-
-
-    /**
      * ID of another DataSource this DataSource inherits its DataSource fields from.<br><br>Local fields (fields defined
      * in this DataSource) are added to inherited fields to form the full set of fields. Fields with the same name are
      * merged in the same way that databound component fields are merged with DataSource fields.<br><br>The default
@@ -2123,6 +2361,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         setAttribute("inheritsFrom", inheritsFrom.getOrCreateJsObj(), false);
     }
 
+    
     /**
      * The list of fields that compose records from this DataSource. <P> Each DataSource field can have type,
      * user-visible title, validators, and other metadata attached.
@@ -2159,7 +2398,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         config.fields.push(fieldJS);
     }-*/;
 
-    /**
+     /**
      * The list of fields that compose records from this DataSource.
      * <p>
      * Each DataSource field can have type, user-visible title, validators, and other metadata attached.
@@ -2176,7 +2415,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         }
         return dsFields;
     }
-    
+
     /**
      * Given a fieldName and a dataValue, apply any {@link com.smartgwt.client.data.DataSourceField#getValueMap valueMap} for
      * the field and return the display value for the field. If the field has no specified valueMap or the value does not
@@ -2229,63 +2468,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * <br>Optional array of OperationBindings, which provide instructions to the DataSource about how each DSOperation
-     * is to be performed. <p> For DataSources bound to WSDL-described web services using {@link
-     * com.smartgwt.client.data.DataSource#setServiceNamespace(String) serviceNamespace} </a>, OperationBindings are
-     * used to bind each DataSource <a href="" onmouseout="isc.Hover.clear()" onmouseover='isc.DocUtils.$46s("attr:OperationBinding.operationType")'
-     * onclick='isc.Hover.clear();isc.DocViewer.instance.$46t("attr:OperationBinding.operationType");return
-     * false;'>operationType</a> to an <a href="" onmouseout="isc.Hover.clear()" onmouseover='isc.DocUtils.$46s("attr:OperationBinding.wsOperation")'
-     * onclick='isc.Hover.clear();isc.DocViewer.instance.$46t("attr:OperationBinding.wsOperation");return
-     * false;'>operation</a> of a WSDL-described <a href="" onmouseout="isc.Hover.clear()"
-     * onmouseover='isc.DocUtils.$46s("class:WebService")' onclick='isc.Hover.clear();isc.DocViewer.instance.$46t("class:WebService");return
-     * false;'>web service</a>, so that a DataSource can both fetch and save data to a web service. </p><p> For example,
-     * this code accomplishes part of the binding to the  <a href="http://www.google.com/search?q=sforce+partner+wsdl"
-     * onclick="window.open('http://www.google.com/search?q=sforce+partner+wsdl');return false;">SalesForce partner web
-     * services</a>
-     * </p><pre>
-     *  isc.DataSource.create({
-     *  serviceNamespace : "urn:partner.soap.sforce.com",
-     *     operationBindings : [
-     *         { operationType:"fetch", wsOperation:"query", recordName: "sObject" },
-     *         { operationType:"update", wsOperation:"update", recordName: "SaveResult" },
-     *         { operationType:"add", wsOperation:"create", recordName: "SaveResult" },
-     *         { operationType:"remove", wsOperation:"delete", recordName: "DeleteResult" }
-     *     ],
-     *     ...
-     *  });
-     *  </pre>
-     * <p/> NOTE: additional code is required to handle authentication and other details, see the complete code in
-     * isomorphicSDK/examples/databinding/SalesForce. <p> For DataSources that contact non-WSDL-described XML or JSON
-     * services, OperationBindings can be used to separately configure the URL, HTTP method, input and output processing
-     * for each operationType.  This makes it possible to fetch JSON data from one URL for the "fetch" operationType and
-     * save to a web service for the "update" operationType, while appearing as a single integrated DataSource to a <a
-     * href="" onmouseout="isc.Hover.clear()" onmouseover='isc.DocUtils.$46s("interface:DataBoundComponent")'
-     * onclick='isc.Hover.clear();isc.DocViewer.instance.$46t("interface:DataBoundComponent");return
-     * false;'>DataBoundComponent</a> such as an <a href="" onmouseout="isc.Hover.clear()"
-     * onmouseover='isc.DocUtils.$46s("attr:ListGrid.canEdit")' onclick='isc.Hover.clear();isc.DocViewer.instance.$46t("attr:ListGrid.canEdit");return
-     * false;'>editable ListGrid</a>. <p/> </p><p> If no operationBinding is defined for a given DataSource operation,
-     * all of the properties which are valid on the operationBinding are checked for on the DataSource itself. </p><p>
-     * This also means that a read-only DataSource, that is, a DataSource only capable of fetch operations,
-     * operationBindings need not be specified, and instead all operationBinding properties can be set on the DataSource
-     * itself.  An example of using OperationBinding properties directly on the DataSource in order to read an RSS feed
-     * can be found here: </p><p> <a href="/examples/databinding/rss_databinding.html"
-     * onclick="window.open('/examples/databinding/rss_databinding.html');return false;">/examples/databinding/rss_databinding.html</a>&nbsp;<img
-     * src="http://www.smartclient.com/docs/6.5.1/a/system/reference/skin/images/text_code.gif"
-     * onclick='isc.DocUtils.showExampleSource("/examples/databinding/rss_databinding.html")'
-     * onmouseover="isc.Hover.setAction(isc.DocUtils, isc.DocUtils.doSourceHover,null,300)"
-     * onmouseout="isc.Hover.clear()" style="cursor: pointer;" suppress="TRUE" align="texttop" border="0" height="16"
-     * width="16"><br><br><b>See Also:</b><br>&nbsp;&nbsp;<a href="" onmouseout="isc.Hover.clear()"
-     * onmouseover='isc.DocUtils.$46s("class:OperationBinding")' onclick='isc.Hover.clear();isc.DocViewer.instance.$46t("class:OperationBinding");return
-     * false;'>OperationBinding</a> <br><br></p>
-     *
-     * @param operationBindings the operation bindings
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-     */
-    public void setOperationBindings(OperationBinding... operationBindings) throws IllegalStateException {
-        setAttribute("operationBindings", operationBindings, false);
-    }
-
-    /**
      * See {@link com.smartgwt.client.data.OperationBinding#getRecordName recordName}.  <code>recordName</code> can be
      * specified directly on the DataSource for a simple read-only DataSource only capable of "fetch" operations.
      *
@@ -2294,29 +2476,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      */
     public void setRecordName(String recordName) throws IllegalStateException {
         setAttribute("recordName", recordName, false);
-    }
-
-    /**
-     * Optional object declaring namespace prefixes for use in OperationBinding.recordXPath and
-     * DataSourceField.valueXPath XPath expressions. xmlNamespaces should be specified as a mapping from namespace
-     * prefix to namespace URI, for example: <br>
-     * <p/>
-     * xmlNamespaces : { az : "http://webservices.amazon.com/AWSECommerceService/2005-03-23" } <br> By default, all
-     * namespaces declared on the document element (outermost element of the response) are made available with the
-     * prefix used in the document itself. Then, for non-WSDL-described XML results, if there is a default namespace on
-     * the document element, it is made available with the special prefix "default". <br>
-     * <p/>
-     * For results of WSDL-described operations, the prefix "service" means the service namespace, that is, the
-     * "targetNamespace" on the element from the WSDL file. The prefix "schema" means the namespace of the outermost
-     * element in the output message for the current operation. "default" will be the schema namespace if there is one,
-     * otherwise the service namespace. <br> For basic information on XML Namespaces and their use in XPath, try the
-     * following search: http://www.google.com/search?q=XPath+xml+namespaces
-     *
-     * @param xmlNamespaces xml namespaces
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-     */
-    public void setXmlNamespaces(XmlNamespaces xmlNamespaces) throws IllegalStateException {
-        setAttribute("xmlNamespaces", xmlNamespaces, false);
     }
 
     /**
@@ -2741,7 +2900,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         return self.xmlSerialize(data);
     }-*/;
 
-
     /**
      * Serialize a JavaScript object as XML.&#010 <P>&#010 The JavaScript Object passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} becomes an XML&#010 element named after the {@link com.smartgwt.client.data.DataSource#getTagName tagName} (or {@link com.smartgwt.client.data.DataSource#getID ID} if&#010 tagName is unset).  Each property of the object becomes a subElement.  For example,&#010 using a DataSource to serialize like this:&#010 <pre>&#010     var inputObject = {&#010        startRow : 5,&#010        endRow : 50,&#010        data : [&#010           { field1 : "value1", field2: new Date() },&#010           { field1 : "value3", field2: null }&#010        ]&#010     };&#010     var myDS = isc.DataSource.create({ tagName:"DSRequest" });&#010     myDS.xmlSerialize(inputObject);&#010 </pre>&#010 .. produces the following XML:&#010 <pre>&#010     &lt;DSRequest&gt;&#010         &lt;startRow&gt;5&lt;/startRow&gt;&#010         &lt;endRow&gt;50&lt;/endRow&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value1&lt;/field1&gt;&#010             &lt;field2&gt;2005-10-14T18:01:16&lt;/field2&gt;&#010         &lt;/data&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value3&lt;/field1&gt;&#010             &lt;field2&gt;&lt;/field2&gt;&#010         &lt;/data&gt;&#010     &lt;/DSRequest&gt;&#010 </pre>&#010 <P>&#010 If you are working with a WSDL-described web service, XML serialization is performed&#010 automatically by APIs like {@link com.smartgwt.client.data.WebService#callOperation} - you only need to&#010 know about serialization in order to understand how to put together JavaScript data that&#010 will fill in an XML message properly.   &#010 <br>&#010 <b>Note:</b> when trying to send data to a web service, it is best to avoid putting&#010 together any XML yourself, instead modify the JavaScript data being fed to ISC's SOAP&#010 engine.  This is because the WSDL and SOAP rules for correctly namespacing and encoding&#010 Web Service messages are very complex and are subject to change with new versions of the&#010 web service you are contacting, whereas the data itself is easy to manipulate and less&#010 likely to change.&#010 <br>&#010 To troubleshoot message formation, you can set the log category "xmlComm" to &#010 <code>DEBUG</code> level in order to see the XML message formed by Smart GWT reported&#010 in log statements in the Developer Console.&#010&#010
      * @param data data to be serialized
@@ -2754,6 +2912,48 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         var flagsJS = flags.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.xmlSerialize(data, flagsJS);
     }-*/;
+
+    /**
+     * Serialize a JavaScript object as XML.&#010 <P>&#010 The JavaScript Object passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} becomes an XML&#010 element named after the {@link com.smartgwt.client.data.DataSource#getTagName tagName} (or {@link com.smartgwt.client.data.DataSource#getID ID} if&#010 tagName is unset).  Each property of the object becomes a subElement.  For example,&#010 using a DataSource to serialize like this:&#010 <pre>&#010     var inputObject = {&#010        startRow : 5,&#010        endRow : 50,&#010        data : [&#010           { field1 : "value1", field2: new Date() },&#010           { field1 : "value3", field2: null }&#010        ]&#010     };&#010     var myDS = isc.DataSource.create({ tagName:"DSRequest" });&#010     myDS.xmlSerialize(inputObject);&#010 </pre>&#010 .. produces the following XML:&#010 <pre>&#010     &lt;DSRequest&gt;&#010         &lt;startRow&gt;5&lt;/startRow&gt;&#010         &lt;endRow&gt;50&lt;/endRow&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value1&lt;/field1&gt;&#010             &lt;field2&gt;2005-10-14T18:01:16&lt;/field2&gt;&#010         &lt;/data&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value3&lt;/field1&gt;&#010             &lt;field2&gt;&lt;/field2&gt;&#010         &lt;/data&gt;&#010     &lt;/DSRequest&gt;&#010 </pre>&#010 <P>&#010 If you are working with a WSDL-described web service, XML serialization is performed&#010 automatically by APIs like {@link com.smartgwt.client.data.WebService#callOperation} - you only need to&#010 know about serialization in order to understand how to put together JavaScript data that&#010 will fill in an XML message properly.   &#010 <br>&#010 <b>Note:</b> when trying to send data to a web service, it is best to avoid putting&#010 together any XML yourself, instead modify the JavaScript data being fed to ISC's SOAP&#010 engine.  This is because the WSDL and SOAP rules for correctly namespacing and encoding&#010 Web Service messages are very complex and are subject to change with new versions of the&#010 web service you are contacting, whereas the data itself is easy to manipulate and less&#010 likely to change.&#010 <br>&#010 To troubleshoot message formation, you can set the log category "xmlComm" to &#010 <code>DEBUG</code> level in order to see the XML message formed by Smart GWT reported&#010 in log statements in the Developer Console.&#010&#010
+     * @param data data to be serialized
+     * @param flags options for the serialization engine
+     *
+     * @return data as serialized to XML
+     */
+    public native String xmlSerialize(Record data, SerializationContext flags) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var flagsJS = flags.@com.smartgwt.client.core.DataClass::getJsObj()();
+        return self.xmlSerialize(data.@com.smartgwt.client.core.DataClass::getJsObj()(), flagsJS);
+    }-*/;
+
+    /**
+     * Serialize a JavaScript object as XML.&#010 <P>&#010 The JavaScript Object passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} becomes an XML&#010 element named after the {@link com.smartgwt.client.data.DataSource#getTagName tagName} (or {@link com.smartgwt.client.data.DataSource#getID ID} if&#010 tagName is unset).  Each property of the object becomes a subElement.  For example,&#010 using a DataSource to serialize like this:&#010 <pre>&#010     var inputObject = {&#010        startRow : 5,&#010        endRow : 50,&#010        data : [&#010           { field1 : "value1", field2: new Date() },&#010           { field1 : "value3", field2: null }&#010        ]&#010     };&#010     var myDS = isc.DataSource.create({ tagName:"DSRequest" });&#010     myDS.xmlSerialize(inputObject);&#010 </pre>&#010 .. produces the following XML:&#010 <pre>&#010     &lt;DSRequest&gt;&#010         &lt;startRow&gt;5&lt;/startRow&gt;&#010         &lt;endRow&gt;50&lt;/endRow&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value1&lt;/field1&gt;&#010             &lt;field2&gt;2005-10-14T18:01:16&lt;/field2&gt;&#010         &lt;/data&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value3&lt;/field1&gt;&#010             &lt;field2&gt;&lt;/field2&gt;&#010         &lt;/data&gt;&#010     &lt;/DSRequest&gt;&#010 </pre>&#010 <P>&#010 If you are working with a WSDL-described web service, XML serialization is performed&#010 automatically by APIs like {@link com.smartgwt.client.data.WebService#callOperation} - you only need to&#010 know about serialization in order to understand how to put together JavaScript data that&#010 will fill in an XML message properly.   &#010 <br>&#010 <b>Note:</b> when trying to send data to a web service, it is best to avoid putting&#010 together any XML yourself, instead modify the JavaScript data being fed to ISC's SOAP&#010 engine.  This is because the WSDL and SOAP rules for correctly namespacing and encoding&#010 Web Service messages are very complex and are subject to change with new versions of the&#010 web service you are contacting, whereas the data itself is easy to manipulate and less&#010 likely to change.&#010 <br>&#010 To troubleshoot message formation, you can set the log category "xmlComm" to &#010 <code>DEBUG</code> level in order to see the XML message formed by Smart GWT reported&#010 in log statements in the Developer Console.&#010&#010
+     * @param data data to be serialized
+     * @param flags options for the serialization engine
+     *
+     * @return data as serialized to XML
+     */
+    public native String xmlSerialize(Record[] data, SerializationContext flags) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var flagsJS = flags.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var dataJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(data);
+        return self.xmlSerialize(dataJS, flagsJS);
+    }-*/;
+
+    /**
+     * Serialize a JavaScript object as XML.&#010 <P>&#010 The JavaScript Object passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} becomes an XML&#010 element named after the {@link com.smartgwt.client.data.DataSource#getTagName tagName} (or {@link com.smartgwt.client.data.DataSource#getID ID} if&#010 tagName is unset).  Each property of the object becomes a subElement.  For example,&#010 using a DataSource to serialize like this:&#010 <pre>&#010     var inputObject = {&#010        startRow : 5,&#010        endRow : 50,&#010        data : [&#010           { field1 : "value1", field2: new Date() },&#010           { field1 : "value3", field2: null }&#010        ]&#010     };&#010     var myDS = isc.DataSource.create({ tagName:"DSRequest" });&#010     myDS.xmlSerialize(inputObject);&#010 </pre>&#010 .. produces the following XML:&#010 <pre>&#010     &lt;DSRequest&gt;&#010         &lt;startRow&gt;5&lt;/startRow&gt;&#010         &lt;endRow&gt;50&lt;/endRow&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value1&lt;/field1&gt;&#010             &lt;field2&gt;2005-10-14T18:01:16&lt;/field2&gt;&#010         &lt;/data&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value3&lt;/field1&gt;&#010             &lt;field2&gt;&lt;/field2&gt;&#010         &lt;/data&gt;&#010     &lt;/DSRequest&gt;&#010 </pre>&#010 <P>&#010 If you are working with a WSDL-described web service, XML serialization is performed&#010 automatically by APIs like {@link com.smartgwt.client.data.WebService#callOperation} - you only need to&#010 know about serialization in order to understand how to put together JavaScript data that&#010 will fill in an XML message properly.   &#010 <br>&#010 <b>Note:</b> when trying to send data to a web service, it is best to avoid putting&#010 together any XML yourself, instead modify the JavaScript data being fed to ISC's SOAP&#010 engine.  This is because the WSDL and SOAP rules for correctly namespacing and encoding&#010 Web Service messages are very complex and are subject to change with new versions of the&#010 web service you are contacting, whereas the data itself is easy to manipulate and less&#010 likely to change.&#010 <br>&#010 To troubleshoot message formation, you can set the log category "xmlComm" to &#010 <code>DEBUG</code> level in order to see the XML message formed by Smart GWT reported&#010 in log statements in the Developer Console.&#010&#010
+     * @param data data to be serialized
+     * @param flags options for the serialization engine
+     *
+     * @return data as serialized to XML
+     */
+    public native String xmlSerialize(Map data, SerializationContext flags) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var flagsJS = flags.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var dataJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(data);
+        return self.xmlSerialize(dataJS, flagsJS);
+    }-*/;
+
 
     /**
      * Process a dsResponse for a request initiated by a DataSource with {@link com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol}. <code>requestId</code> parameter should be dsRequest.requestId as found on the dsRequest passed to {@link com.smartgwt.client.data.DataSource#transformRequest}. <P> You must provide a response for both error and non-error cases.  For an error case, a sufficient response is: <pre> { status : -1 } </pre>
@@ -2970,6 +3170,38 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
             requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()()
             );
     }-*/;
+
+    /**
+     * Optional object declaring namespace prefixes for use in OperationBinding.recordXPath and
+     * DataSourceField.valueXPath XPath expressions. xmlNamespaces should be specified as a map
+ping from namespace
+     * prefix to namespace URI, for example: <br>
+     * <p/>
+     * xmlNamespaces : { az : "http://webservices.amazon.com/AWSECommerceService/2005-03-23" }
+<br> By default, all
+     * namespaces declared on the document element (outermost element of the response) are made
+ available with the
+     * prefix used in the document itself. Then, for non-WSDL-described XML results, if there i
+s a default namespace on
+     * the document element, it is made available with the special prefix "default". <br>
+     * <p/>
+     * For results of WSDL-described operations, the prefix "service" means the service namespa
+ce, that is, the
+     * "targetNamespace" on the element from the WSDL file. The prefix "schema" means the names
+pace of the outermost
+     * element in the output message for the current operation. "default" will be the schema na
+mespace if there is one,
+     * otherwise the service namespace. <br> For basic information on XML Namespaces and their
+use in XPath, try the
+     * following search: http://www.google.com/search?q=XPath+xml+namespaces
+     *
+     * @param xmlNamespaces xml namespaces
+     * @throws IllegalStateException this property cannot be changed after the underlying compo
+nent has been created
+     */
+    public void setXmlNamespaces(XmlNamespaces xmlNamespaces) throws IllegalStateException {
+        setAttribute("xmlNamespaces", xmlNamespaces, false);
+    }
 
 }
 

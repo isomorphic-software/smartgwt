@@ -2385,6 +2385,30 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @param fieldName Name of the field being updated
      * @param value New value.
      */
+    public native void setValue(String fieldName, int[] value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var valueJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(value);
+        self.setValue(fieldName, valueJS);
+    }-*/;
+
+    /**
+     * Set the value for some field.
+     *
+     * @param fieldName Name of the field being updated
+     * @param value New value.
+     */
+    public native void setValue(String fieldName, String[] value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var valueJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(value);
+        self.setValue(fieldName, valueJS);
+    }-*/;
+
+    /**
+     * Set the value for some field.
+     *
+     * @param fieldName Name of the field being updated
+     * @param value New value.
+     */
     public native void setValue(String fieldName, Map value) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var valueJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(value);

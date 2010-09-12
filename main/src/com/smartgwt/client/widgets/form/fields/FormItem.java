@@ -3935,10 +3935,10 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     * If this item has a specified <code>optionDataSource</code>, and this property is&#010 not null, this will be passed to the datasource as {@link com.smartgwt.client.rpc.RPCRequest} properties when&#010 performing the fetch operation on the dataSource to obtain a data-value to display-value&#010 mapping
     * <p><b>Note : </b> This is an advanced setting</p>
     *
-    * @param optionFilterContext optionFilterContext Default value is null
+    * @param rpcRequestProperties optionFilterContext Default value is null
     */
-    public void setOptionFilterContext(RPCRequest optionFilterContext) {
-        setAttribute("optionFilterContext", optionFilterContext);
+    public void setOptionFilterContext(RPCRequest rpcRequestProperties) {
+        setAttribute("optionFilterContext", rpcRequestProperties);
     }
 
     /**
