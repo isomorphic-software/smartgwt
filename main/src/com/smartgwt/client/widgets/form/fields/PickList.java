@@ -18,7 +18,9 @@ package com.smartgwt.client.widgets.form.fields;
 
 
 import com.smartgwt.client.data.Criteria;
+import com.smartgwt.client.data.DSRequest;
 import com.smartgwt.client.data.DataSource;
+import com.smartgwt.client.rpc.RPCRequest;
 import com.smartgwt.client.types.TextMatchStyle;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
@@ -439,6 +441,13 @@ public interface PickList {
 
     public void setOptionDataSource(DataSource dataSource);
 
+    /**
+    * If this item has a specified <code>optionDataSource</code>, and this property is&#010 not null, this will be passed to the datasource as {@link com.smartgwt.client.rpc.RPCRequest} properties when&#010 performing the fetch operation on the dataSource to obtain a data-value to display-value&#010 mapping
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param dsRequestProperties optionFilterContext Default value is null
+    */
+    void setOptionFilterContext(DSRequest dsRequestProperties);
 }
 
 
