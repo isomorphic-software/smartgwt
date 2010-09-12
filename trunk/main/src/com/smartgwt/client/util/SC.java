@@ -168,11 +168,11 @@ public class SC {
      */
     public static native void ask(String title, String message, BooleanCallback callback, Dialog dialogProperties) /*-{
         var dialogPropertiesJS = dialogProperties.@com.smartgwt.client.widgets.Dialog::getConfig()();
-        $wnd.isc.addProperties(dialogProperties, {title:title});
+        $wnd.isc.addProperties(dialogPropertiesJS, {title:title});
         $wnd.isc.ask(message, function(value) {
             var valueJ = value == null ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(value);
             callback.@com.smartgwt.client.util.BooleanCallback::execute(Ljava/lang/Boolean;)(valueJ);
-        }, dialogProperties);
+        }, dialogPropertiesJS);
     }-*/;
 
     /**
