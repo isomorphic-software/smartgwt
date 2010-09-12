@@ -15,4 +15,7 @@ This module is useful if you already have the SmartClient resources available in
     <inherits name="com.google.gwt.json.JSON"/>
     <inherits name="com.google.gwt.http.HTTP"/>
     <inherits name="com.google.gwt.event.Event"/>
+
+    <entry-point class='com.smartgwt.client.SmartGwtEntryPoint'/>
+
 </module>

@@ -24,6 +24,8 @@ include them yourself in your host html file as follows :
     <inherits name="com.google.gwt.event.Event"/>
 
     <inherits name='com.smartclient.SmartClientNoScript'/>
+
+    <entry-point class='com.smartgwt.client.SmartGwtEntryPoint'/>
     
 	<define-linker name="smartgwt" class="com.smartgwt.linker.SmartGwtLinker" />
   	<add-linker name="smartgwt" />
