@@ -8575,6 +8575,15 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             return menuItemsJS;
         });
 
+        self.__getHeaderSpanContextMenuItems  = self.getHeaderSpanContextMenuItems;
+        self.getHeaderSpanContextMenuItems = $entry(function(headerSpan) {
+           var jObj = this.__ref;
+           var headerSpanJ = @com.smartgwt.client.widgets.grid.HeaderSpan::new(Lcom/google/gwt/core/client/JavaScriptObject;)(headerSpan);
+           var menuItemsJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getHeaderSpanContextMenuItems(Lcom/smartgwt/client/widgets/grid/HeaderSpan;)(headerSpanJ);
+           var menuItemsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(menuItemsJ);
+           return menuItemsJS;
+        });
+
         self._canEditCell = self.canEditCell;
         self.canEditCell = $debox($entry(function(rowNum, colNum) {
             var jObj = this.__ref;
@@ -9017,6 +9026,22 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var index = fieldNum == null ? null : fieldNum.@java.lang.Integer::intValue()();
         var menuItemsJS = self.__getHeaderContextMenuItems(index);
+        var menuItemsJ = @com.smartgwt.client.widgets.menu.Menu::convertToMenuItemArray(Lcom/google/gwt/core/client/JavaScriptObject;)(menuItemsJS);
+        return menuItemsJ;
+    }-*/;
+
+    /**
+     * Return the menus items that should be shown in a menu triggered from a headerSpan. By default no contextMenu is shown.
+     * <br><b>Note: This is an override point</b>
+     *
+     * @param headerSpan the component representing the headerSpan. This component will have all the properties specified via ListGrid.headerSpans
+     * @return an arrow of MenuItem's
+     */
+    protected native MenuItem[] getHeaderSpanContextMenuItems(HeaderSpan headerSpan) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var headerSpanJS = headerSpan.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var menuItemsJS = self.__getHeaderSpanContextMenuItems(headerSpanJS);
+        if(menuItemsJS == false) return null;
         var menuItemsJ = @com.smartgwt.client.widgets.menu.Menu::convertToMenuItemArray(Lcom/google/gwt/core/client/JavaScriptObject;)(menuItemsJS);
         return menuItemsJ;
     }-*/;
