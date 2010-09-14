@@ -171,14 +171,50 @@ private static void generateDataURLRecordsClass() {
     writer.println("private static final DataURLRecord[] _dataURLRecords = new DataURLRecord[] {");
     int dataFilePathsCount = 0;
     for (Map.Entry<String, Set<String>> dataFilePathsEntry : _dataFilePathsMap.entrySet()) {
+      if (dataFilePathsCount > 0) writer.println(",");
       writer.print("new DataURLRecord(\"" + dataFilePathsEntry.getKey() + "\",");
+
       int pathCount = 0;
-      for (String dataFilePath : dataFilePathsEntry.getValue()) {
-        writer.print(++pathCount == 1 ? "" : ",");
-        writer.print('"' + dataFilePath + '"');
+
+      Set<String> pathsToAdd = new TreeSet<String>();
+      Set<String> pathsPossiblyToAdd = new TreeSet<String>(dataFilePathsEntry.getValue());
+      Set<String> tmpAddSet = new TreeSet<String>();
+      
+      while (!pathsPossiblyToAdd.isEmpty()) {
+          Iterator<String> pathWriteIterator=pathsPossiblyToAdd.iterator();
+          while (pathWriteIterator.hasNext()) {
+              String dataFilePath=pathWriteIterator.next();
+              if (!pathsToAdd.contains(dataFilePath)) {
+                  pathsToAdd.add(dataFilePath);
+                  
+                  String className=new String(dataFilePath);
+                  className = className.replaceAll("([^/]*/)*", "");
+                  className = className.replaceAll("\\.java", "");
+                  System.err.println(dataFilePathsEntry.getKey() + ": "+dataFilePath + "-->" + className);
+                  
+                  Iterator<String> recursivePathIterator=null;
+                  if (_dataFilePathsMap.containsKey(className))
+                      recursivePathIterator=_dataFilePathsMap.get(className).iterator();
+                  if (recursivePathIterator != null) while (recursivePathIterator.hasNext()) {
+                      String newPath=recursivePathIterator.next();
+                      if (!pathsToAdd.contains(newPath) && !tmpAddSet.contains(newPath))
+                          tmpAddSet.add(newPath);
+                  }
+              }
+          }
+          pathsPossiblyToAdd.clear();
+          pathsPossiblyToAdd.addAll(tmpAddSet);
+          tmpAddSet.clear();
       }
+      
+      Iterator<String> pathWriteIterator=pathsToAdd.iterator();
+      while (pathWriteIterator.hasNext()) {
+          String dataFilePath=pathWriteIterator.next();
+          writer.print(++pathCount == 1 ? "" : ",");
+          writer.print('"' + dataFilePath + '"');
+      }
+
       writer.print(")");
-      writer.println(dataFilePathsCount == _dataFilePathsMap.size() ? "" : ",");
       ++dataFilePathsCount;
     }
     writer.println("};");
