@@ -627,9 +627,11 @@ public class JSOHelper {
                 JSOHelper.setArrayValue(jsArray, i, ((Record) val).getJsObj());
             } else if (val instanceof Object[]) {
                 JSOHelper.setArrayValue(jsArray, i, convertToJavaScriptArray((Object[]) val));
+            } else if (val instanceof Map) {
+                JSOHelper.setArrayValue(jsArray, i, convertMapToJavascriptObject((Map)val));
             } else if (val instanceof Object) {
                 JSOHelper.setArrayValue(jsArray, i, ((Object) val));
-            }
+            } 
         }
         return jsArray;
 
@@ -811,8 +813,7 @@ public class JSOHelper {
         setAttribute(jsObj, attr, valueJS);
     }
 
-    public static JavaScriptObject convertMapToJavascriptObject(Map valueMap) {
-    	
+    public static JavaScriptObject convertMapToJavascriptObject(Map valueMap) {    	
         if(valueMap == null) return null;
         JavaScriptObject valueJS = JSOHelper.createObject();
         for (Iterator iterator = valueMap.keySet().iterator(); iterator.hasNext();) {
@@ -836,6 +837,8 @@ public class JSOHelper {
             } else if (value instanceof Map) {
             	JavaScriptObject innerMapJS = convertMapToJavascriptObject((Map) value); 
             	setAttribute(valueJS, key, innerMapJS);
+            } else if (value instanceof ArrayList){
+                setAttribute(valueJS, key, JSOHelper.convertToJavaScriptArray(((ArrayList)value).toArray()));
             } else {
                 throw new IllegalArgumentException("Unsupported type for attribute " + key + " : " + value);
             }
