@@ -241,6 +241,8 @@ public class I18nUtil {
             $wnd.isc.ListGrid.addProperties({clearAllSortingText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_clearAllSortingText()()});
             $wnd.isc.ListGrid.addProperties({clearFilterText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_clearFilterText()()});
             $wnd.isc.ListGrid.addProperties({configureSortText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_configureSortText()()});
+            $wnd.isc.ListGrid.addProperties({autoFitFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_autoFitFieldText()()});
+            $wnd.isc.ListGrid.addProperties({autoFitAllText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_autoFitAllText()()});
             $wnd.isc.ListGrid.addProperties({fieldVisibilitySubmenuTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_fieldVisibilitySubmenuTitle()()});
             $wnd.isc.ListGrid.addProperties({freezeFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_freezeFieldText()() + ' ${viewer.getSummaryTitle(field)}'});
             $wnd.isc.ListGrid.addProperties({unfreezeFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_unfreezeFieldText()() + ' ${viewer.getSummaryTitle(field)}'});
@@ -253,6 +255,9 @@ public class I18nUtil {
         $wnd.isc.Canvas.addProperties({addSummaryFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_addSummaryFieldText()()});
         $wnd.isc.Canvas.addProperties({editSummaryFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_editSummaryFieldText()()});
         $wnd.isc.Canvas.addProperties({requiredFieldMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_requiredFieldMessage()()});
+        $wnd.isc.Canvas.addProperties({removeSummaryFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_removeSummaryFieldText()()});
+        $wnd.isc.Canvas.addProperties({removeFormulaFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_removeFormulaFieldText()()});
+        $wnd.isc.Canvas.addProperties({duplicateDragMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_duplicateDragMessage()()});
 
         if($wnd.isc.TreeGrid) {
             $wnd.isc.TreeGrid.addProperties({parentAlreadyContainsChildMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::treeGrid_parentAlreadyContainsChildMessage()()});
@@ -299,22 +304,31 @@ public class I18nUtil {
             $wnd.isc.FilterBuilder.addProperties({subClauseButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_subClauseButtonPrompt()()});
             $wnd.isc.FilterBuilder.addProperties({subClauseButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_subClauseButtonPrompt()()});
             $wnd.isc.FilterBuilder.addProperties({missingFieldPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_missingFieldPrompt()()});
+            $wnd.isc.FilterBuilder.addProperties({matchAllTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_matchAllTitle()()});
+            $wnd.isc.FilterBuilder.addProperties({matchNoneTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_matchNoneTitle()()});
+            $wnd.isc.FilterBuilder.addProperties({matchAnyTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_matchAnyTitle()()});
+            $wnd.isc.FilterBuilder.addProperties({subClauseButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_subClauseButtonTitle()()});
         }
+        if($wnd.isc.FilterClause) {
+            $wnd.isc.FilterClause.addProperties({removeButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterClause_removeButtonPrompt()()});
+        }
+
         if($wnd.isc.MultiSortDialog) {
-            $wnd.isc.MultiSortDialog.addProperties({addLevelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_addLevelButtonTitle()()});
-            $wnd.isc.MultiSortDialog.addProperties({deleteLevelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_deleteLevelButtonTitle()()});
-            $wnd.isc.MultiSortDialog.addProperties({copyLevelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_copyLevelButtonTitle()()});
+            $wnd.isc.MultiSortPanel.addProperties({addLevelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_addLevelButtonTitle()()});
+            $wnd.isc.MultiSortPanel.addProperties({deleteLevelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_deleteLevelButtonTitle()()});
+            $wnd.isc.MultiSortPanel.addProperties({copyLevelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_copyLevelButtonTitle()()});
+            $wnd.isc.MultiSortPanel.addProperties({invalidListPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_invalidListPrompt()()});
+            $wnd.isc.MultiSortPanel.addProperties({propertyFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_propertyFieldTitle()()});
+            $wnd.isc.MultiSortPanel.addProperties({directionFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_directionFieldTitle()()});
+            $wnd.isc.MultiSortPanel.addProperties({ascendingTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_ascendingTitle()()});
+            $wnd.isc.MultiSortPanel.addProperties({descendingTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_descendingTitle()()});
+            $wnd.isc.MultiSortPanel.addProperties({firstSortLevelTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_firstSortLevelTitle()()});
+            $wnd.isc.MultiSortPanel.addProperties({otherSortLevelTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_otherSortLevelTitle()()});  
+
             $wnd.isc.MultiSortDialog.addProperties({applyButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_applyButtonTitle()()});
             $wnd.isc.MultiSortDialog.addProperties({cancelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_cancelButtonTitle()()});
-            $wnd.isc.MultiSortDialog.addProperties({invalidListPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_invalidListPrompt()()});
             $wnd.isc.MultiSortDialog.addProperties({levelUpPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_levelUpPrompt()()});
             $wnd.isc.MultiSortDialog.addProperties({levelDownPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_levelDownPrompt()()});
-            $wnd.isc.MultiSortDialog.addProperties({propertyFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_propertyFieldTitle()()});
-            $wnd.isc.MultiSortDialog.addProperties({directionFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_directionFieldTitle()()});
-            $wnd.isc.MultiSortDialog.addProperties({ascendingTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_ascendingTitle()()});
-            $wnd.isc.MultiSortDialog.addProperties({descendingTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_descendingTitle()()});
-            $wnd.isc.MultiSortDialog.addProperties({firstSortLevelTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_firstSortLevelTitle()()});
-            $wnd.isc.MultiSortDialog.addProperties({otherSortLevelTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_otherSortLevelTitle()()});
         }
         if($wnd.isc.HiliteRule) {
             $wnd.isc.HiliteRule.addProperties({removeButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteRule_removeButtonPrompt()()});
@@ -380,6 +394,12 @@ public class I18nUtil {
                                                         "-1m" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_minus_1m()(),
                                                         "+1m" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_plus_1m()()
                                                         }});
+        }
+        if($wnd.isc.PickListMenu) {
+            $wnd.isc.PickListMenu.addProperties({emptyMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::pickListMenu_emptyMessage()()});
+        }
+        if($wnd.isc.IMenuButton) {
+            $wnd.isc.IMenuButton.addProperties({title: messages.@com.smartgwt.client.i18n.SmartGwtMessages::iMenuButton_title()()});   
         }
         @com.smartgwt.client.util.I18nUtil::initialized = true;
     }-*/;
