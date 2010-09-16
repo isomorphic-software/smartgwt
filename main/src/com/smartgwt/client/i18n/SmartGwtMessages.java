@@ -358,6 +358,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dataBoundComponent_addSummaryFieldText();
 
   /**
+   * Translated "Duplicates not allowed".
+   * 
+   * @return translated "Duplicates not allowed"
+   */
+  @DefaultMessage("Duplicates not allowed")
+  @Key("dataBoundComponent_duplicateDragMessage")
+  String dataBoundComponent_duplicateDragMessage();
+
+  /**
    * Translated "Edit formula...".
    * 
    * @return translated "Edit formula..."
@@ -374,6 +383,24 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Edit summary format...")
   @Key("dataBoundComponent_editSummaryFieldText")
   String dataBoundComponent_editSummaryFieldText();
+
+  /**
+   * Translated "Remove formula".
+   * 
+   * @return translated "Remove formula"
+   */
+  @DefaultMessage("Remove formula")
+  @Key("dataBoundComponent_removeFormulaFieldText")
+  String dataBoundComponent_removeFormulaFieldText();
+
+  /**
+   * Translated "Remove summary column..".
+   * 
+   * @return translated "Remove summary column.."
+   */
+  @DefaultMessage("Remove summary column..")
+  @Key("dataBoundComponent_removeSummaryFieldText")
+  String dataBoundComponent_removeSummaryFieldText();
 
   /**
    * Translated "Field is required".
@@ -844,6 +871,33 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String filterBuilder_addButtonPrompt();
 
   /**
+   * Translated "Match All".
+   * 
+   * @return translated "Match All"
+   */
+  @DefaultMessage("Match All")
+  @Key("filterBuilder_matchAllTitle")
+  String filterBuilder_matchAllTitle();
+
+  /**
+   * Translated "Match Any".
+   * 
+   * @return translated "Match Any"
+   */
+  @DefaultMessage("Match Any")
+  @Key("filterBuilder_matchAnyTitle")
+  String filterBuilder_matchAnyTitle();
+
+  /**
+   * Translated "Match None".
+   * 
+   * @return translated "Match None"
+   */
+  @DefaultMessage("Match None")
+  @Key("filterBuilder_matchNoneTitle")
+  String filterBuilder_matchNoneTitle();
+
+  /**
    * Translated "[missing field definition]".
    * 
    * @return translated "[missing field definition]"
@@ -907,6 +961,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String filterBuilder_subClauseButtonPrompt();
 
   /**
+   * Translated "+()".
+   * 
+   * @return translated "+()"
+   */
+  @DefaultMessage("+()")
+  @Key("filterBuilder_subClauseButtonTitle")
+  String filterBuilder_subClauseButtonTitle();
+
+  /**
    * Translated "and".
    * 
    * @return translated "and"
@@ -914,6 +977,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("and")
   @Key("filterBuilder_topOperator")
   String filterBuilder_topOperator();
+
+  /**
+   * Translated "Remove".
+   * 
+   * @return translated "Remove"
+   */
+  @DefaultMessage("Remove")
+  @Key("filterClause_removeButtonPrompt")
+  String filterClause_removeButtonPrompt();
 
   /**
    * Translated "Auto hide fields used in formula".
@@ -1292,6 +1364,33 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Remove")
   @Key("hiliteRule_removeButtonPrompt")
   String hiliteRule_removeButtonPrompt();
+
+  /**
+   * Translated "Show Menu".
+   * 
+   * @return translated "Show Menu"
+   */
+  @DefaultMessage("Show Menu")
+  @Key("iMenuButton_title")
+  String iMenuButton_title();
+
+  /**
+   * Translated "Auto Fit All Columns".
+   * 
+   * @return translated "Auto Fit All Columns"
+   */
+  @DefaultMessage("Auto Fit All Columns")
+  @Key("listGrid_autoFitAllText")
+  String listGrid_autoFitAllText();
+
+  /**
+   * Translated "Auto Fit".
+   * 
+   * @return translated "Auto Fit"
+   */
+  @DefaultMessage("Auto Fit")
+  @Key("listGrid_autoFitFieldText")
+  String listGrid_autoFitFieldText();
 
   /**
    * Translated "Cancelling this edit will clear unsaved edit values for this record. Continue?".
@@ -2048,6 +2147,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("starts with (match case)")
   @Key("operators_startsWithTitle")
   String operators_startsWithTitle();
+
+  /**
+   * Translated "No Items To Show".
+   * 
+   * @return translated "No Items To Show"
+   */
+  @DefaultMessage("No Items To Show")
+  @Key("pickListMenu_emptyMessage")
+  String pickListMenu_emptyMessage();
 
   /**
    * Translated "No items to display".
