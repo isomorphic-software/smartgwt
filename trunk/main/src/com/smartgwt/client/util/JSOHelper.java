@@ -837,8 +837,8 @@ public class JSOHelper {
             } else if (value instanceof Map) {
             	JavaScriptObject innerMapJS = convertMapToJavascriptObject((Map) value); 
             	setAttribute(valueJS, key, innerMapJS);
-            } else if (value instanceof ArrayList){
-                setAttribute(valueJS, key, JSOHelper.convertToJavaScriptArray(((ArrayList)value).toArray()));
+            } else if (value instanceof List){
+                setAttribute(valueJS, key, JSOHelper.convertToJavaScriptArray(((List)value).toArray()));
             } else {
                 throw new IllegalArgumentException("Unsupported type for attribute " + key + " : " + value);
             }
