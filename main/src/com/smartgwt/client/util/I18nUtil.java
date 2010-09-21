@@ -325,6 +325,7 @@ public class I18nUtil {
             $wnd.isc.MultiSortPanel.addProperties({firstSortLevelTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_firstSortLevelTitle()()});
             $wnd.isc.MultiSortPanel.addProperties({otherSortLevelTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_otherSortLevelTitle()()});  
 
+            $wnd.isc.MultiSortDialog.addProperties({title: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_title()()});
             $wnd.isc.MultiSortDialog.addProperties({applyButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_applyButtonTitle()()});
             $wnd.isc.MultiSortDialog.addProperties({cancelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_cancelButtonTitle()()});
             $wnd.isc.MultiSortDialog.addProperties({levelUpPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_levelUpPrompt()()});
