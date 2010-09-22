@@ -59,6 +59,14 @@ public class I18nUtil {
             $wnd.isc.Dialog.addClassProperties({LOGIN_ERROR_MESSAGE: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dialog_LoginErrorMessage()()});
         }
 
+        if($wnd.isc.LoginDialog) {
+            $wnd.isc.LoginDialog.addClassProperties({LOGIN_TITLE: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dialog_LoginTitle()()});
+            $wnd.isc.LoginDialog.addClassProperties({USERNAME_TITLE: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dialog_UserNameTitle()()});
+            $wnd.isc.LoginDialog.addClassProperties({PASSWORD_TITLE: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dialog_PasswordTitle()()});
+            $wnd.isc.LoginDialog.addClassProperties({LOGIN_BUTTON_TITLE: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dialog_LoginButtonTitle()()});
+            $wnd.isc.LoginDialog.addClassProperties({LOGIN_ERROR_MESSAGE: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dialog_LoginErrorMessage()()});
+        }
+
         if($wnd.isc.RPCManager) {
             $wnd.isc.RPCManager.addClassProperties({defaultPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::rpcManager_defaultPrompt()()});
             $wnd.isc.RPCManager.addClassProperties({timeoutErrorMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::rpcManager_timeoutErrorMessage()()});
@@ -192,6 +200,10 @@ public class I18nUtil {
             $wnd.isc.DateItem.changeDefaults("yearSelectorDefaults", {prompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateItem_yearSelectorPrompt()()});
             var selectorFormat = messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateItem_selectorFormat()();
             if(selectorFormat != null && selectorFormat != 'null') $wnd.isc.DateItem.changeDefaults("selectorFormat", selectorFormat);
+        }
+
+        if($wnd.isc.MultiFilePicker) {
+            $wnd.isc.MultiFilePicker.addProperties({emptyMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiFilePicker_emptyMessage()()});
         }
 
         if($wnd.isc.RichTextEditor) {
