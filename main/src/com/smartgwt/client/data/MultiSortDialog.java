@@ -29,6 +29,15 @@ import com.smartgwt.client.widgets.DataBoundComponent;
 public class MultiSortDialog {
 
     /**
+     * Set the title of the MultiSortDialog.
+     * 
+     * @param title the title
+     */
+    public static native void setTitle(String title)/*-{
+        $wnd.isc.MultiSortDialog.addProperties({title: title);
+    }-*/;
+
+    /**
      * Launches a MultiSortDialog and obtains a sort-definition from the user.
      * 
      * @param dataBoundComponent the databound component to apply the sort to
