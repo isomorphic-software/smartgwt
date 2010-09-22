@@ -1789,11 +1789,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String multiSortDialog_propertyFieldTitle();
 
   /**
-   * Translated "(Sort)".
+   * Translated "Sort".
    * 
-   * @return translated "(Sort)"
+   * @return translated "Sort"
    */
-  @DefaultMessage("(Sort)")
+  @DefaultMessage("Sort")
   @Key("multiSortDialog_title")
   String multiSortDialog_title();
 
