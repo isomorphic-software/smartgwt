@@ -163,7 +163,7 @@ public class I18nUtil {
         }
 
         if($wnd.isc.Window) {
-            $wnd.isc.Window.addClassProperties({title: messages.@com.smartgwt.client.i18n.SmartGwtMessages::window_title()()});
+            $wnd.isc.Window.addProperties({title: messages.@com.smartgwt.client.i18n.SmartGwtMessages::window_title()()});
         }
 
         if($wnd.isc.DateChooser) {
