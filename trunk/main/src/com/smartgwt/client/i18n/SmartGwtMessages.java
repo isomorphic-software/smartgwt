@@ -1663,6 +1663,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String miniDateRangeItem_toDateOnlyPrefix();
 
   /**
+   * Translated "Click icon to add...".
+   * 
+   * @return translated "Click icon to add..."
+   */
+  @DefaultMessage("Click icon to add...")
+  @Key("multiFilePicker_emptyMessage")
+  String multiFilePicker_emptyMessage();
+
+  /**
    * Translated "Add Level".
    * 
    * @return translated "Add Level"
