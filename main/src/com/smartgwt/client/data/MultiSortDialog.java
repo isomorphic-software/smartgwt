@@ -34,7 +34,7 @@ public class MultiSortDialog {
      * @param title the title
      */
     public static native void setTitle(String title)/*-{
-        $wnd.isc.MultiSortDialog.addProperties({title: title);
+        $wnd.isc.MultiSortDialog.addProperties({title: title});
     }-*/;
 
     /**
