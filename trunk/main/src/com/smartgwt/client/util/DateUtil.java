@@ -41,6 +41,24 @@ public class DateUtil {
 	}-*/;
 
     /**
+     * Sets a new default separator that will be used when formatting dates. By default, this is a forward slash character: "/"
+     *
+     * @param separator the date separator
+     */
+    public static native void setDefaultDateSeparator(String separator) /*-{
+        $wnd.isc.Date.setDefaultDateSeparator(separator);
+    }-*/;
+
+    /**
+     * Returns the default date separator.
+     *
+     * @return the default date separator
+     */
+    public static native String getDefaultDateSeparator() /*-{
+        return $wnd.isc.Date.getDefaultDateSeperator();
+    }-*/;
+	
+    /**
      * Set the default formatter for date objects to the method name passed in. After calling this method, subsequent calls to Date.toNormalDate will return a string formatted according to this format specification.
      * <br>
      * <b>Note</b>: this will be the standard long date format used by SmartGWT components.
