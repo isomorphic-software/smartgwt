@@ -3359,14 +3359,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         }
     }
 
-    public void setAttribute(String attribute, long value) {
-        if (!isCreated()) {
-            JSOHelper.setAttribute(jsObj, attribute, value);
-        } else {
-            setProperty(attribute, value);
-        }
-    }
-
     public void setAttribute(String attribute, Date value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);
@@ -3459,14 +3451,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         }
     }
 
-    public Long getAttributeAsLong(String attribute) {
-        if (isCreated()) {
-            return getPropertyAsLong(attribute);
-        } else {
-            return JSOHelper.getAttributeAsLong(jsObj, attribute);
-        }
-    }
-
     public Float getAttributeAsFloat(String attribute) {
         if (isCreated()) {
             return getPropertyAsFloat(attribute);
@@ -3499,12 +3483,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var ret = self.getProperty(property);
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
-    }-*/;
-
-    private native Long getPropertyAsLong(String property)/*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var ret = self.getProperty(property);
-        return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toLong(D)(ret);
     }-*/;
 
     private native Double getPropertyAsDouble(String property)/*-{
@@ -3548,11 +3526,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }-*/;
 
     public native void setProperty(String property, int value)/*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.setProperty(property, value);
-    }-*/;
-
-    public native void setProperty(String property, long value)/*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.setProperty(property, value);
     }-*/;

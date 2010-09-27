@@ -254,11 +254,6 @@ public class JSOHelper {
 	    return (ret === undefined || ret == null) ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
     }-*/;
 
-    public static native Long getAttributeAsLong(JavaScriptObject elem, String attr) /*-{
-	    var ret = elem[attr];
-	    return (ret === undefined || ret == null) ? null : @com.smartgwt.client.util.JSOHelper::toLong(D)(ret);
-    }-*/;
-
     public static native Double getAttributeAsDouble(JavaScriptObject elem, String attr) /*-{
 	    var ret = elem[attr];
 	    if (ret === undefined || ret == null) {
