@@ -19,7 +19,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSortField
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSortDirection
  * @see com.smartgwt.client.widgets.grid.ListGrid#getShowSortArrow
- * @see com.smartgwt.client.widgets.grid.ListGrid#getCanPickFields
  * @see com.smartgwt.client.widgets.grid.ListGrid#getInitialSort
  * @see com.smartgwt.client.types.SortArrow
  * @see com.smartgwt.client.types.SortDirection
