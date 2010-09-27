@@ -358,12 +358,7 @@ public class JSOHelper {
     public static Map getAttributeAsMap(JavaScriptObject elem, String attr) {
 	    JavaScriptObject value = getAttributeAsJavaScriptObject(elem, attr);
 	    if (value == null) return null;
-	    try {
-	    	return convertToMap(value);
-	    } catch (Exception e) {
-	    	SC.logWarn(e.getMessage());
-	    	return null;
-	    }
+	    return convertToMap(value);
     }
 
     public static JavaScriptObject[] listToArray(List list) {
@@ -480,26 +475,31 @@ public class JSOHelper {
     
     /**
      * Convert a Javascript object containing key:value pairs to a Map.
-     * @param object
-     * @param listAsArray
-     * @return
-     * @throws Exception
+     * @param jsObj the javascript object
+     * @param listAsArray Should arrays be converted to Object[] or List
+     * @return the map
+     * @throws IllegalArgumentException if unable to convert pass JavaScript object to a map
      */
-    public static Map convertToMap(JavaScriptObject object, boolean listAsArray) throws Exception {
-    	Object javaObj = convertToJava(object, listAsArray);
+    public static Map convertToMap(JavaScriptObject jsObj, boolean listAsArray) {
+    	Object javaObj = convertToJava(jsObj, listAsArray);
     	if (javaObj instanceof Map) {
     		return (Map) javaObj;
     	} else {
-    		throw new Exception("convertToMap - unable to convert JavaScript object passed in to a Map"
-    				+ SC.echo(object));
+    		throw new IllegalArgumentException("convertToMap - unable to convert JavaScript object passed in to a Map"
+    				+ SC.echo(jsObj));
     	}
     }
-    
-    public static Map convertToMap(JavaScriptObject jsObj) throws Exception {
+
+    /**
+     * Convert a Javascript object containing key:value pairs to a Map.
+     * @param jsObj the javascript object
+     * @return the map
+     * @throws IllegalArgumentException if unable to convert pass JavaScript object to a map
+     */
+    public static Map convertToMap(JavaScriptObject jsObj)  {
     	return convertToMap(jsObj, false);
     }
 
-    
     /**
      * Convert a Javascript object to an Object[]. If the Javascript object is not an array
      * in Javascript, a new array will be created containing the converted object as the only entry.
