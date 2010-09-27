@@ -1576,7 +1576,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Indicates whether the field picker item and submenu should be present in the header context menu
+     * Indicates whether the field picker item and submenu should be present in the header context menu. This menu allows the
+     * user to hide visible fields and show hidden fields. By default only fields explicitly included in the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFields fields} array will be available in this menu, unless {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanPickOmittedFields canPickOmittedFields} is set to true for a databound
+     * grid.
      *
      * @param canPickFields canPickFields Default value is true
      */
@@ -1585,13 +1589,47 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Indicates whether the field picker item and submenu should be present in the header context menu
+     * Indicates whether the field picker item and submenu should be present in the header context menu. This menu allows the
+     * user to hide visible fields and show hidden fields. By default only fields explicitly included in the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFields fields} array will be available in this menu, unless {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanPickOmittedFields canPickOmittedFields} is set to true for a databound
+     * grid.
      *
      *
      * @return Boolean
      */
     public Boolean getCanPickFields()  {
         return getAttributeAsBoolean("canPickFields");
+    }
+
+    /**
+     * If this grid has a specified {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource}, and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getUseAllDataSourceFields useAllDataSourceFields} is false, setting this
+     * property to true will cause all dataSource fields not included in the specified set of fields to show up in the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanPickFields field picker menu item}. <P> Has no effect if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFields fields} is unset (as in this case all dataSource fields will be
+     * displayed by default), or if {@link com.smartgwt.client.widgets.grid.ListGrid#getCanPickFields canPickFields} is false.
+     *
+     * @param canPickOmittedFields canPickOmittedFields Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCanPickOmittedFields(Boolean canPickOmittedFields)  throws IllegalStateException {
+        setAttribute("canPickOmittedFields", canPickOmittedFields, false);
+    }
+
+    /**
+     * If this grid has a specified {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource}, and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getUseAllDataSourceFields useAllDataSourceFields} is false, setting this
+     * property to true will cause all dataSource fields not included in the specified set of fields to show up in the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanPickFields field picker menu item}. <P> Has no effect if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFields fields} is unset (as in this case all dataSource fields will be
+     * displayed by default), or if {@link com.smartgwt.client.widgets.grid.ListGrid#getCanPickFields canPickFields} is false.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanPickOmittedFields()  {
+        return getAttributeAsBoolean("canPickOmittedFields");
     }
 
     /**
@@ -1792,6 +1830,45 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public int getCellPadding()  {
         return getAttributeAsInt("cellPadding");
+    }
+
+    /**
+     * Name of the Smart GWT Class to be used when creating charts.  Must support the Chart interface.
+     *
+     * @param chartConstructor chartConstructor Default value is "FusionChart"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setChartConstructor(String chartConstructor)  throws IllegalStateException {
+        setAttribute("chartConstructor", chartConstructor, false);
+    }
+
+    /**
+     * Name of the Smart GWT Class to be used when creating charts.  Must support the Chart interface.
+     *
+     *
+     * @return String
+     */
+    public String getChartConstructor()  {
+        return getAttributeAsString("chartConstructor");
+    }
+
+    /**
+     * Default type of chart to plot.
+     *
+     * @param chartType chartType Default value is "Column"
+     */
+    public void setChartType(ChartType chartType) {
+        setAttribute("chartType", chartType.getValue(), true);
+    }
+
+    /**
+     * Default type of chart to plot.
+     *
+     *
+     * @return ChartType
+     */
+    public ChartType getChartType()  {
+        return EnumUtil.getEnum(ChartType.values(), getAttribute("chartType"));
     }
 
     /**
@@ -2201,6 +2278,34 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public DateDisplayFormat getDatetimeFormatter()  {
         return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("datetimeFormatter"));
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is true and {@link
+     * com.smartgwt.client.types.ExpansionMode listGrid.expansionMode} is <code>"related"</code>, this property specifies the
+     * dataSource for the  related records grid to be shown embedded in expanded records. <P> This property may also be
+     * specified on a per-record basis - see  {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordDetailDSProperty
+     * recordDetailDSProperty}
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param detailDS detailDS Default value is null
+     */
+    public void setDetailDS(String detailDS) {
+        setAttribute("detailDS", detailDS, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is true and {@link
+     * com.smartgwt.client.types.ExpansionMode listGrid.expansionMode} is <code>"related"</code>, this property specifies the
+     * dataSource for the  related records grid to be shown embedded in expanded records. <P> This property may also be
+     * specified on a per-record basis - see  {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordDetailDSProperty
+     * recordDetailDSProperty}
+     *
+     *
+     * @return String
+     */
+    public String getDetailDS()  {
+        return getAttributeAsString("detailDS");
     }
 
     /**
@@ -2867,6 +2972,32 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public ExpansionMode getExpansionMode()  {
         return EnumUtil.getEnum(ExpansionMode.values(), getAttribute("expansionMode"));
+    }
+
+    /**
+     * Dictates whether the data in this grid should be exported raw by  {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData()}.  If set to true,   data will not be
+     * processed by field-formatters during exports. Decreases the time taken for large exports.  This property can also be set
+     * at the {@link com.smartgwt.client.widgets.grid.ListGridField#getExportRawValues field level}.
+     *
+     * @param exportRawValues exportRawValues Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setExportRawValues(Boolean exportRawValues)  throws IllegalStateException {
+        setAttribute("exportRawValues", exportRawValues, false);
+    }
+
+    /**
+     * Dictates whether the data in this grid should be exported raw by  {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData()}.  If set to true,   data will not be
+     * processed by field-formatters during exports. Decreases the time taken for large exports.  This property can also be set
+     * at the {@link com.smartgwt.client.widgets.grid.ListGridField#getExportRawValues field level}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getExportRawValues()  {
+        return getAttributeAsBoolean("exportRawValues");
     }
 
     /**
@@ -4003,7 +4134,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Property name on a record that will hold the link text for that record. <br> This property is configurable to avoid
+     * Property name on a record that will hold the link text for that record. <P> This property is configurable to avoid
      * possible collision with data values in the record.
      *
      * @param linkTextProperty linkTextProperty Default value is "linkText"
@@ -4016,7 +4147,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Property name on a record that will hold the link text for that record. <br> This property is configurable to avoid
+     * Property name on a record that will hold the link text for that record. <P> This property is configurable to avoid
      * possible collision with data values in the record.
      *
      *
@@ -4786,7 +4917,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * The name of the ListGridRecord property that specifies the DataSource to use when  {@link
      * com.smartgwt.client.types.ExpansionMode listGrid.expansionMode} is "related".  The default is  {@link
-     * com.smartgwt.client.widgets.grid.ListGridRecord#getDetailDS detailDS}.
+     * com.smartgwt.client.widgets.grid.ListGridRecord#getDetailDS detailDS}. Note that you can set the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDetailDS detailDS} at the grid level instead if the same dataSource is to
+     * be used for all records.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param recordDetailDSProperty recordDetailDSProperty Default value is "detailDS"
@@ -4798,7 +4931,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * The name of the ListGridRecord property that specifies the DataSource to use when  {@link
      * com.smartgwt.client.types.ExpansionMode listGrid.expansionMode} is "related".  The default is  {@link
-     * com.smartgwt.client.widgets.grid.ListGridRecord#getDetailDS detailDS}.
+     * com.smartgwt.client.widgets.grid.ListGridRecord#getDetailDS detailDS}. Note that you can set the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDetailDS detailDS} at the grid level instead if the same dataSource is to
+     * be used for all records.
      *
      *
      * @return String

@@ -54,7 +54,8 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-public class HoverEvent extends BrowserEvent<HoverHandler>  {
+public class HoverEvent extends BrowserEvent<HoverHandler>  implements Cancellable {
+    private boolean cancel = false;
 
     /**
      * Handler type.
@@ -109,6 +110,19 @@ public class HoverEvent extends BrowserEvent<HoverHandler>  {
     }
 
 
+    /**
+     * false to cancel the hover event.
+     */
+    public void cancel() {
+        cancel = true;
+    }
+
+    /**
+     * @return true if cancelled
+     */
+    public boolean isCancelled() {
+        return cancel;
+    }
 
 
 }
