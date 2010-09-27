@@ -3,8 +3,15 @@ package com.smartgwt.client.docs;
 
 /**
  * Width and height of an object
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getRect
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getPageRect
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getVisibleHeight
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getIconHeight
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getWidth
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getVisibleWidth
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getIconWidth
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getLeft
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getTop
  * @see com.smartgwt.client.widgets.grid.ListGrid#getDrawnRowHeight
  * @see com.smartgwt.client.widgets.grid.ListGrid#setHeaderHeight
  * @see com.smartgwt.client.widgets.Canvas#setRect

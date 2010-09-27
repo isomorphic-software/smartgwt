@@ -8,6 +8,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.DynamicForm#resetValues
  * @see com.smartgwt.client.widgets.form.DynamicForm#clearValues
  * @see com.smartgwt.client.widgets.form.DynamicForm#valuesHaveChanged
+ * @see com.smartgwt.client.widgets.form.DynamicForm#getOldValues
+ * @see com.smartgwt.client.widgets.form.DynamicForm#getChangedValues
  * @see com.smartgwt.client.widgets.form.DynamicForm#getValues
  * @see com.smartgwt.client.widgets.form.DynamicForm#getValue
  * @see com.smartgwt.client.widgets.form.DynamicForm#setValue
