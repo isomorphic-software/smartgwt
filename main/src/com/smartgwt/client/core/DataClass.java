@@ -59,12 +59,20 @@ public class DataClass extends JsObject {
         JSOHelper.setAttribute(jsObj, property, value);
     }
 
+    public void setAttribute(String property, long value) {
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
+
     public void setAttribute(String property, double value) {
         JSOHelper.setAttribute(jsObj, property, value);
     }
 
     public Integer getAttributeAsInt(String property) {
         return JSOHelper.getAttributeAsInt(jsObj, property);
+    }
+
+    public Long getAttributeAsLong(String property) {
+        return JSOHelper.getAttributeAsLong(jsObj, property);
     }
 
     public void setAttribute(String property, boolean value) {
