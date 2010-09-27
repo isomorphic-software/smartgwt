@@ -83,7 +83,7 @@ public class CanvasItem extends FormItem {
     }
 
     public CanvasItem(){
-        setType("CanvasItem");
+        setType("CanvasItem"); setupCanvasConstructor();
     }
 
     public CanvasItem(JavaScriptObject jsObj){
@@ -92,22 +92,25 @@ public class CanvasItem extends FormItem {
 
     public CanvasItem(String name) {
         setName(name);
-        setType("CanvasItem");
+        setType("CanvasItem"); setupCanvasConstructor();
     }
 
     public CanvasItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("CanvasItem");
+        setType("CanvasItem"); setupCanvasConstructor();
     }
 
     // ********************* Properties / Attributes ***********************
 
     /**
      * The canvas that will be displayed inside this item.  You can pass an instance you've  already created, or its global ID
-     * as a String.  If none is passed, one will be  auto-created using the overrideable defaults: {@link
-     * com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasProperties canvasProperties} and {@link
-     * com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasConstructor canvasConstructor}
+     * as a String. You can also implement  {@link com.smartgwt.client.widgets.form.fields.CanvasItem#createCanvas
+     * CanvasItem.createCanvas} to dynamically create the canvas when the FormItem is initialized. <P> If <code>canvas</code>
+     * and <code>createCanvas()</code> are unspecified, the  canvas for this item will be auto-created using the overrideable
+     * defaults: {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasProperties canvasProperties} and {@link
+     * com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasConstructor canvasConstructor} <P> Note that {@link
+     * com.smartgwt.client.widgets.Canvas#getCanvasItem canvasItem} will be set on the canvas to point back to this item.
      *
      * @param canvas canvas Default value is null
      */
@@ -117,9 +120,12 @@ public class CanvasItem extends FormItem {
 
     /**
      * The canvas that will be displayed inside this item.  You can pass an instance you've  already created, or its global ID
-     * as a String.  If none is passed, one will be  auto-created using the overrideable defaults: {@link
-     * com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasProperties canvasProperties} and {@link
-     * com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasConstructor canvasConstructor}
+     * as a String. You can also implement  {@link com.smartgwt.client.widgets.form.fields.CanvasItem#createCanvas
+     * CanvasItem.createCanvas} to dynamically create the canvas when the FormItem is initialized. <P> If <code>canvas</code>
+     * and <code>createCanvas()</code> are unspecified, the  canvas for this item will be auto-created using the overrideable
+     * defaults: {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasProperties canvasProperties} and {@link
+     * com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasConstructor canvasConstructor} <P> Note that {@link
+     * com.smartgwt.client.widgets.Canvas#getCanvasItem canvasItem} will be set on the canvas to point back to this item.
      *
      *
      * @return Canvas
@@ -225,6 +231,32 @@ public class CanvasItem extends FormItem {
     // ********************* Static Methods ***********************
         
     // ***********************************************************        
+
+    protected native void setupCanvasConstructor() /*-{
+    	
+        var self = this.@com.smartgwt.client.widgets.form.fields.CanvasItem::getJsObj()();
+        self.createCanvas = $debox($entry(function() {
+            var jObj = this.__ref;
+            var jCanvas = jObj.@com.smartgwt.client.widgets.form.fields.CanvasItem::createCanvas()();
+
+            if (jCanvas == null) return null;
+            return jCanvas.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
+        }));
+    }-*/;
+
+    /**
+     * This method is called to dynamically create a canvas for this CanvasItem.
+     * Overriding this method provides a mechanism to dynamically create the
+     * canvas rather than calling {@link #setCanvas()} directly.
+     * 
+     * @return  the canvas to be rendered inside this CanvasItem
+     */
+    protected Canvas createCanvas() {
+    	JavaScriptObject jsCanvas = getAttributeAsJavaScriptObject("canvas");
+    	
+    	if (jsCanvas == null) return null;
+    	return Canvas.getOrCreateRef(jsCanvas);
+    }
 
 }
 
