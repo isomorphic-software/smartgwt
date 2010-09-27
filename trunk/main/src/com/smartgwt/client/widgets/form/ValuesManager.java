@@ -357,8 +357,11 @@ public class ValuesManager extends BaseClass {
     }-*/;
             
     /**
-     * Compares the current set of values with the values stored by the call to the          <code>rememberValues()</code>
-     * method. Returns true if the values have changed, and false          otherwise.
+     * Compares the current set of values with the values stored by the call to the {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#rememberValues DynamicForm.rememberValues} method. 
+     * <code>rememberValues()</code> runs when the form is initialized and on every call to {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setValues DynamicForm.setValues}. Returns true if the values have changed,
+     * and false otherwise.
      *
      * @return true if current values do not match remembered values
      */
