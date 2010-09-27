@@ -214,12 +214,7 @@ public class DSResponse extends RPCResponse {
         if(JSOHelper.isArray(jsObj)) {
             jsObj = JSOHelper.getJSOArrayValue(jsObj, 0);
         }
-        try {
-        	return JSOHelper.convertToMap(jsObj);
-        } catch (Exception e) {
-        	e.printStackTrace();
-        	return null;
-		}
+        return JSOHelper.convertToMap(jsObj);
     }
 
     /**

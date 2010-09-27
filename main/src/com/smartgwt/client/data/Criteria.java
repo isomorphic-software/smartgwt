@@ -114,10 +114,6 @@ public class Criteria extends DataClass {
      * @return the criteria values as a Map
      */
     public Map getValues() {
-    	try {
-    		return JSOHelper.convertToMap(jsObj);
-    	} catch (Exception e) {
-    		return null;
-		}
+        return JSOHelper.convertToMap(jsObj);
     }
 }
