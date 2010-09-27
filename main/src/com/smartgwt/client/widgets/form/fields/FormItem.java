@@ -1064,7 +1064,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * <code>itemLayout:"absolute"</code>.
      *
      *
-     * @return int
+     * @return Returns the left coordinate of this form item in pixels. Note that this method is only reliable after the item has been
+     * drawn.
      */
     public int getLeft()  {
         return getAttributeAsInt("left");
@@ -2298,7 +2299,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * <code>itemLayout:"absolute"</code>.
      *
      *
-     * @return int
+     * @return Returns the top coordinate of the form item in pixels. Note that this method is only  reliable after the item has been
+     * drawn out.
      */
     public int getTop()  {
         return getAttributeAsInt("top");
@@ -2554,7 +2556,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * column spanning} item). <P> See the {@link com.smartgwt.client.docs.FormLayout} overview for details.
      *
      *
-     * @return int
+     * @return Output the width for this element. Note this returns the specified width for the   element, which may be "*" or a
+     * percentage value. Use 'getVisibleWidth()' to get the  drawn width in pixels.
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_spanning" target="examples">Spanning Example</a>
      */
@@ -2896,6 +2899,28 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var ret = self.getIcon(name);
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.widgets.form.fields.FormItemIcon::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+            
+    /**
+     * Returns the drawn page-left coordinate of this form item in pixels.
+     *
+     * @return page-left coordinate in px
+     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
+     */
+    public native int getPageLeft() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        return self.getPageLeft();
+    }-*/;
+            
+    /**
+     * Returns the drawn page-top coordinate of this form item in pixels.
+     *
+     * @return page-top coordinate in px
+     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
+     */
+    public native int getPageTop() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        return self.getPageTop();
     }-*/;
             
     /**
@@ -3334,6 +3359,14 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         }
     }
 
+    public void setAttribute(String attribute, long value) {
+        if (!isCreated()) {
+            JSOHelper.setAttribute(jsObj, attribute, value);
+        } else {
+            setProperty(attribute, value);
+        }
+    }
+
     public void setAttribute(String attribute, Date value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);
@@ -3426,6 +3459,14 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         }
     }
 
+    public Long getAttributeAsLong(String attribute) {
+        if (isCreated()) {
+            return getPropertyAsLong(attribute);
+        } else {
+            return JSOHelper.getAttributeAsLong(jsObj, attribute);
+        }
+    }
+
     public Float getAttributeAsFloat(String attribute) {
         if (isCreated()) {
             return getPropertyAsFloat(attribute);
@@ -3458,6 +3499,12 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var ret = self.getProperty(property);
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
+    }-*/;
+
+    private native Long getPropertyAsLong(String property)/*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret = self.getProperty(property);
+        return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toLong(D)(ret);
     }-*/;
 
     private native Double getPropertyAsDouble(String property)/*-{
@@ -3496,6 +3543,16 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }-*/;
 
     public native void setProperty(String property, boolean value)/*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.setProperty(property, value);
+    }-*/;
+
+    public native void setProperty(String property, int value)/*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.setProperty(property, value);
+    }-*/;
+
+    public native void setProperty(String property, long value)/*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.setProperty(property, value);
     }-*/;
@@ -3740,9 +3797,13 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Name of the FormItem to use for editing, eg "TextItem" or "SelectItem". <P> The type of FormItem to use for
+     * Name of the FormItem properties to use for editing. <P> The type of FormItem to use for
      * editing is normally derived automatically from {@link com.smartgwt.client.widgets.form.fields.FormItem#getType
      * type}, which is the data type of the field, by the rules explained {@link com.smartgwt.client.types.FormItemType here}.
+     * <p><br>
+     * <b>Note</b> : When you supply a custom FormItem via setEditorType(), you're really providing properties which are then used to create
+     * multiple FormItems (eg, in grids, forms and trees) and there's an underlying limitation here where event handlers have to be written to
+     * dynamically receive the actual FormItem rather than relying on "this" (because there's more than one "this").
      *
      * @param editorType editorType Default value is null
      */
@@ -3861,6 +3922,36 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             return self.getVisibleWidth();
         } else {
             return 0;
+        }
+    }-*/;
+
+    /**
+     * Return the page-level coordinates of this object.
+     *
+     * @return the page-level coordinates of this object
+     */
+    public native Rectangle getPageRect() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        if(self.setValue) {
+            var rect = self.getPageRect();
+            return @com.smartgwt.client.core.Rectangle::new(IIII)(rect[0], rect[1],rect[2],rect[3]);
+        } else {
+            return null;
+        }
+    }-*/;
+
+    /**
+     * Return the coordinates of this object.
+     *
+     * @return the coordinates of this object
+     */
+    public native Rectangle getRect() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        if(self.setValue) {
+            var rect = self.getRect();
+            return @com.smartgwt.client.core.Rectangle::new(IIII)(rect[0], rect[1],rect[2],rect[3]);
+        } else {
+            return null;
         }
     }-*/;
 
