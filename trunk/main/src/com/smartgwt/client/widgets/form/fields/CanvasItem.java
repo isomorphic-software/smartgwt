@@ -232,6 +232,7 @@ public class CanvasItem extends FormItem {
         
     // ***********************************************************        
 
+
     protected native void setupCanvasConstructor() /*-{
     	
         var self = this.@com.smartgwt.client.widgets.form.fields.CanvasItem::getJsObj()();

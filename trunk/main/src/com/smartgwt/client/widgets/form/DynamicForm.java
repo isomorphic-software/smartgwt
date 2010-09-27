@@ -1814,6 +1814,22 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
    }-*/;
             
     /**
+     * If the current mouse event occured over an item in this dynamicForm, returns that item.
+     *
+     * @return the current event target item
+     */
+    public native FormItem getEventItem() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getEventItem();
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.form.fields.FormItem::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+            
+    /**
      * Return the current focus item for this form. If this form is drawn and has focus, this is the currently focused item. If
      * the form does not have focus or is undrawn this is the item that last had focus, or would have focus if the item were
      * drawn/given focus. Therefore note that this method can validly return an item which doesn't currently have focus. <P>
@@ -2199,10 +2215,15 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }-*/;
             
     /**
-     * Compares the current set of values with the values stored by the call to the          <code>rememberValues()</code>
-     * method. Returns true if the values have changed, and false          otherwise.
+     * Compares the current set of values with the values stored by the call to the {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#rememberValues DynamicForm.rememberValues} method. 
+     * <code>rememberValues()</code> runs when the form is initialized and on every call to {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setValues DynamicForm.setValues}. Returns true if the values have changed,
+     * and false otherwise.
      *
      * @return true if current values do not match remembered values
+     * @see com.smartgwt.client.widgets.form.DynamicForm#getChangedValues
+     * @see com.smartgwt.client.widgets.form.DynamicForm#getOldValues
      */
     public native Boolean valuesHaveChanged() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -2358,6 +2379,39 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }-*/;
 
     /**
+     * Returns all values within this DynamicForm that have changed since  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#rememberValues DynamicForm.rememberValues} last ran. Note that {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#rememberValues DynamicForm.rememberValues} runs on dynamicForm
+     * initialization, and with every call to {@link com.smartgwt.client.widgets.form.DynamicForm#setValues
+     * DynamicForm.setValues} so this will typically contain all values the user has explicitly edited since then.
+     *
+     * @return the values
+     */
+    public native Map getChangedValues() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var value = self.getChangedValues();
+        if(value == null) return null;
+        var valueJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
+        return valueJ;
+    }-*/;
+
+    /**
+     * Returns the set of values last stored by {@link com.smartgwt.client.widgets.form.DynamicForm#rememberValues
+     * DynamicForm.rememberValues}. Note that <code>rememberValues()</code> is called automatically by {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setValues DynamicForm.setValues}, and on form initialization, so this
+     * typically contains all values as they were before the user edited them.
+     *
+     * @return the values
+     */
+    public native Map getOldValues() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var value = self.getOldValues();
+        if(value == null) return null;
+        var valueJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
+        return valueJ;
+    }-*/;
+
+    /**
      * Set the value for some field.
      *
      * @param fieldName Name of the field being updated
@@ -2391,6 +2445,18 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         self.setValue(fieldName, valueJS);
     }-*/;
 
+    /**
+     * Set the value for some field.
+     *
+     * @param fieldName Name of the field being updated
+     * @param value New value.
+     */
+    public native void setValue(String fieldName, Date value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var valueJS = @com.smartgwt.client.util.JSOHelper::toDateJS(Ljava/util/Date;)(value);
+        self.setValue(fieldName, valueJS);
+    }-*/;
+    
     /**
      * Set the value for some field.
      *
@@ -2585,7 +2651,19 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         var val = self.getValue(fieldName);
         return val == null || val === undefined ? null : $wnd.SmartGWT.convertToJavaType(val);
     }-*/;
-    
+
+    /**
+     * If the current mouse event occurred over an item, or the title of an item in this dynamicForm, return details about where the event occurred.
+     *
+     * @param fieldName the field name
+     * @return the form item event info
+     */
+    public native FormItemEventInfo getEventItemInfo(String fieldName) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var val = self.getEventItemInfo(fieldName);
+        return val == null || val === undefined ? null : @com.smartgwt.client.widgets.form.FormItemEventInfo::new(Lcom/google/gwt/core/client/JavaScriptObject;)(val);
+    }-*/;
+
     /**
      * Validates the form without submitting it, and redraws the form to display error messages if there are any
      * validation errors. Returns true if validation succeeds, or false if validation fails.<br> For databound forms,
@@ -2669,6 +2747,31 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public void setColWidths(Object... colWidths) {
         setAttribute("colWidths", colWidths, true);
     }
+
+    /**
+     * Default {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData} is called. This property is automatically
+     * set on a call to {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord DynamicForm.editRecord} or {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editNewRecord DynamicForm.editNewRecord}, or may be set directly via
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType DynamicForm.setSaveOperationType}. <P> If
+     * <code>saveOperationType</code> is unset, the form will heuristically determine whether an "add" or "update" operation is
+     * intended based on whether the primaryKey field is present and editable.
+     *
+     *
+     * @return Returns the {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData} is called. Valid options are
+     * <code>"add"</code> or <code>"update"</code>. <P> If a {@link com.smartgwt.client.data.DSRequest} configuration object is
+     * passed in containing an explicit operationType this will be returned. Otherwise {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned.
+     *
+     * @param requestProperties Optional DSRequest config properties for the save operation
+     */
+    public native DSOperationType getSaveOperationType(DSRequest requestProperties)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.data.DSRequest::getJsObj()();
+        var operationTypeJS = self.getSaveOperationType(requestPropertiesJS);
+        return @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(@com.smartgwt.client.types.DSOperationType::values()(), operationTypeJS);
+    }-*/;
 
     /**
      * The width in pixels allocated to the title of every item in this form. If you don't specify explicit {@link DynamicForm#setColWidths(Object...) colWidths},

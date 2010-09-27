@@ -1289,6 +1289,10 @@ public class DataSourceField extends DataClass {
     /**
      * Sets the default FormItem to be used whenever this field is edited (whether in a grid, form, or other component).
      * <P> If unset, a FormItem will be automatically chosen based on the type of the field.
+     * <p><br>
+     * <b>Note</b> : When you supply a custom FormItem via setEditorType(), you're really providing properties which are then used
+     * to create multiple FormItems (eg, in grids, forms and trees) and there's an underlying limitation here where event handlers
+     * have to be written to dynamically receive the actual FormItem rather than relying on "this" (because there's more than one "this").
      *
      * @param editorType editorType Default value is null
      */

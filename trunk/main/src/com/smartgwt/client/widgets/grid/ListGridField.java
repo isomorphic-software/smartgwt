@@ -2813,6 +2813,11 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * typically inherited from datasource fields, or from the type of the field (showing the appropriate form item for
      * the data-type). See the Grid Editing overview for more on editing ListGrid fields.
      *
+     * <p><br>
+     * <b>Note>: When you supply a custom FormItem via setEditorType(), you're really providing properties which are then used to
+     * create multiple FormItems (eg, in grids, forms and trees) and there's an underlying limitation here where event handlers have
+     * to be written to dynamically receive the actual FormItem rather than relying on "this" (because there's more than one "this").
+     *
      * @param editorType the editor type
      */
     public void setEditorType(FormItem editorType) {
