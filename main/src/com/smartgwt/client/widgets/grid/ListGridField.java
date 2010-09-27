@@ -478,19 +478,21 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-     * Allows a boolean or  valueMapped field to be edited without going into edit mode. When this attribute is set, if
-     * clicking on the field will change the value - for boolean fields toggling between <code>true</code> and
-     * <code>false</code>, and for valueMapped fields, advancing the value to the next option in the valueMap. <P> To enable
-     * this feature, {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} must be set to true.  Note that you
-     * can enable toggling only (without allowing the user to edit other fields) by just setting {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getEditEvent grid.editEvent:"none"}. <P> If {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent} is set to "click", when the user clicks on the field, 
-     * the value will be toggled, and inline editing will be triggered as usual. Otherwise the toggled value will be saved
-     * immediately to the server, or if  {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits} has
-     * been set to false, will be stored as an edit value for the record.
+     * Allows a boolean or  valueMapped field to be edited without going into edit mode. When this attribute is set, clicking
+     * on the field will change the value - for boolean fields toggling between <code>true</code> and <code>false</code>, and
+     * for valueMapped fields, advancing the value to the next option in the valueMap. <P> To enable this feature, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} must be set to true. For boolean type fields
+     * <code>canToggle</code> is true by default, meaning setting <code>canEdit</code> to true implies the user can toggle the
+     * value via a single click without going into edit mode. You can disable this by explicitly setting <code>canToggle</code>
+     * to false for a boolean field.<br> Note that you can enable toggling only (without allowing the user to edit other
+     * fields) by just setting {@link com.smartgwt.client.widgets.grid.ListGrid#getEditEvent grid.editEvent:"none"}. <P> If
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent} is set to "click", when the user clicks on the
+     * field,  the value will be toggled, and inline editing will be triggered as usual. Otherwise the toggled value will be
+     * saved immediately to the server, or if  {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits}
+     * has been set to false, will be stored as an edit value for the record.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param canToggle canToggle Default value is null
+     * @param canToggle canToggle Default value is varies
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public void setCanToggle(Boolean canToggle) {
@@ -498,16 +500,18 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-     * Allows a boolean or  valueMapped field to be edited without going into edit mode. When this attribute is set, if
-     * clicking on the field will change the value - for boolean fields toggling between <code>true</code> and
-     * <code>false</code>, and for valueMapped fields, advancing the value to the next option in the valueMap. <P> To enable
-     * this feature, {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} must be set to true.  Note that you
-     * can enable toggling only (without allowing the user to edit other fields) by just setting {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getEditEvent grid.editEvent:"none"}. <P> If {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent} is set to "click", when the user clicks on the field, 
-     * the value will be toggled, and inline editing will be triggered as usual. Otherwise the toggled value will be saved
-     * immediately to the server, or if  {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits} has
-     * been set to false, will be stored as an edit value for the record.
+     * Allows a boolean or  valueMapped field to be edited without going into edit mode. When this attribute is set, clicking
+     * on the field will change the value - for boolean fields toggling between <code>true</code> and <code>false</code>, and
+     * for valueMapped fields, advancing the value to the next option in the valueMap. <P> To enable this feature, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} must be set to true. For boolean type fields
+     * <code>canToggle</code> is true by default, meaning setting <code>canEdit</code> to true implies the user can toggle the
+     * value via a single click without going into edit mode. You can disable this by explicitly setting <code>canToggle</code>
+     * to false for a boolean field.<br> Note that you can enable toggling only (without allowing the user to edit other
+     * fields) by just setting {@link com.smartgwt.client.widgets.grid.ListGrid#getEditEvent grid.editEvent:"none"}. <P> If
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent} is set to "click", when the user clicks on the
+     * field,  the value will be toggled, and inline editing will be triggered as usual. Otherwise the toggled value will be
+     * saved immediately to the server, or if  {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits}
+     * has been set to false, will be stored as an edit value for the record.
      *
      *
      * @return Boolean
@@ -896,6 +900,29 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      */
     public EscapeKeyEditAction getEscapeKeyEditAction()  {
         return EnumUtil.getEnum(EscapeKeyEditAction.values(), getAttribute("escapeKeyEditAction"));
+    }
+
+    /**
+     * Dictates whether the data in this field should be exported raw by  {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData()}.  If set to true for a  field, the
+     * values in the field-formatters will not be executed for data in this field. Decreases the time taken for large exports.
+     *
+     * @param exportRawValues exportRawValues Default value is null
+     */
+    public void setExportRawValues(Boolean exportRawValues) {
+        setAttribute("exportRawValues", exportRawValues);
+    }
+
+    /**
+     * Dictates whether the data in this field should be exported raw by  {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData()}.  If set to true for a  field, the
+     * values in the field-formatters will not be executed for data in this field. Decreases the time taken for large exports.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getExportRawValues()  {
+        return getAttributeAsBoolean("exportRawValues");
     }
 
     /**
@@ -2383,7 +2410,12 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * Add a change handler.
      * <p>
      * If this field is editable, any {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler change} handler
-     * specified on the ListGridField will be passed onto the editors for this field.
+     * specified on the ListGridField will be passed onto the editors for this field. <P> Note that if {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getCanToggle canToggle} is true, the user may change the value of a
+     * boolean field without going into edit mode by single clicking on the field. In this  case the {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#addChangeHandler ListGridField.change} and {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#addChangedHandler ListGridField.changed} handlers will fire but the
+     * <code>form</code> and <code>item</code> parameters will be null.
      *
      * @param handler the change handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -2407,7 +2439,12 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * Add a changed handler.
      * <p>
      * If this field is editable, any {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangedHandler changed}
-     * handler specified on the ListGridField will be passed onto the editors for this field.
+     * handler specified on the ListGridField will be passed onto the editors for this field. Note that if {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getCanToggle canToggle} is true, the user may change the value of a
+     * boolean field without going into edit mode by single clicking on the field. In this  case the {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#addChangeHandler ListGridField.change} and {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#addChangedHandler ListGridField.changed} handlers will fire but the
+     * <code>form</code> and <code>item</code> parameters will be null.
      *
      * @param handler the changed handler
      * @return {@link HandlerRegistration} used to remove this handler

@@ -23,7 +23,12 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasChangeHandlers extends HasHandlers {
     /**
      * If this field is editable, any {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler change} handler
-     * specified on the ListGridField will be passed onto the editors for this field.
+     * specified on the ListGridField will be passed onto the editors for this field. <P> Note that if {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getCanToggle canToggle} is true, the user may change the value of a
+     * boolean field without going into edit mode by single clicking on the field. In this  case the {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#addChangeHandler ListGridField.change} and {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#addChangedHandler ListGridField.changed} handlers will fire but the
+     * <code>form</code> and <code>item</code> parameters will be null.
      *
      * @param handler the change handler
      * @return {@link HandlerRegistration} used to remove this handler

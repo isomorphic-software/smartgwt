@@ -836,6 +836,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
+     * If this canvas is being displayed in a {@link com.smartgwt.client.widgets.form.fields.CanvasItem}, this property will be
+     * set to point at the item. Otherwise this property will be null.
+     *
+     * @param canvasItem canvasItem Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCanvasItem(CanvasItem canvasItem)  throws IllegalStateException {
+        setAttribute("canvasItem", canvasItem.getJsObj(), false);
+    }
+
+    /**
+     * If this canvas is being displayed in a {@link com.smartgwt.client.widgets.form.fields.CanvasItem}, this property will be
+     * set to point at the item. Otherwise this property will be null.
+     *
+     *
+     * @return CanvasItem
+     */
+    public CanvasItem getCanvasItem()  {
+        return CanvasItem.getOrCreateRef(getAttributeAsJavaScriptObject("canvasItem"));
+    }
+
+    /**
      * If true, causes this canvas's children to snap to its grid when resizing. This behavior can be overridden on a per-child
      * basis by setting the  {@link com.smartgwt.client.widgets.Canvas#getSnapToGrid snapToGrid} or  {@link
      * com.smartgwt.client.widgets.Canvas#getSnapResizeToGrid snapResizeToGrid} value on the child.
@@ -4521,19 +4543,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({hover:$entry(function(){
+            obj.addProperties({hover:$debox($entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.HoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    }))
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.hover = $entry(function(){
+            obj.hover = $debox($entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.HoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               }));
         }
    }-*/;
     /**

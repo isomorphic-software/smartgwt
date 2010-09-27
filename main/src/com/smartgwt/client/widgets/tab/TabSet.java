@@ -293,6 +293,26 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     }
 
     /**
+     * Space to leave around the panes in our paneContainer
+     *
+     * @param paneMargin paneMargin Default value is 0
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setPaneMargin(int paneMargin)  throws IllegalStateException {
+        setAttribute("paneMargin", paneMargin, false);
+    }
+
+    /**
+     * Space to leave around the panes in our paneContainer
+     *
+     *
+     * @return int
+     */
+    public int getPaneMargin()  {
+        return getAttributeAsInt("paneMargin");
+    }
+
+    /**
      * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true, and {@link
      * com.smartgwt.client.widgets.tab.TabSet#getSymmetricPickerButton symmetricPickerButton} is  set to true, this property
      * governs the base URL for the picker button image, when displayed in a horizontal tab-bar [IE {@link

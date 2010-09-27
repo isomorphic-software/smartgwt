@@ -157,6 +157,17 @@ public class EventHandler {
     }-*/;
             
     /**
+     * Returns the natively reported target (or source) DOM element for the current mouse event. <b>NOTE:</b> Smart GWT cannot
+     * guarantee that the same element will be reported in all browser/platform configurations for all event types. If you wish
+     * to make use of this value, we recommend testing your use case  in all target browser configurations.
+     *
+     * @return native DOM element over which the mouse event occurred
+     */
+    public static native Element getNativeMouseTarget() /*-{
+        return $wnd.isc.EventHandler.getNativeMouseTarget();
+    }-*/;
+            
+    /**
      * Return the canvas that is the target of the mouse event. Returns null if no canvas found.
      *
      * @return event target canvas
