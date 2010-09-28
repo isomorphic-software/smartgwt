@@ -157,7 +157,6 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    			return javaList;
 	    		}
 	    	 } else {
-
 	    	 	// convert to a map
 	    	 	var javaMap = @java.util.HashMap::new()();
 	    	 	for (var fieldName in object) {
@@ -165,7 +164,8 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    	 		if(!$wnd.isA.String(fieldName)){
 	    	 			continue;
 	    	 		}
-	    	 		var convertedVal = $wnd.SmartGWT.convertToJavaObject(object[fieldName]);
+                    //if the field name is '__ref', the the value is already a GWT ajva object reference
+	    	 		var convertedVal = fieldName == '__ref' ? object[fieldName] : $wnd.SmartGWT.convertToJavaObject(object[fieldName]);
  					@com.smartgwt.client.util.JSOHelper::doAddToMap(Ljava/util/Map;Ljava/lang/String;Ljava/lang/Object;)(javaMap, fieldName, convertedVal);
 	    	 	}
 	    	 	return javaMap;
