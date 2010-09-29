@@ -1378,6 +1378,18 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
 	}-*/;
 
     /**
+     * For a SelectItem with an {@link #setOptionDataSource(com.smartgwt.client.data.DataSource)} optionDataSource} and allowing multiple
+     * selection {@link #setMultiple(Boolean) multiple} :true, returns the list of currently selected records, or null if none are selected.
+     *
+     * @return the list of selected records, or null if none are selected
+     */
+    public native ListGridRecord[] getSelectedRecords() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret = self.getSelectedRecords();
+        return @com.smartgwt.client.widgets.grid.ListGrid::convertToListGridRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+    /**
      * Set the pick list filter criteria function / handler.
      *
      * @param filterCriteriaFunction the filter criteria function

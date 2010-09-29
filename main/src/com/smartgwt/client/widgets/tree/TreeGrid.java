@@ -1820,6 +1820,16 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setSelectedPaths(selectedPaths);
     }-*/;
+            
+    /**
+     * Opens the folder specified by node if it's closed, and closes it if it's open.          TreeGrid will redraw if there's
+     * a change in the folder's open/closed state.
+     * @param node node to toggle
+     */
+    public native void toggleFolder(TreeNode node) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.toggleFolder(node.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
 
     // ********************* Static Methods ***********************
     /**
