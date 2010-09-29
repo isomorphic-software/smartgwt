@@ -18,6 +18,7 @@ package com.smartgwt.client.data;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.core.DataClass;
+import com.smartgwt.client.core.RefDataClass;
 import com.smartgwt.client.util.JSOHelper;
 
 import java.util.Date;
@@ -115,5 +116,25 @@ public class Criteria extends DataClass {
      */
     public Map getValues() {
         return JSOHelper.convertToMap(jsObj);
+    }
+
+    public static Criteria[] convertToCriteriaArray(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new Criteria[]{};
+        }
+        if (JSOHelper.isArray(nativeArray)) {
+            JavaScriptObject[] criteriasJS = JSOHelper.toArray(nativeArray);
+            Criteria[] objects = new Criteria[criteriasJS.length];
+            for (int i = 0; i < criteriasJS.length; i++) {
+                JavaScriptObject criteriaJS = criteriasJS[i];
+                Criteria obj = new Criteria(criteriaJS);
+                objects[i] = obj;
+            }
+            return objects;
+        } else {
+            Criteria[] ret = new Criteria[1];
+            ret[0] = new Criteria(nativeArray);
+            return ret;
+        }
     }
 }
