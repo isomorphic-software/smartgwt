@@ -940,4 +940,41 @@ public interface DataBoundComponent {
     * @see com.smartgwt.client.data.DataSource#exportClientData
     */
     void exportClientData(DSRequest requestProperties);
+    
+
+    /**
+     * Shows a HiliteEditor interface allowing end-users to edit the data-hilites currently in use by this DataBoundComponent.
+     */
+    void editHilites();
+
+    /**
+     * Get the current hilites encoded as a String, for saving.
+     *
+     * @return the hilite state
+     */
+    String getHiliteState();
+
+    /**
+     * Set the current hilites based on a hiliteState String previously returned from getHilitesState.
+     *
+     * @param hiliteState hilites state encoded as a String
+     */    
+    void setHiliteState(String hiliteState);
+
+    /**
+     * Accepts an array of hilite objects and applies them to this DataBoundComponent. See also {@link #getHilites() getHilites} for a method of
+     * retrieving the hilite array for storage, including hilites manually added by the user.
+     *
+     * @param hilites array of hilite objects
+     */
+    void setHilites(Hilite[] hilites);
+
+    /**
+     * Return the set of hilite-objects currently applied to this DataBoundComponent. These can be saved for
+     * storage and then restored to a component later via setHilites().
+     *
+     * @return array of hilite objects
+     */
+    Hilite[] getHilites();
+
 }
