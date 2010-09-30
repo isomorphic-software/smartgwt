@@ -54,6 +54,12 @@ import com.smartgwt.sample.showcase.client.grid.gridform.XsdDataSourceSample;
 import com.smartgwt.sample.showcase.client.grid.grouping.GridCustomGroupingSample;
 import com.smartgwt.sample.showcase.client.grid.grouping.GridDynamicGroupingSample;
 import com.smartgwt.sample.showcase.client.grid.grouping.GroupedEditingSample;
+import com.smartgwt.sample.showcase.client.grid.hiliting.GridDataDrivenHilitingSample;
+import com.smartgwt.sample.showcase.client.grid.hiliting.GridFormulaHilitingSample;
+import com.smartgwt.sample.showcase.client.grid.hiliting.GridPredefinedHilitingSample;
+import com.smartgwt.sample.showcase.client.grid.hiliting.GridUserDefinedHilitingSample;
+import com.smartgwt.sample.showcase.client.grid.hover.GridCustomHoverSample;
+import com.smartgwt.sample.showcase.client.grid.hover.GridHoverRelatedRecordsSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.*;
 import com.smartgwt.sample.showcase.client.grid.sortfilter.*;
 import com.smartgwt.sample.showcase.client.gwtintegration.GwtShowcaseSample;
@@ -132,12 +138,12 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Grid Summaries", "grid-summaries-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("New Samples", "new-category", "root", "silk/new.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Date Range Filtering", "daterange-filtering-new-category", "new-category", null, new GridDateRangeFilterSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Date Range Selection", "date-range-new-category", "new-category", null, new DateControlsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Grid Preferences", "grid-preferences-new-category", "new-category", null, new GridPreferencesSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Tree Preferences", "tree-preferences-new-category", "new-category", null, new TreePreferencesSample.Factory(), true, idSuffix),                    
-                    new ExplorerTreeNode("Custom ComboBox Styling", "styled-combobox-new-category", "new-category", null, new ComboBoxStyledSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Multi-Select Item", "multi-select-new-category", "new-category", null, new SelectMultipleSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("User Defined Hilites", "grid-hiliting-user-defined-new", "new-category", null, new GridUserDefinedHilitingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Pre-Defined Hilites", "grid-hiliting-pre-defined-new", "new-category", null, new GridPredefinedHilitingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Data Driven Hilites", "grid-hiliting-data-driven-new", "new-category", null, new GridDataDrivenHilitingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Formula Hilites", "grid-hiliting-formula-new", "new-category", null, new GridFormulaHilitingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Hover Related Records", "grid-hover-related-records-new", "new-category", null, new GridHoverRelatedRecordsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Hover Custom", "grid-hover-custom-new", "new-category", null, new GridCustomHoverSample.Factory(), true, idSuffix),
 
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
 
@@ -244,10 +250,20 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Nested Form", "grid-nested-form", "grid-expanding-rows-category", null, new GridRowExpansionEditorSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Nested Grid", "grid-nested-grid", "grid-expanding-rows-category", null, new GridRowExpansionRelatedRecordsSample.Factory(), true, idSuffix),
 
+                    new ExplorerTreeNode("Hover Components", "grid-hover-category", "grid-category", "silk/chart_organisation.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Related Records", "grid-hover-related-records", "grid-hover-category", null, new GridHoverRelatedRecordsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Custom Component", "grid-hover-custom", "grid-hover-category", null, new GridCustomHoverSample.Factory(), true, idSuffix),
+
                     new ExplorerTreeNode("Grouping", "grid-grouping-category", "grid-category", "silk/chart_organisation.png", null, true, idSuffix),
                     new ExplorerTreeNode("Dynamic Grouping", "grid-grouping-dynamic", "grid-grouping-category", null, new GridDynamicGroupingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grouped Editing", "grid-grouping-editing", "grid-grouping-category", null, new GroupedEditingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Custom Grouping", "grid-grouping-custom", "grid-grouping-category", null, new GridCustomGroupingSample.Factory(), true, idSuffix),
+
+                    new ExplorerTreeNode("Hiliting", "grid-hiliting-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
+                    new ExplorerTreeNode("User Defined", "grid-hiliting-user-defined", "grid-hiliting-category", null, new GridUserDefinedHilitingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Pre-Defined", "grid-hiliting-pre-defined", "grid-hiliting-category", null, new GridPredefinedHilitingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Data Driven", "grid-hiliting-data-driven", "grid-hiliting-category", null, new GridDataDrivenHilitingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Formula Hilites", "grid-hiliting-formula", "grid-hiliting-category", null, new GridFormulaHilitingSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Data Types", "grid-datatypes-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Text", "grid-datatypes-text", "grid-datatypes-category", null, new GridDataTypesTextSample.Factory(), true, idSuffix),
