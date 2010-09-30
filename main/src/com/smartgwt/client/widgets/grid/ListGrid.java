@@ -8836,6 +8836,17 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             var icon = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getValueIcon(Lcom/smartgwt/client/widgets/grid/ListGridField;Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;)(fieldJ, valueJ, recordJ);
             return icon;
         });
+
+        self.__getCellHoverComponent = self.getCellHoverComponent;
+        self.getCellHoverComponent = $entry(function(record, rowNum, colNum) {
+            var jObj = this.__ref;
+            var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            var rowNumJ = rowNum == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(rowNum),
+            	colNumJ = colNum == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(colNum);
+
+            var componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getCellHoverComponent(Lcom/smartgwt/client/data/Record;Ljava/lang/Integer;Ljava/lang/Integer;)(recordJ,rowNumJ,colNumJ);
+            return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
+        });
     }-*/;
 
     /**
@@ -9039,7 +9050,30 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var component = self.__getRollOverCanvas(rowNum, colNum);
         return @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
     }-*/;
-    
+
+    /**
+     * Gets the embedded-component to show as a given record's hoverComponent.  This component is then shown instead of the
+     * standard Hover-text.
+     * <p><br>
+     * By default, this method returns one of a set of builtin components, according to the value of listGrid.hoverMode.
+     * You can override this method  to return any component you wish to provide as a hoverComponent.
+     * <br><b>Note: This is an override point</b>
+     *
+     * @param record record to get the hoverComponent for
+     * @param rowNum the row number
+     * @param colNum the column number
+     * @return the component to show as a hover
+     */
+    protected native Canvas getCellHoverComponent(Record record, Integer rowNum, Integer colNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordJS = record.@com.smartgwt.client.core.DataClass::getJsObj()();
+        rowNum = rowNum == null ? null : rowNum.@java.lang.Integer::intValue()();
+        colNum = colNum == null ? null : colNum.@java.lang.Integer::intValue()();
+
+        var component = self.__getCellHoverComponent(recordJS, rowNum, colNum);
+        return @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
+    }-*/;
+
     /**
      * Expands a given record by creating a subcomponent and inserting it
      * in to the record's grid-row.  A number of built-in {@link com.smartgwt.client.types.ExpansionMode}  are supported by the
@@ -9573,6 +9607,20 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("defaultFields", defaultFields, false);
     }
 
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is true and {@link
+     * com.smartgwt.client.types.ExpansionMode listGrid.expansionMode} is <code>"related"</code>, this property specifies the
+     * dataSource for the  related records grid to be shown embedded in expanded records. <P> This property may also be
+     * specified on a per-record basis - see  {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordDetailDSProperty
+     * recordDetailDSProperty}
+     *
+     *
+     * @param detailDS detail datasource
+     */
+    public void setDetailDS(DataSource detailDS) {
+        setAttribute("detailDS", detailDS == null ? null : detailDS.getOrCreateJsObj(), true);
+    }
+    
     /**
      * An array of listGrid field configuration objects.  When a listGrid is initialized, if this property is set and there is
      * no value for the <code>fields</code> attribute, this.fields will be defaulted to a generated array of field objects
