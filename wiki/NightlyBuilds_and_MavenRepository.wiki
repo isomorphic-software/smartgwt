@@ -1,7 +1,7 @@
 #labels Featured
-Automated nightly builds can be found here : http://www.smartclient.com/smartgwt/builds/
+Automated nightly builds can be found here : http://www.smartclient.com/builds/
 
-Nightly builds of the SmartGWT Pro/EE evaluation can be found here : http://www.smartclient.com/builds/smartgwtee-eval/
+Nightly builds of the SmartGWT Pro/EE evaluation can be also found here : http://www.smartclient.com/builds/
 
 Maven repository that gets updated with the automated builds (LGPL only for now):
 
