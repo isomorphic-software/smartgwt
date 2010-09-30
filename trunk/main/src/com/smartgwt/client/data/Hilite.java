@@ -82,6 +82,24 @@ public class Hilite extends RefDataClass {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * Set the text color.
+     *
+     * @param textColor the text color
+     */
+    public void setTextColor(String textColor) {
+        setAttribute("textColor", textColor);
+    }
+
+    /**
+     * Return the text color.
+     *
+     * @return the text color
+     */
+    public String getTextColor() {
+        return getAttribute("textColor");
+    }
+    
+    /**
      * CSS text to be applied to cells where this hilite is applied, for example, "background-color:#FF0000"
      *
      * @param cssText cssText Default value is null
@@ -130,9 +148,31 @@ public class Hilite extends RefDataClass {
         setAttribute("fieldName", fieldName);
     }
 
+    public void setFieldNames(String... fieldName) {
+        setAttribute("fieldName", fieldName);
+    }
+
+    /**
+     * Set the background color.
+     *
+     * @param backgroundColor the text color
+     */
+    public void setBackgroundColor(String backgroundColor) {
+        setAttribute("backgroundColor", backgroundColor);
+    }
+
+    /**
+     * Return the background color.
+     *
+     * @return the background color
+     */
+    public String getBackgroundColor() {
+        return getAttribute("backgroundColor");
+    }
+        
+
     /**
      * Name of the field that hilite should be applied to.   <P> If unset, hilite is applied to every field of the record.
-     *
      *
      * @return String
      */
@@ -255,19 +295,17 @@ public class Hilite extends RefDataClass {
      *
      * @param criteria criteria Default value is null
      */
-    public void setCriteria(Criteria[] criteria) {
+    public void setCriteria(Criteria criteria) {
         setAttribute("criteria", criteria);
     }
 
     /**
      * Criteria defining what records this hilite should apply to.
-     *
-     *
      * @return Criteria
      */
-    public Criteria[] getCriteria() {
+    public Criteria getCriteria() {
         JavaScriptObject jso = getAttributeAsJavaScriptObject("criteria");
-        return Criteria.convertToCriteriaArray(jso);
+        return new Criteria(jso);
     }
 
     /**
