@@ -147,7 +147,7 @@
 					                        prefix="com/smartclient/theme/simplicity/public/sc/skins/Simplicity"/>
 																	
              <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/Mobile" includes="**/*.*" excludes="*.gz,*.psd"
-					                        prefix="com/smartclient/theme/simplicity/public/sc/skins/Mobile"/>
+					                        prefix="com/smartclient/theme/mobile/public/sc/skins/Mobile"/>
 																	
 			<zipfileset dir="${SC_HOME}/smartclientSDK/tools/selenium" includes="**/*.*"
 						prefix="com/smartclient/tools/public/tools/selenium"/>
