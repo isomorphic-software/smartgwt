@@ -183,7 +183,6 @@ public class SmartGwtEntryPoint implements EntryPoint {
         }
     }-*/;
 
-    @Override
     public void onModuleLoad() {
         //added boolean init check flag because GWT for some reason invokes this entry point class twice in hosted mode
         //even though it appears only once in the load hierarchy. Check with GWT team.
