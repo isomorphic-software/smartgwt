@@ -1276,7 +1276,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     /**
      * Adds a widget to the window.
      *
-     * @param item the widget to be added
+     * @param widget the widget to be added
      */
     public void addItem(Widget widget) {
         if (widget instanceof Canvas) {
@@ -1289,7 +1289,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     /**
      * Adds a widget to the window.
      *
-     * @param item the widget to be added
+     * @param component the widget to be added
      */
     public void addItem(Canvas component) {
         JavaScriptObject componentJS = component.getOrCreateJsObj();
@@ -1318,7 +1318,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     /**
      * Removes a widget from the window.
      *
-     * @param item the widget to be removed
+     * @param component the widget to be removed
      */
     public native void removeItem(Canvas component) /*-{
         var container = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
