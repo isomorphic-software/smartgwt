@@ -1,5 +1,6 @@
 package com.smartgwt.sample.showcase.client.grid.hover;
 
+import com.smartgwt.client.types.HoverMode;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.sample.showcase.client.PanelFactory;
@@ -30,19 +31,15 @@ public class GridHoverRelatedRecordsSample extends ShowcasePanel {
     }
 
     public Canvas getViewPanel() {
-
-        ListGrid listGrid = new ListGrid() {{
-            setAttribute("showHoverComponents", true, true);
-            setAttribute("hoverMode", "related", true);
-        }};
+        ListGrid listGrid = new ListGrid();
         listGrid.setWidth100();
         listGrid.setHeight100();
         listGrid.setDataSource(SupplyCategoryXmlDS.getInstance());
         listGrid.setAutoFetchData(true);
         listGrid.setCanHover(true);
         listGrid.setShowHover(true);
-        //listGrid.setShowHoverComponents(true);
-        //listGrid.setHoverMode(HoverMode.RELATED);
+        listGrid.setShowHoverComponents(true);
+        listGrid.setHoverMode(HoverMode.RELATED);
         listGrid.setHoverWidth(250);
         listGrid.setHoverHeight(350);
         listGrid.setDetailDS(ItemSupplyXmlDS.getInstance());
@@ -53,5 +50,4 @@ public class GridHoverRelatedRecordsSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
 }
