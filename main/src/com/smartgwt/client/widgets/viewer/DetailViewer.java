@@ -881,6 +881,58 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         return getAttributeAsString("hiliteProperty");
     }
 
+    /**
+     * Shows a HiliteEditor interface allowing end-users to edit the data-hilites currently in use by this DataBoundComponent.
+     */
+    public native void editHilites() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.editHilites();
+    }-*/;
+
+    /**
+     * Get the current hilites encoded as a String, for saving.
+     *
+     * @return the hilite state
+     */
+    public native String getHiliteState()  /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getHiliteState();
+    }-*/;
+
+    /**
+     * Set the current hilites based on a hiliteState String previously returned from getHilitesState.
+     *  
+     * @param hiliteState hilites state encoded as a String
+     */
+    public native void setHiliteState(String hiliteState)  /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.setHiliteState(hiliteState);
+    }-*/;
+
+    /**
+     * Accepts an array of hilite objects and applies them to this DataBoundComponent. See also {@link #getHilites() getHilites} for a method of
+     * retrieving the hilite array for storage, including hilites manually added by the user.
+     *
+     * @param hilites array of hilite objects
+     */
+    public native void setHilites(Hilite[] hilites)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var hilitesJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(hilites);
+        self.setHilites(hilitesJS);
+    }-*/;
+
+    /**
+     * Return the set of hilite-objects currently applied to this DataBoundComponent. These can be saved for
+     * storage and then restored to a component later via setHilites().
+     *
+     * @return array of hilite objects
+     */
+    public native Hilite[] getHilites()/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var hilitesJS = self.getHilites();
+        return @com.smartgwt.client.data.Hilite::convertToHiliteArray(Lcom/google/gwt/core/client/JavaScriptObject;)(hilitesJS);
+    }-*/;
+
     public void setDragDataAction(DragDataAction dragDataAction) {
         setAttribute("dragDataAction", dragDataAction.getValue(), true);
     }
@@ -1297,58 +1349,6 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     public native void exportClientData(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportClientData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
-    }-*/;
-
-    /**
-     * Shows a HiliteEditor interface allowing end-users to edit the data-hilites currently in use by this DataBoundComponent.
-     */
-    public native void editHilites() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.editHilites();
-    }-*/;
-
-    /**
-     * Get the current hilites encoded as a String, for saving.
-     *
-     * @return the hilite state
-     */
-    public native String getHiliteState()  /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getHiliteState();
-    }-*/;
-
-    /**
-     * Set the current hilites based on a hiliteState String previously returned from getHilitesState.
-     *  
-     * @param hiliteState hilites state encoded as a String
-     */
-    public native void setHiliteState(String hiliteState)  /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.setHiliteState(hiliteState);
-    }-*/;
-
-    /**
-     * Accepts an array of hilite objects and applies them to this DataBoundComponent. See also {@link #getHilites() getHilites} for a method of
-     * retrieving the hilite array for storage, including hilites manually added by the user.
-     *
-     * @param hilites array of hilite objects
-     */
-    public native void setHilites(Hilite[] hilites)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var hilitesJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(hilites);
-        self.setHilites(hilitesJS);
-    }-*/;
-
-    /**
-     * Return the set of hilite-objects currently applied to this DataBoundComponent. These can be saved for
-     * storage and then restored to a component later via setHilites().
-     *
-     * @return array of hilite objects
-     */
-    public native Hilite[] getHilites()/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var hilitesJS = self.getHilites();
-        return @com.smartgwt.client.data.Hilite::convertToHiliteArray(Lcom/google/gwt/core/client/JavaScriptObject;)(hilitesJS);
     }-*/;
 
 }
