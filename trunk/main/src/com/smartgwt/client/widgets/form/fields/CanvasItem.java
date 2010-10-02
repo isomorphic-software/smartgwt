@@ -233,18 +233,19 @@ public class CanvasItem extends FormItem {
     // ***********************************************************        
 
 
+ 
     protected native void setupCanvasConstructor() /*-{
-    	
-        var self = this.@com.smartgwt.client.widgets.form.fields.CanvasItem::getJsObj()();
-        self.createCanvas = $debox($entry(function() {
-            var jObj = this.__ref;
-            var jCanvas = jObj.@com.smartgwt.client.widgets.form.fields.CanvasItem::createCanvas()();
-
-            if (jCanvas == null) return null;
-            return jCanvas.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
-        }));
-    }-*/;
-
+		
+	    var self = this.@com.smartgwt.client.widgets.form.fields.CanvasItem::getJsObj()();
+	    self.createCanvas = $debox($entry(function() {
+	        var jObj = this.__ref;
+	        var jCanvas = jObj.@com.smartgwt.client.widgets.form.fields.CanvasItem::createCanvas()();
+	
+	        if (jCanvas != null) return jCanvas.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
+	        return this.canvas;
+	    }));
+	}-*/;
+    
     /**
      * This method is called to dynamically create a canvas for this CanvasItem.
      * Overriding this method provides a mechanism to dynamically create the

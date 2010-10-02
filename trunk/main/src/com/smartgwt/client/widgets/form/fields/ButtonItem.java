@@ -254,6 +254,15 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
         return Button.getOrCreateRef(getAttributeAsJavaScriptObject("canvas"));
     }
 
+    /**
+     * Custom Properties to apply to the button item.
+     *
+     * @param buttonProperties properties to apply to the button item.
+     */
+    public void setButtonProperties(Button buttonProperties) {
+        setAttribute("buttonProperties", buttonProperties.getConfig());
+    }
+
 }
 
 
