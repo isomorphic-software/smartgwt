@@ -3973,6 +3973,34 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHoverComponents showHoverComponents()} is true, the builtin
+     * mode to use when automatically creating a hover component for rows in this grid. <P> A number of builtin modes are
+     * provided - see {@link com.smartgwt.client.types.HoverMode}.  You can also override {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCellHoverComponent getCellHoverComponent()} to provide a custom hover
+     * widget - in that case, this attribute is ignored.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param hoverMode hoverMode Default value is null
+     */
+    public void setHoverMode(HoverMode hoverMode) {
+        setAttribute("hoverMode", hoverMode.getValue(), true);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHoverComponents showHoverComponents()} is true, the builtin
+     * mode to use when automatically creating a hover component for rows in this grid. <P> A number of builtin modes are
+     * provided - see {@link com.smartgwt.client.types.HoverMode}.  You can also override {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCellHoverComponent getCellHoverComponent()} to provide a custom hover
+     * widget - in that case, this attribute is ignored.
+     *
+     *
+     * @return HoverMode
+     */
+    public HoverMode getHoverMode()  {
+        return EnumUtil.getEnum(HoverMode.values(), getAttribute("hoverMode"));
+    }
+
+    /**
      * Style to apply to hovers shown over this grid.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -5654,6 +5682,28 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public Boolean getShowHover()  {
         return getAttributeAsBoolean("showHover");
+    }
+
+    /**
+     * When set to true and canHover is also true, shows a widget hovering at the mouse point. <P> A number of builtin modes
+     * are provided - see {@link com.smartgwt.client.types.HoverMode}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showHoverComponents showHoverComponents Default value is false
+     */
+    public void setShowHoverComponents(Boolean showHoverComponents) {
+        setAttribute("showHoverComponents", showHoverComponents, true);
+    }
+
+    /**
+     * When set to true and canHover is also true, shows a widget hovering at the mouse point. <P> A number of builtin modes
+     * are provided - see {@link com.smartgwt.client.types.HoverMode}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowHoverComponents()  {
+        return getAttributeAsBoolean("showHoverComponents");
     }
 
     /**
@@ -8846,7 +8896,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
             var componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getCellHoverComponent(Lcom/smartgwt/client/data/Record;Ljava/lang/Integer;Ljava/lang/Integer;)(recordJ,rowNumJ,colNumJ);
             return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
-        });
+        });    
     }-*/;
 
     /**
@@ -9042,7 +9092,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @param colNum Index of the current roll-over column. This parameter will be null unless useCellRollOvers is true for the grid 
      * @return the embedded component
      */
-    protected native Canvas getRollOverCanvas (Integer rowNum, Integer colNum) /*-{
+    protected native Canvas getRollOverCanvas(Integer rowNum, Integer colNum) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         rowNum = rowNum == null ? null : rowNum.@java.lang.Integer::intValue()();
         colNum = colNum == null ? null : colNum.@java.lang.Integer::intValue()();
@@ -9620,7 +9670,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public void setDetailDS(DataSource detailDS) {
         setAttribute("detailDS", detailDS == null ? null : detailDS.getOrCreateJsObj(), true);
     }
-    
+
     /**
      * An array of listGrid field configuration objects.  When a listGrid is initialized, if this property is set and there is
      * no value for the <code>fields</code> attribute, this.fields will be defaulted to a generated array of field objects
@@ -11752,6 +11802,58 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return getAttributeAsString("hiliteProperty");
     }
 
+    /**
+     * Shows a HiliteEditor interface allowing end-users to edit the data-hilites currently in use by this DataBoundComponent.
+     */
+    public native void editHilites() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.editHilites();
+    }-*/;
+
+    /**
+     * Get the current hilites encoded as a String, for saving.
+     *
+     * @return the hilite state
+     */
+    public native String getHiliteState()  /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getHiliteState();
+    }-*/;
+
+    /**
+     * Set the current hilites based on a hiliteState String previously returned from getHilitesState.
+     *  
+     * @param hiliteState hilites state encoded as a String
+     */
+    public native void setHiliteState(String hiliteState)  /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.setHiliteState(hiliteState);
+    }-*/;
+
+    /**
+     * Accepts an array of hilite objects and applies them to this DataBoundComponent. See also {@link #getHilites() getHilites} for a method of
+     * retrieving the hilite array for storage, including hilites manually added by the user.
+     *
+     * @param hilites array of hilite objects
+     */
+    public native void setHilites(Hilite[] hilites)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var hilitesJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(hilites);
+        self.setHilites(hilitesJS);
+    }-*/;
+
+    /**
+     * Return the set of hilite-objects currently applied to this DataBoundComponent. These can be saved for
+     * storage and then restored to a component later via setHilites().
+     *
+     * @return array of hilite objects
+     */
+    public native Hilite[] getHilites()/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var hilitesJS = self.getHilites();
+        return @com.smartgwt.client.data.Hilite::convertToHiliteArray(Lcom/google/gwt/core/client/JavaScriptObject;)(hilitesJS);
+    }-*/;
+
     public void setDragDataAction(DragDataAction dragDataAction) {
         setAttribute("dragDataAction", dragDataAction.getValue(), true);
     }
@@ -12168,58 +12270,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native void exportClientData(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportClientData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
-    }-*/;
-
-    /**
-     * Shows a HiliteEditor interface allowing end-users to edit the data-hilites currently in use by this DataBoundComponent.
-     */
-    public native void editHilites() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.editHilites();
-    }-*/;
-
-    /**
-     * Get the current hilites encoded as a String, for saving.
-     *
-     * @return the hilite state
-     */
-    public native String getHiliteState()  /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getHiliteState();
-    }-*/;
-
-    /**
-     * Set the current hilites based on a hiliteState String previously returned from getHilitesState.
-     *  
-     * @param hiliteState hilites state encoded as a String
-     */
-    public native void setHiliteState(String hiliteState)  /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.setHiliteState(hiliteState);
-    }-*/;
-
-    /**
-     * Accepts an array of hilite objects and applies them to this DataBoundComponent. See also {@link #getHilites() getHilites} for a method of
-     * retrieving the hilite array for storage, including hilites manually added by the user.
-     *
-     * @param hilites array of hilite objects
-     */
-    public native void setHilites(Hilite[] hilites)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var hilitesJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(hilites);
-        self.setHilites(hilitesJS);
-    }-*/;
-
-    /**
-     * Return the set of hilite-objects currently applied to this DataBoundComponent. These can be saved for
-     * storage and then restored to a component later via setHilites().
-     *
-     * @return array of hilite objects
-     */
-    public native Hilite[] getHilites()/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var hilitesJS = self.getHilites();
-        return @com.smartgwt.client.data.Hilite::convertToHiliteArray(Lcom/google/gwt/core/client/JavaScriptObject;)(hilitesJS);
     }-*/;
 
 }
