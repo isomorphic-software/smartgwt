@@ -51,10 +51,6 @@ public class GridCustomHoverSample extends ShowcasePanel {
     public Canvas getViewPanel() {
 
         ListGrid listGrid = new ListGrid() {
-            {
-                setAttribute("showHoverComponents", true, true);
-            }
-
             @Override
             protected Canvas getCellHoverComponent(Record record, Integer rowNum, Integer colNum) {
                 DetailViewer detailViewer = new DetailViewer();
@@ -68,13 +64,14 @@ public class GridCustomHoverSample extends ShowcasePanel {
             }
 
         };
+
         listGrid.setWidth100();
         listGrid.setHeight100();
         listGrid.setDataSource(SupplyCategoryXmlDS.getInstance());
         listGrid.setAutoFetchData(true);
         listGrid.setCanHover(true);
         listGrid.setShowHover(true);
-        //listGrid.setShowHoverComponents(true);
+        listGrid.setShowHoverComponents(true);
 
         return listGrid;
     }

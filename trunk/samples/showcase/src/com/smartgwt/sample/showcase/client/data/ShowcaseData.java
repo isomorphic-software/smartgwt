@@ -205,6 +205,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Cell Values", "grid-autofit-values", "grid-autofit-category", null, new AutofitValuesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Rows", "grid-autofit-rows", "grid-autofit-category", null, new AutofitRowsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Columns", "grid-autofit-columns", "grid-autofit-category", null, new AutofitColumnsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Column Widths", "grid-autofit-column-widths", "grid-autofit-category", null, new AutofitColumnWidthsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("New Records", "grid-autofit-new-records", "grid-autofit-category", null, new AutofitNewRecordsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Filter", "grid-autofit-filter", "grid-autofit-category", null, new AutofitFilterSample.Factory(), true, idSuffix),
 
