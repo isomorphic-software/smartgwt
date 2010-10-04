@@ -31,36 +31,36 @@ public enum ChartType implements ValueEnum {
      * represent two facets.  May support simultaneous stacking and clustering for                  3
      * facets.
      */
-    COLUMN("column"),
+    COLUMN("Column"),
 
     /**
      * Values represented by horizontal bars.  Typically supports stacking to                 
      * represent two facets.  May support simultaneous stacking and clustering for                  3
      * facets.
      */
-    BAR("bar"),
+    BAR("Bar"),
 
     /**
      * Values represented by a lines between data points, or stacked areas for                 
      * multiple facets.
      */
-    LINE("line"),
+    LINE("Line"),
 
     /**
      * Values represented on a circular background by a line around the center, or                 
      * stacked areas for multiple facets
      */
-    RADAR("radar"),
+    RADAR("Radar"),
 
     /**
      * Circular chart with wedges representing values.  Single facet only
      */
-    PIE("pie"),
+    PIE("Pie"),
 
     /**
      * Like a pie chart with a central hole.  Single facet only
      */
-    DOUGHNUT("doughnut");
+    DOUGHNUT("Doughnut");
     private String value;
 
     ChartType(String value) {
