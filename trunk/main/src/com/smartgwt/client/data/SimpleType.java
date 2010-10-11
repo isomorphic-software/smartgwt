@@ -33,7 +33,9 @@ import com.smartgwt.client.widgets.tile.*;
 import com.smartgwt.client.widgets.tile.events.*;
 import com.smartgwt.client.widgets.grid.*;
 import com.smartgwt.client.widgets.grid.events.*;
+import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
@@ -305,6 +307,21 @@ public class SimpleType extends BaseClass {
         return ref == null ? new DataClass(jsObj) : (RefDataClass) ref;
     }
 
+    public native boolean isCreated()/*-{
+        var jsConfig = this.@com.smartgwt.client.data.SimpleType::getConfig()();
+        var name = jsConfig.name;
+        if(name == null || name === undefined) return false;
+        var obj = $wnd.isc.builtinTypes[name];
+        return obj != null && obj !== undefined;
+    }-*/;
+
+    public native JavaScriptObject getJsObj()/*-{
+        var jsConfig = this.@com.smartgwt.client.data.SimpleType::getConfig()();
+        var name = jsConfig.name;
+        if(name == null || name === undefined) return null;
+        var obj = $wnd.isc.builtinTypes[name];
+        return obj === undefined ? null : obj;
+    }-*/;
 }
 
 
