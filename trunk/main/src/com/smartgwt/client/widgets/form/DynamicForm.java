@@ -33,7 +33,9 @@ import com.smartgwt.client.widgets.tile.*;
 import com.smartgwt.client.widgets.tile.events.*;
 import com.smartgwt.client.widgets.grid.*;
 import com.smartgwt.client.widgets.grid.events.*;
+import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
@@ -184,6 +186,33 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      */
     public Boolean getAutoFocus()  {
         return getAttributeAsBoolean("autoFocus");
+    }
+
+    /**
+     * If this browser has a 'spellCheck' feature for text-based form item elements, should it be used for items in this form?
+     * Can be overridden at the item level via  {@link com.smartgwt.client.widgets.form.fields.FormItem#getBrowserSpellCheck
+     * browserSpellCheck} <P> Notes:<br> - this property only applies to text based items such as TextItem and
+     * TextAreaItem.<br> - this property is not supported on all browsers.
+     *
+     * @param browserSpellCheck browserSpellCheck Default value is true
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setBrowserSpellCheck
+     */
+    public void setBrowserSpellCheck(Boolean browserSpellCheck) {
+        setAttribute("browserSpellCheck", browserSpellCheck, true);
+    }
+
+    /**
+     * If this browser has a 'spellCheck' feature for text-based form item elements, should it be used for items in this form?
+     * Can be overridden at the item level via  {@link com.smartgwt.client.widgets.form.fields.FormItem#getBrowserSpellCheck
+     * browserSpellCheck} <P> Notes:<br> - this property only applies to text based items such as TextItem and
+     * TextAreaItem.<br> - this property is not supported on all browsers.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getBrowserSpellCheck
+     */
+    public Boolean getBrowserSpellCheck()  {
+        return getAttributeAsBoolean("browserSpellCheck");
     }
 
     /**
@@ -501,6 +530,50 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      */
     public Boolean getHiliteRequiredFields()  {
         return getAttributeAsBoolean("hiliteRequiredFields");
+    }
+
+    /**
+     * If true, form item values will be automatically saved when each item's "editorExit"  handler is fired as well as when
+     * the entire form is submitted.
+     *
+     * @param implicitSave implicitSave Default value is false
+     */
+    public void setImplicitSave(Boolean implicitSave) {
+        setAttribute("implicitSave", implicitSave, true);
+    }
+
+    /**
+     * If true, form item values will be automatically saved when each item's "editorExit"  handler is fired as well as when
+     * the entire form is submitted.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getImplicitSave()  {
+        return getAttributeAsBoolean("implicitSave");
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.form.DynamicForm#getImplicitSave implicitSave} is true, indicates that form item
+     * values will be automatically saved after a given pause during editing, as well as when  each item's "editorExit" handler
+     * is fired and when the entire form is submitted.
+     *
+     * @param implicitSaveDelay implicitSaveDelay Default value is 2000
+     */
+    public void setImplicitSaveDelay(int implicitSaveDelay) {
+        setAttribute("implicitSaveDelay", implicitSaveDelay, true);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.form.DynamicForm#getImplicitSave implicitSave} is true, indicates that form item
+     * values will be automatically saved after a given pause during editing, as well as when  each item's "editorExit" handler
+     * is fired and when the entire form is submitted.
+     *
+     *
+     * @return int
+     */
+    public int getImplicitSaveDelay()  {
+        return getAttributeAsInt("implicitSaveDelay");
     }
 
     /**
