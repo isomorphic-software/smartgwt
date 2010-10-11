@@ -33,7 +33,9 @@ import com.smartgwt.client.widgets.tile.*;
 import com.smartgwt.client.widgets.tile.events.*;
 import com.smartgwt.client.widgets.grid.*;
 import com.smartgwt.client.widgets.grid.events.*;
+import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
@@ -121,6 +123,29 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      */
     public TextMatchStyle getAutoFetchTextMatchStyle()  {
         return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
+    }
+
+    /**
+     * When using {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowMultipleColumns single-column mode}, this i18n
+     * property dictates the title for the {@link com.smartgwt.client.widgets.grid.ColumnTree#getBackButton button} docked to
+     * the top left  which allows navigation back through the column tree.
+     *
+     * @param backButtonTitle backButtonTitle Default value is "Back"
+     */
+    public void setBackButtonTitle(String backButtonTitle) {
+        setAttribute("backButtonTitle", backButtonTitle, true);
+    }
+
+    /**
+     * When using {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowMultipleColumns single-column mode}, this i18n
+     * property dictates the title for the {@link com.smartgwt.client.widgets.grid.ColumnTree#getBackButton button} docked to
+     * the top left  which allows navigation back through the column tree.
+     *
+     *
+     * @return String
+     */
+    public String getBackButtonTitle()  {
+        return getAttributeAsString("backButtonTitle");
     }
 
     /**
@@ -413,6 +438,25 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     }
 
     /**
+     * When set to false, only displays a single column at a time, showing a slide animation  when moving between columns.
+     *
+     * @param showMultipleColumns showMultipleColumns Default value is null
+     */
+    public void setShowMultipleColumns(Boolean showMultipleColumns) {
+        setAttribute("showMultipleColumns", showMultipleColumns, true);
+    }
+
+    /**
+     * When set to false, only displays a single column at a time, showing a slide animation  when moving between columns.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowMultipleColumns()  {
+        return getAttributeAsBoolean("showMultipleColumns");
+    }
+
+    /**
      * If set, and {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is also set, each column's
      * header will show  a count of the number of nodes in that column
      *
@@ -535,6 +579,32 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
         var ret = self.getRecord(index, colNum);
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.widgets.tree.TreeNode::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+            
+    /**
+     * Get the selected record, that is, the parent of the nodes in the rightmost visible column. <P> This is generally the
+     * most recently clicked node unless programmatic navigation has taken place. <P> If only the first column is showing, the
+     * root node is returned (which can be deteted via {@link com.smartgwt.client.widgets.tree.Tree#isRoot Tree.isRoot}).
+     *
+     * @return the selected record
+     */
+    public native Record getSelectedRecord() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getSelectedRecord();
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.data.Record::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+            
+    /**
+     * Navigate to the previous column.
+     */
+    public native void navigateBack() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.navigateBack();
     }-*/;
             
     /**
