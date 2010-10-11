@@ -33,7 +33,9 @@ import com.smartgwt.client.widgets.tile.*;
 import com.smartgwt.client.widgets.tile.events.*;
 import com.smartgwt.client.widgets.grid.*;
 import com.smartgwt.client.widgets.grid.events.*;
+import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
@@ -11619,11 +11621,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return created Chart instance
      * 
      */
-    public native Canvas chartData(String labelField) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var param = self.chartData(labelField);
-        return @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-    }-*/;
+    public native FacetChart chartData(String labelField) /*-{
+	    var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+	    var param = self.chartData(labelField);
+	    return @com.smartgwt.client.widgets.chart.FacetChart::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+	}-*/;
 
     /**
      * Chart the data in this listGrid as a multi-series chart. <P> Each row provides a series of data.  Each series of data is
@@ -11646,13 +11648,15 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @return created Chart instance
      */
-    public native Canvas chartData(String labelField, String[] dataFields, Record[] dataRows, Canvas chartProperties, boolean labelFieldFirst) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var dataFieldsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(dataFields);
-        var dataRowsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(dataRows);
-        var chartPropertiesJS = chartProperties == null ? null : chartProperties.@com.smartgwt.client.widgets.Canvas::getConfig()();
-        return self.chartData(labelField, dataFieldsJS, dataRowsJS, chartPropertiesJS, labelFieldFirst);
-    }-*/;
+    public native FacetChart chartData(String labelField, String[] dataFields, Record[] dataRows, FacetChart chartProperties, boolean labelFieldFirst) /*-{
+	    var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+	    var dataFieldsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(dataFields);
+	    var dataRowsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(dataRows);
+	    var chartPropertiesJS = chartProperties == null ? null : chartProperties.@com.smartgwt.client.widgets.chart.FacetChart::getConfig()();
+	    var chartJS = self.chartData(labelField, dataFieldsJS, dataRowsJS, chartPropertiesJS, labelFieldFirst);
+	    return @com.smartgwt.client.widgets.chart.FacetChart::new(Lcom/google/gwt/core/client/JavaScriptObject;)(chartJS);
+	    
+	}-*/;
 
 
 
