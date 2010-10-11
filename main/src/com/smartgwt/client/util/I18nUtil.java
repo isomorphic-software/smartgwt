@@ -233,7 +233,7 @@ public class I18nUtil {
 
         if($wnd.isc.ListGrid) {
             $wnd.isc.ListGrid.addProperties({emptyMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_emptyMessage()()});
-            $wnd.isc.ListGrid.addProperties({loadingDataMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_loadingDataMessage()()});
+            $wnd.isc.ListGrid.addProperties({loadingDataMessage: '${loadingImage}&nbsp;' + messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_loadingDataMessage()()});
             $wnd.isc.ListGrid.addProperties({removeFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_removeFieldTitle()()});
             $wnd.isc.ListGrid.addProperties({cancelEditingConfirmationMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_cancelEditingConfirmationMessage()()});
             $wnd.isc.ListGrid.addProperties({confirmDiscardEditsMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_confirmDiscardEditsMessage()()});
