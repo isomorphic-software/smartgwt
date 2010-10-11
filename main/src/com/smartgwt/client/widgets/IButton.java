@@ -33,7 +33,9 @@ import com.smartgwt.client.widgets.tile.*;
 import com.smartgwt.client.widgets.tile.events.*;
 import com.smartgwt.client.widgets.grid.*;
 import com.smartgwt.client.widgets.grid.events.*;
+import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
@@ -112,6 +114,17 @@ public class IButton extends StretchImgButton {
         
     // ***********************************************************        
 
+
+    /**
+     * Constructor for IButton.
+     *
+     * @param title the button title
+     * @param clickHandler the button click handler
+     */
+    public IButton(String title, ClickHandler clickHandler) {
+        this(title);
+        addClickHandler(clickHandler);
+    }
 
     /**
      * Preload primary IButton skin images.

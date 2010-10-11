@@ -33,7 +33,9 @@ import com.smartgwt.client.widgets.tile.*;
 import com.smartgwt.client.widgets.tile.events.*;
 import com.smartgwt.client.widgets.grid.*;
 import com.smartgwt.client.widgets.grid.events.*;
+import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
@@ -264,10 +266,9 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * Call this method to set the data in the client-side cache after initialization.
      *
      * @param cacheData Array of records to apply as the client-side cache. Default value is null
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCacheData(Record... cacheData)  throws IllegalStateException {
-        setAttribute("cacheData", cacheData, false);
+    public void setCacheData(Record... cacheData) {
+        setAttribute("cacheData", cacheData, true);
     }
 
     /**

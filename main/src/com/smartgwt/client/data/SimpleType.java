@@ -322,6 +322,7 @@ public class SimpleType extends BaseClass {
         var obj = $wnd.isc.builtinTypes[name];
         return obj === undefined ? null : obj;
     }-*/;
+
 }
 
 

@@ -22,6 +22,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#getShowFocused
  * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#getShowFocusedWithItem
  * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#getNeverDisable
+ * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#getTabIndex
  * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#getWidth
  * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#getHeight
  * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#getPrompt

@@ -33,7 +33,9 @@ import com.smartgwt.client.widgets.tile.*;
 import com.smartgwt.client.widgets.tile.events.*;
 import com.smartgwt.client.widgets.grid.*;
 import com.smartgwt.client.widgets.grid.events.*;
+import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
@@ -3356,10 +3358,15 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }-*/;
             
     /**
-     * Remove all visual representation of a Canvas. <P> This is far more expensive than hide(), because in order to become
-     * visible again, the Canvas must be draw()n again.  Generally, application code has no reason to call clear(); if you want
-     * to temporarily hide a Canvas, use hide() and show(), and if you want to permanently destroy a Canvas, use destroy(). <P>
-     * Note: a clear() will happen as part of moving a Canvas to a different parent.  See addChild().
+     * Remove all visual representation of a Canvas, including all child or member Canvases, or managed top-level components
+     * such as the ListGrid drop location indicator. <P> This is more expensive than hide(), because in order to become visible
+     * again, the Canvas must be draw()n again.  Generally, application code has no reason to call clear() unless it is
+     * attempting to do advanced memory management.  If you want to temporarily hide a Canvas, use hide() and show(), and if
+     * you want to permanently destroy a Canvas, use {@link com.smartgwt.client.widgets.Canvas#destroy Canvas.destroy}. <P> You
+     * would only use clear() if you were managing a very large pool of components and you wanted to reclaim some of the memory
+     * used by components that had not been used in a while, while still being able to just draw() them to make them active and
+     * visible again. <P> Note: a clear() will happen as part of moving a Canvas to a different parent.  See {@link
+     * com.smartgwt.client.widgets.Canvas#addChild Canvas.addChild}.
      */
     public native void clear() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -5159,18 +5166,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }-*/;
             
     /**
-     * Fires when the interior size of the parent changes, including parent resize and scrollbar introduction or removal. <p>
-     * This method allows a child to implement a layout policy that can be used within any  parent, such as a Resizer component
-     * that always snaps to the parent's bottom-right corner.  The default implementation of this method applies a child's
-     * percent sizes, if any, or implements layout based on the {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo}
-     * property
-     */
-    public native void parentResized() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.parentResized();
-    }-*/;
-            
-    /**
      * Redraws the widget immediately with its current property values.   Generally, if you want a Canvas to redraw, call
      * markForRedraw() - this will cause the Canvas to be redrawn when current processing ends, so that a series of
      * modifications made to a Canvas will cause it to redraw only once. Only call redraw() directly if you need immediate
@@ -5621,6 +5616,12 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
 
+        self.__parentResized = self.parentResized;
+        self.parentResized = $debox($entry(function() {
+            var jObj = this.__ref;
+            jObj.@com.smartgwt.client.widgets.Canvas::parentResized()();
+        }));
+
         self.__willAcceptDrop = self.willAcceptDrop;
         self.willAcceptDrop = $debox($entry(function() {
             var jObj = this.__ref;
@@ -6016,7 +6017,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return true if the widget object being dragged can be dropped on this widget,                      false otherwise
      */
     public native Boolean willAcceptDrop() /*-{
-    
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var retVal = self.__willAcceptDrop();
         if(retVal == null || retVal === undefined) {
@@ -6024,10 +6024,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         } else {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
-        
     }-*/;
 
-    
+    /**
+     * Fires when the interior size of the parent changes, including parent resize and scrollbar introduction or removal. <p>
+     * This method allows a child to implement a layout policy that can be used within any  parent, such as a Resizer component
+     * that always snaps to the parent's bottom-right corner.  The default implementation of this method applies a child's
+     * percent sizes, if any, or implements layout based on the {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo}
+     * property.
+     * <br><p>Make sure you call super.parentResized() if you'd like the default behavior to apply.
+     *
+     * <br><b>Note: This is an override point</b>
+     *
+     */
+    protected native void parentResized() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.__parentResized();
+    }-*/;
 
     /**
      * Offset of the shadow.  Defaults to half of <code>shadowDepth</code> if unset. <P> Because of the blurred edges, a
