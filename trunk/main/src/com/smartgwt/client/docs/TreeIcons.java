@@ -33,6 +33,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ColumnTree#getShowOpenIcons
  * @see com.smartgwt.client.widgets.grid.ColumnTree#getShowCustomIconOpen
  * @see com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconOpenProperty
+ * @see com.smartgwt.client.widgets.grid.ColumnTree#getShowMultipleColumns
  */
 public interface TreeIcons {
 }

@@ -33,7 +33,9 @@ import com.smartgwt.client.widgets.tile.*;
 import com.smartgwt.client.widgets.tile.events.*;
 import com.smartgwt.client.widgets.grid.*;
 import com.smartgwt.client.widgets.grid.events.*;
+import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
@@ -1129,7 +1131,10 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     // ********************* Methods ***********************
             
     /**
-     * Add a canvas to the layout, optionally at a specific position.
+     * Same as {@link com.smartgwt.client.widgets.layout.Layout#addMember Layout.addMember}.  Note that in order to add items
+     * to {@link com.smartgwt.client.widgets.Window#getBody body}, you use {@link com.smartgwt.client.widgets.Window#addItem
+     * Window.addItem} rather than <code>addMember</code>.  Adding a member to  a Window adds the member as a sibling to the
+     * header, body and other built-in Window subcomponents.
      * @param newMember the canvas object to be added to the layout
      */
     public native void addMember(Canvas newMember) /*-{
@@ -1138,7 +1143,10 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }-*/;
 
     /**
-     * Add a canvas to the layout, optionally at a specific position.
+     * Same as {@link com.smartgwt.client.widgets.layout.Layout#addMember Layout.addMember}.  Note that in order to add items
+     * to {@link com.smartgwt.client.widgets.Window#getBody body}, you use {@link com.smartgwt.client.widgets.Window#addItem
+     * Window.addItem} rather than <code>addMember</code>.  Adding a member to  a Window adds the member as a sibling to the
+     * header, body and other built-in Window subcomponents.
      * @param newMember the canvas object to be added to the layout
      * @param position the position in the layout to place newMember (starts with 0);                                  if omitted, it will be
      * added at the last position

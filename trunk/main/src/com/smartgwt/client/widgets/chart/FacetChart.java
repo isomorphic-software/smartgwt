@@ -35,6 +35,7 @@ import com.smartgwt.client.widgets.grid.*;
 import com.smartgwt.client.widgets.grid.events.*;
 import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
@@ -406,6 +407,26 @@ public class FacetChart extends Canvas {
         return getAttributeAsString("valueProperty");
     }
 
+    /**
+     * A label for the data values, such as "Sales in Thousands", typically used as the label for the value axis.
+     *
+     * @param valueTitle valueTitle Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setValueTitle(String valueTitle)  throws IllegalStateException {
+        setAttribute("valueTitle", valueTitle, false);
+    }
+
+    /**
+     * A label for the data values, such as "Sales in Thousands", typically used as the label for the value axis.
+     *
+     *
+     * @return String
+     */
+    public String getValueTitle()  {
+        return getAttributeAsString("valueTitle");
+    }
+
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
@@ -523,6 +544,7 @@ public class FacetChart extends Canvas {
 
 
 }
+
 
 
 

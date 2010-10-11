@@ -33,7 +33,9 @@ import com.smartgwt.client.widgets.tile.*;
 import com.smartgwt.client.widgets.tile.events.*;
 import com.smartgwt.client.widgets.grid.*;
 import com.smartgwt.client.widgets.grid.events.*;
+import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
@@ -82,6 +84,29 @@ public class Hilite extends RefDataClass {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * When edited via a HiliteEditor, the value for the background color of this  hilite.  If this is omitted, it will be
+     * automatically derived from the <i>backgroundColor</i> attribute of {@link com.smartgwt.client.data.Hilite#getCssText
+     * cssText}.  When a hilite is saved in a HiliteEditor, both  attributes are set automatically.
+     *
+     * @param backgroundColor backgroundColor Default value is null
+     */
+    public void setBackgroundColor(String backgroundColor) {
+        setAttribute("backgroundColor", backgroundColor);
+    }
+
+    /**
+     * When edited via a HiliteEditor, the value for the background color of this  hilite.  If this is omitted, it will be
+     * automatically derived from the <i>backgroundColor</i> attribute of {@link com.smartgwt.client.data.Hilite#getCssText
+     * cssText}.  When a hilite is saved in a HiliteEditor, both  attributes are set automatically.
+     *
+     *
+     * @return String
+     */
+    public String getBackgroundColor()  {
+        return getAttributeAsString("backgroundColor");
+    }
+
+    /**
      * CSS text to be applied to cells where this hilite is applied, for example, "background-color:#FF0000"
      *
      * @param cssText cssText Default value is null
@@ -122,7 +147,8 @@ public class Hilite extends RefDataClass {
     }
 
     /**
-     * Name of the field that hilite should be applied to.   <P> If unset, hilite is applied to every field of the record.
+     * Name of the field, or array of fieldNames, this hilite should be applied to.   <P> If unset, hilite is applied to every
+     * field of the record.
      *
      * @param fieldName fieldName Default value is null
      */
@@ -131,7 +157,8 @@ public class Hilite extends RefDataClass {
     }
 
     /**
-     * Name of the field that hilite should be applied to.   <P> If unset, hilite is applied to every field of the record.
+     * Name of the field, or array of fieldNames, this hilite should be applied to.   <P> If unset, hilite is applied to every
+     * field of the record.
      *
      *
      * @return String
@@ -225,9 +252,32 @@ public class Hilite extends RefDataClass {
     }
 
     /**
+     * When edited via a HiliteEditor, the value for the foreground color of this  hilite.  If this is omitted, it will be
+     * automatically derived from the <i>textColor</i> attribute of {@link com.smartgwt.client.data.Hilite#getCssText cssText}.
+     *  When a hilite is saved in a HiliteEditor, both  attributes are set automatically.
+     *
+     * @param textColor textColor Default value is null
+     */
+    public void setTextColor(String textColor) {
+        setAttribute("textColor", textColor);
+    }
+
+    /**
+     * When edited via a HiliteEditor, the value for the foreground color of this  hilite.  If this is omitted, it will be
+     * automatically derived from the <i>textColor</i> attribute of {@link com.smartgwt.client.data.Hilite#getCssText cssText}.
+     *  When a hilite is saved in a HiliteEditor, both  attributes are set automatically.
+     *
+     *
+     * @return String
+     */
+    public String getTextColor()  {
+        return getAttributeAsString("textColor");
+    }
+
+    /**
      * User-visible title for this hilite.  Used for interfaces such as menus that can enable or disable hilites.
      *
-     * @param title title Default value is false
+     * @param title title Default value is null
      */
     public void setTitle(String title) {
         setAttribute("title", title);
@@ -262,42 +312,6 @@ public class Hilite extends RefDataClass {
      */
     public void setFieldNames(String... fieldNames) {
         setAttribute("fieldName", fieldNames);
-    }
-
-    /**
-     * Set the background color.
-     *
-     * @param backgroundColor the text color
-     */
-    public void setBackgroundColor(String backgroundColor) {
-        setAttribute("backgroundColor", backgroundColor);
-    }
-
-    /**
-     * Return the background color.
-     *
-     * @return the background color
-     */
-    public String getBackgroundColor() {
-        return getAttribute("backgroundColor");
-    }
-
-    /**
-     * Set the text color.
-     *
-     * @param textColor the text color
-     */
-    public void setTextColor(String textColor) {
-        setAttribute("textColor", textColor);
-    }
-
-    /**
-     * Return the text color.
-     *
-     * @return the text color
-     */
-    public String getTextColor() {
-        return getAttribute("textColor");
     }
 
     /**
