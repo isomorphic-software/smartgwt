@@ -56,7 +56,19 @@ public class ColorPickerItem extends FormItem {
         setType("color");
     }
 
-
-
-
+    /**
+     * Return the value tracked by this form item.
+     *
+     * @return value of this element
+     */
+    public native String getValueAsString() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret;
+        if(self.setValue) {
+             ret = self.getValue();
+        } else {
+            ret = self.value;
+        }
+        return ret == null || ret === undefined ? null : ret.toString();
+    }-*/;
 }

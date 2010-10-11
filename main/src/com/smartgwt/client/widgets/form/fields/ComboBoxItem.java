@@ -33,7 +33,9 @@ import com.smartgwt.client.widgets.tile.*;
 import com.smartgwt.client.widgets.tile.events.*;
 import com.smartgwt.client.widgets.grid.*;
 import com.smartgwt.client.widgets.grid.events.*;
+import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
@@ -1082,6 +1084,22 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     public void setOptionFilterContext(DSRequest dsRequestProperties) {
         setAttribute("optionFilterContext", dsRequestProperties);
     }
+
+    /**
+     * Return the value tracked by this form item.
+     *
+     * @return value of this element
+     */
+    public native String getValueAsString() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret;
+        if(self.setValue) {
+             ret = self.getValue();
+        } else {
+            ret = self.value;
+        }
+        return ret == null || ret === undefined ? null : ret.toString();
+    }-*/;
 
 }
 
