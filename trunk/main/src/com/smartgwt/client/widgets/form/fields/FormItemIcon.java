@@ -33,7 +33,9 @@ import com.smartgwt.client.widgets.tile.*;
 import com.smartgwt.client.widgets.tile.events.*;
 import com.smartgwt.client.widgets.grid.*;
 import com.smartgwt.client.widgets.grid.events.*;
+import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
@@ -122,9 +124,9 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     }
 
     /**
-     * If <code>icon.neverDisable</code> is true, when this form item is disabled, the   icon will remain enabled.   Note that
-     * disabling the entire form will disable all items, together with their   icons including those marked as neverDisable -
-     * this property only has an effect   if the form is enabled and a specific item is disabled within it.
+     * If <code>icon.neverDisable</code> is true, when this form item is disabled, the  icon will remain enabled.  Note that
+     * disabling the entire form will disable all items, together with their  icons including those marked as neverDisable -
+     * this property only has an effect  if the form is enabled and a specific item is disabled within it.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param neverDisable neverDisable Default value is null
@@ -134,9 +136,9 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     }
 
     /**
-     * If <code>icon.neverDisable</code> is true, when this form item is disabled, the   icon will remain enabled.   Note that
-     * disabling the entire form will disable all items, together with their   icons including those marked as neverDisable -
-     * this property only has an effect   if the form is enabled and a specific item is disabled within it.
+     * If <code>icon.neverDisable</code> is true, when this form item is disabled, the  icon will remain enabled.  Note that
+     * disabling the entire form will disable all items, together with their  icons including those marked as neverDisable -
+     * this property only has an effect  if the form is enabled and a specific item is disabled within it.
      *
      *
      * @return Boolean
@@ -226,7 +228,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     }
 
     /**
-     * Should this icon's image switch to the appropriate "over" source when the user rolls  over or focuses on the icon?
+     * Should this icon's image switch to the appropriate "over" source when the user rolls over or focuses on the icon?
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showOver showOver Default value is null
@@ -237,7 +239,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     }
 
     /**
-     * Should this icon's image switch to the appropriate "over" source when the user rolls  over or focuses on the icon?
+     * Should this icon's image switch to the appropriate "over" source when the user rolls over or focuses on the icon?
      *
      *
      * @return Boolean
@@ -248,9 +250,9 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     }
 
     /**
-     * If set, this property determines this icon's image source.      If unset the form item's <code>defaultIconSrc</code>
-     * property will be used      instead.<br>      As with <code>defaultIconSrc</code> this URL will be modified by adding    
-     *  "_Over" or "_Disabled" if appropriate to show the icons over or disabled state.
+     * If set, this property determines this icon's image source. If unset the form item's <code>defaultIconSrc</code> property
+     * will be used instead.<br> As with <code>defaultIconSrc</code> this URL will be modified by adding "_Over" or "_Disabled"
+     * if appropriate to show the icons over or disabled state.
      *
      * @param src src Default value is null
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setDefaultIconSrc
@@ -261,9 +263,9 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     }
 
     /**
-     * If set, this property determines this icon's image source.      If unset the form item's <code>defaultIconSrc</code>
-     * property will be used      instead.<br>      As with <code>defaultIconSrc</code> this URL will be modified by adding    
-     *  "_Over" or "_Disabled" if appropriate to show the icons over or disabled state.
+     * If set, this property determines this icon's image source. If unset the form item's <code>defaultIconSrc</code> property
+     * will be used instead.<br> As with <code>defaultIconSrc</code> this URL will be modified by adding "_Over" or "_Disabled"
+     * if appropriate to show the icons over or disabled state.
      *
      *
      * @return String
@@ -272,6 +274,34 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      */
     public String getSrc()  {
         return getAttributeAsString("src");
+    }
+
+    /**
+     * TabIndex for this formItemIcon. <P> Set to -1 to remove the icon from the tab order, but be cautious doing so: if the
+     * icon triggers important application functionality that cannot otherwise be accessed via the keyboard, it would be a
+     * violation of accessibility standard to remove the icon from the tab order. <P> Any usage other than setting to -1 is
+     * extremely advanced in the same way as using {@link com.smartgwt.client.widgets.form.fields.FormItem#getGlobalTabIndex
+     * globalTabIndex}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param tabIndex tabIndex Default value is null
+     */
+    public void setTabIndex(Integer tabIndex) {
+        setAttribute("tabIndex", tabIndex);
+    }
+
+    /**
+     * TabIndex for this formItemIcon. <P> Set to -1 to remove the icon from the tab order, but be cautious doing so: if the
+     * icon triggers important application functionality that cannot otherwise be accessed via the keyboard, it would be a
+     * violation of accessibility standard to remove the icon from the tab order. <P> Any usage other than setting to -1 is
+     * extremely advanced in the same way as using {@link com.smartgwt.client.widgets.form.fields.FormItem#getGlobalTabIndex
+     * globalTabIndex}.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getTabIndex()  {
+        return getAttributeAsInt("tabIndex");
     }
 
     /**

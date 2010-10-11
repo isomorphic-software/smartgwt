@@ -33,7 +33,9 @@ import com.smartgwt.client.widgets.tile.*;
 import com.smartgwt.client.widgets.tile.events.*;
 import com.smartgwt.client.widgets.grid.*;
 import com.smartgwt.client.widgets.grid.events.*;
+import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
@@ -165,6 +167,32 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      */
     public Boolean getAlwaysFetchMissingValues()  {
         return getAttributeAsBoolean("alwaysFetchMissingValues");
+    }
+
+    /**
+     * If this browser supports spell-checking of text editing elements, do we want this enabled for this item? If unset the
+     * property will be inherited from the containing form. <P> Notes:<br> - this property only applies to text based items
+     * such as TextItem and TextAreaItem.<br> - this property is not supported on all browsers.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param browserSpellCheck browserSpellCheck Default value is null
+     * @see com.smartgwt.client.widgets.form.DynamicForm#setBrowserSpellCheck
+     */
+    public void setBrowserSpellCheck(Boolean browserSpellCheck) {
+        setAttribute("browserSpellCheck", browserSpellCheck);
+    }
+
+    /**
+     * If this browser supports spell-checking of text editing elements, do we want this enabled for this item? If unset the
+     * property will be inherited from the containing form. <P> Notes:<br> - this property only applies to text based items
+     * such as TextItem and TextAreaItem.<br> - this property is not supported on all browsers.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.widgets.form.DynamicForm#getBrowserSpellCheck
+     */
+    public Boolean getBrowserSpellCheck()  {
+        return getAttributeAsBoolean("browserSpellCheck");
     }
 
     /**
@@ -672,7 +700,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * TabIndex for the form item within the page. Takes precedence over any local tab index specified as {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getTabIndex item.tabIndex}.
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTabIndex item.tabIndex}. <P> Use of this API is <b>extremely</b>
+     * advanced and essentially implies taking over management of tab index assignment for all components on the page.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param globalTabIndex globalTabIndex Default value is null
@@ -684,7 +713,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * TabIndex for the form item within the page. Takes precedence over any local tab index specified as {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getTabIndex item.tabIndex}.
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTabIndex item.tabIndex}. <P> Use of this API is <b>extremely</b>
+     * advanced and essentially implies taking over management of tab index assignment for all components on the page.
      *
      *
      * @return Integer
@@ -2069,9 +2099,11 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * tabIndex for the form item within the form.  Auto-assigned if not specified.<br> Note: This controls the tab order
-     * within the form. <P> To specify the tabindex of an item within the page as a whole (not just this form), use
-     * globalTabIndex instead.
+     * TabIndex for the form item within the form, which controls the order in which controls are visited when the user hits
+     * the tab or shift-tab keys to navigate between items.  <P> tabIndex is automatically assigned as the order that items
+     * appear in the {@link com.smartgwt.client.widgets.form.DynamicForm#getItems items} list. <P> To specify the tabindex of
+     * an item within the page as a whole (not just this form), use {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getGlobalTabIndex globalTabIndex} instead.
      *
      * @param tabIndex tabIndex Default value is null
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
@@ -2081,9 +2113,11 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * tabIndex for the form item within the form.  Auto-assigned if not specified.<br> Note: This controls the tab order
-     * within the form. <P> To specify the tabindex of an item within the page as a whole (not just this form), use
-     * globalTabIndex instead.
+     * TabIndex for the form item within the form, which controls the order in which controls are visited when the user hits
+     * the tab or shift-tab keys to navigate between items.  <P> tabIndex is automatically assigned as the order that items
+     * appear in the {@link com.smartgwt.client.widgets.form.DynamicForm#getItems items} list. <P> To specify the tabindex of
+     * an item within the page as a whole (not just this form), use {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getGlobalTabIndex globalTabIndex} instead.
      *
      *
      * @return Integer
@@ -2945,19 +2979,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }-*/;
             
     /**
-     * Return the value tracked by this form item. <P> Note that for FormItems that have a ValueMap or where a {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#formatValue formatter} has been defined, <code>getValue()</code>
-     * returns the underlying value of the FormItem, not the displayed value.
-     *
-     * @return value of this element
-     */
-    public native Object getValue() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var ret = self.getValue();
-        return $wnd.SmartGWT.convertToJavaType(ret);
-    }-*/;
-            
-    /**
      * Getter method to retrieve the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} for this
      * item. If unset, default behavior will return the {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name}
      * of this field.
@@ -3791,7 +3812,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         if(self.setValue) {
             self.setValue(value);
         } else {
-            self.defaultValue = value;
+            self.value = value;
         }
     }-*/;
 
@@ -3800,44 +3821,96 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         if(self.setValue) {
             self.setValue(value);
         } else {
-            self.defaultValue = value;
+            self.value = value;
         }
     }-*/;
 
+    /**
+     * Set the value of the form item.
+     *
+     * @param value the form item value
+     */
     public native void setValue(double value) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         if(self.setValue) {
             self.setValue(value);
         } else {
-            self.defaultValue = value;
+            self.value = value;
         }
     }-*/;
 
+    /**
+     * Set the value of the form item.
+     *
+     * @param value the form item value
+     */
     public native void setValue(Date value) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var valueJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(value);
         if(self.setValue) {
             self.setValue(valueJS);
         } else {
-            self.defaultValue = valueJS;
+            self.value = valueJS;
         }
     }-*/;
 
+    /**
+     * Set the value of the form item.
+     *
+     * @param value the form item value
+     */
     public native void setValue(String value) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         if(self.setValue) {
             self.setValue(value);
         } else {
-            self.defaultValue = value;
+            self.value = value;
         }
     }-*/;
 
+    /**
+     * Set the value of the form item.
+     *
+     * @param value the form item value
+     */
     public native void setValue(boolean value) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         if(self.setValue) {
             self.setValue(value);
         } else {
-            self.defaultValue = value;
+            self.value = value;
+        }
+    }-*/;
+
+    /**
+     * Set the value of the form item as an object. GWT objects set as FormItem values are typically used
+     * with {@link com.smartgwt.client.widgets.form.FormItemValueParser} and {@link com.smartgwt.client.widgets.form.FormItemValueFormatter}
+     * API's for custom value parsing and formatting.
+     *
+     * @param value the form item value
+     */
+    public void setValue(Object value) {
+        if(value == null || value instanceof String) {
+            setValue((String) value);
+        } else if (value instanceof Integer) {
+            setValue(((Integer) value).intValue());
+        } else if (value instanceof Double) {
+            setValue(((Double) value).doubleValue());
+        } else if(value instanceof Float) {
+            setValue(((Float) value).floatValue());
+        } else if (value instanceof Date) {
+            setValue((Date) value);
+        } else {
+            doSetValue(value);
+        }
+    }
+
+    private native void doSetValue(Object value) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        if(self.setValue) {
+            self.setValue(value);
+        } else {
+            self.value = value;
         }
     }-*/;
 
@@ -4133,6 +4206,36 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             return @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(self.form);
         } else {
             return null;
+        }
+    }-*/;
+
+    /**
+     * Return the value tracked by this form item. <P> Note that for FormItems that have a ValueMap or where a {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#formatValue formatter} has been defined, <code>getValue()</code>
+     * returns the underlying value of the FormItem, not the displayed value.
+     *
+     * @return value of this element
+     */
+    public native Object getValue() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret;
+        if(self.setValue) {
+             ret = self.getValue();
+        } else {
+            ret = self.value;
+        }
+        return $wnd.SmartGWT.convertToJavaType(ret);
+    }-*/;
+
+    /**
+     * Method to show a picker for this item. By default this method is called if the user clicks on a pickerIcon, shown
+     * by setting <code>this.showPickerIcon</code> to true. May also be called programatically.<br> Default
+     * implementation lazily creates a 'picker' from the set of defaults defined on this FormItem.
+     */
+    public native void showPicker() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        if(self.showPicker) {
+            self.showPicker();
         }
     }-*/;
 

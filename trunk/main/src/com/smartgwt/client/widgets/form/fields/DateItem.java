@@ -33,7 +33,9 @@ import com.smartgwt.client.widgets.tile.*;
 import com.smartgwt.client.widgets.tile.events.*;
 import com.smartgwt.client.widgets.grid.*;
 import com.smartgwt.client.widgets.grid.events.*;
+import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
@@ -128,6 +130,32 @@ public class DateItem extends FormItem {
      */
     public void setDateFormatter(DateDisplayFormat dateFormatter) {
         setAttribute("dateFormatter", dateFormatter.getValue());
+    }
+
+    /**
+     * Default date to show in the date chooser. If this items value is currently unset, this property may be specified to set
+     * a default date to highlight in the dateChooser  for this item. If unset, the date chooser will highlight the current
+     * date by default. Note that this has no effect if the item as a whole currently has a value - in that case the date
+     * chooser will always highlight the current value for the item.
+     *
+     * @param defaultChooserDate defaultChooserDate Default value is null
+     */
+    public void setDefaultChooserDate(java.util.Date defaultChooserDate) {
+        setAttribute("defaultChooserDate", defaultChooserDate);
+    }
+
+    /**
+     * Default date to show in the date chooser. If this items value is currently unset, this property may be specified to set
+     * a default date to highlight in the dateChooser  for this item. If unset, the date chooser will highlight the current
+     * date by default. Note that this has no effect if the item as a whole currently has a value - in that case the date
+     * chooser will always highlight the current value for the item.
+     *
+     *
+     * @return Returns the default date to display in the date chooser if this form items value is currently unset. <P> Default
+     * implementation returns {@link com.smartgwt.client.widgets.form.fields.DateItem#getDefaultChooserDate defaultChooserDate}
+     */
+    public java.util.Date getDefaultChooserDate()  {
+        return getAttributeAsDate("defaultChooserDate");
     }
 
     /**
@@ -525,6 +553,22 @@ public class DateItem extends FormItem {
         
     // ***********************************************************        
 
+
+    /**
+     * Return the value tracked by this form item.
+     *
+     * @return value of this element
+     */
+    public native Date getValueAsDate() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret;
+        if(self.setValue) {
+             ret = self.getValue();
+        } else {
+            ret = self.value;
+        }
+        return ret == null ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
+    }-*/;
 
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true, falls through to
