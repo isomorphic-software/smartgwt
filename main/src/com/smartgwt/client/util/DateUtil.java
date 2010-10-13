@@ -46,7 +46,7 @@ public class DateUtil {
      * @param separator the date separator
      */
     public static native void setDefaultDateSeparator(String separator) /*-{
-        $wnd.isc.Date.setDefaultDateSeparator(separator);
+        $wnd.Date.setDefaultDateSeparator(separator);
     }-*/;
 
     /**
@@ -55,7 +55,7 @@ public class DateUtil {
      * @return the default date separator
      */
     public static native String getDefaultDateSeparator() /*-{
-        return $wnd.isc.Date.getDefaultDateSeperator();
+        return $wnd.Date.getDefaultDateSeperator();
     }-*/;
 	
     /**
