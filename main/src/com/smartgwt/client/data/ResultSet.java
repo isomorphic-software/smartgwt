@@ -740,7 +740,7 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
      */
     public native int compareCriteria(Criteria newCriteria, Criteria oldCriteria) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        return self.compareCriteria(newCriteria.@com.smartgwt.client.core.DataClass::getJsObj()(), oldCriteria.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return self.compareCriteria(newCriteria == null ? null : newCriteria.@com.smartgwt.client.core.DataClass::getJsObj()(), oldCriteria == null ? null : oldCriteria.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
     /**
@@ -758,7 +758,7 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
      */
     public native int compareCriteria(Criteria newCriteria, Criteria oldCriteria, DSRequest requestProperties, String policy) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        return self.compareCriteria(newCriteria.@com.smartgwt.client.core.DataClass::getJsObj()(), oldCriteria.@com.smartgwt.client.core.DataClass::getJsObj()(), requestProperties.@com.smartgwt.client.data.DSRequest::getJsObj()(), policy);
+        return self.compareCriteria(newCriteria == null ? null : newCriteria.@com.smartgwt.client.core.DataClass::getJsObj()(), oldCriteria == null ? null : oldCriteria.@com.smartgwt.client.core.DataClass::getJsObj()(), requestProperties.@com.smartgwt.client.data.DSRequest::getJsObj()(), policy);
     }-*/;
 
     /**
@@ -775,7 +775,7 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
      */
     public native Boolean willFetchData(Criteria newCriteria) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var retVal =self.willFetchData(newCriteria.@com.smartgwt.client.core.DataClass::getJsObj()());
+        var retVal =self.willFetchData(newCriteria == null ? null : newCriteria.@com.smartgwt.client.core.DataClass::getJsObj()());
         if(retVal == null || retVal === undefined) {
             return null;
         } else {
@@ -798,7 +798,7 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
      */
     public native Boolean willFetchData(Criteria newCriteria, String textMatchStyle) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var retVal =self.willFetchData(newCriteria.@com.smartgwt.client.core.DataClass::getJsObj()(), textMatchStyle);
+        var retVal =self.willFetchData(newCriteria == null ? null : newCriteria.@com.smartgwt.client.core.DataClass::getJsObj()(), textMatchStyle);
         if(retVal == null || retVal === undefined) {
             return null;
         } else {

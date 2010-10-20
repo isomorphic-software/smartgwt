@@ -2663,7 +2663,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * formatting a currency value stored in cents (so "100" to "$1.00")<br> The value passed to this method is the raw
      * value for the cell.<br> Takes precedence over <code>formatCellValue</code> defined at the grid level for cells in
      * this field. <P> Note: this formatter will not be applied to the values displayed in cells being edited. The
-     * {@link com.smartgwt.client.widgets.grid.ListGridField#formatEditorValue} is provided for that purpose.
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#setEditValueFormatter} is provided for that purpose.
      *
      * @param formatter the formatter
      */
@@ -2676,6 +2676,44 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
             }));
     }-*/;
 
+    
+
+    /**
+     * Return the value to display in cells of this field which are being edited. <P> <i>Example usage</i>: converting a stored
+     * value in cents (100) to a dollar-and-cents  value in the editor (1.00) <P> The value passed to this method is the raw
+     * value for the cell.<P> To convert the formatted value displayed within an editor back to a raw value, implement {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#setEditorValueParser} as well.
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     *
+     * @param formatter the CellEditValueFormatter
+     */
+    public native void setEditValueFormatter(CellEditValueFormatter formatter) /*-{
+	    var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+	    self.formatEditorValue = $debox($entry(function(value, record, rowNum, colNum) {
+	        var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+	        var valueJ = $wnd.SmartGWT.convertToJavaType(value);
+	        var rv = formatter.@com.smartgwt.client.widgets.grid.CellEditValueFormatter::format(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(valueJ, recordJ, rowNum, colNum);
+	        return rv;
+	    }));
+	}-*/;
+
+
+    /**
+     * Method used to convert the value displayed in an editor for some cell in this field into a raw value for saving.
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     *
+     * @param parser the CellEditValueParser
+     */
+    public native void setEditValueParser(CellEditValueParser parser) /*-{
+	    var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+	    self.parseEditorValue = $debox($entry(function(value, record, rowNum, colNum) {
+	        var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+	        var valueJ = $wnd.SmartGWT.convertToJavaType(value);
+	        return parser.@com.smartgwt.client.widgets.grid.CellEditValueParser::parse(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(valueJ, recordJ, rowNum, colNum);
+	    }));
+	}-*/;
+    
+    
     /**
      * Optional function to return the value that should be used when sorting this field. <P> Note that, if the dataset
      * exceeds {@link com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize dataPageSize} and hence paging is

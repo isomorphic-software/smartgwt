@@ -1607,7 +1607,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      */
     public native Criteria convertRelativeDates(Criteria criteria) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var ret = self.convertRelativeDates(criteria.@com.smartgwt.client.core.DataClass::getJsObj()());
+        var ret = self.convertRelativeDates(criteria == null ? null : criteria.@com.smartgwt.client.core.DataClass::getJsObj()());
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
@@ -1624,7 +1624,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      */
     public native Criteria convertRelativeDates(Criteria criteria, String timezoneOffset, int firstDayOfWeek) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var ret = self.convertRelativeDates(criteria.@com.smartgwt.client.core.DataClass::getJsObj()(), timezoneOffset, firstDayOfWeek);
+        var ret = self.convertRelativeDates(criteria == null ? null : criteria.@com.smartgwt.client.core.DataClass::getJsObj()(), timezoneOffset, firstDayOfWeek);
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
@@ -1649,7 +1649,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      */
     public native void exportData(Criteria criteria, DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.exportData(criteria.@com.smartgwt.client.core.DataClass::getJsObj()(), requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+        self.exportData(criteria == null ? null : criteria.@com.smartgwt.client.core.DataClass::getJsObj()(), requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
             
     /**
@@ -1856,7 +1856,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#sql_dynamic_reporting" target="examples">Dynamic Reporting Example</a>
      */
     public static native Criteria combineCriteria(Criteria criteria1, Criteria criteria2) /*-{
-        var ret = $wnd.isc.DataSource.combineCriteria(criteria1.@com.smartgwt.client.core.DataClass::getJsObj()(), criteria2.@com.smartgwt.client.core.DataClass::getJsObj()());
+        var ret = $wnd.isc.DataSource.combineCriteria(criteria1 == null ? null : criteria1.@com.smartgwt.client.core.DataClass::getJsObj()(), criteria2 == null ? null : criteria2.@com.smartgwt.client.core.DataClass::getJsObj()());
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
@@ -1875,7 +1875,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#sql_dynamic_reporting" target="examples">Dynamic Reporting Example</a>
      */
     public static native Criteria combineCriteria(Criteria criteria1, Criteria criteria2, CriteriaCombineOperator outerOperator, TextMatchStyle textMatchStyle) /*-{
-        var ret = $wnd.isc.DataSource.combineCriteria(criteria1.@com.smartgwt.client.core.DataClass::getJsObj()(), criteria2.@com.smartgwt.client.core.DataClass::getJsObj()(), outerOperator, textMatchStyle.@com.smartgwt.client.types.TextMatchStyle::getValue()());
+        var ret = $wnd.isc.DataSource.combineCriteria(criteria1 == null ? null : criteria1.@com.smartgwt.client.core.DataClass::getJsObj()(), criteria2 == null ? null : criteria2.@com.smartgwt.client.core.DataClass::getJsObj()(), outerOperator, textMatchStyle.@com.smartgwt.client.types.TextMatchStyle::getValue()());
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
