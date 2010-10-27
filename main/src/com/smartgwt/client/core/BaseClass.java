@@ -151,11 +151,11 @@ public abstract class BaseClass {
 
 
  
-    protected String getAttribute(String attribute) {
+    public String getAttribute(String attribute) {
         return getAttributeAsString(attribute);
     }
     
-    protected native String getAttributeAsString(String property)/*-{
+    public native String getAttributeAsString(String property)/*-{
         var ret;
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
@@ -172,7 +172,7 @@ public abstract class BaseClass {
         return ret === undefined ? null : ret;
     }-*/;
 
-    protected native Date getAttributeAsDate(String property)/*-{
+    public native Date getAttributeAsDate(String property)/*-{
         var ret;
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
@@ -189,7 +189,7 @@ public abstract class BaseClass {
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
     }-*/;
 
-    protected native Integer getAttributeAsInt(String property)/*-{
+    public native Integer getAttributeAsInt(String property)/*-{
         var ret;
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
@@ -206,7 +206,7 @@ public abstract class BaseClass {
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
     }-*/;
 
-    protected native Double getAttributeAsDouble(String property)/*-{
+    public native Double getAttributeAsDouble(String property)/*-{
         var ret;
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
@@ -223,7 +223,7 @@ public abstract class BaseClass {
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDouble(D)(ret);
     }-*/;
 
-    protected native Element getAttributeAsElement(String property)/*-{
+    public native Element getAttributeAsElement(String property)/*-{
         var ret;
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
@@ -240,7 +240,7 @@ public abstract class BaseClass {
         return ret === undefined ? null : ret;
     }-*/;
 
-    protected native JavaScriptObject getAttributeAsJavaScriptObject(String property)/*-{
+    public native JavaScriptObject getAttributeAsJavaScriptObject(String property)/*-{
         var ret;
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
@@ -257,7 +257,7 @@ public abstract class BaseClass {
         return ret === undefined ? null : ret;
     }-*/;
 
-    protected native Float getAttributeAsFloat(String property)/*-{
+    public native Float getAttributeAsFloat(String property)/*-{
         var ret;
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
@@ -274,7 +274,7 @@ public abstract class BaseClass {
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toFloat(F)(ret);
     }-*/;
 
-    protected native Boolean getAttributeAsBoolean(String property)/*-{
+    public native Boolean getAttributeAsBoolean(String property)/*-{
         var ret;
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
@@ -296,7 +296,7 @@ public abstract class BaseClass {
     }
 
 
-    protected void setAttribute(String attribute, String value, boolean allowPostCreate) {
+    public void setAttribute(String attribute, String value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -306,7 +306,7 @@ public abstract class BaseClass {
         }
     }
 
-    protected void setAttribute(String attribute, Boolean value, boolean allowPostCreate) {
+    public void setAttribute(String attribute, Boolean value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -316,7 +316,7 @@ public abstract class BaseClass {
         }
     }
 
-    protected void setAttribute(String attribute, Map value, boolean allowPostCreate) {
+    public void setAttribute(String attribute, Map value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, JSOHelper.convertMapToJavascriptObject(value));
         } else if (allowPostCreate) {
@@ -326,7 +326,7 @@ public abstract class BaseClass {
         }
     }
 
-    protected void setAttribute(String attribute, int[] value, boolean allowPostCreate) {
+    public void setAttribute(String attribute, int[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, JSOHelper.convertToJavaScriptArray(value));
         } else if (allowPostCreate) {
@@ -336,7 +336,7 @@ public abstract class BaseClass {
         }
     }
 
-    protected void setAttribute(String attribute, BaseClass[] value, boolean allowPostCreate) {
+    public void setAttribute(String attribute, BaseClass[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, JSOHelper.convertToJavaScriptArray(value));
         } else if (allowPostCreate) {
@@ -346,7 +346,7 @@ public abstract class BaseClass {
         }
     }
 
-    protected void setAttribute(String attribute, DataClass[] value, boolean allowPostCreate) {
+    public void setAttribute(String attribute, DataClass[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, JSOHelper.convertToJavaScriptArray(value));
         } else if (allowPostCreate) {
@@ -357,7 +357,7 @@ public abstract class BaseClass {
     }
 
 
-    protected void setAttribute(String attribute, double value, boolean allowPostCreate) {
+    public void setAttribute(String attribute, double value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -367,7 +367,7 @@ public abstract class BaseClass {
         }
     }
 
-    protected void setAttribute(String attribute, int value, boolean allowPostCreate) {
+    public void setAttribute(String attribute, int value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -377,7 +377,7 @@ public abstract class BaseClass {
         }
     }
 
-    protected void setAttribute(String attribute, Date value, boolean allowPostCreate) {
+    public void setAttribute(String attribute, Date value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -387,7 +387,7 @@ public abstract class BaseClass {
         }
     }
 
-    protected void setAttribute(String attribute, ValueEnum[] value, boolean allowPostCreate) {
+    public void setAttribute(String attribute, ValueEnum[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -397,7 +397,7 @@ public abstract class BaseClass {
         }
     }
 
-    protected void setAttribute(String attribute, DataClass value, boolean allowPostCreate) {
+    public void setAttribute(String attribute, DataClass value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value.getJsObj());
         } else if (allowPostCreate) {
@@ -407,7 +407,7 @@ public abstract class BaseClass {
         }
     }
 
-    protected void setAttribute(String attribute, JavaScriptObject value, boolean allowPostCreate) {
+    public void setAttribute(String attribute, JavaScriptObject value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -417,7 +417,7 @@ public abstract class BaseClass {
         }
     }
 
-    protected void setAttribute(String attribute, String[] value, boolean allowPostCreate) {
+    public void setAttribute(String attribute, String[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, JSOHelper.convertToJavaScriptArray(value));
         } else if (allowPostCreate) {
@@ -437,7 +437,7 @@ public abstract class BaseClass {
         }
     }
 
-    protected void setAttribute(String attribute, Element value, boolean allowPostCreate) {
+    public void setAttribute(String attribute, Element value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {

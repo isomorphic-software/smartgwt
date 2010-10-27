@@ -1662,7 +1662,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
 
     //getters
 
-    protected String getAttribute(String property) {
+    public String getAttribute(String property) {
         if(isCreated()) {
             return JSOHelper.getAttribute(getJsObj(), property);
         } else {
@@ -1670,7 +1670,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         }
     }
 
-    protected String getAttributeAsString(String property) {
+    public String getAttributeAsString(String property) {
         if(isCreated()) {
             return JSOHelper.getAttribute(getJsObj(), property);
         } else {
@@ -1678,7 +1678,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         }
     }
 
-    protected Date getAttributeAsDate(String property) {
+    public Date getAttributeAsDate(String property) {
         if(isCreated()) {
             return JSOHelper.getAttributeAsDate(getJsObj(), property);
         } else {
@@ -1686,7 +1686,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         }
     }
 
-    protected Integer getAttributeAsInt(String property) {
+    public Integer getAttributeAsInt(String property) {
         if(isCreated()) {
             return JSOHelper.getAttributeAsInt(getJsObj(), property);
         } else {
@@ -1694,7 +1694,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         }
     }
 
-    protected Double getAttributeAsDouble(String property) {
+    public Double getAttributeAsDouble(String property) {
         if(isCreated()) {
             return JSOHelper.getAttributeAsDouble(getJsObj(), property);
         } else {
@@ -1702,7 +1702,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         }
     }
 
-    protected Element getAttributeAsElement(String property) {
+    public Element getAttributeAsElement(String property) {
         if(isCreated()) {
             return JSOHelper.getAttributeAsElement(getJsObj(), property);
         } else {
@@ -1710,7 +1710,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         }
     }
 
-    protected JavaScriptObject getAttributeAsJavaScriptObject(String property) {
+    public JavaScriptObject getAttributeAsJavaScriptObject(String property) {
         if(isCreated()) {
             return JSOHelper.getAttributeAsJavaScriptObject(getJsObj(), property);
         } else {
@@ -1718,7 +1718,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         }
     }
 
-    protected Float getAttributeAsFloat(String property) {
+    public Float getAttributeAsFloat(String property) {
         if(isCreated()) {
             return JSOHelper.getAttributeAsFloat(getJsObj(), property);
         } else {
@@ -1726,7 +1726,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         }
     }
 
-    protected Boolean getAttributeAsBoolean(String property) {
+    public Boolean getAttributeAsBoolean(String property) {
         if(isCreated()) {
             return JSOHelper.getAttributeAsBoolean(getJsObj(), property);
         } else {
