@@ -1,6 +1,9 @@
 package com.smartgwt.sample.showcase.client.grid.gridform;
 
 import com.smartgwt.client.data.DataSource;
+import com.smartgwt.client.data.DSCallback;
+import com.smartgwt.client.data.DSResponse;
+import com.smartgwt.client.data.DSRequest;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.Label;
@@ -69,7 +72,11 @@ public class GridFormAddSample extends ShowcasePanel {
         IButton button = new IButton("Save New");
         button.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                form.saveData();
+                form.saveData(new DSCallback() {
+                        public void execute(DSResponse response, Object rawData, DSRequest request) {
+                              form.editNewRecord();
+                        }
+                    });
                 form.reset();
             }
         });
