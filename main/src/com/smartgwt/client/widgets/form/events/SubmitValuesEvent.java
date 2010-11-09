@@ -112,16 +112,17 @@ public class SubmitValuesEvent extends BrowserEvent<SubmitValuesHandler>  {
 
 
 
+
     /**
-     * the form being submitted
+     * the form being submitted.  null is returned if the source of this event is a {@link com.smartgwt.client.widgets.form.ValuesManager}. Use {@link #getSource()} instead.
      *
-     * @return the form being submitted
+     * @return the form being submitted.
+     * @deprecated Use {@link #getSource()} to determine the source of this event (could be a {@link com.smartgwt.client.widgets.form.DynamicForm} or {@link com.smartgwt.client.widgets.form.ValuesManager}
      */
     public  native DynamicForm getForm() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
         return @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.form);
     }-*/;
-
 
     /**
      * The form values
