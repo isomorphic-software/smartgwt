@@ -77,7 +77,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * However, when using a ValuesManager these extra values are only allowed on the ValuesManager itself. Member forms will
  * not track values for which they do not have FormItems.
  */
-public class ValuesManager extends BaseClass {
+public class ValuesManager extends BaseClass  implements com.smartgwt.client.widgets.form.events.HasSubmitValuesHandlers {
 
     public static ValuesManager getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -1009,6 +1009,39 @@ public class ValuesManager extends BaseClass {
         return @com.smartgwt.client.widgets.form.fields.FormItemFactory::getFormItem(Lcom/google/gwt/core/client/JavaScriptObject;)(fieldJS);
     }-*/;
 
+    /**
+     * Add a submitValues handler.
+     * <p>
+     * Triggered when a {@link #submit()} is called on this valuesManager (or any form included in this valuesManager).
+     *
+     * @param handler the submitValues handler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addSubmitValuesHandler(com.smartgwt.client.widgets.form.events.SubmitValuesHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.events.SubmitValuesEvent.getType()) == 0) setupSubmitValuesEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.events.SubmitValuesEvent.getType());
+    }
+
+    private native void setupSubmitValuesEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            obj.addProperties({submitValues:$entry(function(){
+                        var param = {"values" : arguments[0], "form" : null};
+                        var event = @com.smartgwt.client.widgets.form.events.SubmitValuesEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+            obj.submitValues = $entry(function(){
+                   var param = {"values" : arguments[0], "form" : null};
+                   var event = @com.smartgwt.client.widgets.form.events.SubmitValuesEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
+        }
+   }-*/;
 
 }
 
