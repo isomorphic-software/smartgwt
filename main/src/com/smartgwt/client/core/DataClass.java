@@ -86,6 +86,9 @@ public class DataClass extends JsObject {
     public void setAttribute(String property, int[] value) {
         JSOHelper.setAttribute(jsObj, property, value);
     }
+    public void setAttribute(String property, Integer[] value) {
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
 
     public void setAttribute(String property, DataClass[] value) {
         JSOHelper.setAttribute(jsObj, property, JSOHelper.convertToJavaScriptArray(value));
@@ -148,7 +151,7 @@ public class DataClass extends JsObject {
     public void setAttribute(String property, ValueEnum value) {
         JSOHelper.setAttribute(jsObj, property, value.getValue());
     }
-
+    
     public void setAttribute(String property, Object value) {
         JSOHelper.setAttribute(jsObj, property, value);
     }
