@@ -412,6 +412,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dataBoundComponent_requiredFieldMessage();
 
   /**
+   * Translated "Invalid value".
+   * 
+   * @return translated "Invalid value"
+   */
+  @DefaultMessage("Invalid value")
+  @Key("dataBoundComponent_unknownErrorMessage")
+  String dataBoundComponent_unknownErrorMessage();
+
+  /**
    * Translated "Cancel".
    * 
    * @return translated "Cancel"
@@ -851,15 +860,6 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Form was unable to be submitted. The most likely cause for this is an invalid value in an upload field.")
   @Key("dynamicForm_formSubmitFailedWarning")
   String dynamicForm_formSubmitFailedWarning();
-
-  /**
-   * Translated "Invalid value".
-   * 
-   * @return translated "Invalid value"
-   */
-  @DefaultMessage("Invalid value")
-  @Key("dynamicForm_unknownErrorMessage")
-  String dynamicForm_unknownErrorMessage();
 
   /**
    * Translated "Add".
@@ -2912,15 +2912,6 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Field is required")
   @Key("validator_requiredField")
   String validator_requiredField();
-
-  /**
-   * Translated "Invalid value".
-   * 
-   * @return translated "Invalid value"
-   */
-  @DefaultMessage("Invalid value")
-  @Key("valuesManager_unknownErrorMessage")
-  String valuesManager_unknownErrorMessage();
 
   /**
    * Translated "Untitled Window".
