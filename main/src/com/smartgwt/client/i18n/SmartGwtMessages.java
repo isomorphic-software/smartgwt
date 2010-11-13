@@ -385,6 +385,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dataBoundComponent_editSummaryFieldText();
 
   /**
+   * Translated "This data not available while offline.".
+   * 
+   * @return translated "This data not available while offline."
+   */
+  @DefaultMessage("This data not available while offline.")
+  @Key("dataBoundComponent_offlineMessage")
+  String dataBoundComponent_offlineMessage();
+
+  /**
    * Translated "Remove formula".
    * 
    * @return translated "Remove formula"
@@ -502,6 +511,24 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dateItem_yearSelectorPrompt();
 
   /**
+   * Translated "Cancel".
+   * 
+   * @return translated "Cancel"
+   */
+  @DefaultMessage("Cancel")
+  @Key("dateRangeDialog_cancelButtonTitle")
+  String dateRangeDialog_cancelButtonTitle();
+
+  /**
+   * Translated "Clear".
+   * 
+   * @return translated "Clear"
+   */
+  @DefaultMessage("Clear")
+  @Key("dateRangeDialog_clearButtonTitle")
+  String dateRangeDialog_clearButtonTitle();
+
+  /**
    * Translated "Select Date Range".
    * 
    * @return translated "Select Date Range"
@@ -509,6 +536,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Select Date Range")
   @Key("dateRangeDialog_headerTitle")
   String dateRangeDialog_headerTitle();
+
+  /**
+   * Translated "OK".
+   * 
+   * @return translated "OK"
+   */
+  @DefaultMessage("OK")
+  @Key("dateRangeDialog_okButtonTitle")
+  String dateRangeDialog_okButtonTitle();
 
   /**
    * Translated "From".

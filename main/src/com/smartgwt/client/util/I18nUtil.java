@@ -269,6 +269,7 @@ public class I18nUtil {
         $wnd.isc.Canvas.addProperties({removeFormulaFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_removeFormulaFieldText()()});
         $wnd.isc.Canvas.addProperties({duplicateDragMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_duplicateDragMessage()()});
         $wnd.isc.Canvas.addProperties({unknownErrorMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_duplicateDragMessage()()});
+        $wnd.isc.Canvas.addProperties({offlineMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_offlineMessage()()});
 
         if($wnd.isc.TreeGrid) {
             $wnd.isc.TreeGrid.addProperties({parentAlreadyContainsChildMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::treeGrid_parentAlreadyContainsChildMessage()()});
@@ -376,6 +377,9 @@ public class I18nUtil {
             $wnd.isc.DateRangeItem.addProperties({fromTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateRangeItem_fromTitle()()});
             $wnd.isc.DateRangeItem.addProperties({toTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateRangeItem_toTitle()()});
             $wnd.isc.DateRangeDialog.addProperties({headerTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateRangeDialog_headerTitle()()});
+            $wnd.isc.DateRangeDialog.addProperties({clearButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateRangeDialog_clearButtonTitle()()});
+            $wnd.isc.DateRangeDialog.addProperties({okButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateRangeDialog_okButtonTitle()()});
+            $wnd.isc.DateRangeDialog.addProperties({cancelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateRangeDialog_cancelButtonTitle()()});
             $wnd.isc.MiniDateRangeItem.addProperties({pickerIconPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::miniDateRangeItem_pickerIconPrompt()()});
             $wnd.isc.MiniDateRangeItem.addProperties({fromDateOnlyPrefix: messages.@com.smartgwt.client.i18n.SmartGwtMessages::miniDateRangeItem_fromDateOnlyPrefix()()});
             $wnd.isc.MiniDateRangeItem.addProperties({toDateOnlyPrefix: messages.@com.smartgwt.client.i18n.SmartGwtMessages::miniDateRangeItem_toDateOnlyPrefix()()});
