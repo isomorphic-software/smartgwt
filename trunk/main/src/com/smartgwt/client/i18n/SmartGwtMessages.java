@@ -1033,6 +1033,33 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String formulaBuilder_autoHideCheckBoxLabel();
 
   /**
+   * Translated "Formula".
+   * 
+   * @return translated "Formula"
+   */
+  @DefaultMessage("Formula")
+  @Key("formulaBuilder_builderTypeText")
+  String formulaBuilder_builderTypeText();
+
+  /**
+   * Translated "Cancel".
+   * 
+   * @return translated "Cancel"
+   */
+  @DefaultMessage("Cancel")
+  @Key("formulaBuilder_cancelButtonTitle")
+  String formulaBuilder_cancelButtonTitle();
+
+  /**
+   * Translated "New Field".
+   * 
+   * @return translated "New Field"
+   */
+  @DefaultMessage("New Field")
+  @Key("formulaBuilder_defaultNewFieldTitle")
+  String formulaBuilder_defaultNewFieldTitle();
+
+  /**
    * Translated "For basic arithmetic, type in symbols (+-/%) directly.<p>The following functions are available:".
    * 
    * @return translated "For basic arithmetic, type in symbols (+-/%) directly.<p>The following functions are available:"
@@ -1042,6 +1069,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String formulaBuilder_helpTextIntro();
 
   /**
+   * Translated "$builderType Help".
+   * 
+   * @return translated "$builderType Help"
+   */
+  @DefaultMessage("$builderType Help")
+  @Key("formulaBuilder_helpWindowTitle")
+  String formulaBuilder_helpWindowTitle();
+
+  /**
    * Translated "The following fields are available for use in this".
    * 
    * @return translated "The following fields are available for use in this"
@@ -1049,6 +1085,51 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("The following fields are available for use in this")
   @Key("formulaBuilder_instructionsTextStart")
   String formulaBuilder_instructionsTextStart();
+
+  /**
+   * Translated "Invalid blank $builderType".
+   * 
+   * @return translated "Invalid blank $builderType"
+   */
+  @DefaultMessage("Invalid blank $builderType")
+  @Key("formulaBuilder_invalidBlankPrompt")
+  String formulaBuilder_invalidBlankPrompt();
+
+  /**
+   * Translated "Invalid $builderType: $errorText".
+   * 
+   * @return translated "Invalid $builderType: $errorText"
+   */
+  @DefaultMessage("Invalid $builderType: $errorText")
+  @Key("formulaBuilder_invalidBuilderPrompt")
+  String formulaBuilder_invalidBuilderPrompt();
+
+  /**
+   * Translated "The generated function is invalid - Check your $builderType and retry.".
+   * 
+   * @return translated "The generated function is invalid - Check your $builderType and retry."
+   */
+  @DefaultMessage("The generated function is invalid - Check your $builderType and retry.")
+  @Key("formulaBuilder_invalidGeneratedFunctionPrompt")
+  String formulaBuilder_invalidGeneratedFunctionPrompt();
+
+  /**
+   * Translated "Key".
+   * 
+   * @return translated "Key"
+   */
+  @DefaultMessage("Key")
+  @Key("formulaBuilder_keyColumnTitle")
+  String formulaBuilder_keyColumnTitle();
+
+  /**
+   * Translated "Sample:".
+   * 
+   * @return translated "Sample:"
+   */
+  @DefaultMessage("Sample:")
+  @Key("formulaBuilder_sampleHeaderTitle")
+  String formulaBuilder_sampleHeaderTitle();
 
   /**
    * Translated "For record:".
@@ -1067,6 +1148,51 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Output:")
   @Key("formulaBuilder_samplePromptOutput")
   String formulaBuilder_samplePromptOutput();
+
+  /**
+   * Translated "Save".
+   * 
+   * @return translated "Save"
+   */
+  @DefaultMessage("Save")
+  @Key("formulaBuilder_saveButtonTitle")
+  String formulaBuilder_saveButtonTitle();
+
+  /**
+   * Translated "Save changes to this $builderType?".
+   * 
+   * @return translated "Save changes to this $builderType?"
+   */
+  @DefaultMessage("Save changes to this $builderType?")
+  @Key("formulaBuilder_saveConfirmationPrompt")
+  String formulaBuilder_saveConfirmationPrompt();
+
+  /**
+   * Translated "Source Field".
+   * 
+   * @return translated "Source Field"
+   */
+  @DefaultMessage("Source Field")
+  @Key("formulaBuilder_sourceFieldColumnTitle")
+  String formulaBuilder_sourceFieldColumnTitle();
+
+  /**
+   * Translated "Title".
+   * 
+   * @return translated "Title"
+   */
+  @DefaultMessage("Title")
+  @Key("formulaBuilder_titleFieldTitle")
+  String formulaBuilder_titleFieldTitle();
+
+  /**
+   * Translated "Valid $builderType".
+   * 
+   * @return translated "Valid $builderType"
+   */
+  @DefaultMessage("Valid $builderType")
+  @Key("formulaBuilder_validBuilderPrompt")
+  String formulaBuilder_validBuilderPrompt();
 
   /**
    * Translated "by Day of Month".
@@ -2725,11 +2851,20 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String summaryBuilder_autoHideCheckBoxLabel();
 
   /**
-   * Translated "The following functions are available:".
+   * Translated "Summary".
    * 
-   * @return translated "The following functions are available:"
+   * @return translated "Summary"
    */
-  @DefaultMessage("The following functions are available:")
+  @DefaultMessage("Summary")
+  @Key("summaryBuilder_builderTypeText")
+  String summaryBuilder_builderTypeText();
+
+  /**
+   * Translated "Building Summary Columns".
+   * 
+   * @return translated "Building Summary Columns"
+   */
+  @DefaultMessage("Building Summary Columns")
   @Key("summaryBuilder_helpTextIntro")
   String summaryBuilder_helpTextIntro();
 
