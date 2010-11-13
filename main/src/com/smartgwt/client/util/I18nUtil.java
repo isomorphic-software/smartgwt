@@ -182,9 +182,7 @@ public class I18nUtil {
 
         if($wnd.isc.DynamicForm) {
             $wnd.isc.DynamicForm.addProperties({errorsPreamble: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dynamicForm_errorsPreamble()()});
-            $wnd.isc.DynamicForm.addProperties({unknownErrorMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dynamicForm_unknownErrorMessage()()});
             $wnd.isc.DynamicForm.addProperties({formSubmitFailedWarning: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dynamicForm_formSubmitFailedWarning()()});
-            $wnd.isc.ValuesManager.addProperties({unknownErrorMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::valuesManager_unknownErrorMessage()()});
         }
 
         if($wnd.isc.SelectItem) {
@@ -270,6 +268,7 @@ public class I18nUtil {
         $wnd.isc.Canvas.addProperties({removeSummaryFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_removeSummaryFieldText()()});
         $wnd.isc.Canvas.addProperties({removeFormulaFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_removeFormulaFieldText()()});
         $wnd.isc.Canvas.addProperties({duplicateDragMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_duplicateDragMessage()()});
+        $wnd.isc.Canvas.addProperties({unknownErrorMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_duplicateDragMessage()()});
 
         if($wnd.isc.TreeGrid) {
             $wnd.isc.TreeGrid.addProperties({parentAlreadyContainsChildMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::treeGrid_parentAlreadyContainsChildMessage()()});
