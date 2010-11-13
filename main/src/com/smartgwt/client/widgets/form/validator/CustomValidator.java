@@ -5,6 +5,9 @@ import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class CustomValidator extends Validator {
 
     public CustomValidator() {
@@ -16,6 +19,7 @@ public abstract class CustomValidator extends Validator {
     protected FormItem formItem;
     protected DataSourceField dataSourceField;
     protected Record record;
+    protected Map validatorProperties = new HashMap();
 
     /**
      * Add custom validation logic by overriding this method. Access to the FormItem or DataSourceField on which the validator was
@@ -48,6 +52,14 @@ public abstract class CustomValidator extends Validator {
     }
 
     /**
+     * Return the properties of validator that is defined on the DataSourceField.
+     *
+     * @return the validator properties
+     */
+    public Map getValidatorProperties() {
+        return validatorProperties;
+    }
+    /**
      * @return field values for record being validated
      */
     public Record getRecord() {
@@ -58,6 +70,7 @@ public abstract class CustomValidator extends Validator {
         formItem = null;
         dataSourceField = null;
         record = null;
+        validatorProperties.clear();
     }
 
     private native void setup(JavaScriptObject jsObj) /*-{
@@ -73,6 +86,9 @@ public abstract class CustomValidator extends Validator {
                     if (dataSourceField.__ref) delete dataSourceField.__ref;
                     self.@com.smartgwt.client.widgets.form.validator.CustomValidator::dataSourceField = @com.smartgwt.client.data.DataSourceField::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dataSourceField);
                 }
+            }
+            if(validator) {
+                self.@com.smartgwt.client.widgets.form.validator.CustomValidator::validatorProperties = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(validator);
             }
             if(record != null) {
                 self.@com.smartgwt.client.widgets.form.validator.CustomValidator::record = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
