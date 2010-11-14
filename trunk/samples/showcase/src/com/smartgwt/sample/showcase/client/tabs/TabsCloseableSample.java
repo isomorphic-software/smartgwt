@@ -57,13 +57,6 @@ public class TabsCloseableSample extends ShowcasePanel {
         topTabSet.addTab(tTab1);
         topTabSet.addTab(tTab2);
 
-        topTabSet.addCloseClickHandler(new CloseClickHandler() {
-            public void onCloseClick(TabCloseClickEvent event) {
-                Tab tab = event.getTab();
-                System.out.println("");
-            }
-        });
-
         HLayout buttons = new HLayout();
         buttons.setMembersMargin(15);
 
