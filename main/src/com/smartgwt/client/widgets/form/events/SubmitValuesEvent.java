@@ -125,7 +125,7 @@ public class SubmitValuesEvent extends BrowserEvent<SubmitValuesHandler>  {
     }-*/;
 
     /**
-     * The form values
+     * The form or ValuesManager values
      *
      * @return the form values
      */
@@ -133,6 +133,20 @@ public class SubmitValuesEvent extends BrowserEvent<SubmitValuesHandler>  {
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
         return jsObj.values;
     }-*/;
+
+    /**
+     * Returns the current set of values for the form or values manager instance as a map.
+     *
+     * @return the values
+     */
+    public native Map getValuesAsMap() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var valuesJS = jsObj.values;
+        if(valuesJS == null || valuesJS === undefined) return null;
+        var valuesJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(valuesJS);
+        return valuesJ;
+    }-*/;
+
 
 
 }
