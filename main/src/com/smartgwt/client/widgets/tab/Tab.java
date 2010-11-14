@@ -130,6 +130,29 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
     }
 
     /**
+     * If specified, overrides the {@link com.smartgwt.client.widgets.tab.TabSet#getCanEditTabTitles canEditTabTitles} setting,
+     * for this one tab only.
+     *
+     * @param canEditTitle canEditTitle Default value is null
+     * @see com.smartgwt.client.widgets.tab.TabSet#setCanEditTabTitles
+     */
+    public void setCanEditTitle(Boolean canEditTitle) {
+        setAttribute("canEditTitle", canEditTitle);
+    }
+
+    /**
+     * If specified, overrides the {@link com.smartgwt.client.widgets.tab.TabSet#getCanEditTabTitles canEditTabTitles} setting,
+     * for this one tab only.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.widgets.tab.TabSet#getCanEditTabTitles
+     */
+    public Boolean getCanEditTitle()  {
+        return getAttributeAsBoolean("canEditTitle");
+    }
+
+    /**
      * Custom src for the close icon for this tab to display if it is closeable. See {@link
      * com.smartgwt.client.widgets.tab.Tab#getCanClose canClose} and {@link
      * com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}.
