@@ -133,6 +133,28 @@ public class DateItem extends FormItem {
     }
 
     /**
+     * Custom properties to apply to this dateItem's generated {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getDaySelector daySelector}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param daySelectorProperties daySelectorProperties Default value is null
+     */
+    public void setDaySelectorProperties(SelectItem daySelectorProperties) {
+        setAttribute("daySelectorProperties", daySelectorProperties.getJsObj());
+    }
+
+    /**
+     * Custom properties to apply to this dateItem's generated {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getDaySelector daySelector}.
+     *
+     *
+     * @return SelectItem
+     */
+    public SelectItem getDaySelectorProperties()  {
+        return SelectItem.getOrCreateRef(getAttributeAsJavaScriptObject("daySelectorProperties"));
+    }
+
+    /**
      * Default date to show in the date chooser. If this items value is currently unset, this property may be specified to set
      * a default date to highlight in the dateChooser  for this item. If unset, the date chooser will highlight the current
      * date by default. Note that this has no effect if the item as a whole currently has a value - in that case the date
@@ -332,6 +354,28 @@ public class DateItem extends FormItem {
     }
 
     /**
+     * Custom properties to apply to this dateItem's generated {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getMonthSelector monthSelector}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param monthSelectorProperties monthSelectorProperties Default value is null
+     */
+    public void setMonthSelectorProperties(SelectItem monthSelectorProperties) {
+        setAttribute("monthSelectorProperties", monthSelectorProperties.getJsObj());
+    }
+
+    /**
+     * Custom properties to apply to this dateItem's generated {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getMonthSelector monthSelector}.
+     *
+     *
+     * @return SelectItem
+     */
+    public SelectItem getMonthSelectorProperties()  {
+        return SelectItem.getOrCreateRef(getAttributeAsJavaScriptObject("monthSelectorProperties"));
+    }
+
+    /**
      * Prompt to show when the user hovers the mouse over the picker icon for this DateItem. May be overridden for localization
      * of your application.
      *
@@ -438,6 +482,30 @@ public class DateItem extends FormItem {
     }
 
     /**
+     * Custom properties to apply to this dateItem's generated {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getTextField textField}. Only applies if {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param textFieldProperties textFieldProperties Default value is null
+     */
+    public void setTextFieldProperties(TextItem textFieldProperties) {
+        setAttribute("textFieldProperties", textFieldProperties.getJsObj());
+    }
+
+    /**
+     * Custom properties to apply to this dateItem's generated {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getTextField textField}. Only applies if {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true.
+     *
+     *
+     * @return TextItem
+     */
+    public TextItem getTextFieldProperties()  {
+        return TextItem.getOrCreateRef(getAttributeAsJavaScriptObject("textFieldProperties"));
+    }
+
+    /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is not <code>false</code> this
      * property determines if an input mask should be used. The format of the mask is determined by the  {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} or {@link
@@ -501,6 +569,28 @@ public class DateItem extends FormItem {
      */
     public Boolean getUseTextField()  {
         return getAttributeAsBoolean("useTextField");
+    }
+
+    /**
+     * Custom properties to apply to this dateItem's generated {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getYearSelector yearSelector}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param yearSelectorProperties yearSelectorProperties Default value is null
+     */
+    public void setYearSelectorProperties(SelectItem yearSelectorProperties) {
+        setAttribute("yearSelectorProperties", yearSelectorProperties.getJsObj());
+    }
+
+    /**
+     * Custom properties to apply to this dateItem's generated {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getYearSelector yearSelector}.
+     *
+     *
+     * @return SelectItem
+     */
+    public SelectItem getYearSelectorProperties()  {
+        return SelectItem.getOrCreateRef(getAttributeAsJavaScriptObject("yearSelectorProperties"));
     }
 
     // ********************* Methods ***********************
