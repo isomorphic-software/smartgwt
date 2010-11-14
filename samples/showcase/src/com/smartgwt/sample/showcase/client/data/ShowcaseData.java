@@ -138,12 +138,13 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Grid Summaries", "grid-summaries-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("New Samples", "new-category", "root", "silk/new.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Hover Related Records", "grid-hover-related-records-new", "new-category", null, new GridHoverRelatedRecordsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Hover Custom", "grid-hover-custom-new", "new-category", null, new GridCustomHoverSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Editable Tabs", "tabs-editable-new", "new-category", null, new TabsEditableTitlesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("User Defined Hilites", "grid-hiliting-user-defined-new", "new-category", null, new GridUserDefinedHilitingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Pre-Defined Hilites", "grid-hiliting-pre-defined-new", "new-category", null, new GridPredefinedHilitingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Data Driven Hilites", "grid-hiliting-data-driven-new", "new-category", null, new GridDataDrivenHilitingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Formula Hilites", "grid-hiliting-formula-new", "new-category", null, new GridFormulaHilitingSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Hover Related Records", "grid-hover-related-records-new", "new-category", null, new GridHoverRelatedRecordsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Hover Custom", "grid-hover-custom-new", "new-category", null, new GridCustomHoverSample.Factory(), true, idSuffix),
 
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
 
@@ -209,7 +210,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("New Records", "grid-autofit-new-records", "grid-autofit-category", null, new AutofitNewRecordsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Filter", "grid-autofit-filter", "grid-autofit-category", null, new AutofitFilterSample.Factory(), true, idSuffix),
 
-                    new ExplorerTreeNode("Sorting", "grid-sort-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),                    
+                    new ExplorerTreeNode("Sorting", "grid-sort-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Sort", "grid-sort-sort", "grid-sort-category", null, new GridSortSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Multilevel Sort", "grid-multilevel-sort", "grid-sort-category", null, new MultiLevelSortSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Disable Sort", "grid-sort-disable-sort", "grid-sort-category", null, new DisableSortSample.Factory(), true, idSuffix),
@@ -421,6 +422,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Add & Remove", "layout-tabs-add-remove", "layout-tabs-category", null, new AddRemoveSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Closeable Tabs", "layout-tabs-closeable", "layout-tabs-category", null, new TabsCloseableSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Title Change", "layout-tabs-title-change", "layout-tabs-category", null, new TabsTitleChangeSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("User-Editable Titles", "layout-tabs-title-editable", "layout-tabs-category", null, new TabsEditableTitlesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Custom Controls", "layout-tabs-custom-controls", "layout-tabs-category", null, new TabsCustomControlSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Accordion / Sections", "layout-sections-category", "root", "widgets/stack_panel.gif", null, true, idSuffix),
@@ -459,7 +461,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Data Integration", "data-integration-category", "root", "silk/connect.png", null, true, idSuffix),
                     new ExplorerTreeNode("XML", "xml-integration-category", "data-integration-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     //new ExplorerTreeNode("RSS Feed", "rss-xml-integration-category", "xml-integration-category", null, new RSSFeedSample.Factory(), true),
-                    new ExplorerTreeNode("XPath Binding", "xpath-xml-integration-category", "xml-integration-category", null, new XmlXPathSample.Factory(), true, idSuffix),                    
+                    new ExplorerTreeNode("XPath Binding", "xpath-xml-integration-category", "xml-integration-category", null, new XmlXPathSample.Factory(), true, idSuffix),
                     //new ExplorerTreeNode("Edit &amp; Save", "edit-save-xml-integration-category", "xml-integration-category", null, new FormXmlEditAndSaveSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("RestDataSource Edit &amp; Save", "restfulds-xml-integration-category", "xml-integration-category", null, new RestfulDataSourceSample.Factory(), true, idSuffix),
                     //new ExplorerTreeNode("WSDL WebService", "wsdl-xml-integration-category", "xml-integration-category", null, new WSDLWebServiceSample.Factory(), true),
