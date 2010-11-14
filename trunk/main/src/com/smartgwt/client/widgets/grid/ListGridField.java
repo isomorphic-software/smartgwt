@@ -1564,6 +1564,50 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+     * If this field has type [{@link com.smartgwt.client.types.ListGridFieldType}] set to <code>"link"</code>, setting this
+     * property will apply a standard prefix to the link URL for cells in this field.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param linkURLPrefix linkURLPrefix Default value is null
+     */
+    public void setLinkURLPrefix(String linkURLPrefix) {
+        setAttribute("linkURLPrefix", linkURLPrefix);
+    }
+
+    /**
+     * If this field has type [{@link com.smartgwt.client.types.ListGridFieldType}] set to <code>"link"</code>, setting this
+     * property will apply a standard prefix to the link URL for cells in this field.
+     *
+     *
+     * @return String
+     */
+    public String getLinkURLPrefix()  {
+        return getAttributeAsString("linkURLPrefix");
+    }
+
+    /**
+     * If this field has type [{@link com.smartgwt.client.types.ListGridFieldType}] set to <code>"link"</code>, setting this
+     * property will apply a standard suffix to the link URL for cells in this field.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param linkURLSuffix linkURLSuffix Default value is null
+     */
+    public void setLinkURLSuffix(String linkURLSuffix) {
+        setAttribute("linkURLSuffix", linkURLSuffix);
+    }
+
+    /**
+     * If this field has type [{@link com.smartgwt.client.types.ListGridFieldType}] set to <code>"link"</code>, setting this
+     * property will apply a standard suffix to the link URL for cells in this field.
+     *
+     *
+     * @return String
+     */
+    public String getLinkURLSuffix()  {
+        return getAttributeAsString("linkURLSuffix");
+    }
+
+    /**
      * Name of this field.  Must be unique within this ListGrid. <P> The name of field is also the property in each record
      * which holds the value for that field. <P> If a {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource
      * dataSource} is specified and the DataSource has a field with the same name, the ListGridField and DataSourceField are
@@ -2431,11 +2475,13 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.change = $entry(function(){
+            obj.change = $debox($entry(function(){
                 var param = {"form" : arguments[0], "item" : arguments[1], "value" : arguments[2], "oldValue" : arguments[3]};
                 var event = @com.smartgwt.client.widgets.grid.events.ChangeEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            });
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
    }-*/;
     /**
      * Add a changed handler.
