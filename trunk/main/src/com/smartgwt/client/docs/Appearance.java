@@ -3,6 +3,7 @@ package com.smartgwt.client.docs;
 
 /**
  * Properties defining an object's appearance
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getCellStyle
  * @see com.smartgwt.client.widgets.form.fields.TextItem#getHint
  * @see com.smartgwt.client.widgets.form.fields.ButtonItem#setTitle
  * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getCellStyle
@@ -41,6 +42,13 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.ImgButton#setState
  * @see com.smartgwt.client.widgets.StretchImgButton#setTitle
  * @see com.smartgwt.client.widgets.StretchImgButton#setState
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getStyleName
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getBodyStyleName
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getBaseStyle
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getAlternateRecordStyles
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getInnerHeaderBaseStyle
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getColHeaderBaseStyle
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getRowHeaderBaseStyle
  * @see com.smartgwt.client.widgets.DateChooser#getFirstDayOfWeek
  * @see com.smartgwt.client.widgets.form.DynamicForm#getLongTextEditorThreshold
  * @see com.smartgwt.client.widgets.form.DynamicForm#getLongTextEditorType

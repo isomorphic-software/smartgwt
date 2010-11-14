@@ -85,6 +85,18 @@ package com.smartgwt.client.docs;
  * com.smartgwt.client.widgets.form.fields.FormItem} APIs, editors have the following properties: <P> -
  * <code>rowNum</code>: The rowNum of the record being edited.<br> - <code>colNum</code>: The colNum of the cell being
  * edited.<br> - <code>grid</code>: A pointer back to the listGrid containing the record.
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#setEditValue
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditValue
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditedRecord
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditedCell
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditValues
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#clearEditValue
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#saveEdits
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getAllEditCells
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#discardAllEdits
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#recordHasChanges
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#hasChanges
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#saveAllEdits
  * @see com.smartgwt.client.widgets.form.DynamicForm#getEditorType
  * @see com.smartgwt.client.widgets.grid.ListGridField#defaultDynamicValue
  * @see com.smartgwt.client.widgets.grid.events.EditorEnterEvent
