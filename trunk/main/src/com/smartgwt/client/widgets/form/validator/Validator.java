@@ -165,27 +165,6 @@ public class Validator extends DataClass {
     }
 
     /**
-     * Type of the validator. <p> This can be one of the built-in {@link com.smartgwt.client.types.ValidatorType}, the string
-     * "custom" to define a custom validator, or the string "serverCustom" to define a server-only custom validator.
-     *
-     * @param type type Default value is null
-     */
-    public void setType(ValidatorType type) {
-        setAttribute("type", type.getValue());
-    }
-
-    /**
-     * Type of the validator. <p> This can be one of the built-in {@link com.smartgwt.client.types.ValidatorType}, the string
-     * "custom" to define a custom validator, or the string "serverCustom" to define a server-only custom validator.
-     *
-     *
-     * @return ValidatorType
-     */
-    public ValidatorType getType()  {
-        return EnumUtil.getEnum(ValidatorType.values(), getAttribute("type"));
-    }
-
-    /**
      * If true, validator will be validated when each item's "change" handler is fired as well as when the entire form is
      * submitted or validated. If false, this validator will not fire on the item's "change" handler. <p> Note that this
      * property can also be set at the form/grid or field level; If true at any level and not explicitly false on the
@@ -268,6 +247,69 @@ public class Validator extends DataClass {
             return ret;
         }
     }
+
+    /**
+     * Type of the validator. This can be one of the built-in
+     *  {@link com.smartgwt.client.types.ValidatorType}. Note that a validator of type
+     *  <i>ValidatorType.CUSTOM</i> may be used to support custom validation behavior.
+     * @param type validator type
+     */
+    public void setType(ValidatorType type) {
+        setAttribute("type", type.getValue());
+    }
+    
+    /**
+     * Type of the validator defined as a String.
+     * <p> This API may be used to specify a custom validator type registered via 
+     * {@link #addValidatorDefinition(String, Validator)}.
+     * 
+     * @param type validator type
+     */
+    public void setType(String type) {
+        setAttribute("type", type);
+    }
+    
+    /**
+     * Built-in type of the validator as specified via {@link #setType(ValidatorType)}
+     * <p> 
+     * Note that if a custom validator type was specified via {@link #setType(String)} this
+     * method will return null - use {@link #getTypeAsString()} to retrieve custom validator
+     * types.
+     *
+     * @return ValidatorType
+     */
+    public ValidatorType getType()  {
+        return EnumUtil.getEnum(ValidatorType.values(), getAttribute("type"));
+    }
+    
+    /**
+     * Type of the validator as a string value. If type was specified via {@link #setType(ValidatorType)}
+     * this method will return the underlying value of the ValidatorType enum. If type was
+     * specified via {@link #setType(String)} the specified string will be returned.
+     *
+     * @return ValidatorType
+     */   
+    public String getTypeAsString() {
+    	return getAttribute("type");
+    }
+    
+    /**
+     * Register a new standard validator type for reuse, by name. The validator passed in should
+     * be of type {@link com.smartgwt.client.types.ValidatorType#CUSTOM}.
+     * <P>
+     * Any new validator where {@link #setType(String)} is set to the registered
+     * name will pick up all properties (error message, condition, etc)
+     * from this validator definition.
+     * 
+     * @param name name under which validator properties will be available
+     * @param validator validator containing standard properties for reuse
+     */
+    public native static void addValidatorDefinition (String name, Validator validator) /*-{
+		if (validator == null) return;
+		var jsValidator = validator.@com.smartgwt.client.widgets.form.validator.Validator::getJsObj()();
+		if (jsValidator.errorMessage != null) jsValidator.defaultErrorMessage = jsValidator.errorMessage;
+		$wnd.isc.Validator.addValidatorDefinition(name, jsValidator);
+	}-*/;
 
 
 }
