@@ -16,17 +16,8 @@
 
 package com.smartgwt.client.widgets.events;
 
-import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.event.shared.HasHandlers;
+import com.google.gwt.event.shared.EventHandler;
 
-public interface HasFilterDataHandlers extends HasHandlers {
-    /**
-     * Notification function fired when the user performs a filter by modifying
-     * the filter editor criteria. Will be fired on keypress if filterOnKeypress is true otherwise when the
-     * user clicks the filter button or on enter keypress.
-     *
-     * @param handler the filterData handler
-     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
-     */
-    HandlerRegistration addFilterDataHandler(FilterDataHandler handler);
+public interface FetchDataHandler extends EventHandler {
+    void onFilterData(FetchDataEvent event);
 }

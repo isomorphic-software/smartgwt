@@ -634,6 +634,27 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     // ***********************************************************        
 
 
+	
+
+	protected void onInit () {
+		super.onInit();
+		onInit_ColumnTree();
+	}
+    protected native void onInit_ColumnTree() /*-{
+	
+	    var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+	    self.getColumnProperties = $debox($entry(function(node, colNum) {
+				var jObj = this.__ref;
+	        var nodeJ = @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(node);
+	        
+	        var propertiesJ = jObj.@com.smartgwt.client.widgets.grid.ColumnTree::getCustomColumnProperties(Lcom/smartgwt/client/widgets/tree/TreeNode;I)(nodeJ,colNum);
+	        var properties = propertiesJ == null ? null : propertiesJ.@com.smartgwt.client.widgets.grid.ListGrid::getConfig()();
+	        if (properties != null) delete properties.ID;
+	        return properties;
+	    }));
+	}-*/;
+	    
+    
     public void setFields(ListGridField... fields) {
         setAttribute("fields", fields, true);
     }
@@ -880,6 +901,48 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
             }));
         }
     }-*/;
+    
+
+    /**
+     * Standard set of properties to apply to each generated {@link com.smartgwt.client.widgets.grid.ColumnTree#getColumn
+     * column} in this columnTree. Developers may also override {@link
+     * com.smartgwt.client.widgets.grid.ColumnTree#getCustomColumnProperties ColumnTree.getCustomColumnProperties} to return dynamic
+     * properties based on the node being displayed.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param columnProperties columnProperties Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setColumnProperties(ListGrid columnProperties)  throws IllegalStateException {
+    	JavaScriptObject config = columnProperties == null ? null : columnProperties.getConfig();
+    	if (config != null) JSOHelper.setAttribute(config, "ID", (String)null);
+        setAttribute("columnProperties", config, false);
+    }
+
+    /**
+     * Standard set of properties to apply to each generated {@link com.smartgwt.client.widgets.grid.ColumnTree#getColumn
+     * column} in this columnTree. Developers may also override {@link
+     * com.smartgwt.client.widgets.grid.ColumnTree#getColumnProperties ColumnTree.getColumnProperties} to return dynamic
+     * properties based on the node being displayed.
+     *
+     * @return "template" listGrid with attributes that will be applied to each generated column
+     */
+    public ListGrid getColumnProperties()  {
+        return ListGrid.getOrCreateRef(getAttributeAsJavaScriptObject("columnProperties"));
+    }
+    
+    /**
+     * Additional properties to apply to the ListGrid that will show the indicated column.
+     * Returns null by default. This method can be overridden to allow, for example, different
+     * styling, icons or row heights per column.
+     * @param node parent node for the nodes to be shown in the column
+     * @param colNum index of the column 
+     * @return "template" listgrid with dynamically determined attributes to apply to the generated 
+     *    column.
+     */
+    public ListGrid getCustomColumnProperties(TreeNode node, int colNum) {
+    	return null;
+    }
 
 
 
@@ -1497,6 +1560,40 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     public native void exportClientData(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportClientData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+    /**
+     * Add a fetchData handler.
+     * <p>
+     * Notification function fired on fetchData() or filterData()
+     *
+     * @param handler the filterData handler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addFetchDataHandler(FetchDataHandler handler) {
+        if(getHandlerCount(FetchDataEvent.getType()) == 0) setupFetchDataEvent();
+        return doAddHandler(handler, FetchDataEvent.getType());
+    }
+
+    private native void setupFetchDataEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onFetchData:$debox($entry(function(){
+                    var param = {"criteria" : arguments[0], "requestProperties" : arguments[1]};
+                    var event = @com.smartgwt.client.widgets.events.FetchDataEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                }))
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onFetchData = $debox($entry(function(){
+                var param = {"criteria" : arguments[0], "requestProperties" : arguments[1]};
+                var event = @com.smartgwt.client.widgets.events.FetchDataEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            }));
+        }
     }-*/;
 
 }

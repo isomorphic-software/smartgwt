@@ -2734,6 +2734,40 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         self.exportClientData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
+    /**
+     * Add a fetchData handler.
+     * <p>
+     * Notification function fired on fetchData() or filterData()
+     *
+     * @param handler the filterData handler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addFetchDataHandler(FetchDataHandler handler) {
+        if(getHandlerCount(FetchDataEvent.getType()) == 0) setupFetchDataEvent();
+        return doAddHandler(handler, FetchDataEvent.getType());
+    }
+
+    private native void setupFetchDataEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onFetchData:$debox($entry(function(){
+                    var param = {"criteria" : arguments[0], "requestProperties" : arguments[1]};
+                    var event = @com.smartgwt.client.widgets.events.FetchDataEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                }))
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onFetchData = $debox($entry(function(){
+                var param = {"criteria" : arguments[0], "requestProperties" : arguments[1]};
+                var event = @com.smartgwt.client.widgets.events.FetchDataEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            }));
+        }
+    }-*/;
+
 }
 
 

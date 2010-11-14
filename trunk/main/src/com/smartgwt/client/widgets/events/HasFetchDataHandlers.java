@@ -16,8 +16,15 @@
 
 package com.smartgwt.client.widgets.events;
 
-import com.google.gwt.event.shared.EventHandler;
+import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.event.shared.HasHandlers;
 
-public interface FilterDataHandler extends EventHandler {
-    void onFilterData(com.smartgwt.client.widgets.events.FilterDataEvent event);
+public interface HasFetchDataHandlers extends HasHandlers {
+    /**
+     * Notification function fired on fetchData() or filterData()
+     *
+     * @param handler the filterData handler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    HandlerRegistration addFetchDataHandler(FetchDataHandler handler);
 }
