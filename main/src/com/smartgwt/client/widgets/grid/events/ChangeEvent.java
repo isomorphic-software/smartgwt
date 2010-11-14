@@ -56,7 +56,8 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  {
+public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  implements Cancellable {
+    private boolean cancel = false;
 
     /**
      * Handler type.
@@ -111,6 +112,19 @@ public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  {
     }
 
 
+    /**
+     * The change may be cancelled
+     */
+    public void cancel() {
+        cancel = true;
+    }
+
+    /**
+     * @return true if cancelled
+     */
+    public boolean isCancelled() {
+        return cancel;
+    }
 
     /**
      * the managing DynamicForm instance
