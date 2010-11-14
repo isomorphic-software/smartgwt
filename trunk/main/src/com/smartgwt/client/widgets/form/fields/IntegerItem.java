@@ -36,4 +36,20 @@ public class IntegerItem extends FormItem {
 		setTitle(title);
         setType("integer");
     }
+
+    /**
+     * Return the value tracked by this form item.
+     *
+     * @return value of this element
+     */
+    public native Integer getValueAsInteger() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret;
+        if(self.setValue) {
+             ret = self.getValue();
+        } else {
+            ret = self.value;
+        }
+        return @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
+    }-*/;
 }

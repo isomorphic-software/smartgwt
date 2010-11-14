@@ -36,4 +36,19 @@ public class BooleanItem extends FormItem {
         setType("boolean");
     }
 
+    /**
+     * Return the value tracked by this form item.
+     *
+     * @return value of this element
+     */
+    public native Boolean getValueAsBoolean() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret;
+        if(self.setValue) {
+             ret = self.getValue();
+        } else {
+            ret = self.value;
+        }
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
 }
