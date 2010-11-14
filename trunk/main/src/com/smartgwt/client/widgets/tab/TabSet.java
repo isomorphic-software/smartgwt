@@ -62,7 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * user to show each pane.  <P> Tabs are configured via the <code>tabs</code> property, each of which has a
  * <code>pane</code> property which will be displayed in the main pane when that tab is selected.
  */
-public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.events.HasCloseClickHandlers, com.smartgwt.client.widgets.tab.events.HasTabIconClickHandlers, com.smartgwt.client.widgets.tab.events.HasTabSelectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabDeselectedHandlers {
+public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.events.HasCloseClickHandlers, com.smartgwt.client.widgets.tab.events.HasTabIconClickHandlers, com.smartgwt.client.widgets.tab.events.HasTabSelectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabDeselectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabTitleChangedHandlers {
 
     public static TabSet getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -148,6 +148,29 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      */
     public Boolean getCanCloseTabs()  {
         return getAttributeAsBoolean("canCloseTabs");
+    }
+
+    /**
+     * If true, users can edit the titles of tabs in this TabSet when the  {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTitleEditEvent titleEditEvent} fires.  You can override this behavior per tab 
+     * with the {@link com.smartgwt.client.widgets.tab.Tab#getCanEditTitle canEditTitle} property.
+     *
+     * @param canEditTabTitles canEditTabTitles Default value is false
+     */
+    public void setCanEditTabTitles(Boolean canEditTabTitles) {
+        setAttribute("canEditTabTitles", canEditTabTitles, true);
+    }
+
+    /**
+     * If true, users can edit the titles of tabs in this TabSet when the  {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTitleEditEvent titleEditEvent} fires.  You can override this behavior per tab 
+     * with the {@link com.smartgwt.client.widgets.tab.Tab#getCanEditTitle canEditTitle} property.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanEditTabTitles()  {
+        return getAttributeAsBoolean("canEditTabTitles");
     }
 
     /**
@@ -248,6 +271,134 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      */
     public String getLocateTabsBy()  {
         return getAttributeAsString("locateTabsBy");
+    }
+
+    /**
+     * This property defines the number tab buttons that should be shown before automatically adding a "more" button to handle
+     * the remaining tabs. This property is only used when {@link com.smartgwt.client.widgets.tab.TabSet#getShowMoreTab
+     * showMoreTab} is enabled.
+     *
+     * @param moreTabCount moreTabCount Default value is 5
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setMoreTabCount(int moreTabCount)  throws IllegalStateException {
+        setAttribute("moreTabCount", moreTabCount, false);
+    }
+
+    /**
+     * This property defines the number tab buttons that should be shown before automatically adding a "more" button to handle
+     * the remaining tabs. This property is only used when {@link com.smartgwt.client.widgets.tab.TabSet#getShowMoreTab
+     * showMoreTab} is enabled.
+     *
+     *
+     * @return int
+     */
+    public int getMoreTabCount()  {
+        return getAttributeAsInt("moreTabCount");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowMoreTab showMoreTab} is enabled this property determines the
+     * image to display on the "More" tab button.
+     *
+     * @param moreTabImage moreTabImage Default value is "[SKINIMG]/iOS/more.png"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setMoreTabImage(String moreTabImage)  throws IllegalStateException {
+        setAttribute("moreTabImage", moreTabImage, false);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowMoreTab showMoreTab} is enabled this property determines the
+     * image to display on the "More" tab button.
+     *
+     *
+     * @return String
+     */
+    public String getMoreTabImage()  {
+        return getAttributeAsString("moreTabImage");
+    }
+
+    /**
+     * Default properties for the "more" tab's pane. <p> Currently constructs a VLayout with a {@link
+     * com.smartgwt.client.widgets.layout.NavigationBar} and {@link com.smartgwt.client.widgets.tableview.TableView}.
+     *
+     * @param moreTabPaneDefaults moreTabPaneDefaults Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setMoreTabPaneDefaults(Canvas moreTabPaneDefaults)  throws IllegalStateException {
+        setAttribute("moreTabPaneDefaults", moreTabPaneDefaults == null ? null : moreTabPaneDefaults.getOrCreateJsObj(), false);
+    }
+
+    /**
+     * Default properties for the "more" tab's pane. <p> Currently constructs a VLayout with a {@link
+     * com.smartgwt.client.widgets.layout.NavigationBar} and {@link com.smartgwt.client.widgets.tableview.TableView}.
+     *
+     *
+     * @return Canvas
+     */
+    public Canvas getMoreTabPaneDefaults()  {
+        return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("moreTabPaneDefaults"));
+    }
+
+    /**
+     * Properties to apply to the "more" tab's pane created by this TabSet.
+     *
+     * @param moreTabPaneProperties moreTabPaneProperties Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setMoreTabPaneProperties(Canvas moreTabPaneProperties)  throws IllegalStateException {
+        setAttribute("moreTabPaneProperties", moreTabPaneProperties == null ? null : moreTabPaneProperties.getOrCreateJsObj(), false);
+    }
+
+    /**
+     * Properties to apply to the "more" tab's pane created by this TabSet.
+     *
+     *
+     * @return Canvas
+     */
+    public Canvas getMoreTabPaneProperties()  {
+        return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("moreTabPaneProperties"));
+    }
+
+    /**
+     * Properties to apply to the "more" tab created by this TabSet.
+     *
+     * @param moreTabProperties moreTabProperties Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setMoreTabProperties(Tab moreTabProperties)  throws IllegalStateException {
+        setAttribute("moreTabProperties", moreTabProperties.getJsObj(), false);
+    }
+
+    /**
+     * Properties to apply to the "more" tab created by this TabSet.
+     *
+     *
+     * @return Tab
+     */
+    public Tab getMoreTabProperties()  {
+        return Tab.getOrCreateRef(getAttributeAsJavaScriptObject("moreTabProperties"));
+    }
+
+    /**
+     * Title for the "More" tab.
+     *
+     * @param moreTabTitle moreTabTitle Default value is "More"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setMoreTabTitle(String moreTabTitle)  throws IllegalStateException {
+        setAttribute("moreTabTitle", moreTabTitle, false);
+    }
+
+    /**
+     * Title for the "More" tab.
+     *
+     *
+     * @return String
+     */
+    public String getMoreTabTitle()  {
+        return getAttributeAsString("moreTabTitle");
     }
 
     /**
@@ -627,6 +778,28 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     }
 
     /**
+     * Should tabs exceeding {@link com.smartgwt.client.widgets.tab.TabSet#getMoreTabCount moreTabCount} be shown on a "more"
+     * tab? <p> This setting is used to emulate an iPhone-style tab bar "more" button.
+     *
+     * @param showMoreTab showMoreTab Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowMoreTab(Boolean showMoreTab)  throws IllegalStateException {
+        setAttribute("showMoreTab", showMoreTab, false);
+    }
+
+    /**
+     * Should tabs exceeding {@link com.smartgwt.client.widgets.tab.TabSet#getMoreTabCount moreTabCount} be shown on a "more"
+     * tab? <p> This setting is used to emulate an iPhone-style tab bar "more" button.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowMoreTab()  {
+        return getAttributeAsBoolean("showMoreTab");
+    }
+
+    /**
      * Should the paneContainer for this tabset show {@link com.smartgwt.client.widgets.Canvas#getShowEdges edges}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -904,6 +1077,117 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         return getAttributeAsInt("tabBarThickness");
     }
 
+    /**
+     * If set, offsets the tab title editor further in from the left-hand edge of the tab, by the number of pixels set in this
+     * property.  Note that the editor is always offset to avoid overlapping the endcaps of the tab; this property is applied
+     * on top of that  default offset.
+     *
+     * @param titleEditorLeftOffset titleEditorLeftOffset Default value is null
+     * @see com.smartgwt.client.widgets.tab.TabSet#setTitleEditorRightOffset
+     * @see com.smartgwt.client.widgets.tab.TabSet#setTitleEditorTopOffset
+     */
+    public void setTitleEditorLeftOffset(Integer titleEditorLeftOffset) {
+        setAttribute("titleEditorLeftOffset", titleEditorLeftOffset, true);
+    }
+
+    /**
+     * If set, offsets the tab title editor further in from the left-hand edge of the tab, by the number of pixels set in this
+     * property.  Note that the editor is always offset to avoid overlapping the endcaps of the tab; this property is applied
+     * on top of that  default offset.
+     *
+     *
+     * @return Integer
+     * @see com.smartgwt.client.widgets.tab.TabSet#getTitleEditorRightOffset
+     * @see com.smartgwt.client.widgets.tab.TabSet#getTitleEditorTopOffset
+     */
+    public Integer getTitleEditorLeftOffset()  {
+        return getAttributeAsInt("titleEditorLeftOffset");
+    }
+
+    /**
+     * Properties for the auto-generated {@link com.smartgwt.client.widgets.tab.TabSet#getTitleEditor titleEditor}. This is the
+     * text item we use to edit tab titles in this tabSet.
+     *
+     * @param titleEditorProperties titleEditorProperties Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.tab.TabSet#setTitleEditor
+     * @see com.smartgwt.client.widgets.tab.TabSet#setCanEditTabTitles
+     */
+    public void setTitleEditorProperties(TextItem titleEditorProperties)  throws IllegalStateException {
+        setAttribute("titleEditorProperties", titleEditorProperties.getJsObj(), false);
+    }
+
+    /**
+     * Properties for the auto-generated {@link com.smartgwt.client.widgets.tab.TabSet#getTitleEditor titleEditor}. This is the
+     * text item we use to edit tab titles in this tabSet.
+     *
+     *
+     * @return TextItem
+     * @see com.smartgwt.client.widgets.tab.TabSet#getTitleEditor
+     * @see com.smartgwt.client.widgets.tab.TabSet#getCanEditTabTitles
+     */
+    public TextItem getTitleEditorProperties()  {
+        return TextItem.getOrCreateRef(getAttributeAsJavaScriptObject("titleEditorProperties"));
+    }
+
+    /**
+     * If set, offsets the tab title editor further in from the right-hand edge of the tab, by the number of pixels set in this
+     * property.  Note that the editor is always offset to avoid overlapping the endcaps of the tab; this property is applied
+     * on top of that  default offset.
+     *
+     * @param titleEditorRightOffset titleEditorRightOffset Default value is null
+     * @see com.smartgwt.client.widgets.tab.TabSet#setTitleEditorLeftOffset
+     * @see com.smartgwt.client.widgets.tab.TabSet#setTitleEditorTopOffset
+     */
+    public void setTitleEditorRightOffset(Integer titleEditorRightOffset) {
+        setAttribute("titleEditorRightOffset", titleEditorRightOffset, true);
+    }
+
+    /**
+     * If set, offsets the tab title editor further in from the right-hand edge of the tab, by the number of pixels set in this
+     * property.  Note that the editor is always offset to avoid overlapping the endcaps of the tab; this property is applied
+     * on top of that  default offset.
+     *
+     *
+     * @return Integer
+     * @see com.smartgwt.client.widgets.tab.TabSet#getTitleEditorLeftOffset
+     * @see com.smartgwt.client.widgets.tab.TabSet#getTitleEditorTopOffset
+     */
+    public Integer getTitleEditorRightOffset()  {
+        return getAttributeAsInt("titleEditorRightOffset");
+    }
+
+    /**
+     * If set, offsets the tab title editor further down from the top edge of the tab, by the number of pixels set in this
+     * property.  You can use this property, together with the  left and right offset properties, to fine tune positioning of
+     * the editor within or  around the tab button.<p> <b>Note:</b> The height of the editor is an attribute of the editor
+     * itself, and can be set by specifying a "height" property in {@link com.smartgwt.client.widgets.tab.TabSet#getTitleEditor
+     * titleEditorDefaults}.
+     *
+     * @param titleEditorTopOffset titleEditorTopOffset Default value is null
+     * @see com.smartgwt.client.widgets.tab.TabSet#setTitleEditorLeftOffset
+     * @see com.smartgwt.client.widgets.tab.TabSet#setTitleEditorRightOffset
+     */
+    public void setTitleEditorTopOffset(Integer titleEditorTopOffset) {
+        setAttribute("titleEditorTopOffset", titleEditorTopOffset, true);
+    }
+
+    /**
+     * If set, offsets the tab title editor further down from the top edge of the tab, by the number of pixels set in this
+     * property.  You can use this property, together with the  left and right offset properties, to fine tune positioning of
+     * the editor within or  around the tab button.<p> <b>Note:</b> The height of the editor is an attribute of the editor
+     * itself, and can be set by specifying a "height" property in {@link com.smartgwt.client.widgets.tab.TabSet#getTitleEditor
+     * titleEditorDefaults}.
+     *
+     *
+     * @return Integer
+     * @see com.smartgwt.client.widgets.tab.TabSet#getTitleEditorLeftOffset
+     * @see com.smartgwt.client.widgets.tab.TabSet#getTitleEditorRightOffset
+     */
+    public Integer getTitleEditorTopOffset()  {
+        return getAttributeAsInt("titleEditorTopOffset");
+    }
+
     // ********************* Methods ***********************
             
     /**
@@ -1039,6 +1323,46 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
                    var event = @com.smartgwt.client.widgets.tab.events.TabSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                });
+        }
+   }-*/;
+    /**
+     * Add a tabTitleChanged handler.
+     * <p>
+     * This notification method fired when the user changes the title of a tab in this TabSet. This can happen either through
+     * user interaction with the UI if  {@link com.smartgwt.client.widgets.tab.TabSet#getCanEditTabTitles canEditTabTitles} is
+     * set, or programmatically if application  code calls {@link com.smartgwt.client.widgets.tab.TabSet#editTabTitle
+     * editTabTitle}.<p> Return false from this method to cancel the change.
+     *
+     * @param handler the tabTitleChanged handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addTabTitleChangedHandler(com.smartgwt.client.widgets.tab.events.TabTitleChangedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent.getType()) == 0) setupTabTitleChangedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent.getType());
+    }
+
+    private native void setupTabTitleChangedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({titleChanged:$debox($entry(function(){
+                        var param = {"newTitle" : arguments[0], "oldTitle" : arguments[1], "tab" : arguments[2]};
+                        var event = @com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    }))
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.titleChanged = $debox($entry(function(){
+                   var param = {"newTitle" : arguments[0], "oldTitle" : arguments[1], "tab" : arguments[2]};
+                   var event = @com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               }));
         }
    }-*/;
 
@@ -1457,7 +1781,58 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.tabs.length;
     }-*/;
+    
 
+    /**
+     * The event that triggers title editing on this TabSet.
+     *
+     * @param titleEditEvent titleEditEvent Default value is "doubleClick"
+     * @see com.smartgwt.client.widgets.tab.TabSet#setCanEditTabTitles
+     * @see com.smartgwt.client.widgets.tab.Tab#setCanEditTitle
+     */
+    public void setTitleEditEvent(TabTitleEditEvent titleEditEvent) {
+        setAttribute("titleEditEvent", titleEditEvent.getValue(), true);
+    }
+
+    /**
+     * The event that triggers title editing on this TabSet.
+     *
+     *
+     * @return TabTitleEditEvent
+     * @see com.smartgwt.client.widgets.tab.TabSet#getCanEditTabTitles
+     * @see com.smartgwt.client.widgets.tab.Tab#getCanEditTitle
+     */
+    public TabTitleEditEvent getTitleEditEvent()  {
+        String event = getAttribute("titleEditEvent");
+        return event == "click" ? TabTitleEditEvent.CLICK : TabTitleEditEvent.DOUBLECLICK;
+    }
+
+    
+    /**
+     * Places an editor in the title of the parameter tab and allows the user to edit the title. Note that this programmatic
+     * method will <b.always</b> allow editing of the specified tab's title, regardless of the settings of {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getCanEditTabTitles canEditTabTitles} or {@link
+     * com.smartgwt.client.widgets.tab.Tab#getCanEditTitle canEditTitle}.
+     * @param tab The tab whose title should be edited (may be   specified by ID or index)
+     */
+    public native void editTabTitle(String tab) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.editTabTitle(tab);
+    }-*/;
+            
+    /**
+     * Places an editor in the title of the parameter tab and allows the user to edit the title. Note that this programmatic
+     * method will <b.always</b> allow editing of the specified tab's title, regardless of the settings of {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getCanEditTabTitles canEditTabTitles} or {@link
+     * com.smartgwt.client.widgets.tab.Tab#getCanEditTitle canEditTitle}.
+     * @param tab The tab whose title should be edited (may be   specified by ID or index)
+     */
+    public native void editTabTitle(int tab) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.editTabTitle(tab);
+    }-*/;
+
+    
     /**
      * The tabs
      *
