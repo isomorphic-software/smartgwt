@@ -20,6 +20,7 @@ import com.smartgwt.client.data.Criteria;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.viewer.DetailViewer;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
@@ -28,7 +29,9 @@ import com.smartgwt.sample.showcase.client.data.SupplyCategoryXmlDS;
 
 public class GridCustomHoverSample extends ShowcasePanel {
 
-    private static final String DESCRIPTION = "This example demonstrates how custom hover components can be used by overriding <i>ListGrid.getCellHoverComponent</i>.";
+    private static final String DESCRIPTION = "This grid displays a limited number of fields from the supplyItem dataSource. " +
+            "When you hover over a row, the system goes to the server to retrieve the entire record, creates a DetailViewer to display that " +
+            "data and shows it as the hoverComponent. See the code in the overridden getCellHoverComponent() method.";
 
     public static class Factory implements PanelFactory {
         private String id;
@@ -67,7 +70,13 @@ public class GridCustomHoverSample extends ShowcasePanel {
 
         listGrid.setWidth100();
         listGrid.setHeight100();
-        listGrid.setDataSource(SupplyCategoryXmlDS.getInstance());
+        listGrid.setDataSource(ItemSupplyXmlDS.getInstance());
+
+        ListGridField itemNameField = new ListGridField("itemName");
+        ListGridField skuField = new ListGridField("SKU");
+        ListGridField categoryField = new ListGridField("category");
+        listGrid.setFields(itemNameField, skuField, categoryField);
+
         listGrid.setAutoFetchData(true);
         listGrid.setCanHover(true);
         listGrid.setShowHover(true);
@@ -79,5 +88,4 @@ public class GridCustomHoverSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
 }
