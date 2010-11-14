@@ -168,27 +168,6 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         return EnumUtil.getEnum(DSOperationType.values(), getAttribute("saveOperationType"));
     }
 
-    /**
-     * The error message for a failed validator that does not specify its own errorMessage.
-     *
-     * @param unknownErrorMessage unknownErrorMessage Default value is "Invalid value"
-     * @see com.smartgwt.client.docs.Validation Validation overview and related methods
-     */
-    public void setUnknownErrorMessage(String unknownErrorMessage) {
-        setAttribute("unknownErrorMessage", unknownErrorMessage, true);
-    }
-
-    /**
-     * The error message for a failed validator that does not specify its own errorMessage.
-     *
-     *
-     * @return String
-     * @see com.smartgwt.client.docs.Validation Validation overview and related methods
-     */
-    public String getUnknownErrorMessage()  {
-        return getAttributeAsString("unknownErrorMessage");
-    }
-
     // ********************* Methods ***********************
             
     /**
@@ -518,12 +497,25 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
     /**
      * Return the value as String
      *
+     * @param fieldName the field name
      * @return the value
      */
     public native String getValueAsString(String fieldName) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var val = self.getValue(fieldName);
         return val == null || val === undefined ? null : val.toString();
+    }-*/;
+
+    /**
+     * Return the value of the field.
+     *
+     * @param fieldName the field name
+     * @return the value
+     */
+    public native Object getValue(String fieldName) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var val = self.getValue(fieldName);
+        return val == null || val === undefined ? null : $wnd.SmartGWT.convertToJavaType(val);
     }-*/;
 
     /**

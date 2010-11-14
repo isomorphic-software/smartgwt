@@ -4,13 +4,14 @@ import com.smartgwt.client.types.DragDataAction;
 import com.smartgwt.client.types.FetchMode;
 import com.smartgwt.client.data.*;
 import com.google.gwt.core.client.JavaScriptObject;
+import com.smartgwt.client.widgets.events.HasFetchDataHandlers;
 
 import java.util.Map;
 
 /**
  * A DataBoundComponent is a widget that can configure itself for viewing or editing objects which&#010 share a certain schema by "binding" to the schema for that object (called a "DataSource").&#010 <P>&#010 A schema (or DataSource) describes an object as consisting of a set of properties (or&#010 "fields").&#010 <P>&#010 DataBoundComponents have a {@link DataBoundComponent#getDataSource dataSource} for&#010 dealing with binding to DataSources, &#010 {@link DataBoundComponent#getFields fields} the schema information&#010 provided by a DataSource, and manipulating objects or sets of object from the DataSource.&#010 <P>&#010 The following visual components currently support databinding:<pre>&#010   {@link com.smartgwt.client.widgets.form.DynamicForm}&#010   {@link com.smartgwt.client.widgets.viewer.DetailViewer}&#010   {@link com.smartgwt.client.widgets.grid.ListGrid}&#010   {@link com.smartgwt.client.widgets.tree.TreeGrid}&#010   {@link com.smartgwt.client.widgets.tile.TileGrid}&#010   {@link com.smartgwt.client.widgets.grid.ColumnTree}&#010   {@link com.smartgwt.client..CubeGrid}&#010 </pre>&#010 The following non-visual components also support databinding:<pre>&#010   {@link com.smartgwt.client.widgets.form.ValuesManager}&#010   {@link com.smartgwt.client.data.ResultSet}&#010   {@link com.smartgwt.client..ResultTree}&#010 </pre>
  */
-public interface DataBoundComponent {
+public interface DataBoundComponent extends HasFetchDataHandlers {
 
     JavaScriptObject getOrCreateJsObj();
 

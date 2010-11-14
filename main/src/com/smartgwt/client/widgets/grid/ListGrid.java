@@ -61,7 +61,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * A ListGrid is a {@link com.smartgwt.client.widgets.DataBoundComponent} that displays a list of objects in a grid, where
  * each row represents one object and each cell in the row represents one property.
  */
-public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasHeaderClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDropHandlers, com.smartgwt.client.widgets.grid.events.HasRecordExpandHandlers, com.smartgwt.client.widgets.grid.events.HasRecordCollapseHandlers, com.smartgwt.client.widgets.events.HasFilterDataHandlers, com.smartgwt.client.widgets.grid.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.grid.events.HasDrawAreaChangedHandlers, com.smartgwt.client.widgets.grid.events.HasFieldStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasEditFailedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasCellOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasCellClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowOutHandlers, com.smartgwt.client.widgets.grid.events.HasRowOverHandlers, com.smartgwt.client.widgets.grid.events.HasRowContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellHoverHandlers, com.smartgwt.client.widgets.grid.events.HasRowHoverHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionChangedHandlers, com.smartgwt.client.widgets.grid.events.HasHeaderDoubleClickHandlers {
+public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasHeaderClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDropHandlers, com.smartgwt.client.widgets.grid.events.HasRecordExpandHandlers, com.smartgwt.client.widgets.grid.events.HasRecordCollapseHandlers, com.smartgwt.client.widgets.grid.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.grid.events.HasDrawAreaChangedHandlers, com.smartgwt.client.widgets.grid.events.HasFieldStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasEditFailedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasCellOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasCellClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowOutHandlers, com.smartgwt.client.widgets.grid.events.HasRowOverHandlers, com.smartgwt.client.widgets.grid.events.HasRowContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellHoverHandlers, com.smartgwt.client.widgets.grid.events.HasRowHoverHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionChangedHandlers, com.smartgwt.client.widgets.grid.events.HasHeaderDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasFilterEditorSubmitHandlers {
 
     public static ListGrid getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -1285,6 +1285,34 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * Can a group be collapsed/expanded? When true a collapse/expand icon is shown ({@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getGroupIcon groupIcon}) and clicking the icon or double-clicking the group
+     * title will collapse or expand the group. When false the group icon is not shown and double-clicking on the title does
+     * not change group state. Additionally  groupStartOpen is  initialized to "all".
+     *
+     * @param canCollapseGroup canCollapseGroup Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.grid.ListGrid#groupBy
+     */
+    public void setCanCollapseGroup(Boolean canCollapseGroup)  throws IllegalStateException {
+        setAttribute("canCollapseGroup", canCollapseGroup, false);
+    }
+
+    /**
+     * Can a group be collapsed/expanded? When true a collapse/expand icon is shown ({@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getGroupIcon groupIcon}) and clicking the icon or double-clicking the group
+     * title will collapse or expand the group. When false the group icon is not shown and double-clicking on the title does
+     * not change group state. Additionally  groupStartOpen is  initialized to "all".
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.widgets.grid.ListGrid#groupBy
+     */
+    public Boolean getCanCollapseGroup()  {
+        return getAttributeAsBoolean("canCollapseGroup");
+    }
+
+    /**
      * Indicates whether records can be dragged from this listGrid and dropped elsewhere.
      *
      * @param canDragRecordsOut canDragRecordsOut Default value is false
@@ -1448,8 +1476,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * When set to true, shows an additional field at the beginning of the field-list  (respecting RTL) to allow users to
-     * expand and collapse individual records. <P> If expanded records will be variable height, you should switch on {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getVirtualScrolling virtualScrolling}.
+     * expand and collapse individual records. See {@link com.smartgwt.client.widgets.grid.ListGrid#expandRecord
+     * ListGrid.expandRecord} and {@link com.smartgwt.client.widgets.grid.ListGrid#getExpansionMode expansionMode} for details
+     * on record expansion. <P> If expanded records will be variable height, you should switch on {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getVirtualScrolling virtualScrolling}. <P> Note that expanded records are not
+     * currently supported in conjunction  with {@link com.smartgwt.client.widgets.grid.ListGridField#getFrozen frozen fields}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canExpandRecords canExpandRecords Default value is false
@@ -1460,8 +1491,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * When set to true, shows an additional field at the beginning of the field-list  (respecting RTL) to allow users to
-     * expand and collapse individual records. <P> If expanded records will be variable height, you should switch on {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getVirtualScrolling virtualScrolling}.
+     * expand and collapse individual records. See {@link com.smartgwt.client.widgets.grid.ListGrid#expandRecord
+     * ListGrid.expandRecord} and {@link com.smartgwt.client.widgets.grid.ListGrid#getExpansionMode expansionMode} for details
+     * on record expansion. <P> If expanded records will be variable height, you should switch on {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getVirtualScrolling virtualScrolling}. <P> Note that expanded records are not
+     * currently supported in conjunction  with {@link com.smartgwt.client.widgets.grid.ListGridField#getFrozen frozen fields}.
      *
      *
      * @return Boolean
@@ -4858,6 +4892,35 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} is true, this
+     * attribute may be used to specify a standard height for record components. If specified every row in the grid will be
+     * sized tall enough to accomodate a recordComponent of this size. <P> Note that if this property is unset, row heights
+     * will be unpredictable and  {@link com.smartgwt.client.widgets.grid.ListGridField#getFrozen freezing of columns} is not
+     * supported in this case.
+     * Setter for the {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordComponentHeight recordComponentHeight}
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param recordComponentHeight recordComponent height. Default value is null
+     */
+    public void setRecordComponentHeight(Integer recordComponentHeight) {
+        setAttribute("recordComponentHeight", recordComponentHeight, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} is true, this
+     * attribute may be used to specify a standard height for record components. If specified every row in the grid will be
+     * sized tall enough to accomodate a recordComponent of this size. <P> Note that if this property is unset, row heights
+     * will be unpredictable and  {@link com.smartgwt.client.widgets.grid.ListGridField#getFrozen freezing of columns} is not
+     * supported in this case.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getRecordComponentHeight()  {
+        return getAttributeAsInt("recordComponentHeight");
+    }
+
+    /**
      * The method of {@link com.smartgwt.client.types.RecordComponentPoolingMode component-pooling} to employ for  {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents recordComponents}. <P> The default mode is "viewport",
      * which means that recordComponents are destroyed as soon  their record leaves the viewport.   <P> For the most efficient
@@ -4873,7 +4936,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * or  use "data" otherwise.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param recordComponentPoolingMode recordComponentPoolingMode Default value is "recycle"
+     * @param recordComponentPoolingMode recordComponentPoolingMode Default value is "viewport"
      */
     public void setRecordComponentPoolingMode(RecordComponentPoolingMode recordComponentPoolingMode) {
         setAttribute("recordComponentPoolingMode", recordComponentPoolingMode.getValue(), true);
@@ -5746,7 +5809,13 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * {@link com.smartgwt.client.widgets.grid.ListGrid#updateRecordComponent ListGrid.updateRecordComponent}, and pass in the
      * component. This allows the developer to apply record-specific attributes to an already created component and render it
      * out into the new record. This greatly improves performance for  large grids as it allows a small number of components to
-     * be created and reused rather  than maintaining potentially one record component for every cell in the grid.
+     * be created and reused rather  than maintaining potentially one record component for every cell in the grid. <P> NOTE:
+     * recordComponents can have an impact on row height and therefore may require {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getVirtualScrolling virtualScrolling}. This is not supported in conjunction
+     * with {@link com.smartgwt.client.widgets.grid.ListGridField#getFrozen frozen fields}. If you are using recordComponents
+     * in a listGrid with frozenFields, you can specify an explicit {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getRecordComponentHeight recordComponentHeight} to ensure every row in the
+     * grid renders tall enough to accomodate the recordComponents, and as such virtual scrolling is not required.
      * Setter for the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} attribute
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -5777,7 +5846,13 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * {@link com.smartgwt.client.widgets.grid.ListGrid#updateRecordComponent ListGrid.updateRecordComponent}, and pass in the
      * component. This allows the developer to apply record-specific attributes to an already created component and render it
      * out into the new record. This greatly improves performance for  large grids as it allows a small number of components to
-     * be created and reused rather  than maintaining potentially one record component for every cell in the grid.
+     * be created and reused rather  than maintaining potentially one record component for every cell in the grid. <P> NOTE:
+     * recordComponents can have an impact on row height and therefore may require {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getVirtualScrolling virtualScrolling}. This is not supported in conjunction
+     * with {@link com.smartgwt.client.widgets.grid.ListGridField#getFrozen frozen fields}. If you are using recordComponents
+     * in a listGrid with frozenFields, you can specify an explicit {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getRecordComponentHeight recordComponentHeight} to ensure every row in the
+     * grid renders tall enough to accomodate the recordComponents, and as such virtual scrolling is not required.
      *
      *
      * @return Boolean
@@ -7489,6 +7564,44 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.filterByEditor();
     }-*/;
+    /**
+     * Add a filterEditorSubmit handler.
+     * <p>
+     * Optional notification  fired when the  user performs a filter by modifying the filter editor criteria. Will be fired on
+     * keypress if filterOnKeypress is true otherwise when the user clicks the filter button or on enter keypress
+     *
+     * @param handler the filterEditorSubmit handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addFilterEditorSubmitHandler(com.smartgwt.client.widgets.grid.events.FilterEditorSubmitHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.grid.events.FilterEditorSubmitEvent.getType()) == 0) setupFilterEditorSubmitEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.FilterEditorSubmitEvent.getType());
+    }
+
+    private native void setupFilterEditorSubmitEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({filterEditorSubmit:$debox($entry(function(){
+                        var param = {"criteria" : arguments[0]};
+                        var event = @com.smartgwt.client.widgets.grid.events.FilterEditorSubmitEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    }))
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.filterEditorSubmit = $debox($entry(function(){
+                   var param = {"criteria" : arguments[0]};
+                   var event = @com.smartgwt.client.widgets.grid.events.FilterEditorSubmitEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               }));
+        }
+   }-*/;
             
     /**
      * If the filter editor ({@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor}) is visible
@@ -7977,6 +8090,15 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native void markForRedraw(String reason) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.markForRedraw(reason);
+    }-*/;
+            
+    /**
+     * Recalculates values displayed in the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary grid summary}
+     * and {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary group summary rows}.
+     */
+    public native void recalculateSummaries() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.recalculateSummaries();
     }-*/;
     /**
      * Add a recordClick handler.
@@ -11281,47 +11403,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }
     }-*/;
     
-    /**
-     * Add a filterData handler.
-     * <p>
-     * Notification function fired when the user performs a filter by modifying
-     * the filter editor criteria. Will be fired on keypress if filterOnKeypress is true otherwise when the
-     * user clicks the filter button or on enter keypress.
-     * <p>
-     * Call event.cancel() to suppress the filter from occurring
-     *
-     * @param handler the filterData handler
-     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addFilterDataHandler(com.smartgwt.client.widgets.events.FilterDataHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.FilterDataEvent.getType()) == 0) setupFilterDataEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.FilterDataEvent.getType());
-    }
-
-    private native void setupFilterDataEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({onFilterData:$debox($entry(function(){
-                    var param = {"criteria" : arguments[0]};
-                    var event = @com.smartgwt.client.widgets.events.FilterDataEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                    return !ret;
-                }))
-            });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.onFilterData = $debox($entry(function(){
-                var param = {"criteria" : arguments[0]};
-                var event = @com.smartgwt.client.widgets.events.FilterDataEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                return !ret;
-            }));
-        }
-    }-*/;
     
     /**
      * This method overrides {@link com.smartgwt.client.widgets.Canvas#willAcceptDrop} and works as follows:<br> <ul> <li>If
@@ -11348,7 +11429,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     	return super.willAcceptDrop();   
     }
     
-
     /**
      * Add a onRecordDrop handler.
      * <p>
@@ -12317,8 +12397,41 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         self.exportClientData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
-}
+    /**
+     * Add a fetchData handler.
+     * <p>
+     * Notification function fired on fetchData() or filterData()
+     *
+     * @param handler the filterData handler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addFetchDataHandler(FetchDataHandler handler) {
+        if(getHandlerCount(FetchDataEvent.getType()) == 0) setupFetchDataEvent();
+        return doAddHandler(handler, FetchDataEvent.getType());
+    }
 
+    private native void setupFetchDataEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onFetchData:$debox($entry(function(){
+                    var param = {"criteria" : arguments[0], "requestProperties" : arguments[1]};
+                    var event = @com.smartgwt.client.widgets.events.FetchDataEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                }))
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onFetchData = $debox($entry(function(){
+                var param = {"criteria" : arguments[0], "requestProperties" : arguments[1]};
+                var event = @com.smartgwt.client.widgets.events.FetchDataEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            }));
+        }
+    }-*/;
+
+}
 
 
 
