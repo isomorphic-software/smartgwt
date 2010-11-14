@@ -35,4 +35,20 @@ public class FloatItem extends FormItem {
 		setTitle(title);
         setType("float");
     }
+
+    /**
+     * Return the value tracked by this form item.
+     *
+     * @return value of this element
+     */
+    public native Float getValueAsFloat() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret;
+        if(self.setValue) {
+             ret = self.getValue();
+        } else {
+            ret = self.value;
+        }
+        return @com.smartgwt.client.util.JSOHelper::toFloat(F)(ret);
+    }-*/;
 }
