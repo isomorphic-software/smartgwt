@@ -40,7 +40,7 @@ public class GridHoverRelatedRecordsSample extends ShowcasePanel {
         listGrid.setShowHover(true);
         listGrid.setShowHoverComponents(true);
         listGrid.setHoverMode(HoverMode.RELATED);
-        listGrid.setHoverWidth(250);
+        listGrid.setHoverWidth(550);
         listGrid.setHoverHeight(350);
         listGrid.setDetailDS(ItemSupplyXmlDS.getInstance());
 
