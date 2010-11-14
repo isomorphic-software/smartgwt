@@ -403,52 +403,6 @@ public class ToolStrip extends Layout {
     public void addResizer() {
         addMember(new ToolStripResizer());
     }
-    /**
-     * Add a canvas to the layout, optionally at a specific position.
-     *
-     * @param component the canvas object to be added to the layout
-     * @param position  the position in the layout to place newMember (starts with 0); if omitted, it will be added at
-     *                  the last position
-     */
-    public void addMember(Canvas component, int position) {
-        Object componentJS;
-        if (component instanceof ToolStripSeparator) {
-            componentJS = "separator";
-        } else if (component instanceof ToolStripResizer) {
-            componentJS = "resizer";
-        } else {
-            componentJS = component.getOrCreateJsObj();
-        }
-
-        if (isCreated()) {
-            addMemberPostCreate(componentJS, position);
-
-        } else {
-            addMemberPreCreate(componentJS, position);
-        }
-    }
-
-    /**
-     * Add a canvas to the layout, optionally at a specific position.
-     *
-     * @param component the canvas object to be added to the layout
-     */
-    public void addMember(Canvas component) {
-        Object componentJS;
-        if (component instanceof ToolStripSeparator) {
-            componentJS = "separator";
-        } else if (component instanceof ToolStripResizer) {
-            componentJS = "resizer";
-        } else {
-            componentJS = component.getOrCreateJsObj();
-        }
-
-        if (isCreated()) {
-            addMemberPostCreate(componentJS);
-        } else {
-            addMemberPreCreate(componentJS);
-        }
-    }
 
 }
 
