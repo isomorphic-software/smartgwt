@@ -1689,6 +1689,29 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
+     * If <code>this.showHover</code> is true and getHoverComponent() is implemented, should the hoverCanvas returned from it
+     * be automatically destroyed when it is hidden?
+     *
+     * @param hoverAutoDestroy hoverAutoDestroy Default value is null
+     * @see com.smartgwt.client.widgets.Canvas#setShowHover
+     */
+    public void setHoverAutoDestroy(Boolean hoverAutoDestroy) {
+        setAttribute("hoverAutoDestroy", hoverAutoDestroy, true);
+    }
+
+    /**
+     * If <code>this.showHover</code> is true and getHoverComponent() is implemented, should the hoverCanvas returned from it
+     * be automatically destroyed when it is hidden?
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.widgets.Canvas#getShowHover
+     */
+    public Boolean getHoverAutoDestroy()  {
+        return getAttributeAsBoolean("hoverAutoDestroy");
+    }
+
+    /**
      * If <code>this.canHover</code> is true, how long should the mouse be kept over this widget before the hover event is
      * fired
      *
