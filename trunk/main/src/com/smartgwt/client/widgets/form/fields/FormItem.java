@@ -270,6 +270,23 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         return getAttributeAsString("cellStyle");
     }
 
+
+    /**
+     * A Read-Only pointer to the Smart GWT canvas that holds this form item. In most cases this will be the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getForm DynamicForm} containing the item but in some cases editable
+     * components handle writing out form items directly. An example of this is {@link com.smartgwt.client.docs.Editing Grid
+     * Editing} - when a listGrid shows per-field editors, the <code>containerWidget</code> for each item will be the listGrid.
+     * <P> Note that even if the <code>containerWidget</code> is not a DynamicForm, a DynamicForm will still exist for the item
+     * (available as {@link com.smartgwt.client.widgets.form.fields.FormItem#getForm form}), allowing access to standard APIs
+     * such as {@link com.smartgwt.client.widgets.form.DynamicForm#getValues DynamicForm.getValues}
+     *
+     *
+     * @return Canvas
+     */
+    public Canvas getContainerWidget()  {
+        return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("containerWidget"));
+    }
+
     /**
      * When using {@link com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator}, the name of the DataSource
      * field for the {@link com.smartgwt.client.data.Criterion} this FormItem generates.  If not specified, defaults to {@link
@@ -334,8 +351,9 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * com.smartgwt.client.types.DateDisplayFormat} to  change the format used by this item.<br> Note: if both
      * <code>dateFormatter</code> and {@link com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter}
      * are specified on an item, Date type values will be formatted as dates using  <code>dateFormatter</code>.<br> See also
-     * {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} for formatting dates displayed
-     * in DateItems.
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFormat displayFormat} and  {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} for formatting dates displayed in
+     * DateItems.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dateFormatter dateFormatter Default value is null
@@ -351,8 +369,9 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * com.smartgwt.client.types.DateDisplayFormat} to  change the format used by this item.<br> Note: if both
      * <code>dateFormatter</code> and {@link com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter}
      * are specified on an item, Date type values will be formatted as dates using  <code>dateFormatter</code>.<br> See also
-     * {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} for formatting dates displayed
-     * in DateItems.
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFormat displayFormat} and  {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} for formatting dates displayed in
+     * DateItems.
      *
      *
      * @return DateDisplayFormat
@@ -1078,6 +1097,32 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
+     * For fields of type <code>"date"</code>, if this is an editable field such as a {@link
+     * com.smartgwt.client.widgets.form.fields.TextItem}, this property  allows you to specify the {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} applied to the item.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param inputFormat inputFormat Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setDisplayFormat
+     */
+    public void setInputFormat(String inputFormat) {
+        setAttribute("inputFormat", inputFormat);
+    }
+
+    /**
+     * For fields of type <code>"date"</code>, if this is an editable field such as a {@link
+     * com.smartgwt.client.widgets.form.fields.TextItem}, this property  allows you to specify the {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} applied to the item.
+     *
+     *
+     * @return String
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFormat
+     */
+    public String getInputFormat()  {
+        return getAttributeAsString("inputFormat");
+    }
+
+    /**
      * Left coordinate of this item in pixels.  Applies only when the containing DynamicForm sets
      * <code>itemLayout:"absolute"</code>.
      * For a form with {@link com.smartgwt.client.widgets.form.DynamicForm#getItemLayout itemLayout}:"absolute" only, set the left coordinate of this form item. <P> Causes the form to redraw.
@@ -1417,8 +1462,9 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.form.validator.Validator#requiredField requiredField}. <P> <b>Note:</b> if specified on a
      * FormItem, <code>required</code> is only enforced on the client.  <code>required</code> should generally be specified on
      * a {@link com.smartgwt.client.data.DataSourceField}.
+     * Setter to mark this formItem as {@link com.smartgwt.client.widgets.form.fields.FormItem#getRequired required}, or not required at runtime. Note that an alternative approach to updating the <code>required</code> flag directly would be to simply use a {@link com.smartgwt.client.types.ValidatorType requiredIf} type validator. <P> Note thate this method will not re-validate this item by default or clear any  existing validation errors. If desired, this may be achieved by calling {@link com.smartgwt.client.widgets.form.fields.FormItem#validate FormItem.validate} or {@link com.smartgwt.client.widgets.form.DynamicForm#clearErrors DynamicForm.clearErrors}.
      *
-     * @param required required Default value is null
+     * @param required new {@link com.smartgwt.client.widgets.form.fields.FormItem#getRequired required} value.. Default value is null
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_dep_show_hide" target="examples">Show & Hide Example</a>
      */
@@ -1555,9 +1601,10 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * When this item is disabled, should it be re-styled to indicate its disabled state?
+     * Setter method for {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowDisabled showDisabled}
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param showDisabled showDisabled Default value is true
+     * @param showDisabled new showDisabled setting. Default value is true
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -2181,6 +2228,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Time-format to apply to date type values within this formItem.  If specified, any dates displayed in this item will be
      * formatted as times using the appropriate format.<br> Has no effect if {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} is also set.<br> See also {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFormat displayFormat} and {@link
      * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat} for formatting values displayed in
      * TimeItems.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -2196,6 +2244,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Time-format to apply to date type values within this formItem.  If specified, any dates displayed in this item will be
      * formatted as times using the appropriate format.<br> Has no effect if {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} is also set.<br> See also {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFormat displayFormat} and {@link
      * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat} for formatting values displayed in
      * TimeItems.
      *
@@ -4320,6 +4369,60 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             return valueIconMapper.@com.smartgwt.client.widgets.form.ValueIconMapper::getValueIcon(Ljava/lang/Object;)(valueJ);
         }));
     }-*/;
+    
+
+    /**
+     * Fields of type <code>"date"</code> or <code>"time"</code> will be edited using a {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem} or {@link com.smartgwt.client.widgets.form.fields.TimeItem} by
+     * default. <P> However this can be overridden - for <code>canEdit:false</code> fields, a {@link
+     * com.smartgwt.client.widgets.form.fields.StaticTextItem} is used by default, and the developer can always specify  a
+     * custom {@link com.smartgwt.client.widgets.form.fields.FormItem#getEditorType editorType} as well as {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getType data type}. <P> For fields of type <code>"date"</code>, set
+     * this property to a valid {@link com.smartgwt.client.types.DateDisplayFormat} to specify how the date should be
+     * formatted. <br> For fields of type <code>"time"</code>, set this property to a valid  {@link
+     * com.smartgwt.client.types.timeFormatter timeFormatter} to specify how the time should be formatted. <br> Note that if
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} or {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter} are specified they will take precedence
+     * over this setting. <P> If this field is of type <code>"date"</code> and is editable, the  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getInputFormat inputFormat} may be used to specify how user-edited date
+     * strings will be parsed.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param displayFormat displayFormat Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setInputFormat
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setDateFormatter
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setTimeFormatter
+     */
+    public void setDisplayFormat(DateDisplayFormat displayFormat) {
+        setAttribute("displayFormat", displayFormat.getValue());
+    }
+    
+    /**
+     * Fields of type <code>"date"</code> or <code>"time"</code> will be edited using a {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem} or {@link com.smartgwt.client.widgets.form.fields.TimeItem} by
+     * default. <P> However this can be overridden - for <code>canEdit:false</code> fields, a {@link
+     * com.smartgwt.client.widgets.form.fields.StaticTextItem} is used by default, and the developer can always specify  a
+     * custom {@link com.smartgwt.client.widgets.form.fields.FormItem#getEditorType editorType} as well as {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getType data type}. <P> For fields of type <code>"date"</code>, set
+     * this property to a valid {@link com.smartgwt.client.types.DateDisplayFormat} to specify how the date should be
+     * formatted. <br> For fields of type <code>"time"</code>, set this property to a valid  {@link
+     * com.smartgwt.client.types.timeFormatter timeFormatter} to specify how the time should be formatted. <br> Note that if
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} or {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter} are specified they will take precedence
+     * over this setting. <P> If this field is of type <code>"date"</code> and is editable, the  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getInputFormat inputFormat} may be used to specify how user-edited date
+     * strings will be parsed.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param displayFormat displayFormat Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setInputFormat
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setDateFormatter
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setTimeFormatter
+     */
+    public void setDisplayFormat(TimeFormatter displayFormat) {
+        setAttribute("displayFormat", displayFormat.getValue());
+    }
+    
 
 }
 
