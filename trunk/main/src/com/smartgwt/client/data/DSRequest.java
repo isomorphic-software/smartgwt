@@ -179,6 +179,27 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
+     * Only applies to request properties passed to {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData
+     * DataBoundComponent.exportClientData}. If specified this property contains an arbitrary set of data to be exported.
+     *
+     * @param exportData exportData Default value is null
+     */
+    public void setExportData(Record... exportData) {
+        setAttribute("exportData", exportData);
+    }
+
+    /**
+     * Only applies to request properties passed to {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData
+     * DataBoundComponent.exportClientData}. If specified this property contains an arbitrary set of data to be exported.
+     *
+     *
+     * @return Record
+     */
+    public Record[] getExportData()  {
+        return Record.convertToRecordArray(getAttributeAsJavaScriptObject("exportData"));
+    }
+
+    /**
      * The character to use as a field-separator in CSV exports.  The default delimiter is comma.
      *
      * @param exportDelimiter exportDelimiter Default value is ","
@@ -830,7 +851,6 @@ public class DSRequest extends RPCRequest {
     }
 
 }
-
 
 
 

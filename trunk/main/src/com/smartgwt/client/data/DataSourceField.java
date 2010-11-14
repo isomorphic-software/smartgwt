@@ -657,7 +657,26 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * Maximum number of characters allowed.  Applicable only to fields of text type.
+     * Maximum number of characters allowed.  Applicable only to fields of text type. <P> <b>NOTE:</b> For DataSources of type
+     * "sql", this property has a bearing on the type of  column we use when the underlying table is created by a DataSource 
+     * {@link com.smartgwt.client.docs.SqlDataSource import} in the {@link com.smartgwt.client.docs.AdminConsole Admin
+     * Console}.  Below  a certain length (which is database-specific, see below), we use standard <code>VARCHAR</code>
+     * columns; above that length, we use an alternate strategy (again, database-specific).  For  these long fields, we
+     * sometimes also generate different SQL for "update" and "add"  operations, using JDBC "?" replacement parameters rather
+     * than embedding values directly in  the generated SQL; whether or not this is done depends entirely on what the
+     * underlying  database product and/or JDBC driver will allow. <P><br> <b>Table of field length limits for supported
+     * databases:</b><p> <table style="font-size:10px;text-align:center;border:1px solid black;"> <tr><td
+     * style="color:white;background-color:black;"><b>Database product</b></td>     <td
+     * style="color:white;background-color:black;"><b>VARCHAR limit *</b></td>     <td
+     * style="color:white;background-color:black;"><b>Type used above limit</b></td></tr>
+     * <tr><td>HSQLDB</td><td>None</td><td>-</td></tr> <tr><td>IBM DB2</td><td>4000</td><td>CLOB</td></tr> <tr><td> Microsoft
+     * SQL Server </td><td>8000</td><td>TEXT</td></tr> <tr><td>MySQL</td><td> 255 / 65535 / 16M </td><td> TEXT / MEDIUMTEXT /
+     * LONGTEXT ** </td></tr> <tr><td>Oracle</td><td>4000</td><td>CLOB</td></tr>
+     * <tr><td>PostgreSQL</td><td>4000</td><td>TEXT</td></tr> </table><br> <b>*</b> The "VARCHAR limit" referred to here is a
+     * limit used by the Smart GWT Server; it is not necessarily imposed by the database.  For example, DB2's VARCHAR limit is
+     * not 4000 characters; it actually varies from about 4K to about 32K, depending on how the server has  been configured.<p>
+     * <b>**</b> MySQL has a limit of 255 characters for VARCHAR, 65,535 characters for TEXT and  16,777,215 for MEDIUMTEXT;
+     * therefore, with that one product, we have three thresholds for a  change in storage type.
      *
      * @param length length Default value is null
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_longtext" target="examples">Long Text Example</a>
@@ -667,7 +686,26 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * Maximum number of characters allowed.  Applicable only to fields of text type.
+     * Maximum number of characters allowed.  Applicable only to fields of text type. <P> <b>NOTE:</b> For DataSources of type
+     * "sql", this property has a bearing on the type of  column we use when the underlying table is created by a DataSource 
+     * {@link com.smartgwt.client.docs.SqlDataSource import} in the {@link com.smartgwt.client.docs.AdminConsole Admin
+     * Console}.  Below  a certain length (which is database-specific, see below), we use standard <code>VARCHAR</code>
+     * columns; above that length, we use an alternate strategy (again, database-specific).  For  these long fields, we
+     * sometimes also generate different SQL for "update" and "add"  operations, using JDBC "?" replacement parameters rather
+     * than embedding values directly in  the generated SQL; whether or not this is done depends entirely on what the
+     * underlying  database product and/or JDBC driver will allow. <P><br> <b>Table of field length limits for supported
+     * databases:</b><p> <table style="font-size:10px;text-align:center;border:1px solid black;"> <tr><td
+     * style="color:white;background-color:black;"><b>Database product</b></td>     <td
+     * style="color:white;background-color:black;"><b>VARCHAR limit *</b></td>     <td
+     * style="color:white;background-color:black;"><b>Type used above limit</b></td></tr>
+     * <tr><td>HSQLDB</td><td>None</td><td>-</td></tr> <tr><td>IBM DB2</td><td>4000</td><td>CLOB</td></tr> <tr><td> Microsoft
+     * SQL Server </td><td>8000</td><td>TEXT</td></tr> <tr><td>MySQL</td><td> 255 / 65535 / 16M </td><td> TEXT / MEDIUMTEXT /
+     * LONGTEXT ** </td></tr> <tr><td>Oracle</td><td>4000</td><td>CLOB</td></tr>
+     * <tr><td>PostgreSQL</td><td>4000</td><td>TEXT</td></tr> </table><br> <b>*</b> The "VARCHAR limit" referred to here is a
+     * limit used by the Smart GWT Server; it is not necessarily imposed by the database.  For example, DB2's VARCHAR limit is
+     * not 4000 characters; it actually varies from about 4K to about 32K, depending on how the server has  been configured.<p>
+     * <b>**</b> MySQL has a limit of 255 characters for VARCHAR, 65,535 characters for TEXT and  16,777,215 for MEDIUMTEXT;
+     * therefore, with that one product, we have three thresholds for a  change in storage type.
      *
      *
      * @return Integer
@@ -945,25 +983,6 @@ public class DataSourceField extends DataClass {
      */
     public Boolean getShowFileInline()  {
         return getAttributeAsBoolean("showFileInline");
-    }
-
-    /**
-     * If set, causes the field to be securely hashed before saving on an "add" or "update"  operation.
-     *
-     * @param storeWithHash storeWithHash Default value is null
-     */
-    public void setStoreWithHash(HashAlgorithm storeWithHash) {
-        setAttribute("storeWithHash", storeWithHash.getValue());
-    }
-
-    /**
-     * If set, causes the field to be securely hashed before saving on an "add" or "update"  operation.
-     *
-     *
-     * @return HashAlgorithm
-     */
-    public HashAlgorithm getStoreWithHash()  {
-        return EnumUtil.getEnum(HashAlgorithm.values(), getAttribute("storeWithHash"));
     }
 
     /**
@@ -1450,6 +1469,144 @@ public class DataSourceField extends DataClass {
     private static boolean isDataSourceField(JavaScriptObject jsObj) {
         Object ref = JSOHelper.getAttributeAsObject(jsObj, SC.REF);
         return ref != null && ref instanceof DataSourceField;
+    }
+
+    /**
+     * Height of the image-content of this field.  If set as a string, represents the name of  another field in the record that
+     * holds the imageHeight.  Applicable only to fields of image  type or fields that use a {@link
+     * com.smartgwt.client.widgets.form.fields.ViewFileItem ViewFileItem} as an editor.
+     *
+     * @param imageHeight imageHeight Default value is null
+     */
+    public void setImageHeight(Integer imageHeight) {
+        setAttribute("imageHeight", imageHeight);
+    }
+
+    /**
+     * Height of the image-content of this field.  If set as a string, represents the name of  another field in the record that
+     * holds the imageHeight.  Applicable only to fields of image  type or fields that use a {@link
+     * com.smartgwt.client.widgets.form.fields.ViewFileItem ViewFileItem} as an editor.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getImageHeight()  {
+        return getAttributeAsInt("imageHeight");
+    }
+
+    /**
+     * Height of the image-content of this field.  If set as a string, represents the name of  another field in the record that
+     * holds the imageHeight.  Applicable only to fields of image  type or fields that use a {@link
+     * com.smartgwt.client.widgets.form.fields.ViewFileItem ViewFileItem} as an editor.
+     *
+     * @param imageHeight imageHeight Default value is null
+     */
+    public void setImageHeight(String imageHeight) {
+        setAttribute("imageHeight", imageHeight);
+    }
+
+    /**
+     * Height of the image-content of this field.  If set as a string, represents the name of  another field in the record that
+     * holds the imageHeight.  Applicable only to fields of image  type or fields that use a {@link
+     * com.smartgwt.client.widgets.form.fields.ViewFileItem ViewFileItem} as an editor.
+     *
+     *
+     * @return String
+     */
+    public String getImageHeightAsString()  {
+        return getAttributeAsString("imageHeight");
+    }
+
+    /**
+     * Width and height of the image-content of this field.  If set as a string, represents the  name of another field in the
+     * record that holds the imageSize.  Applicable only to fields  of image type or fields that use a {@link
+     * com.smartgwt.client.widgets.form.fields.ViewFileItem ViewFileItem} as an editor.
+     *
+     * @param imageSize imageSize Default value is null
+     */
+    public void setImageSize(Integer imageSize) {
+        setAttribute("imageSize", imageSize);
+    }
+
+    /**
+     * Width and height of the image-content of this field.  If set as a string, represents the  name of another field in the
+     * record that holds the imageSize.  Applicable only to fields  of image type or fields that use a {@link
+     * com.smartgwt.client.widgets.form.fields.ViewFileItem ViewFileItem} as an editor.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getImageSize()  {
+        return getAttributeAsInt("imageSize");
+    }
+
+    /**
+     * Width and height of the image-content of this field.  If set as a string, represents the  name of another field in the
+     * record that holds the imageSize.  Applicable only to fields  of image type or fields that use a {@link
+     * com.smartgwt.client.widgets.form.fields.ViewFileItem ViewFileItem} as an editor.
+     *
+     * @param imageSize imageSize Default value is null
+     */
+    public void setImageSize(String imageSize) {
+        setAttribute("imageSize", imageSize);
+    }
+
+    /**
+     * Width and height of the image-content of this field.  If set as a string, represents the  name of another field in the
+     * record that holds the imageSize.  Applicable only to fields  of image type or fields that use a {@link
+     * com.smartgwt.client.widgets.form.fields.ViewFileItem ViewFileItem} as an editor.
+     *
+     *
+     * @return String
+     */
+    public String getImageSizeAsString()  {
+        return getAttributeAsString("imageSize");
+    }
+
+    /**
+     * Width of the image-content of this field.  If set as a string, represents the name of  another field in the record that
+     * holds the imageWidth.  Applicable only to fields of image  type or fields that use a {@link
+     * com.smartgwt.client.widgets.form.fields.ViewFileItem ViewFileItem} as an editor.
+     *
+     * @param imageWidth imageWidth Default value is null
+     */
+    public void setImageWidth(Integer imageWidth) {
+        setAttribute("imageWidth", imageWidth);
+    }
+
+    /**
+     * Width of the image-content of this field.  If set as a string, represents the name of  another field in the record that
+     * holds the imageWidth.  Applicable only to fields of image  type or fields that use a {@link
+     * com.smartgwt.client.widgets.form.fields.ViewFileItem ViewFileItem} as an editor.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getImageWidth()  {
+        return getAttributeAsInt("imageWidth");
+    }
+
+    /**
+     * Width of the image-content of this field.  If set as a string, represents the name of  another field in the record that
+     * holds the imageWidth.  Applicable only to fields of image  type or fields that use a {@link
+     * com.smartgwt.client.widgets.form.fields.ViewFileItem ViewFileItem} as an editor.
+     *
+     * @param imageWidth imageWidth Default value is null
+     */
+    public void setImageWidth(String imageWidth) {
+        setAttribute("imageWidth", imageWidth);
+    }
+
+    /**
+     * Width of the image-content of this field.  If set as a string, represents the name of  another field in the record that
+     * holds the imageWidth.  Applicable only to fields of image  type or fields that use a {@link
+     * com.smartgwt.client.widgets.form.fields.ViewFileItem ViewFileItem} as an editor.
+     *
+     *
+     * @return String
+     */
+    public String getImageWidthAsString()  {
+        return getAttributeAsString("imageWidth");
     }
 
 }
