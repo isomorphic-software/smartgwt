@@ -35,7 +35,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getErrorOrientation
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getErrorMessageWidth
  * @see com.smartgwt.client.widgets.form.fields.TextItem#getLength
- * @see com.smartgwt.client.widgets.form.ValuesManager#getUnknownErrorMessage
  * @see com.smartgwt.client.widgets.form.ValuesManager#getDisableValidation
  * @see com.smartgwt.client.data.DataSource#getUseLocalValidators
  * @see com.smartgwt.client.data.DataSourceField#getValidators

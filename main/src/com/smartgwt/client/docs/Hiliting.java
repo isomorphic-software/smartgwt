@@ -19,6 +19,9 @@ package com.smartgwt.client.docs;
  * com.smartgwt.client.widgets.DataBoundComponent#getHiliteProperty hiliteProperty} on the records that should show that
  * highlight. This can be used, for example, to hilite the record with the maximum value for a dataset that the application
  * will load incrementally.
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#hiliteCell
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#hiliteCellList
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#hiliteFacetValue
  */
 public interface Hiliting {
 }

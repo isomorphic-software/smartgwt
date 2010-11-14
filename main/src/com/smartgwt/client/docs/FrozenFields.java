@@ -14,10 +14,11 @@ package com.smartgwt.client.docs;
  * features: <ul> <li> variable height auto-sizing records      ({@link
  * com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights fixedRecordHeights:false}) <li> {@link
  * com.smartgwt.client.docs.AutoFitData}:"horizontal", as well as headers that autoFit to titles      (normally enabled via
- * <code>field.overflow:"visible"</code>) <li> the CubeGrid subclass of ListGrid <li> nested grids </ul> The frozen fields
- * feature <b>is</b> compatible with column resize and reorder, selection and multi-selection, loading data on demand,
- * inline editing, drag and drop and reorder of records, the {@link com.smartgwt.client.widgets.tree.TreeGrid} subclass of
- * ListGrid, and all dynamic styling-related and formatting-related features.
+ * <code>field.overflow:"visible"</code>) <li> the {@link com.smartgwt.client.widgets.cube.CubeGrid} subclass of ListGrid
+ * <li> nested grids </ul> The frozen fields feature <b>is</b> compatible with column resize and reorder, selection and
+ * multi-selection, loading data on demand, inline editing, drag and drop and reorder of records, the {@link
+ * com.smartgwt.client.widgets.tree.TreeGrid} subclass of ListGrid, and all dynamic styling-related and formatting-related
+ * features.
  * @see com.smartgwt.client.widgets.grid.ListGrid#freezeField
  * @see com.smartgwt.client.widgets.grid.ListGrid#unfreezeField
  * @see com.smartgwt.client.widgets.grid.ListGrid#toggleFrozen

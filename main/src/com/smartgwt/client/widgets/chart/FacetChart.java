@@ -59,9 +59,9 @@ import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * HTML5-based charting engine, implementing most  chartTypes of the Chart interface. <P> Can be used directly, or
- * specified as {@link com.smartgwt.client.widgets.grid.ListGrid#getChartConstructor chartConstructor} or 
- * chartConstructor. <P> In order to use this component, you must load the Drawing module (ISC_Drawing.js) before loading
- * the Analytics mdoule (ISC_Analytics.js).
+ * specified as {@link com.smartgwt.client.widgets.grid.ListGrid#getChartConstructor chartConstructor} or {@link
+ * com.smartgwt.client.widgets.cube.CubeGrid#getChartConstructor chartConstructor}. <P> In order to use this component, you
+ * must load the Drawing module (ISC_Drawing.js) before loading the Analytics mdoule (ISC_Analytics.js).
  */
 public class FacetChart extends Canvas {
 
