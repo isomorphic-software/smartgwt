@@ -763,7 +763,19 @@ public class DSRequest extends RPCRequest {
      * @param sortSpecifiers  Default value is null
      */
     public void setSortBy(SortSpecifier[] sortSpecifiers) {
-        setAttribute("sortBy", sortSpecifiers);
+        if(sortSpecifiers != null && sortSpecifiers.length > 0) {
+            String sortBy = "";
+            for (int i = 0; i < sortSpecifiers.length; i++) {
+                SortSpecifier sortSpecifier = sortSpecifiers[i];
+                sortBy += ((sortSpecifier.getSortDirection() == SortDirection.DESCENDING ? "-" : "") + sortSpecifier.getField());
+                if(i < sortSpecifiers.length - 1) {
+                    sortBy += ",";
+                }
+            }
+            setAttribute("sortBy", sortBy);
+        } else {
+            setAttribute("sortBy", (String) null);
+        }
     }
 
     /**
@@ -773,12 +785,14 @@ public class DSRequest extends RPCRequest {
      */
     public native SortSpecifier[] getSortBy() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var sortSpec = self.sortBy;
-        if($wnd.isc.isA.String(sortSpec)) {
-            return @com.smartgwt.client.data.SortSpecifier::convertToArray(Ljava/lang/String;)(sortSpec);
-        } else {
-            return @com.smartgwt.client.data.SortSpecifier::convertToArray(Lcom/google/gwt/core/client/JavaScriptObject;)(sortSpec);
+        var sortBy = self.sortBy;
+        if(sortBy == null || sortBy === undefined) return null;
+        //DSRequest always stores sortBy as a String or an array of Strings, and not the SortSpecifier object.
+        if($wnd.isc.isA.Array(sortBy)) {
+            sortBy = sortBy.join(",")
         }
+        return @com.smartgwt.client.data.SortSpecifier::convertToArray(Ljava/lang/String;)(sortBy);
+
     }-*/;
 
     /**
