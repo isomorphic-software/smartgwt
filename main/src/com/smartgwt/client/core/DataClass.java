@@ -153,7 +153,38 @@ public class DataClass extends JsObject {
     }
     
     public void setAttribute(String property, Object value) {
-        JSOHelper.setAttribute(jsObj, property, value);
+        if (value instanceof String) {
+            setAttribute(property, (String) value);
+        } else if (value instanceof Integer) {
+            setAttribute(property, ((Integer) value).intValue());
+        } else if (value instanceof Float) {
+            setAttribute(property, ((Float) value).floatValue());
+        } else if (value instanceof Double) {
+            setAttribute(property, ((Double) value).doubleValue());
+        } else if (value instanceof Boolean) {
+            setAttribute(property, ((Boolean) value).booleanValue());
+        } else if (value instanceof Date) {
+            setAttribute(property, (Date) value);
+        } else if (value instanceof ValueEnum) {
+            setAttribute(property, ((ValueEnum) value).getValue());
+        } else if (value instanceof JavaScriptObject) {
+            setAttribute(property, ((JavaScriptObject) value));
+        } /*else if (value instanceof JsObject) {
+            setAttribute(property,  ((JsObject) val).getJsObj());
+        } */
+        else if (value instanceof DataClass) {
+            setAttribute(property, ((DataClass) value).getJsObj());
+        } else if (value instanceof BaseClass) {
+            setAttribute(property, ((BaseClass) value).getJsObj());
+        } else if (value instanceof BaseWidget) {
+            setAttribute(property, ((BaseWidget) value).getOrCreateJsObj());
+        } else if (value instanceof Object[]) {
+            setAttribute(property, JSOHelper.convertToJavaScriptArray((Object[]) value));
+        } else if (value instanceof Map) {
+            setAttribute(property, JSOHelper.convertMapToJavascriptObject((Map) value));
+        } else  {
+            setAttribute(property, value);
+        }
     }
 
     public void setAttribute(String property, Double value) {
