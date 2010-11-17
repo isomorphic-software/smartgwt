@@ -152,8 +152,16 @@ public class DataClass extends JsObject {
         JSOHelper.setAttribute(jsObj, property, value.getValue());
     }
     
+    /**
+     * Set the attribute value as and Object. Note that this method converts the Java primitive Object types, Dates and Maps to the underyling
+     * JavaScriptObject value. All other object types are set as Object type attributes and users are expected to call {@link #getAttributeAsObject(String)}
+     * in order to retrieve them.
+     *
+     * @param property the attribute name
+     * @param value the attribute value.
+     */
     public void setAttribute(String property, Object value) {
-        if (value instanceof String) {
+        if (value instanceof String || value == null) {
             setAttribute(property, (String) value);
         } else if (value instanceof Integer) {
             setAttribute(property, ((Integer) value).intValue());
@@ -165,25 +173,12 @@ public class DataClass extends JsObject {
             setAttribute(property, ((Boolean) value).booleanValue());
         } else if (value instanceof Date) {
             setAttribute(property, (Date) value);
-        } else if (value instanceof ValueEnum) {
-            setAttribute(property, ((ValueEnum) value).getValue());
         } else if (value instanceof JavaScriptObject) {
             setAttribute(property, ((JavaScriptObject) value));
-        } /*else if (value instanceof JsObject) {
-            setAttribute(property,  ((JsObject) val).getJsObj());
-        } */
-        else if (value instanceof DataClass) {
-            setAttribute(property, ((DataClass) value).getJsObj());
-        } else if (value instanceof BaseClass) {
-            setAttribute(property, ((BaseClass) value).getJsObj());
-        } else if (value instanceof BaseWidget) {
-            setAttribute(property, ((BaseWidget) value).getOrCreateJsObj());
-        } else if (value instanceof Object[]) {
-            setAttribute(property, JSOHelper.convertToJavaScriptArray((Object[]) value));
         } else if (value instanceof Map) {
             setAttribute(property, JSOHelper.convertMapToJavascriptObject((Map) value));
         } else  {
-            setAttribute(property, value);
+            JSOHelper.setAttribute(jsObj, property, value);
         }
     }
 
