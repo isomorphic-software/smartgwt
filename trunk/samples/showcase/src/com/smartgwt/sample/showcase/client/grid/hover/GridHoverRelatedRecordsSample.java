@@ -9,8 +9,9 @@ import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
 import com.smartgwt.sample.showcase.client.data.SupplyCategoryXmlDS;
 
 public class GridHoverRelatedRecordsSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "In this grid of Supply Categories, you can hover over a row to see a hovering grid " +
-            "containing the list of Supply Items applicable to the Category under the mouse.";
+    private static final String DESCRIPTION = "<p>In this grid of Customer Orders, you can hover over a row to see a list of messages " +
+            "attached to the order.  This gives you a quick preview of discussion about the order, without the need to leave the list of orders.</p>" +
+            "<p>In a complete application, clicking the order would lead to a detail screen showing the full order details and the ability to add to the discussion.</p>";
 
     public static class Factory implements PanelFactory {
         private String id;
