@@ -293,9 +293,7 @@ public class MiniDateRangeItem extends StaticTextItem {
 
     // ********************* Static Methods ***********************
         
-    // ***********************************************************        
-
-
+    // ***********************************************************
     /**
      * Initial value for the "from" date.
      * Sets the {@link DateRangeItem#getFromDate fromDate} for this DateRangeItem.
@@ -313,7 +311,11 @@ public class MiniDateRangeItem extends StaticTextItem {
      * @return java.util.Date
      */
     public java.util.Date getFromDate()  {
-        return getAttributeAsDate("fromDate");
+        if(!isCreated()) {
+            return getAttributeAsDate("fromDate");
+        } else {
+            return getValue().getStartDate();
+        }
     }
 
     /**
@@ -333,18 +335,27 @@ public class MiniDateRangeItem extends StaticTextItem {
      * @return java.util.Date
      */
     public java.util.Date getToDate()  {
-        return getAttributeAsDate("toDate");
+        if(!isCreated()) {
+            return getAttributeAsDate("toDate");
+        } else {
+            return getValue().getEndDate();
+        }
     }
 
     /**
      * Retrieves the current value of this dateRangeItem.  The return value is a
-     * ${isc.DocUtils.linkForRef('object:DateRange')} object that excludes start and end values if they aren't set.
+     * {@link com.smartgwt.client.data.DateRange} object that excludes start and end values if they aren't set.
      *
      * @return the current value of this item
      */
     public native DateRange getValue() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var valueJS = self.getValue();
+        var dateRangeJ = @com.smartgwt.client.widgets.form.fields.DateRangeItem::convertToDateRange(Lcom/google/gwt/core/client/JavaScriptObject;)(valueJS);
+        return dateRangeJ;
+    }-*/;
+
+    private static native DateRange convertToDateRange(JavaScriptObject valueJS)/*-{
         if(valueJS == null) return null;
         var startJS = valueJS.start;
         var endJS = valueJS.end;
@@ -396,7 +407,6 @@ public class MiniDateRangeItem extends StaticTextItem {
             self.defaultValue = valueJS;
         }
     }-*/;
-
 }
 
 
