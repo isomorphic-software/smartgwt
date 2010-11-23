@@ -278,10 +278,9 @@ public class DateRangeItem extends CanvasItem {
         
     // ***********************************************************        
 
-
     /**
      * Initial value for the "from" date.
-     * Sets the {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getFromDate fromDate} for this DateRangeItem.
+     * Sets the {@link DateRangeItem#getFromDate fromDate} for this DateRangeItem.
      *
      * @param fromDate the date from which this item should start it's range. Default value is today
      */
@@ -296,12 +295,16 @@ public class DateRangeItem extends CanvasItem {
      * @return java.util.Date
      */
     public java.util.Date getFromDate()  {
-        return getAttributeAsDate("fromDate");
+        if(!isCreated()) {
+            return getAttributeAsDate("fromDate");
+        } else {
+            return getValue().getStartDate();
+        }
     }
 
     /**
      * Initial value for the "to" date.
-     * Sets the {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getToDate toDate} for this DateRangeItem.
+     * Sets the {@link DateRangeItem#getToDate toDate} for this DateRangeItem.
      *
      * @param toDate the date at which this item should end it's range. Default value is today
      */
@@ -316,7 +319,11 @@ public class DateRangeItem extends CanvasItem {
      * @return java.util.Date
      */
     public java.util.Date getToDate()  {
-        return getAttributeAsDate("toDate");
+        if(!isCreated()) {
+            return getAttributeAsDate("toDate");
+        } else {
+            return getValue().getEndDate();
+        }
     }
 
     /**
@@ -328,6 +335,11 @@ public class DateRangeItem extends CanvasItem {
     public native DateRange getValue() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var valueJS = self.getValue();
+        var dateRangeJ = @com.smartgwt.client.widgets.form.fields.DateRangeItem::convertToDateRange(Lcom/google/gwt/core/client/JavaScriptObject;)(valueJS);
+        return dateRangeJ;
+    }-*/;
+
+    private static native DateRange convertToDateRange(JavaScriptObject valueJS)/*-{
         if(valueJS == null) return null;
         var startJS = valueJS.start;
         var endJS = valueJS.end;
