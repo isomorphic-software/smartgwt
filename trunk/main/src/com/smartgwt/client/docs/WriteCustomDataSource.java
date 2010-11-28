@@ -2,7 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
- * <h3>Integrating the Smart GWT Server framework with custom Java persistence logic</h3>
+ * <h3>Custom Server DataSources</h3>
  * Out of the box, and with no code to write, Smart GWT supports SQL and Hibernate for  persistence.  For other Java-based
  * persistence systems, such as EJB, JPA, or systems proprietary to your company, you write a custom DataSource class in
  * Java.  In most cases, it is possible to write a single, generic DataSource class that provides access to all data that

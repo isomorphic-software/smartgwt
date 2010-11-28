@@ -3,8 +3,6 @@ package com.smartgwt.client.docs;
 
 /**
  * The following APIs are all related to Animation.
- * @see com.smartgwt.client.widgets.tree.TreeGrid#shouldAnimateFolder
- * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderMaxRows
  * @see com.smartgwt.client.widgets.Canvas#animateMove
  * @see com.smartgwt.client.widgets.Canvas#animateResize
  * @see com.smartgwt.client.widgets.Canvas#animateRect
@@ -12,21 +10,16 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#animateScroll
  * @see com.smartgwt.client.widgets.Canvas#animateShow
  * @see com.smartgwt.client.widgets.Canvas#animateHide
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#shouldAnimateFolder
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderMaxRows
  * @see com.smartgwt.client.widgets.Canvas#loadingImageSrc
  * @see com.smartgwt.client.widgets.Canvas#loadingImageSize
- * @see com.smartgwt.client.widgets.Slider#getAnimateThumb
- * @see com.smartgwt.client.widgets.Slider#getAnimateThumbTime
- * @see com.smartgwt.client.widgets.Slider#getAnimateThumbInit
- * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolders
- * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderMaxRows
- * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderTime
- * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderSpeed
- * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderEffect
- * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveTime
- * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveSpeed
  * @see com.smartgwt.client.widgets.Window#getAnimateMinimize
  * @see com.smartgwt.client.widgets.Window#getMinimizeTime
  * @see com.smartgwt.client.widgets.Window#getMinimizeAcceleration
+ * @see com.smartgwt.client.widgets.Slider#getAnimateThumb
+ * @see com.smartgwt.client.widgets.Slider#getAnimateThumbTime
+ * @see com.smartgwt.client.widgets.Slider#getAnimateThumbInit
  * @see com.smartgwt.client.widgets.Canvas#getAnimateTime
  * @see com.smartgwt.client.widgets.Canvas#getAnimateAcceleration
  * @see com.smartgwt.client.widgets.Canvas#getAnimateShowEffect
@@ -47,6 +40,13 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.layout.Layout#getAnimateMembers
  * @see com.smartgwt.client.widgets.layout.Layout#getAnimateMemberTime
  * @see com.smartgwt.client.widgets.layout.SectionStack#getAnimateSections
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolders
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderMaxRows
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderTime
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderSpeed
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderEffect
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveTime
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveSpeed
  */
 public interface Animation {
 }
