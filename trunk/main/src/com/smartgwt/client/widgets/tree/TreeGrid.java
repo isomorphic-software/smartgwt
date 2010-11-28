@@ -1240,6 +1240,25 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
+     * Should the an opener icon be displayed next to folder nodes?
+     *
+     * @param showOpener showOpener Default value is true
+     */
+    public void setShowOpener(Boolean showOpener) {
+        setAttribute("showOpener", showOpener, true);
+    }
+
+    /**
+     * Should the an opener icon be displayed next to folder nodes?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowOpener()  {
+        return getAttributeAsBoolean("showOpener");
+    }
+
+    /**
      * If true, show a different icon for <code>open</code> folders than closed folders. This is achieved by appending the
      * {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} onto the  {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} URL [for example <code>"[SKIN]/folder.gif"</code>
@@ -1611,7 +1630,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }-*/;
             
     /**
-     * Get the appropriate open/close opener icon for a node.
+     * Get the appropriate open/close opener icon for a node. Returns null if {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getShowOpener showOpener} is set to false.
      * @param node tree node in question
      *
      * @return URL for the icon to show the node's open state
