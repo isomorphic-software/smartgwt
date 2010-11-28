@@ -345,6 +345,8 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      * and false otherwise.
      *
      * @return true if current values do not match remembered values
+     * @see com.smartgwt.client.widgets.form.ValuesManager#getChangedValues
+     * @see com.smartgwt.client.widgets.form.ValuesManager#getOldValues
      */
     public native Boolean valuesHaveChanged() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -527,6 +529,41 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
     public native Map getValues() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var value = self.getValues();
+        if(value == null) return null;
+        var valueJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
+        return valueJ;
+    }-*/;
+    
+
+    /**
+     * Returns all values within this ValuesManager that have changed since  {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#rememberValues rememberValues} last ran. Note that 
+     * {@link com.smartgwt.client.widgets.form.ValuesManager#rememberValues rememberValues} runs on
+     * valuesManager
+     * initialization, and with every call to {@link com.smartgwt.client.widgets.form.ValuesManager#setValues
+     * ValuesManager.setValues} so this will typically contain all values the user has explicitly edited since then.
+     *
+     * @return the values
+     */
+    public native Map getChangedValues() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var value = self.getChangedValues();
+        if(value == null) return null;
+        var valueJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
+        return valueJ;
+    }-*/;
+
+    /**
+     * Returns the set of values last stored by {@link com.smartgwt.client.widgets.form.ValuesManager#rememberValues
+     * ValuesManager.rememberValues}. Note that <code>rememberValues()</code> is called automatically by {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#setValues ValuesManager.setValues}, and on form initialization, so this
+     * typically contains all values as they were before the user edited them.
+     *
+     * @return the values
+     */
+    public native Map getOldValues() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var value = self.getOldValues();
         if(value == null) return null;
         var valueJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
         return valueJ;
