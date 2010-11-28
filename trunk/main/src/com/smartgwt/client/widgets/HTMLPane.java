@@ -118,7 +118,11 @@ public class HTMLPane extends HTMLFlow {
      */
     public void setIFrameURL(String url) {
         setContentsURL(url);
-        setContentsType(ContentsType.PAGE);
+        if(!isDrawn()) {
+            setContentsType(ContentsType.PAGE);
+        } else {
+            assert getContentsType() == ContentsType.PAGE : "This method cannot be called on a HTMLPane that has a contentsType other than PAGE";
+        }
     }
 
 }
