@@ -4208,7 +4208,12 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             var valueJ =  $wnd.SmartGWT.convertToJavaType(value);
             var oldValueJ =  $wnd.SmartGWT.convertToJavaType(oldValue);
-            return inputTransformer.@com.smartgwt.client.widgets.form.FormItemInputTransformer::transformInput(Lcom/smartgwt/client/widgets/form/DynamicForm;Lcom/smartgwt/client/widgets/form/fields/FormItem;Ljava/lang/Object;Ljava/lang/Object;)(formJ, itemJ, valueJ, oldValueJ);
+            var val =  inputTransformer.@com.smartgwt.client.widgets.form.FormItemInputTransformer::transformInput(Lcom/smartgwt/client/widgets/form/DynamicForm;Lcom/smartgwt/client/widgets/form/fields/FormItem;Ljava/lang/Object;Ljava/lang/Object;)(formJ, itemJ, valueJ, oldValueJ);
+            if(val == null || @com.smartgwt.client.util.JSOHelper::isJavaString(Ljava/lang/Object;)(val) ) return val;
+            if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(val)) return val.@java.lang.Integer::intValue()();
+            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::floatValue()();
+            if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
+            return val;
         });
     }-*/;
     

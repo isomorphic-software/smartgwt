@@ -278,6 +278,7 @@ public class DateRangeItem extends CanvasItem {
         
     // ***********************************************************        
 
+
     /**
      * Initial value for the "from" date.
      * Sets the {@link DateRangeItem#getFromDate fromDate} for this DateRangeItem.
@@ -298,7 +299,8 @@ public class DateRangeItem extends CanvasItem {
         if(!isCreated()) {
             return getAttributeAsDate("fromDate");
         } else {
-            return getValue().getStartDate();
+            DateRange dateRange = getValue();
+            return dateRange == null ? null : dateRange.getStartDate();
         }
     }
 
@@ -322,13 +324,14 @@ public class DateRangeItem extends CanvasItem {
         if(!isCreated()) {
             return getAttributeAsDate("toDate");
         } else {
-            return getValue().getEndDate();
+            DateRange dateRange = getValue();
+            return dateRange == null ? null : dateRange.getEndDate();
         }
     }
 
     /**
      * Retrieves the current value of this dateRangeItem.  The return value is a
-     * ${isc.DocUtils.linkForRef('object:DateRange')} object that excludes start and end values if they aren't set.
+     * {@link com.smartgwt.client.data.DateRange} object that excludes start and end values if they aren't set.
      *
      * @return the current value of this item
      */

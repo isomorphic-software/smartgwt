@@ -293,7 +293,7 @@ public class MiniDateRangeItem extends StaticTextItem {
 
     // ********************* Static Methods ***********************
         
-    // ***********************************************************
+    // ***********************************************************        
     /**
      * Initial value for the "from" date.
      * Sets the {@link DateRangeItem#getFromDate fromDate} for this DateRangeItem.
@@ -314,7 +314,8 @@ public class MiniDateRangeItem extends StaticTextItem {
         if(!isCreated()) {
             return getAttributeAsDate("fromDate");
         } else {
-            return getValue().getStartDate();
+            DateRange dateRange = getValue();
+            return dateRange == null ? null : dateRange.getStartDate();
         }
     }
 
@@ -338,7 +339,8 @@ public class MiniDateRangeItem extends StaticTextItem {
         if(!isCreated()) {
             return getAttributeAsDate("toDate");
         } else {
-            return getValue().getEndDate();
+            DateRange dateRange = getValue();
+            return dateRange == null ? null : dateRange.getEndDate();
         }
     }
 
@@ -407,6 +409,7 @@ public class MiniDateRangeItem extends StaticTextItem {
             self.defaultValue = valueJS;
         }
     }-*/;
+
 }
 
 
