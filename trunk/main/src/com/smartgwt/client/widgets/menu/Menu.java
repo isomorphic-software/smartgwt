@@ -688,6 +688,16 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     public void setData(Record[] data) {
         setAttribute("data", data, true);
     }
+    
+    /**
+     * Display a hierarchical set of menu items and submenus based on a 
+     * Tree of data.
+     * 
+     * @param data Tree
+     */
+    public void setData(Tree data) {
+        setAttribute("data", data == null ? null : data.getOrCreateJsObj(), true);
+    }
 
     /**
      * An List of Record objects, specifying the data to be used to populate the DataBoundComponent. Note that not
