@@ -60,7 +60,7 @@ import com.google.gwt.event.shared.HasHandlers;
 /**
  * Canvas is the base abstraction for cross-browser DHTML drawing.  All DHTML widgets inherit from the Canvas class.
  */
-public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.events.HasDropHandlers, com.smartgwt.client.widgets.events.HasResizedHandlers, com.smartgwt.client.widgets.events.HasClickHandlers, com.smartgwt.client.widgets.events.HasDoubleClickHandlers, com.smartgwt.client.widgets.events.HasDragMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStartHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStopHandlers, com.smartgwt.client.widgets.events.HasDragResizeMoveHandlers, com.smartgwt.client.widgets.events.HasDragResizeStartHandlers, com.smartgwt.client.widgets.events.HasDragResizeStopHandlers, com.smartgwt.client.widgets.events.HasDragStartHandlers, com.smartgwt.client.widgets.events.HasDragStopHandlers, com.smartgwt.client.widgets.events.HasDropMoveHandlers, com.smartgwt.client.widgets.events.HasDropOutHandlers, com.smartgwt.client.widgets.events.HasDropOverHandlers, com.smartgwt.client.widgets.events.HasMouseDownHandlers, com.smartgwt.client.widgets.events.HasMouseMoveHandlers, com.smartgwt.client.widgets.events.HasMouseOutHandlers, com.smartgwt.client.widgets.events.HasMouseOverHandlers, com.smartgwt.client.widgets.events.HasMouseStillDownHandlers, com.smartgwt.client.widgets.events.HasMouseUpHandlers, com.smartgwt.client.widgets.events.HasMouseWheelHandlers, com.smartgwt.client.widgets.events.HasKeyPressHandlers, com.smartgwt.client.widgets.events.HasKeyDownHandlers, com.smartgwt.client.widgets.events.HasRightMouseDownHandlers, com.smartgwt.client.widgets.events.HasHoverHandlers, com.smartgwt.client.widgets.events.HasHoverHiddenHandlers, com.smartgwt.client.widgets.events.HasScrolledHandlers, com.smartgwt.client.widgets.events.HasFocusChangedHandlers, com.smartgwt.client.widgets.events.HasShowContextMenuHandlers {
+public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.events.HasDropHandlers, com.smartgwt.client.widgets.events.HasResizedHandlers, com.smartgwt.client.widgets.events.HasClickHandlers, com.smartgwt.client.widgets.events.HasDoubleClickHandlers, com.smartgwt.client.widgets.events.HasDragMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStartHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStopHandlers, com.smartgwt.client.widgets.events.HasDragResizeMoveHandlers, com.smartgwt.client.widgets.events.HasDragResizeStartHandlers, com.smartgwt.client.widgets.events.HasDragResizeStopHandlers, com.smartgwt.client.widgets.events.HasDragStartHandlers, com.smartgwt.client.widgets.events.HasDragStopHandlers, com.smartgwt.client.widgets.events.HasDropMoveHandlers, com.smartgwt.client.widgets.events.HasDropOutHandlers, com.smartgwt.client.widgets.events.HasDropOverHandlers, com.smartgwt.client.widgets.events.HasMouseDownHandlers, com.smartgwt.client.widgets.events.HasMouseMoveHandlers, com.smartgwt.client.widgets.events.HasMouseOutHandlers, com.smartgwt.client.widgets.events.HasMouseOverHandlers, com.smartgwt.client.widgets.events.HasMouseStillDownHandlers, com.smartgwt.client.widgets.events.HasMouseUpHandlers, com.smartgwt.client.widgets.events.HasMouseWheelHandlers, com.smartgwt.client.widgets.events.HasKeyPressHandlers, com.smartgwt.client.widgets.events.HasKeyDownHandlers, com.smartgwt.client.widgets.events.HasRightMouseDownHandlers, com.smartgwt.client.widgets.events.HasHoverHandlers, com.smartgwt.client.widgets.events.HasHoverHiddenHandlers, com.smartgwt.client.widgets.events.HasScrolledHandlers, com.smartgwt.client.widgets.events.HasFocusChangedHandlers, com.smartgwt.client.widgets.events.HasShowContextMenuHandlers, com.smartgwt.client.widgets.events.HasVisibilityChangedHandlers {
 
     public static Canvas getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -1689,8 +1689,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * If <code>this.showHover</code> is true and getHoverComponent() is implemented, should the hoverCanvas returned from it
-     * be automatically destroyed when it is hidden?
+     * If <code>this.showHover</code> is true and {@link com.smartgwt.client.widgets.Canvas#getHoverComponent
+     * Canvas.getHoverComponent} is implemented, should the hoverCanvas returned from it be automatically destroyed when it is
+     * hidden? <P> The default of null indicates that the component <b>will</b> be automatically destroyed.  Set to false to
+     * prevent this.
      *
      * @param hoverAutoDestroy hoverAutoDestroy Default value is null
      * @see com.smartgwt.client.widgets.Canvas#setShowHover
@@ -1700,8 +1702,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * If <code>this.showHover</code> is true and getHoverComponent() is implemented, should the hoverCanvas returned from it
-     * be automatically destroyed when it is hidden?
+     * If <code>this.showHover</code> is true and {@link com.smartgwt.client.widgets.Canvas#getHoverComponent
+     * Canvas.getHoverComponent} is implemented, should the hoverCanvas returned from it be automatically destroyed when it is
+     * hidden? <P> The default of null indicates that the component <b>will</b> be automatically destroyed.  Set to false to
+     * prevent this.
      *
      *
      * @return Boolean
@@ -2697,6 +2701,30 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      */
     public Boolean getShowHover()  {
         return getAttributeAsBoolean("showHover");
+    }
+
+    /**
+     * When set to true, shows a widget hovering at the mouse point instead of the builtin hover label.  Override {@link
+     * com.smartgwt.client.widgets.Canvas#getHoverComponent getHoverComponent} to provide the Canvas to show as the
+     * hoverComponent.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showHoverComponents showHoverComponents Default value is false
+     */
+    public void setShowHoverComponents(Boolean showHoverComponents) {
+        setAttribute("showHoverComponents", showHoverComponents, true);
+    }
+
+    /**
+     * When set to true, shows a widget hovering at the mouse point instead of the builtin hover label.  Override {@link
+     * com.smartgwt.client.widgets.Canvas#getHoverComponent getHoverComponent} to provide the Canvas to show as the
+     * hoverComponent.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowHoverComponents()  {
+        return getAttributeAsBoolean("showHoverComponents");
     }
 
     /**
@@ -5561,47 +5589,50 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.updateHover(hoverHTML);
     }-*/;
-            
     /**
-     * Does this widget contain the specified global (x,y) coordinates, and have no other widgets also at the specified
-     * position, obscuring this one?  This is commonly used for (for example) drag and drop interactions.
-     * @param x GLOBAL x-coordinate
-     * @param y GLOBAL y-coordinate
+     * Add a visibilityChanged handler.
+     * <p>
+     * Notification  fired when this canvas becomes visible or hidden to the user. Note - this method is fired when the {@link
+     * com.smartgwt.client.widgets.Canvas#isVisible Canvas.isVisible} state of this  component changes. It may be fired in
+     * response an explicit call to {@link com.smartgwt.client.widgets.Canvas#show Canvas.show}  or {@link
+     * com.smartgwt.client.widgets.Canvas#hide Canvas.hide} or {@link com.smartgwt.client.widgets.Canvas#setVisibility
+     * Canvas.setVisibility}, or in response to a parent component  being shown or hidden when this widgets {@link
+     * com.smartgwt.client.widgets.Canvas#getVisibility visibility} is set to "inherit". <P> Note that a call to {@link
+     * com.smartgwt.client.widgets.Canvas#show Canvas.show} or {@link com.smartgwt.client.widgets.Canvas#hide Canvas.hide} will
+     * not <b>always</b> fire this notification. If this widget has a hidden parent, show or hide would change this  components
+     * {@link com.smartgwt.client.widgets.Canvas#getVisibility visibility} property, and may update the CSS visibility
+     * attribute of the drawn handle in the DOM, but would not actually hide or reveal the component to the user and as such
+     * the notification would not fire. <P> Note also that this notification will only be fired for components which have been 
+     * {@link com.smartgwt.client.widgets.Canvas#draw drawn}.
      *
-     * @return true if this object contains the specified point; false otherwise
-     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
+     * @param handler the visibilityChanged handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
-    public native Boolean visibleAtPoint(int x, int y) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.visibleAtPoint(x, y);
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
+    public HandlerRegistration addVisibilityChangedHandler(com.smartgwt.client.widgets.events.VisibilityChangedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.VisibilityChangedEvent.getType()) == 0) setupVisibilityChangedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.VisibilityChangedEvent.getType());
+    }
 
-    /**
-     * Does this widget contain the specified global (x,y) coordinates, and have no other widgets also at the specified
-     * position, obscuring this one?  This is commonly used for (for example) drag and drop interactions.
-     * @param x GLOBAL x-coordinate
-     * @param y GLOBAL y-coordinate
-     * @param withinViewport point lies within our viewport rather than                                              just our drawn area
-     * @param ignoreWidgets If passed ignore widget(s), do not check whether                                           those widgets occludes this
-     * one.
-     *
-     * @return true if this object contains the specified point; false otherwise
-     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
-     */
-    public native Boolean visibleAtPoint(int x, int y, boolean withinViewport, Canvas ignoreWidgets) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.visibleAtPoint(x, y, withinViewport, ignoreWidgets.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
-        if(retVal == null || retVal === undefined) {
-            return null;
+    private native void setupVisibilityChangedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({visibilityChanged:$entry(function(){
+                        var param = {"isVisible" : arguments[0]};
+                        var event = @com.smartgwt.client.widgets.events.VisibilityChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
         } else {
-                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.visibilityChanged = $entry(function(){
+                   var param = {"isVisible" : arguments[0]};
+                   var event = @com.smartgwt.client.widgets.events.VisibilityChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
         }
-    }-*/;
+   }-*/;
 
     // ********************* Static Methods ***********************
             
@@ -5660,6 +5691,14 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
              var ret = jObj.@com.smartgwt.client.widgets.Canvas::getPrintHTMLJSCB(Lcom/smartgwt/client/util/PrintProperties;Lcom/google/gwt/core/client/JavaScriptObject;)(jPP,callback);
         	 return ret;
          });
+         
+         
+        self.__getHoverComponent = self.getHoverComponent;
+        self.getHoverComponent = $entry(function() {
+            var jObj = this.__ref;
+            var componentJ = jObj.@com.smartgwt.client.widgets.Canvas::getHoverComponent()();
+            return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
+        });    
 
 	}-*/;
 
@@ -5907,6 +5946,26 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
+     * If a Canvas is dropped onto a {@link com.smartgwt.client.widgets.cube.CubeGrid}, and it has a {@link #setFacetId(String) facetId}
+     * property specified then the Cube treats this as adding that facetId at the drop location.
+     *
+     * @return the facet id
+     */
+    public String getFacetId()  {
+        return getAttribute("facetId");
+    }
+
+    /**
+     * If a Canvas is dropped onto a {@link com.smartgwt.client.widgets.cube.CubeGrid}, and it has a facetId property specified then
+     * the Cube treats this as adding that facetId at the drop location.
+     *
+     * @param facetId the facet id
+     */
+    public void setFacetId(String facetId) {
+        setAttribute("facetId", facetId, true);
+    }
+
+    /**
      * Number of pixels the top of the widget is offset down from its default drawing context (either its parent's top-left
      * corner, or the document flow, depending on the value of the {@link com.smartgwt.client.widgets.Canvas#getPosition
      * position} property). <P> Can also be set as a percentage, specified as a String ending in '%', eg, "50%".  In this case
@@ -6064,6 +6123,26 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.__parentResized();
     }-*/;
+    
+    /**
+     * When {@link com.smartgwt.client.widgets.Canvas#getShowHoverComponents showHoverComponents} is true, this method is
+     * called to get the component to show as a hover for this Canvas.  There is no default implementation of this method, so
+     * you need to override it with an implementation that returns a Canvas that suits your needs. <P> By default, components
+     * returned by <code>getHoverComponent()</code> will not be automatically destroyed when the hover is hidden.  To enforce
+     * this, set {@link com.smartgwt.client.widgets.Canvas#getHoverAutoDestroy hoverAutoDestroy} to true on the returned
+     * component.
+     * 
+     * <br><b>Note: this is an override point</b>
+     *
+     * @return the component to show as a hover
+     */
+    public native Canvas getHoverComponent() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var hoverComponent = (self.__getHoverComponent == null) ? null : self.__getHoverComponent();
+        return hoverComponent == null ? null : hoverComponent.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
+    }-*/;
+    
+    
 
     /**
      * Offset of the shadow.  Defaults to half of <code>shadowDepth</code> if unset. <P> Because of the blurred edges, a
@@ -7231,7 +7310,29 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
            if(clickActionCallback != null) clickActionCallback.@com.smartgwt.client.core.Function::execute()();
         }), mode.@com.smartgwt.client.types.ClickMaskMode::getValue()(), unmaskedTargetsJS);
     }-*/;
-    
+
+    /**
+     * Does this widget contain the specified global (x,y) coordinates, and have no other widgets also at the specified
+     * position, obscuring this one?  This is commonly used for (for example) drag and drop interactions.
+     * @param x GLOBAL x-coordinate
+     * @param y GLOBAL y-coordinate
+     * @param withinViewport point lies within our viewport rather than just our drawn area
+     * @param ignoreWidgets If passed ignore widget(s), do not check whether those widgets occludes this one
+     * @param upToParent If passed, only check for siblings occluding the component up as far as the specified parent widget
+     *
+     * @return true if this object contains the specified point; false otherwise
+     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
+     */
+    public native Boolean visibleAtPoint(int x, int y, boolean withinViewport, Canvas ignoreWidgets, Canvas upToParent) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.visibleAtPoint(x, y, withinViewport, ignoreWidgets == null ? null : ignoreWidgets.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), upToParent == null ? null : upToParent.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
     /**
      * Add a onDrop handler.
      * <p>
