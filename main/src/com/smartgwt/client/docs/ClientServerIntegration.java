@@ -60,7 +60,7 @@ package com.smartgwt.client.docs;
  * earlier transactions</li>       <li>For SQL DataSources, use {@link com.smartgwt.client.docs.CustomQuerying SQL
  * Templating} to change,            add to or even completely replace the SQL sent to the database, and to implement      
  * special query requirements</li>       <li>For Hibernate DataSources, use {@link
- * com.smartgwt.client.data.OperationBinding#getCustomHQL custom HQL queries}           to implement special query
+ * com.smartgwt.client.docs.serverds.OperationBinding#customHQL custom HQL queries}           to implement special query
  * requirements</li>   </ul>         Read more about the server-side request processing flow and how to customize it in    
  * {@link com.smartgwt.client.docs.ServerDataIntegration the server integration overview}. </ul> </ul> <ul> <li>If you do
  * not have a Java server</li>   <ul><li>If you are not obliged to use a pre-existing network protocol, use the           

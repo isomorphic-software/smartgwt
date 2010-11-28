@@ -32,6 +32,12 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.cube.CubeGrid#deselectAllFacetValues
  * @see com.smartgwt.client.widgets.cube.CubeGrid#deselectAll
  * @see com.smartgwt.client.widgets.cube.CubeGrid#cellSelectionChanged
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSelection
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectedRecord
+ * @see com.smartgwt.client.widgets.grid.ListGrid#isSelected
+ * @see com.smartgwt.client.widgets.grid.ListGrid#isPartiallySelected
+ * @see com.smartgwt.client.widgets.toolbar.Toolbar#selectButton
+ * @see com.smartgwt.client.widgets.toolbar.Toolbar#deselectButton
  * @see com.smartgwt.client.grid.GridRenderer#cellIsEnabled
  * @see com.smartgwt.client.grid.GridRenderer#getEventRow
  * @see com.smartgwt.client.grid.GridRenderer#getEventColumn
@@ -65,12 +71,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ColumnTree#selectAllRecords
  * @see com.smartgwt.client.widgets.grid.ColumnTree#deselectAllRecords
  * @see com.smartgwt.client.widgets.grid.ColumnTree#anySelected
- * @see com.smartgwt.client.widgets.grid.ListGrid#getSelection
- * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectedRecord
- * @see com.smartgwt.client.widgets.grid.ListGrid#isSelected
- * @see com.smartgwt.client.widgets.grid.ListGrid#isPartiallySelected
- * @see com.smartgwt.client.widgets.toolbar.Toolbar#selectButton
- * @see com.smartgwt.client.widgets.toolbar.Toolbar#deselectButton
  * @see com.smartgwt.client.widgets.form.fields.PickTreeItem#getCanSelectParentItems
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelection
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance

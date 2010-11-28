@@ -3,6 +3,7 @@ package com.smartgwt.client.docs;
 
 /**
  * The following APIs are all related to FormValues.
+ * @see com.smartgwt.client.widgets.form.DynamicForm#reset
  * @see com.smartgwt.client.widgets.form.DynamicForm#setValues
  * @see com.smartgwt.client.widgets.form.DynamicForm#rememberValues
  * @see com.smartgwt.client.widgets.form.DynamicForm#resetValues
@@ -24,12 +25,13 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.ValuesManager#getMemberValues
  * @see com.smartgwt.client.widgets.form.ValuesManager#setMemberValues
  * @see com.smartgwt.client.widgets.form.ValuesManager#rememberValues
+ * @see com.smartgwt.client.widgets.form.ValuesManager#getOldValues
+ * @see com.smartgwt.client.widgets.form.ValuesManager#getChangedValues
  * @see com.smartgwt.client.widgets.form.ValuesManager#resetValues
  * @see com.smartgwt.client.widgets.form.ValuesManager#valuesHaveChanged
  * @see com.smartgwt.client.widgets.form.ValuesManager#getValue
  * @see com.smartgwt.client.widgets.form.ValuesManager#setValue
  * @see com.smartgwt.client.widgets.form.ValuesManager#clearValue
- * @see com.smartgwt.client.widgets.form.DynamicForm#reset
  * @see com.smartgwt.client.widgets.form.DynamicForm#getValues
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getShouldSaveValue
  */
