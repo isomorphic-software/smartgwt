@@ -242,10 +242,10 @@ public class CanvasItem extends FormItem {
 	    self.createCanvas = $debox($entry(function() {
 	        var jObj = this.__ref;
             //in cases where a SGWT FormItem instance is used for a setEditorType(..) call, there will
-            //not be a SGWT object ref associated with the JS object. In this case, simply return null
+            //not be a SGWT object ref associated with the JS object. In this case, simply return
             if(jObj == null) return null;
 	        var jCanvas = jObj.@com.smartgwt.client.widgets.form.fields.CanvasItem::createCanvas()();
-	
+
 	        if (jCanvas != null) return jCanvas.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
 	        return this.canvas;
 	    }));
