@@ -4648,31 +4648,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The string to display in the body of a listGrid with an empty data array, if showEmptyMessage is true.
-     *
-     * @param offlineMessage offlineMessage Default value is "This data not available while offline"
-     * @see com.smartgwt.client.widgets.grid.ListGrid#setShowEmptyMessage
-     * @see com.smartgwt.client.widgets.grid.ListGrid#setEmptyMessageStyle
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_empty_grid" target="examples">Empty grid Example</a>
-     */
-    public void setOfflineMessage(String offlineMessage) {
-        setAttribute("offlineMessage", offlineMessage, true);
-    }
-
-    /**
-     * The string to display in the body of a listGrid with an empty data array, if showEmptyMessage is true.
-     *
-     *
-     * @return String
-     * @see com.smartgwt.client.widgets.grid.ListGrid#getShowEmptyMessage
-     * @see com.smartgwt.client.widgets.grid.ListGrid#getEmptyMessageStyle
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_empty_grid" target="examples">Empty grid Example</a>
-     */
-    public String getOfflineMessage()  {
-        return getAttributeAsString("offlineMessage");
-    }
-
-    /**
      * When {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordComponentPoolingMode recordComponentPoolingMode} is
      * "recycle" and you have components of  different types in different columns, set this property to true to ensure that 
      * components intended for one column are not recycled for use in another column that  should have a different component.
@@ -5136,6 +5111,27 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public String getRemoveIcon()  {
         return getAttributeAsString("removeIcon");
+    }
+
+    /**
+     * Default width and height of {@link com.smartgwt.client.widgets.grid.ListGrid#getRemoveIcon remove icons} for this
+     * ListGrid.
+     *
+     * @param removeIconSize removeIconSize Default value is 16
+     */
+    public void setRemoveIconSize(int removeIconSize) {
+        setAttribute("removeIconSize", removeIconSize, true);
+    }
+
+    /**
+     * Default width and height of {@link com.smartgwt.client.widgets.grid.ListGrid#getRemoveIcon remove icons} for this
+     * ListGrid.
+     *
+     *
+     * @return int
+     */
+    public int getRemoveIconSize()  {
+        return getAttributeAsInt("removeIconSize");
     }
 
     /**
@@ -5769,29 +5765,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public Boolean getShowHoverComponents()  {
         return getAttributeAsBoolean("showHoverComponents");
-    }
-
-    /**
-     * Indicates whether the text of the offlineMessage property should be displayed if no data is available because we do not
-     * have a suitable offline cache
-     *
-     * @param showOfflineMessage showOfflineMessage Default value is true
-     * @see com.smartgwt.client.widgets.grid.ListGrid#setOfflineMessage
-     */
-    public void setShowOfflineMessage(Boolean showOfflineMessage) {
-        setAttribute("showOfflineMessage", showOfflineMessage, true);
-    }
-
-    /**
-     * Indicates whether the text of the offlineMessage property should be displayed if no data is available because we do not
-     * have a suitable offline cache
-     *
-     *
-     * @return Boolean
-     * @see com.smartgwt.client.widgets.grid.ListGrid#getOfflineMessage
-     */
-    public Boolean getShowOfflineMessage()  {
-        return getAttributeAsBoolean("showOfflineMessage");
     }
 
     /**
@@ -8861,14 +8834,22 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     protected native void onInit_ListGrid() /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self._getCellCSSText = self.getCellCSSText;
+        self.__getCellCSSText = self.getCellCSSText;
         self.getCellCSSText = $debox($entry(function(record, rowNum, colNum) {
             var jObj = this.__ref;
             var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             return jObj.@com.smartgwt.client.widgets.grid.ListGrid::getCellCSSText(Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(recordJ, rowNum, colNum);
         }));
 
-        self._getBaseStyle = self.getBaseStyle;
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.__getCellStyle = self.getCellStyle;
+        self.getCellStyle = $debox($entry(function(record, rowNum, colNum) {
+            var jObj = this.__ref;
+            var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            return jObj.@com.smartgwt.client.widgets.grid.ListGrid::getCellStyle(Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(recordJ, rowNum, colNum);
+        }));
+
+        self.__getBaseStyle = self.getBaseStyle;
         self.getBaseStyle = $debox($entry(function(record, rowNum, colNum) {
             var jObj = this.__ref;
             var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
@@ -8893,7 +8874,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
            return menuItemsJS;
         });
 
-        self._canEditCell = self.canEditCell;
+        self.__canEditCell = self.canEditCell;
         self.canEditCell = $debox($entry(function(rowNum, colNum) {
             var jObj = this.__ref;
             return jObj.@com.smartgwt.client.widgets.grid.ListGrid::canEditCell(II)(rowNum, colNum);
@@ -9326,9 +9307,40 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return CSS text for this cell
      */
     protected native String getCellCSSText(ListGridRecord record, int rowNum, int colNum) /*-{
-
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self._getCellCSSText(record == null ? null : record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum, colNum);
+        return self.__getCellCSSText(record == null ? null : record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum, colNum);
+    }-*/;
+
+    /**
+     * Return the CSS class for a cell. By default this method has the following implementation:<br> - return any custom style
+     * for the record (see {@link com.smartgwt.client.grid.GridRenderer#getRecordCustomStyleProperty
+     * recordCustomStyleProperty})    if defined.<br> - create a style name based on the result of {@link
+     * com.smartgwt.client.grid.GridRenderer#getBaseStyle GridRenderer.getBaseStyle} and the    state of the record.<br> The
+     * state of the record is indicated by adding a suffix to the base style. There are four independent boolean states, which
+     * are combined in the order given: <ol> <li>"Disabled" : whether the cell is disabled; enable by setting the "enabled"
+     * flag on record     returned by getCellRecord <li>"Selected" : whether cell is selected; enable by passing a Selection
+     * object as "selection" <li>"Over" : mouse is over this cell; enable with showRollovers <li>"Dark" : alternating color
+     * bands; enable with alternateRowStyles </ol> For example, with a baseStyle of "myCell", a cell which is selected, which
+     * the mouse is over, and which is in a dark-colored band will get a styleName of myCellSelectedOverDark. <p> Cell Styles
+     * customizable by: <ul> <li>attaching a custom style to a record by setting
+     * <code>record[this.recordCustomStyleProperty]</code> to some valid CSS style name.   <li>modifying the base style
+     * returned by getBaseStyle() [see that method for further      documentation on this] <li>overriding this function </ul>
+     * <p> "Selected" style can be ignored by setting {@link com.smartgwt.client.grid.GridRenderer#getShowSelectedStyle
+     * showSelectedStyle} to false.
+     *
+     * <br><b>Note: This is an override point</b>
+     *
+     * @param record record object for this row and column
+     * @param rowNum number of the row
+     * @param colNum number of the column
+     *
+     * @return CSS style for this cell
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    protected native String getCellStyle(ListGridRecord record, int rowNum, int colNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.__getCellStyle(record == null ? null : record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum, colNum);
     }-*/;
 
     /**
@@ -9351,7 +9363,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     protected native boolean canEditCell(int rowNum, int colNum) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self._canEditCell(rowNum, colNum);
+        return self.__canEditCell(rowNum, colNum);
     }-*/;
 
     /**
@@ -9404,7 +9416,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     protected native String getBaseStyle(ListGridRecord record, int rowNum, int colNum) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self._getBaseStyle(record == null ? null : record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum, colNum);
+        return self.__getBaseStyle(record == null ? null : record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum, colNum);
     }-*/;
 
     /**
@@ -10441,10 +10453,12 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Save a number of outstanding edits for this ListGrid.
+     *
+     * @return true if a save has been initiated (at least one row had changes, passed client-side validation, and a save has been attempted).  false otherwise
      */
-    public native void saveAllEdits() /*-{
+    public native boolean saveAllEdits() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.saveAllEdits();
+        return self.saveAllEdits();
     }-*/;
 
     /**
@@ -10452,10 +10466,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param callback this callback will be fired on a successful save. Note that if there are no pending edits to be saved this
      * callback will not fire - you can check for this condition using {@link #hasChanges()} or {@link #rowHasChanges()}
+     * @return true if a save has been initiated (at least one row had changes, passed client-side validation, and a save has been attempted).  false otherwise
      */
-    public native void saveAllEdits(Function callback) /*-{
+    public native boolean saveAllEdits(Function callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.saveAllEdits(null, callback == null ? null : $entry(function() {
+        return self.saveAllEdits(null, callback == null ? null : $entry(function() {
             callback.@com.smartgwt.client.core.Function::execute()();
         }));
     }-*/;
@@ -10466,11 +10481,12 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @param callback this callback will be fired on a successful save of the specified rows. Note that if there are no pending edits to be saved this
      * callback will not fire - you can check for this condition using {@link #hasChanges()} or {@link #rowHasChanges()}
      * @param rows specify which rows to save
+     * @return true if a save has been initiated (at least one row had changes, passed client-side validation, and a save has been attempted).  false otherwise
      */
-    public native void saveAllEdits(Function callback, int[] rows) /*-{
+    public native boolean saveAllEdits(Function callback, int[] rows) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var rowsJS = rows == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(rows);
-        self.saveAllEdits(rowsJS, callback == null ? null : $entry(function() {
+        return self.saveAllEdits(rowsJS, callback == null ? null : $entry(function() {
             callback.@com.smartgwt.client.core.Function::execute()();
         }));
     }-*/;
