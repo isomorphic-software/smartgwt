@@ -2929,6 +2929,17 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+     * If this ListGrid is showing a filter row (showFilterEditor : true), this property can be used to specify properties for the
+     * appropriate filter form item.
+     *
+     * @param filterEditorProperties the filter editor properties
+     */
+    public void setFilterEditorProperties(FormItem filterEditorProperties) {
+        JavaScriptObject editorConfig = filterEditorProperties.getConfig();
+        setAttribute("filterEditorProperties", editorConfig);
+    }
+
+    /**
      * If this listGrid is showing a filter row, this property can be used to specify a mapping of internal data to/from display
      * values to be in the appropriate filter row form item.
      *
