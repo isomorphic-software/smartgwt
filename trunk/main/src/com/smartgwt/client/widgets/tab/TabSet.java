@@ -1191,6 +1191,15 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     // ********************* Methods ***********************
             
     /**
+     * If the user is currently editing a tab title (see {@link com.smartgwt.client.widgets.tab.TabSet#getCanEditTabTitles
+     * canEditTabTitles}), dismiss the editor and discard the edit value entered by the user.
+     */
+    public native void cancelTabTitleEditing() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.cancelTabTitleEditing();
+    }-*/;
+            
+    /**
      * Returns the index of the currently selected tab object.
      *
      * @return the index of the currently selected tab object
@@ -1198,6 +1207,15 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     public native int getSelectedTabNumber() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getSelectedTabNumber();
+    }-*/;
+            
+    /**
+     * If the user is currently editing a tab title (see {@link com.smartgwt.client.widgets.tab.TabSet#getCanEditTabTitles
+     * canEditTabTitles}), save the edited tab title and hide the editor.
+     */
+    public native void saveTabTitle() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.saveTabTitle();
     }-*/;
             
     /**
