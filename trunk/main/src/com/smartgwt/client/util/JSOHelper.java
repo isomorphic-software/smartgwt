@@ -818,6 +818,9 @@ public class JSOHelper {
         JavaScriptObject valueJS = JSOHelper.createObject();
         for (Iterator iterator = valueMap.keySet().iterator(); iterator.hasNext();) {
             String key = (String) iterator.next();
+            if(key.equals("__ref")) {
+                SC.logWarn("JSO::convertMapToJavascriptObject : skipping __ref in map");
+            }
             Object value = valueMap.get(key);
             
             if (value instanceof JavaScriptObject) {
