@@ -36,11 +36,15 @@ public class ImgSample extends ShowcasePanel {
         String image = "crystal/128/apps/jabber_protocol.png";
         
         Img starImg1 = new Img(image, 100, 100);
+        starImg1.setImageWidth(64);
+        starImg1.setImageHeight(64);
         starImg1.setImageType(ImageStyle.NORMAL);
         starImg1.setBorder("1px solid gray");
         canvas.addChild(starImg1);
 
         Img starImg2 = new Img(image, 100, 100);
+        starImg2.setImageWidth(64);
+        starImg2.setImageHeight(64);
         starImg2.setImageType(ImageStyle.CENTER);
         starImg2.setBorder("1px solid gray");
         starImg2.setLeft(120);
