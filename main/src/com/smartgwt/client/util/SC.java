@@ -30,7 +30,7 @@ public class SC {
     public static native String generateID(String className) /*-{
         var simpleName = className.substring(className.lastIndexOf(".")+1);
         //replace any $ characters from inner class names with an underscore
-        simpleName = simpleName.replaceAll("$", "_");
+        simpleName = simpleName.replace("$", "_");
         return $wnd.isc.ClassFactory.getNextGlobalIDForClass(simpleName);
     }-*/;
 
