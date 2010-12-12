@@ -147,10 +147,11 @@ public class ListGridRecord extends Record {
     }
 
     /**
-     * Canvas created and embedded in the body behind a given record.   When set, either as a Canvas or Canvas Properties, will
-     * be constructed if necessary, combined with the  autoChild properties specified for {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getBackgroundComponent backgroundComponent} and displayed  behind this record
-     * in the page's z-order, meaning  it will only be visible if the cell styling is transparent.
+     * Has no effect unless {@link com.smartgwt.client.widgets.grid.ListGrid#getShowBackgroundComponent
+     * showBackgroundComponent} is <code>true</code>. <P> Canvas created and embedded in the body behind a given record.   When
+     * set, either as a Canvas or Canvas Properties, will be constructed if necessary, combined with the  autoChild properties
+     * specified for {@link com.smartgwt.client.widgets.grid.ListGrid#getBackgroundComponent backgroundComponent} and displayed
+     *  behind this record in the page's z-order, meaning  it will only be visible if the cell styling is transparent.
      *
      * @param backgroundComponent backgroundComponent Default value is null
      */
@@ -159,10 +160,11 @@ public class ListGridRecord extends Record {
     }
 
     /**
-     * Canvas created and embedded in the body behind a given record.   When set, either as a Canvas or Canvas Properties, will
-     * be constructed if necessary, combined with the  autoChild properties specified for {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getBackgroundComponent backgroundComponent} and displayed  behind this record
-     * in the page's z-order, meaning  it will only be visible if the cell styling is transparent.
+     * Has no effect unless {@link com.smartgwt.client.widgets.grid.ListGrid#getShowBackgroundComponent
+     * showBackgroundComponent} is <code>true</code>. <P> Canvas created and embedded in the body behind a given record.   When
+     * set, either as a Canvas or Canvas Properties, will be constructed if necessary, combined with the  autoChild properties
+     * specified for {@link com.smartgwt.client.widgets.grid.ListGrid#getBackgroundComponent backgroundComponent} and displayed
+     *  behind this record in the page's z-order, meaning  it will only be visible if the cell styling is transparent.
      *
      *
      * @return Canvas

@@ -61,7 +61,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * A ListGrid is a {@link com.smartgwt.client.widgets.DataBoundComponent} that displays a list of objects in a grid, where
  * each row represents one object and each cell in the row represents one property.
  */
-public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasHeaderClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDropHandlers, com.smartgwt.client.widgets.grid.events.HasRecordExpandHandlers, com.smartgwt.client.widgets.grid.events.HasRecordCollapseHandlers, com.smartgwt.client.widgets.grid.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.grid.events.HasDrawAreaChangedHandlers, com.smartgwt.client.widgets.grid.events.HasFieldStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasEditFailedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasCellOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasCellClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowOutHandlers, com.smartgwt.client.widgets.grid.events.HasRowOverHandlers, com.smartgwt.client.widgets.grid.events.HasRowContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellHoverHandlers, com.smartgwt.client.widgets.grid.events.HasRowHoverHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionChangedHandlers, com.smartgwt.client.widgets.grid.events.HasHeaderDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasFilterEditorSubmitHandlers {
+public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasHeaderClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDropHandlers, com.smartgwt.client.widgets.grid.events.HasRecordExpandHandlers, com.smartgwt.client.widgets.grid.events.HasRecordCollapseHandlers, com.smartgwt.client.widgets.grid.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.grid.events.HasDrawAreaChangedHandlers, com.smartgwt.client.widgets.grid.events.HasFieldStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasEditFailedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasCellOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasCellClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowOutHandlers, com.smartgwt.client.widgets.grid.events.HasRowOverHandlers, com.smartgwt.client.widgets.grid.events.HasRowContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellHoverHandlers, com.smartgwt.client.widgets.grid.events.HasRowHoverHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionChangedHandlers, com.smartgwt.client.widgets.grid.events.HasHeaderDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasFilterEditorSubmitHandlers, com.smartgwt.client.widgets.grid.events.HasGroupByHandlers {
 
     public static ListGrid getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -888,11 +888,12 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Canvas created and embedded in the body behind a given record.   When  {@link
-     * com.smartgwt.client.widgets.grid.ListGridRecord#getBackgroundComponent backgroundComponent} is set, this autoChild
-     * canvas  will be constructed (if listGridRecord.backgroundComponent is not already a Canvas) and  it's properties
-     * combined with those of listGridRecord.backgroundComponent and then  displayed behind a specific record in the page's
-     * z-order, meaning  it will only be visible if the cell styling is transparent.
+     * Has no effect unless {@link com.smartgwt.client.widgets.grid.ListGrid#getShowBackgroundComponent
+     * showBackgroundComponent} is <code>true</code>. <P> Canvas created and embedded in the body behind a given record.   When
+     * {@link com.smartgwt.client.widgets.grid.ListGridRecord#getBackgroundComponent backgroundComponent} is set, this
+     * autoChild canvas  will be constructed (if listGridRecord.backgroundComponent is not already a Canvas) and  it's
+     * properties combined with those of listGridRecord.backgroundComponent and then  displayed behind a specific record in the
+     * page's z-order, meaning  it will only be visible if the cell styling is transparent.
      *
      * @param backgroundComponent backgroundComponent Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -902,11 +903,12 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Canvas created and embedded in the body behind a given record.   When  {@link
-     * com.smartgwt.client.widgets.grid.ListGridRecord#getBackgroundComponent backgroundComponent} is set, this autoChild
-     * canvas  will be constructed (if listGridRecord.backgroundComponent is not already a Canvas) and  it's properties
-     * combined with those of listGridRecord.backgroundComponent and then  displayed behind a specific record in the page's
-     * z-order, meaning  it will only be visible if the cell styling is transparent.
+     * Has no effect unless {@link com.smartgwt.client.widgets.grid.ListGrid#getShowBackgroundComponent
+     * showBackgroundComponent} is <code>true</code>. <P> Canvas created and embedded in the body behind a given record.   When
+     * {@link com.smartgwt.client.widgets.grid.ListGridRecord#getBackgroundComponent backgroundComponent} is set, this
+     * autoChild canvas  will be constructed (if listGridRecord.backgroundComponent is not already a Canvas) and  it's
+     * properties combined with those of listGridRecord.backgroundComponent and then  displayed behind a specific record in the
+     * page's z-order, meaning  it will only be visible if the cell styling is transparent.
      *
      *
      * @return Canvas
@@ -1871,7 +1873,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Name of the Smart GWT Class to be used when creating charts.  Must support the Chart interface.
      *
-     * @param chartConstructor chartConstructor Default value is "FusionChart"
+     * @param chartConstructor chartConstructor Default value is "FacetChart"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setChartConstructor(String chartConstructor)  throws IllegalStateException {
@@ -5481,6 +5483,27 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * If <code>true</code> this grid will create and show per-row backgroundComponents  as detailed {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getBackgroundComponent here}.
+     *
+     * @param showBackgroundComponent showBackgroundComponent Default value is false
+     */
+    public void setShowBackgroundComponent(Boolean showBackgroundComponent) {
+        setAttribute("showBackgroundComponent", showBackgroundComponent, true);
+    }
+
+    /**
+     * If <code>true</code> this grid will create and show per-row backgroundComponents  as detailed {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getBackgroundComponent here}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowBackgroundComponent()  {
+        return getAttributeAsBoolean("showBackgroundComponent");
+    }
+
+    /**
      * Indicates whether the text of the emptyMessage property should be displayed if no data is available.
      *
      * @param showEmptyMessage showEmptyMessage Default value is true
@@ -7293,7 +7316,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * <p>
      * Notification method that fires when the drawArea changes due to scrolling.  Receives   the previous drawArea
      * co-ordinates as parameters.  Call {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawArea ListGrid.getDrawArea} to 
-     *  get the new drawArea co-ordinates.
+     * get the new drawArea co-ordinates. <P> Note that if this grid is showing any {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getFrozen frozen fields}, they will not be included in the
+     * <code>oldStartCol</code>, <code>oldEndCol</code> range reported by this method. Frozen fields are assumed never to be
+     * scrolled out of view.
      *
      * @param handler the drawAreaChanged handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -7715,16 +7741,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
             
     /**
-     * Get the row that currently has keyboard focus.  Arrow key navigation moves relative to this row.
-     *
-     * @return rowNum of the current focus row
-     */
-    public native int getFocusRow() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getFocusRow();
-    }-*/;
-            
-    /**
      * Return the pointer to a particular record by record number. Synonym for {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCellRecord ListGrid.getCellRecord}.
      * @param recordNum row index of record to return.
@@ -7861,6 +7877,43 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getViewState();
     }-*/;
+    /**
+     * Add a groupBy handler.
+     * <p>
+     * Callback fired when the listGrid is grouped or ungrouped.  <var class="SmartGwt">This event may be cancelled</var>
+     *
+     * @param handler the groupBy handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addGroupByHandler(com.smartgwt.client.widgets.grid.events.GroupByHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.grid.events.GroupByEvent.getType()) == 0) setupGroupByEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.GroupByEvent.getType());
+    }
+
+    private native void setupGroupByEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({handleGroupBy:$debox($entry(function(){
+                        var param = {"fields" : arguments[0]};
+                        var event = @com.smartgwt.client.widgets.grid.events.GroupByEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    }))
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.handleGroupBy = $debox($entry(function(){
+                   var param = {"fields" : arguments[0]};
+                   var event = @com.smartgwt.client.widgets.grid.events.GroupByEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               }));
+        }
+   }-*/;
             
     /**
      * Whether the grid as a whole has any unsaved edits, in any row.
@@ -7931,6 +7984,16 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                });
         }
    }-*/;
+            
+    /**
+     * Invalidates the currently visible set of {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents
+     * recordComponents} and gets fresh ones for the visible rows in the grid according to the  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getRecordComponentPoolingMode recordComponentPoolingMode}
+     */
+    public native void invalidateRecordComponents() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.invalidateRecordComponents();
+    }-*/;
             
     /**
      * Identifies whether the passed-in field is the specially generated {@link
@@ -10031,6 +10094,18 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
 
     /**
+     * Get the row that currently has keyboard focus.  Arrow key navigation moves relative to this row.
+     *
+     * @return rowNum of the current focus row. Returns null if there is no row focused
+     */
+    public native Integer getFocusRow() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var row = self.getFocusRow();
+        return row == null || row === undefined ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(row);
+    }-*/;
+
+
+    /**
      * The selection associated with the listGrid.
      *
      * @return the selection
@@ -10841,6 +10916,29 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         self.setEditValue(rowNum, colNum, value);
     }-*/;
 
+    /**
+     * Modifies a field value being tracked as an unsaved user edit.
+     *
+     * @param rowNum row number
+     * @param colNum column number of cell
+     * @param value new value for the appropriate field
+     */
+    public native void setEditValue(int rowNum, int colNum, Record value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setEditValue(rowNum, colNum, value == null ? null : value.@com.smartgwt.client.data.Record::getJsObj()());
+    }-*/;
+
+    /**
+     * Modifies a field value being tracked as an unsaved user edit.
+     *
+     * @param rowNum row number
+     * @param colNum column number of cell
+     * @param value new value for the appropriate field
+     */
+    public native void setEditValue(int rowNum, int colNum, Record[] value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setEditValue(rowNum, colNum, value == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(value));
+    }-*/;
 
     /**
      * Modifies a field value being tracked as an unsaved user edit.
@@ -10913,6 +11011,30 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native void setEditValue(int rowNum, String fieldName, int value) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setEditValue(rowNum, fieldName, value);
+    }-*/;
+
+    /**
+     * Modifies a field value being tracked as an unsaved user edit.
+     *
+     * @param rowNum row number
+     * @param fieldName  the field name
+     * @param value new value for the appropriate field
+     */
+    public native void setEditValue(int rowNum, String fieldName, Record value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setEditValue(rowNum, fieldName, value == null ? null : value.@com.smartgwt.client.data.Record::getJsObj()());
+    }-*/;
+
+    /**
+     * Modifies a field value being tracked as an unsaved user edit.
+     *
+     * @param rowNum row number
+     * @param fieldName  the field name
+     * @param value new value for the appropriate field
+     */
+    public native void setEditValue(int rowNum, String fieldName, Record[] value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setEditValue(rowNum, fieldName, value == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(value));
     }-*/;
 
     /**
