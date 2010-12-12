@@ -2101,6 +2101,27 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+     * For a field with <code>displayField</code> configured, should client-side sorting be performed on the display field
+     * value? Unless explicitly set to <code>false</code> the display field value is used.
+     *
+     * @param sortByDisplayField sortByDisplayField Default value is null
+     */
+    public void setSortByDisplayField(Boolean sortByDisplayField) {
+        setAttribute("sortByDisplayField", sortByDisplayField);
+    }
+
+    /**
+     * For a field with <code>displayField</code> configured, should client-side sorting be performed on the display field
+     * value? Unless explicitly set to <code>false</code> the display field value is used.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSortByDisplayField()  {
+        return getAttributeAsBoolean("sortByDisplayField");
+    }
+
+    /**
      * Optional long summary title for this field, provided in addition to  {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getTitle title}. This gives the developer an option to use a very short,
      * or empty title for the ListGrid column (where space may be a factor), but have a longer  value available to be used
