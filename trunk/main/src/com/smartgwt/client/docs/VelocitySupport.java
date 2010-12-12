@@ -51,8 +51,8 @@ package com.smartgwt.client.docs;
  * use <code>$rawValue</code>.  There are some cases &#010 where using the raw value is necessary, but even so, all such
  * cases are likely to be vulnerable &#010 to injection attacks.  Generally, the presence of <code>$rawValue</code> in a
  * SQL template &#010 should be viewed as a red flag.&#010 <p>&#010 Finally, some example usages of these values.  &#010
- * These {@link com.smartgwt.client.data.OperationBinding#getValues values} clauses set "price" to a value extracted from
- * the &#010 session, and "lastUpdated" to the date/time that this transaction started:<br><br><code>&#010
+ * These {@link com.smartgwt.client.docs.serverds.OperationBinding#values values} clauses set "price" to a value extracted
+ * from the &#010 session, and "lastUpdated" to the date/time that this transaction started:<br><br><code>&#010
  * &nbsp;&nbsp;&lt;values fieldName="price" value="$session.somePrice" /&gt;<br>&#010 &nbsp;&nbsp;&lt;values
  * fieldName="lastUpdated" value="$transactionDate" /&gt;&#010 </code><p>&#010 This whereClause selects some users based on
  * various values passed in the criteria and &#010 as HTTP parameters:<br><br><code>&#010

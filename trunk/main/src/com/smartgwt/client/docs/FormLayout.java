@@ -45,6 +45,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.DynamicForm#getSectionVisibilityMode
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getWidth
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getHeight
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getTitleColSpan
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getColSpan
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getRowSpan
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getStartRow
