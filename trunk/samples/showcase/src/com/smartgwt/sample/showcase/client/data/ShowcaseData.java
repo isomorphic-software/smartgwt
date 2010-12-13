@@ -70,6 +70,8 @@ import com.smartgwt.sample.showcase.client.menu.MenuSubmenusSample;
 import com.smartgwt.sample.showcase.client.menu.MenuTreeBindingSample;
 import com.smartgwt.sample.showcase.client.miniapp.MiniAppSample;
 import com.smartgwt.sample.showcase.client.mvc.PatternReuseSample;
+import com.smartgwt.sample.showcase.client.offline.OfflineDataSourceSupportSample;
+import com.smartgwt.sample.showcase.client.offline.OfflinePreferencesSample;
 import com.smartgwt.sample.showcase.client.other.*;
 import com.smartgwt.sample.showcase.client.portal.SimplePortalSample;
 import com.smartgwt.sample.showcase.client.printing.PrintingSample;
@@ -136,6 +138,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Adaptive Filter", "grid-adaptive-filter-featured-category", "featured-category", "crystal/16/actions/show_table_row.png", new AdaptiveFilterSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Formula &amp; Summary Builder", "formula-sumamry-builder-featured-category", "featured-category", "crystal/oo/sc_insertformula.png", new FormulaSummaryBuilderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid Summaries", "grid-summaries-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Offline Preferences", "grid-offline-pref-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new OfflinePreferencesSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Offline Datasource", "grid-offlineds-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new OfflineDataSourceSupportSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("New Samples", "new-category", "root", "silk/new.png", null, true, idSuffix),
                     new ExplorerTreeNode("Hover Related Records", "grid-hover-related-records-new", "new-category", null, new GridHoverRelatedRecordsSample.Factory(), true, idSuffix),
@@ -146,6 +150,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Data Driven Hilites", "grid-hiliting-data-driven-new", "new-category", null, new GridDataDrivenHilitingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Formula Hilites", "grid-hiliting-formula-new", "new-category", null, new GridFormulaHilitingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("24h based Calendar", "calendar-24h-new", "new-category", null, new CalendarDateTimeFormatSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Offline Datasource", "grid-offlineds-new", "new-category", null, new OfflineDataSourceSupportSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Offline Preferences", "grid-offline-pref-new", "new-category", "crystal/16/apps/tooloptions.png", new OfflinePreferencesSample.Factory(), true, idSuffix),
 
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
 
@@ -159,6 +165,11 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Add on the fly", "select-other-combobox-category", "combobox-category", null, new SelectOtherFieldSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Picktree", "picktree-combobox-category", "combobox-category", null, new PickTreeFieldSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Multi-Select", "multi-select-combobox-category", "combobox-category", null, new SelectMultipleSample.Factory(), true, idSuffix),
+
+                    new ExplorerTreeNode("Offline Support", "offline-category", "root", "silk/application_view_detail.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Offline DataSource", "grid-offline-ds", "offline-category", "pieces/16/cube_blue.png", new OfflineDataSourceSupportSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Offline Preferences", "grid-offline-pref", "offline-category", "crystal/16/apps/tooloptions.png", new OfflinePreferencesSample.Factory(), true, idSuffix),
+
 
                     new ExplorerTreeNode("Grids", "grid-category", "root", "silk/application_view_detail.png", null, true, idSuffix),
                     new ExplorerTreeNode("Appearance", "grid-appearance-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
