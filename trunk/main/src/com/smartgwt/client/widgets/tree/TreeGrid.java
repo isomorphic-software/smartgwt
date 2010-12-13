@@ -922,6 +922,29 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
+     * For TreeGrids with loadDataOnDemand: true, a message to show the user if an attempt is  made to open a folder, and thus
+     * load that node's children, while we are offline and  there is no offline cache of that data.  The message will be
+     * presented to the user in  in a pop-up dialog box.
+     *
+     * @param offlineNodeMessage offlineNodeMessage Default value is "This data not available while offline"
+     */
+    public void setOfflineNodeMessage(String offlineNodeMessage) {
+        setAttribute("offlineNodeMessage", offlineNodeMessage, true);
+    }
+
+    /**
+     * For TreeGrids with loadDataOnDemand: true, a message to show the user if an attempt is  made to open a folder, and thus
+     * load that node's children, while we are offline and  there is no offline cache of that data.  The message will be
+     * presented to the user in  in a pop-up dialog box.
+     *
+     *
+     * @return String
+     */
+    public String getOfflineNodeMessage()  {
+        return getAttributeAsString("offlineNodeMessage");
+    }
+
+    /**
      * Width and height in pixels of the opener icons, that is, the icons which show the open or closed state of the node,
      * typically a [+] or [-] symbol. <P> If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors}
      * is true, the opener icon includes the connector line, and defaults to {@link

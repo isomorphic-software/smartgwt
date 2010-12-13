@@ -93,6 +93,18 @@ public class DSResponse extends RPCResponse {
 
 
     /**
+     * If set, indicates that this response came from the offline cache, not the server.  This  flag is the only reliable way
+     * for application code to determine the source of a response.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getFromOfflineCache()  {
+        return getAttributeAsBoolean("fromOfflineCache");
+    }
+
+
+    /**
      * Optional flag that can be set by the server to force ResultSets to drop any caches of records from the DataSource that
      * was the target of the operation.
      *
@@ -101,6 +113,18 @@ public class DSResponse extends RPCResponse {
      */
     public Boolean getInvalidateCache()  {
         return getAttributeAsBoolean("invalidateCache");
+    }
+
+
+    /**
+     * Timestamp (millisecond value) to indicate when this dsResponse was cached in  {@link com.smartgwt.client.util.Offline
+     * offline storage}.  Not applicable if the response has never been  stored offline.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getOfflineTimestamp()  {
+        return getAttributeAsInt("offlineTimestamp");
     }
 
 

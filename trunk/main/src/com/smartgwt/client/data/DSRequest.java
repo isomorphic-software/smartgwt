@@ -60,7 +60,7 @@ import com.google.gwt.event.shared.HasHandlers;
 /**
  * Request sent to the server to initiate a  {@link com.smartgwt.client.docs.DataSourceOperations DataSource operation}. 
  * All properties which are legal on {@link com.smartgwt.client.rpc.RPCRequest} are legal, in addition to the properties
- * listed here.
+ * listed here. <P>
  * @see com.smartgwt.client.rpc.RPCRequest
  */
 public class DSRequest extends RPCRequest {
@@ -450,13 +450,15 @@ public class DSRequest extends RPCRequest {
      * com.smartgwt.client.data.DSRequest#getDmiOverview DMI} settings, to be switched on a per-component or per-request basis.
      * <P> For example, by setting the <code>fetchOperation</code> on a particular ListGrid, you could cause it to invoke a
      * different server method via DMI, different {@link com.smartgwt.client.data.OperationBinding#getDataURL dataURL} or
-     * different {@link com.smartgwt.client.data.OperationBinding#getWsOperation web service operation}. <P> The
+     * different  {@link com.smartgwt.client.data.OperationBinding#getWsOperation web service operation}. <P> The
      * <code>operationId</code> can also be directly received by the server in order to affect behavior.  When using the Smart
      * GWT Server, <code>operationId</code> can be accessed via dsRequest.getOperationId().  The {@link
      * com.smartgwt.client.data.RestDataSource} will also send the <code>operationId</code> to the server as part of the {@link
      * com.smartgwt.client.data.RestDataSource#getMetaDataPrefix request metadata}.   <P> Note that if you {@link
      * com.smartgwt.client.data.DataSource#fetchData manually invoke} a DataSource operation, you can also specify operationId
-     * via the <code>requestProperties</code> parameter.
+     * via the <code>requestProperties</code> parameter. <P> Note that the <code>operationId</code> has special signficance in
+     * terms of whether two DSRequests are considered equivalent for caching and synchronization purposes - see {@link
+     * com.smartgwt.client.docs.DsRequestEquivalence}.
      *
      * @param operationId operationId Default value is null
      * @see com.smartgwt.client.docs.Operations Operations overview and related methods
@@ -481,13 +483,15 @@ public class DSRequest extends RPCRequest {
      * com.smartgwt.client.data.DSRequest#getDmiOverview DMI} settings, to be switched on a per-component or per-request basis.
      * <P> For example, by setting the <code>fetchOperation</code> on a particular ListGrid, you could cause it to invoke a
      * different server method via DMI, different {@link com.smartgwt.client.data.OperationBinding#getDataURL dataURL} or
-     * different {@link com.smartgwt.client.data.OperationBinding#getWsOperation web service operation}. <P> The
+     * different  {@link com.smartgwt.client.data.OperationBinding#getWsOperation web service operation}. <P> The
      * <code>operationId</code> can also be directly received by the server in order to affect behavior.  When using the Smart
      * GWT Server, <code>operationId</code> can be accessed via dsRequest.getOperationId().  The {@link
      * com.smartgwt.client.data.RestDataSource} will also send the <code>operationId</code> to the server as part of the {@link
      * com.smartgwt.client.data.RestDataSource#getMetaDataPrefix request metadata}.   <P> Note that if you {@link
      * com.smartgwt.client.data.DataSource#fetchData manually invoke} a DataSource operation, you can also specify operationId
-     * via the <code>requestProperties</code> parameter.
+     * via the <code>requestProperties</code> parameter. <P> Note that the <code>operationId</code> has special signficance in
+     * terms of whether two DSRequests are considered equivalent for caching and synchronization purposes - see {@link
+     * com.smartgwt.client.docs.DsRequestEquivalence}.
      *
      *
      * @return String
@@ -698,6 +702,28 @@ public class DSRequest extends RPCRequest {
     // ***********************************************************        
 
 
+    
+    /**
+     * Set a custom attribute value on the DSRequest as an Object. Note that this method converts the Java primitive Object types, Dates and Maps to the underyling
+     * JavaScriptObject value. All other object types are set as Object type attributes and users are expected to call {@link #getAttributeAsObject(String)}
+     * in order to retrieve them.
+     * <P>
+     * These attributes are available for client-side use only - these attributes are not
+     * transmitted to the server.
+     * <P>
+     * Do not use setAttribute() to set any attribute for which there is a dedicated setter (do not
+     * setAttribute("data", <i>data</i>) for example).
+     * <P>
+     * If you are looking for a way to send additional data to the server, read
+     * {@link com.smartgwt.client.docs.DsRequestEquivalence,this overview} for the best approach.
+     *
+     * @param property the attribute name
+     * @param value the attribute value.
+     */
+    @Override
+    public void setAttribute(String property, Object value) {
+        super.setAttribute(property, value);
+    }
 
 /**
     * The list of field-names to export.  If provided, the field-list in the exported output is &#010 limited and sorted as per the list.&#010 <P>&#010 If exportFields is not provided, the exported output includes all visible fields &#010 from the DataSource (field.hidden=false), sorted in the order they're defined.
@@ -787,12 +813,11 @@ public class DSRequest extends RPCRequest {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var sortBy = self.sortBy;
         if(sortBy == null || sortBy === undefined) return null;
-        //DSRequest always stores sortBy as a String or an array of Strings, and not the SortSpecifier object.
+        //Unlike ListGrid.getSortBy(), DSRequest always stores sortBy as a String or an array of Strings, and not the SortSpecifier object / array.
         if($wnd.isc.isA.Array(sortBy)) {
             sortBy = sortBy.join(",")
         }
         return @com.smartgwt.client.data.SortSpecifier::convertToArray(Ljava/lang/String;)(sortBy);
-
     }-*/;
 
     /**
