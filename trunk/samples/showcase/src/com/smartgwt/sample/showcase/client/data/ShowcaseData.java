@@ -145,6 +145,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Pre-Defined Hilites", "grid-hiliting-pre-defined-new", "new-category", null, new GridPredefinedHilitingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Data Driven Hilites", "grid-hiliting-data-driven-new", "new-category", null, new GridDataDrivenHilitingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Formula Hilites", "grid-hiliting-formula-new", "new-category", null, new GridFormulaHilitingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("24h based Calendar", "calendar-24h-new", "new-category", null, new CalendarDateTimeFormatSample.Factory(), true, idSuffix),
 
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
 
@@ -350,6 +351,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Custom Event Editing", "custom-editing-calendar-category", "calendar-category", "crystal/16/apps/date.png", new CustomEventCalendarSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Event Auto-Arranging", "event-autoarranging-calendar-category", "calendar-category", "crystal/16/actions/5days.png", new AutoArrangeEventsCalendarSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Event Overlapping", "event-overlapping-calendar-category", "calendar-category", "crystal/16/actions/5days.png", new OverlappingEventsCalendarSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("24h based Calendar", "calendar-24h", "calendar-category", null, new CalendarDateTimeFormatSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Data View / Tiling", "tiling-category", "root", "crystal/16/actions/view_icon.png", null, true, idSuffix),
                     new ExplorerTreeNode("Basic", "tiling-basic", "tiling-category", null, new BasicTilingSample.Factory(), true, idSuffix),
