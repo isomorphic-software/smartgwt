@@ -62,7 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * FormItem descriptors are passed to a DynamicForm.  See the {@link com.smartgwt.client.widgets.form.DynamicForm}
  * documentation for details.
  */
-public class FormItem extends RefDataClass  implements com.smartgwt.client.widgets.form.fields.events.HasFocusHandlers, com.smartgwt.client.widgets.form.fields.events.HasBlurHandlers, com.smartgwt.client.widgets.form.fields.events.HasChangeHandlers, com.smartgwt.client.widgets.form.fields.events.HasChangedHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyPressHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyUpHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyDownHandlers, com.smartgwt.client.widgets.form.fields.events.HasIconClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasIconKeyPressHandlers, com.smartgwt.client.widgets.form.fields.events.HasItemHoverHandlers, com.smartgwt.client.widgets.form.fields.events.HasClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasDoubleClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasTitleHoverHandlers {
+public class FormItem extends RefDataClass  implements com.smartgwt.client.widgets.form.fields.events.HasFocusHandlers, com.smartgwt.client.widgets.form.fields.events.HasBlurHandlers, com.smartgwt.client.widgets.form.fields.events.HasChangeHandlers, com.smartgwt.client.widgets.form.fields.events.HasChangedHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyPressHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyUpHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyDownHandlers, com.smartgwt.client.widgets.form.fields.events.HasIconClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasIconKeyPressHandlers, com.smartgwt.client.widgets.form.fields.events.HasItemHoverHandlers, com.smartgwt.client.widgets.form.fields.events.HasClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasDoubleClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasTitleHoverHandlers, com.smartgwt.client.widgets.form.fields.events.HasTitleClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasTitleDoubleClickHandlers {
 
     public static FormItem getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -2297,6 +2297,29 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
+     * Number of columns that this item's title spans.   <P> This setting only applies for items that are showing a title and
+     * whose {@link com.smartgwt.client.types.TitleOrientation} is either "left" or "right".
+     *
+     * @param titleColSpan titleColSpan Default value is 1
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
+     */
+    public void setTitleColSpan(int titleColSpan) {
+        setAttribute("titleColSpan", titleColSpan);
+    }
+
+    /**
+     * Number of columns that this item's title spans.   <P> This setting only applies for items that are showing a title and
+     * whose {@link com.smartgwt.client.types.TitleOrientation} is either "left" or "right".
+     *
+     *
+     * @return int
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
+     */
+    public int getTitleColSpan()  {
+        return getAttributeAsInt("titleColSpan");
+    }
+
+    /**
      * On which side of this item should the title be placed.  {@link com.smartgwt.client.types.TitleOrientation} lists valid
      * options. <P> Note that titles on the left or right take up a cell in tabular {@link com.smartgwt.client.docs.FormLayout
      * form layouts}, but titles on top do not.
@@ -3308,6 +3331,52 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         self.stopHover();
     }-*/;
     /**
+     * Add a titleClick handler.
+     * <p>
+     * Notification method fired when the user clicks the title for this item
+     *
+     * @param handler the titleClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addTitleClickHandler(com.smartgwt.client.widgets.form.fields.events.TitleClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.TitleClickEvent.getType()) == 0) setupTitleClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.TitleClickEvent.getType());
+    }
+
+    private native void setupTitleClickEvent() /*-{
+        var obj = null;
+            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+            var selfJ = this;
+            obj.titleClick = $entry(function(){
+                var param = {"form" : arguments[0], "item" : arguments[1]};
+                var event = @com.smartgwt.client.widgets.form.fields.events.TitleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
+   }-*/;
+    /**
+     * Add a titleDoubleClick handler.
+     * <p>
+     * Notification method fired when the user double-clicks the title for this item
+     *
+     * @param handler the titleDoubleClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addTitleDoubleClickHandler(com.smartgwt.client.widgets.form.fields.events.TitleDoubleClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.TitleDoubleClickEvent.getType()) == 0) setupTitleDoubleClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.TitleDoubleClickEvent.getType());
+    }
+
+    private native void setupTitleDoubleClickEvent() /*-{
+        var obj = null;
+            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+            var selfJ = this;
+            obj.titleDoubleClick = $entry(function(){
+                var param = {"form" : arguments[0], "item" : arguments[1]};
+                var event = @com.smartgwt.client.widgets.form.fields.events.TitleDoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
+   }-*/;
+    /**
      * Add a titleHover handler.
      * <p>
      * Optional stringMethod to fire when the user hovers over this item's title.  Return false to suppress default behavior of
@@ -3943,10 +4012,16 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             setValue((String) value);
         } else if (value instanceof Integer) {
             setValue(((Integer) value).intValue());
+        } else if (value instanceof Long) {
+            //we officially do not support Long type, and GWT disallows passing long values to JSNI
+            //casting to int, instead or erroring out, as it works in most cases
+            setValue(((Long) value).intValue());
         } else if (value instanceof Double) {
             setValue(((Double) value).doubleValue());
         } else if(value instanceof Float) {
             setValue(((Float) value).floatValue());
+        } else if (value instanceof Boolean) {
+            setValue(((Boolean) value).booleanValue());
         } else if (value instanceof Date) {
             setValue((Date) value);
         } else {
