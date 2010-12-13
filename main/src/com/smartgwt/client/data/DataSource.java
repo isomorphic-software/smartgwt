@@ -3105,6 +3105,77 @@ nent has been created
         setAttribute("xmlNamespaces", xmlNamespaces, false);
     }
 
+    /**
+     * Set the list of {@link com.smartgwt.client.types.OperatorId OperatorIds} valid for a given FieldType.
+     *
+     * @param fieldType the field type
+     * @param operators available Operators
+     */
+    public native void setTypeOperators(FieldType fieldType, OperatorId[] operators)/*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var fieldTypeJS = fieldType == null ? null : fieldType.@com.smartgwt.client.types.ValueEnum::getValue()();
+        var operatorsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(operators);
+        self.setTypeOperators(fieldTypeJS, operatorsJS);
+    }-*/;
+
+    /**
+     * Get the list of OperatorIds available on this DataSource for the given FieldType.
+     * <p>
+     * If DataSource.setTypeOperators() has been called for this DataSource and Fieldtype, returns that list, otherwise, returns the set of
+     * valid operators for the FieldType as specified by SimpleType.validOperators, otherwise, the system-wide set of valid operators for the
+     * type as registered via DataSource.addSearchOperator().
+     *
+     * @param fieldType the field type
+     * @return the available Operators
+     */
+    public native OperatorId[] getTypeOperators(FieldType fieldType)/*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var fieldTypeJS = fieldType == null ? null : fieldType.@com.smartgwt.client.types.ValueEnum::getValue()();
+        var operatorsJS = self.getTypeOperators(fieldTypeJS);
+        return @com.smartgwt.client.data.DataSource::convertToOperatorIdArray(Lcom/google/gwt/core/client/JavaScriptObject;)(operatorsJS);
+    }-*/;
+
+    /**
+     * Get the list of OperatorId's available for this field. By default if the validOperators is set on the DataSourceField, it returns the list, otherwise returns
+     * the result of {@link #getTypeOperators(com.smartgwt.client.types.FieldType)}.
+     *
+     * @param fieldName the field name to obtain operators for
+     * @return the available Operators
+     */
+    public native OperatorId[] getFieldOperators(String fieldName)/*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var operatorsJS = self.getFieldOperators(fieldName);
+        return @com.smartgwt.client.data.DataSource::convertToOperatorIdArray(Lcom/google/gwt/core/client/JavaScriptObject;)(operatorsJS);
+    }-*/;
+
+    /**
+     * Get the list of OperatorId's available for this field. By default if the validOperators is set on the DataSourceField, it returns the list, otherwise returns
+     * the result of {@link #getTypeOperators(com.smartgwt.client.types.FieldType)}.
+     *
+     * @param field the field to obtain operators for
+     * @return the available Operators
+     */
+    public native OperatorId[] getFieldOperators(DataSourceField field)/*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var fieldName = field.@com.smartgwt.client.data.DataSourceField::getName()();
+        var operatorsJS = self.getFieldOperators(fieldName);
+        return @com.smartgwt.client.data.DataSource::convertToOperatorIdArray(Lcom/google/gwt/core/client/JavaScriptObject;)(operatorsJS);
+    }-*/;
+
+    private static OperatorId[] convertToOperatorIdArray(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new OperatorId[]{};
+        }
+        String[] operators = JSOHelper.convertToJavaStringArray(nativeArray);
+        OperatorId[] operatorIds = new OperatorId[operators.length];
+        for (int i = 0; i < operators.length; i++) {
+            String operatorID = operators[i];
+            OperatorId operatorJ = EnumUtil.getEnum(OperatorId.values(), operatorID);
+            operatorIds[i] = operatorJ;
+        }
+        return operatorIds;
+    }
+
 }
 
 
