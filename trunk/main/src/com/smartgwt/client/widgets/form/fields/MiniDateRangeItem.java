@@ -294,6 +294,8 @@ public class MiniDateRangeItem extends StaticTextItem {
     // ********************* Static Methods ***********************
         
     // ***********************************************************        
+
+
     /**
      * Initial value for the "from" date.
      * Sets the {@link DateRangeItem#getFromDate fromDate} for this DateRangeItem.

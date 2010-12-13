@@ -2594,8 +2594,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * com.smartgwt.client.widgets.Canvas#getViewportHeight viewport size}, that is, the interior area of the&#010 widget
      * excluding space taken by scrollbars, which is key for exactly filling a component&#010 with content without creating
      * unnecessary scrolling.&#010 <P>&#010 The <code>showCustomScrollbars</code> setting is typically overridden in
-     * load_skin.js in&#010 order to change the default for all Smart GWT components at once, like so:&#010 <pre>&#010    
-     * isc.Canvas.addProperties({ showCustomScrollbars:false });&#010 </pre>
+     * load_skin.js in&#010 order to change the default for all Smart GWT components at once.&#010 This may be achieved via the
+     * static {@link com.smartgwt.client.widgets.Canvas#setShowCustomScrollbars Canvas.setShowCustomScrollbars} method or&#010
+     * via a simple addProperties block, like so:&#010 <pre>&#010     isc.Canvas.addProperties({ showCustomScrollbars:false
+     * });&#010 </pre>
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showCustomScrollbars showCustomScrollbars Default value is true
@@ -2619,8 +2621,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * com.smartgwt.client.widgets.Canvas#getViewportHeight viewport size}, that is, the interior area of the&#010 widget
      * excluding space taken by scrollbars, which is key for exactly filling a component&#010 with content without creating
      * unnecessary scrolling.&#010 <P>&#010 The <code>showCustomScrollbars</code> setting is typically overridden in
-     * load_skin.js in&#010 order to change the default for all Smart GWT components at once, like so:&#010 <pre>&#010    
-     * isc.Canvas.addProperties({ showCustomScrollbars:false });&#010 </pre>
+     * load_skin.js in&#010 order to change the default for all Smart GWT components at once.&#010 This may be achieved via the
+     * static {@link com.smartgwt.client.widgets.Canvas#setShowCustomScrollbars Canvas.setShowCustomScrollbars} method or&#010
+     * via a simple addProperties block, like so:&#010 <pre>&#010     isc.Canvas.addProperties({ showCustomScrollbars:false
+     * });&#010 </pre>
      *
      *
      * @return Boolean
@@ -2931,7 +2935,9 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} is defined for this widget, this property can be used to
      * specify an offset in px or percentage for the left coordinate of this widget. <P> For example if <code>snapTo</code> is
      * specified as <code>"L"</code> and  <code>snapOffsetLeft</code> is set to 6, this widget will be rendered 6px inside the
-     * left edge of its parent or master element.
+     * left edge of its parent or master element. Alternatively if <code>snapTo</code> was set to <code>"R"</code>, a
+     * <code>snapOffsetLeft</code> value of -6 would cause the  component to be rendered 6px inside the right edge of its
+     * parent or masterElement.
      *
      * @param snapOffsetLeft snapOffsetLeft Default value is null
      * @see com.smartgwt.client.widgets.Canvas#setSnapTo
@@ -2945,7 +2951,9 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} is defined for this widget, this property can be used to
      * specify an offset in px or percentage for the left coordinate of this widget. <P> For example if <code>snapTo</code> is
      * specified as <code>"L"</code> and  <code>snapOffsetLeft</code> is set to 6, this widget will be rendered 6px inside the
-     * left edge of its parent or master element.
+     * left edge of its parent or master element. Alternatively if <code>snapTo</code> was set to <code>"R"</code>, a
+     * <code>snapOffsetLeft</code> value of -6 would cause the  component to be rendered 6px inside the right edge of its
+     * parent or masterElement.
      *
      *
      * @return Integer
@@ -2960,7 +2968,9 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} is defined for this widget, this property can be used to
      * specify an offset in px or percentage for the top coordinate of this widget. <P> For example if <code>snapTo</code> is
      * specified as <code>"T"</code> and  <code>snapOffsetTop</code> is set to 6, this widget will be rendered 6px below the
-     * top edge of its parent or master element.
+     * top edge of its parent or master element. . Alternatively if <code>snapTo</code> was set to <code>"B"</code>, a
+     * <code>snapOffsetTop</code> value of -6 would cause the  component to be rendered 6px inside the bottom edge of its
+     * parent or masterElement.
      *
      * @param snapOffsetTop snapOffsetTop Default value is null
      * @see com.smartgwt.client.widgets.Canvas#setSnapTo
@@ -2974,7 +2984,9 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} is defined for this widget, this property can be used to
      * specify an offset in px or percentage for the top coordinate of this widget. <P> For example if <code>snapTo</code> is
      * specified as <code>"T"</code> and  <code>snapOffsetTop</code> is set to 6, this widget will be rendered 6px below the
-     * top edge of its parent or master element.
+     * top edge of its parent or master element. . Alternatively if <code>snapTo</code> was set to <code>"B"</code>, a
+     * <code>snapOffsetTop</code> value of -6 would cause the  component to be rendered 6px inside the bottom edge of its
+     * parent or masterElement.
      *
      *
      * @return Integer
@@ -3043,7 +3055,14 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * of this widget. If this widgets size is specified as a percent value, and has no explicit {@link
      * com.smartgwt.client.widgets.Canvas#getPercentSource percentSource}, sizing will be calculated based on the size of the 
      * masterElement when snapTo is set. <P> Possible values: BR, BL, TR, TL, R, L, B, T, C where B=Bottom, T=Top, L=Left,
-     * R=right and C=center
+     * R=right and C=center <P> Standard snapTo behavior will attach the outer edge of the widget to the parent or master
+     * element - for example setting <code>snapTo</code> to <code>"B"</code> would align the bottom edge of this component with
+     * the bottom edge of the master or parent element  (and center this component horizontally over its master or parent
+     * element). {@link com.smartgwt.client.widgets.Canvas#getSnapEdge snapEdge} can be specified to change this behavior
+     * allowing the developer to, for example, align the top edge of this component with the bottom edge of its masterElement.
+     * <P> {@link com.smartgwt.client.widgets.Canvas#getSnapOffsetLeft snapOffsetLeft} and {@link
+     * com.smartgwt.client.widgets.Canvas#getSnapOffsetTop snapOffsetTop} may also be specified to offset the element from
+     * exact snapTo alignment.
      * Set the snapTo property of this canvas, and handle repositioning.
      *
      * @param snapTo new snapTo value. Default value is null
@@ -3062,7 +3081,14 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * of this widget. If this widgets size is specified as a percent value, and has no explicit {@link
      * com.smartgwt.client.widgets.Canvas#getPercentSource percentSource}, sizing will be calculated based on the size of the 
      * masterElement when snapTo is set. <P> Possible values: BR, BL, TR, TL, R, L, B, T, C where B=Bottom, T=Top, L=Left,
-     * R=right and C=center
+     * R=right and C=center <P> Standard snapTo behavior will attach the outer edge of the widget to the parent or master
+     * element - for example setting <code>snapTo</code> to <code>"B"</code> would align the bottom edge of this component with
+     * the bottom edge of the master or parent element  (and center this component horizontally over its master or parent
+     * element). {@link com.smartgwt.client.widgets.Canvas#getSnapEdge snapEdge} can be specified to change this behavior
+     * allowing the developer to, for example, align the top edge of this component with the bottom edge of its masterElement.
+     * <P> {@link com.smartgwt.client.widgets.Canvas#getSnapOffsetLeft snapOffsetLeft} and {@link
+     * com.smartgwt.client.widgets.Canvas#getSnapOffsetTop snapOffsetTop} may also be specified to offset the element from
+     * exact snapTo alignment.
      *
      *
      * @return Return the snapTo value of this object
