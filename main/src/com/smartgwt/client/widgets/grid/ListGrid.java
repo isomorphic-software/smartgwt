@@ -8980,6 +8980,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         });
 
         self.__showRecordComponent = self.showRecordComponent;
+        if(self.__showRecordComponent === undefined) {
+           self.__showRecordComponent = function(record, col) {return true;}
+        }
 
         self.showRecordComponent = $entry(function (record, colNum) {
     		var jObj = this.__ref;
