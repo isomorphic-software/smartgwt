@@ -285,6 +285,67 @@ public class DataSourceField extends DataClass {
     }
 
     /**
+     * For a DataSource with {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType} "sql" or "hibernate",
+     * indicates that this field should be omitted by default from all SQL or Hibernate operations, and will only be used with
+     * {@link com.smartgwt.client.docs.CustomQueries custom queries}. <P> Having marked a field as <code>customSQL</code> you
+     * can refer to it via $criteria.<i>fieldName</i> or $values.<i>fieldName</i> in customized queries. <P> The following are
+     * situations where you would <b>not</b> use <code>customSQL</code>: <ul> <li>simple joins where you want to enable users
+     * to see and search on a field from another table; consider {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#tableName tableName} instead <li>fields where you want to calculate or
+     * transform values in SQL on load or save, but always perform the same calculation for each operationType; consider
+     * instead {@link com.smartgwt.client.docs.serverds.DataSourceField#sqlStorageStrategy sqlStorageStrategy} for some common
+     * cases, or  {@link com.smartgwt.client.docs.serverds.DataSourceField#customSelectExpression customSelectExpression},
+     * {@link com.smartgwt.client.docs.serverds.DataSourceField#customUpdateExpression customUpdateExpression} and {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#customInsertExpression customInsertExpression} for full customization
+     * <li>a special fetch is needed where the field needs to be excluded from the $defaultWhereClause so that it can be used
+     * in a custom &lt;whereClause&gt; - consider {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#excludeCriteriaFields excludeCriteriaFields} instead </ul> <P> Use
+     * customSQL in situations like: <ul> <li>there are multiple variations of the "fetch" operation with different {@link
+     * com.smartgwt.client.data.OperationBinding#getOperationId operationIds}, and the field is only used in some of them; in
+     * that case, consider using {@link com.smartgwt.client.docs.serverds.OperationBinding#customFields customFields} to
+     * selectively re-introduce SQL generation for the field only in operations where it's used. <li>the field represents
+     * hidden criteria on a field in another table where the field is never shown to the user <li>the field is a write-only
+     * value only saved in some operations <li>more than one data access strategy is in use (eg direct SQL for fetch and
+     * bean-based persistence accessed via DMI for saves) and certain fields are not available in SQL </ul>
+     *
+     * @param customSQL customSQL Default value is null
+     */
+    public void setCustomSQL(Boolean customSQL) {
+        setAttribute("customSQL", customSQL);
+    }
+
+    /**
+     * For a DataSource with {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType} "sql" or "hibernate",
+     * indicates that this field should be omitted by default from all SQL or Hibernate operations, and will only be used with
+     * {@link com.smartgwt.client.docs.CustomQueries custom queries}. <P> Having marked a field as <code>customSQL</code> you
+     * can refer to it via $criteria.<i>fieldName</i> or $values.<i>fieldName</i> in customized queries. <P> The following are
+     * situations where you would <b>not</b> use <code>customSQL</code>: <ul> <li>simple joins where you want to enable users
+     * to see and search on a field from another table; consider {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#tableName tableName} instead <li>fields where you want to calculate or
+     * transform values in SQL on load or save, but always perform the same calculation for each operationType; consider
+     * instead {@link com.smartgwt.client.docs.serverds.DataSourceField#sqlStorageStrategy sqlStorageStrategy} for some common
+     * cases, or  {@link com.smartgwt.client.docs.serverds.DataSourceField#customSelectExpression customSelectExpression},
+     * {@link com.smartgwt.client.docs.serverds.DataSourceField#customUpdateExpression customUpdateExpression} and {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#customInsertExpression customInsertExpression} for full customization
+     * <li>a special fetch is needed where the field needs to be excluded from the $defaultWhereClause so that it can be used
+     * in a custom &lt;whereClause&gt; - consider {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#excludeCriteriaFields excludeCriteriaFields} instead </ul> <P> Use
+     * customSQL in situations like: <ul> <li>there are multiple variations of the "fetch" operation with different {@link
+     * com.smartgwt.client.data.OperationBinding#getOperationId operationIds}, and the field is only used in some of them; in
+     * that case, consider using {@link com.smartgwt.client.docs.serverds.OperationBinding#customFields customFields} to
+     * selectively re-introduce SQL generation for the field only in operations where it's used. <li>the field represents
+     * hidden criteria on a field in another table where the field is never shown to the user <li>the field is a write-only
+     * value only saved in some operations <li>more than one data access strategy is in use (eg direct SQL for fetch and
+     * bean-based persistence accessed via DMI for saves) and certain fields are not available in SQL </ul>
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCustomSQL()  {
+        return getAttributeAsBoolean("customSQL");
+    }
+
+    /**
      * Whether this field should be considered a "detail" field by a {@link com.smartgwt.client.widgets.DataBoundComponent}.
      * <P> Detail fields won't be shown by default in a DataBoundComponent where  {@link
      * com.smartgwt.client.widgets.DataBoundComponent#getShowDetailFields showDetailFields} is false.  This allows for some
@@ -1036,6 +1097,31 @@ public class DataSourceField extends DataClass {
     }
 
     /**
+     * Used by the {@link com.smartgwt.client.widgets.BatchUploader} to map a field in an upload file to this  dataSourceField.
+     * This is only necessary if the dataSourceField's name and title differ  from the name of the field in the upload file
+     * (Smart GWT will automatically map upload  fields using the dataSourceField's title, if possible, if it does not get a
+     * direct match  on field name).
+     *
+     * @param uploadFieldName uploadFieldName Default value is null
+     */
+    public void setUploadFieldName(String uploadFieldName) {
+        setAttribute("uploadFieldName", uploadFieldName);
+    }
+
+    /**
+     * Used by the {@link com.smartgwt.client.widgets.BatchUploader} to map a field in an upload file to this  dataSourceField.
+     * This is only necessary if the dataSourceField's name and title differ  from the name of the field in the upload file
+     * (Smart GWT will automatically map upload  fields using the dataSourceField's title, if possible, if it does not get a
+     * direct match  on field name).
+     *
+     *
+     * @return String
+     */
+    public String getUploadFieldName()  {
+        return getAttributeAsString("uploadFieldName");
+    }
+
+    /**
      * Validators to be applied to this field. <p> Validators are applied whenever there is an attempt to save changes to a
      * field. <p> For the available set of built-in validators, and how to define a custom validator, see the {@link
      * com.smartgwt.client.widgets.form.validator.Validator} class.
@@ -1607,6 +1693,26 @@ public class DataSourceField extends DataClass {
      */
     public String getImageWidthAsString()  {
         return getAttributeAsString("imageWidth");
+    }
+
+    /**
+     * Causes a tooltip hover to appear on the header generated for this data source field (effectively sets {@link
+     * com.smartgwt.client.widgets.Canvas#getPrompt prompt} for the header).
+     *
+     * @param prompt prompt Default value is null
+     */
+    public void setPrompt(String prompt) {
+        setAttribute("prompt", prompt);
+    }
+
+    /**
+     * Causes a tooltip hover to appear on the header generated for this field (effectively sets {@link
+     * com.smartgwt.client.widgets.Canvas#getPrompt prompt} for the header).
+     *
+     * @return String
+     */
+    public String getPrompt() {
+        return getAttributeAsString("prompt");
     }
 
 }

@@ -225,15 +225,15 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * Set this property to true to have a DataSource fetch all of it's data client-side on the  first fetch request.  However,
+     * Set this property to true to have a DataSource fetch all of its data client-side on the  first fetch request.  However,
      * unlike a {@link com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, this DataSource  will still
      * save changes normally, sending remote requests. <P> You can manually set this attribute after initialization by calling 
-     * {@link com.smartgwt.client.data.DataSource#setCacheAllData DataSource.setCacheAllData} and setting {@link
+     * {@link com.smartgwt.client.data.DataSource#setCacheAllData DataSource.setCacheAllData}; setting {@link
      * com.smartgwt.client.data.DataSource#getAutoCacheAllData autoCacheAllData}:true causes a DataSource to  automatically
-     * switch to <code>cacheAllData:true</> when a fetch results in the entire  dataset being brought client-side. <P> To cause
-     * automatic cache updates, you can set {@link com.smartgwt.client.data.DataSource#getCacheMaxAge cacheMaxAge} to a number
-     * of seconds and once data has been client-side for that length of time, the next fetch causes the cache to be dropped and
-     * a new cache retrieved.
+     * switch to <code>cacheAllData:true</code> when a fetch results in the entire dataset being brought client-side. <P> To
+     * cause automatic cache updates, you can set {@link com.smartgwt.client.data.DataSource#getCacheMaxAge cacheMaxAge} to a
+     * number of seconds and once data has been client-side for that length of time, the next fetch causes the cache to be
+     * dropped and a new cache retrieved.
      * Call this method to switch cacheAllData on or off after initialization.  Passing a  <code>shouldCache</code> value of false clears any existing client-side cache, cancels any outstanding requests for a full cache and issues any other pending requests normally.
      *
      * @param cacheAllData New value for {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData}. Default value is null
@@ -243,15 +243,15 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * Set this property to true to have a DataSource fetch all of it's data client-side on the  first fetch request.  However,
+     * Set this property to true to have a DataSource fetch all of its data client-side on the  first fetch request.  However,
      * unlike a {@link com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, this DataSource  will still
      * save changes normally, sending remote requests. <P> You can manually set this attribute after initialization by calling 
-     * {@link com.smartgwt.client.data.DataSource#setCacheAllData DataSource.setCacheAllData} and setting {@link
+     * {@link com.smartgwt.client.data.DataSource#setCacheAllData DataSource.setCacheAllData}; setting {@link
      * com.smartgwt.client.data.DataSource#getAutoCacheAllData autoCacheAllData}:true causes a DataSource to  automatically
-     * switch to <code>cacheAllData:true</> when a fetch results in the entire  dataset being brought client-side. <P> To cause
-     * automatic cache updates, you can set {@link com.smartgwt.client.data.DataSource#getCacheMaxAge cacheMaxAge} to a number
-     * of seconds and once data has been client-side for that length of time, the next fetch causes the cache to be dropped and
-     * a new cache retrieved.
+     * switch to <code>cacheAllData:true</code> when a fetch results in the entire dataset being brought client-side. <P> To
+     * cause automatic cache updates, you can set {@link com.smartgwt.client.data.DataSource#getCacheMaxAge cacheMaxAge} to a
+     * number of seconds and once data has been client-side for that length of time, the next fetch causes the cache to be
+     * dropped and a new cache retrieved.
      *
      *
      * @return Boolean
@@ -928,8 +928,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * be performed.&#010 <P>&#010 When using the Smart GWT Server, OperationBindings are specified in your DataSource&#010
      * descriptor (.ds.xml file) and control server-side behavior such as what Java object to route&#010 DSRequest to ({@link
      * com.smartgwt.client.docs.serverds.OperationBinding#serverObject serverObject}) or customizations to SQL / HQL
-     * queries&#010 ({@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} and {@link
-     * com.smartgwt.client.data.OperationBinding#getCustomHQL customHQL}).  See the &#010 @see <a
+     * queries&#010 ({@link com.smartgwt.client.docs.serverds.OperationBinding#customSQL customSQL} and {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#customHQL customHQL}).  See the &#010 @see <a
      * href="http://www.smartclient.com/smartgwtee/showcase/#javaDataIntegration" target="examples">Java Integration
      * samples</a>.&#010 <P>&#010 For DataSources bound to WSDL-described web services using&#010 {@link
      * com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace}, OperationBindings are used to bind each
@@ -972,8 +972,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * be performed.&#010 <P>&#010 When using the Smart GWT Server, OperationBindings are specified in your DataSource&#010
      * descriptor (.ds.xml file) and control server-side behavior such as what Java object to route&#010 DSRequest to ({@link
      * com.smartgwt.client.docs.serverds.OperationBinding#serverObject serverObject}) or customizations to SQL / HQL
-     * queries&#010 ({@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} and {@link
-     * com.smartgwt.client.data.OperationBinding#getCustomHQL customHQL}).  See the &#010 @see <a
+     * queries&#010 ({@link com.smartgwt.client.docs.serverds.OperationBinding#customSQL customSQL} and {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#customHQL customHQL}).  See the &#010 @see <a
      * href="http://www.smartclient.com/smartgwtee/showcase/#javaDataIntegration" target="examples">Java Integration
      * samples</a>.&#010 <P>&#010 For DataSources bound to WSDL-described web services using&#010 {@link
      * com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace}, OperationBindings are used to bind each
@@ -1520,6 +1520,29 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+     * Whether we store server responses for this DataSource into  {@link com.smartgwt.client.util.Offline browser-based
+     * offline storage}, and then use those stored responses at a later time if we are offline (ie, the application cannot
+     * connect to the server).   Note that by default we do NOT use offline storage for a dataSource.
+     *
+     * @param useOfflineStorage useOfflineStorage Default value is null
+     */
+    public void setUseOfflineStorage(Boolean useOfflineStorage) {
+        setAttribute("useOfflineStorage", useOfflineStorage, true);
+    }
+
+    /**
+     * Whether we store server responses for this DataSource into  {@link com.smartgwt.client.util.Offline browser-based
+     * offline storage}, and then use those stored responses at a later time if we are offline (ie, the application cannot
+     * connect to the server).   Note that by default we do NOT use offline storage for a dataSource.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getUseOfflineStorage()  {
+        return getAttributeAsBoolean("useOfflineStorage");
+    }
+
+    /**
      * For a DataSource that inherits {@link com.smartgwt.client.data.DataSource#getFields fields} from another DataSource 
      * (via {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}), indicates that the parent's field order
      * should be used instead of the order of the fields as declared in this DataSource.  New fields, if any, are placed at the
@@ -1959,6 +1982,20 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
             var responseJ = jObj.@com.smartgwt.client.data.DataSource::getClientOnlyResponse(Lcom/smartgwt/client/data/DSRequest;)(requestJ);
             return responseJ == null ? null : responseJ.@com.smartgwt.client.data.DSResponse::getJsObj()();
         });
+
+        self.__useOfflineResponse = self.useOfflineResponse;
+        self.useOfflineResponse = $entry(function(dsRequest, dsResponse) {
+            var jObj = this.__ref;
+            if(jObj === undefined) {
+                //handle case where oneTimeDS is cared from original DS (when clientOnly=true with dataURL)
+                jObj = $wnd.isc.DS.get(this.inheritsFrom).__ref;
+            }
+            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
+            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
+
+            return jObj.@com.smartgwt.client.data.DataSource::useOfflineResponse(Lcom/smartgwt/client/data/DSRequest;Lcom/smartgwt/client/data/DSResponse;)(requestJ, responseJ);
+        });
+
     }-*/;
 
     private static boolean isRecord(Object data) {
@@ -2039,41 +2076,59 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * Modify the DSResponse object derived from the response returned from the  {@link
-     * com.smartgwt.client.data.DataSource#getDataURL dataURL}. <P> This is an override point that makes it possible to
+     * com.smartgwt.client.data.DataSource#getDataURL dataURL}. 
+     * <P>
+     * This is an override point that makes it possible to
      * use DataSource features such as paging with web services that support such features, by allowing you to fill in
      * metadata fields in the DSResponse object (such as {@link com.smartgwt.client.data.DSResponse#getStartRow
-     * startRow}) based on service-specific metadata fields contained in the service's response. <P> The DSResponse
-     * passed to this method already has {@link com.smartgwt.client.data.DSResponse#getData data}, which is derived
-     * differently depending on the {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} setting: <ul>
+     * startRow}) based on service-specific metadata fields contained in the service's response.
+     * <P>
+     * The {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} setting will govern whether the
+     * DSResponse passed to this method already has {@link com.smartgwt.client.data.DSResponse#getData data} set up
+     * as an array of records and how those records are derived:
+     * <ul>
      * <li> <code>dataFormat:"xml"</code> : either the {@link com.smartgwt.client.data.OperationBinding#getRecordXPath
      * recordXPath} or  {@link com.smartgwt.client.data.OperationBinding#getRecordName recordName} is used to select the
      * XML elements that represent DataSource records.  The selected XML elements are passed to {@link
      * com.smartgwt.client.data.DataSource#recordsFromXML}, which transforms the XML elements to typed JavaScript data
-     * using the DataSource as a schema. <li> <code>dataFormat:"json"</code> : the {@link
+     * using the DataSource as a schema. 
+     * <li> <code>dataFormat:"json"</code> : the {@link
      * com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}, if specified, is used to select records
      * from the returned JSON data via {@link com.smartgwt.client.util.XMLTools#selectObjects}.   {@link
      * com.smartgwt.client.data.DataSourceField#getValueXPath valueXPath} is used to derive correctly typed field
-     * values. <li> <code>dataFormat:"custom"</code> : <code>dsResponse.data</code> is the raw response in String form.
-     * It must be parsed into an Array of Objects for subsequent processing to work. </ul>  <P> In addition to
-     * <code>dsResponse.data</code>, {@link com.smartgwt.client.data.DSResponse#getStatus status} is defaulted to 0
+     * values. 
+     * <li> <code>dataFormat:"custom"</code> : For custom dataSources, {@link com.smartgwt.client.data.DSResponse#getData data} 
+     * is not already populated when this method runs. In this case the developer is responsible for taking the raw
+     * string value returned by the server (available as the <code>data</code> parameter to this method),
+     * parsing it into an array of records, and calling {@link com.smartgwt.client.data.DSResponse#setData setData()} on the
+     * response for subsequent processing to work.
+     * </ul>  
+     * <P>
+     * In addition to <code>dsResponse.data</code>, {@link com.smartgwt.client.data.DSResponse#getStatus status} is defaulted to 0
      * (indicating no error), and {@link com.smartgwt.client.data.DSResponse#getStartRow startRow} is assumed to be
      * zero, with {@link com.smartgwt.client.data.DSResponse#getEndRow endRow} and {@link
      * com.smartgwt.client.data.DSResponse#getTotalRows totalRows} both set to <code>dsResponse.data.length - 1</code>,
      * that is, the returned data is assumed to be all records that matched the filter criteria. <P> Examples of using
-     * this API include: <ul> <li> setting {@link com.smartgwt.client.data.DSResponse#getStartRow startRow}, {@link
+     * this API include: 
+     * <ul>
+     * <li> setting {@link com.smartgwt.client.data.DSResponse#getStartRow startRow}, {@link
      * com.smartgwt.client.data.DSResponse#getEndRow endRow} and {@link com.smartgwt.client.data.DSResponse#getTotalRows
      * totalRows}      to allow paging for a service that supports it.  For example, if an XML service      returns a
-     * "resultRow" tag that contained the row number of the first row of the      returned results:<pre>
-     * dsResponse.startRow =         isc.XMLTools.selectNumber(xmlData, "//resultRow"); </pre> <li> setting {@link
-     * com.smartgwt.client.data.DSResponse#getStatus status} to recognized ISC error values based on service-specific
+     * "resultRow" tag that contained the row number of the first row of the      returned results:
+     * <pre>
+     * response.setStartRow(parseInt(XMLTools.selectString(data, "//resultRow")));
+     * </pre> 
+     * <li> setting {@link com.smartgwt.client.data.DSResponse#getStatus status} to recognized ISC error values based on service-specific
      * errors, in order to trigger standard ISC error handling.  For      example, setting
      * <code>dsResponse.status</code> to      {@link com.smartgwt.client.rpc.RPCResponse#STATUS_VALIDATION_ERROR} and
      * filling in      {@link com.smartgwt.client.data.DSResponse#getErrors errors} in order to cause validation errors
      * to be shown in      forms and grids. <li> for services that either do not return cache update data, or return
      * partial data,      using {@link com.smartgwt.client.data.DSRequest#getOldValues oldValues} to create cache update
      * data (whether this is      appropriate is application-specific), or setting      {@link
-     * com.smartgwt.client.data.DSResponse#getInvalidateCache invalidateCache}. </ul> <P> <span
-     * STYLE="color:red">NOTE:</span> this method is NOT an appropriate time to call methods on visual components such
+     * com.smartgwt.client.data.DSResponse#getInvalidateCache invalidateCache}.
+     * </ul>
+     * <P> 
+     * <span STYLE="color:red">NOTE:</span> this method is NOT an appropriate time to call methods on visual components such
      * as grids, initiate new DSRequests or RPCRequests, or in general do anything other than fill in fields on the
      * DSResponse based on data that is already available.  Any actions that need to be taken as a result of the web
      * service response should be implemented exactly as for a DataSource where <code>transformResponse()</code> has not
@@ -2084,11 +2139,36 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * <b>Note</b>: This is an override point
      * @param response the response
      * @param request the request
-     * @param data
+     * @param data the raw data parameter. The type of this object depends on the specified dataFormat.
+     *  if the dataFormat is custom, this will be a String. Otherwise this will be a JavaScript object.
+     *  If the dataFormat is "json", the JavaScriptObject will be the raw JSON object(s) returned by the 
+     *  web service. If dataFormat is XML the JavaScriptObject will be the raw XML document object.
+     *  Note that the {@link com.smartgwt.client.util.JSOHelper} and
+     *  {@link com.smartgwt.client.util.XMLTools} utility classes can be used to work with these raw objects.
+     *      
      */
     protected native void transformResponse(DSResponse response, DSRequest request, Object data) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.__transformResponse(response.@com.smartgwt.client.data.DSResponse::getJsObj()(), request.@com.smartgwt.client.data.DSRequest::getJsObj()(), data);
+    }-*/;
+
+    /**
+     * Override point to allow application code to suppress use of a particular offline response.  For example, application
+     * code may wish to examine the response's  {@link DSResponse#getOfflineTimestamp
+     * offlineTimestamp} to make a decision about whether the response is too stale to be useful. <p> This is an application
+     * override point only; there is no default implementation.
+     * <p>
+     * <b>Note</b>: This is an override point
+     *
+     * @param dsRequest The dsRequest object
+     * @param dsResponse The corresponding dsResponse object returned from                                 offline cache
+     *
+     * @return true to allow this response to be used, false to prevent it
+     */
+    protected native boolean useOfflineResponse(DSRequest dsRequest, DSResponse dsResponse) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var retVal =  self.__useOfflineResponse(dsRequest.@com.smartgwt.client.core.DataClass::getJsObj()(), dsResponse.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return retVal == null || retVal === undefined ? false : retVal;
     }-*/;
 
     /**
@@ -2937,10 +3017,42 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }-*/;
 
     /**
-     * Perform a custom DataSource operation against this DataSource.  A custom operation is anything that is not one of the 4
-     * CRUD operations - generally, something that is more  complex than a fetch or an update to a single record. 
-     * <code>customOperation</code>s  are an alternative to using {@link com.smartgwt.client.rpc.RPCRequest RPCs}; anything
-     * that can be sent to the server as a plain RPC can instead be framed as a DataSource  <code>customOperation</code>.
+     *  
+     *  Invoke an operation declared with OperationBinding.operationType "custom".
+     *  <P>
+     *  <b>This is a rarely used API</b>. If the operation you are performing can be thought of as one of 
+     *  the standard "CRUD" {@link com.smartgwt.client.types.DSOperationType,operation types}, declare it with a 
+     *  CRUD operationType. For example, if your
+     *  operation updates a record, declare it with operationType "update" and invoke it via 
+     *  {@link #updateData(Record, DSCallback, DSRequest)} - this will cause 
+     *  {@link com.smartgwt.client.data.ResultSet,cache sync} to work correctly.
+     *  <P>
+     *  In particular:
+     *  <ul>
+     *  <li>do not use this API just because you need to add additional server-side logic to a CRUD operation 
+     *  ({@link com.smartgwt.client.docs.DmiOverview,DMI} allows this)</li>
+     *  <li>do not use this API to implement variants of core CRUD operations ({@link com.smartgwt.client.data.DSRequest#setOperationId} is
+     *  the correct way to do this)</li>
+     *  <li>do not use this API just because an operation affects more than one record. Most kinds of 
+     *  multi-record operations should use {@link com.smartgwt.client.data.RPCManager#startQueue(),queuing}.</li>
+     *  <li>do not use this API just because you are calling a stored procedure in SQL - if the stored 
+     *  procedure performs some kind of CRUD operation on the records of this DataSource, use a standard
+     *  CRUD operationType</li>
+     *  </ul>
+     *  The primary purpose of this API is to allow operations on a SQLDataSource where 
+     *  {@link com.smartgwt.client.data.OperationBinding.setCustomSQL(),customSQL} is
+     *  defined which performs a SQL operation other than SELECT, UPDATE, INSERT, DELETE (such as creating 
+     *  a new table). In this case, actions that the SQLDataSource normally takes for CRUD operations 
+     *  (such as requiring primary keys to be passed for updates, or retrieving the updated row to return 
+     *  to the client) are inappropriate. By declaring <code>OperationBinding.operationType "custom"</code>
+     *  in your .ds.xml file, you cause these actions to be skipped and your &lt;customSQL&gt; can do 
+     *  arbitrary things.
+     *  <P>
+     *  The "data" parameter becomes {@link com.smartgwt.client.data.DSRequest#getData(),DSRequest.data}. 
+     *  With the SmartClient Server Framework, 
+     *  the data is accessible server-side via DSRequest.getValues() and in Velocity templates 
+     *  (such as &lt;customSQL&gt;) as $values. 
+     * 
      * @param operationId the operation ID
      * @param data data to pass to the server
      * @param callback callback to invoke on completion
