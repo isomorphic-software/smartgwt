@@ -80,7 +80,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * still use a DynamicForm.&#010 See the "fontSelector" form in the <a
  * href="http://www.smartclient.com/smartgwt/showcase/#toolstrip" target="examples">Toolstrip example</a>.
  */
-public class DynamicForm extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.form.events.HasSubmitValuesHandlers, com.smartgwt.client.widgets.form.events.HasItemChangeHandlers, com.smartgwt.client.widgets.form.events.HasItemChangedHandlers, com.smartgwt.client.widgets.form.events.HasItemKeyPressHandlers, com.smartgwt.client.widgets.form.events.HasFormSubmitFailedHandlers {
+public class DynamicForm extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.form.events.HasSubmitValuesHandlers, com.smartgwt.client.widgets.form.events.HasItemChangeHandlers, com.smartgwt.client.widgets.form.events.HasItemChangedHandlers, com.smartgwt.client.widgets.form.events.HasItemKeyPressHandlers, com.smartgwt.client.widgets.form.events.HasFormSubmitFailedHandlers, com.smartgwt.client.widgets.form.events.HasHiddenValidationErrorsHandlers {
 
     public static DynamicForm getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -1564,6 +1564,34 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
+     * Default alignment for item titles. If unset default alignment will be derived from {@link
+     * com.smartgwt.client.util.Page#isRTL text direction} as described in {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getTitleAlign DynamicForm.getTitleAlign}
+     *
+     * @param titleAlign titleAlign Default value is null
+     */
+    public void setTitleAlign(Alignment titleAlign) {
+        setAttribute("titleAlign", titleAlign.getValue(), true);
+    }
+
+    /**
+     * Default alignment for item titles. If unset default alignment will be derived from {@link
+     * com.smartgwt.client.util.Page#isRTL text direction} as described in {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getTitleAlign DynamicForm.getTitleAlign}
+     *
+     *
+     * @return Get the alignment for the title for some item. Default implementation is as follows: <ul><li>If {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTitleAlign titleAlign} is specified, it will be respected</li>    
+     * <li>Otherwise if {@link com.smartgwt.client.widgets.form.DynamicForm#getTitleAlign this.titleAlign} is set, it will be  
+     * respected</li>     <li>Otherwise titles will be aligned according to {@link com.smartgwt.client.util.Page#isRTL text
+     * direction},         with this method returning <code>"right"</code> if text direction is LTR,         or
+     * <code>"left"</code> if text direction is RTL. </ul>
+     */
+    public Alignment getTitleAlign()  {
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("titleAlign"));
+    }
+
+    /**
      * Default orientation for titles for items in this form.  {@link com.smartgwt.client.types.TitleOrientation} lists valid
      * options. <P> Note that titles on the left or right take up a cell in tabular {@link com.smartgwt.client.docs.FormLayout
      * form layouts}, but titles on top do not.
@@ -1956,6 +1984,47 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.AdvancedCriteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
+    /**
+     * Add a hiddenValidationErrors handler.
+     * <p>
+     * Method to display validation error messages for fields that are not currently visible  in this form.<br> This will be
+     * called when validation fails for<br> - a hidden field in this form<br> - if this form is databound, a datasource field
+     * with specified validators, for which we   have no specified form item.<br> Implement this to provide custom validation
+     * error handling for these fields.<br> By default hidden validation errors will be logged as warnings in the
+     * developerConsole. Return false from this method to suppress that behavior.
+     *
+     * @param handler the hiddenValidationErrors handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addHiddenValidationErrorsHandler(com.smartgwt.client.widgets.form.events.HiddenValidationErrorsHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent.getType()) == 0) setupHiddenValidationErrorsEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent.getType());
+    }
+
+    private native void setupHiddenValidationErrorsEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({handleHiddenValidationErrors:$debox($entry(function(){
+                        var param = {"errors" : arguments[0]};
+                        var event = @com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    }))
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.handleHiddenValidationErrors = $debox($entry(function(){
+                   var param = {"errors" : arguments[0]};
+                   var event = @com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               }));
+        }
+   }-*/;
             
     /**
      * Return whether this form currently has any validation errors.<br> Validation errors are set up automatically by
@@ -2262,7 +2331,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * errors. Returns true if validation succeeds, or false if validation fails.<br> For databound forms, any Datasource field
      * validators will be run even if there is no  associated item in the form.<br> Validators will also be run on hidden form
      * items<br> In both these cases, validation failure can be handled via  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#handleHiddenValidationErrors DynamicForm.handleHiddenValidationErrors}
+     * com.smartgwt.client.widgets.form.DynamicForm#addHandleHiddenValidationErrorsHandler
+     * DynamicForm.handleHiddenValidationErrors}
      * @param validateHiddenFields Should validators be processed for non-visible fields         such as dataSource fields with no associated item or
      * fields with visibility set to         <code>"hidden"</code>?
      *
@@ -2800,7 +2870,14 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      */
     public Record getValuesAsRecord() {
     	Map values = getValues();
-    	return new Record(JSOHelper.convertMapToJavascriptObject(values));
+        //if the map contains the actual reference to the underlying record then return it, else
+        //build a record from the map values
+        Object ref = values.get("__ref");
+        if(ref != null && ref instanceof Record) {
+            return (Record) ref;
+        } else {
+    	    return new Record(JSOHelper.convertMapToJavascriptObject(values));
+        }
     }
 
 

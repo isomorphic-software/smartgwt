@@ -77,7 +77,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * However, when using a ValuesManager these extra values are only allowed on the ValuesManager itself. Member forms will
  * not track values for which they do not have FormItems.
  */
-public class ValuesManager extends BaseClass  implements com.smartgwt.client.widgets.form.events.HasSubmitValuesHandlers {
+public class ValuesManager extends BaseClass  implements com.smartgwt.client.widgets.form.events.HasSubmitValuesHandlers, com.smartgwt.client.widgets.form.events.HasHiddenValidationErrorsHandlers {
 
     public static ValuesManager getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -1069,6 +1069,48 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
                    var event = @com.smartgwt.client.widgets.form.events.SubmitValuesEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                });
+        }
+   }-*/;
+
+    /**
+     * Add a hiddenValidationErrors handler.
+     * <p>
+     * Method to display validation error messages for fields that are not currently visible  in this form.<br> This will be
+     * called when validation fails for<br> - a hidden field in this form<br> - if this form is databound, a datasource field
+     * with specified validators, for which we   have no specified form item.<br> Implement this to provide custom validation
+     * error handling for these fields.<br> By default hidden validation errors will be logged as warnings in the
+     * developerConsole. Return false from this method to suppress that behavior.
+     *
+     * @param handler the hiddenValidationErrors handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addHiddenValidationErrorsHandler(com.smartgwt.client.widgets.form.events.HiddenValidationErrorsHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent.getType()) == 0) setupHiddenValidationErrorsEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent.getType());
+    }
+
+    private native void setupHiddenValidationErrorsEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            obj.addProperties({handleHiddenValidationErrors:$debox($entry(function(){
+                        var param = {"errors" : arguments[0]};
+                        var event = @com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    }))
+             });
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+            obj.handleHiddenValidationErrors = $debox($entry(function(){
+                   var param = {"errors" : arguments[0]};
+                   var event = @com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               }));
         }
    }-*/;
 
