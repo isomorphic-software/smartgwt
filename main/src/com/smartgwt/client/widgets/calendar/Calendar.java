@@ -370,6 +370,27 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * Date formatter for displaying events. Default is to use the system-wide default short date format, configured via 
+     * Date.setShortDisplayFormat.  Specify any valid {@link com.smartgwt.client.types.DateDisplayFormat}.
+     *
+     * @param dateFormatter dateFormatter Default value is null
+     */
+    public void setDateFormatter(DateDisplayFormat dateFormatter) {
+        setAttribute("dateFormatter", dateFormatter.getValue(), true);
+    }
+
+    /**
+     * Date formatter for displaying events. Default is to use the system-wide default short date format, configured via 
+     * Date.setShortDisplayFormat.  Specify any valid {@link com.smartgwt.client.types.DateDisplayFormat}.
+     *
+     *
+     * @return DateDisplayFormat
+     */
+    public DateDisplayFormat getDateFormatter()  {
+        return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
+    }
+
+    /**
      * The text to be displayed when a user hovers over the {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton date picker} toolbar button
      *
@@ -1992,13 +2013,30 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     public void setData(RecordList data) {
         setAttribute("data", data == null ? null : data.getOrCreateJsObj(), true);
     }
-    
+
+    /**
+     * Display format to use for the time portion of events' date information.
+     *
+     * @param timeFormatter timeFormatter Default value is "toShortPaddedTime"
+     */
+    public void setTimeFormatter(TimeFormatter timeFormatter) {
+        setAttribute("timeFormatter", timeFormatter, true);
+    }
+
+    /**
+     * Display format to use for the time portion of events' date information.
+     *
+     *
+     * @return Unhandled-timeFormatter
+     */
+    public TimeFormatter getTimeFormatter()  {
+        return EnumUtil.getEnum(TimeFormatter.values(), getAttribute("timeFormatter"));
+    }
+
     /**
      * A List of CalendarEvent objects, specifying the data to be used to populate the calendar.   <p> This property will typically not be explicitly specified for databound Calendars, where the data is returned from the server via databound component methods such as {@link com.smartgwt.client.widgets.calendar.Calendar#fetchData}. In this case the data objects will be set to a  {@link com.smartgwt.client.data.ResultSet} rather than a simple array.
      *
-     *
      * @return List of CalendarEvent
-     *
      */
     /*
     public CalendarEvent[] getData()  {
