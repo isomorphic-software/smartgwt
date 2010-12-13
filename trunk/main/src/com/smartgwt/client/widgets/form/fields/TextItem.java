@@ -496,6 +496,19 @@ public class TextItem extends FormItem {
     }-*/;
             
     /**
+     * Returns the text value currently entered in this items textbox. This may differ from the result of {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} if {@link
+     * com.smartgwt.client.widgets.form.fields.TextItem#getChangeOnKeypress changeOnKeypress} is false, or if a formatter or
+     * valueMap converts display value to data value.
+     *
+     * @return current element value
+     */
+    public native String getElementValue() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        return self.getElementValue();
+    }-*/;
+            
+    /**
      * Returns the hint text for this item. Default implementation returns {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getHint hint}, or  null if there is no hint to show.
      *

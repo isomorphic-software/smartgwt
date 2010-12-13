@@ -162,6 +162,29 @@ public class TextAreaItem extends FormItem {
     }
 
     /**
+     * Minimum valid height for this TextAreaItem in px. If the specified {@link
+     * com.smartgwt.client.widgets.form.fields.TextAreaItem#getHeight height} is less than this value, the text area will still
+     * render at this height.
+     *
+     * @param minHeight minHeight Default value is 16
+     */
+    public void setMinHeight(int minHeight) {
+        setAttribute("minHeight", minHeight);
+    }
+
+    /**
+     * Minimum valid height for this TextAreaItem in px. If the specified {@link
+     * com.smartgwt.client.widgets.form.fields.TextAreaItem#getHeight height} is less than this value, the text area will still
+     * render at this height.
+     *
+     *
+     * @return int
+     */
+    public int getMinHeight()  {
+        return getAttributeAsInt("minHeight");
+    }
+
+    /**
      * When generating a print-view of the component containing this TextArea, should the form item expand to accomodate its
      * value? If set to false the text box not expand to fit its content in the print view, instead showing exactly as it does
      * in the live form, possibly with scrollbars.
@@ -303,6 +326,18 @@ public class TextAreaItem extends FormItem {
     public native void deselectValue(boolean start) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.deselectValue(start);
+    }-*/;
+            
+    /**
+     * Returns the text value currently entered in this items textbox. This may differ from the result of {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} if a formatter or valueMap converts display
+     * value to data value.
+     *
+     * @return current element value
+     */
+    public native String getElementValue() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        return self.getElementValue();
     }-*/;
             
     /**
