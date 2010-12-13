@@ -64,7 +64,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * the PickList interface for further settings. <P> Note that to select the first option as a default value for the item,
  * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDefaultToFirstOption defaultToFirstOption} may be set.
  */
-public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.client.widgets.form.fields.events.HasDataArrivedHandlers {
+public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.client.widgets.form.fields.events.HasDataArrivedHandlers {
 
     public static ComboBoxItem getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -97,6 +97,27 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     }
 
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * If the user enters a value not present in the valueMap (or option dataSource) for this item, should we store the value
+     * out or ignore the change?
+     *
+     * @param addUnknownValues addUnknownValues Default value is true
+     */
+    public void setAddUnknownValues(Boolean addUnknownValues) {
+        setAttribute("addUnknownValues", addUnknownValues);
+    }
+
+    /**
+     * If the user enters a value not present in the valueMap (or option dataSource) for this item, should we store the value
+     * out or ignore the change?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAddUnknownValues()  {
+        return getAttributeAsBoolean("addUnknownValues");
+    }
 
     /**
      * If this combo box retrieves its options from a <code>dataSource</code>, should options be fetched from the server when
