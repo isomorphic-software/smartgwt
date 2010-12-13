@@ -2743,8 +2743,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
             }));
     }-*/;
 
-    
-
     /**
      * Return the value to display in cells of this field which are being edited. <P> <i>Example usage</i>: converting a stored
      * value in cents (100) to a dollar-and-cents  value in the editor (1.00) <P> The value passed to this method is the raw
@@ -2759,8 +2757,12 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 	    self.formatEditorValue = $debox($entry(function(value, record, rowNum, colNum) {
 	        var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
 	        var valueJ = $wnd.SmartGWT.convertToJavaType(value);
-	        var rv = formatter.@com.smartgwt.client.widgets.grid.CellEditValueFormatter::format(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(valueJ, recordJ, rowNum, colNum);
-	        return rv;
+	        var val = formatter.@com.smartgwt.client.widgets.grid.CellEditValueFormatter::format(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(valueJ, recordJ, rowNum, colNum);
+            if(val == null || @com.smartgwt.client.util.JSOHelper::isJavaString(Ljava/lang/Object;)(val) ) return val;
+            if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(val)) return val.@java.lang.Integer::intValue()();
+            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::floatValue()();
+            if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
+            $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the CellEditValueFormatter::format');
 	    }));
 	}-*/;
 
@@ -2776,11 +2778,16 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 	    self.parseEditorValue = $debox($entry(function(value, record, rowNum, colNum) {
 	        var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
 	        var valueJ = $wnd.SmartGWT.convertToJavaType(value);
-	        return parser.@com.smartgwt.client.widgets.grid.CellEditValueParser::parse(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(valueJ, recordJ, rowNum, colNum);
+	        var val = parser.@com.smartgwt.client.widgets.grid.CellEditValueParser::parse(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(valueJ, recordJ, rowNum, colNum);
+            if(val == null || @com.smartgwt.client.util.JSOHelper::isJavaString(Ljava/lang/Object;)(val) ) return val;
+            if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(val)) return val.@java.lang.Integer::intValue()();
+            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::floatValue()();
+            if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
+            $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the CellEditValueParser::parse');
 	    }));
 	}-*/;
-    
-    
+
+
     /**
      * Optional function to return the value that should be used when sorting this field. <P> Note that, if the dataset
      * exceeds {@link com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize dataPageSize} and hence paging is
@@ -2792,19 +2799,14 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
             var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             self.sortNormalizer = $debox($entry(function(record, fieldName) {
                 var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
-                var value = normalizer.@com.smartgwt.client.widgets.grid.SortNormalizer::normalize(Lcom/smartgwt/client/widgets/grid/ListGridRecord;Ljava/lang/String;)(recordJ, fieldName);
-                if(value == null) return null;
-                if(typeof value == 'string') {
-                    return value;
-                } else {
-                    return @com.smartgwt.client.widgets.grid.ListGridField::normalizedValue(Ljava/lang/Number;)(value);
-                }
+                var val = normalizer.@com.smartgwt.client.widgets.grid.SortNormalizer::normalize(Lcom/smartgwt/client/widgets/grid/ListGridRecord;Ljava/lang/String;)(recordJ, fieldName);
+                if(val == null || @com.smartgwt.client.util.JSOHelper::isJavaString(Ljava/lang/Object;)(val) ) return val;
+                if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(val)) return val.@java.lang.Integer::intValue()();
+                if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::floatValue()();
+                if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
+                $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the SortNormalizer::normalize');
             }));
     }-*/;
-
-    private static double normalizedValue(Number number) {
-        return number.doubleValue();
-    }
 
     /**
      * * HTML to be shown in hovers over cells in the column described by this field.
@@ -3218,7 +3220,11 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
             var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
             var gridJ = @com.smartgwt.client.widgets.grid.ListGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(grid);
-            return groupValueFunction.@com.smartgwt.client.widgets.grid.GroupValueFunction::getGroupValue(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;Lcom/smartgwt/client/widgets/grid/ListGridField;Ljava/lang/String;Lcom/smartgwt/client/widgets/grid/ListGrid;)(valueJ, recordJ, fieldJ, fieldName, gridJ);
+            var val = groupValueFunction.@com.smartgwt.client.widgets.grid.GroupValueFunction::getGroupValue(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;Lcom/smartgwt/client/widgets/grid/ListGridField;Ljava/lang/String;Lcom/smartgwt/client/widgets/grid/ListGrid;)(valueJ, recordJ, fieldJ, fieldName, gridJ);
+            if(val == null || @com.smartgwt.client.util.JSOHelper::isJavaString(Ljava/lang/Object;)(val) ) return val;
+            if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(val)) return val.@java.lang.Integer::intValue()();
+            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::floatValue()();
+            if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
         }));
     }-*/;
 
@@ -3332,10 +3338,11 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
             var fieldsJ = @com.smartgwt.client.widgets.grid.ListGrid::convertToListGridFieldArray(Lcom/google/gwt/core/client/JavaScriptObject;)(fields);
             var summaryFieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(summaryField);
             var val = recordSummaryFunction.@com.smartgwt.client.widgets.grid.RecordSummaryFunction::getSummaryValue(Lcom/smartgwt/client/data/Record;[Lcom/smartgwt/client/widgets/grid/ListGridField;Lcom/smartgwt/client/widgets/grid/ListGridField;)(recordJ, fieldsJ, summaryFieldJ);
-            if(val == null || $wnd.isc.isA.String(val) || $wnd.isc.isA.Number(val)) return val;
-            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::doubleValue()();
+            if(val == null || @com.smartgwt.client.util.JSOHelper::isJavaString(Ljava/lang/Object;)(val) ) return val;
+            if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(val)) return val.@java.lang.Integer::intValue()();
+            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::floatValue()();
             if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
-            $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the summaryFunction');
+            $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the RecordSummaryFunction::getSummaryValue');
         }));
     }-*/;
 

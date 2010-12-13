@@ -1545,10 +1545,11 @@ public class DataSourceField extends DataClass {
             var recordsJ =  @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(records);
             var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
             var val = summaryFunction.@com.smartgwt.client.widgets.grid.SummaryFunction::getSummaryValue([Lcom/smartgwt/client/data/Record;Lcom/smartgwt/client/widgets/grid/ListGridField;)(recordsJ, fieldJ);
-            if(val == null || $wnd.isc.isA.String(val) || $wnd.isc.isA.Number(val)) return val;
-            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::doubleValue()();
+            if(val == null || @com.smartgwt.client.util.JSOHelper::isJavaString(Ljava/lang/Object;)(val) ) return val;
+            if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(val)) return val.@java.lang.Integer::intValue()();
+            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::floatValue()();
             if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
-            $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the summaryFunction');
+            $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the SummaryFunction::getSummaryValue');
         });
     }-*/;
 
