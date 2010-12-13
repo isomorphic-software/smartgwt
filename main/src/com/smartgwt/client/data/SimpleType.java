@@ -301,7 +301,48 @@ public class SimpleType extends BaseClass {
             return formatter.@com.smartgwt.client.data.SimpleTypeFormatter::format(Ljava/lang/Object;Lcom/smartgwt/client/core/DataClass;Lcom/smartgwt/client/widgets/DataBoundComponent;Lcom/smartgwt/client/data/Record;)(valueJ, fieldJ, componentJ, recordJ);
         }));
     }-*/;
+    
+    /**
+     * Formatter for values of this type when displayed in a freeform text editor such as a
+     * {@link com.smartgwt.client.widgets.form.fields.TextItem}
+     * <P>
+     * See also {@link #parseInput} for parsing an edited text value back to a data value.
+     * @param formatter the formatter
+     */
+    public native void setEditFormatter(SimpleTypeFormatter formatter)/*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::isCreated()() ? this.@com.smartgwt.client.core.BaseClass::getJsObj()() : this.@com.smartgwt.client.core.BaseClass::getConfig()();
+        self.editFormatter = $debox($entry(function(value, field, component, record) {
+            var valueJ = $wnd.SmartGWT.convertToJavaType(value);
+            var fieldJ = @com.smartgwt.client.data.SimpleType::toDataClass(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
+            var componentJ = (component == null || component === undefined) ? null : @com.smartgwt.client.widgets.Canvas::getOrCreateDBC(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
+            var recordJ = (record == null || record === undefined) ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            return formatter.@com.smartgwt.client.data.SimpleTypeFormatter::format(Ljava/lang/Object;Lcom/smartgwt/client/core/DataClass;Lcom/smartgwt/client/widgets/DataBoundComponent;Lcom/smartgwt/client/data/Record;)(valueJ, fieldJ, componentJ, recordJ);
+        }));
+    }-*/;
 
+    /**
+     * Specify a parser to convert some user-edited value to an underlying data value of this type.
+     * This parser is called when storing out values edited in a freeform editor such as
+     * a {@link com.smartgwt.client.widgets.form.fields.TextItem}.
+     * Typically this will convert from the format produced by {@link #editFormatter}
+     * back to a data value.
+     * @param parser the parser
+     */
+    public native Object setEditParser(SimpleTypeParser parser) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::isCreated()() ? this.@com.smartgwt.client.core.BaseClass::getJsObj()() : this.@com.smartgwt.client.core.BaseClass::getConfig()();
+        self.parseInput = $debox($entry(function(value, field, component, record) {
+            var fieldJ = @com.smartgwt.client.data.SimpleType::toDataClass(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
+            var componentJ = (component == null || component === undefined) ? null : @com.smartgwt.client.widgets.Canvas::getOrCreateDBC(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
+            var recordJ = (record == null || record === undefined) ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            var val = parser.@com.smartgwt.client.data.SimpleTypeParser::parseInput(Ljava/lang/String;Lcom/smartgwt/client/core/DataClass;Lcom/smartgwt/client/widgets/DataBoundComponent;Lcom/smartgwt/client/data/Record;)(value, fieldJ, componentJ, recordJ);
+            if(val == null || @com.smartgwt.client.util.JSOHelper::isJavaString(Ljava/lang/Object;)(val) ) return val;
+            if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(val)) return val.@java.lang.Integer::intValue()();
+            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::floatValue()();
+            if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
+            return val;
+        }));
+    }-*/;
+    
     private static DataClass toDataClass(JavaScriptObject jsObj) {
         Object ref = JSOHelper.getAttributeAsObject((JavaScriptObject) jsObj, SC.REF);
         return ref == null ? new DataClass(jsObj) : (RefDataClass) ref;
