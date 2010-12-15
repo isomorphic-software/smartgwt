@@ -178,25 +178,23 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     }
 
     /**
-     * Whether to select cells in the body when row or column headers are selected.<br><br> Legal values: "both", "rows",
-     * "cols", "none" (or false)
+     * Whether to select cells in the body when row or column headers are selected.
      *
      * @param autoSelectValues autoSelectValues Default value is "both"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAutoSelectValues(String autoSelectValues)  throws IllegalStateException {
-        setAttribute("autoSelectValues", autoSelectValues, false);
+    public void setAutoSelectValues(AutoSelectionModel autoSelectValues)  throws IllegalStateException {
+        setAttribute("autoSelectValues", autoSelectValues.getValue(), false);
     }
 
     /**
-     * Whether to select cells in the body when row or column headers are selected.<br><br> Legal values: "both", "rows",
-     * "cols", "none" (or false)
+     * Whether to select cells in the body when row or column headers are selected.
      *
      *
-     * @return String
+     * @return AutoSelectionModel
      */
-    public String getAutoSelectValues()  {
-        return getAttributeAsString("autoSelectValues");
+    public AutoSelectionModel getAutoSelectValues()  {
+        return EnumUtil.getEnum(AutoSelectionModel.values(), getAttribute("autoSelectValues"));
     }
 
     /**
@@ -2463,7 +2461,12 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
         }
     }
 
-    private native boolean analyticsLoaded() /*-{
+    /**
+     * Static method indicating whether the optional Analytics module is loaded for the page.
+     * The CubeGrid component requires this module.
+     * @return true if the Analytics module is present
+     */
+    public static native boolean analyticsLoaded() /*-{
         return ($wnd.isc.CubeGrid != null);
     }-*/;
 
