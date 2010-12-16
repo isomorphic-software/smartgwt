@@ -51,7 +51,7 @@ public class JSOHelper {
 		if(!($wnd.isc.startsWith(jsFrag, '(') && $wnd.isc.endsWith(jsFrag, ')'))) {
             jsFrag = '(' + jsFrag + ')';
         }
-        return eval(jsFrag);
+        return $wnd.isc.Class.evaluate(jsFrag);
 	}-*/;
 
     public static boolean isJSO(Object object) {
