@@ -29,9 +29,16 @@ public enum DSDataFormat implements ValueEnum {
     ISCSERVER("iscServer"),
     /**
      * Expect XML responses.  Request format depends on the setting for&#010 {@link
-     * com.smartgwt.client.data.OperationBinding#dataProtocol protocol}. This is the correct setting when&#010 consuming
+     * com.smartgwt.client.data.OperationBinding#setDataProtocol protocol}. This is the correct setting when&#010 consuming
      * RSS feeds, XML web services (whether SOAP, REST, XML-RPC or custom format),&#010 and XML flat files directly from
-     * the browser.&#010 <P>&#010 A DSResponse will be derived from the returned XML via the process described
+     * the browser.&#010 <P><br>
+     * Values for "date", "time" or "datetime" fields in responses should be specified in the applicable <a target=_blank href="http://www.w3.org/TR/xmlschema-2/#dateTime">XML Schema date</a>
+     * format. If no timezone is explicitly specified, dates / datetimes received by the client are assumed to be GMT.
+     * Note that "date" type fields represent logical dates and may omit time information entirely, and "time" type fields may
+     * omit date information. See {@link com.smartgwt.client.docs.DateFormatAndStorage Date and Time Format and storage} for more information on how date values are serialized in
+     * requests sent to the server.
+     * <p><br>
+     * A DSResponse will be derived from the returned XML via the process described
      * under&#010 {@link com.smartgwt.client.data.DataSource#transformResponse}.
      */
     XML("xml"),
@@ -40,16 +47,22 @@ public enum DSDataFormat implements ValueEnum {
      * Script Object Notation)</a>&#010 format, ready to be eval()'d. Response should either be a naked object
      * literal:<br>&#010 <code>&nbsp;&nbsp;&nbsp;&nbsp;{status:0, startRow:0, endRow:50, data:[ ..]}</code><br>&#010 or
      * a string that evals to return a valid response object:<br>&#010 <code>&nbsp;&nbsp;&nbsp;&nbsp;var response =
-     * {status:0, startRow:0, endRow:50, data:[ ..]};&#010 <br>&nbsp;&nbsp;&nbsp;&nbsp;response;</code><br>&#010 Request
-     * format depends on the setting for {@link com.smartgwt.client.data.OperationBinding#dataProtocol protocol}. &#010
+     * {status:0, startRow:0, endRow:50, data:[ ..]};&#010 <br>&nbsp;&nbsp;&nbsp;&nbsp;response;</code><br>
+     * <p><br>
+     * As with <code>"xml"</code> responses, values for "date" or "datetime" fields should be
+     * specified as a String in
+     * <a target=_blank href="http://www.w3.org/TR/xmlschema-2/#dateTime">XML Schema date format</a>
+     * and may include a timezone.  In the absence of a timezone they will be assumed to be GMT.
+     * <p><br>
+     * format depends on the setting for {@link com.smartgwt.client.data.OperationBinding#setDataProtocol protocol}. &#010
      * See also {@link com.smartgwt.client.data.XJSONDataSource}.
      */
     JSON("json"),
     /**
-     * SmartClient will not attempt to parse the response, instead,&#010 {@link com.smartgwt.client.data.DataSource#transformResponse}
+     * Smart GWT will not attempt to parse the response, instead,&#010 {@link com.smartgwt.client.data.DataSource#transformResponse}
      * must be implemented.&#010 <code>transformResponse</code> will receive the "data" parameter as a String, and
      * must&#010 parse this String into an Array of Objects, which should be set as&#010 {@link DSResponse.data data}.
-     * Request format depends on the setting for&#010 {@link com.smartgwt.client.data.OperationBinding#dataProtocol
+     * Request format depends on the setting for&#010 {@link com.smartgwt.client.data.OperationBinding#setDataProtocol
      * protocol}.&#010 <P>&#010 Note that, unlike either the "json" or "xml" settings of <code>dataFormat</code>,
      * you&#010 are responsible for ensuring that parsed values are the correct type, for example, using&#010 the
      * JavaScript built-ins <code>parseInt</code> and <code>parseFloat</code> on integer&#010 and decimal values
