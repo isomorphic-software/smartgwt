@@ -326,6 +326,8 @@ public class I18nUtil {
 
         if($wnd.isc.PickTreeItem) $wnd.isc.PickTreeItem.addProperties({emptyMenuMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::pickTreeItem_emptyMenuMessage()()});
 
+        if($wnd.isc.MultiFileItem) $wnd.isc.MultiFileItem.addProperties({emptyMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiFileItem_emptyMessage()()});
+
         if($wnd.isc.MenuButton) $wnd.isc.MenuButton.addProperties({title: messages.@com.smartgwt.client.i18n.SmartGwtMessages::menuButton_title()()});
 
         if($wnd.isc.Calendar) {
