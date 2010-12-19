@@ -1404,7 +1404,13 @@ public class DataSourceField extends DataClass {
      * @param editorType editorType Default value is null
      */
     public void setEditorType(FormItem editorType) {
-        setAttribute("editorType", editorType.getType());
+        //only set the editorType attribute if the passed editorType is a concrete subclass of FormItem
+        if(!editorType.getClass().getName().equals(FormItem.class.getName())) {
+            String fiEditorType = editorType.getAttribute("editorType");
+            //fallback to type if editorType is not specified
+            if(fiEditorType == null) fiEditorType = editorType.getType();
+            if (fiEditorType != null) setAttribute("editorType", fiEditorType);
+        }
         JavaScriptObject editorConfig = editorType.getConfig();
         setAttribute("editorProperties", editorConfig);
     }

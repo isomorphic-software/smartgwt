@@ -76,7 +76,7 @@ public class SubmitItem extends ButtonItem {
     }
 
     public SubmitItem(){
-        setType("SubmitItem");
+        setAttribute("editorType", "SubmitItem");
     }
 
     public SubmitItem(JavaScriptObject jsObj){
@@ -85,13 +85,13 @@ public class SubmitItem extends ButtonItem {
 
     public SubmitItem(String name) {
         setName(name);
-        setType("SubmitItem");
+        setAttribute("editorType", "SubmitItem");
     }
 
     public SubmitItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("SubmitItem");
+        setAttribute("editorType", "SubmitItem");
     }
 
     // ********************* Properties / Attributes ***********************

@@ -75,7 +75,7 @@ public class MiniDateRangeItem extends StaticTextItem {
     }
 
     public MiniDateRangeItem(){
-        setType("MiniDateRangeItem");
+        setAttribute("editorType", "MiniDateRangeItem");
     }
 
     public MiniDateRangeItem(JavaScriptObject jsObj){
@@ -84,13 +84,13 @@ public class MiniDateRangeItem extends StaticTextItem {
 
     public MiniDateRangeItem(String name) {
         setName(name);
-        setType("MiniDateRangeItem");
+        setAttribute("editorType", "MiniDateRangeItem");
     }
 
     public MiniDateRangeItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("MiniDateRangeItem");
+        setAttribute("editorType", "MiniDateRangeItem");
     }
 
     // ********************* Properties / Attributes ***********************

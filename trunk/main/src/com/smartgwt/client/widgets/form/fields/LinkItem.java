@@ -74,7 +74,7 @@ public class LinkItem extends StaticTextItem {
     }
 
     public LinkItem(){
-        setType("LinkItem");
+        setAttribute("editorType", "LinkItem");
     }
 
     public LinkItem(JavaScriptObject jsObj){
@@ -83,7 +83,7 @@ public class LinkItem extends StaticTextItem {
 
     public LinkItem(String name) {
         setName(name);
-        setType("LinkItem");
+        setAttribute("editorType", "LinkItem");
     }
 
     // ********************* Properties / Attributes ***********************

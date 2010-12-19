@@ -74,7 +74,7 @@ public class PickTreeItem extends CanvasItem {
     }
 
     public PickTreeItem(){
-        setType("PickTreeItem");
+        setAttribute("editorType", "PickTreeItem");
     }
 
     public PickTreeItem(JavaScriptObject jsObj){
@@ -83,13 +83,13 @@ public class PickTreeItem extends CanvasItem {
 
     public PickTreeItem(String name) {
         setName(name);
-        setType("PickTreeItem");
+        setAttribute("editorType", "PickTreeItem");
     }
 
     public PickTreeItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("PickTreeItem");
+        setAttribute("editorType", "PickTreeItem");
     }
 
     // ********************* Properties / Attributes ***********************

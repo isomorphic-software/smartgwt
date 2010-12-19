@@ -75,7 +75,7 @@ public class BlurbItem extends FormItem {
     }
 
     public BlurbItem(){
-        setType("BlurbItem");
+        setAttribute("editorType", "BlurbItem");
     }
 
     public BlurbItem(JavaScriptObject jsObj){
@@ -84,7 +84,7 @@ public class BlurbItem extends FormItem {
 
     public BlurbItem(String name) {
         setName(name);
-        setType("BlurbItem");
+        setAttribute("editorType", "BlurbItem");
     }
 
     // ********************* Properties / Attributes ***********************

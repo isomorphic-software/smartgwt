@@ -74,7 +74,7 @@ public class SpinnerItem extends TextItem {
     }
 
     public SpinnerItem(){
-        setType("SpinnerItem");
+        setAttribute("editorType", "SpinnerItem");
     }
 
     public SpinnerItem(JavaScriptObject jsObj){
@@ -83,13 +83,13 @@ public class SpinnerItem extends TextItem {
 
     public SpinnerItem(String name) {
         setName(name);
-        setType("SpinnerItem");
+        setAttribute("editorType", "SpinnerItem");
     }
 
     public SpinnerItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("SpinnerItem");
+        setAttribute("editorType", "SpinnerItem");
     }
 
     // ********************* Properties / Attributes ***********************

@@ -74,7 +74,7 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
     }
 
     public ButtonItem(){
-        setType("ButtonItem");
+        setAttribute("editorType", "ButtonItem");
     }
 
     public ButtonItem(JavaScriptObject jsObj){
@@ -83,13 +83,13 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
 
     public ButtonItem(String name) {
         setName(name);
-        setType("ButtonItem");
+        setAttribute("editorType", "ButtonItem");
     }
 
     public ButtonItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("ButtonItem");
+        setAttribute("editorType", "ButtonItem");
     }
 
     // ********************* Properties / Attributes ***********************

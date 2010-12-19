@@ -74,7 +74,7 @@ public class CheckboxItem extends FormItem {
     }
 
     public CheckboxItem(){
-        setType("CheckboxItem");
+        setAttribute("editorType", "CheckboxItem");
     }
 
     public CheckboxItem(JavaScriptObject jsObj){
@@ -83,13 +83,13 @@ public class CheckboxItem extends FormItem {
 
     public CheckboxItem(String name) {
         setName(name);
-        setType("CheckboxItem");
+        setAttribute("editorType", "CheckboxItem");
     }
 
     public CheckboxItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("CheckboxItem");
+        setAttribute("editorType", "CheckboxItem");
     }
 
     // ********************* Properties / Attributes ***********************

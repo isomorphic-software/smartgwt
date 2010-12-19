@@ -75,7 +75,7 @@ public class ResetItem extends ButtonItem {
     }
 
     public ResetItem(){
-        setType("ResetItem");
+        setAttribute("editorType", "ResetItem");
     }
 
     public ResetItem(JavaScriptObject jsObj){
@@ -84,13 +84,13 @@ public class ResetItem extends ButtonItem {
 
     public ResetItem(String name) {
         setName(name);
-        setType("ResetItem");
+        setAttribute("editorType", "ResetItem");
     }
 
     public ResetItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("ResetItem");
+        setAttribute("editorType", "ResetItem");
     }
 
     // ********************* Properties / Attributes ***********************

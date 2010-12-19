@@ -75,7 +75,7 @@ public class HeaderItem extends FormItem {
     }
 
     public HeaderItem(){
-        setType("HeaderItem");
+        setAttribute("editorType", "HeaderItem");
     }
 
     public HeaderItem(JavaScriptObject jsObj){
@@ -84,13 +84,13 @@ public class HeaderItem extends FormItem {
 
     public HeaderItem(String name) {
         setName(name);
-        setType("HeaderItem");
+        setAttribute("editorType", "HeaderItem");
     }
 
     public HeaderItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("HeaderItem");
+        setAttribute("editorType", "HeaderItem");
     }
 
     // ********************* Properties / Attributes ***********************

@@ -74,7 +74,7 @@ public class SpacerItem extends FormItem {
     }
 
     public SpacerItem(){
-        setType("SpacerItem");
+        setAttribute("editorType", "SpacerItem");
     }
 
     public SpacerItem(JavaScriptObject jsObj){
@@ -83,7 +83,7 @@ public class SpacerItem extends FormItem {
 
     public SpacerItem(String name) {
         setName(name);
-        setType("SpacerItem");
+        setAttribute("editorType", "SpacerItem");
     }
 
     // ********************* Properties / Attributes ***********************

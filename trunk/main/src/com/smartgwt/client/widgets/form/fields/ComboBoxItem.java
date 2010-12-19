@@ -78,7 +78,7 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
     }
 
     public ComboBoxItem(){
-        setType("ComboBoxItem");
+        setAttribute("editorType", "ComboBoxItem");
     }
 
     public ComboBoxItem(JavaScriptObject jsObj){
@@ -87,20 +87,27 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
 
     public ComboBoxItem(String name) {
         setName(name);
-        setType("ComboBoxItem");
+        setAttribute("editorType", "ComboBoxItem");
     }
 
     public ComboBoxItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("ComboBoxItem");
+        setAttribute("editorType", "ComboBoxItem");
     }
 
     // ********************* Properties / Attributes ***********************
 
     /**
-     * If the user enters a value not present in the valueMap (or option dataSource) for this item, should we store the value
-     * out or ignore the change?
+     * If set to false, if a value has been entered that does not match an entry in the ValueMap or a value loaded from the
+     * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getOptionDataSource optionDataSource}, it will be discarded
+     * if the user leaves the field. <P> When this mode is enabled, {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getGetValue getValue} will return null unless the value typed in by
+     * the user has valid matches.  Use {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getEnteredValue
+     * ComboBoxItem.getEnteredValue} to get the raw value typed in by the user. <P> Note that this flag effectively enables
+     * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getCompleteOnTab completeOnTab}, since leaving the field in
+     * general (whether by tab or another means) will attempt completion, and discard the value if no valid completion exists. 
+     * As with <code>completeOnTab</code>, if the typed in value has more than one match, the first match will be used.
      *
      * @param addUnknownValues addUnknownValues Default value is true
      */
@@ -109,8 +116,15 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
     }
 
     /**
-     * If the user enters a value not present in the valueMap (or option dataSource) for this item, should we store the value
-     * out or ignore the change?
+     * If set to false, if a value has been entered that does not match an entry in the ValueMap or a value loaded from the
+     * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getOptionDataSource optionDataSource}, it will be discarded
+     * if the user leaves the field. <P> When this mode is enabled, {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getGetValue getValue} will return null unless the value typed in by
+     * the user has valid matches.  Use {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getEnteredValue
+     * ComboBoxItem.getEnteredValue} to get the raw value typed in by the user. <P> Note that this flag effectively enables
+     * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getCompleteOnTab completeOnTab}, since leaving the field in
+     * general (whether by tab or another means) will attempt completion, and discard the value if no valid completion exists. 
+     * As with <code>completeOnTab</code>, if the typed in value has more than one match, the first match will be used.
      *
      *
      * @return Boolean
@@ -577,6 +591,24 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
     public native String getDisplayFieldName() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.getDisplayFieldName();
+    }-*/;
+            
+    /**
+     * Returns the raw text value typed into this form field, which can differ from  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} in various cases - for example: <ul>
+     * <li>for items that contrain the value range, such as a {@link com.smartgwt.client.widgets.form.fields.DateItem} with
+     * {@link com.smartgwt.client.widgets.form.fields.DateItem#getEnforceDate enforceDate}:true, or a {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem} with {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnkownValues addUnknownValues}:false</li> <li>for items with
+     * a defined valueMap or edit value formatter and parser functions which converts display value to data value</li>
+     * <li>while the item has focus if {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getChangeOnKeypress
+     * changeOnKeypress} is false </li></ul>
+     *
+     * @return current entered value
+     */
+    public native String getEnteredValue() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        return self.getEnteredValue();
     }-*/;
             
     /**

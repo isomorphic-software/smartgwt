@@ -78,7 +78,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     }
 
     public SelectItem(){
-        setType("SelectItem");
+        setAttribute("editorType", "SelectItem");
     }
 
     public SelectItem(JavaScriptObject jsObj){
@@ -87,13 +87,13 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
 
     public SelectItem(String name) {
         setName(name);
-        setType("SelectItem");
+        setAttribute("editorType", "SelectItem");
     }
 
     public SelectItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("SelectItem");
+        setAttribute("editorType", "SelectItem");
     }
 
     // ********************* Properties / Attributes ***********************

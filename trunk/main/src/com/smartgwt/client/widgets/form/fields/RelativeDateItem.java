@@ -79,7 +79,7 @@ public class RelativeDateItem extends CanvasItem {
     }
 
     public RelativeDateItem(){
-        setType("RelativeDateItem");
+        setAttribute("editorType", "RelativeDateItem");
     }
 
     public RelativeDateItem(JavaScriptObject jsObj){
@@ -88,13 +88,13 @@ public class RelativeDateItem extends CanvasItem {
 
     public RelativeDateItem(String name) {
         setName(name);
-        setType("RelativeDateItem");
+        setAttribute("editorType", "RelativeDateItem");
     }
 
     public RelativeDateItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("RelativeDateItem");
+        setAttribute("editorType", "RelativeDateItem");
     }
 
     // ********************* Properties / Attributes ***********************

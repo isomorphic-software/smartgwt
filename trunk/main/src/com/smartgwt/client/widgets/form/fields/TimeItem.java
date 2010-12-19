@@ -83,7 +83,7 @@ public class TimeItem extends TextItem {
     }
 
     public TimeItem(){
-        setType("TimeItem");
+        setAttribute("editorType", "TimeItem");
     }
 
     public TimeItem(JavaScriptObject jsObj){
@@ -92,13 +92,13 @@ public class TimeItem extends TextItem {
 
     public TimeItem(String name) {
         setName(name);
-        setType("TimeItem");
+        setAttribute("editorType", "TimeItem");
     }
 
     public TimeItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("TimeItem");
+        setAttribute("editorType", "TimeItem");
     }
 
     // ********************* Properties / Attributes ***********************

@@ -74,7 +74,7 @@ public class DateTimeItem extends DateItem {
     }
 
     public DateTimeItem(){
-        setType("dateTime");
+        setAttribute("editorType", "DateTimeItem");
     }
 
     public DateTimeItem(JavaScriptObject jsObj){
@@ -83,13 +83,13 @@ public class DateTimeItem extends DateItem {
 
     public DateTimeItem(String name) {
         setName(name);
-        setType("dateTime");
+        setAttribute("editorType", "DateTimeItem");
     }
 
     public DateTimeItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("dateTime");
+        setAttribute("editorType", "DateTimeItem");
     }
 
     // ********************* Properties / Attributes ***********************

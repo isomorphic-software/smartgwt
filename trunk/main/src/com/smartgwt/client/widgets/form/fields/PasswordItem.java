@@ -74,7 +74,7 @@ public class PasswordItem extends TextItem {
     }
 
     public PasswordItem(){
-        setType("PasswordItem");
+        setAttribute("editorType", "PasswordItem");
     }
 
     public PasswordItem(JavaScriptObject jsObj){
@@ -83,13 +83,13 @@ public class PasswordItem extends TextItem {
 
     public PasswordItem(String name) {
         setName(name);
-        setType("PasswordItem");
+        setAttribute("editorType", "PasswordItem");
     }
 
     public PasswordItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("PasswordItem");
+        setAttribute("editorType", "PasswordItem");
     }
 
     // ********************* Properties / Attributes ***********************

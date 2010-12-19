@@ -237,7 +237,13 @@ public class SimpleType extends BaseClass {
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setEditorType(FormItem editorType) throws IllegalStateException {
-        setAttribute("editorType", editorType, false);
+        //only set the editorType attribute if the passed editorType is a concrete subclass of FormItem
+        if(!editorType.getClass().getName().equals(FormItem.class.getName())) {
+            String fiEditorType = editorType.getAttribute("editorType");
+            //fallback to type if editorType is not specified
+            if(fiEditorType == null) fiEditorType = editorType.getType();
+            if (fiEditorType != null) setAttribute("editorType", fiEditorType, false);
+        }
     }
 
     /**

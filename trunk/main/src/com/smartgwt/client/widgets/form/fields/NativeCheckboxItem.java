@@ -74,7 +74,7 @@ public class NativeCheckboxItem extends FormItem {
     }
 
     public NativeCheckboxItem(){
-        setType("NativeCheckboxItem");
+        setAttribute("editorType", "NativeCheckboxItem");
     }
 
     public NativeCheckboxItem(JavaScriptObject jsObj){
@@ -83,7 +83,7 @@ public class NativeCheckboxItem extends FormItem {
 
     public NativeCheckboxItem(String name) {
         setName(name);
-        setType("NativeCheckboxItem");
+        setAttribute("editorType", "NativeCheckboxItem");
     }
 
     // ********************* Properties / Attributes ***********************

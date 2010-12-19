@@ -74,7 +74,7 @@ public class SelectOtherItem extends SelectItem {
     }
 
     public SelectOtherItem(){
-        setType("selectOther");
+        setAttribute("editorType", "SelectOtherItem");
     }
 
     public SelectOtherItem(JavaScriptObject jsObj){
@@ -83,13 +83,13 @@ public class SelectOtherItem extends SelectItem {
 
     public SelectOtherItem(String name) {
         setName(name);
-        setType("selectOther");
+        setAttribute("editorType", "SelectOtherItem");
     }
 
     public SelectOtherItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("selectOther");
+        setAttribute("editorType", "SelectOtherItem");
     }
 
     // ********************* Properties / Attributes ***********************
