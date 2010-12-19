@@ -78,7 +78,7 @@ public class ViewFileItem extends CanvasItem {
     }
 
     public ViewFileItem(){
-        setType("ViewFileItem");
+        setAttribute("editorType", "ViewFileItem");
     }
 
     public ViewFileItem(JavaScriptObject jsObj){
@@ -87,13 +87,13 @@ public class ViewFileItem extends CanvasItem {
 
     public ViewFileItem(String name) {
         setName(name);
-        setType("ViewFileItem");
+        setAttribute("editorType", "ViewFileItem");
     }
 
     public ViewFileItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("ViewFileItem");
+        setAttribute("editorType", "ViewFileItem");
     }
 
     // ********************* Properties / Attributes ***********************

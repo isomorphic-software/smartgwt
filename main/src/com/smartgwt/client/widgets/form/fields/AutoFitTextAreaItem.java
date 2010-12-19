@@ -75,7 +75,7 @@ public class AutoFitTextAreaItem extends TextAreaItem {
     }
 
     public AutoFitTextAreaItem(){
-        setType("AutoFitTextAreaItem");
+        setAttribute("editorType", "AutoFitTextAreaItem");
     }
 
     public AutoFitTextAreaItem(JavaScriptObject jsObj){
@@ -84,13 +84,13 @@ public class AutoFitTextAreaItem extends TextAreaItem {
 
     public AutoFitTextAreaItem(String name) {
         setName(name);
-        setType("AutoFitTextAreaItem");
+        setAttribute("editorType", "AutoFitTextAreaItem");
     }
 
     public AutoFitTextAreaItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("AutoFitTextAreaItem");
+        setAttribute("editorType", "AutoFitTextAreaItem");
     }
 
     // ********************* Properties / Attributes ***********************

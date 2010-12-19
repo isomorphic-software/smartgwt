@@ -75,7 +75,7 @@ public class SliderItem extends CanvasItem {
     }
 
     public SliderItem(){
-        setType("SliderItem");
+        setAttribute("editorType", "SliderItem");
     }
 
     public SliderItem(JavaScriptObject jsObj){
@@ -84,13 +84,13 @@ public class SliderItem extends CanvasItem {
 
     public SliderItem(String name) {
         setName(name);
-        setType("SliderItem");
+        setAttribute("editorType", "SliderItem");
     }
 
     public SliderItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("SliderItem");
+        setAttribute("editorType", "SliderItem");
     }
 
     // ********************* Properties / Attributes ***********************

@@ -76,7 +76,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     public FormItem(){
-        setType("FormItem");setName(com.smartgwt.client.util.SC.generateID(getClass().getName()));
+        setName(com.smartgwt.client.util.SC.generateID(getClass().getName()));
     }
 
     public FormItem(JavaScriptObject jsObj){
@@ -3433,6 +3433,10 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     // ***********************************************************        
 
 
+    public FormItem(String name) {
+        setName(name);
+    }
+
     public void setAttribute(String attribute, String value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);
@@ -3920,7 +3924,13 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @param editorType editorType Default value is null
      */
     public void setEditorType(FormItem editorType) {
-        setAttribute("editorType", editorType.getType());
+        //only set the editorType attribute if the passed editorType is a concrete subclass of FormItem
+        if(!editorType.getClass().getName().equals(FormItem.class.getName())) {
+            String fiEditorType = editorType.getAttribute("editorType");
+            //fallback to type if editorType is not specified
+            if(fiEditorType == null) fiEditorType = editorType.getType();
+            if (fiEditorType != null) setAttribute("editorType", fiEditorType);
+        }
         JavaScriptObject editorConfig = editorType.getConfig();
         setAttribute("editorProperties", editorConfig);
     }
@@ -4164,7 +4174,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var config = {};
 
         for(var k in self) {
-            if(k != '__ref' && k != 'type' && k != 'name') {
+            //skip properties of FormItem properties that should not be applied to the target's editorType
+            if(k != '__ref' && k != 'type'  && k != 'editorType' && k != 'name') {
                 config[k] = self[k];
             }
         }

@@ -74,7 +74,7 @@ public class ToolbarItem extends CanvasItem {
     }
 
     public ToolbarItem(){
-        setType("ToolbarItem");
+        setAttribute("editorType", "ToolbarItem");
     }
 
     public ToolbarItem(JavaScriptObject jsObj){
@@ -83,13 +83,13 @@ public class ToolbarItem extends CanvasItem {
 
     public ToolbarItem(String name) {
         setName(name);
-        setType("ToolbarItem");
+        setAttribute("editorType", "ToolbarItem");
     }
 
     public ToolbarItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("ToolbarItem");
+        setAttribute("editorType", "ToolbarItem");
     }
 
     // ********************* Properties / Attributes ***********************

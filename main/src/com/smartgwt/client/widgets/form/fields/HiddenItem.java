@@ -79,7 +79,7 @@ public class HiddenItem extends FormItem {
     }
 
     public HiddenItem(){
-        setType("HiddenItem");
+        setAttribute("editorType", "HiddenItem");
     }
 
     public HiddenItem(JavaScriptObject jsObj){
@@ -88,7 +88,7 @@ public class HiddenItem extends FormItem {
 
     public HiddenItem(String name) {
         setName(name);
-        setType("HiddenItem");
+        setAttribute("editorType", "HiddenItem");
     }
 
     // ********************* Properties / Attributes ***********************

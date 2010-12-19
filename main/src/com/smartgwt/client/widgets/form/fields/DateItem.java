@@ -75,7 +75,7 @@ public class DateItem extends FormItem {
     }
 
     public DateItem(){
-        setType("date");
+        setAttribute("editorType", "DateItem");
     }
 
     public DateItem(JavaScriptObject jsObj){
@@ -84,13 +84,13 @@ public class DateItem extends FormItem {
 
     public DateItem(String name) {
         setName(name);
-        setType("date");
+        setAttribute("editorType", "DateItem");
     }
 
     public DateItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("date");
+        setAttribute("editorType", "DateItem");
     }
 
     // ********************* Properties / Attributes ***********************
@@ -615,6 +615,16 @@ public class DateItem extends FormItem {
     public native void deselectValue(boolean start) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.deselectValue(start);
+    }-*/;
+            
+    /**
+     * Returns the raw text value typed into this items text field if {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField}  is true (otherwise returns the result of
+     * this.getValue()).
+     */
+    public native void getEnteredValue() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.getEnteredValue();
     }-*/;
             
     /**

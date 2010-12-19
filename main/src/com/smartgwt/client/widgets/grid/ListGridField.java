@@ -2888,6 +2888,13 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         setAttribute("wrap", wrap);
     }
 
+    /**
+     * Marks a field as initially hidden for this ListGrid.  The user will be able to show the field via a context menu (unless canPickFields has been set false).
+     * <p><br>
+     * To mark a field as completely hidden (not shown to a user at all, in any component), set {@link com.smartgwt.client.data.DataSourceField#setHidden(Boolean) dataSourceField.hidden} instead.
+     *
+     * @param hidden true to mark the field as initially hidden
+     */
     public void setHidden(boolean hidden) {
         setAttribute("showIf", hidden ? "false" : "true");
     }
@@ -2930,7 +2937,13 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @param editorType the editor type
      */
     public void setEditorType(FormItem editorType) {
-        setAttribute("editorType", editorType.getType());
+        //only set the editorType attribute if the passed editorType is a concrete subclass of FormItem
+        if(!editorType.getClass().getName().equals(FormItem.class.getName())) {
+            String fiEditorType = editorType.getAttribute("editorType");
+            //fallback to type if editorType is not specified
+            if(fiEditorType == null) fiEditorType = editorType.getType();
+            if (fiEditorType != null) setAttribute("editorType", fiEditorType);
+        }
         JavaScriptObject editorConfig = editorType.getConfig();
         setAttribute("editorProperties", editorConfig);
     }

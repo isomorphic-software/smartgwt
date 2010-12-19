@@ -76,7 +76,7 @@ public class IPickTreeItem extends PickTreeItem {
     }
 
     public IPickTreeItem(){
-        setType("IPickTreeItem");
+        setAttribute("editorType", "IPickTreeItem");
     }
 
     public IPickTreeItem(JavaScriptObject jsObj){
@@ -85,13 +85,13 @@ public class IPickTreeItem extends PickTreeItem {
 
     public IPickTreeItem(String name) {
         setName(name);
-        setType("IPickTreeItem");
+        setAttribute("editorType", "IPickTreeItem");
     }
 
     public IPickTreeItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("IPickTreeItem");
+        setAttribute("editorType", "IPickTreeItem");
     }
 
     // ********************* Properties / Attributes ***********************

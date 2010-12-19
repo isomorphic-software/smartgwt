@@ -74,7 +74,7 @@ public class StaticTextItem extends FormItem {
     }
 
     public StaticTextItem(){
-        setType("StaticTextItem");
+        setAttribute("editorType", "StaticTextItem");
     }
 
     public StaticTextItem(JavaScriptObject jsObj){
@@ -83,13 +83,13 @@ public class StaticTextItem extends FormItem {
 
     public StaticTextItem(String name) {
         setName(name);
-        setType("StaticTextItem");
+        setAttribute("editorType", "StaticTextItem");
     }
 
     public StaticTextItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("StaticTextItem");
+        setAttribute("editorType", "StaticTextItem");
     }
 
     // ********************* Properties / Attributes ***********************

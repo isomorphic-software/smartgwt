@@ -75,7 +75,7 @@ public class RichTextItem extends CanvasItem {
     }
 
     public RichTextItem(){
-        setType("RichTextItem");
+        setAttribute("editorType", "RichTextItem");
     }
 
     public RichTextItem(JavaScriptObject jsObj){
@@ -84,13 +84,13 @@ public class RichTextItem extends CanvasItem {
 
     public RichTextItem(String name) {
         setName(name);
-        setType("RichTextItem");
+        setAttribute("editorType", "RichTextItem");
     }
 
     public RichTextItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("RichTextItem");
+        setAttribute("editorType", "RichTextItem");
     }
 
     // ********************* Properties / Attributes ***********************

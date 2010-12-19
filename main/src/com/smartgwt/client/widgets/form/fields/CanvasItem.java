@@ -85,7 +85,7 @@ public class CanvasItem extends FormItem {
     }
 
     public CanvasItem(){
-        setType("CanvasItem"); setupCanvasConstructor();
+        setAttribute("editorType", "CanvasItem"); setupCanvasConstructor();
     }
 
     public CanvasItem(JavaScriptObject jsObj){
@@ -94,13 +94,13 @@ public class CanvasItem extends FormItem {
 
     public CanvasItem(String name) {
         setName(name);
-        setType("CanvasItem"); setupCanvasConstructor();
+        setAttribute("editorType", "CanvasItem"); setupCanvasConstructor();
     }
 
     public CanvasItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("CanvasItem"); setupCanvasConstructor();
+        setAttribute("editorType", "CanvasItem"); setupCanvasConstructor();
     }
 
     // ********************* Properties / Attributes ***********************

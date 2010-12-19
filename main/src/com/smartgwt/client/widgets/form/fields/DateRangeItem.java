@@ -77,7 +77,7 @@ public class DateRangeItem extends CanvasItem {
     }
 
     public DateRangeItem(){
-        setType("DateRangeItem");
+        setAttribute("editorType", "DateRangeItem");
     }
 
     public DateRangeItem(JavaScriptObject jsObj){
@@ -86,13 +86,13 @@ public class DateRangeItem extends CanvasItem {
 
     public DateRangeItem(String name) {
         setName(name);
-        setType("DateRangeItem");
+        setAttribute("editorType", "DateRangeItem");
     }
 
     public DateRangeItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("DateRangeItem");
+        setAttribute("editorType", "DateRangeItem");
     }
 
     // ********************* Properties / Attributes ***********************

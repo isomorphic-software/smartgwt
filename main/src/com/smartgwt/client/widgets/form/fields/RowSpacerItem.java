@@ -76,7 +76,7 @@ public class RowSpacerItem extends SpacerItem {
     }
 
     public RowSpacerItem(){
-        setType("RowSpacerItem");
+        setAttribute("editorType", "RowSpacerItem");
     }
 
     public RowSpacerItem(JavaScriptObject jsObj){
@@ -85,7 +85,7 @@ public class RowSpacerItem extends SpacerItem {
 
     public RowSpacerItem(String name) {
         setName(name);
-        setType("RowSpacerItem");
+        setAttribute("editorType", "RowSpacerItem");
     }
 
     // ********************* Properties / Attributes ***********************

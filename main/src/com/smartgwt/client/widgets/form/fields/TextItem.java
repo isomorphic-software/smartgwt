@@ -74,7 +74,7 @@ public class TextItem extends FormItem {
     }
 
     public TextItem(){
-        setType("TextItem");
+        setAttribute("editorType", "TextItem");
     }
 
     public TextItem(JavaScriptObject jsObj){
@@ -83,13 +83,13 @@ public class TextItem extends FormItem {
 
     public TextItem(String name) {
         setName(name);
-        setType("TextItem");
+        setAttribute("editorType", "TextItem");
     }
 
     public TextItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("TextItem");
+        setAttribute("editorType", "TextItem");
     }
 
     // ********************* Properties / Attributes ***********************
@@ -496,16 +496,21 @@ public class TextItem extends FormItem {
     }-*/;
             
     /**
-     * Returns the text value currently entered in this items textbox. This may differ from the result of {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} if {@link
-     * com.smartgwt.client.widgets.form.fields.TextItem#getChangeOnKeypress changeOnKeypress} is false, or if a formatter or
-     * valueMap converts display value to data value.
+     * Returns the raw text value typed into this form field, which can differ from  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} in various cases - for example: <ul>
+     * <li>for items that contrain the value range, such as a {@link com.smartgwt.client.widgets.form.fields.DateItem} with
+     * {@link com.smartgwt.client.widgets.form.fields.DateItem#getEnforceDate enforceDate}:true, or a {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem} with {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnkownValues addUnknownValues}:false</li> <li>for items with
+     * a defined valueMap or edit value formatter and parser functions which converts display value to data value</li>
+     * <li>while the item has focus if {@link com.smartgwt.client.widgets.form.fields.TextItem#getChangeOnKeypress
+     * changeOnKeypress} is false </li></ul>
      *
-     * @return current element value
+     * @return current entered value
      */
-    public native String getElementValue() /*-{
+    public native String getEnteredValue() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        return self.getElementValue();
+        return self.getEnteredValue();
     }-*/;
             
     /**

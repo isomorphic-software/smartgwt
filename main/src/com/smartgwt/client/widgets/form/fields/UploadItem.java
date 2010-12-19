@@ -83,7 +83,7 @@ public class UploadItem extends TextItem {
     }
 
     public UploadItem(){
-        setType("upload");
+        setAttribute("editorType", "UploadItem");
     }
 
     public UploadItem(JavaScriptObject jsObj){
@@ -92,13 +92,13 @@ public class UploadItem extends TextItem {
 
     public UploadItem(String name) {
         setName(name);
-        setType("upload");
+        setAttribute("editorType", "UploadItem");
     }
 
     public UploadItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("upload");
+        setAttribute("editorType", "UploadItem");
     }
 
     // ********************* Properties / Attributes ***********************

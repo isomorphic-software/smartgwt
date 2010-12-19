@@ -79,7 +79,7 @@ public class SectionItem extends CanvasItem {
     }
 
     public SectionItem(){
-        setType("SectionItem");
+        setAttribute("editorType", "SectionItem");
     }
 
     public SectionItem(JavaScriptObject jsObj){
@@ -88,13 +88,13 @@ public class SectionItem extends CanvasItem {
 
     public SectionItem(String name) {
         setName(name);
-        setType("SectionItem");
+        setAttribute("editorType", "SectionItem");
     }
 
     public SectionItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("SectionItem");
+        setAttribute("editorType", "SectionItem");
     }
 
     // ********************* Properties / Attributes ***********************

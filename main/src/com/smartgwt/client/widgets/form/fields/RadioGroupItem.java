@@ -68,7 +68,7 @@ public class RadioGroupItem extends FormItem {
     }
 
     public RadioGroupItem(){
-        setType("radioGroup");
+        setAttribute("editorType", "RadioGroupItem");
     }
 
     public RadioGroupItem(JavaScriptObject jsObj){
@@ -77,13 +77,13 @@ public class RadioGroupItem extends FormItem {
 
     public RadioGroupItem(String name) {
         setName(name);
-        setType("radioGroup");
+        setAttribute("editorType", "RadioGroupItem");
     }
 
     public RadioGroupItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("radioGroup");
+        setAttribute("editorType", "RadioGroupItem");
     }
 
     // ********************* Properties / Attributes ***********************

@@ -70,7 +70,7 @@ public class FileItem extends CanvasItem {
     }
 
     public FileItem(){
-        setType("FileItem");
+        setAttribute("editorType", "FileItem");
     }
 
     public FileItem(JavaScriptObject jsObj){
@@ -79,13 +79,13 @@ public class FileItem extends CanvasItem {
 
     public FileItem(String name) {
         setName(name);
-        setType("FileItem");
+        setAttribute("editorType", "FileItem");
     }
 
     public FileItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("FileItem");
+        setAttribute("editorType", "FileItem");
     }
 
     // ********************* Properties / Attributes ***********************
