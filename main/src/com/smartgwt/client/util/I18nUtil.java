@@ -310,6 +310,7 @@ public class I18nUtil {
             $wnd.isc.FormulaBuilder.addProperties({cancelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_cancelButtonTitle()()});
             $wnd.isc.FormulaBuilder.addProperties({saveButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_saveButtonTitle()()});
             $wnd.isc.FormulaBuilder.addProperties({sampleHeaderTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_sampleHeaderTitle()()});
+            $wnd.isc.FormulaBuilder.addProperties({testButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_testButtonTitle()()});
         }
 
         if($wnd.isc.SummaryBuilder) {

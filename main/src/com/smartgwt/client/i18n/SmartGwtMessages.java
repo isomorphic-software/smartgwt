@@ -1177,6 +1177,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String formulaBuilder_sourceFieldColumnTitle();
 
   /**
+   * Translated "Test".
+   * 
+   * @return translated "Test"
+   */
+  @DefaultMessage("Test")
+  @Key("formulaBuilder_testButtonTitle")
+  String formulaBuilder_testButtonTitle();
+
+  /**
    * Translated "Title".
    * 
    * @return translated "Title"
