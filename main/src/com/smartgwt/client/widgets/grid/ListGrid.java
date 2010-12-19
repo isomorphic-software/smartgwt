@@ -4650,6 +4650,27 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * The CSS style name applied to the {@link com.smartgwt.client.widgets.grid.ListGrid#getOfflineMessage offlineMessage} if
+     * displayed.
+     *
+     * @param offlineMessageStyle offlineMessageStyle Default value is "offlineMessage"
+     */
+    public void setOfflineMessageStyle(String offlineMessageStyle) {
+        setAttribute("offlineMessageStyle", offlineMessageStyle, true);
+    }
+
+    /**
+     * The CSS style name applied to the {@link com.smartgwt.client.widgets.grid.ListGrid#getOfflineMessage offlineMessage} if
+     * displayed.
+     *
+     *
+     * @return String
+     */
+    public String getOfflineMessageStyle()  {
+        return getAttributeAsString("offlineMessageStyle");
+    }
+
+    /**
      * When {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordComponentPoolingMode recordComponentPoolingMode} is
      * "recycle" and you have components of  different types in different columns, set this property to true to ensure that 
      * components intended for one column are not recycled for use in another column that  should have a different component.
@@ -4945,14 +4966,16 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * if {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} is true, how should
      * the component appear within the cell. Valid options are  <ul><li><code>"within"</code>: the component will be rendered
      * inside the record / cell.  {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} may be set to specify where the
-     * component should render within  the row or cell. Note that if unset, the component will show up at the top/left edge 
-     * for components embedded within an entire row, or for per-cell components, cell  align and valign will be respected. 
-     * Note also that, when rendering components "within"  cells, specified component heights will be respected and will change
-     * the height of the   row.  However, if you want components to completely fill a cell at it's default height,   set
-     * height: "100%" or rows will render at the default height of the component. </li>  <li><code>"expand"</code>: the
-     * component will be written into the cell below the  normal cell content, causing the cell to expand vertically to
-     * accommodate it. <li><code>null</code>: If this attribute is unset, we will default to showing  recordComponents with
-     * position <code>"within"</code> if   {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponentsByCell
+     * component should render within  the row or cell, and {@link com.smartgwt.client.widgets.Canvas#getSnapOffsetTop
+     * snapOffsetTop} / {@link com.smartgwt.client.widgets.Canvas#getSnapOffsetLeft snapOffsetLeft} may  be set to indent
+     * recordComponents within their parent cells.  Note that if unset, the component will show up at the top/left edge  for
+     * components embedded within an entire row, or for per-cell components, cell  align and valign will be respected.  Note
+     * also that, when rendering components "within"  cells, specified component heights will be respected and will change the
+     * height of the   row.  However, if you want components to completely fill a cell at it's default height,   set height:
+     * "100%" or rows will render at the default height of the component. </li>  <li><code>"expand"</code>: the component will
+     * be written into the cell below the  normal cell content, causing the cell to expand vertically to accommodate it.
+     * <li><code>null</code>: If this attribute is unset, we will default to showing  recordComponents with position
+     * <code>"within"</code> if   {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponentsByCell
      * showRecordComponentsByCell} is true, otherwise using <code>"expand"</code>  logic. </ul>
      *
      * @param recordComponentPosition recordComponentPosition Default value is null
@@ -4966,14 +4989,16 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * if {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} is true, how should
      * the component appear within the cell. Valid options are  <ul><li><code>"within"</code>: the component will be rendered
      * inside the record / cell.  {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} may be set to specify where the
-     * component should render within  the row or cell. Note that if unset, the component will show up at the top/left edge 
-     * for components embedded within an entire row, or for per-cell components, cell  align and valign will be respected. 
-     * Note also that, when rendering components "within"  cells, specified component heights will be respected and will change
-     * the height of the   row.  However, if you want components to completely fill a cell at it's default height,   set
-     * height: "100%" or rows will render at the default height of the component. </li>  <li><code>"expand"</code>: the
-     * component will be written into the cell below the  normal cell content, causing the cell to expand vertically to
-     * accommodate it. <li><code>null</code>: If this attribute is unset, we will default to showing  recordComponents with
-     * position <code>"within"</code> if   {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponentsByCell
+     * component should render within  the row or cell, and {@link com.smartgwt.client.widgets.Canvas#getSnapOffsetTop
+     * snapOffsetTop} / {@link com.smartgwt.client.widgets.Canvas#getSnapOffsetLeft snapOffsetLeft} may  be set to indent
+     * recordComponents within their parent cells.  Note that if unset, the component will show up at the top/left edge  for
+     * components embedded within an entire row, or for per-cell components, cell  align and valign will be respected.  Note
+     * also that, when rendering components "within"  cells, specified component heights will be respected and will change the
+     * height of the   row.  However, if you want components to completely fill a cell at it's default height,   set height:
+     * "100%" or rows will render at the default height of the component. </li>  <li><code>"expand"</code>: the component will
+     * be written into the cell below the  normal cell content, causing the cell to expand vertically to accommodate it.
+     * <li><code>null</code>: If this attribute is unset, we will default to showing  recordComponents with position
+     * <code>"within"</code> if   {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponentsByCell
      * showRecordComponentsByCell} is true, otherwise using <code>"expand"</code>  logic. </ul>
      *
      *
@@ -6783,16 +6808,17 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             
     /**
      * Attaches the component to the provided record. If <code>position</code> is specified as  <code>"within"</code> {@link
-     * com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} may be set to specify where the component will render within the
-     * cell or record. If unset, for components embedded within a record we will default to embedding at the top/left
-     * coordinate, and for components embedded within a cell, we will respect the align / valign properties for the cell in
-     * question. Any  percentage sizing will be interpreted as percentage of row size. <P> Otherwise it will appear to be
-     * embedded within the record, underneath the field values. <P> Embedded components become children of the grid and will
-     * stay attached to a record through scrolling, sorting and other operations that cause records to shift position. <P> If
-     * <code>position</code> is set to <code>"expand"</code>, embedded components may offer a resize interface, eg, by setting
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#getCanDragResize canDragResize}:true, and the grid will react
-     * accordingly, growing or shrinking the record to match the embedded component's new extents. <P> Embedded components can
-     * be explicitly removed with {@link com.smartgwt.client.widgets.grid.ListGrid#removeEmbeddedComponent
+     * com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} and {@link com.smartgwt.client.widgets.Canvas#getSnapOffsetLeft
+     * snapOffsetLeft},  {@link com.smartgwt.client.widgets.Canvas#getSnapOffsetTop snapOffsetTop} may be set to specify where
+     * the component will render within the cell or record. If unset, for components embedded within a record we will default
+     * to embedding at the top/left coordinate, and for components embedded within a cell, we will respect the align / valign
+     * properties for the cell in question. Any  percentage sizing will be interpreted as percentage of row size. <P> Otherwise
+     * it will appear to be embedded within the record, underneath the field values. <P> Embedded components become children of
+     * the grid and will stay attached to a record through scrolling, sorting and other operations that cause records to shift
+     * position. <P> If <code>position</code> is set to <code>"expand"</code>, embedded components may offer a resize
+     * interface, eg, by setting {@link com.smartgwt.client.widgets.grid.ListGrid#getCanDragResize canDragResize}:true, and the
+     * grid will react accordingly, growing or shrinking the record to match the embedded component's new extents. <P> Embedded
+     * components can be explicitly removed with {@link com.smartgwt.client.widgets.grid.ListGrid#removeEmbeddedComponent
      * ListGrid.removeEmbeddedComponent}. <P> If a record is removed from the dataset or is replaced in the dataset, for
      * example, it is eliminated through filtering (removes record) or is successfully edited in a databound grid (replaces
      * record), the component is cleared but not logically removed from the grid. It is the responsibility of code that sets up
@@ -6809,16 +6835,17 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Attaches the component to the provided record. If <code>position</code> is specified as  <code>"within"</code> {@link
-     * com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} may be set to specify where the component will render within the
-     * cell or record. If unset, for components embedded within a record we will default to embedding at the top/left
-     * coordinate, and for components embedded within a cell, we will respect the align / valign properties for the cell in
-     * question. Any  percentage sizing will be interpreted as percentage of row size. <P> Otherwise it will appear to be
-     * embedded within the record, underneath the field values. <P> Embedded components become children of the grid and will
-     * stay attached to a record through scrolling, sorting and other operations that cause records to shift position. <P> If
-     * <code>position</code> is set to <code>"expand"</code>, embedded components may offer a resize interface, eg, by setting
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#getCanDragResize canDragResize}:true, and the grid will react
-     * accordingly, growing or shrinking the record to match the embedded component's new extents. <P> Embedded components can
-     * be explicitly removed with {@link com.smartgwt.client.widgets.grid.ListGrid#removeEmbeddedComponent
+     * com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} and {@link com.smartgwt.client.widgets.Canvas#getSnapOffsetLeft
+     * snapOffsetLeft},  {@link com.smartgwt.client.widgets.Canvas#getSnapOffsetTop snapOffsetTop} may be set to specify where
+     * the component will render within the cell or record. If unset, for components embedded within a record we will default
+     * to embedding at the top/left coordinate, and for components embedded within a cell, we will respect the align / valign
+     * properties for the cell in question. Any  percentage sizing will be interpreted as percentage of row size. <P> Otherwise
+     * it will appear to be embedded within the record, underneath the field values. <P> Embedded components become children of
+     * the grid and will stay attached to a record through scrolling, sorting and other operations that cause records to shift
+     * position. <P> If <code>position</code> is set to <code>"expand"</code>, embedded components may offer a resize
+     * interface, eg, by setting {@link com.smartgwt.client.widgets.grid.ListGrid#getCanDragResize canDragResize}:true, and the
+     * grid will react accordingly, growing or shrinking the record to match the embedded component's new extents. <P> Embedded
+     * components can be explicitly removed with {@link com.smartgwt.client.widgets.grid.ListGrid#removeEmbeddedComponent
      * ListGrid.removeEmbeddedComponent}. <P> If a record is removed from the dataset or is replaced in the dataset, for
      * example, it is eliminated through filtering (removes record) or is successfully edited in a databound grid (replaces
      * record), the component is cleared but not logically removed from the grid. It is the responsibility of code that sets up
@@ -8983,7 +9010,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         if(self.__showRecordComponent === undefined) {
            self.__showRecordComponent = function(record, col) {return true;}
         }
-
         self.showRecordComponent = $entry(function (record, colNum) {
     		var jObj = this.__ref;
     		var recordJ =  @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);

@@ -65,15 +65,12 @@ import com.google.gwt.event.shared.HasHandlers;
  * Hibernate&#010 queries (<b>Note:</b> The server-side AdvancedCriteria handling feature is only available &#010 with the
  * <b>Power</b> and <b>Enterprise</b> Editions of Smart GWT; the Pro Edition is &#010 limited to ordinary criteria handling
  * on the server side).<p>&#010 If the entire dataset is cached locally, Smart GWT can perform AdvancedCriteria filtering
- * &#010 on the client, avoiding a server call.&#010 <P>&#010 An AdvancedCriteria is an ordinary JavaScript object which
- * can be created directly&#010 with JavaScript literal notation.  For example:&#010 <pre>&#010 var advancedCriteria =
- * {&#010        _constructor:"AdvancedCriteria",&#010        operator:"and",&#010        criteria:[&#010            //
- * this is a Criterion&#010            { fieldName:"salary", operator:"lessThan", value:"80000" },&#010            {
- * operator:"or", criteria:[&#010                  { fieldName:"title", operator:"iContains", value:"Manager" },&#010      
- * { fieldName:"reports", operator:"notNull" }&#010              ]  &#010            }&#010        ]&#010    }&#010
- * </pre>&#010 An AdvancedCriteria is in effect a {@link com.smartgwt.client.data.Criterion} that has been marked with
- * &#010 _constructor:"AdvancedCriteria" to mark it as complete criteria.&#010 <P>&#010 In addition to building a raw
- * AdvancedCriteria object as described above, the&#010 {@link com.smartgwt.client.data.DataSource#convertCriteria
+ * &#010 on the client, avoiding a server call.&#010 <P>&#010 &#010 &#010 AdvancedCriteria objects can be created directly
+ * in java. For example:&#010 <pre>&#010 AdvancedCriteria criteria = new AdvancedCriteria(OperatorId.AND, new
+ * Criterion[]{&#010     new Criterion("salary", OperatorId.LESS_THAN, 8000),&#010     new AdvancedCriteria(OperatorId.OR,
+ * new Criterion[]{&#010         new Criterion("title", OperatorId.ICONTAINS, "Manager"),&#010         new
+ * Criterion("reports", OperatorId.NOT_NULL)&#010     })&#010 });&#010 </pre>&#010 &#010 <P>&#010 In addition to building a
+ * raw AdvancedCriteria object as described above, the&#010 {@link com.smartgwt.client.data.DataSource#convertCriteria
  * DataSource.convertCriteria} and {@link com.smartgwt.client.data.DataSource#combineCriteria DataSource.combineCriteria}
  * methods&#010 may be used to create and modify criteria based on simple fieldName / value mappings.&#010 <P>&#010 When
  * passed to the Smart GWT Server, AdvancedCriteria are automatically translated&#010 to Java Objects, identically to other
