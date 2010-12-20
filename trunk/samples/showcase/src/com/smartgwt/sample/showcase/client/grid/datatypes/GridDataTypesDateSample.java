@@ -52,9 +52,7 @@ public class GridDataTypesDateSample extends ShowcasePanel {
         countryCodeField.setCanEdit(false);
         ListGridField nameField = new ListGridField("countryName", "Country", 150);
         ListGridField independenceField = new ListGridField("independence", "Nationhood", 225);
-        DateItem dateItem = new DateItem();
-        dateItem.setUseTextField(false);
-        independenceField.setEditorType(dateItem);
+        independenceField.setType(ListGridFieldType.DATE);
         
         countryGrid.setFields(new ListGridField[] {countryCodeField, nameField, independenceField});
         
