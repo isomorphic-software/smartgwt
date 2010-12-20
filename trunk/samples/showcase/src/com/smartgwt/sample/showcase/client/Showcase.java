@@ -193,11 +193,13 @@ public class Showcase implements EntryPoint, HistoryListener {
         valueMap.put("EnterpriseBlue", "Enterprise Blue");
         valueMap.put("Enterprise", "Enterprise Gray");
         valueMap.put("Graphite", "Graphite");
+        valueMap.put("Simplicity", "Simplicity");
 
 
         selectItem.setValueMap(valueMap);
 
-        String currentSkin = Cookies.getCookie("skin_name_2_2");
+        final String skinCookieName = "skin_name_2_4";
+        String currentSkin = Cookies.getCookie(skinCookieName);
         if (currentSkin == null) {
             currentSkin = "Enterprise";
         }
@@ -205,7 +207,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         selectItem.setShowTitle(false);
         selectItem.addChangeHandler(new ChangeHandler() {
             public void onChange(ChangeEvent event) {
-                Cookies.setCookie("skin_name_2_2", (String) event.getValue());
+                Cookies.setCookie(skinCookieName, (String) event.getValue());
                 com.google.gwt.user.client.Window.Location.reload();
             }
         });

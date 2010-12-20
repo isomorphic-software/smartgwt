@@ -88,7 +88,6 @@ public abstract class ShowcasePanel extends VLayout {
             Window introWindow = new Window();
             introWindow.setTitle("Overview");
             introWindow.setHeaderIcon("pieces/16/cube_green.png", 16, 16);
-            introWindow.setShowEdges(true);
             introWindow.setKeepInParentRect(true);
 
             String introContents = "<p class='intro-para'>" + intro + "</p>";
