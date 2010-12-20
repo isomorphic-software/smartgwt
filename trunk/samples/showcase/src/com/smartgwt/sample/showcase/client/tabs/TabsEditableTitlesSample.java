@@ -102,6 +102,7 @@ public class TabsEditableTitlesSample extends ShowcasePanel {
                 Tab tab = event.getTab();
                 if (tab.equals(validatedTab) && (event.getNewTitle() == null || !event.getNewTitle().substring(0, 4).equals("123-"))) {
                     SC.warn("Tab title must start with the prefix \"123-\"");
+                    event.cancel();
                 }
             }
         });
