@@ -73,7 +73,9 @@ public class GridPredefinedHilitingSample extends ShowcasePanel {
                 setId("1");
             }}
     };
-    
+
+    private ListGrid countryGrid;
+
     public Canvas getViewPanel() {
 
         final VLayout layout = new VLayout(10);
@@ -81,13 +83,14 @@ public class GridPredefinedHilitingSample extends ShowcasePanel {
 
         HLayout hLayout = new HLayout(10);
 
+        countryGrid = createListGrid(true);
+
         IButton editHilitesButton = new IButton("Edit Hilites");
         editHilitesButton.setAutoFit(true);
         editHilitesButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                ListGrid listGrid = (ListGrid) Canvas.getById("countryListPD");
-                listGrid.editHilites();
+                countryGrid.editHilites();
             }
         });
 
@@ -96,9 +99,8 @@ public class GridPredefinedHilitingSample extends ShowcasePanel {
         stateButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                ListGrid listGrid = (ListGrid) Canvas.getById("countryListPD");
-                final String hiliteState = listGrid.getHiliteState();
-                listGrid.destroy();
+                final String hiliteState = countryGrid.getHiliteState();
+                countryGrid.destroy();
 
                 //recreate the ListGrid
                 //don't include the hilite array in the create statement to demonstrate
@@ -117,7 +119,7 @@ public class GridPredefinedHilitingSample extends ShowcasePanel {
 
         layout.addMember(hLayout);
 
-        ListGrid countryGrid = createListGrid(true);
+
         layout.addMember(countryGrid);
         return layout;
 
@@ -126,7 +128,6 @@ public class GridPredefinedHilitingSample extends ShowcasePanel {
     private ListGrid createListGrid(boolean includeHilites) {
 
         final ListGrid countryGrid = new ListGrid();
-        countryGrid.setID("countryListPD");
         countryGrid.setLeaveScrollbarGap(true);
 
         countryGrid.setWidth(750);

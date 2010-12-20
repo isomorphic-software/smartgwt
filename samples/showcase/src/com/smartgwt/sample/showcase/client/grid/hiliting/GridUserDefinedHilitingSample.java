@@ -1,16 +1,12 @@
 package com.smartgwt.sample.showcase.client.grid.hiliting;
 
 import com.google.gwt.i18n.client.NumberFormat;
-import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.ListGridFieldType;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
-import com.smartgwt.client.widgets.events.DrawEvent;
-import com.smartgwt.client.widgets.events.DrawHandler;
 import com.smartgwt.client.widgets.grid.CellFormatter;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
@@ -19,7 +15,6 @@ import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
 import com.smartgwt.sample.showcase.client.data.CountryXmlDS;
 
 public class GridUserDefinedHilitingSample extends ShowcasePanel {
@@ -63,20 +58,22 @@ public class GridUserDefinedHilitingSample extends ShowcasePanel {
         return true;
     }
 
-    public Canvas getViewPanel() {
+    private ListGrid countryGrid;
 
+    public Canvas getViewPanel() {
         final VLayout layout = new VLayout(10);
         layout.setAutoHeight();
         
         HLayout hLayout = new HLayout(10);
+
+        countryGrid = createListGrid();
 
         IButton editHilitesButton = new IButton("Edit Hilites");
         editHilitesButton.setAutoFit(true);
         editHilitesButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                ListGrid listGrid = (ListGrid) Canvas.getById("countryListUD");
-                listGrid.editHilites();
+                countryGrid.editHilites();
             }
         });
 
@@ -85,9 +82,8 @@ public class GridUserDefinedHilitingSample extends ShowcasePanel {
         stateButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                ListGrid listGrid = (ListGrid) Canvas.getById("countryListUD");
-                final String hiliteState = listGrid.getHiliteState();
-                listGrid.destroy();
+                final String hiliteState = countryGrid.getHiliteState();
+                countryGrid.destroy();
 
                 //recreate the ListGrid
                 final ListGrid newListGrid = createListGrid();
@@ -103,7 +99,7 @@ public class GridUserDefinedHilitingSample extends ShowcasePanel {
         
         layout.addMember(hLayout);
 
-        ListGrid countryGrid = createListGrid();
+
         layout.addMember(countryGrid);
         return layout;
 
@@ -112,7 +108,6 @@ public class GridUserDefinedHilitingSample extends ShowcasePanel {
     private ListGrid createListGrid() {
 
         final ListGrid countryGrid = new ListGrid();
-        countryGrid.setID("countryListUD");
         countryGrid.setLeaveScrollbarGap(true);
 
         countryGrid.setWidth(750);
