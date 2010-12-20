@@ -289,15 +289,16 @@ if (!(isc.loadSkin || window.loadSkin)) {
 	</target>
 
 	<target name="upload-trans">
-		<taskdef name="trans-upload" classname="UploadTask" classpath="ant-trans.jar"/>
-		<trans-upload api="95973293031" translationFile="SmartGwtMessages.properties" file="test.properties" />		
+		<taskdef name="trans-upload" classname="UploadTask" classpath="${smartgwt.tools.lib}/ant-trans/ant-trans.jar"/>
+		<property name="i18n.dir" value="${smartgwt.root}/main/src/com/smartgwt/client/i18n"/>		
+		<trans-upload api="" translationFile="SmartGwtMessages_ar.properties" file="${i18n.dir}/SmartGwtMessages_ar.properties" />
 	</target>
 
 	<target name="download-trans">
 		<taskdef name="trans-download" classname="DownloadTask" classpath="${smartgwt.tools.lib}/ant-trans/ant-trans.jar"/>
 		
 		<property name="i18n.dir" value="${smartgwt.root}/main/src/com/smartgwt/client/i18n"/>
-		<property name="trans.api" value="95973293031"/>
+		<property name="trans.api" value=""/>
 				
 		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_ba.properties" locale="ba" />		
 		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_cr.properties" locale="cr" />
@@ -323,7 +324,12 @@ if (!(isc.loadSkin || window.loadSkin)) {
 		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_ja.properties" locale="ja" />
 		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_es.properties" locale="es" />
 		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_pl_PL.properties" locale="pl_PL" />
-		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_id.properties" locale="id" /> 	
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_id.properties" locale="id" />
+        <trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_zh_TW.properties" locale="zh_TW" />
+        <trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_hu_HU.properties" locale="hu_HU" />
+        <trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_ar.properties" locale="ar" />
+        <trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_uk_UA.properties" locale="uk_UA" />
+        <trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_sv_SE.properties" locale="sv_SE" />
 	</target>
 				
 </project>
