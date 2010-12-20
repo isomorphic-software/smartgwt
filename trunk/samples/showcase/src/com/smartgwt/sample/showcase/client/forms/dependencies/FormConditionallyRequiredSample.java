@@ -2,9 +2,11 @@ package com.smartgwt.sample.showcase.client.forms.dependencies;
 
 import com.smartgwt.client.types.TitleOrientation;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.form.DynamicForm;
-import com.smartgwt.client.widgets.form.fields.*;
+import com.smartgwt.client.widgets.form.fields.ButtonItem;
+import com.smartgwt.client.widgets.form.fields.FormItem;
+import com.smartgwt.client.widgets.form.fields.RadioGroupItem;
+import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.form.fields.events.ClickEvent;
 import com.smartgwt.client.widgets.form.validator.RequiredIfFunction;
 import com.smartgwt.client.widgets.form.validator.RequiredIfValidator;
@@ -38,12 +40,6 @@ public class FormConditionallyRequiredSample extends ShowcasePanel {
         form.setWidth(250);
         form.setTitleOrientation(TitleOrientation.TOP);
 
-        ToolbarItem toolbarItem = new ToolbarItem();
-        
-        IButton button = new IButton("First");        
-        IButton button2 = new IButton("Second");        
-        toolbarItem.setButtons(button, button2);
-
         final RadioGroupItem radioGroupItem = new RadioGroupItem();
         radioGroupItem.setName("willAttend");
         radioGroupItem.setColSpan("*");
@@ -74,7 +70,7 @@ public class FormConditionallyRequiredSample extends ShowcasePanel {
             }
         });
 
-        form.setFields(toolbarItem, radioGroupItem, textItem, buttonItem);
+        form.setFields(radioGroupItem, textItem, buttonItem);
         return form;
     }
 
