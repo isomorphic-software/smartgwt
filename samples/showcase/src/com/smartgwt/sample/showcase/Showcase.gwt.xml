@@ -12,73 +12,46 @@
     <inherits name="com.smartclient.theme.enterprise.EnterpriseResources"/>
     <inherits name="com.smartclient.theme.enterpriseblue.EnterpriseBlueResources"/>
     <inherits name="com.smartclient.theme.graphite.GraphiteResources"/>
+    <inherits name="com.smartclient.theme.simplicity.SimplicityResources"/>
 
     <entry-point class='com.smartgwt.sample.showcase.client.Showcase'/>
 
-    <!-- english language, independent of country -->
+
+
+  <!-- Internationalization support. Uncomment to enable i18n to these locales -->
+
+<!--
     <extend-property name="locale" values="en"/>
-
-
-<!--german-->
-<!--
+    <extend-property name="locale" values="ba"/>
+    <extend-property name="locale" values="cr"/>
+    <extend-property name="locale" values="cs"/>
     <extend-property name="locale" values="de"/>
-
-    -->
-<!--french in france -->
-<!--
-    <extend-property name="locale" values="fr_FR"/>
-
-    -->
-<!--greek (hellenic)-->
-<!--
     <extend-property name="locale" values="el"/>
-
-    -->
-<!--spanish -->
-<!--
     <extend-property name="locale" values="es"/>
-
-    -->
-<!--norwegian bokmal / norway-->
-<!--
-    <extend-property name="locale" values="es"/>
-
-    -->
-<!--polish-->
-<!--
-    <extend-property name="locale" values="pl"/>
-
-    -->
-<!--portuguese-->
-<!--
-    <extend-property name="locale" values="pt"/>
-
-    -->
-<!--russian / russia-->
-<!--
-    <extend-property name="locale" values="ru_RU"/>
-
-    -->
-<!--chinese / china-->
-<!--
-    <extend-property name="locale" values="zh_CN"/>
-
-    -->
-<!--italian -->
-<!--
+    <extend-property name="locale" values="fi"/>
+    <extend-property name="locale" values="fr_FR"/>
     <extend-property name="locale" values="it"/>
-
-    -->
-<!--romanian / romania -->
-<!--
-    <extend-property name="locale" values="ro_RO"/>
-
-    -->
-<!--portuguese / brazil-->
-<!--
+    <extend-property name="locale" values="nb_NO"/>
+    <extend-property name="locale" values="nl"/>
+    <extend-property name="locale" values="pl"/>
+    <extend-property name="locale" values="pt"/>
     <extend-property name="locale" values="pt_BR"/>
-
-    -->
+    <extend-property name="locale" values="ro_RO"/>
+    <extend-property name="locale" values="ru_RU"/>
+    <extend-property name="locale" values="sk"/>
+    <extend-property name="locale" values="sr"/>
+    <extend-property name="locale" values="sr_Latn"/>
+    <extend-property name="locale" values="zh_CN"/>
+    <extend-property name="locale" values="ja"/>
+    <extend-property name="locale" values="pl_PL"/>
+    <extend-property name="locale" values="id"/>
+    <extend-property name="locale" values="zh_TW"/>
+    <extend-property name="locale" values="hu_HU"/>
+    <extend-property name="locale" values="ar"/>
+    <extend-property name="locale" values="fr"/>
+    <extend-property name="locale" values="uk_AU"/>    
+    <extend-property name="locale" values="sv_SE"/>    
+-->
 
 
 </module>

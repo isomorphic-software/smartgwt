@@ -64,7 +64,7 @@ public class TabsEditableTitlesSample extends ShowcasePanel {
         final TabSet tabSet = new TabSet();
         tabSet.setTabBarPosition(Side.TOP);
         tabSet.setTabBarAlign(Side.LEFT);
-        tabSet.setWidth(400);
+        tabSet.setWidth(500);
         tabSet.setHeight(200);
 
         tabSet.setCanEditTabTitles(true);
