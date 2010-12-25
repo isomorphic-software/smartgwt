@@ -101,6 +101,27 @@ public class IMenuButton extends StretchImgButton {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * If this menuButton is {@link com.smartgwt.client.widgets.Canvas#destroy destroyed}, should it also destroy its {@link
+     * com.smartgwt.client.widgets.menu.MenuButton#getMenu menu}?
+     *
+     * @param autoDestroyMenu autoDestroyMenu Default value is true
+     */
+    public void setAutoDestroyMenu(Boolean autoDestroyMenu) {
+        setAttribute("autoDestroyMenu", autoDestroyMenu, true);
+    }
+
+    /**
+     * If this menuButton is {@link com.smartgwt.client.widgets.Canvas#destroy destroyed}, should it also destroy its {@link
+     * com.smartgwt.client.widgets.menu.MenuButton#getMenu menu}?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAutoDestroyMenu()  {
+        return getAttributeAsBoolean("autoDestroyMenu");
+    }
+
+    /**
      * If this MenuButton has a specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, underline it in
      * the title of the button by default
      *
