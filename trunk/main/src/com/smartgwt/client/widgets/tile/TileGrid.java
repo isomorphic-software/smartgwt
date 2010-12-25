@@ -142,6 +142,65 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     /**
+     * Indicates whether records can be dropped into this TileGrid.
+     *
+     * @param canAcceptDroppedRecords canAcceptDroppedRecords Default value is false
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_move_list" target="examples">Drag list (move) Example</a>
+     */
+    public void setCanAcceptDroppedRecords(Boolean canAcceptDroppedRecords) {
+        setAttribute("canAcceptDroppedRecords", canAcceptDroppedRecords, true);
+    }
+
+    /**
+     * Indicates whether records can be dropped into this TileGrid.
+     *
+     *
+     * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_move_list" target="examples">Drag list (move) Example</a>
+     */
+    public Boolean getCanAcceptDroppedRecords()  {
+        return getAttributeAsBoolean("canAcceptDroppedRecords");
+    }
+
+    /**
+     * Indicates whether tiles can be dragged from this tileGrid and dropped elsewhere.
+     *
+     * @param canDragTilesOut canDragTilesOut Default value is false
+     */
+    public void setCanDragTilesOut(Boolean canDragTilesOut) {
+        setAttribute("canDragTilesOut", canDragTilesOut, true);
+    }
+
+    /**
+     * Indicates whether tiles can be dragged from this tileGrid and dropped elsewhere.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanDragTilesOut()  {
+        return getAttributeAsBoolean("canDragTilesOut");
+    }
+
+    /**
+     * Indicates whether tiles can be reordered by dragging within this tileGrid.
+     *
+     * @param canReorderTiles canReorderTiles Default value is false
+     */
+    public void setCanReorderTiles(Boolean canReorderTiles) {
+        setAttribute("canReorderTiles", canReorderTiles, true);
+    }
+
+    /**
+     * Indicates whether tiles can be reordered by dragging within this tileGrid.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanReorderTiles()  {
+        return getAttributeAsBoolean("canReorderTiles");
+    }
+
+    /**
      * How many tiles should be present in a line when printing?
      *
      * @param printTilesPerLine printTilesPerLine Default value is null
