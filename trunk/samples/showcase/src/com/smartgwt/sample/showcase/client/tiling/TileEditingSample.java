@@ -4,6 +4,7 @@ import com.smartgwt.client.data.DSCallback;
 import com.smartgwt.client.data.DSRequest;
 import com.smartgwt.client.data.DSResponse;
 import com.smartgwt.client.data.Record;
+import com.smartgwt.client.types.DragAppearance;
 import com.smartgwt.client.types.SelectionStyle;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
@@ -57,9 +58,9 @@ public class TileEditingSample extends ShowcasePanel {
         tileGrid.setTileHeight(205);
         tileGrid.setHeight(400);
         tileGrid.setSelectionType(SelectionStyle.SINGLE);
-        tileGrid.setCanDrag(true);
-        tileGrid.setCanAcceptDrop(true);
+        tileGrid.setCanReorderTiles(true);
         tileGrid.setShowAllRecords(true);
+        tileGrid.setTileDragAppearance(DragAppearance.OUTLINE);
         tileGrid.setDataSource(AnimalXmlDS.getInstance());
 
         tileGrid.setAnimateTileChange(true);
