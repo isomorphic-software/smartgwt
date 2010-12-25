@@ -488,6 +488,27 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     }
 
     /**
+     * If true, sort controls will be shown on facet values. <P> When clicked, sort controls call {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#sortByFacetValues CubeGrid.sortByFacetValues}.
+     *
+     * @param canSortData canSortData Default value is null
+     */
+    public void setCanSortData(Boolean canSortData) {
+        setAttribute("canSortData", canSortData, true);
+    }
+
+    /**
+     * If true, sort controls will be shown on facet values. <P> When clicked, sort controls call {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#sortByFacetValues CubeGrid.sortByFacetValues}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanSortData()  {
+        return getAttributeAsBoolean("canSortData");
+    }
+
+    /**
      * If true, sort controls will be shown on FacetHeaders. <P> When clicked, sort controls call {@link
      * com.smartgwt.client.widgets.cube.CubeGrid#sortByFacetId CubeGrid.sortByFacetId}.
      *
@@ -1325,6 +1346,46 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     }
 
     /**
+     * Direction of sorting if sortedFacet or sortedFacetValues is specified.
+     *
+     * @param sortDirection sortDirection Default value is Array.ASCENDING
+     */
+    public void setSortDirection(SortDirection sortDirection) {
+        setAttribute("sortDirection", sortDirection.getValue(), true);
+    }
+
+    /**
+     * Direction of sorting if sortedFacet or sortedFacetValues is specified.
+     *
+     *
+     * @return SortDirection
+     */
+    public SortDirection getSortDirection()  {
+        return EnumUtil.getEnum(SortDirection.values(), getAttribute("sortDirection"));
+    }
+
+    /**
+     * {@link com.smartgwt.client.widgets.cube.FacetValueMap} of facet values representing a set of facetValues by which the
+     * cubeGrid data is sorted.
+     *
+     * @param sortedFacetValues sortedFacetValues Default value is null
+     */
+    public void setSortedFacetValues(FacetValueMap sortedFacetValues) {
+        setAttribute("sortedFacetValues", sortedFacetValues.getJsObj(), true);
+    }
+
+    /**
+     * {@link com.smartgwt.client.widgets.cube.FacetValueMap} of facet values representing a set of facetValues by which the
+     * cubeGrid data is sorted.
+     *
+     *
+     * @return FacetValueMap
+     */
+    public FacetValueMap getSortedFacetValues()  {
+        return new FacetValueMap(getAttributeAsJavaScriptObject("sortedFacetValues"));
+    }
+
+    /**
      * CSS class for the CubeGrid as a whole
      *
      * @param styleName styleName Default value is "normal"
@@ -1736,7 +1797,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
             obj.addProperties({fixedFacetValueChanged:$entry(function(){
-                        var param = {"facetId" : arguments[0], "facetValueid" : arguments[1]};
+                        var param = {"facetId" : arguments[0], "facetValueId" : arguments[1]};
                         var event = @com.smartgwt.client.widgets.cube.events.FixedFacetValueChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     })
@@ -1744,7 +1805,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
             obj.fixedFacetValueChanged = $entry(function(){
-                   var param = {"facetId" : arguments[0], "facetValueid" : arguments[1]};
+                   var param = {"facetId" : arguments[0], "facetValueId" : arguments[1]};
                    var event = @com.smartgwt.client.widgets.cube.events.FixedFacetValueChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                });
@@ -2155,6 +2216,26 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     public native void setFixedFacetValue(String facetId, String fixedFacetValueId) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setFixedFacetValue(facetId, fixedFacetValueId);
+    }-*/;
+            
+    /**
+     * Called when a sort control is clicked on a FacetHeader.  Does nothing by default.
+     * @param facetId ID of facet to sort
+     * @param sortDirection true for ascending
+     */
+    public native void sortByFacetId(String facetId, boolean sortDirection) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.sortByFacetId(facetId, sortDirection);
+    }-*/;
+            
+    /**
+     * Called when a sort control is clicked on a FacetValueHeader.  Does nothing by default.
+     * @param facetValues facetValues to sort
+     * @param sortDirection true for ascending
+     */
+    public native void sortByFacetValues(FacetValueMap facetValues, boolean sortDirection) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.sortByFacetValues(facetValues.@com.smartgwt.client.core.DataClass::getJsObj()(), sortDirection);
     }-*/;
 
     // ********************* Static Methods ***********************

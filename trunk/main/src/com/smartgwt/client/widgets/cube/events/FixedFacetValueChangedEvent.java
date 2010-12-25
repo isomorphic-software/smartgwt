@@ -127,9 +127,9 @@ public class FixedFacetValueChangedEvent extends BrowserEvent<FixedFacetValueCha
      *
      * @return new fixed facet value
      */
-    public  native String getFacetValueid() /*-{
+    public  native String getFacetValueId() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.facetValueid;
+        return jsObj.facetValueId;
     }-*/;
 
 
