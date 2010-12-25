@@ -21,6 +21,9 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getResizeFieldsInRealTime
  * @see com.smartgwt.client.widgets.grid.ListGrid#getDragDataAction
  * @see com.smartgwt.client.widgets.tile.TileLayout#getDragDataAction
+ * @see com.smartgwt.client.widgets.tile.TileGrid#getCanReorderTiles
+ * @see com.smartgwt.client.widgets.tile.TileGrid#getCanDragTilesOut
+ * @see com.smartgwt.client.widgets.tile.TileGrid#getCanAcceptDroppedRecords
  * @see com.smartgwt.client.widgets.tile.TileGrid#getDragDataAction
  */
 public interface Dragging {

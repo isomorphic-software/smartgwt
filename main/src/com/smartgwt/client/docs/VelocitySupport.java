@@ -12,13 +12,14 @@ package com.smartgwt.client.docs;
  * this value will be&#010 identical to <b>$currentDate</b></li>&#010 <li><b>$servletRequest</b>. The associated
  * <code>HttpServletRequest</code></li> &#010 <li><b>$dsRequest</b>. The associated {@link
  * com.smartgwt.client.data.DSRequest} (though of course this is a&#010 server-side <code>DSRequest</code> object, so
- * please also see the server-side Javadocs)</li> &#010 <li><b>$session</b>. The associated
- * <code>HttpSession</code></li>&#010 <li><b>$httpParameters</b>. This variable gives you access to the parameters Map of
- * the &#010 associated <code>HttpServletRequest</code>; it is an alternate form of &#010
- * <code>$servletRequest.getParameter</code></li>&#010 <li><b>$requestAttributes</b>. This variable gives you access to the
- * attributes Map of the &#010 associated <code>HttpServletRequest</code>; it is an alternate form of &#010
- * <code>$servletRequest.getAttribute</code></li>&#010 <li><b>$sessionAttributes</b>. This variable gives you access to the
- * attributes Map of the &#010 associated <code>HttpSession</code>; it is an alternate form of &#010
+ * please also see the server-side Javadocs)</li> &#010 <li><b>$primaryDSRequest</b>. Only present on cache-sync
+ * operations, this is the original&#010 update <code>DSRequest</code> that caused the cache-sync request to be
+ * created</li> &#010 <li><b>$session</b>. The associated <code>HttpSession</code></li>&#010 <li><b>$httpParameters</b>.
+ * This variable gives you access to the parameters Map of the &#010 associated <code>HttpServletRequest</code>; it is an
+ * alternate form of &#010 <code>$servletRequest.getParameter</code></li>&#010 <li><b>$requestAttributes</b>. This variable
+ * gives you access to the attributes Map of the &#010 associated <code>HttpServletRequest</code>; it is an alternate form
+ * of &#010 <code>$servletRequest.getAttribute</code></li>&#010 <li><b>$sessionAttributes</b>. This variable gives you
+ * access to the attributes Map of the &#010 associated <code>HttpSession</code>; it is an alternate form of &#010
  * <code>$session.getAttribute</code></li>&#010 <li><b>$dataSources</b>. This variable gives you access to Smart GWT {@link
  * com.smartgwt.client.data.DataSource}s.  &#010 You access a dataSource by suffixing its name to the
  * <code>$dataSources</code> designation.&#010 For example, <code>$dataSources.supplyItem</code> refers to the DataSource
