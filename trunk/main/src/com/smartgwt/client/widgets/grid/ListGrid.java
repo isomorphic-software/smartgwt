@@ -466,7 +466,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldWidths autoFitFieldWidths} is enabled and the
      * calculated field sizes are wide enough that horizontal scrolling would be introduced, this attribute may be set to an
-     * array of fieldNames, causing those fields to be clipped rather than forcing horizontal scrollbars to appear.
+     * array of fieldNames, causing those fields to be clipped rather than forcing horizontal scrollbars to appear. <P> Note:
+     * If any {@link com.smartgwt.client.widgets.grid.ListGridField#getFrozen frozen columns} are included in this list they
+     * will not be clipped.
      *
      * @param autoFitClipFields autoFitClipFields Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -478,7 +480,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldWidths autoFitFieldWidths} is enabled and the
      * calculated field sizes are wide enough that horizontal scrolling would be introduced, this attribute may be set to an
-     * array of fieldNames, causing those fields to be clipped rather than forcing horizontal scrollbars to appear.
+     * array of fieldNames, causing those fields to be clipped rather than forcing horizontal scrollbars to appear. <P> Note:
+     * If any {@link com.smartgwt.client.widgets.grid.ListGridField#getFrozen frozen columns} are included in this list they
+     * will not be clipped.
      *
      *
      * @return String
@@ -492,7 +496,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldsFillViewport autoFitFieldsFillViewport} are enabled and
      * auto-fitting will not fill all available horizontal space. <P> If unset, will default to the text field with the longest
      * {@link com.smartgwt.client.data.DataSourceField#getLength length} if length is set, otherwise, the first text field with
-     * no width specified.
+     * no width specified. <P> Note that expanding {@link com.smartgwt.client.widgets.grid.ListGridField#getFrozen frozen
+     * columns} is not supported.
      *
      * @param autoFitExpandField autoFitExpandField Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -506,7 +511,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldsFillViewport autoFitFieldsFillViewport} are enabled and
      * auto-fitting will not fill all available horizontal space. <P> If unset, will default to the text field with the longest
      * {@link com.smartgwt.client.data.DataSourceField#getLength length} if length is set, otherwise, the first text field with
-     * no width specified.
+     * no width specified. <P> Note that expanding {@link com.smartgwt.client.widgets.grid.ListGridField#getFrozen frozen
+     * columns} is not supported.
      *
      *
      * @return String
@@ -545,7 +551,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * auto-fitting all field widths will not take up all the horizontal space available in the viewport, should a field be
      * expanded wider than it's calculated auto-fit-width to fill the available space and avoid leaving a gap. <P> If true, the
      * field to expand may be specified via {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitExpandField
-     * autoFitExpandField}
+     * autoFitExpandField} <P> Note this logic will not expand a {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getFrozen frozen column}.
      *
      * @param autoFitFieldsFillViewport autoFitFieldsFillViewport Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -559,7 +566,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * auto-fitting all field widths will not take up all the horizontal space available in the viewport, should a field be
      * expanded wider than it's calculated auto-fit-width to fill the available space and avoid leaving a gap. <P> If true, the
      * field to expand may be specified via {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitExpandField
-     * autoFitExpandField}
+     * autoFitExpandField} <P> Note this logic will not expand a {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getFrozen frozen column}.
      *
      *
      * @return Boolean
@@ -600,9 +608,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * values, titles  or both. This property may also be overridden on a per field basis. <P> If  width is also set on the
      * field, it will be taken as a minimum width. {@link com.smartgwt.client.widgets.grid.ListGrid#getMinFieldWith
      * minFieldWith} will also be respected. <P> Autofitting will be performed: <ul>  <li> whenever the dataset is completely
-     * changed or rows are added or removed  <li> whenever a field which is autofitting is changed </ul> Autofitting behavior
-     * continues until the user resizes the field manually, at which point it stops. The user can also perform a one-time
-     * auto-fit of fields via the header context menu if {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAutoFitFields
+     * changed or rows are added or removed  <li> whenever a field which is autofitting is changed  <li> on a manual call to
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#autoFitField ListGrid.autoFitField} or       {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#autoFitFields ListGrid.autoFitFields} </ul> Autofitting behavior continues
+     * until the user resizes the field manually, at which point it stops. The user can also perform a one-time auto-fit of
+     * fields via the header context menu if {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAutoFitFields
      * canAutoFitFields} is enabled. <P> When autofitting to column values, {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getDefaultFieldWidth ListGrid.getDefaultFieldWidth} will be called to
      * determine the space required for a field's values. This method uses values from the rendered set of rows to calculate
@@ -636,9 +646,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * values, titles  or both. This property may also be overridden on a per field basis. <P> If  width is also set on the
      * field, it will be taken as a minimum width. {@link com.smartgwt.client.widgets.grid.ListGrid#getMinFieldWith
      * minFieldWith} will also be respected. <P> Autofitting will be performed: <ul>  <li> whenever the dataset is completely
-     * changed or rows are added or removed  <li> whenever a field which is autofitting is changed </ul> Autofitting behavior
-     * continues until the user resizes the field manually, at which point it stops. The user can also perform a one-time
-     * auto-fit of fields via the header context menu if {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAutoFitFields
+     * changed or rows are added or removed  <li> whenever a field which is autofitting is changed  <li> on a manual call to
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#autoFitField ListGrid.autoFitField} or       {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#autoFitFields ListGrid.autoFitFields} </ul> Autofitting behavior continues
+     * until the user resizes the field manually, at which point it stops. The user can also perform a one-time auto-fit of
+     * fields via the header context menu if {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAutoFitFields
      * canAutoFitFields} is enabled. <P> When autofitting to column values, {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getDefaultFieldWidth ListGrid.getDefaultFieldWidth} will be called to
      * determine the space required for a field's values. This method uses values from the rendered set of rows to calculate

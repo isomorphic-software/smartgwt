@@ -52,16 +52,17 @@ package com.smartgwt.client.docs;
  * <code>WEB-INF/classes</code> directory.  If you prefer, you can maintain&#010 these settings by directly editing that
  * file.  You should restart your servlet engine &#010 after changing this file.&#010 <p>&#010 For example, the following
  * settings are the defaults in a new Smart GWT installation for &#010 a MySQL server; they are approximately correct for a
- * MySQL server running on the same &#010 machine as the servlet engine and listening on the default MySQL port:<pre>&#010 
- * sql.Mysql.database.type: mysql&#010   sql.Mysql.database.ansiMode: false&#010   sql.Mysql.interface.type:
- * dataSource&#010   sql.Mysql.driver: com.mysql.jdbc.jdbc2.optional.MysqlDataSource&#010   # name of the database to
- * use&#010   sql.Mysql.driver.databaseName: isomorphic&#010   # hostname and port where the database server is
- * installed&#010   sql.Mysql.driver.serverName: localhost&#010   sql.Mysql.driver.portNumber: 3306&#010   # username and
- * password that can create and modify tables in that database&#010   # this user must have the following privileges for
- * the system to function&#010   # properly: create/alter/drop table; insert/update/replace/delete rows.&#010  
- * sql.Mysql.driver.user: root&#010   sql.Mysql.driver.password: &#010 </pre>&#010 Note the distinction here between
- * database <em>type</em> and database <em>name</em>.  Database&#010 type refers to the actual product - Oracle, DB2 or
- * whatever.  In the above example, database &#010 type is "mysql" (all lowercase) - the value of property
+ * MySQL server running on the same &#010 machine as the servlet engine and listening on the default MySQL port.  For
+ * details of what&#010 each of these properties means, check {@link com.smartgwt.client.docs.SqlSettings this
+ * page}.<pre>&#010   sql.Mysql.database.type: mysql&#010   sql.Mysql.database.ansiMode: false&#010  
+ * sql.Mysql.interface.type: dataSource&#010   sql.Mysql.driver: com.mysql.jdbc.jdbc2.optional.MysqlDataSource&#010   #
+ * name of the database to use&#010   sql.Mysql.driver.databaseName: isomorphic&#010   # hostname and port where the
+ * database server is installed&#010   sql.Mysql.driver.serverName: localhost&#010   sql.Mysql.driver.portNumber: 3306&#010
+ * # username and password that can create and modify tables in that database&#010   # this user must have the following
+ * privileges for the system to function&#010   # properly: create/alter/drop table; insert/update/replace/delete
+ * rows.&#010   sql.Mysql.driver.user: root&#010   sql.Mysql.driver.password: &#010 </pre>&#010 Note the distinction here
+ * between database <em>type</em> and database <em>name</em>.  Database&#010 type refers to the actual product - Oracle,
+ * DB2 or whatever.  In the above example, database &#010 type is "mysql" (all lowercase) - the value of property
  * <code>sql.Mysql.database.type</code>.&#010 Database type is very important.  The type of a given database connection
  * dictates whether&#010 features like SQL paging and transactions are supported; it even dictates the syntax of the &#010
  * SQL we generate.&#010 <p>&#010 Database name is just an arbitrary name for a particular database connection, and it

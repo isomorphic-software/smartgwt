@@ -61,7 +61,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * HTML5-based charting engine, implementing most  chartTypes of the Chart interface. <P> Can be used directly, or
  * specified as {@link com.smartgwt.client.widgets.grid.ListGrid#getChartConstructor chartConstructor} or {@link
  * com.smartgwt.client.widgets.cube.CubeGrid#getChartConstructor chartConstructor}. <P> In order to use this component, you
- * must load the Drawing module (ISC_Drawing.js) before loading the Analytics mdoule (ISC_Analytics.js).
+ * must load the Drawing module (ISC_Drawing.js) before loading the Analytics module (ISC_Analytics.js).
  */
 public class FacetChart extends Canvas {
 
@@ -177,10 +177,11 @@ public class FacetChart extends Canvas {
     }
 
     /**
-     * Whether shapes are filled, for example, whether a multi-series line chart appears as a stack of filled regions. <P> If
-     * unset, fills will be automatically used when there are multiple facets and stacking is active (so Line and Radar charts
-     * will show stacked regions).   <P> You can explicitly set filled:false to create multi-facet Line or Radar charts where
-     * translucent regions overlap, or filled:true to fill in a single-facet Line or Radar chart.
+     * Whether shapes are filled, for example, whether a multi-series line chart appears as a stack of filled regions as
+     * opposed to just multiple lines. <P> If unset, fills will be automatically used when there are multiple facets and
+     * stacking is active (so Line and Radar charts will show stacked regions).   <P> You can explicitly set filled:false to
+     * create multi-facet Line or Radar charts where translucent regions overlap, or filled:true to fill in a single-facet Line
+     * or Radar chart.
      *
      * @param filled filled Default value is null
      */
@@ -189,16 +190,93 @@ public class FacetChart extends Canvas {
     }
 
     /**
-     * Whether shapes are filled, for example, whether a multi-series line chart appears as a stack of filled regions. <P> If
-     * unset, fills will be automatically used when there are multiple facets and stacking is active (so Line and Radar charts
-     * will show stacked regions).   <P> You can explicitly set filled:false to create multi-facet Line or Radar charts where
-     * translucent regions overlap, or filled:true to fill in a single-facet Line or Radar chart.
+     * Whether shapes are filled, for example, whether a multi-series line chart appears as a stack of filled regions as
+     * opposed to just multiple lines. <P> If unset, fills will be automatically used when there are multiple facets and
+     * stacking is active (so Line and Radar charts will show stacked regions).   <P> You can explicitly set filled:false to
+     * create multi-facet Line or Radar charts where translucent regions overlap, or filled:true to fill in a single-facet Line
+     * or Radar chart.
      *
      *
      * @return Boolean
      */
     public Boolean getFilled()  {
         return getAttributeAsBoolean("filled");
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.chart.FacetChart#getUseLogGradations useLogGradations}, base value for
+     * logarithmic gradation lines.  Gradation lines will be shown at every power of this value plus intervening values
+     * specified by {@link com.smartgwt.client.widgets.chart.FacetChart#getLogGradations logGradations}.
+     *
+     * @param logBase logBase Default value is 10
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setLogBase(int logBase)  throws IllegalStateException {
+        setAttribute("logBase", logBase, false);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.chart.FacetChart#getUseLogGradations useLogGradations}, base value for
+     * logarithmic gradation lines.  Gradation lines will be shown at every power of this value plus intervening values
+     * specified by {@link com.smartgwt.client.widgets.chart.FacetChart#getLogGradations logGradations}.
+     *
+     *
+     * @return int
+     */
+    public int getLogBase()  {
+        return getAttributeAsInt("logBase");
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.chart.FacetChart#getUseLogGradations useLogGradations} is set, gradation lines
+     * to show in between powers,&#010 expressed as a series of integer or float values between 0 and {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getLogBase logBase}.&#010 <P>&#010 Some other common possibilities (for
+     * base 10):&#010 <pre>&#010    [ 1, 2, 4, 8 ]&#010    [ 5 ]&#010    [ 2.5, 5, 7.5 ]&#010 </pre>&#010 Or base 2:&#010
+     * <pre>&#010    [ 0.5, 1, 1.5 ]&#010    [ 1 ]&#010 </pre>
+     *
+     * @param logGradations logGradations Default value is [ 1,2,4,6,8 ]
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setLogGradations(int... logGradations)  throws IllegalStateException {
+        setAttribute("logGradations", logGradations, false);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.chart.FacetChart#getUseLogGradations useLogGradations} is set, gradation lines
+     * to show in between powers,&#010 expressed as a series of integer or float values between 0 and {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getLogBase logBase}.&#010 <P>&#010 Some other common possibilities (for
+     * base 10):&#010 <pre>&#010    [ 1, 2, 4, 8 ]&#010    [ 5 ]&#010    [ 2.5, 5, 7.5 ]&#010 </pre>&#010 Or base 2:&#010
+     * <pre>&#010    [ 0.5, 1, 1.5 ]&#010    [ 1 ]&#010 </pre>
+     *
+     *
+     * @return int
+     */
+    public int[] getLogGradations()  {
+        return getAttributeAsIntArray("logGradations");
+    }
+
+    /**
+     * Whether to use logarithmic scaling for values. <P> Logarithmic scale charts show an equivalent percentage increase as
+     * equivalent distance on the chart.  That is, 10 and 100 are the same distance apart as 100 and 1000 (each being a 10
+     * times or 1000% increase).
+     *
+     * @param logScale logScale Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setLogScale(Boolean logScale)  throws IllegalStateException {
+        setAttribute("logScale", logScale, false);
+    }
+
+    /**
+     * Whether to use logarithmic scaling for values. <P> Logarithmic scale charts show an equivalent percentage increase as
+     * equivalent distance on the chart.  That is, 10 and 100 are the same distance apart as 100 and 1000 (each being a 10
+     * times or 1000% increase).
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getLogScale()  {
+        return getAttributeAsBoolean("logScale");
     }
 
     /**
@@ -385,6 +463,32 @@ public class FacetChart extends Canvas {
      */
     public String getTitle()  {
         return getAttributeAsString("title");
+    }
+
+    /**
+     * Whether to use classic logarithmic gradations, where each order of magnitude is shown as a gradation as well as a few
+     * intervening lines.   Gradations also begin and end on an order of magnitude.  For example, 1,2,4,6,8,10,20,40,60,80,100.
+     * <P> Default gradations can be overridden via {@link com.smartgwt.client.widgets.chart.FacetChart#getLogBase logBase} and
+     * {@link com.smartgwt.client.widgets.chart.FacetChart#getLogGradations logGradations}.
+     *
+     * @param useLogGradations useLogGradations Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setUseLogGradations(Boolean useLogGradations)  throws IllegalStateException {
+        setAttribute("useLogGradations", useLogGradations, false);
+    }
+
+    /**
+     * Whether to use classic logarithmic gradations, where each order of magnitude is shown as a gradation as well as a few
+     * intervening lines.   Gradations also begin and end on an order of magnitude.  For example, 1,2,4,6,8,10,20,40,60,80,100.
+     * <P> Default gradations can be overridden via {@link com.smartgwt.client.widgets.chart.FacetChart#getLogBase logBase} and
+     * {@link com.smartgwt.client.widgets.chart.FacetChart#getLogGradations logGradations}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getUseLogGradations()  {
+        return getAttributeAsBoolean("useLogGradations");
     }
 
     /**

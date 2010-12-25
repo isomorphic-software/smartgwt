@@ -4169,6 +4169,11 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         }
     }-*/;
 
+    /**
+     * Returns the FormItem's config object suitable for use in API's that set the editorType
+     *
+     * @return the config object
+     */
     public native JavaScriptObject getConfig() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var config = {};
