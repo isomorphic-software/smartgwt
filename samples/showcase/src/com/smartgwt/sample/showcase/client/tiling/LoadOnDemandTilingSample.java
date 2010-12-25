@@ -88,8 +88,7 @@ public class LoadOnDemandTilingSample extends ShowcasePanel {
         tileGrid.setHeight(400);
         tileGrid.setTileWidth(150);
         tileGrid.setTileHeight(160);
-        tileGrid.setCanDrag(true);
-        tileGrid.setCanAcceptDrop(true);
+        tileGrid.setCanReorderTiles(true);
         tileGrid.setShowAllRecords(true);
         tileGrid.setDataSource(yahooDS);
 

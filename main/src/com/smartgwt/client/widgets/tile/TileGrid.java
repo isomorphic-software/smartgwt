@@ -290,6 +290,30 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     /**
+     * Visual appearance to show when the tile is being dragged.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param tileDragAppearance tileDragAppearance Default value is EventHandler.TRACKER
+     * @see com.smartgwt.client.widgets.Canvas#setDragAppearance
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     */
+    public void setTileDragAppearance(DragAppearance tileDragAppearance) {
+        setAttribute("tileDragAppearance", tileDragAppearance.getValue(), true);
+    }
+
+    /**
+     * Visual appearance to show when the tile is being dragged.
+     *
+     *
+     * @return DragAppearance
+     * @see com.smartgwt.client.widgets.Canvas#getDragAppearance
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     */
+    public DragAppearance getTileDragAppearance()  {
+        return EnumUtil.getEnum(DragAppearance.values(), getAttribute("tileDragAppearance"));
+    }
+
+    /**
      * Horizontal alignment for tile values: "left", "right" or "center".
      *
      * @param tileValueAlign tileValueAlign Default value is "center"
