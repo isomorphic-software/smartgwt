@@ -257,7 +257,7 @@ public class I18nUtil {
             $wnd.isc.ListGrid.addProperties({deleteRecordContextMenuItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_deleteRecordContextMenuItemTitle()()});
             $wnd.isc.ListGrid.addProperties({recordEditorSaveButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_recordEditorSaveButtonTitle()()});
             $wnd.isc.ListGrid.addProperties({recordEditorCancelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_recordEditorCancelButtonTitle()()});
-            $wnd.isc.ListGrid.addProperties({maxExpandedRecordsPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_maxExpandedRecordsPrompt()()).replace('$count', '\\${count}')});
+            $wnd.isc.ListGrid.addProperties({maxExpandedRecordsPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_maxExpandedRecordsPrompt()()).replace('$count', '${count}')});
             $wnd.isc.ListGrid.addProperties({freezeOnRightText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_freezeOnRightText()()});
             $wnd.isc.ListGrid.addProperties({freezeOnLeftText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_freezeOnLeftText()()});
             $wnd.isc.ListGrid.addProperties({sortFieldAscendingText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_sortFieldAscendingText()()});
@@ -283,7 +283,7 @@ public class I18nUtil {
         $wnd.isc.Canvas.addProperties({removeSummaryFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_removeSummaryFieldText()()});
         $wnd.isc.Canvas.addProperties({removeFormulaFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_removeFormulaFieldText()()});
         $wnd.isc.Canvas.addProperties({duplicateDragMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_duplicateDragMessage()()});
-        $wnd.isc.Canvas.addProperties({unknownErrorMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_duplicateDragMessage()()});
+        $wnd.isc.Canvas.addProperties({unknownErrorMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_unknownErrorMessage()()});
         $wnd.isc.Canvas.addProperties({offlineMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_offlineMessage()()});
 
         if($wnd.isc.TreeGrid) {
@@ -293,16 +293,16 @@ public class I18nUtil {
         }
 
         if($wnd.isc.FormulaBuilder) {
-            $wnd.isc.FormulaBuilder.addProperties({instructionsTextStart: messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_instructionsTextStart()() + ' \\${builderType}'});
+            $wnd.isc.FormulaBuilder.addProperties({instructionsTextStart: messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_instructionsTextStart()() + ' ${builderType}'});
             $wnd.isc.FormulaBuilder.addProperties({samplePrompt: '<nobr>' + messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_samplePromptForRecord()() + ' ${title}</nobr><br><nobr>' +
                                                                  messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_samplePromptOutput()() + ' ${output}</nobr>'});
             $wnd.isc.FormulaBuilder.addProperties({builderTypeText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_builderTypeText()()});
-            $wnd.isc.FormulaBuilder.addProperties({invalidBuilderPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_invalidBuilderPrompt()()).replace('$builderType', '\\${builderType}').replace('$errorText', '\\${errorText}')});
-            $wnd.isc.FormulaBuilder.addProperties({invalidBlankPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_invalidBlankPrompt()()).replace('$builderType', '\\${builderType}')});
-            $wnd.isc.FormulaBuilder.addProperties({validBuilderPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_validBuilderPrompt()()).replace('$builderType', '\\${builderType}')});
-            $wnd.isc.FormulaBuilder.addProperties({helpWindowTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_helpWindowTitle()()).replace('$builderType', '\\${builderType}')});
-            $wnd.isc.FormulaBuilder.addProperties({saveConfirmationPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_saveConfirmationPrompt()()).replace('$builderType', '\\${builderType}')});
-            $wnd.isc.FormulaBuilder.addProperties({invalidGeneratedFunctionPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_invalidGeneratedFunctionPrompt()()).replace('$builderType', '\\${builderType}')});
+            $wnd.isc.FormulaBuilder.addProperties({invalidBuilderPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_invalidBuilderPrompt()()).replace('$builderType', '${builderType}').replace('$errorText', '${errorText}')});
+            $wnd.isc.FormulaBuilder.addProperties({invalidBlankPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_invalidBlankPrompt()()).replace('$builderType', '${builderType}')});
+            $wnd.isc.FormulaBuilder.addProperties({validBuilderPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_validBuilderPrompt()()).replace('$builderType', '${builderType}')});
+            $wnd.isc.FormulaBuilder.addProperties({helpWindowTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_helpWindowTitle()()).replace('$builderType', '${builderType}')});
+            $wnd.isc.FormulaBuilder.addProperties({saveConfirmationPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_saveConfirmationPrompt()()).replace('$builderType', '${builderType}')});
+            $wnd.isc.FormulaBuilder.addProperties({invalidGeneratedFunctionPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_invalidGeneratedFunctionPrompt()()).replace('$builderType', '${builderType}')});
             $wnd.isc.FormulaBuilder.addProperties({titleFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_titleFieldTitle()()});
             $wnd.isc.FormulaBuilder.addProperties({defaultNewFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_defaultNewFieldTitle()()});
             $wnd.isc.FormulaBuilder.addProperties({keyColumnTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_keyColumnTitle()()});
