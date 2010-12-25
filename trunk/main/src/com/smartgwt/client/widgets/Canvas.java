@@ -931,7 +931,11 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * Context menu to show for this object, an instance of the Menu widget.
+     * Context menu to show for this object, an instance of the Menu widget. <P> Note: if {@link
+     * com.smartgwt.client.widgets.Canvas#destroy Canvas.destroy} is called on a canvas, any specified context menu is not
+     * automatically destroyed as well. This is in contrast to {@link com.smartgwt.client.widgets.menu.MenuButton}s which
+     * automatically destroy their specified {@link com.smartgwt.client.widgets.menu.MenuButton#getMenu menu} by default. The
+     * behavior is intentional as context menus are commonly reused across components.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param contextMenu contextMenu Default value is null
@@ -944,7 +948,11 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * Context menu to show for this object, an instance of the Menu widget.
+     * Context menu to show for this object, an instance of the Menu widget. <P> Note: if {@link
+     * com.smartgwt.client.widgets.Canvas#destroy Canvas.destroy} is called on a canvas, any specified context menu is not
+     * automatically destroyed as well. This is in contrast to {@link com.smartgwt.client.widgets.menu.MenuButton}s which
+     * automatically destroy their specified {@link com.smartgwt.client.widgets.menu.MenuButton#getMenu menu} by default. The
+     * behavior is intentional as context menus are commonly reused across components.
      *
      *
      * @return Menu
@@ -1200,6 +1208,30 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      */
     public Cursor getDisabledCursor()  {
         return EnumUtil.getEnum(Cursor.values(), getAttribute("disabledCursor"));
+    }
+
+    /**
+     * Disabled use of the Opacity filter for IE6-8.  If set, opacity settings on this component have no effect. <P> See {@link
+     * com.smartgwt.client.docs.IEFilters} for background.
+     *
+     * @param disableOpacityFilter disableOpacityFilter Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.IEFilters IEFilters overview and related methods
+     */
+    public void setDisableOpacityFilter(Boolean disableOpacityFilter)  throws IllegalStateException {
+        setAttribute("disableOpacityFilter", disableOpacityFilter, false);
+    }
+
+    /**
+     * Disabled use of the Opacity filter for IE6-8.  If set, opacity settings on this component have no effect. <P> See {@link
+     * com.smartgwt.client.docs.IEFilters} for background.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.IEFilters IEFilters overview and related methods
+     */
+    public Boolean getDisableOpacityFilter()  {
+        return getAttributeAsBoolean("disableOpacityFilter");
     }
 
     /**
@@ -2098,6 +2130,30 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      */
     public int getMaxWidth()  {
         return getAttributeAsInt("maxWidth");
+    }
+
+    /**
+     * Default class used to construct menus created by this component, including context menus.
+     *
+     * @param menuConstructor menuConstructor Default value is "Menu"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.events.ShowContextMenuEvent
+     * @see com.smartgwt.client.docs.Cues Cues overview and related methods
+     */
+    public void setMenuConstructor(String menuConstructor)  throws IllegalStateException {
+        setAttribute("menuConstructor", menuConstructor, false);
+    }
+
+    /**
+     * Default class used to construct menus created by this component, including context menus.
+     *
+     *
+     * @return String
+     * @see com.smartgwt.client.widgets.events.ShowContextMenuEvent
+     * @see com.smartgwt.client.docs.Cues Cues overview and related methods
+     */
+    public String getMenuConstructor()  {
+        return getAttributeAsString("menuConstructor");
     }
 
     /**
@@ -4276,9 +4332,9 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }-*/;
             
     /**
-     * Returns the amount of space available for interior content (or relatively positioned child  widget(s)) without
-     * introducing clipping, scrolling or overflow.<br>  This is the space within the viewport of the widget (not including
-     * padding, and excluding   margins, borders or scrollbars) rendered at its specified size.
+     * Returns the amount of space available for interior content (or relatively positioned child widget(s)) without
+     * introducing clipping, scrolling or overflow.<br> This is the space within the viewport of the widget (not including
+     * padding, and excluding  margins, borders or scrollbars) rendered at its specified size.
      *
      * @return inner height of the widget in pixels
      * @see com.smartgwt.client.widgets.Canvas#getInnerContentWidth
@@ -4308,9 +4364,9 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }-*/;
             
     /**
-     * Returns the amount of space available for (an) absolutely positioned child widget(s) or   HTML content, without
-     * introducing clipping, scrolling or overflow.<br>  This is the space within the viewport of the widget (including
-     * padding, but excluding   margins, borders or scrollbars) rendered at its specified size.
+     * Returns the amount of space available for (an) absolutely positioned child widget(s) or  absolutely positioned HTML
+     * content, without introducing clipping, scrolling or overflow. <P> This is the space within the viewport of the widget
+     * (including padding, but excluding  margins, borders or scrollbars) rendered at its specified size.
      *
      * @return inner height of the widget in pixels
      * @see com.smartgwt.client.widgets.Canvas#getInnerWidth
@@ -4324,9 +4380,9 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }-*/;
             
     /**
-     * Returns the amount of space available for (an) absolutely positioned child widget(s) or   HTML content, without
-     * introducing clipping, scrolling or overflow.<br>  This is the space within the viewport of the widget (including
-     * padding, but excluding   margins, borders or scrollbars) rendered at its specified size.
+     * Returns the amount of space available for absolutely positioned child widget(s) or  absolutely positioned HTML content,
+     * without introducing clipping, scrolling or overflow. <P> This is the space within the viewport of the widget (including
+     * padding, but excluding  margins, borders or scrollbars) rendered at its specified size.
      *
      * @return inner width of the widget in pixels
      * @see com.smartgwt.client.widgets.Canvas#getInnerHeight
