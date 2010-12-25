@@ -634,6 +634,20 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     }
 
     // ********************* Methods ***********************
+            
+    /**
+     * Return the message to show if the component has no data. Default implementation returns a  centered {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getEmptyMessage emptyMessage} or "&amp;nbsp;" if showEmptyMessage is
+     * false.  If the component has no data because the browser is offline, we instead display the  {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getOfflineMessage offlineMessage} or "&amp;nbsp;" if showOfflineMessage
+     * is false
+     *
+     * @return HTML output
+     */
+    public native String emptyMessageHTML() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.emptyMessageHTML();
+    }-*/;
 
     // ********************* Static Methods ***********************
     /**
