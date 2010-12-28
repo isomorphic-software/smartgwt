@@ -228,34 +228,6 @@ public class FacetChart extends Canvas {
     }
 
     /**
-     * When {@link com.smartgwt.client.widgets.chart.FacetChart#getUseLogGradations useLogGradations} is set, gradation lines
-     * to show in between powers,&#010 expressed as a series of integer or float values between 0 and {@link
-     * com.smartgwt.client.widgets.chart.FacetChart#getLogBase logBase}.&#010 <P>&#010 Some other common possibilities (for
-     * base 10):&#010 <pre>&#010    [ 1, 2, 4, 8 ]&#010    [ 5 ]&#010    [ 2.5, 5, 7.5 ]&#010 </pre>&#010 Or base 2:&#010
-     * <pre>&#010    [ 0.5, 1, 1.5 ]&#010    [ 1 ]&#010 </pre>
-     *
-     * @param logGradations logGradations Default value is [ 1,2,4,6,8 ]
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setLogGradations(int... logGradations)  throws IllegalStateException {
-        setAttribute("logGradations", logGradations, false);
-    }
-
-    /**
-     * When {@link com.smartgwt.client.widgets.chart.FacetChart#getUseLogGradations useLogGradations} is set, gradation lines
-     * to show in between powers,&#010 expressed as a series of integer or float values between 0 and {@link
-     * com.smartgwt.client.widgets.chart.FacetChart#getLogBase logBase}.&#010 <P>&#010 Some other common possibilities (for
-     * base 10):&#010 <pre>&#010    [ 1, 2, 4, 8 ]&#010    [ 5 ]&#010    [ 2.5, 5, 7.5 ]&#010 </pre>&#010 Or base 2:&#010
-     * <pre>&#010    [ 0.5, 1, 1.5 ]&#010    [ 1 ]&#010 </pre>
-     *
-     *
-     * @return int
-     */
-    public int[] getLogGradations()  {
-        return getAttributeAsIntArray("logGradations");
-    }
-
-    /**
      * Whether to use logarithmic scaling for values. <P> Logarithmic scale charts show an equivalent percentage increase as
      * equivalent distance on the chart.  That is, 10 and 100 are the same distance apart as 100 and 1000 (each being a 10
      * times or 1000% increase).
