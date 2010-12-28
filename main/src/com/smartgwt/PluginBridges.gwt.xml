@@ -20,8 +20,6 @@ module which in turn injects all the other SmartClient JS files with the the Ent
 
 If you want mode control over what JavaScript files are included, inherit SmartGwtNoScript instead
 and manually add the sc/modules/ISC_PluginBridges.js script include in your host html file.
-
-THIS MODULE HAS BEEN DEPRECATED. USE the com.smartgwt.PluginBridges module instead
 -->        
 
 <module>
