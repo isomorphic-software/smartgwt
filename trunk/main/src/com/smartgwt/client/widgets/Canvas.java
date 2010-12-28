@@ -1211,30 +1211,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * Disabled use of the Opacity filter for IE6-8.  If set, opacity settings on this component have no effect. <P> See {@link
-     * com.smartgwt.client.docs.IEFilters} for background.
-     *
-     * @param disableOpacityFilter disableOpacityFilter Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     * @see com.smartgwt.client.docs.IEFilters IEFilters overview and related methods
-     */
-    public void setDisableOpacityFilter(Boolean disableOpacityFilter)  throws IllegalStateException {
-        setAttribute("disableOpacityFilter", disableOpacityFilter, false);
-    }
-
-    /**
-     * Disabled use of the Opacity filter for IE6-8.  If set, opacity settings on this component have no effect. <P> See {@link
-     * com.smartgwt.client.docs.IEFilters} for background.
-     *
-     *
-     * @return Boolean
-     * @see com.smartgwt.client.docs.IEFilters IEFilters overview and related methods
-     */
-    public Boolean getDisableOpacityFilter()  {
-        return getAttributeAsBoolean("disableOpacityFilter");
-    }
-
-    /**
      * Amount of time (in msec) between which two clicks are considered a single click
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -3296,6 +3272,34 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      */
     public Integer getTabIndex()  {
         return getAttributeAsInt("tabIndex");
+    }
+
+    /**
+     * Configures where the Opacity filter is used for IE6-8. <P> With the default of null, opacity filters are used unless
+     * {@link com.smartgwt.client.widgets.Canvas#neverUseFilters neverUseFilters} has been set.  When set explicitly to true,
+     * opacity filters are used even if <code>neverUseFilters</code> is true. <P> See {@link
+     * com.smartgwt.client.docs.IEFilters} for background.
+     *
+     * @param useOpacityFilter useOpacityFilter Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.IEFilters IEFilters overview and related methods
+     */
+    public void setUseOpacityFilter(Boolean useOpacityFilter)  throws IllegalStateException {
+        setAttribute("useOpacityFilter", useOpacityFilter, false);
+    }
+
+    /**
+     * Configures where the Opacity filter is used for IE6-8. <P> With the default of null, opacity filters are used unless
+     * {@link com.smartgwt.client.widgets.Canvas#neverUseFilters neverUseFilters} has been set.  When set explicitly to true,
+     * opacity filters are used even if <code>neverUseFilters</code> is true. <P> See {@link
+     * com.smartgwt.client.docs.IEFilters} for background.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.IEFilters IEFilters overview and related methods
+     */
+    public Boolean getUseOpacityFilter()  {
+        return getAttributeAsBoolean("useOpacityFilter");
     }
 
     /**
@@ -5732,6 +5736,22 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             retVal = @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
         }
         return retVal;
+    }-*/;
+            
+    /**
+     * Changes the system-wide {@link com.smartgwt.client.widgets.Canvas#allowExternalFilters allowExternalFilters} setting.
+     * @param allExternalFilters new setting
+     */
+    public static native void setAllowExternalFilters(boolean allExternalFilters) /*-{
+        $wnd.isc.Canvas.setAllowExternalFilters(allExternalFilters);
+    }-*/;
+            
+    /**
+     * Changes the system-wide {@link com.smartgwt.client.widgets.Canvas#neverUseFilters neverUseFilters} setting.
+     * @param neverUseFilters new setting
+     */
+    public static native void setNeverUseFilters(boolean neverUseFilters) /*-{
+        $wnd.isc.Canvas.setNeverUseFilters(neverUseFilters);
     }-*/;
     /**
      * Class level method to set the default properties of this class. If set, then all subsequent instances of this
