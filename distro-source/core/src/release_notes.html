@@ -28,6 +28,7 @@
    <body>
       <h1>Smart GWT Release Notes</h1>
       <ul>
+            <li><a href="#2_4">2.4</a></li>
             <li><a href="#2_2">2.2</a></li>
             <li><a href="#2_1">2.1</a></li>
             <li><a href="#2_0">2.0</a></li>
@@ -37,6 +38,128 @@
             <li><a href="#1_0_b2">1.0 b2</a></li>
       </ul>
       <hr/>
+
+<a name="2_4"></a>
+      <h2>Release Notes for Smart GWT 2.4</h2>
+        <ul>
+            <li><div>GWT 2.1.1 compatible</div></li>
+            <li><div>Added Smart GWT QuickStart Guide</div></li>
+            <li><div>Touch & Mobile support : Support for iPhone, iPad and iPod touch devices with no code changes required</div></li>
+            <li><div>Offline persistent storage support with seamless integration with DataSource's</div></li>
+            <li><div><a href="http://blog.isomorphic.com/?p=234">User Defined data highlighting</a></div></li>
+            <li><div><a href="http://blog.isomorphic.com/?p=248">Advanced Hover components</a> with built-in hover modes</div></li>
+            <li>New ultralight ‘Simplicity’ skin that is easily customizable and virtually image free</li>
+            <li>Performance improvements across the board with significant IE specific performance enhancements</li>
+            <li><div>Several new <a href="http://www.smartclient.com/smartgwt/showcase/" target="_blank">Showcase</a> samples under the "New Samples" side nav</div></li>
+            <li>
+                <div><b>ListGrid</b>
+                    <ul>
+                        <li><div>Per field autoFitWidthApproach now supported</div></li>
+                        <li><div>Added ListGrid "Auto Fit All" menu option</div></li>
+                        <li><div>Support for frozen fields and virtual scrolling with record components</div></li>
+                        <li><div>Various fixes related to the display of cell components in a ListGrid</div></li>
+                        <li><div>Support for Header Spans when printing</div></li>
+                        <li><div>Print support for a ListGrid with more than one frozen fields</div></li>
+                        <li><div>Improved support for printing ListGrid's with embedded components</div></li>
+                        <li><div>ListGridField's ChangeHandler event is now cancellable</div></li>
+                        <li><div>Significant performance optimizations to client side Advanced Filtering</div></li>
+                        <li><div>Added support for LinkURLPrefix and LinkURLSuffix on ListGridField</div></li>
+                        <li><div>Added support for handling large number of rows in IE 8 non-strict mode</div></li>
+                        <li><div>Added ListGrid.getCellHoverComponent() to support ListGrid cell hover components</div></li>
+                        <li><div>New ListGrid flag 'autoFitFieldsFillViewport' to enable / disable the autoFitExpandField behavior</div></li>
+                        <li><div>Handle a double-click on the ListGrid header menu context button the same as a double click elsewhere on the header button.
+                            This means basically auto-fit on double click over the menu button</div></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>TreeGrid</b>
+                    <ul>
+                        <li><div>Added TreeGrid.showOpener property to not show opener icons at all</div></li>
+                        <li><div>Fixed TreeGrid.invalidateCache to handle loadDataOnDemand:false trees</div></li>
+                        <li><div>Fixed gridSummaries for databound TreeGrids</div></li>
+                        <li><div>Fixed TreeGrid.setViewState(..) not re-selecting nodes</div></li>
+                        <li><div>Fixed TreeGrid.setSelectionType(MULTIPLE) selection behavior when selectionAppearance is "checkbox"</div></li>
+                        <li><div>For a cascade selection, loadOnDemand TreeGrid, push a full selection from parent down to the children upon load</div></li>
+
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>Calendar</b>
+                    <ul>
+                        <li><div>Added support for 24h based Calendars</div></li>
+                        <li><div>Calendar fix for issue where two overlapping events less than half an hour in length would be incorrectly rendered</div></li>
+                        <li><div>Fixed issue where Calendar.scrollToToday scrolls too far</div></li>
+                        <li><div>Handle the user selecting 0 hours (midnight) for the end date and ensuring the date doesn't end up incremented by more than one day</div></li>
+                        <li><div>Fixed Calendar issue where events that start and end in the hour starting at 12am caused an error</div></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>SectionStack</b>
+                    <ul>
+                        <li><div>Only show the 'pointer' cursor over canCollapse:true sections in a SectionStack</div></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>TileGrid</b>
+                    <ul>
+                        <li><div>Fixed TileGrid printing to work properly for orientation:vertical</div></li>
+                        <li><div>Fixed TileLayout issue where dragAppearance:'target' was breaking drag and drop</div></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>DynamicForm</b>
+                    <ul>
+                        <li><div>Fix wrapping of multiple Form Item icons in strict mode</div></li>
+                        <li><div>Added support for 'setRequired()' on a FormItem at runtime</div></li>
+                        <li><div>Exposed broswerSpellCheck property on DynamicForm and FormItem for enabling / disabling native browser spell check feature on text boxes</div></li>
+                        <li><div>Added DateItem.defaultDateChooserDate as a way to specify a default to show in the picker without specifying a default value for the item as a whole</div></li>
+                        <li><div>Added DynamicForm.getChangedValues() / getOldValues() -- allows you to get at the values remembered by 'rememberValues()'</div></li>
+                        <li><div>Added FormItem.canFocus property</div></li>
+                        <li><div>Added TextItem.printFullText attribute - if true, expand the text box to fit content</div></li>
+                        <li><div>Exposed textMatchStyle on SelectItem explicitly</div></li>
+                        <li><div>Fixed a DateItem bug whereby everyone in the eastern hemisphere would get off-by-one errors in dateTime items when picking dates from the chooser</div></li>
+                        <li><div>Fix for bug whereby entering dates into a DateTime item when the date crossed the Daylight Savings Time boundary would lead to the hours getting changed on blur</div></li>
+                        <li><div>Added support for specifying DateItem.emptyDisplayValue when in text mode</div></li>
+                        <li><div>Added support for specifying DateItem.showHintInField when in text mode</div></li>
+                        <li><div>Fix IE specific "blinking" of ComboBoxes on initial select</div></li>
+                        <li><div>SelectItem with multipleAppearance:"picklist" now supports comma separated formatted output (eg icons)</div></li>
+                        <li><div>Fixed issue where tabbing into a DateItem in useTextField:true mode caused the value to be saved as null instead of left to default value</div></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>DetailViewer</b>
+                    <ul>
+                        <li><div>Fixed issue if DetailViewer was given just a singular object as data</div></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <div><b>TabSet</b>
+                    <ul>
+                        <li><div>Support for Tab title user editing (TabSet.canEditTabTitles and Tab.canEditTitle properties)</div></li>
+                        <li><div>Added TabSet.paneMargin property</div></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>Other</b>
+                    <ul>
+                        <li><div>i18n enhancements</div></li>
+                        <li><div>Improved Selenium support</div></li>
+                        <li><div>Added support for hover components on any Canvas using Canvas.showHoverComponents and overriding getHoverComponent()</div></li>
+                        <li><div>Fixed bug where dates already in UTC would be applied a UTC offset</div></li>
+                        <li><div>36 <a href="http://code.google.com/p/smartgwt/issues/list?can=1&q=label%3ASmartGWT-2.4">additional enhancements and bug fixes</a> that were logged in tracker</div></li>
+                    </ul>
+                </div>
+            </li>
+         </ul>
 
  <a name="2_2"></a>
       <h2>Release Notes for Smart GWT 2.2</h2>
