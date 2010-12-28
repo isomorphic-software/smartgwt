@@ -11108,6 +11108,100 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var valueJ = $wnd.SmartGWT.convertToJavaType(value);
         return valueJ;
     }-*/;
+    
+    private native JavaScriptObject getEditValueAsJSObj(int rowNum, String fieldName) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var value = self.getEditValue(rowNum, fieldName);
+        return value;
+    }-*/;
+
+    /**
+     * Returns the current temporary locally stored edit value for some field within a record being edited.
+     *
+     * @param rowNum index of the row for which the editValue should be returned
+     * @param fieldName field name for which value should be returned
+     *
+     * @return   edit value for the field in question
+     */
+    public String getEditValueAsString(int rowNum, String fieldName) {
+        return (String)getEditValue(rowNum, fieldName);
+    }
+
+    /**
+     * Returns the current temporary locally stored edit value for some field within a record being edited.
+     *
+     * @param rowNum index of the row for which the editValue should be returned
+     * @param fieldName field name for which value should be returned
+     *
+     * @return   edit value for the field in question
+     */
+    public Integer getEditValueAsInt(int rowNum, String fieldName) {
+        return (Integer)getEditValue(rowNum, fieldName);
+    }
+
+    /**
+     * Returns the current temporary locally stored edit value for some field within a record being edited.
+     *
+     * @param rowNum index of the row for which the editValue should be returned
+     * @param fieldName field name for which value should be returned
+     *
+     * @return   edit value for the field in question
+     */
+    public Float getEditValueAsFloat(int rowNum, String fieldName) {
+        return (Float) getEditValue(rowNum, fieldName);
+    }
+
+    /**
+     * Returns the current temporary locally stored edit value for some field within a record being edited.
+     *
+     * @param rowNum index of the row for which the editValue should be returned
+     * @param fieldName field name for which value should be returned
+     *
+     * @return   edit value for the field in question
+     */
+    public Date getEditValueAsDate(int rowNum, String fieldName) {
+        return (Date) getEditValue(rowNum, fieldName);
+    }
+
+    /**
+     * Returns the current temporary locally stored edit value for some field within a record being edited.
+     *
+     * @param rowNum index of the row for which the editValue should be returned
+     * @param fieldName field name for which value should be returned
+     *
+     * @return   edit value for the field in question
+     */
+    public Boolean getEditValueAsBoolean(int rowNum, String fieldName) {
+        return (Boolean) getEditValue(rowNum, fieldName);
+    }
+
+    /**
+     * Returns the current temporary locally stored edit value for some field within a record being edited.
+     *
+     * @param rowNum index of the row for which the editValue should be returned
+     * @param fieldName field name for which value should be returned
+     *
+     * @return   edit value for the field in question
+     */
+    public Record getEditValueAsRecord(int rowNum, String fieldName) {
+        JavaScriptObject val = getEditValueAsJSObj(rowNum, fieldName);
+        if (val == null) return null;
+        return Record.getOrCreateRef(val);
+    }
+
+    /**
+     * Returns the current temporary locally stored edit value for some field within a record being edited.
+     *
+     * @param rowNum index of the row for which the editValue should be returned
+     * @param fieldName field name for which value should be returned
+     *
+     * @return   edit value for the field in question
+     */
+    public Record[] getEditValueAsRecordArray(int rowNum, String fieldName) {
+        JavaScriptObject val = getEditValueAsJSObj(rowNum, fieldName);
+        if (val == null) return null;
+        return Record.convertToRecordArray(val);
+    }
 
     /**
      * Returns the current set of unsaved edits for a given row being edited.

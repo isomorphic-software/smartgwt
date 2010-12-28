@@ -424,7 +424,18 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.setValue(fieldName, value);
     }-*/;
-
+    
+    /**
+     * Set the value for some field.
+     *
+     * @param fieldName Name of the field being updated
+     * @param value     New value.
+     */
+    public native void setValue(String fieldName, Date value) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var valueJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(value);
+        self.setValue(fieldName, valueJS);
+    }-*/;
     /**
      * Set the value for some field.
      *
