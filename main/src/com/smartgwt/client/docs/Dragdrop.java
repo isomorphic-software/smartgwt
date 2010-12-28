@@ -55,6 +55,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getManyItemsImage
+ * @see com.smartgwt.client.widgets.tile.TileGrid#getTileDragAppearance
  * @see com.smartgwt.client.types.DragAppearance
  * @see com.smartgwt.client.types.DragIntersectStyle
  */
