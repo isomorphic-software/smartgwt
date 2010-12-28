@@ -33,6 +33,9 @@ public class TranslucencySample extends ShowcasePanel {
         
         final Img eyesImg = new Img("other/eyes.jpg", 360, 188);
         eyesImg.setShowEdges(true);
+        //need to set useOpacityFilter:true to support setting of opacity on IE 7 and greater
+        eyesImg.setUseOpacityFilter(true);
+
         
         Slider slider = new Slider("");
         slider.setMinValue(0);
