@@ -192,8 +192,6 @@ public class SmartGwtEntryPoint implements EntryPoint {
             LogUtil.setJSNIErrorHandler();
             init();
             I18nUtil.init();
-            //set the default prompt style to a cursor
-            RPCManager.setPromptStyle(PromptStyle.CURSOR);
             //install a default UEH that displays the error message in an alert when in development mode so that
             //is is not overlooked by the user during development
             GWT.setUncaughtExceptionHandler(new GWT.UncaughtExceptionHandler() {
