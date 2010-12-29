@@ -149,12 +149,6 @@
 
              <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/Graphite" includes="**/*.*" excludes="*.gz,*.psd"
 					                        prefix="com/smartclient/theme/graphite/public/sc/skins/Graphite"/>
-
-             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/Simplicity" includes="**/*.*" excludes="*.gz,*.psd"
-					                        prefix="com/smartclient/theme/simplicity/public/sc/skins/Simplicity"/>
-																	
-             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/Mobile" includes="**/*.*" excludes="*.gz,*.psd"
-					                        prefix="com/smartclient/theme/mobile/public/sc/skins/Mobile"/>
 																	
 			<zipfileset dir="${SC_HOME}/smartclientSDK/tools/selenium" includes="**/*.*"
 						prefix="com/smartclient/tools/public/tools/selenium"/>
@@ -162,7 +156,13 @@
 		
 		<zip destfile="${smartgwt.tools.lib}/sc/${SC_VER}/smartgwt-skins.jar">
 			<zipfileset dirmode="755" filemode="644" src="${smartgwt.tools.lib}/sc/skins_tpl.jar"/>
-			
+
+             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/Simplicity" includes="**/*.*" excludes="*.gz,*.psd"
+					                        prefix="com/smartclient/theme/simplicity/public/sc/skins/Simplicity"/>
+
+             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/Mobile" includes="**/*.*" excludes="*.gz,*.psd"
+					                        prefix="com/smartclient/theme/mobile/public/sc/skins/Mobile"/>
+
 			<zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/BlackOps" includes="**/*.*" excludes="*.gz"
                         prefix="com/smartclient/theme/blackops/public/sc/skins/BlackOps"/>
 
