@@ -56,12 +56,12 @@ public class TabsAlignSample extends ShowcasePanel {
         leftTabSet.setHeight(300);
 
         Tab lTab1 = new Tab();
-        lTab1.setIcon("pieces/16/pawn_blue.png");
+        lTab1.setIcon("pieces/16/pawn_blue.png", 16);
         Img lImg1 = new Img("pieces/48/pawn_blue.png", 48, 48);
         lTab1.setPane(lImg1);
 
         Tab lTab2 = new Tab();
-        lTab2.setIcon("pieces/16/pawn_green.png");
+        lTab2.setIcon("pieces/16/pawn_green.png", 16);
         Img lImg2 = new Img("pieces/48/pawn_green.png", 48, 48);
         lTab2.setPane(lImg2);
 

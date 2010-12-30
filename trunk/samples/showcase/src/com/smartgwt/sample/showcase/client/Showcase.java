@@ -225,7 +225,7 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         Tab tab = new Tab();
         tab.setTitle("Home&nbsp;&nbsp;");
-        tab.setIcon("pieces/16/cube_green.png");
+        tab.setIcon("pieces/16/cube_green.png", 16);
         tab.setWidth(80);
 
         HLayout mainPanel = new HLayout();
