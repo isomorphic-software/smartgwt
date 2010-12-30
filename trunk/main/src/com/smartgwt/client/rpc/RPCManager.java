@@ -316,7 +316,7 @@ public class RPCManager {
      * @param promptStyle default is {@link com.smartgwt.client.types.PromptStyle#DIALOG}
      */
     public static native void setPromptStyle(PromptStyle promptStyle) /*-{
-        $wnd.isc.RPCManager.promptCursor = promptStyle.@com.smartgwt.client.types.PromptStyle::getValue()();
+        $wnd.isc.RPCManager.addClassProperties({ promptStyle: promptStyle.@com.smartgwt.client.types.PromptStyle::getValue()() });
     }-*/;
 
     /**

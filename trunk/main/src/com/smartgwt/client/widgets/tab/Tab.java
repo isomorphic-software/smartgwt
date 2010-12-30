@@ -176,6 +176,92 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
     }
 
     /**
+     * Size of the {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon} for this tab. If unspecified the icon
+     * will be sized according to {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIconSize closeTabIconSize}
+     *
+     * @param closeIconSize closeIconSize Default value is null
+     */
+    public void setCloseIconSize(Integer closeIconSize) {
+        setAttribute("closeIconSize", closeIconSize);
+    }
+
+    /**
+     * Size of the {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon} for this tab. If unspecified the icon
+     * will be sized according to {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIconSize closeTabIconSize}
+     *
+     *
+     * @return Integer
+     */
+    public Integer getCloseIconSize()  {
+        return getAttributeAsInt("closeIconSize");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tab.Tab#getIcon icon} is specified, this property may be used to specify a size
+     * for the icon
+     *
+     * @param iconHeight iconHeight Default value is null
+     */
+    public void setIconHeight(Integer iconHeight) {
+        setAttribute("iconHeight", iconHeight);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tab.Tab#getIcon icon} is specified, this property may be used to specify a size
+     * for the icon
+     *
+     *
+     * @return Integer
+     */
+    public Integer getIconHeight()  {
+        return getAttributeAsInt("iconHeight");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tab.Tab#getIcon icon} is specified, this property may be used to specify a size
+     * for the icon. Per side sizing may be specified instead via {@link com.smartgwt.client.widgets.tab.Tab#getIconWidth
+     * iconWidth} and {@link com.smartgwt.client.widgets.tab.Tab#getIconHeight iconHeight}.
+     *
+     * @param iconSize iconSize Default value is null
+     */
+    public void setIconSize(Integer iconSize) {
+        setAttribute("iconSize", iconSize);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tab.Tab#getIcon icon} is specified, this property may be used to specify a size
+     * for the icon. Per side sizing may be specified instead via {@link com.smartgwt.client.widgets.tab.Tab#getIconWidth
+     * iconWidth} and {@link com.smartgwt.client.widgets.tab.Tab#getIconHeight iconHeight}.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getIconSize()  {
+        return getAttributeAsInt("iconSize");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tab.Tab#getIcon icon} is specified, this property may be used to specify a size
+     * for the icon
+     *
+     * @param iconWidth iconWidth Default value is null
+     */
+    public void setIconWidth(Integer iconWidth) {
+        setAttribute("iconWidth", iconWidth);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tab.Tab#getIcon icon} is specified, this property may be used to specify a size
+     * for the icon
+     *
+     *
+     * @return Integer
+     */
+    public Integer getIconWidth()  {
+        return getAttributeAsInt("iconWidth");
+    }
+
+    /**
      * Optional ID for the tab, which can later be used to reference the tab. APIs requiring a reference to a tab will accept
      * the tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab TabSet.selectTab}, {@link
      * com.smartgwt.client.widgets.tab.TabSet#updateTab TabSet.updateTab}, {@link
@@ -417,6 +503,38 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      * If desired a click handler may be assigned to the icon, which will be fired when the user clicks the tab. This method
      * takes a single parameter <code>tab</code>, a pointer to the tab object.
      *
+     * @param icon icon Default value is null
+     * @param iconWidth the icon width
+     * @param iconHeight the icon height
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_orientation" target="examples">Orientation Example</a>
+     */
+    public void setIcon(String icon, int iconWidth, int iconHeight) {
+        setIcon(icon);
+        setIconWidth(iconWidth);
+        setIconHeight(iconHeight);
+    }
+
+    /**
+     * If specified, this tab will show an icon next to the tab title.  Note that as with  {@link
+     * com.smartgwt.client.widgets.Button#getIcon icon}, the URL of a tabs icon will be updated to reflect disabled state.<br>
+     * If desired a click handler may be assigned to the icon, which will be fired when the user clicks the tab. This method
+     * takes a single parameter <code>tab</code>, a pointer to the tab object.
+     *
+     * @param icon icon Default value is null
+     * @param iconSize the icon size
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_orientation" target="examples">Orientation Example</a>
+     */
+    public void setIcon(String icon, int iconSize) {
+        setIcon(icon);
+        setIconSize(iconSize);
+    }
+
+    /**
+     * If specified, this tab will show an icon next to the tab title.  Note that as with  {@link
+     * com.smartgwt.client.widgets.Button#getIcon icon}, the URL of a tabs icon will be updated to reflect disabled state.<br>
+     * If desired a click handler may be assigned to the icon, which will be fired when the user clicks the tab. This method
+     * takes a single parameter <code>tab</code>, a pointer to the tab object.
+     *
      *
      * @return String
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_orientation" target="examples">Orientation Example</a>
@@ -454,15 +572,6 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      */
     public Canvas getPane() {
         return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("pane"));
-    }
-
-    /**
-    * Size in pixels of the icon for closing tabs, displayed when {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs} is true.
-    *
-    * @param closeIconSize closeIconSize Default value is 16
-    */
-    public void setCloseIconSize(int closeIconSize) {
-        setAttribute("closeIconSize", closeIconSize);
     }
 
     /**
