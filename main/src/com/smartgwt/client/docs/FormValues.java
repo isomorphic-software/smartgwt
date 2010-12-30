@@ -34,6 +34,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.ValuesManager#clearValue
  * @see com.smartgwt.client.widgets.form.DynamicForm#getValues
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getShouldSaveValue
+ * @see com.smartgwt.client.widgets.form.fields.TextItem#getEmptyStringValue
+ * @see com.smartgwt.client.widgets.form.fields.TextAreaItem#getEmptyStringValue
  */
 public interface FormValues {
 }

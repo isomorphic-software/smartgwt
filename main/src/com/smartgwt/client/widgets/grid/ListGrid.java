@@ -10650,6 +10650,30 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
 
     /**
+     * Freeze the indicated fields, so that they remains in place and visible when horizontal scrolling occurs.
+     *
+     * @param array of colNums to freeze
+     */
+    public native void freezeFields(int[] colNums) /*-{
+        if (colNums == null) return;
+        var jsColNums = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(colNums);
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.freezeField(jsColNums);
+    }-*/;
+    
+    /**
+     * Freeze the indicated fields, so that they remains in place and visible when horizontal scrolling occurs.
+     *
+     * @param array of fieldNames to freeze
+     */
+    public native void freezeFields(String[] fieldNames) /*-{
+        if (fieldNames == null) return;
+        var jsFieldNames = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(fieldNames);
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.freezeField(jsFieldNames);
+    }-*/;
+
+    /**
      * Unfreeze a frozen field, so that it will now scroll along with other fields when horizontal scrolling occurs.
      *
      * @param fieldName the field name
@@ -10668,6 +10692,31 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.unfreezeField(colNum);
     }-*/;
+
+    /**
+     * Unfreeze the indicated fields, so that it will now scroll along with other fields when horizontal scrolling occurs.
+     * 
+     * @param array of colNums to unfreeze
+     */
+    public native void unfreezeFields(int[] colNums) /*-{
+        if (colNums == null) return;
+        var jsColNums = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(colNums);
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.unfreezeField(jsColNums);
+    }-*/;
+
+    /**
+     * Unfreeze the indicated fields, so that it will now scroll along with other fields when horizontal scrolling occurs.
+     * 
+     * @param array of field names to unfreeze
+     */
+    public native void unfreezeFields(String[] fieldNames) /*-{
+        if (fieldNames == null) return;
+        var jsFieldNames = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(fieldNames);
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.unfreezeField(jsFieldNames);
+    }-*/;
+
 
     /**
      * Refresh an individual cell without redrawing the grid. <P> The cell's value, CSS class, and CSS text will be
