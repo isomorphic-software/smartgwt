@@ -96,12 +96,12 @@ public class ItemDetailTabPane extends TabSet {
 
 
         Tab viewTab = new Tab("View");
-        viewTab.setIcon("silk/application_form.png");
+        viewTab.setIcon("silk/application_form.png", 16);
         viewTab.setWidth(70);
         viewTab.setPane(itemViewer);
 
         Tab editTab = new Tab("Edit");
-        editTab.setIcon("demoApp/icon_edit.png");
+        editTab.setIcon("demoApp/icon_edit.png", 16);
         editTab.setWidth(70);
         editTab.setPane(editorForm);
 
