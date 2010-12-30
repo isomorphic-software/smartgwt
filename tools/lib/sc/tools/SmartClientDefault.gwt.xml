@@ -1,0 +1,10 @@
+<module>
+   	<script src="sc/modules/ISC_Core.js"/>
+    <script src="sc/modules/ISC_Foundation.js"/>
+    <script src="sc/modules/ISC_Containers.js"/>
+    <script src="sc/modules/ISC_Grids.js"/>
+    <script src="sc/modules/ISC_Forms.js"/>
+    <script src="sc/modules/ISC_RichTextEditor.js"/>
+    <script src="sc/modules/ISC_Calendar.js"/>
+    <script src="sc/modules/ISC_DataBinding.js"/>
+</module>

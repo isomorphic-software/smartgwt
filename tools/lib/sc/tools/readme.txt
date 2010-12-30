@@ -1,0 +1,2 @@
+This command generates SmartClientDebug.gwt.xml which should be placed in smartclient_tpl.jar
+Usage : java com.smartgwt.tools.BuildDebugModule SmartClientDefault.gwt.xml <SC_HOME> SmartClientDebug.gwt.xml
