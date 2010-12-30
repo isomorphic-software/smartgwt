@@ -94,7 +94,7 @@
                         prefix="com/smartclient/debug/public/sc/system/helpers"/>
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/reference"
                         includes="skin/images/server_client_exchange.png"
-                        prefix="com/smartclient/public/public/sc/system/helpers"/>
+                        prefix="com/smartclient/public/sc/system/helpers"/>
 
             <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/modules" includes="*.js"
                         prefix="com/smartclient/debug/public/sc/modules-debug"/>
