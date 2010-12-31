@@ -45,13 +45,13 @@ public class SideNavTree extends TreeGrid {
         
         TreeGridField field = new TreeGridField();
         field.setCanFilter(true);
-        field.setName("name");
+        field.setName("nodeTitle");
         field.setTitle("<b>Samples</b>");
         setFields(field);
 
         Tree tree = new Tree();
         tree.setModelType(TreeModelType.PARENT);
-        tree.setNameProperty("name");
+        tree.setNameProperty("nodeTitle");
         tree.setOpenProperty("isOpen");
         tree.setIdField("nodeID");
         tree.setParentIdField("parentNodeID");

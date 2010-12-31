@@ -44,11 +44,11 @@ public class ExplorerTreeNode extends TreeNode {
     }
 
     public void setName(String name) {
-        setAttribute("name", name);
+        setAttribute("nodeTitle", name);
     }
 
     public String getName() {
-        return getAttributeAsString("name");
+        return getAttributeAsString("nodeTitle");
     }
 
     public void setIcon(String icon) {
