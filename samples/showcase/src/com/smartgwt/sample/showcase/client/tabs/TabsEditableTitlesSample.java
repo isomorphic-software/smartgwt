@@ -72,21 +72,25 @@ public class TabsEditableTitlesSample extends ShowcasePanel {
         tabSet.setTitleEditorTopOffset(2);
 
 
-        Tab tab1 = new Tab("Blue", "pieces/16/pawn_blue.png");
+        Tab tab1 = new Tab("Blue");
+        tab1.setIcon("pieces/16/pawn_blue.png", 16);
 
         tab1.setCanClose(true);
         Img img1 = new Img("pieces/48/pawn_blue.png", 48, 48);
         tab1.setPane(img1);
 
-        Tab tab2 = new Tab("Green", "pieces/16/pawn_green.png");
+        Tab tab2 = new Tab("Green");
+        tab2.setIcon("pieces/16/pawn_green.png", 16);
         Img img2 = new Img("pieces/48/pawn_green.png", 48, 48);
         tab2.setPane(img2);
 
-        final Tab validatedTab = new Tab("123-Yellow", "pieces/16/pawn_yellow.png");
+        final Tab validatedTab = new Tab("123-Yellow");
+        validatedTab.setIcon("pieces/16/pawn_yellow.png", 16);
         final Img validatedTabImg = new Img("pieces/48/pawn_yellow.png", 48, 48);
         validatedTab.setPane(validatedTabImg);
 
-        final Tab uneditableTab = new Tab("Can't Change Me", "pieces/16/pawn_red.png");
+        final Tab uneditableTab = new Tab("Can't Change Me");
+        uneditableTab.setIcon("pieces/16/pawn_red.png", 16);
         uneditableTab.setCanEditTitle(false);
         Img uneditableTabImg = new Img("pieces/48/pawn_red.png", 48, 48);
         uneditableTab.setPane(uneditableTabImg);
