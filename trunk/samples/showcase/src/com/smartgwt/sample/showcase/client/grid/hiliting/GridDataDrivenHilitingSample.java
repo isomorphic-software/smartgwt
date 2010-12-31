@@ -71,8 +71,8 @@ public class GridDataDrivenHilitingSample extends ShowcasePanel {
                 setCriteria(new AdvancedCriteria(OperatorId.AND, new Criterion[] {
                                 new Criterion("gdp", OperatorId.GREATER_THAN, 1000000),
                                 new Criterion("area", OperatorId.LESS_THAN, 500000)}));
-                setCssText("color:#3333FF;background-color:#639966;");
-                setHtmlAfter(Canvas.imgHTML("[SKIN]/actions/exclamation.png"));
+                setCssText("color:#3333FF;background-color:#CDEB8B;");
+                setHtmlAfter("&nbsp;" + Canvas.imgHTML("[SKIN]/actions/back.png"));
                 setId("1");
             }}
     };
