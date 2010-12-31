@@ -1,0 +1,2396 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SmartGWT - API Change History</title>
+ <style type="text/css">
+        body {
+            font-family: Verdana, sans-serif;
+            font-size: 14px;
+            line-height: 20px;
+            margin:30px;
+        }
+
+
+        p {
+             margin-bottom: 1.33em;
+        }
+
+        h4 {
+            font-family: Georgia, 'Times New Roman', serif;
+
+        }
+		b {
+            font-family: Georgia, 'Times New Roman', serif;
+		}
+    </style>
+</head>
+<body bgcolor="#ffffff">
+<h1>SmartGWT - API Change History</h1>
+<ul>
+<li>
+<a href="#2.4">2.2 to 2.4</a>
+</li>
+</ul>
+<hr>
+<a name="2.4"></a>
+<h2>2.2 to 2.4</h2>
+
+<h3>Modified Interfaces:</h3>
+
+<h4>
+<code>com.smartgwt.client.widgets.DataBoundComponent</code>
+</h4>
+<blockquote>
+<h5>Declaration Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public interface com.smartgwt.client.widgets.DataBoundComponent<br>
+<b>new:</b>public interface com.smartgwt.client.widgets.DataBoundComponent extends com.smartgwt.client.widgets.events.HasFetchDataHandlers</code></nobr>
+</p>
+</blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public abstract void editHilites()</code></nobr>
+</li>
+<li>
+<nobr><code>public abstract void exportClientData()</code></nobr>
+</li>
+<li>
+<nobr><code>public abstract void exportClientData(com.smartgwt.client.data.DSRequest)</code></nobr>
+</li>
+<li>
+<nobr><code>public abstract void exportData()</code></nobr>
+</li>
+<li>
+<nobr><code>public abstract void exportData(com.smartgwt.client.data.DSRequest)</code></nobr>
+</li>
+<li>
+<nobr><code>public abstract java.lang.String getHiliteState()</code></nobr>
+</li>
+<li>
+<nobr><code>public abstract com.smartgwt.client.data.Hilite[] getHilites()</code></nobr>
+</li>
+<li>
+<nobr><code>public abstract void setHiliteState(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public abstract void setHilites(com.smartgwt.client.data.Hilite[])</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.PickList</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public abstract void setOptionFilterContext(com.smartgwt.client.data.DSRequest)</code></nobr>
+</li>
+</ul>
+</blockquote>
+</blockquote>
+<h3>Modified Classes:</h3>
+
+
+<h4>
+<code>com.smartgwt.client.data.Criterion</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.String getFieldName()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.types.OperatorId getOperator()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setFieldName(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setOperator(com.smartgwt.client.types.OperatorId)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.data.DSRequest</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.smartgwt.client.data.Record[] getExportData()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setAttribute(java.lang.String, java.lang.Object)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setExportData(com.smartgwt.client.data.Record[])</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.data.DSResponse</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.Boolean getFromOfflineCache()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Integer getOfflineTimestamp()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.data.DataSource</code>
+</h4>
+<blockquote>
+<h5>Method Changes:</h5>
+<blockquote>
+</blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native void exportData()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void exportData(com.smartgwt.client.data.Criteria, com.smartgwt.client.data.DSRequest)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getDataField()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getDescriptionField()</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.types.OperatorId[] getFieldOperators(com.smartgwt.client.data.DataSourceField)</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.types.OperatorId[] getFieldOperators(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.util.Map getGlobalNamespaces()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getInfoField()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getInheritsFrom()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.data.OperationBinding[] getOperationBindings()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.data.DSRequest getRequestProperties()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getResultSetClass()</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.types.OperatorId[] getTypeOperators(com.smartgwt.client.types.FieldType)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getUseOfflineStorage()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setDataField(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setDescriptionField(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setGlobalNamespaces(java.util.Map)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setInfoField(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setInheritsFrom(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setResultSetClass(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setTypeOperators(com.smartgwt.client.types.FieldType, com.smartgwt.client.types.OperatorId[])</code></nobr>
+</li>
+<li>
+<nobr><code>public void setUseOfflineStorage(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>protected native boolean useOfflineResponse(com.smartgwt.client.data.DSRequest, com.smartgwt.client.data.DSResponse)</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.String xmlSerialize(com.smartgwt.client.data.Record, com.smartgwt.client.data.SerializationContext)</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.String xmlSerialize(com.smartgwt.client.data.Record[], com.smartgwt.client.data.SerializationContext)</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.String xmlSerialize(java.util.Map, com.smartgwt.client.data.SerializationContext)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.data.DataSourceField</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.Boolean getCustomSQL()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getEditorType()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Integer getImageHeight()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getImageHeightAsString()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Integer getImageSize()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getImageSizeAsString()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Integer getImageWidth()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getImageWidthAsString()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getPrompt()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Object getRootValue()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getUploadFieldName()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.types.OperatorId[] getValidOperators()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.widgets.form.validator.Validator[] getValidators()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.util.Map getValueMap()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setCustomSQL(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setEditorType(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setImageHeight(java.lang.Integer)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setImageHeight(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setImageSize(java.lang.Integer)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setImageSize(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setImageWidth(java.lang.Integer)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setImageWidth(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setPrompt(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setRootValue(java.lang.Object)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setUploadFieldName(java.lang.String)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.data.MultiSortDialog</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public static native void setTitle(java.lang.String)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.data.OperationBinding</code>
+</h4>
+<blockquote>
+<h5>Removed Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.String getOutputs()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setOutputs(java.lang.String)</code></nobr>
+</li>
+</ul>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.util.Map getDefaultParams()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.data.DSRequest getRequestProperties()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.data.DataSource getResponseDataSchema()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.data.XmlNamespaces getXmlNamespaces()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.data.ResultSet</code>
+</h4>
+
+<h5>Method Changes:</h5>
+
+<h4>
+<code>com.smartgwt.client.data.SimpleType</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native void setEditFormatter(com.smartgwt.client.data.SimpleTypeFormatter)</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.Object setEditParser(com.smartgwt.client.data.SimpleTypeParser)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.types.FieldType</code>
+</h4>
+<blockquote>
+<h5>New Fields:</h5>
+<ul>
+<li>
+<nobr><code>public static final com.smartgwt.client.types.FieldType ANY</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.util.DateUtil</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public static native java.lang.String getDefaultDateSeparator()</code></nobr>
+</li>
+<li>
+<nobr><code>public static native void setAdjustForDST(boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public static native void setDefaultDateSeparator(java.lang.String)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<code>com.smartgwt.client.util.EventHandler</code>
+
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public static native com.google.gwt.user.client.Element getNativeMouseTarget()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.util.I18nUtil</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public static native void initMessages(com.smartgwt.client.i18n.SmartGwtMessages)</code></nobr>
+</li>
+</ul>
+</blockquote>
+
+<h4>
+<code>com.smartgwt.client.util.Page</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public static native com.smartgwt.client.types.PageOrientation getOrientation()</code></nobr>
+</li>
+<li>
+<nobr><code>public static native void updateViewport(java.lang.Float, java.lang.Integer, java.lang.Integer, java.lang.Boolean)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.util.SC</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public static native java.lang.String echo(com.google.gwt.core.client.JavaScriptObject)</code></nobr>
+</li>
+<li>
+<nobr><code>public static native java.lang.String echoAll(com.google.gwt.core.client.JavaScriptObject)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.Canvas</code>
+</h4>
+<blockquote>
+<h5>Declaration Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public class com.smartgwt.client.widgets.Canvas extends com.smartgwt.client.widgets.BaseWidget implements com.smartgwt.client.widgets.events.HasClickHandlers, com.smartgwt.client.widgets.events.HasDoubleClickHandlers, com.smartgwt.client.widgets.events.HasDragMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStartHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStopHandlers, com.smartgwt.client.widgets.events.HasDragResizeMoveHandlers, com.smartgwt.client.widgets.events.HasDragResizeStartHandlers, com.smartgwt.client.widgets.events.HasDragResizeStopHandlers, com.smartgwt.client.widgets.events.HasDragStartHandlers, com.smartgwt.client.widgets.events.HasDragStopHandlers, com.smartgwt.client.widgets.events.HasDropHandlers, com.smartgwt.client.widgets.events.HasDropMoveHandlers, com.smartgwt.client.widgets.events.HasDropOutHandlers, com.smartgwt.client.widgets.events.HasDropOverHandlers, com.smartgwt.client.widgets.events.HasFocusChangedHandlers, com.smartgwt.client.widgets.events.HasHoverHandlers, com.smartgwt.client.widgets.events.HasHoverHiddenHandlers, com.smartgwt.client.widgets.events.HasKeyDownHandlers, com.smartgwt.client.widgets.events.HasKeyPressHandlers, com.smartgwt.client.widgets.events.HasMouseDownHandlers, com.smartgwt.client.widgets.events.HasMouseMoveHandlers, com.smartgwt.client.widgets.events.HasMouseOutHandlers, com.smartgwt.client.widgets.events.HasMouseOverHandlers, com.smartgwt.client.widgets.events.HasMouseStillDownHandlers, com.smartgwt.client.widgets.events.HasMouseUpHandlers, com.smartgwt.client.widgets.events.HasMouseWheelHandlers, com.smartgwt.client.widgets.events.HasResizedHandlers, com.smartgwt.client.widgets.events.HasRightMouseDownHandlers, com.smartgwt.client.widgets.events.HasScrolledHandlers, com.smartgwt.client.widgets.events.HasShowContextMenuHandlers<br>
+<b>new:</b>public class com.smartgwt.client.widgets.Canvas extends com.smartgwt.client.widgets.BaseWidget implements com.smartgwt.client.widgets.events.HasClickHandlers, com.smartgwt.client.widgets.events.HasDoubleClickHandlers, com.smartgwt.client.widgets.events.HasDragMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStartHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStopHandlers, com.smartgwt.client.widgets.events.HasDragResizeMoveHandlers, com.smartgwt.client.widgets.events.HasDragResizeStartHandlers, com.smartgwt.client.widgets.events.HasDragResizeStopHandlers, com.smartgwt.client.widgets.events.HasDragStartHandlers, com.smartgwt.client.widgets.events.HasDragStopHandlers, com.smartgwt.client.widgets.events.HasDropHandlers, com.smartgwt.client.widgets.events.HasDropMoveHandlers, com.smartgwt.client.widgets.events.HasDropOutHandlers, com.smartgwt.client.widgets.events.HasDropOverHandlers, com.smartgwt.client.widgets.events.HasFocusChangedHandlers, com.smartgwt.client.widgets.events.HasHoverHandlers, com.smartgwt.client.widgets.events.HasHoverHiddenHandlers, com.smartgwt.client.widgets.events.HasKeyDownHandlers, com.smartgwt.client.widgets.events.HasKeyPressHandlers, com.smartgwt.client.widgets.events.HasMouseDownHandlers, com.smartgwt.client.widgets.events.HasMouseMoveHandlers, com.smartgwt.client.widgets.events.HasMouseOutHandlers, com.smartgwt.client.widgets.events.HasMouseOverHandlers, com.smartgwt.client.widgets.events.HasMouseStillDownHandlers, com.smartgwt.client.widgets.events.HasMouseUpHandlers, com.smartgwt.client.widgets.events.HasMouseWheelHandlers, com.smartgwt.client.widgets.events.HasResizedHandlers, com.smartgwt.client.widgets.events.HasRightMouseDownHandlers, com.smartgwt.client.widgets.events.HasScrolledHandlers, com.smartgwt.client.widgets.events.HasShowContextMenuHandlers, com.smartgwt.client.widgets.events.HasVisibilityChangedHandlers</code></nobr>
+</p>
+</blockquote>
+<h5>Method Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public native void parentResized()<br>
+<b>new:</b>protected native void parentResized()</code></nobr>
+</p>
+</blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addVisibilityChangedHandler(com.smartgwt.client.widgets.events.VisibilityChangedHandler)</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.widgets.form.fields.CanvasItem getCanvasItem()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getFacetId()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getHoverAutoDestroy()</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.widgets.Canvas getHoverComponent()</code></nobr>
+</li>
+
+<li>
+<nobr><code>public java.lang.Boolean getShowHoverComponents()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setCanvasItem(com.smartgwt.client.widgets.form.fields.CanvasItem)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setFacetId(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setHoverAutoDestroy(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setShowHoverComponents(java.lang.Boolean)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.DateChooser</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public int getEndYear()</code></nobr>
+</li>
+<li>
+<nobr><code>public int getStartYear()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setEndYear(int)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setStartYear(int)</code></nobr>
+</li>
+</ul>
+</blockquote>
+
+<h4>
+<code>com.smartgwt.client.widgets.HeaderControl</code>
+</h4>
+<blockquote>
+<h5>New Fields:</h5>
+<ul>
+
+</ul>
+<h5>New Methods:</h5>
+<ul>
+
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.Hover</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public static native void show(java.lang.String, com.smartgwt.client.widgets.Label)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.IButton</code>
+</h4>
+<blockquote>
+<h5>New Constructors:</h5>
+<ul>
+<li>
+<nobr><code>public IButton(java.lang.String, com.smartgwt.client.widgets.events.ClickHandler)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.calendar.Calendar</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addFetchDataHandler(com.smartgwt.client.widgets.events.FetchDataHandler)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void editHilites()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void exportClientData()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void exportClientData(com.smartgwt.client.data.DSRequest)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void exportData()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void exportData(com.smartgwt.client.data.DSRequest)</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.types.DateDisplayFormat getDateFormatter()</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.String getHiliteState()</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.data.Hilite[] getHilites()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.types.TimeFormatter getTimeFormatter()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setDateFormatter(com.smartgwt.client.types.DateDisplayFormat)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setHiliteState(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setHilites(com.smartgwt.client.data.Hilite[])</code></nobr>
+</li>
+<li>
+<nobr><code>public void setTimeFormatter(com.smartgwt.client.types.TimeFormatter)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.events.HoverEvent</code>
+</h4>
+<blockquote>
+<h5>Declaration Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public class com.smartgwt.client.widgets.events.HoverEvent extends com.smartgwt.client.widgets.events.BrowserEvent<br>
+<b>new:</b>public class com.smartgwt.client.widgets.events.HoverEvent extends com.smartgwt.client.widgets.events.BrowserEvent implements com.smartgwt.client.event.Cancellable</code></nobr>
+</p>
+</blockquote>
+<h5>New Fields:</h5>
+<ul>
+
+</ul>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public void cancel()</code></nobr>
+</li>
+<li>
+<nobr><code>public boolean isCancelled()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.events.IconClickEvent</code>
+</h4>
+<blockquote>
+<h5>Declaration Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public class com.smartgwt.client.widgets.events.IconClickEvent extends com.smartgwt.client.widgets.events.BrowserEvent<br>
+<b>new:</b>public class com.smartgwt.client.widgets.events.IconClickEvent extends com.smartgwt.client.widgets.events.BrowserEvent implements com.smartgwt.client.event.Cancellable</code></nobr>
+</p>
+</blockquote>
+<h5>New Fields:</h5>
+<ul>
+
+</ul>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public void cancel()</code></nobr>
+</li>
+<li>
+<nobr><code>public boolean isCancelled()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.DynamicForm</code>
+</h4>
+<blockquote>
+<h5>Declaration Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public class com.smartgwt.client.widgets.form.DynamicForm extends com.smartgwt.client.widgets.Canvas implements com.smartgwt.client.widgets.DataBoundComponent, com.smartgwt.client.widgets.form.events.HasFormSubmitFailedHandlers, com.smartgwt.client.widgets.form.events.HasItemChangeHandlers, com.smartgwt.client.widgets.form.events.HasItemChangedHandlers, com.smartgwt.client.widgets.form.events.HasItemKeyPressHandlers, com.smartgwt.client.widgets.form.events.HasSubmitValuesHandlers<br>
+<b>new:</b>public class com.smartgwt.client.widgets.form.DynamicForm extends com.smartgwt.client.widgets.Canvas implements com.smartgwt.client.widgets.DataBoundComponent, com.smartgwt.client.widgets.form.events.HasFormSubmitFailedHandlers, com.smartgwt.client.widgets.form.events.HasHiddenValidationErrorsHandlers, com.smartgwt.client.widgets.form.events.HasItemChangeHandlers, com.smartgwt.client.widgets.form.events.HasItemChangedHandlers, com.smartgwt.client.widgets.form.events.HasItemKeyPressHandlers, com.smartgwt.client.widgets.form.events.HasSubmitValuesHandlers</code></nobr>
+</p>
+</blockquote>
+<h5>Newly Deprecated Methods:</h5>
+<ul>
+<li>
+<nobr><code>public int getCellSpacing()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setCellSpacing(int)</code></nobr>
+</li>
+</ul>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addFetchDataHandler(com.smartgwt.client.widgets.events.FetchDataHandler)</code></nobr>
+</li>
+<li>
+<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addHiddenValidationErrorsHandler(com.smartgwt.client.widgets.form.events.HiddenValidationErrorsHandler)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void editHilites()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void exportClientData()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void exportClientData(com.smartgwt.client.data.DSRequest)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void exportData()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void exportData(com.smartgwt.client.data.DSRequest)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getBrowserSpellCheck()</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.util.Map getChangedValues()</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.widgets.form.fields.FormItem getEventItem()</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.widgets.form.FormItemEventInfo getEventItemInfo(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.widgets.form.fields.FormItem getFocusItem()</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.String getHiliteState()</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.data.Hilite[] getHilites()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getImplicitSave()</code></nobr>
+</li>
+<li>
+<nobr><code>public int getImplicitSaveDelay()</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.util.Map getOldValues()</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.types.DSOperationType getSaveOperationType(com.smartgwt.client.data.DSRequest)</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.types.Alignment getTitleAlign()</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.data.AdvancedCriteria getValuesAsAdvancedCriteria(com.smartgwt.client.types.TextMatchStyle)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setBrowserSpellCheck(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setHiliteState(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setHilites(com.smartgwt.client.data.Hilite[])</code></nobr>
+</li>
+<li>
+<nobr><code>public void setImplicitSave(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setImplicitSaveDelay(int)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setTitleAlign(com.smartgwt.client.types.Alignment)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setValue(java.lang.String, int[])</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setValue(java.lang.String, java.lang.String[])</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setValue(java.lang.String, java.util.Date)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.FilterBuilder</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.String getMatchAllTitle()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getMatchAnyTitle()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getMatchNoneTitle()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setMatchAllTitle(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setMatchAnyTitle(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setMatchNoneTitle(java.lang.String)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.ValuesManager</code>
+</h4>
+<blockquote>
+<h5>Declaration Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public class com.smartgwt.client.widgets.form.ValuesManager extends com.smartgwt.client.core.BaseClass<br>
+<b>new:</b>public class com.smartgwt.client.widgets.form.ValuesManager extends com.smartgwt.client.core.BaseClass implements com.smartgwt.client.widgets.form.events.HasHiddenValidationErrorsHandlers, com.smartgwt.client.widgets.form.events.HasSubmitValuesHandlers</code></nobr>
+</p>
+</blockquote>
+<h5>Removed Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.String getUnknownErrorMessage()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setUnknownErrorMessage(java.lang.String)</code></nobr>
+</li>
+</ul>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addHiddenValidationErrorsHandler(com.smartgwt.client.widgets.form.events.HiddenValidationErrorsHandler)</code></nobr>
+</li>
+<li>
+<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addSubmitValuesHandler(com.smartgwt.client.widgets.form.events.SubmitValuesHandler)</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.util.Map getChangedValues()</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.util.Map getOldValues()</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.Object getValue(java.lang.String)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.events.SubmitValuesEvent</code>
+</h4>
+<blockquote>
+<h5>Newly Deprecated Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native com.smartgwt.client.widgets.form.DynamicForm getForm()</code></nobr>
+</li>
+</ul>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native java.util.Map getValuesAsMap()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.BooleanItem</code>
+</h4>
+<blockquote>
+<h5>New Constructors:</h5>
+<ul>
+<li>
+<nobr><code>public BooleanItem(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public BooleanItem(java.lang.String, java.lang.String)</code></nobr>
+</li>
+</ul>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native java.lang.Boolean getValueAsBoolean()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.ButtonItem</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public void setButtonProperties(com.smartgwt.client.widgets.Button)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.CanvasItem</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>protected com.smartgwt.client.widgets.Canvas createCanvas()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.ColorPickerItem</code>
+</h4>
+<blockquote>
+<h5>New Constructors:</h5>
+<ul>
+<li>
+<nobr><code>public ColorPickerItem(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public ColorPickerItem(java.lang.String, java.lang.String)</code></nobr>
+</li>
+</ul>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native java.lang.String getValueAsString()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.ComboBoxItem</code>
+</h4>
+<blockquote>
+<h5>Declaration Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public class com.smartgwt.client.widgets.form.fields.ComboBoxItem extends com.smartgwt.client.widgets.form.fields.FormItem implements com.smartgwt.client.widgets.form.fields.PickList, com.smartgwt.client.widgets.form.fields.events.HasDataArrivedHandlers<br>
+<b>new:</b>public class com.smartgwt.client.widgets.form.fields.ComboBoxItem extends com.smartgwt.client.widgets.form.fields.TextItem implements com.smartgwt.client.widgets.form.fields.PickList, com.smartgwt.client.widgets.form.fields.events.HasDataArrivedHandlers</code></nobr>
+</p>
+</blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.Boolean getAddUnknownValues()</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.String getEnteredValue()</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.String getValueAsString()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setAddUnknownValues(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setOptionFilterContext(com.smartgwt.client.data.DSRequest)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.DateItem</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.smartgwt.client.widgets.form.fields.SelectItem getDaySelectorProperties()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.util.Date getDefaultChooserDate()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void getEnteredValue()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.widgets.form.fields.SelectItem getMonthSelectorProperties()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.widgets.form.fields.TextItem getTextFieldProperties()</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.util.Date getValueAsDate()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.widgets.form.fields.SelectItem getYearSelectorProperties()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setDaySelectorProperties(com.smartgwt.client.widgets.form.fields.SelectItem)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setDefaultChooserDate(java.util.Date)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setMonthSelectorProperties(com.smartgwt.client.widgets.form.fields.SelectItem)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setTextFieldProperties(com.smartgwt.client.widgets.form.fields.TextItem)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setYearSelectorProperties(com.smartgwt.client.widgets.form.fields.SelectItem)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.DateRangeItem</code>
+</h4>
+<blockquote>
+<h5>Removed Methods:</h5>
+<ul>
+<li>
+<nobr><code>public void setFieldName(java.lang.String)</code></nobr>
+</li>
+</ul>
+<h5>New Methods:</h5>
+<ul>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.FloatItem</code>
+</h4>
+<blockquote>
+<h5>New Constructors:</h5>
+<ul>
+<li>
+<nobr><code>public FloatItem(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public FloatItem(java.lang.String, java.lang.String)</code></nobr>
+</li>
+</ul>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native java.lang.Float getValueAsFloat()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.FormItem</code>
+</h4>
+<blockquote>
+<h5>Declaration Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public class com.smartgwt.client.widgets.form.fields.FormItem extends com.smartgwt.client.core.RefDataClass implements com.smartgwt.client.widgets.form.fields.events.HasBlurHandlers, com.smartgwt.client.widgets.form.fields.events.HasChangeHandlers, com.smartgwt.client.widgets.form.fields.events.HasChangedHandlers, com.smartgwt.client.widgets.form.fields.events.HasClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasDoubleClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasFocusHandlers, com.smartgwt.client.widgets.form.fields.events.HasIconClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasIconKeyPressHandlers, com.smartgwt.client.widgets.form.fields.events.HasItemHoverHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyDownHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyPressHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyUpHandlers, com.smartgwt.client.widgets.form.fields.events.HasTitleHoverHandlers<br>
+<b>new:</b>public class com.smartgwt.client.widgets.form.fields.FormItem extends com.smartgwt.client.core.RefDataClass implements com.smartgwt.client.widgets.form.fields.events.HasBlurHandlers, com.smartgwt.client.widgets.form.fields.events.HasChangeHandlers, com.smartgwt.client.widgets.form.fields.events.HasChangedHandlers, com.smartgwt.client.widgets.form.fields.events.HasClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasDoubleClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasFocusHandlers, com.smartgwt.client.widgets.form.fields.events.HasIconClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasIconKeyPressHandlers, com.smartgwt.client.widgets.form.fields.events.HasItemHoverHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyDownHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyPressHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyUpHandlers, com.smartgwt.client.widgets.form.fields.events.HasTitleClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasTitleDoubleClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasTitleHoverHandlers</code></nobr>
+</p>
+</blockquote>
+<h5>New Constructors:</h5>
+<ul>
+<li>
+<nobr><code>public FormItem(java.lang.String)</code></nobr>
+</li>
+</ul>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addTitleClickHandler(com.smartgwt.client.widgets.form.fields.events.TitleClickHandler)</code></nobr>
+</li>
+<li>
+<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addTitleDoubleClickHandler(com.smartgwt.client.widgets.form.fields.events.TitleDoubleClickHandler)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getAlwaysFetchMissingValues()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getBrowserSpellCheck()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getCanFocus()</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.google.gwt.core.client.JavaScriptObject getConfigNoName()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.widgets.Canvas getContainerWidget()</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.data.Criterion getCriterion(com.smartgwt.client.types.TextMatchStyle)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getInputFormat()</code></nobr>
+</li>
+<li>
+<nobr><code>public native int getPageLeft()</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.core.Rectangle getPageRect()</code></nobr>
+</li>
+<li>
+<nobr><code>public native int getPageTop()</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.core.Rectangle getRect()</code></nobr>
+</li>
+<li>
+<nobr><code>public int getTitleColSpan()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setAlwaysFetchMissingValues(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setBrowserSpellCheck(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setCanFocus(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setDisplayFormat(com.smartgwt.client.types.DateDisplayFormat)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setDisplayFormat(com.smartgwt.client.types.TimeFormatter)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setInputFormat(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setProperty(java.lang.String, int)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setTitleColSpan(int)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setValue(java.lang.Object)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setValueIconMapper(com.smartgwt.client.widgets.form.ValueIconMapper)</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.Boolean shouldFetchMissingValue(java.lang.Object)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void showPicker()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.FormItemIcon</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.Integer getTabIndex()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setTabIndex(java.lang.Integer)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.IntegerItem</code>
+</h4>
+<blockquote>
+<h5>New Constructors:</h5>
+<ul>
+<li>
+<nobr><code>public IntegerItem(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public IntegerItem(java.lang.String, java.lang.String)</code></nobr>
+</li>
+</ul>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native java.lang.Integer getValueAsInteger()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.MiniDateRangeItem</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.String getTextBoxStyle()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setTextBoxStyle(java.lang.String)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.NativeCheckboxItem</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native java.lang.Boolean getValueAsBoolean()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.RadioGroupItem</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native java.lang.String getValueAsString()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.SelectItem</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native com.smartgwt.client.widgets.grid.ListGridRecord[] getSelectedRecords()</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.String getValueAsString()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setOptionFilterContext(com.smartgwt.client.data.DSRequest)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.SliderItem</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native java.lang.Float getValueAsFloat()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.TextAreaItem</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native java.lang.String getEnteredValue()</code></nobr>
+</li>
+<li>
+<nobr><code>public int getMinHeight()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getPrintFullText()</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.String getValueAsString()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setMinHeight(int)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setPrintFullText(java.lang.Boolean)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.TextItem</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native java.lang.String getEnteredValue()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getPrintFullText()</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.String getValueAsString()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setPrintFullText(java.lang.Boolean)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.validator.CustomValidator</code>
+</h4>
+<blockquote>
+<h5>New Fields:</h5>
+<ul>
+<li>
+<nobr><code>protected java.util.Map validatorProperties</code></nobr>
+</li>
+</ul>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.util.Map getValidatorProperties()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.validator.Validator</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public static native void addValidatorDefinition(java.lang.String, com.smartgwt.client.widgets.form.validator.Validator)</code></nobr>
+</li>
+<li>
+<nobr><code>public static com.smartgwt.client.widgets.form.validator.Validator[] convertToValidatorArray(com.google.gwt.core.client.JavaScriptObject)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getTypeAsString()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setType(java.lang.String)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.grid.ColumnTree</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addFetchDataHandler(com.smartgwt.client.widgets.events.FetchDataHandler)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void editHilites()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void exportClientData()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void exportClientData(com.smartgwt.client.data.DSRequest)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void exportData()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void exportData(com.smartgwt.client.data.DSRequest)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getBackButtonTitle()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.widgets.grid.ListGrid getColumnProperties()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.widgets.grid.ListGrid getCustomColumnProperties(com.smartgwt.client.widgets.tree.TreeNode, int)</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.String getHiliteState()</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.data.Hilite[] getHilites()</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.data.Record getSelectedRecord()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getShowMultipleColumns()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void navigateBack()</code></nobr>
+</li>
+<li>
+<nobr><code>protected void onInit()</code></nobr>
+</li>
+<li>
+<nobr><code>protected native void onInit_ColumnTree()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setBackButtonTitle(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setColumnProperties(com.smartgwt.client.widgets.grid.ListGrid)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setHiliteState(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setHilites(com.smartgwt.client.data.Hilite[])</code></nobr>
+</li>
+<li>
+<nobr><code>public void setShowMultipleColumns(java.lang.Boolean)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.grid.HeaderSpan</code>
+</h4>
+<blockquote>
+<h5>New Constructors:</h5>
+<ul>
+</ul>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.String[] getFields()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getTitle()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.grid.ListGrid</code>
+</h4>
+<blockquote>
+<h5>Declaration Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public class com.smartgwt.client.widgets.grid.ListGrid extends com.smartgwt.client.widgets.Canvas implements com.smartgwt.client.widgets.DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasCellClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellHoverHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasCellOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.grid.events.HasDrawAreaChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasEditFailedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasFieldStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasHeaderClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordCollapseHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDropHandlers, com.smartgwt.client.widgets.grid.events.HasRecordExpandHandlers, com.smartgwt.client.widgets.grid.events.HasRowContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRowHoverHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasRowOutHandlers, com.smartgwt.client.widgets.grid.events.HasRowOverHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionChangedHandlers<br>
+<b>new:</b>public class com.smartgwt.client.widgets.grid.ListGrid extends com.smartgwt.client.widgets.Canvas implements com.smartgwt.client.widgets.DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasCellClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellHoverHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasCellOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.grid.events.HasDrawAreaChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasEditFailedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasFieldStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasFilterEditorSubmitHandlers, com.smartgwt.client.widgets.grid.events.HasGroupByHandlers, com.smartgwt.client.widgets.grid.events.HasHeaderClickHandlers, com.smartgwt.client.widgets.grid.events.HasHeaderDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordCollapseHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDropHandlers, com.smartgwt.client.widgets.grid.events.HasRecordExpandHandlers, com.smartgwt.client.widgets.grid.events.HasRowContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRowHoverHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasRowOutHandlers, com.smartgwt.client.widgets.grid.events.HasRowOverHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionChangedHandlers</code></nobr>
+</p>
+</blockquote>
+<h5>Removed Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native java.lang.String getSortNumeralHTML(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setGroupStartOpen(com.smartgwt.client.types.GroupStartOpen[])</code></nobr>
+</li>
+</ul>
+<h5>Method Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public native int getFocusRow()<br>
+<b>new:</b>public native java.lang.Integer getFocusRow()</code></nobr>
+</p>
+</blockquote>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public native void saveAllEdits()<br>
+<b>new:</b>public native boolean saveAllEdits()</code></nobr>
+</p>
+</blockquote>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public native void saveAllEdits(com.smartgwt.client.core.Function)<br>
+<b>new:</b>public native boolean saveAllEdits(com.smartgwt.client.core.Function)</code></nobr>
+</p>
+</blockquote>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public native void saveAllEdits(com.smartgwt.client.core.Function, int[])<br>
+<b>new:</b>public native boolean saveAllEdits(com.smartgwt.client.core.Function, int[])</code></nobr>
+</p>
+</blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addFetchDataHandler(com.smartgwt.client.widgets.events.FetchDataHandler)</code></nobr>
+</li>
+<li>
+<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addFilterEditorSubmitHandler(com.smartgwt.client.widgets.grid.events.FilterEditorSubmitHandler)</code></nobr>
+</li>
+<li>
+<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addGroupByHandler(com.smartgwt.client.widgets.grid.events.GroupByHandler)</code></nobr>
+</li>
+<li>
+<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addHeaderDoubleClickHandler(com.smartgwt.client.widgets.grid.events.HeaderDoubleClickHandler)</code></nobr>
+</li>
+<li>
+<nobr><code>public native int autoFitField(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void autoFitFields(com.smartgwt.client.widgets.grid.ListGridField[])</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.widgets.chart.FacetChart chartData(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.widgets.chart.FacetChart chartData(java.lang.String, java.lang.String[], com.smartgwt.client.data.Record[], com.smartgwt.client.widgets.chart.FacetChart, boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void editHilites()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void exportClientData()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void exportClientData(com.smartgwt.client.data.DSRequest)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getAutoFitAllText()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String[] getAutoFitClipFields()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getAutoFitExpandField()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getAutoFitFieldText()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getAutoFitFieldWidths()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getAutoFitFieldsFillViewport()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.types.AutoFitIconFieldType getAutoFitIconFields()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.types.AutoFitWidthApproach getAutoFitWidthApproach()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getCanAutoFitFields()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getCanCollapseGroup()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getCanPickOmittedFields()</code></nobr>
+</li>
+<li>
+<nobr><code>protected native com.smartgwt.client.widgets.Canvas getCellHoverComponent(com.smartgwt.client.data.Record, java.lang.Integer, java.lang.Integer)</code></nobr>
+</li>
+<li>
+<nobr><code>protected native java.lang.String getCellStyle(com.smartgwt.client.widgets.grid.ListGridRecord, int, int)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getChartConstructor()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.types.ChartType getChartType()</code></nobr>
+</li>
+<li>
+<nobr><code>public native int getDefaultFieldWidth(com.smartgwt.client.widgets.grid.ListGridField)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getDetailDS()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getExportRawValues()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.types.AutoFitEvent getHeaderAutoFitEvent()</code></nobr>
+</li>
+<li>
+<nobr><code>protected native com.smartgwt.client.widgets.menu.MenuItem[] getHeaderSpanContextMenuItems(com.smartgwt.client.widgets.grid.HeaderSpan)</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.String getHiliteState()</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.data.Hilite[] getHilites()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.types.HoverMode getHoverMode()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getOfflineMessageStyle()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getRecordCanSelectProperty()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Integer getRecordComponentHeight()</code></nobr>
+</li>
+<li>
+<nobr><code>public int getRemoveIconSize()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getSelectionProperty()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getShowBackgroundComponent()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getShowHoverComponents()</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.String getSortNumeralHTML(java.lang.String, int)</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.String getValueIcon(com.smartgwt.client.widgets.grid.ListGridField, java.lang.Object, com.smartgwt.client.widgets.grid.ListGridRecord)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void invalidateRecordComponents()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void recalculateSummaries()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setAutoFitAllText(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setAutoFitClipFields(java.lang.String[])</code></nobr>
+</li>
+<li>
+<nobr><code>public void setAutoFitExpandField(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setAutoFitFieldText(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setAutoFitFieldWidths(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setAutoFitFieldsFillViewport(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setAutoFitIconFields(com.smartgwt.client.types.AutoFitIconFieldType)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setAutoFitWidth(java.lang.String, boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setAutoFitWidthApproach(com.smartgwt.client.types.AutoFitWidthApproach)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setCanAutoFitFields(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setCanCollapseGroup(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setCanPickOmittedFields(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setChartConstructor(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setChartType(com.smartgwt.client.types.ChartType)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setDetailDS(com.smartgwt.client.data.DataSource)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setDetailDS(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setEditValue(int, int, com.smartgwt.client.data.Record)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setEditValue(int, int, com.smartgwt.client.data.Record[])</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setEditValue(int, java.lang.String, com.smartgwt.client.data.Record)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setEditValue(int, java.lang.String, com.smartgwt.client.data.Record[])</code></nobr>
+</li>
+<li>
+<nobr><code>public void setExportRawValues(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setGroupByField(java.lang.String[])</code></nobr>
+</li>
+<li>
+<nobr><code>public void setGroupStartOpen(java.lang.Object[])</code></nobr>
+</li>
+<li>
+<nobr><code>public void setHeaderAutoFitEvent(com.smartgwt.client.types.AutoFitEvent)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setHiliteState(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setHilites(com.smartgwt.client.data.Hilite[])</code></nobr>
+</li>
+<li>
+<nobr><code>public void setHoverMode(com.smartgwt.client.types.HoverMode)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setOfflineMessageStyle(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setRecordCanSelectProperty(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setRecordComponentHeight(java.lang.Integer)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setRemoveIconSize(int)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setSelectionProperty(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setShowBackgroundComponent(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setShowHoverComponents(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void startEditingNew(com.smartgwt.client.data.Record)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.grid.ListGridField</code>
+</h4>
+<blockquote>
+<h5>Removed Methods:</h5>
+<ul>
+</ul>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.Boolean getAutoFitWidth()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.types.AutoFitWidthApproach getAutoFitWidthApproach()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getExportRawValues()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getLinkURLPrefix()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getLinkURLSuffix()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getSortByDisplayField()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setAutoFitWidth(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setAutoFitWidthApproach(com.smartgwt.client.types.AutoFitWidthApproach)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setEditValueFormatter(com.smartgwt.client.widgets.grid.CellEditValueFormatter)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setEditValueParser(com.smartgwt.client.widgets.grid.CellEditValueParser)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setExportRawValues(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setFilterEditorProperties(com.smartgwt.client.widgets.form.fields.FormItem)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setLinkURLPrefix(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setLinkURLSuffix(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setSortByDisplayField(java.lang.Boolean)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.grid.events.ChangeEvent</code>
+</h4>
+<blockquote>
+<h5>Declaration Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public class com.smartgwt.client.widgets.grid.events.ChangeEvent extends com.smartgwt.client.event.AbstractSmartEvent<br>
+<b>new:</b>public class com.smartgwt.client.widgets.grid.events.ChangeEvent extends com.smartgwt.client.event.AbstractSmartEvent implements com.smartgwt.client.event.Cancellable</code></nobr>
+</p>
+</blockquote>
+<h5>New Fields:</h5>
+<ul>
+</ul>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public void cancel()</code></nobr>
+</li>
+<li>
+<nobr><code>public boolean isCancelled()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.grid.events.RowEditorExitEvent</code>
+</h4>
+<blockquote>
+<h5>Removed Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native com.google.gwt.core.client.JavaScriptObject getEditValues()</code></nobr>
+</li>
+</ul>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native java.util.Map getNewValues()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.layout.SectionStack</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.String getStyleName()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setStyleName(java.lang.String)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.menu.IMenuButton</code>
+</h4>
+<blockquote>
+<h5>Removed Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native void setShowMenuButtonImage(boolean)</code></nobr>
+</li>
+</ul>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.Boolean getShowMenuButtonImage()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setShowMenuButtonImage(java.lang.Boolean)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.menu.Menu</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.Boolean getAlternateRecordStyles()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getAutoDismissOnBlur()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getBaseStyle()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getCascadeAutoDismiss()</code></nobr>
+</li>
+<li>
+<nobr><code>public static native void hideAllMenus()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setAlternateRecordStyles(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setAutoDismissOnBlur(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setBaseStyle(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setCascadeAutoDismiss(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setData(com.smartgwt.client.widgets.tree.Tree)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.tab.Tab</code>
+</h4>
+<blockquote>
+<h5>Declaration Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public class com.smartgwt.client.widgets.tab.Tab extends com.smartgwt.client.core.RefDataClass<br>
+<b>new:</b>public class com.smartgwt.client.widgets.tab.Tab extends com.smartgwt.client.core.RefDataClass implements com.smartgwt.client.widgets.tab.events.HasTabDeselectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabSelectedHandlers</code></nobr>
+</p>
+</blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addTabDeselectedHandler(com.smartgwt.client.widgets.tab.events.TabDeselectedHandler)</code></nobr>
+</li>
+<li>
+<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addTabSelectedHandler(com.smartgwt.client.widgets.tab.events.TabSelectedHandler)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getCanEditTitle()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getPrompt()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setCanEditTitle(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setPrompt(java.lang.String)</code></nobr>
+</li>
+
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.tab.TabSet</code>
+</h4>
+<blockquote>
+<h5>Declaration Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public class com.smartgwt.client.widgets.tab.TabSet extends com.smartgwt.client.widgets.Canvas implements com.smartgwt.client.widgets.tab.events.HasCloseClickHandlers, com.smartgwt.client.widgets.tab.events.HasTabDeselectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabIconClickHandlers, com.smartgwt.client.widgets.tab.events.HasTabSelectedHandlers<br>
+<b>new:</b>public class com.smartgwt.client.widgets.tab.TabSet extends com.smartgwt.client.widgets.Canvas implements com.smartgwt.client.widgets.tab.events.HasCloseClickHandlers, com.smartgwt.client.widgets.tab.events.HasTabDeselectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabIconClickHandlers, com.smartgwt.client.widgets.tab.events.HasTabSelectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabTitleChangedHandlers</code></nobr>
+</p>
+</blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addTabTitleChangedHandler(com.smartgwt.client.widgets.tab.events.TabTitleChangedHandler)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void cancelTabTitleEditing()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void editTabTitle(int)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void editTabTitle(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getCanEditTabTitles()</code></nobr>
+</li>
+<li>
+<nobr><code>public int getMoreTabCount()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getMoreTabImage()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.widgets.Canvas getMoreTabPaneDefaults()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.widgets.Canvas getMoreTabPaneProperties()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.widgets.tab.Tab getMoreTabProperties()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getMoreTabTitle()</code></nobr>
+</li>
+<li>
+<nobr><code>public int getPaneMargin()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getShowMoreTab()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.types.TabTitleEditEvent getTitleEditEvent()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Integer getTitleEditorLeftOffset()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.widgets.form.fields.TextItem getTitleEditorProperties()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Integer getTitleEditorRightOffset()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Integer getTitleEditorTopOffset()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void saveTabTitle()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setCanEditTabTitles(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setMoreTabCount(int)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setMoreTabImage(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setMoreTabPaneDefaults(com.smartgwt.client.widgets.Canvas)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setMoreTabPaneProperties(com.smartgwt.client.widgets.Canvas)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setMoreTabProperties(com.smartgwt.client.widgets.tab.Tab)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setMoreTabTitle(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setPaneMargin(int)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setShowMoreTab(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setTitleEditEvent(com.smartgwt.client.types.TabTitleEditEvent)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setTitleEditorLeftOffset(java.lang.Integer)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setTitleEditorProperties(com.smartgwt.client.widgets.form.fields.TextItem)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setTitleEditorRightOffset(java.lang.Integer)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setTitleEditorTopOffset(java.lang.Integer)</code></nobr>
+</li>
+
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.tab.events.TabDeselectedEvent</code>
+</h4>
+<blockquote>
+<h5>Declaration Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public class com.smartgwt.client.widgets.tab.events.TabDeselectedEvent extends com.smartgwt.client.widgets.events.BrowserEvent<br>
+<b>new:</b>public class com.smartgwt.client.widgets.tab.events.TabDeselectedEvent extends com.smartgwt.client.widgets.events.BrowserEvent implements com.smartgwt.client.event.Cancellable</code></nobr>
+</p>
+</blockquote>
+<h5>New Fields:</h5>
+<ul>
+
+</ul>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public void cancel()</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.widgets.tab.Tab getNewTab()</code></nobr>
+</li>
+<li>
+<nobr><code>public boolean isCancelled()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.tile.TileGrid</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addFetchDataHandler(com.smartgwt.client.widgets.events.FetchDataHandler)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void editHilites()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void exportClientData()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void exportClientData(com.smartgwt.client.data.DSRequest)</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.String getHiliteState()</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.data.Hilite[] getHilites()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Integer getPrintTilesPerLine()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setHiliteState(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setHilites(com.smartgwt.client.data.Hilite[])</code></nobr>
+</li>
+<li>
+<nobr><code>public void setPrintTilesPerLine(java.lang.Integer)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setTileProperties(com.smartgwt.client.widgets.Canvas)</code></nobr>
+</li>
+
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.toolbar.ToolStrip</code>
+</h4>
+<blockquote>
+<h5>Removed Methods:</h5>
+<ul>
+<li>
+<nobr><code>public void addMember(com.smartgwt.client.widgets.Canvas)</code></nobr>
+</li>
+<li>
+<nobr><code>public void addMember(com.smartgwt.client.widgets.Canvas, int)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.toolbar.Toolbar</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native void itemDoubleClick(com.smartgwt.client.widgets.Button, int)</code></nobr>
+</li>
+</ul>
+</blockquote>
+
+
+<h4>
+<code>com.smartgwt.client.widgets.tree.TreeGrid</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.String getOfflineNodeMessage()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getSelectionProperty()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getShowOpener()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setOfflineNodeMessage(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setSelectionProperty(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setShowOpener(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void toggleFolder(com.smartgwt.client.widgets.tree.TreeNode)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.viewer.DetailViewer</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addFetchDataHandler(com.smartgwt.client.widgets.events.FetchDataHandler)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void editHilites()</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.String emptyMessageHTML()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void exportClientData()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void exportClientData(com.smartgwt.client.data.DSRequest)</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.String getHiliteState()</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.data.Hilite[] getHilites()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setHiliteState(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setHilites(com.smartgwt.client.data.Hilite[])</code></nobr>
+</li>
+
+</ul>
+</blockquote>
+
+
+<h3>New Interfaces:</h3>
+<ul>
+<li>
+<nobr><code>com.smartgwt.client.data.SimpleTypeParser</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.ApplicationDeclaration</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.AutoFitFields</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.AutoTest</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.CriteriaEditing</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.DataSourceLocalization</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.DateItemAppearance</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.DmiOverview</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.DsRequestEquivalence</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.DsSpecialFields</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.GaeIntegration</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.Hiliting</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.HoverComponents</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.I18Messages</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.I18nMessage</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.IscInstall</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.JpaIntegration</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.MobileDevelopment</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.Offline</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.OfflineGroup</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.ServerDataSourceImplementation</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.events.FetchDataHandler</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.events.HasFetchDataHandlers</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.events.HasVisibilityChangedHandlers</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.events.VisibilityChangedHandler</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.form.ValueIconMapper</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.form.events.HasHiddenValidationErrorsHandlers</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.form.events.HiddenValidationErrorsHandler</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.form.fields.events.HasTitleClickHandlers</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.form.fields.events.HasTitleDoubleClickHandlers</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.form.fields.events.TitleClickHandler</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.form.fields.events.TitleDoubleClickHandler</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.grid.CellEditValueFormatter</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.grid.CellEditValueParser</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.grid.events.FilterEditorSubmitHandler</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.grid.events.GroupByHandler</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.grid.events.HasFilterEditorSubmitHandlers</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.grid.events.HasGroupByHandlers</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.grid.events.HasHeaderDoubleClickHandlers</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.grid.events.HeaderDoubleClickHandler</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.layout.events.NavigationClickHandler</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.tab.events.HasTabTitleChangedHandlers</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.tab.events.TabTitleChangedHandler</code></nobr>
+</li>
+</ul>
+<h3>New Classes:</h3>
+<ul>
+<li>
+<nobr><code>com.smartgwt.client.data.Hilite</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.AutoFitEvent</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.AutoFitIconFieldType</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.AutoFitWidthApproach</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.AutoSelectionModel</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.Axis</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.ChartType</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.HoverMode</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.NavigationMode</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.PageOrientation</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.RecordLayout</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.SQLPagingStrategy</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.SQLType</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.SelectionBoundary</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.TabTitleEditEvent</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.types.TableMode</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.util.Offline</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.events.FetchDataEvent</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.events.VisibilityChangedEvent</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.form.FormItemEventInfo</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.form.fields.events.TitleClickEvent</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.form.fields.events.TitleDoubleClickEvent</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.grid.events.FilterEditorSubmitEvent</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.grid.events.GroupByEvent</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.grid.events.HeaderDoubleClickEvent</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.layout.NavigationBar</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.layout.SplitPane</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.layout.events.NavigationClickEvent</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent</code></nobr>
+</li>
+</ul>
+<hr>
+</body>
+</html>

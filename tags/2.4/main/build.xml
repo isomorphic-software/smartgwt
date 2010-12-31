@@ -1,0 +1,184 @@
+<project name="smartgwt" default="build" basedir=".">
+    <property name="smartgwt.root" location=".."/>
+    <property name="project.tail" value="main"/>
+    <import file="${smartgwt.root}/common.ant.xml"/>
+
+    <!--
+         Default hosted mode test cases
+     -->
+    <fileset id="default.hosted.tests" dir="${javac.junit.out}"
+             includes="${smartgwt.junit.testcase.includes}">
+        <exclude name="com/smartgwt/client/Test.class"/>
+
+    </fileset>
+
+    <!--
+         Default web mode test cases
+     -->
+    <fileset id="default.web.tests" dir="${javac.junit.out}"
+             includes="${smartgwt.junit.testcase.includes}">
+        <exclude name="com/smartgwt/client/Test.class"/>
+    </fileset>
+
+<!--    <target name="gen-src" description="Generate SmartGWT code from metadata">
+        <fmpp sourceRoot="${smartgwt.root}/fmpp/src" outputRoot="src/org/smartgwt/client">
+            <data>
+                 tdd(data/style.tdd)
+                 birds: csv(data/birds.csv)
+            </data>
+        </fmpp>
+    </target>-->
+
+    <target name="compile" description="Compile all class files">
+        <mkdir dir="${javac.out}"/>
+        <gwt.javac>
+            <classpath>
+                <pathelement location="${smartgwt.tools.lib}/tomcat/servlet-api-2.4.jar"/>
+                <pathelement location="${smartgwt.tools.lib}/junit/junit-3.8.1.jar"/>
+                <pathelement location="${gwt.user.jar}"/>
+				<pathelement location="${gwt.dev.jar}"/>
+				<pathelement location="${gwt.dev2.jar}"/>
+            </classpath>
+        </gwt.javac>
+    </target>
+
+    <target name="compile.tests" description="Compiles the test code for this project">
+        <mkdir dir="${javac.junit.out}"/>
+        <gwt.javac srcdir="test" destdir="${javac.junit.out}">
+            <classpath>
+                <pathelement location="${javac.out}"/>
+                <pathelement location="${smartgwt.tools.lib}/junit/junit-3.8.1.jar"/>
+                <pathelement location="${gwt.user.jar}"/>
+            </classpath>
+        </gwt.javac>
+    </target>
+
+    <target name="build" depends="write_ver,compile" description="Build and package this project">
+        <copyfile src="src/com/smartgwt/client/i18n/SmartGwtMessages_fr_FR.properties" dest="src/com/smartgwt/client/i18n/SmartGwtMessages_fr.properties"/>
+        <mkdir dir="${smartgwt.build.lib}"/>
+        <gwt.jar>
+            <fileset dir="src">
+                <exclude name="**/package.html"/>
+                <!--do not distribute ext-->
+                <!--<exclude name="com/smartgwt/public/**/*"/>-->
+            </fileset>
+            <zipfileset dirmode="755" filemode="644" src="${smartgwt.tools.lib}/sc/${smartclient.version}/smartclient.jar">
+                <exclude name="**/selenium/*"/>
+            </zipfileset>
+
+            <fileset dir="${javac.out}"/>
+        </gwt.jar>
+		<copy file="${smartgwt.tools.lib}/sc/${smartclient.version}/smartgwt-skins.jar" todir="${smartgwt.build.lib}"/>
+    </target>
+
+    <target name="checkstyle" description="Static analysis of source">
+        <gwt.checkstyle>
+            <fileset dir="src"/>
+        </gwt.checkstyle>
+    </target>
+
+    <target name="remoteweb-test" description="Run a remoteweb test at the given host and path">
+        <echo message="Performing remote browser testing at rmi://${smartgwt.remote.browser}"/>
+        <gwt.junit test.args="-port ${smartgwt.junit.port} -out www -web -remoteweb rmi://${smartgwt.remote.browser}"
+                   test.out="${junit.out}/${smartgwt.remote.browser}" test.cases="default.web.tests"/>
+    </target>
+
+    <target name="test.hosted" depends="compile, compile.tests"
+            description="Run only hosted-mode tests for this project.">
+        <gwt.junit test.args="-port ${smartgwt.junit.port}" test.out="${junit.out}/${build.host.platform}-hosted-mode"
+                   test.cases="default.hosted.tests"/>
+    </target>
+
+    <target name="test.web" depends="compile, compile.tests" description="Run only web-mode tests for this project.">
+        <gwt.junit test.args="-port ${smartgwt.junit.port} -out www -web"
+                   test.out="${junit.out}/${build.host.platform}-web-mode" test.cases="default.web.tests"/>
+    </target>
+
+    <target name="test" depends="compile, compile.tests"
+            description="Run hosted-mode, web-mode and remoteweb tests for this project.">
+        <property.ensure name="distro.built" location="${smartgwt.dev.staging.jar}"
+                         message="SmartGWT must be built before performing any tests.  This can be fixed by running ant in the ${smartgwt.root} directory."/>
+
+        <!--
+              Run hosted and web mode tests for the platform on which this build
+              is executing
+          -->
+        <parallel threadcount="1">
+            <antcall target="test.hosted"/>
+
+           <!-- <antcall target="test.web"/>-->
+
+            <!--
+                   Run remote browser testing for the comma delimited list of remote browsers
+               -->
+            <!--<foreach list="${smartgwt.remote.browsers}" delimiter="," parallel="true" maxThreads="1"
+                     target="remoteweb-test" param="smartgwt.remote.browser"/>-->
+        </parallel>
+    </target>
+
+    <target name="clean" description="Cleans this project's intermediate and output files">
+        <delete dir="${project.build}"/>
+        <delete file="${project.lib}"/>
+    </target>
+	
+	<target name="write_ver">
+  <tstamp>
+      <format property="build_date" pattern="MM/dd/yyyy hh:mm Z"/>
+  </tstamp>
+
+	        <echo file="src/com/smartgwt/client/Version.java"><![CDATA[
+/*
+ * SmartGWT (GWT for SmartClient)
+ * Copyright 2008 and beyond, Isomorphic Software, Inc.
+ *
+ * SmartGWT is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License version 3
+ * as published by the Free Software Foundation.  SmartGWT is also
+ * available under typical commercial license terms - see
+ * http://smartclient.com/license
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ */
+
+package com.smartgwt.client;
+
+import java.util.Date;
+import com.google.gwt.i18n.client.DateTimeFormat;
+
+/**
+ * Class that returns meta information like version number, major version, minor version and build date.
+ */
+public final class Version {
+    /**
+     * @return the library version
+     */
+    public static String getVersion() {
+        return "${smartgwt.version}";
+    }
+
+    /**
+     * @return the library major version
+     */
+    public static String getMajor() {
+        return "${smartgwt.version.major}";
+    }
+
+    /**
+     * @return the library minor version
+     */
+    public static String getMinor() {
+        return "${smartgwt.version.minor}";
+    }
+
+    /**
+     * @return the library build time
+     */
+    public static Date getBuildDate() {
+        return DateTimeFormat.getFormat("MM/dd/yyyy hh:mm Z").parse("${build_date}");
+    }
+}]]></echo>
+	    </target>
+</project>

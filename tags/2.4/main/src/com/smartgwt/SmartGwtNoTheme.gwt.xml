@@ -1,0 +1,17 @@
+<!--Injects the SmartClient JavaScript files without bundling / including any skins-->
+<module>
+    <inherits name='com.google.gwt.user.User'/>
+    <inherits name="com.google.gwt.xml.XML"/>
+    <inherits name="com.google.gwt.i18n.I18N"/>
+    <inherits name="com.google.gwt.json.JSON"/>
+    <inherits name="com.google.gwt.http.HTTP"/>
+    <inherits name="com.google.gwt.event.Event"/>
+
+    <inherits name="com.smartclient.SmartClientDefault"/>
+
+    <entry-point class='com.smartgwt.client.SmartGwtEntryPoint'/>
+
+	<define-linker name="smartgwt" class="com.smartgwt.linker.SmartGwtLinker" />
+  	<add-linker name="smartgwt" />
+    
+</module>
