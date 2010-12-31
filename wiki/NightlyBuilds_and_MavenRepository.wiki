@@ -24,25 +24,14 @@ Repository: http://www.smartclient.com/maven2
    Version: 2.0-SNAPSHOT
 }}}
 
-For SmartGWT 2.0 Release
+For SmartGWT 2.4 Release
 
 {{{
 Repository: http://www.smartclient.com/maven2
 
    Group Id: com.smartgwt
    Artifact Id: smartgwt
-   Version: 2.0
-}}}
-
-
-For SmartGWT 1.3 Release
-
-{{{
-Repository: http://www.smartclient.com/maven2
-
-   Group Id: com.smartgwt
-   Artifact Id: smartgwt
-   Version: 1.3
+   Version: 2.4
 }}}
 
 
@@ -53,5 +42,5 @@ Repository: http://www.smartclient.com/maven2
 
    Group Id: com.smartgwt
    Artifact Id: smartgwt-skins
-   Version: 1.3
+   Version: 2.4
 }}}
