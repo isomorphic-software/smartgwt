@@ -536,7 +536,7 @@ public class SC {
      * @return true if Analytics module is loaded
      */
     public static native boolean hasAnalytics()/*-{
-        return $wnd.isc.hasOptionalModule("Analytics") || $wnd.isc.CubeGrid;
+        return $wnd.isc.CubeGrid != null;
     }-*/;
 
     /**
@@ -545,7 +545,7 @@ public class SC {
      * @return true if Drawing module is loaded
      */
     public static native boolean hasDrawing()/*-{
-        return $wnd.isc.hasOptionalModule("Drawing") || $wnd.isc.DrawPane;
+        return $wnd.isc.DrawPane != null;
     }-*/;
 
     /**
@@ -554,7 +554,7 @@ public class SC {
      * @return true if PluginBridges module is loaded
      */
     public static native boolean hasPluginBridges()/*-{
-        return $wnd.isc.hasOptionalModule("PluginBridges") || $wnd.isc.BrowserPlugin;
+        return $wnd.isc.BrowserPlugin != null;
     }-*/;
 
     /**
@@ -563,6 +563,6 @@ public class SC {
      * @return true if RealtimeMessaging module is loaded
      */
     public static native boolean hasRealtimeMessaging()/*-{
-        return $wnd.isc.hasOptionalModule("RealtimeMessaging") || $wnd.isc.Messaging;
+        return $wnd.isc.Messaging != null;
     }-*/;
 }
