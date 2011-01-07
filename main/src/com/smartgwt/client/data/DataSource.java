@@ -1902,39 +1902,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-            
-    /**
-     * Synonym of {@link com.smartgwt.client.data.DataSource#getDataSource DataSource.getDataSource}: Lookup a DataSource by
-     * ID.
-     * @param ID DataSource ID
-     *
-     * @return the DataSource with this ID, if loaded, otherwise null.
-     */
-    public static native DataSource get(String ID) /*-{
-        var ret = $wnd.isc.DataSource.get(ID);
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.core.BaseClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.data.DataSource::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
-    }-*/;
-            
-    /**
-     * Lookup a DataSource by ID.
-     * @param ID DataSource ID
-     *
-     * @return the DataSource with this ID, if loaded, otherwise null.
-     */
-    public static native DataSource getDataSource(String ID) /*-{
-        var ret = $wnd.isc.DataSource.getDataSource(ID);
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.core.BaseClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.data.DataSource::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
-    }-*/;
         
     // ***********************************************************        
 
@@ -2144,12 +2111,98 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *  If the dataFormat is "json", the JavaScriptObject will be the raw JSON object(s) returned by the 
      *  web service. If dataFormat is XML the JavaScriptObject will be the raw XML document object.
      *  Note that the {@link com.smartgwt.client.util.JSOHelper} and
-     *  {@link com.smartgwt.client.util.XMLTools} utility classes can be used to work with these raw objects.
+     *  {@link com.smartgwt.client.data.XMLTools} utility classes can be used to work with these raw objects.
      *      
      */
     protected native void transformResponse(DSResponse response, DSRequest request, Object data) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.__transformResponse(response.@com.smartgwt.client.data.DSResponse::getJsObj()(), request.@com.smartgwt.client.data.DSRequest::getJsObj()(), data);
+    }-*/;
+
+   /**
+     * Synonym of {@link com.smartgwt.client.data.DataSource#getDataSource DataSource.getDataSource}: Lookup a DataSource by
+     * ID.
+     * @param ID DataSource ID
+     *
+     * @return the DataSource with this ID, if loaded, otherwise null.
+     */
+    public static DataSource get(String ID) {
+        return getDataSource(ID);
+    }
+
+ /**
+     * Synonym of {@link com.smartgwt.client.data.DataSource#getDataSource DataSource.getDataSource}: Lookup a DataSource by
+     * ID.
+     * @param ID DataSource ID
+     * @param requestTransformer the request transformer. Pass null to use the default transform
+     * @param responseTransformer the response transformer. Pass null to use the default transform
+  *
+     * @return the DataSource with this ID, if loaded, otherwise null.
+     */
+    public static DataSource get(String ID, RequestTransformer requestTransformer, ResponseTransformer responseTransformer) {
+        return getDataSource(ID, requestTransformer, responseTransformer);
+    }
+
+    /**
+     * Lookup a DataSource by ID.
+     * @param ID DataSource ID
+     *
+     * @return the DataSource with this ID, if loaded, otherwise null.
+     */
+    public static native DataSource getDataSource(String ID) /*-{
+        var ret = $wnd.isc.DataSource.getDataSource(ID);
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.BaseClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.data.DataSource::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+
+    /**
+     * Lookup a DataSource by ID with an optional RequestTransformer and ResponseTransformer. The RequestTransformer and ResponseTransformer parameters
+     * provide the equivalent functionality of overriding {@link #transformRequest(DSRequest)} and {@link #transformResponse(DSResponse, DSRequest, Object)} when
+     * instantiating a DataSource on the client. However when obtaining a DataSource instance from the server using this API, {@link #transformRequest(DSRequest)} and {@link #transformResponse(DSResponse, DSRequest, Object)}
+     * cannot be overridden and so the requestTransformer and responseTransformer parameters can be passed instead.
+     *
+     * @param ID DataSource ID
+     * @param requestTransformer the request transformer. Pass null to use the default transform
+     * @param responseTransformer the response transformer. Pass null to use the default transform
+     *
+     * @return the DataSource with this ID, if loaded, otherwise null.
+     */
+    public static native DataSource getDataSource(String ID, RequestTransformer requestTransformer, ResponseTransformer responseTransformer) /*-{
+        var ret = $wnd.isc.DataSource.getDataSource(ID);
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.BaseClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.data.DataSource::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        if(requestTransformer != null) {
+            ret.__transformRequest = ret.transformRequest;
+            requestTransformer.@com.smartgwt.client.data.RequestTransformer::dsJsObj = ret;
+            ret.transformRequest = $entry(function(dsRequest) {
+                var dsRequestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
+                var data = requestTransformer.@com.smartgwt.client.data.RequestTransformer::transformRequest(Lcom/smartgwt/client/data/DSRequest;)(dsRequestJ);
+                if(@com.smartgwt.client.data.DataSource::isRecord(Ljava/lang/Object;)(data)) {
+                    data = data.@com.smartgwt.client.data.Record::getJsObj()();
+                } else if (@com.smartgwt.client.data.DataSource::isRecordArray(Ljava/lang/Object;)(data)) {
+                    data = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(data);
+                }
+                return data;
+            });
+        }
+
+        if(responseTransformer != null) {
+            ret.__transformResponse = ret.transformResponse;
+            responseTransformer.@com.smartgwt.client.data.ResponseTransformer::dsJsObj = ret;
+            ret.transformResponse = $entry(function(dsResponse, dsRequest, data) {
+                var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
+                var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
+                responseTransformer.@com.smartgwt.client.data.ResponseTransformer::transformResponse(Lcom/smartgwt/client/data/DSResponse;Lcom/smartgwt/client/data/DSRequest;Ljava/lang/Object;)(responseJ, requestJ, data);
+            });
+        }
+        return retVal;
     }-*/;
 
     /**

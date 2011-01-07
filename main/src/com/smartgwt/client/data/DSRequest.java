@@ -456,7 +456,7 @@ public class DSRequest extends RPCRequest {
      * com.smartgwt.client.data.RestDataSource} will also send the <code>operationId</code> to the server as part of the {@link
      * com.smartgwt.client.data.RestDataSource#getMetaDataPrefix request metadata}.   <P> Note that if you {@link
      * com.smartgwt.client.data.DataSource#fetchData manually invoke} a DataSource operation, you can also specify operationId
-     * via the <code>requestProperties</code> parameter. <P> Note that the <code>operationId</code> has special signficance in
+     * via the <code>requestProperties</code> parameter. <P> Note that the <code>operationId</code> has special significance in
      * terms of whether two DSRequests are considered equivalent for caching and synchronization purposes - see {@link
      * com.smartgwt.client.docs.DsRequestEquivalence}.
      *
@@ -489,7 +489,7 @@ public class DSRequest extends RPCRequest {
      * com.smartgwt.client.data.RestDataSource} will also send the <code>operationId</code> to the server as part of the {@link
      * com.smartgwt.client.data.RestDataSource#getMetaDataPrefix request metadata}.   <P> Note that if you {@link
      * com.smartgwt.client.data.DataSource#fetchData manually invoke} a DataSource operation, you can also specify operationId
-     * via the <code>requestProperties</code> parameter. <P> Note that the <code>operationId</code> has special signficance in
+     * via the <code>requestProperties</code> parameter. <P> Note that the <code>operationId</code> has special significance in
      * terms of whether two DSRequests are considered equivalent for caching and synchronization purposes - see {@link
      * com.smartgwt.client.docs.DsRequestEquivalence}.
      *
