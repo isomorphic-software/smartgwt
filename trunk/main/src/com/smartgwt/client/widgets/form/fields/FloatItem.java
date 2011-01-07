@@ -4,7 +4,7 @@ import com.smartgwt.client.core.*;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-public class FloatItem extends FormItem {
+public class FloatItem extends TextItem {
 
     public static FloatItem getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;

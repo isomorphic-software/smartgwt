@@ -4,7 +4,7 @@ import com.smartgwt.client.core.*;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-public class IntegerItem extends FormItem {
+public class IntegerItem extends TextItem {
 
     public static IntegerItem getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
