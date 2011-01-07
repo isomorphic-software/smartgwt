@@ -22,9 +22,7 @@ public enum Axis implements ValueEnum {
 	    this.value = value;
 	}
 
-	@Override
 	public String getValue() {
 		return value;
 	}
-
 }

@@ -24,12 +24,9 @@ public enum SelectionBoundary implements ValueEnum {
 	SelectionBoundary(String value) {
 		this.value = value;
 	}
-	
 
-	@Override
 	public String getValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return value;
 	}
 
 }
