@@ -33,6 +33,9 @@ public class RefDataClass extends DataClass {
 
     public RefDataClass(JavaScriptObject jsObj) {
         super(jsObj);
+        //when we're being constructed using the JSO directly, make sure we clear out any other
+        //SC.REF attributes to make sure this object is represented by a different GWT object ref
+        JSOHelper.deleteAttribute(jsObj, SC.REF);
     }
 
     public static RefDataClass getRef(String jsObj) {
