@@ -383,7 +383,7 @@ public class I18nUtil {
         if($wnd.isc.HiliteRule) {
             $wnd.isc.HiliteRule.addProperties({removeButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteRule_removeButtonPrompt()()});
         }
-        if($wnd.AdvancedHiliteEditor) {
+        if($wnd.isc.AdvancedHiliteEditor) {
             $wnd.isc.AdvancedHiliteEditor.addProperties({invalidCriteriaPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::advancedHiliteEditor_invalidCriteriaPrompt()()});
         }
         $wnd.isc.addProperties($wnd.Date, {shortDayNames: [
