@@ -81,7 +81,7 @@ public class HeaderSpan extends DataClass {
         super(jsObj);
     }
 
-    public HeaderSpan(String title, String fields) {
+    public HeaderSpan(String title, String[] fields) {
         setTitle(title);
 		setFields(fields);
         
