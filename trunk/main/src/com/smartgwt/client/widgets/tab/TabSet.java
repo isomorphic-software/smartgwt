@@ -62,7 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * user to show each pane.  <P> Tabs are configured via the <code>tabs</code> property, each of which has a
  * <code>pane</code> property which will be displayed in the main pane when that tab is selected.
  */
-public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.events.HasCloseClickHandlers, com.smartgwt.client.widgets.tab.events.HasTabIconClickHandlers, com.smartgwt.client.widgets.tab.events.HasTabSelectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabDeselectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabTitleChangedHandlers {
+public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.events.HasCloseClickHandlers, com.smartgwt.client.widgets.tab.events.HasTabContextMenuHandlers, com.smartgwt.client.widgets.tab.events.HasTabIconClickHandlers, com.smartgwt.client.widgets.tab.events.HasTabSelectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabDeselectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabTitleChangedHandlers {
 
     public static TabSet getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -1235,6 +1235,43 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.scrollForward();
     }-*/;
+    /**
+     * Add a tabContextMenu handler.
+     * <p>
+     * Notification fired when the user right-clicks on a tab. Event may be cancelled by returning false
+     *
+     * @param handler the tabContextMenu handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addTabContextMenuHandler(com.smartgwt.client.widgets.tab.events.TabContextMenuHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabContextMenuEvent.getType()) == 0) setupTabContextMenuEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tab.events.TabContextMenuEvent.getType());
+    }
+
+    private native void setupTabContextMenuEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({showTabContextMenu:$debox($entry(function(){
+                        var param = {"tabSet" : arguments[0], "tab" : arguments[1]};
+                        var event = @com.smartgwt.client.widgets.tab.events.TabContextMenuEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    }))
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.showTabContextMenu = $debox($entry(function(){
+                   var param = {"tabSet" : arguments[0], "tab" : arguments[1]};
+                   var event = @com.smartgwt.client.widgets.tab.events.TabContextMenuEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               }));
+        }
+   }-*/;
     /**
      * Add a tabDeselected handler.
      * <p>
