@@ -1035,11 +1035,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * Update the {@link com.smartgwt.client.widgets.grid.ListGrid#getBodyStyleName bodyStyleName} for this listGrid.
      *
      * @param bodyStyleName new body style name. Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setBodyStyleName(String bodyStyleName)  throws IllegalStateException {
-        setAttribute("bodyStyleName", bodyStyleName, false);
+    public void setBodyStyleName(String bodyStyleName) {
+        setAttribute("bodyStyleName", bodyStyleName, true);
     }
 
     /**
@@ -2665,7 +2664,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * customization of styling for cells with pending edits use <code>this.editPendingBaseStyle</code> instead.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param editPendingCSSText editPendingCSSText Default value is "border:color:#0066CC;"
+     * @param editPendingCSSText editPendingCSSText Default value is "color:#0066CC;"
      * @see com.smartgwt.client.widgets.grid.ListGrid#setEditFailedBaseStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -4219,6 +4218,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @see com.smartgwt.client.types.ListGridFieldType
      * @see com.smartgwt.client.types.FieldType
      * @see com.smartgwt.client.widgets.grid.ListGridField#setLinkText
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setLinkTextProperty
      */
     public void setLinkTextProperty(String linkTextProperty) {
         setAttribute("linkTextProperty", linkTextProperty, true);
@@ -4233,6 +4233,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @see com.smartgwt.client.types.ListGridFieldType
      * @see com.smartgwt.client.types.FieldType
      * @see com.smartgwt.client.widgets.grid.ListGridField#getLinkText
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getLinkTextProperty
      */
     public String getLinkTextProperty()  {
         return getAttributeAsString("linkTextProperty");
@@ -4904,7 +4905,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} is true, this
      * attribute may be used to specify a standard height for record components. If specified every row in the grid will be
-     * sized tall enough to accomodate a recordComponent of this size. <P> Note that if this property is unset, row heights
+     * sized tall enough to accommodate a recordComponent of this size. <P> Note that if this property is unset, row heights
      * will be unpredictable and  {@link com.smartgwt.client.widgets.grid.ListGridField#getFrozen freezing of columns} is not
      * supported in this case.
      * Setter for the {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordComponentHeight recordComponentHeight}
@@ -4919,7 +4920,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} is true, this
      * attribute may be used to specify a standard height for record components. If specified every row in the grid will be
-     * sized tall enough to accomodate a recordComponent of this size. <P> Note that if this property is unset, row heights
+     * sized tall enough to accommodate a recordComponent of this size. <P> Note that if this property is unset, row heights
      * will be unpredictable and  {@link com.smartgwt.client.widgets.grid.ListGridField#getFrozen freezing of columns} is not
      * supported in this case.
      *
@@ -5541,6 +5542,25 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * Whether to show a context menu with standard items for all context clicks on rows in the body.
+     *
+     * @param showCellContextMenus showCellContextMenus Default value is false
+     */
+    public void setShowCellContextMenus(Boolean showCellContextMenus) {
+        setAttribute("showCellContextMenus", showCellContextMenus, true);
+    }
+
+    /**
+     * Whether to show a context menu with standard items for all context clicks on rows in the body.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowCellContextMenus()  {
+        return getAttributeAsBoolean("showCellContextMenus");
+    }
+
+    /**
      * Indicates whether the text of the emptyMessage property should be displayed if no data is available.
      *
      * @param showEmptyMessage showEmptyMessage Default value is true
@@ -5848,7 +5868,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * with {@link com.smartgwt.client.widgets.grid.ListGridField#getFrozen frozen fields}. If you are using recordComponents
      * in a listGrid with frozenFields, you can specify an explicit {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getRecordComponentHeight recordComponentHeight} to ensure every row in the
-     * grid renders tall enough to accomodate the recordComponents, and as such virtual scrolling is not required.
+     * grid renders tall enough to accommodate the recordComponents, and as such virtual scrolling is not required.
      * Setter for the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} attribute
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -5885,7 +5905,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * with {@link com.smartgwt.client.widgets.grid.ListGridField#getFrozen frozen fields}. If you are using recordComponents
      * in a listGrid with frozenFields, you can specify an explicit {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getRecordComponentHeight recordComponentHeight} to ensure every row in the
-     * grid renders tall enough to accomodate the recordComponents, and as such virtual scrolling is not required.
+     * grid renders tall enough to accommodate the recordComponents, and as such virtual scrolling is not required.
      *
      *
      * @return Boolean
@@ -6899,11 +6919,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * <p>
      * Fires after user edits have been successfully saved to the server, when the new value doesn't match the value before
      * editing. <p> If you want immediate notification of a changes <b>before</b> changes has been saved to the server,
-     * implement {@link com.smartgwt.client.widgets.grid.ListGridField#addChangeHandler field.change()} or {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#addChangedHandler field.changed()} instead. <P> You can supply this
-     * method on the listGrid instance or on the listGridField(s) that you want to receive cellChanged events for.  If both a
-     * field and the listGrid define a cellChanged method and that field receives an edit save, only the one defined on the
-     * field is called.
+     * implement {@link com.smartgwt.client.widgets.grid.ListGridField#change field.change()} or {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#changed field.changed()} instead. <P> You can supply this method on the
+     * listGrid instance or on the listGridField(s) that you want to receive cellChanged events for.  If both a field and the
+     * listGrid define a cellChanged method and that field receives an edit save, only the one defined on the field is called.
      *
      * @param handler the cellSaved handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -12044,10 +12063,112 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public native void autoFitFields(ListGridField... fields) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        fieldsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(fields);
+        var fieldsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(fields);
         self.autoFitFields(fieldsJS);
     }-*/;
-            
+
+    /**
+     * Force an array of fields to be hidden. <P> NOTE: If a field.showIf expression exists, it will be destroyed. <P> When
+     * hiding multiple fields, this method should be called rather than calling {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#hideField ListGrid.hideField} repeatedly for each field to hide.
+     * @param fields fields to hide
+     */
+    public native void hideFields(String... fields) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var fieldsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(fields);
+        self.hideFields(fieldsJS);
+    }-*/;
+
+    /**
+     * Force an array of fields to be hidden. <P> NOTE: If a field.showIf expression exists, it will be destroyed. <P> When
+     * hiding multiple fields, this method should be called rather than calling {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#hideField ListGrid.hideField} repeatedly for each field to hide.
+     * @param fields fields to hide
+     */
+    public native void hideFields(ListGridField... fields) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var fieldsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(fields);
+        self.hideFields(fieldsJS);
+    }-*/;
+
+    /**
+     * Force an array of fields to be hidden. <P> NOTE: If a field.showIf expression exists, it will be destroyed. <P> When
+     * hiding multiple fields, this method should be called rather than calling {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#hideField ListGrid.hideField} repeatedly for each field to hide.
+     * @param fields fields to hide
+     * @param suppressRelayout if passed, don't relayout non-explicit sized fields                                       to fit the available space
+     */
+    public native void hideFields(String[] fields, boolean suppressRelayout) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var fieldsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(fields);
+        self.hideFields(fields, suppressRelayout);
+    }-*/;
+
+    /**
+     * Force an array of fields to be hidden. <P> NOTE: If a field.showIf expression exists, it will be destroyed. <P> When
+     * hiding multiple fields, this method should be called rather than calling {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#hideField ListGrid.hideField} repeatedly for each field to hide.
+     * @param fields fields to hide
+     * @param suppressRelayout if passed, don't relayout non-explicit sized fields                                       to fit the available space
+     */
+    public native void hideFields(ListGridField[] fields, boolean suppressRelayout) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var fieldsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(fields);
+        self.hideFields(fieldsJS, suppressRelayout);
+    }-*/;
+    
+    /**
+     * Force an array of fields to be shown. This method does not add new fields to the grid, it simply changes field
+     * visibility. If a field.showIf expression exists, it will be destroyed. <P> Note: for showing multiple fields it is more
+     * efficient to call this method than to call {@link com.smartgwt.client.widgets.grid.ListGrid#showField
+     * ListGrid.showField} repeatedly.
+     * @param field Fields to show.
+     */
+    public native void showFields(String... fields) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var fieldsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(fields);
+        self.showFields(fieldsJS);
+    }-*/;
+    
+    /**
+     * Force an array of fields to be shown. This method does not add new fields to the grid, it simply changes field
+     * visibility. If a field.showIf expression exists, it will be destroyed. <P> Note: for showing multiple fields it is more
+     * efficient to call this method than to call {@link com.smartgwt.client.widgets.grid.ListGrid#showField
+     * ListGrid.showField} repeatedly.
+     * @param field Fields to show.
+     */
+    public native void showFields(String[] fields, boolean suppressRelayout) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var fieldsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(fields);
+        self.showFields(fieldsJS, suppressRelayout);
+    }-*/;
+    
+    /**
+     * Force an array of fields to be shown. This method does not add new fields to the grid, it simply changes field
+     * visibility. If a field.showIf expression exists, it will be destroyed. <P> Note: for showing multiple fields it is more
+     * efficient to call this method than to call {@link com.smartgwt.client.widgets.grid.ListGrid#showField
+     * ListGrid.showField} repeatedly.
+     * @param field Fields to show.
+     */
+    public native void showFields(ListGridField... fields) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var fieldsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(fields);
+        self.showFields(fieldsJS);
+    }-*/;
+    
+    /**
+     * Force an array of fields to be shown. This method does not add new fields to the grid, it simply changes field
+     * visibility. If a field.showIf expression exists, it will be destroyed. <P> Note: for showing multiple fields it is more
+     * efficient to call this method than to call {@link com.smartgwt.client.widgets.grid.ListGrid#showField
+     * ListGrid.showField} repeatedly.
+     * @param field Fields to show.
+     */
+    public native void showFields(ListGridField[] fields, boolean suppressRelayout) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var fieldsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(fields);
+        self.showFields(fieldsJS, suppressRelayout);
+    }-*/;
+
     /**
      * Chart the data in this listGrid as a multi-series chart. <P> Each row provides a series of data.  Each series of data is
      * labeled by a value from one column, called the <code>labelField</code>.   <P> For example, cell values are sales
@@ -12105,10 +12226,29 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     // ********************* DataBoundComponent Properties / Attributes ***********************
 
+    /**
+     * How to fetch and manage records retrieve from the server.  See {@link com.smartgwt.client.types.FetchMode}. <P> This
+     * setting only applies to the {@link com.smartgwt.client.data.ResultSet} automatically created by calling {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData}.  If a pre-existing ResultSet is passed to
+     * setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode fetchMode} applies.
+     *
+     * @param dataFetchMode dataFetchMode Default value is "paged"
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
     public void setDataFetchMode(FetchMode fetchMode) {
         setAttribute("dataFetchMode", fetchMode, true);
     }
 
+    /**
+     * How to fetch and manage records retrieve from the server.  See {@link com.smartgwt.client.types.FetchMode}. <P> This
+     * setting only applies to the {@link com.smartgwt.client.data.ResultSet} automatically created by calling {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData}.  If a pre-existing ResultSet is passed to
+     * setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode fetchMode} applies.
+     *
+     *
+     * @return FetchMode
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
     public FetchMode getDataFetchMode() {
         return EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
     }

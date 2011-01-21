@@ -20,6 +20,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getUseAllDataSourceFields
  * @see com.smartgwt.client.widgets.grid.ListGrid#getShowDetailFields
  * @see com.smartgwt.client.widgets.grid.ListGrid#getDataProperties
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getDataFetchMode
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanRemoveRecords
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getDataSource
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getLoadDataOnDemand

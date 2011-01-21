@@ -115,7 +115,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * constructor of the RPCResponse object on the server. &#010 <br><br>&#010 If you choose to use the status field, but want
  * to handle the errors yourself in your callback&#010 (and suppress the default error dialog popped up by the RPCManager),
  * simply specify the&#010 {@link com.smartgwt.client.rpc.RPCRequest#getWillHandleError willHandleError:true} on your
- * RPCRequest object.  This&#010 allows you to use the RPCManager.sendError() convenience methods on the server without
+ * RPCRequest object.  This&#010 allows you to use the RPCManager.sendFailure() convenience methods on the server without
  * the&#010 default error handling behavior on the client.
  */
 public class RPCManager {

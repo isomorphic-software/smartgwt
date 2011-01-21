@@ -1916,7 +1916,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
    }-*/;
             
     /**
-     * If the current mouse event occured over an item in this dynamicForm, returns that item.
+     * If the current mouse event occurred over an item in this dynamicForm, returns that item.
      *
      * @return the current event target item
      */
@@ -3228,10 +3228,29 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
     // ********************* DataBoundComponent Properties / Attributes ***********************
 
+    /**
+     * How to fetch and manage records retrieve from the server.  See {@link com.smartgwt.client.types.FetchMode}. <P> This
+     * setting only applies to the {@link com.smartgwt.client.data.ResultSet} automatically created by calling {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData}.  If a pre-existing ResultSet is passed to
+     * setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode fetchMode} applies.
+     *
+     * @param dataFetchMode dataFetchMode Default value is "paged"
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
     public void setDataFetchMode(FetchMode fetchMode) {
         setAttribute("dataFetchMode", fetchMode, true);
     }
 
+    /**
+     * How to fetch and manage records retrieve from the server.  See {@link com.smartgwt.client.types.FetchMode}. <P> This
+     * setting only applies to the {@link com.smartgwt.client.data.ResultSet} automatically created by calling {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData}.  If a pre-existing ResultSet is passed to
+     * setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode fetchMode} applies.
+     *
+     *
+     * @return FetchMode
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
     public FetchMode getDataFetchMode() {
         return EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
     }
