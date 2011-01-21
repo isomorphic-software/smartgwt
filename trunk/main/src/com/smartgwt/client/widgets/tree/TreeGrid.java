@@ -64,7 +64,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * expandable/collapsible format. </ul> For information on DataBinding Trees, see {@link
  * com.smartgwt.client.docs.TreeDataBinding}. <p> A TreeGrid works just like a {@link
  * com.smartgwt.client.widgets.grid.ListGrid}, except one column (specified by {@link
- * com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField} shows a hierarchical {@link
+ * com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField}) shows a hierarchical {@link
  * com.smartgwt.client.widgets.tree.Tree}.  A TreeGrid is not limited to displaying just the {@link
  * com.smartgwt.client.widgets.tree.Tree} column - you can define additional columns (via {@link
  * com.smartgwt.client.widgets.tree.TreeGrid#getFields fields}) which will render just like the columns of a {@link
@@ -814,6 +814,31 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      */
     public int getIconSize()  {
         return getAttributeAsInt("iconSize");
+    }
+
+    /**
+     * For record components placed "within" the {@link com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField}
+     * column, should the component be indented to the position where a title would normally show? <P> For more general
+     * placement of embedded components, see {@link com.smartgwt.client.widgets.grid.ListGrid#addEmbeddedComponent
+     * addEmbeddedComponent}.
+     *
+     * @param indentRecordComponents indentRecordComponents Default value is true
+     */
+    public void setIndentRecordComponents(Boolean indentRecordComponents) {
+        setAttribute("indentRecordComponents", indentRecordComponents, true);
+    }
+
+    /**
+     * For record components placed "within" the {@link com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField}
+     * column, should the component be indented to the position where a title would normally show? <P> For more general
+     * placement of embedded components, see {@link com.smartgwt.client.widgets.grid.ListGrid#addEmbeddedComponent
+     * addEmbeddedComponent}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getIndentRecordComponents()  {
+        return getAttributeAsBoolean("indentRecordComponents");
     }
 
     /**
