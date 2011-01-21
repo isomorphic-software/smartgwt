@@ -1541,6 +1541,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @see com.smartgwt.client.types.FieldType
      * @see com.smartgwt.client.widgets.grid.ListGridRecord#setLinkText
      * @see com.smartgwt.client.widgets.grid.ListGrid#setLinkTextProperty
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setLinkTextProperty
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_link_image" target="examples">Link (image) Example</a>
      */
     public void setLinkText(String linkText) {
@@ -1557,10 +1558,42 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @see com.smartgwt.client.types.FieldType
      * @see com.smartgwt.client.widgets.grid.ListGridRecord#getLinkText
      * @see com.smartgwt.client.widgets.grid.ListGrid#getLinkTextProperty
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getLinkTextProperty
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_link_image" target="examples">Link (image) Example</a>
      */
     public String getLinkText()  {
         return getAttributeAsString("linkText");
+    }
+
+    /**
+     * The HTML to display in cells of this field if the fieldType is set to link. Can be  overridden by {@link
+     * com.smartgwt.client.widgets.grid.ListGridRecord#getLinkText linkText}.
+     *
+     * @param linkTextProperty linkTextProperty Default value is null
+     * @see com.smartgwt.client.types.ListGridFieldType
+     * @see com.smartgwt.client.types.FieldType
+     * @see com.smartgwt.client.widgets.grid.ListGridRecord#setLinkText
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setLinkText
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setLinkTextProperty
+     */
+    public void setLinkTextProperty(String linkTextProperty) {
+        setAttribute("linkTextProperty", linkTextProperty);
+    }
+
+    /**
+     * The HTML to display in cells of this field if the fieldType is set to link. Can be  overridden by {@link
+     * com.smartgwt.client.widgets.grid.ListGridRecord#getLinkText linkText}.
+     *
+     *
+     * @return String
+     * @see com.smartgwt.client.types.ListGridFieldType
+     * @see com.smartgwt.client.types.FieldType
+     * @see com.smartgwt.client.widgets.grid.ListGridRecord#getLinkText
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getLinkText
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getLinkTextProperty
+     */
+    public String getLinkTextProperty()  {
+        return getAttributeAsString("linkTextProperty");
     }
 
     /**
@@ -2474,66 +2507,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 
     // ********************* Methods ***********************
     /**
-     * Add a change handler.
-     * <p>
-     * If this field is editable, any {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler change} handler
-     * specified on the ListGridField will be passed onto the editors for this field. <P> Note that if {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getCanToggle canToggle} is true, the user may change the value of a
-     * boolean field without going into edit mode by single clicking on the field. In this  case the {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#addChangeHandler ListGridField.change} and {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#addChangedHandler ListGridField.changed} handlers will fire but the
-     * <code>form</code> and <code>item</code> parameters will be null.
-     *
-     * @param handler the change handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addChangeHandler(com.smartgwt.client.widgets.grid.events.ChangeHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.grid.events.ChangeEvent.getType()) == 0) setupChangeEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.ChangeEvent.getType());
-    }
-
-    private native void setupChangeEvent() /*-{
-        var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.change = $debox($entry(function(){
-                var param = {"form" : arguments[0], "item" : arguments[1], "value" : arguments[2], "oldValue" : arguments[3]};
-                var event = @com.smartgwt.client.widgets.grid.events.ChangeEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                return !ret;
-            }));
-   }-*/;
-    /**
-     * Add a changed handler.
-     * <p>
-     * If this field is editable, any {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangedHandler changed}
-     * handler specified on the ListGridField will be passed onto the editors for this field. Note that if {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getCanToggle canToggle} is true, the user may change the value of a
-     * boolean field without going into edit mode by single clicking on the field. In this  case the {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#addChangeHandler ListGridField.change} and {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#addChangedHandler ListGridField.changed} handlers will fire but the
-     * <code>form</code> and <code>item</code> parameters will be null.
-     *
-     * @param handler the changed handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addChangedHandler(com.smartgwt.client.widgets.grid.events.ChangedHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.grid.events.ChangedEvent.getType()) == 0) setupChangedEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.ChangedEvent.getType());
-    }
-
-    private native void setupChangedEvent() /*-{
-        var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.changed = $entry(function(){
-                var param = {"form" : arguments[0], "item" : arguments[1], "value" : arguments[2]};
-                var event = @com.smartgwt.client.widgets.grid.events.ChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            });
-   }-*/;
-    /**
      * Add a editorEnter handler.
      * <p>
      * Callback fired when the user first starts editing a cell. <P> This callback is typically used to establish dynamic
@@ -3195,6 +3168,67 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             }));
     }-*/;
+
+    /**
+     * Add a change handler.
+     * <p>
+     * If this field is editable, any {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler change} handler
+     * specified on the ListGridField will be passed onto the editors for this field. <P> Note that if {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getCanToggle canToggle} is true, the user may change the value of a
+     * boolean field without going into edit mode by single clicking on the field. In this  case the {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#addChangeHandler ListGridField.change} and {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#addChangedHandler ListGridField.changed} handlers will fire but the
+     * <code>form</code> and <code>item</code> parameters will be null.
+     *
+     * @param handler the change handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addChangeHandler(com.smartgwt.client.widgets.grid.events.ChangeHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.grid.events.ChangeEvent.getType()) == 0) setupChangeEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.ChangeEvent.getType());
+    }
+
+    private native void setupChangeEvent() /*-{
+        var obj = null;
+            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+            var selfJ = this;
+            obj.change = $debox($entry(function(){
+                var param = {"form" : arguments[0], "item" : arguments[1], "value" : arguments[2], "oldValue" : arguments[3], "sourceJSO" : this};
+                var event = @com.smartgwt.client.widgets.grid.events.ChangeEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+   }-*/;
+    /**
+     * Add a changed handler.
+     * <p>
+     * If this field is editable, any {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangedHandler changed}
+     * handler specified on the ListGridField will be passed onto the editors for this field. Note that if {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getCanToggle canToggle} is true, the user may change the value of a
+     * boolean field without going into edit mode by single clicking on the field. In this  case the {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#addChangeHandler ListGridField.change} and {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#addChangedHandler ListGridField.changed} handlers will fire but the
+     * <code>form</code> and <code>item</code> parameters will be null.
+     *
+     * @param handler the changed handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addChangedHandler(com.smartgwt.client.widgets.grid.events.ChangedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.grid.events.ChangedEvent.getType()) == 0) setupChangedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.ChangedEvent.getType());
+    }
+
+    private native void setupChangedEvent() /*-{
+        var obj = null;
+            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+            var selfJ = this;
+            obj.changed = $entry(function(){
+                var param = {"form" : arguments[0], "item" : arguments[1], "value" : arguments[2], "sourceJSO" : this};
+                var event = @com.smartgwt.client.widgets.grid.events.ChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
+   }-*/;
 
     /**
      * Renderer that returns the title that should be shown to the user for the group with the groupValue passed as a parameter.
