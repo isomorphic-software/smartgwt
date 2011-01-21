@@ -38,6 +38,8 @@ public class AnimateFadeSample extends ShowcasePanel {
 		layout.setMembersMargin(10);
 
 		final Img image = new Img("other/eyes.jpg", 300,188);
+        //need to set useOpacityFilter:true to support setting of opacity on IE 7 and greater
+        image.setUseOpacityFilter(true);
 		image.setParentElement(layout);
 		image.setTop(105);
 		image.setLeft(10); 
