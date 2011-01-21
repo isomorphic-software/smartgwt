@@ -174,7 +174,13 @@ public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  implements C
      */
     public  native int getRowNum() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.item.rowNum;
+        if(jsObj.item) {
+          return jsObj.item.rowNum;
+        } else {
+            //when this event fired from due to field.canToggle, getColNum/getRowNum will not have access to this.item and need to use ListGrid.getEventRow() instead
+            var listGrid = jsObj.sourceJSO;
+            return listGrid.getEventRow();
+        }
     }-*/;
 
     /**
@@ -184,8 +190,13 @@ public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  implements C
      */
     public  native int getColNum() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.item.colNum;
+        if(jsObj.item) {
+            return jsObj.item.colNum;
+        } else {
+            //when this event fired from due to field.canToggle, getColNum/getRowNum will not have access to this.item and need to use ListGrid.getEventColumn() instead
+            var listGrid = jsObj.sourceJSO;
+            return listGrid.getEventColumn();
+        }
     }-*/;
-
 
 }
