@@ -584,7 +584,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     /**
      * Get the selected record, that is, the parent of the nodes in the rightmost visible column. <P> This is generally the
      * most recently clicked node unless programmatic navigation has taken place. <P> If only the first column is showing, the
-     * root node is returned (which can be deteted via {@link com.smartgwt.client.widgets.tree.Tree#isRoot Tree.isRoot}).
+     * root node is returned (which can be detected via {@link com.smartgwt.client.widgets.tree.Tree#isRoot Tree.isRoot}).
      *
      * @return the selected record
      */
@@ -948,10 +948,29 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
 
     // ********************* DataBoundComponent Properties / Attributes ***********************
 
+    /**
+     * How to fetch and manage records retrieve from the server.  See {@link com.smartgwt.client.types.FetchMode}. <P> This
+     * setting only applies to the {@link com.smartgwt.client.data.ResultSet} automatically created by calling {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData}.  If a pre-existing ResultSet is passed to
+     * setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode fetchMode} applies.
+     *
+     * @param dataFetchMode dataFetchMode Default value is "paged"
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
     public void setDataFetchMode(FetchMode fetchMode) {
         setAttribute("dataFetchMode", fetchMode, true);
     }
 
+    /**
+     * How to fetch and manage records retrieve from the server.  See {@link com.smartgwt.client.types.FetchMode}. <P> This
+     * setting only applies to the {@link com.smartgwt.client.data.ResultSet} automatically created by calling {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData}.  If a pre-existing ResultSet is passed to
+     * setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode fetchMode} applies.
+     *
+     *
+     * @return FetchMode
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
     public FetchMode getDataFetchMode() {
         return EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
     }

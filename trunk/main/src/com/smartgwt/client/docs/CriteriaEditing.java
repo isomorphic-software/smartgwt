@@ -31,6 +31,9 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.CanvasItem#canEditCriterion
  * @see com.smartgwt.client.widgets.form.fields.CanvasItem#getCriterion
  * @see com.smartgwt.client.widgets.form.fields.CanvasItem#setCriterion
+ * @see com.smartgwt.client.widgets.form.fields.ComboBoxItem#hasAdvancedCriteria
+ * @see com.smartgwt.client.widgets.form.fields.ComboBoxItem#getCriterion
+ * @see com.smartgwt.client.widgets.form.fields.ComboBoxItem#canEditCriterion
  * @see com.smartgwt.client.widgets.form.fields.DateRangeItem#hasAdvancedCriteria
  * @see com.smartgwt.client.widgets.form.fields.DateRangeItem#getCriterion
  * @see com.smartgwt.client.widgets.form.fields.DateRangeItem#canEditCriterion
@@ -40,6 +43,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#setCriterion
  * @see com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#canEditCriterion
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getOperator
+ * @see com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAllowPartialCriterion
  */
 public interface CriteriaEditing {
 }

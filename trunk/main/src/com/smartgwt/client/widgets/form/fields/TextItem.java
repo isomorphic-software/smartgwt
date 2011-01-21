@@ -354,7 +354,7 @@ public class TextItem extends FormItem {
     }
 
     /**
-     * When generating a print-view of the component containing this TextItem, should the form item expand to accomodate its
+     * When generating a print-view of the component containing this TextItem, should the form item expand to accommodate its
      * value? If set to false the text box will not expand to fit its content in the print view, instead showing exactly as it
      * does in the live form.
      *
@@ -366,7 +366,7 @@ public class TextItem extends FormItem {
     }
 
     /**
-     * When generating a print-view of the component containing this TextItem, should the form item expand to accomodate its
+     * When generating a print-view of the component containing this TextItem, should the form item expand to accommodate its
      * value? If set to false the text box will not expand to fit its content in the print view, instead showing exactly as it
      * does in the live form.
      *
@@ -498,10 +498,10 @@ public class TextItem extends FormItem {
     /**
      * Returns the raw text value typed into this form field, which can differ from  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} in various cases - for example: <ul>
-     * <li>for items that contrain the value range, such as a {@link com.smartgwt.client.widgets.form.fields.DateItem} with
+     * <li>for items that constrain the value range, such as a {@link com.smartgwt.client.widgets.form.fields.DateItem} with
      * {@link com.smartgwt.client.widgets.form.fields.DateItem#getEnforceDate enforceDate}:true, or a {@link
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem} with {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnkownValues addUnknownValues}:false</li> <li>for items with
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues addUnknownValues}:false</li> <li>for items with
      * a defined valueMap or edit value formatter and parser functions which converts display value to data value</li>
      * <li>while the item has focus if {@link com.smartgwt.client.widgets.form.fields.TextItem#getChangeOnKeypress
      * changeOnKeypress} is false </li></ul>

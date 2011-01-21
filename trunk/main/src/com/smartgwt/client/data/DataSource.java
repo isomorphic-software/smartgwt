@@ -2111,7 +2111,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *  If the dataFormat is "json", the JavaScriptObject will be the raw JSON object(s) returned by the 
      *  web service. If dataFormat is XML the JavaScriptObject will be the raw XML document object.
      *  Note that the {@link com.smartgwt.client.util.JSOHelper} and
-     *  {@link com.smartgwt.client.data.XMLTools} utility classes can be used to work with these raw objects.
+     *  {@link com.smartgwt.client.util.XMLTools} utility classes can be used to work with these raw objects.
      *      
      */
     protected native void transformResponse(DSResponse response, DSRequest request, Object data) /*-{

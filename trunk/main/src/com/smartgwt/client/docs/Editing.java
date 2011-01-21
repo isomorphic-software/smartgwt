@@ -50,13 +50,13 @@ package com.smartgwt.client.docs;
  * Down Arrow to traverse rows.  Several properties on both grids and fields, all named *EditAction, control navigation
  * behavior of certain keys (eg Enter). <P> You can use {@link com.smartgwt.client.widgets.grid.ListGrid#startEditing
  * startEditing(<i>rowNum</i>, <i>colNum</i>)} to  programmatically move editing to a particular cell, for example, during
- * a  {@link com.smartgwt.client.widgets.grid.ListGridField#addChangedHandler field.changed()} event. <P> <b>editValues
- * (unsaved changes)</b> <P> The term "editValues" means changes that the user has made to the dataset which have not been
- * saved.  The grid manages and stores editValues separately from the data itself in order to allow the user to revert to
- * original values, and in order to enable to grid to send only updated fields to the server.   <P> Because editValues are
- * stored separately, if you directly access the dataset (eg via  <code>grid.data.get()</code>) you will see the records
- * without the user's unsaved changes. Many APIs exist for retrieving and managing editValues (search for editValue). For
- * the common case of needing to access the record-as-edited, you can call  {@link
+ * a  {@link com.smartgwt.client.widgets.grid.ListGridField#changed field.changed()} event. <P> <b>editValues (unsaved
+ * changes)</b> <P> The term "editValues" means changes that the user has made to the dataset which have not been saved. 
+ * The grid manages and stores editValues separately from the data itself in order to allow the user to revert to original
+ * values, and in order to enable to grid to send only updated fields to the server.   <P> Because editValues are stored
+ * separately, if you directly access the dataset (eg via  <code>grid.data.get()</code>) you will see the records without
+ * the user's unsaved changes. Many APIs exist for retrieving and managing editValues (search for editValue). For the
+ * common case of needing to access the record-as-edited, you can call  {@link
  * com.smartgwt.client.widgets.grid.ListGrid#getEditedRecord grid.getEditedRecord(rowNum)}. <P> When accessing and
  * manipulating edited data, you should think carefully about whether you want to be working with the original data or with
  * the edited version.  Values entered by the user may not have been validated yet, or may have failed validation, hence
@@ -74,10 +74,10 @@ package com.smartgwt.client.docs;
  * icon that launches a separate {@link com.smartgwt.client.widgets.Dialog} in order to provide an arbitrary interface that
  * allows the user to select the value for a field. <P> <b>Events</b> <P> Editing triggers several events which you can
  * provide handlers for in order to customize editing behavior.  Some of the most popular are {@link
- * com.smartgwt.client.widgets.grid.ListGridField#addChangeHandler field.change()}, {@link
- * com.smartgwt.client.widgets.grid.ListGridField#addChangedHandler field.changed()} for detecting changes made by the
- * user, {@link com.smartgwt.client.widgets.grid.ListGrid#addCellChangedHandler ListGrid.cellChanged} for detecting changes
- * that have been successfully saved, and {@link com.smartgwt.client.widgets.grid.ListGrid#addEditorEnterHandler
+ * com.smartgwt.client.widgets.grid.ListGridField#change field.change()}, {@link
+ * com.smartgwt.client.widgets.grid.ListGridField#changed field.changed()} for detecting changes made by the user, {@link
+ * com.smartgwt.client.widgets.grid.ListGrid#addCellChangedHandler ListGrid.cellChanged} for detecting changes that have
+ * been successfully saved, and {@link com.smartgwt.client.widgets.grid.ListGrid#addEditorEnterHandler
  * ListGrid.editorEnter} and {@link com.smartgwt.client.widgets.grid.ListGrid#addEditorExitHandler editorExit()} for
  * detecting user navigation during editing. <P> You can also install event handlers directly on the FormItem-based editors
  * used in the grid via {@link com.smartgwt.client.widgets.grid.ListGridField#getEditorProperties editorProperties} as
@@ -104,8 +104,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGridField#cellChanged
  * @see com.smartgwt.client.widgets.grid.ListGridField#formatEditorValue
  * @see com.smartgwt.client.widgets.grid.ListGridField#parseEditorValue
- * @see com.smartgwt.client.widgets.grid.events.ChangeEvent
- * @see com.smartgwt.client.widgets.grid.events.ChangedEvent
+ * @see com.smartgwt.client.widgets.grid.ListGridField#change
+ * @see com.smartgwt.client.widgets.grid.ListGridField#changed
  * @see com.smartgwt.client.widgets.grid.ListGrid#canEditCell
  * @see com.smartgwt.client.widgets.grid.ListGrid#startEditing
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEditorValueMap
