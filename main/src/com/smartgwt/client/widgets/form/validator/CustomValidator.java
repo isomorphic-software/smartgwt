@@ -95,6 +95,13 @@ public abstract class CustomValidator extends Validator {
             }
             var valueJ = $wnd.SmartGWT.convertToJavaType(value);
             var ret =  self.@com.smartgwt.client.widgets.form.validator.CustomValidator::condition(Ljava/lang/Object;)(valueJ);
+
+            var jsValidatorDefinition = self.@com.smartgwt.client.widgets.form.validator.CustomValidator::getJsObj()();
+            if (validator && jsValidatorDefinition.errorMessage != null) {
+                validator.errorMessage = jsValidatorDefinition.errorMessage;
+                jsValidatorDefinition.errorMessage = null;
+            }
+            
             self.@com.smartgwt.client.widgets.form.validator.CustomValidator::reset()();
             return ret;
         };
