@@ -97,7 +97,7 @@ public abstract class CustomValidator extends Validator {
             var ret =  self.@com.smartgwt.client.widgets.form.validator.CustomValidator::condition(Ljava/lang/Object;)(valueJ);
 
             var jsValidatorDefinition = self.@com.smartgwt.client.widgets.form.validator.CustomValidator::getJsObj()();
-            if (validator && jsValidatorDefinition.errorMessage != null) {
+            if (validator && validator != jsValidatorDefinition && jsValidatorDefinition.errorMessage != null) {
                 validator.errorMessage = jsValidatorDefinition.errorMessage;
                 jsValidatorDefinition.errorMessage = null;
             }
