@@ -173,6 +173,17 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    	 	return javaMap;
 	    	 }
         };
+        
+        $wnd.SmartGWT.convertToPrimitiveType = function (object) {
+            if (object == null) return null;
+            if ($wnd.isc.isA.Object(object)) {
+                if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(object)) return object.@java.lang.Integer::intValue()();
+                if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(object)) return object.@java.lang.Number::floatValue()();
+                if(@com.smartgwt.client.util.JSOHelper::isJavaBoolean(Ljava/lang/Object;)(object)) return object.@java.lang.Boolean::booleanValue()();
+                if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(object)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(object);
+            }
+            return object;
+        }
 
 
         $wnd.isc.RPCManager.__fireReplyCallback = $wnd.isc.RPCManager.fireReplyCallback;
