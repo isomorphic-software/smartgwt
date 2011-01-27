@@ -671,6 +671,17 @@ public class JSOHelper {
     public static Boolean toBoolean(boolean value) {
         return value;
     }
+    
+    public static String getPrimitiveType(Object value) {
+        if (value == null) return null;
+        
+        if (value instanceof Boolean) return "Boolean";
+        if (value instanceof Float) return "Float";
+        if (value instanceof Integer) return "Integer";
+        if (value instanceof Double) return "Double";
+     
+        return null;
+    }
 
     public static native JavaScriptObject createJavaScriptArray() /*-{
         //Important : constructing an from JSNI array using [] or new Array() results in a
