@@ -161,12 +161,19 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    	 } else {
 	    	 	// convert to a map
 	    	 	var javaMap = @java.util.LinkedHashMap::new()();
+	    	 	// If it's a tree node, clean it up before converting otherwise we may end up serializing out
+	    	 	// all parents and children!
+	    	 	if (object._isc_tree != null || object.$42c != null) {
+	    	 	    object = $wnd.isc.Tree.getCleanNodeData(object);
+	    	 	}
+	    	 	
 	    	 	for (var fieldName in object) {
 	    	 		// Not sure whether this could really happen
 	    	 		if(!$wnd.isA.String(fieldName)){
 	    	 			continue;
 	    	 		}
-                    //if the field name is '__ref', the the value is already a GWT ajva object reference
+	    	 		
+                    //if the field name is '__ref', the the value is already a GWT java object reference
 	    	 		var convertedVal = fieldName == '__ref' ? object[fieldName] : $wnd.SmartGWT.convertToJavaObject(object[fieldName]);
  					@com.smartgwt.client.util.JSOHelper::doAddToMap(Ljava/util/Map;Ljava/lang/String;Ljava/lang/Object;)(javaMap, fieldName, convertedVal);
 	    	 	}
