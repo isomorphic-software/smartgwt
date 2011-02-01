@@ -160,7 +160,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    		}
 	    	 } else {
 	    	 	// convert to a map
-	    	 	var javaMap = @java.util.HashMap::new()();
+	    	 	var javaMap = @java.util.LinkedHashMap::new()();
 	    	 	for (var fieldName in object) {
 	    	 		// Not sure whether this could really happen
 	    	 		if(!$wnd.isA.String(fieldName)){
@@ -183,7 +183,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
                 if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(object)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(object);
             }
             return object;
-        }
+        };
 
 
         $wnd.isc.RPCManager.__fireReplyCallback = $wnd.isc.RPCManager.fireReplyCallback;
