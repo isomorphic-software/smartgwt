@@ -25,6 +25,13 @@ package com.smartgwt.client.types;
  */
 
 public enum ChartType implements ValueEnum {
+    
+    /**
+     * Values represented by area, with stacked values representing multiple facet values.
+     * This is equivalent to ChartType "Line" with stacking enabled. 
+     */
+    AREA("Area"),
+
 
     /**
      * Values represented by vertical columns.  Typically supports stacking to                 
