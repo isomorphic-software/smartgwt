@@ -45,6 +45,8 @@ public class SmartGwtEntryPoint implements EntryPoint {
         $debox = function(val) {
             return @com.google.gwt.core.client.GWT::isScript()() ? val : function() {
             var v = val.apply(this, arguments);
+            // Dates can just be returned without deboxing
+            if ($wnd.isc.isA.Date(v)) return v;
             return v == undefined || v == null ? null : v.valueOf();
         }};
 
