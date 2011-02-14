@@ -25,12 +25,17 @@ public enum TopOperatorAppearance implements ValueEnum {
     RADIO("radio"),
 
     /**
-     * a SelectItem appears with a "bracket" spanning all top-level clauses, exactly the same appearance used for
+     * A SelectItem appears with a "bracket" spanning all top-level clauses, exactly the same appearance used for
      * showing subClauses, if enabled.
      */
     BRACKET("bracket"),
     /**
-     * no interface is shown. The top-level operator is expected to be shown to the user outside the FilterBuilder, and,
+     * Each line in the FilterBuilder is a top-level item, with a SelectItem shown on the left that allows the user to
+     * choose between the main operator in force (either "and" or "or", depending on the setting of topOperator) and "and not".
+     */
+    INLINE("inline"),
+    /**
+     * No interface is shown. The top-level operator is expected to be shown to the user outside the FilterBuilder, and,
      * if editable, FilterBuilder.setTopOperator() should be called to update it.
      */
     NONE("none");
