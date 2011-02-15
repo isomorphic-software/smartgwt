@@ -139,6 +139,9 @@ public class JSOHelper {
     public static void setAttribute(JavaScriptObject elem, String attr, Double[] values) {
         setAttribute(elem, attr, JSOHelper.convertToJavaScriptArray(values));
     }
+    public static void setAttribute(JavaScriptObject elem, String attr, Long[] values) {
+        setAttribute(elem, attr, JSOHelper.convertToJavaScriptArray(values));
+    }
 
     public static void setAttribute(JavaScriptObject elem, String attr, Date[] values) {
         setAttribute(elem, attr, JSOHelper.convertToJavaScriptArray(values));
@@ -159,6 +162,10 @@ public class JSOHelper {
     public static native void setAttribute(JavaScriptObject elem, String attr, int value) /*-{
 	    elem[attr] = value;
     }-*/;
+
+    public static void setAttribute(JavaScriptObject elem, String attr, long value) {
+        setAttribute(elem, attr, new Double(value).doubleValue());
+    }
 
     public static void setAttribute(JavaScriptObject elem, String attr, Integer value) {
         if (value == null) {
@@ -440,6 +447,15 @@ public class JSOHelper {
         return jsArray;
     }
 
+    public static JavaScriptObject convertToJavaScriptArray(long[] array) {
+        if(array == null) return null;
+        JavaScriptObject jsArray = createJavaScriptArray();
+        for (int i = 0; i < array.length; i++) {
+            JSOHelper.setArrayValue(jsArray, i, array[i]);
+        }
+        return jsArray;
+    }
+
     private static void doAddToMap(Map map, String key, Object value) {
     	 map.put(key, value);
     }
@@ -606,6 +622,8 @@ public class JSOHelper {
                 JSOHelper.setArrayValue(jsArray, i, ((Float) val).floatValue());
             } else if (val instanceof Double) {
                 JSOHelper.setArrayValue(jsArray, i, ((Double) val).doubleValue());
+            } else if (val instanceof Long) {
+                    JSOHelper.setArrayValue(jsArray, i, ((Long) val).doubleValue());
             } else if (val instanceof Boolean) {
                 JSOHelper.setArrayValue(jsArray, i, ((Boolean) val).booleanValue());
             } else if (val instanceof Date) {
@@ -701,6 +719,11 @@ public class JSOHelper {
     public static native void setArrayValue(JavaScriptObject array, int index, double value) /*-{
         array[index] = value;
     }-*/;
+
+    public static void setArrayValue(JavaScriptObject array, int index, long value) {
+        Double doubleValue = new Double(value);
+        setArrayValue(array, index, doubleValue.doubleValue());
+    }
 
     public static native void setArrayValue(JavaScriptObject array, int index, int value) /*-{
         array[index] = value;
