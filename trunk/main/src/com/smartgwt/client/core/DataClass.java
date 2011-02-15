@@ -62,6 +62,10 @@ public class DataClass extends JsObject {
     public void setAttribute(String property, double value) {
         JSOHelper.setAttribute(jsObj, property, value);
     }
+    
+    public void setAttribute(String property, long value) {
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
 
     public Integer getAttributeAsInt(String property) {
         return JSOHelper.getAttributeAsInt(jsObj, property);
@@ -169,6 +173,8 @@ public class DataClass extends JsObject {
             setAttribute(property, ((Float) value).floatValue());
         } else if (value instanceof Double) {
             setAttribute(property, ((Double) value).doubleValue());
+        } else if (value instanceof Long) {
+            setAttribute(property, ((Long) value).longValue());
         } else if (value instanceof Boolean) {
             setAttribute(property, ((Boolean) value).booleanValue());
         } else if (value instanceof Date) {
