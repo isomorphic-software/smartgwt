@@ -83,6 +83,11 @@ public class DataClass extends JsObject {
         return JSOHelper.getAttributeAsDouble(jsObj, property);
     }
     
+    public Long getAttributeAsLong(String property) {
+        Double dVal = this.getAttributeAsDouble(property);
+        return dVal == null ? null : dVal.longValue();
+    }
+    
     public double[] getAttributeAsDoubleArray(String property) {
         return JSOHelper.getAttributeAsDoubleArray(jsObj, property);
     }
