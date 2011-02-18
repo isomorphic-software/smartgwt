@@ -28,9 +28,17 @@ public class StringUtil {
      * @return prefix + converted text + suffix as a single string
      */
     public static native String convertTags(String str, String prefix, String suffix)/*-{
-        return str == null ? null : new $wnd.String(str).convertTags(prefix, suffix);
+        if (str == null) return null;
+        // For some reason in Safari if you do
+        // new $wnd.String(<string>), the various prototype methods we hang onto the string prototype are not
+        // available. Workaround by explicitly applying these methods to the string passed in.
+        if ($wnd.isc.Browser.isSafari) {
+            return $wnd.String.prototype.convertTags.apply(str, [prefix,suffix]);
+        } else {
+            return new $wnd.String(str).convertTags(prefix, suffix);
+        }
     }-*/;
-
+   
     /**
      * Convert plain text into into displayable HTML.
      * <p/>
@@ -52,6 +60,9 @@ public class StringUtil {
      * @return the plain text into into displayable HTM
      */
     public static native String asHTML(String str)/*-{
+        if (str != null && $wnd.isc.Browser.isSafari) {
+            return $wnd.String.prototype.asHTML.apply(str, []);
+        }   
         return str == null ? null : new $wnd.String(str).asHTML();
     }-*/;
 
@@ -77,6 +88,9 @@ public class StringUtil {
      * @return the plain text into into displayable HTM
      */
     public static native String asHTML(String str, boolean noAutoWrap)/*-{
+        if (str != null && $wnd.isc.Browser.isSafari) {
+            return $wnd.String.prototype.asHTML.apply(str, [noAutoWrap]);
+        }
         return str == null ? null : new $wnd.String(str).asHTML(noAutoWrap);
     }-*/;
 
@@ -87,6 +101,9 @@ public class StringUtil {
      * @return unescaped HTML
      */
     public static native String unescapeHTML(String str)/*-{
+        if (str != null && $wnd.isc.Browser.isSafari) {
+            return $wnd.String.prototype.unescapeHTML.apply(str, []);
+        }
         return str == null ? null : new $wnd.String(str).unescapeHTML();
     }-*/;
 
