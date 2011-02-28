@@ -16,6 +16,8 @@
 
 package com.smartgwt.client.data;
 
+import java.util.Map;
+
 import com.smartgwt.client.core.RefDataClass;
 import com.smartgwt.client.util.JSOHelper;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -44,6 +46,11 @@ public class Record extends RefDataClass {
 
     public Record(JavaScriptObject jsObj) {
         super(jsObj);
+    }
+    
+    public Record(Map recordProperties) {
+        JavaScriptObject jsObj = JSOHelper.convertMapToJavascriptObject(recordProperties);
+        this.setJsObj(jsObj);
     }
 
     public static Record getOrCreateRef(JavaScriptObject jsObj) {
@@ -97,5 +104,14 @@ public class Record extends RefDataClass {
             ret[0] = Record.getOrCreateRef(nativeArray);
             return ret;
         }
+    }
+    
+    /**
+     * Convert this record to a Map. This is a recursive conversion so if an attribute on this record is set to
+     * another Record instance it will also be converted to a Map.
+     * @return
+     */
+    public Map toMap() {
+        return JSOHelper.convertToMap(this.getJsObj());
     }
 }
