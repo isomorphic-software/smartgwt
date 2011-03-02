@@ -158,6 +158,6 @@ public class Criteria extends DataClass {
     }
     private native JavaScriptObject convertToAdvancedCriteria(JavaScriptObject simpleCriteria) /*-{
         return $wnd.isc.DataSource.convertCriteria(simpleCriteria);
-    }*/;
+    }-*/;
 
 }
