@@ -137,4 +137,27 @@ public class Criteria extends DataClass {
             return ret;
         }
     }
+    
+    /**
+     * Does this represent an underlying AdvancedCriteria object in JavaScript?
+     * @return
+     */
+    public boolean isAdvanced() {
+       return ("AdvancedCriteria".equals(getAttributeAsString("_constructor")));
+    }
+    
+    /**
+     * Returns an AdvancedCriteria derived from this Criteria object.
+     * @return
+     */
+    public AdvancedCriteria asAdvancedCriteria() {
+        if (isAdvanced()) return new AdvancedCriteria(this.getJsObj());
+        else {
+            return new AdvancedCriteria(convertToAdvancedCriteria(this.getJsObj()));
+        }
+    }
+    private native JavaScriptObject convertToAdvancedCriteria(JavaScriptObject simpleCriteria) /*-{
+        return $wnd.isc.DataSource.convertCriteria(simpleCriteria);
+    }*/;
+
 }
