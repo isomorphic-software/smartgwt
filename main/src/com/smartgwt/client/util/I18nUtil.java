@@ -39,7 +39,7 @@ public class I18nUtil {
      * @param messages the SmartGWT messages
      */
     public static native void initMessages(SmartGwtMessages messages) /*-{
-
+        
         if($wnd.isc.Dialog) {
             $wnd.isc.Dialog.addClassProperties({OK_BUTTON_TITLE: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dialog_OkButtonTitle()()});
             $wnd.isc.Dialog.addClassProperties({APPLY_BUTTON_TITLE: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dialog_ApplyButtonTitle()()});
@@ -386,6 +386,14 @@ public class I18nUtil {
         if($wnd.isc.AdvancedHiliteEditor) {
             $wnd.isc.AdvancedHiliteEditor.addProperties({invalidCriteriaPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::advancedHiliteEditor_invalidCriteriaPrompt()()});
         }
+        
+        var shortDateFormat = messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDateFormat()();
+        if (shortDateFormat != null) $wnd.Date.setShortDisplayFormat(shortDateFormat);
+        var shortDatetimeFormat = messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDatetimeFormat()();
+        if (shortDatetimeFormat != null) $wnd.Date.setShortDatetimeDisplayFormat(shortDatetimeFormat);
+        var dateSeparator = messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_dateSeparator()();
+        if (dateSeparator != null) $wnd.Date.setDefaultDateSeparator(dateSeparator);
+        
         $wnd.isc.addProperties($wnd.Date, {shortDayNames: [
             messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_1()(),
             messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_2()(),

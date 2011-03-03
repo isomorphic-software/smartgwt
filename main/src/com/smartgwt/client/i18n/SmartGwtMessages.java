@@ -565,6 +565,30 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dateRangeItem_toTitle();
 
   /**
+   * Default short date format
+   * @return
+   */
+  @DefaultMessage("toUSShortDate")
+  @Key("date_shortDateFormat")
+  String date_shortDateFormat();
+  
+  /**
+   * Default short datetime format
+   * @return
+   */
+  @DefaultMessage("toUSShortDateTime")
+  @Key("date_shortDatetimeFormat")
+  String date_shortDatetimeFormat();
+  
+  /**
+   * Default separator when formatting short date and datetimes
+   * @return
+   */
+  @DefaultMessage("/")
+  @Key("date_dateSeparator")
+  String date_dateSeparator();
+  
+  /**
    * Translated "Sun".
    * 
    * @return translated "Sun"
