@@ -161,6 +161,12 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    			return javaList;
 	    		}
 	    	 } else {
+	    	    // to-string SmartClient canvas instances. We don't want to attempt to serialize them to Maps
+	    	    // If a developer wants to actually create a live Java Canvas instance from the JS equivalent they
+	    	    // should call new Canvas(JavaScriptObject canvas); instead of trying to use this code-path.
+	    	    if ($wnd.isc.isA.Canvas(object)) {
+	    	        return "" + object;
+	    	    }
 	    	 	// convert to a map
 	    	 	var javaMap = @java.util.LinkedHashMap::new()();
 	    	 	// If it's a tree node, clean it up before converting otherwise we may end up serializing out
