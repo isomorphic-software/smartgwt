@@ -62,7 +62,11 @@ public enum SummaryFunctionType implements ValueEnum {
     /**
      * 	Returns a numeric count of the total number of records passed in.
      */
-    COUNT("count");
+    COUNT("count"),
+    /**
+     *  Returns <code>field.summaryTitle</code> if specified, otherwise <code>field.title</code>
+     */
+    TITLE("title");
 
     private String value;
 
