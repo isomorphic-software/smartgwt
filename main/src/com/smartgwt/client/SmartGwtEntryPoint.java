@@ -201,13 +201,15 @@ public class SmartGwtEntryPoint implements EntryPoint {
         };
 
 
-        $wnd.isc.RPCManager.__fireReplyCallback = $wnd.isc.RPCManager.fireReplyCallback;
-        $wnd.isc.RPCManager.fireReplyCallback = function (callback, request, response, data) {
-        	// convert primitives (number / bool) to Objects before firing callbacks
-        	if (data != null && $wnd.isc.isA.Number(data) || $wnd.isc.isA.Boolean(data)) {
-        	    data = response.data = $wnd.SmartGWT.convertToJavaType(data);
-        	}
-        	return this.__fireReplyCallback(callback, request, response, data);
+        if ($wnd.isc.RPCManager.__fireReplyCallback == null) {
+            $wnd.isc.RPCManager.__fireReplyCallback = $wnd.isc.RPCManager.fireReplyCallback;
+            $wnd.isc.RPCManager.fireReplyCallback = function (callback, request, response, data) {
+            	// convert primitives (number / bool) to Objects before firing callbacks
+            	if (data != null && $wnd.isc.isA.Number(data) || $wnd.isc.isA.Boolean(data)) {
+            	    data = response.data = $wnd.SmartGWT.convertToJavaType(data);
+            	}
+            	return this.__fireReplyCallback(callback, request, response, data);
+            }
         }
     }-*/;
 
