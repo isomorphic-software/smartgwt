@@ -64,7 +64,7 @@ public enum SummaryFunctionType implements ValueEnum {
      */
     COUNT("count"),
     /**
-     *  Returns <code>field.summaryTitle</code> if specified, otherwise <code>field.title</code>
+     *  Returns <code>field.summaryValueTitle</code> if specified, otherwise <code>field.title</code>
      */
     TITLE("title");
 
