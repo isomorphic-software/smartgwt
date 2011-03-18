@@ -45,8 +45,8 @@ public enum DSProtocol implements ValueEnum {
      * the developer is expected to override {@link com.smartgwt.client.data.DataSource#transformRequest(com.smartgwt.client.data.DSRequest)}
      * to perform their own custom data manipulation logic,
      * and then call {@link com.smartgwt.client.data.DataSource#processResponse(String, com.smartgwt.client.data.DSResponse)} to handle the results of this action.
-     * The user must populate dsRequest.data in the transformRequest method. If call was successful status and data should be filled.
-     * If call was unsuccessful only status should contain error code.
+     * If the call was successful, status and data should be filled.
+     * If the call was unsuccessful, only status should be set, and should contain an error code.
      */
     CLIENTCUSTOM("clientCustom"),
     
