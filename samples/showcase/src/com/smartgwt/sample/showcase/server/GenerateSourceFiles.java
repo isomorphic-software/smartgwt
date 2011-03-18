@@ -2,7 +2,7 @@ package com.smartgwt.sample.showcase.server;
 
 import java.io.*;
 import java.util.*;
-import java.util.regex.Pattern;
+import java.util.regex.*;
 
 public class GenerateSourceFiles {
     
@@ -21,6 +21,7 @@ private static final Pattern            ViewPanelReturnPattern = Pattern.compile
 
 // The _dataFileMap key is the class or data file name; the value is the path to the file
 private static Map<String, String>      _dataFileMap;
+private static Map<String, Pattern>     _dataFileRegexMap;
 // The _dataFilePathsMap key is the class name; the value is the list of data files
 private static Map<String, Set<String>> _dataFilePathsMap;
 private static int                      _showcaseClientDirLength;
@@ -53,8 +54,11 @@ private static ESourceFileType lookup(final String line) {
 
 private static void checkForDataFile(final String line, final String className) {
   boolean matchFound = false;
+  Pattern p;
+  Matcher m;
   for (Map.Entry<String, String> dataFileMapEntry : _dataFileMap.entrySet()) {
-    matchFound = line.contains(dataFileMapEntry.getKey());
+    p = ((Pattern)_dataFileRegexMap.get(dataFileMapEntry.getKey()));
+    matchFound = p.matcher(line).find(0);
     if (matchFound) {
       Set<String> dataFilePathSet = _dataFilePathsMap.get(className);
       if (dataFilePathSet == null) {
@@ -381,6 +385,8 @@ private static void loadDataFileOrClassNames(final File fileOrDirectory) throws 
                              _sourceOutputDir + "/" + fileOrClassPath + ".html");
       }
       _dataFileMap.put(fileOrClassName, fileOrClassPath);
+      _dataFileRegexMap.put(fileOrClassName, 
+        Pattern.compile("[^a-zA-Z0-9_]" + fileOrClassName + "[^a-zA-Z0-9_]"));
     }
   }
 } // loadDataFileOrClassNames()
@@ -431,6 +437,7 @@ public static void main(final String... args) {
   Set<String> dataDirNameSet = loadDataDirNames(args);
   _showcaseClientDirLength = _showcaseDir.length();
   _dataFileMap = new TreeMap<String, String>();
+  _dataFileRegexMap = new TreeMap<String, Pattern>();
   _dataFilePathsMap = new TreeMap<String, Set<String>>();
   try {
     for (String dataDir : dataDirNameSet) {
