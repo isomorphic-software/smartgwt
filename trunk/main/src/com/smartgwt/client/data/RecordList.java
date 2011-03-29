@@ -759,11 +759,13 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
      */
     public native RecordList sort(Comparator<Record> comparator) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        return self.sort(function(record1, record2) {
+        var result = self.sort(function(record1, record2) {
             var record1J = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record1);
             var record2J = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record2);
             return comparator.@java.util.Comparator::compare(Ljava/lang/Object;Ljava/lang/Object;)(record1J, record2J);
         });
+        if (result == null) return null;
+        return @com.smartgwt.client.data.RecordList::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(result);
     }-*/;
 
     /**
