@@ -17,6 +17,16 @@
 package com.smartgwt.client.util;
 
 public class StringUtil {
+    
+    private static native boolean usePrototypeMethods() /*-{
+        // For some reason in Safari if you do
+        // new $wnd.String(<string>), the various prototype methods we hang onto the string prototype are not
+        // available. Workaround by explicitly applying these methods to the string passed in.
+        // The same is true in FF 4.0
+        return returnVal = $wnd.isc.Browser.isSafari || 
+                ($wnd.isc.Browser.isFirefox && $wnd.isc.Browser.geckoVersion >=20100101);
+        
+    }-*/;
 
     /**
      * Convert all tag symbols ( &lt;  and &gt; ) into displayable HTML
@@ -29,10 +39,7 @@ public class StringUtil {
      */
     public static native String convertTags(String str, String prefix, String suffix)/*-{
         if (str == null) return null;
-        // For some reason in Safari if you do
-        // new $wnd.String(<string>), the various prototype methods we hang onto the string prototype are not
-        // available. Workaround by explicitly applying these methods to the string passed in.
-        if ($wnd.isc.Browser.isSafari) {
+        if (@com.smartgwt.client.util.StringUtil::usePrototypeMethods()()) {
             return $wnd.String.prototype.convertTags.apply(str, [prefix,suffix]);
         } else {
             return new $wnd.String(str).convertTags(prefix, suffix);
@@ -60,7 +67,7 @@ public class StringUtil {
      * @return the plain text into into displayable HTM
      */
     public static native String asHTML(String str)/*-{
-        if (str != null && $wnd.isc.Browser.isSafari) {
+        if (str != null && @com.smartgwt.client.util.StringUtil::usePrototypeMethods()()) {
             return $wnd.String.prototype.asHTML.apply(str, []);
         }   
         return str == null ? null : new $wnd.String(str).asHTML();
@@ -88,7 +95,7 @@ public class StringUtil {
      * @return the plain text into into displayable HTM
      */
     public static native String asHTML(String str, boolean noAutoWrap)/*-{
-        if (str != null && $wnd.isc.Browser.isSafari) {
+        if (str != null && @com.smartgwt.client.util.StringUtil::usePrototypeMethods()()) {
             return $wnd.String.prototype.asHTML.apply(str, [noAutoWrap]);
         }
         return str == null ? null : new $wnd.String(str).asHTML(noAutoWrap);
@@ -101,7 +108,7 @@ public class StringUtil {
      * @return unescaped HTML
      */
     public static native String unescapeHTML(String str)/*-{
-        if (str != null && $wnd.isc.Browser.isSafari) {
+        if (str != null && @com.smartgwt.client.util.StringUtil::usePrototypeMethods()()) {
             return $wnd.String.prototype.unescapeHTML.apply(str, []);
         }
         return str == null ? null : new $wnd.String(str).unescapeHTML();
