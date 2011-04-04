@@ -166,7 +166,8 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
     }
 
     /**
-     * Initial set of data for the ResultSet. <P> This data will be treated exactly as though it were the data returned from
+     * Initial set of data for the ResultSet. <P> 
+     * This data will be treated exactly as though it were the data returned from
      * the ResultSet's first server fetch. <P> By default, <code>initialData</code> will be considered a complete response (all
      * rows that match the {@link Criteria} which the ResultSet was initialized with). <P> Set {@link
      * ResultSet#getInitialLength initialLength} to treat <code>initialData</code> as a partial
@@ -192,6 +193,18 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
      */
     public void setInitialLength(Integer initialLength) throws IllegalStateException {
         setAttribute("initialLength", initialLength, false);
+    }
+    
+    /**
+     * Initial multi property sort specification for this ResultSet's data. If a ResultSet is being
+     * explicitly created and seeded with {@link #setInitialData(Record[])}, this method may be used
+     * to notify the ResultSet that the data is already sorted such that a call to {@link #setSort(SortSpecifier...)} will
+     * not require a new fetch unless additional data beyond the ends of the specified initialData are required.
+     * @param sortSpecifiers Initial sort specification
+     */
+    public void setInitialSort(SortSpecifier... sortSpecifiers){
+        JavaScriptObject jsSortArray = JSOHelper.convertToJavaScriptArray(sortSpecifiers);
+        setAttribute("sortSpecifiers", jsSortArray, false);
     }
 
     /**
