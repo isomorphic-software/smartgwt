@@ -614,6 +614,7 @@ public class JSOHelper {
         JavaScriptObject jsArray = createJavaScriptArray();
         for (int i = 0; i < array.length; i++) {
             Object val = array[i];
+            
             if (val instanceof String) {
                 JSOHelper.setArrayValue(jsArray, i, (String) val);
             } else if (val instanceof Integer) {
@@ -769,6 +770,11 @@ public class JSOHelper {
         return (ret === undefined || ret == null) ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
     }-*/;
 
+    public static native Float getFloatArrayValue(JavaScriptObject array, int index) /*-{
+        var ret = array[index];
+        return (ret === undefined || ret == null) ? null : @com.smartgwt.client.util.JSOHelper::toFloat(F)(ret);
+    }-*/;
+    
     public static native int getArrayLength(JavaScriptObject array) /*-{
         return array.length;
     }-*/;
@@ -800,6 +806,16 @@ public class JSOHelper {
         }
         return arr;
     }
+
+    public static Float[] convertToJavaFloatArray(JavaScriptObject array) {
+        int length = getArrayLength(array);
+        Float[] arr = new Float[length];
+        for (int i = 0; i < length; i++) {
+            arr[i] = getFloatArrayValue(array, i);
+        }
+        return arr;
+    }
+
 
     public static Object[] convertToJavaObjectArray(JavaScriptObject array) {
         if (array == null) return new Object[]{};
