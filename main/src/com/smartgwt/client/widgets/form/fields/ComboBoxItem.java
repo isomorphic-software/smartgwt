@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -162,64 +163,6 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      */
     public Boolean getAddUnknownValues()  {
         return getAttributeAsBoolean("addUnknownValues");
-    }
-
-    /**
-     * If this comboBoxItem is displayed in a search form, and {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues addUnknownValues} is <code>true</code>, should
-     * we treat an unknown value as a partially entered search value when generating criteria? <P> Having this property set to
-     * true means that when {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getCriterion ComboBoxItem.getCriterion}
-     * is called for this item, default behavior will determine whether the current value matches an actual value in the
-     * valueMap or optionDataSource.<br> If so the criterion returned will be looking for an exact match against the current
-     * item value. In this case the criterion field will be picked up from this.criterionField if specified, otherwise the
-     * fieldName for the item, and the criterion operator will be <code>"exact"</code> by default, or  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOperator this.operator} if specified.<br> Otherwise (if the value
-     * does not match an option in the pickList), the criterion returned will looking for a partial match. In this case the
-     * criterion value field will be picked up from {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDisplayField
-     * displayField} if specified, and the operator will be the same as the operator applied to the pickList when filtering -
-     * determined from the specified {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getTextMatchStyle
-     * textMatchStyle}. <P> Setting this property to false causes +{getCriterion()} to always return criterion looking for an
-     * exact match against the current item value, regardless of whether the value matches an option in the valueMap or
-     * optionDataSource for this item. <P> This property has no effect if this.addUnknownValues is false. <P> Note that if this
-     * property is set to true, the item will generate {@link com.smartgwt.client.data.AdvancedCriteria}. Advanced Criteria are
-     * not be supported by all dataSources, including standard SQL server side dataSources in Smart GWT Pro edition (though
-     * they are supported by Power and Enterprise editions).
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param allowPartialCriterion allowPartialCriterion Default value is true
-     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
-     */
-    public void setAllowPartialCriterion(Boolean allowPartialCriterion) {
-        setAttribute("allowPartialCriterion", allowPartialCriterion);
-    }
-
-    /**
-     * If this comboBoxItem is displayed in a search form, and {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues addUnknownValues} is <code>true</code>, should
-     * we treat an unknown value as a partially entered search value when generating criteria? <P> Having this property set to
-     * true means that when {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getCriterion ComboBoxItem.getCriterion}
-     * is called for this item, default behavior will determine whether the current value matches an actual value in the
-     * valueMap or optionDataSource.<br> If so the criterion returned will be looking for an exact match against the current
-     * item value. In this case the criterion field will be picked up from this.criterionField if specified, otherwise the
-     * fieldName for the item, and the criterion operator will be <code>"exact"</code> by default, or  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOperator this.operator} if specified.<br> Otherwise (if the value
-     * does not match an option in the pickList), the criterion returned will looking for a partial match. In this case the
-     * criterion value field will be picked up from {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDisplayField
-     * displayField} if specified, and the operator will be the same as the operator applied to the pickList when filtering -
-     * determined from the specified {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getTextMatchStyle
-     * textMatchStyle}. <P> Setting this property to false causes +{getCriterion()} to always return criterion looking for an
-     * exact match against the current item value, regardless of whether the value matches an option in the valueMap or
-     * optionDataSource for this item. <P> This property has no effect if this.addUnknownValues is false. <P> Note that if this
-     * property is set to true, the item will generate {@link com.smartgwt.client.data.AdvancedCriteria}. Advanced Criteria are
-     * not be supported by all dataSources, including standard SQL server side dataSources in Smart GWT Pro edition (though
-     * they are supported by Power and Enterprise editions).
-     *
-     *
-     * @return Boolean
-     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
-     */
-    public Boolean getAllowPartialCriterion()  {
-        return getAttributeAsBoolean("allowPartialCriterion");
     }
 
     /**
@@ -452,6 +395,38 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      */
     public Boolean getFilterWithValue()  {
         return getAttributeAsBoolean("filterWithValue");
+    }
+
+    /**
+     * When a comboBoxItem is used to generate search criteria in a SearchForm this property governs whether, if the user
+     * explicitly chose an option from the pickList, we explicitly generate criteria that will search for an exact match
+     * against the chosen value. <P> In order to achieve this, when this property is set to true, this item will generate
+     * {@link com.smartgwt.client.data.AdvancedCriteria} in its {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getCriterion ComboBoxItem.getCriterion} method. <P> See {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#shouldGenerateExactMatchCriteria
+     * ComboBoxItem.shouldGenerateExactMatchCriteria} for behavior when this flag is unset.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param generateExactMatchCriteria generateExactMatchCriteria Default value is null
+     */
+    public void setGenerateExactMatchCriteria(Boolean generateExactMatchCriteria) {
+        setAttribute("generateExactMatchCriteria", generateExactMatchCriteria);
+    }
+
+    /**
+     * When a comboBoxItem is used to generate search criteria in a SearchForm this property governs whether, if the user
+     * explicitly chose an option from the pickList, we explicitly generate criteria that will search for an exact match
+     * against the chosen value. <P> In order to achieve this, when this property is set to true, this item will generate
+     * {@link com.smartgwt.client.data.AdvancedCriteria} in its {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getCriterion ComboBoxItem.getCriterion} method. <P> See {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#shouldGenerateExactMatchCriteria
+     * ComboBoxItem.shouldGenerateExactMatchCriteria} for behavior when this flag is unset.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getGenerateExactMatchCriteria()  {
+        return getAttributeAsBoolean("generateExactMatchCriteria");
     }
 
 
@@ -733,9 +708,9 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
     // ********************* Methods ***********************
             
     /**
-     * Overridden to support editing criterion produced by {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getCriterion ComboBoxItem.getCriterion} when {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAllowPartialCriterion allowPartialCriterion} is true.
+     * This method is overridden in comboBoxItem. When addUnknownValues is true,  comboBoxItems allow the user to edit
+     * substring match type criteria applied to the display field (if one is specified). <P> The user can also edit criteria
+     * attempting to match exactly against the item's field name.
      */
     public native void canEditCriterion() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
@@ -777,10 +752,18 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
     }-*/;
             
     /**
-     * Returns criterion derived from the current value of this item. See {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAllowPartialCriterion allowPartialCriterion} for a discussion of
-     * how this criterion is generated when {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues
-     * addUnknownValues} is true
+     * Returns criterion derived from the current value of this item. <P> If {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues addUnknownValues} is true for this item, we
+     * implement the following behavior.<br> If the user explicitly selected an item from the pickList, we treat this as an
+     * attempt to explicitly match the data value. In this case returned criteria will match the selected (data) value against
+     * this item's fieldName.<br> If the user typed a value into the text field, we treat this as an attempt to do a substring
+     * type filter. In this case returned criteria will match the entered text value against the displayField for this item if
+     * one is specified. <P> If {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues
+     * addUnknownValues} is false we always match the chosen data value against the item's  fieldName. <P> Note that {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#shouldGenerateExactMatchCriteria
+     * ComboBoxItem.shouldGenerateExactMatchCriteria} will be called in the case when a value was explicitly picked from the
+     * set of options. If that method returns true, we will return AdvancedCriteria with an operator specified to ensure an
+     * exact match occurs.
      *
      * @return criterion object based on this fields current edited value(s).
      * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
@@ -836,11 +819,17 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
     }-*/;
             
     /**
-     * Overridden to return true if {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAllowPartialCriterion
-     * allowPartialCriterion} is true and {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues
-     * addUnknownValues} is true.
+     * Will this item return advancedCriteria if {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria
+     * DynamicForm.getValuesAsCriteria} is  called on this item's form? Overridden for ComboBoxItem to return true if {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getGenerateExactMatchCriteria generateExactMatchCriteria} is true -
+     * in this case if an exact value is chosen from our set of options (always the case if <code>addUnkownValues</code> is
+     * false), we will use advancedCriteria to ensure the generated search criteria exactly matches the chosen value for this
+     * item. <P> Note that {@link com.smartgwt.client.data.AdvancedCriteria} are not supported by all dataSources. When a form
+     * is bound to a dataSource, we therefore default <code>generateExactMatchCriteria</code> to false unless the dataSource is
+     * known to support AdvancedCriteria. <P> As with formItem.hasAdvancedCriteria() this will also return true if a Operator
+     * was explicitly specified for this item
      *
-     * @return true if this item will return an AdvancedCriteria sub-criterion.
+     * @return true if the result of getCriterion() will be an AdvancedCriteria object.
      * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
      */
     public native Boolean hasAdvancedCriteria() /*-{
@@ -854,13 +843,35 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
     }-*/;
             
     /**
-     * Overridden to support editing criterion produced by {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getCriterion ComboBoxItem.getCriterion} when {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAllowPartialCriterion allowPartialCriterion} is true.
+     * Overridden to support editing criterion against the display field or value field when {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues addUnknownValues} is true.
      */
     public native void setCriterion() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.setCriterion();
+    }-*/;
+            
+    /**
+     * When a comboBoxItem is used to generate search criteria in a SearchForm,  if the user explicitly chose an option from
+     * the pickList, should the criterion generated by {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getCriterion
+     * ComboBoxItem.getCriterion} enforce a search for an exact match against the chosen value? <P> In order to achieve this,
+     * when this property is set to true, this item will generate {@link com.smartgwt.client.data.AdvancedCriteria} in its
+     * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getCriterion ComboBoxItem.getCriterion} method. <P> Default
+     * implementation will return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getGenerateExactMatchCriteria
+     * generateExactMatchCriteria} if specified, otherwise true if the DataSource for this item  {@link
+     * com.smartgwt.client.data.DataSource#supportsAdvancedCriteria supports advanced criteria}, false if it does not.
+     *
+     * @return should getCriterion() generate exact-match search criteria when   a value was explicitly chosen from this item's set of
+     * options?
+     */
+    public native Boolean shouldGenerateExactMatchCriteria() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.shouldGenerateExactMatchCriteria();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
     }-*/;
 
     // ********************* Static Methods ***********************
@@ -873,18 +884,20 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
     }
 
     private static native void init()/*-{
-        $wnd.isc.ComboBoxItem.getPrototype().__getPickListFilterCriteria = $wnd.isc.ComboBoxItem.getPrototype().getPickListFilterCriteria;
-        $wnd.isc.ComboBoxItem.getPrototype().getPickListFilterCriteria = $entry(function() {
-            var jObj = this.__ref;
-            //if widget was not created in in java via smartgwt, fallback to old behavior
-            if(jObj && @com.smartgwt.client.widgets.form.fields.ComboBoxItem::isComboBoxItem(Lcom/smartgwt/client/widgets/form/fields/FormItem;)(jObj)) {
-                jObj.@com.smartgwt.client.widgets.form.fields.ComboBoxItem::setJsObj(Lcom/google/gwt/core/client/JavaScriptObject;)(this);
-                var critJ = jObj.@com.smartgwt.client.widgets.form.fields.ComboBoxItem::getPickListFilterCriteria()();
-                return critJ == null ? {} : critJ.@com.smartgwt.client.data.Criteria::getJsObj()();
-            } else {
-                return this.__getPickListFilterCriteria();
-            }
-        });
+        if ($wnd.isc.ComboBoxItem.getPrototype().__getPickListFilterCriteria == null) {
+            $wnd.isc.ComboBoxItem.getPrototype().__getPickListFilterCriteria = $wnd.isc.ComboBoxItem.getPrototype().getPickListFilterCriteria;
+            $wnd.isc.ComboBoxItem.getPrototype().getPickListFilterCriteria = $entry(function() {
+                var jObj = this.__ref;
+                //if widget was not created in in java via smartgwt, fallback to old behavior
+                if(jObj && @com.smartgwt.client.widgets.form.fields.ComboBoxItem::isComboBoxItem(Lcom/smartgwt/client/widgets/form/fields/FormItem;)(jObj)) {
+                    jObj.@com.smartgwt.client.widgets.form.fields.ComboBoxItem::setJsObj(Lcom/google/gwt/core/client/JavaScriptObject;)(this);
+                    var critJ = jObj.@com.smartgwt.client.widgets.form.fields.ComboBoxItem::getPickListFilterCriteria()();
+                    return critJ == null ? {} : critJ.@com.smartgwt.client.data.Criteria::getJsObj()();
+                } else {
+                    return this.__getPickListFilterCriteria();
+                }
+            });
+        }
     }-*/;
 
     private static boolean isComboBoxItem(FormItem formItem) {

@@ -2,7 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
- * <h3>Using Smart GWT Server framework with custom persistence logic</h3>
+ * <h3>Server Features and Custom Persistence</h3>
  * The vast majority of the Smart GWT Server framework's key features are not specific to the built-in SQL and Hibernate
  * connectors, and still apply even when using a custom persistence mechanism. <P> See the listing below of major features
  * and how to apply them with custom persistence: <p> <b>Server Data Binding:</b> Using the Smart GWT Server framework

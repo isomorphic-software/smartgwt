@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -928,7 +929,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * The string prepended to the title of every required item in this form if highlightRequiredFields is true and the
      * titleOrientation property is set to "right".
      *
-     * @param requiredRightTitlePrefix requiredRightTitlePrefix Default value is "<B>:&nbsp;"
+     * @param requiredRightTitlePrefix requiredRightTitlePrefix Default value is "<b>:&nbsp;"
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public void setRequiredRightTitlePrefix(String requiredRightTitlePrefix) {
@@ -951,7 +952,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * The string appended to the title of every required item in this form if highlightRequiredFields is true and the
      * titleOrientation property is set to "right".
      *
-     * @param requiredRightTitleSuffix requiredRightTitleSuffix Default value is "</B>"
+     * @param requiredRightTitleSuffix requiredRightTitleSuffix Default value is "</b>"
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public void setRequiredRightTitleSuffix(String requiredRightTitleSuffix) {
@@ -973,7 +974,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * The string prepended to the title of every required item in this form if highlightRequiredFields is true.
      *
-     * @param requiredTitlePrefix requiredTitlePrefix Default value is "<B>"
+     * @param requiredTitlePrefix requiredTitlePrefix Default value is "<b>"
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public void setRequiredTitlePrefix(String requiredTitlePrefix) {
@@ -994,7 +995,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * The string appended to the title of every required item in this form if highlightRequiredFields is true.
      *
-     * @param requiredTitleSuffix requiredTitleSuffix Default value is " :</B>"
+     * @param requiredTitleSuffix requiredTitleSuffix Default value is "&nbsp;:</b>"
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public void setRequiredTitleSuffix(String requiredTitleSuffix) {
@@ -1013,7 +1014,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * The string prepended to the title of an item in this form if its          titleOrientation property is set to "right".
+     * The string prepended to the title of an item in this form if its titleOrientation property is set to "right".
      *
      * @param rightTitlePrefix rightTitlePrefix Default value is ":&nbsp;"
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
@@ -1023,7 +1024,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * The string prepended to the title of an item in this form if its          titleOrientation property is set to "right".
+     * The string prepended to the title of an item in this form if its titleOrientation property is set to "right".
      *
      *
      * @return String
@@ -1034,7 +1035,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * The string appended to the title of an item in this form if its titleOrientation          property is set to "right".
+     * The string appended to the title of an item in this form if its titleOrientation property is set to "right".
      *
      * @param rightTitleSuffix rightTitleSuffix Default value is ""
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
@@ -1044,7 +1045,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * The string appended to the title of an item in this form if its titleOrientation          property is set to "right".
+     * The string appended to the title of an item in this form if its titleOrientation property is set to "right".
      *
      *
      * @return String
@@ -2384,12 +2385,19 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * Class level method to set the default properties of this class. If set, then all subsequent instances of this
      * class will automatically have the default properties that were set when this method was called. This is a powerful
      * feature that eliminates the need for users to create a separate hierarchy of subclasses that only alter the default
-     * properties of this class. Can also be used for skinning / styling purposes. 
+     * properties of this class. Can also be used for skinning / styling purposes.
+     * <P>
+     * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
+     * underlying class (including those automatically generated in JavaScript). 
+     * This method should not be used to apply standard EventHandlers or override methods for
+     * a class - use a custom subclass instead.
      *
      * @param dynamicFormProperties properties that should be used as new defaults when instances of this class are created
      */
     public static native void setDefaultProperties(DynamicForm dynamicFormProperties) /*-{
-        $wnd.isc.DynamicForm.addProperties(dynamicFormProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
+    	var properties = $wnd.isc.addProperties({},dynamicFormProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
+    	delete properties.ID;
+        $wnd.isc.DynamicForm.addProperties(properties);
     }-*/;
         
     // ***********************************************************        

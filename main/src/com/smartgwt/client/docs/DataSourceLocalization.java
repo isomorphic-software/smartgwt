@@ -32,12 +32,14 @@ package com.smartgwt.client.docs;
  * definitions to the browser (exactly like <code>DataSourceLoader</code> does):&#010 Using this example as a base, just
  * add a <code>jsp:include</code> line for each of your&#010 DataSources that requires i18n support:&#010 <pre>&#010 &lt;%@
  * taglib uri="/WEB-INF/iscTaglib.xml" prefix="isomorphic" %&gt;&#010 &lt;isomorphic:XML&gt;&#010 &lt;jsp:include
- * page="/shared/ds/supplyItem.ds.xml"&gt;&lt;/jsp:include&gt;&#010 &lt;/isomorphic:XML&gt;&#010 </pre>&#010 You then refer
- * to this JSP in a <code>&lt;script src=...&gt;</code> tag, in place of &#010 the <code>DataSourceLoader</code>
- * reference:&#010 <p><code>&#010 &lt;script src=dataSourceLoader.jsp&gt;&lt;/script&gt;&#010 </code><p>&#010 &#010 This
- * makes it possible to internationalize field titles as well as validation error messages&#010 for built-in validators. 
- * To internationalize custom server-side validation errors, simply&#010 provide internationalized strings when calling
- * <code>DSResponse.setErrorReport()</code> to&#010 report validation errors (see the JavaDoc for that documentation).
+ * page="/shared/ds/supplyItem.ds.xml"&gt;&lt;/jsp:include&gt;&#010 &lt;jsp:include
+ * page="/shared/ds/supplyCategory.ds.xml"&gt;&lt;/jsp:include&gt;&#010 &lt;/isomorphic:XML&gt;&#010 </pre>&#010 You then
+ * refer to this JSP in a <code>&lt;script src=...&gt;</code> tag, in place of &#010 the <code>DataSourceLoader</code>
+ * reference.  For example, if you named the file&#010 "dataSourceLoader.jsp":&#010 <p><code>&#010 &lt;script
+ * src=dataSourceLoader.jsp&gt;&lt;/script&gt;&#010 </code><p>&#010 &#010 This makes it possible to internationalize field
+ * titles as well as validation error messages&#010 for built-in validators.  To internationalize custom server-side
+ * validation errors, simply&#010 provide internationalized strings when calling <code>DSResponse.setErrorReport()</code>
+ * to&#010 report validation errors (see the JavaDoc for that documentation).
  */
 public interface DataSourceLocalization {
 }

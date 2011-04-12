@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -810,22 +811,6 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
    }-*/;
             
     /**
-     * Find out if this object is selected
-     *
-     * @return 
-     * @see com.smartgwt.client.docs.State State overview and related methods
-     */
-    public native Boolean isSelected() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.isSelected();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
      * Remove this widget from the specified mutually exclusive selection group with the ID passed in. No-op's if this widget
      * is not a member of the groupID passed in. If no groupID is passed in, defaults to removing from whatever radioGroup this
      * widget is a member of.
@@ -878,15 +863,38 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      * Class level method to set the default properties of this class. If set, then all subsequent instances of this
      * class will automatically have the default properties that were set when this method was called. This is a powerful
      * feature that eliminates the need for users to create a separate hierarchy of subclasses that only alter the default
-     * properties of this class. Can also be used for skinning / styling purposes. 
+     * properties of this class. Can also be used for skinning / styling purposes.
+     * <P>
+     * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
+     * underlying class (including those automatically generated in JavaScript). 
+     * This method should not be used to apply standard EventHandlers or override methods for
+     * a class - use a custom subclass instead.
      *
      * @param buttonProperties properties that should be used as new defaults when instances of this class are created
      */
     public static native void setDefaultProperties(Button buttonProperties) /*-{
-        $wnd.isc.Button.addProperties(buttonProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
+    	var properties = $wnd.isc.addProperties({},buttonProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
+    	delete properties.ID;
+        $wnd.isc.Button.addProperties(properties);
     }-*/;
         
     // ***********************************************************        
+
+
+    /**
+     * Find out if this object is selected
+     *
+     * @return 
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public native Boolean isSelected() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.isSelected();
+        if(retVal == null || retVal === undefined) {
+            retVal = false;
+        }
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+    }-*/;
 
 }
 

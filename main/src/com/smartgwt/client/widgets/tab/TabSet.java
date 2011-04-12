@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -62,7 +63,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * user to show each pane.  <P> Tabs are configured via the <code>tabs</code> property, each of which has a
  * <code>pane</code> property which will be displayed in the main pane when that tab is selected.
  */
-public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.events.HasCloseClickHandlers, com.smartgwt.client.widgets.tab.events.HasTabContextMenuHandlers, com.smartgwt.client.widgets.tab.events.HasTabIconClickHandlers, com.smartgwt.client.widgets.tab.events.HasTabSelectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabDeselectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabTitleChangedHandlers {
+public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.events.HasCloseClickHandlers, com.smartgwt.client.widgets.tab.events.HasTabContextMenuHandlers, com.smartgwt.client.widgets.tab.events.HasTabSelectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabDeselectedHandlers {
 
     public static TabSet getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -889,6 +890,29 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     }
 
     /**
+     * If this.useSimpleTabs is true, simpleTabBaseClass will be the base style used to   determine the css style to apply to
+     * the tabs.<br>  This property will be suffixed with the side on which the tab-bar will appear, followed  by with the
+     * tab's state (selected, over, etc), resolving to a className like   "tabButtonTopOver"
+     *
+     * @param simpleTabBaseStyle simpleTabBaseStyle Default value is "tabButton"
+     */
+    public void setSimpleTabBaseStyle(String simpleTabBaseStyle) {
+        setAttribute("simpleTabBaseStyle", simpleTabBaseStyle, true);
+    }
+
+    /**
+     * If this.useSimpleTabs is true, simpleTabBaseClass will be the base style used to   determine the css style to apply to
+     * the tabs.<br>  This property will be suffixed with the side on which the tab-bar will appear, followed  by with the
+     * tab's state (selected, over, etc), resolving to a className like   "tabButtonTopOver"
+     *
+     *
+     * @return String
+     */
+    public String getSimpleTabBaseStyle()  {
+        return getAttributeAsString("simpleTabBaseStyle");
+    }
+
+    /**
      * Default directory for skin images (those defined by the class), relative to the Page-wide {@link
      * com.smartgwt.client.util.Page#getSkinDir skinDir}.
      *
@@ -1188,6 +1212,33 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         return getAttributeAsInt("titleEditorTopOffset");
     }
 
+    /**
+     * Should we use simple button based tabs styled with CSS rather than image based {@link
+     * com.smartgwt.client.widgets.tab.ImgTab} tabs? <P>   If set to true tabs will instances of {@link
+     * com.smartgwt.client.widgets.Button}, styled according to the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getSimpleTabBaseStyle simpleTabBaseStyle}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param useSimpleTabs useSimpleTabs Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setUseSimpleTabs(Boolean useSimpleTabs)  throws IllegalStateException {
+        setAttribute("useSimpleTabs", useSimpleTabs, false);
+    }
+
+    /**
+     * Should we use simple button based tabs styled with CSS rather than image based {@link
+     * com.smartgwt.client.widgets.tab.ImgTab} tabs? <P>   If set to true tabs will instances of {@link
+     * com.smartgwt.client.widgets.Button}, styled according to the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getSimpleTabBaseStyle simpleTabBaseStyle}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getUseSimpleTabs()  {
+        return getAttributeAsBoolean("useSimpleTabs");
+    }
+
     // ********************* Methods ***********************
             
     /**
@@ -1310,42 +1361,6 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         }
    }-*/;
     /**
-     * Add a tabIconClick handler.
-     * <p>
-     * Method fired when the user clicks the icon for a tab, as specified via {@link
-     * com.smartgwt.client.widgets.tab.Tab#getIcon icon}. <P> Default behavior will fire <code>icon.click()</code> if
-     * specified, with two parameters <code>tab</code> (a pointer to the tab object and <code>tabSet</code> a pointer to the
-     * tabSet instance.
-     *
-     * @param handler the tabIconClick handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addTabIconClickHandler(com.smartgwt.client.widgets.tab.events.TabIconClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabClickEvent.getType()) == 0) setupTabIconClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.tab.events.TabClickEvent.getType());
-    }
-
-    private native void setupTabIconClickEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({tabIconClick:$entry(function(){
-                        var param = {"tab" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.tab.events.TabClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.tabIconClick = $entry(function(){
-                   var param = {"tab" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.tab.events.TabClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
-        }
-   }-*/;
-    /**
      * Add a tabSelected handler.
      * <p>
      * Notification fired when a tab is selected. Note that this will only fire if  this tabSet is drawn. If a tab is selected
@@ -1380,58 +1395,25 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
                });
         }
    }-*/;
-    /**
-     * Add a tabTitleChanged handler.
-     * <p>
-     * This notification method fired when the user changes the title of a tab in this TabSet. This can happen either through
-     * user interaction with the UI if  {@link com.smartgwt.client.widgets.tab.TabSet#getCanEditTabTitles canEditTabTitles} is
-     * set, or programmatically if application  code calls {@link com.smartgwt.client.widgets.tab.TabSet#editTabTitle
-     * editTabTitle}.<p> Return false from this method to cancel the change.
-     *
-     * @param handler the tabTitleChanged handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addTabTitleChangedHandler(com.smartgwt.client.widgets.tab.events.TabTitleChangedHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent.getType()) == 0) setupTabTitleChangedEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent.getType());
-    }
-
-    private native void setupTabTitleChangedEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({titleChanged:$debox($entry(function(){
-                        var param = {"newTitle" : arguments[0], "oldTitle" : arguments[1], "tab" : arguments[2]};
-                        var event = @com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.titleChanged = $debox($entry(function(){
-                   var param = {"newTitle" : arguments[0], "oldTitle" : arguments[1], "tab" : arguments[2]};
-                   var event = @com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
-        }
-   }-*/;
 
     // ********************* Static Methods ***********************
     /**
      * Class level method to set the default properties of this class. If set, then all subsequent instances of this
      * class will automatically have the default properties that were set when this method was called. This is a powerful
      * feature that eliminates the need for users to create a separate hierarchy of subclasses that only alter the default
-     * properties of this class. Can also be used for skinning / styling purposes. 
+     * properties of this class. Can also be used for skinning / styling purposes.
+     * <P>
+     * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
+     * underlying class (including those automatically generated in JavaScript). 
+     * This method should not be used to apply standard EventHandlers or override methods for
+     * a class - use a custom subclass instead.
      *
      * @param tabSetProperties properties that should be used as new defaults when instances of this class are created
      */
     public static native void setDefaultProperties(TabSet tabSetProperties) /*-{
-        $wnd.isc.TabSet.addProperties(tabSetProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
+    	var properties = $wnd.isc.addProperties({},tabSetProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
+    	delete properties.ID;
+        $wnd.isc.TabSet.addProperties(properties);
     }-*/;
         
     // ***********************************************************        
@@ -1719,38 +1701,78 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         var ret = self.getSelectedTab();
         return ret == null ? null : @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
+    
     /**
-     * Get the live Canvas representing a tab by index or ID.   If passed a tab Canvas, just returns it. <P> Note that
-     * live Tab instances are not available until {@link com.smartgwt.client.widgets.Canvas#draw}. <P> The returned Tab
-     * is considered an internal component of the TabSet.  In order to maximize forward compatibility, manipulate tabs
-     * through APIs such as a {@link com.smartgwt.client.widgets.tab.TabSet#setTabTitle} instead. Also note that a
-     * super-lightweight TabSet implementation may not use a separate Canvas per Tab, and code that accesses an
-     * manipulates Tabs as Canvases won't be compatible with that implementation.
-     *
+     * Get the live Canvas representing a tab by index.
+     * * The underlying SmartClient class of the returned canvas depends on {@link #getUseSimpleTabs}.
+     * If this property is false, the returned canvas will be a {@link com.smartgwt.client.widgets.tab.ImgTab} 
+     * instance. If true the canvas will be a {@link com.smartgwt.client.widgets.tab.Button} instance. 
+     * Note that you can make use of ImgTab APIs by using the <code>getJsObj()</code> and <code>create()</code>
+     * APIs to "cast" to the appropriate type - for example:<br>
+     * <code>ImgTab liveTab = ImgTab.create(myTabSet.getTabCanvas(2).getJsObj());</code>
+     * <P>
+     * Note that live Tab instances are not available until {@link com.smartgwt.client.widgets.Canvas#draw}.
+     * <P> 
+     * <b>Note that this is an advanced method.</b> The returned Tab is considered an internal component of
+     * the TabSet.  In order to maximize forward compatibility, wherever possible manipulate tabs
+     * through TabSet APIs such as a {@link com.smartgwt.client.widgets.tab.TabSet#setTabTitle} instead of
+     * modifying them directly.
+     * 
      * @param tab
      * @return the tab Canvas, or null if not found or TabSet not drawn yet
      */
-    public native Tab getTab(int tabIndex) /*-{
+    public native StatefulCanvas getTabCanvas(int tabIndex) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getTab(tabIndex);
+        return ret == null ? null : @com.smartgwt.client.widgets.StatefulCanvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+    
+    /**
+     * Get the live Canvas representing a tab by index.
+     * The underlying SmartClient class of the returned canvas depends on {@link #getUseSimpleTabs}.
+     * If this property is false, the returned canvas will be a {@link com.smartgwt.client.widgets.tab.ImgTab} 
+     * instance. If true the canvas will be a {@link com.smartgwt.client.widgets.tab.Button} instance. 
+     * Note that you can make use of ImgTab APIs by using the <code>getJsObj()</code> and <code>create()</code>
+     * APIs to "cast" to the appropriate type - for example:<br>
+     * <code>ImgTab liveTab = ImgTab.create(myTabSet.getTabCanvas(2).getJsObj());</code>
+     * <P>
+     * Note that live Tab instances are not available until {@link com.smartgwt.client.widgets.Canvas#draw}.
+     * <P> 
+     * <b>Note that this is an advanced method.</b> The returned Tab is considered an internal component of
+     * the TabSet.  In order to maximize forward compatibility, wherever possible manipulate tabs
+     * through TabSet APIs such as a {@link com.smartgwt.client.widgets.tab.TabSet#setTabTitle} instead of
+     * modifying them directly.
+     * 
+     * @param tab
+     * @return the tab Canvas, or null if not found or TabSet not drawn yet
+     */
+    public native StatefulCanvas getTabCanvas(String ID) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getTab(ID);
+        return ret == null ? null : @com.smartgwt.client.widgets.StatefulCanvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+    
+    /**
+     * Retrieves a Tab definition from within this tabSet by index.
+     * 
+     * @param index of tab to retrieve
+     * @return the tab definition
+     */
+    public native Tab getTab(int tabIndex) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getTabObject(tabIndex);
         return ret == null ? null : @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
     /**
-     * Get the live Canvas representing a tab by index or ID.   If passed a tab Canvas, just returns it. <P> Note that
-     * live Tab instances are not available until {@link com.smartgwt.client.widgets.Canvas#draw}. <P> The returned Tab
-     * is considered an internal component of the TabSet.  In order to maximize forward compatibility, manipulate tabs
-     * through APIs such as a {@link com.smartgwt.client.widgets.tab.TabSet#setTabTitle} instead. Also note that a
-     * super-lightweight TabSet implementation may not use a separate Canvas per Tab, and code that accesses an
-     * manipulates Tabs as Canvases won't be compatible with that implementation.
-     *
-     * @param ID the tab ID
-     * @return the tab Canvas, or null if not found or TabSet not drawn yet
+     * Retrieves a Tab definition from within this tabSet by ID.
+     * 
+     * @param ID of tab to retrieve
+     * @return the tab definition
      */
     public native Tab getTab(String ID) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.getTab(ID);
+        var ret = self.getTabObject(ID);
         return ret == null ? null : @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
@@ -1973,7 +1995,10 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
             obj.addProperties({onCloseClick:$debox($entry(function(){
-                    var param = {"tab" : arguments[0]};
+                    var liveTab = arguments[0];
+                    var tabObj = this.getTabObject(liveTab);
+                    var param = {"tab" : tabObj};
+
                     var event = @com.smartgwt.client.widgets.tab.events.TabCloseClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
@@ -1983,7 +2008,10 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
             obj.onCloseClick = $debox($entry(function(){
-                var param = {"tab" : arguments[0]};
+                var liveTab = arguments[0];
+                var tabObj = this.getTabObject(liveTab);
+                var param = {"tab" : tabObj};
+
                 var event = @com.smartgwt.client.widgets.tab.events.TabCloseClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
@@ -1991,6 +2019,92 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
             }));
         }
     }-*/;
+    /**
+     * Add a tabTitleChanged handler.
+     * <p>
+     * This notification method fired when the user changes the title of a tab in this TabSet. This can happen either through
+     * user interaction with the UI if  {@link com.smartgwt.client.widgets.tab.TabSet#getCanEditTabTitles canEditTabTitles} is
+     * set, or programmatically if application  code calls {@link com.smartgwt.client.widgets.tab.TabSet#editTabTitle
+     * editTabTitle}.<p> Return false from this method to cancel the change.
+     *
+     * @param handler the tabTitleChanged handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addTabTitleChangedHandler(com.smartgwt.client.widgets.tab.events.TabTitleChangedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent.getType()) == 0) setupTabTitleChangedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent.getType());
+    }
+
+    private native void setupTabTitleChangedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({titleChanged:$debox($entry(function(){
+                        var liveTab = arguments[2];
+                        var tabObj = this.getTabObject(liveTab);
+                        var param = {"newTitle" : arguments[0], "oldTitle" : arguments[1], "tab" : tabObj};
+                        var event = @com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    }))
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.titleChanged = $debox($entry(function(){
+                    var liveTab = arguments[2];
+                    var tabObj = this.getTabObject(liveTab);
+                    var param = {"newTitle" : arguments[0], "oldTitle" : arguments[1], "tab" : tabObj};
+                   var event = @com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               }));
+        }
+   }-*/;
+    
+    /**
+     * Add a tabIconClick handler.
+     * <p>
+     * Method fired when the user clicks the icon for a tab, as specified via {@link
+     * com.smartgwt.client.widgets.tab.Tab#getIcon icon}. <P> Default behavior will fire <code>icon.click()</code> if
+     * specified, with two parameters <code>tab</code> (a pointer to the tab object and <code>tabSet</code> a pointer to the
+     * tabSet instance.
+     *
+     * @param handler the tabIconClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addTabIconClickHandler(com.smartgwt.client.widgets.tab.events.TabIconClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabClickEvent.getType()) == 0) setupTabIconClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tab.events.TabClickEvent.getType());
+    }
+
+    private native void setupTabIconClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({tabIconClick:$entry(function(){
+                        var liveTab = arguments[0];
+                        var tabObj = this.getTabObject(liveTab);
+                        var param = {"tab" : tabObj};
+                        var event = @com.smartgwt.client.widgets.tab.events.TabClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.tabIconClick = $entry(function(){
+                   var liveTab = arguments[0];
+                   var tabObj = this.getTabObject(liveTab);
+                   var param = {"tab" : tabObj};
+                
+                   var event = @com.smartgwt.client.widgets.tab.events.TabClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
+        }
+   }-*/;
 
     /**
      * Preload primary tab skin images.

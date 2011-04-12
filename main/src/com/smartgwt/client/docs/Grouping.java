@@ -12,6 +12,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupStartOpen
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanCollapseGroup
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupTitleField
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummaryInHeader
  * @see com.smartgwt.client.widgets.grid.ListGridField#getGroupingModes
  * @see com.smartgwt.client.widgets.grid.ListGridField#getGroupingMode
  * @see com.smartgwt.client.widgets.grid.ListGridField#getDefaultGroupingMode

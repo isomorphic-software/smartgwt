@@ -21,6 +21,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconDropProperty
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconOpen
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconDrop
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowDisabledSelectionCheckbox
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getOpenerImage

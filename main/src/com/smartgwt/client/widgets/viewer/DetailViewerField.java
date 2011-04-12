@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -110,6 +111,29 @@ public class DetailViewerField extends DataClass {
      */
     public Boolean getCanExport()  {
         return getAttributeAsBoolean("canExport");
+    }
+
+    /**
+     * If specified, cells in this field will be rendered using this css className rather than {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle cellStyle}
+     *
+     * @param cellStyle cellStyle Default value is null
+     */
+    public void setCellStyle(String cellStyle) {
+        setAttribute("cellStyle", cellStyle);
+    }
+
+    /**
+     * If specified, cells in this field will be rendered using this css className rather than {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle cellStyle}
+     *
+     *
+     * @return Optional method to return the CSS class for cells in this field. If specified, this method will be called from {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle DetailViewer.getCellStyle}, and should return a css class
+     * name.
+     */
+    public String getCellStyle()  {
+        return getAttributeAsString("cellStyle");
     }
 
     /**
@@ -245,6 +269,46 @@ public class DetailViewerField extends DataClass {
     }
 
     /**
+     * Name property used to identify the field, and determines which attribute from records will be displayed in this field.
+     *
+     * @param name name Default value is null
+     */
+    public void setName(String name) {
+        setAttribute("name", name);
+    }
+
+    /**
+     * Name property used to identify the field, and determines which attribute from records will be displayed in this field.
+     *
+     *
+     * @return String
+     */
+    public String getName()  {
+        return getAttributeAsString("name");
+    }
+
+    /**
+     * If specified, when generating print HTML for this detailViewer,  cells in this field will be rendered using this css
+     * className rather than {@link com.smartgwt.client.widgets.viewer.DetailViewer#getPrintCellStyle printCellStyle}
+     *
+     * @param printCellStyle printCellStyle Default value is null
+     */
+    public void setPrintCellStyle(String printCellStyle) {
+        setAttribute("printCellStyle", printCellStyle);
+    }
+
+    /**
+     * If specified, when generating print HTML for this detailViewer,  cells in this field will be rendered using this css
+     * className rather than {@link com.smartgwt.client.widgets.viewer.DetailViewer#getPrintCellStyle printCellStyle}
+     *
+     *
+     * @return String
+     */
+    public String getPrintCellStyle()  {
+        return getAttributeAsString("printCellStyle");
+    }
+
+    /**
      * For a field of type:"imageFile", indicates whether to stream the image and display it inline or to display the View and
      * Download icons.
      *
@@ -363,32 +427,7 @@ public class DetailViewerField extends DataClass {
     // ***********************************************************        
 
 
-    /**
-     * Set the cellStyle.
-     *
-     * @param cellStyle the cellStyle
-     */
-    public void setCellStyle(String cellStyle) {
-        setAttribute("cellStyle", cellStyle);
-    }
 
-    /**
-     * Return the cellStyle.
-     *
-     * @return the cellStyle
-     */
-    public String getCellStyle() {
-        return getAttribute("cellStyle");
-    }
-
-
-    public void setName(String name) {
-        setAttribute("name", name);
-    }
-
-    public String getName() {
-        return getAttributeAsString("name");
-    }
 
     /**
      * A property list (or an expression that evaluates to a property list) specifying a mapping of internal values to

@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -152,16 +153,6 @@ public class RadioGroupItem extends FormItem {
     }
 
     // ********************* Methods ***********************
-            
-    /**
-     * Disable or Enable a specific option within this radioGroup
-     * @param value value of option to disable
-     * @param disabled true to disable the option, false to enable it
-     */
-    public native void setValueDisabled(Object value, boolean disabled) /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.setValueDisabled(value, disabled);
-    }-*/;
 
     // ********************* Static Methods ***********************
         
@@ -183,6 +174,30 @@ public class RadioGroupItem extends FormItem {
         }
         return ret == null || ret === undefined ? null : ret.toString();
     }-*/;    
+    
+    /**
+     * Disable or Enable a specific option within this radioGroup
+     * @param value value of option to disable
+     * @param disabled true to disable the option, false to enable it
+     */
+    public native void setValueDisabled(Object value, boolean disabled) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        if (self.setValueDisabled) {
+            self.setValueDisabled(value, disabled);
+        } else {
+            // pre-init, update the disabledValues object.
+            var stringVal = value + "";
+            if (self.disabledValues == null) {
+                self.disabledValues = new $wnd.Array();
+            }
+            if (self.disabledValues.contains(stringVal)) {
+                if (!disabled) self.disabledValues.remove(stringVal);
+            } else {
+                if (disabled) self.disabledValues.add(stringVal);
+            }
+        }
+        
+    }-*/;
 
 }
 

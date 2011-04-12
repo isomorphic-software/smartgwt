@@ -3,17 +3,28 @@ package com.smartgwt.client.docs;
 
 /**
  * <h3>Integration with Hibernate</h3>
- * Smart GWT can integrate with Hibernate in two main ways:&#010 <ul>&#010 <li> With pre-existing Hibernate configuration
- * and Java beans, Smart GWT&#010 server-side DSRequests can be transformed into Hibernate <code>Criteria</code>
- * objects,&#010 and results returned via a Smart GWT DSResponse.  &#010 <li> Smart GWT can drive Hibernate as a storage
- * layer only, automatically generating&#010 Hibernate configuration from a Smart GWT DataSource file
- * (<i>dataSourceID</i>.ds.xml).  In&#010 this case, you do not write a Java bean; Hibernate's beanless &#010 <a
- * href='http://www.hibernate.org/hib_docs/v3/reference/en/html_single/#persistent-classes-dynamicmodels'
+ * Smart GWT can integrate with Hibernate in two main ways, both of which are enabled by&#010 creating a DataSource
+ * descriptor (.ds.xml file) with&#010 {@link com.smartgwt.client.docs.serverds.DataSource#serverType
+ * serverType="hibernate"}:&#010 <ul>&#010 <li> Pre-existing beans: a Smart GWT DataSource can be automatically derived
+ * from either a&#010 Hibernate-managed bean or the Hibernate mapping.  Use&#010 {@link
+ * com.smartgwt.client.docs.serverds.DataSource#schemaBean schemaBean} to derive from the bean or&#010 {@link
+ * com.smartgwt.client.docs.serverds.DataSource#autoDeriveSchema autoDeriveSchema} to derive from the mapping.  In this
+ * case you will&#010 initially have a very short .ds.xml per bean - no &lt;fields&gt; are required unless&#010 and until
+ * you want to override the automatically derived fields.&#010 <li> "Beanless" mode: Smart GWT can drive Hibernate as a
+ * storage layer only, automatically&#010 generating Hibernate configuration from a Smart GWT DataSource file&#010
+ * (<i>dataSourceID</i>.ds.xml).  In this case, you do not write a Java bean or create&#010 Hibernate mappings; Hibernate's
+ * beanless&#010 <a href='http://www.hibernate.org/hib_docs/v3/reference/en/html_single/#persistent-classes-dynamicmodels'
  * onclick="window.open('http://www.hibernate.org/hib_docs/v3/reference/en/html_single/#persistent-classes-dynamicmodels');return
- * false;">"dynamic model"</a>&#010 mode is used.  This is enabled via {@link
- * com.smartgwt.client.docs.serverds.DataSource#serverType serverType}:"hibernate".&#010 </ul>&#010 <P>&#010 <b>Hibernate
- * Configuration</b>&#010 <P>&#010 You can provide Hibernate configuration to the Smart GWT server in three ways:&#010
- * <ul>&#010 <li>You can place a traditional <code>hibernate.cfg.xml</code> file somewhere on the &#010    
+ * false;">"dynamic model"</a>&#010 mode is used.&#010 </ul>&#010 <P>&#010 Which mode to use is primarily a matter of
+ * preference and pre-existing code.  However, if&#010 you do not have pre-existing code or other special circumstances,
+ * the following approach is&#010 the most productive:&#010 <ol> &#010 <li> use "beanless" mode, specifying fields in Smart
+ * GWT's .ds.xml format (far more&#010 compact than a Java bean with a getter and setter for each field)&#010 <li> add
+ * business logic as needed via DMI, custom server validators, and other approaches&#010 covered in the QuickStart
+ * Guide&#010 <li> call any reusable DMI methods both via your Smart GWT UI and via other, non-UI&#010 related Java logic
+ * (the DMI methods are now a reusable "data services tier")&#010 <li> only create an actual Java bean if you discover
+ * re-usable, bean-specific business&#010 logic that cannot be encapsulated as a data service (rare)&#010 </ol>&#010
+ * <P>&#010 <b>Hibernate Configuration</b>&#010 <P>&#010 You can provide Hibernate configuration to the Smart GWT server in
+ * three ways:&#010 <ul>&#010 <li>You can place a traditional <code>hibernate.cfg.xml</code> file somewhere on the &#010   
  * classpath</li>&#010 <li>You can have Smart GWT look up a Hibernate <code>Configuration</code> to use.  This &#010    
  * works in the same way as a {@link com.smartgwt.client.docs.serverds.ServerObject}, and in fact makes use of the &#010   
  * ServerObject code.  To do this, add ServerObject-compliant properties to your &#010     <code>server.properties</code>

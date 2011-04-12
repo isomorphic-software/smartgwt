@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -618,6 +619,22 @@ public class DateItem extends FormItem {
     }-*/;
             
     /**
+     * Convert this item's data value to a text value for display in this item's text field. <P> If {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true, entirely custom date formatting
+     * and parsing logic may be applied via overrides to {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#parseEditorValue DateItem.parseEditorValue} and {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#formatEditorValue DateItem.formatEditorValue}. These methods apply to
+     * this FormItem only -  system-wide Date and Datetime formatting and parsing may also be customized via the APIs on the
+     * Date class. See {@link com.smartgwt.client.docs.DateFormatAndStorage} for more on this. <P> Note: custom formatting for
+     * this item may also be achieved via the {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat
+     * displayFormat} which allows you to directly specify various standard date display formats.
+     */
+    public native void formatEditorValue() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.formatEditorValue();
+    }-*/;
+            
+    /**
      * Returns the raw text value typed into this items text field if {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField}  is true (otherwise returns the result of
      * this.getValue()).
@@ -625,6 +642,23 @@ public class DateItem extends FormItem {
     public native void getEnteredValue() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.getEnteredValue();
+    }-*/;
+            
+    /**
+     * Convert a text value entered in this item's text field to a final data value  for storage. <P> If {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true, entirely custom date formatting
+     * and parsing logic may be applied via overrides to {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#parseEditorValue DateItem.parseEditorValue} and {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#formatEditorValue DateItem.formatEditorValue}. These methods apply to
+     * this FormItem only -  system-wide Date and Datetime formatting and parsing may also be customized via the APIs on the
+     * Date class. See {@link com.smartgwt.client.docs.DateFormatAndStorage} for more on this. <P> Note: custom parsing for
+     * this item may also be achieved by modifying the {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat
+     * inputFormat}. This mechanism provides support many common date formats without the need for an entirely custom parser
+     * function.
+     */
+    public native void parseEditorValue() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.parseEditorValue();
     }-*/;
             
     /**

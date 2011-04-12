@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -282,67 +283,6 @@ public class DataSourceField extends DataClass {
      */
     public String getChildTagName()  {
         return getAttributeAsString("childTagName");
-    }
-
-    /**
-     * For a DataSource with {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType} "sql" or "hibernate",
-     * indicates that this field should be omitted by default from all SQL or Hibernate operations, and will only be used with
-     * {@link com.smartgwt.client.docs.CustomQueries custom queries}. <P> Having marked a field as <code>customSQL</code> you
-     * can refer to it via $criteria.<i>fieldName</i> or $values.<i>fieldName</i> in customized queries. <P> The following are
-     * situations where you would <b>not</b> use <code>customSQL</code>: <ul> <li>simple joins where you want to enable users
-     * to see and search on a field from another table; consider {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#tableName tableName} instead <li>fields where you want to calculate or
-     * transform values in SQL on load or save, but always perform the same calculation for each operationType; consider
-     * instead {@link com.smartgwt.client.docs.serverds.DataSourceField#sqlStorageStrategy sqlStorageStrategy} for some common
-     * cases, or  {@link com.smartgwt.client.docs.serverds.DataSourceField#customSelectExpression customSelectExpression},
-     * {@link com.smartgwt.client.docs.serverds.DataSourceField#customUpdateExpression customUpdateExpression} and {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#customInsertExpression customInsertExpression} for full customization
-     * <li>a special fetch is needed where the field needs to be excluded from the $defaultWhereClause so that it can be used
-     * in a custom &lt;whereClause&gt; - consider {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#excludeCriteriaFields excludeCriteriaFields} instead </ul> <P> Use
-     * customSQL in situations like: <ul> <li>there are multiple variations of the "fetch" operation with different {@link
-     * com.smartgwt.client.data.OperationBinding#getOperationId operationIds}, and the field is only used in some of them; in
-     * that case, consider using {@link com.smartgwt.client.docs.serverds.OperationBinding#customFields customFields} to
-     * selectively re-introduce SQL generation for the field only in operations where it's used. <li>the field represents
-     * hidden criteria on a field in another table where the field is never shown to the user <li>the field is a write-only
-     * value only saved in some operations <li>more than one data access strategy is in use (eg direct SQL for fetch and
-     * bean-based persistence accessed via DMI for saves) and certain fields are not available in SQL </ul>
-     *
-     * @param customSQL customSQL Default value is null
-     */
-    public void setCustomSQL(Boolean customSQL) {
-        setAttribute("customSQL", customSQL);
-    }
-
-    /**
-     * For a DataSource with {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType} "sql" or "hibernate",
-     * indicates that this field should be omitted by default from all SQL or Hibernate operations, and will only be used with
-     * {@link com.smartgwt.client.docs.CustomQueries custom queries}. <P> Having marked a field as <code>customSQL</code> you
-     * can refer to it via $criteria.<i>fieldName</i> or $values.<i>fieldName</i> in customized queries. <P> The following are
-     * situations where you would <b>not</b> use <code>customSQL</code>: <ul> <li>simple joins where you want to enable users
-     * to see and search on a field from another table; consider {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#tableName tableName} instead <li>fields where you want to calculate or
-     * transform values in SQL on load or save, but always perform the same calculation for each operationType; consider
-     * instead {@link com.smartgwt.client.docs.serverds.DataSourceField#sqlStorageStrategy sqlStorageStrategy} for some common
-     * cases, or  {@link com.smartgwt.client.docs.serverds.DataSourceField#customSelectExpression customSelectExpression},
-     * {@link com.smartgwt.client.docs.serverds.DataSourceField#customUpdateExpression customUpdateExpression} and {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#customInsertExpression customInsertExpression} for full customization
-     * <li>a special fetch is needed where the field needs to be excluded from the $defaultWhereClause so that it can be used
-     * in a custom &lt;whereClause&gt; - consider {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#excludeCriteriaFields excludeCriteriaFields} instead </ul> <P> Use
-     * customSQL in situations like: <ul> <li>there are multiple variations of the "fetch" operation with different {@link
-     * com.smartgwt.client.data.OperationBinding#getOperationId operationIds}, and the field is only used in some of them; in
-     * that case, consider using {@link com.smartgwt.client.docs.serverds.OperationBinding#customFields customFields} to
-     * selectively re-introduce SQL generation for the field only in operations where it's used. <li>the field represents
-     * hidden criteria on a field in another table where the field is never shown to the user <li>the field is a write-only
-     * value only saved in some operations <li>more than one data access strategy is in use (eg direct SQL for fetch and
-     * bean-based persistence accessed via DMI for saves) and certain fields are not available in SQL </ul>
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCustomSQL()  {
-        return getAttributeAsBoolean("customSQL");
     }
 
     /**
@@ -1047,6 +987,27 @@ public class DataSourceField extends DataClass {
     }
 
     /**
+     * Title to show in a  Summary of type "title" for this field. If unspecified <code>title</code> summaries will show the
+     * {@link com.smartgwt.client.data.DataSourceField#getTitle title} for the field.
+     *
+     * @param summaryValueTitle summaryValueTitle Default value is null
+     */
+    public void setSummaryValueTitle(String summaryValueTitle) {
+        setAttribute("summaryValueTitle", summaryValueTitle);
+    }
+
+    /**
+     * Title to show in a  Summary of type "title" for this field. If unspecified <code>title</code> summaries will show the
+     * {@link com.smartgwt.client.data.DataSourceField#getTitle title} for the field.
+     *
+     *
+     * @return String
+     */
+    public String getSummaryValueTitle()  {
+        return getAttributeAsString("summaryValueTitle");
+    }
+
+    /**
      * Default user-visible title for this field. <p> This will be picked up by DataBound components and other views over this
      * DataSource.
      *
@@ -1094,31 +1055,6 @@ public class DataSourceField extends DataClass {
      */
     public FieldType getType()  {
         return EnumUtil.getEnum(FieldType.values(), getAttribute("type"));
-    }
-
-    /**
-     * Used by the {@link com.smartgwt.client.widgets.BatchUploader} to map a field in an upload file to this  dataSourceField.
-     * This is only necessary if the dataSourceField's name and title differ  from the name of the field in the upload file
-     * (Smart GWT will automatically map upload  fields using the dataSourceField's title, if possible, if it does not get a
-     * direct match  on field name).
-     *
-     * @param uploadFieldName uploadFieldName Default value is null
-     */
-    public void setUploadFieldName(String uploadFieldName) {
-        setAttribute("uploadFieldName", uploadFieldName);
-    }
-
-    /**
-     * Used by the {@link com.smartgwt.client.widgets.BatchUploader} to map a field in an upload file to this  dataSourceField.
-     * This is only necessary if the dataSourceField's name and title differ  from the name of the field in the upload file
-     * (Smart GWT will automatically map upload  fields using the dataSourceField's title, if possible, if it does not get a
-     * direct match  on field name).
-     *
-     *
-     * @return String
-     */
-    public String getUploadFieldName()  {
-        return getAttributeAsString("uploadFieldName");
     }
 
     /**
@@ -1416,6 +1352,28 @@ public class DataSourceField extends DataClass {
     }
 
     /**
+     * 
+     * Sets the default FormItem to be used if this field is marked as 
+     * {@link #setCanEdit,canEdit false} and displayed in an editor component such as a DynamicForm.
+     * <P>
+     * This property may also be specified at the type level by specifying 
+     * {@link SimpleType.setReadOnlyEditorType()}.
+     * 
+     * @param editorType editorType Default value is null
+     */
+    public void setReadOnlyEditorType(FormItem editorType) {
+        //only set the editorType attribute if the passed editorType is a concrete subclass of FormItem
+        if(!editorType.getClass().getName().equals(FormItem.class.getName())) {
+            String fiEditorType = editorType.getAttribute("editorType");
+            //fallback to type if editorType is not specified
+            if(fiEditorType == null) fiEditorType = editorType.getType();
+            if (fiEditorType != null) setAttribute("readOnlyEditorType", fiEditorType);
+        }
+        JavaScriptObject editorConfig = editorType.getConfig();
+        setAttribute("readOnlyEditorProperties", editorConfig);
+    }
+
+    /**
      * For a field that is a foreignKey establishing a tree relationship, what value indicates a root-level node.
      * Defaults to null.
      *
@@ -1458,7 +1416,10 @@ public class DataSourceField extends DataClass {
         self.getFieldValue = $debox($entry(function(record, value, field, fieldName) {
             var valueJ =  $wnd.SmartGWT.convertToJavaType(value);
             var fieldJ = @com.smartgwt.client.data.DataSourceField::new(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
-            return extractor.@com.smartgwt.client.data.FieldValueExtractor::execute(Ljava/lang/Object;Ljava/lang/Object;Lcom/smartgwt/client/data/DataSourceField;Ljava/lang/String;)(record, valueJ, fieldJ, fieldName);
+
+            var extractedVal = extractor.@com.smartgwt.client.data.FieldValueExtractor::execute(Ljava/lang/Object;Ljava/lang/Object;Lcom/smartgwt/client/data/DataSourceField;Ljava/lang/String;)(record, valueJ, fieldJ, fieldName);
+            return $wnd.SmartGWT.convertToPrimitiveType(extractedVal);
+
         }));
     }-*/;
 
@@ -1525,7 +1486,18 @@ public class DataSourceField extends DataClass {
     public void setSummaryFunction(SummaryFunctionType summaryFunction) {
         setAttribute("summaryFunction", summaryFunction);
     }
-
+    
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true,  this attribute can be used to
+     * specify an summary function registered via {@link com.smartgwt.client.data.SimpleType#registerSummaryFunction()}
+     * for calculating the summary value to display.
+     * @param summaryFunction summaryFunction Default value is null
+     */
+    public void setSummaryFunction(String summaryFunction) {
+        setAttribute("summaryFunction", summaryFunction);
+    }
+    
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true,  this attribute can be used to
@@ -1537,7 +1509,8 @@ public class DataSourceField extends DataClass {
     public SummaryFunctionType getSummaryFunction()  {
         return EnumUtil.getEnum(SummaryFunctionType.values(), getAttribute("summaryFunction"));
     }
-
+    
+    
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true,  this attribute can be used to
@@ -1551,11 +1524,7 @@ public class DataSourceField extends DataClass {
             var recordsJ =  @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(records);
             var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
             var val = summaryFunction.@com.smartgwt.client.widgets.grid.SummaryFunction::getSummaryValue([Lcom/smartgwt/client/data/Record;Lcom/smartgwt/client/widgets/grid/ListGridField;)(recordsJ, fieldJ);
-            if(val == null || @com.smartgwt.client.util.JSOHelper::isJavaString(Ljava/lang/Object;)(val) ) return val;
-            if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(val)) return val.@java.lang.Integer::intValue()();
-            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::floatValue()();
-            if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
-            $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the SummaryFunction::getSummaryValue');
+            return $wnd.SmartGWT.convertToPrimitiveType(val);
         });
     }-*/;
 

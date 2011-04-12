@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -61,7 +62,13 @@ import com.google.gwt.event.shared.HasHandlers;
  * Allows a user to select an absolute or relative range of dates via two {@link
  * com.smartgwt.client.widgets.form.fields.RelativeDateItem}s (if {@link
  * com.smartgwt.client.widgets.form.fields.DateRangeItem#getAllowRelativeDates allowRelativeDates} is true) or two {@link
- * com.smartgwt.client.widgets.form.fields.DateRangeItem#getDateItems DateItems}.
+ * com.smartgwt.client.widgets.form.fields.DateRangeItem#getDateItems DateItems}. <P> DateRangeItem is just a convenience
+ * relative to using two {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem} or {@link
+ * com.smartgwt.client.widgets.form.fields.DateItem} controls in a form, using {@link
+ * com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator} and {@link
+ * com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaField criteriaField} to cause them to produce a date range. 
+ * If you need more control over layout, validation, event handling or any other aspect of appearance or behavior, stop
+ * using DateRangeItem and use two DateItem/RelativeDateItem controls directly instead.
  */
 public class DateRangeItem extends CanvasItem {
 
@@ -181,6 +188,29 @@ public class DateRangeItem extends CanvasItem {
      */
     public String getFromTitle()  {
         return getAttributeAsString("fromTitle");
+    }
+
+    /**
+     * The title orientation for the to / from sub-items. If unset this will be derived from {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTitleOrientation this.titleOrientation} or  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getTitleOrientation this.form.titleOrientation}.
+     *
+     * @param innerTitleOrientation innerTitleOrientation Default value is null
+     */
+    public void setInnerTitleOrientation(TitleOrientation innerTitleOrientation) {
+        setAttribute("innerTitleOrientation", innerTitleOrientation.getValue());
+    }
+
+    /**
+     * The title orientation for the to / from sub-items. If unset this will be derived from {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTitleOrientation this.titleOrientation} or  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getTitleOrientation this.form.titleOrientation}.
+     *
+     *
+     * @return TitleOrientation
+     */
+    public TitleOrientation getInnerTitleOrientation()  {
+        return EnumUtil.getEnum(TitleOrientation.values(), getAttribute("innerTitleOrientation"));
     }
 
     /**

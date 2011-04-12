@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -134,6 +135,25 @@ public class CanvasItem extends FormItem {
      */
     public Canvas getCanvas()  {
         return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("canvas"));
+    }
+
+    /**
+     * CanvasItems support specifying overflow for the Canvas directly on the item.
+     *
+     * @param overflow overflow Default value is null
+     */
+    public void setOverflow(Overflow overflow) {
+        setAttribute("overflow", overflow.getValue());
+    }
+
+    /**
+     * CanvasItems support specifying overflow for the Canvas directly on the item.
+     *
+     *
+     * @return Overflow
+     */
+    public Overflow getOverflow()  {
+        return EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
     }
 
     // ********************* Methods ***********************

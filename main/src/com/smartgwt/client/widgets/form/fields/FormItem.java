@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -275,10 +276,10 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * A Read-Only pointer to the Smart GWT canvas that holds this form item. In most cases this will be the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getForm DynamicForm} containing the item but in some cases editable
      * components handle writing out form items directly. An example of this is {@link com.smartgwt.client.docs.Editing Grid
-     * Editing} - when a listGrid shows per-field editors, the <code>containerWidget</code> for each item will be the listGrid.
-     * <P> Note that even if the <code>containerWidget</code> is not a DynamicForm, a DynamicForm will still exist for the item
-     * (available as {@link com.smartgwt.client.widgets.form.fields.FormItem#getForm form}), allowing access to standard APIs
-     * such as {@link com.smartgwt.client.widgets.form.DynamicForm#getValues DynamicForm.getValues}
+     * Editing} - when a listGrid shows per-field editors, the <code>containerWidget</code> for each item will be the listGrid
+     * body. <P> Note that even if the <code>containerWidget</code> is not a DynamicForm, a DynamicForm will still exist for
+     * the item (available as {@link com.smartgwt.client.widgets.form.fields.FormItem#getForm form}), allowing access to
+     * standard APIs such as {@link com.smartgwt.client.widgets.form.DynamicForm#getValues DynamicForm.getValues}
      *
      *
      * @return Canvas
@@ -2345,7 +2346,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Base CSS class name for a form item's title.
+     * Base CSS class name for a form item's title. Note that this is a String so will pick up stateful suffixes on focus,
+     * disabled state change etc. by default.
      *
      * @param titleStyle titleStyle Default value is "formTitle"
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
@@ -2355,7 +2357,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Base CSS class name for a form item's title.
+     * Base CSS class name for a form item's title. Note that this is a String so will pick up stateful suffixes on focus,
+     * disabled state change etc. by default.
      *
      *
      * @return String
@@ -2994,6 +2997,20 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }-*/;
             
     /**
+     * Return the fully-qualified dataPath for the this formItem (ie, the dataPath expressed  in absolute terms from the root
+     * of the hierarchy, rather than relative to the item's  parent form).  Note that the item's name is substituted into the
+     * full dataPath if the item does not specify an explicit dataPath.  For example, if we have a field called 
+     * <code>name</code> that specifies no dataPath, on a form that specifies a dataPath of  <code>/order/items</code>, this
+     * method will return <code>/order/items/name</code>
+     *
+     * @return Fully-qualified dataPath for this form item
+     */
+    public native String getFullDataPath() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        return self.getFullDataPath();
+    }-*/;
+            
+    /**
      * Given an {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getName name} return a pointer to the icon
      * definition
      * @param name specified {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getName name}
@@ -3176,8 +3193,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * Add a itemHover handler.
      * <p>
-     * Optional stringMethod to fire when the user hovers over this item.  Return false to suppress default behavior of showing
-     * a hover canvas containing the  HTML returned by <code>formItem.itemHoverHTML()</code> /  
+     * Optional stringMethod to fire when the user hovers over this item. Return false to suppress default behavior of showing
+     * a hover canvas containing the HTML returned by <code>formItem.itemHoverHTML()</code> / 
      * <code>form.itemHoverHTML()</code>.
      *
      * @param handler the itemHover handler
@@ -3379,8 +3396,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * Add a titleHover handler.
      * <p>
-     * Optional stringMethod to fire when the user hovers over this item's title.  Return false to suppress default behavior of
-     * showing a hover canvas containing the  HTML returned by <code>formItem.titleHoverHTML()</code> /  
+     * Optional stringMethod to fire when the user hovers over this item's title. Return false to suppress default behavior of
+     * showing a hover canvas containing the HTML returned by <code>formItem.titleHoverHTML()</code> / 
      * <code>form.titleHoverHTML()</code>.
      *
      * @param handler the titleHover handler
@@ -4300,11 +4317,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             var valueJ =  $wnd.SmartGWT.convertToJavaType(value);
             var oldValueJ =  $wnd.SmartGWT.convertToJavaType(oldValue);
             var val =  inputTransformer.@com.smartgwt.client.widgets.form.FormItemInputTransformer::transformInput(Lcom/smartgwt/client/widgets/form/DynamicForm;Lcom/smartgwt/client/widgets/form/fields/FormItem;Ljava/lang/Object;Ljava/lang/Object;)(formJ, itemJ, valueJ, oldValueJ);
-            if(val == null || @com.smartgwt.client.util.JSOHelper::isJavaString(Ljava/lang/Object;)(val) ) return val;
-            if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(val)) return val.@java.lang.Integer::intValue()();
-            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::floatValue()();
-            if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
-            return val;
+            return $wnd.SmartGWT.convertToPrimitiveType(val);
         });
     }-*/;
     
@@ -4444,11 +4457,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(form);
             var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             var val = valueParser.@com.smartgwt.client.widgets.form.FormItemValueParser::parseValue(Ljava/lang/String;Lcom/smartgwt/client/widgets/form/DynamicForm;Lcom/smartgwt/client/widgets/form/fields/FormItem;)(value, formJ, itemJ);
-            if(val == null || @com.smartgwt.client.util.JSOHelper::isJavaString(Ljava/lang/Object;)(val) ) return val;
-            if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(val)) return val.@java.lang.Integer::intValue()();
-            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::floatValue()();
-            if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
-            return val;
+            return $wnd.SmartGWT.convertToPrimitiveType(val);
         }));
     }-*/;
 

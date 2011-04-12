@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -361,6 +362,26 @@ public class RPCManager {
     }-*/;
 
     /**
+     * By default SmartGWT will show a warning message on attempted requests to another domain as
+     * this is usually not supported at the browser level by default due to 
+     * security considerations.
+     * <P>
+     * Some browsers now do support cross domain requests through the use of Http Access Control headers
+     * (See the {@link http://www.w3.org/TR/cors/,W3C Cross-Origin Resource Sharing recommendation}).
+     * If your application intends to rely on this behavior to perform cross-domain requests, 
+     * you can set <code>allowCrossDomainCalls</code> to true to disable the standard SmartGWT 
+     * warning when such calls occur.
+     * <P>
+     * Note also that this is typically not an issue if you are using the SmartGWT server 
+     * (part of Pro, Power and Enterprise editions of SmartClient), as this includes the HTTPProxy servlet.
+     * @param
+     */
+    public static native void setAllowCrossDomainCalls(Boolean allowCrossDomainCalls) /*-{
+        $wnd.isc.RPCManager.allowCrossDomainCalls = allowCrossDomainCalls;
+    }-*/;
+
+
+    /**
      * The rpcRequest parameter can be used to determine whether the suspended transaction can simply be dropped (eg, it's periodic polling request).
      * <p/>
      * The rpcResponse parameter has rpcResponse.data set to the raw text of the response that triggered loginRequired(). Some very advanced relogin
@@ -452,6 +473,33 @@ public class RPCManager {
     public static native void sendQueue() /*-{
         $wnd.isc.RPCManager.sendQueue();
     }-*/;
+    
+    /**
+     * Send all currently queued requests to the server. You need only call this method if you are using queuing otherwise your requests are synchronously submitted to the server.
+     * <p>
+     * NOTE: if you aren't the caller who first enables queuing (startQueue() returns true), you should in general avoid calling sendQueue(), because whoever was first to enable queuing may have more requests to add to the same queue.
+     */
+    public static native void sendQueue(RPCQueueCallback callback) /*-{
+        var jsCallback = $entry(function (responses) {
+            var responsesJ = @com.smartgwt.client.rpc.RPCManager::convertToRPCResponseArray(Lcom/google/gwt/core/client/JavaScriptObject;)(responses);
+            callback.@com.smartgwt.client.rpc.RPCQueueCallback::execute([Lcom/smartgwt/client/rpc/RPCResponse;)(responsesJ);
+        });
+        $wnd.isc.RPCManager.sendQueue(jsCallback);
+    }-*/;
+    
+    private static RPCResponse[] convertToRPCResponseArray(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new RPCResponse[]{};
+        }
+        JavaScriptObject[] responsesJS = JSOHelper.toArray(nativeArray);
+        RPCResponse[] objects = new RPCResponse[responsesJS.length];
+        for (int i = 0; i < responsesJS.length; i++) {
+            JavaScriptObject responseJS = responsesJS[i];
+            objects[i] = new RPCResponse(responseJS);
+        }
+        return objects;
+    }
+
 
     /**
      * Suspends the current transaction, such that all processing of the transaction is halted, any remaining {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback} in the

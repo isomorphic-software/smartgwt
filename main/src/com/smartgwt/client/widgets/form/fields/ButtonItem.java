@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -164,6 +165,7 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
      * icon}.
      *
      * @param icon icon Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setIcon(String icon) {
         setAttribute("icon", icon);
@@ -175,6 +177,7 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getIcon()  {
         return getAttributeAsString("icon");

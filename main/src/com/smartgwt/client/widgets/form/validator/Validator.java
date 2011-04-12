@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -307,7 +308,10 @@ public class Validator extends DataClass {
     public native static void addValidatorDefinition (String name, Validator validator) /*-{
 		if (validator == null) return;
 		var jsValidator = validator.@com.smartgwt.client.widgets.form.validator.Validator::getJsObj()();
-		if (jsValidator.errorMessage != null) jsValidator.defaultErrorMessage = jsValidator.errorMessage;
+		      if (jsValidator.errorMessage != null) {
+             jsValidator.defaultErrorMessage = jsValidator.errorMessage;
+             jsValidator.errorMessage = null;
+        }
 		$wnd.isc.Validator.addValidatorDefinition(name, jsValidator);
 	}-*/;
 

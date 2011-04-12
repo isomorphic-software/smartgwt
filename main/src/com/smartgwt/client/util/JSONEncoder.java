@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -68,7 +69,7 @@ public class JSONEncoder extends DataClass {
     }
 
     public JSONEncoder(){
-        
+        this(createJSONEncoder());
     }
 
     public JSONEncoder(JavaScriptObject jsObj){
@@ -282,6 +283,14 @@ public class JSONEncoder extends DataClass {
     // ********************* Static Methods ***********************
         
     // ***********************************************************        
+
+
+    
+    private native static JavaScriptObject createJSONEncoder() /*-{
+        return $wnd.isc.JSONEncoder.create();
+    }-*/;
+
+
 
 }
 

@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -304,8 +305,9 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * Applies only to dataFormat: "json".  Specifies the name of the query parameter that tells your JSON service what
-     * function to call as part of the response.
+     * Applies only to dataFormat: "json" and {@link com.smartgwt.client.data.DataSource#getDataTransport
+     * dataTransport}:"scriptInclude".  Specifies the name of the query parameter that tells your JSON service what function to
+     * call as part of the response.
      *
      * @param callbackParam callbackParam Default value is "callback"
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -320,8 +322,9 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * Applies only to dataFormat: "json".  Specifies the name of the query parameter that tells your JSON service what
-     * function to call as part of the response.
+     * Applies only to dataFormat: "json" and {@link com.smartgwt.client.data.DataSource#getDataTransport
+     * dataTransport}:"scriptInclude".  Specifies the name of the query parameter that tells your JSON service what function to
+     * call as part of the response.
      *
      *
      * @return String
@@ -928,8 +931,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * be performed.&#010 <P>&#010 When using the Smart GWT Server, OperationBindings are specified in your DataSource&#010
      * descriptor (.ds.xml file) and control server-side behavior such as what Java object to route&#010 DSRequest to ({@link
      * com.smartgwt.client.docs.serverds.OperationBinding#serverObject serverObject}) or customizations to SQL / HQL
-     * queries&#010 ({@link com.smartgwt.client.docs.serverds.OperationBinding#customSQL customSQL} and {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#customHQL customHQL}).  See the &#010 @see <a
+     * queries&#010 ({@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} and {@link
+     * com.smartgwt.client.data.OperationBinding#getCustomHQL customHQL}).  See the &#010 @see <a
      * href="http://www.smartclient.com/smartgwtee/showcase/#javaDataIntegration" target="examples">Java Integration
      * samples</a>.&#010 <P>&#010 For DataSources bound to WSDL-described web services using&#010 {@link
      * com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace}, OperationBindings are used to bind each
@@ -972,8 +975,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * be performed.&#010 <P>&#010 When using the Smart GWT Server, OperationBindings are specified in your DataSource&#010
      * descriptor (.ds.xml file) and control server-side behavior such as what Java object to route&#010 DSRequest to ({@link
      * com.smartgwt.client.docs.serverds.OperationBinding#serverObject serverObject}) or customizations to SQL / HQL
-     * queries&#010 ({@link com.smartgwt.client.docs.serverds.OperationBinding#customSQL customSQL} and {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#customHQL customHQL}).  See the &#010 @see <a
+     * queries&#010 ({@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} and {@link
+     * com.smartgwt.client.data.OperationBinding#getCustomHQL customHQL}).  See the &#010 @see <a
      * href="http://www.smartclient.com/smartgwtee/showcase/#javaDataIntegration" target="examples">Java Integration
      * samples</a>.&#010 <P>&#010 For DataSources bound to WSDL-described web services using&#010 {@link
      * com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace}, OperationBindings are used to bind each
@@ -1619,6 +1622,30 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         return getAttributeAsBoolean("validateRelatedRecords");
     }
 
+    /**
+     * This property may be set to <code>true</code> to indicate that this dataSource supports advancedCriteria on fetch or
+     * filter type operations. See {@link com.smartgwt.client.data.DataSource#supportsAdvancedCriteria
+     * DataSource.supportsAdvancedCriteria} for further information on this.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param willHandleAdvancedCriteria willHandleAdvancedCriteria Default value is null
+     */
+    public void setWillHandleAdvancedCriteria(Boolean willHandleAdvancedCriteria) {
+        setAttribute("willHandleAdvancedCriteria", willHandleAdvancedCriteria, true);
+    }
+
+    /**
+     * This property may be set to <code>true</code> to indicate that this dataSource supports advancedCriteria on fetch or
+     * filter type operations. See {@link com.smartgwt.client.data.DataSource#supportsAdvancedCriteria
+     * DataSource.supportsAdvancedCriteria} for further information on this.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getWillHandleAdvancedCriteria()  {
+        return getAttributeAsBoolean("willHandleAdvancedCriteria");
+    }
+
     // ********************* Methods ***********************
             
     /**
@@ -1788,6 +1815,29 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }-*/;
             
     /**
+     * Do fetch and filter operations on this dataSource support being passed  {@link
+     * com.smartgwt.client.data.AdvancedCriteria}? <P> For a DataSource to support being passed AdvancedCriteria, it must be 
+     * {@link com.smartgwt.client.data.DataSource#getClientOnly clientOnly:true} or {@link
+     * com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData:true}, or have  server side logic which can process
+     * AdvancedCriteria objects passed from the client. <P> AdvancedCriteria are supported on the server for standard  {@link
+     * com.smartgwt.client.docs.SqlDataSource SQL} and {@link com.smartgwt.client.docs.HibernateIntegration Hibernate}
+     * DataSources in Smart GWT Enterprise or Power editions (not supported in Smart GWT Pro). <P> For custom dataSources which
+     * support AdvancedCriteria, a developer can set the {@link
+     * com.smartgwt.client.data.DataSource#getWillHandleAdvancedCriteria willHandleAdvancedCriteria} property to true.
+     *
+     * @return true if this dataSource supports being passed AdvancedCriteria in fetch  and filter type operations, false otherwise.
+     */
+    public native Boolean supportsAdvancedCriteria() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var retVal =self.supportsAdvancedCriteria();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+            
+    /**
      * Does this dataSource support the specified "textMatchStyle" when performing a filter operation against a text field.
      * @param textMatchStyle textMatchStyle to check. If passed a null value,      assume an exact match is being requested.
      */
@@ -1807,16 +1857,15 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * Alternatively, an operation that removes a record from one DataSource may cause a new record to be added to another
      * DataSource (such as Lead -> Account conversion in CRM applications). This could be accomplished by using the callback
      * from the "remove" operation to call <code>updateCaches</code> with a DSResponse representing an "add" operation on the
-     * related DataSource. <P> Cache updates of this kind can also be driven from server-side code - see the related
-     * server-side API <code>DSResponse.addRelatedUpdate()</code>. <P> <b>NOTE:</b>: this API should <b>not</b> be used with a
-     * {@link com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, because in this case, the "remote
-     * dataset" is actually within the browser.  Instead,  {@link com.smartgwt.client.data.DataSource#updateData
-     * DataSource.updateData}, addData() or removeData() can be called in order to both change the dataset stored inside the
-     * browser and notify all cache managers. <P> If a DataSource has {@link
-     * com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} set and a full cache has been obtained, calling
-     * <code>updateCaches</code> will automatically update the cache. <P> Note that this DSResponse will <b>not</b> go through
-     * {@link com.smartgwt.client.data.DataSource#transformResponse DataSource.transformResponse} or other processing that
-     * would normally occur for a DSResponse resulting from a DSRequest sent by  the application in this page.
+     * related DataSource. <P> <b>NOTE:</b>: this API should <b>not</b> be used with a {@link
+     * com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, because in this case, the "remote dataset" is
+     * actually within the browser.  Instead,  {@link com.smartgwt.client.data.DataSource#updateData DataSource.updateData},
+     * addData() or removeData() can be called in order to both change the dataset stored inside the browser and notify all
+     * cache managers. <P> If a DataSource has {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} set and
+     * a full cache has been obtained, calling <code>updateCaches</code> will automatically update the cache. <P> Note that
+     * this DSResponse will <b>not</b> go through {@link com.smartgwt.client.data.DataSource#transformResponse
+     * DataSource.transformResponse} or other processing that would normally occur for a DSResponse resulting from a DSRequest
+     * sent by  the application in this page.
      * @param dsResponse 
      */
     public native void updateCaches(DSResponse dsResponse) /*-{
@@ -1835,16 +1884,15 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * Alternatively, an operation that removes a record from one DataSource may cause a new record to be added to another
      * DataSource (such as Lead -> Account conversion in CRM applications). This could be accomplished by using the callback
      * from the "remove" operation to call <code>updateCaches</code> with a DSResponse representing an "add" operation on the
-     * related DataSource. <P> Cache updates of this kind can also be driven from server-side code - see the related
-     * server-side API <code>DSResponse.addRelatedUpdate()</code>. <P> <b>NOTE:</b>: this API should <b>not</b> be used with a
-     * {@link com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, because in this case, the "remote
-     * dataset" is actually within the browser.  Instead,  {@link com.smartgwt.client.data.DataSource#updateData
-     * DataSource.updateData}, addData() or removeData() can be called in order to both change the dataset stored inside the
-     * browser and notify all cache managers. <P> If a DataSource has {@link
-     * com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} set and a full cache has been obtained, calling
-     * <code>updateCaches</code> will automatically update the cache. <P> Note that this DSResponse will <b>not</b> go through
-     * {@link com.smartgwt.client.data.DataSource#transformResponse DataSource.transformResponse} or other processing that
-     * would normally occur for a DSResponse resulting from a DSRequest sent by  the application in this page.
+     * related DataSource. <P> <b>NOTE:</b>: this API should <b>not</b> be used with a {@link
+     * com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, because in this case, the "remote dataset" is
+     * actually within the browser.  Instead,  {@link com.smartgwt.client.data.DataSource#updateData DataSource.updateData},
+     * addData() or removeData() can be called in order to both change the dataset stored inside the browser and notify all
+     * cache managers. <P> If a DataSource has {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} set and
+     * a full cache has been obtained, calling <code>updateCaches</code> will automatically update the cache. <P> Note that
+     * this DSResponse will <b>not</b> go through {@link com.smartgwt.client.data.DataSource#transformResponse
+     * DataSource.transformResponse} or other processing that would normally occur for a DSResponse resulting from a DSRequest
+     * sent by  the application in this page.
      * @param dsResponse 
      * @param dsRequest 
      */
@@ -1867,41 +1915,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }-*/;
 
     // ********************* Static Methods ***********************
-            
-    /**
-     * Combines two criteria (either simple criteria objects or AdvancedCriteria) using the  "outerOperator".  Note that the
-     * combined criteria object will be an AdvancedCriteria unless: <ul> <li>both input criteria objects are simple, and</li>
-     * <li>the "outerOperator" is "and", and</li> <li>there is no collision of key names on the two criteria</li> </ul>
-     * @param criteria1 first criteria object
-     * @param criteria2 second criteria object
-     *
-     * @return The combined criteria
-     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#sql_dynamic_reporting" target="examples">Dynamic Reporting Example</a>
-     */
-    public static native Criteria combineCriteria(Criteria criteria1, Criteria criteria2) /*-{
-        var ret = $wnd.isc.DataSource.combineCriteria(criteria1 == null ? null : criteria1.@com.smartgwt.client.core.DataClass::getJsObj()(), criteria2 == null ? null : criteria2.@com.smartgwt.client.core.DataClass::getJsObj()());
-        if(ret == null || ret === undefined) return null;
-        return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-    }-*/;
-
-    /**
-     * Combines two criteria (either simple criteria objects or AdvancedCriteria) using the  "outerOperator".  Note that the
-     * combined criteria object will be an AdvancedCriteria unless: <ul> <li>both input criteria objects are simple, and</li>
-     * <li>the "outerOperator" is "and", and</li> <li>there is no collision of key names on the two criteria</li> </ul>
-     * @param criteria1 first criteria object
-     * @param criteria2 second criteria object
-     * @param outerOperator operator to use to combine the criteria.                                           Defaults to "and"
-     * @param textMatchStyle style of matching text, if it is necessary to                                          convert a simple criteria object
-     * to an                                           AdvancedCriteria.  Defaults to "substring"
-     *
-     * @return The combined criteria
-     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#sql_dynamic_reporting" target="examples">Dynamic Reporting Example</a>
-     */
-    public static native Criteria combineCriteria(Criteria criteria1, Criteria criteria2, CriteriaCombineOperator outerOperator, TextMatchStyle textMatchStyle) /*-{
-        var ret = $wnd.isc.DataSource.combineCriteria(criteria1 == null ? null : criteria1.@com.smartgwt.client.core.DataClass::getJsObj()(), criteria2 == null ? null : criteria2.@com.smartgwt.client.core.DataClass::getJsObj()(), outerOperator, textMatchStyle.@com.smartgwt.client.types.TextMatchStyle::getValue()());
-        if(ret == null || ret === undefined) return null;
-        return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-    }-*/;
         
     // ***********************************************************        
 
@@ -3125,6 +3138,26 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
             requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()()
             );
     }-*/;
+    
+    /**
+     * Returns a direct URL to access a file stored in a field of type:"binary". <P> This URL as be used as the "src" attribute
+     * of an Img widget or &lt;img&gt; tag (if the file is an image), or can be used in an ordinary HTML link (&lt;a&gt; tag)
+     * to download the file. However, for the latter use case, see also {@link com.smartgwt.client.data.DataSource#downloadFile
+     * DataSource.downloadFile} and {@link com.smartgwt.client.data.DataSource#viewFile DataSource.viewFile}. <P> The URL
+     * returned is not to a static file on disk, rather, the returned URL essentially encodes a DSRequest as URL parameters, in
+     * a format understood by the IDACall servlet that comes with the Server Framework.   <P> Hence, this URL will dynamically
+     * retrieve whatever file is currently stored in the binary field via executing a normal DSRequest server side.  The
+     * request will run through normal security checks, so if your application requires authentication, the user must have a
+     * valid session and be authorized to access the binary field. <P> Similarly, accessing this URL has the same performance
+     * as using {@link com.smartgwt.client.data.DataSource#downloadFile DataSource.downloadFile}.
+     * @param data Record (including primary key value) containing the file to view.
+     */
+    public native void getFileURL(Record data) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var recordJS = data.@com.smartgwt.client.data.Record::getJsObj()();
+
+        self.getFileURL(recordJS);
+    }-*/;
 
     /**
      * Optional object declaring namespace prefixes for use in OperationBinding.recordXPath and
@@ -3228,6 +3261,30 @@ nent has been created
         }
         return operatorIds;
     }
+    
+    /**
+     * Combines two criteria (either simple criteria objects or AdvancedCriteria) using the  "outerOperator".  Note that the
+     * combined criteria object will be an AdvancedCriteria unless: <ul> <li>both input criteria objects are simple, and</li>
+     * <li>the "outerOperator" is "and", and</li> <li>there is no collision of key names on the two criteria</li> </ul>
+     * @param criteria1 first criteria object
+     * @param criteria2 second criteria object
+     *
+     * @return The combined criteria
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#sql_dynamic_reporting" target="examples">Dynamic Reporting Example</a>
+     */
+    public static native Criteria combineCriteria(Criteria criteria1, Criteria criteria2) /*-{
+        var jsC1 = criteria1 == null ? null : criteria1.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var jsC2 = criteria2 == null ? null : criteria2.@com.smartgwt.client.core.DataClass::getJsObj()();
+        
+        if (jsC1 != null) jsC1 = $wnd.isc.addProperties({_constructor:"AdvancedCriteria"},jsC1);
+        if (jsC2 != null) jsC2 = $wnd.isc.addProperties({_constructor:"AdvancedCriteria"},jsC2);
+        
+        var ret = $wnd.isc.DataSource.combineCriteria(jsC1,jsC2);
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+    
 
 }
 

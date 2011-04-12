@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -237,6 +238,27 @@ public class Facet extends RefDataClass {
      */
     public Boolean getCollapsed()  {
         return getAttributeAsBoolean("collapsed");
+    }
+
+    /**
+     * When applied to a Chart, does the chart's data contain multiple values per record for this facet. See  data for a full
+     * overview of <code>inlinedValues</code> behavior.
+     *
+     * @param inlinedValues inlinedValues Default value is null
+     */
+    public void setInlinedValues(Boolean inlinedValues) {
+        setAttribute("inlinedValues", inlinedValues);
+    }
+
+    /**
+     * When applied to a Chart, does the chart's data contain multiple values per record for this facet. See  data for a full
+     * overview of <code>inlinedValues</code> behavior.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getInlinedValues()  {
+        return getAttributeAsBoolean("inlinedValues");
     }
 
     /**
