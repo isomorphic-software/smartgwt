@@ -19,9 +19,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#printComponents
  * @see com.smartgwt.client.widgets.Canvas#getPrintPreview
  * @see com.smartgwt.client.widgets.Canvas#showPrintPreview
- * @see com.smartgwt.client.widgets.Canvas#getShouldPrint
- * @see com.smartgwt.client.util.PrintProperties#getOmitControls
- * @see com.smartgwt.client.util.PrintProperties#getIncludeControls
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getPrintTitleStyle
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getPrintTextBoxStyle
  * @see com.smartgwt.client.widgets.form.fields.TextItem#getPrintFullText
@@ -35,6 +32,9 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getPrintHeaderStyle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getPrintBaseStyle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getPrintMaxRows
+ * @see com.smartgwt.client.widgets.Canvas#getShouldPrint
+ * @see com.smartgwt.client.util.PrintProperties#getOmitControls
+ * @see com.smartgwt.client.util.PrintProperties#getIncludeControls
  */
 public interface Printing {
 }

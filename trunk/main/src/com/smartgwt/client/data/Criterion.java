@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -155,27 +156,76 @@ public class Criterion extends Criteria {
         setAttribute("operator", operator.getValue());
     }
     
+    /**
+     * Constructor for Criterion with fieldName, operator and value.
+     * 
+     * @param fieldName
+     * @param operator
+     * @param value
+     */
     public Criterion(String fieldName, OperatorId operator, Integer value) {
         this(fieldName, operator);
         setAttribute("value", value);
     }
     
+    /**
+     * Constructor for Criterion with fieldName, operator and value.
+     * 
+     * @param fieldName
+     * @param operator
+     * @param value
+     */
     public Criterion(String fieldName, OperatorId operator, String value) {
         this(fieldName, operator);
         setAttribute("value", value);
     }
 
+    /**
+     * Constructor for Criterion with fieldName, operator and value.
+     * 
+     * @param fieldName
+     * @param operator
+     * @param value
+     */
     public Criterion(String fieldName, OperatorId operator, Float value) {
         this(fieldName, operator);
         setAttribute("value", value);
     }
 
+    /**
+     * Constructor for Criterion with fieldName, operator and value.
+     * 
+     * @param fieldName
+     * @param operator
+     * @param value
+     */
     public Criterion(String fieldName, OperatorId operator, Date value) {
         this(fieldName, operator);
         setAttribute("value", value);
     }
 
+    /**
+     * Constructor for Criterion with fieldName, operator and value.
+     * 
+     * @param fieldName
+     * @param operator
+     * @param value
+     */
     public Criterion(String fieldName, OperatorId operator, Boolean value) {
+        this(fieldName, operator);
+        setAttribute("value", value);
+    }
+    
+    /**
+     * Constructor for Criterion with fieldName, operator and value.
+     * Note that JavaScript does not natively have an equivalent format to 
+     * Java long (fixed point 64 bit). As such the value passed in will be
+     * converted to a double value for storage.
+     * @param fieldName
+     * @param operator
+     * @param value
+     */
+    public Criterion(String fieldName, OperatorId operator, Long value) {
         this(fieldName, operator);
         setAttribute("value", value);
     }
@@ -194,6 +244,12 @@ public class Criterion extends Criteria {
         this(fieldName, operator);
         setAttribute("value", value);
     }
+    
+    public Criterion(String fieldName, OperatorId operator, Long[] value) {
+        this(fieldName, operator);
+        setAttribute("value", value);
+    }
+
 
     public Criterion(String fieldName, OperatorId operator, Date[] value) {
         this(fieldName, operator);
@@ -319,6 +375,83 @@ public class Criterion extends Criteria {
     public void unmarkAdvancedCriteria() {
         JSOHelper.deleteAttributeIfExists(jsObj, "_constructor");
     }
+    
+
+    /**
+     * Returns an array of sub-criteria for this criterion. Will return null if there are no sub criterion.
+     * Only applicable for criterion with operator type set to <code>AND</code> or <code>OR</code>.
+     *
+     *
+     * @return String
+     */
+    public Criterion[] getCriteria() {
+        JavaScriptObject[] jsCriteria = JSOHelper.getAttributeAsJavaScriptObjectArray(getJsObj(), "criteria");
+        if (jsCriteria == null) return null;
+        Criterion[] criteria = new Criterion[jsCriteria.length];
+        
+        for (int i = 0; i < jsCriteria.length; i++) {
+            criteria[i] = Criterion.getOrCreateRef(jsCriteria[i]);
+        }
+        return criteria;
+    }
+    
+    /**
+     * Retrieves the specified value for this criterion. Only applies to criterion where operator and value have
+     * been specified - will not apply to criterion containing {@link #getCriteria(),sub criteria}.
+     * @return
+     */
+    public String getValueAsString() {
+        return JSOHelper.getAttribute(getJsObj(), "value");
+    }
+    /**
+     * Retrieves the specified value for this criterion. Only applies to criterion where operator and value have
+     * been specified - will not apply to criterion containing {@link #getCriteria(),sub criteria}.
+     * @return
+     */
+    public Integer getValueAsInteger() {
+        return JSOHelper.getAttributeAsInt(getJsObj(), "value");
+    }
+    /**
+     * Retrieves the specified value for this criterion. Only applies to criterion where operator and value have
+     * been specified - will not apply to criterion containing {@link #getCriteria(),sub criteria}.
+     * @return
+     */
+    public Float getValueAsFloat() {
+        return JSOHelper.getAttributeAsFloat(getJsObj(), "value");
+    }
+    /**
+     * Retrieves the specified value for this criterion. Only applies to criterion where operator and value have
+     * been specified - will not apply to criterion containing {@link #getCriteria(),sub criteria}.
+     * @return
+     */
+    public Date getValueAsDate() {
+        return JSOHelper.getAttributeAsDate(getJsObj(), "value");
+    }
+    /**
+     * Retrieves the specified value for this criterion. Only applies to criterion where operator and value have
+     * been specified - will not apply to criterion containing {@link #getCriteria(),sub criteria}.
+     * @return
+     */
+    public Boolean getValueAsBoolean() {
+        return JSOHelper.getAttributeAsBoolean(getJsObj(), "value");
+    }
+    /**
+     * Retrieves the specified value for this criterion. Only applies to criterion where operator and value have
+     * been specified - will not apply to criterion containing {@link #getCriteria(),sub criteria}.
+     * @return
+     */
+    public String[] getValueAsStringArray() {
+        return JSOHelper.getAttributeAsStringArray(getJsObj(), "value");
+    }
+    /**
+     * Retrieves the specified value for this criterion. Only applies to criterion where operator and value have
+     * been specified - will not apply to criterion containing {@link #getCriteria(),sub criteria}.
+     * @return
+     */
+    public int[] getValueAsIntArray() {
+        return JSOHelper.getAttributeAsIntArray(getJsObj(), "value");
+    }
+    
 
 }
 

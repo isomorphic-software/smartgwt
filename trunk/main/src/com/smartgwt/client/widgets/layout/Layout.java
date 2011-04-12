@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -857,11 +858,16 @@ public class Layout extends Canvas {
     }-*/;
             
     /**
-     * An optional method that, if it exists, allows the manipulation of the calculated offset for members of this layout. 
-     * Returns the offset for the specified member.
+     * Override point for changing the offset on the breadth axis for members, that is, the offset relative to the left edge
+     * for a vertical layout, or the offset relative to the top edge for a horizontal layout. <P> The method is passed the
+     * default offset that would be used for the member if getMemberOffset() were not implemented.  This default offset already
+     * takes into account {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}, as well as the {@link
+     * com.smartgwt.client.widgets.layout.Layout#getDefaultLayoutAlign alignment on the breadth axis}, which is also passed to
+     * getMemberOffset(). <P> This method is an override point only; it does not exist by default and cannot be called.
      * @param member Component to be positioned
-     * @param defaultOffset Value of the currently calculated member offset. This      may be returned verbatim or manipulated in this method.
-     * @param alignment alignment of the enclosing layout
+     * @param defaultOffset Value of the currently calculated member offset.  If this      value is returned unchanged the layout will have its
+     * default behavior
+     * @param alignment alignment of the enclosing layout, on the breadth axis
      */
     public native void getMemberOffset(Canvas member, int defaultOffset, String alignment) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -979,12 +985,19 @@ public class Layout extends Canvas {
      * Class level method to set the default properties of this class. If set, then all subsequent instances of this
      * class will automatically have the default properties that were set when this method was called. This is a powerful
      * feature that eliminates the need for users to create a separate hierarchy of subclasses that only alter the default
-     * properties of this class. Can also be used for skinning / styling purposes. 
+     * properties of this class. Can also be used for skinning / styling purposes.
+     * <P>
+     * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
+     * underlying class (including those automatically generated in JavaScript). 
+     * This method should not be used to apply standard EventHandlers or override methods for
+     * a class - use a custom subclass instead.
      *
      * @param layoutProperties properties that should be used as new defaults when instances of this class are created
      */
     public static native void setDefaultProperties(Layout layoutProperties) /*-{
-        $wnd.isc.Layout.addProperties(layoutProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
+    	var properties = $wnd.isc.addProperties({},layoutProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
+    	delete properties.ID;
+        $wnd.isc.Layout.addProperties(properties);
     }-*/;
         
     // ***********************************************************        

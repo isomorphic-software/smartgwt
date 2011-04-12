@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -135,18 +136,18 @@ public class FacetChart extends Canvas {
     }
 
     /**
-     * See {@link com.smartgwt.client.types.ChartType} for a list of known types - Column, Line, and Radar charts are
+     * See {@link com.smartgwt.client.types.ChartType} for a list of known types - Column, Line, Area, and Radar charts are
      * supported.
+     * Method to change the current {@link com.smartgwt.client.widgets.chart.FacetChart#getChartType chartType}. Will redraw the chart if drawn.  Will use default settings for the new chart type for {@link com.smartgwt.client.widgets.chart.FacetChart#getStacked stacked}  and {@link com.smartgwt.client.widgets.chart.FacetChart#getFilled filled} if those values are null.
      *
-     * @param chartType chartType Default value is "Column"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @param chartType new chart type. Default value is "Column"
      */
-    public void setChartType(ChartType chartType)  throws IllegalStateException {
-        setAttribute("chartType", chartType.getValue(), false);
+    public void setChartType(ChartType chartType) {
+        setAttribute("chartType", chartType.getValue(), true);
     }
 
     /**
-     * See {@link com.smartgwt.client.types.ChartType} for a list of known types - Column, Line, and Radar charts are
+     * See {@link com.smartgwt.client.types.ChartType} for a list of known types - Column, Line, Area, and Radar charts are
      * supported.
      *
      *
@@ -182,8 +183,9 @@ public class FacetChart extends Canvas {
      * stacking is active (so Line and Radar charts will show stacked regions).   <P> You can explicitly set filled:false to
      * create multi-facet Line or Radar charts where translucent regions overlap, or filled:true to fill in a single-facet Line
      * or Radar chart.
+     * Nethod to change {@link com.smartgwt.client.widgets.chart.FacetChart#getFilled filled}. Use null to apply a default value for the current {@link com.smartgwt.client.widgets.chart.FacetChart#getChartType chartType}.
      *
-     * @param filled filled Default value is null
+     * @param filled new value. Default value is null
      */
     public void setFilled(Boolean filled) {
         setAttribute("filled", filled, true);
@@ -360,11 +362,10 @@ public class FacetChart extends Canvas {
     /**
      * Whether to show a title.
      *
-     * @param showTitle showTitle Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @param showTitle showTitle Default value is true
      */
-    public void setShowTitle(String showTitle)  throws IllegalStateException {
-        setAttribute("showTitle", showTitle, false);
+    public void setShowTitle(String showTitle) {
+        setAttribute("showTitle", showTitle, true);
     }
 
     /**
@@ -378,18 +379,21 @@ public class FacetChart extends Canvas {
     }
 
     /**
-     * Whether to use stacking for charts where this makes sense (bar, column, line and radar charts).  If stacked is not set
-     * and two facets are supplied, clustering is assumed.
+     * Whether to use stacking for charts where this makes sense (column, araa, line and radar charts). If stacked is not set
+     * and two facets are supplied, clustering is assumed. If null (the default), line charts will be unstacked, and others
+     * will be stacked.
+     * Method to change {@link com.smartgwt.client.widgets.chart.FacetChart#getStacked stacked}. Use null to apply a default value for the current {@link com.smartgwt.client.widgets.chart.FacetChart#getChartType chartType}.
      *
-     * @param stacked stacked Default value is true
+     * @param stacked new value. Default value is null
      */
     public void setStacked(Boolean stacked) {
         setAttribute("stacked", stacked, true);
     }
 
     /**
-     * Whether to use stacking for charts where this makes sense (bar, column, line and radar charts).  If stacked is not set
-     * and two facets are supplied, clustering is assumed.
+     * Whether to use stacking for charts where this makes sense (column, araa, line and radar charts). If stacked is not set
+     * and two facets are supplied, clustering is assumed. If null (the default), line charts will be unstacked, and others
+     * will be stacked.
      *
      *
      * @return Boolean
@@ -421,10 +425,9 @@ public class FacetChart extends Canvas {
      * Title for the chart as a whole.
      *
      * @param title title Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTitle(String title)  throws IllegalStateException {
-        setAttribute("title", title, false);
+    public void setTitle(String title) {
+        setAttribute("title", title, true);
     }
 
     /**
@@ -510,12 +513,19 @@ public class FacetChart extends Canvas {
      * Class level method to set the default properties of this class. If set, then all subsequent instances of this
      * class will automatically have the default properties that were set when this method was called. This is a powerful
      * feature that eliminates the need for users to create a separate hierarchy of subclasses that only alter the default
-     * properties of this class. Can also be used for skinning / styling purposes. 
+     * properties of this class. Can also be used for skinning / styling purposes.
+     * <P>
+     * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
+     * underlying class (including those automatically generated in JavaScript). 
+     * This method should not be used to apply standard EventHandlers or override methods for
+     * a class - use a custom subclass instead.
      *
      * @param facetChartProperties properties that should be used as new defaults when instances of this class are created
      */
     public static native void setDefaultProperties(FacetChart facetChartProperties) /*-{
-        $wnd.isc.FacetChart.addProperties(facetChartProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
+    	var properties = $wnd.isc.addProperties({},facetChartProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
+    	delete properties.ID;
+        $wnd.isc.FacetChart.addProperties(properties);
     }-*/;
         
     // ***********************************************************        
@@ -571,6 +581,19 @@ public class FacetChart extends Canvas {
         if(dataJS == null) return null;
         return new RecordList(dataJS);
     }
+
+    /**
+     * Set the facets for this chart. These are exactly analgous to {@link com.smartgwt.client.widgets.cube.CubeGrid#setFacets,CubetGrid facets} except that:
+     * <ul>
+     * <li> the "inlinedValues" property can be set on a facet to change data representation as
+     * described under +link{chart.data}.
+     * <li> for a non-inlined facet, Charts support auto-derivation of facetValues from the data.
+     * </ul>
+     * @param facets 
+     */
+    public void setFacets(Facet... facets) {
+        setAttribute("facets", facets, false);
+    }
     
     /**
      * Display custom HTML when {@link com.smartgwt.client.widgets.chart.FacetChart#getShowDataPoints showDataPoints} is true and the mouse hovers
@@ -614,6 +637,36 @@ public class FacetChart extends Canvas {
 	    }));
 	
 	}-*/;
+    
+    
+    /**
+     * When {@link com.smartgwt.client.widgets.chart.FacetChart#getUseLogGradations useLogGradations} is set, gradation lines
+     * to show in between powers,&#010 expressed as a series of integer or float values between 0 and {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getLogBase logBase}.&#010 <P>&#010 Some other common possibilities (for
+     * base 10):&#010 <pre>&#010    [ 1, 2, 4, 8 ]&#010    [ 5 ]&#010    [ 2.5, 5, 7.5 ]&#010 </pre>&#010 Or base 2:&#010
+     * <pre>&#010    [ 0.5, 1, 1.5 ]&#010    [ 1 ]&#010 </pre>
+     *
+     * @param logGradations logGradations Default value is [ 1,2,4,6,8 ]
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setLogGradations(Float... logGradations)  throws IllegalStateException {
+        setAttribute("logGradations", logGradations, false);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.chart.FacetChart#getUseLogGradations useLogGradations} is set, gradation lines
+     * to show in between powers,&#010 expressed as a series of integer or float values between 0 and {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getLogBase logBase}.&#010 <P>&#010 Some other common possibilities (for
+     * base 10):&#010 <pre>&#010    [ 1, 2, 4, 8 ]&#010    [ 5 ]&#010    [ 2.5, 5, 7.5 ]&#010 </pre>&#010 Or base 2:&#010
+     * <pre>&#010    [ 0.5, 1, 1.5 ]&#010    [ 1 ]&#010 </pre>
+     *
+     *
+     * @return float
+     */
+    public Float[] getLogGradations()  {
+        return getAttributeAsFloatArray("logGradations");
+    }
+
 
     
     

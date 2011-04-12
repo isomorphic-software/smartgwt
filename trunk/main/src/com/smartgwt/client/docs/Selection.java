@@ -32,12 +32,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.cube.CubeGrid#deselectAllFacetValues
  * @see com.smartgwt.client.widgets.cube.CubeGrid#deselectAll
  * @see com.smartgwt.client.widgets.cube.CubeGrid#cellSelectionChanged
- * @see com.smartgwt.client.widgets.grid.ListGrid#getSelection
- * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectedRecord
- * @see com.smartgwt.client.widgets.grid.ListGrid#isSelected
- * @see com.smartgwt.client.widgets.grid.ListGrid#isPartiallySelected
- * @see com.smartgwt.client.widgets.toolbar.Toolbar#selectButton
- * @see com.smartgwt.client.widgets.toolbar.Toolbar#deselectButton
  * @see com.smartgwt.client.grid.GridRenderer#cellIsEnabled
  * @see com.smartgwt.client.grid.GridRenderer#getEventRow
  * @see com.smartgwt.client.grid.GridRenderer#getEventColumn
@@ -54,6 +48,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#anySelected
  * @see com.smartgwt.client.widgets.grid.ListGrid#selectSingleRecord
  * @see com.smartgwt.client.widgets.grid.events.SelectionEvent
+ * @see com.smartgwt.client.widgets.grid.events.SelectionUpdatedEvent
  * @see com.smartgwt.client.widgets.tile.TileGrid#getSelection
  * @see com.smartgwt.client.widgets.tile.TileGrid#getSelectedRecord
  * @see com.smartgwt.client.widgets.tile.TileGrid#selectRecord
@@ -71,6 +66,13 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ColumnTree#selectAllRecords
  * @see com.smartgwt.client.widgets.grid.ColumnTree#deselectAllRecords
  * @see com.smartgwt.client.widgets.grid.ColumnTree#anySelected
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSelection
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectedRecord
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectedRecords
+ * @see com.smartgwt.client.widgets.grid.ListGrid#isSelected
+ * @see com.smartgwt.client.widgets.grid.ListGrid#isPartiallySelected
+ * @see com.smartgwt.client.widgets.toolbar.Toolbar#selectButton
+ * @see com.smartgwt.client.widgets.toolbar.Toolbar#deselectButton
  * @see com.smartgwt.client.widgets.form.fields.PickTreeItem#getCanSelectParentItems
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelection
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance

@@ -126,6 +126,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.DataSource#getDataURL
  * @see com.smartgwt.client.data.DataSource#getTagName
  * @see com.smartgwt.client.data.DataSourceField#getValueXPath
+ * @see com.smartgwt.client.docs.serverds.DataSourceField#valueWriteXPath
  * @see com.smartgwt.client.data.OperationBinding#getOperationType
  * @see com.smartgwt.client.data.OperationBinding#getOperationId
  * @see com.smartgwt.client.data.OperationBinding#getWsOperation

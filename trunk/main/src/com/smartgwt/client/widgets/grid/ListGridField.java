@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -572,6 +573,28 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+     * dataPath for this field. This property allows the grid to display details of nested data structures in a flat list of
+     * columns.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param dataPath dataPath Default value is null
+     */
+    public void setDataPath(String dataPath) {
+        setAttribute("dataPath", dataPath);
+    }
+
+    /**
+     * dataPath for this field. This property allows the grid to display details of nested data structures in a flat list of
+     * columns.
+     *
+     *
+     * @return String
+     */
+    public String getDataPath()  {
+        return getAttributeAsString("dataPath");
+    }
+
+    /**
      * Default groupingMode used when the user does not specify a mode or grouping is triggered programmatically and {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getGroupingMode field.groupingMode} is unset. See {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getGroupingModes field.groupingModes}.
@@ -879,6 +902,29 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      */
     public EnterKeyEditAction getEnterKeyEditAction()  {
         return EnumUtil.getEnum(EnterKeyEditAction.values(), getAttribute("enterKeyEditAction"));
+    }
+
+    /**
+     * By default HTML values in ListGrid cells will be interpreted by the browser. Setting this flag to true will causes HTML
+     * characters to be escaped, meaning the raw value of the field (for example <code>"&lt;b&gt;AAA&lt;/b&gt;"</code>) is
+     * displayed to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)
+     *
+     * @param escapeHTML escapeHTML Default value is null
+     */
+    public void setEscapeHTML(Boolean escapeHTML) {
+        setAttribute("escapeHTML", escapeHTML);
+    }
+
+    /**
+     * By default HTML values in ListGrid cells will be interpreted by the browser. Setting this flag to true will causes HTML
+     * characters to be escaped, meaning the raw value of the field (for example <code>"&lt;b&gt;AAA&lt;/b&gt;"</code>) is
+     * displayed to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getEscapeHTML()  {
+        return getAttributeAsBoolean("escapeHTML");
     }
 
     /**
@@ -1533,7 +1579,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-     * The HTML to display in cells of this field if the fieldType is set to link. Can be  overridden by {@link
+     * The HTML to display in cells of this field if the fieldType is set to link.  <P> This property sets linkText that will
+     * be the same for all records.  You can set linkText on a per-record basis via {@link
      * com.smartgwt.client.widgets.grid.ListGridRecord#getLinkText linkText}.
      *
      * @param linkText linkText Default value is null
@@ -1549,7 +1596,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-     * The HTML to display in cells of this field if the fieldType is set to link. Can be  overridden by {@link
+     * The HTML to display in cells of this field if the fieldType is set to link.  <P> This property sets linkText that will
+     * be the same for all records.  You can set linkText on a per-record basis via {@link
      * com.smartgwt.client.widgets.grid.ListGridRecord#getLinkText linkText}.
      *
      *
@@ -1566,8 +1614,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-     * The HTML to display in cells of this field if the fieldType is set to link. Can be  overridden by {@link
-     * com.smartgwt.client.widgets.grid.ListGridRecord#getLinkText linkText}.
+     * Name of the property in a ListGridRecord that holds the HTML to display in cells of this field if the fieldType is set
+     * to "link".
      *
      * @param linkTextProperty linkTextProperty Default value is null
      * @see com.smartgwt.client.types.ListGridFieldType
@@ -1581,8 +1629,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-     * The HTML to display in cells of this field if the fieldType is set to link. Can be  overridden by {@link
-     * com.smartgwt.client.widgets.grid.ListGridRecord#getLinkText linkText}.
+     * Name of the property in a ListGridRecord that holds the HTML to display in cells of this field if the fieldType is set
+     * to "link".
      *
      *
      * @return String
@@ -2188,6 +2236,33 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true and the {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getSummaryFunction summaryFunction} is set to <code>"title"</code>, this
+     * attribute may be set to a string to display in the group and/or grid summary. If unspecified the {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getTitle title} will show up in the summary.
+     *
+     * @param summaryValueTitle summaryValueTitle Default value is null
+     */
+    public void setSummaryValueTitle(String summaryValueTitle) {
+        setAttribute("summaryValueTitle", summaryValueTitle);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true and the {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getSummaryFunction summaryFunction} is set to <code>"title"</code>, this
+     * attribute may be set to a string to display in the group and/or grid summary. If unspecified the {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getTitle title} will show up in the summary.
+     *
+     *
+     * @return String
+     */
+    public String getSummaryValueTitle()  {
+        return getAttributeAsString("summaryValueTitle");
+    }
+
+    /**
      * If this field has a valueIcons property specified, setting this property to true will  prevent the valueIcon being
      * written out into this field's cells.
      *
@@ -2731,11 +2806,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 	        var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
 	        var valueJ = $wnd.SmartGWT.convertToJavaType(value);
 	        var val = formatter.@com.smartgwt.client.widgets.grid.CellEditValueFormatter::format(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(valueJ, recordJ, rowNum, colNum);
-            if(val == null || @com.smartgwt.client.util.JSOHelper::isJavaString(Ljava/lang/Object;)(val) ) return val;
-            if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(val)) return val.@java.lang.Integer::intValue()();
-            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::floatValue()();
-            if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
-            $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the CellEditValueFormatter::format');
+            return $wnd.SmartGWT.convertToPrimitiveType(val);
 	    }));
 	}-*/;
 
@@ -2752,11 +2823,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 	        var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
 	        var valueJ = $wnd.SmartGWT.convertToJavaType(value);
 	        var val = parser.@com.smartgwt.client.widgets.grid.CellEditValueParser::parse(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(valueJ, recordJ, rowNum, colNum);
-            if(val == null || @com.smartgwt.client.util.JSOHelper::isJavaString(Ljava/lang/Object;)(val) ) return val;
-            if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(val)) return val.@java.lang.Integer::intValue()();
-            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::floatValue()();
-            if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
-            $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the CellEditValueParser::parse');
+            return $wnd.SmartGWT.convertToPrimitiveType(val);
 	    }));
 	}-*/;
 
@@ -2773,11 +2840,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
             self.sortNormalizer = $debox($entry(function(record, fieldName) {
                 var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
                 var val = normalizer.@com.smartgwt.client.widgets.grid.SortNormalizer::normalize(Lcom/smartgwt/client/widgets/grid/ListGridRecord;Ljava/lang/String;)(recordJ, fieldName);
-                if(val == null || @com.smartgwt.client.util.JSOHelper::isJavaString(Ljava/lang/Object;)(val) ) return val;
-                if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(val)) return val.@java.lang.Integer::intValue()();
-                if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::floatValue()();
-                if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
-                $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the SortNormalizer::normalize');
+                return $wnd.SmartGWT.convertToPrimitiveType(val);
             }));
     }-*/;
 
@@ -2932,7 +2995,9 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @param filterEditorType the filter editor type
      */
     public void setFilterEditorType(FormItem filterEditorType) {
-        setAttribute("filterEditorType", filterEditorType.getType());
+        String type = filterEditorType.getAttribute("editorType");
+        if (type == null) type = filterEditorType.getType();
+        setAttribute("filterEditorType", type);
         JavaScriptObject editorConfig = filterEditorType.getConfig();
         setAttribute("filterEditorProperties", editorConfig);
     }
@@ -3268,10 +3333,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
             var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
             var gridJ = @com.smartgwt.client.widgets.grid.ListGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(grid);
             var val = groupValueFunction.@com.smartgwt.client.widgets.grid.GroupValueFunction::getGroupValue(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;Lcom/smartgwt/client/widgets/grid/ListGridField;Ljava/lang/String;Lcom/smartgwt/client/widgets/grid/ListGrid;)(valueJ, recordJ, fieldJ, fieldName, gridJ);
-            if(val == null || @com.smartgwt.client.util.JSOHelper::isJavaString(Ljava/lang/Object;)(val) ) return val;
-            if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(val)) return val.@java.lang.Integer::intValue()();
-            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::floatValue()();
-            if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
+            return $wnd.SmartGWT.convertToPrimitiveType(val);
         }));
     }-*/;
 
@@ -3303,47 +3365,128 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true,  this attribute can be used to
-     * specify an explicit {@link com.smartgwt.client.widgets.grid.SummaryFunction} for calculating the summary value to display.
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true, 
+     * this method can be used to
+     * specify a {@link com.smartgwt.client.types#SummaryFunctionType}
+     * for calculating the summary value to display.
      *
-     * @param summaryFunction summaryFunction Default value is null
+     * @param summaryFunction summaryFunction
      */
     public void setSummaryFunction(SummaryFunctionType summaryFunction) {
         setAttribute("summaryFunction", summaryFunction);
     }
+    
 
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true,  this attribute can be used to
-     * specify an explicit {@link com.smartgwt.client.widgets.grid.SummaryFunction} for calculating the summary value to display.
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true, 
+     * this method can be used to
+     * specify the name of a summary function registered via {@link com.smartgwt.client.data.SimpleType#registerSummaryFunction()}
+     * for calculating the summary value to display.
      *
-     *
-     * @return SummaryFunctionType
+     * @param summaryFunction summaryFunction
      */
-    public SummaryFunctionType getSummaryFunction()  {
-        return EnumUtil.getEnum(SummaryFunctionType.values(), getAttribute("summaryFunction"));
+    public void setSummaryFunction(String summaryFunction) {
+        setAttribute("summaryFunction", summaryFunction);
     }
-
+    
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true,  this attribute can be used to
-     * specify an explicit {@link com.smartgwt.client.widgets.grid.SummaryFunction} for calculating the summary value to display.
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true, 
+     * this method can be used to
+     * specify a {@link com.smartgwt.client.widgets.grid#SummaryFunction}
+     * for calculating the summary value to display.
      *
-     * @param summaryFunction summaryFunction Default value is null
+     * @param summaryFunction summaryFunctio
      */
     public native void setSummaryFunction(SummaryFunction summaryFunction) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.summaryFunction = $debox($entry(function(records, field) {
-            var recordsJ =  @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(records);
-            var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
-            var val = summaryFunction.@com.smartgwt.client.widgets.grid.SummaryFunction::getSummaryValue([Lcom/smartgwt/client/data/Record;Lcom/smartgwt/client/widgets/grid/ListGridField;)(recordsJ, fieldJ);
-            if(val == null || $wnd.isc.isA.String(val) || $wnd.isc.isA.Number(val)) return val;
-            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::doubleValue()();
-            if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
-            $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the summaryFunction');
-        }));
+        if (summaryFunction == null) self.summaryFunction = null;
+        else {
+            
+            self.summaryFunction = $debox($entry(function(records, field) {
+                var recordsJ =  @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(records);
+                var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
+                var val = summaryFunction.@com.smartgwt.client.widgets.grid.SummaryFunction::getSummaryValue([Lcom/smartgwt/client/data/Record;Lcom/smartgwt/client/widgets/grid/ListGridField;)(recordsJ, fieldJ);
+                if(val == null || $wnd.isc.isA.String(val) || $wnd.isc.isA.Number(val)) return val;
+                if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::doubleValue()();
+                if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
+                $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the summaryFunction');
+            }));
+        }
     }-*/;
 
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true, 
+     * this method can be used to specify a {@link com.smartgwt.client.widgets.grid#SummaryFunction}
+     * for calculating the summary value to display.
+     * Note that by calling this method repeatedly, you can apply more than one summary function to a field. This allows
+     * the developer to set up multi-line summaries - each specified summary function result will show up in a separate
+     * summary row (either at the bottom of the grid or at the end of each group).
+     * <P>
+     * Note also that multiple-line summary functions are not compatible with the
+     * {@link com.smartgwt.client.widgets.grid#setShowGroupSummaryInHeader()} feature. If this property is set only the
+     * first summary value will be visible to the user (displayed in the group header node).
+     *
+     * @param summaryFunction
+     */
+    public native void addSummaryFunction(SummaryFunction summaryFunction) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        if (self.summaryFunction == null) {
+            self.summaryFunction = new $wnd.Array(self.summaryFunction);
+        } else if (!$wnd.isc.isAn.Array(self.summaryFunction)) {
+            self.summaryFunction = new $wnd.Array(self.summaryFunction);
+        }
+        // support being passed null - this will allow multi line summaries with gaps in some rows for some fields.
+        if (summaryFunction == null) {
+            self.summaryFunction[self.summaryFunction.length] = null;
+        } else {
+            self.summaryFunction[self.summaryFunction.length] = $debox($entry(function(records, field) {
+                var recordsJ =  @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(records);
+                var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);            
+                var val = summaryFunction.@com.smartgwt.client.widgets.grid.SummaryFunction::getSummaryValue([Lcom/smartgwt/client/data/Record;Lcom/smartgwt/client/widgets/grid/ListGridField;)(recordsJ, fieldJ);
+                if(val == null || $wnd.isc.isA.String(val) || $wnd.isc.isA.Number(val)) return val;
+                if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::doubleValue()();
+                if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
+                $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the summaryFunction');
+            }));
+        }
+    }-*/;
+    
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true, 
+     * this method can be used to specify a {@link com.smartgwt.client.types#SummaryFunctionType}
+     * for calculating the summary value to display.
+     * Note that by calling this method repeatedly, you can apply more than one summary function to a field. This allows
+     * the developer to set up multi-line summaries - each specified summary function result will show up in a separate
+     * summary row (either at the bottom of the grid or at the end of each group).
+     * <P>
+     * Note also that multiple-line summary functions are not compatible with the
+     * {@link com.smartgwt.client.widgets.grid#setShowGroupSummaryInHeader()} feature. If this property is set only the
+     * first summary value will be visible to the user (displayed in the group header node).
+     *
+     * @param summaryFunction
+     */
+    public native void addSummaryFunction(SummaryFunctionType summaryFunction) /*-{
+    
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+
+        if (self.summaryFunction == null) {
+            self.summaryFunction = new $wnd.Array(self.summaryFunction);
+        } else if (!$wnd.isc.isAn.Array(self.summaryFunction)) {
+            self.summaryFunction = new $wnd.Array(self.summaryFunction);
+        }
+        // support being passed null - this will allow multi line summaries with gaps in some rows for some fields.
+        if (summaryFunction == null) {
+            self.summaryFunction[self.summaryFunction.length] = null;
+        } else {
+            self.summaryFunction[self.summaryFunction.length] = summaryFunction.@com.smartgwt.client.types.SummaryFunctionType::value;
+        }
+
+    }-*/;
+    
     /**
      * Only applies to fields of type <code>"summary"</code>. Fields of this type will display a calculated value based on the
      * other field values within the current record. <P> This attribute specifies how the summary field value will be
@@ -3385,11 +3528,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
             var fieldsJ = @com.smartgwt.client.widgets.grid.ListGrid::convertToListGridFieldArray(Lcom/google/gwt/core/client/JavaScriptObject;)(fields);
             var summaryFieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(summaryField);
             var val = recordSummaryFunction.@com.smartgwt.client.widgets.grid.RecordSummaryFunction::getSummaryValue(Lcom/smartgwt/client/data/Record;[Lcom/smartgwt/client/widgets/grid/ListGridField;Lcom/smartgwt/client/widgets/grid/ListGridField;)(recordJ, fieldsJ, summaryFieldJ);
-            if(val == null || @com.smartgwt.client.util.JSOHelper::isJavaString(Ljava/lang/Object;)(val) ) return val;
-            if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(val)) return val.@java.lang.Integer::intValue()();
-            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::floatValue()();
-            if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
-            $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the RecordSummaryFunction::getSummaryValue');
+            return $wnd.SmartGWT.convertToPrimitiveType(val);
         }));
     }-*/;
 

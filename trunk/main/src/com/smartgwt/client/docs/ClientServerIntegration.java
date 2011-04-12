@@ -39,31 +39,34 @@ package com.smartgwt.client.docs;
  * Approach</b><p> This section aims to help you decide which of the many possible data integration approaches is best for
  * your particular circumstances.  The recommendations given here will guide you to the approach that involves the least
  * effort.<p> <img src="skin/dataIntegrationFlowchart.png" width="640px" height="300px"> <p> <ul> <li>If you have a Java
- * server</li> <ul><li>If your ultimate storage is a SQL database</li>   <ul>       <li>If you are already committed to
- * Hibernate, use the Hibernate DataSource</li>       <li>Otherwise, use the SQL DataSource</li>       <li>Be sure to read
- * the overview of {@link com.smartgwt.client.docs.SqlVsJPA SQL DataSource vs JPA} and           other technologies.  If
- * you ultimately decide not to use the SQL or            Hibernate DataSource, write a {@link
- * com.smartgwt.client.docs.WriteCustomDataSource custom DataSource}</li>       <li>Derive DataSource definitions from
- * existing tables using            <a href="http://www.smartclient.com/smartgwtee/showcase/#tools_ds_wizard"
- * target="examples">Visual Builder wizards</a> or the Batch DataSource            Generator tool.  Or, generate tables
- * from DataSource definitions you create by            hand</li>   </ul>     <li>If your ultimate storage is not SQL,
- * write a          {@link com.smartgwt.client.docs.WriteCustomDataSource custom DataSource}</li>     <li>Whether or not
- * your storage is SQL, add business logic either declaratively in the          DataSource definition, via {@link
- * com.smartgwt.client.docs.DmiOverview DMI}, or any combination of the two:   <ul><li>The &lt;criteria&gt; and
- * &lt;values&gt; properties of an {@link com.smartgwt.client.data.OperationBinding}           allow you to dynamically set
- * data values at transaction-processing time, using            built-in {@link com.smartgwt.client.docs.VelocitySupport
- * Velocity support}</li>       <li>Override the <code>validate()</code> method of the DataSource to provide extra         
- * custom validations - just call <code>super</code> to obtain the list of errors            derived from Smart GWT
- * validations, then add to that list as required with your           own custom code</li>       <li>Override the
- * <code>execute()</code> method of the DataSource to add extra processing           either before or after the Smart GWT
- * processing</li>       <li>Use  Transaction Chaining to dynamically set           data values according to the results of
- * earlier transactions</li>       <li>For SQL DataSources, use {@link com.smartgwt.client.docs.CustomQuerying SQL
- * Templating} to change,            add to or even completely replace the SQL sent to the database, and to implement      
- * special query requirements</li>       <li>For Hibernate DataSources, use {@link
- * com.smartgwt.client.docs.serverds.OperationBinding#customHQL custom HQL queries}           to implement special query
- * requirements</li>   </ul>         Read more about the server-side request processing flow and how to customize it in    
- * {@link com.smartgwt.client.docs.ServerDataIntegration the server integration overview}. </ul> </ul> <ul> <li>If you do
- * not have a Java server</li>   <ul><li>If you are not obliged to use a pre-existing network protocol, use the           
+ * server:</li> <ul>   <li>If your ultimate storage is a SQL database:</li>     <ul>       <li>Use the SQLDataSource unless
+ * you have a very large amount of pre-existing           JPA or Hibernate code - small amounts of business logic can be
+ * easily migrated.           Be sure to read the overview of {@link com.smartgwt.client.docs.SqlVsJPA SQLDataSource vs    
+ * JPA/Hibernate} in order to understand the large benefits the SQLDataSource provides</li>       <li>Derive DataSource
+ * definitions from existing tables or Hibernate mappings using the           {@link
+ * com.smartgwt.client.docs.serverds.DataSource#autoDeriveSchema autoDeriveSchema} feature, or from Java Beans          
+ * via the {@link com.smartgwt.client.docs.serverds.DataSource#schemaBean schemaBean} feature.           Or, use the {@link
+ * com.smartgwt.client.docs.AdminConsole Admin Console} to generate tables from DataSource           definitions you create
+ * by hand</li>     </ul>   <li>If your ultimate storage is not a SQL database:</li>     <ul>       <li>If your persistence
+ * is based on Java Beans, use the           {@link com.smartgwt.client.docs.serverds.DataSource#schemaBean schemaBean}
+ * feature to derive DataSource definitions from            any Java bean</li>       <li>write a {@link
+ * com.smartgwt.client.docs.WriteCustomDataSource custom DataSource} that provides the           CRUD operations you want
+ * to support.</li>     </ul>   <li>Whether or not your storage is SQL, add business logic either declaratively in the     
+ * DataSource definition, via {@link com.smartgwt.client.docs.DmiOverview DMI}, or any combination of the two:     <ul>    
+ * <li>The &lt;criteria&gt; and &lt;values&gt; properties of an {@link com.smartgwt.client.data.OperationBinding}          
+ * allow you to dynamically set data values at transaction-processing time, using            built-in {@link
+ * com.smartgwt.client.docs.VelocitySupport Velocity support}</li>       <li>Override the <code>validate()</code> method of
+ * the DataSource to provide extra           custom validations - just call <code>super</code> to obtain the list of errors
+ * derived from Smart GWT validations, then add to that list as required with your           own custom code</li>      
+ * <li>Override the <code>execute()</code> method of the DataSource to add extra processing           either before or
+ * after the Smart GWT processing</li>       <li>Use  Transaction Chaining to dynamically set           data values
+ * according to the results of earlier transactions</li>       <li>For SQL DataSources, use {@link
+ * com.smartgwt.client.docs.CustomQuerying SQL Templating} to change,            add to or even completely replace the SQL
+ * sent to the database, and to implement           special query requirements</li>       <li>For Hibernate DataSources,
+ * use {@link com.smartgwt.client.data.OperationBinding#getCustomHQL custom HQL queries}           to implement special
+ * query requirements</li>      </ul>      Read more about the server-side request processing flow and how to customize it
+ * in      {@link com.smartgwt.client.docs.ServerDataIntegration the server integration overview}. </ul> </ul> <ul> <li>If
+ * you do not have a Java server:</li>   <ul><li>If you are not obliged to use a pre-existing network protocol, use the    
  * {@link com.smartgwt.client.data.RestDataSource}</li>       <li>Otherwise, use {@link
  * com.smartgwt.client.docs.ClientDataIntegration client-side data integration} features           to create a custom
  * client-side DataSource that adapts the DataSource protocol to            your existing services</li>   </ul> </ul>

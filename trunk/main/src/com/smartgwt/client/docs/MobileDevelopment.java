@@ -2,28 +2,45 @@
 package com.smartgwt.client.docs;
 
 /**
- * <h3>Development for mobile devices</h3>
- * Smart GWT supports Safari on the Apple iPad, iPhone and iPhone touch platforms. <P> Smart GWT makes writing web
- * applications for deployment on mobile devices  straightforward.  Wherever possible device-specific behavior has been
- * abstracted away allowing developers to provide full featured applications to mobile users using standard Smart GWT
- * components and APIs. <P> Some specific features to be aware of: <ul> <li>The full set of Smart GWT UI components is
- * available on all supported      mobile platforms</li> <li>The standard Smart GWT event model (including click, double
- * click, drag and drop     behavior) is supported. Right click (or "contextMenu") events are also available - these    
- * are triggered by the user holding their finger over a context-menu enabled component</li> <li>We provide the
- * light-weight "Simplicity" skin, with less media, to cut down on     your applications bandwidth requirements</li> </ul>
- * <P> Any Smart GWT application will run on supported mobile platforms. However the limited screen size often makes
- * building a custom application specifically for mobile users a good idea.<br> Safari on the Apple iPod/iPhone supports
- * explicitly configuring the viewport as detailed here: <a
+ * <h3>Mobile Application Development</h3>
+ * Smart GWT supports building web applications that can be accessed by mobile devices that support modern web browsers,
+ * specifically: <ul> <li> Safari on iOS devices (iPad, iPhone, iPod Touch) <li> Android's default (WebKit-based) browser
+ * <li> Blackberry devices that use a WebKit-based browser (future) <li> Palm OS devices that use a WebKit-based browser
+ * (future) <li> Windows Phone 7 (future: once IE mobile is based on IE9) </ul> Via "packaging" technologies such as
+ * Titanium and Phonegap, a Smart GWT web application can be +link{packaged as an installable native
+ * application,nativeMobileApps} that can be delivered via the "App Store" for the target mobile platform.  Applications
+ * packaged in this way have access to phone-specific data and services such as contacts stored on the phone, or the
+ * ability to invoke the device's camera. <P> <h3>Finger / touch events</h3> <P> Mobile and touch devices support "touch
+ * events" that correspond to finger actions on the screen.  By default, Smart GWT simply sends touch events to UI
+ * components as normal mouse events.  Specifically: <ul> <li> a finger tap gesture will trigger mouseDown, mouseUp and
+ * click events <li> a touch-and-slide interaction will trigger drag and drop, firing the normal Smart GWT      sequence of
+ * dragStart, dragMove, and dragStop <li> a touch-and-hold interaction will trigger a contextMenu event, and will trigger a
+ * hover      if no contextMenu is shown </ul> This means that most applications that are written initially to target
+ * desktop computers need little or no modification in order be able to run on tablet-sized devices (eg the iPad).  For
+ * handset-sized devices (phones, iPod touch), conditional logic may need to be added to make different use of the screen
+ * real estate. <P> <h3>Mobile look and feel</h3> <P> The "Mobile" skin should be used whenever mobile devices are
+ * detected.  This skin roughly mimics the appearance of the iOS default widgets wherever there is an iOS widget that
+ * corresponds closely to a given Smart GWT widget.  It also makes extensive use of CSS3 to minimize the use of images
+ * while still providing an attractive look and feel. <P> In addition, this skin also changes the behavior of some Smart
+ * GWT widgets to match the UI idioms common on mobile devices.  For example, the TabSet component switches to
+ * bottom-oriented tabs, which are flush together (no gaps).  If there are more than a certain number of tabs, a special
+ * "More" tab appears which lists other remaining tabs.  Among other examples, this is the behavior of the "iPad"
+ * application on iOS devices, and is an efficient use of minimal screen real estate which feels natural when used on a
+ * mobile device. <P> In order to detect whether to use the Mobile skin, because of the rapid proliferation of mobile
+ * devices, we recommend using server-side detection based on the User-Agent HTTP header, and using conditional logic (such
+ * as logic in a .jsp) to load the "Mobile" skin specifically for these devices. <P> <h3>Adapting to Screen Size and
+ * Orientation Change</h3> <P> Safari on the Apple iPod/iPhone supports explicitly configuring the viewport as detailed
+ * here: <a
  * href='http://developer.apple.com/safari/library/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html'
  * onclick="window.open('http://developer.apple.com/safari/library/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html');return
  * false;">http://developer.apple.com/safari/library/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html</a>.
  * Including these meta tags in your bootstrap HTML file will allow you to set  a default "zoom level" - how many pixels
  * show up on the screen in landscape or portrait mode as well as disabling the user's standard zoom interactions. We also
- * have  {@link com.smartgwt.client.util.Page#updateViewport an API} to configure the viewport programmatically at
- * runtime.<br> Note that the {@link com.smartgwt.client.util.Page#getOrientation Page.getOrientation} API may be used to
- * determine the current orientation of the application, and {@link com.smartgwt.client.types.PageEvent the page
- * orientationChange event} will fire whenever the user rotates the screen allowing applications to directly respond to the
- * user pivoting their device.
+ * have  {@link com.smartgwt.client.util.Page#updateViewport an API} to configure the viewport programmatically at runtime.
+ * <P> Note that the {@link com.smartgwt.client.util.Page#getOrientation Page.getOrientation} API may be used to determine
+ * the current orientation of the application, and {@link com.smartgwt.client.types.PageEvent the page orientationChange
+ * event} will fire whenever the user rotates the screen allowing applications to directly respond to the user pivoting
+ * their device.
  * @see com.smartgwt.client.util.Page#getOrientation
  * @see com.smartgwt.client.util.Page#updateViewport
  */

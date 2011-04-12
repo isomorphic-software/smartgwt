@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -1238,6 +1239,32 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
+     * Should tree nodes show a disabled checkbox instead of a blank space  when {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}:"checkbox"  is set on the
+     * treegrid, and a node can't be selected?
+     *
+     * @param showDisabledSelectionCheckbox showDisabledSelectionCheckbox Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setRecordCanSelectProperty
+     */
+    public void setShowDisabledSelectionCheckbox(Boolean showDisabledSelectionCheckbox)  throws IllegalStateException {
+        setAttribute("showDisabledSelectionCheckbox", showDisabledSelectionCheckbox, false);
+    }
+
+    /**
+     * Should tree nodes show a disabled checkbox instead of a blank space  when {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}:"checkbox"  is set on the
+     * treegrid, and a node can't be selected?
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getRecordCanSelectProperty
+     */
+    public Boolean getShowDisabledSelectionCheckbox()  {
+        return getAttributeAsBoolean("showDisabledSelectionCheckbox");
+    }
+
+    /**
      * If true, when the user drags a droppable target over a folder in this TreeGrid, show  a different icon folder icon. This
      * is achieved by appending the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} onto the
      * {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} URL (for example
@@ -1906,12 +1933,19 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * Class level method to set the default properties of this class. If set, then all subsequent instances of this
      * class will automatically have the default properties that were set when this method was called. This is a powerful
      * feature that eliminates the need for users to create a separate hierarchy of subclasses that only alter the default
-     * properties of this class. Can also be used for skinning / styling purposes. 
+     * properties of this class. Can also be used for skinning / styling purposes.
+     * <P>
+     * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
+     * underlying class (including those automatically generated in JavaScript). 
+     * This method should not be used to apply standard EventHandlers or override methods for
+     * a class - use a custom subclass instead.
      *
      * @param treeGridProperties properties that should be used as new defaults when instances of this class are created
      */
     public static native void setDefaultProperties(TreeGrid treeGridProperties) /*-{
-        $wnd.isc.TreeGrid.addProperties(treeGridProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
+    	var properties = $wnd.isc.addProperties({},treeGridProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
+    	delete properties.ID;
+        $wnd.isc.TreeGrid.addProperties(properties);
     }-*/;
         
     // ***********************************************************        

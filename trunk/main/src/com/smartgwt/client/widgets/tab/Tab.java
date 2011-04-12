@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -562,7 +563,11 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      * @param pane the tab pane
      */
     public void setPane(Canvas pane) {
-        setAttribute("pane", pane.getOrCreateJsObj());
+        if (tabSet == null || !tabSet.isCreated()) {
+            setAttribute("pane", pane.getOrCreateJsObj());
+        } else {
+            tabSet.updateTab(this, pane);
+        }
     }
 
     /**
@@ -615,6 +620,33 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
             return null;
         }
     }
+
+    /**
+     * Returns the live Canvas used to represent this tab in a tabSet.
+     * Will return null if this Tab has not been added to a TabSet or if the tabset is not yet drawn.
+     * <P>
+     * The underlying SmartClient class of the returned canvas depends on {@link #getUseSimpleTabs}.
+     * If this property is false, the returned canvas will be a {@link com.smartgwt.client.widgets.tab.ImgTab} 
+     * instance. If true the canvas will be a {@link com.smartgwt.client.widgets.tab.Button} instance. 
+     * Note that you can make use of ImgTab APIs by using the <code>getJsObj()</code> and <code>create()</code>
+     * APIs to "cast" to the appropriate type - for example:<br>
+     * <code>ImgTab liveTab = ImgTab.create(myTabSet.getTabCanvas(2).getJsObj());</code>
+     * @return live Canvas for this tab in a tabSet.
+     */
+    public StatefulCanvas getTabCanvas () {
+        if (tabSet == null) return null;
+        JavaScriptObject canvasJS = this.getTabCanvasJS(tabSet.getJsObj(), this.getJsObj());
+        if (canvasJS == null) return null;
+        
+        return StatefulCanvas.getOrCreateRef(canvasJS);
+    }
+    private native JavaScriptObject getTabCanvasJS (JavaScriptObject tabSet, JavaScriptObject tabConfig) /*-{
+        if (tabSet == null || tabConfig == null) return null;
+        var tab = tabSet.getTab(tabConfig);
+        if ($wnd.isc.isA.Canvas(tab)) return tab;
+        return null;
+    }-*/;
+    
 
 }
 

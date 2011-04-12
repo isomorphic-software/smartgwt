@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -197,6 +198,66 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      */
     public FormItem getFieldPickerProperties()  {
         return FormItem.getOrCreateRef(getAttributeAsJavaScriptObject("fieldPickerProperties"));
+    }
+
+    /**
+     * Title for the "And Not" operator (only applicable to the "inline" appearance)
+     *
+     * @param inlineAndNotTitle inlineAndNotTitle Default value is "and not"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setInlineAndNotTitle(String inlineAndNotTitle)  throws IllegalStateException {
+        setAttribute("inlineAndNotTitle", inlineAndNotTitle, false);
+    }
+
+    /**
+     * Title for the "And Not" operator (only applicable to the "inline" appearance)
+     *
+     *
+     * @return String
+     */
+    public String getInlineAndNotTitle()  {
+        return getAttributeAsString("inlineAndNotTitle");
+    }
+
+    /**
+     * Title for the "And" operator (only applicable to the "inline" appearance)
+     *
+     * @param inlineAndTitle inlineAndTitle Default value is "and"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setInlineAndTitle(String inlineAndTitle)  throws IllegalStateException {
+        setAttribute("inlineAndTitle", inlineAndTitle, false);
+    }
+
+    /**
+     * Title for the "And" operator (only applicable to the "inline" appearance)
+     *
+     *
+     * @return String
+     */
+    public String getInlineAndTitle()  {
+        return getAttributeAsString("inlineAndTitle");
+    }
+
+    /**
+     * Title for the "Or" operator (only applicable to the "inline" appearance)
+     *
+     * @param inlineOrTitle inlineOrTitle Default value is "or"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setInlineOrTitle(String inlineOrTitle)  throws IllegalStateException {
+        setAttribute("inlineOrTitle", inlineOrTitle, false);
+    }
+
+    /**
+     * Title for the "Or" operator (only applicable to the "inline" appearance)
+     *
+     *
+     * @return String
+     */
+    public String getInlineOrTitle()  {
+        return getAttributeAsString("inlineOrTitle");
     }
 
     /**
@@ -429,8 +490,32 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
+     * If true, causes a CheckboxItem to appear to the left of each clause in "inline"   appearance.  This checkbox allows the
+     * user to select  individual clauses so that, for example, clauses can be removed from the filterBuilder  by application
+     * code.  This property is ignored for appearances other than "inline".
+     *
+     * @param showSelectionCheckbox showSelectionCheckbox Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowSelectionCheckbox(Boolean showSelectionCheckbox)  throws IllegalStateException {
+        setAttribute("showSelectionCheckbox", showSelectionCheckbox, false);
+    }
+
+    /**
+     * If true, causes a CheckboxItem to appear to the left of each clause in "inline"   appearance.  This checkbox allows the
+     * user to select  individual clauses so that, for example, clauses can be removed from the filterBuilder  by application
+     * code.  This property is ignored for appearances other than "inline".
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowSelectionCheckbox()  {
+        return getAttributeAsBoolean("showSelectionCheckbox");
+    }
+
+    /**
      * Whether to show a button that allows the user to add subclauses.  Defaults to false if  the TopOperatorAppearance is
-     * "radio", true in all other cases.
+     * "radio" or "inline", true in all other cases.
      *
      * @param showSubClauseButton showSubClauseButton Default value is See Description
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -441,7 +526,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
 
     /**
      * Whether to show a button that allows the user to add subclauses.  Defaults to false if  the TopOperatorAppearance is
-     * "radio", true in all other cases.
+     * "radio" or "inline", true in all other cases.
      *
      *
      * @return Boolean
@@ -471,7 +556,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
-     * The hover title text of the subClauseButton
+     * The title of the subClauseButton
      *
      * @param subClauseButtonTitle subClauseButtonTitle Default value is "+()"
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -481,7 +566,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
-     * The hover title text of the subClauseButton
+     * The title of the subClauseButton
      *
      *
      * @return String
@@ -659,12 +744,19 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * Class level method to set the default properties of this class. If set, then all subsequent instances of this
      * class will automatically have the default properties that were set when this method was called. This is a powerful
      * feature that eliminates the need for users to create a separate hierarchy of subclasses that only alter the default
-     * properties of this class. Can also be used for skinning / styling purposes. 
+     * properties of this class. Can also be used for skinning / styling purposes.
+     * <P>
+     * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
+     * underlying class (including those automatically generated in JavaScript). 
+     * This method should not be used to apply standard EventHandlers or override methods for
+     * a class - use a custom subclass instead.
      *
      * @param filterBuilderProperties properties that should be used as new defaults when instances of this class are created
      */
     public static native void setDefaultProperties(FilterBuilder filterBuilderProperties) /*-{
-        $wnd.isc.FilterBuilder.addProperties(filterBuilderProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
+    	var properties = $wnd.isc.addProperties({},filterBuilderProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
+    	delete properties.ID;
+        $wnd.isc.FilterBuilder.addProperties(properties);
     }-*/;
         
     // ***********************************************************        

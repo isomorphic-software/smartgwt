@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -120,11 +121,11 @@ public class StaticTextItem extends FormItem {
      * HTML characters to be escaped, meaning the raw value of the field (for example <code>"&lt;b&gt;AAA&lt;/b&gt;"</code>) is
      * displayed to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)
      *
-     * @param outputAsHTML outputAsHTML Default value is false
+     * @param escapeHTML escapeHTML Default value is false
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setOutputAsHTML(Boolean outputAsHTML) {
-        setAttribute("outputAsHTML", outputAsHTML);
+    public void setEscapeHTML(Boolean escapeHTML) {
+        setAttribute("escapeHTML", escapeHTML);
     }
 
     /**
@@ -136,8 +137,8 @@ public class StaticTextItem extends FormItem {
      * @return Boolean
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public Boolean getOutputAsHTML()  {
-        return getAttributeAsBoolean("outputAsHTML");
+    public Boolean getEscapeHTML()  {
+        return getAttributeAsBoolean("escapeHTML");
     }
 
     /**

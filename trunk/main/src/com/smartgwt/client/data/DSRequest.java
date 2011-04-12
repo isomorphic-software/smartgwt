@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -790,17 +791,14 @@ public class DSRequest extends RPCRequest {
      */
     public void setSortBy(SortSpecifier[] sortSpecifiers) {
         if(sortSpecifiers != null && sortSpecifiers.length > 0) {
-            String sortBy = "";
+            String[] sortBy = new String[sortSpecifiers.length];
             for (int i = 0; i < sortSpecifiers.length; i++) {
                 SortSpecifier sortSpecifier = sortSpecifiers[i];
-                sortBy += ((sortSpecifier.getSortDirection() == SortDirection.DESCENDING ? "-" : "") + sortSpecifier.getField());
-                if(i < sortSpecifiers.length - 1) {
-                    sortBy += ",";
-                }
+                sortBy[i] = ((sortSpecifier.getSortDirection() == SortDirection.DESCENDING ? "-" : "") + sortSpecifier.getField());
             }
             setAttribute("sortBy", sortBy);
         } else {
-            setAttribute("sortBy", (String) null);
+            setAttribute("sortBy", (String[]) null);
         }
     }
 

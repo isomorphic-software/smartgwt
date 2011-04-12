@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -60,7 +61,7 @@ import com.google.gwt.event.shared.HasHandlers;
 /**
  * Canvas is the base abstraction for cross-browser DHTML drawing.  All DHTML widgets inherit from the Canvas class.
  */
-public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.events.HasDropHandlers, com.smartgwt.client.widgets.events.HasResizedHandlers, com.smartgwt.client.widgets.events.HasClickHandlers, com.smartgwt.client.widgets.events.HasDoubleClickHandlers, com.smartgwt.client.widgets.events.HasDragMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStartHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStopHandlers, com.smartgwt.client.widgets.events.HasDragResizeMoveHandlers, com.smartgwt.client.widgets.events.HasDragResizeStartHandlers, com.smartgwt.client.widgets.events.HasDragResizeStopHandlers, com.smartgwt.client.widgets.events.HasDragStartHandlers, com.smartgwt.client.widgets.events.HasDragStopHandlers, com.smartgwt.client.widgets.events.HasDropMoveHandlers, com.smartgwt.client.widgets.events.HasDropOutHandlers, com.smartgwt.client.widgets.events.HasDropOverHandlers, com.smartgwt.client.widgets.events.HasMouseDownHandlers, com.smartgwt.client.widgets.events.HasMouseMoveHandlers, com.smartgwt.client.widgets.events.HasMouseOutHandlers, com.smartgwt.client.widgets.events.HasMouseOverHandlers, com.smartgwt.client.widgets.events.HasMouseStillDownHandlers, com.smartgwt.client.widgets.events.HasMouseUpHandlers, com.smartgwt.client.widgets.events.HasMouseWheelHandlers, com.smartgwt.client.widgets.events.HasKeyPressHandlers, com.smartgwt.client.widgets.events.HasKeyDownHandlers, com.smartgwt.client.widgets.events.HasRightMouseDownHandlers, com.smartgwt.client.widgets.events.HasHoverHandlers, com.smartgwt.client.widgets.events.HasHoverHiddenHandlers, com.smartgwt.client.widgets.events.HasScrolledHandlers, com.smartgwt.client.widgets.events.HasFocusChangedHandlers, com.smartgwt.client.widgets.events.HasShowContextMenuHandlers, com.smartgwt.client.widgets.events.HasVisibilityChangedHandlers {
+public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.events.HasDropHandlers, com.smartgwt.client.widgets.events.HasResizedHandlers, com.smartgwt.client.widgets.events.HasClickHandlers, com.smartgwt.client.widgets.events.HasDoubleClickHandlers, com.smartgwt.client.widgets.events.HasDragMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStartHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStopHandlers, com.smartgwt.client.widgets.events.HasDragResizeMoveHandlers, com.smartgwt.client.widgets.events.HasDragResizeStartHandlers, com.smartgwt.client.widgets.events.HasDragResizeStopHandlers, com.smartgwt.client.widgets.events.HasDragStartHandlers, com.smartgwt.client.widgets.events.HasDragStopHandlers, com.smartgwt.client.widgets.events.HasDropMoveHandlers, com.smartgwt.client.widgets.events.HasDropOutHandlers, com.smartgwt.client.widgets.events.HasDropOverHandlers, com.smartgwt.client.widgets.events.HasMouseDownHandlers, com.smartgwt.client.widgets.events.HasMouseMoveHandlers, com.smartgwt.client.widgets.events.HasMouseOutHandlers, com.smartgwt.client.widgets.events.HasMouseOverHandlers, com.smartgwt.client.widgets.events.HasMouseStillDownHandlers, com.smartgwt.client.widgets.events.HasMouseUpHandlers, com.smartgwt.client.widgets.events.HasMouseWheelHandlers, com.smartgwt.client.widgets.events.HasKeyPressHandlers, com.smartgwt.client.widgets.events.HasKeyDownHandlers, com.smartgwt.client.widgets.events.HasRightMouseDownHandlers, com.smartgwt.client.widgets.events.HasHoverHandlers, com.smartgwt.client.widgets.events.HasHoverHiddenHandlers, com.smartgwt.client.widgets.events.HasScrolledHandlers, com.smartgwt.client.widgets.events.HasMovedHandlers, com.smartgwt.client.widgets.events.HasParentMovedHandlers, com.smartgwt.client.widgets.events.HasFocusChangedHandlers, com.smartgwt.client.widgets.events.HasShowContextMenuHandlers, com.smartgwt.client.widgets.events.HasVisibilityChangedHandlers {
 
     public static Canvas getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -3315,9 +3316,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * com.smartgwt.client.widgets.Canvas#getDataPath dataPath} for more information. Also note that if a databound component
      * has a specified dataSource and dataPath but no specified valuesManager object one will be automatically generated as
      * part of the databinding process
+     * Setter for the {@link com.smartgwt.client.widgets.Canvas#getValuesManager valuesManager} attribute. This method may be called directly at  runtime to set the ValuesManager for a component; it has the same effect as calling  {@link com.smartgwt.client.widgets.form.ValuesManager#addMember ValuesManager.addMember}, passing in this DataBoundComponent.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param valuesManager valuesManager Default value is null
+     * @param valuesManager new dataPath. Default value is null
      */
     public void setValuesManager(ValuesManager valuesManager) {
         setAttribute("valuesManager", valuesManager == null ? null : valuesManager.getOrCreateJsObj(), true);
@@ -5301,6 +5303,74 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
+    /**
+     * Add a moved handler.
+     * <p>
+     * Notification method fired when this component is explicitly moved. Note that a component's position on the screen may
+     * also changed due to an ancestor being moved. The {@link com.smartgwt.client.widgets.Canvas#addParentMovedHandler
+     * Canvas.parentMoved} method provides a notification entry point to catch that case as well.
+     *
+     * @param handler the moved handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addMovedHandler(com.smartgwt.client.widgets.events.MovedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.MovedEvent.getType()) == 0) setupMovedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.MovedEvent.getType());
+    }
+
+    private native void setupMovedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({moved:$entry(function(){
+                        var param = {"deltaX" : arguments[0], "deltaY" : arguments[1]};
+                        var event = @com.smartgwt.client.widgets.events.MovedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.moved = $entry(function(){
+                   var param = {"deltaX" : arguments[0], "deltaY" : arguments[1]};
+                   var event = @com.smartgwt.client.widgets.events.MovedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
+        }
+   }-*/;
+    /**
+     * Add a parentMoved handler.
+     * <p>
+     * Notification method fire when an ancestor of this component's position changes.
+     *
+     * @param handler the parentMoved handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addParentMovedHandler(com.smartgwt.client.widgets.events.ParentMovedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.ParentMovedEvent.getType()) == 0) setupParentMovedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.ParentMovedEvent.getType());
+    }
+
+    private native void setupParentMovedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({parentMoved:$entry(function(){
+                        var param = {"parent" : arguments[0], "deltaX" : arguments[1], "deltaY" : arguments[2]};
+                        var event = @com.smartgwt.client.widgets.events.ParentMovedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.parentMoved = $entry(function(){
+                   var param = {"parent" : arguments[0], "deltaX" : arguments[1], "deltaY" : arguments[2]};
+                   var event = @com.smartgwt.client.widgets.events.ParentMovedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
+        }
+   }-*/;
             
     /**
      * Redraws the widget immediately with its current property values.   Generally, if you want a Canvas to redraw, call
@@ -5757,12 +5827,19 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Class level method to set the default properties of this class. If set, then all subsequent instances of this
      * class will automatically have the default properties that were set when this method was called. This is a powerful
      * feature that eliminates the need for users to create a separate hierarchy of subclasses that only alter the default
-     * properties of this class. Can also be used for skinning / styling purposes. 
+     * properties of this class. Can also be used for skinning / styling purposes.
+     * <P>
+     * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
+     * underlying class (including those automatically generated in JavaScript). 
+     * This method should not be used to apply standard EventHandlers or override methods for
+     * a class - use a custom subclass instead.
      *
      * @param canvasProperties properties that should be used as new defaults when instances of this class are created
      */
     public static native void setDefaultProperties(Canvas canvasProperties) /*-{
-        $wnd.isc.Canvas.addProperties(canvasProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
+    	var properties = $wnd.isc.addProperties({},canvasProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
+    	delete properties.ID;
+        $wnd.isc.Canvas.addProperties(properties);
     }-*/;
         
     // ***********************************************************        
@@ -5771,6 +5848,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 	protected native void onInit () /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self._jsOverrideCall = {};
+        self._fireDefaultMethod = {};
 
         self.__parentResized = self.parentResized;
         self.parentResized = $debox($entry(function() {
@@ -5785,15 +5864,22 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             return retVal.@java.lang.Boolean::booleanValue()();
         }));
 
-        self.__getPrintHTML = self.getPrintHTML;
-        self.getPrintHTML = $entry(function(printProperties,callback) {
-             var jObj = this.__ref;
-             var jPP = printProperties == null ? null :
-             			@com.smartgwt.client.util.PrintProperties::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(printProperties);
-             var ret = jObj.@com.smartgwt.client.widgets.Canvas::getPrintHTMLJSCB(Lcom/smartgwt/client/util/PrintProperties;Lcom/google/gwt/core/client/JavaScriptObject;)(jPP,callback);
-        	 return ret;
-         });
          
+        self.__getPrintHTML = self.getPrintHTML;
+        self.getPrintHTML = function (printProperties, callback) {
+            self._jsOverrideCall.getPrintHTML = true;
+            var jObj = this.__ref;
+             var jPP = printProperties == null ? null :
+                      @com.smartgwt.client.util.PrintProperties::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(printProperties);
+             var ret;
+             ret = jObj.@com.smartgwt.client.widgets.Canvas::getPrintHTMLJSCB(Lcom/smartgwt/client/util/PrintProperties;Lcom/google/gwt/core/client/JavaScriptObject;)(jPP,callback);
+             if (self._fireDefaultMethod.getPrintHTML) {
+                 ret = self.__getPrintHTML(printProperties,callback);
+             }
+             self._jsOverrideCall.getPrintHTML = null;
+             self._fireDefaultMethod.getPrintHTML = null;
+             return ret;
+        }
          
         self.__getHoverComponent = self.getHoverComponent;
         self.getHoverComponent = $entry(function() {
@@ -7202,21 +7288,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param printProperties properties to configure printing behavior - may be null
      * @param callback to fire. Generated HTML should be passed to the execute method of the callback.
      */
-	public native String getPrintHTML(PrintProperties printProperties, PrintHTMLCallback callback) /*-{
-	
+    public native String getPrintHTML(PrintProperties printProperties, PrintHTMLCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        if (self._jsOverrideCall.getPrintHTML) {
+            self._fireDefaultMethod.getPrintHTML = true;
+            return;
+        }
         var ppJS = printProperties == null ? null : printProperties.@com.smartgwt.client.util.PrintProperties::getJsObj()();
         
         var ret = self.__getPrintHTML(
-        		ppJS,
-		        callback == null ? null :  
-			        $entry(function (HTML) {
-			        	callback.@com.smartgwt.client.util.PrintHTMLCallback::setHTML(Ljava/lang/String;)(HTML);
-			        })
+                ppJS,
+                callback == null ? null :  
+                    $entry(function (HTML) {
+                        callback.@com.smartgwt.client.util.PrintHTMLCallback::setHTML(Ljava/lang/String;)(HTML);
+                    })
          );
         return ret === undefined ? null : ret;
-	}-*/;
-	
+    }-*/;
 
 	private String getPrintHTMLJSCB(PrintProperties printProperties, final JavaScriptObject jscallback) {
 		if (jscallback == null) {

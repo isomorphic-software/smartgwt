@@ -44,6 +44,7 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
 
 import java.util.Date;
 import java.util.List;
@@ -799,18 +800,20 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     }
 
     private static native void init()/*-{
-        $wnd.isc.SelectItem.getPrototype().__getPickListFilterCriteria = $wnd.isc.SelectItem.getPrototype().getPickListFilterCriteria;
-        $wnd.isc.SelectItem.getPrototype().getPickListFilterCriteria = $entry(function() {
-            var jObj = this.__ref;
-            //if widget was not created in java via smartgwt, fallback to old behavior
-            if(jObj && @com.smartgwt.client.widgets.form.fields.SelectItem::isSelectItem(Lcom/smartgwt/client/widgets/form/fields/FormItem;)(jObj)) {
-                jObj.@com.smartgwt.client.widgets.form.fields.SelectItem::setJsObj(Lcom/google/gwt/core/client/JavaScriptObject;)(this);
-                var critJ = jObj.@com.smartgwt.client.widgets.form.fields.SelectItem::getPickListFilterCriteria()();
-                return critJ == null ? {} : critJ.@com.smartgwt.client.data.Criteria::getJsObj()();
-            } else {
-                return this.__getPickListFilterCriteria();
-            }
-        });
+        if ($wnd.isc.SelectItem.getPrototype().__getPickListFilterCriteria == null) {
+            $wnd.isc.SelectItem.getPrototype().__getPickListFilterCriteria = $wnd.isc.SelectItem.getPrototype().getPickListFilterCriteria;
+            $wnd.isc.SelectItem.getPrototype().getPickListFilterCriteria = $entry(function() {
+                var jObj = this.__ref;
+                //if widget was not created in java via smartgwt, fallback to old behavior
+                if(jObj && @com.smartgwt.client.widgets.form.fields.SelectItem::isSelectItem(Lcom/smartgwt/client/widgets/form/fields/FormItem;)(jObj)) {
+                    jObj.@com.smartgwt.client.widgets.form.fields.SelectItem::setJsObj(Lcom/google/gwt/core/client/JavaScriptObject;)(this);
+                    var critJ = jObj.@com.smartgwt.client.widgets.form.fields.SelectItem::getPickListFilterCriteria()();
+                    return critJ == null ? {} : critJ.@com.smartgwt.client.data.Criteria::getJsObj()();
+                } else {
+                    return this.__getPickListFilterCriteria();
+                }
+            });
+        }
     }-*/;
 
     private static boolean isSelectItem(FormItem formItem) {

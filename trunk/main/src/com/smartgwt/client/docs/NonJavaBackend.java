@@ -3,14 +3,14 @@ package com.smartgwt.client.docs;
 
 /**
  * <h3>.NET, PHP, Serverless Integration</h3>
- * Smart GWT is fully functional without installation of the Java server included in the SDK,&#010 and can be integrated
- * with any server technology.  This topic provides pointers to&#010 documentation that is most relevant for this type of
- * integration.&#010 <P>&#010 <h4>Installation</h4>&#010 <P>&#010 As described in {@link iscInstall <i>Deploying Smart
- * GWT</i>}, for a client-only&#010 integration, installation consists of just copying a directory of JavaScript and media
- * files&#010 to your webserver.&#010 <P>&#010 <h4>Creating Components</h4>&#010 <P>&#010 Smart GWT components can be
- * included in any .html page, including dynamically generated pages&#010 produced by .php or .asp files.  The Smart GWT
- * libraries can be included in the page as&#010 follows:&#010 <pre>&#010 &lt;HTML&gt;&lt;HEAD&gt;&#010 &lt;SCRIPT&gt;var
- * isomorphicDir="../isomorphic/";&lt;/SCRIPT&gt;&#010 &lt;SCRIPT
+ * While Smart GWT's extensive server features are lost if you cannot install the Java-based&#010 server framework, Smart
+ * GWT UI components can be integrated with any server technology.&#010 This topic provides pointers to documentation that
+ * is most relevant for this type of&#010 integration.&#010 <P>&#010 <h4>Installation</h4>&#010 <P>&#010 As described in
+ * {@link iscInstall <i>Deploying Smart GWT</i>}, for a client-only&#010 integration, installation consists of just copying
+ * a directory of JavaScript and media files&#010 to your webserver.&#010 <P>&#010 <h4>Creating Components</h4>&#010
+ * <P>&#010 Smart GWT components can be included in any .html page, including dynamically generated pages&#010 produced by
+ * .php or .asp files.  The Smart GWT libraries can be included in the page as&#010 follows:&#010 <pre>&#010
+ * &lt;HTML&gt;&lt;HEAD&gt;&#010 &lt;SCRIPT&gt;var isomorphicDir="../isomorphic/";&lt;/SCRIPT&gt;&#010 &lt;SCRIPT
  * SRC=../isomorphic/system/modules/ISC_Core.js&gt;&lt;/SCRIPT&gt;&#010 &lt;SCRIPT
  * SRC=../isomorphic/system/modules/ISC_Foundation.js&gt;&lt;/SCRIPT&gt;&#010 &lt;SCRIPT
  * SRC=../isomorphic/system/modules/ISC_Containers.js&gt;&lt;/SCRIPT&gt;&#010 &lt;SCRIPT
