@@ -28,5 +28,7 @@ include them yourself in your host html file as follows :
     <entry-point class='com.smartgwt.client.SmartGwtEntryPoint'/>
     
 	<define-linker name="smartgwt" class="com.smartgwt.linker.SmartGwtLinker" />
+    <define-linker name="smartgwt_domain_sync" class="com.smartgwt.linker.SmartGwtDomainSyncLinker" />
+
   	<add-linker name="smartgwt" />
 </module>
