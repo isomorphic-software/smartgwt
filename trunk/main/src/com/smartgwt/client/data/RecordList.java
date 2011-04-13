@@ -870,13 +870,22 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
 
     private native void setupDataChangedEvent() /*-{
         var obj = null;
+        var selfJ = this;
+        if (this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             obj = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-            var selfJ = this;
             obj.onDataChanged = function(){
                 var param = {};
                 var event = @com.smartgwt.client.data.events.DataChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             };
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+            obj.onDataChanged = function () {
+                var param = {};
+                var event = @com.smartgwt.client.data.events.DataChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            }
+        }
    }-*/;
 
     /**
