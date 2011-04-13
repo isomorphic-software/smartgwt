@@ -1196,14 +1196,18 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
     }
 
     private native void setupDataArrivedEvent() /*-{
-        var obj = null;
+        var obj = null,
+            selfJ = this;
+       if (this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             obj = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-            var selfJ = this;
-            obj.dataArrived = function(){
-                var param = {"startRow" : arguments[0], "endRow" : arguments[1]};
-                var event = @com.smartgwt.client.data.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            };
+       } else {
+           obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+       }
+       obj.dataArrived = function(){
+            var param = {"startRow" : arguments[0], "endRow" : arguments[1]};
+            var event = @com.smartgwt.client.data.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+       };
    }-*/;
 
     // override getProperty / setProperty logic for ResultSet class only
