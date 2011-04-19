@@ -171,17 +171,13 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
 			}
     	}
         
-        // setDrawnState() - undocumented method called from draw() to mark a canvas as drawn
+        // onDraw() - undocumented method called from draw() as a draw-complete notification
         // Override this rather than overriding draw() directly - the latter adds a layer to the
         // stack depth on draw and when drawing deeply nested layouts etc increases the likelyhood
         // of seeing an out of stack depth error in IE7 and 8
-        self.__setDrawnState = self.setDrawnState;
-        self.setDrawnState = function (state) {
-            self.__setDrawnState(state);
-            if (state == $wnd.isc.Canvas.COMPLETE) {
-                var jObj = this.__ref;
-                jObj.@com.smartgwt.client.widgets.BaseWidget::rendered()();
-            }
+        self.onDraw = function () {
+            var jObj = this.__ref;
+            if (jOb != null) jObj.@com.smartgwt.client.widgets.BaseWidget::rendered()();
         }
 
         self.__destroy = self.destroy;
