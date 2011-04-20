@@ -177,7 +177,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
         // of seeing an out of stack depth error in IE7 and 8
         self.onDraw = function () {
             var jObj = this.__ref;
-            if (jOb != null) jObj.@com.smartgwt.client.widgets.BaseWidget::rendered()();
+            if (jObj != null) jObj.@com.smartgwt.client.widgets.BaseWidget::rendered()();
         }
 
         self.__destroy = self.destroy;
