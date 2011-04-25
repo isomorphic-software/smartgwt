@@ -63,6 +63,7 @@ import com.smartgwt.sample.showcase.client.grid.sortfilter.*;
 import com.smartgwt.sample.showcase.client.gwtintegration.GwtShowcaseSample;
 import com.smartgwt.sample.showcase.client.layout.NestingSample;
 import com.smartgwt.sample.showcase.client.layout.UserSizingSample;
+import com.smartgwt.sample.showcase.client.layout.CenterAlignSample;
 import com.smartgwt.sample.showcase.client.menu.MenuAppearanceSample;
 import com.smartgwt.sample.showcase.client.menu.MenuSubmenusSample;
 import com.smartgwt.sample.showcase.client.menu.MenuTreeBindingSample;
@@ -409,6 +410,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Nesting", "layout-nesting", "layout-category", null, new NestingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("User Sizing", "layout-user-sizing", "layout-category", null, new UserSizingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Border Layout", "layout-border", "layout-category", null, new FreeSpaceSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Center Align", "layout-center-align", "layout-category", null, new CenterAlignSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Windows", "layout-windows-category", "root", "silk/application_cascade.png", null, true, idSuffix),
                     new ExplorerTreeNode("Auto Size", "layout-windows-autosize", "layout-windows-category", null, new WindowAutoSizeSample.Factory(), true, idSuffix),
