@@ -192,7 +192,7 @@ public class RelativeDate extends DataClass {
     }
 
     private native String mapRelativeDateShortcut(String relativeDateString)/*-{
-        return $wnd.isc.RelativeDateItem.mapRelativeDateShortcut(relativeDateString);
+        return $wnd.isc.DateUtil.mapRelativeDateShortcut(relativeDateString);
     }-*/;
 
     @Override
