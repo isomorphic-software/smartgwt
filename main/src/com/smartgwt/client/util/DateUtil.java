@@ -2,7 +2,9 @@ package com.smartgwt.client.util;
 
 import java.util.Date;
 
+import com.smartgwt.client.data.RelativeDate;
 import com.smartgwt.client.types.DateDisplayFormat;
+import com.smartgwt.client.types.RelativeDateRangePosition;
 
 /**
  * Date related utility methods.
@@ -385,5 +387,47 @@ public class DateUtil {
      */
     public static native void setDateInputFormat(String inputFormat) /*-{
         $wnd.Date.setInputFormat(inputFormat);
+    }-*/;
+    
+    /**
+     * Converts a RelativeDate shortcut string such as <code>"$today"</code> to a RelativeDateString such as <code>"+0D"</code>
+     * @param relativeDateShortcut shortcut string to convert
+     * @param position  Are we interested in the start or end of the
+    //  specified relative date? This applies to shortcuts which do not specify a specific
+    //  moment (such as <code>$today</code>) - it does not apply to shortcuts which 
+    //  already specify a specific moment such as <code>$startOfToday</code>. If unspecified 
+    //  rangePosition is always assumed to be "start"
+     * @return converted relative date string
+     */
+    public static native String mapRelativeDateShortcut(String relativeDateShortcut, RelativeDateRangePosition position) /*-{
+        if (position != null) position = position.@com.smartgwt.client.types.RelativeDateRangePosition::getValue()();
+        return $wnd.isc.DateUtil.mapRelativeDateShortcut(relativeDateShortcut, position);
+    }-*/;
+    
+    public static String mapRelativeDateShortcut(String relativeDateShortcut) {
+        return mapRelativeDateShortcut(relativeDateShortcut, null);
+    }
+    
+    /**
+     *  Converts a RelativeDate to a concrete Date.
+     * @return
+     */
+    public static Date getAbsoluteDate(RelativeDate relativeDate) {
+        return getAbsoluteDate(relativeDate, null, null);
+    }
+    /**
+     *  Converts a RelativeDate to a concrete Date.
+     * @return
+     */
+    public static native Date getAbsoluteDate(RelativeDate relativeDate, Date baseDate, RelativeDateRangePosition position) /*-{
+        relativeDate = relativeDate.@com.smartgwt.client.data.RelativeDate::getJsObj()();
+        if (baseDate != null) {
+            baseDate = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(baseDate);
+        }
+        if (position != null) position = position.@com.smartgwt.client.types.RelativeDateRangePosition::getValue()();
+        
+        var jsDate = $wnd.isc.DateUtil.getAbsoluteDate(relativeDate, baseDate, position);
+        if (jsDate == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toDate(D)(jsDate.getTime());
     }-*/;
 }
