@@ -85,6 +85,26 @@ public class RelativeDate extends DataClass {
      * Builtin option for the end of tomorrow (one millisecond before the {@link #START_OF_TOMORROW})
      */
     public static RelativeDate END_OF_TOMORROW = new RelativeDate("$endOfTomorrow");
+    
+    /**
+     * Builtin option for the current day of the previous week
+     */
+    public static RelativeDate WEEK_AGO = new RelativeDate("$weekAgo");
+
+    /**
+     * Builtin option for the current day of the following week
+     */
+    public static RelativeDate WEEK_FROM_NOW = new RelativeDate("$weekFromNow");
+
+    /**
+     * Builtin option for the current day of the previous month
+     */
+    public static RelativeDate MONTH_AGO = new RelativeDate("$monthAgo");
+
+    /**
+     * Builtin option for the current day of the following month
+     */
+    public static RelativeDate MONTH_FROM_NOW = new RelativeDate("$monthFromNow");
 
     /**
      * Builtin option for the start of the current week 
@@ -140,9 +160,12 @@ public class RelativeDate extends DataClass {
      * <li> $endOfYear - the end of the current year </li>
      * </ul>
      * Note that some shortcuts indicate a time period but do not directly indicate whether the value 
-     * refers to the start or end of the time period in question (for example "$today"). This 
+     * refers to the start or end of the time period in question. This 
      * ambiguity can be resolved by specifying an explicit RelativeDateRangePosition when calling APIs
-     * that convert from RelativeDates to absolute date values.<br>
+     * that convert from RelativeDates to absolute date values. This is the case for <i>$today</i>, 
+     * <i>$tomorrow</i>, <i>$yesterday</i>, <i>$weekAgo</i>, <i>$weekFromNow</i>, <i>$monthAgo</i>
+     * and <i>$monthFromNow</i>. If a range position is not explicitly passed, these will all default
+     * to the start of the day in question.
      * <P>
      * Alternatively the value can be a special RelativeDateString comprised of the following parts:
      * <ul>
