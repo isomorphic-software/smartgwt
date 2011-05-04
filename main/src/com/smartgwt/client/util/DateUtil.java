@@ -348,7 +348,7 @@ public class DateUtil {
      */
     public static native void setDateParser(DateParser parser) /*-{
         $wnd.Date.setInputFormat(function(dateStr) {
-                var dateJ = formatter.@com.smartgwt.client.util.DateParser::parse(Ljava/lang/String;)(dateStr);
+                var dateJ = parser.@com.smartgwt.client.util.DateParser::parse(Ljava/lang/String;)(dateStr);
                 if(dateJ == null) return null;
                 return @com.smartgwt.client.util.JSOHelper::toDateJS(Ljava/util/Date;)(dateJ);
             }
