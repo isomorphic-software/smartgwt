@@ -148,8 +148,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Formula Hilites", "grid-hiliting-formula-new", "new-category", null, new GridFormulaHilitingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("24h based Calendar", "calendar-24h-new", "new-category", null, new CalendarDateTimeFormatSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Offline Preferences", "grid-offline-pref-new", "new-category", "crystal/16/apps/tooloptions.png", new OfflinePreferencesSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Nested Editor", "nested-editor", "new-category", "silk/vcard_edit.png", new NestedEditorSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("ListGrid Item", "form-grid-item", "new-category", "silk/vcard_edit.png", new ListGridItemSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Nested Editor", "nested-editor-new", "new-category", "silk/vcard_edit.png", new NestedEditorSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("ListGrid Item", "form-grid-item-new", "new-category", "silk/vcard_edit.png", new ListGridItemSample.Factory(), true, idSuffix),
 
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
 

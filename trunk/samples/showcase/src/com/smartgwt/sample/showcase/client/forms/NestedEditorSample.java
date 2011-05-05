@@ -55,9 +55,11 @@ public class NestedEditorSample extends ShowcasePanel {
             id = panel.getID();
             return panel;
         }
+        
         public String getID() {
             return id;
         }
+        
         public String getDescription() {
             return DESCRIPTION;
         }
@@ -130,24 +132,30 @@ public class NestedEditorSample extends ShowcasePanel {
         public DataSource getGridDataSource() {
             return this.gridDataSource;
         }
+        
         public void setGridDataSource(DataSource gridDataSource) {
             this.gridDataSource = gridDataSource;
         }
+        
         private ListGridField[] gridFields;
         public ListGridField[] getGridFields() {
             return gridFields;
         }
+        
         public void setGridFields(ListGridField... gridFields) {
             this.gridFields = gridFields;
         }
+        
         private String gridSortField;
         public String getGridSortField() {
             return gridSortField;
         }
+        
         public void setGridSortField(String gridSortField) {
             this.gridSortField = gridSortField;
         }
     };
+    
     public Canvas getViewPanel() {
         // Define a couple of simple nested dataSources. Make these client-only for simplicity
         DataSource orderItemDS = getOrderItemDS();
@@ -188,6 +196,7 @@ public class NestedEditorSample extends ShowcasePanel {
                 });
             }
         });
+        
         exampleForm.setItems(orderID, orderDate, items, saveBtn);
         
         Criteria orderCriteria = new Criteria();
@@ -315,6 +324,7 @@ public class NestedEditorSample extends ShowcasePanel {
         };
         return orderData;
     }
+    
     public String getIntro() {
         return DESCRIPTION;
     }

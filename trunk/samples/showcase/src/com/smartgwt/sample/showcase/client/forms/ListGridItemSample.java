@@ -59,9 +59,11 @@ public class ListGridItemSample extends ShowcasePanel {
             id = panel.getID();
             return panel;
         }
+        
         public String getID() {
             return id;
         }
+        
         public String getDescription() {
             return DESCRIPTION;
         }
@@ -107,8 +109,8 @@ public class ListGridItemSample extends ShowcasePanel {
                 @Override
                 public void onInit(FormItem item) {
                     ListGrid grid = new ListGrid();
-                    grid.setWidth100();
-                    grid.setHeight100();
+                    grid.setWidth("*");
+                    grid.setHeight("*");
                     grid.setLeaveScrollbarGap(false);
                     grid.setFields(((ListGridItem) item).getGridFields());
                     grid.setData(((ListGridItem)item).getGridData());
@@ -139,25 +141,31 @@ public class ListGridItemSample extends ShowcasePanel {
                             }
                         }
                     });
+                    
                     ((CanvasItem) item).setCanvas(grid);
                 }
             });
         }
+        
         private ListGridRecord[] gridData;
         public void setGridData(ListGridRecord[] gridData) {
             this.gridData = gridData;
         }
+        
         public ListGridRecord[] getGridData() {
             return gridData;
         }
+        
         private ListGridField[] gridFields;
         public void setGridFields(ListGridField... gridFields) {
             this.gridFields = gridFields;
         }
+        
         public ListGridField[] getGridFields() {
             return gridFields;
         }        
     };
+    
     public Canvas getViewPanel() {
         final DynamicForm exampleForm = new DynamicForm();
         exampleForm.setLeft(200);
@@ -210,6 +218,7 @@ public class ListGridItemSample extends ShowcasePanel {
         panel.setMembers(leftStack, exampleForm);
         return panel;
     }
+    
     public String getIntro() {
         return DESCRIPTION;
     }
