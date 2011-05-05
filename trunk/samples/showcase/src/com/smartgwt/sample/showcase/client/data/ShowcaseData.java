@@ -148,6 +148,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Formula Hilites", "grid-hiliting-formula-new", "new-category", null, new GridFormulaHilitingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("24h based Calendar", "calendar-24h-new", "new-category", null, new CalendarDateTimeFormatSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Offline Preferences", "grid-offline-pref-new", "new-category", "crystal/16/apps/tooloptions.png", new OfflinePreferencesSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Nested Editor", "nested-editor", "new-category", "silk/vcard_edit.png", new NestedEditorSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("ListGrid Item", "form-grid-item", "new-category", "silk/vcard_edit.png", new ListGridItemSample.Factory(), true, idSuffix),
 
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
 
@@ -403,7 +405,9 @@ public class ShowcaseData {
 
                     new ExplorerTreeNode("DataType Reuse", "form-type-reuse", "form-category", "silk/database_table.png", new TypeReuseSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Text Masking", "form-masking", "form-category", "silk/vcard_edit.png", new TextMaskingSample.Factory(), true, idSuffix),
-
+                    new ExplorerTreeNode("Nested Editor", "nested-editor", "form-category", "silk/vcard_edit.png", new NestedEditorSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("ListGrid Item", "form-grid-item", "form-category", "silk/vcard_edit.png", new ListGridItemSample.Factory(), true, idSuffix),
+                    
                     new ExplorerTreeNode("Layout", "layout-category", "root", "widgets/container.png", null, true, idSuffix),
                     new ExplorerTreeNode("Stack", "layout-stack", "layout-category", null, new StackSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Layout", "layout-layout", "layout-category", null, new LayoutSample.Factory(), true, idSuffix),
