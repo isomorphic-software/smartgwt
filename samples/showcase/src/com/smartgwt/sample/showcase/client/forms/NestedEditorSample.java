@@ -1,12 +1,6 @@
 package com.smartgwt.sample.showcase.client.forms;
 
-import java.util.Date;
-
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.GWT.UncaughtExceptionHandler;
-import com.google.gwt.event.shared.UmbrellaException;
-import com.google.gwt.user.client.Window;
 import com.smartgwt.client.data.Criteria;
 import com.smartgwt.client.data.DSCallback;
 import com.smartgwt.client.data.DSRequest;
@@ -17,6 +11,7 @@ import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.RecordList;
 import com.smartgwt.client.types.FieldType;
 import com.smartgwt.client.types.SortDirection;
+import com.smartgwt.client.util.DateUtil;
 import com.smartgwt.client.util.JSONEncoder;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.util.StringUtil;
@@ -41,8 +36,8 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 public class NestedEditorSample extends ShowcasePanel {
     private static final String DESCRIPTION =
         "<p>This example shows a reusable CanvasItem that edits nested data structures.</p>" +
-        "<p>Here, a Hibernate entity representing an Order contains OrderItems &mdash; in " +
-        "the Record for an Order, value of the field \"items\" in an Array of Records " +
+        "<p>Here, a record representing an Order contains multiple OrderItem records &mdash; " +
+        "in the Record for an Order the \"items\" field value is set to an Array of Records " +
         "representing OrderItems.</p>" +
         "<p>The CanvasItem embeds an editable ListGrid to provide an editing interaction " +
         "for the OrderItems right in the midst of the form. It can be used with any " +
@@ -306,19 +301,19 @@ public class NestedEditorSample extends ShowcasePanel {
             new ListGridRecord() {{
                 setAttribute("orderID", 0);
                 setAttribute("customerName", "Richard Jones");
-                setAttribute("orderDate", new Date(2011, 01, 29));
+                setAttribute("orderDate", DateUtil.parseInput("11/01/2011"));
                 setAttribute("items", getOrderItemData(0));
             }},
             new ListGridRecord() {{
                 setAttribute("orderID", 1);
                 setAttribute("customerName", "Sarah Holden");
-                setAttribute("orderDate", new Date(2011, 04, 02));
+                setAttribute("orderDate", DateUtil.parseInput("02/04/2011"));
                 setAttribute("items", getOrderItemData(1));
             }},
             new ListGridRecord() {{
                 setAttribute("orderID", 2);
                 setAttribute("customerName", "James Edwards");
-                setAttribute("orderDate", new Date(2011, 03, 10));
+                setAttribute("orderDate", DateUtil.parseInput("04/29/2011"));
                 setAttribute("items", getOrderItemData(2));
             }}
         };
