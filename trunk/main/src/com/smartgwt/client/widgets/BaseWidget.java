@@ -30,6 +30,7 @@ import com.smartgwt.client.core.Function;
 import com.smartgwt.client.types.Positioning;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.util.DOMUtil;
+import com.smartgwt.client.util.IDManager;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.events.DrawEvent;
@@ -99,8 +100,8 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
     }
 
     public BaseWidget() {        
-        id = SC.generateID(getClass().getName());
-        setAttribute("ID", id, false);
+        String id = SC.generateID(getClass().getName());
+        setID(id);
     }
 
     protected BaseWidget(JavaScriptObject jsObj) {
@@ -108,8 +109,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
     }
 
     public BaseWidget(String id) {
-        this.id = id;
-        setAttribute("ID", id, false);
+        setID(id);
     }
 
     public static BaseWidget getRef(JavaScriptObject jsObj) {
@@ -230,7 +230,9 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
 
     public native void destroy() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var id = self.ID;
         self.__destroy();
+        @com.smartgwt.client.util.IDManager::unregisterID(Ljava/lang/String;)(id);
         this.@com.smartgwt.client.widgets.Canvas::onDestroy()();
     }-*/;
 
@@ -314,10 +316,12 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
     }
 
     public void setID(String id) {
-        assert id.indexOf(".") == -1 : "Invalid ID. Cannot use \".\" in identifier.";
-        assert id.indexOf(" ") == -1 : "Invalid ID. Cannot use spaces in identifier.";
-        this.id = id;
+        if (this.id != null) {
+            IDManager.unregisterID(this.id);
+        }
+        IDManager.registerID(id);
         setAttribute("ID", id, false);
+        this.id = id;
     }
 
     public JavaScriptObject getConfig() {
