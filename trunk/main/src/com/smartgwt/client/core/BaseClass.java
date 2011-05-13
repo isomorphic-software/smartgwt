@@ -25,7 +25,9 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.smartgwt.client.types.ValueEnum;
+import com.smartgwt.client.util.IDManager;
 import com.smartgwt.client.util.JSOHelper;
+import com.smartgwt.client.util.JSONEncoder;
 import com.smartgwt.client.util.SC;
 
 import java.util.Date;
@@ -38,8 +40,8 @@ public abstract class BaseClass {
     protected String scClassName;
 
     public BaseClass() {
-        id = SC.generateID(getClass().getName());
-        setAttribute("ID", id, false);
+        String id = SC.generateID(getClass().getName());
+        setID(id);
     }
 
     protected BaseClass(JavaScriptObject jsObj) {
@@ -57,10 +59,14 @@ public abstract class BaseClass {
     }
 
     public void setID(String id) {
-        assert id.indexOf(".") == -1 : "Invalid ID. Cannot use \".\" in identifier.";
-        assert id.indexOf(" ") == -1 : "Invalid ID. Cannot use spaces in identifier.";        
-        this.id = id;
+        
+        if (this.id != null) {
+            IDManager.unregisterID(this.id);
+        }
+        
+        IDManager.registerID(id);
         setAttribute("ID", id, false);
+        this.id = id;
     }
 
     /**
@@ -121,7 +127,11 @@ public abstract class BaseClass {
 	 */
     public native void destroy()/*-{
 		var self = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-		self.destroy();
+		var ID = this.@com.smartgwt.client.core.BaseClass::getID()();
+		if (self != null && self.destroy) self.destroy();
+		if (ID != null) {
+		    @com.smartgwt.client.util.IDManager::unregisterID(Ljava/lang/String;)(ID);
+		}
 	}-*/;	
 
     protected void error(String attribute, String value, boolean allowPostCreate) throws IllegalStateException {
