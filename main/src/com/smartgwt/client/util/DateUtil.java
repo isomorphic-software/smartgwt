@@ -166,14 +166,14 @@ public class DateUtil {
     /**
      * Set the system wide default short datetime format.
      * The specified format will be used by default by SmartGwt components when formatting datetime field values to 
-     * short datetime format (and by {@link #formatAsShortDateTime(Date)}).
+     * short datetime format (and by {@link #formatAsShortDatetime(Date)}).
      * <P>
      * This method, together with {@link DateUtil#setDefaultDateSeparator(String)} provide support for most
      * standard "short date" formats. However if a custom format which doesn't match any of the specified
      * {@link DateDisplayFormat} types is required, a custom formatting function may be provided via
      * {@link #setShortDatetimeDisplayFormatter(DateDisplayFormatter)}.
      * <P>
-     * Note that the default short datetime format is initially set to "toUSShortDateTime".
+     * Note that the default short datetime format is initially set to {@link DateDisplayFormat#TOUSSHORTDATETIME}.
      *
      * @param format the DateDisplayFormat
      */    
