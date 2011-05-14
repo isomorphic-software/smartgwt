@@ -41,7 +41,7 @@ public enum DateDisplayFormat implements ValueEnum {
     /**
      * Short date with time in format MM/DD/YYYY HH:MM<br> <i>Example</i>: <code>11/4/2005 11:03</code>
      */
-    TOUSSHORTDATETIME("toUSShortDateTime"),
+    TOUSSHORTDATETIME("toUSShortDatetime"),
     /**
      * Short date in format DD/MM/YYYY.<br> <i>Example</i>: <code>4/11/2005</code>
      */
@@ -49,7 +49,7 @@ public enum DateDisplayFormat implements ValueEnum {
     /**
      * Short date with time in format DD/MM/YYYY HH:MM<br> <i>Example</i>: <code>4/11/2005 11:03</code>
      */
-    TOEUROPEANSHORTDATETIME("toEuropeanShortDateTime"),
+    TOEUROPEANSHORTDATETIME("toEuropeanShortDatetime"),
     /**
      * Short date in format YYYY/MM/DD.<br> <i>Example</i>: <code>2005/11/4</code>
      */
@@ -57,7 +57,7 @@ public enum DateDisplayFormat implements ValueEnum {
     /**
      * Short date with time in format YYYY/MM/DD HH:MM<br> <i>Example</i>: <code>2005/11/4 11:03</code>
      */
-    TOJAPANSHORTDATETIME("toJapanShortDateTime"),
+    TOJAPANSHORTDATETIME("toJapanShortDatetime"),
     /**
      * Date in the format YYYY-MM-DD HH:MM:SS<br> <i>Example</i>: <code>2005-11-04 11:09:15</code>
      */
