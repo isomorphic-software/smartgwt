@@ -576,7 +576,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    * Default short datetime format
    * @return
    */
-  @DefaultMessage("toUSShortDateTime")
+  @DefaultMessage("toUSShortDatetime")
   @Key("date_shortDatetimeFormat")
   String date_shortDatetimeFormat();
   
