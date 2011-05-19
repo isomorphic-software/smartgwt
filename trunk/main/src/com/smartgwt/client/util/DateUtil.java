@@ -12,13 +12,17 @@ import com.smartgwt.client.types.RelativeDateRangePosition;
 public class DateUtil {
 
     /**
-     * Globally sets the offset from UTC to use when formatting values of type datetime and time with standard display formatters.
-     *
-     * If this method is never called, the default display timezone for times and datetimes will be derived from the native
+     * Globally sets the offset from UTC to use when formatting values of type datetime and time with 
+     * standard display formatters. This property effects how dates are displayed and also the
+     * assumed timezone for user-input.
+     * <P>
+     * If this method is never called, the default display timezone for times and datetimes will be 
+     * derived from the native
      * browser local timezone.
      * <p>
-     * Note that by default daylight savings time adjustments (based on browser locale) may also be applied when formatting times
-     * and datetimes. {@link #setAdjustForDST(boolean)} may be used to disable this adjustment.
+     * Note that by default daylight savings time adjustments (based on browser locale) may also be
+     * applied when formatting datetimes.
+     * {@link #setAdjustForDST(boolean)} may be used to disable this adjustment.
      *
      * @param offset offset from UTC. This should be a string in the format <code>+/-HH:MM</code> for example <code>"-08:00"
      */
@@ -63,7 +67,7 @@ public class DateUtil {
     }-*/;
 	
     /**
-     * Set the default formatter for date objects to the method name passed in. After calling this method, subsequent calls to Date.toNormalDate will return a string formatted according to this format specification.
+     * Set the default format for date objects to the DateDisplayFormat passed in. After calling this method, subsequent calls to Date.toNormalDate will return a string formatted according to this format specification.
      * <br>
      * <b>Note</b>: this will be the standard long date format used by SmartGWT components.
      * Initial default normalDisplayFormat is "toLocaleString"
@@ -75,13 +79,14 @@ public class DateUtil {
     }-*/;
 
     /**
-     * Set the default formatter for date objects to the method name passed in. After calling this method, subsequent calls to Date.toNormalDate will return a string formatted according to this format specification.
-     * <br>
-     * <b>Note</b>: this will be the standard long date format used by SmartGWT components.
-     * The DateDisplayFormatter function will be executed in the scope of the Date and should return the formatted string.
-     * <p/>
-     * Initial default normalDisplayFormat is "toLocaleString"
+     * Set the default formatter for date objects to the custom DateDisplayFormatter passed in.
+     * After calling this method, subsequent calls to Date.toNormalDate will return a string 
+     * formatted according to this formatter specification.
+     * <P>
+     * When writing custom date formatting and parsing logic, developers may find the 
+     * {@link com.google.gwt.i18n.client.DateTimeFormat} class helpful.
      *
+     * Sample code :
      * <pre>
      * DateUtil.setNormalDateDisplayFormatter(new DateDisplayFormatter() {
      *     public String format(Date date) {
@@ -313,7 +318,7 @@ public class DateUtil {
     }-*/;
     
     /**
-     * Sets up the a custom parsing function to use by default when converting dates or datetimes from 
+     * Sets up a custom parsing function to use by default when converting dates or datetimes from 
      * formatted string values to Dates. This custom parser will be used by SmartGwt components
      * parsing editable date or datetime type values back to live dates by default.
      * The string passed in will be formatted according to the standard "short date" 
