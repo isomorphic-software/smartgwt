@@ -119,7 +119,9 @@ public class DateUtil {
      * {@link DateDisplayFormat} types is required, a custom formatting function may be provided via
      * {@link #setShortDateDisplayFormatter(DateDisplayFormatter)}.
      * <P>
-     * Note that the default short date format is initially set to "toUSShortDate".
+     * Note that the default short date format is initially set to DateDisplayFormat.TOUSSHORTDATE. This property
+     * is commonly modified for localization of applications. See {@link http://en.wikipedia.org/wiki/Date_format_by_country}
+     * for a useful overview of standard date formats per country.
      *
      * @param format the DateDisplayFormat
      */    
@@ -179,6 +181,8 @@ public class DateUtil {
      * {@link #setShortDatetimeDisplayFormatter(DateDisplayFormatter)}.
      * <P>
      * Note that the default short datetime format is initially set to {@link DateDisplayFormat#TOUSSHORTDATETIME}.
+     * This property is commonly modified for localization of applications. See {@link http://en.wikipedia.org/wiki/Date_format_by_country}
+     * for a useful overview of standard date formats per country.
      *
      * @param format the DateDisplayFormat
      */    
