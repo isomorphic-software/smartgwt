@@ -1964,7 +1964,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         JavaScriptObject jsArray = JSOHelper.createJavaScriptArray();
         int i = 0;
         for (FormItem formItem : formItems) {
-            JavaScriptObject config = formItem.getConfig();
+            JavaScriptObject config = formItem.getEditorTypeConfig();
             JSOHelper.setAttribute(config, "name", formItem.getName());
             JSOHelper.setAttribute(config, "type", formItem.getType());
             JSOHelper.setArrayValue(jsArray, i, config);
@@ -2026,8 +2026,18 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * Display format to use for the time portion of events' date information.
      *
      * @param timeFormatter timeFormatter Default value is "toShortPaddedTime"
+     * @deprecated use {@link #setTimeFormatter(TimeDisplayFormat)} instead.
      */
     public void setTimeFormatter(TimeFormatter timeFormatter) {
+        setAttribute("timeFormatter", timeFormatter, true);
+    }
+    
+    /**
+     * Display format to use for the time portion of events' date information.
+     *
+     * @param timeFormatter timeFormatter Default value is "toShortPaddedTime"
+     */
+    public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
         setAttribute("timeFormatter", timeFormatter, true);
     }
 
@@ -2035,10 +2045,10 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * Display format to use for the time portion of events' date information.
      *
      *
-     * @return Unhandled-timeFormatter
+     * @return TimeDisplayFormat
      */
-    public TimeFormatter getTimeFormatter()  {
-        return EnumUtil.getEnum(TimeFormatter.values(), getAttribute("timeFormatter"));
+    public TimeDisplayFormat getTimeFormatter()  {
+        return EnumUtil.getEnum(TimeDisplayFormat.values(), getAttribute("timeFormatter"));
     }
 
     /**
