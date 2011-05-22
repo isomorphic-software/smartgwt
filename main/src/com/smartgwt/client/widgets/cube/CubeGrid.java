@@ -85,25 +85,27 @@ import com.google.gwt.event.shared.HasHandlers;
  * horizontal and/or vertical scrollbars will appear below and to the right of the body. The body of the CubeGrid may be
  * scrolled on either axis. The headers are "frozen" from scrolling on one axis - row headers only scroll vertically, while
  * column headers only scroll horizontally - so the facet values for the visible cells are always displayed. <P> <B>Data
- * Loading</B> <P> In order to allow intuitive and efficient navigation through very large datasets, the CubeGrid supports
- * adding and removing facets from the display on the fly, and also tree-like expanding and collapsing both within facets
- * and across facets, all integrated with a load-on-demand system that only loads visible data, and works with standard ISC
- * DataSources. <P> <B>Picking Facets</B> <P> By "facet" we mean an aspect of the data which is orthogonal to other aspects
- * of the data, that is, combining values from any two "facets" should make sense. <P> For example, in sales data, two
- * facets might be "quarter" and "region" - it makes sense to combine any quarter and region, although for some
- * combinations, there may not be data. <P>  An example of two aspects that would <b>not</b> be independent facets are
- * "state" and "city" - it's senseless to combine arbitrary states with arbitrary cities - most combinations are invalid. 
- * Consider instead a {@link com.smartgwt.client.widgets.cube.Facet#getIsTree tree facet} that combines "city" and "state"
- * values.   <P> Note that if "city" and "state" are represented as facets, they may look correct if they are both on the
- * same axis of the grid and {@link com.smartgwt.client.widgets.cube.CubeGrid#getHideEmptyFacetValues hideEmptyFacetValues}
- * is used to trim nonsense combinations, but if the data is {@link
- * com.smartgwt.client.widgets.cube.CubeGrid#getCanMoveFacets pivoted} such that "state" and "city" are on opposing axes,
- * there will be a roughly diagonal "stripe" of data for combinations of "state" and "city" that make sense, and all other
- * space will be blank.  This is a strong indication that two facets should be represented as a single tree facet instead.
+ * Loading</B> <P> Data can be provided to the Cube via  data as an Array of {@link
+ * com.smartgwt.client.widgets.cube.CellRecord CellRecords}, each representing the data for one cell. <P> For large
+ * datasets, +link{provide a DataSource,cubeGrid.dataSource} with one field per facetId, and the CubeGrid will load data on
+ * demand to fill the visible area, including lazily loading data for expanding/collapsing tree facets and when facetValues
+ * are made visible programmatically or via menus. <P> <B>Picking Facets</B> <P> By "facet" we mean an aspect of the data
+ * which is orthogonal to other aspects of the data, that is, combining values from any two "facets" should make sense. <P>
+ * For example, in sales data, two facets might be "quarter" and "region" - it makes sense to combine any quarter and
+ * region, although for some combinations, there may not be data available. <P>  An example of two aspects that would
+ * <b>not</b> be independent facets are "state" and "city" - it's senseless to combine arbitrary states with arbitrary
+ * cities - most combinations are invalid.  Consider instead a {@link com.smartgwt.client.widgets.cube.Facet#getIsTree tree
+ * facet} that combines "city" and "state" values.   <P> Note that if "city" and "state" are represented as facets, they
+ * may look correct if they are both on the same axis of the grid and {@link
+ * com.smartgwt.client.widgets.cube.CubeGrid#getHideEmptyFacetValues hideEmptyFacetValues} is used to trim nonsense
+ * combinations, but if the data is {@link com.smartgwt.client.widgets.cube.CubeGrid#getCanMoveFacets pivoted} such that
+ * "state" and "city" are on opposing axes, there will be a roughly diagonal "stripe" of data for combinations of "state"
+ * and "city" that make sense, and all other space will be blank.  This is a strong indication that two facets should be
+ * represented as a single tree facet instead.
  * @see com.smartgwt.client.widgets.cube.Facet
  * @see com.smartgwt.client.widgets.cube.FacetValue
  */
-public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.cube.events.HasFacetAddedHandlers, com.smartgwt.client.widgets.cube.events.HasFacetMovedHandlers, com.smartgwt.client.widgets.cube.events.HasFacetRemovedHandlers, com.smartgwt.client.widgets.cube.events.HasFixedFacetValueChangedHandlers {
+public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.cube.events.HasFacetAddedHandlers, com.smartgwt.client.widgets.cube.events.HasFacetMovedHandlers, com.smartgwt.client.widgets.cube.events.HasFacetRemovedHandlers, com.smartgwt.client.widgets.cube.events.HasFixedFacetValueChangedHandlers, com.smartgwt.client.widgets.cube.events.HasSortByFacetIdHandlers, com.smartgwt.client.widgets.cube.events.HasSortByFacetValuesHandlers {
 
     public static CubeGrid getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -490,7 +492,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
 
     /**
      * If true, sort controls will be shown on facet values. <P> When clicked, sort controls call {@link
-     * com.smartgwt.client.widgets.cube.CubeGrid#sortByFacetValues CubeGrid.sortByFacetValues}.
+     * com.smartgwt.client.widgets.cube.CubeGrid#addSortByFacetValuesHandler CubeGrid.sortByFacetValues}.
      *
      * @param canSortData canSortData Default value is null
      */
@@ -500,7 +502,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
 
     /**
      * If true, sort controls will be shown on facet values. <P> When clicked, sort controls call {@link
-     * com.smartgwt.client.widgets.cube.CubeGrid#sortByFacetValues CubeGrid.sortByFacetValues}.
+     * com.smartgwt.client.widgets.cube.CubeGrid#addSortByFacetValuesHandler CubeGrid.sortByFacetValues}.
      *
      *
      * @return Boolean
@@ -511,7 +513,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
 
     /**
      * If true, sort controls will be shown on FacetHeaders. <P> When clicked, sort controls call {@link
-     * com.smartgwt.client.widgets.cube.CubeGrid#sortByFacetId CubeGrid.sortByFacetId}.
+     * com.smartgwt.client.widgets.cube.CubeGrid#addSortByFacetIdHandler CubeGrid.sortByFacetId}.
      *
      * @param canSortFacets canSortFacets Default value is null
      */
@@ -521,7 +523,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
 
     /**
      * If true, sort controls will be shown on FacetHeaders. <P> When clicked, sort controls call {@link
-     * com.smartgwt.client.widgets.cube.CubeGrid#sortByFacetId CubeGrid.sortByFacetId}.
+     * com.smartgwt.client.widgets.cube.CubeGrid#addSortByFacetIdHandler CubeGrid.sortByFacetId}.
      *
      *
      * @return Boolean
@@ -2218,26 +2220,72 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setFixedFacetValue(facetId, fixedFacetValueId);
     }-*/;
-            
     /**
+     * Add a sortByFacetId handler.
+     * <p>
      * Called when a sort control is clicked on a FacetHeader.  Does nothing by default.
-     * @param facetId ID of facet to sort
-     * @param sortDirection true for ascending
+     *
+     * @param handler the sortByFacetId handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
-    public native void sortByFacetId(String facetId, boolean sortDirection) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.sortByFacetId(facetId, sortDirection);
-    }-*/;
-            
+    public HandlerRegistration addSortByFacetIdHandler(com.smartgwt.client.widgets.cube.events.SortByFacetIdHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.cube.events.SortByFacetIdEvent.getType()) == 0) setupSortByFacetIdEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.cube.events.SortByFacetIdEvent.getType());
+    }
+
+    private native void setupSortByFacetIdEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({sortByFacetId:$entry(function(){
+                        var param = {"facetId" : arguments[0], "sortDirection" : arguments[1]};
+                        var event = @com.smartgwt.client.widgets.cube.events.SortByFacetIdEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.sortByFacetId = $entry(function(){
+                   var param = {"facetId" : arguments[0], "sortDirection" : arguments[1]};
+                   var event = @com.smartgwt.client.widgets.cube.events.SortByFacetIdEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
+        }
+   }-*/;
     /**
+     * Add a sortByFacetValues handler.
+     * <p>
      * Called when a sort control is clicked on a FacetValueHeader.  Does nothing by default.
-     * @param facetValues facetValues to sort
-     * @param sortDirection true for ascending
+     *
+     * @param handler the sortByFacetValues handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
-    public native void sortByFacetValues(FacetValueMap facetValues, boolean sortDirection) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.sortByFacetValues(facetValues.@com.smartgwt.client.core.DataClass::getJsObj()(), sortDirection);
-    }-*/;
+    public HandlerRegistration addSortByFacetValuesHandler(com.smartgwt.client.widgets.cube.events.SortByFacetValuesHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.cube.events.SortByFacetValuesEvent.getType()) == 0) setupSortByFacetValuesEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.cube.events.SortByFacetValuesEvent.getType());
+    }
+
+    private native void setupSortByFacetValuesEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({sortByFacetValues:$entry(function(){
+                        var param = {"facetValues" : arguments[0], "sortDirection" : arguments[1]};
+                        var event = @com.smartgwt.client.widgets.cube.events.SortByFacetValuesEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.sortByFacetValues = $entry(function(){
+                   var param = {"facetValues" : arguments[0], "sortDirection" : arguments[1]};
+                   var event = @com.smartgwt.client.widgets.cube.events.SortByFacetValuesEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
+        }
+   }-*/;
 
     // ********************* Static Methods ***********************
     /**
