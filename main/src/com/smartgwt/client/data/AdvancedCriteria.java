@@ -74,12 +74,19 @@ import com.google.gwt.event.shared.HasHandlers;
  * raw AdvancedCriteria object as described above, the&#010 {@link com.smartgwt.client.data.DataSource#convertCriteria
  * DataSource.convertCriteria} and {@link com.smartgwt.client.data.DataSource#combineCriteria DataSource.combineCriteria}
  * methods&#010 may be used to create and modify criteria based on simple fieldName / value mappings.&#010 <P>&#010 When
- * passed to the Smart GWT Server, AdvancedCriteria are automatically translated&#010 to Java Objects, identically to other
- * JavaScript data, by the rules given under &#010 {@link com.smartgwt.client.rpc.RPCRequest#getData data}.&#010 <P>&#010
- * Other servers may receive AdvancedCriteria in the most convenient format, for example,&#010 a {@link
- * com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest} might translate AdvancedCriteria
- * directly into&#010 a SQL-like language, or serialize to XML using {@link
- * com.smartgwt.client.data.DataSource#xmlSerialize DataSource.xmlSerialize}.&#010 <P>&#010 See {@link
+ * passed to the Smart GWT Server, a server-side AdvancedCriteria instance (in the&#010 package com.isomorphic.criteria)
+ * can be retrieved from a DSRequest via&#010 com.isomorphic.datasource.DSRequest.getAdvancedCriteria().  These same
+ * AdvancedCriteria&#010 objects can be directly created server side, and applied to a DSRequest via&#010
+ * setAdvancedCriteria().&#010 <P>&#010 Other servers may receive AdvancedCriteria in the most convenient format.  &#010
+ * &#010 The internal representation of AdvancedCriteria is a simple JavaScript structure, available&#010 via
+ * AdvancedCriteria.getJsObj():&#010 <pre>&#010 // an AdvancedCriteria&#010 {&#010    
+ * _constructor:"AdvancedCriteria",&#010     operator:"and",&#010     criteria:[&#010         // this is a Criterion&#010  
+ * { fieldName:"salary", operator:"lessThan", value:"80000" },&#010         { operator:"or", criteria:[&#010             {
+ * fieldName:"title", operator:"iContains", value:"Manager" },&#010             { fieldName:"reports", operator:"notNull"
+ * }&#010           ]  &#010         }&#010     ]&#010 }&#010 </pre>&#010 &#010 You can implement {@link
+ * com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest} to translate the JavaScript&#010
+ * AdvancedCriteria object directly into a SQL-like language, or serialize to XML using&#010 {@link
+ * com.smartgwt.client.data.DataSource#xmlSerialize DataSource.xmlSerialize}.  &#010 <P>&#010 See {@link
  * com.smartgwt.client.docs.CriteriaEditing Criteria Editing} for information about&#010 editing AdvancedCriteria in a
  * DynamicForm.
  */

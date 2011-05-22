@@ -59,7 +59,11 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * An HStack-based widget that allows a user to input a single criterion based on one field and one operator. <P>
+ * An HStack-based widget that allows a user to input a single criterion based on one field and one operator. <P> Note that
+ * FilterClauses must be used in conjunction with a {@link com.smartgwt.client.widgets.form.FilterBuilder}. By default the
+ * FilterBuilder will auto-generate its clauses based on specified criteria, but for advanced usage a FilterClause may be
+ * instantiated directly and passed to a filterBuilder via  {@link com.smartgwt.client.widgets.form.FilterBuilder#addClause
+ * FilterBuilder.addClause}.
  */
 public class FilterClause extends HStack {
 
@@ -204,6 +208,15 @@ public class FilterClause extends HStack {
     }
 
     // ********************* Methods ***********************
+            
+    /**
+     * Returns the {@link com.smartgwt.client.widgets.form.FilterBuilder filterBuilder} containing this clause, or null if this
+     * filterClause is not embedded in a filterBuilder.
+     */
+    public native void getFilterBuilder() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.getFilterBuilder();
+    }-*/;
             
     /**
      * Remove this clause by destroy()ing it.

@@ -19,12 +19,13 @@ package com.smartgwt.client.docs;
  * onclick="window.open('/examples/server_integration/#jstlTree');return false;">TreeGrid Initialization with JSTL</a>
  * </ul> <p> <b><u>Loading Tree nodes on demand</u></b> <p> In this mode, tree nodes are loaded on-demand the first time a
  * user expands a folder.  This approach is necessary for large trees.  This functionality is provided by the ResultTree
- * class. <p> ResultTrees require that every node in the tree have an {@link
- * com.smartgwt.client.widgets.tree.Tree#getIdField id} that is unique tree-wide.  When the user expands a folder whose
- * contents have not yet been loaded from the server (or you programmatically call openFolder() on such a node), the client
- * automatically sends a {@link com.smartgwt.client.data.DSRequest} to the server to ask for all immediate children of that
- * node.  The {@link com.smartgwt.client.data.DSRequest} criteria will specify the id of the node for which children are
- * being requested via the <code>parentId</code> property (see {@link
+ * class, which uses a {@link com.smartgwt.client.data.DataSource} to load data from the server.  Each DataSource Record
+ * becomes a {@link com.smartgwt.client.widgets.tree.TreeNode}. <p> ResultTrees require that every node in the tree have an
+ * {@link com.smartgwt.client.widgets.tree.Tree#getIdField id} that is unique tree-wide.  When the user expands a folder
+ * whose contents have not yet been loaded from the server (or you programmatically call openFolder() on such a node), the
+ * client automatically sends a {@link com.smartgwt.client.data.DSRequest} to the server to ask for all immediate children
+ * of that node.  The {@link com.smartgwt.client.data.DSRequest} criteria will specify the id of the node for which
+ * children are being requested via the <code>parentId</code> property (see {@link
  * com.smartgwt.client.widgets.tree.Tree#getParentIdField parentIdField}). This client is asking the server: "give me all
  * nodes whose parentId is the id of this node". <P> If there are no pre-existing node ids in the dataset you are loading,
  * you must generate node ids (because the client needs some way to identify nodes when talking to the server). Generally a

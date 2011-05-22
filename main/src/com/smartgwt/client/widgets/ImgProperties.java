@@ -218,3 +218,4 @@ public class ImgProperties extends DataClass {
 
 
 
+

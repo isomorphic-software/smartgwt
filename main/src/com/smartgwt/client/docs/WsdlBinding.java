@@ -38,29 +38,25 @@ package com.smartgwt.client.docs;
  * com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields component.useFlatFields}.&#010 <P>&#010 Note that the
  * WSDL tab in the Developer Console can provide a clean, simplified view of any &#010 WSDL file, making it easier to pick
  * out the appropriate <code>operationName</code> and&#010 <code>elementName</code> parameters to pass to
- * <code>getFetchDS()</code> and other&#010 {@link com.smartgwt.client.data.WebService} methods.&#010 <P>&#010 Take a look
- * at the <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_generic"
- * target="examples">Google SOAP Search example</a> and the&#010 <a href='/examples/databinding/dotNET/customerSearch.jsp'
- * onclick="window.open('/examples/databinding/dotNET/customerSearch.jsp');return false;">.NET example</a>&#010
- * (/examples/databinding/dotNET/customerSearch.jsp).&#010 <P>&#010 <b>Binding with Customized Presentation</b>&#010
- * <P>&#010 Because XML Schema lacks key presentation metadata such as user-viewable titles, typically&#010 you cannot
- * directly use the DataSources derived from XML Schema embedded in a WSDL file to&#010 drive visual component DataBinding
- * in your final application.&#010 <P>&#010 You can create a DataSource that has custom fields <b>and</b> invokes a
- * web&#010 service operation by setting {@link com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace}
- * to match the targetNamespace&#010 of the {@link com.smartgwt.client.data.WebService} (found on the
- * <code>&lt;definitions&gt;</code> element from the&#010 WSDL file), and setting {@link
- * com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation} to the name of the&#010 web service operation to
- * invoke.  <code>fetchData()</code> called on such a DataSource will&#010 invoke the web service operation named by {@link
- * com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation},&#010 just like a DataSource returned by {@link
- * com.smartgwt.client.data.WebService#getFetchDS WebService.getFetchDS}.&#010 <P>&#010 In contrast to
- * <code>getFetchDS()</code>, creating a DataSource in this way gives you the&#010 opportunity to:&#010 <ul>&#010 <li>
- * declare arbitrary fields, with Smart GWT presentation attributes such as titles and&#010 formatters&#010 <li> extract
- * any data from the response message, via&#010 {@link com.smartgwt.client.data.OperationBinding#getRecordXPath
- * operationBinding.recordXPath} and &#010 {@link com.smartgwt.client.data.DataSourceField#getValueXPath field.valueXPath},
- * and transform it with&#010 {@link com.smartgwt.client.data.DataSource#transformResponse transformResponse()}&#010 <li>
- * transform the inbound data, if necessary, in order to add metadata such as&#010 {@link
- * com.smartgwt.client.data.DSRequest#getStartRow startRow} for paging, or a sessionId for a service requiring
- * authentication&#010 </ul>&#010 These techniques are shown in the <a
+ * <code>getFetchDS()</code> and other&#010 {@link com.smartgwt.client.data.WebService} methods.&#010 &#010 <P>&#010
+ * <b>Binding with Customized Presentation</b>&#010 <P>&#010 Because XML Schema lacks key presentation metadata such as
+ * user-viewable titles, typically&#010 you cannot directly use the DataSources derived from XML Schema embedded in a WSDL
+ * file to&#010 drive visual component DataBinding in your final application.&#010 <P>&#010 You can create a DataSource
+ * that has custom fields <b>and</b> invokes a web&#010 service operation by setting {@link
+ * com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace} to match the targetNamespace&#010 of the
+ * {@link com.smartgwt.client.data.WebService} (found on the <code>&lt;definitions&gt;</code> element from the&#010 WSDL
+ * file), and setting {@link com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation} to the name of the&#010
+ * web service operation to invoke.  <code>fetchData()</code> called on such a DataSource will&#010 invoke the web service
+ * operation named by {@link com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation},&#010 just like a
+ * DataSource returned by {@link com.smartgwt.client.data.WebService#getFetchDS WebService.getFetchDS}.&#010 <P>&#010 In
+ * contrast to <code>getFetchDS()</code>, creating a DataSource in this way gives you the&#010 opportunity to:&#010
+ * <ul>&#010 <li> declare arbitrary fields, with Smart GWT presentation attributes such as titles and&#010 formatters&#010
+ * <li> extract any data from the response message, via&#010 {@link
+ * com.smartgwt.client.data.OperationBinding#getRecordXPath operationBinding.recordXPath} and &#010 {@link
+ * com.smartgwt.client.data.DataSourceField#getValueXPath field.valueXPath}, and transform it with&#010 {@link
+ * com.smartgwt.client.data.DataSource#transformResponse transformResponse()}&#010 <li> transform the inbound data, if
+ * necessary, in order to add metadata such as&#010 {@link com.smartgwt.client.data.DSRequest#getStartRow startRow} for
+ * paging, or a sessionId for a service requiring authentication&#010 </ul>&#010 These techniques are shown in the <a
  * href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_generic" target="examples">Google
  * SOAP Search example</a>.&#010 <P>&#010 <b>XML Schema Reuse</b>&#010 <P>&#010 Having loaded a WSDL file, all of the XML
  * Schema definitions within the service definition&#010 get translated to Smart GWT {@link

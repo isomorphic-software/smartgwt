@@ -510,6 +510,28 @@ public class Label extends Button {
     }
 
     /**
+     * Set the CSS class for this widget.  For a Label, this is equivalent to setting {@link
+     * com.smartgwt.client.widgets.Label#getBaseStyle baseStyle}.
+     * Dynamically change the CSS class for this widget.  For a Label, this is equivalent to {@link com.smartgwt.client.widgets.Label#getSetBaseStyle setBaseStyle}.
+     *
+     * @param styleName new CSS style name. Default value is "normal"
+     */
+    public void setStyleName(String styleName) {
+        setAttribute("styleName", styleName, true);
+    }
+
+    /**
+     * Set the CSS class for this widget.  For a Label, this is equivalent to setting {@link
+     * com.smartgwt.client.widgets.Label#getBaseStyle baseStyle}.
+     *
+     *
+     * @return String
+     */
+    public String getStyleName()  {
+        return getAttributeAsString("styleName");
+    }
+
+    /**
      * Vertical alignment of label text. See VerticalAlignment type for details.
      *
      * @param valign valign Default value is Canvas.CENTER
