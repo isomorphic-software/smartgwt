@@ -3222,7 +3222,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * The CSS class applied to this widget as a whole.
      * Sets the CSS class for this widget
      *
-     * @param styleName new CSS class name (must be defined previously). Default value is "normal"
+     * @param styleName new CSS style name. Default value is "normal"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_css" target="examples">CSS styles Example</a>
      */
