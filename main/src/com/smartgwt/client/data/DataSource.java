@@ -132,27 +132,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Whether to make this DataSource available as a global variable for convenience.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param addGlobalId addGlobalId Default value is true
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-     */
-    public void setAddGlobalId(Boolean addGlobalId)  throws IllegalStateException {
-        setAttribute("addGlobalId", addGlobalId, false);
-    }
-
-    /**
-     * Whether to make this DataSource available as a global variable for convenience.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getAddGlobalId()  {
-        return getAttributeAsBoolean("addGlobalId");
-    }
-
-    /**
      * When a DataSource is not {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData}:true and a fetch
      * results in the entire dataset being retrieved, this attribute being set to true causes the DataSource to automatically
      * switch to cacheAllData:true and prevent further server-trips for fetch  requests.
@@ -931,8 +910,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * be performed.&#010 <P>&#010 When using the Smart GWT Server, OperationBindings are specified in your DataSource&#010
      * descriptor (.ds.xml file) and control server-side behavior such as what Java object to route&#010 DSRequest to ({@link
      * com.smartgwt.client.docs.serverds.OperationBinding#serverObject serverObject}) or customizations to SQL / HQL
-     * queries&#010 ({@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} and {@link
-     * com.smartgwt.client.data.OperationBinding#getCustomHQL customHQL}).  See the &#010 @see <a
+     * queries&#010 ({@link com.smartgwt.client.docs.serverds.OperationBinding#customSQL customSQL} and {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#customHQL customHQL}).  See the &#010 @see <a
      * href="http://www.smartclient.com/smartgwtee/showcase/#javaDataIntegration" target="examples">Java Integration
      * samples</a>.&#010 <P>&#010 For DataSources bound to WSDL-described web services using&#010 {@link
      * com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace}, OperationBindings are used to bind each
@@ -975,8 +954,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * be performed.&#010 <P>&#010 When using the Smart GWT Server, OperationBindings are specified in your DataSource&#010
      * descriptor (.ds.xml file) and control server-side behavior such as what Java object to route&#010 DSRequest to ({@link
      * com.smartgwt.client.docs.serverds.OperationBinding#serverObject serverObject}) or customizations to SQL / HQL
-     * queries&#010 ({@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} and {@link
-     * com.smartgwt.client.data.OperationBinding#getCustomHQL customHQL}).  See the &#010 @see <a
+     * queries&#010 ({@link com.smartgwt.client.docs.serverds.OperationBinding#customSQL customSQL} and {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#customHQL customHQL}).  See the &#010 @see <a
      * href="http://www.smartclient.com/smartgwtee/showcase/#javaDataIntegration" target="examples">Java Integration
      * samples</a>.&#010 <P>&#010 For DataSources bound to WSDL-described web services using&#010 {@link
      * com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace}, OperationBindings are used to bind each
@@ -1716,6 +1695,19 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }-*/;
             
     /**
+     * Return the field definition object corresponding to the supplied dataPath
+     * @param dataPath dataPath of the field to retrieve
+     *
+     * @return field object, or null if no field corresponds to the                            supplied dataPath
+     */
+    public native DataSourceField getFieldForDataPath(String dataPath) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getFieldForDataPath(dataPath);
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.data.DataSourceField::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+            
+    /**
      * For a DataSource that describes a DOM structure, the list of legal child elements that can be contained by the element
      * described by this DataSource. <p> For a DataSource described by XML schema, this is the list of legal subelements <b>of
      * complexType</b> (elements of simpleType become DataSourceFields with atomic type). <p> Note that currently, if an XML
@@ -1908,10 +1900,28 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * com.smartgwt.client.rpc.RPCRequest#getWillHandleError willHandleError}:true. It is a normal condition for a "validate"
      * DSResponse to have validation errors and the response will never go to system-wide handling for unexpected errors
      * ({@link com.smartgwt.client.rpc.RPCManager#handleError RPCManager.handleError}).
+     * @param values record values to validate
      */
-    public native void validateData() /*-{
+    public native void validateData(Record values) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.validateData();
+        self.validateData(values.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+    /**
+     * Contacts the server to run server-side validation on a DSRequest and either returns {@link
+     * com.smartgwt.client.data.DSResponse#getErrors errors} validation errors or a {@link
+     * com.smartgwt.client.data.DSResponse#getStatus status} code of 0. <p> A "validate" dsRequest is effectively always {@link
+     * com.smartgwt.client.rpc.RPCRequest#getWillHandleError willHandleError}:true. It is a normal condition for a "validate"
+     * DSResponse to have validation errors and the response will never go to system-wide handling for unexpected errors
+     * ({@link com.smartgwt.client.rpc.RPCManager#handleError RPCManager.handleError}).
+     * @param values record values to validate
+     * @param callback callback to invoke on completion
+     * @param requestProperties additional properties to set on                                                   the DSRequest that will be issued
+     * @see com.smartgwt.client.docs.Operations Operations overview and related methods
+     */
+    public native void validateData(Record values, DSCallback callback, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.validateData(values.@com.smartgwt.client.core.DataClass::getJsObj()(), callback, requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
     // ********************* Static Methods ***********************
@@ -1977,6 +1987,51 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         });
 
     }-*/;
+    
+    // override setID() - if this.addGlobalID is false, don't register the ID with the IDManager
+    // Note: this is called directly from BaseClass init method so this.scClassName may not yet have
+    // been set. Catch this case and avoid calling 'getAddGlobalID' as that ultimately relies on this
+    // property being set correctly
+    public void setID(String id) {
+        // Default behavior at the SmartClient level is to add global IDs
+        if (scClassName == null || this.getAddGlobalId()) {
+            if (this.id != null) {
+                IDManager.unregisterID(this.id);
+            }
+            
+            IDManager.registerID(id);
+        }
+        setAttribute("ID", id, false);
+        this.id = id;
+    }
+    
+
+    /**
+     * Whether to make this DataSource available as a global variable for convenience.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param addGlobalId addGlobalId Default value is true
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setAddGlobalId(Boolean addGlobalId)  throws IllegalStateException {
+        setAttribute("addGlobalId", addGlobalId, false);
+        if (addGlobalId) {
+            IDManager.registerID(id);
+        } else {
+            IDManager.unregisterID(id);
+        }
+    }
+
+    /**
+     * Whether to make this DataSource available as a global variable for convenience.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAddGlobalId()  {
+        return getAttributeAsBoolean("addGlobalId");
+    }
+
 
     private static boolean isRecord(Object data) {
         return data instanceof Record;
