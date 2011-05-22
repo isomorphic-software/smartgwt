@@ -71,7 +71,7 @@ public class DetailViewerRecord extends Record {
     public static DetailViewerRecord getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
         RefDataClass obj = RefDataClass.getRef(jsObj);
-        if(obj != null) {
+        if(obj != null && obj instanceof DetailViewerRecord) {
             obj.setJsObj(jsObj);
             return (DetailViewerRecord) obj;
         } else {

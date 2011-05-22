@@ -66,7 +66,7 @@ public class CalendarEvent extends Record {
     public static CalendarEvent getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
         RefDataClass obj = RefDataClass.getRef(jsObj);
-        if(obj != null) {
+        if(obj != null && obj instanceof CalendarEvent) {
             obj.setJsObj(jsObj);
             return (CalendarEvent) obj;
         } else {

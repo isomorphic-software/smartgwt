@@ -68,7 +68,7 @@ public class TileRecord extends DetailViewerRecord {
     public static TileRecord getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
         RefDataClass obj = RefDataClass.getRef(jsObj);
-        if(obj != null) {
+        if(obj != null && obj instanceof TileRecord) {
             obj.setJsObj(jsObj);
             return (TileRecord) obj;
         } else {

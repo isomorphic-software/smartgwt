@@ -70,7 +70,7 @@ public class TreeNode extends ListGridRecord {
     public static TreeNode getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
         RefDataClass obj = RefDataClass.getRef(jsObj);
-        if(obj != null) {
+        if(obj != null && obj instanceof TreeNode) {
             obj.setJsObj(jsObj);
             return (TreeNode) obj;
         } else {

@@ -90,7 +90,7 @@ public class ListGridRecord extends Record {
     public static ListGridRecord getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
         RefDataClass obj = RefDataClass.getRef(jsObj);
-        if(obj != null) {
+        if(obj != null && obj instanceof ListGridRecord) {
             obj.setJsObj(jsObj);
             return (ListGridRecord) obj;
         } else {
