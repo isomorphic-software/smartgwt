@@ -139,6 +139,31 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
+     * For a form that produces filter criteria (see {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria
+     * form.getValuesAsCriteria()}), allows the user to enter simple expressions in any field in this form that takes text
+     * input. <P> See {@link com.smartgwt.client.widgets.form.fields.FormItem#getAllowExpressions allowExpressions} for
+     * details.
+     *
+     * @param allowExpressions allowExpressions Default value is null
+     */
+    public void setAllowExpressions(Boolean allowExpressions) {
+        setAttribute("allowExpressions", allowExpressions, true);
+    }
+
+    /**
+     * For a form that produces filter criteria (see {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria
+     * form.getValuesAsCriteria()}), allows the user to enter simple expressions in any field in this form that takes text
+     * input. <P> See {@link com.smartgwt.client.widgets.form.fields.FormItem#getAllowExpressions allowExpressions} for
+     * details.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAllowExpressions()  {
+        return getAttributeAsBoolean("allowExpressions");
+    }
+
+    /**
      * If {@link com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData autoFetchData} is <code>true</code>, this
      * attribute allows the developer to specify a textMatchStyle for the initial {@link
      * com.smartgwt.client.widgets.form.DynamicForm#fetchData DynamicForm.fetchData} call.
@@ -359,6 +384,78 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
+     * Default {@link com.smartgwt.client.types.DateDisplayFormat} for Date type values displayed in this form. <P> If some
+     * field's value is set to a native Date object, how should it be displayed to the user? If specified this is the default
+     * display format to use, and will apply to all fields except those specified as {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getType type:"time"}  (See {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getTimeFormatter timeFormatter}). <P> May be overridden at the component
+     * level for fields of type <code>datetime</code> via  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getDatetimeFormatter datetimeFormatter}. <P> Note that if specified, {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter} take precedence over the format
+     * specified at the component level. <P> If no explicit formatter is specified at the field or component level, dates will
+     * be  formatted according to the system-wide  short date display format or   short datetime display format depending on
+     * the specified field type.
+     *
+     * @param dateFormatter dateFormatter Default value is null
+     */
+    public void setDateFormatter(DateDisplayFormat dateFormatter) {
+        setAttribute("dateFormatter", dateFormatter.getValue(), true);
+    }
+
+    /**
+     * Default {@link com.smartgwt.client.types.DateDisplayFormat} for Date type values displayed in this form. <P> If some
+     * field's value is set to a native Date object, how should it be displayed to the user? If specified this is the default
+     * display format to use, and will apply to all fields except those specified as {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getType type:"time"}  (See {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getTimeFormatter timeFormatter}). <P> May be overridden at the component
+     * level for fields of type <code>datetime</code> via  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getDatetimeFormatter datetimeFormatter}. <P> Note that if specified, {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter} take precedence over the format
+     * specified at the component level. <P> If no explicit formatter is specified at the field or component level, dates will
+     * be  formatted according to the system-wide  short date display format or   short datetime display format depending on
+     * the specified field type.
+     *
+     *
+     * @return DateDisplayFormat
+     */
+    public DateDisplayFormat getDateFormatter()  {
+        return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
+    }
+
+    /**
+     * Default {@link com.smartgwt.client.types.DateDisplayFormat} for Date type values displayed in this form in fields of
+     * type <code>datetime</code>. <P> For datetime fields, this attribute will be used instead of {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getDateFormatter dateFormatter} when formatting Date values. <P> Note that
+     * if specified, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter} take precedence over the format
+     * specified at the component level. <P> If no explicit formatter is specified at the field or component level, datetime
+     * field values will be formatted according to the system-wide  short datetime display format.
+     *
+     * @param datetimeFormatter datetimeFormatter Default value is null
+     */
+    public void setDatetimeFormatter(DateDisplayFormat datetimeFormatter) {
+        setAttribute("datetimeFormatter", datetimeFormatter.getValue(), true);
+    }
+
+    /**
+     * Default {@link com.smartgwt.client.types.DateDisplayFormat} for Date type values displayed in this form in fields of
+     * type <code>datetime</code>. <P> For datetime fields, this attribute will be used instead of {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getDateFormatter dateFormatter} when formatting Date values. <P> Note that
+     * if specified, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter} take precedence over the format
+     * specified at the component level. <P> If no explicit formatter is specified at the field or component level, datetime
+     * field values will be formatted according to the system-wide  short datetime display format.
+     *
+     *
+     * @return DateDisplayFormat
+     */
+    public DateDisplayFormat getDatetimeFormatter()  {
+        return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("datetimeFormatter"));
+    }
+
+    /**
      * If set to true, client-side validators will not run on the form when validate() is called.  Server-side validators (if
      * any) will still run on attempted save.
      *
@@ -534,8 +631,11 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * If true, form item values will be automatically saved when each item's "editorExit"  handler is fired as well as when
-     * the entire form is submitted.
+     * When true, indicates that changes to items in this form will be automatically saved on a  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getImplicitSaveDelay delay}, as well as when the entire form is submitted. 
+     * Unless {@link com.smartgwt.client.widgets.form.DynamicForm#getImplicitSaveOnBlur form.implicitSaveOnBlur} is set  to
+     * false, changes will also be automatically saved on editorExit for each item.  This attribute can also be set directly on
+     * FormItems.
      *
      * @param implicitSave implicitSave Default value is false
      */
@@ -544,8 +644,11 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * If true, form item values will be automatically saved when each item's "editorExit"  handler is fired as well as when
-     * the entire form is submitted.
+     * When true, indicates that changes to items in this form will be automatically saved on a  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getImplicitSaveDelay delay}, as well as when the entire form is submitted. 
+     * Unless {@link com.smartgwt.client.widgets.form.DynamicForm#getImplicitSaveOnBlur form.implicitSaveOnBlur} is set  to
+     * false, changes will also be automatically saved on editorExit for each item.  This attribute can also be set directly on
+     * FormItems.
      *
      *
      * @return Boolean
@@ -575,6 +678,27 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      */
     public int getImplicitSaveDelay()  {
         return getAttributeAsInt("implicitSaveDelay");
+    }
+
+    /**
+     * If true, form item values will be automatically saved when each item's "editorExit"  handler is fired as well as on a
+     * delay and when the entire form is submitted.  This attribute can also be set directly on FormItems.
+     *
+     * @param implicitSaveOnBlur implicitSaveOnBlur Default value is false
+     */
+    public void setImplicitSaveOnBlur(Boolean implicitSaveOnBlur) {
+        setAttribute("implicitSaveOnBlur", implicitSaveOnBlur, true);
+    }
+
+    /**
+     * If true, form item values will be automatically saved when each item's "editorExit"  handler is fired as well as on a
+     * delay and when the entire form is submitted.  This attribute can also be set directly on FormItems.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getImplicitSaveOnBlur()  {
+        return getAttributeAsBoolean("implicitSaveOnBlur");
     }
 
     /**
@@ -1510,6 +1634,46 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
+     * When calling {@link com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData} on a form or
+     * valuesManager, by default if the server returns an error code, any callback passed into saveData() will not be fired. If
+     * the error code returned by the server indicates a validation error, it will be displayed to the user by updating the
+     * form items to show the error messages, and firing any specified hiddenValidationErrors handler, otherwise the standard
+     * RPCManager error handling logic would be invoked. <P> Developers who want to handle errors themselves can override this
+     * default by specifying  willHandleError on the DSRequest. In this case the callback passed in  will be fired even if the
+     * server returns an error status code. <P> If <code>suppressValidationErrorCallback</code> is set to true, if a save
+     * attempt returns a <i>validation</i> error code, the user-specified callback will not be fired <i>even if
+     * willHandleError:true</code> was specified on the dsRequest - though for other error codes, the callback would be fired
+     * if willHandle error is specified on the request. Note that this is the historical behavior for <var
+     * class=smartclient>Smart GWT builds 8.0 and earlier</var> <var class=smartgwt>SmartGWT builds 4.0 and earlier</var>
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param suppressValidationErrorCallback suppressValidationErrorCallback Default value is false
+     */
+    public void setSuppressValidationErrorCallback(Boolean suppressValidationErrorCallback) {
+        setAttribute("suppressValidationErrorCallback", suppressValidationErrorCallback, true);
+    }
+
+    /**
+     * When calling {@link com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData} on a form or
+     * valuesManager, by default if the server returns an error code, any callback passed into saveData() will not be fired. If
+     * the error code returned by the server indicates a validation error, it will be displayed to the user by updating the
+     * form items to show the error messages, and firing any specified hiddenValidationErrors handler, otherwise the standard
+     * RPCManager error handling logic would be invoked. <P> Developers who want to handle errors themselves can override this
+     * default by specifying  willHandleError on the DSRequest. In this case the callback passed in  will be fired even if the
+     * server returns an error status code. <P> If <code>suppressValidationErrorCallback</code> is set to true, if a save
+     * attempt returns a <i>validation</i> error code, the user-specified callback will not be fired <i>even if
+     * willHandleError:true</code> was specified on the dsRequest - though for other error codes, the callback would be fired
+     * if willHandle error is specified on the request. Note that this is the historical behavior for <var
+     * class=smartclient>Smart GWT builds 8.0 and earlier</var> <var class=smartgwt>SmartGWT builds 4.0 and earlier</var>
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSuppressValidationErrorCallback()  {
+        return getAttributeAsBoolean("suppressValidationErrorCallback");
+    }
+
+    /**
      * If enabled, whenever validation is triggered and a request to the server is required, user interactivity will be blocked
      * until the request returns. Can be set for the entire form or individual FormItems. <p> If false, the form will try to
      * avoid blocking user interaction until it is strictly required. That is until the user attempts to use a FormItem whose
@@ -1562,6 +1726,35 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      */
     public String getTarget()  {
         return getAttributeAsString("target");
+    }
+
+    /**
+     * Default {@link com.smartgwt.client.types.TimeDisplayFormat} for {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getType type:"time"} field values displayed in this form. <P> Note that
+     * if specified, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter} take precedence over the format
+     * specified at the component level. <P> If no explicit formatter is specified at the field or component level, time values
+     * will be  formatted according to the system-wide String. specified field type.
+     *
+     * @param timeFormatter timeFormatter Default value is null
+     */
+    public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
+        setAttribute("timeFormatter", timeFormatter.getValue(), true);
+    }
+
+    /**
+     * Default {@link com.smartgwt.client.types.TimeDisplayFormat} for {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getType type:"time"} field values displayed in this form. <P> Note that
+     * if specified, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter} take precedence over the format
+     * specified at the component level. <P> If no explicit formatter is specified at the field or component level, time values
+     * will be  formatted according to the system-wide String. specified field type.
+     *
+     *
+     * @return TimeDisplayFormat
+     */
+    public TimeDisplayFormat getTimeFormatter()  {
+        return EnumUtil.getEnum(TimeDisplayFormat.values(), getAttribute("timeFormatter"));
     }
 
     /**
@@ -2691,6 +2884,18 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         var valueJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(value);
         self.setValue(fieldName, valueJS);
     }-*/;
+    
+
+    /**
+     * Set the value for some field.
+     *
+     * @param fieldName Name of the field being updated
+     * @param value New value.
+     */
+    public void setValue(String fieldName, RelativeDate value) {
+        setValue(fieldName, value.getValue());    
+    }
+    
 
     /**
      * Synonym for {@link #setFields(com.smartgwt.client.widgets.form.fields.FormItem[])}.
@@ -2867,6 +3072,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public native Criteria getValuesAsCriteria() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var critJS = self.getValuesAsCriteria();
+        if (critJS == null) critJS = @com.smartgwt.client.util.JSOHelper::createObject()();
         return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(critJS);
     }-*/;
     

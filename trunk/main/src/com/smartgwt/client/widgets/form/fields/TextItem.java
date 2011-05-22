@@ -149,6 +149,31 @@ public class TextItem extends FormItem {
     }
 
     /**
+     * Should {@link com.smartgwt.client.widgets.form.fields.TextItem#getFormatEditorValue formatEditorValue} re-run whenever
+     * this item recieves or loses focus? Setting this property allows developers to conditionally format the display value
+     * based on item.hasFocus, typically to display a longer, more informative string while the item does not have focus, and
+     * simplifying it down to an easier-to-edit string when the user puts focus into the item.
+     *
+     * @param formatOnFocusChange formatOnFocusChange Default value is false
+     */
+    public void setFormatOnFocusChange(Boolean formatOnFocusChange) {
+        setAttribute("formatOnFocusChange", formatOnFocusChange);
+    }
+
+    /**
+     * Should {@link com.smartgwt.client.widgets.form.fields.TextItem#getFormatEditorValue formatEditorValue} re-run whenever
+     * this item recieves or loses focus? Setting this property allows developers to conditionally format the display value
+     * based on item.hasFocus, typically to display a longer, more informative string while the item does not have focus, and
+     * simplifying it down to an easier-to-edit string when the user puts focus into the item.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getFormatOnFocusChange()  {
+        return getAttributeAsBoolean("formatOnFocusChange");
+    }
+
+    /**
      * Default height for text items.
      *
      * @param height height Default value is 19

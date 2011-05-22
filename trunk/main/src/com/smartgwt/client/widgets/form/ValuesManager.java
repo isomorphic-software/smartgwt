@@ -169,6 +169,46 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         return EnumUtil.getEnum(DSOperationType.values(), getAttribute("saveOperationType"));
     }
 
+    /**
+     * When calling {@link com.smartgwt.client.widgets.form.ValuesManager#saveData ValuesManager.saveData} on a form or
+     * valuesManager, by default if the server returns an error code, any callback passed into saveData() will not be fired. If
+     * the error code returned by the server indicates a validation error, it will be displayed to the user by updating the
+     * form items to show the error messages, and firing any specified hiddenValidationErrors handler, otherwise the standard
+     * RPCManager error handling logic would be invoked. <P> Developers who want to handle errors themselves can override this
+     * default by specifying  willHandleError on the DSRequest. In this case the callback passed in  will be fired even if the
+     * server returns an error status code. <P> If <code>suppressValidationErrorCallback</code> is set to true, if a save
+     * attempt returns a <i>validation</i> error code, the user-specified callback will not be fired <i>even if
+     * willHandleError:true</code> was specified on the dsRequest - though for other error codes, the callback would be fired
+     * if willHandle error is specified on the request. Note that this is the historical behavior for <var
+     * class=smartclient>Smart GWT builds 8.0 and earlier</var> <var class=smartgwt>SmartGWT builds 4.0 and earlier</var>
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param suppressValidationErrorCallback suppressValidationErrorCallback Default value is false
+     */
+    public void setSuppressValidationErrorCallback(Boolean suppressValidationErrorCallback) {
+        setAttribute("suppressValidationErrorCallback", suppressValidationErrorCallback, true);
+    }
+
+    /**
+     * When calling {@link com.smartgwt.client.widgets.form.ValuesManager#saveData ValuesManager.saveData} on a form or
+     * valuesManager, by default if the server returns an error code, any callback passed into saveData() will not be fired. If
+     * the error code returned by the server indicates a validation error, it will be displayed to the user by updating the
+     * form items to show the error messages, and firing any specified hiddenValidationErrors handler, otherwise the standard
+     * RPCManager error handling logic would be invoked. <P> Developers who want to handle errors themselves can override this
+     * default by specifying  willHandleError on the DSRequest. In this case the callback passed in  will be fired even if the
+     * server returns an error status code. <P> If <code>suppressValidationErrorCallback</code> is set to true, if a save
+     * attempt returns a <i>validation</i> error code, the user-specified callback will not be fired <i>even if
+     * willHandleError:true</code> was specified on the dsRequest - though for other error codes, the callback would be fired
+     * if willHandle error is specified on the request. Note that this is the historical behavior for <var
+     * class=smartclient>Smart GWT builds 8.0 and earlier</var> <var class=smartgwt>SmartGWT builds 4.0 and earlier</var>
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSuppressValidationErrorCallback()  {
+        return getAttributeAsBoolean("suppressValidationErrorCallback");
+    }
+
     // ********************* Methods ***********************
             
     /**
@@ -236,6 +276,24 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
     public native void clearValues() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.clearValues();
+    }-*/;
+            
+    /**
+     * Given a fieldName or dataPath, this method will find the member responsible for interacting with that field's value. If
+     * no form is found, returns null.
+     * @param fieldName fieldName or dataPath to check
+     *
+     * @return member responsible for displaying this field (may be null).
+     */
+    public native Canvas getMemberForField(String fieldName) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getMemberForField(fieldName);
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
     }-*/;
             
     /**

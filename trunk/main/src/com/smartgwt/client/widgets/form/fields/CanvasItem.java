@@ -59,20 +59,28 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * Form item which renders a Canvas inline in a DynamicForm instance.&#010 <P>&#010 CanvasItem is {@link
- * com.smartgwt.client.widgets.form.fields.FormItem#getShouldSaveValue shouldSaveValue}:false by default, meaning that&#010
- * no value from the CanvasItem will be present in  values and no value will be&#010 saved when {@link
- * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData} is called.&#010 <P>&#010 The simplest way to
- * have a CanvasItem contribute a value to the data that a form saves is&#010 retrieve a value directly from the managed
- * Canvas and then call&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#setValue DynamicForm.setValue} immediately
- * before calling&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#saveData saveData()}.  &#010 <P>&#010 For
- * example if you were to embed a {@link com.smartgwt.client.widgets.Slider} widget into a form via a CanvasItem, your&#010
- * code to save might be:&#010 <pre>&#010   <i>formId</i>.setValue("<i>canvasItemFieldName</i>",
- * <i>sliderId</i>.getValue());&#010   <i>formId</i>.saveData();&#010 </pre>&#010 Note that there is a pre-existing {@link
- * com.smartgwt.client.widgets.form.fields.SliderItem} so this approach is not necessary for&#010 embedding a Slider into a
- * DynamicForm, just use SliderItem.
+ * FormItem which renders a Canvas inline in a DynamicForm instance. <P> CanvasItem is {@link
+ * com.smartgwt.client.widgets.form.fields.FormItem#getShouldSaveValue shouldSaveValue}:false by default, meaning that no
+ * value from the CanvasItem will be present in  values and no value will be saved when {@link
+ * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData} is called.  This is appropriate if your
+ * Canvas does not participate in displaying or editing the values of the form and is embedded in the form for layout
+ * purposes only. <P> If you set {@link com.smartgwt.client.widgets.form.fields.FormItem#getShouldSaveValue
+ * shouldSaveValue}:true, {@link com.smartgwt.client.widgets.form.fields.CanvasItem#addShowValueHandler
+ * CanvasItem.showValue} will be called to provide a value that your item should display.  Implement
+ * <code>showValue()</code> and call methods on the Canvas you've created to cause the value to be displayed. <P>
+ * <code>showValue()</code> will be called in various situations where the form receives data, including a call to {@link
+ * com.smartgwt.client.widgets.form.DynamicForm#setValues DynamicForm.setValues}, {@link
+ * com.smartgwt.client.widgets.form.DynamicForm#editRecord DynamicForm.editRecord}, or if {@link
+ * com.smartgwt.client.widgets.form.DynamicForm#fetchData DynamicForm.fetchData} is called and a Record is returned.  Bear
+ * in mind that <code>showValue()</code> can be called when the form and your item have not yet been drawn; in this case,
+ * store the value for later display. <P> To provide a value to the form, call {@link
+ * com.smartgwt.client.widgets.form.fields.CanvasItem#storeValue CanvasItem.storeValue} whenever the user changes the value
+ * in your Canvas.  Note that the form <b>will not</b> call <code>canvasItem.getValue()</code> in order to discover your
+ * item's value, so there is no purpose in overriding this method - use <code>storeValue</code> to proactively inform the
+ * form about changes instead.  This approach is necessary in order to enable change events. <P> If you cannot easily
+ * detect changes to values in your Canvas, a workaround is to call <code>storeValue</code> right before the form saves.
  */
-public class CanvasItem extends FormItem {
+public class CanvasItem extends FormItem  implements com.smartgwt.client.widgets.form.fields.events.HasShowValueHandlers {
 
     public static CanvasItem getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -138,6 +146,34 @@ public class CanvasItem extends FormItem {
     }
 
     /**
+     * Flag to disable the criteria editing overrides described in {@link
+     * com.smartgwt.client.widgets.form.fields.CanvasItem#getCriterion CanvasItem.getCriterion} whereby if this item contains a
+     * DynamicForm as its canvas, it will be used to edit nested AdvancedCriteria automatically. <P> This flag is required for
+     * cases where a canvasItem contains a DynamicForm, but the form is not set up to show inner field values of nested
+     * objects, and therefore should not attempt to apply nested advanced criteria directly to the form.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param editCriteriaInInnerForm editCriteriaInInnerForm Default value is true
+     */
+    public void setEditCriteriaInInnerForm(Boolean editCriteriaInInnerForm) {
+        setAttribute("editCriteriaInInnerForm", editCriteriaInInnerForm);
+    }
+
+    /**
+     * Flag to disable the criteria editing overrides described in {@link
+     * com.smartgwt.client.widgets.form.fields.CanvasItem#getCriterion CanvasItem.getCriterion} whereby if this item contains a
+     * DynamicForm as its canvas, it will be used to edit nested AdvancedCriteria automatically. <P> This flag is required for
+     * cases where a canvasItem contains a DynamicForm, but the form is not set up to show inner field values of nested
+     * objects, and therefore should not attempt to apply nested advanced criteria directly to the form.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getEditCriteriaInInnerForm()  {
+        return getAttributeAsBoolean("editCriteriaInInnerForm");
+    }
+
+    /**
      * CanvasItems support specifying overflow for the Canvas directly on the item.
      *
      * @param overflow overflow Default value is null
@@ -154,6 +190,29 @@ public class CanvasItem extends FormItem {
      */
     public Overflow getOverflow()  {
         return EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
+    }
+
+    /**
+     * Should this item's value be saved in the form's values and hence returned from {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValues form.getValues()}? <P> See the {@link
+     * com.smartgwt.client.widgets.form.fields.CanvasItem} class overview for a discussion of values-handling in  CanvasItems
+     *
+     * @param shouldSaveValue shouldSaveValue Default value is false
+     */
+    public void setShouldSaveValue(Boolean shouldSaveValue) {
+        setAttribute("shouldSaveValue", shouldSaveValue);
+    }
+
+    /**
+     * Should this item's value be saved in the form's values and hence returned from {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValues form.getValues()}? <P> See the {@link
+     * com.smartgwt.client.widgets.form.fields.CanvasItem} class overview for a discussion of values-handling in  CanvasItems
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShouldSaveValue()  {
+        return getAttributeAsBoolean("shouldSaveValue");
     }
 
     // ********************* Methods ***********************
@@ -205,7 +264,11 @@ public class CanvasItem extends FormItem {
      * this is required&#010 to ensure the nested form is actually passed the values to edit. &#010 <P>&#010 The default
      * implementation of this method checks for this.canvas being specified as a&#010 dynamicForm, and in that case simply
      * returns the result of &#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsAdvancedCriteria
-     * DynamicForm.getValuesAsAdvancedCriteria} on the inner form.&#010 &#010
+     * DynamicForm.getValuesAsAdvancedCriteria} on the inner form.&#010 <P>&#010 Note that this functionality may be entirely
+     * bypassed by&#010 setting {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getEditCriteriaInInnerForm
+     * editCriteriaInInnerForm} to false. This flag is useful when defining a&#010 dynamicForm based canvasItem which is not
+     * intended for editing nested data -- for example&#010 if a standard atomic field value is being displayed in some custom
+     * way using a&#010 DynamicForm embedded in the item.&#010 &#010
      *
      * @return criterion to merge with advanced criteria returned by   {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria DynamicForm.getValuesAsCriteria}
@@ -249,6 +312,32 @@ public class CanvasItem extends FormItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.setCriterion(criterion.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
+    /**
+     * Add a showValue handler.
+     * <p>
+     * This method will be called whenever this form item's value is being set via a programmatic call to e.g: {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setValues DynamicForm.setValues} or {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue} and may be overridden by CanvasItems
+     * intended to support displaying data values to update the embedded Canvas to reflect the value passed in.
+     *
+     * @param handler the showValue handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addShowValueHandler(com.smartgwt.client.widgets.form.fields.events.ShowValueHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.ShowValueEvent.getType()) == 0) setupShowValueEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.ShowValueEvent.getType());
+    }
+
+    private native void setupShowValueEvent() /*-{
+        var obj = null;
+            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+            var selfJ = this;
+            obj.showValue = $entry(function(){
+                var param = {"displayValue" : arguments[0], "dataValue" : arguments[1]};
+                var event = @com.smartgwt.client.widgets.form.fields.events.ShowValueEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
+   }-*/;
 
     // ********************* Static Methods ***********************
         
@@ -284,6 +373,66 @@ public class CanvasItem extends FormItem {
     	if (jsCanvas == null) return null;
     	return Canvas.getOrCreateRef(jsCanvas);
     }
+    
+    
+    /**
+     * Store a value for this form item. This method will fire standard {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler FormItem.change} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#addChangedHandler FormItem.changed} handlers, and store out the method
+     * passed in such that subsequent calls to {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue
+     * FormItem.getValue} or {@link com.smartgwt.client.widgets.form.DynamicForm#getValue DynamicForm.getValue} will return the
+     * new value for this item. <P> For canvasItems that manipulate values and display them in some arbitrary canvas
+     * representation developers should call this method when the user interacts with the embedded canvas in a way that
+     * modifies the value for the item. <P> If you cannot easily detect changes to values in your Canvas, a workaround is to
+     * call <code>storeValue</code> right before the form saves.
+     * @param value value to save for this item
+     */
+    public native void storeValue(Object value) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.storeValue(value);
+    }-*/;
+    
+    
+    /**
+     * Store a value for this form item. This method will fire standard {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler FormItem.change} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#addChangedHandler FormItem.changed} handlers, and store out the method
+     * passed in such that subsequent calls to {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue
+     * FormItem.getValue} or {@link com.smartgwt.client.widgets.form.DynamicForm#getValue DynamicForm.getValue} will return the
+     * new value for this item. <P> For canvasItems that manipulate values and display them in some arbitrary canvas
+     * representation developers should call this method when the user interacts with the embedded canvas in a way that
+     * modifies the value for the item. <P> If you cannot easily detect changes to values in your Canvas, a workaround is to
+     * call <code>storeValue</code> right before the form saves.
+     * @param value value to save for this item
+     */
+    public native void storeValue(Record value) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        if (value != null) {
+            value = value.@com.smartgwt.client.core.DataClass::getJsObj()();
+        }
+        self.storeValue(value);
+    }-*/;
+    
+    
+    /**
+     * Store a value for this form item. This method will fire standard {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler FormItem.change} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#addChangedHandler FormItem.changed} handlers, and store out the method
+     * passed in such that subsequent calls to {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue
+     * FormItem.getValue} or {@link com.smartgwt.client.widgets.form.DynamicForm#getValue DynamicForm.getValue} will return the
+     * new value for this item. <P> For canvasItems that manipulate values and display them in some arbitrary canvas
+     * representation developers should call this method when the user interacts with the embedded canvas in a way that
+     * modifies the value for the item. <P> If you cannot easily detect changes to values in your Canvas, a workaround is to
+     * call <code>storeValue</code> right before the form saves.
+     * @param value value to save for this item
+     */
+    public native void storeValue(RecordList value) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        if (value != null) {
+            value = value.@com.smartgwt.client.data.RecordList::getJsObj()();
+        }
+        self.storeValue(value);
+    }-*/;
 
 }
 

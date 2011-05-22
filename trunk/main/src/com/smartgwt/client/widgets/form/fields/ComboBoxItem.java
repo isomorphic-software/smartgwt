@@ -884,6 +884,8 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
     }
 
     private static native void init()/*-{
+        // Make getPickListFilterCriteria an override point. We recommend using setPickListFilterCriteriaFunction instead
+        // but support both.
         if ($wnd.isc.ComboBoxItem.getPrototype().__getPickListFilterCriteria == null) {
             $wnd.isc.ComboBoxItem.getPrototype().__getPickListFilterCriteria = $wnd.isc.ComboBoxItem.getPrototype().getPickListFilterCriteria;
             $wnd.isc.ComboBoxItem.getPrototype().getPickListFilterCriteria = $entry(function() {
@@ -917,9 +919,15 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      * <br>
      * Static criteria, specified via pickListCriteria, will always be included.
      * <br>
-     * If you are implementing your own getPickListFilterCriteria() the read-only property this.filterWithValue can be read to determine whether the ComboBox would ordinarily ignore the typed-in value for filtering. Note that in addition to cases where the user explicitly shows the pickList, filterWithValue will also be true during a call to ComboBoxItem.fetchData() on a databound comboBox.
+     * If you are implementing your own criteria via an override to this method the read-only property filterWithValue can be read to determine whether the
+     * ComboBox would ordinarily ignore the typed-in value for filtering. Note that in addition to cases where the user explicitly shows the pickList, filterWithValue
+     * will also be true during a call to ComboBoxItem.fetchData() on a databound comboBox.
      * <br>
-     * <b>Note : this is an override point</b>
+     * <b>Note : this is an override point - if overridden this method will be called by the live form item during filtering.
+     * However it is recommended that developers use
+     * {@link #setPickListFilterCriteriaFunction(FormItemCriteriaFunction)} to build custom criteria instead of overriding this method directly. This ensures that
+     * the custom filter criteria generating code will be called even if the form item was automatically generated based on a template 
+     * passed to {@link com.smartgwt.client.widgets.grid.ListGridField#setEditorType}.</b>
      *
      * @return criteria to be used for databound or local filtering
      */
@@ -928,7 +936,7 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
         var critJS = self.__getPickListFilterCriteria();
         return critJS == null ? null : @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(critJS);
     }-*/;
-
+    
     //------------------- From PickList -------
 
     /**
@@ -1365,6 +1373,7 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      * Set the pick list filter criteria function / handler.
      *
      * @param filterCriteriaFunction the filter criteria function
+     * @deprecated in favor of {@link #setPickListFilterCriteriaFunction(FormItemCriteriaFunction)}
      */
     public native void setPickListFilterCriteriaFunction(FilterCriteriaFunction filterCriteriaFunction) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
@@ -1373,6 +1382,35 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
             return crit == null ? null : crit.@com.smartgwt.client.data.Criteria::getJsObj()();
         });
     }-*/;
+
+    /**
+     * Set up a method to return filter criteria for options displayed for this item.
+     * <br>
+     * The criteria returned by this method are used to decide which options should appear in the 
+     * drop-down PickList shown by this ComboBox.
+     * <br>
+     * Static criteria, specified via pickListCriteria, will always be included in addition to criteria 
+     * returned by this method.
+     * <br>
+     * If you are implementing your own criteria via this API, use {@link #getFilterWithValue()} to
+     * determine whether the ComboBox would ordinarily ignore the typed-in value for filtering (IE whether the filter
+     * was initialized by the user typing a partial value, or by them clicking the icon to request a complete pickList).
+     * 
+     * Note that in addition to cases where the user explicitly shows the pickList, filterWithValue
+     * will also be false during a call to ComboBoxItem.fetchData() on a databound comboBox.
+     *
+     */
+    public native void setPickListFilterCriteriaFunction(FormItemCriteriaFunction filterCriteriaFunction) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.getPickListFilterCriteria = $entry(function() {
+            var context = @com.smartgwt.client.widgets.form.fields.FormItemFunctionContext::new()();
+            var itemJ = @com.smartgwt.client.widgets.form.fields.ComboBoxItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(this);
+            context.@com.smartgwt.client.widgets.form.fields.FormItemFunctionContext::setFormItem(Lcom/smartgwt/client/widgets/form/fields/FormItem;)(itemJ);
+            var crit = filterCriteriaFunction.@com.smartgwt.client.widgets.form.fields.FormItemCriteriaFunction::getCriteria(Lcom/smartgwt/client/widgets/form/fields/FormItemFunctionContext;)(context);
+            return crit == null ? null : crit.@com.smartgwt.client.data.Criteria::getJsObj()();
+        });
+    }-*/;
+    
 
     /**
      * Set the properties to be applied to the pickList created for this Form Item.

@@ -626,12 +626,28 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     // ********************* Methods ***********************
             
     /**
-     * Add a new {@link com.smartgwt.client.widgets.form.FilterClause} to this FilterBuilder.
+     * Add a new {@link com.smartgwt.client.widgets.form.FilterClause} to this FilterBuilder. <P> This API is intended for the
+     * rare use case of adding a highly customized FilterClause component that does not include the standard
+     * field/operator/value picking interface, instead providing a custom interface and returning a criterion via {@link
+     * com.smartgwt.client.widgets.form.FilterClause#getCriterion FilterClause.getCriterion}. <P> If you just want to
+     * programmatically add a new FilterClause showing a specific Criterion use {@link
+     * com.smartgwt.client.widgets.form.FilterBuilder#addCriterion FilterBuilder.addCriterion}. <P> If you want to use the
+     * standard field/operator/value interface but provide a custom control for editing the value, see {@link
+     * com.smartgwt.client.data.DataSource#addSearchOperator DataSource.addSearchOperator} and  editorType.
      * @param filterClause A {@link com.smartgwt.client.widgets.form.FilterClause} instance
      */
     public native void addClause(FilterClause filterClause) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addClause(filterClause.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+            
+    /**
+     * Add a new criterion, including recursively adding sub-criteria for a criterion that contains other criteria.
+     * @param criterion new criterion to be added
+     */
+    public native void addCriterion(Criterion criterion) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.addCriterion(criterion.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
             
     /**
@@ -762,6 +778,32 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     // ***********************************************************        
 
 
+
+
+    public void onInit () {
+        super.onInit();
+        onInit_FilterBuilder();
+    }
+    
+    protected native void onInit_FilterBuilder () /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        
+        self.__getValueFieldProperties = self.getValueFieldProperties;
+        self.getValueFieldProperties = $entry(function(type, fieldName, operatorId, itemType) {
+            var jObj = this.__ref;
+            if (jObj == null) return this.__getValueFieldProperties(type, fieldName, operatorId, itemType);
+            var fieldTypeEnum = @com.smartgwt.client.types.FieldType::values()(),
+                operatorIdEnum = @com.smartgwt.client.types.OperatorId::values()(),
+                itemTypeEnum = @com.smartgwt.client.types.ValueItemType::values()();
+            var jType = @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(fieldTypeEnum,type),
+                jOperatorId = @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(operatorIdEnum,operatorId),
+                jItemType = @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(itemTypeEnum,itemType);
+            var formItemJ = jObj.@com.smartgwt.client.widgets.form.FilterBuilder::getValueFieldProperties(Lcom/smartgwt/client/types/FieldType;Ljava/lang/String;Lcom/smartgwt/client/types/OperatorId;Lcom/smartgwt/client/types/ValueItemType;)(jType, fieldName, jOperatorId, jItemType);
+            if (formItemJ == null) return null;
+            return formItemJ.@com.smartgwt.client.widgets.form.fields.FormItem::getEditorTypeConfig()();
+        });
+        
+    }-*/;
     /**
      * If true (the default), show field titles in the drop-down box used to select a field for querying. If false, show
      * actual field names instead.
@@ -836,6 +878,79 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         var critJS = self.getCriteria();
         return @com.smartgwt.client.data.AdvancedCriteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(critJS);
     }-*/;
+    
+    /**
+     * Returns the list of this FilterBuilder's FilterClauses that are currently selected.  A  clause is "selected" if the user
+     * has checked the checkbox next to it; therefore, this  method always returns an empty list unless the  {@link
+     * com.smartgwt.client.widgets.form.FilterBuilder#getShowSelectionCheckbox showSelectionCheckbox} property is set.  This
+     * method is only  applicable where TopOperatorAppearance is "inline" (because that is the only  appearance that supports
+     * <code>showSelectionCheckbox</code>)
+     *
+     * @return The list of selected clauses
+     */
+    public native FilterClause[] getSelectedClauses() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var clauses = self.getSelectedClauses();
+        return @com.smartgwt.client.widgets.form.FilterBuilder::convertToFilterClauseArray(Lcom/google/gwt/core/client/JavaScriptObject;)(clauses);
+    }-*/;
+    protected static FilterClause[] convertToFilterClauseArray(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new FilterClause[]{};
+        }
+        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
+        FilterClause[] objects = new FilterClause[componentsj.length];
+        for (int i = 0; i < componentsj.length; i++) {
+            JavaScriptObject componentJS = componentsj[i];
+            FilterClause obj = (FilterClause) BaseWidget.getRef(componentJS);
+            if (obj == null) {
+                obj = new FilterClause(componentJS);
+            }
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+    
+    /**
+     * Remove a clause this FilterBuilder is currently showing.
+     * @param clause clause as retrieved from filterBuilder.clauses
+     */
+    public native void removeClause(FilterClause clause) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.removeClause(clause.@com.smartgwt.client.widgets.BaseWidget::getJsObj()());
+    }-*/;
+
+
+    public Canvas[] getMembers() {
+        return Canvas.convertToCanvasArray(getAttributeAsJavaScriptObject("members"));
+    }
+    
+    /**
+     * Override to return properties for the FormItem(s) used for the "value" field displayed within clauses within this
+     * filterBuilder. <P> Note that the  valueType impacts when this method is called. For operators with valueType
+     * <code>"fieldType"</code> or <code>"custom"</code>, a single value field is displayed. For operators with valueType
+     * <code>"valueRange"</code> two value-field items are displayed (one for the start and one for the end position). The
+     * <code>valueItemType</code> parameter may be used to determine which form item is being generated.
+     * @param type type of the DataSource field for this filter row. Note that for {@link DataSourceSimpleTypeField} SimpleType
+     *   based DataSource fields this attribute will be null
+     * @param fieldName name of the DataSource field for this filter row
+     * @param operatorId {@link com.smartgwt.client.types.OperatorId} for the chosen operator
+     * @param itemType What valueItem is being generated.
+     *
+     * @return properties for the value field
+     */
+    public native FormItem getValueFieldProperties(FieldType type, String fieldName, OperatorId operatorId, ValueItemType itemType) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.__getValueFieldProperties(type == null ? "custom" : type.@com.smartgwt.client.types.FieldType::getValue()(), fieldName, operatorId.@com.smartgwt.client.types.OperatorId::getValue()(), itemType.@com.smartgwt.client.types.ValueItemType::getValue()());
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.form.fields.FormItem::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+
+
 
 }
 
