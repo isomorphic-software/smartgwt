@@ -97,10 +97,10 @@ public class MiniDateRangeItem extends StaticTextItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Format for displaying dates in to the user.   Defaults to the system-wide default established by 
-     * setDefaultDisplayFormat. <P> If this attribute is unset, the display value is formatted intelligently according to the
-     * dates involved.  For example, if both dates appear in the same month, the value will be  formatted as <code>Month date1
-     * - date2, Year</code> and, if in different months of the same year, <code>Month1 date1 - Month2 date2, Year</code>.
+     * Format for displaying dates in to the user.   <P> If this attribute is unset, the display value is formatted
+     * intelligently according to the dates involved.  For example, if both dates appear in the same month, the value will be 
+     * formatted as <code>Month date1 - date2, Year</code> and, if in different months of the same year, <code>Month1 date1 -
+     * Month2 date2, Year</code>.
      *
      * @param dateDisplayFormat dateDisplayFormat Default value is null
      */
@@ -109,10 +109,10 @@ public class MiniDateRangeItem extends StaticTextItem {
     }
 
     /**
-     * Format for displaying dates in to the user.   Defaults to the system-wide default established by 
-     * setDefaultDisplayFormat. <P> If this attribute is unset, the display value is formatted intelligently according to the
-     * dates involved.  For example, if both dates appear in the same month, the value will be  formatted as <code>Month date1
-     * - date2, Year</code> and, if in different months of the same year, <code>Month1 date1 - Month2 date2, Year</code>.
+     * Format for displaying dates in to the user.   <P> If this attribute is unset, the display value is formatted
+     * intelligently according to the dates involved.  For example, if both dates appear in the same month, the value will be 
+     * formatted as <code>Month date1 - date2, Year</code> and, if in different months of the same year, <code>Month1 date1 -
+     * Month2 date2, Year</code>.
      *
      *
      * @return DateDisplayFormat
@@ -231,7 +231,10 @@ public class MiniDateRangeItem extends StaticTextItem {
     /**
      * Returns true if the specified criterion contains: <ul><li>A single "lessOrEqual" or "greaterOrEqual" criterion on this
      * field</li>     <li>An "and" type criterion containing a "lessOrEqual" and a "greaterOrEqual" criterion on         this
-     * field</li> </ul>
+     * field</li>     <li>A single "equals" criterion.  Internally, this will be converted into a range         by constructing
+     * an "and" type criterion containing both a "lessOrEqual" and          a "greaterOrEqual" criterion on this field.  Note
+     * that subsequent calls to          {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getCriterion
+     * getCriterion()} will return this more complex          criterion.</li> </ul>
      * @param criterion criterion to test
      *
      * @return returns true if this criterion can be edited by this item
@@ -284,7 +287,9 @@ public class MiniDateRangeItem extends StaticTextItem {
      * Applies the specified criterion to this item for editing. Applies any specified "greaterOrEqual" operator criterion or
      * sub-criterion to our {@link com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getFromField fromField} and any
      * specified "lessOrEqual" operator criterion or sub-criterion to our {@link
-     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getToField toField}.
+     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getToField toField}. <P> Note that a single "equals" criterion
+     * can also be passed.  See  {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#canEditCriterion
+     * canEditCriterion()} for more detail.
      * @param criterion criterion to edit
      */
     public native void setCriterion(Criterion criterion) /*-{

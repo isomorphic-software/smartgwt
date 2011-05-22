@@ -63,11 +63,11 @@ package com.smartgwt.client.docs;
  * according to the results of earlier transactions</li>       <li>For SQL DataSources, use {@link
  * com.smartgwt.client.docs.CustomQuerying SQL Templating} to change,            add to or even completely replace the SQL
  * sent to the database, and to implement           special query requirements</li>       <li>For Hibernate DataSources,
- * use {@link com.smartgwt.client.data.OperationBinding#getCustomHQL custom HQL queries}           to implement special
- * query requirements</li>      </ul>      Read more about the server-side request processing flow and how to customize it
- * in      {@link com.smartgwt.client.docs.ServerDataIntegration the server integration overview}. </ul> </ul> <ul> <li>If
- * you do not have a Java server:</li>   <ul><li>If you are not obliged to use a pre-existing network protocol, use the    
- * {@link com.smartgwt.client.data.RestDataSource}</li>       <li>Otherwise, use {@link
+ * use {@link com.smartgwt.client.docs.serverds.OperationBinding#customHQL custom HQL queries}           to implement
+ * special query requirements</li>      </ul>      Read more about the server-side request processing flow and how to
+ * customize it in      {@link com.smartgwt.client.docs.ServerDataIntegration the server integration overview}. </ul> </ul>
+ * <ul> <li>If you do not have a Java server:</li>   <ul><li>If you are not obliged to use a pre-existing network protocol,
+ * use the            {@link com.smartgwt.client.data.RestDataSource}</li>       <li>Otherwise, use {@link
  * com.smartgwt.client.docs.ClientDataIntegration client-side data integration} features           to create a custom
  * client-side DataSource that adapts the DataSource protocol to            your existing services</li>   </ul> </ul>
  * <p><br> <b>RPCs: Unstructured Server Communication</b> <P> Smart GWT also supports "unstructured" client-server

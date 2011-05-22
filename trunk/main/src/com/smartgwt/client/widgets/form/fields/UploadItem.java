@@ -60,9 +60,11 @@ import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * FormItem that creates an HTML &lt;input type="upload"&gt; control, with an interface that allows a user to pick a file
- * from his machine to upload to the server. <P> See the {@link com.smartgwt.client.docs.Upload Uploading Files} overview
- * for details. <P> Note: if a form containing an UploadItem is {@link com.smartgwt.client.widgets.Canvas#redraw redrawn}
- * (which may happen if other form items are shown or hidden, the form is {@link
+ * from his machine to upload to the server. <P> <b>NOTE:</b> use {@link com.smartgwt.client.widgets.form.fields.FileItem},
+ * <b>not</b> UploadItem, if you are using the Smart GWT Server framework.  FileItem is much easier to use and addresses
+ * all the limitations of UploadItem discussed below.  See the {@link com.smartgwt.client.docs.Upload Uploading Files}
+ * overview for details. <P> If a form containing an UploadItem is {@link com.smartgwt.client.widgets.Canvas#redraw
+ * redrawn} (which may happen if other form items are shown or hidden, the form is {@link
  * com.smartgwt.client.widgets.Canvas#getRedrawOnResize resized}, or other items show validation errors) then the value in
  * the upload item is lost (because an HTML upload field may not be created with a value). For this reason, if you are
  * building a form that combines an UploadItem with other FormItems that could trigger redraw()s, recommended practice is

@@ -20,8 +20,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSortDirection
  * @see com.smartgwt.client.widgets.grid.ListGrid#getShowSortArrow
  * @see com.smartgwt.client.widgets.grid.ListGrid#getInitialSort
- * @see com.smartgwt.client.types.SortArrow
  * @see com.smartgwt.client.types.SortDirection
+ * @see com.smartgwt.client.types.SortArrow
  */
 public interface Sorting {
 }
