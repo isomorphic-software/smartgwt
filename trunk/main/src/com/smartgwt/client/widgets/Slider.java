@@ -203,6 +203,50 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
+     * Optional CSS style for the thumb for a horizontally oriented slider. <P> Will have the suffix "down" added when the
+     * mouse is down on the thumb, and "Disabled" added when the slider is disabled.
+     *
+     * @param hThumbStyle hThumbStyle Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setHThumbStyle(String hThumbStyle)  throws IllegalStateException {
+        setAttribute("hThumbStyle", hThumbStyle, false);
+    }
+
+    /**
+     * Optional CSS style for the thumb for a horizontally oriented slider. <P> Will have the suffix "down" added when the
+     * mouse is down on the thumb, and "Disabled" added when the slider is disabled.
+     *
+     *
+     * @return String
+     */
+    public String getHThumbStyle()  {
+        return getAttributeAsString("hThumbStyle");
+    }
+
+    /**
+     * Optional CSS style for the track for a horizontally oriented slider. <P> Will have the suffix "Disabled" added when the
+     * slider is disabled.
+     *
+     * @param hTrackStyle hTrackStyle Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setHTrackStyle(String hTrackStyle)  throws IllegalStateException {
+        setAttribute("hTrackStyle", hTrackStyle, false);
+    }
+
+    /**
+     * Optional CSS style for the track for a horizontally oriented slider. <P> Will have the suffix "Disabled" added when the
+     * slider is disabled.
+     *
+     *
+     * @return String
+     */
+    public String getHTrackStyle()  {
+        return getAttributeAsString("hTrackStyle");
+    }
+
+    /**
      * The height of the labels used to display the minimum, maximum and current values of the slider.
      * Sets the {@link com.smartgwt.client.widgets.Slider#getLabelHeight labelHeight} property of the slider
      *
@@ -558,10 +602,10 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * and the state of the thumb, as follows:<br> Assume the thumbSrc is set to <code>{baseName}.{extension}</code><br> The
      * full set of images to be displayed is:<br> For horizontal sliders: <ul> <li><code>h{baseName}.{extension}</code>:
      * default enabled appearance. <li><code>h{baseName}_down.{extension}</code>:  appearance when the slider is enabled and
-     * the     thumb is clicked. <li><code>h{baseName}_off.{extension}</code>:  appearance when the slider is disabled. </ul>
-     * For vertical sliders: <ul> <li><code>v{baseName}.{extension}</code>: default enabled appearance.
+     * the     thumb is clicked. <li><code>h{baseName}_Disabled.{extension}</code>:  appearance when the slider is disabled.
+     * </ul> For vertical sliders: <ul> <li><code>v{baseName}.{extension}</code>: default enabled appearance.
      * <li><code>v{baseName}_down.{extension}</code>:  appearance when the slider is enabled and the     thumb is clicked.
-     * <li><code>v{baseName}_off.{extension}</code>:  appearance when the slider is disabled. </ul>
+     * <li><code>v{baseName}_Disabled.{extension}</code>:  appearance when the slider is disabled. </ul>
      * Sets the {@link com.smartgwt.client.widgets.Slider#getThumbSrc thumbSrc} property of the slider
      *
      * @param thumbSrc new thumbSrc. Default value is "thumb.gif"
@@ -575,10 +619,10 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * and the state of the thumb, as follows:<br> Assume the thumbSrc is set to <code>{baseName}.{extension}</code><br> The
      * full set of images to be displayed is:<br> For horizontal sliders: <ul> <li><code>h{baseName}.{extension}</code>:
      * default enabled appearance. <li><code>h{baseName}_down.{extension}</code>:  appearance when the slider is enabled and
-     * the     thumb is clicked. <li><code>h{baseName}_off.{extension}</code>:  appearance when the slider is disabled. </ul>
-     * For vertical sliders: <ul> <li><code>v{baseName}.{extension}</code>: default enabled appearance.
+     * the     thumb is clicked. <li><code>h{baseName}_Disabled.{extension}</code>:  appearance when the slider is disabled.
+     * </ul> For vertical sliders: <ul> <li><code>v{baseName}.{extension}</code>: default enabled appearance.
      * <li><code>v{baseName}_down.{extension}</code>:  appearance when the slider is enabled and the     thumb is clicked.
-     * <li><code>v{baseName}_off.{extension}</code>:  appearance when the slider is disabled. </ul>
+     * <li><code>v{baseName}_Disabled.{extension}</code>:  appearance when the slider is disabled. </ul>
      *
      *
      * @return String
@@ -700,16 +744,17 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * start (left edge) of the track for a slider     that is enabled. <li><code>h{baseName}_stretch.{extension}</code>:  the
      * track for an enabled slider; this may     be centered, tiled, or stretched.
      * <li><code>h{baseName}_end.{extension}</code>:  end (right edge) of the track for a slider     that is enabled.
-     * <li><code>h{baseName}_off_start.{extension}</code>: start (left edge) of the track for a slider     that is disabled.
-     * <li><code>h{baseName}_off_stretch.{extension}</code>:  the track for a disabled slider; this     may be centered, tiled,
-     * or stretched. <li><code>h{baseName}_off_end.{extension}</code>:  end (right edge) of the track for a slider     that is
-     * disabled. </ul> For vertical sliders: <ul> <li><code>v{baseName}_start.{extension}</code>: start (bottom edge) of the
-     * track for a slider     that is enabled. <li><code>v{baseName}_stretch.{extension}</code>:  the track for an enabled
-     * slider; this may     be centered, tiled, or stretched. <li><code>v{baseName}_end.{extension}</code>:  end (top edge) of
-     * the track for a slider     that is enabled. <li><code>v{baseName}_off_start.{extension}</code>: start (bottom edge) of
-     * the track for a slider     that is disabled. <li><code>v{baseName}_off_stretch.{extension}</code>:  the track for a
-     * disabled slider; this     may be centered, tiled, or stretched. <li><code>v{baseName}_off_end.{extension}</code>:  end
-     * (top edge) of the track for a slider     that is disabled. </ul>
+     * <li><code>h{baseName}_Disabled_start.{extension}</code>: start (left edge) of the track for a slider     that is
+     * disabled. <li><code>h{baseName}_Disabled_stretch.{extension}</code>:  the track for a disabled slider; this     may be
+     * centered, tiled, or stretched. <li><code>h{baseName}_Disabled_end.{extension}</code>:  end (right edge) of the track for
+     * a slider     that is disabled. </ul> For vertical sliders: <ul> <li><code>v{baseName}_start.{extension}</code>: start
+     * (bottom edge) of the track for a slider     that is enabled. <li><code>v{baseName}_stretch.{extension}</code>:  the
+     * track for an enabled slider; this may     be centered, tiled, or stretched.
+     * <li><code>v{baseName}_end.{extension}</code>:  end (top edge) of the track for a slider     that is enabled.
+     * <li><code>v{baseName}_Disabled_start.{extension}</code>: start (bottom edge) of the track for a slider     that is
+     * disabled. <li><code>v{baseName}_Disabled_stretch.{extension}</code>:  the track for a disabled slider; this     may be
+     * centered, tiled, or stretched. <li><code>v{baseName}_end.{extension}</code>:  end (top edge) of the track for a slider  
+     *   that is disabled. </ul>
      * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackSrc trackSrc} property of the slider
      *
      * @param trackSrc new trackSrc. Default value is "track.gif"
@@ -726,16 +771,17 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * start (left edge) of the track for a slider     that is enabled. <li><code>h{baseName}_stretch.{extension}</code>:  the
      * track for an enabled slider; this may     be centered, tiled, or stretched.
      * <li><code>h{baseName}_end.{extension}</code>:  end (right edge) of the track for a slider     that is enabled.
-     * <li><code>h{baseName}_off_start.{extension}</code>: start (left edge) of the track for a slider     that is disabled.
-     * <li><code>h{baseName}_off_stretch.{extension}</code>:  the track for a disabled slider; this     may be centered, tiled,
-     * or stretched. <li><code>h{baseName}_off_end.{extension}</code>:  end (right edge) of the track for a slider     that is
-     * disabled. </ul> For vertical sliders: <ul> <li><code>v{baseName}_start.{extension}</code>: start (bottom edge) of the
-     * track for a slider     that is enabled. <li><code>v{baseName}_stretch.{extension}</code>:  the track for an enabled
-     * slider; this may     be centered, tiled, or stretched. <li><code>v{baseName}_end.{extension}</code>:  end (top edge) of
-     * the track for a slider     that is enabled. <li><code>v{baseName}_off_start.{extension}</code>: start (bottom edge) of
-     * the track for a slider     that is disabled. <li><code>v{baseName}_off_stretch.{extension}</code>:  the track for a
-     * disabled slider; this     may be centered, tiled, or stretched. <li><code>v{baseName}_off_end.{extension}</code>:  end
-     * (top edge) of the track for a slider     that is disabled. </ul>
+     * <li><code>h{baseName}_Disabled_start.{extension}</code>: start (left edge) of the track for a slider     that is
+     * disabled. <li><code>h{baseName}_Disabled_stretch.{extension}</code>:  the track for a disabled slider; this     may be
+     * centered, tiled, or stretched. <li><code>h{baseName}_Disabled_end.{extension}</code>:  end (right edge) of the track for
+     * a slider     that is disabled. </ul> For vertical sliders: <ul> <li><code>v{baseName}_start.{extension}</code>: start
+     * (bottom edge) of the track for a slider     that is enabled. <li><code>v{baseName}_stretch.{extension}</code>:  the
+     * track for an enabled slider; this may     be centered, tiled, or stretched.
+     * <li><code>v{baseName}_end.{extension}</code>:  end (top edge) of the track for a slider     that is enabled.
+     * <li><code>v{baseName}_Disabled_start.{extension}</code>: start (bottom edge) of the track for a slider     that is
+     * disabled. <li><code>v{baseName}_Disabled_stretch.{extension}</code>:  the track for a disabled slider; this     may be
+     * centered, tiled, or stretched. <li><code>v{baseName}_end.{extension}</code>:  end (top edge) of the track for a slider  
+     *   that is disabled. </ul>
      *
      *
      * @return String
@@ -815,6 +861,50 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      */
     public Boolean getVertical()  {
         return getAttributeAsBoolean("vertical");
+    }
+
+    /**
+     * Optional CSS style for the thumb for a vertically oriented slider.  See {@link
+     * com.smartgwt.client.widgets.Slider#getHThumbStyle hThumbStyle} for state suffixes.
+     *
+     * @param vThumbStyle vThumbStyle Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setVThumbStyle(String vThumbStyle)  throws IllegalStateException {
+        setAttribute("vThumbStyle", vThumbStyle, false);
+    }
+
+    /**
+     * Optional CSS style for the thumb for a vertically oriented slider.  See {@link
+     * com.smartgwt.client.widgets.Slider#getHThumbStyle hThumbStyle} for state suffixes.
+     *
+     *
+     * @return String
+     */
+    public String getVThumbStyle()  {
+        return getAttributeAsString("vThumbStyle");
+    }
+
+    /**
+     * Optional CSS style for the track for a vertically oriented slider. <P> Will have the suffix "Disabled" added when the
+     * slider is disabled.
+     *
+     * @param vTrackStyle vTrackStyle Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setVTrackStyle(String vTrackStyle)  throws IllegalStateException {
+        setAttribute("vTrackStyle", vTrackStyle, false);
+    }
+
+    /**
+     * Optional CSS style for the track for a vertically oriented slider. <P> Will have the suffix "Disabled" added when the
+     * slider is disabled.
+     *
+     *
+     * @return String
+     */
+    public String getVTrackStyle()  {
+        return getAttributeAsString("vTrackStyle");
     }
 
     // ********************* Methods ***********************
