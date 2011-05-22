@@ -156,21 +156,34 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     }
 
     /**
-     * Display format to use for fields specified as type 'date'.  Default is to use the system-wide default normal date
-     * format, configured via  Date.setNormalDisplayFormat.  Specify any valid {@link
-     * com.smartgwt.client.types.DateDisplayFormat} to change the format used by this detailViewer.
+     * How should Date type values be displayed in this DetailViewer by default? <P> This property specifies the default
+     * DateDisplayFormat to apply to Date values displayed in this grid for all fields except those of {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getType type "time"} (See also {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getTimeFormatter timeFormatter}).<br> If {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getDatetimeFormatter datetimeFormatter} is specified, that will be
+     * applied by default to fields of type <code>"datetime"</code>. <P> Note that if {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getDateFormatter dateFormatter} or {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getTimeFormatter timeFormatter} are specified those properties will
+     * take precedence over the component level settings. <P> If unset, date values will be formatted according to the system
+     * wide   normal display format.
      *
      * @param dateFormatter dateFormatter Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDateFormatter(DateDisplayFormat dateFormatter)  throws IllegalStateException {
-        setAttribute("dateFormatter", dateFormatter.getValue(), false);
+    public void setDateFormatter(DateDisplayFormat dateFormatter) {
+        setAttribute("dateFormatter", dateFormatter.getValue(), true);
     }
 
     /**
-     * Display format to use for fields specified as type 'date'.  Default is to use the system-wide default normal date
-     * format, configured via  Date.setNormalDisplayFormat.  Specify any valid {@link
-     * com.smartgwt.client.types.DateDisplayFormat} to change the format used by this detailViewer.
+     * How should Date type values be displayed in this DetailViewer by default? <P> This property specifies the default
+     * DateDisplayFormat to apply to Date values displayed in this grid for all fields except those of {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getType type "time"} (See also {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getTimeFormatter timeFormatter}).<br> If {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getDatetimeFormatter datetimeFormatter} is specified, that will be
+     * applied by default to fields of type <code>"datetime"</code>. <P> Note that if {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getDateFormatter dateFormatter} or {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getTimeFormatter timeFormatter} are specified those properties will
+     * take precedence over the component level settings. <P> If unset, date values will be formatted according to the system
+     * wide   normal display format.
      *
      *
      * @return DateDisplayFormat
@@ -180,22 +193,31 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     }
 
     /**
-     * Display format to use for fields specified as type 'datetime'. Default is to use the system-wide default datetime format
-     * configured via   Date.setShortDatetimeDisplayFormat
+     * Display format to use for fields specified as type 'datetime'.  Default is to use the system-wide default long
+     * ("normal") date time format, configured via  setNormalDatetimeDisplayFormat.  Specify any valid {@link
+     * com.smartgwt.client.types.DateDisplayFormat} to change the display format for datetimes used by this  viewer.  <P> May
+     * also be specified at the field level via {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getDateFormatter
+     * dateFormatter}
      *
      * @param datetimeFormatter datetimeFormatter Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setDateFormatter
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setDatetimeFormatter(DateDisplayFormat datetimeFormatter)  throws IllegalStateException {
-        setAttribute("datetimeFormatter", datetimeFormatter.getValue(), false);
+    public void setDatetimeFormatter(DateDisplayFormat datetimeFormatter) {
+        setAttribute("datetimeFormatter", datetimeFormatter.getValue(), true);
     }
 
     /**
-     * Display format to use for fields specified as type 'datetime'. Default is to use the system-wide default datetime format
-     * configured via   Date.setShortDatetimeDisplayFormat
+     * Display format to use for fields specified as type 'datetime'.  Default is to use the system-wide default long
+     * ("normal") date time format, configured via  setNormalDatetimeDisplayFormat.  Specify any valid {@link
+     * com.smartgwt.client.types.DateDisplayFormat} to change the display format for datetimes used by this  viewer.  <P> May
+     * also be specified at the field level via {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getDateFormatter
+     * dateFormatter}
      *
      *
      * @return DateDisplayFormat
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getDateFormatter
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public DateDisplayFormat getDatetimeFormatter()  {
         return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("datetimeFormatter"));
@@ -593,6 +615,31 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      */
     public String getStyleName()  {
         return getAttributeAsString("styleName");
+    }
+
+    /**
+     * Display format to use for fields specified as type 'time'.  May also be specified at  the field level via {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getTimeFormatter timeFormatter}.<br> If unset, time fields will be
+     * formatted based on the system wide  String
+     *
+     * @param timeFormatter timeFormatter Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
+        setAttribute("timeFormatter", timeFormatter.getValue(), true);
+    }
+
+    /**
+     * Display format to use for fields specified as type 'time'.  May also be specified at  the field level via {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getTimeFormatter timeFormatter}.<br> If unset, time fields will be
+     * formatted based on the system wide  String
+     *
+     *
+     * @return TimeDisplayFormat
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public TimeDisplayFormat getTimeFormatter()  {
+        return EnumUtil.getEnum(TimeDisplayFormat.values(), getAttribute("timeFormatter"));
     }
 
     /**

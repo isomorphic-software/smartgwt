@@ -264,7 +264,9 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-     * Can this field be edited? May be overridden by setting the      'canEdit' property at the listGrid level
+     * Can this field be edited?  May be overridden by setting the 'canEdit' property at the listGrid level. <p> For more
+     * dynamic control over whether fields can be edited, see {@link com.smartgwt.client.widgets.grid.ListGrid#canEditCell
+     * ListGrid.canEditCell}.
      *
      * @param canEdit canEdit Default value is null
      * @see com.smartgwt.client.widgets.grid.ListGrid#setCanEdit
@@ -278,7 +280,9 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-     * Can this field be edited? May be overridden by setting the      'canEdit' property at the listGrid level
+     * Can this field be edited?  May be overridden by setting the 'canEdit' property at the listGrid level. <p> For more
+     * dynamic control over whether fields can be edited, see {@link com.smartgwt.client.widgets.grid.ListGrid#canEditCell
+     * ListGrid.canEditCell}.
      *
      *
      * @return Boolean
@@ -592,6 +596,59 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      */
     public String getDataPath()  {
         return getAttributeAsString("dataPath");
+    }
+
+    /**
+     * Display format to use for date type values within this field.  <P> The {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getTimeFormatter timeFormatter} may also be used to format underlying
+     * Date values as times (ommitting the date part entirely). If both <code>dateFormatter</code> and
+     * <code>timeFormatter</code> are specified on a field, for fields specified as {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getType type "time"} the <code>timeFormatter</code> will be used,
+     * otherwise the <code>dateFormatter</code> <P> If <code>field.dateFormatter</code> and <code>field.timeFormatter</code> is
+     * unspecified, date display format may be defined at the component level via {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDateFormatter dateFormatter}, or for fields of type <code>"datetime"</code>
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getDatetimeFormatter datetimeFormatter}. Otherwise the default is to
+     * use the system-wide default short date format, configured via  Date.setShortDisplayFormat.  Specify any valid {@link
+     * com.smartgwt.client.types.DateDisplayFormat} to  change the format used by this item. <P> If this field is editable the
+     * dateFormatter will also be passed to the editor created to edit this field. Note that you can also specify an explicit
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#getInputFormat inputFormat} which will be passed through to the
+     * editor as well, though this is not typically required as the input format should be automatically derived by the Smart
+     * GWT system for standard DateDisplayFormats.
+     *
+     * @param dateFormatter dateFormatter Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setDateFormatter
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setDatetimeFormatter
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setTimeFormatter
+     */
+    public void setDateFormatter(DateDisplayFormat dateFormatter) {
+        setAttribute("dateFormatter", dateFormatter.getValue());
+    }
+
+    /**
+     * Display format to use for date type values within this field.  <P> The {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getTimeFormatter timeFormatter} may also be used to format underlying
+     * Date values as times (ommitting the date part entirely). If both <code>dateFormatter</code> and
+     * <code>timeFormatter</code> are specified on a field, for fields specified as {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getType type "time"} the <code>timeFormatter</code> will be used,
+     * otherwise the <code>dateFormatter</code> <P> If <code>field.dateFormatter</code> and <code>field.timeFormatter</code> is
+     * unspecified, date display format may be defined at the component level via {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDateFormatter dateFormatter}, or for fields of type <code>"datetime"</code>
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getDatetimeFormatter datetimeFormatter}. Otherwise the default is to
+     * use the system-wide default short date format, configured via  Date.setShortDisplayFormat.  Specify any valid {@link
+     * com.smartgwt.client.types.DateDisplayFormat} to  change the format used by this item. <P> If this field is editable the
+     * dateFormatter will also be passed to the editor created to edit this field. Note that you can also specify an explicit
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#getInputFormat inputFormat} which will be passed through to the
+     * editor as well, though this is not typically required as the input format should be automatically derived by the Smart
+     * GWT system for standard DateDisplayFormats.
+     *
+     *
+     * @return DateDisplayFormat
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getDateFormatter
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getDatetimeFormatter
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getTimeFormatter
+     */
+    public DateDisplayFormat getDateFormatter()  {
+        return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
     }
 
     /**
@@ -2319,6 +2376,42 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+     * Time-format to apply to date type values within this field.  If specified, any dates displayed in this field will be
+     * formatted as times using the appropriate format. This is most commonly only applied to fields specified as type
+     * <code>"time"</code> though if no explicit {@link com.smartgwt.client.widgets.grid.ListGridField#getDateFormatter
+     * dateFormatter} is specified it will be respected for other  fields as well. <P> If unspecified, a timeFormatter may be
+     * defined  {@link com.smartgwt.client.widgets.grid.ListGrid#getTimeFormatter at the component level} and will be respected
+     * by fields of type <code>"time"</code>. <P> If this field is editable, the timeFormatter will also be passed to the
+     * editor created to edit this field as {@link com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter
+     * timeFormatter}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param timeFormatter timeFormatter Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
+        setAttribute("timeFormatter", timeFormatter.getValue());
+    }
+
+    /**
+     * Time-format to apply to date type values within this field.  If specified, any dates displayed in this field will be
+     * formatted as times using the appropriate format. This is most commonly only applied to fields specified as type
+     * <code>"time"</code> though if no explicit {@link com.smartgwt.client.widgets.grid.ListGridField#getDateFormatter
+     * dateFormatter} is specified it will be respected for other  fields as well. <P> If unspecified, a timeFormatter may be
+     * defined  {@link com.smartgwt.client.widgets.grid.ListGrid#getTimeFormatter at the component level} and will be respected
+     * by fields of type <code>"time"</code>. <P> If this field is editable, the timeFormatter will also be passed to the
+     * editor created to edit this field as {@link com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter
+     * timeFormatter}.
+     *
+     *
+     * @return TimeDisplayFormat
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public TimeDisplayFormat getTimeFormatter()  {
+        return EnumUtil.getEnum(TimeDisplayFormat.values(), getAttribute("timeFormatter"));
+    }
+
+    /**
      * A title for this field, to display in the header of the listGrid object.  Alternately you can specify a {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getFieldTitle ListGridField.getFieldTitle} method on the field to return
      * the HTML for the field title.
@@ -2724,24 +2817,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      */
     public void setDefaultFilterValue(Date defaultFilterValue) {
         setAttribute("defaultFilterValue", defaultFilterValue);
-    }
-
-    /**
-     * Display format to use for fields specified as type 'date'.  Default is to use the system-wide default short date format, configured via {@link com.smartgwt.client..Date#setShortDisplayFormat}.  Specify any valid {@link com.smartgwt.client.types.DateDisplayFormat}, or function to change the display format for dates used by this grid. If specified as  a function, this function will be executed in the scope of the Date and should return the formatted string.<br> May also be specified at the field level via {@link com.smartgwt.client.widgets.grid.ListGridField#getDisplayFormat displayFormat}.<br> If this field is editable the dateFormatter will also be passed to the editor created to edit this field as {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat}. In this case you may also need to set {@link com.smartgwt.client.widgets.grid.ListGrid#getDateInputFormat dateInputFormat}.
-     *
-     * @param dateFormatter dateFormatter Default value is null
-     */
-    public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter.getValue());
-    }
-
-    /**
-     * Display format to use for fields specified as type 'date'.  Default is to use the system-wide default short date format, configured via {@link com.smartgwt.client.util.DateUtil#setShortDateDisplayFormatter(com.smartgwt.client.util.DateDisplayFormatter)}.  Specify any valid {@link com.smartgwt.client.types.DateDisplayFormat}, or function to change the display format for dates used by this grid. If specified as  a function, this function will be executed in the scope of the Date and should return the formatted string.<br> May also be specified at the field level via {@link com.smartgwt.client.widgets.grid.ListGridField#getDisplayFormat displayFormat}.<br> If this field is editable the dateFormatter will also be passed to the editor created to edit this field as {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat}. In this case you may also need to set {@link com.smartgwt.client.widgets.grid.ListGrid#getDateInputFormat dateInputFormat}.
-     *
-     * @return DateDisplayFormat
-     */
-    public DateDisplayFormat getDateFormatter() {
-        return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
     }
 
     /**
