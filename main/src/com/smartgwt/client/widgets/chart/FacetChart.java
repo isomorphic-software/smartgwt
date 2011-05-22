@@ -136,8 +136,30 @@ public class FacetChart extends Canvas {
     }
 
     /**
-     * See {@link com.smartgwt.client.types.ChartType} for a list of known types - Column, Line, Area, and Radar charts are
-     * supported.
+     * Margin around the main chart rect: between title and chart, between chart and axis labels, and chart rect and right edge
+     * of chart.
+     *
+     * @param chartRectMargin chartRectMargin Default value is 5
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setChartRectMargin(int chartRectMargin)  throws IllegalStateException {
+        setAttribute("chartRectMargin", chartRectMargin, false);
+    }
+
+    /**
+     * Margin around the main chart rect: between title and chart, between chart and axis labels, and chart rect and right edge
+     * of chart.
+     *
+     *
+     * @return int
+     */
+    public int getChartRectMargin()  {
+        return getAttributeAsInt("chartRectMargin");
+    }
+
+    /**
+     * See {@link com.smartgwt.client.types.ChartType} for a list of known types - Column, Bar, Line, Pie, Doughnut, Area, and
+     * Radar charts are supported.
      * Method to change the current {@link com.smartgwt.client.widgets.chart.FacetChart#getChartType chartType}. Will redraw the chart if drawn.  Will use default settings for the new chart type for {@link com.smartgwt.client.widgets.chart.FacetChart#getStacked stacked}  and {@link com.smartgwt.client.widgets.chart.FacetChart#getFilled filled} if those values are null.
      *
      * @param chartType new chart type. Default value is "Column"
@@ -147,8 +169,8 @@ public class FacetChart extends Canvas {
     }
 
     /**
-     * See {@link com.smartgwt.client.types.ChartType} for a list of known types - Column, Line, Area, and Radar charts are
-     * supported.
+     * See {@link com.smartgwt.client.types.ChartType} for a list of known types - Column, Bar, Line, Pie, Doughnut, Area, and
+     * Radar charts are supported.
      *
      *
      * @return ChartType
@@ -178,6 +200,112 @@ public class FacetChart extends Canvas {
     }
 
     /**
+     * An array of colors to use for a series of visual elements representing data (eg columns, bars, pie slices), any of which
+     * may be adjacent to any other.
+     *
+     * @param dataColors dataColors Default value is see below
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setDataColors(String... dataColors)  throws IllegalStateException {
+        setAttribute("dataColors", dataColors, false);
+    }
+
+    /**
+     * An array of colors to use for a series of visual elements representing data (eg columns, bars, pie slices), any of which
+     * may be adjacent to any other.
+     *
+     *
+     * @return String
+     */
+    public String[] getDataColors()  {
+        return getAttributeAsStringArray("dataColors");
+    }
+
+    /**
+     * For rectangular charts (bar, column, line), margin around the inside of the {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getChartRect chartRect}, so that data elements are not flush to edge.
+     *
+     * @param dataMargin dataMargin Default value is 10
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setDataMargin(int dataMargin)  throws IllegalStateException {
+        setAttribute("dataMargin", dataMargin, false);
+    }
+
+    /**
+     * For rectangular charts (bar, column, line), margin around the inside of the {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getChartRect chartRect}, so that data elements are not flush to edge.
+     *
+     *
+     * @return int
+     */
+    public int getDataMargin()  {
+        return getAttributeAsInt("dataMargin");
+    }
+
+    /**
+     * Size in pixels for data points drawn for line, area, radar and other chart types.
+     *
+     * @param dataPointSize dataPointSize Default value is 6
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setDataPointSize(int dataPointSize)  throws IllegalStateException {
+        setAttribute("dataPointSize", dataPointSize, false);
+    }
+
+    /**
+     * Size in pixels for data points drawn for line, area, radar and other chart types.
+     *
+     *
+     * @return int
+     */
+    public int getDataPointSize()  {
+        return getAttributeAsInt("dataPointSize");
+    }
+
+    /**
+     * Default precision used when formatting float numbers for axis labels
+     *
+     * @param decimalPrecision decimalPrecision Default value is 2
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setDecimalPrecision(int decimalPrecision)  throws IllegalStateException {
+        setAttribute("decimalPrecision", decimalPrecision, false);
+    }
+
+    /**
+     * Default precision used when formatting float numbers for axis labels
+     *
+     *
+     * @return int
+     */
+    public int getDecimalPrecision()  {
+        return getAttributeAsInt("decimalPrecision");
+    }
+
+    /**
+     * If showing a doughnut hole (see {@link com.smartgwt.client.widgets.chart.FacetChart#getShowDoughnut showDoughnut}),
+     * ratio of the size of the doughnut hole to the size of the overall pie chart, as a number between 0 to 1.
+     *
+     * @param doughnutRatio doughnutRatio Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setDoughnutRatio(float doughnutRatio)  throws IllegalStateException {
+        setAttribute("doughnutRatio", doughnutRatio, false);
+    }
+
+    /**
+     * If showing a doughnut hole (see {@link com.smartgwt.client.widgets.chart.FacetChart#getShowDoughnut showDoughnut}),
+     * ratio of the size of the doughnut hole to the size of the overall pie chart, as a number between 0 to 1.
+     *
+     *
+     * @return float
+     */
+    public float getDoughnutRatio()  {
+        return getAttributeAsFloat("doughnutRatio");
+    }
+
+    /**
      * Whether shapes are filled, for example, whether a multi-series line chart appears as a stack of filled regions as
      * opposed to just multiple lines. <P> If unset, fills will be automatically used when there are multiple facets and
      * stacking is active (so Line and Radar charts will show stacked regions).   <P> You can explicitly set filled:false to
@@ -203,6 +331,106 @@ public class FacetChart extends Canvas {
      */
     public Boolean getFilled()  {
         return getAttributeAsBoolean("filled");
+    }
+
+    /**
+     * Padding between each swatch and label pair.
+     *
+     * @param legendItemPadding legendItemPadding Default value is 5
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setLegendItemPadding(int legendItemPadding)  throws IllegalStateException {
+        setAttribute("legendItemPadding", legendItemPadding, false);
+    }
+
+    /**
+     * Padding between each swatch and label pair.
+     *
+     *
+     * @return int
+     */
+    public int getLegendItemPadding()  {
+        return getAttributeAsInt("legendItemPadding");
+    }
+
+    /**
+     * Space between the legend and the chart rect or axis labels (whatever the legend is adjacent to.
+     *
+     * @param legendMargin legendMargin Default value is 10
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setLegendMargin(int legendMargin)  throws IllegalStateException {
+        setAttribute("legendMargin", legendMargin, false);
+    }
+
+    /**
+     * Space between the legend and the chart rect or axis labels (whatever the legend is adjacent to.
+     *
+     *
+     * @return int
+     */
+    public int getLegendMargin()  {
+        return getAttributeAsInt("legendMargin");
+    }
+
+    /**
+     * Padding around the legend as a whole.
+     *
+     * @param legendPadding legendPadding Default value is 5
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setLegendPadding(int legendPadding)  throws IllegalStateException {
+        setAttribute("legendPadding", legendPadding, false);
+    }
+
+    /**
+     * Padding around the legend as a whole.
+     *
+     *
+     * @return int
+     */
+    public int getLegendPadding()  {
+        return getAttributeAsInt("legendPadding");
+    }
+
+    /**
+     * Size of individual color swatches in legend.
+     *
+     * @param legendSwatchSize legendSwatchSize Default value is 16
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setLegendSwatchSize(int legendSwatchSize)  throws IllegalStateException {
+        setAttribute("legendSwatchSize", legendSwatchSize, false);
+    }
+
+    /**
+     * Size of individual color swatches in legend.
+     *
+     *
+     * @return int
+     */
+    public int getLegendSwatchSize()  {
+        return getAttributeAsInt("legendSwatchSize");
+    }
+
+    /**
+     * Padding between color swatch and its label.
+     *
+     * @param legendTextPadding legendTextPadding Default value is 5
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setLegendTextPadding(int legendTextPadding)  throws IllegalStateException {
+        setAttribute("legendTextPadding", legendTextPadding, false);
+    }
+
+    /**
+     * Padding between color swatch and its label.
+     *
+     *
+     * @return int
+     */
+    public int getLegendTextPadding()  {
+        return getAttributeAsInt("legendTextPadding");
     }
 
     /**
@@ -294,6 +522,66 @@ public class FacetChart extends Canvas {
     }
 
     /**
+     * Angle where first label is placed in a Pie chart in stacked mode, in degrees.
+     *
+     * @param pieLabelAngleStart pieLabelAngleStart Default value is 20
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setPieLabelAngleStart(int pieLabelAngleStart)  throws IllegalStateException {
+        setAttribute("pieLabelAngleStart", pieLabelAngleStart, false);
+    }
+
+    /**
+     * Angle where first label is placed in a Pie chart in stacked mode, in degrees.
+     *
+     *
+     * @return int
+     */
+    public int getPieLabelAngleStart()  {
+        return getAttributeAsInt("pieLabelAngleStart");
+    }
+
+    /**
+     * How far label lines stick out of the pie radius in a Pie chart in stacked mode.
+     *
+     * @param pieLabelLineExtent pieLabelLineExtent Default value is 7
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setPieLabelLineExtent(int pieLabelLineExtent)  throws IllegalStateException {
+        setAttribute("pieLabelLineExtent", pieLabelLineExtent, false);
+    }
+
+    /**
+     * How far label lines stick out of the pie radius in a Pie chart in stacked mode.
+     *
+     *
+     * @return int
+     */
+    public int getPieLabelLineExtent()  {
+        return getAttributeAsInt("pieLabelLineExtent");
+    }
+
+    /**
+     * Distance in pixels that radial labels are offset from the outside of the circle.
+     *
+     * @param radialLabelOffset radialLabelOffset Default value is 5
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setRadialLabelOffset(int radialLabelOffset)  throws IllegalStateException {
+        setAttribute("radialLabelOffset", radialLabelOffset, false);
+    }
+
+    /**
+     * Distance in pixels that radial labels are offset from the outside of the circle.
+     *
+     *
+     * @return int
+     */
+    public int getRadialLabelOffset()  {
+        return getAttributeAsInt("radialLabelOffset");
+    }
+
+    /**
      * Whether to show a rectangular shape around the area of the chart where data is plotted.
      *
      * @param showChartRect showChartRect Default value is false
@@ -340,6 +628,50 @@ public class FacetChart extends Canvas {
     }
 
     /**
+     * Whether to show a "doughnut hole" in the middle of pie charts.  Defaults to whether chartType is set to "Doughnut"
+     * (shown) vs "Pie" (not shown) but can be forced on or off via <code>showDoughnut</code>.
+     *
+     * @param showDoughnut showDoughnut Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowDoughnut(Boolean showDoughnut)  throws IllegalStateException {
+        setAttribute("showDoughnut", showDoughnut, false);
+    }
+
+    /**
+     * Whether to show a "doughnut hole" in the middle of pie charts.  Defaults to whether chartType is set to "Doughnut"
+     * (shown) vs "Pie" (not shown) but can be forced on or off via <code>showDoughnut</code>.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowDoughnut()  {
+        return getAttributeAsBoolean("showDoughnut");
+    }
+
+    /**
+     * The legend is automatically shown for charts that need it (generally, multi-series charts) but can be forced off by
+     * setting showLegend to false.
+     *
+     * @param showLegend showLegend Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowLegend(Boolean showLegend)  throws IllegalStateException {
+        setAttribute("showLegend", showLegend, false);
+    }
+
+    /**
+     * The legend is automatically shown for charts that need it (generally, multi-series charts) but can be forced off by
+     * setting showLegend to false.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowLegend()  {
+        return getAttributeAsBoolean("showLegend");
+    }
+
+    /**
      * Whether to show gradation labels in radar charts.
      *
      * @param showRadarGradationLabels showRadarGradationLabels Default value is true
@@ -357,6 +689,26 @@ public class FacetChart extends Canvas {
      */
     public Boolean getShowRadarGradationLabels()  {
         return getAttributeAsBoolean("showRadarGradationLabels");
+    }
+
+    /**
+     * Whether to automatically show shadows for various charts.
+     *
+     * @param showShadows showShadows Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowShadows(Boolean showShadows)  throws IllegalStateException {
+        setAttribute("showShadows", showShadows, false);
+    }
+
+    /**
+     * Whether to automatically show shadows for various charts.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowShadows()  {
+        return getAttributeAsBoolean("showShadows");
     }
 
     /**
@@ -379,8 +731,8 @@ public class FacetChart extends Canvas {
     }
 
     /**
-     * Whether to use stacking for charts where this makes sense (column, araa, line and radar charts). If stacked is not set
-     * and two facets are supplied, clustering is assumed. If null (the default), line charts will be unstacked, and others
+     * Whether to use stacking for charts where this makes sense (column, area, pie, line and radar charts).  If stacked is not
+     * set and two facets are supplied, clustering is assumed. If null (the default), line charts will be unstacked, and others
      * will be stacked.
      * Method to change {@link com.smartgwt.client.widgets.chart.FacetChart#getStacked stacked}. Use null to apply a default value for the current {@link com.smartgwt.client.widgets.chart.FacetChart#getChartType chartType}.
      *
@@ -391,8 +743,8 @@ public class FacetChart extends Canvas {
     }
 
     /**
-     * Whether to use stacking for charts where this makes sense (column, araa, line and radar charts). If stacked is not set
-     * and two facets are supplied, clustering is assumed. If null (the default), line charts will be unstacked, and others
+     * Whether to use stacking for charts where this makes sense (column, area, pie, line and radar charts).  If stacked is not
+     * set and two facets are supplied, clustering is assumed. If null (the default), line charts will be unstacked, and others
      * will be stacked.
      *
      *
@@ -438,6 +790,28 @@ public class FacetChart extends Canvas {
      */
     public String getTitle()  {
         return getAttributeAsString("title");
+    }
+
+    /**
+     * Causes the chart to use the colors specified in {@link com.smartgwt.client.widgets.chart.FacetChart#getDataColors
+     * dataColors} but specify chart-specific  gradients based on the primary data color per chart type.
+     *
+     * @param useAutoGradients useAutoGradients Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setUseAutoGradients(Boolean useAutoGradients)  throws IllegalStateException {
+        setAttribute("useAutoGradients", useAutoGradients, false);
+    }
+
+    /**
+     * Causes the chart to use the colors specified in {@link com.smartgwt.client.widgets.chart.FacetChart#getDataColors
+     * dataColors} but specify chart-specific  gradients based on the primary data color per chart type.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getUseAutoGradients()  {
+        return getAttributeAsBoolean("useAutoGradients");
     }
 
     /**
@@ -507,6 +881,18 @@ public class FacetChart extends Canvas {
     }
 
     // ********************* Methods ***********************
+            
+    /**
+     * Get a color from the {@link com.smartgwt.client.widgets.chart.FacetChart#getDataColors dataColors} Array <P> Override to
+     * provide a dynamic color generation scheme.
+     * @param index index of the visual element to be colored
+     *
+     * @return 
+     */
+    public native String getDataColor(int index) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getDataColor(index);
+    }-*/;
 
     // ********************* Static Methods ***********************
     /**
