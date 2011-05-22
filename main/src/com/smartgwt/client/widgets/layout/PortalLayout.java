@@ -100,12 +100,12 @@ public class PortalLayout extends Layout {
 
     /**
      * Are columns in this portalLayout drag-resizeable?
+     * Set whether columns in this portalLayout are drag-resizable, and update any drawn columns to reflect this.
      *
-     * @param canResizeColumns canResizeColumns Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @param canResizeColumns Whether columns are drag-resizable. Default value is false
      */
-    public void setCanResizeColumns(Boolean canResizeColumns)  throws IllegalStateException {
-        setAttribute("canResizeColumns", canResizeColumns, false);
+    public void setCanResizeColumns(Boolean canResizeColumns) {
+        setAttribute("canResizeColumns", canResizeColumns, true);
     }
 
     /**
@@ -120,12 +120,12 @@ public class PortalLayout extends Layout {
 
     /**
      * Should vertical drag-resize of portlets within columns be allowed?
+     * Set whether vertical drag-resize of portlets within columns is allowed, and update any drawn columns to reflect this.
      *
-     * @param canResizeRows canResizeRows Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @param canResizeRows Whether drag-resize of portlets within columns is allowed. Default value is false
      */
-    public void setCanResizeRows(Boolean canResizeRows)  throws IllegalStateException {
-        setAttribute("canResizeRows", canResizeRows, false);
+    public void setCanResizeRows(Boolean canResizeRows) {
+        setAttribute("canResizeRows", canResizeRows, true);
     }
 
     /**
@@ -158,11 +158,10 @@ public class PortalLayout extends Layout {
         return getAttributeAsString("columnBorder");
     }
 
-
     /**
      * Initial number of columns to show in this PortalLayout. Note that after initialization columns should be added / removed
      * via {@link com.smartgwt.client.widgets.layout.PortalLayout#addColumn PortalLayout.addColumn} and {@link
-     * com.smartgwt.client.widgets.layout.PortalLayout#removeColumn PortalLayout.removeColumn}
+     * com.smartgwt.client.widgets.layout.PortalLayout#removeColumn PortalLayout.removeColumn}.
      *
      * @param numColumns numColumns Default value is 2
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -174,10 +173,10 @@ public class PortalLayout extends Layout {
     /**
      * Initial number of columns to show in this PortalLayout. Note that after initialization columns should be added / removed
      * via {@link com.smartgwt.client.widgets.layout.PortalLayout#addColumn PortalLayout.addColumn} and {@link
-     * com.smartgwt.client.widgets.layout.PortalLayout#removeColumn PortalLayout.removeColumn}
+     * com.smartgwt.client.widgets.layout.PortalLayout#removeColumn PortalLayout.removeColumn}.
      *
      *
-     * @return int
+     * @return Returns the current number of columns displayed in this PortalLayout.
      */
     public int getNumColumns()  {
         return getAttributeAsInt("numColumns");
@@ -226,12 +225,57 @@ public class PortalLayout extends Layout {
     /**
      * Adds a {@link com.smartgwt.client.widgets.layout.Portlet} instance to this portalLayout in the specified position.
      * @param portlet Portlet to add to this layout.
-     * @param colNum Column in which the Portlet should be added. If unspecified  defaults to zero.
+     * @param colNum Column in which the Portlet should be added. If unspecified,  defaults to zero.
      * @param rowNum Position within the column for the Portlet
      */
     public native void addPortlet(Portlet portlet, int colNum, int rowNum) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addPortlet(portlet.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), colNum, rowNum);
+    }-*/;
+            
+    /**
+     * This method is called when the user drops components into the rows or columns of this PortalLayout. <P> Overriding this
+     * method allows you to modify drop behaviour when creating or reordering portlets via drag & drop. You can return the
+     * dragTarget for the standard behavior,  or null to cancel the drop. <P> Otherwise, return the component you want to be
+     * dropped (as for {@link com.smartgwt.client.widgets.layout.Layout#getDropComponent Layout.getDropComponent}).
+     * @param dragTarget drag target
+     * @param colNum indicates which column the portlet is being dropped on.
+     * @param rowNum indicates the row number being dropped on.
+     *
+     * @return drop-component or custom Portlet to embed in the portalLayout. Returning  null will cancel the drop.
+     */
+    public native Canvas getDropPortlet(Canvas dragTarget, int colNum, int rowNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getDropPortlet(dragTarget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), colNum, rowNum);
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+
+    /**
+     * This method is called when the user drops components into the rows or columns of this PortalLayout. <P> Overriding this
+     * method allows you to modify drop behaviour when creating or reordering portlets via drag & drop. You can return the
+     * dragTarget for the standard behavior,  or null to cancel the drop. <P> Otherwise, return the component you want to be
+     * dropped (as for {@link com.smartgwt.client.widgets.layout.Layout#getDropComponent Layout.getDropComponent}).
+     * @param dragTarget drag target
+     * @param colNum indicates which column the portlet is being dropped on.
+     * @param rowNum indicates the row number being dropped on.
+     * @param dropPosition Drop position within an existing row. If the dropPosition   is null, then that means that a new row will be created.
+     *
+     * @return drop-component or custom Portlet to embed in the portalLayout. Returning  null will cancel the drop.
+     */
+    public native Canvas getDropPortlet(Canvas dragTarget, int colNum, int rowNum, int dropPosition) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getDropPortlet(dragTarget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), colNum, rowNum, dropPosition);
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
     }-*/;
             
     /**
@@ -275,6 +319,63 @@ public class PortalLayout extends Layout {
     }-*/;
         
     // ***********************************************************        
+
+
+
+    public void onInit () {
+        super.onInit();
+        onInit_PortalLayout();
+    }
+    
+    protected native void onInit_PortalLayout () /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        
+        self.__getDropPortlet = self.getDropPortlet;
+        self.getDropPortlet = $entry(function(dragTarget, rowNum, colNum, dropPosition) {
+            var jObj = this.__ref;
+            
+            if (jObj == null) return this.__getDropPortlet(dragTarget, rowNum,colNum,dropPosition);
+            
+            var dragTargetJ = @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(dragTarget);
+            var rowNumJ = @java.lang.Integer::new(I)(rowNum);
+            var colNumJ = @java.lang.Integer::new(I)(colNum);
+            var dropPositionJ = dropPosition == null ? null : @java.lang.Integer::new(I)(dropPosition);
+            var jPortlet = jObj.@com.smartgwt.client.widgets.layout.PortalLayout::getDropPortlet(Lcom/smartgwt/client/widgets/Canvas;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)(dragTargetJ,rowNumJ,colNumJ,dropPositionJ);
+            return jPortlet.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
+
+        });
+        
+    }-*/;
+    
+    /**
+     * This method is called when the user drops components into the rows or columns of this PortalLayout. <P> Overriding this
+     * method allows you to modify drop behaviour when creating or reordering portlets via drag & drop. You can return the
+     * dragTarget for the standard behavior,  or null to cancel the drop. <P> Otherwise, return the component you want to be
+     * dropped (as for {@link com.smartgwt.client.widgets.layout.Layout#getDropComponent Layout.getDropComponent}).
+     * <P>
+     * <b>Note: this is an override point.</b>
+     * 
+     * @param dragTarget the component being dragged
+     * @param colNum indicates which column the portlet is being dropped on.
+     * @param rowNum indicates the row number being dropped on.
+     * @param dropPosition Drop position within an existing row. If the dropPosition   is null, then that means that a new row will be created.
+     *
+     * @return drop-component or custom Portlet to embed in the portalLayout. Returning  null will cancel the drop.
+     */
+    public native Canvas getDropPortlet(Canvas dragTarget, Integer colNum, Integer rowNum, Integer dropPosition) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var dragTargetJS = dragTarget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        
+        var ret = self.__getDropPortlet(dragTargetJS, colNum, rowNum, dropPosition);
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+
+
 
 }
 
