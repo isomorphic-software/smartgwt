@@ -60,7 +60,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * FormItem for editing times in a text field.  &#010 <P>&#010 {@link
- * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat} allows you to set the display format
+ * com.smartgwt.client.widgets.form.fields.TimeItem#getTimeFormatter timeFormatter} allows you to set the display format
  * for this field.  See also&#010 String for system-wide settings.&#010 <P>&#010 TimeItem automatically accepts both 12 and
  * 24 hour time as well as partial times and a&#010 variety of possible time value separators.  Examples:&#010 <pre>&#010 
  * 11:34:45 AM => 11:34:45&#010  1:3:5 AM => 01:30:50&#010  1:3p  => 13:30:00&#010  11 34 am => 11:34:00&#010  11-34  =>
@@ -172,9 +172,30 @@ public class TimeItem extends TextItem {
     }
 
     /**
+     * What format should this item's time string be presented in? If unset the format will be derived from {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getTimeFormatter timeFormatter} or the system-side
+     *
+     * @param timeFormatter timeFormatter Default value is "toShort24HourTime"
+     */
+    public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
+        setAttribute("timeFormatter", timeFormatter.getValue());
+    }
+
+    /**
+     * What format should this item's time string be presented in? If unset the format will be derived from {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getTimeFormatter timeFormatter} or the system-side
+     *
+     *
+     * @return TimeDisplayFormat
+     */
+    public TimeDisplayFormat getTimeFormatter()  {
+        return EnumUtil.getEnum(TimeDisplayFormat.values(), getAttribute("timeFormatter"));
+    }
+
+    /**
      * If true, a data entry mask will be enabled in the field based on the {@link
-     * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat}. <p> Note that if a non-padded {@link
-     * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat} is specified, it will be changed to the
+     * com.smartgwt.client.widgets.form.fields.TimeItem#getTimeFormatter timeFormatter}. <p> Note that if a non-padded {@link
+     * com.smartgwt.client.widgets.form.fields.TimeItem#getTimeFormatter timeFormatter} is specified, it will be changed to the
      * corresponding padded version (ex. "toShort24HourTime" will be changed to "toShortPadded24HourTime").
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -186,8 +207,8 @@ public class TimeItem extends TextItem {
 
     /**
      * If true, a data entry mask will be enabled in the field based on the {@link
-     * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat}. <p> Note that if a non-padded {@link
-     * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat} is specified, it will be changed to the
+     * com.smartgwt.client.widgets.form.fields.TimeItem#getTimeFormatter timeFormatter}. <p> Note that if a non-padded {@link
+     * com.smartgwt.client.widgets.form.fields.TimeItem#getTimeFormatter timeFormatter} is specified, it will be changed to the
      * corresponding padded version (ex. "toShort24HourTime" will be changed to "toShortPadded24HourTime").
      *
      *
@@ -206,6 +227,7 @@ public class TimeItem extends TextItem {
 
     /**
      * What format should this item's time string be presented in?
+     * @deprecated Use {@link #setDisplayFormat(TimeDisplayFormat)} instead.
      *
      * @param timeFormatter displayFormat Default value is "toShort24HourTime"
      */
@@ -216,10 +238,19 @@ public class TimeItem extends TextItem {
     /**
      * What format should this item's time string be presented in?
      *
-     * @return DateDisplayFormat
+     * @param TimeDisplayFormat displayFormat Default value is "toShort24HourTime"
      */
-    public TimeFormatter getDisplayFormat() {
-        return EnumUtil.getEnum(TimeFormatter.values(), getAttribute("displayFormat"));
+    public void setDisplayFormat(TimeDisplayFormat timeFormatter) {
+        setAttribute("displayFormat", timeFormatter.getValue());
+    }
+
+    /**
+     * What format should this item's time string be presented in?
+     *
+     * @return TimeDisplayFormat
+     */
+    public TimeDisplayFormat getDisplayFormat() {
+        return EnumUtil.getEnum(TimeDisplayFormat.values(), getAttribute("displayFormat"));
     }
 
 }

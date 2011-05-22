@@ -117,6 +117,70 @@ public class StaticTextItem extends FormItem {
     }
 
     /**
+     * Display format to use for date type values within this formItem. <P> Note that Fields of type <code>"date"</code>,
+     * <code>"datetime"</code> or <code>"time"</code> will be edited using a {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem} or {@link com.smartgwt.client.widgets.form.fields.TimeItem} by
+     * default, but  this can be overridden - for <code>canEdit:false</code> fields, a {@link
+     * com.smartgwt.client.widgets.form.fields.StaticTextItem} is used by default, and the developer can always specify  a
+     * custom {@link com.smartgwt.client.widgets.form.fields.FormItem#getEditorType editorType} as well as {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getType data type}. <P> The {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter} may also be used to format underlying
+     * Date values as times (ommitting the date part entirely). If both <code>dateFormatter</code> and
+     * <code>timeFormatter</code> are specified on an item, for fields specified as {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getType type "time"} the <code>timeFormatter</code> will be used,
+     * otherwise the <code>dateFormatter</code> <P> If <code>item.dateFormatter</code> and <code>item.timeFormatter</code> is
+     * unspecified, date display format may be defined at the component level via {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getDateFormatter dateFormatter}, or for fields of type
+     * <code>"datetime"</code> {@link com.smartgwt.client.widgets.form.DynamicForm#getDatetimeFormatter datetimeFormatter}.
+     * Otherwise for fields of type "date", default is to use the system-wide default short date format, configured via 
+     * Date.setShortDisplayFormat. For fields of type "datetime" or for Date values in fields whose type does not inherit from
+     * the logical "date" type, default is to use the system-wide normal date format configured via 
+     * Date.setNormalDisplayFormat  (using "toNormalDate()" on logical <code>"date"</code> type fields is not desirable as this
+     * would display the time component of the date object to the user).<br> Specify any valid {@link
+     * com.smartgwt.client.types.DateDisplayFormat} to  change the format used by this item.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param dateFormatter dateFormatter Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setTimeFormatter
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setDateFormatter(DateDisplayFormat dateFormatter) {
+        setAttribute("dateFormatter", dateFormatter.getValue());
+    }
+
+    /**
+     * Display format to use for date type values within this formItem. <P> Note that Fields of type <code>"date"</code>,
+     * <code>"datetime"</code> or <code>"time"</code> will be edited using a {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem} or {@link com.smartgwt.client.widgets.form.fields.TimeItem} by
+     * default, but  this can be overridden - for <code>canEdit:false</code> fields, a {@link
+     * com.smartgwt.client.widgets.form.fields.StaticTextItem} is used by default, and the developer can always specify  a
+     * custom {@link com.smartgwt.client.widgets.form.fields.FormItem#getEditorType editorType} as well as {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getType data type}. <P> The {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter} may also be used to format underlying
+     * Date values as times (ommitting the date part entirely). If both <code>dateFormatter</code> and
+     * <code>timeFormatter</code> are specified on an item, for fields specified as {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getType type "time"} the <code>timeFormatter</code> will be used,
+     * otherwise the <code>dateFormatter</code> <P> If <code>item.dateFormatter</code> and <code>item.timeFormatter</code> is
+     * unspecified, date display format may be defined at the component level via {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getDateFormatter dateFormatter}, or for fields of type
+     * <code>"datetime"</code> {@link com.smartgwt.client.widgets.form.DynamicForm#getDatetimeFormatter datetimeFormatter}.
+     * Otherwise for fields of type "date", default is to use the system-wide default short date format, configured via 
+     * Date.setShortDisplayFormat. For fields of type "datetime" or for Date values in fields whose type does not inherit from
+     * the logical "date" type, default is to use the system-wide normal date format configured via 
+     * Date.setNormalDisplayFormat  (using "toNormalDate()" on logical <code>"date"</code> type fields is not desirable as this
+     * would display the time component of the date object to the user).<br> Specify any valid {@link
+     * com.smartgwt.client.types.DateDisplayFormat} to  change the format used by this item.
+     *
+     *
+     * @return DateDisplayFormat
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public DateDisplayFormat getDateFormatter()  {
+        return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
+    }
+
+    /**
      * By default HTML values in a staticTextItem will be interpreted by the browser. Setting this flag to true will causes
      * HTML characters to be escaped, meaning the raw value of the field (for example <code>"&lt;b&gt;AAA&lt;/b&gt;"</code>) is
      * displayed to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)

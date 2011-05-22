@@ -127,10 +127,13 @@ public class DateTimeItem extends DateItem {
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
      * property can be used to specify the input format for date strings.  If unset, the input format will be determined based
-     * on the specified {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} if possible
-     * (see {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat DateItem.getInputFormat}), otherwise picked
-     * up from the Date class (see  Date.setInputFormat). <P> Should be set to a standard String or a function which will take
-     * a date string as a parameter and return a Javascript Date object.
+     * on the specified {@link com.smartgwt.client.widgets.form.fields.DateItem#getDateFormtter dateFormtter} if possible (see
+     * {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat DateItem.getInputFormat}), otherwise picked up
+     * from the Date class (see  Date.setInputFormat). <P> Should be set to a standard String <P> Note that the String property
+     * is sufficient to parse date or datetime strings specified in most standard date formats. However should an entirely
+     * custom parsing function be required developers can  <code class="smartclient">implement a custom {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#parseEditorValue DateItem.parseEditorValue} method.</var> <code
+     * class="smartgwt">apply a custom <code>editorValueParser</code> function.</var>
      *
      * @param inputFormat inputFormat Default value is null
      * @see com.smartgwt.client.widgets.form.fields.DateItem#setDisplayFormat
@@ -142,10 +145,13 @@ public class DateTimeItem extends DateItem {
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
      * property can be used to specify the input format for date strings.  If unset, the input format will be determined based
-     * on the specified {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} if possible
-     * (see {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat DateItem.getInputFormat}), otherwise picked
-     * up from the Date class (see  Date.setInputFormat). <P> Should be set to a standard String or a function which will take
-     * a date string as a parameter and return a Javascript Date object.
+     * on the specified {@link com.smartgwt.client.widgets.form.fields.DateItem#getDateFormtter dateFormtter} if possible (see
+     * {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat DateItem.getInputFormat}), otherwise picked up
+     * from the Date class (see  Date.setInputFormat). <P> Should be set to a standard String <P> Note that the String property
+     * is sufficient to parse date or datetime strings specified in most standard date formats. However should an entirely
+     * custom parsing function be required developers can  <code class="smartclient">implement a custom {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#parseEditorValue DateItem.parseEditorValue} method.</var> <code
+     * class="smartgwt">apply a custom <code>editorValueParser</code> function.</var>
      *
      *
      * @return String

@@ -260,7 +260,10 @@ public class DateRangeItem extends CanvasItem {
     /**
      * Returns true if the specified criterion contains: <ul><li>A single "lessOrEqual" or "greaterOrEqual" criterion on this
      * field</li>     <li>An "and" type criterion containing a "lessOrEqual" and a "greaterOrEqual" criterion on         this
-     * field</li> </ul>
+     * field</li>     <li>A single "equals" criterion.  Internally, this will be converted into a range         by constructing
+     * an "and" type criterion containing both a "lessOrEqual" and          a "greaterOrEqual" criterion on this field.  Note
+     * that subsequent calls to          {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getCriterion
+     * getCriterion()} will return this more complex          criterion.</li> </ul>
      * @param criterion criterion to test
      *
      * @return returns true if this criterion can be edited by this item
@@ -296,7 +299,9 @@ public class DateRangeItem extends CanvasItem {
      * Applies the specified criterion to this item for editing. Applies any specified "greaterOrEqual" operator criterion or
      * sub-criterion to our {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getFromField fromField} and any
      * specified "lessOrEqual" operator criterion or sub-criterion to our {@link
-     * com.smartgwt.client.widgets.form.fields.DateRangeItem#getToField toField}.
+     * com.smartgwt.client.widgets.form.fields.DateRangeItem#getToField toField}. <P> Note that a single "equals" criterion can
+     * also be passed.  See  {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#canEditCriterion canEditCriterion()}
+     * for more detail.
      * @param criterion criterion to edit
      */
     public native void setCriterion(Criterion criterion) /*-{

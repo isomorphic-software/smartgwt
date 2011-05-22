@@ -828,7 +828,11 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * <br>
      * By default returns PickList.pickListCriteria if specified, otherwise an empty set of criteria so all records will be displayed.
      *
-     * <b>Note : this is an override point</b>
+     * <b>Note : this is an override point - if overridden this method will be called by the live form item during filtering.
+     * However it is recommended that developers use
+     * {@link #setPickListFilterCriteriaFunction(FormItemCriteriaFunction)} to build custom criteria instead of overriding this method directly. This ensures that
+     * the custom filter criteria generating code will be called even if the form item was automatically generated based on a template 
+     * passed to {@link com.smartgwt.client.widgets.grid.ListGridField#setEditorType}.</b>
      *
      * @return criteria to be used for databound or local filtering
      */    
@@ -1398,6 +1402,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * Set the pick list filter criteria function / handler.
      *
      * @param filterCriteriaFunction the filter criteria function
+     * @deprecated in favor of {@link #setPickListFilterCriteriaFunction(FormItemCriteriaFunction)}
      */
     public native void setPickListFilterCriteriaFunction(FilterCriteriaFunction filterCriteriaFunction) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
@@ -1406,6 +1411,28 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
             return crit == null ? null : crit.@com.smartgwt.client.data.Criteria::getJsObj()();
         });
     }-*/;
+    
+    /**
+     * Set up a method to return filter criteria for options displayed for this item.
+     * <br>
+     * The criteria returned by this method are used to decide which options should appear in the 
+     * drop-down PickList shown by this SelectItem.
+     * <br>
+     * Static criteria, specified via pickListCriteria, will always be included in addition to criteria 
+     * returned by this method.
+     *
+     */
+    public native void setPickListFilterCriteriaFunction(FormItemCriteriaFunction filterCriteriaFunction) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.getPickListFilterCriteria = $entry(function() {
+            var context = @com.smartgwt.client.widgets.form.fields.FormItemFunctionContext::new()();
+            var itemJ = @com.smartgwt.client.widgets.form.fields.SelectItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(this);
+            context.@com.smartgwt.client.widgets.form.fields.FormItemFunctionContext::setFormItem(Lcom/smartgwt/client/widgets/form/fields/FormItem;)(itemJ);
+            var crit = filterCriteriaFunction.@com.smartgwt.client.widgets.form.fields.FormItemCriteriaFunction::getCriteria(Lcom/smartgwt/client/widgets/form/fields/FormItemFunctionContext;)(context);
+            return crit == null ? null : crit.@com.smartgwt.client.data.Criteria::getJsObj()();
+        });
+    }-*/;
+    
 
     /**
      * Set the properties to be applied to the pickList created for this Form Item.

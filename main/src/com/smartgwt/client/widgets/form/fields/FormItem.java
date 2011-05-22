@@ -137,14 +137,92 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
+     * For a form that produces filter criteria (see {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria
+     * form.getValuesAsCriteria()}), allows the user to type in simple expressions to cause filtering with that operator.  For
+     * example, entering ">5" means values greater than 5, and ">0 and <5" means values between 0 and 5. <P> The following
+     * table lists character sequences that can be entered as a prefix to a value,  and the corresponding  operator that will
+     * be used.  Note that in the absence of a prefix, the operator specified via {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator} is used. <P> <table style='font-size:14;'>
+     * <tr><td><b>Prefix</b></td><td><b>Operator</b></td></tr> <tr><td>&lt;</td><td>lessThan</td></tr>
+     * <tr><td>&gt;</td><td>greaterThan</td></tr> <tr><td>&lt;=</td><td>lessThanOrEqual</td></tr>
+     * <tr><td>&gt;=</td><td>greaterThanOrEqual</td></tr> <tr><td>someValue...someValue</td><td>betweenInclusive</td></tr>
+     * <tr><td>!</td><td>notEqual</td></tr> <tr><td>^</td><td>startsWith</td></tr> <tr><td>|</td><td>endsWith</td></tr>
+     * <tr><td>!^</td><td>notStartsWith plus logical not</td></tr> <tr><td>!@</td><td>notEndsWith plus logical not</td></tr>
+     * <tr><td>~</td><td>contains</td></tr> <tr><td>!~</td><td>notContains</td></tr> <tr><td>#</td><td>isNull</td></tr>
+     * <tr><td>!#</td><td>isNotNull</td></tr> <tr><td>==</td><td>exact match (for fields where 'contains' is the
+     * default)</td></tr> </table> <P> Two further special notations are allowed: <ul> <li> /<i>regex</i>/ means the value is
+     * taken as a regular expression and applied via the "regexp" operator <li> =.<i>fieldName</i> means the value should match
+     * the value of another field.  Either the user-visible title of the field (field.title) or the field's name (field.name)
+     * may be used. </ul> <P> In all cases, if an operator is disallowed for the field (via {@link
+     * com.smartgwt.client.data.DataSourceField#getValidOperators field.validOperators} at either the dataSource or field
+     * level), the operator character is ignored (treated as part of a literal value). <P> By default, the case-insensitive
+     * version of the operator is used (eg, startsWith will actually use "iStartsWith").  To avoid this, explicitly set
+     * item.operator (the default operator) to any case sensitive operator (eg "equals" or "contains") and case sensitive
+     * operators will be used for user-entered expressions. <P> Compound expressions (including "and" and "or") are allowed
+     * only for numeric or date/time types. <P> To enable this behavior for all fields in a form that allow text entry, see
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getAllowExpressions allowExpressions}. <P> <P> Note that, like
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator}, enabling
+     * <code>allowExpressions:true</code> causes {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria
+     * form.getValuesAsCriteria()}) to return {@link com.smartgwt.client.data.AdvancedCriteria}.
+     *
+     * @param allowExpressions allowExpressions Default value is null
+     */
+    public void setAllowExpressions(Boolean allowExpressions) {
+        setAttribute("allowExpressions", allowExpressions);
+    }
+
+    /**
+     * For a form that produces filter criteria (see {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria
+     * form.getValuesAsCriteria()}), allows the user to type in simple expressions to cause filtering with that operator.  For
+     * example, entering ">5" means values greater than 5, and ">0 and <5" means values between 0 and 5. <P> The following
+     * table lists character sequences that can be entered as a prefix to a value,  and the corresponding  operator that will
+     * be used.  Note that in the absence of a prefix, the operator specified via {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator} is used. <P> <table style='font-size:14;'>
+     * <tr><td><b>Prefix</b></td><td><b>Operator</b></td></tr> <tr><td>&lt;</td><td>lessThan</td></tr>
+     * <tr><td>&gt;</td><td>greaterThan</td></tr> <tr><td>&lt;=</td><td>lessThanOrEqual</td></tr>
+     * <tr><td>&gt;=</td><td>greaterThanOrEqual</td></tr> <tr><td>someValue...someValue</td><td>betweenInclusive</td></tr>
+     * <tr><td>!</td><td>notEqual</td></tr> <tr><td>^</td><td>startsWith</td></tr> <tr><td>|</td><td>endsWith</td></tr>
+     * <tr><td>!^</td><td>notStartsWith plus logical not</td></tr> <tr><td>!@</td><td>notEndsWith plus logical not</td></tr>
+     * <tr><td>~</td><td>contains</td></tr> <tr><td>!~</td><td>notContains</td></tr> <tr><td>#</td><td>isNull</td></tr>
+     * <tr><td>!#</td><td>isNotNull</td></tr> <tr><td>==</td><td>exact match (for fields where 'contains' is the
+     * default)</td></tr> </table> <P> Two further special notations are allowed: <ul> <li> /<i>regex</i>/ means the value is
+     * taken as a regular expression and applied via the "regexp" operator <li> =.<i>fieldName</i> means the value should match
+     * the value of another field.  Either the user-visible title of the field (field.title) or the field's name (field.name)
+     * may be used. </ul> <P> In all cases, if an operator is disallowed for the field (via {@link
+     * com.smartgwt.client.data.DataSourceField#getValidOperators field.validOperators} at either the dataSource or field
+     * level), the operator character is ignored (treated as part of a literal value). <P> By default, the case-insensitive
+     * version of the operator is used (eg, startsWith will actually use "iStartsWith").  To avoid this, explicitly set
+     * item.operator (the default operator) to any case sensitive operator (eg "equals" or "contains") and case sensitive
+     * operators will be used for user-entered expressions. <P> Compound expressions (including "and" and "or") are allowed
+     * only for numeric or date/time types. <P> To enable this behavior for all fields in a form that allow text entry, see
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getAllowExpressions allowExpressions}. <P> <P> Note that, like
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator}, enabling
+     * <code>allowExpressions:true</code> causes {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria
+     * form.getValuesAsCriteria()}) to return {@link com.smartgwt.client.data.AdvancedCriteria}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAllowExpressions()  {
+        return getAttributeAsBoolean("allowExpressions");
+    }
+
+    /**
      * If this form item has a specified {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
      * optionDataSource} and  {@link com.smartgwt.client.widgets.form.fields.FormItem#getFetchMissingValues fetchMissingValues}
-     * is true, this property may be set to true to ensure a fetch will occur against the optionDataSource to retrieve the
-     * related record even if {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} is unset.
-     * <P> An example of a use case where this might be set would be if {@link
+     * is true, when the item value changes, a fetch will be performed against the optionDataSource to retrieve the related
+     * record  if {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} is specified and the
+     * new item value is not present in any valueMap explicitly specified on the item. <P> Setting this property to true means
+     * that a fetch will occur against the optionDataSource  to retrieve the related record even if {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} is unset, or the item has a valueMap
+     * which explicitly contains this field's value. <P> An example of a use case where this might be set would be if {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#formatValue FormItem.formatValue} or {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#formatEditorValue FormItem.formatEditorValue} were written to display
-     * properties from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getSelectedRecord selected record}.
+     * properties from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getSelectedRecord selected record}. <P> Note
+     * - for efficiency we cache the associated record once a fetch has been performed, meaning if the value changes, then
+     * reverts to a previously seen value, we do not kick off an additional fetch even if this property is true. If necessary
+     * this cache may be explicitly invalidated via a call to {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#invalidateDisplayValueCache FormItem.invalidateDisplayValueCache}
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param alwaysFetchMissingValues alwaysFetchMissingValues Default value is false
@@ -156,12 +234,19 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * If this form item has a specified {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
      * optionDataSource} and  {@link com.smartgwt.client.widgets.form.fields.FormItem#getFetchMissingValues fetchMissingValues}
-     * is true, this property may be set to true to ensure a fetch will occur against the optionDataSource to retrieve the
-     * related record even if {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} is unset.
-     * <P> An example of a use case where this might be set would be if {@link
+     * is true, when the item value changes, a fetch will be performed against the optionDataSource to retrieve the related
+     * record  if {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} is specified and the
+     * new item value is not present in any valueMap explicitly specified on the item. <P> Setting this property to true means
+     * that a fetch will occur against the optionDataSource  to retrieve the related record even if {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} is unset, or the item has a valueMap
+     * which explicitly contains this field's value. <P> An example of a use case where this might be set would be if {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#formatValue FormItem.formatValue} or {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#formatEditorValue FormItem.formatEditorValue} were written to display
-     * properties from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getSelectedRecord selected record}.
+     * properties from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getSelectedRecord selected record}. <P> Note
+     * - for efficiency we cache the associated record once a fetch has been performed, meaning if the value changes, then
+     * reverts to a previously seen value, we do not kick off an additional fetch even if this property is true. If necessary
+     * this cache may be explicitly invalidated via a call to {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#invalidateDisplayValueCache FormItem.invalidateDisplayValueCache}
      *
      *
      * @return Boolean
@@ -347,17 +432,32 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Display format to use for date type values within this formItem. Default is to use the system-wide default short date
-     * format, configured via  Date.setShortDisplayFormat.  Specify any valid {@link
-     * com.smartgwt.client.types.DateDisplayFormat} to  change the format used by this item.<br> Note: if both
-     * <code>dateFormatter</code> and {@link com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter}
-     * are specified on an item, Date type values will be formatted as dates using  <code>dateFormatter</code>.<br> See also
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFormat displayFormat} and  {@link
-     * com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} for formatting dates displayed in
-     * DateItems.
+     * Display format to use for date type values within this formItem. <P> Note that Fields of type <code>"date"</code>,
+     * <code>"datetime"</code> or <code>"time"</code> will be edited using a {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem} or {@link com.smartgwt.client.widgets.form.fields.TimeItem} by
+     * default, but  this can be overridden - for <code>canEdit:false</code> fields, a {@link
+     * com.smartgwt.client.widgets.form.fields.StaticTextItem} is used by default, and the developer can always specify  a
+     * custom {@link com.smartgwt.client.widgets.form.fields.FormItem#getEditorType editorType} as well as {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getType data type}. <P> The {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter} may also be used to format underlying
+     * Date values as times (ommitting the date part entirely). If both <code>dateFormatter</code> and
+     * <code>timeFormatter</code> are specified on an item, for fields specified as {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getType type "time"} the <code>timeFormatter</code> will be used,
+     * otherwise the <code>dateFormatter</code> <P> If <code>item.dateFormatter</code> and <code>item.timeFormatter</code> is
+     * unspecified, date display format may be defined at the component level via {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getDateFormatter dateFormatter}, or for fields of type
+     * <code>"datetime"</code> {@link com.smartgwt.client.widgets.form.DynamicForm#getDatetimeFormatter datetimeFormatter}.
+     * Otherwise the default is to use the system-wide default short date format, configured via  Date.setShortDisplayFormat. 
+     * Specify any valid {@link com.smartgwt.client.types.DateDisplayFormat} to  change the format used by this item. <P> Note
+     * that if this is a freeform editable field, such a {@link com.smartgwt.client.widgets.form.fields.TextItem}, with type
+     * specified as <code>"date"</code> or <code>"datetime"</code> the system will automatically attempt to parse user entered
+     * values back to a Date value, assuming the entered string matches the date format for the field. Developers may further
+     * customize this via an explicit {@link com.smartgwt.client.widgets.form.fields.FormItem#getInputFormat inputFormat} or
+     * via entirely custom   <code>setEditorValueFormatter</code> and <code>setEditorValueParser</code> methods.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dateFormatter dateFormatter Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setTimeFormatter
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setDateFormatter(DateDisplayFormat dateFormatter) {
@@ -365,17 +465,32 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Display format to use for date type values within this formItem. Default is to use the system-wide default short date
-     * format, configured via  Date.setShortDisplayFormat.  Specify any valid {@link
-     * com.smartgwt.client.types.DateDisplayFormat} to  change the format used by this item.<br> Note: if both
-     * <code>dateFormatter</code> and {@link com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter}
-     * are specified on an item, Date type values will be formatted as dates using  <code>dateFormatter</code>.<br> See also
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFormat displayFormat} and  {@link
-     * com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} for formatting dates displayed in
-     * DateItems.
+     * Display format to use for date type values within this formItem. <P> Note that Fields of type <code>"date"</code>,
+     * <code>"datetime"</code> or <code>"time"</code> will be edited using a {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem} or {@link com.smartgwt.client.widgets.form.fields.TimeItem} by
+     * default, but  this can be overridden - for <code>canEdit:false</code> fields, a {@link
+     * com.smartgwt.client.widgets.form.fields.StaticTextItem} is used by default, and the developer can always specify  a
+     * custom {@link com.smartgwt.client.widgets.form.fields.FormItem#getEditorType editorType} as well as {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getType data type}. <P> The {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter} may also be used to format underlying
+     * Date values as times (ommitting the date part entirely). If both <code>dateFormatter</code> and
+     * <code>timeFormatter</code> are specified on an item, for fields specified as {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getType type "time"} the <code>timeFormatter</code> will be used,
+     * otherwise the <code>dateFormatter</code> <P> If <code>item.dateFormatter</code> and <code>item.timeFormatter</code> is
+     * unspecified, date display format may be defined at the component level via {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getDateFormatter dateFormatter}, or for fields of type
+     * <code>"datetime"</code> {@link com.smartgwt.client.widgets.form.DynamicForm#getDatetimeFormatter datetimeFormatter}.
+     * Otherwise the default is to use the system-wide default short date format, configured via  Date.setShortDisplayFormat. 
+     * Specify any valid {@link com.smartgwt.client.types.DateDisplayFormat} to  change the format used by this item. <P> Note
+     * that if this is a freeform editable field, such a {@link com.smartgwt.client.widgets.form.fields.TextItem}, with type
+     * specified as <code>"date"</code> or <code>"datetime"</code> the system will automatically attempt to parse user entered
+     * values back to a Date value, assuming the entered string matches the date format for the field. Developers may further
+     * customize this via an explicit {@link com.smartgwt.client.widgets.form.fields.FormItem#getInputFormat inputFormat} or
+     * via entirely custom   <code>setEditorValueFormatter</code> and <code>setEditorValueParser</code> methods.
      *
      *
      * @return DateDisplayFormat
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public DateDisplayFormat getDateFormatter()  {
@@ -457,6 +572,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * to be used as a server based {@link valueMap}.
      *
      * @param displayField displayField Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#invalidateDisplayValueCache
      */
     public void setDisplayField(String displayField) {
         setAttribute("displayField", displayField);
@@ -480,6 +596,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return String
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#invalidateDisplayValueCache
      */
     public String getDisplayField()  {
         return getAttributeAsString("displayField");
@@ -648,7 +765,11 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.form.fields.FormItem#getAlwaysMissingFetchValues alwaysMissingFetchValues} to have a fetch
      * occur even if no <code>displayField</code> is specified. This ensures  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getSelectedRecord FormItem.getSelectedRecord} will return a record if
-     * possible - useful for custom formatter functions, etc.
+     * possible - useful for custom formatter functions, etc. <P> Note - for efficiency we cache the associated record once a
+     * fetch has been performed, meaning if the value changes, then reverts to a previously seen value, we do not kick off an
+     * additional fetch to pick up the display value for the previously seen data value. If necessary this cache may be
+     * explicitly invalidated via a call to  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#invalidateDisplayValueCache FormItem.invalidateDisplayValueCache}
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param fetchMissingValues fetchMissingValues Default value is true
@@ -672,7 +793,11 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.form.fields.FormItem#getAlwaysMissingFetchValues alwaysMissingFetchValues} to have a fetch
      * occur even if no <code>displayField</code> is specified. This ensures  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getSelectedRecord FormItem.getSelectedRecord} will return a record if
-     * possible - useful for custom formatter functions, etc.
+     * possible - useful for custom formatter functions, etc. <P> Note - for efficiency we cache the associated record once a
+     * fetch has been performed, meaning if the value changes, then reverts to a previously seen value, we do not kick off an
+     * additional fetch to pick up the display value for the previously seen data value. If necessary this cache may be
+     * explicitly invalidated via a call to  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#invalidateDisplayValueCache FormItem.invalidateDisplayValueCache}
      *
      *
      * @return Boolean
@@ -1098,13 +1223,63 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
+     * When true, indicates that changes to this item will cause an automatic save on a  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getImplicitSaveDelay delay}, as well as when the entire form is submitted. 
+     * Unless implicitSaveOnBlur is set to false on either this  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getImplicitSaveOnBlur formItem} or it's   {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getImplicitSaveOnBlur form} changes will also be automatically saved on 
+     * editorExit.
+     *
+     * @param implicitSave implicitSave Default value is false
+     */
+    public void setImplicitSave(Boolean implicitSave) {
+        setAttribute("implicitSave", implicitSave);
+    }
+
+    /**
+     * When true, indicates that changes to this item will cause an automatic save on a  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getImplicitSaveDelay delay}, as well as when the entire form is submitted. 
+     * Unless implicitSaveOnBlur is set to false on either this  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getImplicitSaveOnBlur formItem} or it's   {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getImplicitSaveOnBlur form} changes will also be automatically saved on 
+     * editorExit.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getImplicitSave()  {
+        return getAttributeAsBoolean("implicitSave");
+    }
+
+    /**
+     * If not set to false, form item values will be saved when this item's "editorExit"  handler is fired as well as on a
+     * delay and when the entire form is submitted.
+     *
+     * @param implicitSaveOnBlur implicitSaveOnBlur Default value is false
+     */
+    public void setImplicitSaveOnBlur(Boolean implicitSaveOnBlur) {
+        setAttribute("implicitSaveOnBlur", implicitSaveOnBlur);
+    }
+
+    /**
+     * If not set to false, form item values will be saved when this item's "editorExit"  handler is fired as well as on a
+     * delay and when the entire form is submitted.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getImplicitSaveOnBlur()  {
+        return getAttributeAsBoolean("implicitSaveOnBlur");
+    }
+
+    /**
      * For fields of type <code>"date"</code>, if this is an editable field such as a {@link
      * com.smartgwt.client.widgets.form.fields.TextItem}, this property  allows you to specify the {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} applied to the item.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param inputFormat inputFormat Default value is null
-     * @see com.smartgwt.client.widgets.form.fields.FormItem#setDisplayFormat
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setDateFormatter
      */
     public void setInputFormat(String inputFormat) {
         setAttribute("inputFormat", inputFormat);
@@ -1117,7 +1292,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      *
      * @return String
-     * @see com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFormat
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter
      */
     public String getInputFormat()  {
         return getAttributeAsString("inputFormat");
@@ -2227,34 +2402,34 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * Time-format to apply to date type values within this formItem.  If specified, any dates displayed in this item will be
-     * formatted as times using the appropriate format.<br> Has no effect if {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} is also set.<br> See also {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFormat displayFormat} and {@link
-     * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat} for formatting values displayed in
-     * TimeItems.
+     * formatted as times using the appropriate format. This is most commonly only applied to fields specified as type
+     * <code>"time"</code> though if no explicit {@link com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter
+     * dateFormatter} is specified it will be respected for other  fields as well. <P> If unspecified, a timeFormatter may be
+     * defined  {@link com.smartgwt.client.widgets.form.DynamicForm#getTimeFormatter at the component level} and will be
+     * respected by fields of type <code>"time"</code>.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param timeFormatter timeFormatter Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setTimeFormatter(TimeFormatter timeFormatter) {
+    public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
         setAttribute("timeFormatter", timeFormatter.getValue());
     }
 
     /**
      * Time-format to apply to date type values within this formItem.  If specified, any dates displayed in this item will be
-     * formatted as times using the appropriate format.<br> Has no effect if {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} is also set.<br> See also {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFormat displayFormat} and {@link
-     * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat} for formatting values displayed in
-     * TimeItems.
+     * formatted as times using the appropriate format. This is most commonly only applied to fields specified as type
+     * <code>"time"</code> though if no explicit {@link com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter
+     * dateFormatter} is specified it will be respected for other  fields as well. <P> If unspecified, a timeFormatter may be
+     * defined  {@link com.smartgwt.client.widgets.form.DynamicForm#getTimeFormatter at the component level} and will be
+     * respected by fields of type <code>"time"</code>.
      *
      *
-     * @return TimeFormatter
+     * @return TimeDisplayFormat
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public TimeFormatter getTimeFormatter()  {
-        return EnumUtil.getEnum(TimeFormatter.values(), getAttribute("timeFormatter"));
+    public TimeDisplayFormat getTimeFormatter()  {
+        return EnumUtil.getEnum(TimeDisplayFormat.values(), getAttribute("timeFormatter"));
     }
 
     /**
@@ -2465,6 +2640,29 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      */
     public Boolean getValidateOnExit()  {
         return getAttributeAsBoolean("validateOnExit");
+    }
+
+    /**
+     * Array of valid filtering operators (eg "greaterThan") that are legal for this FormItem. <P> Applies only to
+     * form/formItem when {@link com.smartgwt.client.widgets.form.fields.FormItem#getAllowExpressions allowExpressions} is
+     * true, allowing the user to input expressions.
+     *
+     * @param validOperators validOperators Default value is null
+     */
+    public void setValidOperators(OperatorId... validOperators) {
+        setAttribute("validOperators", validOperators);
+    }
+
+    /**
+     * Array of valid filtering operators (eg "greaterThan") that are legal for this FormItem. <P> Applies only to
+     * form/formItem when {@link com.smartgwt.client.widgets.form.fields.FormItem#getAllowExpressions allowExpressions} is
+     * true, allowing the user to input expressions.
+     *
+     *
+     * @return OperatorId
+     */
+    public OperatorId[] getValidOperators()  {
+        return (OperatorId[]) EnumUtil.getEnums(OperatorId.values(), getAttributeAsStringArray("validOperators"));
     }
 
     /**
@@ -2731,9 +2929,9 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * When a dynamic form is editing an advanced criteria object via {@link
      * com.smartgwt.client.widgets.form.DynamicForm#setValuesAsCriteria DynamicForm.setValuesAsCriteria}, this method is used
-     * to to determine which sub-criteria apply to which form item(s). <P> This method will be called on each item, and passed
-     * the sub-criterion of the AdvancedCriteria object. It should return true if the item can edit the criterion, otherwise
-     * false. If it returns true, setValuesAsCriteria() will call  {@link
+     * to determine which sub-criteria apply to which form item(s). <P> This method will be called on each item, and passed the
+     * sub-criterion of the AdvancedCriteria object. It should return true if the item can edit the criterion, otherwise false.
+     * If it returns true, setValuesAsCriteria() will call  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#setCriterion FormItem.setCriterion} to actually apply the criterion to
      * the form item, and {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria
      * DynamicForm.getValuesAsCriteria} can subsequently retrieve the edited criterion by calling {@link
@@ -2844,14 +3042,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
    }-*/;
-            
-    /**
-     * Set this item to be disabled at runtime.
-     */
-    public native void disable() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.disable();
-    }-*/;
     /**
      * Add a doubleClick handler.
      * <p>
@@ -2875,14 +3065,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
    }-*/;
-            
-    /**
-     * Set this item to be enabled at runtime.
-     */
-    public native void enable() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.enable();
-    }-*/;
     /**
      * Add a focus handler.
      * <p>
@@ -3157,6 +3339,26 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
    }-*/;
+            
+    /**
+     * If this item has a specified {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField}, the
+     * value displayed to the user for this item may be derived from another field. <P> The display field can be either another
+     * field value in the same record or a field that must be retrieved from a related {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} if {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getFetchMissingValues fetchMissingValues} is true. In this latter case,
+     * we perform a fetch against the option dataSource when the item value changes in order to determine the display value to
+     * show (and we make the associated record available via {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getSelectedRecord FormItem.getSelectedRecord}). <P> We cache this data
+     * on the form item, so if the item value changes to a new value, then reverts to a previously-seen value, the display
+     * value and selected record are already available  without the need for an additional fetch. The cached values will also
+     * be kept in synch with the dataSource data assuming it is modified via standard add, update or delete operations. <P>
+     * This method explicitly invalidates this cache of optionDataSource data, and if the item value is non null and
+     * fetchMissingValues is still true, re-fetches the data.
+     */
+    public native void invalidateDisplayValueCache() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.invalidateDisplayValueCache();
+    }-*/;
             
     /**
      * Is this item disabled?
@@ -3453,7 +3655,19 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public FormItem(String name) {
         setName(name);
     }
-
+    
+    /**
+     * Specify a notification method to fire when this formItem is initialized in JavaScript. This allows developers
+     * to set up form item state dynamically when the item is created.
+     * @param initHandler
+     */
+    public native void setInitHandler(com.smartgwt.client.widgets.form.fields.events.FormItemInitHandler initHandler) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.onInit = $debox($entry(function(item) {
+            var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
+            return initHandler.@com.smartgwt.client.widgets.form.fields.events.FormItemInitHandler::onInit(Lcom/smartgwt/client/widgets/form/fields/FormItem;)(itemJ);
+        }));
+    }-*/;
     public void setAttribute(String attribute, String value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);
@@ -4051,6 +4265,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             setValue(((Boolean) value).booleanValue());
         } else if (value instanceof Date) {
             setValue((Date) value);
+        } else if (value instanceof RelativeDate) {
+            setValue(((RelativeDate) value).getValue());
         } else {
             doSetValue(value);
         }
@@ -4206,6 +4422,25 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         }
         return config;
     }-*/;
+    
+    
+    // getConfig() omits the 'editorType' attribute from the returned object which is desirable in 
+    // most cases. This method picks up the editorType if this is a subclass of FormItem so if the config
+    // is used in a properties block, a TextItem (or whatever) instance will generate javascript items
+    // of the expected SmartClient class.
+    public JavaScriptObject getEditorTypeConfig () {
+
+        JavaScriptObject editorConfig = getConfig();
+        //only set the editorType attribute if this is an instance of a concrete subclass of FormItem
+        if(!getClass().getName().equals(FormItem.class.getName())) {
+            String fiEditorType = getAttribute("editorType");
+            //fallback to type if editorType is not specified
+            if(fiEditorType == null) fiEditorType = getType();
+            if (fiEditorType != null) JSOHelper.setAttribute(editorConfig, "editorType", fiEditorType);
+        }
+        return editorConfig;
+    }
+
 
     /**
      * This text is shown as a tooltip prompt when the cursor hovers over this item. Alias for {@link #setPrompt}.
@@ -4526,6 +4761,20 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      */
     public void setDisplayFormat(TimeFormatter displayFormat) {
         setAttribute("displayFormat", displayFormat.getValue());
+    }
+    
+    /**
+     * Set this item to be enabled (shortcut for {@link #setDisabled(Boolean),setDisabled(false)}).
+     */
+    public void enable() {
+        setDisabled(false);
+    }
+    
+    /**
+     * Set this item to be disabled (shortcut for {@link #setDisabled(Boolean),setDisabled(true)}).
+     */
+    public void disable() {
+        setDisabled(true);
     }
     
 
