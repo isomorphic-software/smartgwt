@@ -286,6 +286,103 @@ public class DataSourceField extends DataClass {
     }
 
     /**
+     * For a DataSource with {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType} "sql" or "hibernate",
+     * indicates that this field should be omitted by default from all SQL or Hibernate operations, and will only be used with
+     * {@link com.smartgwt.client.docs.CustomQueries custom queries}. <P> Having marked a field as <code>customSQL</code> you
+     * can refer to it via $criteria.<i>fieldName</i> or $values.<i>fieldName</i> in customized queries. <P> The following are
+     * situations where you would <b>not</b> use <code>customSQL</code>: <ul> <li>simple joins where you want to enable users
+     * to see and search on a field from another table; consider {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#tableName tableName} instead <li>fields where you want to calculate or
+     * transform values in SQL on load or save, but always perform the same calculation for each operationType; consider
+     * instead {@link com.smartgwt.client.docs.serverds.DataSourceField#sqlStorageStrategy sqlStorageStrategy} for some common
+     * cases, or  {@link com.smartgwt.client.docs.serverds.DataSourceField#customSelectExpression customSelectExpression},
+     * {@link com.smartgwt.client.docs.serverds.DataSourceField#customUpdateExpression customUpdateExpression} and {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#customInsertExpression customInsertExpression} for full customization
+     * <li>a special fetch is needed where the field needs to be excluded from the $defaultWhereClause so that it can be used
+     * in a custom &lt;whereClause&gt; - consider {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#excludeCriteriaFields excludeCriteriaFields} instead </ul> <P> Use
+     * customSQL in situations like: <ul> <li>there are multiple variations of the "fetch" operation with different {@link
+     * com.smartgwt.client.data.OperationBinding#getOperationId operationIds}, and the field is only used in some of them; in
+     * that case, consider using {@link com.smartgwt.client.docs.serverds.OperationBinding#customFields customFields} to
+     * selectively re-introduce SQL generation for the field only in operations where it's used. <li>the field represents
+     * hidden criteria on a field in another table where the field is never shown to the user <li>the field is a write-only
+     * value only saved in some operations <li>more than one data access strategy is in use (eg direct SQL for fetch and
+     * bean-based persistence accessed via DMI for saves) and certain fields are not available in SQL </ul>
+     *
+     * @param customSQL customSQL Default value is null
+     */
+    public void setCustomSQL(Boolean customSQL) {
+        setAttribute("customSQL", customSQL);
+    }
+
+    /**
+     * For a DataSource with {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType} "sql" or "hibernate",
+     * indicates that this field should be omitted by default from all SQL or Hibernate operations, and will only be used with
+     * {@link com.smartgwt.client.docs.CustomQueries custom queries}. <P> Having marked a field as <code>customSQL</code> you
+     * can refer to it via $criteria.<i>fieldName</i> or $values.<i>fieldName</i> in customized queries. <P> The following are
+     * situations where you would <b>not</b> use <code>customSQL</code>: <ul> <li>simple joins where you want to enable users
+     * to see and search on a field from another table; consider {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#tableName tableName} instead <li>fields where you want to calculate or
+     * transform values in SQL on load or save, but always perform the same calculation for each operationType; consider
+     * instead {@link com.smartgwt.client.docs.serverds.DataSourceField#sqlStorageStrategy sqlStorageStrategy} for some common
+     * cases, or  {@link com.smartgwt.client.docs.serverds.DataSourceField#customSelectExpression customSelectExpression},
+     * {@link com.smartgwt.client.docs.serverds.DataSourceField#customUpdateExpression customUpdateExpression} and {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#customInsertExpression customInsertExpression} for full customization
+     * <li>a special fetch is needed where the field needs to be excluded from the $defaultWhereClause so that it can be used
+     * in a custom &lt;whereClause&gt; - consider {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#excludeCriteriaFields excludeCriteriaFields} instead </ul> <P> Use
+     * customSQL in situations like: <ul> <li>there are multiple variations of the "fetch" operation with different {@link
+     * com.smartgwt.client.data.OperationBinding#getOperationId operationIds}, and the field is only used in some of them; in
+     * that case, consider using {@link com.smartgwt.client.docs.serverds.OperationBinding#customFields customFields} to
+     * selectively re-introduce SQL generation for the field only in operations where it's used. <li>the field represents
+     * hidden criteria on a field in another table where the field is never shown to the user <li>the field is a write-only
+     * value only saved in some operations <li>more than one data access strategy is in use (eg direct SQL for fetch and
+     * bean-based persistence accessed via DMI for saves) and certain fields are not available in SQL </ul>
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCustomSQL()  {
+        return getAttributeAsBoolean("customSQL");
+    }
+
+    /**
+     * Preferred display format to use for date type values within this field. If this property is set on a field displayed in
+     * a databound component such as a {@link com.smartgwt.client.widgets.form.DynamicForm} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid} it will be respected (See {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} and {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getDateForamtter dateForamtter}). <P> Note that this property is also
+     * honored when exporting directly to  Excel spreadsheets (ie, when using XLS or XLSX/OOXML form, <b>not</b> CSV); "date"
+     * and "datetime" fields with this property set will deliver real dates and formatting information to Excel, rather than
+     * formatted strings or unformatted dates.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param dateFormatter dateFormatter Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setDateFormatter(DateDisplayFormat dateFormatter) {
+        setAttribute("dateFormatter", dateFormatter.getValue());
+    }
+
+    /**
+     * Preferred display format to use for date type values within this field. If this property is set on a field displayed in
+     * a databound component such as a {@link com.smartgwt.client.widgets.form.DynamicForm} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid} it will be respected (See {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} and {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getDateForamtter dateForamtter}). <P> Note that this property is also
+     * honored when exporting directly to  Excel spreadsheets (ie, when using XLS or XLSX/OOXML form, <b>not</b> CSV); "date"
+     * and "datetime" fields with this property set will deliver real dates and formatting information to Excel, rather than
+     * formatted strings or unformatted dates.
+     *
+     *
+     * @return DateDisplayFormat
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public DateDisplayFormat getDateFormatter()  {
+        return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
+    }
+
+    /**
      * Whether this field should be considered a "detail" field by a {@link com.smartgwt.client.widgets.DataBoundComponent}.
      * <P> Detail fields won't be shown by default in a DataBoundComponent where  {@link
      * com.smartgwt.client.widgets.DataBoundComponent#getShowDetailFields showDetailFields} is false.  This allows for some
@@ -323,31 +420,6 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * The default date formatter to use for displaying this field.  Only applicable to fields of  type "date" and "datetime". 
-     * Note that this property is honored when exporting directly to  Excel spreadsheets (ie, when using XLS or XLSX/OOXML
-     * form, <b>not</b> CSV); "date" and "datetime" fields with this property set will deliver real dates and formatting
-     * information to Excel, rather than formatted strings or unformatted dates.
-     *
-     * @param displayFormat displayFormat Default value is null
-     */
-    public void setDisplayFormat(DateDisplayFormat displayFormat) {
-        setAttribute("displayFormat", displayFormat.getValue());
-    }
-
-    /**
-     * The default date formatter to use for displaying this field.  Only applicable to fields of  type "date" and "datetime". 
-     * Note that this property is honored when exporting directly to  Excel spreadsheets (ie, when using XLS or XLSX/OOXML
-     * form, <b>not</b> CSV); "date" and "datetime" fields with this property set will deliver real dates and formatting
-     * information to Excel, rather than formatted strings or unformatted dates.
-     *
-     *
-     * @return DateDisplayFormat
-     */
-    public DateDisplayFormat getDisplayFormat()  {
-        return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("displayFormat"));
-    }
-
-    /**
      * Sets the default FormItem to be used whenever this field is edited (whether in a grid, form, or other component). <P> If
      * unset, a FormItem will be automatically chosen based on the type of the field, by the rules explained {@link
      * com.smartgwt.client.types.FormItemType here}.
@@ -370,6 +442,31 @@ public class DataSourceField extends DataClass {
      */
     public String getEditorType()  {
         return getAttributeAsString("editorType");
+    }
+
+    /**
+     * When data values are displayed in DataBound components, by default strings will be interpreted as HTML by the browser in
+     * most cases. <P> If set, this property will be picked up by components bound to this dataSource, notifying them that any
+     * HTML characters should be escaped when displaying values for this field.
+     *
+     * @param escapeHTML escapeHTML Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setEscapeHTML
+     */
+    public void setEscapeHTML(Boolean escapeHTML) {
+        setAttribute("escapeHTML", escapeHTML);
+    }
+
+    /**
+     * When data values are displayed in DataBound components, by default strings will be interpreted as HTML by the browser in
+     * most cases. <P> If set, this property will be picked up by components bound to this dataSource, notifying them that any
+     * HTML characters should be escaped when displaying values for this field.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getEscapeHTML
+     */
+    public Boolean getEscapeHTML()  {
+        return getAttributeAsBoolean("escapeHTML");
     }
 
     /**
@@ -1055,6 +1152,31 @@ public class DataSourceField extends DataClass {
      */
     public FieldType getType()  {
         return EnumUtil.getEnum(FieldType.values(), getAttribute("type"));
+    }
+
+    /**
+     * Used by the {@link com.smartgwt.client.widgets.BatchUploader} to map a field in an upload file to this  dataSourceField.
+     * This is only necessary if the dataSourceField's name and title differ  from the name of the field in the upload file
+     * (Smart GWT will automatically map upload  fields using the dataSourceField's title, if possible, if it does not get a
+     * direct match  on field name).
+     *
+     * @param uploadFieldName uploadFieldName Default value is null
+     */
+    public void setUploadFieldName(String uploadFieldName) {
+        setAttribute("uploadFieldName", uploadFieldName);
+    }
+
+    /**
+     * Used by the {@link com.smartgwt.client.widgets.BatchUploader} to map a field in an upload file to this  dataSourceField.
+     * This is only necessary if the dataSourceField's name and title differ  from the name of the field in the upload file
+     * (Smart GWT will automatically map upload  fields using the dataSourceField's title, if possible, if it does not get a
+     * direct match  on field name).
+     *
+     *
+     * @return String
+     */
+    public String getUploadFieldName()  {
+        return getAttributeAsString("uploadFieldName");
     }
 
     /**
