@@ -889,11 +889,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dialog_UserNameTitle();
 
   /**
-   * Translated "Note".
+   * Translated "Warning".
    * 
-   * @return translated "Note"
+   * @return translated "Warning"
    */
-  @DefaultMessage("Note")
+  @DefaultMessage("Warning")
   @Key("dialog_WarnTitle")
   String dialog_WarnTitle();
 
