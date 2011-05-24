@@ -210,6 +210,9 @@ public class SmartGwtEntryPoint implements EntryPoint {
                 if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(object)) return object.@java.lang.Number::floatValue()();
                 if(@com.smartgwt.client.util.JSOHelper::isJavaBoolean(Ljava/lang/Object;)(object)) return object.@java.lang.Boolean::booleanValue()();
                 if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(object)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(object);
+                //in certain browser versions, GWT hosted mode returns 'typeof obj' as object even for strings that originated from a object.toString() call in GWT java
+                //see http://code.google.com/p/google-web-toolkit/issues/detail?id=4301 workaround this issue by explicitly casting to a String object
+                if(@com.smartgwt.client.util.JSOHelper::isJavaString(Ljava/lang/Object;)(object)) return @com.smartgwt.client.util.JSOHelper::convertToString(Ljava/lang/Object;)(object);
             }
 
             return object;
