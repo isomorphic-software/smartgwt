@@ -547,6 +547,16 @@ public class JSOHelper {
         return dateJS;
     }
 
+    //explicitly cast Object to String to workaround GWT hosted mode but in certain browsers when originating string is obtained
+    //by calling object.toString(). http://code.google.com/p/google-web-toolkit/issues/detail?id=4301
+    public static String convertToString(Object obj) {
+        if(obj instanceof String) {
+            return (String) obj;
+        } else {
+            throw new IllegalArgumentException("Object " + obj + " is not of type String");
+        }
+    }
+
     /**
      * @param obj the object
      * @return true if object is a Java Date
