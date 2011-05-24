@@ -195,15 +195,17 @@ public class SmartGwtEntryPoint implements EntryPoint {
             //With the exception of java.lang.String, touching any property on a GWT object ref like java.lang.Long or other GWT java class within JSNI causes
             //an exception to be raised in FF hosted mode
             //See http://code.google.com/p/google-web-toolkit/issues/detail?id=4946
-            //Therefore calling an API like $wnd.isc.isA.String(object) where object is a GWT Java object like java.lang.Long raises an exception
+            //The above issue seemed to have disappeared with a certain combination of FF, GWT and the GWT FF plugin. However it has now resurfaced with FF4.
+            //Calling an API like $wnd.isc.isA.String(object) where object is a GWT Java object like java.lang.Long raises an exception
             //since the function $wnd.isc.isA.String tests (touches) properties on the object.
-            //However calling 'typeof object' on a GWT object returns "function" and it does not raise an exception in FF hosted mode
-            //The exception being that calling typeof on a java.lang.String returns 'string'
+            //However calling 'typeof object' on a GWT object returns "function" (in FF4, Safari 5) or  "object" (in FF 3) and it does not raise an exception in FF hosted mode
+            //Note that typeof on a java.lang.String returns 'string'
 
             //test to see if possibly a GWT primitive object type, and if so convert to its JS counterpart object, else treat it as a JS compatible object type
             // (eg GWT primitive int, boolean, long types)
 
-            if (typeof object == 'function') {
+            var objType = typeof object;
+            if (objType == 'function' || objType == 'object') {
                 if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(object)) return object.@java.lang.Integer::intValue()();
                 if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(object)) return object.@java.lang.Number::floatValue()();
                 if(@com.smartgwt.client.util.JSOHelper::isJavaBoolean(Ljava/lang/Object;)(object)) return object.@java.lang.Boolean::booleanValue()();
