@@ -59,12 +59,12 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * A DetailViewerRecord is an object literal with properties that define the values for the&#010 various fields of a {@link
- * com.smartgwt.client.widgets.viewer.DetailViewer}.&#010 <p>&#010 For example a DetailViewer that defines the following
- * fields:&#010 <pre>&#010 fields : [&#010     {name: "field1"},&#010     {name: "field2"}&#010 ],&#010 </pre>&#010 Might
- * have the following data:&#010 <pre>&#010 data : [&#010     {field1: "foo", field2: "bar"},&#010     {field1: "field1
- * value", field2: "field2 value"}&#010 ]&#010 </pre>&#010 Each element in the data array above is an instance of
- * DetailViewerRecord - notice that&#010 these are specified simply as object literals with properties.
+ * A DetailViewerRecord contains attributes to be displayed by a DetailViewer, one attribute
+ * per line by default.
+ * <P>
+ * Like all Record subclasses, DetailViewerRecords can be converted to other Record subclasses, all
+ * of which are wrappers over an underlying data format common to all DataBoundComponents.  See
+ * {@link com.smartgwt.client.data.Record} for details.
  */
 public class DetailViewerRecord extends Record {
 
