@@ -25,20 +25,18 @@ import com.google.gwt.core.client.JavaScriptObject;
 /**
  * A Record contains attributes that are displayed and edited by a {@link com.smartgwt.client.widgets.DataBoundComponent}.
  * <p/>
- * {@link com.smartgwt.client.widgets.DataBoundComponent}s have a concept of named fields, where values for each field
- * are found under the same-named attribute in a Record.
+ * DataBoundComponents have a concept of named fields, where values for each field are found
+ * under the same-named attribute in a Record.
  * <p/>
- * The concept of working with Records is common to all {@link com.smartgwt.client.widgets.DataBoundComponent}s, although individual
+ * The concept of working with Records is common to all DataBoundComponents, although individual
  * DataBoundComponents may work with singular records ({@link com.smartgwt.client.widgets.form.DynamicForm}) or may work with lists
  * ({@link com.smartgwt.client.widgets.grid.ListGrid}), trees ({@link com.smartgwt.client.widgets.tree.TreeGrid}), or cubes
  * (CubeGrid) of records.
  * <p/>
  * A Record is always the same type of Java object regardless of how the record is loaded (static
- * data, java server, XML web service, etc).
- * <p/>
- * Individual DataBoundComponents may also look for special attributes on Records which control
- * styling or behavior.  For convenience, there are subclasses of Record with type-safe setters
- * for such attributes (such as {@link
+ * data, java server, XML web service, etc).  However, individual DataBoundComponents may also
+ * look for special attributes on Records which control styling or behavior.  For convenience,
+ * there are subclasses of Record with type-safe setters for such attributes (such as {@link
  * com.smartgwt.client.widgets.grid.ListGrid#setRecordEditProperty(String)}).  In reality, all
  * such subclasses are wrappers over the same underlying data object, and you can convert to
  * whichever wrapper is most convenient via:
@@ -50,6 +48,11 @@ import com.google.gwt.core.client.JavaScriptObject;
  * getAttribute() rather than keeping values as normal Java properties.  Only attributes will
  * be visible to DataBoundComponents, ordinary Java properties will not. 
  * <p/>
+ * Note that directly changing an attribute of a Record via setAttribute() will not notify any
+ * DataBoundComponents that the Record has changed or cause any kind of persistence operation
+ * to occur.  Instead, use component-specific methods such as DynamicForm.setValue() or
+ * ListGrid.setEditValue() to explicitly tell the components about a change that should be
+ * saved.
  */
 public class Record extends RefDataClass {
 
