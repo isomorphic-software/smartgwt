@@ -20,6 +20,7 @@ public abstract class CustomValidator extends Validator {
     protected DataSourceField dataSourceField;
     protected Record record;
     protected Map validatorProperties = new HashMap();
+    protected Object resultingValue;
 
     /**
      * Add custom validation logic by overriding this method. Access to the FormItem or DataSourceField on which the validator was
@@ -59,6 +60,17 @@ public abstract class CustomValidator extends Validator {
     public Map getValidatorProperties() {
         return validatorProperties;
     }
+
+    /**
+     * To transform the incoming value that is validated into a different value or format set this property from Validator.condition() to the desired value.
+     *
+     * @param resultingValue the resulting value
+     */
+    protected void setResultingValue(Object resultingValue) {
+        this.resultingValue = resultingValue;
+    }
+
+
     /**
      * @return field values for record being validated
      */
@@ -71,6 +83,7 @@ public abstract class CustomValidator extends Validator {
         dataSourceField = null;
         record = null;
         validatorProperties.clear();
+        resultingValue = null;
     }
 
     private native void setup(JavaScriptObject jsObj) /*-{
@@ -97,6 +110,11 @@ public abstract class CustomValidator extends Validator {
             var ret =  self.@com.smartgwt.client.widgets.form.validator.CustomValidator::condition(Ljava/lang/Object;)(valueJ);
 
             var jsValidatorDefinition = self.@com.smartgwt.client.widgets.form.validator.CustomValidator::getJsObj()();
+            var resultingValue = self.@com.smartgwt.client.widgets.form.validator.CustomValidator::resultingValue;
+            if(resultingValue != null && validator) {
+                validator.resultingValue =  $wnd.SmartGWT.convertToPrimitiveType(resultingValue);
+            }
+
             if (validator && validator != jsValidatorDefinition && jsValidatorDefinition.errorMessage != null) {
                 validator.errorMessage = jsValidatorDefinition.errorMessage;
                 jsValidatorDefinition.errorMessage = null;
