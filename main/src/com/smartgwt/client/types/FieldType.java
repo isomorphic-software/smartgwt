@@ -182,7 +182,12 @@ public enum FieldType implements ValueEnum {
     /**
       * Password field type
       */
-    PASSWORD("password");
+    PASSWORD("password"),
+
+    /**
+     * A custom SimpleType field type.
+     */
+    CUSTOM("custom");
 
     private String value;
 
