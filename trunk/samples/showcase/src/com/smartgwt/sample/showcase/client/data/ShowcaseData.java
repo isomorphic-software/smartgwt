@@ -158,7 +158,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Dependent Selects (Local)", "dep-selectects-combobox-category", "combobox-category", null, new FormDependentSelectsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Databound Dependent Selects", "dep-selectects-db-combobox-category", "combobox-category", null, new FormDataboundDependentSelectsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Local and Databound ComboBox", "local-db-combobox-combobox-category", "combobox-category", null, new LocalAndDataboundComboBoxSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Drop Down List Grid", "dropdown-grid-combobox-category", "combobox-category", null, new DropdownListGridSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Dropdown Grid", "dropdown-grid-combobox-category", "combobox-category", null, new DropdownListGridSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Selected Value", "selected-value-combobox-category", "combobox-category", null, new SelectedValueComboBoxSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Add on the fly", "select-other-combobox-category", "combobox-category", null, new SelectOtherFieldSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Picktree", "picktree-combobox-category", "combobox-category", null, new PickTreeFieldSample.Factory(), true, idSuffix),
