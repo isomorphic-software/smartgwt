@@ -159,6 +159,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Databound Dependent Selects", "dep-selectects-db-combobox-category", "combobox-category", null, new FormDataboundDependentSelectsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Local and Databound ComboBox", "local-db-combobox-combobox-category", "combobox-category", null, new LocalAndDataboundComboBoxSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Dropdown Grid", "dropdown-grid-combobox-category", "combobox-category", null, new DropdownListGridSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Format Dropdown", "format-dropdown", "combobox-category", null, new FormatDropDownSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Multi-Field Search", "combobox-multifield-search", "combobox-category", null, new MultiFieldSearchSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Related Records", "selected-value-combobox-category", "combobox-category", null, new SelectedValueComboBoxSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Format Related Value", "format-related-value", "combobox-category", null, new FormatRelatedValueSample.Factory(), true, idSuffix),
