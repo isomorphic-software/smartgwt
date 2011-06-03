@@ -5,6 +5,20 @@ import com.smartgwt.client.core.JsObject;
 
 import java.util.Map;
 
+
+/**
+ *  Class representing a WebService definition derived from a WSDL file.
+ *  <P>
+ *  A Web Service object allows you to invoke operations (via
+ *  {@link #callOperation callOperation()}), inspect schema declared in the
+ *  WSDL file ({@link #getSchema getSchema()}), and perform simple read-only
+ *  databinding {@link #getFetchDS getFetchDS()}.  
+ *  <P>
+ *  Once a WebService has been loaded, a DataSource can be declared with a
+ *  {@link DataSource#setServiceNamespace serviceNamespace} to connect it to the web service, allowing DataSource
+ *  data to be loaded and saved to the web service using
+ *  {@link OperationBinding operationBindings}.
+ */
 public class WebService extends JsObject {
 
     public WebService(JavaScriptObject jsObj) {
@@ -228,5 +242,16 @@ public class WebService extends JsObject {
     public static native WebService get(String serviceNamespace) /*-{
         var ws = $wnd.isc.WebService.get(serviceNamespace);
         return ws == null ? null : @com.smartgwt.client.data.WebService::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ws);
+    }-*/;
+    
+    /** Return the SOAP message that will be formed from this WSRequest.
+     *
+     * @param web service request object
+     * @return SOAP message
+     */
+    public native String getSoapMessage(WSRequest wsRequestProperties) /*-{
+        var self  = this.@com.smartgwt.client.core.JsObject::getJsObj()();
+        var wsRequestPropertiesJS = wsRequestProperties == null ? null : wsRequestProperties.@com.smartgwt.client.data.WSRequest::getJsObj()();
+        return self.getSoapMessage(wsRequestPropertiesJS);
     }-*/;
 }
