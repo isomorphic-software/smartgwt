@@ -340,6 +340,11 @@ if (!(isc.loadSkin || window.loadSkin)) {
         <trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_ar.properties" locale="ar" />
         <trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_uk_UA.properties" locale="uk_UA" />
         <trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_sv_SE.properties" locale="sv_SE" />
+        <!--99translations incorrectly double escapes the backslash in unicode character, remove the extra token-->
+        <replace dir="${i18n.dir}" value="\u">
+            <include name="**/*.properties"/>
+                <replacetoken>\\u</replacetoken>
+        </replace>
 	</target>
 				
 </project>
