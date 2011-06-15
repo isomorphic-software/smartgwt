@@ -16,6 +16,8 @@
 
 package com.smartgwt.client.util;
 
+import java.util.HashSet;
+
 import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.widgets.Dialog;
 import com.smartgwt.client.widgets.Canvas;
@@ -26,14 +28,14 @@ public class SC {
     public static native String generateID() /*-{        
         return $wnd.isc.ClassFactory.getNextGlobalID();
     }-*/;
-
+    
     public static native String generateID(String className) /*-{
         var simpleName = className.substring(className.lastIndexOf(".")+1);
         //replace any $ characters from inner class names with an underscore
         simpleName = simpleName.replace("$", "_");
         return $wnd.isc.ClassFactory.getNextGlobalIDForClass(simpleName);
     }-*/;
-
+    
     public static native String getHome() /*-{
         return $wnd.isomorphicDir;
     }-*/;
@@ -564,5 +566,13 @@ public class SC {
      */
     public static native boolean hasRealtimeMessaging()/*-{
         return $wnd.isc.Messaging != null;
+    }-*/;
+    
+    /**
+     * Enables full screen reader mode. Must be called before any components are created. See {@link com.smartgwt.client.docs.Accessibility}.
+     * @param new state for screen reader mode (true for enabled, false for disabled)
+     */
+    public static native void setScreenReaderMode(boolean newState) /*-{
+        $wnd.isc.setScreenReaderMode(newState);
     }-*/;
 }
