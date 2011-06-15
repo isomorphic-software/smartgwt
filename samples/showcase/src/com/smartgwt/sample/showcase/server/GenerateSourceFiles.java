@@ -314,7 +314,9 @@ private static void generateSampleHTMLFile(final String sourceFileDirName, final
       inComment = true;
     }
     else if (line.contains(" extends ShowcasePanel")) {
-      line = "public class " + className + " implements EntryPoint {";
+      // slip in EntryPoint import
+      line = "import com.google.gwt.core.client.EntryPoint;\n\n" +
+        "public class " + className + " implements EntryPoint {";
     }
     else if (line.contains("public Canvas getViewPanel")) {
       lineIndex = outputGetViewPanel(sourceLineList, lineIndex, sourceWriter);
