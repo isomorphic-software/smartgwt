@@ -106,6 +106,7 @@ public class Img extends StatefulCanvas {
      * If specified this property will be included as the <code>alt</code> text for the image HMTL element.
      *
      * @param altText altText Default value is null
+     * @see com.smartgwt.client.docs.Accessibility Accessibility overview and related methods
      */
     public void setAltText(String altText) {
         setAttribute("altText", altText, true);
@@ -116,6 +117,7 @@ public class Img extends StatefulCanvas {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Accessibility Accessibility overview and related methods
      */
     public String getAltText()  {
         return getAttributeAsString("altText");
@@ -337,6 +339,8 @@ public class Img extends StatefulCanvas {
     // ***********************************************************        
 
 }
+
+
 
 
 
