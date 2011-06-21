@@ -59,13 +59,15 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * Dialogs are a specialized version of {@link com.smartgwt.client.widgets.Window} used for small windows such as alerts,
- * prompts, and confirmations.  They can be modal or modeless (via the {@link com.smartgwt.client.widgets.Window#getIsModal
- * isModal} property) and will contain various children by default ("titlebar", "resizer", etc). <P> NOTE: If you are
- * building a custom component that will add components to the Window via {@link com.smartgwt.client.widgets.Window#addItem
- * addItem()}, in most cases it makes sense
+ * Dialogs are a specialized version of {@link com.smartgwt.client.widgets.Window} used for small windows that contain just
+ * a text message or a text mesage with some standard buttons. <P> Many typical modal dialogs such as alerts and
+ * confirmations are built into the system with convenience APIs - see  say,  warn and  askForValue. <P> Dialogs can be
+ * modal or non-modal according to {@link com.smartgwt.client.widgets.Window#getIsModal isModal}. <P> NOTE: If you are
+ * building a dialog that will involve more than just buttons and a message, consider starting from the {@link
+ * com.smartgwt.client.widgets.Window} class instead, where arbitrary components can be added to the body area via {@link
+ * com.smartgwt.client.widgets.Window#addItem Window.addItem}.
  */
-public class Dialog extends Window {
+public class Dialog extends Window  implements com.smartgwt.client.widgets.events.HasButtonClickHandlers {
 
     public static Dialog getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -93,6 +95,132 @@ public class Dialog extends Window {
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * If a toolbar is showing, automatically place keyboard focus in the first button.
+     *
+     * @param autoFocus autoFocus Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setAutoFocus(Boolean autoFocus)  throws IllegalStateException {
+        setAttribute("autoFocus", autoFocus, false);
+    }
+
+    /**
+     * If a toolbar is showing, automatically place keyboard focus in the first button.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Boolean getAutoFocus()  {
+        return getAttributeAsBoolean("autoFocus");
+    }
+
+    /**
+     * 
+     *
+     * @param defaultWidth defaultWidth Default value is 360
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setDefaultWidth(int defaultWidth)  throws IllegalStateException {
+        setAttribute("defaultWidth", defaultWidth, false);
+    }
+
+    /**
+     * 
+     *
+     *
+     * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public int getDefaultWidth()  {
+        return getAttributeAsInt("defaultWidth");
+    }
+
+    /**
+     * Icon to show in this dialog - see {@link com.smartgwt.client.widgets.Dialog#getMessage message}.
+     *
+     * @param icon icon Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setIcon(String icon)  throws IllegalStateException {
+        setAttribute("icon", icon, false);
+    }
+
+    /**
+     * Icon to show in this dialog - see {@link com.smartgwt.client.widgets.Dialog#getMessage message}.
+     *
+     *
+     * @return String
+     */
+    public String getIcon()  {
+        return getAttributeAsString("icon");
+    }
+
+    /**
+     * Size of the icon to show in this dialog.
+     *
+     * @param iconSize iconSize Default value is 32
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setIconSize(int iconSize)  throws IllegalStateException {
+        setAttribute("iconSize", iconSize, false);
+    }
+
+    /**
+     * Size of the icon to show in this dialog.
+     *
+     *
+     * @return int
+     */
+    public int getIconSize()  {
+        return getAttributeAsInt("iconSize");
+    }
+
+    /**
+     * Message to show in this dialog. <P> If a message is set the primary purpose of the dialog will be assumed to be to show
+     * a message with buttons - auto-sizing to the message text will be enabled, and, if {@link
+     * com.smartgwt.client.widgets.Dialog#getIcon icon} has also been set, the {@link
+     * com.smartgwt.client.widgets.Dialog#getMessageLabel messageLabel} and {@link
+     * com.smartgwt.client.widgets.Dialog#getMessageIcon messageIcon} AutoChildren will be created and placed together in the
+     * {@link com.smartgwt.client.widgets.Dialog#getMessageStack messageStack} AutoChild, with the toolbar underneath as usual.
+     * If any of these behaviors are inconvenient or you want more precise control over a message and some custom widgets,
+     * start from the superclass {@link com.smartgwt.client.widgets.Window} instead, and add controls via {@link
+     * com.smartgwt.client.widgets.Window#addItem Window.addItem}. <P> The message string may contain "${loadingImage}", if so,
+     * the standard loading spinner will appear at that location in the text (see {@link
+     * com.smartgwt.client.widgets.Canvas#loadingImageSrc loadingImageSrc}). <P> The message will be styled with the {@link
+     * com.smartgwt.client.widgets.Dialog#getMessageStyle messageStyle}.
+     *
+     * @param message message Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setMessage(String message)  throws IllegalStateException {
+        setAttribute("message", message, false);
+    }
+
+    /**
+     * Message to show in this dialog. <P> If a message is set the primary purpose of the dialog will be assumed to be to show
+     * a message with buttons - auto-sizing to the message text will be enabled, and, if {@link
+     * com.smartgwt.client.widgets.Dialog#getIcon icon} has also been set, the {@link
+     * com.smartgwt.client.widgets.Dialog#getMessageLabel messageLabel} and {@link
+     * com.smartgwt.client.widgets.Dialog#getMessageIcon messageIcon} AutoChildren will be created and placed together in the
+     * {@link com.smartgwt.client.widgets.Dialog#getMessageStack messageStack} AutoChild, with the toolbar underneath as usual.
+     * If any of these behaviors are inconvenient or you want more precise control over a message and some custom widgets,
+     * start from the superclass {@link com.smartgwt.client.widgets.Window} instead, and add controls via {@link
+     * com.smartgwt.client.widgets.Window#addItem Window.addItem}. <P> The message string may contain "${loadingImage}", if so,
+     * the standard loading spinner will appear at that location in the text (see {@link
+     * com.smartgwt.client.widgets.Canvas#loadingImageSrc loadingImageSrc}). <P> The message will be styled with the {@link
+     * com.smartgwt.client.widgets.Dialog#getMessageStyle messageStyle}.
+     *
+     *
+     * @return String
+     */
+    public String getMessage()  {
+        return getAttributeAsString("message");
+    }
 
     /**
      * Whether to show a toolbar of buttons at the bottom of the Dialog.
@@ -146,6 +274,39 @@ public class Dialog extends Window {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.applyClick();
     }-*/;
+    /**
+     * Add a buttonClick handler.
+     * <p>
+     * Fires when any button in this Dialog's toolbar is clicked.  Default implementation does nothing.
+     *
+     * @param handler the buttonClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addButtonClickHandler(com.smartgwt.client.widgets.events.ButtonClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.ButtonClickEvent.getType()) == 0) setupButtonClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.ButtonClickEvent.getType());
+    }
+
+    private native void setupButtonClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({buttonClick:$entry(function(){
+                        var param = {"button" : arguments[0], "index" : arguments[1]};
+                        var event = @com.smartgwt.client.widgets.events.ButtonClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.buttonClick = $entry(function(){
+                   var param = {"button" : arguments[0], "index" : arguments[1]};
+                   var event = @com.smartgwt.client.widgets.events.ButtonClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
+        }
+   }-*/;
             
     /**
      * Handle a click on the 'cancel' button of this Dialog. Default implementation is to return null and hide the Dialog.
@@ -236,6 +397,27 @@ public class Dialog extends Window {
     }
 
     /**
+     * Array of Buttons to show in the {@link com.smartgwt.client.widgets.Dialog#getShowToolbar toolbar}, if shown.&#010
+     * <P>&#010 The set of buttons to use is typically set by calling one of the shortcuts such as&#010 {@link
+     * com.smartgwt.client.util.isc#say isc.say} or {@link com.smartgwt.client.util.isc#confirm isc.confirm}.  A custom set of
+     * buttons can be passed to&#010 these shortcuts methods via the "properties" argument, or to a directly created
+     * Dialog.&#010 <P>&#010 In both cases, a mixture of {@link com.smartgwt.client.types.DialogButtons built-in buttons},
+     * custom buttons,&#010 and other components (such as a {@link com.smartgwt.client.widgets.layout.LayoutSpacer}) can be
+     * passed.  Built-in buttons&#010 can be referred to as <code>isc.Dialog.OK</code>, for example:&#010 <pre>&#010
+     * isc.Dialog.create({&#010    buttons:[&#010       isc.Dialog.OK, &#010       isc.Dialog.CANCEL, &#010
+     * isc.LayoutSpacer.create({width:50}), &#010       { title:"Not now", click:"doSomething()" }&#010    ]&#010 })&#010
+     * </pre>&#010 Built-in buttons will call standard methods on the Dialog itself, such as&#010 {@link
+     * com.smartgwt.client.widgets.Dialog#cancelClick Dialog.cancelClick}, as explained in the &#010 {@link
+     * com.smartgwt.client.types.DialogButtons list of built-in buttons}.
+     *
+     * @param buttons buttons Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setButtons(Button... buttons)  throws IllegalStateException {
+        setAttribute("buttons", buttons, false);
+    }
+
+    /**
     * Style to apply to the message text shown in the center of the dialog
     * <p><b>Note : </b> This is an advanced setting</p>
     *
@@ -247,7 +429,6 @@ public class Dialog extends Window {
     }
 
 }
-
 
 
 
