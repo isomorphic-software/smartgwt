@@ -410,6 +410,25 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+     * Determines whether this field can be hilited.  Set to false to prevent this field from appearing in HiliteEditor.
+     *
+     * @param canHilite canHilite Default value is null
+     */
+    public void setCanHilite(Boolean canHilite) {
+        setAttribute("canHilite", canHilite);
+    }
+
+    /**
+     * Determines whether this field can be hilited.  Set to false to prevent this field from appearing in HiliteEditor.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanHilite()  {
+        return getAttributeAsBoolean("canHilite");
+    }
+
+    /**
      * Whether this field can be reordered using the mouse.  If unset, the default behavior is governed by {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCanReorderFields canReorderFields}.  Note that setting this property to 
      * <code>false</code> will lock this field from being moved - that is, the user is  prevented from moving this field
