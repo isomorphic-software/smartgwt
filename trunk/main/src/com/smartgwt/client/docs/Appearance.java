@@ -102,8 +102,10 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Window#getShowStatusBar
  * @see com.smartgwt.client.widgets.Window#getShowResizer
  * @see com.smartgwt.client.widgets.Window#getStatus
+ * @see com.smartgwt.client.widgets.Dialog#getDefaultWidth
  * @see com.smartgwt.client.widgets.Dialog#getStyleName
  * @see com.smartgwt.client.widgets.Dialog#getShowToolbar
+ * @see com.smartgwt.client.widgets.Dialog#getAutoFocus
  * @see com.smartgwt.client.widgets.Canvas#getAutoShowParent
  * @see com.smartgwt.client.widgets.Canvas#getVisibility
  * @see com.smartgwt.client.widgets.Canvas#getClassName
@@ -313,6 +315,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getSelectionProperty
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getIndentSize
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getExtraIconGap
+ * @see com.smartgwt.client.widgets.menu.MenuButton#getShowMenuOnRollOver
+ * @see com.smartgwt.client.widgets.menu.MenuButton#getRollOverMenuHideDelay
  * @see com.smartgwt.client.widgets.tile.TileLayout#getAnimateTileChange
  * @see com.smartgwt.client.widgets.tile.TileGrid#getSelectionType
  * @see com.smartgwt.client.widgets.tile.TileGrid#getAnimateTileChange

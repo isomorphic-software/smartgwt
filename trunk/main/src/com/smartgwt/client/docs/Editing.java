@@ -180,6 +180,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEscapeKeyEditAction
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEditEvent
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEditOnFocus
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getEditOnF2Keypress
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectOnEdit
  * @see com.smartgwt.client.widgets.grid.ListGridField#getCanToggle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEnumCriteriaAsInitialValues
