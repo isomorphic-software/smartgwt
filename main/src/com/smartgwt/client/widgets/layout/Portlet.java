@@ -112,6 +112,31 @@ public class Portlet extends Window {
     }
 
     /**
+     * Specifies a minimum height for the Portlet. The height of rows within a {@link
+     * com.smartgwt.client.widgets.layout.Portlet#getPortaLayout PortaLayout} will be adjusted to take into account the
+     * minHeight of all the Portlets in that row.
+     *
+     * @param minHeight minHeight Default value is 60
+     * @see com.smartgwt.client.widgets.Canvas#setMinHeight
+     */
+    public void setMinHeight(int minHeight) {
+        setAttribute("minHeight", minHeight, true);
+    }
+
+    /**
+     * Specifies a minimum height for the Portlet. The height of rows within a {@link
+     * com.smartgwt.client.widgets.layout.Portlet#getPortaLayout PortaLayout} will be adjusted to take into account the
+     * minHeight of all the Portlets in that row.
+     *
+     *
+     * @return int
+     * @see com.smartgwt.client.widgets.Canvas#getMinHeight
+     */
+    public int getMinHeight()  {
+        return getAttributeAsInt("minHeight");
+    }
+
+    /**
      * If true, {@link com.smartgwt.client.widgets.layout.Portlet#getCloseConfirmationMessage closeConfirmationMessage} will be
      * displayed before portlets are closed
      *
@@ -166,7 +191,76 @@ public class Portlet extends Window {
         
     // ***********************************************************        
 
+
+    /**
+     * If you set the rowHeight of a Portlet before adding it to a {@link com.smartgwt.client.widgets.layout.PortalLayout},
+     * then the height will be used when creating the new row. If adding the Portlet to an existing row (or dragging it there),
+     * the Portlet's rowHeight will be used if  the row's height has not already been specified. However, if you  set the
+     * rowHeight of a Portlet after adding it to the PortalLayout, then the height of the entire row will always be adjusted to
+     * match. <p> You can also just specify {@link com.smartgwt.client.widgets.Canvas#getHeight height} when initializing a
+     * Portlet, and it will be applied to the rowHeight when added to a PortalLayout. However, changing the Portlet's height
+     * after initialization will not affect the row. <p> Note that getting the rowHeight will indicate the rowHeight specified
+     * for this Portlet, not the actual height of the row it is in.
+     *
+     * @param rowHeight rowHeight Default value is null
+     */
+    public void setRowHeight(int rowHeight) {
+        setAttribute("rowHeight", rowHeight, true);
+    }
+
+    /**
+     * If you set the rowHeight of a Portlet before adding it to a {@link com.smartgwt.client.widgets.layout.PortalLayout},
+     * then the height will be used when creating the new row. If adding the Portlet to an existing row (or dragging it there),
+     * the Portlet's rowHeight will be used if  the row's height has not already been specified. However, if you  set the
+     * rowHeight of a Portlet after adding it to the PortalLayout, then the height of the entire row will always be adjusted to
+     * match. <p> You can also just specify {@link com.smartgwt.client.widgets.Canvas#getHeight height} when initializing a
+     * Portlet, and it will be applied to the rowHeight when added to a PortalLayout. However, changing the Portlet's height
+     * after initialization will not affect the row. <p> Note that getting the rowHeight will indicate the rowHeight specified
+     * for this Portlet, not the actual height of the row it is in.
+     *
+     *
+     * @return String
+     */
+    public Integer getRowHeight()  {
+        return getAttributeAsInt("rowHeight");
+    }
+
+    /**
+     * If you set the rowHeight of a Portlet before adding it to a {@link com.smartgwt.client.widgets.layout.PortalLayout},
+     * then the height will be used when creating the new row. If adding the Portlet to an existing row (or dragging it there),
+     * the Portlet's rowHeight will be used if  the row's height has not already been specified. However, if you  set the
+     * rowHeight of a Portlet after adding it to the PortalLayout, then the height of the entire row will always be adjusted to
+     * match. <p> You can also just specify {@link com.smartgwt.client.widgets.Canvas#getHeight height} when initializing a
+     * Portlet, and it will be applied to the rowHeight when added to a PortalLayout. However, changing the Portlet's height
+     * after initialization will not affect the row. <p> Note that getting the rowHeight will indicate the rowHeight specified
+     * for this Portlet, not the actual height of the row it is in.
+     *
+     * @param rowHeight rowHeight Default value is null
+     */
+    public void setRowHeight(String rowHeight) {
+        setAttribute("rowHeight", rowHeight, true);
+    }
+
+    /**
+     * If you set the rowHeight of a Portlet before adding it to a {@link com.smartgwt.client.widgets.layout.PortalLayout},
+     * then the height will be used when creating the new row. If adding the Portlet to an existing row (or dragging it there),
+     * the Portlet's rowHeight will be used if  the row's height has not already been specified. However, if you  set the
+     * rowHeight of a Portlet after adding it to the PortalLayout, then the height of the entire row will always be adjusted to
+     * match. <p> You can also just specify {@link com.smartgwt.client.widgets.Canvas#getHeight height} when initializing a
+     * Portlet, and it will be applied to the rowHeight when added to a PortalLayout. However, changing the Portlet's height
+     * after initialization will not affect the row. <p> Note that getting the rowHeight will indicate the rowHeight specified
+     * for this Portlet, not the actual height of the row it is in.
+     *
+     *
+     * @return String
+     */
+    public String getRowHeightAsString()  {
+        return getAttributeAsString("rowHeight");
+    }
+
 }
+
+
 
 
 
