@@ -2381,9 +2381,44 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }-*/;
 
     /**
-     * Add a onFolderDrop handler.
-     * <p>
-     * Notification method fired when treeNode(s) are dropped into a folder of this TreeGrid.&#010 This method fires before the standard {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop} processing occurs&#010 and returning false will suppress that default behavior.&#010
+     * Add a handler that fires when data is dropped on a folder of this TreeGrid.
+     * <P>
+     * The default behavior is as follows:
+     * <P>
+     * If the nodes originate in this tree and the {@link TreeGrid#getDragDataAction} is "none"
+     * or "move", then the nodes are simply reordered in this TreeGrid.  Otherwise (if the
+     * dragDataAction is "copy" or "none"), this method transfers the dragged nodes to this
+     * TreeGrid as though transferSelectedData() were called on the component from which nodes
+     * were dragged.
+     * <P>
+     * In either case, the new row(s) appear in the target folder and index (both available on
+     * FolderDropEvent).
+     * <P>
+     * For dataBound treeGrids, DSRequests will be initiated to update remote datasets.  For
+     * nodes moved within the tree, an "update" operation will be submitted to update the
+     * {@link Tree#getParentIdField parentIdField} field of the moved node(s). 
+     * For nodes added to a tree, "add" DataSource requests will be submitted with the dropped
+     * node(s) as dsRequest.data.  For all drops onto databound treeGrids from other databound 
+     * components, the {@link com.smartgwt.client.widgets.DataBoundComponent#addDropValues dropValues} 
+     * will be added as new attributes of all TreeNodes created from the dropped data.
+     * <P>
+     * As a special case, if the <code>sourceWidget</code> is also databound, and a 
+     * {@link com.smartgwt.client.data.DataSourceField#setForeignKey foreignKey} relationship
+     * is declared from the <code>sourceWidget</code>'s DataSource to this TreeGrid's
+     * DataSource, the interaction will be treated as a "drag recategorization" use case such
+     * as files being placed in folders, employees being assigned to teams, etc.  "update"
+     * DSRequests will be submitted that change the foreignKey field in the dropped records to
+     * point to the tree folder that was the target of the drop.  In this case no change will
+     * be made to the Tree data as such, only to the dropped records. 
+     * <P>
+     * For multi-node drops, Queuing is automatically used to combine all DSRequests into a
+     * single HTTP Request (see QuickStart Guide, Server Framework chapter).  This allows the
+     * server to store all changes caused by the drop as a single transaction (and this is
+     * automatically done when using the built-in server DataSources with Power Edition and
+     * above).
+     * <P>
+     * If these default persistence behaviors are undesirable, user FolderDropEvent.cancel() to
+     * cancel them, and implement your own behavior.
      *
      * @param handler the onFolderDrop handler
      * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
