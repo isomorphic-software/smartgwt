@@ -216,20 +216,23 @@ public class Layout extends Canvas {
     }
 
     /**
-     * Policy for whether resize bars are shown on members by default.
+     * Policy for whether resize bars are shown on members by default. Note that this setting changes the effect of {@link
+     * com.smartgwt.client.widgets.Canvas#getShowResizeBar showResizeBar} for members of this layout.
      *
      * @param defaultResizeBars defaultResizeBars Default value is "marked"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.Canvas#setShowResizeBar
      */
-    public void setDefaultResizeBars(LayoutResizeBarPolicy defaultResizeBars)  throws IllegalStateException {
-        setAttribute("defaultResizeBars", defaultResizeBars.getValue(), false);
+    public void setDefaultResizeBars(LayoutResizeBarPolicy defaultResizeBars) {
+        setAttribute("defaultResizeBars", defaultResizeBars.getValue(), true);
     }
 
     /**
-     * Policy for whether resize bars are shown on members by default.
+     * Policy for whether resize bars are shown on members by default. Note that this setting changes the effect of {@link
+     * com.smartgwt.client.widgets.Canvas#getShowResizeBar showResizeBar} for members of this layout.
      *
      *
      * @return LayoutResizeBarPolicy
+     * @see com.smartgwt.client.widgets.Canvas#getShowResizeBar
      */
     public LayoutResizeBarPolicy getDefaultResizeBars()  {
         return EnumUtil.getEnum(LayoutResizeBarPolicy.values(), getAttribute("defaultResizeBars"));
