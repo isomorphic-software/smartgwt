@@ -572,6 +572,26 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
     }
 
     /**
+     * Provide a separate style for the title text. If set and the ImgTab is vertical, a "v" will be automatically
+     * prepended to the style name (hence "tabTitle" -> "vtabTitle").
+     *
+     * @param titleStyle the title style
+     */
+    public void setTitleStyle(String titleStyle) {
+        setAttribute("titleStyle", titleStyle);
+    }
+
+    /**
+     * A separate style for the title text. If set and the ImgTab is vertical, a "v" will be automatically
+     * prepended to the style name (hence "tabTitle" -> "vtabTitle").
+     *
+     * @return the title style
+     */
+    public String getTitleStyle() {
+        return getAttribute("titleStyle");
+    }
+
+    /**
      * Specifies the pane associated with this tab. You can change the pane associated with a given tab after the TabSet
      * has been created by calling {@link com.smartgwt.client.widgets.tab.TabSet#updateTab(int, com.smartgwt.client.widgets.Canvas)}
      *
