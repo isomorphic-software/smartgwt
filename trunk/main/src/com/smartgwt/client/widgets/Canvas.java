@@ -513,6 +513,32 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
+     * The background color for this widget. It corresponds to the CSS background-color attribute. You can set this property to
+     * an RGB value (e.g. #22AAFF) or a named color (e.g. red) from a list of browser supported color names.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Sets the background color of this widget to newColor.
+     *
+     * @param backgroundColor new color to set the widget's background to. Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setBackgroundColor(String backgroundColor) {
+        setAttribute("backgroundColor", backgroundColor, true);
+    }
+
+    /**
+     * The background color for this widget. It corresponds to the CSS background-color attribute. You can set this property to
+     * an RGB value (e.g. #22AAFF) or a named color (e.g. red) from a list of browser supported color names.
+     *
+     *
+     * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public String getBackgroundColor()  {
+        return getAttributeAsString("backgroundColor");
+    }
+
+    /**
      * URL for a background image for this widget (corresponding to the CSS "background-image" attribute).
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
@@ -7348,18 +7374,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setZIndex(newIndex);
     }-*/;
-
-
-    /**
-     * The background color for this widget. It corresponds to the CSS background-color attribute. You can set this
-     * property to an RGB value (e.g. #22AAFF) or a named color (e.g. red) from a list of browser supported color names.
-     * Sets the background color of this widget to newColor.
-     *
-     * @param backgroundColor new color to set the widget's background to. Default value is null
-     */
-    public void setBackgroundColor(String backgroundColor) {
-        setAttribute("backgroundColor", backgroundColor, true);
-    }
 
     public native Rectangle getPageRect() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
