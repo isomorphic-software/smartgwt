@@ -84,7 +84,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * com.smartgwt.client.widgets.calendar.Calendar#removeEvent removed}, or {@link
  * com.smartgwt.client.widgets.calendar.Calendar#updateEvent updated}.
  */
-public class Calendar extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.calendar.events.HasDayBodyClickHandlers, com.smartgwt.client.widgets.calendar.events.HasDayHeaderClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventChangedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventRemoveClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventMovedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventAddedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventRemovedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventResizedHandlers, com.smartgwt.client.widgets.calendar.events.HasDateChangedHandlers {
+public class Calendar extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.calendar.events.HasDayBodyClickHandlers, com.smartgwt.client.widgets.calendar.events.HasDayHeaderClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventChangedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventRemoveClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventMovedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventAddedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventRemovedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventResizedHandlers, com.smartgwt.client.widgets.calendar.events.HasDateChangedHandlers, com.smartgwt.client.widgets.calendar.events.HasBackgroundClickHandlers, com.smartgwt.client.widgets.calendar.events.HasBackgroundMouseDownHandlers {
 
     public static Calendar getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -990,6 +990,25 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * The height of time-slots in the calendar.
+     *
+     * @param rowHeight rowHeight Default value is 20
+     */
+    public void setRowHeight(int rowHeight) {
+        setAttribute("rowHeight", rowHeight, true);
+    }
+
+    /**
+     * The height of time-slots in the calendar.
+     *
+     *
+     * @return int
+     */
+    public int getRowHeight()  {
+        return getAttributeAsInt("rowHeight");
+    }
+
+    /**
      * The title for the save button in the quick event dialog and the event editor
      *
      * @param saveButtonTitle saveButtonTitle Default value is "Save Event"
@@ -1416,6 +1435,81 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     // ********************* Methods ***********************
+    /**
+     * Add a backgroundClick handler.
+     * <p>
+     * Callback fired when the mouse is clicked in a background-cell, ie, one without an  event.
+     *
+     * @param handler the backgroundClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addBackgroundClickHandler(com.smartgwt.client.widgets.calendar.events.BackgroundClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.BackgroundClickEvent.getType()) == 0) setupBackgroundClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.calendar.events.BackgroundClickEvent.getType());
+    }
+
+    private native void setupBackgroundClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({backgroundClick:$debox($entry(function(){
+                        var param = {"startDate" : arguments[0], "endDate" : arguments[1]};
+                        var event = @com.smartgwt.client.widgets.calendar.events.BackgroundClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    }))
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.backgroundClick = $debox($entry(function(){
+                   var param = {"startDate" : arguments[0], "endDate" : arguments[1]};
+                   var event = @com.smartgwt.client.widgets.calendar.events.BackgroundClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               }));
+        }
+   }-*/;
+    /**
+     * Add a backgroundMouseDown handler.
+     * <p>
+     * Callback fired when the mouse button is depressed over a background-cell, ie, one  without an event.  Return false to
+     * cancel the default behavior of allowing sweep selection via dragging.
+     *
+     * @param handler the backgroundMouseDown handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addBackgroundMouseDownHandler(com.smartgwt.client.widgets.calendar.events.BackgroundMouseDownHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.BackgroundMouseDownEvent.getType()) == 0) setupBackgroundMouseDownEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.calendar.events.BackgroundMouseDownEvent.getType());
+    }
+
+    private native void setupBackgroundMouseDownEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({backgroundMouseDown:$debox($entry(function(){
+                        var param = {"startDate" : arguments[0]};
+                        var event = @com.smartgwt.client.widgets.calendar.events.BackgroundMouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    }))
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.backgroundMouseDown = $debox($entry(function(){
+                   var param = {"startDate" : arguments[0]};
+                   var event = @com.smartgwt.client.widgets.calendar.events.BackgroundMouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               }));
+        }
+   }-*/;
     /**
      * Add a dateChanged handler.
      * <p>
