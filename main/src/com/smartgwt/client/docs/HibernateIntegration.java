@@ -67,7 +67,28 @@ package com.smartgwt.client.docs;
  * com.smartgwt.client.docs.DataSourceDeclaration create a DataSource} in XML format - no Java&#010 classes or other
  * configuration are required.  The {@link com.smartgwt.client.docs.AdminConsole Admin Console}'s&#010 "Import DataSources"
  * section can be used to import test data into serverType:"hibernate"&#010 DataSources in the same manner as
- * SQLDataSources.
+ * SQLDataSources.&#010 <p/>&#010 <b>Hibernate relations</b>&#010 <p/>&#010 Hibernate data sources transparently support
+ * relations:<ul>&#010 <li>To specify many-to-one relation you have to declare it in data source definition with
+ * property&#010 {@link com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} pointing to releted data
+ * source's primary key:&#010          <pre>&#010              &lt;field name="country"
+ * foreignKey="countryManyToOne.countryId"/&gt;&#010          </pre>&#010 Client-side will recieve only ID of related
+ * entity while server-side will use real related entity loaded from data&#010 base.<p/>&#010 You can instruct data source
+ * to send encapsulated related entity by setting&#010 {@link com.smartgwt.client.data.DataSourceField#getType type}
+ * property to the name of related data source:&#010          <pre>&#010              &lt;field name="country"
+ * type="countryManyToOne" foreignKey="countryManyToOne.countryId"/&gt;&#010          </pre>&#010 </li>&#010 <li>To specify
+ * one-to-many relation you have to declare it in data source definition with property&#010 {@link
+ * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} pointing to releted data source's primary key
+ * and&#010 property {@link com.smartgwt.client.data.DataSourceField#getMultiple multiple} set to <code>true<code>:&#010   
+ * <pre>&#010              &lt;field name="cities" multiple="true" foreignKey="cityOneToMany.cityId"/&gt;&#010         
+ * </pre>&#010 Client-side will recieve only list of related ID's while server-side will use real related entity list
+ * loaded from&#010 data base.<p/>&#010 You can instruct data source to send list of encapsulated related entities by
+ * setting&#010 {@link com.smartgwt.client.data.DataSourceField#getType type} property to the name of related data
+ * source:&#010          <pre>&#010              &lt;field name="cities" multiple="true" type="cityOneToMany"
+ * foreignKey="cityOneToMany.cityId"/&gt;&#010          </pre>&#010 Saving parent entity automatically makes all required
+ * Hibernate calls to synchronize underlying list.&#010 </li>&#010 </ul>&#010 <b>Notes on bidirectional
+ * relations</b>:<ul>&#010 <li>When encapsulated related entity is sent to client it will not have&#010 reference to parent
+ * object (avoided recursion).</li>&#010 <li>Make sure you are updating "owning" side of relation. All changes to
+ * "non-owning" relation side&#010 are silently discarded.</li></ul><p/>
  */
 public interface HibernateIntegration {
 }

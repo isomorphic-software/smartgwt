@@ -10,6 +10,9 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateRollOver
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateRollUnder
  * @see com.smartgwt.client.widgets.grid.ListGrid#getShowSelectionCanvas
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectionCanvas
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectionUnderCanvas
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateSelection
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateSelectionUnder
  * @see com.smartgwt.client.widgets.grid.ListGridRecord#getBackgroundComponent
  */
