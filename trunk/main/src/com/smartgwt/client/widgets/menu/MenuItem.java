@@ -59,11 +59,26 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * Menu items are specified are object literals, not class instances.  For example, when&#010 developing in JavaScript, a
- * typical initialization block for a Menu would look like&#010 this:&#010 <pre>&#010 Menu.create({&#010     data: [&#010  
- * {title: "item1", click: "alert(1)"},&#010         {title: "item2"}&#010     ]&#010 });&#010 </pre>&#010 And in XML:&#010
- * <pre>&#010 &lt;Menu&gt;&#010    &lt;data&gt;&#010        &lt;MenuItem title="item1" click="alert(1)"/&gt;&#010       
- * &lt;MenuItem title="item2"/&gt;&#010    &lt;/data&gt;&#010 &lt;/Menu&gt;&#010 </pre>
+ * Menu items are specified are object literals, not class instances.  For example, when
+ *  developing in JavaScript, a typical initialization block for a Menu would look like
+ *  this:
+ *  <pre>
+ *  Menu.create({
+ *      data: [
+ *          {title: "item1", click: "alert(1)"},
+ *          {title: "item2"}
+ *      ]
+ *  });
+ *  </pre>
+ *  And in XML:
+ *  <pre>
+ *  &lt;Menu&gt;
+ *     &lt;data&gt;
+ *         &lt;MenuItem title="item1" click="alert(1)"/&gt;
+ *         &lt;MenuItem title="item2"/&gt;
+ *     &lt;/data&gt;
+ *  &lt;/Menu&gt;
+ *  </pre>
  */
 public class MenuItem extends ListGridRecord  implements com.smartgwt.client.widgets.menu.events.HasClickHandlers {
 

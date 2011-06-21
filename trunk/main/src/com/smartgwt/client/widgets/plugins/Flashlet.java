@@ -184,6 +184,8 @@ public class Flashlet extends BrowserPlugin {
 
     /**
      * Location from which to load the Flashlet.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the source file for the flash component
      *
      * @param src src Default value is null

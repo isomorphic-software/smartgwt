@@ -59,27 +59,42 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * A DataSource preconfigured to use the {@link com.smartgwt.client.types.RPCTransport "scriptInclude"} transport&#010 for
- * cross-domain calls to JSON services, such as those provided by Yahoo!.  &#010 <P>&#010 To use this DataSource, provide
- * the URL of the service as {@link com.smartgwt.client.data.DataSource#getDataURL dataURL}, and&#010 provide {@link
- * com.smartgwt.client.data.DataSource#getFields fields} that describe the structure of the data you want to&#010 extract
- * from the service's response.&#010 <P>&#010 {@link com.smartgwt.client.data.DataSource#getRecordXPath recordXPath} and
- * {@link com.smartgwt.client.data.DataSourceField#getValueXPath valueXPath} can be used to extract&#010 data from the JSON
- * structure returned by the service.  See&#010 {@link com.smartgwt.client.docs.ClientDataIntegration Client-Side Data
- * Integration} for an overview of how to&#010 control what parts of the JSON structure are included in the {@link
- * com.smartgwt.client.data.DSResponse} object, and&#010 hence provided to {@link
- * com.smartgwt.client.widgets.DataBoundComponent}s that are bound to this DataSource.&#010 <P>&#010 This XJSONDataSource
- * is really a subclass of DataSource with just a few property settings:&#010 <pre>&#010    dataFormat : "json",&#010   
- * dataTransport : "scriptInclude"&#010    callbackParam : "callback"&#010 </pre>&#010 <P>&#010 If you are also writing the
- * server side code to respond to requests from this DataSource,&#010 see the &#010 <a
- * href='http://developer.yahoo.net/common/json.html#callbackparam'
+ * A DataSource preconfigured to use the {@link com.smartgwt.client.types.RPCTransport "scriptInclude"} transport
+ *  for cross-domain calls to JSON services, such as those provided by Yahoo!.  
+ *  <P>
+ * To use this DataSource, provide the URL of the service as {@link com.smartgwt.client.data.DataSource#getDataURL
+ * dataURL}, and
+ * provide {@link com.smartgwt.client.data.DataSource#getFields fields} that describe the structure of the data you want to
+ *  extract from the service's response.
+ *  <P>
+ * {@link com.smartgwt.client.data.DataSource#getRecordXPath recordXPath} and {@link
+ * com.smartgwt.client.data.DataSourceField#getValueXPath valueXPath} can be used to extract
+ *  data from the JSON structure returned by the service.  See
+ *  {@link com.smartgwt.client.docs.ClientDataIntegration Client-Side Data Integration} for an overview of how to
+ *  control what parts of the JSON structure are included in the {@link com.smartgwt.client.data.DSResponse} object, and
+ *  hence provided to {@link com.smartgwt.client.widgets.DataBoundComponent}s that are bound to this DataSource.
+ *  <P>
+ *  This XJSONDataSource is really a subclass of DataSource with just a few property settings:
+ *  <pre>
+ *     dataFormat : "json",
+ *     dataTransport : "scriptInclude"
+ *     callbackParam : "callback"
+ *  </pre>
+ *  <P>
+ *  If you are also writing the server side code to respond to requests from this DataSource,
+ *  see the 
+ * <a href='http://developer.yahoo.net/common/json.html#callbackparam'
  * onclick="window.open('http://developer.yahoo.net/common/json.html#callbackparam');return false;">tutorial provided by
- * Yahoo!</a> &#010 for a good overview of how this transport mechanism works.  Note, as indicated in the&#010 tutorial
- * above, the server is responsible for writing out not just the data, but also a&#010 JavaScript function call that tells
- * the client that the response has arrived.  The client&#010 passes the name of the function to call as the "callback" URL
- * parameter.&#010 <P>&#010 NOTE: if you use this DataSource to contact Yahoo web services, remember to include&#010
- * output=json in the dataURL, as well as a&#010 <a href='http://developer.yahoo.net/'
- * onclick="window.open('http://developer.yahoo.net/');return false;">Yahoo developer ID</a>.
+ * Yahoo!</a> 
+ *  for a good overview of how this transport mechanism works.  Note, as indicated in the
+ *  tutorial above, the server is responsible for writing out not just the data, but also a
+ *  JavaScript function call that tells the client that the response has arrived.  The client
+ *  passes the name of the function to call as the "callback" URL parameter.
+ *  <P>
+ *  NOTE: if you use this DataSource to contact Yahoo web services, remember to include
+ *  output=json in the dataURL, as well as a
+ * <a href='http://developer.yahoo.net/' onclick="window.open('http://developer.yahoo.net/');return false;">Yahoo developer
+ * ID</a>.
  */
 public class XJSONDataSource extends DataSource {
 

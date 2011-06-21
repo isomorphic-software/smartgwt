@@ -132,17 +132,28 @@ public class RPCRequest extends DataClass {
     }
 
     /**
-     * For use only with the {@link com.smartgwt.client.types.RPCTransport scriptInclude} transport, this attribute&#010
-     * specifies the name of the URL parameter which is used to specify the callback function that&#010 the server is expected
-     * to call by writing out JavaScript code.  The actual function to call&#010 is automatically generated and differs for
-     * every request (to allow concurrency).&#010 <P>&#010 For example, with <code>callbackParam</code> set to it's default
-     * value of "callback", the&#010 server might be contacted with a URL like:&#010 <pre>&#010   
-     * loadData?callback=isc_scriptIncludeCallback_5&#010 </pre>&#010 .. then the server's response should look like:&#010
-     * <pre>&#010    isc_scriptIncludeCallback_5({ .. data .. });&#010 </pre>&#010 The name "isc_scriptIncludeCallback_5" is
-     * automatically generated and will differ each time&#010 the server is contacted.&#010 <P>&#010 Smart GWT makes of this
-     * server-provided callback mechanism, then calls&#010 {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback}
-     * normally.&#010 <p>&#010 <code>rpcRequest.callbackParam</code> is ignored by all transport other than&#010
-     * <code>scriptInclude</code>.
+     * For use only with the {@link com.smartgwt.client.types.RPCTransport scriptInclude} transport, this attribute
+     *  specifies the name of the URL parameter which is used to specify the callback function that
+     *  the server is expected to call by writing out JavaScript code.  The actual function to call
+     *  is automatically generated and differs for every request (to allow concurrency).
+     *  <P>
+     *  For example, with <code>callbackParam</code> set to it's default value of "callback", the
+     *  server might be contacted with a URL like:
+     *  <pre>
+     *     loadData?callback=isc_scriptIncludeCallback_5
+     *  </pre>
+     *  .. then the server's response should look like:
+     *  <pre>
+     *     isc_scriptIncludeCallback_5({ .. data .. });
+     *  </pre>
+     *  The name "isc_scriptIncludeCallback_5" is automatically generated and will differ each time
+     *  the server is contacted.
+     *  <P>
+     *  Smart GWT makes of this server-provided callback mechanism, then calls
+     *  {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback} normally.
+     *  <p>
+     *  <code>rpcRequest.callbackParam</code> is ignored by all transport other than
+     *  <code>scriptInclude</code>.
      *
      * @param callbackParam callbackParam Default value is "callback"
      */
@@ -151,17 +162,28 @@ public class RPCRequest extends DataClass {
     }
 
     /**
-     * For use only with the {@link com.smartgwt.client.types.RPCTransport scriptInclude} transport, this attribute&#010
-     * specifies the name of the URL parameter which is used to specify the callback function that&#010 the server is expected
-     * to call by writing out JavaScript code.  The actual function to call&#010 is automatically generated and differs for
-     * every request (to allow concurrency).&#010 <P>&#010 For example, with <code>callbackParam</code> set to it's default
-     * value of "callback", the&#010 server might be contacted with a URL like:&#010 <pre>&#010   
-     * loadData?callback=isc_scriptIncludeCallback_5&#010 </pre>&#010 .. then the server's response should look like:&#010
-     * <pre>&#010    isc_scriptIncludeCallback_5({ .. data .. });&#010 </pre>&#010 The name "isc_scriptIncludeCallback_5" is
-     * automatically generated and will differ each time&#010 the server is contacted.&#010 <P>&#010 Smart GWT makes of this
-     * server-provided callback mechanism, then calls&#010 {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback}
-     * normally.&#010 <p>&#010 <code>rpcRequest.callbackParam</code> is ignored by all transport other than&#010
-     * <code>scriptInclude</code>.
+     * For use only with the {@link com.smartgwt.client.types.RPCTransport scriptInclude} transport, this attribute
+     *  specifies the name of the URL parameter which is used to specify the callback function that
+     *  the server is expected to call by writing out JavaScript code.  The actual function to call
+     *  is automatically generated and differs for every request (to allow concurrency).
+     *  <P>
+     *  For example, with <code>callbackParam</code> set to it's default value of "callback", the
+     *  server might be contacted with a URL like:
+     *  <pre>
+     *     loadData?callback=isc_scriptIncludeCallback_5
+     *  </pre>
+     *  .. then the server's response should look like:
+     *  <pre>
+     *     isc_scriptIncludeCallback_5({ .. data .. });
+     *  </pre>
+     *  The name "isc_scriptIncludeCallback_5" is automatically generated and will differ each time
+     *  the server is contacted.
+     *  <P>
+     *  Smart GWT makes of this server-provided callback mechanism, then calls
+     *  {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback} normally.
+     *  <p>
+     *  <code>rpcRequest.callbackParam</code> is ignored by all transport other than
+     *  <code>scriptInclude</code>.
      *
      *
      * @return String
@@ -273,20 +295,38 @@ public class RPCRequest extends DataClass {
 
     /**
      * This works similarly to {@link com.smartgwt.client.rpc.RPCRequest#getServerOutputAsString serverOutputAsString} except
-     * the resulting String&#010 is automatically evaluated as JavaScript.  The result of the evaluation is then passed to&#010
+     * the resulting String
+     *  is automatically evaluated as JavaScript.  The result of the evaluation is then passed to
      * any specified {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback} as {@link
-     * com.smartgwt.client.rpc.RPCResponse#getData data}.&#010 <p>&#010 This feature can be used to dynamically load new
-     * application modules into a running&#010 application.  An RPCRequest with <code>evalResult</code> enabled can be used to
-     * fetch a&#010 static .js file or JavaScript dynamically generated by the server.  The returned JavaScript&#010 can
-     * contain anything that a JavaScript file loaded at init time can contain, including new&#010 views and new Smart GWT
-     * class definitions.&#010 <p>&#010 <i>Example usage with {@link com.smartgwt.client.rpc.RPCManager#sendRequest
-     * RPCManager.sendRequest}:</i>&#010 <pre>&#010 isc.RPCManager.sendRequest({&#010     evalResult:true,&#010    
-     * actionURL:"js/loadLabel.js",&#010     evalVars:{var1:"A Value"}&#010 });&#010 </pre>&#010 This call would execute the
-     * code from <code>loadLabel.js</code>, and make the variable&#010 <code>var1</code> available to that code. Therefore if
-     * the .js file contained this code:&#010 <pre>&#010 isc.Label.create({&#010     contents:var1&#010 })&#010 </pre>&#010 A
-     * label would be created with contents set to the value of <code>var1</code> - the string&#010 <code>"A
-     * Value"</code>.&#010 &#010 <p>&#010 This feature relies on the XMLHttpRequest object which can be disabled by end-users
-     * in some&#010 supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
+     * com.smartgwt.client.rpc.RPCResponse#getData data}.
+     *  <p>
+     *  This feature can be used to dynamically load new application modules into a running
+     *  application.  An RPCRequest with <code>evalResult</code> enabled can be used to fetch a
+     *  static .js file or JavaScript dynamically generated by the server.  The returned JavaScript
+     *  can contain anything that a JavaScript file loaded at init time can contain, including new
+     *  views and new Smart GWT class definitions.
+     *  <p>
+     *  <i>Example usage with {@link com.smartgwt.client.rpc.RPCManager#sendRequest RPCManager.sendRequest}:</i>
+     *  <pre>
+     *  isc.RPCManager.sendRequest({
+     *      evalResult:true,
+     *      actionURL:"js/loadLabel.js",
+     *      evalVars:{var1:"A Value"}
+     *  });
+     *  </pre>
+     *  This call would execute the code from <code>loadLabel.js</code>, and make the variable
+     *  <code>var1</code> available to that code. Therefore if the .js file contained this code:
+     *  <pre>
+     *  isc.Label.create({
+     *      contents:var1
+     *  })
+     *  </pre>
+     *  A label would be created with contents set to the value of <code>var1</code> - the string
+     *  <code>"A Value"</code>.
+     *  
+     *  <p>
+     *  This feature relies on the XMLHttpRequest object which can be disabled by end-users in some
+     *  supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param evalResult evalResult Default value is false
@@ -299,20 +339,38 @@ public class RPCRequest extends DataClass {
 
     /**
      * This works similarly to {@link com.smartgwt.client.rpc.RPCRequest#getServerOutputAsString serverOutputAsString} except
-     * the resulting String&#010 is automatically evaluated as JavaScript.  The result of the evaluation is then passed to&#010
+     * the resulting String
+     *  is automatically evaluated as JavaScript.  The result of the evaluation is then passed to
      * any specified {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback} as {@link
-     * com.smartgwt.client.rpc.RPCResponse#getData data}.&#010 <p>&#010 This feature can be used to dynamically load new
-     * application modules into a running&#010 application.  An RPCRequest with <code>evalResult</code> enabled can be used to
-     * fetch a&#010 static .js file or JavaScript dynamically generated by the server.  The returned JavaScript&#010 can
-     * contain anything that a JavaScript file loaded at init time can contain, including new&#010 views and new Smart GWT
-     * class definitions.&#010 <p>&#010 <i>Example usage with {@link com.smartgwt.client.rpc.RPCManager#sendRequest
-     * RPCManager.sendRequest}:</i>&#010 <pre>&#010 isc.RPCManager.sendRequest({&#010     evalResult:true,&#010    
-     * actionURL:"js/loadLabel.js",&#010     evalVars:{var1:"A Value"}&#010 });&#010 </pre>&#010 This call would execute the
-     * code from <code>loadLabel.js</code>, and make the variable&#010 <code>var1</code> available to that code. Therefore if
-     * the .js file contained this code:&#010 <pre>&#010 isc.Label.create({&#010     contents:var1&#010 })&#010 </pre>&#010 A
-     * label would be created with contents set to the value of <code>var1</code> - the string&#010 <code>"A
-     * Value"</code>.&#010 &#010 <p>&#010 This feature relies on the XMLHttpRequest object which can be disabled by end-users
-     * in some&#010 supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
+     * com.smartgwt.client.rpc.RPCResponse#getData data}.
+     *  <p>
+     *  This feature can be used to dynamically load new application modules into a running
+     *  application.  An RPCRequest with <code>evalResult</code> enabled can be used to fetch a
+     *  static .js file or JavaScript dynamically generated by the server.  The returned JavaScript
+     *  can contain anything that a JavaScript file loaded at init time can contain, including new
+     *  views and new Smart GWT class definitions.
+     *  <p>
+     *  <i>Example usage with {@link com.smartgwt.client.rpc.RPCManager#sendRequest RPCManager.sendRequest}:</i>
+     *  <pre>
+     *  isc.RPCManager.sendRequest({
+     *      evalResult:true,
+     *      actionURL:"js/loadLabel.js",
+     *      evalVars:{var1:"A Value"}
+     *  });
+     *  </pre>
+     *  This call would execute the code from <code>loadLabel.js</code>, and make the variable
+     *  <code>var1</code> available to that code. Therefore if the .js file contained this code:
+     *  <pre>
+     *  isc.Label.create({
+     *      contents:var1
+     *  })
+     *  </pre>
+     *  A label would be created with contents set to the value of <code>var1</code> - the string
+     *  <code>"A Value"</code>.
+     *  
+     *  <p>
+     *  This feature relies on the XMLHttpRequest object which can be disabled by end-users in some
+     *  supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
      *
      *
      * @return Boolean

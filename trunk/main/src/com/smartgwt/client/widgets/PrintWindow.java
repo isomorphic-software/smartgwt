@@ -94,6 +94,8 @@ public class PrintWindow extends Window {
 
     /**
      * Title for the print button
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for title for the print button
      *
      * @param printButtonTitle new title for the print button. Default value is "Print"

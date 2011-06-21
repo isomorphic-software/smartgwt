@@ -92,6 +92,8 @@ public class LinkItem extends StaticTextItem {
     /**
      * Optional title text to display for this item's link. If unspecified the value of the item will be the title text as well
      * as the target of the link.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Method to set the linkTitle for this item
      *
      * @param linkTitle new linkTitle for this item. Default value is null

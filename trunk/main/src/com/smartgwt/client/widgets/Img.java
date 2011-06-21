@@ -152,6 +152,8 @@ public class Img extends StatefulCanvas {
      * not match the size of the image.           CENTER shows the image in it's natural size, but can't do so while the       
      * transparency fix is active for IE. The transparency fix can be manually disabled          by setting {@link
      * com.smartgwt.client.widgets.Img#getUsePNGFix usePNGFix} to false.          See ImageStyle for further details.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Change the style of image rendering.
      *
      * @param imageType new style of image rendering. Default value is Img.STRETCH
@@ -262,6 +264,8 @@ public class Img extends StatefulCanvas {
      * file extension.   <P> For example, given an <code>src</code> of "findIcon.gif" and a state of "Disabled", the resulting
      * image name would be "findIcon_Disabled.gif".  Compound states such as "Selected", "Focused" and "Over" or "Down" will
      * have an intervening underscore, resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Changes the URL of this image and redraws it. <P> Does nothing if the src has not changed - if <code>src</code> has not changed but other state has changed such that the image needs updating, call {@link com.smartgwt.client.widgets.Img#resetSrc Img.resetSrc} instead.
      *
      * @param src new URL for the image. Default value is "blank.gif"

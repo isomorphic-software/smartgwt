@@ -403,6 +403,8 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * Determines whether to show the opacity slider. This allows the user to select colors with an alpha element (ie,
      * semi-transparent colors). If this attribute is set to false, no opacity slider is shown, and all colors are completely
      * opaque.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the {@link com.smartgwt.client.widgets.form.ColorPicker#getSupportsTransparency supportsTransparency} flag.
      *
      * @param supportsTransparency Set to true to enable transparency/opacity. Default value is true

@@ -95,6 +95,8 @@ public class RichTextEditor extends VLayout {
 
     /**
      * Initial value for the edit area.    Use <code>getValue()</code> and  <code>setValue()</code> to update at runtime.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Updates the current value of the edit area.
      *
      * @param value value Default value is ""

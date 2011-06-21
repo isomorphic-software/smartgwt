@@ -578,6 +578,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     /**
      * Default logical operator for all top-level clauses in the FilterBuilder. <P> May be able to be changed by the user via
      * the UI, according to TopOperatorAppearance.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Programmatically change the {@link com.smartgwt.client.widgets.form.FilterBuilder#getTopOperator topOperator} for this FilterBuilder.
      *
      * @param topOperator new top-level operator. Default value is "and"

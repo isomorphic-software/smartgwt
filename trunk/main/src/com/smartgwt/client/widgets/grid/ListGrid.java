@@ -124,6 +124,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * alternateRecordStyles} is true  for this grid. If unset {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getBodyStyleName bodyStyleName} will be used to style the body regardless of
      * the {@link com.smartgwt.client.widgets.grid.ListGrid#getAlternateRecordStyles alternateRecordStyles} setting.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Update the {@link com.smartgwt.client.widgets.grid.ListGrid#getAlternateBodyStyleName alternateBodyStyleName} for this listGrid.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -168,6 +170,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Whether alternating rows should be drawn in alternating styles, in order to create a "ledger" effect for easier reading.
      *  If enabled, the cell style for alternate rows will have "Dark" appended to it.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.grid.ListGrid#getAlternateRecordStyles alternateRecordStyles}
      *
      * @param alternateRecordStyles New value for <code>this.alternateRecordStyles</code>. Default value is false
@@ -584,6 +588,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData autoFitData} is set to <code>"vertical"</code> or
      * <code>"both"</code>  this property specifies the number of additional records for which the grid  will expand. If more
      * records are present, scrolling will be introduced to reach them as normal.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitExtraRecords autoFitExtraRecords}.
      *
      * @param autoFitExtraRecords Number of extra rows beyond the data-size we'll expand to  accommodate if {@link
@@ -690,6 +696,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * data set offscreen and measure the rendered content - it does not apply for cases where this method can return a simple
      * fixed values (as with icon fields). <P> Which fields are currently autofitting is saved as part of the  {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getViewState view state} of the ListGrid.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldWidths autoFitFieldWidths}. Modifies the default auto-fit-width behavior for fields in this grid. Note that this may be overridden at the field level via  {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidth autoFitWidth}.
      *
      * @param autoFitFieldWidths New value for autoFitFieldWidths. Default value is null
@@ -791,6 +799,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * <code>"both"</code> this property provides the maximum number of columns for which the ListGrid will expand. If more
      * columns are present, scrolling will be introduced to reach them as normal. If unset the ListGrid will expand to
      * accommodate as many columns as are defined for the grid.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxColumns autoFitMaxColumns}.
      *
      * @param autoFitMaxColumns Maximum number of fields we'll expand to accommodate if  {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData
@@ -819,6 +829,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * its content. If content exceeds this height, scrollbars will be introduced as usual.   In addition to this property,
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxRecords autoFitMaxRecords} allows you to limit vertical
      * expansion based on the number of rows to be rendered.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxHeight autoFitMaxHeight}.
      *
      * @param autoFitMaxHeight Maximum height in px we'll expand to accommodate if  {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData
@@ -847,6 +859,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * <code>"both"</code> this property provides the maximum number of records for which the ListGrid will expand. If more
      * records are present, scrolling will be introduced to reach them as normal. If unset, by default the ListGrid will expand
      * to accommodate as many records as are present.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxRecords autoFitMaxRecords}.
      *
      * @param autoFitMaxRecords Maximum number of rows we'll expand to accommodate if  {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData
@@ -875,6 +889,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * accommodate its content.  If content exceeds this width, scrollbars will be introduced as usual.   In addition to this
      * property, {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxColumns autoFitMaxColumns} allows you to limit 
      * horizontal expansion based on the number of columns to be rendered.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxWidth autoFitMaxWidth}.
      *
      * @param autoFitMaxWidth Width in px we'll expand to accommodate if  {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData auto fit} is
@@ -902,6 +918,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * When a user requests column autofitting via the  {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getHeaderContextMenuItems header contextmenu} or via a  {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getHeaderAutoFitEvent mouse gesture}, what autofit approach is used.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for the {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitWidthApproach autoFitWidthApproach}.
      *
      * @param autoFitWidthApproach new AutoFitWidth approach. Default value is "value"
@@ -1064,6 +1082,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * Overflow setting for the "body", that is, the area of the grid where data values are rendered. <P> By setting both the
      * grid itself and the body to overflow:visible, it is possible to "auto-fit" to the rendered height or width of the rows. 
      * Note that in this case <code>grid.width</code> and <code>grid.height</code> act as minimums.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Update the {@link com.smartgwt.client.widgets.grid.ListGrid#getBodyOverflow bodyOverflow} for this listGrid.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -1093,6 +1113,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * CSS style used for the body of this grid.  If applying a background-color to the body via a CSS style applied using this
      * property, be sure to set  {@link com.smartgwt.client.widgets.grid.ListGrid#getBodyBackgroundColor bodyBackgroundColor}
      * to <code>null</code>.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Update the {@link com.smartgwt.client.widgets.grid.ListGrid#getBodyStyleName bodyStyleName} for this listGrid.
      *
      * @param bodyStyleName new body style name. Default value is null
@@ -1590,6 +1612,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * com.smartgwt.client.widgets.grid.ListGridField#getFrozen field.frozen} to true when the grid is created, or dynamically
      * frozen and unfrozen via {@link com.smartgwt.client.widgets.grid.ListGrid#freezeField ListGrid.freezeField} and {@link
      * com.smartgwt.client.widgets.grid.ListGrid#unfreezeField ListGrid.unfreezeField}.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter method for {@link com.smartgwt.client.widgets.grid.ListGrid#getCanFreezeFields canFreezeFields}
      *
      * @param canFreezeFields New value for <code>listGrid.canFreezeFields</code>. Default value is null
@@ -1836,6 +1860,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Indicates whether fields in this listGrid can be resized by dragging header fields.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter method for updating {@link com.smartgwt.client.widgets.grid.ListGrid#getCanResizeFields canResizeFields} at runtime.
      *
      * @param canResizeFields new value for this.canResizeFields. Default value is true
@@ -3213,6 +3239,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * in the html      of the bootstrap page.</li> <li>fastCellUpdates will not work if the css styles for cells are defined
      * in     a <code>.css</code> file loaded via <code>@import</code>. Instead the <code>.css</code>     file should be loaded
      * via a <code>&lt;link ...&gt;</code> tag.</li> </ul>
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.grid.GridRenderer#getFastCellUpdates fastCellUpdates}. Has no effect in browsers other than Internet Explorer.
      *
      * @param fastCellUpdates whether to enable fastCellUpdates.. Default value is true
@@ -4049,6 +4077,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * The height of this listGrid's header, in pixels.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Modify the height of a listGrid. To hide the header set height to zero.
      *
      * @param headerHeight new height for the header. Default value is 22
@@ -5150,6 +5180,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * sized tall enough to accommodate a recordComponent of this size. <P> Note that if this property is unset, the grid will
      * not be able to know row heights in advance, and {@link com.smartgwt.client.widgets.grid.ListGridField#getFrozen freezing
      * of columns} is not currently supported in this case.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for the {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordComponentHeight recordComponentHeight}
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -5645,6 +5677,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * com.smartgwt.client.widgets.grid.ListGrid#getSelectionType selectionType}:"simple" and "single" are supported. You can
      * also toggle the display of a disabled checkbox on a treegrid, displayed  when the node can't be selected, via {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#getShowDisabledSelectionCheckbox showDisabledSelectionCheckbox}.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Changes selectionAppearance on the fly.
      *
      * @param selectionAppearance new selection appearance. Default value is "rowStyle"
@@ -5709,6 +5743,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * Defines a listGrid's clickable-selection behavior.   <P> The default selection appearance is governed by {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}: if selectionAppearance is
      * "checkbox", this will be "simple", otherwise, this will be "multiple".
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Changes selectionType on the fly.
      *
      * @param selectionType New selection style.. Default value is null
@@ -5874,45 +5910,75 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Should this listGrid display a filter row.  If true, this ListGrid&#010 will be drawn with a single editable row,
-     * (separate from the body) with a filter button.&#010 <P>&#010 Values entered into this row are used as filter criteria to
-     * filter this List's data on&#010 enter-keypress or filter button click. {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle} determines&#010 the
-     * textMatchStyle for the request passed to {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData
-     * ListGrid.fetchData}.&#010 <P>&#010 Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#filterData
-     * ListGrid.filterData} or {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData} is called
-     * directly&#010 while the filter editor is showing, the filter editor values will be updated to reflect the&#010 new set
-     * of criteria. If you wish to retain the user entered filter criteria and &#010 programmatically modify a subset of field
-     * values programmatically this can be achieved by&#010 deriving new criteria by copying the existing set of criteria and
-     * adding other changes - &#010 something like this:&#010 <pre><code>&#010   var newCriteria =
-     * myListGrid.getFilterEditorCriteria();&#010   isc.addProperties(newCriteria, {&#010      field1:"new value1",&#010     
-     * field2:"new value2"&#010   });&#010   myListGrid.setCriteria(newCriteria);&#010 </code></pre>&#010 In this example code
-     * we're using {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterEditorCriteria ListGrid.getFilterEditorCriteria}
-     * rather than &#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getCriteria ListGrid.getCriteria} - this ensures that
-     * if the user has typed a new value into&#010 the filter editor, but not yet clicked the filter button, we pick up the
-     * value the user&#010 entered.&#010 <P>&#010 If you call <code>filterData()</code> and pass in criteria for dataSource
-     * &#010 fields that are not present in the ListGrid, these criteria will continue to be applied along&#010 with the user
-     * visible criteria.&#010 <P>&#010 <b>filterEditor and advanced criteria</b>: If a developer calls
-     * <code>filterData()</code>&#010 on a ListGrid and passes in {@link com.smartgwt.client.data.AdvancedCriteria}, expected
-     * behavior of the filter &#010 editor becomes ambiguous, as  AdvancedCriteria supports far more complex filter &#010
-     * expressions than the ordinary filterEditor is capable of expressing.&#010 <br>&#010 The above example code assumes
-     * simple criteria, but if we wanted to apply advanced &#010 criteria to the grid we could call {@link
-     * com.smartgwt.client.data.DataSource#combineCriteria DataSource.combineCriteria} rather than doing&#010 a simple
-     * addProperties() on the criteria object.&#010 <P>&#010 Default behavior for AdvancedCriteria will combine the
-     * AdvancedCriteria with the values &#010 in the filter editor as follows:&#010 <ul>&#010 <li>If the top level criteria has
-     * operator of type "and":<br>&#010  Each field in the top level&#010  criteria array for which a 'canFilter' true field is
-     * shown in the listGrid will show up&#010  if the specified operator matches the default filter behavior &#010  (based on
-     * the {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle}).<br>&#010  If
-     * the user enters values in the filter editor, these will be combined with the&#010  existing AdvancedCriteria by either
-     * replacing or adding field level criteria at the top &#010  level.</li>&#010 <li>If the top level criteria is a single
-     * field-criteria:<br>&#010  If the field shows up in the listGrid and is canFilter:true, it will be displayed to&#010  the
-     * user (if the operator matches the default filter behavior for the field).<br>&#010  If the user enters new filter
-     * criteria in the filterEditor, they will be combined with&#010  this existing criterion via a top level "and" operator,
-     * or if the user modifies the&#010  field for which the criterion already existed, it will be replaced.</li>&#010
-     * <li>Otherwise, if there are multiple top level criteria combined with an "or" operator,&#010  these will not be shown in
-     * the filter editor. Any filter parameters the user enters will&#010  be added to the existing criteria via an additional
-     * top level "and" operator, meaning&#010  the user will essentially filter a subset of the existing criteria</li>&#010
-     * </ul>
+     * Should this listGrid display a filter row.  If true, this ListGrid
+     *  will be drawn with a single editable row, (separate from the body) with a filter button.
+     *  <P>
+     *  Values entered into this row are used as filter criteria to filter this List's data on
+     * enter-keypress or filter button click. {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle
+     * autoFetchTextMatchStyle} determines
+     * the textMatchStyle for the request passed to {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData
+     * ListGrid.fetchData}.
+     *  <P>
+     * Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#filterData ListGrid.filterData} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData} is called directly
+     *  while the filter editor is showing, the filter editor values will be updated to reflect the
+     *  new set of criteria. If you wish to retain the user entered filter criteria and 
+     *  programmatically modify a subset of field values programmatically this can be achieved by
+     *  deriving new criteria by copying the existing set of criteria and adding other changes - 
+     *  something like this:
+     *  <pre><code>
+     *    var newCriteria = myListGrid.getFilterEditorCriteria();
+     *    isc.addProperties(newCriteria, {
+     *       field1:"new value1",
+     *       field2:"new value2"
+     *    });
+     *    myListGrid.setCriteria(newCriteria);
+     *  </code></pre>
+     * In this example code we're using {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterEditorCriteria
+     * ListGrid.getFilterEditorCriteria} rather than 
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getCriteria ListGrid.getCriteria} - this ensures that if the user has
+     * typed a new value into
+     *  the filter editor, but not yet clicked the filter button, we pick up the value the user
+     *  entered.
+     *  <P>
+     *  If you call <code>filterData()</code> and pass in criteria for dataSource 
+     *  fields that are not present in the ListGrid, these criteria will continue to be applied along
+     *  with the user visible criteria.
+     *  <P>
+     *  <b>filterEditor and advanced criteria</b>: If a developer calls <code>filterData()</code>
+     *  on a ListGrid and passes in {@link com.smartgwt.client.data.AdvancedCriteria}, expected behavior of the filter 
+     *  editor becomes ambiguous, as  AdvancedCriteria supports far more complex filter 
+     *  expressions than the ordinary filterEditor is capable of expressing.
+     *  <br>
+     *  The above example code assumes simple criteria, but if we wanted to apply advanced 
+     * criteria to the grid we could call {@link com.smartgwt.client.data.DataSource#combineCriteria
+     * DataSource.combineCriteria} rather than doing
+     *  a simple addProperties() on the criteria object.
+     *  <P>
+     *  Default behavior for AdvancedCriteria will combine the AdvancedCriteria with the values 
+     *  in the filter editor as follows:
+     *  <ul>
+     *  <li>If the top level criteria has operator of type "and":<br>
+     *   Each field in the top level
+     *   criteria array for which a 'canFilter' true field is shown in the listGrid will show up
+     *   if the specified operator matches the default filter behavior 
+     * (based on the {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle}).<br>
+     *   If the user enters values in the filter editor, these will be combined with the
+     *   existing AdvancedCriteria by either replacing or adding field level criteria at the top 
+     *   level.</li>
+     *  <li>If the top level criteria is a single field-criteria:<br>
+     *   If the field shows up in the listGrid and is canFilter:true, it will be displayed to
+     *   the user (if the operator matches the default filter behavior for the field).<br>
+     *   If the user enters new filter criteria in the filterEditor, they will be combined with
+     *   this existing criterion via a top level "and" operator, or if the user modifies the
+     *   field for which the criterion already existed, it will be replaced.</li>
+     *  <li>Otherwise, if there are multiple top level criteria combined with an "or" operator,
+     *   these will not be shown in the filter editor. Any filter parameters the user enters will
+     *   be added to the existing criteria via an additional top level "and" operator, meaning
+     *   the user will essentially filter a subset of the existing criteria</li>
+     *  </ul>
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor} property. Allows the filter editor to be shown or hidden at runtime.
      *
      * @param showFilterEditor true if the filter editor should be shown, false if it should be hidden. Default value is null
@@ -5923,45 +5989,73 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Should this listGrid display a filter row.  If true, this ListGrid&#010 will be drawn with a single editable row,
-     * (separate from the body) with a filter button.&#010 <P>&#010 Values entered into this row are used as filter criteria to
-     * filter this List's data on&#010 enter-keypress or filter button click. {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle} determines&#010 the
-     * textMatchStyle for the request passed to {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData
-     * ListGrid.fetchData}.&#010 <P>&#010 Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#filterData
-     * ListGrid.filterData} or {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData} is called
-     * directly&#010 while the filter editor is showing, the filter editor values will be updated to reflect the&#010 new set
-     * of criteria. If you wish to retain the user entered filter criteria and &#010 programmatically modify a subset of field
-     * values programmatically this can be achieved by&#010 deriving new criteria by copying the existing set of criteria and
-     * adding other changes - &#010 something like this:&#010 <pre><code>&#010   var newCriteria =
-     * myListGrid.getFilterEditorCriteria();&#010   isc.addProperties(newCriteria, {&#010      field1:"new value1",&#010     
-     * field2:"new value2"&#010   });&#010   myListGrid.setCriteria(newCriteria);&#010 </code></pre>&#010 In this example code
-     * we're using {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterEditorCriteria ListGrid.getFilterEditorCriteria}
-     * rather than &#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getCriteria ListGrid.getCriteria} - this ensures that
-     * if the user has typed a new value into&#010 the filter editor, but not yet clicked the filter button, we pick up the
-     * value the user&#010 entered.&#010 <P>&#010 If you call <code>filterData()</code> and pass in criteria for dataSource
-     * &#010 fields that are not present in the ListGrid, these criteria will continue to be applied along&#010 with the user
-     * visible criteria.&#010 <P>&#010 <b>filterEditor and advanced criteria</b>: If a developer calls
-     * <code>filterData()</code>&#010 on a ListGrid and passes in {@link com.smartgwt.client.data.AdvancedCriteria}, expected
-     * behavior of the filter &#010 editor becomes ambiguous, as  AdvancedCriteria supports far more complex filter &#010
-     * expressions than the ordinary filterEditor is capable of expressing.&#010 <br>&#010 The above example code assumes
-     * simple criteria, but if we wanted to apply advanced &#010 criteria to the grid we could call {@link
-     * com.smartgwt.client.data.DataSource#combineCriteria DataSource.combineCriteria} rather than doing&#010 a simple
-     * addProperties() on the criteria object.&#010 <P>&#010 Default behavior for AdvancedCriteria will combine the
-     * AdvancedCriteria with the values &#010 in the filter editor as follows:&#010 <ul>&#010 <li>If the top level criteria has
-     * operator of type "and":<br>&#010  Each field in the top level&#010  criteria array for which a 'canFilter' true field is
-     * shown in the listGrid will show up&#010  if the specified operator matches the default filter behavior &#010  (based on
-     * the {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle}).<br>&#010  If
-     * the user enters values in the filter editor, these will be combined with the&#010  existing AdvancedCriteria by either
-     * replacing or adding field level criteria at the top &#010  level.</li>&#010 <li>If the top level criteria is a single
-     * field-criteria:<br>&#010  If the field shows up in the listGrid and is canFilter:true, it will be displayed to&#010  the
-     * user (if the operator matches the default filter behavior for the field).<br>&#010  If the user enters new filter
-     * criteria in the filterEditor, they will be combined with&#010  this existing criterion via a top level "and" operator,
-     * or if the user modifies the&#010  field for which the criterion already existed, it will be replaced.</li>&#010
-     * <li>Otherwise, if there are multiple top level criteria combined with an "or" operator,&#010  these will not be shown in
-     * the filter editor. Any filter parameters the user enters will&#010  be added to the existing criteria via an additional
-     * top level "and" operator, meaning&#010  the user will essentially filter a subset of the existing criteria</li>&#010
-     * </ul>
+     * Should this listGrid display a filter row.  If true, this ListGrid
+     *  will be drawn with a single editable row, (separate from the body) with a filter button.
+     *  <P>
+     *  Values entered into this row are used as filter criteria to filter this List's data on
+     * enter-keypress or filter button click. {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle
+     * autoFetchTextMatchStyle} determines
+     * the textMatchStyle for the request passed to {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData
+     * ListGrid.fetchData}.
+     *  <P>
+     * Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#filterData ListGrid.filterData} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData} is called directly
+     *  while the filter editor is showing, the filter editor values will be updated to reflect the
+     *  new set of criteria. If you wish to retain the user entered filter criteria and 
+     *  programmatically modify a subset of field values programmatically this can be achieved by
+     *  deriving new criteria by copying the existing set of criteria and adding other changes - 
+     *  something like this:
+     *  <pre><code>
+     *    var newCriteria = myListGrid.getFilterEditorCriteria();
+     *    isc.addProperties(newCriteria, {
+     *       field1:"new value1",
+     *       field2:"new value2"
+     *    });
+     *    myListGrid.setCriteria(newCriteria);
+     *  </code></pre>
+     * In this example code we're using {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterEditorCriteria
+     * ListGrid.getFilterEditorCriteria} rather than 
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getCriteria ListGrid.getCriteria} - this ensures that if the user has
+     * typed a new value into
+     *  the filter editor, but not yet clicked the filter button, we pick up the value the user
+     *  entered.
+     *  <P>
+     *  If you call <code>filterData()</code> and pass in criteria for dataSource 
+     *  fields that are not present in the ListGrid, these criteria will continue to be applied along
+     *  with the user visible criteria.
+     *  <P>
+     *  <b>filterEditor and advanced criteria</b>: If a developer calls <code>filterData()</code>
+     *  on a ListGrid and passes in {@link com.smartgwt.client.data.AdvancedCriteria}, expected behavior of the filter 
+     *  editor becomes ambiguous, as  AdvancedCriteria supports far more complex filter 
+     *  expressions than the ordinary filterEditor is capable of expressing.
+     *  <br>
+     *  The above example code assumes simple criteria, but if we wanted to apply advanced 
+     * criteria to the grid we could call {@link com.smartgwt.client.data.DataSource#combineCriteria
+     * DataSource.combineCriteria} rather than doing
+     *  a simple addProperties() on the criteria object.
+     *  <P>
+     *  Default behavior for AdvancedCriteria will combine the AdvancedCriteria with the values 
+     *  in the filter editor as follows:
+     *  <ul>
+     *  <li>If the top level criteria has operator of type "and":<br>
+     *   Each field in the top level
+     *   criteria array for which a 'canFilter' true field is shown in the listGrid will show up
+     *   if the specified operator matches the default filter behavior 
+     * (based on the {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle}).<br>
+     *   If the user enters values in the filter editor, these will be combined with the
+     *   existing AdvancedCriteria by either replacing or adding field level criteria at the top 
+     *   level.</li>
+     *  <li>If the top level criteria is a single field-criteria:<br>
+     *   If the field shows up in the listGrid and is canFilter:true, it will be displayed to
+     *   the user (if the operator matches the default filter behavior for the field).<br>
+     *   If the user enters new filter criteria in the filterEditor, they will be combined with
+     *   this existing criterion via a top level "and" operator, or if the user modifies the
+     *   field for which the criterion already existed, it will be replaced.</li>
+     *  <li>Otherwise, if there are multiple top level criteria combined with an "or" operator,
+     *   these will not be shown in the filter editor. Any filter parameters the user enters will
+     *   be added to the existing criteria via an additional top level "and" operator, meaning
+     *   the user will essentially filter a subset of the existing criteria</li>
+     *  </ul>
      *
      *
      * @return Boolean
@@ -6002,6 +6096,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * how the summary value to be displayed for each column will be calculated. <P> Note that the {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSummaryRow summaryRow autoChild} will be created to actually display the
      * summary row.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} attribute
      *
      * @param showGridSummary new value for this.showGridSummary. Default value is false
@@ -6139,6 +6235,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Should we show the header for this ListGrid?
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Show or hide the ListGrid header.
      *
      * @param showHeader true to show the header, false to hide it.. Default value is true
@@ -6286,6 +6384,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * in a listGrid with frozenFields, you can specify an explicit {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getRecordComponentHeight recordComponentHeight} to ensure every row in the
      * grid renders tall enough to accommodate the recordComponents, and as such virtual scrolling is not required.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} attribute
      * <p><b>Note : </b> This is an advanced setting</p>
      *

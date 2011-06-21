@@ -174,6 +174,8 @@ public class ViewLoader extends Label {
 
     /**
      * URL to load components from.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Change the URL this component loads a view from.  Triggers a fetch from the new URL. <P> Can also be called with no arguments to reload the view from the existing {@link com.smartgwt.client.widgets.ViewLoader#getViewURL viewURL}.
      *
      * @param viewURL URL to retrieve view from. Default value is null

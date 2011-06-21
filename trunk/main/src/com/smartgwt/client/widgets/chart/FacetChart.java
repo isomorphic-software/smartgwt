@@ -160,6 +160,8 @@ public class FacetChart extends Canvas {
     /**
      * See {@link com.smartgwt.client.types.ChartType} for a list of known types - Column, Bar, Line, Pie, Doughnut, Area, and
      * Radar charts are supported.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Method to change the current {@link com.smartgwt.client.widgets.chart.FacetChart#getChartType chartType}. Will redraw the chart if drawn.  Will use default settings for the new chart type for {@link com.smartgwt.client.widgets.chart.FacetChart#getStacked stacked}  and {@link com.smartgwt.client.widgets.chart.FacetChart#getFilled filled} if those values are null.
      *
      * @param chartType new chart type. Default value is "Column"
@@ -311,6 +313,8 @@ public class FacetChart extends Canvas {
      * stacking is active (so Line and Radar charts will show stacked regions).   <P> You can explicitly set filled:false to
      * create multi-facet Line or Radar charts where translucent regions overlap, or filled:true to fill in a single-facet Line
      * or Radar chart.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Nethod to change {@link com.smartgwt.client.widgets.chart.FacetChart#getFilled filled}. Use null to apply a default value for the current {@link com.smartgwt.client.widgets.chart.FacetChart#getChartType chartType}.
      *
      * @param filled new value. Default value is null
@@ -734,6 +738,8 @@ public class FacetChart extends Canvas {
      * Whether to use stacking for charts where this makes sense (column, area, pie, line and radar charts).  If stacked is not
      * set and two facets are supplied, clustering is assumed. If null (the default), line charts will be unstacked, and others
      * will be stacked.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Method to change {@link com.smartgwt.client.widgets.chart.FacetChart#getStacked stacked}. Use null to apply a default value for the current {@link com.smartgwt.client.widgets.chart.FacetChart#getChartType chartType}.
      *
      * @param stacked new value. Default value is null

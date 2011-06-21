@@ -199,6 +199,8 @@ public class TextItem extends FormItem {
      * that match the regular expression are allowed; all others are suppressed. The filter is applied after character casing,
      * if defined. <P> Note: keypress filtering cannot be used at the same time as a {@link
      * com.smartgwt.client.widgets.form.fields.TextItem#getMask mask}.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the keyPressFilter for this item
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -262,6 +264,8 @@ public class TextItem extends FormItem {
      * mask cannot be used at the same time as a {@link com.smartgwt.client.widgets.form.fields.TextItem#getKeyPressFilter
      * keyPressFilter}. Also note that this property is not supported for {@link
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem} or {@link com.smartgwt.client.widgets.form.fields.SpinnerItem}.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the mask for this item. <P> Note that the current value of the field is cleared when changing the mask.
      * <p><b>Note : </b> This is an advanced setting</p>
      *

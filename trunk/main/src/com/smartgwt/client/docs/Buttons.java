@@ -12,7 +12,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Dialog#yesClick
  * @see com.smartgwt.client.widgets.Dialog#noClick
  * @see com.smartgwt.client.widgets.Dialog#doneClick
- * @see com.smartgwt.client.widgets.Dialog#buttonClick
+ * @see com.smartgwt.client.widgets.events.ButtonClickEvent
  * @see com.smartgwt.client.widgets.toolbar.Toolbar#getButton
  */
 public interface Buttons {
