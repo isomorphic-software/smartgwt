@@ -62,7 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * A ListGrid is a {@link com.smartgwt.client.widgets.DataBoundComponent} that displays a list of objects in a grid, where
  * each row represents one object and each cell in the row represents one property.
  */
-public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasHeaderClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDropHandlers, com.smartgwt.client.widgets.grid.events.HasRecordExpandHandlers, com.smartgwt.client.widgets.grid.events.HasRecordCollapseHandlers, com.smartgwt.client.widgets.grid.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.grid.events.HasDrawAreaChangedHandlers, com.smartgwt.client.widgets.grid.events.HasFieldStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasEditFailedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasCellOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasCellClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowOutHandlers, com.smartgwt.client.widgets.grid.events.HasRowOverHandlers, com.smartgwt.client.widgets.grid.events.HasRowContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellHoverHandlers, com.smartgwt.client.widgets.grid.events.HasRowHoverHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionChangedHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionUpdatedHandlers, com.smartgwt.client.widgets.grid.events.HasHeaderDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasFilterEditorSubmitHandlers, com.smartgwt.client.widgets.grid.events.HasGroupByHandlers, com.smartgwt.client.widgets.grid.events.HasViewStateChangedHandlers {
+public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasHeaderClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDropHandlers, com.smartgwt.client.widgets.grid.events.HasRecordExpandHandlers, com.smartgwt.client.widgets.grid.events.HasRecordCollapseHandlers, com.smartgwt.client.widgets.grid.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.grid.events.HasDrawAreaChangedHandlers, com.smartgwt.client.widgets.grid.events.HasFieldStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasEditFailedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasCellOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasCellClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowOutHandlers, com.smartgwt.client.widgets.grid.events.HasRowOverHandlers, com.smartgwt.client.widgets.grid.events.HasRowContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellHoverHandlers, com.smartgwt.client.widgets.grid.events.HasRowHoverHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionChangedHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionUpdatedHandlers, com.smartgwt.client.widgets.grid.events.HasHeaderDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasFilterEditorSubmitHandlers, com.smartgwt.client.widgets.grid.events.HasGroupByHandlers, com.smartgwt.client.widgets.grid.events.HasViewStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasBodyKeyPressHandlers {
 
     public static ListGrid getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -346,6 +346,36 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public Boolean getAnimateRollUnder()  {
         return getAttributeAsBoolean("animateRollUnder");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowSelectionCanvas showSelectionCanvas} is <code>true</code>
+     * setting this property to true ensures that when the selection canvas is displayed it animates into view via an {@link
+     * com.smartgwt.client.widgets.Canvas#animateShow Canvas.animateShow}.  Note that the animation effect may be customized
+     * via the standard {@link com.smartgwt.client.widgets.Canvas#getAnimateShowEffect animateShowEffect}, {@link
+     * com.smartgwt.client.widgets.Canvas#getAnimateShowTime animateShowTime} and  {@link
+     * com.smartgwt.client.widgets.Canvas#getAnimateShowAcceleration animateShowAcceleration}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateSelection animateSelection Default value is false
+     */
+    public void setAnimateSelection(Boolean animateSelection) {
+        setAttribute("animateSelection", animateSelection, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowSelectionCanvas showSelectionCanvas} is <code>true</code>
+     * setting this property to true ensures that when the selection canvas is displayed it animates into view via an {@link
+     * com.smartgwt.client.widgets.Canvas#animateShow Canvas.animateShow}.  Note that the animation effect may be customized
+     * via the standard {@link com.smartgwt.client.widgets.Canvas#getAnimateShowEffect animateShowEffect}, {@link
+     * com.smartgwt.client.widgets.Canvas#getAnimateShowTime animateShowTime} and  {@link
+     * com.smartgwt.client.widgets.Canvas#getAnimateShowAcceleration animateShowAcceleration}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAnimateSelection()  {
+        return getAttributeAsBoolean("animateSelection");
     }
 
     /**
@@ -1871,6 +1901,30 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * Should the header be included in the tab-order for the page? If not explicitly specified, the header will be included in
+     * the tab order for the page if  setScreenReaderMode is called.
+     *
+     * @param canTabToHeader canTabToHeader Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Accessibility Accessibility overview and related methods
+     */
+    public void setCanTabToHeader(Boolean canTabToHeader)  throws IllegalStateException {
+        setAttribute("canTabToHeader", canTabToHeader, false);
+    }
+
+    /**
+     * Should the header be included in the tab-order for the page? If not explicitly specified, the header will be included in
+     * the tab order for the page if  setScreenReaderMode is called.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Accessibility Accessibility overview and related methods
+     */
+    public Boolean getCanTabToHeader()  {
+        return getAttributeAsBoolean("canTabToHeader");
+    }
+
+    /**
      * The default height of each row in pixels.
      *
      * @param cellHeight cellHeight Default value is 20
@@ -2643,6 +2697,42 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public String getEditFailedCSSText()  {
         return getAttributeAsString("editFailedCSSText");
+    }
+
+    /**
+     * Should we start editing when the widget has focus and the user presses the "f2" key (if this ListGrid supports editing)?
+     * <P> Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent} is set to <code>"click"</code>
+     * or <code>"doubleClick"</code>, the <code>Space</code> or <code>Enter</code> key may also be used to start editing,
+     * depending on the value for {@link com.smartgwt.client.widgets.grid.ListGrid#getGenerateClickOnSpace
+     * generateClickOnSpace}, {@link com.smartgwt.client.widgets.grid.ListGrid#getGenerateDoubleClickOnSpace
+     * generateDoubleClickOnSpace}, {@link com.smartgwt.client.widgets.grid.ListGrid#getGenerateClickOnEnter
+     * generateClickOnEnter} and  {@link com.smartgwt.client.widgets.grid.ListGrid#getGenerateDoubleClickOnEnter
+     * generateDoubleClickOnEnter}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param editOnF2Keypress editOnF2Keypress Default value is true
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     */
+    public void setEditOnF2Keypress(Boolean editOnF2Keypress) {
+        setAttribute("editOnF2Keypress", editOnF2Keypress, true);
+    }
+
+    /**
+     * Should we start editing when the widget has focus and the user presses the "f2" key (if this ListGrid supports editing)?
+     * <P> Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent} is set to <code>"click"</code>
+     * or <code>"doubleClick"</code>, the <code>Space</code> or <code>Enter</code> key may also be used to start editing,
+     * depending on the value for {@link com.smartgwt.client.widgets.grid.ListGrid#getGenerateClickOnSpace
+     * generateClickOnSpace}, {@link com.smartgwt.client.widgets.grid.ListGrid#getGenerateDoubleClickOnSpace
+     * generateDoubleClickOnSpace}, {@link com.smartgwt.client.widgets.grid.ListGrid#getGenerateClickOnEnter
+     * generateClickOnEnter} and  {@link com.smartgwt.client.widgets.grid.ListGrid#getGenerateDoubleClickOnEnter
+     * generateDoubleClickOnEnter}.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     */
+    public Boolean getEditOnF2Keypress()  {
+        return getAttributeAsBoolean("editOnF2Keypress");
     }
 
     /**
@@ -3564,6 +3654,36 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public String getGridSummaryRecordProperty()  {
         return getAttributeAsString("gridSummaryRecordProperty");
+    }
+
+    /**
+     * If this grid is {@link com.smartgwt.client.widgets.grid.ListGrid#getGroupByField grouped}, and  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true, this attribute may be set to an
+     * array of groupBy field names for which group summaries should appear. <P> This is particularly useful for listGrids
+     * grouped by more than one field as it allows developers to display the group summary for a particular nested group
+     * without showing a summary for every level of the tree.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param groupByFieldSummaries groupByFieldSummaries Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setShowGroupSummary
+     */
+    public void setGroupByFieldSummaries(String... groupByFieldSummaries) {
+        setAttribute("groupByFieldSummaries", groupByFieldSummaries, true);
+    }
+
+    /**
+     * If this grid is {@link com.smartgwt.client.widgets.grid.ListGrid#getGroupByField grouped}, and  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true, this attribute may be set to an
+     * array of groupBy field names for which group summaries should appear. <P> This is particularly useful for listGrids
+     * grouped by more than one field as it allows developers to display the group summary for a particular nested group
+     * without showing a summary for every level of the tree.
+     *
+     *
+     * @return String
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary
+     */
+    public String[] getGroupByFieldSummaries()  {
+        return getAttributeAsStringArray("groupByFieldSummaries");
     }
 
     /**
@@ -4635,7 +4755,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Minimum size, in pixels, for ListGrid headers.
      *
-     * @param minFieldWidth minFieldWidth Default value is 10
+     * @param minFieldWidth minFieldWidth Default value is 15
      */
     public void setMinFieldWidth(int minFieldWidth) {
         setAttribute("minFieldWidth", minFieldWidth, true);
@@ -5765,20 +5885,26 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * of criteria. If you wish to retain the user entered filter criteria and &#010 programmatically modify a subset of field
      * values programmatically this can be achieved by&#010 deriving new criteria by copying the existing set of criteria and
      * adding other changes - &#010 something like this:&#010 <pre><code>&#010   var newCriteria =
-     * isc.clone(myListGrid.getCriteria());&#010   isc.addProperties(newCriteria, {&#010      field1:"new value1",&#010     
-     * field2:"new value2"&#010   });&#010   myListGrid.setCriteria(newCriteria);&#010 </code></pre>&#010 <P>&#010 Also note
-     * that if you call <code>filterData()</code> and pass in criteria for dataSource &#010 fields that are not present in the
-     * ListGrid, these criteria will continue to be applied along&#010 with the user visible criteria.&#010 <P>&#010
-     * <b>filterEditor and advanced criteria</b>: If a developer calls <code>filterData()</code>&#010 on a ListGrid and passes
-     * in {@link com.smartgwt.client.data.AdvancedCriteria}, expected behavior of the filter &#010 editor becomes ambiguous, as
-     * AdvancedCriteria supports far more complex filter &#010 expressions than the ordinary filterEditor is capable of
-     * expressing.&#010 The default behavior will combine the AdvancedCriteria with the values in the filter&#010 editor as
-     * follows:&#010 <ul>&#010 <li>If the top level criteria has operator of type "and":<br>&#010  Each field in the top
-     * level&#010  criteria array for which a 'canFilter' true field is shown in the listGrid will show up&#010  if the
-     * specified operator matches the default filter behavior &#010  (based on the {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle}).<br>&#010  If the user
-     * enters values in the filter editor, these will be combined with the&#010  existing AdvancedCriteria by either replacing
-     * or adding field level criteria at the top &#010  level.</li>&#010 <li>If the top level criteria is a single
+     * myListGrid.getFilterEditorCriteria();&#010   isc.addProperties(newCriteria, {&#010      field1:"new value1",&#010     
+     * field2:"new value2"&#010   });&#010   myListGrid.setCriteria(newCriteria);&#010 </code></pre>&#010 In this example code
+     * we're using {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterEditorCriteria ListGrid.getFilterEditorCriteria}
+     * rather than &#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getCriteria ListGrid.getCriteria} - this ensures that
+     * if the user has typed a new value into&#010 the filter editor, but not yet clicked the filter button, we pick up the
+     * value the user&#010 entered.&#010 <P>&#010 If you call <code>filterData()</code> and pass in criteria for dataSource
+     * &#010 fields that are not present in the ListGrid, these criteria will continue to be applied along&#010 with the user
+     * visible criteria.&#010 <P>&#010 <b>filterEditor and advanced criteria</b>: If a developer calls
+     * <code>filterData()</code>&#010 on a ListGrid and passes in {@link com.smartgwt.client.data.AdvancedCriteria}, expected
+     * behavior of the filter &#010 editor becomes ambiguous, as  AdvancedCriteria supports far more complex filter &#010
+     * expressions than the ordinary filterEditor is capable of expressing.&#010 <br>&#010 The above example code assumes
+     * simple criteria, but if we wanted to apply advanced &#010 criteria to the grid we could call {@link
+     * com.smartgwt.client.data.DataSource#combineCriteria DataSource.combineCriteria} rather than doing&#010 a simple
+     * addProperties() on the criteria object.&#010 <P>&#010 Default behavior for AdvancedCriteria will combine the
+     * AdvancedCriteria with the values &#010 in the filter editor as follows:&#010 <ul>&#010 <li>If the top level criteria has
+     * operator of type "and":<br>&#010  Each field in the top level&#010  criteria array for which a 'canFilter' true field is
+     * shown in the listGrid will show up&#010  if the specified operator matches the default filter behavior &#010  (based on
+     * the {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle}).<br>&#010  If
+     * the user enters values in the filter editor, these will be combined with the&#010  existing AdvancedCriteria by either
+     * replacing or adding field level criteria at the top &#010  level.</li>&#010 <li>If the top level criteria is a single
      * field-criteria:<br>&#010  If the field shows up in the listGrid and is canFilter:true, it will be displayed to&#010  the
      * user (if the operator matches the default filter behavior for the field).<br>&#010  If the user enters new filter
      * criteria in the filterEditor, they will be combined with&#010  this existing criterion via a top level "and" operator,
@@ -5808,20 +5934,26 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * of criteria. If you wish to retain the user entered filter criteria and &#010 programmatically modify a subset of field
      * values programmatically this can be achieved by&#010 deriving new criteria by copying the existing set of criteria and
      * adding other changes - &#010 something like this:&#010 <pre><code>&#010   var newCriteria =
-     * isc.clone(myListGrid.getCriteria());&#010   isc.addProperties(newCriteria, {&#010      field1:"new value1",&#010     
-     * field2:"new value2"&#010   });&#010   myListGrid.setCriteria(newCriteria);&#010 </code></pre>&#010 <P>&#010 Also note
-     * that if you call <code>filterData()</code> and pass in criteria for dataSource &#010 fields that are not present in the
-     * ListGrid, these criteria will continue to be applied along&#010 with the user visible criteria.&#010 <P>&#010
-     * <b>filterEditor and advanced criteria</b>: If a developer calls <code>filterData()</code>&#010 on a ListGrid and passes
-     * in {@link com.smartgwt.client.data.AdvancedCriteria}, expected behavior of the filter &#010 editor becomes ambiguous, as
-     * AdvancedCriteria supports far more complex filter &#010 expressions than the ordinary filterEditor is capable of
-     * expressing.&#010 The default behavior will combine the AdvancedCriteria with the values in the filter&#010 editor as
-     * follows:&#010 <ul>&#010 <li>If the top level criteria has operator of type "and":<br>&#010  Each field in the top
-     * level&#010  criteria array for which a 'canFilter' true field is shown in the listGrid will show up&#010  if the
-     * specified operator matches the default filter behavior &#010  (based on the {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle}).<br>&#010  If the user
-     * enters values in the filter editor, these will be combined with the&#010  existing AdvancedCriteria by either replacing
-     * or adding field level criteria at the top &#010  level.</li>&#010 <li>If the top level criteria is a single
+     * myListGrid.getFilterEditorCriteria();&#010   isc.addProperties(newCriteria, {&#010      field1:"new value1",&#010     
+     * field2:"new value2"&#010   });&#010   myListGrid.setCriteria(newCriteria);&#010 </code></pre>&#010 In this example code
+     * we're using {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterEditorCriteria ListGrid.getFilterEditorCriteria}
+     * rather than &#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getCriteria ListGrid.getCriteria} - this ensures that
+     * if the user has typed a new value into&#010 the filter editor, but not yet clicked the filter button, we pick up the
+     * value the user&#010 entered.&#010 <P>&#010 If you call <code>filterData()</code> and pass in criteria for dataSource
+     * &#010 fields that are not present in the ListGrid, these criteria will continue to be applied along&#010 with the user
+     * visible criteria.&#010 <P>&#010 <b>filterEditor and advanced criteria</b>: If a developer calls
+     * <code>filterData()</code>&#010 on a ListGrid and passes in {@link com.smartgwt.client.data.AdvancedCriteria}, expected
+     * behavior of the filter &#010 editor becomes ambiguous, as  AdvancedCriteria supports far more complex filter &#010
+     * expressions than the ordinary filterEditor is capable of expressing.&#010 <br>&#010 The above example code assumes
+     * simple criteria, but if we wanted to apply advanced &#010 criteria to the grid we could call {@link
+     * com.smartgwt.client.data.DataSource#combineCriteria DataSource.combineCriteria} rather than doing&#010 a simple
+     * addProperties() on the criteria object.&#010 <P>&#010 Default behavior for AdvancedCriteria will combine the
+     * AdvancedCriteria with the values &#010 in the filter editor as follows:&#010 <ul>&#010 <li>If the top level criteria has
+     * operator of type "and":<br>&#010  Each field in the top level&#010  criteria array for which a 'canFilter' true field is
+     * shown in the listGrid will show up&#010  if the specified operator matches the default filter behavior &#010  (based on
+     * the {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle}).<br>&#010  If
+     * the user enters values in the filter editor, these will be combined with the&#010  existing AdvancedCriteria by either
+     * replacing or adding field level criteria at the top &#010  level.</li>&#010 <li>If the top level criteria is a single
      * field-criteria:<br>&#010  If the field shows up in the listGrid and is canFilter:true, it will be displayed to&#010  the
      * user (if the operator matches the default filter behavior for the field).<br>&#010  If the user enters new filter
      * criteria in the filterEditor, they will be combined with&#010  this existing criterion via a top level "and" operator,
@@ -5901,6 +6033,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * otherwise via the specified {@link com.smartgwt.client.widgets.grid.ListGridField#getSummaryFunction summaryFunction}.
      *
      * @param showGroupSummary showGroupSummary Default value is false
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setGroupByFieldSummaries
      */
     public void setShowGroupSummary(Boolean showGroupSummary) {
         setAttribute("showGroupSummary", showGroupSummary, true);
@@ -5915,6 +6048,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupByFieldSummaries
      */
     public Boolean getShowGroupSummary()  {
         return getAttributeAsBoolean("showGroupSummary");
@@ -7231,6 +7365,44 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.autoFitField(fieldName);
     }-*/;
+    /**
+     * Add a bodyKeyPress handler.
+     * <p>
+     * Handle a keyPress event on the body.   <P> Default implementation handles navigating between records with arrow keys,
+     * and activating records with space and enter.
+     *
+     * @param handler the bodyKeyPress handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addBodyKeyPressHandler(com.smartgwt.client.widgets.grid.events.BodyKeyPressHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.grid.events.BodyKeyPressEvent.getType()) == 0) setupBodyKeyPressEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.BodyKeyPressEvent.getType());
+    }
+
+    private native void setupBodyKeyPressEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({bodyKeyPress:$debox($entry(function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.grid.events.BodyKeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    }))
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.bodyKeyPress = $debox($entry(function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.grid.events.BodyKeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               }));
+        }
+   }-*/;
             
     /**
      * Cancel the current edit without saving.
@@ -8526,15 +8698,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.markForRedraw(reason);
     }-*/;
-            
-    /**
-     * Recalculates values displayed in the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary grid summary}
-     * and {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary group summary rows}.
-     */
-    public native void recalculateSummaries() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.recalculateSummaries();
-    }-*/;
     /**
      * Add a recordClick handler.
      * <p>
@@ -9553,16 +9716,18 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         });
         
         self.__getValueIcon = self.getValueIcon;
-        self.getValueIcon = $entry(function(field, value, record) {
+        //the rowNum parameter is a non public parameter used for checking whether a cell is editable. Not exposed in the SGWT override method but
+        //preserving the rownNum passthrough parameter
+        self.getValueIcon = $entry(function(field, value, record, rowNum) {
             var jObj = this.__ref;
-            if(jObj == null || jObj === undefined) return this.__getValueIcon(field, value, record);
+            if(jObj == null || jObj === undefined) return this.__getValueIcon(field, value, record, rowNum);
             self._jsOverrideCall.getValueIcon = true;
             var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
             var valueJ = $wnd.SmartGWT.convertToJavaType(value);
             var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             var icon = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getValueIcon(Lcom/smartgwt/client/widgets/grid/ListGridField;Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;)(fieldJ, valueJ, recordJ);
             if (self._fireDefaultMethod.getValueIcon) {
-                icon = this.__getValueIcon(field, value, record);
+                icon = this.__getValueIcon(field, value, record, rowNum);
             }
             self._jsOverrideCall.getValueIcon = null;
             self._fireDefaultMethod.getValueIcon = null;
@@ -10385,18 +10550,25 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The Selection Under Canvas properties when {@link #setShowSelectionCanvas(Boolean) showSelectionCanvas} is true.
+     * Canvas with properties to apply to the auto-generated Selection Canvas properties when
+     * {@link #setShowSelectionCanvas(Boolean) showSelectionCanvas} is true.
+     *
+     * @param selectionUnderCanvasProperties the selection under Canvas properties
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setSelectionCanvasProperties(Canvas selectionCanvasProperties) throws IllegalStateException {
+        setAttribute("selectionCanvasProperties", selectionCanvasProperties.getConfig(), false);
+    }
+
+    /**
+     * Canvas with properties to apply to the auto-generated Selection Under Canvas properties when
+     * {@link #setShowSelectionCanvas(Boolean) showSelectionCanvas} is true.
      *
      * @param selectionUnderCanvasProperties the selection under Canvas properties
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setSelectionUnderCanvasProperties(Canvas selectionUnderCanvasProperties) throws IllegalStateException {
         setAttribute("selectionUnderCanvasProperties", selectionUnderCanvasProperties.getConfig(), false);
-    }
-
-    //TODO : remove once SC docs are updated.
-    public void setShowSelectionCanvas(boolean showSelectionCanvas) {
-        setAttribute("showSelectionCanvas", showSelectionCanvas, true);
     }
 
     /**
@@ -12498,6 +12670,29 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
 
     /**
+     * Recalculates values for fields with  {@link com.smartgwt.client.widgets.grid.ListGridField#getRecordSummaryFunction
+     * summary-functions} defined and for values  displayed in the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary grid summary} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary group summary rows}.
+     */
+    public native void recalculateSummaries() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.recalculateSummaries();
+    }-*/;
+
+    /**
+     * Recalculates values for fields with  {@link com.smartgwt.client.widgets.grid.ListGridField#getRecordSummaryFunction
+     * summary-functions} defined and for values  displayed in the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary grid summary} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary group summary rows}.
+     * @param records Optional array of records to recalculate summaries for
+     */
+    public native void recalculateSummaries(Record[] records) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.recalculateSummaries(records == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records));
+    }-*/;
+
+    /**
      * Add a onHeaderClick handler.
      * <p>
      * Handler fired when the user clicks a header in this listGrid before any other processing&#010 occurs.&#010 Return false to suppress the default header click handling&#010
@@ -12596,11 +12791,43 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
     
     /**
-     * Add a onRecordDrop handler.
-     * <p>
-     * Handler fired when the user drops a record onto this listGrid before any other processing&#010 of the drop occurs.&#010 Return false to suppress the default record drop handling.&#010
+     * Add a handler that fires when records are dropped onto this ListGrid.
+     * <P>
+     * The default behavior is as follows:
+     * <P>
+     * If this is a self-drop, records are simply reordered.
+     * <P>
+     * For a drop from another widget, data is handled as though transferDragData() were called
+     * on the component from which records were dragged, which depending on the 
+     * {@link ListGrid.dragDataAction dragDataAction} specified on the source component, may
+     * either remove the source records from the original list
+     * (<code>dragDataAction:"move"</code>) or just provide a copy to this list
+     * (<code>dragDataAction:"copy"</code>).
+     * <P>
+     * If this grid is databound, the new records will be added to the dataset by calling
+     * dataSource.addData().  For all drops onto databound ListGrids from other databound 
+     * components, the {@link com.smartgwt.client.widgets.DataBoundComponent#addDropValues dropValues} 
+     * will be added as new attributes of each Record created from the dropped data.
+     * <P>
+     * For multi-node drops, Queuing is automatically used to combine all DSRequests into a
+     * single HTTP Request (see QuickStart Guide, Server Framework chapter).  This allows the
+     * server to persist all changes caused by the drop in a single transaction (and this is
+     * automatically done when using the built-in server DataSources with Power Edition and
+     * above).
+     * <P>
+     * Note that reordering records has no default effect on a databound grid.
+     * <P>
+     * The newly dropped data is then selected automatically.
+     * <P>
+     * If these default persistence behaviors are undesirable, user RecordDropEvent.cancel() to
+     * cancel them, and implement your own behavior.
+     * <P>
+     * NOTE: for a drop beyond the last visible record of a ListGrid, the
+     * <code>targetRecord</code> available from the RecordDropEvent will be null and the
+     * <code>index</code> will be one higher than the last record in the grid.  This
+     * includes a drop into an empty ListGrid, where <code>index</code> will be 0.
      *
-     * @param handler the onRecordDrop handler
+     * @param handler the RecordDrop handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
     public HandlerRegistration addRecordDropHandler(com.smartgwt.client.widgets.grid.events.RecordDropHandler handler) {
