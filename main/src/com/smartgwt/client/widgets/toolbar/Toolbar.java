@@ -129,6 +129,8 @@ public abstract class Toolbar extends Layout  implements com.smartgwt.client.wid
 
     /**
      * If true, items (buttons) can be resized by dragging on them.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for updating {@link com.smartgwt.client.widgets.toolbar.Toolbar#getCanResizeItems canResizeItems} at runtime.
      * <p><b>Note : </b> This is an advanced setting</p>
      *

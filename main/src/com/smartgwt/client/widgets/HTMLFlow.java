@@ -172,6 +172,8 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      * URL to load content from. <P> If specified, this component will load HTML content from the specified URL when it is
      * first drawn. <p> This feature relies on the XMLHttpRequest object which can be disabled by end-users in some supported
      * browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Change the URL this component loads content from.  Triggers a fetch for content from the new URL. <p> Can also be called with no arguments to reload content from the existing {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL}. <P> This feature relies on the XMLHttpRequest object which can be disabled by end-users in some supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
      *
      * @param contentsURL URL to retrieve contents from. Default value is null
@@ -193,26 +195,52 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     }
 
     /**
-     * Dynamic contents allows the contents string to be treated as a simple, but powerful&#010 template.  When this attribute
-     * is set to true, expressions of the form \${arbitrary JS&#010 here} are replaced by the result of the evaluation of the
-     * JS code inside the curly&#010 brackets.  This evaluation happens at draw time.  If you want to trigger a
-     * re-evaluation&#010 of the expressions in the contents string you can call markForRedraw() on the canvas.&#010 <p>&#010
-     * You can use this feature to build some simple custom components. For example, let's say&#010 you want to show the value
-     * of a Slider in a Canvas somewhere on the screen.  You can do&#010 this by observing the valueChanged() method on the
-     * slider and calling setContents() on&#010 your canvas with the new string or you can set the contents of the canvas to
-     * something&#010 like:&#010 <p><code>&#010 "The slider value is \${sliderInstance.getValue()}."&#010 </code><p>&#010 Next
-     * you set dynamicContents: true on the canvas, observe valueChanged() on the slider&#010 and call canvas.markForRedraw()
-     * in that observation.  This approach is cleaner than&#010 setContents() when the Canvas is aggregating several values or
-     * dynamic expressions.&#010 Like so:&#010 <p>&#010 <pre>&#010 Slider.create({&#010     ID: "mySlider"&#010 });&#010&#010
-     * Canvas.create({&#010     ID: "myCanvas",&#010     dynamicContents: true,&#010     contents: "The slider value is
-     * \${mySlider.getValue()}."&#010 });&#010     &#010 myCanvas.observe(mySlider, "valueChanged", &#010                 
-     * "observer.markForRedraw()");&#010 </pre>&#010 You can embed an arbitrary number of dynamic expressions in the contents
-     * string.  The&#010 search and replace is optimized for speed.&#010 <p>&#010 If an error occurs during the evaluation of
-     * one of the expressions, a warning is logged&#010 to the ISC Developer Console and the error string is embedded in place
-     * of the expected&#010 value in the Canvas.&#010 <p>&#010 The value of a function is its return value.  The value of any
-     * variable is the same as&#010 that returned by its toString() representation.&#010 <p>&#010 Inside the evaluation
-     * contentext, <code>this</code> points to the canvas instance that&#010 has the dynamicContents string as its contents -
-     * in other words the canvas instance on&#010 which the template is declared.
+     * Dynamic contents allows the contents string to be treated as a simple, but powerful
+     *  template.  When this attribute is set to true, expressions of the form \${arbitrary JS
+     *  here} are replaced by the result of the evaluation of the JS code inside the curly
+     *  brackets.  This evaluation happens at draw time.  If you want to trigger a re-evaluation
+     *  of the expressions in the contents string you can call markForRedraw() on the canvas.
+     *  <p>
+     *  You can use this feature to build some simple custom components. For example, let's say
+     *  you want to show the value of a Slider in a Canvas somewhere on the screen.  You can do
+     *  this by observing the valueChanged() method on the slider and calling setContents() on
+     *  your canvas with the new string or you can set the contents of the canvas to something
+     *  like:
+     *  <p><code>
+     *  "The slider value is \${sliderInstance.getValue()}."
+     *  </code><p>
+     *  Next you set dynamicContents: true on the canvas, observe valueChanged() on the slider
+     *  and call canvas.markForRedraw() in that observation.  This approach is cleaner than
+     *  setContents() when the Canvas is aggregating several values or dynamic expressions.
+     *  Like so:
+     *  <p>
+     *  <pre>
+     *  Slider.create({
+     *      ID: "mySlider"
+     *  });
+     * 
+     *  Canvas.create({
+     *      ID: "myCanvas",
+     *      dynamicContents: true,
+     *      contents: "The slider value is \${mySlider.getValue()}."
+     *  });
+     *      
+     *  myCanvas.observe(mySlider, "valueChanged", 
+     *                   "observer.markForRedraw()");
+     *  </pre>
+     *  You can embed an arbitrary number of dynamic expressions in the contents string.  The
+     *  search and replace is optimized for speed.
+     *  <p>
+     *  If an error occurs during the evaluation of one of the expressions, a warning is logged
+     *  to the ISC Developer Console and the error string is embedded in place of the expected
+     *  value in the Canvas.
+     *  <p>
+     *  The value of a function is its return value.  The value of any variable is the same as
+     *  that returned by its toString() representation.
+     *  <p>
+     *  Inside the evaluation contentext, <code>this</code> points to the canvas instance that
+     *  has the dynamicContents string as its contents - in other words the canvas instance on
+     *  which the template is declared.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dynamicContents dynamicContents Default value is false
@@ -225,26 +253,52 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     }
 
     /**
-     * Dynamic contents allows the contents string to be treated as a simple, but powerful&#010 template.  When this attribute
-     * is set to true, expressions of the form \${arbitrary JS&#010 here} are replaced by the result of the evaluation of the
-     * JS code inside the curly&#010 brackets.  This evaluation happens at draw time.  If you want to trigger a
-     * re-evaluation&#010 of the expressions in the contents string you can call markForRedraw() on the canvas.&#010 <p>&#010
-     * You can use this feature to build some simple custom components. For example, let's say&#010 you want to show the value
-     * of a Slider in a Canvas somewhere on the screen.  You can do&#010 this by observing the valueChanged() method on the
-     * slider and calling setContents() on&#010 your canvas with the new string or you can set the contents of the canvas to
-     * something&#010 like:&#010 <p><code>&#010 "The slider value is \${sliderInstance.getValue()}."&#010 </code><p>&#010 Next
-     * you set dynamicContents: true on the canvas, observe valueChanged() on the slider&#010 and call canvas.markForRedraw()
-     * in that observation.  This approach is cleaner than&#010 setContents() when the Canvas is aggregating several values or
-     * dynamic expressions.&#010 Like so:&#010 <p>&#010 <pre>&#010 Slider.create({&#010     ID: "mySlider"&#010 });&#010&#010
-     * Canvas.create({&#010     ID: "myCanvas",&#010     dynamicContents: true,&#010     contents: "The slider value is
-     * \${mySlider.getValue()}."&#010 });&#010     &#010 myCanvas.observe(mySlider, "valueChanged", &#010                 
-     * "observer.markForRedraw()");&#010 </pre>&#010 You can embed an arbitrary number of dynamic expressions in the contents
-     * string.  The&#010 search and replace is optimized for speed.&#010 <p>&#010 If an error occurs during the evaluation of
-     * one of the expressions, a warning is logged&#010 to the ISC Developer Console and the error string is embedded in place
-     * of the expected&#010 value in the Canvas.&#010 <p>&#010 The value of a function is its return value.  The value of any
-     * variable is the same as&#010 that returned by its toString() representation.&#010 <p>&#010 Inside the evaluation
-     * contentext, <code>this</code> points to the canvas instance that&#010 has the dynamicContents string as its contents -
-     * in other words the canvas instance on&#010 which the template is declared.
+     * Dynamic contents allows the contents string to be treated as a simple, but powerful
+     *  template.  When this attribute is set to true, expressions of the form \${arbitrary JS
+     *  here} are replaced by the result of the evaluation of the JS code inside the curly
+     *  brackets.  This evaluation happens at draw time.  If you want to trigger a re-evaluation
+     *  of the expressions in the contents string you can call markForRedraw() on the canvas.
+     *  <p>
+     *  You can use this feature to build some simple custom components. For example, let's say
+     *  you want to show the value of a Slider in a Canvas somewhere on the screen.  You can do
+     *  this by observing the valueChanged() method on the slider and calling setContents() on
+     *  your canvas with the new string or you can set the contents of the canvas to something
+     *  like:
+     *  <p><code>
+     *  "The slider value is \${sliderInstance.getValue()}."
+     *  </code><p>
+     *  Next you set dynamicContents: true on the canvas, observe valueChanged() on the slider
+     *  and call canvas.markForRedraw() in that observation.  This approach is cleaner than
+     *  setContents() when the Canvas is aggregating several values or dynamic expressions.
+     *  Like so:
+     *  <p>
+     *  <pre>
+     *  Slider.create({
+     *      ID: "mySlider"
+     *  });
+     * 
+     *  Canvas.create({
+     *      ID: "myCanvas",
+     *      dynamicContents: true,
+     *      contents: "The slider value is \${mySlider.getValue()}."
+     *  });
+     *      
+     *  myCanvas.observe(mySlider, "valueChanged", 
+     *                   "observer.markForRedraw()");
+     *  </pre>
+     *  You can embed an arbitrary number of dynamic expressions in the contents string.  The
+     *  search and replace is optimized for speed.
+     *  <p>
+     *  If an error occurs during the evaluation of one of the expressions, a warning is logged
+     *  to the ISC Developer Console and the error string is embedded in place of the expected
+     *  value in the Canvas.
+     *  <p>
+     *  The value of a function is its return value.  The value of any variable is the same as
+     *  that returned by its toString() representation.
+     *  <p>
+     *  Inside the evaluation contentext, <code>this</code> points to the canvas instance that
+     *  has the dynamicContents string as its contents - in other words the canvas instance on
+     *  which the template is declared.
      *
      *
      * @return Boolean

@@ -99,6 +99,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * If specified this governs the accessKey for the widget. This should be set to a character - when a user hits
      * Alt+[accessKey], or in Mozilla Firefox 2.0 and above, Shift+Alt+[accessKey], focus will be given to the widget in
      * question.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the accessKey for this canvas. <P> The accessKey can be set to any alphanumeric character (symbols not supported) Having set an accessKey, the canvas will be given focus when the user hits  Alt+[accessKey], or in Mozilla Firefox 2.0 and above, Shift+Alt+[accessKey].
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -512,6 +514,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
     /**
      * URL for a background image for this widget (corresponding to the CSS "background-image" attribute).
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the background to an image file given by newImage. This URL should be given as a          string relative to the image directory for the page (./images by default).
      *
      * @param backgroundImage new URL (local to Page image directory) for background image. Default value is null
@@ -586,6 +590,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Set the CSS border of this component, as a CSS string including border-width, border-style, and/or color (eg "2px solid
      * blue"). <P> This property applies the same border to all four sides of this component.  Different per-side borders can
      * be set in a CSS style and applied via {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the CSS border of this component, as a CSS string including border-width, border-style, and/or color (eg "2px solid blue"). <P> This property applies the same border to all four sides of this component.  Different per-side borders can be set in a CSS style and applied via {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}.
      *
      * @param border new border to set to (eg: "2px solid black"). Default value is null
@@ -786,6 +792,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Can this widget be allowed to become the target of keyboard events? <P> If canFocus is unset (the default), only
      * scrollable widgets with visible scrollbars are focusable, to allow for keyboard scrolling. <P> A widget normally
      * receives focus by being clicked on or tabbed to.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Change whether a widget can accept keyboard focus.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -930,6 +938,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
     /**
      * The contents of a canvas or label widget. Any HTML string is acceptable.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Changes the contents of a widget to newContents, an HTML string. <P> When {@link com.smartgwt.client.widgets.Canvas#getDynamicContents dynamicContents} is set, <code>setContents()</code> can also be called with no arguments to cause contents to be re-evaluated.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -988,6 +998,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * Specifies the cursor image to display when the mouse pointer is      over this widget. It corresponds to the CSS cursor
      * attribute. See Cursor type for      different cursors.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the cursor for this widget to cursor. See the cursor property          for possible values.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -1015,50 +1027,122 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * A dataPath may be specified on any canvas. This provides a straightforward way to display or&#010 edit complex nested
-     * data.&#010 <P>&#010 For components which support displaying or editing data values, (such as {@link
-     * com.smartgwt.client.widgets.form.DynamicForm} or&#010 {@link com.smartgwt.client.widgets.grid.ListGrid} components), the
-     * dataPath may be set to specify how the components data is&#010 accessed. In this case the dataPath essentially specifies
-     * a nested object to edit - typically&#010 a path to a field value within a dataSource record. Note that a ValuesManager
-     * will be required&#010 to handle connecting the dataBoundcomponent to the appropriate sub object. This may be
-     * explicitly&#010 specified on the component, or a parent of the component, or automatically generated&#010 if a
-     * DataSource is specified on either the component or a parent thereof.&#010 <P>&#010 To provide a simple example - if a
-     * complex object existed with the following format:&#010 <pre>&#010 { companyName:"Some Company",&#010   address:{   
-     * street:"123 Main Street", city:"New York", state:"NY"  }&#010 }&#010 </pre>&#010 a developer could specify a DynamicForm
-     * instance with 'dataPath' set to "address" to edit&#010 the nested address object:&#010 <pre>&#010
-     * isc.ValuesManager.create({&#010      ID:'vm',&#010      values: { companyName:"Some Company",&#010             
-     * address:{    street:"123 Main Street", city:"New York", state:"NY"  }&#010      }&#010 });&#010&#010
-     * isc.DynamicForm.create({&#010      valuesManager:"vm",&#010      dataPath:"address",&#010      items:[{name:"street"},
-     * {name:"city"}, {name:"state"}]&#010 });&#010 </pre>&#010 If a component is specified with a <code>dataPath</code>
-     * attribute but does not have an&#010 explicitly specified valuesManager, it will check its parent element chain for a
-     * specified&#010 valuesManager and automatically bind to that. This simplifies binding multiple components used&#010 to
-     * view or edit a nested data structure as the valuesManager needs only be defined once at a&#010 reasonably high level
-     * component. Here's an example of this approach:&#010 <pre>&#010 isc.ValuesManager.create({&#010      ID:'vm',&#010     
-     * values: { companyName:"Some Company",&#010              address:{    street:"123 Main Street", city:"New York",
-     * state:"NY"  }&#010      }&#010 });&#010&#010 isc.Layout.create({&#010      valuesManager:"vm",&#010      members:[&#010 
-     * isc.DynamicForm.create({&#010              dataPath:"/",&#010              items:[{name:"companyName"}]&#010         
-     * }),&#010          isc.DynamicForm.create({&#010              dataPath:"address",&#010             
-     * items:[{name:"street"}, {name:"city"}, {name:"state"}]&#010          })&#010      ]&#010 });&#010 </pre>&#010 Note that
-     * in this case the valuesManager is specified on a Layout, which has no 'values'&#010 management behavior of its own, but
-     * contains items with a specified dataPath which do. In this&#010 example you'd see 2 forms allowing editing of the nested
-     * data structure.&#010 <P>&#010 dataPaths from multiple nested components may also be combined. For example:&#010
-     * <pre>&#010 isc.ValuesManager.create({&#010      ID:'vm',&#010      values: { companyName:"Some Company",&#010           
-     * address:{    street:"123 Main Street", city:"New York", state:"NY"  }&#010              parentCompany:{&#010            
-     * companyName:"Some Corporation",&#010                  address:{   street:"1 High Street", city:"New York", state:"NY"
-     * }&#010              }&#010      }&#010 });&#010&#010 isc.Layout.create({&#010      valuesManager:"vm",&#010     
-     * members:[&#010          isc.DynamicForm.create({&#010              dataPath:"/",&#010             
-     * items:[{name:"companyName"}]&#010          }),&#010          isc.DynamicForm.create({&#010             
-     * dataPath:"address",&#010              items:[{name:"street"}, {name:"city"}, {name:"state"}]&#010          }),&#010     
-     * isc.Layout.create({&#010              dataPath:"parentCompany",&#010              members:[&#010                 
-     * isc.DynamicForm.create({&#010                      dataPath:"/",&#010                      items:[{name:"companyName",
-     * type:"staticText"}]&#010                  }),&#010                  isc.DetailViewer.create({&#010                     
-     * dataPath:"address",&#010                      fields:[{name:"street", name:"city", name:"state"}]&#010                 
-     * })&#010              ]&#010          })&#010      ]&#010 });&#010 </pre>&#010 In this example the detailViewer will
-     * display data from the <code>parentCompany.address</code>&#010 object within the base record.&#010 <P>&#010 Note that if
-     * a component has a specified  dataSource and shows child components with a&#010 specified dataPath, there is no need to
-     * explicitly declare a valuesManager at all. If a component&#010 with a dataPath has a dataSource, or an ancestor with a
-     * dataSource specified, it will, a&#010 valuesManager will automatically be generated on the higher level component (and
-     * be available as&#010 <code>component.valuesManager</code>).
+     * A dataPath may be specified on any canvas. This provides a straightforward way to display or
+     *  edit complex nested data.
+     *  <P>
+     * For components which support displaying or editing data values, (such as {@link
+     * com.smartgwt.client.widgets.form.DynamicForm} or
+     * {@link com.smartgwt.client.widgets.grid.ListGrid} components), the dataPath may be set to specify how the components
+     * data is
+     *  accessed. In this case the dataPath essentially specifies a nested object to edit - typically
+     *  a path to a field value within a dataSource record. Note that a ValuesManager will be required
+     *  to handle connecting the dataBoundcomponent to the appropriate sub object. This may be explicitly
+     *  specified on the component, or a parent of the component, or automatically generated
+     *  if a DataSource is specified on either the component or a parent thereof.
+     *  <P>
+     *  To provide a simple example - if a complex object existed with the following format:
+     *  <pre>
+     *  { companyName:"Some Company",
+     *    address:{    street:"123 Main Street", city:"New York", state:"NY"  }
+     *  }
+     *  </pre>
+     *  a developer could specify a DynamicForm instance with 'dataPath' set to "address" to edit
+     *  the nested address object:
+     *  <pre>
+     *  isc.ValuesManager.create({
+     *       ID:'vm',
+     *       values: { companyName:"Some Company",
+     *               address:{    street:"123 Main Street", city:"New York", state:"NY"  }
+     *       }
+     *  });
+     * 
+     *  isc.DynamicForm.create({
+     *       valuesManager:"vm",
+     *       dataPath:"address",
+     *       items:[{name:"street"}, {name:"city"}, {name:"state"}]
+     *  });
+     *  </pre>
+     *  If a component is specified with a <code>dataPath</code> attribute but does not have an
+     *  explicitly specified valuesManager, it will check its parent element chain for a specified
+     *  valuesManager and automatically bind to that. This simplifies binding multiple components used
+     *  to view or edit a nested data structure as the valuesManager needs only be defined once at a
+     *  reasonably high level component. Here's an example of this approach:
+     *  <pre>
+     *  isc.ValuesManager.create({
+     *       ID:'vm',
+     *       values: { companyName:"Some Company",
+     *               address:{    street:"123 Main Street", city:"New York", state:"NY"  }
+     *       }
+     *  });
+     * 
+     *  isc.Layout.create({
+     *       valuesManager:"vm",
+     *       members:[
+     *           isc.DynamicForm.create({
+     *               dataPath:"/",
+     *               items:[{name:"companyName"}]
+     *           }),
+     *           isc.DynamicForm.create({
+     *               dataPath:"address",
+     *               items:[{name:"street"}, {name:"city"}, {name:"state"}]
+     *           })
+     *       ]
+     *  });
+     *  </pre>
+     *  Note that in this case the valuesManager is specified on a Layout, which has no 'values'
+     *  management behavior of its own, but contains items with a specified dataPath which do. In this
+     *  example you'd see 2 forms allowing editing of the nested data structure.
+     *  <P>
+     *  dataPaths from multiple nested components may also be combined. For example:
+     *  <pre>
+     *  isc.ValuesManager.create({
+     *       ID:'vm',
+     *       values: { companyName:"Some Company",
+     *               address:{    street:"123 Main Street", city:"New York", state:"NY"  }
+     *               parentCompany:{
+     *                   companyName:"Some Corporation",
+     *                   address:{   street:"1 High Street", city:"New York", state:"NY" }
+     *               }
+     *       }
+     *  });
+     * 
+     *  isc.Layout.create({
+     *       valuesManager:"vm",
+     *       members:[
+     *           isc.DynamicForm.create({
+     *               dataPath:"/",
+     *               items:[{name:"companyName"}]
+     *           }),
+     *           isc.DynamicForm.create({
+     *               dataPath:"address",
+     *               items:[{name:"street"}, {name:"city"}, {name:"state"}]
+     *           }),
+     *           isc.Layout.create({
+     *               dataPath:"parentCompany",
+     *               members:[
+     *                   isc.DynamicForm.create({
+     *                       dataPath:"/",
+     *                       items:[{name:"companyName", type:"staticText"}]
+     *                   }),
+     *                   isc.DetailViewer.create({
+     *                       dataPath:"address",
+     *                       fields:[{name:"street", name:"city", name:"state"}]
+     *                   })
+     *               ]
+     *           })
+     *       ]
+     *  });
+     *  </pre>
+     *  In this example the detailViewer will display data from the <code>parentCompany.address</code>
+     *  object within the base record.
+     *  <P>
+     *  Note that if a component has a specified  dataSource and shows child components with a
+     *  specified dataPath, there is no need to explicitly declare a valuesManager at all. If a component
+     *  with a dataPath has a dataSource, or an ancestor with a dataSource specified, it will, a
+     *  valuesManager will automatically be generated on the higher level component (and be available as
+     *  <code>component.valuesManager</code>).
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for the {@link com.smartgwt.client.widgets.Canvas#getDataPath dataPath} attribute. This method may be called directly at runtime to set the dataPath on a component, and will also be re-run automatically whenever a canvas' parentElement changes due to a call to addChild(). This method handles automatically binding the component to the appropriate valuesManager if necessary.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -1069,50 +1153,120 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * A dataPath may be specified on any canvas. This provides a straightforward way to display or&#010 edit complex nested
-     * data.&#010 <P>&#010 For components which support displaying or editing data values, (such as {@link
-     * com.smartgwt.client.widgets.form.DynamicForm} or&#010 {@link com.smartgwt.client.widgets.grid.ListGrid} components), the
-     * dataPath may be set to specify how the components data is&#010 accessed. In this case the dataPath essentially specifies
-     * a nested object to edit - typically&#010 a path to a field value within a dataSource record. Note that a ValuesManager
-     * will be required&#010 to handle connecting the dataBoundcomponent to the appropriate sub object. This may be
-     * explicitly&#010 specified on the component, or a parent of the component, or automatically generated&#010 if a
-     * DataSource is specified on either the component or a parent thereof.&#010 <P>&#010 To provide a simple example - if a
-     * complex object existed with the following format:&#010 <pre>&#010 { companyName:"Some Company",&#010   address:{   
-     * street:"123 Main Street", city:"New York", state:"NY"  }&#010 }&#010 </pre>&#010 a developer could specify a DynamicForm
-     * instance with 'dataPath' set to "address" to edit&#010 the nested address object:&#010 <pre>&#010
-     * isc.ValuesManager.create({&#010      ID:'vm',&#010      values: { companyName:"Some Company",&#010             
-     * address:{    street:"123 Main Street", city:"New York", state:"NY"  }&#010      }&#010 });&#010&#010
-     * isc.DynamicForm.create({&#010      valuesManager:"vm",&#010      dataPath:"address",&#010      items:[{name:"street"},
-     * {name:"city"}, {name:"state"}]&#010 });&#010 </pre>&#010 If a component is specified with a <code>dataPath</code>
-     * attribute but does not have an&#010 explicitly specified valuesManager, it will check its parent element chain for a
-     * specified&#010 valuesManager and automatically bind to that. This simplifies binding multiple components used&#010 to
-     * view or edit a nested data structure as the valuesManager needs only be defined once at a&#010 reasonably high level
-     * component. Here's an example of this approach:&#010 <pre>&#010 isc.ValuesManager.create({&#010      ID:'vm',&#010     
-     * values: { companyName:"Some Company",&#010              address:{    street:"123 Main Street", city:"New York",
-     * state:"NY"  }&#010      }&#010 });&#010&#010 isc.Layout.create({&#010      valuesManager:"vm",&#010      members:[&#010 
-     * isc.DynamicForm.create({&#010              dataPath:"/",&#010              items:[{name:"companyName"}]&#010         
-     * }),&#010          isc.DynamicForm.create({&#010              dataPath:"address",&#010             
-     * items:[{name:"street"}, {name:"city"}, {name:"state"}]&#010          })&#010      ]&#010 });&#010 </pre>&#010 Note that
-     * in this case the valuesManager is specified on a Layout, which has no 'values'&#010 management behavior of its own, but
-     * contains items with a specified dataPath which do. In this&#010 example you'd see 2 forms allowing editing of the nested
-     * data structure.&#010 <P>&#010 dataPaths from multiple nested components may also be combined. For example:&#010
-     * <pre>&#010 isc.ValuesManager.create({&#010      ID:'vm',&#010      values: { companyName:"Some Company",&#010           
-     * address:{    street:"123 Main Street", city:"New York", state:"NY"  }&#010              parentCompany:{&#010            
-     * companyName:"Some Corporation",&#010                  address:{   street:"1 High Street", city:"New York", state:"NY"
-     * }&#010              }&#010      }&#010 });&#010&#010 isc.Layout.create({&#010      valuesManager:"vm",&#010     
-     * members:[&#010          isc.DynamicForm.create({&#010              dataPath:"/",&#010             
-     * items:[{name:"companyName"}]&#010          }),&#010          isc.DynamicForm.create({&#010             
-     * dataPath:"address",&#010              items:[{name:"street"}, {name:"city"}, {name:"state"}]&#010          }),&#010     
-     * isc.Layout.create({&#010              dataPath:"parentCompany",&#010              members:[&#010                 
-     * isc.DynamicForm.create({&#010                      dataPath:"/",&#010                      items:[{name:"companyName",
-     * type:"staticText"}]&#010                  }),&#010                  isc.DetailViewer.create({&#010                     
-     * dataPath:"address",&#010                      fields:[{name:"street", name:"city", name:"state"}]&#010                 
-     * })&#010              ]&#010          })&#010      ]&#010 });&#010 </pre>&#010 In this example the detailViewer will
-     * display data from the <code>parentCompany.address</code>&#010 object within the base record.&#010 <P>&#010 Note that if
-     * a component has a specified  dataSource and shows child components with a&#010 specified dataPath, there is no need to
-     * explicitly declare a valuesManager at all. If a component&#010 with a dataPath has a dataSource, or an ancestor with a
-     * dataSource specified, it will, a&#010 valuesManager will automatically be generated on the higher level component (and
-     * be available as&#010 <code>component.valuesManager</code>).
+     * A dataPath may be specified on any canvas. This provides a straightforward way to display or
+     *  edit complex nested data.
+     *  <P>
+     * For components which support displaying or editing data values, (such as {@link
+     * com.smartgwt.client.widgets.form.DynamicForm} or
+     * {@link com.smartgwt.client.widgets.grid.ListGrid} components), the dataPath may be set to specify how the components
+     * data is
+     *  accessed. In this case the dataPath essentially specifies a nested object to edit - typically
+     *  a path to a field value within a dataSource record. Note that a ValuesManager will be required
+     *  to handle connecting the dataBoundcomponent to the appropriate sub object. This may be explicitly
+     *  specified on the component, or a parent of the component, or automatically generated
+     *  if a DataSource is specified on either the component or a parent thereof.
+     *  <P>
+     *  To provide a simple example - if a complex object existed with the following format:
+     *  <pre>
+     *  { companyName:"Some Company",
+     *    address:{    street:"123 Main Street", city:"New York", state:"NY"  }
+     *  }
+     *  </pre>
+     *  a developer could specify a DynamicForm instance with 'dataPath' set to "address" to edit
+     *  the nested address object:
+     *  <pre>
+     *  isc.ValuesManager.create({
+     *       ID:'vm',
+     *       values: { companyName:"Some Company",
+     *               address:{    street:"123 Main Street", city:"New York", state:"NY"  }
+     *       }
+     *  });
+     * 
+     *  isc.DynamicForm.create({
+     *       valuesManager:"vm",
+     *       dataPath:"address",
+     *       items:[{name:"street"}, {name:"city"}, {name:"state"}]
+     *  });
+     *  </pre>
+     *  If a component is specified with a <code>dataPath</code> attribute but does not have an
+     *  explicitly specified valuesManager, it will check its parent element chain for a specified
+     *  valuesManager and automatically bind to that. This simplifies binding multiple components used
+     *  to view or edit a nested data structure as the valuesManager needs only be defined once at a
+     *  reasonably high level component. Here's an example of this approach:
+     *  <pre>
+     *  isc.ValuesManager.create({
+     *       ID:'vm',
+     *       values: { companyName:"Some Company",
+     *               address:{    street:"123 Main Street", city:"New York", state:"NY"  }
+     *       }
+     *  });
+     * 
+     *  isc.Layout.create({
+     *       valuesManager:"vm",
+     *       members:[
+     *           isc.DynamicForm.create({
+     *               dataPath:"/",
+     *               items:[{name:"companyName"}]
+     *           }),
+     *           isc.DynamicForm.create({
+     *               dataPath:"address",
+     *               items:[{name:"street"}, {name:"city"}, {name:"state"}]
+     *           })
+     *       ]
+     *  });
+     *  </pre>
+     *  Note that in this case the valuesManager is specified on a Layout, which has no 'values'
+     *  management behavior of its own, but contains items with a specified dataPath which do. In this
+     *  example you'd see 2 forms allowing editing of the nested data structure.
+     *  <P>
+     *  dataPaths from multiple nested components may also be combined. For example:
+     *  <pre>
+     *  isc.ValuesManager.create({
+     *       ID:'vm',
+     *       values: { companyName:"Some Company",
+     *               address:{    street:"123 Main Street", city:"New York", state:"NY"  }
+     *               parentCompany:{
+     *                   companyName:"Some Corporation",
+     *                   address:{   street:"1 High Street", city:"New York", state:"NY" }
+     *               }
+     *       }
+     *  });
+     * 
+     *  isc.Layout.create({
+     *       valuesManager:"vm",
+     *       members:[
+     *           isc.DynamicForm.create({
+     *               dataPath:"/",
+     *               items:[{name:"companyName"}]
+     *           }),
+     *           isc.DynamicForm.create({
+     *               dataPath:"address",
+     *               items:[{name:"street"}, {name:"city"}, {name:"state"}]
+     *           }),
+     *           isc.Layout.create({
+     *               dataPath:"parentCompany",
+     *               members:[
+     *                   isc.DynamicForm.create({
+     *                       dataPath:"/",
+     *                       items:[{name:"companyName", type:"staticText"}]
+     *                   }),
+     *                   isc.DetailViewer.create({
+     *                       dataPath:"address",
+     *                       fields:[{name:"street", name:"city", name:"state"}]
+     *                   })
+     *               ]
+     *           })
+     *       ]
+     *  });
+     *  </pre>
+     *  In this example the detailViewer will display data from the <code>parentCompany.address</code>
+     *  object within the base record.
+     *  <P>
+     *  Note that if a component has a specified  dataSource and shows child components with a
+     *  specified dataPath, there is no need to explicitly declare a valuesManager at all. If a component
+     *  with a dataPath has a dataSource, or an ancestor with a dataSource specified, it will, a
+     *  valuesManager will automatically be generated on the higher level component (and be available as
+     *  <code>component.valuesManager</code>).
      *
      *
      * @return String
@@ -1416,26 +1570,52 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * Dynamic contents allows the contents string to be treated as a simple, but powerful&#010 template.  When this attribute
-     * is set to true, expressions of the form \${arbitrary JS&#010 here} are replaced by the result of the evaluation of the
-     * JS code inside the curly&#010 brackets.  This evaluation happens at draw time.  If you want to trigger a
-     * re-evaluation&#010 of the expressions in the contents string you can call markForRedraw() on the canvas.&#010 <p>&#010
-     * You can use this feature to build some simple custom components. For example, let's say&#010 you want to show the value
-     * of a Slider in a Canvas somewhere on the screen.  You can do&#010 this by observing the valueChanged() method on the
-     * slider and calling setContents() on&#010 your canvas with the new string or you can set the contents of the canvas to
-     * something&#010 like:&#010 <p><code>&#010 "The slider value is \${sliderInstance.getValue()}."&#010 </code><p>&#010 Next
-     * you set dynamicContents: true on the canvas, observe valueChanged() on the slider&#010 and call canvas.markForRedraw()
-     * in that observation.  This approach is cleaner than&#010 setContents() when the Canvas is aggregating several values or
-     * dynamic expressions.&#010 Like so:&#010 <p>&#010 <pre>&#010 Slider.create({&#010     ID: "mySlider"&#010 });&#010&#010
-     * Canvas.create({&#010     ID: "myCanvas",&#010     dynamicContents: true,&#010     contents: "The slider value is
-     * \${mySlider.getValue()}."&#010 });&#010     &#010 myCanvas.observe(mySlider, "valueChanged", &#010                 
-     * "observer.markForRedraw()");&#010 </pre>&#010 You can embed an arbitrary number of dynamic expressions in the contents
-     * string.  The&#010 search and replace is optimized for speed.&#010 <p>&#010 If an error occurs during the evaluation of
-     * one of the expressions, a warning is logged&#010 to the ISC Developer Console and the error string is embedded in place
-     * of the expected&#010 value in the Canvas.&#010 <p>&#010 The value of a function is its return value.  The value of any
-     * variable is the same as&#010 that returned by its toString() representation.&#010 <p>&#010 Inside the evaluation
-     * contentext, <code>this</code> points to the canvas instance that&#010 has the dynamicContents string as its contents -
-     * in other words the canvas instance on&#010 which the template is declared.
+     * Dynamic contents allows the contents string to be treated as a simple, but powerful
+     *  template.  When this attribute is set to true, expressions of the form \${arbitrary JS
+     *  here} are replaced by the result of the evaluation of the JS code inside the curly
+     *  brackets.  This evaluation happens at draw time.  If you want to trigger a re-evaluation
+     *  of the expressions in the contents string you can call markForRedraw() on the canvas.
+     *  <p>
+     *  You can use this feature to build some simple custom components. For example, let's say
+     *  you want to show the value of a Slider in a Canvas somewhere on the screen.  You can do
+     *  this by observing the valueChanged() method on the slider and calling setContents() on
+     *  your canvas with the new string or you can set the contents of the canvas to something
+     *  like:
+     *  <p><code>
+     *  "The slider value is \${sliderInstance.getValue()}."
+     *  </code><p>
+     *  Next you set dynamicContents: true on the canvas, observe valueChanged() on the slider
+     *  and call canvas.markForRedraw() in that observation.  This approach is cleaner than
+     *  setContents() when the Canvas is aggregating several values or dynamic expressions.
+     *  Like so:
+     *  <p>
+     *  <pre>
+     *  Slider.create({
+     *      ID: "mySlider"
+     *  });
+     * 
+     *  Canvas.create({
+     *      ID: "myCanvas",
+     *      dynamicContents: true,
+     *      contents: "The slider value is \${mySlider.getValue()}."
+     *  });
+     *      
+     *  myCanvas.observe(mySlider, "valueChanged", 
+     *                   "observer.markForRedraw()");
+     *  </pre>
+     *  You can embed an arbitrary number of dynamic expressions in the contents string.  The
+     *  search and replace is optimized for speed.
+     *  <p>
+     *  If an error occurs during the evaluation of one of the expressions, a warning is logged
+     *  to the ISC Developer Console and the error string is embedded in place of the expected
+     *  value in the Canvas.
+     *  <p>
+     *  The value of a function is its return value.  The value of any variable is the same as
+     *  that returned by its toString() representation.
+     *  <p>
+     *  Inside the evaluation contentext, <code>this</code> points to the canvas instance that
+     *  has the dynamicContents string as its contents - in other words the canvas instance on
+     *  which the template is declared.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dynamicContents dynamicContents Default value is false
@@ -1448,26 +1628,52 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * Dynamic contents allows the contents string to be treated as a simple, but powerful&#010 template.  When this attribute
-     * is set to true, expressions of the form \${arbitrary JS&#010 here} are replaced by the result of the evaluation of the
-     * JS code inside the curly&#010 brackets.  This evaluation happens at draw time.  If you want to trigger a
-     * re-evaluation&#010 of the expressions in the contents string you can call markForRedraw() on the canvas.&#010 <p>&#010
-     * You can use this feature to build some simple custom components. For example, let's say&#010 you want to show the value
-     * of a Slider in a Canvas somewhere on the screen.  You can do&#010 this by observing the valueChanged() method on the
-     * slider and calling setContents() on&#010 your canvas with the new string or you can set the contents of the canvas to
-     * something&#010 like:&#010 <p><code>&#010 "The slider value is \${sliderInstance.getValue()}."&#010 </code><p>&#010 Next
-     * you set dynamicContents: true on the canvas, observe valueChanged() on the slider&#010 and call canvas.markForRedraw()
-     * in that observation.  This approach is cleaner than&#010 setContents() when the Canvas is aggregating several values or
-     * dynamic expressions.&#010 Like so:&#010 <p>&#010 <pre>&#010 Slider.create({&#010     ID: "mySlider"&#010 });&#010&#010
-     * Canvas.create({&#010     ID: "myCanvas",&#010     dynamicContents: true,&#010     contents: "The slider value is
-     * \${mySlider.getValue()}."&#010 });&#010     &#010 myCanvas.observe(mySlider, "valueChanged", &#010                 
-     * "observer.markForRedraw()");&#010 </pre>&#010 You can embed an arbitrary number of dynamic expressions in the contents
-     * string.  The&#010 search and replace is optimized for speed.&#010 <p>&#010 If an error occurs during the evaluation of
-     * one of the expressions, a warning is logged&#010 to the ISC Developer Console and the error string is embedded in place
-     * of the expected&#010 value in the Canvas.&#010 <p>&#010 The value of a function is its return value.  The value of any
-     * variable is the same as&#010 that returned by its toString() representation.&#010 <p>&#010 Inside the evaluation
-     * contentext, <code>this</code> points to the canvas instance that&#010 has the dynamicContents string as its contents -
-     * in other words the canvas instance on&#010 which the template is declared.
+     * Dynamic contents allows the contents string to be treated as a simple, but powerful
+     *  template.  When this attribute is set to true, expressions of the form \${arbitrary JS
+     *  here} are replaced by the result of the evaluation of the JS code inside the curly
+     *  brackets.  This evaluation happens at draw time.  If you want to trigger a re-evaluation
+     *  of the expressions in the contents string you can call markForRedraw() on the canvas.
+     *  <p>
+     *  You can use this feature to build some simple custom components. For example, let's say
+     *  you want to show the value of a Slider in a Canvas somewhere on the screen.  You can do
+     *  this by observing the valueChanged() method on the slider and calling setContents() on
+     *  your canvas with the new string or you can set the contents of the canvas to something
+     *  like:
+     *  <p><code>
+     *  "The slider value is \${sliderInstance.getValue()}."
+     *  </code><p>
+     *  Next you set dynamicContents: true on the canvas, observe valueChanged() on the slider
+     *  and call canvas.markForRedraw() in that observation.  This approach is cleaner than
+     *  setContents() when the Canvas is aggregating several values or dynamic expressions.
+     *  Like so:
+     *  <p>
+     *  <pre>
+     *  Slider.create({
+     *      ID: "mySlider"
+     *  });
+     * 
+     *  Canvas.create({
+     *      ID: "myCanvas",
+     *      dynamicContents: true,
+     *      contents: "The slider value is \${mySlider.getValue()}."
+     *  });
+     *      
+     *  myCanvas.observe(mySlider, "valueChanged", 
+     *                   "observer.markForRedraw()");
+     *  </pre>
+     *  You can embed an arbitrary number of dynamic expressions in the contents string.  The
+     *  search and replace is optimized for speed.
+     *  <p>
+     *  If an error occurs during the evaluation of one of the expressions, a warning is logged
+     *  to the ISC Developer Console and the error string is embedded in place of the expected
+     *  value in the Canvas.
+     *  <p>
+     *  The value of a function is its return value.  The value of any variable is the same as
+     *  that returned by its toString() representation.
+     *  <p>
+     *  Inside the evaluation contentext, <code>this</code> points to the canvas instance that
+     *  has the dynamicContents string as its contents - in other words the canvas instance on
+     *  which the template is declared.
      *
      *
      * @return Boolean
@@ -1601,6 +1807,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Opacity of the edges.  Defaults to matching this.opacity. if {@link com.smartgwt.client.widgets.Canvas#setOpacity
      * Canvas.setOpacity} is called on a Canvas where edgeOpacity is set, edgeOpacity will be considered a percentage of the
      * parent's opacity (so 50% opaque parent plus edgeOpacity 50 means 25% opaque edges)
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the {@link com.smartgwt.client.widgets.Canvas#getEdgeOpacity edgeOpacity} and mark the canvas for redraw
      *
      * @param edgeOpacity new edge-opacity level. Default value is null
@@ -1931,6 +2139,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * If {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} is specified, this attribute specifies the
      * position where  the canvas should be inserted relative to the <code>htmlElement</code> in the DOM.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for the {@link com.smartgwt.client.widgets.Canvas#getHtmlPosition htmlPosition}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -2038,6 +2248,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * sets the same thickness of margin on every side.  Differing per-side margins can be set in a CSS style and applied via
      * {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}. <P> Note that the specified size of the widget will
      * be the size <b>including</b> the margin thickness on each side.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the CSS Margin, in pixels, for this component.  Margin provides blank space outside of the border. <P> This property sets the same thickness of margin on every side.  Differing per-side margins can be set in a CSS style and applied via {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}. <P> Note that the specified size of the widget will be the size <b>including</b> the margin thickness on each side.
      *
      * @param margin new margin in pixels. Default value is null
@@ -2265,6 +2477,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Renders the widget to be partly transparent. A widget's opacity property may      be set to any number between 0
      * (transparent) to 100 (opaque).  Null means don't specify opacity directly, 100 is fully opaque.  Note that heavy use of
      * opacity may slow down your browser.  See canvas.setOpacity() for details.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the opacity for the widget to the newOpacity value. This newOpacity          value must be within the range of 0 (transparent) to 100 (opaque). <br>          In Internet Explorer, any other filter effects will be wiped out.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -2292,6 +2506,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Controls what happens when the drawn size of the content of a Canvas is either   greater or smaller than the specified
      * size of the Canvas.  Similar to the CSS   property overflow, but consistent across browsers.  See Overflow type for  
      * details.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Update the {@link com.smartgwt.client.widgets.Canvas#getOverflow overflow} of a Canvas after it has been created.
      *
      * @param overflow New overflow value.. Default value is Canvas.VISIBLE
@@ -2322,6 +2538,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * area around children, either use {@link com.smartgwt.client.widgets.Canvas#getMargin CSS margins} or use a {@link
      * com.smartgwt.client.widgets.layout.Layout} as the parent instead, and use properties such as {@link
      * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} to create blank space.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the CSS padding of this component, in pixels.  Padding provides space between the border and the component's contents. <P> This property sets the same thickness of padding on every side.  Differing per-side padding can be set in a CSS style and applied via {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}. <P>
      *
      * @param padding new padding in pixels. Default value is null
@@ -2384,24 +2602,42 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * Absolute or relative, corresponding to the "absolute" (with respect to parent) or&#010 "relative" (with respect to
-     * document flow) values for the CSS position attribute.&#010 <P>&#010 Setting <code>position:"relative"</code> enables
-     * Smart GWT components to be embedded&#010 directly into the native HTML flow of a page, causing the component to be
-     * rendered &#010 within an existing DOM structure. &#010 This attribute should only be set to <code>"relative"</code> on a
-     * top level component &#010 (a component with no {@link com.smartgwt.client.widgets.Canvas#getParentElement
-     * parentElement}). &#010 <P>&#010 There are 2 ways to embed relatively positioned canvases in the DOM - by default
-     * the&#010 component will be written out inline when it gets {@link com.smartgwt.client.widgets.Canvas#draw drawn()n}. For
-     * example&#010 to embed a canvas in an HTML table you could use this code: &#010 <pre>&#010 &lt;table&gt;&#010  
-     * &lt;tr&gt;&#010     &lt;td&gt;&#010       &lt;script&gt;&#010         isc.Canvas.create({autoDraw:true,
-     * backgroundColor:"red", position:"relative"});&#010       &lt;/script&gt;&#010     &lt;td&gt;&#010   &lt;/tr&gt;&#010
-     * &lt;/table&gt;&#010 </pre>&#010 Alternatively you can make use of the {@link
-     * com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} attribute.&#010 <P>&#010 Relative positioning is intended
-     * as a short-term integration scenario while incrementally&#010 upgrading existing applications.&#010 Note that relative
-     * positioning is not used to manage layout within Smart GWT components -&#010 instead the {@link
-     * com.smartgwt.client.widgets.layout.Layout} class would typically be used.&#010 For best consistency and flexibility
-     * across browsers, all Smart GWT layout managers&#010 use absolute positioning.&#010 <P>&#010 For canvases with a
-     * specified {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement}, this attribute defaults to&#010
-     * <code>"relative"</code>. In all other cases the default value will be &#010 <code>"absolute"</code>.
+     * Absolute or relative, corresponding to the "absolute" (with respect to parent) or
+     *  "relative" (with respect to document flow) values for the CSS position attribute.
+     *  <P>
+     *  Setting <code>position:"relative"</code> enables Smart GWT components to be embedded
+     *  directly into the native HTML flow of a page, causing the component to be rendered 
+     *  within an existing DOM structure. 
+     *  This attribute should only be set to <code>"relative"</code> on a top level component 
+     *  (a component with no {@link com.smartgwt.client.widgets.Canvas#getParentElement parentElement}). 
+     *  <P>
+     *  There are 2 ways to embed relatively positioned canvases in the DOM - by default the
+     *  component will be written out inline when it gets {@link com.smartgwt.client.widgets.Canvas#draw drawn()n}. For example
+     *  to embed a canvas in an HTML table you could use this code: 
+     *  <pre>
+     *  &lt;table&gt;
+     *    &lt;tr&gt;
+     *      &lt;td&gt;
+     *        &lt;script&gt;
+     *          isc.Canvas.create({autoDraw:true, backgroundColor:"red", position:"relative"});
+     *        &lt;/script&gt;
+     *      &lt;td&gt;
+     *    &lt;/tr&gt;
+     *  &lt;/table&gt;
+     *  </pre>
+     *  Alternatively you can make use of the {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} attribute.
+     *  <P>
+     *  Relative positioning is intended as a short-term integration scenario while incrementally
+     *  upgrading existing applications.
+     *  Note that relative positioning is not used to manage layout within Smart GWT components -
+     *  instead the {@link com.smartgwt.client.widgets.layout.Layout} class would typically be used.
+     *  For best consistency and flexibility across browsers, all Smart GWT layout managers
+     *  use absolute positioning.
+     *  <P>
+     * For canvases with a specified {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement}, this attribute
+     * defaults to
+     *  <code>"relative"</code>. In all other cases the default value will be 
+     *  <code>"absolute"</code>.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param position position Default value is null
@@ -2413,24 +2649,42 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * Absolute or relative, corresponding to the "absolute" (with respect to parent) or&#010 "relative" (with respect to
-     * document flow) values for the CSS position attribute.&#010 <P>&#010 Setting <code>position:"relative"</code> enables
-     * Smart GWT components to be embedded&#010 directly into the native HTML flow of a page, causing the component to be
-     * rendered &#010 within an existing DOM structure. &#010 This attribute should only be set to <code>"relative"</code> on a
-     * top level component &#010 (a component with no {@link com.smartgwt.client.widgets.Canvas#getParentElement
-     * parentElement}). &#010 <P>&#010 There are 2 ways to embed relatively positioned canvases in the DOM - by default
-     * the&#010 component will be written out inline when it gets {@link com.smartgwt.client.widgets.Canvas#draw drawn()n}. For
-     * example&#010 to embed a canvas in an HTML table you could use this code: &#010 <pre>&#010 &lt;table&gt;&#010  
-     * &lt;tr&gt;&#010     &lt;td&gt;&#010       &lt;script&gt;&#010         isc.Canvas.create({autoDraw:true,
-     * backgroundColor:"red", position:"relative"});&#010       &lt;/script&gt;&#010     &lt;td&gt;&#010   &lt;/tr&gt;&#010
-     * &lt;/table&gt;&#010 </pre>&#010 Alternatively you can make use of the {@link
-     * com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} attribute.&#010 <P>&#010 Relative positioning is intended
-     * as a short-term integration scenario while incrementally&#010 upgrading existing applications.&#010 Note that relative
-     * positioning is not used to manage layout within Smart GWT components -&#010 instead the {@link
-     * com.smartgwt.client.widgets.layout.Layout} class would typically be used.&#010 For best consistency and flexibility
-     * across browsers, all Smart GWT layout managers&#010 use absolute positioning.&#010 <P>&#010 For canvases with a
-     * specified {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement}, this attribute defaults to&#010
-     * <code>"relative"</code>. In all other cases the default value will be &#010 <code>"absolute"</code>.
+     * Absolute or relative, corresponding to the "absolute" (with respect to parent) or
+     *  "relative" (with respect to document flow) values for the CSS position attribute.
+     *  <P>
+     *  Setting <code>position:"relative"</code> enables Smart GWT components to be embedded
+     *  directly into the native HTML flow of a page, causing the component to be rendered 
+     *  within an existing DOM structure. 
+     *  This attribute should only be set to <code>"relative"</code> on a top level component 
+     *  (a component with no {@link com.smartgwt.client.widgets.Canvas#getParentElement parentElement}). 
+     *  <P>
+     *  There are 2 ways to embed relatively positioned canvases in the DOM - by default the
+     *  component will be written out inline when it gets {@link com.smartgwt.client.widgets.Canvas#draw drawn()n}. For example
+     *  to embed a canvas in an HTML table you could use this code: 
+     *  <pre>
+     *  &lt;table&gt;
+     *    &lt;tr&gt;
+     *      &lt;td&gt;
+     *        &lt;script&gt;
+     *          isc.Canvas.create({autoDraw:true, backgroundColor:"red", position:"relative"});
+     *        &lt;/script&gt;
+     *      &lt;td&gt;
+     *    &lt;/tr&gt;
+     *  &lt;/table&gt;
+     *  </pre>
+     *  Alternatively you can make use of the {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} attribute.
+     *  <P>
+     *  Relative positioning is intended as a short-term integration scenario while incrementally
+     *  upgrading existing applications.
+     *  Note that relative positioning is not used to manage layout within Smart GWT components -
+     *  instead the {@link com.smartgwt.client.widgets.layout.Layout} class would typically be used.
+     *  For best consistency and flexibility across browsers, all Smart GWT layout managers
+     *  use absolute positioning.
+     *  <P>
+     * For canvases with a specified {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement}, this attribute
+     * defaults to
+     *  <code>"relative"</code>. In all other cases the default value will be 
+     *  <code>"absolute"</code>.
      *
      *
      * @return Positioning
@@ -2634,23 +2888,33 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * Whether to use the browser's native scrollbars or Smart GWT-based scrollbars.&#010 <P>&#010 Smart GWT-based scrollbars
-     * are skinnable, giving you complete control over look and&#010 feel.  Smart GWT-based scrollbars also enable some
-     * interactions not possible with&#010 native scrollbars, such as {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights variable height records}&#010 in grids in combination
-     * with {@link com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize data paging}.&#010 <P>&#010 Native browser
-     * scrollbars are slightly faster simply because there are less Smart GWT&#010 components that need to be created, drawn
-     * and updated.  Each visible Smart GWT-based&#010 scrollbar on the screen has roughly the impact of two
-     * StretchImgButtons.&#010 <P>&#010 Smart GWT is always aware of the size of the scrollbar, regardless of whether
-     * native&#010 or custom scrollbars are used, and regardless of what operating system and/or operating&#010 system "theme"
-     * or "skin" is in use.  This means Smart GWT will correctly report the&#010 {@link
-     * com.smartgwt.client.widgets.Canvas#getViewportHeight viewport size}, that is, the interior area of the&#010 widget
-     * excluding space taken by scrollbars, which is key for exactly filling a component&#010 with content without creating
-     * unnecessary scrolling.&#010 <P>&#010 The <code>showCustomScrollbars</code> setting is typically overridden in
-     * load_skin.js in&#010 order to change the default for all Smart GWT components at once.&#010 This may be achieved via the
-     * static {@link com.smartgwt.client.widgets.Canvas#setShowCustomScrollbars Canvas.setShowCustomScrollbars} method or&#010
-     * via a simple addProperties block, like so:&#010 <pre>&#010     isc.Canvas.addProperties({ showCustomScrollbars:false
-     * });&#010 </pre>
+     * Whether to use the browser's native scrollbars or Smart GWT-based scrollbars.
+     *  <P>
+     *  Smart GWT-based scrollbars are skinnable, giving you complete control over look and
+     *  feel.  Smart GWT-based scrollbars also enable some interactions not possible with
+     * native scrollbars, such as {@link com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights variable height
+     * records}
+     *  in grids in combination with {@link com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize data paging}.
+     *  <P>
+     *  Native browser scrollbars are slightly faster simply because there are less Smart GWT
+     *  components that need to be created, drawn and updated.  Each visible Smart GWT-based
+     *  scrollbar on the screen has roughly the impact of two StretchImgButtons.
+     *  <P>
+     *  Smart GWT is always aware of the size of the scrollbar, regardless of whether native
+     *  or custom scrollbars are used, and regardless of what operating system and/or operating
+     *  system "theme" or "skin" is in use.  This means Smart GWT will correctly report the
+     *  {@link com.smartgwt.client.widgets.Canvas#getViewportHeight viewport size}, that is, the interior area of the
+     *  widget excluding space taken by scrollbars, which is key for exactly filling a component
+     *  with content without creating unnecessary scrolling.
+     *  <P>
+     *  The <code>showCustomScrollbars</code> setting is typically overridden in load_skin.js in
+     *  order to change the default for all Smart GWT components at once.
+     * This may be achieved via the static {@link com.smartgwt.client.widgets.Canvas#setShowCustomScrollbars
+     * Canvas.setShowCustomScrollbars} method or
+     *  via a simple addProperties block, like so:
+     *  <pre>
+     *      isc.Canvas.addProperties({ showCustomScrollbars:false });
+     *  </pre>
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showCustomScrollbars showCustomScrollbars Default value is true
@@ -2661,23 +2925,33 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * Whether to use the browser's native scrollbars or Smart GWT-based scrollbars.&#010 <P>&#010 Smart GWT-based scrollbars
-     * are skinnable, giving you complete control over look and&#010 feel.  Smart GWT-based scrollbars also enable some
-     * interactions not possible with&#010 native scrollbars, such as {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights variable height records}&#010 in grids in combination
-     * with {@link com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize data paging}.&#010 <P>&#010 Native browser
-     * scrollbars are slightly faster simply because there are less Smart GWT&#010 components that need to be created, drawn
-     * and updated.  Each visible Smart GWT-based&#010 scrollbar on the screen has roughly the impact of two
-     * StretchImgButtons.&#010 <P>&#010 Smart GWT is always aware of the size of the scrollbar, regardless of whether
-     * native&#010 or custom scrollbars are used, and regardless of what operating system and/or operating&#010 system "theme"
-     * or "skin" is in use.  This means Smart GWT will correctly report the&#010 {@link
-     * com.smartgwt.client.widgets.Canvas#getViewportHeight viewport size}, that is, the interior area of the&#010 widget
-     * excluding space taken by scrollbars, which is key for exactly filling a component&#010 with content without creating
-     * unnecessary scrolling.&#010 <P>&#010 The <code>showCustomScrollbars</code> setting is typically overridden in
-     * load_skin.js in&#010 order to change the default for all Smart GWT components at once.&#010 This may be achieved via the
-     * static {@link com.smartgwt.client.widgets.Canvas#setShowCustomScrollbars Canvas.setShowCustomScrollbars} method or&#010
-     * via a simple addProperties block, like so:&#010 <pre>&#010     isc.Canvas.addProperties({ showCustomScrollbars:false
-     * });&#010 </pre>
+     * Whether to use the browser's native scrollbars or Smart GWT-based scrollbars.
+     *  <P>
+     *  Smart GWT-based scrollbars are skinnable, giving you complete control over look and
+     *  feel.  Smart GWT-based scrollbars also enable some interactions not possible with
+     * native scrollbars, such as {@link com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights variable height
+     * records}
+     *  in grids in combination with {@link com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize data paging}.
+     *  <P>
+     *  Native browser scrollbars are slightly faster simply because there are less Smart GWT
+     *  components that need to be created, drawn and updated.  Each visible Smart GWT-based
+     *  scrollbar on the screen has roughly the impact of two StretchImgButtons.
+     *  <P>
+     *  Smart GWT is always aware of the size of the scrollbar, regardless of whether native
+     *  or custom scrollbars are used, and regardless of what operating system and/or operating
+     *  system "theme" or "skin" is in use.  This means Smart GWT will correctly report the
+     *  {@link com.smartgwt.client.widgets.Canvas#getViewportHeight viewport size}, that is, the interior area of the
+     *  widget excluding space taken by scrollbars, which is key for exactly filling a component
+     *  with content without creating unnecessary scrolling.
+     *  <P>
+     *  The <code>showCustomScrollbars</code> setting is typically overridden in load_skin.js in
+     *  order to change the default for all Smart GWT components at once.
+     * This may be achieved via the static {@link com.smartgwt.client.widgets.Canvas#setShowCustomScrollbars
+     * Canvas.setShowCustomScrollbars} method or
+     *  via a simple addProperties block, like so:
+     *  <pre>
+     *      isc.Canvas.addProperties({ showCustomScrollbars:false });
+     *  </pre>
      *
      *
      * @return Boolean
@@ -2791,6 +3065,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * of the layout, and whether this Canvas is the last layout member. <p> By default the resize bar acts on the Canvas that
      * it is declared on.  If you want the resize bar to instead act on the next member of the Layout (e.g. to collapse down or
      * to the right), set {@link com.smartgwt.client.widgets.Canvas#getResizeBarTarget resizeBarTarget} as well.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * When this Canvas is included as a member in a {@link com.smartgwt.client.widgets.layout.Layout}, dynamically updates whether a  resizeBar should be shown after this member in the layout, to allow it to be resized. <p> Whether a resizeBar is actually shown also depends on the  {@link com.smartgwt.client.widgets.layout.Layout#getDefaultResizeBars defaultResizeBars} attribute of the layout, and whether this Canvas is the last layout member.
      *
      * @param showResizeBar setting for this.showResizeBar. Default value is false
@@ -2824,6 +3100,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
     /**
      * Whether to show a drop shadow for this Canvas
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Method to update {@link com.smartgwt.client.widgets.Canvas#getShowShadow showShadow}.
      *
      * @param showShadow true if the shadow should be visible false if not. Default value is false
@@ -2903,6 +3181,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * define which edge of this widget should be snapped to an edge of the master or parent  element. <P> If unspecified the,
      * default snapTo behavior is set up to align the "snapTo" edge of this  widget with the snapTo edge of the master or
      * parent.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the snapEdge property of this canvas, and handle repositioning.
      *
      * @param snapEdge new snapEdge value. Default value is null
@@ -3122,6 +3402,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * <P> {@link com.smartgwt.client.widgets.Canvas#getSnapOffsetLeft snapOffsetLeft} and {@link
      * com.smartgwt.client.widgets.Canvas#getSnapOffsetTop snapOffsetTop} may also be specified to offset the element from
      * exact snapTo alignment.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the snapTo property of this canvas, and handle repositioning.
      *
      * @param snapTo new snapTo value. Default value is null
@@ -3246,6 +3528,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
     /**
      * The CSS class applied to this widget as a whole.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the CSS class for this widget
      *
      * @param styleName new CSS style name. Default value is "normal"
@@ -3274,6 +3558,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * the page. <code>canvas.tabIndex</code> cannot be set to greater than  {@link
      * com.smartgwt.client.widgets.Canvas#TAB_INDEX_FLOOR TAB_INDEX_FLOOR} - as we reserve the values above this range for
      * auto-assigned tab-indices.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Assign an explicit tabIndex to this widget.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -3342,6 +3628,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * com.smartgwt.client.widgets.Canvas#getDataPath dataPath} for more information. Also note that if a databound component
      * has a specified dataSource and dataPath but no specified valuesManager object one will be automatically generated as
      * part of the databinding process
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for the {@link com.smartgwt.client.widgets.Canvas#getValuesManager valuesManager} attribute. This method may be called directly at  runtime to set the ValuesManager for a component; it has the same effect as calling  {@link com.smartgwt.client.widgets.form.ValuesManager#addMember ValuesManager.addMember}, passing in this DataBoundComponent.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -3374,6 +3662,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
     /**
      * Controls widget visibility when the widget is initialized. See Visibility type for      details.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets this widget's visibility to "inherit", so that it becomes visible if all it's parents are visible or it has no parents. <P> If the widget has not yet been drawn (and doesn't have a parent or master), this method calls the draw method as well.
      *
      * @param visibility visibility Default value is Canvas.INHERIT

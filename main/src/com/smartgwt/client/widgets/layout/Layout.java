@@ -149,29 +149,49 @@ public class Layout extends Canvas {
     }
 
     /**
-     * Layouts provide a default implementation of a drag and drop interaction.  If you set&#010 {@link
-     * com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop}:true and <code>canDropComponents:true</code>&#010 on
-     * a Layout, when a droppable Canvas ({@link com.smartgwt.client.widgets.Canvas#getCanDrop canDrop:true} is dragged
-     * over&#010 the layout will show a dropLine (a simple insertion line) at the drop location.  &#010 <P>&#010 When the drop
-     * occurs, the dragTarget (obtained using&#010 {@link com.smartgwt.client.util.EventHandler#getDragTarget
-     * EventHandler.getDragTarget}) is added as a member of this layout at the location&#010 shown by the dropLine (calculated
-     * by {@link com.smartgwt.client.widgets.layout.Layout#getDropPosition Layout.getDropPosition}).  This default&#010
-     * behavior allows either members or external components that have&#010 {@link
-     * com.smartgwt.client.widgets.Canvas#getCanDragReposition canDragReposition} (or {@link
+     * Layouts provide a default implementation of a drag and drop interaction.  If you set
+     *  {@link com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop}:true and <code>canDropComponents:true</code>
+     * on a Layout, when a droppable Canvas ({@link com.smartgwt.client.widgets.Canvas#getCanDrop canDrop:true} is dragged over
+     *  the layout will show a dropLine (a simple insertion line) at the drop location.  
+     *  <P>
+     *  When the drop occurs, the dragTarget (obtained using
+     * {@link com.smartgwt.client.util.EventHandler#getDragTarget EventHandler.getDragTarget}) is added as a member of this
+     * layout at the location
+     * shown by the dropLine (calculated by {@link com.smartgwt.client.widgets.layout.Layout#getDropPosition
+     * Layout.getDropPosition}).  This default
+     *  behavior allows either members or external components that have
+     * {@link com.smartgwt.client.widgets.Canvas#getCanDragReposition canDragReposition} (or {@link
      * com.smartgwt.client.widgets.Canvas#getCanDrag canDrag}) and {@link com.smartgwt.client.widgets.Canvas#getCanDrop
-     * canDrop} set&#010 to <code>true</code> to be added to or reordered within the Layout.&#010 <P>&#010 You can control the
-     * thickness of the dropLine via {@link com.smartgwt.client.widgets.layout.Layout#getDropLineThickness dropLineThickness}
-     * and&#010 you can customize the style using css styling in the skin file (look for .layoutDropLine in&#010
-     * skin_styles.css for your skin).  &#010 <P>  &#010 If you want to dynamically create a component to be added to the
-     * Layout in response to a&#010 drop event you can do so as follows: &#010 <pre>&#010 isc.VLayout.create({&#010  
-     * ...various layout properties...&#010   canDropComponents: true,&#010   drop : function () {&#010     // create the new
-     * component &#010     var newMember = isc.Canvas.create(); &#010     // add to the layout at the current drop position
-     * &#010     // (the dropLine will be showing here)&#010     this.addMember(newMember, this.getDropPosition());  &#010    
-     * // hide the dropLine that was automatically shown &#010     // by builtin Smart GWT methods&#010    
-     * this.hideDropLine();&#010   }&#010 });&#010 </pre>&#010 If you want to completely suppress the builtin drag and drop
-     * logic, but still receive drag&#010 and drop events for your own custom implementation, set {@link
-     * com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop} to&#010 <code>true</code> and
-     * <code>canDropComponents</code> to <code>false</code> on your Layout.
+     * canDrop} set
+     *  to <code>true</code> to be added to or reordered within the Layout.
+     *  <P>
+     * You can control the thickness of the dropLine via {@link com.smartgwt.client.widgets.layout.Layout#getDropLineThickness
+     * dropLineThickness} and
+     *  you can customize the style using css styling in the skin file (look for .layoutDropLine in
+     *  skin_styles.css for your skin).  
+     *  <P>  
+     *  If you want to dynamically create a component to be added to the Layout in response to a
+     *  drop event you can do so as follows: 
+     *  <pre>
+     *  isc.VLayout.create({
+     *    ...various layout properties...
+     *    canDropComponents: true,
+     *    drop : function () {
+     *      // create the new component 
+     *      var newMember = isc.Canvas.create(); 
+     *      // add to the layout at the current drop position 
+     *      // (the dropLine will be showing here)
+     *      this.addMember(newMember, this.getDropPosition());  
+     *      // hide the dropLine that was automatically shown 
+     *      // by builtin Smart GWT methods
+     *      this.hideDropLine();
+     *    }
+     *  });
+     *  </pre>
+     *  If you want to completely suppress the builtin drag and drop logic, but still receive drag
+     * and drop events for your own custom implementation, set {@link com.smartgwt.client.widgets.Canvas#getCanAcceptDrop
+     * canAcceptDrop} to
+     *  <code>true</code> and <code>canDropComponents</code> to <code>false</code> on your Layout.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canDropComponents canDropComponents Default value is true
@@ -183,29 +203,49 @@ public class Layout extends Canvas {
     }
 
     /**
-     * Layouts provide a default implementation of a drag and drop interaction.  If you set&#010 {@link
-     * com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop}:true and <code>canDropComponents:true</code>&#010 on
-     * a Layout, when a droppable Canvas ({@link com.smartgwt.client.widgets.Canvas#getCanDrop canDrop:true} is dragged
-     * over&#010 the layout will show a dropLine (a simple insertion line) at the drop location.  &#010 <P>&#010 When the drop
-     * occurs, the dragTarget (obtained using&#010 {@link com.smartgwt.client.util.EventHandler#getDragTarget
-     * EventHandler.getDragTarget}) is added as a member of this layout at the location&#010 shown by the dropLine (calculated
-     * by {@link com.smartgwt.client.widgets.layout.Layout#getDropPosition Layout.getDropPosition}).  This default&#010
-     * behavior allows either members or external components that have&#010 {@link
-     * com.smartgwt.client.widgets.Canvas#getCanDragReposition canDragReposition} (or {@link
+     * Layouts provide a default implementation of a drag and drop interaction.  If you set
+     *  {@link com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop}:true and <code>canDropComponents:true</code>
+     * on a Layout, when a droppable Canvas ({@link com.smartgwt.client.widgets.Canvas#getCanDrop canDrop:true} is dragged over
+     *  the layout will show a dropLine (a simple insertion line) at the drop location.  
+     *  <P>
+     *  When the drop occurs, the dragTarget (obtained using
+     * {@link com.smartgwt.client.util.EventHandler#getDragTarget EventHandler.getDragTarget}) is added as a member of this
+     * layout at the location
+     * shown by the dropLine (calculated by {@link com.smartgwt.client.widgets.layout.Layout#getDropPosition
+     * Layout.getDropPosition}).  This default
+     *  behavior allows either members or external components that have
+     * {@link com.smartgwt.client.widgets.Canvas#getCanDragReposition canDragReposition} (or {@link
      * com.smartgwt.client.widgets.Canvas#getCanDrag canDrag}) and {@link com.smartgwt.client.widgets.Canvas#getCanDrop
-     * canDrop} set&#010 to <code>true</code> to be added to or reordered within the Layout.&#010 <P>&#010 You can control the
-     * thickness of the dropLine via {@link com.smartgwt.client.widgets.layout.Layout#getDropLineThickness dropLineThickness}
-     * and&#010 you can customize the style using css styling in the skin file (look for .layoutDropLine in&#010
-     * skin_styles.css for your skin).  &#010 <P>  &#010 If you want to dynamically create a component to be added to the
-     * Layout in response to a&#010 drop event you can do so as follows: &#010 <pre>&#010 isc.VLayout.create({&#010  
-     * ...various layout properties...&#010   canDropComponents: true,&#010   drop : function () {&#010     // create the new
-     * component &#010     var newMember = isc.Canvas.create(); &#010     // add to the layout at the current drop position
-     * &#010     // (the dropLine will be showing here)&#010     this.addMember(newMember, this.getDropPosition());  &#010    
-     * // hide the dropLine that was automatically shown &#010     // by builtin Smart GWT methods&#010    
-     * this.hideDropLine();&#010   }&#010 });&#010 </pre>&#010 If you want to completely suppress the builtin drag and drop
-     * logic, but still receive drag&#010 and drop events for your own custom implementation, set {@link
-     * com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop} to&#010 <code>true</code> and
-     * <code>canDropComponents</code> to <code>false</code> on your Layout.
+     * canDrop} set
+     *  to <code>true</code> to be added to or reordered within the Layout.
+     *  <P>
+     * You can control the thickness of the dropLine via {@link com.smartgwt.client.widgets.layout.Layout#getDropLineThickness
+     * dropLineThickness} and
+     *  you can customize the style using css styling in the skin file (look for .layoutDropLine in
+     *  skin_styles.css for your skin).  
+     *  <P>  
+     *  If you want to dynamically create a component to be added to the Layout in response to a
+     *  drop event you can do so as follows: 
+     *  <pre>
+     *  isc.VLayout.create({
+     *    ...various layout properties...
+     *    canDropComponents: true,
+     *    drop : function () {
+     *      // create the new component 
+     *      var newMember = isc.Canvas.create(); 
+     *      // add to the layout at the current drop position 
+     *      // (the dropLine will be showing here)
+     *      this.addMember(newMember, this.getDropPosition());  
+     *      // hide the dropLine that was automatically shown 
+     *      // by builtin Smart GWT methods
+     *      this.hideDropLine();
+     *    }
+     *  });
+     *  </pre>
+     *  If you want to completely suppress the builtin drag and drop logic, but still receive drag
+     * and drop events for your own custom implementation, set {@link com.smartgwt.client.widgets.Canvas#getCanAcceptDrop
+     * canAcceptDrop} to
+     *  <code>true</code> and <code>canDropComponents</code> to <code>false</code> on your Layout.
      *
      *
      * @return Boolean
@@ -365,6 +405,8 @@ public class Layout extends Canvas {
      * true setter method.<br> It may be assigned directly at runtime. After setting the property,  {@link
      * com.smartgwt.client.widgets.layout.Layout#setLayoutMargin Layout.setLayoutMargin} may be called with no arguments to
      * reflow the layout.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Method to force a reflow of the layout after directly assigning a value to any of the layout*Margin properties. Takes no arguments.
      *
      * @param layoutMargin layoutMargin Default value is null

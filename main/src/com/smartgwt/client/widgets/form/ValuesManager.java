@@ -141,6 +141,8 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      * {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType DynamicForm.setSaveOperationType}. <P> If
      * <code>saveOperationType</code> is unset, the form will heuristically determine whether an "add" or "update" operation is
      * intended based on whether the primaryKey field is present and editable.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for the default {@link com.smartgwt.client.types.DSOperationType} when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData} is called. Note that this property can also be set by calling {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord DynamicForm.editRecord} or  {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord DynamicForm.editNewRecord}
      *
      * @param saveOperationType Operation type to use as a default. Valid values are  <code>"add"</code> or <code>"update"</code>.. Default value is null
@@ -212,13 +214,20 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
     // ********************* Methods ***********************
             
     /**
-     * &#010 This method exists for clean integration with existing server frameworks that have a 'cancel'&#010 feature which
-     * typically clears session state associated with the form.  When this method is&#010 called, an RPC is sent to the server
-     * with a parameter named&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with
-     * the value&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>&#010&#010
-     * Note that no other form data is sent.  By default the current top-level page is replaced with the&#010 reply.  If you
-     * wish to ignore the server reply instead, call this method like this:&#010 <pre>&#010
-     * dynamicFormInstance.cancel({ignoreTimeout: true, target: null});&#010 </pre>&#010&#010
+     * 
+     *  This method exists for clean integration with existing server frameworks that have a 'cancel'
+     *  feature which typically clears session state associated with the form.  When this method is
+     *  called, an RPC is sent to the server with a parameter named
+     *  {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with the value
+     *  {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>
+     * 
+     *  Note that no other form data is sent.  By default the current top-level page is replaced with the
+     *  reply.  If you wish to ignore the server reply instead, call this method like this:
+     *  <pre>
+     *  dynamicFormInstance.cancel({ignoreTimeout: true, target: null});
+     *  </pre>
+     * 
+     * 
      */
     public native void cancel() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -226,13 +235,20 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
     }-*/;
 
     /**
-     * &#010 This method exists for clean integration with existing server frameworks that have a 'cancel'&#010 feature which
-     * typically clears session state associated with the form.  When this method is&#010 called, an RPC is sent to the server
-     * with a parameter named&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with
-     * the value&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>&#010&#010
-     * Note that no other form data is sent.  By default the current top-level page is replaced with the&#010 reply.  If you
-     * wish to ignore the server reply instead, call this method like this:&#010 <pre>&#010
-     * dynamicFormInstance.cancel({ignoreTimeout: true, target: null});&#010 </pre>&#010&#010
+     * 
+     *  This method exists for clean integration with existing server frameworks that have a 'cancel'
+     *  feature which typically clears session state associated with the form.  When this method is
+     *  called, an RPC is sent to the server with a parameter named
+     *  {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with the value
+     *  {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>
+     * 
+     *  Note that no other form data is sent.  By default the current top-level page is replaced with the
+     *  reply.  If you wish to ignore the server reply instead, call this method like this:
+     *  <pre>
+     *  dynamicFormInstance.cancel({ignoreTimeout: true, target: null});
+     *  </pre>
+     * 
+     * 
      * @param requestProperties additional properties to set on the RPCRequest                                          that will be issued
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
      */

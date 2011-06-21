@@ -854,6 +854,8 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
 
     /**
      * Default alignment for facet labels.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the align of a facet title (appears in facet label).
      *
      * @param facetTitleAlign facet to update. Default value is "center"
@@ -1407,13 +1409,19 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     }
 
     /**
-     * A label for the data values shown in cells, such as "Sales in Thousands", typically used&#010 when the CubeGrid must
-     * generate a description for a cell value or set of cell values.&#010 <P>&#010 For example, in a CubeGrid showing
-     * "Revenue" by region and product, a cell with a&#010 CellRecord like:&#010 <pre> &#010 {product:"chairs",
-     * region:"northwest", _value:"$5k"}&#010 </pre>&#010 Should be described as "Revenue for Chairs for Northwest Region", not
-     * "Chairs for&#010 Revenue for Northwest Region".&#010 <P>&#010 For CubeGrids that show multiple types of values at once
-     * (eg both "Revenue" and&#010 "Income") see {@link com.smartgwt.client.widgets.cube.CubeGrid#getMetricFacetId
-     * metricFacetId}.
+     * A label for the data values shown in cells, such as "Sales in Thousands", typically used
+     *  when the CubeGrid must generate a description for a cell value or set of cell values.
+     *  <P>
+     *  For example, in a CubeGrid showing "Revenue" by region and product, a cell with a
+     *  CellRecord like:
+     *  <pre> 
+     *  {product:"chairs", region:"northwest", _value:"$5k"}
+     *  </pre>
+     *  Should be described as "Revenue for Chairs for Northwest Region", not "Chairs for
+     *  Revenue for Northwest Region".
+     *  <P>
+     *  For CubeGrids that show multiple types of values at once (eg both "Revenue" and
+     *  "Income") see {@link com.smartgwt.client.widgets.cube.CubeGrid#getMetricFacetId metricFacetId}.
      *
      * @param valueTitle valueTitle Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -1423,13 +1431,19 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     }
 
     /**
-     * A label for the data values shown in cells, such as "Sales in Thousands", typically used&#010 when the CubeGrid must
-     * generate a description for a cell value or set of cell values.&#010 <P>&#010 For example, in a CubeGrid showing
-     * "Revenue" by region and product, a cell with a&#010 CellRecord like:&#010 <pre> &#010 {product:"chairs",
-     * region:"northwest", _value:"$5k"}&#010 </pre>&#010 Should be described as "Revenue for Chairs for Northwest Region", not
-     * "Chairs for&#010 Revenue for Northwest Region".&#010 <P>&#010 For CubeGrids that show multiple types of values at once
-     * (eg both "Revenue" and&#010 "Income") see {@link com.smartgwt.client.widgets.cube.CubeGrid#getMetricFacetId
-     * metricFacetId}.
+     * A label for the data values shown in cells, such as "Sales in Thousands", typically used
+     *  when the CubeGrid must generate a description for a cell value or set of cell values.
+     *  <P>
+     *  For example, in a CubeGrid showing "Revenue" by region and product, a cell with a
+     *  CellRecord like:
+     *  <pre> 
+     *  {product:"chairs", region:"northwest", _value:"$5k"}
+     *  </pre>
+     *  Should be described as "Revenue for Chairs for Northwest Region", not "Chairs for
+     *  Revenue for Northwest Region".
+     *  <P>
+     *  For CubeGrids that show multiple types of values at once (eg both "Revenue" and
+     *  "Income") see {@link com.smartgwt.client.widgets.cube.CubeGrid#getMetricFacetId metricFacetId}.
      *
      *
      * @return String

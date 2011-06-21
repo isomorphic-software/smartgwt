@@ -234,21 +234,32 @@ public class DateItem extends FormItem {
     }
 
     /**
-     * Can this field be set to a non-date value [other than null]?&#010 <P>&#010 When set to true, {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue} will return false without setting the item
-     * value&#010 and log a warning if passed something other than a valid date value.&#010 If the dateItem is showing a {@link
-     * com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField free-form text entry field},&#010 and a user enters a
-     * text value which cannot be parsed into a valid date, the item will&#010 automatically redraw and display the {@link
-     * com.smartgwt.client.widgets.form.fields.DateItem#getInvalidDateStringMessage invalidDateStringMessage} (though at
-     * this&#010 point calling {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} will return
-     * the string entered by the user).&#010 <P>&#010 When set to false, a user may enter value that is not a valid date (for
-     * example, "Not&#010 applicable") and the value will not immediately be flagged as an error.  However note&#010 that for
-     * the value to actually pass validation you would need to declare the field as&#010 not of "date" type, for example:&#010
-     * <pre>&#010     {name:"startDate", type:"dateOrOther", editorType:"DateItem", useTextField:true },&#010 </pre>&#010 The
-     * type "dateOrOther" could be declared as a {@link com.smartgwt.client.data.SimpleType}, with validators that&#010 will
-     * accept either a valid date or certain special Strings (like "Not Available").&#010 <P>&#010 Only applies to dateItems
-     * where {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true. Non-Date
-     * values&#010 are never supported in items where useTextField is false.
+     * Can this field be set to a non-date value [other than null]?
+     *  <P>
+     * When set to true, {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue} will return false
+     * without setting the item value
+     *  and log a warning if passed something other than a valid date value.
+     * If the dateItem is showing a {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField free-form text
+     * entry field},
+     *  and a user enters a text value which cannot be parsed into a valid date, the item will
+     * automatically redraw and display the {@link com.smartgwt.client.widgets.form.fields.DateItem#getInvalidDateStringMessage
+     * invalidDateStringMessage} (though at this
+     * point calling {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} will return the string
+     * entered by the user).
+     *  <P>
+     *  When set to false, a user may enter value that is not a valid date (for example, "Not
+     *  applicable") and the value will not immediately be flagged as an error.  However note
+     *  that for the value to actually pass validation you would need to declare the field as
+     *  not of "date" type, for example:
+     *  <pre>
+     *      {name:"startDate", type:"dateOrOther", editorType:"DateItem", useTextField:true },
+     *  </pre>
+     *  The type "dateOrOther" could be declared as a {@link com.smartgwt.client.data.SimpleType}, with validators that
+     *  will accept either a valid date or certain special Strings (like "Not Available").
+     *  <P>
+     * Only applies to dateItems where {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is
+     * true. Non-Date values
+     *  are never supported in items where useTextField is false.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param enforceDate enforceDate Default value is false
@@ -258,21 +269,32 @@ public class DateItem extends FormItem {
     }
 
     /**
-     * Can this field be set to a non-date value [other than null]?&#010 <P>&#010 When set to true, {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue} will return false without setting the item
-     * value&#010 and log a warning if passed something other than a valid date value.&#010 If the dateItem is showing a {@link
-     * com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField free-form text entry field},&#010 and a user enters a
-     * text value which cannot be parsed into a valid date, the item will&#010 automatically redraw and display the {@link
-     * com.smartgwt.client.widgets.form.fields.DateItem#getInvalidDateStringMessage invalidDateStringMessage} (though at
-     * this&#010 point calling {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} will return
-     * the string entered by the user).&#010 <P>&#010 When set to false, a user may enter value that is not a valid date (for
-     * example, "Not&#010 applicable") and the value will not immediately be flagged as an error.  However note&#010 that for
-     * the value to actually pass validation you would need to declare the field as&#010 not of "date" type, for example:&#010
-     * <pre>&#010     {name:"startDate", type:"dateOrOther", editorType:"DateItem", useTextField:true },&#010 </pre>&#010 The
-     * type "dateOrOther" could be declared as a {@link com.smartgwt.client.data.SimpleType}, with validators that&#010 will
-     * accept either a valid date or certain special Strings (like "Not Available").&#010 <P>&#010 Only applies to dateItems
-     * where {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true. Non-Date
-     * values&#010 are never supported in items where useTextField is false.
+     * Can this field be set to a non-date value [other than null]?
+     *  <P>
+     * When set to true, {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue} will return false
+     * without setting the item value
+     *  and log a warning if passed something other than a valid date value.
+     * If the dateItem is showing a {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField free-form text
+     * entry field},
+     *  and a user enters a text value which cannot be parsed into a valid date, the item will
+     * automatically redraw and display the {@link com.smartgwt.client.widgets.form.fields.DateItem#getInvalidDateStringMessage
+     * invalidDateStringMessage} (though at this
+     * point calling {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} will return the string
+     * entered by the user).
+     *  <P>
+     *  When set to false, a user may enter value that is not a valid date (for example, "Not
+     *  applicable") and the value will not immediately be flagged as an error.  However note
+     *  that for the value to actually pass validation you would need to declare the field as
+     *  not of "date" type, for example:
+     *  <pre>
+     *      {name:"startDate", type:"dateOrOther", editorType:"DateItem", useTextField:true },
+     *  </pre>
+     *  The type "dateOrOther" could be declared as a {@link com.smartgwt.client.data.SimpleType}, with validators that
+     *  will accept either a valid date or certain special Strings (like "Not Available").
+     *  <P>
+     * Only applies to dateItems where {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is
+     * true. Non-Date values
+     *  are never supported in items where useTextField is false.
      *
      *
      * @return Boolean

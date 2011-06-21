@@ -332,6 +332,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * The date for which events are displayed in the day, week, and month tabs of  the calendar.  Default is today.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the current date for which the calendar will display events.
      *
      * @param chosenDate the new date to set as the current date. Default value is 'Today'
@@ -352,6 +354,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * The name of the view that should be visible initially by default.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the currently visible view
      *
      * @param currentViewName The name of the view that should be made visible.. Default value is null
@@ -1198,6 +1202,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Suppresses the display of weekend days in the week and month views, and disallows the creation of events on weekends. 
      * Which days are considered weekends is controlled by  weekendDays.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWeekends showWeekends} to change this property at runtime.
      *
      * @param showWeekends showWeekends Default value is true

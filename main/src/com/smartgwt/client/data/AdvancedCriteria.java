@@ -59,36 +59,71 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * AdvancedCriteria is a format for representing search criteria which may include&#010 operators on field values such as
- * "less than", or may include sub-clauses such as several &#010 criteria applied to fields joined by an "OR"
- * operator.&#010 <P>&#010 Smart GWT DataSources can use AdvancedCriteria to search a list of {@link
- * com.smartgwt.client.data.Record}s, and&#010 the Smart GWT Java Server can translate AdvancedCriteria to either SQL or
- * Hibernate&#010 queries (<b>Note:</b> The server-side AdvancedCriteria handling feature is only available &#010 with the
- * <b>Power</b> and <b>Enterprise</b> Editions of Smart GWT; the Pro Edition is &#010 limited to ordinary criteria handling
- * on the server side).<p>&#010 If the entire dataset is cached locally, Smart GWT can perform AdvancedCriteria filtering
- * &#010 on the client, avoiding a server call.&#010 <P>&#010 &#010 &#010 AdvancedCriteria objects can be created directly
- * in java. For example:&#010 <pre>&#010 AdvancedCriteria criteria = new AdvancedCriteria(OperatorId.AND, new
- * Criterion[]{&#010     new Criterion("salary", OperatorId.LESS_THAN, 8000),&#010     new AdvancedCriteria(OperatorId.OR,
- * new Criterion[]{&#010         new Criterion("title", OperatorId.ICONTAINS, "Manager"),&#010         new
- * Criterion("reports", OperatorId.NOT_NULL)&#010     })&#010 });&#010 </pre>&#010 &#010 <P>&#010 In addition to building a
- * raw AdvancedCriteria object as described above, the&#010 {@link com.smartgwt.client.data.DataSource#convertCriteria
- * DataSource.convertCriteria} and {@link com.smartgwt.client.data.DataSource#combineCriteria DataSource.combineCriteria}
- * methods&#010 may be used to create and modify criteria based on simple fieldName / value mappings.&#010 <P>&#010 When
- * passed to the Smart GWT Server, a server-side AdvancedCriteria instance (in the&#010 package com.isomorphic.criteria)
- * can be retrieved from a DSRequest via&#010 com.isomorphic.datasource.DSRequest.getAdvancedCriteria().  These same
- * AdvancedCriteria&#010 objects can be directly created server side, and applied to a DSRequest via&#010
- * setAdvancedCriteria().&#010 <P>&#010 Other servers may receive AdvancedCriteria in the most convenient format.  &#010
- * &#010 The internal representation of AdvancedCriteria is a simple JavaScript structure, available&#010 via
- * AdvancedCriteria.getJsObj():&#010 <pre>&#010 // an AdvancedCriteria&#010 {&#010    
- * _constructor:"AdvancedCriteria",&#010     operator:"and",&#010     criteria:[&#010         // this is a Criterion&#010  
- * { fieldName:"salary", operator:"lessThan", value:"80000" },&#010         { operator:"or", criteria:[&#010             {
- * fieldName:"title", operator:"iContains", value:"Manager" },&#010             { fieldName:"reports", operator:"notNull"
- * }&#010           ]  &#010         }&#010     ]&#010 }&#010 </pre>&#010 &#010 You can implement {@link
- * com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest} to translate the JavaScript&#010
- * AdvancedCriteria object directly into a SQL-like language, or serialize to XML using&#010 {@link
- * com.smartgwt.client.data.DataSource#xmlSerialize DataSource.xmlSerialize}.  &#010 <P>&#010 See {@link
- * com.smartgwt.client.docs.CriteriaEditing Criteria Editing} for information about&#010 editing AdvancedCriteria in a
- * DynamicForm.
+ * AdvancedCriteria is a format for representing search criteria which may include
+ *  operators on field values such as "less than", or may include sub-clauses such as several 
+ *  criteria applied to fields joined by an "OR" operator.
+ *  <P>
+ *  Smart GWT DataSources can use AdvancedCriteria to search a list of {@link com.smartgwt.client.data.Record}s, and
+ *  the Smart GWT Java Server can translate AdvancedCriteria to either SQL or Hibernate
+ *  queries (<b>Note:</b> The server-side AdvancedCriteria handling feature is only available 
+ *  with the <b>Power</b> and <b>Enterprise</b> Editions of Smart GWT; the Pro Edition is 
+ *  limited to ordinary criteria handling on the server side).<p>
+ *  If the entire dataset is cached locally, Smart GWT can perform AdvancedCriteria filtering 
+ *  on the client, avoiding a server call.
+ *  <P>
+ *  
+ *  
+ *  AdvancedCriteria objects can be created directly in java. For example:
+ *  <pre>
+ *  AdvancedCriteria criteria = new AdvancedCriteria(OperatorId.AND, new Criterion[]{
+ *      new Criterion("salary", OperatorId.LESS_THAN, 8000),
+ *      new AdvancedCriteria(OperatorId.OR, new Criterion[]{
+ *          new Criterion("title", OperatorId.ICONTAINS, "Manager"),
+ *          new Criterion("reports", OperatorId.NOT_NULL)
+ *      })
+ *  });
+ *  </pre>
+ *  
+ *  <P>
+ *  In addition to building a raw AdvancedCriteria object as described above, the
+ * {@link com.smartgwt.client.data.DataSource#convertCriteria DataSource.convertCriteria} and {@link
+ * com.smartgwt.client.data.DataSource#combineCriteria DataSource.combineCriteria} methods
+ *  may be used to create and modify criteria based on simple fieldName / value mappings.
+ *  <P>
+ *  When passed to the Smart GWT Server, a server-side AdvancedCriteria instance (in the
+ *  package com.isomorphic.criteria) can be retrieved from a DSRequest via
+ *  com.isomorphic.datasource.DSRequest.getAdvancedCriteria().  These same AdvancedCriteria
+ *  objects can be directly created server side, and applied to a DSRequest via
+ *  setAdvancedCriteria().
+ *  <P>
+ *  Other servers may receive AdvancedCriteria in the most convenient format.  
+ *  
+ *  The internal representation of AdvancedCriteria is a simple JavaScript structure, available
+ *  via AdvancedCriteria.getJsObj():
+ *  <pre>
+ *  // an AdvancedCriteria
+ *  {
+ *      _constructor:"AdvancedCriteria",
+ *      operator:"and",
+ *      criteria:[
+ *          // this is a Criterion
+ *          { fieldName:"salary", operator:"lessThan", value:"80000" },
+ *          { operator:"or", criteria:[
+ *              { fieldName:"title", operator:"iContains", value:"Manager" },
+ *              { fieldName:"reports", operator:"notNull" }
+ *            ]  
+ *          }
+ *      ]
+ *  }
+ *  </pre>
+ *  
+ * You can implement {@link com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest} to translate
+ * the JavaScript
+ *  AdvancedCriteria object directly into a SQL-like language, or serialize to XML using
+ *  {@link com.smartgwt.client.data.DataSource#xmlSerialize DataSource.xmlSerialize}.  
+ *  <P>
+ *  See {@link com.smartgwt.client.docs.CriteriaEditing Criteria Editing} for information about
+ *  editing AdvancedCriteria in a DynamicForm.
  */
 public class AdvancedCriteria extends Criterion {
 

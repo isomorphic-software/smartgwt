@@ -676,6 +676,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * com.smartgwt.client.widgets.tree.TreeNode}s to  display as rows in this TreeGrid.   The <code>data</code> property will
      * typically not be explicitly specified for  databound TreeGrids, where the data is returned from the server via databound
      * component methods such as <code>fetchData()</code>
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the {@link com.smartgwt.client.widgets.tree.Tree} object this TreeGrid will view and manipulate.
      *
      * @param data Tree to show. Default value is null
@@ -926,6 +928,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     /**
      * The filename of the default icon for all leaf nodes in this grid. To specify a  custom image for an individual node, set
      * the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty} directly on the node.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the icon for a particular treenode to a specified URL
      *
      * @param nodeIcon tree node. Default value is "[SKIN]file.gif"

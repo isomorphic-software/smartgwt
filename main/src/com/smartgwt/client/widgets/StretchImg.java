@@ -309,6 +309,8 @@ public class StretchImg extends StatefulCanvas {
      * {@link com.smartgwt.client.widgets.StretchImg#getItems items} is added. <P> For example, for a stretchImg in "Over"
      * state with a <code>src</code> of "button.png" and a segment name of "stretch", the resulting URL would be
      * "button_Over_stretch.png".
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Changes the base {@link com.smartgwt.client.widgets.StretchImg#getSrc src} for this stretchImg, redrawing if necessary.
      *
      * @param src new URL for the image. Default value is null

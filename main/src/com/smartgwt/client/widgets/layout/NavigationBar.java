@@ -93,6 +93,8 @@ public class NavigationBar extends HLayout {
     /**
      * {@link com.smartgwt.client.widgets.Button#getIcon Icon} for the {@link
      * com.smartgwt.client.widgets.layout.NavigationBar#getLeftButton leftButton}
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getLeftButtonIcon leftButtonIcon}
      *
      * @param leftButtonIcon new icon for left button. Default value is null
@@ -115,6 +117,8 @@ public class NavigationBar extends HLayout {
     /**
      * {@link com.smartgwt.client.widgets.Button#getTitle Title} for the {@link
      * com.smartgwt.client.widgets.layout.NavigationBar#getLeftButton leftButton}
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getLeftButtonTitle leftButtonTitle}
      *
      * @param leftButtonTitle new title for left button. Default value is "&nbsp;"
@@ -137,6 +141,8 @@ public class NavigationBar extends HLayout {
     /**
      * {@link com.smartgwt.client.widgets.Button#getIcon Icon} for the {@link
      * com.smartgwt.client.widgets.layout.NavigationBar#getRightButton rightButton}
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getRightButtonIcon rightButtonIcon}
      *
      * @param rightButtonIcon new icon for right button. Default value is null
@@ -159,6 +165,8 @@ public class NavigationBar extends HLayout {
     /**
      * {@link com.smartgwt.client.widgets.Button#getTitle Title} for the {@link
      * com.smartgwt.client.widgets.layout.NavigationBar#getRightButton rightButton}
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getRightButtonTitle rightButtonTitle}
      *
      * @param rightButtonTitle new title for right button. Default value is "&nbsp;"
@@ -180,6 +188,8 @@ public class NavigationBar extends HLayout {
 
     /**
      * The title to display centered in this NavigationBar
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Updates the title for this navigationBar.
      *
      * @param title New title. Default value is null

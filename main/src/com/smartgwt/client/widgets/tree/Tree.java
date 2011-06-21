@@ -389,22 +389,34 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-     * Specifies the delimiter between node names.  The pathDelim is used to construct a unique&#010 path to each node. A path
-     * can be obtained for any node by calling&#010 {@link com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath} and can
-     * be used to find any node in the tree by calling&#010 {@link com.smartgwt.client.widgets.tree.Tree#find Tree.find}.  Note
-     * that you can also hand-construct a path - in other words&#010 you are not required to call {@link
-     * com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath} in order to later use&#010 {@link
-     * com.smartgwt.client.widgets.tree.Tree#find Tree.find} to retrieve it.&#010 <br><br>&#010 The pathDelim can be any
-     * character or sequence of characters, but must be a unique string&#010 with respect to the text that can appear in the
-     * {@link com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty} that's used&#010 for naming the nodes.  So
-     * for example, if you have the following tree:&#010 <pre>&#010 one&#010   two&#010     three/four&#010 </pre>&#010 Then
-     * you will be unable to find the <code>three/four</code> node using&#010 {@link com.smartgwt.client.widgets.tree.Tree#find
-     * Tree.find} if your tree is using the default pathDelim of /.&#010 In such a case, you can use a different pathDelim for
-     * the tree.  For example if you used |&#010 for the path delim, then you can find the <code>three/four</code> node in the
-     * tree above by&#010 calling <code>tree.find("one|two|three/four")</code>.&#010 <br><br>&#010 The pathDelim is used only
-     * by {@link com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath} and {@link
-     * com.smartgwt.client.widgets.tree.Tree#find Tree.find} and&#010 does not affect any aspect of the tree structure or other
-     * forms of tree navigation (such as&#010 via {@link com.smartgwt.client.widgets.tree.Tree#getChildren Tree.getChildren}).
+     * Specifies the delimiter between node names.  The pathDelim is used to construct a unique
+     *  path to each node. A path can be obtained for any node by calling
+     * {@link com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath} and can be used to find any node in the tree by
+     * calling
+     * {@link com.smartgwt.client.widgets.tree.Tree#find Tree.find}.  Note that you can also hand-construct a path - in other
+     * words
+     *  you are not required to call {@link com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath} in order to later use
+     *  {@link com.smartgwt.client.widgets.tree.Tree#find Tree.find} to retrieve it.
+     *  <br><br>
+     *  The pathDelim can be any character or sequence of characters, but must be a unique string
+     * with respect to the text that can appear in the {@link com.smartgwt.client.widgets.tree.Tree#getNameProperty
+     * nameProperty} that's used
+     *  for naming the nodes.  So for example, if you have the following tree:
+     *  <pre>
+     *  one
+     *    two
+     *      three/four
+     *  </pre>
+     *  Then you will be unable to find the <code>three/four</code> node using
+     *  {@link com.smartgwt.client.widgets.tree.Tree#find Tree.find} if your tree is using the default pathDelim of /.
+     *  In such a case, you can use a different pathDelim for the tree.  For example if you used |
+     *  for the path delim, then you can find the <code>three/four</code> node in the tree above by
+     *  calling <code>tree.find("one|two|three/four")</code>.
+     *  <br><br>
+     * The pathDelim is used only by {@link com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath} and {@link
+     * com.smartgwt.client.widgets.tree.Tree#find Tree.find} and
+     *  does not affect any aspect of the tree structure or other forms of tree navigation (such as
+     *  via {@link com.smartgwt.client.widgets.tree.Tree#getChildren Tree.getChildren}).
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param pathDelim pathDelim Default value is "/"
@@ -416,22 +428,34 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-     * Specifies the delimiter between node names.  The pathDelim is used to construct a unique&#010 path to each node. A path
-     * can be obtained for any node by calling&#010 {@link com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath} and can
-     * be used to find any node in the tree by calling&#010 {@link com.smartgwt.client.widgets.tree.Tree#find Tree.find}.  Note
-     * that you can also hand-construct a path - in other words&#010 you are not required to call {@link
-     * com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath} in order to later use&#010 {@link
-     * com.smartgwt.client.widgets.tree.Tree#find Tree.find} to retrieve it.&#010 <br><br>&#010 The pathDelim can be any
-     * character or sequence of characters, but must be a unique string&#010 with respect to the text that can appear in the
-     * {@link com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty} that's used&#010 for naming the nodes.  So
-     * for example, if you have the following tree:&#010 <pre>&#010 one&#010   two&#010     three/four&#010 </pre>&#010 Then
-     * you will be unable to find the <code>three/four</code> node using&#010 {@link com.smartgwt.client.widgets.tree.Tree#find
-     * Tree.find} if your tree is using the default pathDelim of /.&#010 In such a case, you can use a different pathDelim for
-     * the tree.  For example if you used |&#010 for the path delim, then you can find the <code>three/four</code> node in the
-     * tree above by&#010 calling <code>tree.find("one|two|three/four")</code>.&#010 <br><br>&#010 The pathDelim is used only
-     * by {@link com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath} and {@link
-     * com.smartgwt.client.widgets.tree.Tree#find Tree.find} and&#010 does not affect any aspect of the tree structure or other
-     * forms of tree navigation (such as&#010 via {@link com.smartgwt.client.widgets.tree.Tree#getChildren Tree.getChildren}).
+     * Specifies the delimiter between node names.  The pathDelim is used to construct a unique
+     *  path to each node. A path can be obtained for any node by calling
+     * {@link com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath} and can be used to find any node in the tree by
+     * calling
+     * {@link com.smartgwt.client.widgets.tree.Tree#find Tree.find}.  Note that you can also hand-construct a path - in other
+     * words
+     *  you are not required to call {@link com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath} in order to later use
+     *  {@link com.smartgwt.client.widgets.tree.Tree#find Tree.find} to retrieve it.
+     *  <br><br>
+     *  The pathDelim can be any character or sequence of characters, but must be a unique string
+     * with respect to the text that can appear in the {@link com.smartgwt.client.widgets.tree.Tree#getNameProperty
+     * nameProperty} that's used
+     *  for naming the nodes.  So for example, if you have the following tree:
+     *  <pre>
+     *  one
+     *    two
+     *      three/four
+     *  </pre>
+     *  Then you will be unable to find the <code>three/four</code> node using
+     *  {@link com.smartgwt.client.widgets.tree.Tree#find Tree.find} if your tree is using the default pathDelim of /.
+     *  In such a case, you can use a different pathDelim for the tree.  For example if you used |
+     *  for the path delim, then you can find the <code>three/four</code> node in the tree above by
+     *  calling <code>tree.find("one|two|three/four")</code>.
+     *  <br><br>
+     * The pathDelim is used only by {@link com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath} and {@link
+     * com.smartgwt.client.widgets.tree.Tree#find Tree.find} and
+     *  does not affect any aspect of the tree structure or other forms of tree navigation (such as
+     *  via {@link com.smartgwt.client.widgets.tree.Tree#getChildren Tree.getChildren}).
      *
      *
      * @return String
@@ -471,21 +495,44 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-     * If you're using the "parent" modelType, you can provide the root node configuration via this&#010 property.  If you
-     * don't provide it, one will be auto-created for you with an empty name.&#010 Read on for a description of what omitting
-     * the name property on the root node means for path&#010 derivation.&#010 <p>&#010 If you're using the "children"
-     * modelType, you can provide the initial tree data via this&#010 property.  So, for example, to construct the following
-     * tree:&#010 <pre>&#010 foo&#010   bar&#010 zoo&#010 </pre>&#010 You would initialize the tree as follows: &#010
-     * <pre>&#010 Tree.create({&#010     root: { name:"root", children: [&#010         { name:"foo", children: [&#010          
-     * { name: "bar" }&#010         ]},&#010         { name: "zoo" }&#010     ]}&#010 });&#010 </pre>&#010 Note that if you
-     * provide a <code>name</code> property for the root node, then the path to&#010 any node underneath it will start with
-     * that name.  So in the example above, the path to the&#010 <code>bar</code> node would be <code>root/foo/bar</code>
-     * (assuming you're using the default&#010 {@link com.smartgwt.client.widgets.tree.Tree#getPathDelim pathDelim}.  If you
-     * omit the name attribute on the root node, then it's name&#010 is automatically set to the {@link
-     * com.smartgwt.client.widgets.tree.Tree#getPathDelim pathDelim} value.  So in the example above, if&#010 you omitted
-     * <code>name:"root"</code>, then the path to the <code>bar</code> node would be&#010 <code>/foo/bar</code>.&#010
-     * <br><br>&#010 Note: if you initialize a Tree with no <code>root</code> value, a root node will be&#010 auto-created for
-     * you.  You can then call {@link com.smartgwt.client.widgets.tree.Tree#add Tree.add} to construct the tree.
+     * If you're using the "parent" modelType, you can provide the root node configuration via this
+     *  property.  If you don't provide it, one will be auto-created for you with an empty name.
+     *  Read on for a description of what omitting the name property on the root node means for path
+     *  derivation.
+     *  <p>
+     *  If you're using the "children" modelType, you can provide the initial tree data via this
+     *  property.  So, for example, to construct the following tree:
+     *  <pre>
+     *  foo
+     *    bar
+     *  zoo
+     *  </pre>
+     *  You would initialize the tree as follows: 
+     *  <pre>
+     *  Tree.create({
+     *      root: { name:"root", children: [
+     *          { name:"foo", children: [
+     *              { name: "bar" }
+     *          ]},
+     *          { name: "zoo" }
+     *      ]}
+     *  });
+     *  </pre>
+     *  Note that if you provide a <code>name</code> property for the root node, then the path to
+     *  any node underneath it will start with that name.  So in the example above, the path to the
+     *  <code>bar</code> node would be <code>root/foo/bar</code> (assuming you're using the default
+     * {@link com.smartgwt.client.widgets.tree.Tree#getPathDelim pathDelim}.  If you omit the name attribute on the root node,
+     * then it's name
+     * is automatically set to the {@link com.smartgwt.client.widgets.tree.Tree#getPathDelim pathDelim} value.  So in the
+     * example above, if
+     *  you omitted <code>name:"root"</code>, then the path to the <code>bar</code> node would be
+     *  <code>/foo/bar</code>.
+     *  <br><br>
+     *  Note: if you initialize a Tree with no <code>root</code> value, a root node will be
+     * auto-created for you.  You can then call {@link com.smartgwt.client.widgets.tree.Tree#add Tree.add} to construct the
+     * tree.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the root node of the tree.
      *
      * @param root new root node. Default value is null
@@ -498,21 +545,42 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-     * If you're using the "parent" modelType, you can provide the root node configuration via this&#010 property.  If you
-     * don't provide it, one will be auto-created for you with an empty name.&#010 Read on for a description of what omitting
-     * the name property on the root node means for path&#010 derivation.&#010 <p>&#010 If you're using the "children"
-     * modelType, you can provide the initial tree data via this&#010 property.  So, for example, to construct the following
-     * tree:&#010 <pre>&#010 foo&#010   bar&#010 zoo&#010 </pre>&#010 You would initialize the tree as follows: &#010
-     * <pre>&#010 Tree.create({&#010     root: { name:"root", children: [&#010         { name:"foo", children: [&#010          
-     * { name: "bar" }&#010         ]},&#010         { name: "zoo" }&#010     ]}&#010 });&#010 </pre>&#010 Note that if you
-     * provide a <code>name</code> property for the root node, then the path to&#010 any node underneath it will start with
-     * that name.  So in the example above, the path to the&#010 <code>bar</code> node would be <code>root/foo/bar</code>
-     * (assuming you're using the default&#010 {@link com.smartgwt.client.widgets.tree.Tree#getPathDelim pathDelim}.  If you
-     * omit the name attribute on the root node, then it's name&#010 is automatically set to the {@link
-     * com.smartgwt.client.widgets.tree.Tree#getPathDelim pathDelim} value.  So in the example above, if&#010 you omitted
-     * <code>name:"root"</code>, then the path to the <code>bar</code> node would be&#010 <code>/foo/bar</code>.&#010
-     * <br><br>&#010 Note: if you initialize a Tree with no <code>root</code> value, a root node will be&#010 auto-created for
-     * you.  You can then call {@link com.smartgwt.client.widgets.tree.Tree#add Tree.add} to construct the tree.
+     * If you're using the "parent" modelType, you can provide the root node configuration via this
+     *  property.  If you don't provide it, one will be auto-created for you with an empty name.
+     *  Read on for a description of what omitting the name property on the root node means for path
+     *  derivation.
+     *  <p>
+     *  If you're using the "children" modelType, you can provide the initial tree data via this
+     *  property.  So, for example, to construct the following tree:
+     *  <pre>
+     *  foo
+     *    bar
+     *  zoo
+     *  </pre>
+     *  You would initialize the tree as follows: 
+     *  <pre>
+     *  Tree.create({
+     *      root: { name:"root", children: [
+     *          { name:"foo", children: [
+     *              { name: "bar" }
+     *          ]},
+     *          { name: "zoo" }
+     *      ]}
+     *  });
+     *  </pre>
+     *  Note that if you provide a <code>name</code> property for the root node, then the path to
+     *  any node underneath it will start with that name.  So in the example above, the path to the
+     *  <code>bar</code> node would be <code>root/foo/bar</code> (assuming you're using the default
+     * {@link com.smartgwt.client.widgets.tree.Tree#getPathDelim pathDelim}.  If you omit the name attribute on the root node,
+     * then it's name
+     * is automatically set to the {@link com.smartgwt.client.widgets.tree.Tree#getPathDelim pathDelim} value.  So in the
+     * example above, if
+     *  you omitted <code>name:"root"</code>, then the path to the <code>bar</code> node would be
+     *  <code>/foo/bar</code>.
+     *  <br><br>
+     *  Note: if you initialize a Tree with no <code>root</code> value, a root node will be
+     * auto-created for you.  You can then call {@link com.smartgwt.client.widgets.tree.Tree#add Tree.add} to construct the
+     * tree.
      *
      *
      * @return Returns the root node of the tree.
@@ -702,11 +770,21 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }-*/;
             
     /**
-     * &#010 Return the number of levels deep this node is in the tree.  For example, for this tree:&#010 <pre>&#010 root&#010 
-     * foo&#010     bar&#010 </pre>&#010 Calling <code>tree.getLevel(bar)</code> will return <code>2</code>. &#010 <P>&#010
+     * 
+     *  Return the number of levels deep this node is in the tree.  For example, for this tree:
+     *  <pre>
+     *  root
+     *    foo
+     *      bar
+     *  </pre>
+     *  Calling <code>tree.getLevel(bar)</code> will return <code>2</code>. 
+     *  <P>
      * Note {@link com.smartgwt.client.widgets.tree.Tree#getShowRoot showRoot} defaults to false so that multiple nodes can be
-     * shown at top level.  In&#010 this case, the top-level nodes still have root as a parent, so have level 1, even
-     * though&#010 they have no visible parents.&#010&#010
+     * shown at top level.  In
+     *  this case, the top-level nodes still have root as a parent, so have level 1, even though
+     *  they have no visible parents.
+     * 
+     * 
      * @param node node in question
      *
      * @return number of parents the node has
@@ -756,12 +834,25 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }-*/;
             
     /**
-     * &#010 Returns the path of a node - a path has the following format:&#010 <code>([name][pathDelim]?)*</code>&#010
-     * <br><br>&#010 For example, in this tree:&#010 <pre>&#010 root&#010   foo&#010     bar&#010 </pre>&#010 Assuming that
-     * {@link com.smartgwt.client.widgets.tree.Tree#getPathDelim pathDelim} is the default <code>/</code>, the
-     * <code>bar</code>&#010 node would have the path <code>root/foo/bar</code> and the path for the <code>foo</code>&#010 node
-     * would be <code>root/foo</code>.&#010 <br><br>&#010 Once you have a path to a node, you can call find(path) to retrieve a
-     * reference to the node&#010 later.&#010&#010
+     * 
+     *  Returns the path of a node - a path has the following format:
+     *  <code>([name][pathDelim]?)*</code>
+     *  <br><br>
+     *  For example, in this tree:
+     *  <pre>
+     *  root
+     *    foo
+     *      bar
+     *  </pre>
+     * Assuming that {@link com.smartgwt.client.widgets.tree.Tree#getPathDelim pathDelim} is the default <code>/</code>, the
+     * <code>bar</code>
+     *  node would have the path <code>root/foo/bar</code> and the path for the <code>foo</code>
+     *  node would be <code>root/foo</code>.
+     *  <br><br>
+     *  Once you have a path to a node, you can call find(path) to retrieve a reference to the node
+     *  later.
+     * 
+     * 
      * @param node node in question
      *
      * @return path to the node

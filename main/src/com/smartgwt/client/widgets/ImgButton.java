@@ -94,6 +94,8 @@ public class ImgButton extends Img {
 
     /**
      * Behavior on state changes -- BUTTON, RADIO or CHECKBOX
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Update the 'actionType' for this canvas (radio / checkbox / button) If the canvas is currently selected, and the passed in actionType is 'button' this method will deselect the canvas.
      *
      * @param actionType actionType Default value is "button"
@@ -143,6 +145,8 @@ public class ImgButton extends Img {
      * Note that for StretchImgButton instances, autoFit will occur horizontally only, as  unpredictable vertical sizing is
      * likely to distort the media. If you do want vertical  auto-fit, this can be achieved by simply setting a small height,
      * and having  overflow:"visible"
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter method for the {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit autoFit} property. Pass in true or false to turn autoFit on or off. When autoFit is set to <code>false</code>, canvas will be resized to it's previously specified size.
      *
      * @param autoFit New autoFit setting.. Default value is null
@@ -177,6 +181,8 @@ public class ImgButton extends Img {
      * "SelectedFocused", "SelectedFocusedOver", etc. <P> For example, if <code>baseStyle</code> is set to "button", this
      * component is {@link com.smartgwt.client.widgets.ImgButton#isSelected selected} and the mouse cursor is over this
      * component, the style "buttonSelectedOver" will be used.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style.
      *
      * @param baseStyle new base style. Default value is "imgButton"
@@ -233,6 +239,8 @@ public class ImgButton extends Img {
     /**
      * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the
      * imgDir of this component.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Change the icon being shown next to the title text.
      *
      * @param icon URL of new icon. Default value is null
@@ -301,6 +309,8 @@ public class ImgButton extends Img {
     /**
      * If this button is showing an icon should it appear to the left or right of the title? valid options are
      * <code>"left"</code> and <code>"right"</code>.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Changes the orientation of the icon relative to the text of the button.
      *
      * @param iconOrientation The new orientation of the icon relative to the text of the button.. Default value is "left"
@@ -463,6 +473,8 @@ public class ImgButton extends Img {
 
     /**
      * Whether this component is selected.  For some components, selection affects appearance.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Select this object.
      *
      * @param selected selected Default value is false
@@ -748,6 +760,8 @@ public class ImgButton extends Img {
      * the  appearance may also be updated by changing the src of the rendered image. See {@link
      * com.smartgwt.client.widgets.Img#getSrc src} and {@link com.smartgwt.client.widgets.StretchImgButton#getSrc src} for a
      * description of how the URL  is modified to reflect the state of the widget in this case.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the 'state' of this object, this changes it's appearance.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -779,6 +793,8 @@ public class ImgButton extends Img {
 
     /**
      * The text title to display in this button.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the title.
      *
      * @param title new title. Default value is varies

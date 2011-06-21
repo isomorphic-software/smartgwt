@@ -236,6 +236,8 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * com.smartgwt.client.widgets.tree.TreeNode}s to  display in this ColumnTree.   The <code>data</code> property will
      * typically not be explicitly specified for  databound ColumnTrees, where the data is returned from the server via
      * databound component methods such as <code>fetchData()</code>
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the {@link com.smartgwt.client.widgets.tree.Tree} object this ColumnTree will view
      *
      * @param data Tree to show. Default value is null

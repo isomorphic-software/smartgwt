@@ -369,26 +369,53 @@ public class OperationBinding extends DataClass {
     }
 
     /**
-     * When set, causes the results of the DataSource Operation to be exported to a file, whose &#010 name and format are
-     * indicated by {@link com.smartgwt.client.data.OperationBinding#getExportFilename exportFilename} and &#010 {@link
-     * com.smartgwt.client.data.OperationBinding#getExportAs exportAs} respectively.  When no exportFilename is provided, the
-     * &#010 default is <i>Results</i> and the default value of exportAs is <i>csv</i>.  Once the Operation &#010 completes,
-     * {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the &#010 exported data will
-     * be downloaded to the file-system or displayed in a new window.   The &#010 default value of exportDisplay is "download"
-     * which displays the Save As dialog.  See &#010 {@link com.smartgwt.client.types.ExportDisplay} for more information.&#010
-     * <P>&#010 The export field-list can also be configured, see {@link com.smartgwt.client.data.DSRequest#getExportFields
-     * exportFields}.&#010 <P>&#010 You can also configure the style of line-breaks to use when generating the output. 
-     * See&#010 LineBreakStyle for more information.&#010 <P>&#010 As well as setting this and other properties on the {@link
-     * com.smartgwt.client.data.OperationBinding}, Exports can be &#010 initiated in two other ways.  You can set properties on
-     * the dsRequest by passing &#010 <i>requestProperties</i> into {@link com.smartgwt.client.data.DataSource#exportData
-     * DataSource.exportData}.  Note that this method does&#010 not support exporting to JSON format (see &#010 <a
-     * href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more detail).&#010 Additionally, custom
-     * server code may set export-related properties on the &#010 {@link com.smartgwt.client.data.DSResponse}.&#010 <P>&#010
-     * <b>Format Examples</b>&#010 <P>&#010 XML format&#010 <pre>&#010     &lt;List&gt;&#010         &lt;Object&gt;&#010       
-     * &lt;id&gt;10101&lt;/id&gt;&#010             &lt;displayName&gt;Record 10101&lt;/displayName&gt;&#010        
-     * &lt;/Object&gt;&#010    &lt;/List&gt;&#010 </pre>&#010 JSON Format&#010 <pre>&#010     [&#010         { id: 10101,
-     * displayName: "Record 10101" }&#010     ]&#010 </pre>&#010 CSV Format&#010 <pre>&#010     id,displayName&#010    
-     * 10101,"Record 10101"&#010 </pre>
+     * When set, causes the results of the DataSource Operation to be exported to a file, whose 
+     * name and format are indicated by {@link com.smartgwt.client.data.OperationBinding#getExportFilename exportFilename} and 
+     * {@link com.smartgwt.client.data.OperationBinding#getExportAs exportAs} respectively.  When no exportFilename is
+     * provided, the 
+     *  default is <i>Results</i> and the default value of exportAs is <i>csv</i>.  Once the Operation 
+     *  completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the 
+     *  exported data will be downloaded to the file-system or displayed in a new window.   The 
+     *  default value of exportDisplay is "download" which displays the Save As dialog.  See 
+     *  {@link com.smartgwt.client.types.ExportDisplay} for more information.
+     *  <P>
+     * The export field-list can also be configured, see {@link com.smartgwt.client.data.DSRequest#getExportFields
+     * exportFields}.
+     *  <P>
+     *  You can also configure the style of line-breaks to use when generating the output.  See
+     *  LineBreakStyle for more information.
+     *  <P>
+     *  As well as setting this and other properties on the {@link com.smartgwt.client.data.OperationBinding}, Exports can be 
+     *  initiated in two other ways.  You can set properties on the dsRequest by passing 
+     * <i>requestProperties</i> into {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.  Note that
+     * this method does
+     *  not support exporting to JSON format (see 
+     *  <a href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more detail).
+     *  Additionally, custom server code may set export-related properties on the 
+     *  {@link com.smartgwt.client.data.DSResponse}.
+     *  <P>
+     *  <b>Format Examples</b>
+     *  <P>
+     *  XML format
+     *  <pre>
+     *      &lt;List&gt;
+     *          &lt;Object&gt;
+     *              &lt;id&gt;10101&lt;/id&gt;
+     *              &lt;displayName&gt;Record 10101&lt;/displayName&gt;
+     *          &lt;/Object&gt;
+     *     &lt;/List&gt;
+     *  </pre>
+     *  JSON Format
+     *  <pre>
+     *      [
+     *          { id: 10101, displayName: "Record 10101" }
+     *      ]
+     *  </pre>
+     *  CSV Format
+     *  <pre>
+     *      id,displayName
+     *      10101,"Record 10101"
+     *  </pre>
      *
      * @param exportResults exportResults Default value is false
      */
@@ -397,26 +424,53 @@ public class OperationBinding extends DataClass {
     }
 
     /**
-     * When set, causes the results of the DataSource Operation to be exported to a file, whose &#010 name and format are
-     * indicated by {@link com.smartgwt.client.data.OperationBinding#getExportFilename exportFilename} and &#010 {@link
-     * com.smartgwt.client.data.OperationBinding#getExportAs exportAs} respectively.  When no exportFilename is provided, the
-     * &#010 default is <i>Results</i> and the default value of exportAs is <i>csv</i>.  Once the Operation &#010 completes,
-     * {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the &#010 exported data will
-     * be downloaded to the file-system or displayed in a new window.   The &#010 default value of exportDisplay is "download"
-     * which displays the Save As dialog.  See &#010 {@link com.smartgwt.client.types.ExportDisplay} for more information.&#010
-     * <P>&#010 The export field-list can also be configured, see {@link com.smartgwt.client.data.DSRequest#getExportFields
-     * exportFields}.&#010 <P>&#010 You can also configure the style of line-breaks to use when generating the output. 
-     * See&#010 LineBreakStyle for more information.&#010 <P>&#010 As well as setting this and other properties on the {@link
-     * com.smartgwt.client.data.OperationBinding}, Exports can be &#010 initiated in two other ways.  You can set properties on
-     * the dsRequest by passing &#010 <i>requestProperties</i> into {@link com.smartgwt.client.data.DataSource#exportData
-     * DataSource.exportData}.  Note that this method does&#010 not support exporting to JSON format (see &#010 <a
-     * href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more detail).&#010 Additionally, custom
-     * server code may set export-related properties on the &#010 {@link com.smartgwt.client.data.DSResponse}.&#010 <P>&#010
-     * <b>Format Examples</b>&#010 <P>&#010 XML format&#010 <pre>&#010     &lt;List&gt;&#010         &lt;Object&gt;&#010       
-     * &lt;id&gt;10101&lt;/id&gt;&#010             &lt;displayName&gt;Record 10101&lt;/displayName&gt;&#010        
-     * &lt;/Object&gt;&#010    &lt;/List&gt;&#010 </pre>&#010 JSON Format&#010 <pre>&#010     [&#010         { id: 10101,
-     * displayName: "Record 10101" }&#010     ]&#010 </pre>&#010 CSV Format&#010 <pre>&#010     id,displayName&#010    
-     * 10101,"Record 10101"&#010 </pre>
+     * When set, causes the results of the DataSource Operation to be exported to a file, whose 
+     * name and format are indicated by {@link com.smartgwt.client.data.OperationBinding#getExportFilename exportFilename} and 
+     * {@link com.smartgwt.client.data.OperationBinding#getExportAs exportAs} respectively.  When no exportFilename is
+     * provided, the 
+     *  default is <i>Results</i> and the default value of exportAs is <i>csv</i>.  Once the Operation 
+     *  completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the 
+     *  exported data will be downloaded to the file-system or displayed in a new window.   The 
+     *  default value of exportDisplay is "download" which displays the Save As dialog.  See 
+     *  {@link com.smartgwt.client.types.ExportDisplay} for more information.
+     *  <P>
+     * The export field-list can also be configured, see {@link com.smartgwt.client.data.DSRequest#getExportFields
+     * exportFields}.
+     *  <P>
+     *  You can also configure the style of line-breaks to use when generating the output.  See
+     *  LineBreakStyle for more information.
+     *  <P>
+     *  As well as setting this and other properties on the {@link com.smartgwt.client.data.OperationBinding}, Exports can be 
+     *  initiated in two other ways.  You can set properties on the dsRequest by passing 
+     * <i>requestProperties</i> into {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.  Note that
+     * this method does
+     *  not support exporting to JSON format (see 
+     *  <a href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more detail).
+     *  Additionally, custom server code may set export-related properties on the 
+     *  {@link com.smartgwt.client.data.DSResponse}.
+     *  <P>
+     *  <b>Format Examples</b>
+     *  <P>
+     *  XML format
+     *  <pre>
+     *      &lt;List&gt;
+     *          &lt;Object&gt;
+     *              &lt;id&gt;10101&lt;/id&gt;
+     *              &lt;displayName&gt;Record 10101&lt;/displayName&gt;
+     *          &lt;/Object&gt;
+     *     &lt;/List&gt;
+     *  </pre>
+     *  JSON Format
+     *  <pre>
+     *      [
+     *          { id: 10101, displayName: "Record 10101" }
+     *      ]
+     *  </pre>
+     *  CSV Format
+     *  <pre>
+     *      id,displayName
+     *      10101,"Record 10101"
+     *  </pre>
      *
      *
      * @return Boolean
@@ -811,19 +865,31 @@ public class OperationBinding extends DataClass {
 
     /**
      * Optional object declaring namespace prefixes for use in {@link com.smartgwt.client.data.OperationBinding#getRecordXPath
-     * recordXPath} and&#010 {@link com.smartgwt.client.data.DataSourceField#getValueXPath valueXPath} XPath expressions.&#010
-     * <P>&#010 <code>xmlNamespaces</code> should be specified as a mapping from namespace prefix to&#010 namespace URI, for
-     * example:&#010 <pre>&#010    xmlNamespaces : {&#010        az :
-     * "http://webservices.amazon.com/AWSECommerceService/2005-03-23"&#010    }&#010 </pre>&#010 By default, all namespaces
-     * declared on the document element (outermost element of the&#010 response) are made available with the prefix used in the
-     * document itself.&#010 <P>&#010 Then, for non-WSDL-described XML results, if there is a default namespace on the
-     * document&#010 element, it is made available with the special prefix "default".&#010 <P>&#010 For results of
-     * WSDL-described operations, the prefix "service" means the service namespace,&#010 that is, the "targetNamespace" on the
-     * &lt;definitions&gt; element from the WSDL file.  The prefix&#010 "schema" means the namespace of the outermost element
-     * in the output message for the current&#010 operation.  "default" will be the schema namespace if there is one, otherwise
-     * the service&#010 namespace.&#010 <P>&#010 For basic information on XML Namespaces and their use in XPath, try the
-     * following search:&#010 <a href="http://www.google.com/search?q=XPath+xml+namespaces" target="_blank"&#010
-     * >http://www.google.com/search?q=XPath+xml+namespaces</a>
+     * recordXPath} and
+     *  {@link com.smartgwt.client.data.DataSourceField#getValueXPath valueXPath} XPath expressions.
+     *  <P>
+     *  <code>xmlNamespaces</code> should be specified as a mapping from namespace prefix to
+     *  namespace URI, for example:
+     *  <pre>
+     *     xmlNamespaces : {
+     *         az : "http://webservices.amazon.com/AWSECommerceService/2005-03-23"
+     *     }
+     *  </pre>
+     *  By default, all namespaces declared on the document element (outermost element of the
+     *  response) are made available with the prefix used in the document itself.
+     *  <P>
+     *  Then, for non-WSDL-described XML results, if there is a default namespace on the document
+     *  element, it is made available with the special prefix "default".
+     *  <P>
+     *  For results of WSDL-described operations, the prefix "service" means the service namespace,
+     *  that is, the "targetNamespace" on the &lt;definitions&gt; element from the WSDL file.  The prefix
+     *  "schema" means the namespace of the outermost element in the output message for the current
+     *  operation.  "default" will be the schema namespace if there is one, otherwise the service
+     *  namespace.
+     *  <P>
+     *  For basic information on XML Namespaces and their use in XPath, try the following search:
+     *  <a href="http://www.google.com/search?q=XPath+xml+namespaces" target="_blank"
+     *  >http://www.google.com/search?q=XPath+xml+namespaces</a>
      *
      * @param xmlNamespaces xmlNamespaces Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
@@ -835,19 +901,31 @@ public class OperationBinding extends DataClass {
 
     /**
      * Optional object declaring namespace prefixes for use in {@link com.smartgwt.client.data.OperationBinding#getRecordXPath
-     * recordXPath} and&#010 {@link com.smartgwt.client.data.DataSourceField#getValueXPath valueXPath} XPath expressions.&#010
-     * <P>&#010 <code>xmlNamespaces</code> should be specified as a mapping from namespace prefix to&#010 namespace URI, for
-     * example:&#010 <pre>&#010    xmlNamespaces : {&#010        az :
-     * "http://webservices.amazon.com/AWSECommerceService/2005-03-23"&#010    }&#010 </pre>&#010 By default, all namespaces
-     * declared on the document element (outermost element of the&#010 response) are made available with the prefix used in the
-     * document itself.&#010 <P>&#010 Then, for non-WSDL-described XML results, if there is a default namespace on the
-     * document&#010 element, it is made available with the special prefix "default".&#010 <P>&#010 For results of
-     * WSDL-described operations, the prefix "service" means the service namespace,&#010 that is, the "targetNamespace" on the
-     * &lt;definitions&gt; element from the WSDL file.  The prefix&#010 "schema" means the namespace of the outermost element
-     * in the output message for the current&#010 operation.  "default" will be the schema namespace if there is one, otherwise
-     * the service&#010 namespace.&#010 <P>&#010 For basic information on XML Namespaces and their use in XPath, try the
-     * following search:&#010 <a href="http://www.google.com/search?q=XPath+xml+namespaces" target="_blank"&#010
-     * >http://www.google.com/search?q=XPath+xml+namespaces</a>
+     * recordXPath} and
+     *  {@link com.smartgwt.client.data.DataSourceField#getValueXPath valueXPath} XPath expressions.
+     *  <P>
+     *  <code>xmlNamespaces</code> should be specified as a mapping from namespace prefix to
+     *  namespace URI, for example:
+     *  <pre>
+     *     xmlNamespaces : {
+     *         az : "http://webservices.amazon.com/AWSECommerceService/2005-03-23"
+     *     }
+     *  </pre>
+     *  By default, all namespaces declared on the document element (outermost element of the
+     *  response) are made available with the prefix used in the document itself.
+     *  <P>
+     *  Then, for non-WSDL-described XML results, if there is a default namespace on the document
+     *  element, it is made available with the special prefix "default".
+     *  <P>
+     *  For results of WSDL-described operations, the prefix "service" means the service namespace,
+     *  that is, the "targetNamespace" on the &lt;definitions&gt; element from the WSDL file.  The prefix
+     *  "schema" means the namespace of the outermost element in the output message for the current
+     *  operation.  "default" will be the schema namespace if there is one, otherwise the service
+     *  namespace.
+     *  <P>
+     *  For basic information on XML Namespaces and their use in XPath, try the following search:
+     *  <a href="http://www.google.com/search?q=XPath+xml+namespaces" target="_blank"
+     *  >http://www.google.com/search?q=XPath+xml+namespaces</a>
      *
      *
      * @return XmlNamespaces

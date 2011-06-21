@@ -228,11 +228,19 @@ public class JSONEncoder extends DataClass {
     }
 
     /**
-     * Whether all property names should be quoted, or only those property names that are not valid&#010 identifiers or are
-     * JavaScript reserved words (such as "true").&#010 <P>&#010 Encoding only where required produces slightly shorter, more
-     * readable output which is still&#010 compatible with JavaScript's eval():&#010 <pre>&#010 {&#010     someProp :
-     * "someValue",&#010     "true" : "otherValue",&#010     otherProp : "otherValue"&#010 }&#010 </pre>&#010 .. but is not
-     * understood by many server-side JSON parser implementations.
+     * Whether all property names should be quoted, or only those property names that are not valid
+     *  identifiers or are JavaScript reserved words (such as "true").
+     *  <P>
+     *  Encoding only where required produces slightly shorter, more readable output which is still
+     *  compatible with JavaScript's eval():
+     *  <pre>
+     *  {
+     *      someProp : "someValue",
+     *      "true" : "otherValue",
+     *      otherProp : "otherValue"
+     *  }
+     *  </pre>
+     *  .. but is not understood by many server-side JSON parser implementations.
      *
      * @param strictQuoting strictQuoting Default value is true
      */
@@ -241,11 +249,19 @@ public class JSONEncoder extends DataClass {
     }
 
     /**
-     * Whether all property names should be quoted, or only those property names that are not valid&#010 identifiers or are
-     * JavaScript reserved words (such as "true").&#010 <P>&#010 Encoding only where required produces slightly shorter, more
-     * readable output which is still&#010 compatible with JavaScript's eval():&#010 <pre>&#010 {&#010     someProp :
-     * "someValue",&#010     "true" : "otherValue",&#010     otherProp : "otherValue"&#010 }&#010 </pre>&#010 .. but is not
-     * understood by many server-side JSON parser implementations.
+     * Whether all property names should be quoted, or only those property names that are not valid
+     *  identifiers or are JavaScript reserved words (such as "true").
+     *  <P>
+     *  Encoding only where required produces slightly shorter, more readable output which is still
+     *  compatible with JavaScript's eval():
+     *  <pre>
+     *  {
+     *      someProp : "someValue",
+     *      "true" : "otherValue",
+     *      otherProp : "otherValue"
+     *  }
+     *  </pre>
+     *  .. but is not understood by many server-side JSON parser implementations.
      *
      *
      * @return Boolean

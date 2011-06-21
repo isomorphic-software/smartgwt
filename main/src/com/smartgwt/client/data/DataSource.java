@@ -214,6 +214,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * cause automatic cache updates, you can set {@link com.smartgwt.client.data.DataSource#getCacheMaxAge cacheMaxAge} to a
      * number of seconds and once data has been client-side for that length of time, the next fetch causes the cache to be
      * dropped and a new cache retrieved.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Call this method to switch cacheAllData on or off after initialization.  Passing a  <code>shouldCache</code> value of false clears any existing client-side cache, cancels any outstanding requests for a full cache and issues any other pending requests normally.
      *
      * @param cacheAllData New value for {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData}. Default value is null
@@ -243,6 +245,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * For a {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} or client-only DataSource, a set of
      * records to use as a dataset,  specified as an Array of JavaScript Objects representing records.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Call this method to set the data in the client-side cache after initialization.
      *
      * @param cacheData Array of records to apply as the client-side cache. Default value is null
@@ -338,17 +342,29 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * fieldName for a field in the dataSource expected to contain an explicit array of child nodes.&#010 Enables loading a
-     * databound tree as a hierarchical data structure, rather than a flat list of&#010 nodes linked by foreignKey.<br>&#010
+     * fieldName for a field in the dataSource expected to contain an explicit array of child nodes.
+     *  Enables loading a databound tree as a hierarchical data structure, rather than a flat list of
+     *  nodes linked by foreignKey.<br>
      * Note this is an alternative to setting {@link com.smartgwt.client.data.DataSourceField#getChildrenProperty
-     * childrenProperty} directly on&#010 the childrenField object.<P>&#010 By default the children field will be assumed to be
-     * {@link com.smartgwt.client.data.DataSourceField#getMultiple multiple},&#010 for XML databinding. This implies that child
-     * data should be delivered in the format:&#010 <pre>&#010      &lt;childrenFieldName&gt;&#010          &lt;item
-     * name="firstChild" ...&gt;&#010          &lt;item name="secondChild" ...&gt;&#010      &lt;/childrenFieldName&gt;&#010
-     * </pre>&#010 However data may also be delivered as a direct list of <code>childrenFieldName</code> &#010 elements:&#010
-     * <pre>&#010      &lt;childrenFieldName name="firstChild" ...&gt;&#010      &lt;childrenFieldName name="secondChild"
-     * ...&gt;&#010 </pre>&#010 If you want to return your data in this format, you will need to explicitly set &#010
-     * <code>multiple</code> to false in the appropriate dataSource field definition.
+     * childrenProperty} directly on
+     *  the childrenField object.<P>
+     * By default the children field will be assumed to be {@link com.smartgwt.client.data.DataSourceField#getMultiple
+     * multiple},
+     *  for XML databinding. This implies that child data should be delivered in the format:
+     *  <pre>
+     *       &lt;childrenFieldName&gt;
+     *           &lt;item name="firstChild" ...&gt;
+     *           &lt;item name="secondChild" ...&gt;
+     *       &lt;/childrenFieldName&gt;
+     *  </pre>
+     *  However data may also be delivered as a direct list of <code>childrenFieldName</code> 
+     *  elements:
+     *  <pre>
+     *       &lt;childrenFieldName name="firstChild" ...&gt;
+     *       &lt;childrenFieldName name="secondChild" ...&gt;
+     *  </pre>
+     *  If you want to return your data in this format, you will need to explicitly set 
+     *  <code>multiple</code> to false in the appropriate dataSource field definition.
      *
      * @param childrenField childrenField Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -360,17 +376,29 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * fieldName for a field in the dataSource expected to contain an explicit array of child nodes.&#010 Enables loading a
-     * databound tree as a hierarchical data structure, rather than a flat list of&#010 nodes linked by foreignKey.<br>&#010
+     * fieldName for a field in the dataSource expected to contain an explicit array of child nodes.
+     *  Enables loading a databound tree as a hierarchical data structure, rather than a flat list of
+     *  nodes linked by foreignKey.<br>
      * Note this is an alternative to setting {@link com.smartgwt.client.data.DataSourceField#getChildrenProperty
-     * childrenProperty} directly on&#010 the childrenField object.<P>&#010 By default the children field will be assumed to be
-     * {@link com.smartgwt.client.data.DataSourceField#getMultiple multiple},&#010 for XML databinding. This implies that child
-     * data should be delivered in the format:&#010 <pre>&#010      &lt;childrenFieldName&gt;&#010          &lt;item
-     * name="firstChild" ...&gt;&#010          &lt;item name="secondChild" ...&gt;&#010      &lt;/childrenFieldName&gt;&#010
-     * </pre>&#010 However data may also be delivered as a direct list of <code>childrenFieldName</code> &#010 elements:&#010
-     * <pre>&#010      &lt;childrenFieldName name="firstChild" ...&gt;&#010      &lt;childrenFieldName name="secondChild"
-     * ...&gt;&#010 </pre>&#010 If you want to return your data in this format, you will need to explicitly set &#010
-     * <code>multiple</code> to false in the appropriate dataSource field definition.
+     * childrenProperty} directly on
+     *  the childrenField object.<P>
+     * By default the children field will be assumed to be {@link com.smartgwt.client.data.DataSourceField#getMultiple
+     * multiple},
+     *  for XML databinding. This implies that child data should be delivered in the format:
+     *  <pre>
+     *       &lt;childrenFieldName&gt;
+     *           &lt;item name="firstChild" ...&gt;
+     *           &lt;item name="secondChild" ...&gt;
+     *       &lt;/childrenFieldName&gt;
+     *  </pre>
+     *  However data may also be delivered as a direct list of <code>childrenFieldName</code> 
+     *  elements:
+     *  <pre>
+     *       &lt;childrenFieldName name="firstChild" ...&gt;
+     *       &lt;childrenFieldName name="secondChild" ...&gt;
+     *  </pre>
+     *  If you want to return your data in this format, you will need to explicitly set 
+     *  <code>multiple</code> to false in the appropriate dataSource field definition.
      *
      *
      * @return String
@@ -388,6 +416,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} DataSource, where all operations are performed on
      * client-side data, not just fetches. <P> See {@link com.smartgwt.client.docs.ClientOnlyDataSources this discussion} for
      * ways to populate a client-only DataSource with test data.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Switch into clientOnly mode, taking the cache from the cacheAllData ResultSet if it  exists.
      *
      * @param clientOnly clientOnly Default value is false
@@ -673,13 +703,22 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * Namespaces definitions to add to the root element of outbound XML messages sent to a web&#010 service, as a mapping from
-     * namespace prefix to namespace URI.&#010 <P>&#010 The default value is:&#010 <pre>&#010   globalNamespaces : {&#010     
-     * xsi: "http://www.w3.org/2001/XMLSchema-instance",&#010      xsd: "http://www.w3.org/2001/XMLSchema"&#010   },&#010
-     * </pre>&#010 This default value allows the use of the xsi:type and xsi:nil attributes without further&#010
-     * declarations.&#010 <P>&#010 Note that some web services will only accept specific revisions of the XML Schema URI.&#010
-     * If xsi-namespaced attributes seem to be ignored by an older webservice, try the URI&#010
-     * "http://www.w3.org/1999/XMLSchema-instance" instead.
+     * Namespaces definitions to add to the root element of outbound XML messages sent to a web
+     *  service, as a mapping from namespace prefix to namespace URI.
+     *  <P>
+     *  The default value is:
+     *  <pre>
+     *    globalNamespaces : {
+     *       xsi: "http://www.w3.org/2001/XMLSchema-instance",
+     *       xsd: "http://www.w3.org/2001/XMLSchema"
+     *    },
+     *  </pre>
+     *  This default value allows the use of the xsi:type and xsi:nil attributes without further
+     *  declarations.
+     *  <P>
+     *  Note that some web services will only accept specific revisions of the XML Schema URI.
+     *  If xsi-namespaced attributes seem to be ignored by an older webservice, try the URI
+     *  "http://www.w3.org/1999/XMLSchema-instance" instead.
      *
      * @param globalNamespaces globalNamespaces Default value is ...
      */
@@ -688,13 +727,22 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * Namespaces definitions to add to the root element of outbound XML messages sent to a web&#010 service, as a mapping from
-     * namespace prefix to namespace URI.&#010 <P>&#010 The default value is:&#010 <pre>&#010   globalNamespaces : {&#010     
-     * xsi: "http://www.w3.org/2001/XMLSchema-instance",&#010      xsd: "http://www.w3.org/2001/XMLSchema"&#010   },&#010
-     * </pre>&#010 This default value allows the use of the xsi:type and xsi:nil attributes without further&#010
-     * declarations.&#010 <P>&#010 Note that some web services will only accept specific revisions of the XML Schema URI.&#010
-     * If xsi-namespaced attributes seem to be ignored by an older webservice, try the URI&#010
-     * "http://www.w3.org/1999/XMLSchema-instance" instead.
+     * Namespaces definitions to add to the root element of outbound XML messages sent to a web
+     *  service, as a mapping from namespace prefix to namespace URI.
+     *  <P>
+     *  The default value is:
+     *  <pre>
+     *    globalNamespaces : {
+     *       xsi: "http://www.w3.org/2001/XMLSchema-instance",
+     *       xsd: "http://www.w3.org/2001/XMLSchema"
+     *    },
+     *  </pre>
+     *  This default value allows the use of the xsi:type and xsi:nil attributes without further
+     *  declarations.
+     *  <P>
+     *  Note that some web services will only accept specific revisions of the XML Schema URI.
+     *  If xsi-namespaced attributes seem to be ignored by an older webservice, try the URI
+     *  "http://www.w3.org/1999/XMLSchema-instance" instead.
      *
      *
      * @return Map
@@ -906,38 +954,60 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * Optional array of OperationBindings, which provide instructions to the DataSource about how each&#010 DSOperation is to
-     * be performed.&#010 <P>&#010 When using the Smart GWT Server, OperationBindings are specified in your DataSource&#010
-     * descriptor (.ds.xml file) and control server-side behavior such as what Java object to route&#010 DSRequest to ({@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#serverObject serverObject}) or customizations to SQL / HQL
-     * queries&#010 ({@link com.smartgwt.client.docs.serverds.OperationBinding#customSQL customSQL} and {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#customHQL customHQL}).  See the &#010 @see <a
-     * href="http://www.smartclient.com/smartgwtee/showcase/#javaDataIntegration" target="examples">Java Integration
-     * samples</a>.&#010 <P>&#010 For DataSources bound to WSDL-described web services using&#010 {@link
-     * com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace}, OperationBindings are used to bind each
-     * DataSource&#010 {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} to an&#010 {@link
-     * com.smartgwt.client.data.OperationBinding#getWsOperation operation} of a WSDL-described &#010 {@link
-     * com.smartgwt.client.data.WebService web service}, so that a DataSource can both fetch and save data to a web&#010
-     * service.&#010 <P>&#010 For example, this code accomplishes part of the binding to the &#010 <a
-     * href='http://www.google.com/search?q=sforce+partner+wsdl'
+     * Optional array of OperationBindings, which provide instructions to the DataSource about how each
+     *  DSOperation is to be performed.
+     *  <P>
+     *  When using the Smart GWT Server, OperationBindings are specified in your DataSource
+     *  descriptor (.ds.xml file) and control server-side behavior such as what Java object to route
+     * DSRequest to ({@link com.smartgwt.client.docs.serverds.OperationBinding#serverObject serverObject}) or customizations to
+     * SQL / HQL queries
+     * ({@link com.smartgwt.client.docs.serverds.OperationBinding#customSQL customSQL} and {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#customHQL customHQL}).  See the 
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#javaDataIntegration" target="examples">Java Integration
+     * samples</a>.
+     *  <P>
+     *  For DataSources bound to WSDL-described web services using
+     * {@link com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace}, OperationBindings are used to bind
+     * each DataSource
+     *  {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} to an
+     *  {@link com.smartgwt.client.data.OperationBinding#getWsOperation operation} of a WSDL-described 
+     *  {@link com.smartgwt.client.data.WebService web service}, so that a DataSource can both fetch and save data to a web
+     *  service.
+     *  <P>
+     *  For example, this code accomplishes part of the binding to the 
+     * <a href='http://www.google.com/search?q=sforce+partner+wsdl'
      * onclick="window.open('http://www.google.com/search?q=sforce+partner+wsdl');return false;">SalesForce partner web
-     * services</a>&#010 <pre>&#010 isc.DataSource.create({&#010    serviceNamespace : "urn:partner.soap.sforce.com",&#010   
-     * operationBindings : [&#010        { operationType:"fetch", wsOperation:"query", recordName: "sObject" },&#010        {
-     * operationType:"update", wsOperation:"update", recordName: "SaveResult" },&#010        { operationType:"add",
-     * wsOperation:"create", recordName: "SaveResult" },&#010        { operationType:"remove", wsOperation:"delete",
-     * recordName: "DeleteResult" }&#010    ],&#010    ...&#010 }); &#010 </pre>&#010 NOTE: additional code is required to
-     * handle authentication and other details, see the&#010 complete code in
-     * smartclientSDK/examples/databinding/SalesForce.&#010 <P>&#010 For DataSources that contact non-WSDL-described XML or
-     * JSON services, OperationBindings can&#010 be used to separately configure the URL, HTTP method, input and output
-     * processing for each&#010 operationType.  This makes it possible to fetch JSON data from one URL for the "fetch"&#010
-     * operationType and save to a web service for the "update" operationType, while appearing as a&#010 single integrated
-     * DataSource to a {@link com.smartgwt.client.widgets.DataBoundComponent} such as an&#010 {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getCanEdit editable ListGrid}.&#010 <P>&#010 If no operationBinding is defined
-     * for a given DataSource operation, all of the properties&#010 which are valid on the operationBinding are checked for on
-     * the DataSource itself.  &#010 <P>&#010 This also means that for a read-only DataSource, that is, a DataSource only
-     * capable of fetch&#010 operations, operationBindings need not be specified, and instead all operationBinding&#010
-     * properties can be set on the DataSource itself.  An example of using OperationBinding&#010 properties directly on the
-     * DataSource in order to read an RSS feed can be found here:&#010 <P>&#010
+     * services</a>
+     *  <pre>
+     *  isc.DataSource.create({
+     *     serviceNamespace : "urn:partner.soap.sforce.com",
+     *     operationBindings : [
+     *         { operationType:"fetch", wsOperation:"query", recordName: "sObject" },
+     *         { operationType:"update", wsOperation:"update", recordName: "SaveResult" },
+     *         { operationType:"add", wsOperation:"create", recordName: "SaveResult" },
+     *         { operationType:"remove", wsOperation:"delete", recordName: "DeleteResult" }
+     *     ],
+     *     ...
+     *  }); 
+     *  </pre>
+     *  NOTE: additional code is required to handle authentication and other details, see the
+     *  complete code in smartclientSDK/examples/databinding/SalesForce.
+     *  <P>
+     *  For DataSources that contact non-WSDL-described XML or JSON services, OperationBindings can
+     *  be used to separately configure the URL, HTTP method, input and output processing for each
+     *  operationType.  This makes it possible to fetch JSON data from one URL for the "fetch"
+     *  operationType and save to a web service for the "update" operationType, while appearing as a
+     *  single integrated DataSource to a {@link com.smartgwt.client.widgets.DataBoundComponent} such as an
+     *  {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit editable ListGrid}.
+     *  <P>
+     *  If no operationBinding is defined for a given DataSource operation, all of the properties
+     *  which are valid on the operationBinding are checked for on the DataSource itself.  
+     *  <P>
+     *  This also means that for a read-only DataSource, that is, a DataSource only capable of fetch
+     *  operations, operationBindings need not be specified, and instead all operationBinding
+     *  properties can be set on the DataSource itself.  An example of using OperationBinding
+     *  properties directly on the DataSource in order to read an RSS feed can be found here:
+     *  <P>
      * ${isc.DocUtils.linkForStandaloneExample('/examples/databinding/rss_databinding.html',
      * '/examples/databinding/rss_databinding.html')}
      *
@@ -950,38 +1020,60 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * Optional array of OperationBindings, which provide instructions to the DataSource about how each&#010 DSOperation is to
-     * be performed.&#010 <P>&#010 When using the Smart GWT Server, OperationBindings are specified in your DataSource&#010
-     * descriptor (.ds.xml file) and control server-side behavior such as what Java object to route&#010 DSRequest to ({@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#serverObject serverObject}) or customizations to SQL / HQL
-     * queries&#010 ({@link com.smartgwt.client.docs.serverds.OperationBinding#customSQL customSQL} and {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#customHQL customHQL}).  See the &#010 @see <a
-     * href="http://www.smartclient.com/smartgwtee/showcase/#javaDataIntegration" target="examples">Java Integration
-     * samples</a>.&#010 <P>&#010 For DataSources bound to WSDL-described web services using&#010 {@link
-     * com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace}, OperationBindings are used to bind each
-     * DataSource&#010 {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} to an&#010 {@link
-     * com.smartgwt.client.data.OperationBinding#getWsOperation operation} of a WSDL-described &#010 {@link
-     * com.smartgwt.client.data.WebService web service}, so that a DataSource can both fetch and save data to a web&#010
-     * service.&#010 <P>&#010 For example, this code accomplishes part of the binding to the &#010 <a
-     * href='http://www.google.com/search?q=sforce+partner+wsdl'
+     * Optional array of OperationBindings, which provide instructions to the DataSource about how each
+     *  DSOperation is to be performed.
+     *  <P>
+     *  When using the Smart GWT Server, OperationBindings are specified in your DataSource
+     *  descriptor (.ds.xml file) and control server-side behavior such as what Java object to route
+     * DSRequest to ({@link com.smartgwt.client.docs.serverds.OperationBinding#serverObject serverObject}) or customizations to
+     * SQL / HQL queries
+     * ({@link com.smartgwt.client.docs.serverds.OperationBinding#customSQL customSQL} and {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#customHQL customHQL}).  See the 
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#javaDataIntegration" target="examples">Java Integration
+     * samples</a>.
+     *  <P>
+     *  For DataSources bound to WSDL-described web services using
+     * {@link com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace}, OperationBindings are used to bind
+     * each DataSource
+     *  {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} to an
+     *  {@link com.smartgwt.client.data.OperationBinding#getWsOperation operation} of a WSDL-described 
+     *  {@link com.smartgwt.client.data.WebService web service}, so that a DataSource can both fetch and save data to a web
+     *  service.
+     *  <P>
+     *  For example, this code accomplishes part of the binding to the 
+     * <a href='http://www.google.com/search?q=sforce+partner+wsdl'
      * onclick="window.open('http://www.google.com/search?q=sforce+partner+wsdl');return false;">SalesForce partner web
-     * services</a>&#010 <pre>&#010 isc.DataSource.create({&#010    serviceNamespace : "urn:partner.soap.sforce.com",&#010   
-     * operationBindings : [&#010        { operationType:"fetch", wsOperation:"query", recordName: "sObject" },&#010        {
-     * operationType:"update", wsOperation:"update", recordName: "SaveResult" },&#010        { operationType:"add",
-     * wsOperation:"create", recordName: "SaveResult" },&#010        { operationType:"remove", wsOperation:"delete",
-     * recordName: "DeleteResult" }&#010    ],&#010    ...&#010 }); &#010 </pre>&#010 NOTE: additional code is required to
-     * handle authentication and other details, see the&#010 complete code in
-     * smartclientSDK/examples/databinding/SalesForce.&#010 <P>&#010 For DataSources that contact non-WSDL-described XML or
-     * JSON services, OperationBindings can&#010 be used to separately configure the URL, HTTP method, input and output
-     * processing for each&#010 operationType.  This makes it possible to fetch JSON data from one URL for the "fetch"&#010
-     * operationType and save to a web service for the "update" operationType, while appearing as a&#010 single integrated
-     * DataSource to a {@link com.smartgwt.client.widgets.DataBoundComponent} such as an&#010 {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getCanEdit editable ListGrid}.&#010 <P>&#010 If no operationBinding is defined
-     * for a given DataSource operation, all of the properties&#010 which are valid on the operationBinding are checked for on
-     * the DataSource itself.  &#010 <P>&#010 This also means that for a read-only DataSource, that is, a DataSource only
-     * capable of fetch&#010 operations, operationBindings need not be specified, and instead all operationBinding&#010
-     * properties can be set on the DataSource itself.  An example of using OperationBinding&#010 properties directly on the
-     * DataSource in order to read an RSS feed can be found here:&#010 <P>&#010
+     * services</a>
+     *  <pre>
+     *  isc.DataSource.create({
+     *     serviceNamespace : "urn:partner.soap.sforce.com",
+     *     operationBindings : [
+     *         { operationType:"fetch", wsOperation:"query", recordName: "sObject" },
+     *         { operationType:"update", wsOperation:"update", recordName: "SaveResult" },
+     *         { operationType:"add", wsOperation:"create", recordName: "SaveResult" },
+     *         { operationType:"remove", wsOperation:"delete", recordName: "DeleteResult" }
+     *     ],
+     *     ...
+     *  }); 
+     *  </pre>
+     *  NOTE: additional code is required to handle authentication and other details, see the
+     *  complete code in smartclientSDK/examples/databinding/SalesForce.
+     *  <P>
+     *  For DataSources that contact non-WSDL-described XML or JSON services, OperationBindings can
+     *  be used to separately configure the URL, HTTP method, input and output processing for each
+     *  operationType.  This makes it possible to fetch JSON data from one URL for the "fetch"
+     *  operationType and save to a web service for the "update" operationType, while appearing as a
+     *  single integrated DataSource to a {@link com.smartgwt.client.widgets.DataBoundComponent} such as an
+     *  {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit editable ListGrid}.
+     *  <P>
+     *  If no operationBinding is defined for a given DataSource operation, all of the properties
+     *  which are valid on the operationBinding are checked for on the DataSource itself.  
+     *  <P>
+     *  This also means that for a read-only DataSource, that is, a DataSource only capable of fetch
+     *  operations, operationBindings need not be specified, and instead all operationBinding
+     *  properties can be set on the DataSource itself.  An example of using OperationBinding
+     *  properties directly on the DataSource in order to read an RSS feed can be found here:
+     *  <P>
      * ${isc.DocUtils.linkForStandaloneExample('/examples/databinding/rss_databinding.html',
      * '/examples/databinding/rss_databinding.html')}
      *
@@ -1332,11 +1424,15 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * [A] If set to true, both client and server-side advanced filtering used by Smart GWT will follow&#010 SQL99 behavior for
-     * dealing with NULL values, which is often counter-intuitive to users.&#010 Specifically, when a field has NULL value, all
-     * of the following expressions are false:&#010 <pre>&#010    field == "someValue"  (normally false)&#010    field !=
-     * "someValue"  (normally true)&#010    not (field == "someValue")   (normally true)&#010    not (field != "someValue")  
-     * (normally false)&#010 </pre>
+     * [A] If set to true, both client and server-side advanced filtering used by Smart GWT will follow
+     *  SQL99 behavior for dealing with NULL values, which is often counter-intuitive to users.
+     *  Specifically, when a field has NULL value, all of the following expressions are false:
+     *  <pre>
+     *     field == "someValue"  (normally false)
+     *     field != "someValue"  (normally true)
+     *     not (field == "someValue")   (normally true)
+     *     not (field != "someValue")   (normally false)
+     *  </pre>
      *
      * @param strictSQLFiltering strictSQLFiltering Default value is false
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -1346,11 +1442,15 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * [A] If set to true, both client and server-side advanced filtering used by Smart GWT will follow&#010 SQL99 behavior for
-     * dealing with NULL values, which is often counter-intuitive to users.&#010 Specifically, when a field has NULL value, all
-     * of the following expressions are false:&#010 <pre>&#010    field == "someValue"  (normally false)&#010    field !=
-     * "someValue"  (normally true)&#010    not (field == "someValue")   (normally true)&#010    not (field != "someValue")  
-     * (normally false)&#010 </pre>
+     * [A] If set to true, both client and server-side advanced filtering used by Smart GWT will follow
+     *  SQL99 behavior for dealing with NULL values, which is often counter-intuitive to users.
+     *  Specifically, when a field has NULL value, all of the following expressions are false:
+     *  <pre>
+     *     field == "someValue"  (normally false)
+     *     field != "someValue"  (normally true)
+     *     not (field == "someValue")   (normally true)
+     *     not (field != "someValue")   (normally false)
+     *  </pre>
      *
      *
      * @return Boolean

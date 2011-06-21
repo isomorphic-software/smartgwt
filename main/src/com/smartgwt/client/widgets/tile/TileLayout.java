@@ -287,6 +287,8 @@ public class TileLayout extends Canvas {
      * expandMargins} is false, {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine} is set, 
      * {@link com.smartgwt.client.types.Orientation} is "vertical", and tileHeight is not set, tileHeight will be computed
      * automatically based on {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine}.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * sets the height of tiles
      *
      * @param tileHeight height. Default value is null
@@ -314,6 +316,8 @@ public class TileLayout extends Canvas {
 
     /**
      * Horizontal margin in between tiles.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileMargin tileMargin}.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * sets the horizontal margin of tiles
      *
      * @param tileHMargin width. Default value is null
@@ -337,6 +341,8 @@ public class TileLayout extends Canvas {
      * Margin in between tiles.  Can be set on a per-axis basis with {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileHMargin tileHMargin} and {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileVMargin tileVMargin}.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * sets the vertical and horizontal margin of tiles
      *
      * @param tileMargin margin. Default value is 10
@@ -363,6 +369,8 @@ public class TileLayout extends Canvas {
      * be taken as a maximum, minimum or exact size of tiles, or may be irrelevant. <P> Width and height may be separately set
      * via {@link com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight} and {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth}.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * sets the height and width of tiles
      *
      * @param tileSize size. Default value is 50
@@ -415,6 +423,8 @@ public class TileLayout extends Canvas {
 
     /**
      * Vertical margin in between tiles.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileMargin tileMargin}.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * sets the vertical margin of tiles
      *
      * @param tileVMargin width. Default value is null
@@ -440,6 +450,8 @@ public class TileLayout extends Canvas {
      * expandMargins} is false, {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine} is set, {@link
      * com.smartgwt.client.types.Orientation} is "horizontal", and tileWidth is not set, tileWidth will be computed
      * automatically based on {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine}.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * sets the width of tiles
      *
      * @param tileWidth width. Default value is null

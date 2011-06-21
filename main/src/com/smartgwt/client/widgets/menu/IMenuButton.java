@@ -243,6 +243,8 @@ public class IMenuButton extends StretchImgButton {
 
     /**
      * The menu drops down below the menu button.   Set to false if the menu should appear above the menu button.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for the 'showMenuButtonBelow' property - determines whether the menu will be shown above or below the menubutton.
      *
      * @param showMenuBelow True if the menu should be shown below the menubutton.. Default value is true
@@ -263,6 +265,8 @@ public class IMenuButton extends StretchImgButton {
 
     /**
      * Show menu button image (up / down arrowhead) for this menu button.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for the 'showMenuButtonImage' property - shows/hides the menu button image at runtime.
      *
      * @param showMenuButtonImage Should the image be shown. Default value is true

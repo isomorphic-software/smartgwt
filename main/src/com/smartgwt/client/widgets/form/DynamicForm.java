@@ -59,27 +59,44 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * The DynamicForm manages a collection of FormItems which represent user input controls.  The&#010 DynamicForm provides
- * layout, value management, validation and databinding for the controls&#010 it manages.&#010 <P>&#010 To create a
- * DynamicForm, set {@link com.smartgwt.client.widgets.form.DynamicForm#getFields fields} to an Array of Objects describing
- * the&#010 FormItems you want to use.  For example:&#010 <pre>&#010    isc.DynamicForm.create({&#010        fields:[&#010 
- * {name:"userName", type:"text"},  // creates a TextItem&#010            {name:"usState", type:"select"}  // creates a
- * SelectItem&#010        ]&#010    })&#010 </pre>&#010 The item <code>name</code> is an identifier for the item that must
- * be unique just within&#010 this form.  It is used:&#010 <ul>&#010 <li> as the property name under which the item's value
- * is stored in the form (the form's&#010      current values are accessible as {@link
- * com.smartgwt.client.widgets.form.DynamicForm#getValues form.getValues()}&#010 <li> when retrieving the FormItem's
- * current value (via&#010      {@link com.smartgwt.client.widgets.form.DynamicForm#getValue form.getValue()}) &#010 <li>
- * to retrieve the item itself via {@link com.smartgwt.client.widgets.form.DynamicForm#getItem form.getItem()}&#010
- * </ul>&#010 The item <code>type</code> controls what kind of FormItem is created.  See&#010 {@link
- * com.smartgwt.client.types.FormItemType}.&#010 <P>&#010 The {@link
- * com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} and {@link
- * com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue defaultValue} are also&#010 commonly specified.  All
- * FormItems share a common set of properties for controlling&#010 {@link com.smartgwt.client.docs.FormLayout form layout}.
- * Other properties common to all FormItems are&#010 documented on the {@link
- * com.smartgwt.client.widgets.form.fields.FormItem} class, and properties specific to particular FormItems are&#010
- * documented on the respective FormItems.  &#010 <P>&#010 NOTE: For very simple forms consisting of exactly one item, you
- * still use a DynamicForm.&#010 See the "fontSelector" form in the <a
- * href="http://www.smartclient.com/smartgwt/showcase/#toolstrip" target="examples">Toolstrip example</a>.
+ * The DynamicForm manages a collection of FormItems which represent user input controls.  The
+ *  DynamicForm provides layout, value management, validation and databinding for the controls
+ *  it manages.
+ *  <P>
+ * To create a DynamicForm, set {@link com.smartgwt.client.widgets.form.DynamicForm#getFields fields} to an Array of
+ * Objects describing the
+ *  FormItems you want to use.  For example:
+ *  <pre>
+ *     isc.DynamicForm.create({
+ *         fields:[
+ *             {name:"userName", type:"text"},  // creates a TextItem
+ *             {name:"usState", type:"select"}  // creates a SelectItem
+ *         ]
+ *     })
+ *  </pre>
+ *  The item <code>name</code> is an identifier for the item that must be unique just within
+ *  this form.  It is used:
+ *  <ul>
+ *  <li> as the property name under which the item's value is stored in the form (the form's
+ *       current values are accessible as {@link com.smartgwt.client.widgets.form.DynamicForm#getValues form.getValues()}
+ *  <li> when retrieving the FormItem's current value (via
+ *       {@link com.smartgwt.client.widgets.form.DynamicForm#getValue form.getValue()}) 
+ *  <li> to retrieve the item itself via {@link com.smartgwt.client.widgets.form.DynamicForm#getItem form.getItem()}
+ *  </ul>
+ *  The item <code>type</code> controls what kind of FormItem is created.  See
+ *  {@link com.smartgwt.client.types.FormItemType}.
+ *  <P>
+ * The {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} and {@link
+ * com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue defaultValue} are also
+ *  commonly specified.  All FormItems share a common set of properties for controlling
+ *  {@link com.smartgwt.client.docs.FormLayout form layout}.  Other properties common to all FormItems are
+ * documented on the {@link com.smartgwt.client.widgets.form.fields.FormItem} class, and properties specific to particular
+ * FormItems are
+ *  documented on the respective FormItems.  
+ *  <P>
+ *  NOTE: For very simple forms consisting of exactly one item, you still use a DynamicForm.
+ * See the "fontSelector" form in the <a href="http://www.smartclient.com/smartgwt/showcase/#toolstrip"
+ * target="examples">Toolstrip example</a>.
  */
 public class DynamicForm extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.form.events.HasSubmitValuesHandlers, com.smartgwt.client.widgets.form.events.HasItemChangeHandlers, com.smartgwt.client.widgets.form.events.HasItemChangedHandlers, com.smartgwt.client.widgets.form.events.HasItemKeyPressHandlers, com.smartgwt.client.widgets.form.events.HasFormSubmitFailedHandlers, com.smartgwt.client.widgets.form.events.HasHiddenValidationErrorsHandlers {
 
@@ -114,6 +131,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * The URL to which the form will submit its values. <p> <b>NOTE:</b> this is used only in the very rare case that a form
      * is used to submit data directly to a URL.  Normal server contact is through RPCManager.<br> See {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit canSubmit} for more on this.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.form.DynamicForm#getAction action} for this form.
      *
      * @param action New action URL. Default value is "#"
@@ -940,6 +959,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * The mechanism by which form data is sent to the action URL. See FormMethod type for details. <p> <b>NOTE:</b> this is
      * used only in the very rare case that a form is used to submit data directly to a URL.  Normal server contact is through 
      * {@link com.smartgwt.client.docs.DataBoundComponentMethods DataBound Component Methods}.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.form.DynamicForm#getMethod method} for this form.
      *
      * @param method html form submission method (get or post). Default value is DynamicForm.POST
@@ -1212,6 +1233,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType DynamicForm.setSaveOperationType}. <P> If
      * <code>saveOperationType</code> is unset, the form will heuristically determine whether an "add" or "update" operation is
      * intended based on whether the primaryKey field is present and editable.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for the default {@link com.smartgwt.client.types.DSOperationType} when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData} is called. Note that this property can also be set by calling {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord DynamicForm.editRecord} or  {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord DynamicForm.editNewRecord}
      *
      * @param saveOperationType Operation type to use as a default. Valid values are  <code>"add"</code> or <code>"update"</code>.. Default value is null
@@ -1704,6 +1727,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * use the current frame. <p> <b>NOTE:</b> this is used only in the very rare case that a form is used to submit data
      * directly to a URL.  Normal server contact is through {@link com.smartgwt.client.docs.DataBoundComponentMethods DataBound
      * Component Methods}.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.form.DynamicForm#getTarget target} for this form.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -1789,6 +1814,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * Default orientation for titles for items in this form.  {@link com.smartgwt.client.types.TitleOrientation} lists valid
      * options. <P> Note that titles on the left or right take up a cell in tabular {@link com.smartgwt.client.docs.FormLayout
      * form layouts}, but titles on top do not.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Modify this form's {@link com.smartgwt.client.types.TitleOrientation} at runtime
      *
      * @param titleOrientation new default item titleOrientation. Default value is "left"
@@ -2009,13 +2036,20 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     // ********************* Methods ***********************
             
     /**
-     * &#010 This method exists for clean integration with existing server frameworks that have a 'cancel'&#010 feature which
-     * typically clears session state associated with the form.  When this method is&#010 called, an RPC is sent to the server
-     * with a parameter named&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with
-     * the value&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>&#010&#010
-     * Note that no other form data is sent.  By default the current top-level page is replaced with the&#010 reply.  If you
-     * wish to ignore the server reply instead, call this method like this:&#010 <pre>&#010
-     * dynamicFormInstance.cancel({ignoreTimeout: true, target: null});&#010 </pre>&#010&#010
+     * 
+     *  This method exists for clean integration with existing server frameworks that have a 'cancel'
+     *  feature which typically clears session state associated with the form.  When this method is
+     *  called, an RPC is sent to the server with a parameter named
+     *  {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with the value
+     *  {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>
+     * 
+     *  Note that no other form data is sent.  By default the current top-level page is replaced with the
+     *  reply.  If you wish to ignore the server reply instead, call this method like this:
+     *  <pre>
+     *  dynamicFormInstance.cancel({ignoreTimeout: true, target: null});
+     *  </pre>
+     * 
+     * 
      */
     public native void cancel() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -2023,13 +2057,20 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }-*/;
 
     /**
-     * &#010 This method exists for clean integration with existing server frameworks that have a 'cancel'&#010 feature which
-     * typically clears session state associated with the form.  When this method is&#010 called, an RPC is sent to the server
-     * with a parameter named&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with
-     * the value&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>&#010&#010
-     * Note that no other form data is sent.  By default the current top-level page is replaced with the&#010 reply.  If you
-     * wish to ignore the server reply instead, call this method like this:&#010 <pre>&#010
-     * dynamicFormInstance.cancel({ignoreTimeout: true, target: null});&#010 </pre>&#010&#010
+     * 
+     *  This method exists for clean integration with existing server frameworks that have a 'cancel'
+     *  feature which typically clears session state associated with the form.  When this method is
+     *  called, an RPC is sent to the server with a parameter named
+     *  {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with the value
+     *  {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>
+     * 
+     *  Note that no other form data is sent.  By default the current top-level page is replaced with the
+     *  reply.  If you wish to ignore the server reply instead, call this method like this:
+     *  <pre>
+     *  dynamicFormInstance.cancel({ignoreTimeout: true, target: null});
+     *  </pre>
+     * 
+     * 
      * @param requestProperties additional properties to set on the RPCRequest                                          that will be issued
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
      */

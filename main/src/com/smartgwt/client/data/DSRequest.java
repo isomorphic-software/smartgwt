@@ -298,30 +298,60 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-     * When set, causes the results of the DSRequest to be exported to a file, whose name &#010 and format are indicated by
-     * {@link com.smartgwt.client.data.DSRequest#getExportFilename exportFilename} and &#010 {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} respectively.  When no exportFilename is provided, the default
-     * is&#010 <i>Results</i> and the default value of exportAs is <i>csv</i>.  &#010 <P>&#010 The export field-list can also
-     * be configured, see {@link com.smartgwt.client.data.DSRequest#getExportFields exportFields}.&#010 <P>&#010 Once the
-     * operation completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the
-     * exported&#010 data should be downloaded to the file-system or displayed in a new window.  The default value&#010 of
-     * exportDisplay is "download" which displays the Save As dialog.  See {@link com.smartgwt.client.types.ExportDisplay}
-     * &#010 for more information.&#010 <P>&#010 You can configure the style of  line-breaks to use when &#010 generating the
-     * output, the {@link com.smartgwt.client.data.DSRequest#getExportDelimiter delimiter} to use when exporting&#010 to CSV
-     * and the {@link com.smartgwt.client.data.DSRequest#getExportTitleSeparatorChar separator-character} to use in &#010
-     * field-titles when exporting to XML.&#010 <P>&#010 Additionally, you can output arbitrary text before and after the
-     * exported data by setting &#010 {@link com.smartgwt.client.data.DSRequest#getExportHeader exportHeader} and {@link
-     * com.smartgwt.client.data.DSRequest#getExportFooter exportFooter}.&#010 <P>&#010 Note that an export initiated using
-     * dsRequest properties does not provide support for JSON&#010 format (see &#010 <a
-     * href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more detail).&#010 <P>&#010 As well as
-     * setting dsRequest.exportResults and related properties, exports can be initiated&#010 in two other ways, via {@link
-     * com.smartgwt.client.data.OperationBinding}s and via custom server code which sets &#010 export-related properties on the
-     * {@link com.smartgwt.client.data.DSResponse}.  Both of those methods support exporting&#010 to JSON format.&#010 <P>&#010
-     * <b>Format Examples</b>&#010 XML format&#010 <pre>&#010     &lt;List&gt;&#010         &lt;Object&gt;&#010            
-     * &lt;id&gt;10101&lt;/id&gt;&#010             &lt;displayName&gt;Record 10101&lt;/displayName&gt;&#010        
-     * &lt;/Object&gt;&#010    &lt;/List&gt;&#010 </pre>&#010 JSON Format&#010 <pre>&#010     [&#010         { id: 10101,
-     * displayName: "Record 10101" }&#010     ]&#010 </pre>&#010 CSV Format&#010 <pre>&#010     id,displayName&#010    
-     * 10101,"Record 10101"&#010 </pre>
+     * When set, causes the results of the DSRequest to be exported to a file, whose name 
+     *  and format are indicated by {@link com.smartgwt.client.data.DSRequest#getExportFilename exportFilename} and 
+     * {@link com.smartgwt.client.data.DSRequest#getExportAs exportAs} respectively.  When no exportFilename is provided, the
+     * default is
+     *  <i>Results</i> and the default value of exportAs is <i>csv</i>.  
+     *  <P>
+     * The export field-list can also be configured, see {@link com.smartgwt.client.data.DSRequest#getExportFields
+     * exportFields}.
+     *  <P>
+     * Once the operation completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies
+     * whether the exported
+     *  data should be downloaded to the file-system or displayed in a new window.  The default value
+     *  of exportDisplay is "download" which displays the Save As dialog.  See {@link com.smartgwt.client.types.ExportDisplay} 
+     *  for more information.
+     *  <P>
+     *  You can configure the style of  line-breaks to use when 
+     * generating the output, the {@link com.smartgwt.client.data.DSRequest#getExportDelimiter delimiter} to use when exporting
+     *  to CSV and the {@link com.smartgwt.client.data.DSRequest#getExportTitleSeparatorChar separator-character} to use in 
+     *  field-titles when exporting to XML.
+     *  <P>
+     *  Additionally, you can output arbitrary text before and after the exported data by setting 
+     * {@link com.smartgwt.client.data.DSRequest#getExportHeader exportHeader} and {@link
+     * com.smartgwt.client.data.DSRequest#getExportFooter exportFooter}.
+     *  <P>
+     *  Note that an export initiated using dsRequest properties does not provide support for JSON
+     *  format (see 
+     *  <a href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more detail).
+     *  <P>
+     *  As well as setting dsRequest.exportResults and related properties, exports can be initiated
+     *  in two other ways, via {@link com.smartgwt.client.data.OperationBinding}s and via custom server code which sets 
+     *  export-related properties on the {@link com.smartgwt.client.data.DSResponse}.  Both of those methods support exporting
+     *  to JSON format.
+     *  <P>
+     *  <b>Format Examples</b>
+     *  XML format
+     *  <pre>
+     *      &lt;List&gt;
+     *          &lt;Object&gt;
+     *              &lt;id&gt;10101&lt;/id&gt;
+     *              &lt;displayName&gt;Record 10101&lt;/displayName&gt;
+     *          &lt;/Object&gt;
+     *     &lt;/List&gt;
+     *  </pre>
+     *  JSON Format
+     *  <pre>
+     *      [
+     *          { id: 10101, displayName: "Record 10101" }
+     *      ]
+     *  </pre>
+     *  CSV Format
+     *  <pre>
+     *      id,displayName
+     *      10101,"Record 10101"
+     *  </pre>
      *
      * @param exportResults exportResults Default value is false
      */
@@ -330,30 +360,60 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-     * When set, causes the results of the DSRequest to be exported to a file, whose name &#010 and format are indicated by
-     * {@link com.smartgwt.client.data.DSRequest#getExportFilename exportFilename} and &#010 {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} respectively.  When no exportFilename is provided, the default
-     * is&#010 <i>Results</i> and the default value of exportAs is <i>csv</i>.  &#010 <P>&#010 The export field-list can also
-     * be configured, see {@link com.smartgwt.client.data.DSRequest#getExportFields exportFields}.&#010 <P>&#010 Once the
-     * operation completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the
-     * exported&#010 data should be downloaded to the file-system or displayed in a new window.  The default value&#010 of
-     * exportDisplay is "download" which displays the Save As dialog.  See {@link com.smartgwt.client.types.ExportDisplay}
-     * &#010 for more information.&#010 <P>&#010 You can configure the style of  line-breaks to use when &#010 generating the
-     * output, the {@link com.smartgwt.client.data.DSRequest#getExportDelimiter delimiter} to use when exporting&#010 to CSV
-     * and the {@link com.smartgwt.client.data.DSRequest#getExportTitleSeparatorChar separator-character} to use in &#010
-     * field-titles when exporting to XML.&#010 <P>&#010 Additionally, you can output arbitrary text before and after the
-     * exported data by setting &#010 {@link com.smartgwt.client.data.DSRequest#getExportHeader exportHeader} and {@link
-     * com.smartgwt.client.data.DSRequest#getExportFooter exportFooter}.&#010 <P>&#010 Note that an export initiated using
-     * dsRequest properties does not provide support for JSON&#010 format (see &#010 <a
-     * href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more detail).&#010 <P>&#010 As well as
-     * setting dsRequest.exportResults and related properties, exports can be initiated&#010 in two other ways, via {@link
-     * com.smartgwt.client.data.OperationBinding}s and via custom server code which sets &#010 export-related properties on the
-     * {@link com.smartgwt.client.data.DSResponse}.  Both of those methods support exporting&#010 to JSON format.&#010 <P>&#010
-     * <b>Format Examples</b>&#010 XML format&#010 <pre>&#010     &lt;List&gt;&#010         &lt;Object&gt;&#010            
-     * &lt;id&gt;10101&lt;/id&gt;&#010             &lt;displayName&gt;Record 10101&lt;/displayName&gt;&#010        
-     * &lt;/Object&gt;&#010    &lt;/List&gt;&#010 </pre>&#010 JSON Format&#010 <pre>&#010     [&#010         { id: 10101,
-     * displayName: "Record 10101" }&#010     ]&#010 </pre>&#010 CSV Format&#010 <pre>&#010     id,displayName&#010    
-     * 10101,"Record 10101"&#010 </pre>
+     * When set, causes the results of the DSRequest to be exported to a file, whose name 
+     *  and format are indicated by {@link com.smartgwt.client.data.DSRequest#getExportFilename exportFilename} and 
+     * {@link com.smartgwt.client.data.DSRequest#getExportAs exportAs} respectively.  When no exportFilename is provided, the
+     * default is
+     *  <i>Results</i> and the default value of exportAs is <i>csv</i>.  
+     *  <P>
+     * The export field-list can also be configured, see {@link com.smartgwt.client.data.DSRequest#getExportFields
+     * exportFields}.
+     *  <P>
+     * Once the operation completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies
+     * whether the exported
+     *  data should be downloaded to the file-system or displayed in a new window.  The default value
+     *  of exportDisplay is "download" which displays the Save As dialog.  See {@link com.smartgwt.client.types.ExportDisplay} 
+     *  for more information.
+     *  <P>
+     *  You can configure the style of  line-breaks to use when 
+     * generating the output, the {@link com.smartgwt.client.data.DSRequest#getExportDelimiter delimiter} to use when exporting
+     *  to CSV and the {@link com.smartgwt.client.data.DSRequest#getExportTitleSeparatorChar separator-character} to use in 
+     *  field-titles when exporting to XML.
+     *  <P>
+     *  Additionally, you can output arbitrary text before and after the exported data by setting 
+     * {@link com.smartgwt.client.data.DSRequest#getExportHeader exportHeader} and {@link
+     * com.smartgwt.client.data.DSRequest#getExportFooter exportFooter}.
+     *  <P>
+     *  Note that an export initiated using dsRequest properties does not provide support for JSON
+     *  format (see 
+     *  <a href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more detail).
+     *  <P>
+     *  As well as setting dsRequest.exportResults and related properties, exports can be initiated
+     *  in two other ways, via {@link com.smartgwt.client.data.OperationBinding}s and via custom server code which sets 
+     *  export-related properties on the {@link com.smartgwt.client.data.DSResponse}.  Both of those methods support exporting
+     *  to JSON format.
+     *  <P>
+     *  <b>Format Examples</b>
+     *  XML format
+     *  <pre>
+     *      &lt;List&gt;
+     *          &lt;Object&gt;
+     *              &lt;id&gt;10101&lt;/id&gt;
+     *              &lt;displayName&gt;Record 10101&lt;/displayName&gt;
+     *          &lt;/Object&gt;
+     *     &lt;/List&gt;
+     *  </pre>
+     *  JSON Format
+     *  <pre>
+     *      [
+     *          { id: 10101, displayName: "Record 10101" }
+     *      ]
+     *  </pre>
+     *  CSV Format
+     *  <pre>
+     *      id,displayName
+     *      10101,"Record 10101"
+     *  </pre>
      *
      *
      * @return Boolean
@@ -617,31 +677,69 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-     * When <code>useFlatFields</code> is set for a request to be sent to a WSDL web service, when&#010 creating the input XML
-     * message to send to the web service, properties in&#010 {@link com.smartgwt.client.data.DSRequest#getData request.data}
-     * will be used as the values for XML elements of the same name, at&#010 any level of nesting.&#010 <P>&#010
-     * <code>useFlatFields</code> allows you to ignore gratuitous XML message structure, such as&#010 extra levels of nested
-     * elements, and provides some insulation against changes in the&#010 required structure of the input message.&#010
-     * <P>&#010 For example, given this input message:&#010 <pre>&#010 &lt;FindServices&gt;&#010     &lt;searchFor&gt;search
-     * text&lt;/searchFor&gt;&#010     &lt;Options&gt;&#010         &lt;caseSensitive&gt;false&lt;/caseSensitive&gt;&#010    
-     * &lt;/Options&gt;&#010     &lt;IncludeInSearch&gt;&#010         &lt;serviceName&gt;true&lt;/serviceName&gt;&#010        
-     * &lt;documentation&gt;true&lt;/documentation&gt;&#010         &lt;keywords&gt;true&lt;/keywords&gt;&#010    
-     * &lt;/IncludeInSearch&gt;&#010 &lt;/FindServices&gt;&#010 </pre>&#010 If <code>useFlatFields</code> were <b>not</b> set,
-     * in order to fill out this message&#010 correctly, <code>request.data</code> would need to be:&#010 <pre>{&#010   
-     * searchFor: "search text",&#010    Options : {&#010        caseSensitive: false,&#010    },&#010    IncludeInSearch :
-     * {&#010        serviceName: true,&#010        documentation : true,&#010        keywords : true&#010    }&#010
-     * }</pre>&#010 However if useFlatFields were set, <code>request.data</code> could be just:&#010 <pre>{&#010    searchFor:
-     * "search text",&#010    caseSensitive: false,&#010    serviceName: true,&#010    documentation : true,&#010    keywords :
-     * true&#010 }</pre>&#010 <code>useFlatFields</code> is often set when the input data comes from a {@link
-     * com.smartgwt.client.widgets.form.DynamicForm}&#010 to avoid the cumbersome and fragile process of mapping input fields
-     * to an XML structure.&#010 <P>&#010 {@link com.smartgwt.client.data.OperationBinding#getUseFlatFields useFlatFields} can
-     * also be set to cause <b>all</b> dsRequests of a&#010 particular type to <code>useFlatFields</code> automatically.&#010
-     * <P>&#010 For {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents}, &#010 {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields component.useFlatFields} can be set use "flattened"&#010
-     * binding to fields of a WSDL message or XML Schema.&#010 <P>&#010 Note that <code>useFlatFields</code> is not generally
-     * recommended for use with XML input&#010 messages where multiple simple type fields exist with the same name, however if
-     * used in this&#010 way, the first field to use a given name wins.  "first" means the first field encountered in a&#010
-     * depth first search.  "wins" means only the first field will be populated in the generated&#010 XML message.
+     * When <code>useFlatFields</code> is set for a request to be sent to a WSDL web service, when
+     *  creating the input XML message to send to the web service, properties in
+     * {@link com.smartgwt.client.data.DSRequest#getData request.data} will be used as the values for XML elements of the same
+     * name, at
+     *  any level of nesting.
+     *  <P>
+     *  <code>useFlatFields</code> allows you to ignore gratuitous XML message structure, such as
+     *  extra levels of nested elements, and provides some insulation against changes in the
+     *  required structure of the input message.
+     *  <P>
+     *  For example, given this input message:
+     *  <pre>
+     *  &lt;FindServices&gt;
+     *      &lt;searchFor&gt;search text&lt;/searchFor&gt;
+     *      &lt;Options&gt;
+     *          &lt;caseSensitive&gt;false&lt;/caseSensitive&gt;
+     *      &lt;/Options&gt;
+     *      &lt;IncludeInSearch&gt;
+     *          &lt;serviceName&gt;true&lt;/serviceName&gt;
+     *          &lt;documentation&gt;true&lt;/documentation&gt;
+     *          &lt;keywords&gt;true&lt;/keywords&gt;
+     *      &lt;/IncludeInSearch&gt;
+     *  &lt;/FindServices&gt;
+     *  </pre>
+     *  If <code>useFlatFields</code> were <b>not</b> set, in order to fill out this message
+     *  correctly, <code>request.data</code> would need to be:
+     *  <pre>{
+     *     searchFor: "search text",
+     *     Options : {
+     *         caseSensitive: false,
+     *     },
+     *     IncludeInSearch : {
+     *         serviceName: true,
+     *         documentation : true,
+     *         keywords : true
+     *     }
+     *  }</pre>
+     *  However if useFlatFields were set, <code>request.data</code> could be just:
+     *  <pre>{
+     *     searchFor: "search text",
+     *     caseSensitive: false,
+     *     serviceName: true,
+     *     documentation : true,
+     *     keywords : true
+     *  }</pre>
+     * <code>useFlatFields</code> is often set when the input data comes from a {@link
+     * com.smartgwt.client.widgets.form.DynamicForm}
+     *  to avoid the cumbersome and fragile process of mapping input fields to an XML structure.
+     *  <P>
+     * {@link com.smartgwt.client.data.OperationBinding#getUseFlatFields useFlatFields} can also be set to cause <b>all</b>
+     * dsRequests of a
+     *  particular type to <code>useFlatFields</code> automatically.
+     *  <P>
+     *  For {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents}, 
+     * {@link com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields component.useFlatFields} can be set use
+     * "flattened"
+     *  binding to fields of a WSDL message or XML Schema.
+     *  <P>
+     *  Note that <code>useFlatFields</code> is not generally recommended for use with XML input
+     *  messages where multiple simple type fields exist with the same name, however if used in this
+     *  way, the first field to use a given name wins.  "first" means the first field encountered in a
+     *  depth first search.  "wins" means only the first field will be populated in the generated
+     *  XML message.
      *
      * @param useFlatFields useFlatFields Default value is null
      */
@@ -650,31 +748,69 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-     * When <code>useFlatFields</code> is set for a request to be sent to a WSDL web service, when&#010 creating the input XML
-     * message to send to the web service, properties in&#010 {@link com.smartgwt.client.data.DSRequest#getData request.data}
-     * will be used as the values for XML elements of the same name, at&#010 any level of nesting.&#010 <P>&#010
-     * <code>useFlatFields</code> allows you to ignore gratuitous XML message structure, such as&#010 extra levels of nested
-     * elements, and provides some insulation against changes in the&#010 required structure of the input message.&#010
-     * <P>&#010 For example, given this input message:&#010 <pre>&#010 &lt;FindServices&gt;&#010     &lt;searchFor&gt;search
-     * text&lt;/searchFor&gt;&#010     &lt;Options&gt;&#010         &lt;caseSensitive&gt;false&lt;/caseSensitive&gt;&#010    
-     * &lt;/Options&gt;&#010     &lt;IncludeInSearch&gt;&#010         &lt;serviceName&gt;true&lt;/serviceName&gt;&#010        
-     * &lt;documentation&gt;true&lt;/documentation&gt;&#010         &lt;keywords&gt;true&lt;/keywords&gt;&#010    
-     * &lt;/IncludeInSearch&gt;&#010 &lt;/FindServices&gt;&#010 </pre>&#010 If <code>useFlatFields</code> were <b>not</b> set,
-     * in order to fill out this message&#010 correctly, <code>request.data</code> would need to be:&#010 <pre>{&#010   
-     * searchFor: "search text",&#010    Options : {&#010        caseSensitive: false,&#010    },&#010    IncludeInSearch :
-     * {&#010        serviceName: true,&#010        documentation : true,&#010        keywords : true&#010    }&#010
-     * }</pre>&#010 However if useFlatFields were set, <code>request.data</code> could be just:&#010 <pre>{&#010    searchFor:
-     * "search text",&#010    caseSensitive: false,&#010    serviceName: true,&#010    documentation : true,&#010    keywords :
-     * true&#010 }</pre>&#010 <code>useFlatFields</code> is often set when the input data comes from a {@link
-     * com.smartgwt.client.widgets.form.DynamicForm}&#010 to avoid the cumbersome and fragile process of mapping input fields
-     * to an XML structure.&#010 <P>&#010 {@link com.smartgwt.client.data.OperationBinding#getUseFlatFields useFlatFields} can
-     * also be set to cause <b>all</b> dsRequests of a&#010 particular type to <code>useFlatFields</code> automatically.&#010
-     * <P>&#010 For {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents}, &#010 {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields component.useFlatFields} can be set use "flattened"&#010
-     * binding to fields of a WSDL message or XML Schema.&#010 <P>&#010 Note that <code>useFlatFields</code> is not generally
-     * recommended for use with XML input&#010 messages where multiple simple type fields exist with the same name, however if
-     * used in this&#010 way, the first field to use a given name wins.  "first" means the first field encountered in a&#010
-     * depth first search.  "wins" means only the first field will be populated in the generated&#010 XML message.
+     * When <code>useFlatFields</code> is set for a request to be sent to a WSDL web service, when
+     *  creating the input XML message to send to the web service, properties in
+     * {@link com.smartgwt.client.data.DSRequest#getData request.data} will be used as the values for XML elements of the same
+     * name, at
+     *  any level of nesting.
+     *  <P>
+     *  <code>useFlatFields</code> allows you to ignore gratuitous XML message structure, such as
+     *  extra levels of nested elements, and provides some insulation against changes in the
+     *  required structure of the input message.
+     *  <P>
+     *  For example, given this input message:
+     *  <pre>
+     *  &lt;FindServices&gt;
+     *      &lt;searchFor&gt;search text&lt;/searchFor&gt;
+     *      &lt;Options&gt;
+     *          &lt;caseSensitive&gt;false&lt;/caseSensitive&gt;
+     *      &lt;/Options&gt;
+     *      &lt;IncludeInSearch&gt;
+     *          &lt;serviceName&gt;true&lt;/serviceName&gt;
+     *          &lt;documentation&gt;true&lt;/documentation&gt;
+     *          &lt;keywords&gt;true&lt;/keywords&gt;
+     *      &lt;/IncludeInSearch&gt;
+     *  &lt;/FindServices&gt;
+     *  </pre>
+     *  If <code>useFlatFields</code> were <b>not</b> set, in order to fill out this message
+     *  correctly, <code>request.data</code> would need to be:
+     *  <pre>{
+     *     searchFor: "search text",
+     *     Options : {
+     *         caseSensitive: false,
+     *     },
+     *     IncludeInSearch : {
+     *         serviceName: true,
+     *         documentation : true,
+     *         keywords : true
+     *     }
+     *  }</pre>
+     *  However if useFlatFields were set, <code>request.data</code> could be just:
+     *  <pre>{
+     *     searchFor: "search text",
+     *     caseSensitive: false,
+     *     serviceName: true,
+     *     documentation : true,
+     *     keywords : true
+     *  }</pre>
+     * <code>useFlatFields</code> is often set when the input data comes from a {@link
+     * com.smartgwt.client.widgets.form.DynamicForm}
+     *  to avoid the cumbersome and fragile process of mapping input fields to an XML structure.
+     *  <P>
+     * {@link com.smartgwt.client.data.OperationBinding#getUseFlatFields useFlatFields} can also be set to cause <b>all</b>
+     * dsRequests of a
+     *  particular type to <code>useFlatFields</code> automatically.
+     *  <P>
+     *  For {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents}, 
+     * {@link com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields component.useFlatFields} can be set use
+     * "flattened"
+     *  binding to fields of a WSDL message or XML Schema.
+     *  <P>
+     *  Note that <code>useFlatFields</code> is not generally recommended for use with XML input
+     *  messages where multiple simple type fields exist with the same name, however if used in this
+     *  way, the first field to use a given name wins.  "first" means the first field encountered in a
+     *  depth first search.  "wins" means only the first field will be populated in the generated
+     *  XML message.
      *
      *
      * @return Boolean

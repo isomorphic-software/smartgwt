@@ -94,6 +94,8 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
     /**
      * Thickness of the progressbar in pixels. This is effectively width for a vertical progressbar, or height for a horizontal
      * progressbar. <P> This property must be set instead of setting <code>width</code> or <code>height</code>.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the breadth of the progressbar to newLength. This is the height of a horizontal progressbar, or the width of a vertical progressbar.
      *
      * @param breadth the new breadth of the progressbar. Default value is 20
@@ -119,6 +121,8 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
     /**
      * Length of the progressbar in pixels. This is effectively height for a vertical progressbar, or width for a horizontal
      * progressbar. <P> This property must be set instead of setting <code>width</code> or <code>height</code>.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the length of the progressbar to newLength. This is the width of a horizontal progressbar, or the height of a vertical progressbar.
      *
      * @param length the new length of the progressbar. Default value is 100
@@ -143,6 +147,8 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
 
     /**
      * Number from 0 to 100, inclusive, for the percentage to be displayed graphically in this progressbar.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets percentDone to newPercent.
      *
      * @param percentDone percent to show as done (0-100). Default value is 0

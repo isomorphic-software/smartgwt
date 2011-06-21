@@ -100,6 +100,8 @@ public class PortalLayout extends Layout {
 
     /**
      * Are columns in this portalLayout drag-resizeable?
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set whether columns in this portalLayout are drag-resizable, and update any drawn columns to reflect this.
      *
      * @param canResizeColumns Whether columns are drag-resizable. Default value is false
@@ -120,6 +122,8 @@ public class PortalLayout extends Layout {
 
     /**
      * Should vertical drag-resize of portlets within columns be allowed?
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set whether vertical drag-resize of portlets within columns is allowed, and update any drawn columns to reflect this.
      *
      * @param canResizeRows Whether drag-resize of portlets within columns is allowed. Default value is false
@@ -140,6 +144,8 @@ public class PortalLayout extends Layout {
 
     /**
      * Border to show around columns in this PortalLayout
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the columnBorder for to the specified value and updates any drawn columns to reflect this.
      *
      * @param columnBorder New border to show around columns. Default value is "1px solid gray"
@@ -184,6 +190,8 @@ public class PortalLayout extends Layout {
 
     /**
      * Should a menu be shown within each column with options to add / remove columns?
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets {@link com.smartgwt.client.widgets.layout.PortalLayout#getShowColumnMenus showColumnMenus} and updates existing columns to reflect the new setting.
      *
      * @param showColumnMenus Whether to show column menus. Default value is true

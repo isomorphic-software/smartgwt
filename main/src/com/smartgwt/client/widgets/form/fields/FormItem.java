@@ -528,6 +528,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * widget containing this formItem is disabled, the formItem will behave in a disabled manner regardless of the setting of
      * the item.disabled property. <p> Note that not all items can be disabled, and not all browsers show an obvious disabled
      * style for native form elements.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set this item to be enabled or disabled at runtime.
      *
      * @param disabled true if this item should be disabled. Default value is false
@@ -899,6 +901,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * Specifies "hint" string to show next to the form item to indicate something to the user. This string generally appears
      * to the right of the form item.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the hint text for this item
      *
      * @param hint new hint for the item. Default value is null
@@ -926,6 +930,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * CSS class for the "hint" string.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the hintStyle for this item
      *
      * @param hintStyle new style for hint text. Default value is "formHint"
@@ -1301,6 +1307,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * Left coordinate of this item in pixels.  Applies only when the containing DynamicForm sets
      * <code>itemLayout:"absolute"</code>.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * For a form with {@link com.smartgwt.client.widgets.form.DynamicForm#getItemLayout itemLayout}:"absolute" only, set the left coordinate of this form item. <P> Causes the form to redraw.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -1638,6 +1646,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.form.validator.Validator#requiredField requiredField}. <P> <b>Note:</b> if specified on a
      * FormItem, <code>required</code> is only enforced on the client.  <code>required</code> should generally be specified on
      * a {@link com.smartgwt.client.data.DataSourceField}.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter to mark this formItem as {@link com.smartgwt.client.widgets.form.fields.FormItem#getRequired required}, or not required at runtime. Note that an alternative approach to updating the <code>required</code> flag directly would be to simply use a {@link com.smartgwt.client.types.ValidatorType requiredIf} type validator. <P> Note that this method will not re-validate this item by default or clear any  existing validation errors. If desired, this may be achieved by calling {@link com.smartgwt.client.widgets.form.fields.FormItem#validate FormItem.validate} or {@link com.smartgwt.client.widgets.form.DynamicForm#clearErrors DynamicForm.clearErrors}.
      *
      * @param required new {@link com.smartgwt.client.widgets.form.fields.FormItem#getRequired required} value.. Default value is null
@@ -1777,6 +1787,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * When this item is disabled, should it be re-styled to indicate its disabled state?
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter method for {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowDisabled showDisabled}
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -2569,6 +2581,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * Top coordinate of this item in pixels.  Applies only when the containing DynamicForm sets
      * <code>itemLayout:"absolute"</code>.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * For a form with {@link com.smartgwt.client.widgets.form.DynamicForm#getItemLayout itemLayout}:"absolute" only, set the top coordinate of this form item. <P> Causes the form to redraw.
      * <p><b>Note : </b> This is an advanced setting</p>
      *

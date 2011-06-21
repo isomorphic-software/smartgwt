@@ -103,6 +103,8 @@ public class SplitPane extends VLayout {
     /**
      * Navigation control that appears only when the navigation pane is not showing (showing detail pane on handset, or
      * portrait mode on tablet).
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Navigation control that appears only when the navigation pane is not showing (showing detail pane on handset, or portrait mode on tablet).
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -125,6 +127,8 @@ public class SplitPane extends VLayout {
 
     /**
      * The right-hand of the two panes managed by this widget, used for viewing details.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set a new detailPane at runtime
      *
      * @param detailPane new detail pane for this widget. Default value is null
@@ -146,6 +150,8 @@ public class SplitPane extends VLayout {
     /**
      * Tool buttons to display in the detail {@link com.smartgwt.client.widgets.layout.SplitPane#getDetailToolStrip
      * detailToolStrip}.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Update the {@link com.smartgwt.client.widgets.layout.SplitPane#getDetailToolButtons detailToolButtons} at runtime
      *
      * @param detailToolButtons new controls for the toolstrip. Default value is null
@@ -167,6 +173,8 @@ public class SplitPane extends VLayout {
 
     /**
      * An optional list pane displayed in the left-hand of the panes or in a popup according to the pane layout.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Set a new listPane at runtime
      *
      * @param listPane new list pane for this widget. Default value is null
@@ -207,6 +215,8 @@ public class SplitPane extends VLayout {
 
     /**
      * The left-hand of the two panes managed by this widget, used for navigation.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Update the navigation pane at runtime
      *
      * @param navigationPane new navigation pane. Default value is null

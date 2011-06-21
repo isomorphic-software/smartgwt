@@ -147,6 +147,8 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     /**
      * If true, the window is resized automatically to accommodate the contents   of the body, if they would otherwise require
      * scrolling.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.Window#getAutoSize autoSize}
      *
      * @param autoSize true if the window should auto-size to its content. Default value is false
@@ -783,6 +785,8 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     /**
      * If true, show a close button in the header, which will dismiss this window by  calling {@link
      * com.smartgwt.client.widgets.Window#addCloseClickHandler Window.closeClick}.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Dynamically update {@link com.smartgwt.client.widgets.Window#getShowCloseButton showCloseButton} to show / hide the closeButton
      *
      * @param showCloseButton showCloseButton Default value is true
@@ -830,15 +834,22 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
-     * If true, show a {@link com.smartgwt.client.widgets.Window#getHeader header} for this Window. &#010 <P>&#010 Note that in
-     * certain Smartclient skins {@link com.smartgwt.client.widgets.Window#getShowHeaderBackground showHeaderBackground} may be
-     * set to&#010 <code>false</code> and the header's appearance implemented as part of the&#010 window's {@link
-     * com.smartgwt.client.widgets.Canvas#getShowEdges edge media}. In this case suppressing the header can be achieved&#010 by
-     * overriding the edge media as well as setting this property to false. For example, to&#010 create a headerless window
-     * with a similar appearance to a {@link com.smartgwt.client.widgets.menu.Menu} in the&#010 <code><i>TreeFrog</i></code>
-     * skin, the following attributes could be used:&#010 <pre>&#010      showHeader:false,&#010     
-     * edgeImage:"[SKIN]/Menu/m.png",&#010      edgeSize:10, edgeTop:17, edgeBottom:17,&#010     
-     * edgeCenterBackgroundColor:"#F7F7F7"&#010 </pre>
+     * If true, show a {@link com.smartgwt.client.widgets.Window#getHeader header} for this Window. 
+     *  <P>
+     * Note that in certain Smartclient skins {@link com.smartgwt.client.widgets.Window#getShowHeaderBackground
+     * showHeaderBackground} may be set to
+     *  <code>false</code> and the header's appearance implemented as part of the
+     * window's {@link com.smartgwt.client.widgets.Canvas#getShowEdges edge media}. In this case suppressing the header can be
+     * achieved
+     *  by overriding the edge media as well as setting this property to false. For example, to
+     *  create a headerless window with a similar appearance to a {@link com.smartgwt.client.widgets.menu.Menu} in the
+     *  <code><i>TreeFrog</i></code> skin, the following attributes could be used:
+     *  <pre>
+     *       showHeader:false,
+     *       edgeImage:"[SKIN]/Menu/m.png",
+     *       edgeSize:10, edgeTop:17, edgeBottom:17,
+     *       edgeCenterBackgroundColor:"#F7F7F7"
+     *  </pre>
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHeader showHeader Default value is true
@@ -849,15 +860,22 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
-     * If true, show a {@link com.smartgwt.client.widgets.Window#getHeader header} for this Window. &#010 <P>&#010 Note that in
-     * certain Smartclient skins {@link com.smartgwt.client.widgets.Window#getShowHeaderBackground showHeaderBackground} may be
-     * set to&#010 <code>false</code> and the header's appearance implemented as part of the&#010 window's {@link
-     * com.smartgwt.client.widgets.Canvas#getShowEdges edge media}. In this case suppressing the header can be achieved&#010 by
-     * overriding the edge media as well as setting this property to false. For example, to&#010 create a headerless window
-     * with a similar appearance to a {@link com.smartgwt.client.widgets.menu.Menu} in the&#010 <code><i>TreeFrog</i></code>
-     * skin, the following attributes could be used:&#010 <pre>&#010      showHeader:false,&#010     
-     * edgeImage:"[SKIN]/Menu/m.png",&#010      edgeSize:10, edgeTop:17, edgeBottom:17,&#010     
-     * edgeCenterBackgroundColor:"#F7F7F7"&#010 </pre>
+     * If true, show a {@link com.smartgwt.client.widgets.Window#getHeader header} for this Window. 
+     *  <P>
+     * Note that in certain Smartclient skins {@link com.smartgwt.client.widgets.Window#getShowHeaderBackground
+     * showHeaderBackground} may be set to
+     *  <code>false</code> and the header's appearance implemented as part of the
+     * window's {@link com.smartgwt.client.widgets.Canvas#getShowEdges edge media}. In this case suppressing the header can be
+     * achieved
+     *  by overriding the edge media as well as setting this property to false. For example, to
+     *  create a headerless window with a similar appearance to a {@link com.smartgwt.client.widgets.menu.Menu} in the
+     *  <code><i>TreeFrog</i></code> skin, the following attributes could be used:
+     *  <pre>
+     *       showHeader:false,
+     *       edgeImage:"[SKIN]/Menu/m.png",
+     *       edgeSize:10, edgeTop:17, edgeBottom:17,
+     *       edgeCenterBackgroundColor:"#F7F7F7"
+     *  </pre>
      *
      *
      * @return Boolean
@@ -900,6 +918,8 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
 
     /**
      * If true, we show an icon on the left in the header.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Dynamically update {@link com.smartgwt.client.widgets.Window#getShowHeaderIcon showHeaderIcon} to show / hide the headerIcon
      *
      * @param showHeaderIcon showHeaderIcon Default value is true
@@ -922,6 +942,8 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
 
     /**
      * If true, show a maximize button in the header - clicking it maximizes the Window
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Dynamically update {@link com.smartgwt.client.widgets.Window#getShowMaximizeButton showMaximizeButton} to show / hide the maximizeButton
      *
      * @param showMaximizeButton showMaximizeButton Default value is false
@@ -944,6 +966,8 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
 
     /**
      * If true, show a minimize button in the header--clicking it minimizes the Window.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Dynamically update {@link com.smartgwt.client.widgets.Window#getShowMinimizeButton showMinimizeButton} to show / hide the minimizeButton
      *
      * @param showMinimizeButton showMinimizeButton Default value is true
@@ -1060,6 +1084,8 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * attribute. <P> Note that setting window.src is essentially a shortcut for setting {@link
      * com.smartgwt.client.widgets.Window#getItems items} to a single HTMLflow with a specified {@link
      * com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL}.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the URL of the contents to display in the body of the window, redrawing if necessary.
      *
      * @param src URL of new contents to be displayed in the window body. Default value is null
@@ -1087,6 +1113,8 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
 
     /**
      * Text to show in the status bar of the window (if one is visible)
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the text in the status bar of the window, redrawing if necessary.
      *
      * @param status new text for the status bar. Default value is null
@@ -1109,6 +1137,8 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
 
     /**
      * title for this Window, shown in the header (if drawn)
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the title text that appears in the window header; the header will be redrawn          if necessary.
      *
      * @param title new title. Default value is "Untitled Window"

@@ -59,11 +59,26 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * Tabs are specified as objects, not class instances.  For example, when&#010 developing in JavaScript, a typical
- * initialization block for a TabSet would look like&#010 this:&#010 <pre>&#010 TabSet.create({&#010     tabs: [&#010      
- * {title: "tab1", pane: "pane1"},&#010         {title: "tab2"}&#010     ]&#010 });&#010 </pre>&#010 And in XML:&#010
- * <pre>&#010 &lt;TabSet&gt;&#010    &lt;tabs&gt;&#010        &lt;Tab title="tab1" pane="pane1"/&gt;&#010        &lt;Tab
- * title="tab2"/&gt;&#010    &lt;/tabs&gt;&#010 &lt;/TabSet&gt;&#010 </pre>
+ * Tabs are specified as objects, not class instances.  For example, when
+ *  developing in JavaScript, a typical initialization block for a TabSet would look like
+ *  this:
+ *  <pre>
+ *  TabSet.create({
+ *      tabs: [
+ *          {title: "tab1", pane: "pane1"},
+ *          {title: "tab2"}
+ *      ]
+ *  });
+ *  </pre>
+ *  And in XML:
+ *  <pre>
+ *  &lt;TabSet&gt;
+ *     &lt;tabs&gt;
+ *         &lt;Tab title="tab1" pane="pane1"/&gt;
+ *         &lt;Tab title="tab2"/&gt;
+ *     &lt;/tabs&gt;
+ *  &lt;/TabSet&gt;
+ *  </pre>
  */
 public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.tab.events.HasTabDeselectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabSelectedHandlers {
 
