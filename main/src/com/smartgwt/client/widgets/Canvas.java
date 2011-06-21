@@ -469,6 +469,26 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
+     * ARIA role of this component.  Usually does not need to be manually set - see accessibility.
+     *
+     * @param ariaRole ariaRole Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setAriaRole(String ariaRole)  throws IllegalStateException {
+        setAttribute("ariaRole", ariaRole, false);
+    }
+
+    /**
+     * ARIA role of this component.  Usually does not need to be manually set - see accessibility.
+     *
+     *
+     * @return String
+     */
+    public String getAriaRole()  {
+        return getAttributeAsString("ariaRole");
+    }
+
+    /**
      * If set to true, the widget's parent (if any) will automatically be shown whenever the      widget is shown.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -2765,14 +2785,17 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * When this Canvas is included as a member in a Layout, whether a resizeBar should be shown after this member in the
-     * layout, to allow it to be resized. <p> By default the resize bar acts on the Canvas that it is declared on.  If you want
-     * the resize bar to instead act on the next member of the Layout (e.g. to collapse down or to the right), set {@link
-     * com.smartgwt.client.widgets.Canvas#getResizeBarTarget resizeBarTarget} as well.
-     * When this Canvas is included as a member in a Layout, dynamically updates whether a  resizeBar should be shown after this member in the layout, to allow it to be resized.
+     * When this Canvas is included as a member in a {@link com.smartgwt.client.widgets.layout.Layout}, whether a resizeBar
+     * should be shown after this member in the layout, to allow it to be resized. <p> Whether a resizeBar is actually shown
+     * also depends on the  {@link com.smartgwt.client.widgets.layout.Layout#getDefaultResizeBars defaultResizeBars} attribute
+     * of the layout, and whether this Canvas is the last layout member. <p> By default the resize bar acts on the Canvas that
+     * it is declared on.  If you want the resize bar to instead act on the next member of the Layout (e.g. to collapse down or
+     * to the right), set {@link com.smartgwt.client.widgets.Canvas#getResizeBarTarget resizeBarTarget} as well.
+     * When this Canvas is included as a member in a {@link com.smartgwt.client.widgets.layout.Layout}, dynamically updates whether a  resizeBar should be shown after this member in the layout, to allow it to be resized. <p> Whether a resizeBar is actually shown also depends on the  {@link com.smartgwt.client.widgets.layout.Layout#getDefaultResizeBars defaultResizeBars} attribute of the layout, and whether this Canvas is the last layout member.
      *
      * @param showResizeBar setting for this.showResizeBar. Default value is false
      * @see com.smartgwt.client.widgets.Canvas#setResizeBarTarget
+     * @see com.smartgwt.client.widgets.layout.Layout#setDefaultResizeBars
      * @see com.smartgwt.client.docs.LayoutMember LayoutMember overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_nesting" target="examples">Nesting Example</a>
      */
@@ -2781,14 +2804,17 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * When this Canvas is included as a member in a Layout, whether a resizeBar should be shown after this member in the
-     * layout, to allow it to be resized. <p> By default the resize bar acts on the Canvas that it is declared on.  If you want
-     * the resize bar to instead act on the next member of the Layout (e.g. to collapse down or to the right), set {@link
-     * com.smartgwt.client.widgets.Canvas#getResizeBarTarget resizeBarTarget} as well.
+     * When this Canvas is included as a member in a {@link com.smartgwt.client.widgets.layout.Layout}, whether a resizeBar
+     * should be shown after this member in the layout, to allow it to be resized. <p> Whether a resizeBar is actually shown
+     * also depends on the  {@link com.smartgwt.client.widgets.layout.Layout#getDefaultResizeBars defaultResizeBars} attribute
+     * of the layout, and whether this Canvas is the last layout member. <p> By default the resize bar acts on the Canvas that
+     * it is declared on.  If you want the resize bar to instead act on the next member of the Layout (e.g. to collapse down or
+     * to the right), set {@link com.smartgwt.client.widgets.Canvas#getResizeBarTarget resizeBarTarget} as well.
      *
      *
      * @return Boolean
      * @see com.smartgwt.client.widgets.Canvas#getResizeBarTarget
+     * @see com.smartgwt.client.widgets.layout.Layout#getDefaultResizeBars
      * @see com.smartgwt.client.docs.LayoutMember LayoutMember overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_nesting" target="examples">Nesting Example</a>
      */
@@ -4495,7 +4521,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Get the number of pixels this Canvas is scrolled from its left edge.
      *
      * @return scrollLeft
-     * @see com.smartgwt.client.docs.Scrolling Scrolling overview and related methods
+     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
     public native int getScrollLeft() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -4506,7 +4532,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Get the number of pixels this Canvas is scrolled from its top edge.
      *
      * @return scrollTop
-     * @see com.smartgwt.client.docs.Scrolling Scrolling overview and related methods
+     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
     public native int getScrollTop() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
