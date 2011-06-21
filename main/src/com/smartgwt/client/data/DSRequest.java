@@ -382,6 +382,35 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
+     * Only applies to request properties passed to {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData
+     * DataBoundComponent.exportClientData}. Ordinarily, any fields that have a {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getDisplayField displayField} defined  have the value of that
+     * displayFIeld exported, rather than the underlying value in the  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getValueField valueField}.  If you set this  property, we export both 
+     * the underlying value and the displayField value.
+     *
+     * @param exportValueFields exportValueFields Default value is null
+     */
+    public void setExportValueFields(Boolean exportValueFields) {
+        setAttribute("exportValueFields", exportValueFields);
+    }
+
+    /**
+     * Only applies to request properties passed to {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData
+     * DataBoundComponent.exportClientData}. Ordinarily, any fields that have a {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getDisplayField displayField} defined  have the value of that
+     * displayFIeld exported, rather than the underlying value in the  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getValueField valueField}.  If you set this  property, we export both 
+     * the underlying value and the displayField value.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getExportValueFields()  {
+        return getAttributeAsBoolean("exportValueFields");
+    }
+
+    /**
      * The style of line-breaks to use in the exported output.  See LineBreakStyle for more information.
      *
      * @param lineBreakStyle lineBreakStyle Default value is null
