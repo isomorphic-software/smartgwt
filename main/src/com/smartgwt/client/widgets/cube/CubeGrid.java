@@ -714,29 +714,6 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     }
 
     /**
-     * If set to true, context menu items will be included on the cells and headers providing the user with an option to create
-     * a chart of the cubeGrid's data set. See {@link com.smartgwt.client.widgets.cube.CubeGrid#getChartData chartData} for
-     * more information.
-     *
-     * @param enableCharting enableCharting Default value is false
-     */
-    public void setEnableCharting(Boolean enableCharting) {
-        setAttribute("enableCharting", enableCharting, true);
-    }
-
-    /**
-     * If set to true, context menu items will be included on the cells and headers providing the user with an option to create
-     * a chart of the cubeGrid's data set. See {@link com.smartgwt.client.widgets.cube.CubeGrid#getChartData chartData} for
-     * more information.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getEnableCharting()  {
-        return getAttributeAsBoolean("enableCharting");
-    }
-
-    /**
      * Allows the developer to override the horizontal text alignment of hover tips shown for facetLabels.  If unspecified the
      * hover canvas content alignment will be set by <code>this.hoverAlign</code> if specified.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -2588,13 +2565,44 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
         }
         return objects;
     }
+    
+    /**
+     * If set to true, context menu items will be included on the cells and headers providing the user with an option to create
+     * a chart of the cubeGrid's data set. See {@link com.smartgwt.client.widgets.cube.CubeGrid#getChartData chartData} for
+     * more information.
+     *
+     * @param enableCharting enableCharting Default value is false
+     */
+    public void setEnableCharting(Boolean enableCharting) {
+        if (!SC.hasDrawing()) {
+            String errorMessage = "setEnableCharting(): Charting requires " +
+            		            "the Drawing module which is not present in this build.";
+            SC.logWarn(errorMessage);
+            throw new UnsupportedOperationException(errorMessage);
+
+        }
+        setAttribute("enableCharting", enableCharting, true);
+    }
+
+    /**
+     * If set to true, context menu items will be included on the cells and headers providing the user with an option to create
+     * a chart of the cubeGrid's data set. See {@link com.smartgwt.client.widgets.cube.CubeGrid#getChartData chartData} for
+     * more information.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getEnableCharting()  {
+        return getAttributeAsBoolean("enableCharting");
+    }
+
 
     private void checkAnalyticsLoaded () {
         if (!analyticsLoaded()) {
             String errorMessage = "Attempt to create CubeGrid. This class requires the optional " +
             		                "Analytics module which is not present in this build.";
             SC.logWarn(errorMessage);
-            throw new RuntimeException(errorMessage);
+            throw new UnsupportedOperationException(errorMessage);
         }
     }
 
@@ -2608,8 +2616,6 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     }-*/;
 
 }
-
-
 
 
 

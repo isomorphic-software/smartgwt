@@ -1814,7 +1814,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * The string prepended to the title of every item in this form.
+     * The string prepended to the title of every item in this form.  See also +{requiredTitlePrefix} for fields that are
+     * required.
      *
      * @param titlePrefix titlePrefix Default value is ""
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
@@ -1824,7 +1825,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * The string prepended to the title of every item in this form.
+     * The string prepended to the title of every item in this form.  See also +{requiredTitlePrefix} for fields that are
+     * required.
      *
      *
      * @return String
@@ -1835,7 +1837,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * The string appended to the title of every item in this form.
+     * The string appended to the title of every item in this form.  See also +{requiredTitleSuffix} for fields that are
+     * required.
      *
      * @param titleSuffix titleSuffix Default value is "&nbsp;:"
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
@@ -1845,7 +1848,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * The string appended to the title of every item in this form.
+     * The string appended to the title of every item in this form.  See also +{requiredTitleSuffix} for fields that are
+     * required.
      *
      *
      * @return String

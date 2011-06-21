@@ -260,7 +260,8 @@ public class TextItem extends FormItem {
      * Custom mask characters can be defined by standard regular expression character set or range. For example, a hexadecimal
      * color code mask could be: <UL> <LI>Color: \#>[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]</LI> </UL> <P> Note: input
      * mask cannot be used at the same time as a {@link com.smartgwt.client.widgets.form.fields.TextItem#getKeyPressFilter
-     * keyPressFilter}.
+     * keyPressFilter}. Also note that this property is not supported for {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem} or {@link com.smartgwt.client.widgets.form.fields.SpinnerItem}.
      * Set the mask for this item. <P> Note that the current value of the field is cleared when changing the mask.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -286,7 +287,8 @@ public class TextItem extends FormItem {
      * Custom mask characters can be defined by standard regular expression character set or range. For example, a hexadecimal
      * color code mask could be: <UL> <LI>Color: \#>[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]</LI> </UL> <P> Note: input
      * mask cannot be used at the same time as a {@link com.smartgwt.client.widgets.form.fields.TextItem#getKeyPressFilter
-     * keyPressFilter}.
+     * keyPressFilter}. Also note that this property is not supported for {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem} or {@link com.smartgwt.client.widgets.form.fields.SpinnerItem}.
      *
      *
      * @return String
@@ -604,8 +606,6 @@ public class TextItem extends FormItem {
     }-*/;    
 
 }
-
-
 
 
 
