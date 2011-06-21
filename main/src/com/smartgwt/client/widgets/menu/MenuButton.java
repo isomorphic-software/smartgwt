@@ -242,6 +242,31 @@ public class MenuButton extends Button {
     }
 
     /**
+     * When {@link com.smartgwt.client.widgets.menu.MenuButton#getShowMenuOnRollOver showMenuOnRollOver} is true, this is the
+     * delay  in milliseconds before the menu is automatically hidden following mouseOut.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param rollOverMenuHideDelay rollOverMenuHideDelay Default value is 200
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setRollOverMenuHideDelay(int rollOverMenuHideDelay)  throws IllegalStateException {
+        setAttribute("rollOverMenuHideDelay", rollOverMenuHideDelay, false);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.menu.MenuButton#getShowMenuOnRollOver showMenuOnRollOver} is true, this is the
+     * delay  in milliseconds before the menu is automatically hidden following mouseOut.
+     *
+     *
+     * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public int getRollOverMenuHideDelay()  {
+        return getAttributeAsInt("rollOverMenuHideDelay");
+    }
+
+    /**
      * The menu drops down below the menu button.   Set to false if the menu should appear above the menu button.
      * Setter for the 'showMenuButtonBelow' property - determines whether the menu will be shown above or below the menubutton.
      *
@@ -280,6 +305,29 @@ public class MenuButton extends Button {
      */
     public Boolean getShowMenuButtonImage()  {
         return getAttributeAsBoolean("showMenuButtonImage");
+    }
+
+    /**
+     * When set to true, show the menu automatically when the mouse moves over the button.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showMenuOnRollOver showMenuOnRollOver Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setShowMenuOnRollOver(Boolean showMenuOnRollOver)  throws IllegalStateException {
+        setAttribute("showMenuOnRollOver", showMenuOnRollOver, false);
+    }
+
+    /**
+     * When set to true, show the menu automatically when the mouse moves over the button.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Boolean getShowMenuOnRollOver()  {
+        return getAttributeAsBoolean("showMenuOnRollOver");
     }
 
     /**
