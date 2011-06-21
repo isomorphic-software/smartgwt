@@ -59,7 +59,8 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * An object which represents an event to occur at a specific time, displayed within the calendar.
+ * A type of {@link com.smartgwt.client.data.Record} which represents an event to occur at a specific time, displayed
+ * within the calendar.
  */
 public class CalendarEvent extends Record {
 
