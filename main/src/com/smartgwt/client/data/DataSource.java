@@ -476,7 +476,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param dataFormat dataFormat Default value is "iscServer"
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_json_datasource" target="examples">JSON DataSource Example</a>
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#json_integration_category_simple" target="examples">Simple JSON Example</a>
      */
@@ -490,7 +490,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return DSDataFormat
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_json_datasource" target="examples">JSON DataSource Example</a>
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#json_integration_category_simple" target="examples">Simple JSON Example</a>
      */
@@ -1102,7 +1102,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.data.DSRequest
      * @see com.smartgwt.client.data.OperationBinding#setRequestProperties
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setRequestProperties(DSRequest requestProperties)  throws IllegalStateException {
         setAttribute("requestProperties", requestProperties.getJsObj(), false);
@@ -1117,7 +1117,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @return DSRequest
      * @see com.smartgwt.client.data.DSRequest
      * @see com.smartgwt.client.data.OperationBinding#getRequestProperties
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public DSRequest getRequestProperties()  {
         return new DSRequest(getAttributeAsJavaScriptObject("requestProperties"));
@@ -1659,6 +1659,24 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }-*/;
             
     /**
+     * Copies all DataSource field values of a Record (including a TreeNode) to a new  Record, omitting component-specific
+     * metadata such as selected state from grids,  or parent folders for TreeNodes.
+     * @param record The record to be copied.
+     *
+     * @return A new copy of the record provided as an argument, with  component-specific metata data removed.
+     */
+    public native Record copyRecord(Record record) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.copyRecord(record.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.data.Record::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+            
+    /**
      * Perform a "fetch" DataSource operation against this DataSource, sending search criteria, retrieving matching records and
      * exporting the results.  See  {@link com.smartgwt.client.data.OperationBinding#getExportResults exportResults} or {@link
      * com.smartgwt.client.data.DSRequest#getExportResults exportResults} and for more information.
@@ -2085,13 +2103,28 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * For a dataSource using client-side data integration, return the data that should be sent to the
-     * DataSource.dataURL. <br> By default, HTTP requests sent to non-Smart GWT servers do not include DSRequest
-     * metadata such as DSRequest.startRow, endRow, and oldValues. Only the core datasource protocol data is sent, such
-     * as the criteria passed to fetchData() or the updated values submitted by form.saveData(). <br> transformRequest()
-     * allows you to transform dsRequest metadata into a format understood by your server and include it in the HTTP
-     * request, so that you can integrate DataSource features such as data paging with servers that support such
-     * features. <br> How the data is actually sent to the URL is controlled by OperationBinding.dataProtocol. If using
+     * For a dataSource using client-side data integration, return the data that should be sent
+     * to the DataSource.dataURL. 
+     * <P> 
+     * When using the Smart GWT Server Framework, use
+     * {@link com.smartgwt.client.data.DataSource#get(String,RequestTransformer,ResponseTransformer)}
+     * instead of this API.  Note that when using the Smart GWT Server Framework, there is no
+     * need to adapt the request data to the server (this is automatic), however the ability to
+     * modify the request before it is sent to the server is still valuable for use cases such
+     * as having an implicit criteria value that is always sent with all requests.
+     * <P>
+     * When contacting non-Smart GWT servers, an override of transformRequest() allows you to
+     * transform dsRequest metadata into a format understood by your server and include it in
+     * the HTTP request, so that you can integrate DataSource features such as data paging with
+     * servers that support such features but have their own protocol for how parameters must
+     * be passed.
+     * <P>
+     * By default, HTTP requests sent to non-Smart GWT servers do not include DSRequest
+     * metadata such as DSRequest.startRow, endRow, and oldValues. Only the core datasource
+     * protocol data is sent, such as the criteria passed to fetchData() or the updated values
+     * submitted by form.saveData(). 
+     * <P>
+     * How the data is actually sent to the URL is controlled by OperationBinding.dataProtocol. If using
      * the "getParams" or "postParams" protocol, data is expected to be a JavaScript Object where each property will
      * become a GET or POST'd parameter. If using dataProtocol:"soap" or "postXML", data will be serialized as an XML
      * message by DataSource.xmlSerialize(). <br> Other reasons to implement transformRequest(): <ul> <li>transform a
@@ -2110,13 +2143,22 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }-*/;
 
     /**
-     * Modify the DSResponse object derived from the response returned from the  {@link
-     * com.smartgwt.client.data.DataSource#getDataURL dataURL}. 
+     * Modify the DSResponse object derived from the response returned from the 
+     * {@link com.smartgwt.client.data.DataSource#getDataURL dataURL}. 
+     * <P>
+     * When using the Smart GWT Server Framework, use
+     * {@link com.smartgwt.client.data.DataSource#get(String,RequestTransformer,ResponseTransformer)}
+     * instead of this API.  Note that when using the Smart GWT Server Framework, there is no
+     * need to adapt the response data to the DSResponse (this is automatic), however the ability to
+     * modify response data before components receive it is still valuable for use cases such as
+     * doing expensive data transform client-side in order to reduce server load.
      * <P>
      * This is an override point that makes it possible to
      * use DataSource features such as paging with web services that support such features, by allowing you to fill in
      * metadata fields in the DSResponse object (such as {@link com.smartgwt.client.data.DSResponse#getStartRow
-     * startRow}) based on service-specific metadata fields contained in the service's response.
+     * startRow}) based on service-specific metadata fields contained in the service's
+     * response.  
+     * <P>
      * <P>
      * The {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} setting will govern whether the
      * DSResponse passed to this method already has {@link com.smartgwt.client.data.DSResponse#getData data} set up
@@ -2470,157 +2512,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * Perform a "fetch" DataSource operation against this DataSource, sending search criteria and retrieving matching
-     * records. <P> In contrast to {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData}, which creates a {@link
-     * com.smartgwt.client.data.ResultSet} to manage the returned data, calling <code>dataSource.fetchData()</code>
-     * provides the returned data in the callback as a simple JavaScript Array of JavaScript Objects.  Calling
-     * <code>dataSource.fetchData()</code> does not automatically update any visual components or caches: code in the
-     * callback passed to <code>fetchData()</code> decides what to do with the returned data.  <P> For example, given a
-     * ListGrid "myGrid" and a DataSource "employees", the following code would populate "myGrid" with data fetched
-     * from
-     * the DataSource: <pre>    isc.DataSource.get("employees").fetchData(null, "myGrid.setData(data)"); </pre> Unlike
-     * calling <code>myGrid.fetchData()</code>, which creates a {@link com.smartgwt.client.data.ResultSet}, the data
-     * provided to the grid is "disconnected" data, unmanaged by Smart GWT's databinding facilities and safe to
-     * directly modify.  This is useful when, for example, a ListGrid is being used as a more sophisticated version of
-     * HTML's multi-select component. <P> Disconnected datasets may be used to populate various visual components.  For
-     * example, while an individual FormItem can be configured to fetch {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap
-     * valueMap} options from a DataSource via the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
-     * optionDataSource} property, the following code shows storing a dataset to derive valueMaps from later: <pre>
-     * isc.DataSource.get("countries").fetchData(null, "window.countries = data");    ... later, a form is created
-     * dynamically ...    function showForm() {       isc.DynamicForm.create({           items : [              {
-     * name:"country", title:"Pick Country",                valueMap: window.countries.getValueMap("countryId",
-     * "countryName")              },       ... </pre> <P> You can also create a ResultSet from the data retrieved from
-     * <code>fetchData()</code>, like so: <pre>    isc.DataSource.get("countries").fetchData(null,        function
-     * (dsResponse, data) {           isc.ResultSet.create({              dataSource:"countries",
-     * allRows:data           })        }    ) </pre> <P> This gives you a dataset that supports client-side filtering
-     * (via {@link com.smartgwt.client.data.ResultSet#setCriteria}), can provide  {@link
-     * com.smartgwt.client.data.ResultSet#getValueMap}, will  {@link com.smartgwt.client.data.ResultSet#getDisableCacheSync
-     * disableCacheSync} to the DataSource made via other components, and can be re-used with multiple visual
-     * components. <P> See also the server-side com.isomorphic.js.JSTranslater class in the
-     * ${isc.DocUtils.linkForDocNode('javaServerReference', 'Java Server Reference')} for other, similar approaches
-     * involving dumping data into the page during initial page load.  <b>Note:</b> care should be taken when using this
-     * approach.  Large datasets degrade the basic performance of some browsers, so use {@link
-     * com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource optionDataSource} and similar facilities to manage datasets
-     * that may become very large. <P> <b>Data-Driven Visual Component Creation</b> <P>
-     * <code>DataSource.fetchData()</code> can also be used to create Smart GWT components in a data-driven way.  Many
-     * properties on Smart GWT visual components are configured via an Array of Objects - the same data format that
-     * <code>dataSource.fetchData()</code> returns.  These include {@link com.smartgwt.client.widgets.grid.ListGrid#getFields
-     * fields}, {@link com.smartgwt.client.widgets.tab.TabSet#getTabs tabs}, {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getItems items}, {@link com.smartgwt.client..Facet#getValues values}
-     * and even {@link com.smartgwt.client.data.DataSource#getFields fields}. <P> For example, if you had a DataSource
-     * "myFormFields" whose fields included the basic properties of {@link com.smartgwt.client.widgets.form.fields.FormItem}
-     * (name, title, type, etc), this example code would create a form based on stored field definitions, loaded from
-     * the "myFormFields" DataSource on the fly: <pre>    isc.DataSource.get("myFormFields").fetchData(null,
-     * "isc.DynamicForm.create({ items:data })"    ) </pre> This capability to dynamically create visual components
-     * from
-     * dynamically fetched data provides a foundation for creating interfaces that can be customized by end users. See
-     * also {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}.
-     */
-    public native void fetchData() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.fetchData();
-    }-*/;
-
-    /**
-     * Perform a "fetch" DataSource operation against this DataSource, sending search criteria and retrieving matching
-     * records. <P> In contrast to {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData}, which creates a {@link
-     * com.smartgwt.client.data.ResultSet} to manage the returned data, calling <code>dataSource.fetchData()</code>
-     * provides the returned data in the callback as a simple JavaScript Array of JavaScript Objects.  Calling
-     * <code>dataSource.fetchData()</code> does not automatically update any visual components or caches: code in the
-     * callback passed to <code>fetchData()</code> decides what to do with the returned data.  <P> For example, given a
-     * ListGrid "myGrid" and a DataSource "employees", the following code would populate "myGrid" with data fetched
-     * from
-     * the DataSource: <pre>    isc.DataSource.get("employees").fetchData(null, "myGrid.setData(data)"); </pre> Unlike
-     * calling <code>myGrid.fetchData()</code>, which creates a {@link com.smartgwt.client.data.ResultSet}, the data
-     * provided to the grid is "disconnected" data, unmanaged by Smart GWT's databinding facilities and safe to
-     * directly modify.  This is useful when, for example, a ListGrid is being used as a more sophisticated version of
-     * HTML's multi-select component. <P> Disconnected datasets may be used to populate various visual components.  For
-     * example, while an individual FormItem can be configured to fetch {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap
-     * valueMap} options from a DataSource via the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
-     * optionDataSource} property, the following code shows storing a dataset to derive valueMaps from later: <pre>
-     * isc.DataSource.get("countries").fetchData(null, "window.countries = data");    ... later, a form is created
-     * dynamically ...    function showForm() {       isc.DynamicForm.create({           items : [              {
-     * name:"country", title:"Pick Country",                valueMap: window.countries.getValueMap("countryId",
-     * "countryName")              },       ... </pre> <P> You can also create a ResultSet from the data retrieved from
-     * <code>fetchData()</code>, like so: <pre>    isc.DataSource.get("countries").fetchData(null,        function
-     * (dsResponse, data) {           isc.ResultSet.create({              dataSource:"countries",
-     * allRows:data           })        }    ) </pre> <P> This gives you a dataset that supports client-side filtering
-     * (via {@link com.smartgwt.client.data.ResultSet#setCriteria}), can provide  {@link
-     * com.smartgwt.client.data.ResultSet#getValueMap}, will  {@link com.smartgwt.client.data.ResultSet#getDisableCacheSync
-     * disableCacheSync} to the DataSource made via other components, and can be re-used with multiple visual
-     * components. <P> See also the server-side com.isomorphic.js.JSTranslater class in the
-     * ${isc.DocUtils.linkForDocNode('javaServerReference', 'Java Server Reference')} for other, similar approaches
-     * involving dumping data into the page during initial page load.  <b>Note:</b> care should be taken when using this
-     * approach.  Large datasets degrade the basic performance of some browsers, so use {@link
-     * com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource optionDataSource} and similar facilities to manage datasets
-     * that may become very large. <P> <b>Data-Driven Visual Component Creation</b> <P>
-     * <code>DataSource.fetchData()</code> can also be used to create Smart GWT components in a data-driven way.  Many
-     * properties on Smart GWT visual components are configured via an Array of Objects - the same data format that
-     * <code>dataSource.fetchData()</code> returns.  These include {@link com.smartgwt.client.widgets.grid.ListGrid#getFields
-     * fields}, {@link com.smartgwt.client.widgets.tab.TabSet#getTabs tabs}, {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getItems items}, {@link com.smartgwt.client..Facet#getValues values}
-     * and even {@link com.smartgwt.client.data.DataSource#getFields fields}. <P> For example, if you had a DataSource
-     * "myFormFields" whose fields included the basic properties of {@link com.smartgwt.client.widgets.form.fields.FormItem}
-     * (name, title, type, etc), this example code would create a form based on stored field definitions, loaded from
-     * the "myFormFields" DataSource on the fly: <pre>    isc.DataSource.get("myFormFields").fetchData(null,
-     * "isc.DynamicForm.create({ items:data })"    ) </pre> This capability to dynamically create visual components
-     * from
-     * dynamically fetched data provides a foundation for creating interfaces that can be customized by end users. See
-     * also {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}.
-     *
-     * @param criteria search criteria
-     */
-    public native void fetchData(Criteria criteria) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.fetchData(criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()());
-    }-*/;
-
-    /**
-     * Perform a "fetch" DataSource operation against this DataSource, sending search criteria and retrieving matching
-     * records. <P> In contrast to {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData}, which creates a {@link
-     * com.smartgwt.client.data.ResultSet} to manage the returned data, calling <code>dataSource.fetchData()</code>
-     * provides the returned data in the callback as a simple JavaScript Array of JavaScript Objects.  Calling
-     * <code>dataSource.fetchData()</code> does not automatically update any visual components or caches: code in the
-     * callback passed to <code>fetchData()</code> decides what to do with the returned data.  <P> For example, given a
-     * ListGrid "myGrid" and a DataSource "employees", the following code would populate "myGrid" with data fetched
-     * from
-     * the DataSource: <pre>    isc.DataSource.get("employees").fetchData(null, "myGrid.setData(data)"); </pre> Unlike
-     * calling <code>myGrid.fetchData()</code>, which creates a {@link com.smartgwt.client.data.ResultSet}, the data
-     * provided to the grid is "disconnected" data, unmanaged by Smart GWT's databinding facilities and safe to
-     * directly modify.  This is useful when, for example, a ListGrid is being used as a more sophisticated version of
-     * HTML's multi-select component. <P> Disconnected datasets may be used to populate various visual components.  For
-     * example, while an individual FormItem can be configured to fetch {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap
-     * valueMap} options from a DataSource via the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
-     * optionDataSource} property, the following code shows storing a dataset to derive valueMaps from later: <pre>
-     * isc.DataSource.get("countries").fetchData(null, "window.countries = data");    ... later, a form is created
-     * dynamically ...    function showForm() {       isc.DynamicForm.create({           items : [              {
-     * name:"country", title:"Pick Country",                valueMap: window.countries.getValueMap("countryId",
-     * "countryName")              },       ... </pre> <P> You can also create a ResultSet from the data retrieved from
-     * <code>fetchData()</code>, like so: <pre>    isc.DataSource.get("countries").fetchData(null,        function
-     * (dsResponse, data) {           isc.ResultSet.create({              dataSource:"countries",
-     * allRows:data           })        }    ) </pre> <P> This gives you a dataset that supports client-side filtering
-     * (via {@link com.smartgwt.client.data.ResultSet#setCriteria}), can provide  {@link
-     * com.smartgwt.client.data.ResultSet#getValueMap}, will  {@link com.smartgwt.client.data.ResultSet#getDisableCacheSync
-     * disableCacheSync} to the DataSource made via other components, and can be re-used with multiple visual
-     * components. <P> See also the server-side com.isomorphic.js.JSTranslater class in the
-     * ${isc.DocUtils.linkForDocNode('javaServerReference', 'Java Server Reference')} for other, similar approaches
-     * involving dumping data into the page during initial page load.  <b>Note:</b> care should be taken when using this
-     * approach.  Large datasets degrade the basic performance of some browsers, so use {@link
-     * com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource optionDataSource} and similar facilities to manage datasets
-     * that may become very large. <P> <b>Data-Driven Visual Component Creation</b> <P>
-     * <code>DataSource.fetchData()</code> can also be used to create Smart GWT components in a data-driven way.  Many
-     * properties on Smart GWT visual components are configured via an Array of Objects - the same data format that
-     * <code>dataSource.fetchData()</code> returns.  These include {@link com.smartgwt.client.widgets.grid.ListGrid#getFields
-     * fields}, {@link com.smartgwt.client.widgets.tab.TabSet#getTabs tabs}, {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getItems items}, {@link com.smartgwt.client..Facet#getValues values}
-     * and even {@link com.smartgwt.client.data.DataSource#getFields fields}. <P> For example, if you had a DataSource
-     * "myFormFields" whose fields included the basic properties of {@link com.smartgwt.client.widgets.form.fields.FormItem}
-     * (name, title, type, etc), this example code would create a form based on stored field definitions, loaded from
-     * the "myFormFields" DataSource on the fly: <pre>    isc.DataSource.get("myFormFields").fetchData(null,
-     * "isc.DynamicForm.create({ items:data })"    ) </pre> This capability to dynamically create visual components
-     * from
-     * dynamically fetched data provides a foundation for creating interfaces that can be customized by end users. See
-     * also {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}.
+     * See {@link com.smartgwt.client.data.DataSource#fetchData(Criteria,DSCallback,DSRequest)}. 
      *
      * @param criteria search criteria
      * @param callback callback to invoke on completion
@@ -2636,51 +2528,100 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }-*/;
 
     /**
-     * Perform a "fetch" DataSource operation against this DataSource, sending search criteria and retrieving matching
-     * records. <P> In contrast to {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData}, which creates a {@link
-     * com.smartgwt.client.data.ResultSet} to manage the returned data, calling <code>dataSource.fetchData()</code>
-     * provides the returned data in the callback as a simple JavaScript Array of JavaScript Objects.  Calling
-     * <code>dataSource.fetchData()</code> does not automatically update any visual components or caches: code in the
-     * callback passed to <code>fetchData()</code> decides what to do with the returned data.  <P> For example, given a
-     * ListGrid "myGrid" and a DataSource "employees", the following code would populate "myGrid" with data fetched
-     * from
-     * the DataSource: <pre>    isc.DataSource.get("employees").fetchData(null, "myGrid.setData(data)"); </pre> Unlike
-     * calling <code>myGrid.fetchData()</code>, which creates a {@link com.smartgwt.client.data.ResultSet}, the data
-     * provided to the grid is "disconnected" data, unmanaged by Smart GWT's databinding facilities and safe to
-     * directly modify.  This is useful when, for example, a ListGrid is being used as a more sophisticated version of
-     * HTML's multi-select component. <P> Disconnected datasets may be used to populate various visual components.  For
-     * example, while an individual FormItem can be configured to fetch {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap
-     * valueMap} options from a DataSource via the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
-     * optionDataSource} property, the following code shows storing a dataset to derive valueMaps from later: <pre>
-     * isc.DataSource.get("countries").fetchData(null, "window.countries = data");    ... later, a form is created
-     * dynamically ...    function showForm() {       isc.DynamicForm.create({           items : [              {
-     * name:"country", title:"Pick Country",                valueMap: window.countries.getValueMap("countryId",
-     * "countryName")              },       ... </pre> <P> You can also create a ResultSet from the data retrieved from
-     * <code>fetchData()</code>, like so: <pre>    isc.DataSource.get("countries").fetchData(null,        function
-     * (dsResponse, data) {           isc.ResultSet.create({              dataSource:"countries",
-     * allRows:data           })        }    ) </pre> <P> This gives you a dataset that supports client-side filtering
-     * (via {@link com.smartgwt.client.data.ResultSet#setCriteria}), can provide  {@link
-     * com.smartgwt.client.data.ResultSet#getValueMap}, will  {@link com.smartgwt.client.data.ResultSet#getDisableCacheSync
-     * disableCacheSync} to the DataSource made via other components, and can be re-used with multiple visual
-     * components. <P> See also the server-side com.isomorphic.js.JSTranslater class in the
-     * ${isc.DocUtils.linkForDocNode('javaServerReference', 'Java Server Reference')} for other, similar approaches
-     * involving dumping data into the page during initial page load.  <b>Note:</b> care should be taken when using this
-     * approach.  Large datasets degrade the basic performance of some browsers, so use {@link
-     * com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource optionDataSource} and similar facilities to manage datasets
-     * that may become very large. <P> <b>Data-Driven Visual Component Creation</b> <P>
-     * <code>DataSource.fetchData()</code> can also be used to create Smart GWT components in a data-driven way.  Many
-     * properties on Smart GWT visual components are configured via an Array of Objects - the same data format that
-     * <code>dataSource.fetchData()</code> returns.  These include {@link com.smartgwt.client.widgets.grid.ListGrid#getFields
-     * fields}, {@link com.smartgwt.client.widgets.tab.TabSet#getTabs tabs}, {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getItems items}, {@link com.smartgwt.client..Facet#getValues values}
-     * and even {@link com.smartgwt.client.data.DataSource#getFields fields}. <P> For example, if you had a DataSource
-     * "myFormFields" whose fields included the basic properties of {@link com.smartgwt.client.widgets.form.fields.FormItem}
-     * (name, title, type, etc), this example code would create a form based on stored field definitions, loaded from
-     * the "myFormFields" DataSource on the fly: <pre>    isc.DataSource.get("myFormFields").fetchData(null,
-     * "isc.DynamicForm.create({ items:data })"    ) </pre> This capability to dynamically create visual components
-     * from
-     * dynamically fetched data provides a foundation for creating interfaces that can be customized by end users. See
-     * also {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}.
+     * Perform a "fetch" DataSource operation against this DataSource, sending search criteria and retrieving
+     * matching records. 
+     * <P> 
+     * In contrast to {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData}, which populates the
+     * ListGrid with data, calling <code>dataSource.fetchData()</code> does not automatically update any
+     * visual components or caches: code in the DSCallback passed to <code>fetchData()</code> decides
+     * what to do with the returned data.  
+     * <P>
+     * A {@link com.smartgwt.client.data.DSResponse DSResponse object} is provided via the
+     * {@link com.smartgwt.client.data.DSCallback#execute DSCallback} - the DSResponse allows you to get
+     * the returned data as {@link com.smartgwt.client.data.DSResponse#getData simple Record Array} or
+     * {@link com.smartgwt.client.data.DSResponse#getDataAsRecordList RecordList collection}.
+     * <P> 
+     * For example, given a ListGrid "myGrid" and a DataSource "employees", the following code
+     * would populate "myGrid" with data fetched from the DataSource: 
+     * <pre>    
+     *   DataSource.get("employees").fetchData(null, new DSCallback(){
+     *      public void execute(DSResponse response, Object rawData, DSRequest request) {
+     *         myGrid.setData(response.getData());
+     *      }
+     *   });
+     * </pre> 
+     * Unlike calling <code>myGrid.fetchData()</code>, which creates a 
+     * {@link com.smartgwt.client.data.ResultSet}, the data provided to the grid is "disconnected" data,
+     * unmanaged by Smart GWT's databinding facilities and safe to directly modify.  This is useful when, for
+     * example, a ListGrid is being used as a more sophisticated version of HTML's multi-select component. 
+     * <P> 
+     * Disconnected datasets may be used to populate various visual components.  For example, while an
+     * individual FormItem can be configured to fetch {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueMap valueMap} options from a DataSource
+     * via the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
+     * optionDataSource} property, the following code shows storing a dataset as a static variable, to
+     * derive valueMaps from later: 
+     * <pre>
+     *   // Assume GlobalStore.allCountries is a public static variable of type RecordList 
+     *   DataSource.get("countries").fetchData(null, new DSCallback(){
+     *      public void execute(DSResponse response, Object rawData, DSRequest request) {
+     *         GlobalStore.allCountries = response.getDataAsRecordList();
+     *      }
+     *   });
+     *   ... later, while a DynamicForm is being created ...    
+     *   SelectItem select = new SelectItem("country", "Pick Country");
+     *   Map valueMap = GlobalStore.allCountries.getValueMap("countryId", "countryName");
+     *   select.setValueMap(new LinkedHashMap(valueMap));
+     * </pre>
+     * <P>
+     * You can also create a ResultSet from the data retrieved from <code>fetchData()</code>, like so: 
+     * <pre>
+     *   DataSource.get("countries").fetchData(null, new DSCallback(){
+     *      public void execute(DSResponse response, Object rawData, DSRequest request) {
+     *         ResultSet rs = new ResultSet(DataSource.get("countries"));
+     *         rs.setAllRows(response.data());
+     *      }
+     *   });
+     * </pre>
+     * <P> 
+     * This gives you a dataset that supports client-side filtering 
+     * (via {@link com.smartgwt.client.data.ResultSet#setCriteria}), can provide  
+     * {@link com.smartgwt.client.data.ResultSet#getValueMap valueMaps}, will  
+     * {@link com.smartgwt.client.data.ResultSet#getDisableCacheSync automatically update cache} when changes
+     * are saved and can be re-used with multiple visual components. 
+     * <P>
+     * <b>Note:</b> care should be taken when using this approach.  Large datasets degrade the basic
+     * performance of some browsers, so use 
+     * {@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource optionDataSource} 
+     * and similar facilities to manage datasets that may become very large. 
+     * <P> 
+     * <b>Data-Driven Visual Component Creation</b> 
+     * <P>
+     * <code>DataSource.fetchData()</code> can also be used to create Smart GWT components in a
+     * data-driven way.  For example, if you had a DataSource "myGridFields" whose fields included the
+     * basic properties of {@link com.smartgwt.client.widgets.grid.ListGridField} (name, title, type,
+     * etc), this example code would create a form based on stored field definitions, loaded from the
+     * "myFormFields" DataSource on the fly: 
+     * <pre>    
+     *     DataSource.get("myFormFields").fetchData(null, new DSCallback(){
+     *      public void execute(DSResponse response, Object rawData, DSRequest request) {
+     *         Record[] records = response.getData();
+     *         ListGridField[] fields = new ListGridField[records.length];
+     *         for (Record record in records) {
+     *             ListGridField field = new ListGridField();
+     *             field.setName(record.getAttribute("name"));
+     *             field.setTitle(record.getAttribute("title"));
+     *             field.setType(ListGridFieldType.valueOf(record.getAttribute("type")));
+     *         }
+     *         ListGrid grid = new ListGrid();
+     *         grid.setFields(fields);
+     *      }
+     *   });
+     * ) 
+     * </pre>  
+     * This capability to dynamically create visual components from dynamically fetched data provides a
+     * foundation for creating interfaces that can be customized by end users. See also {@link
+     * com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}.
      *
      * @param criteria          search criteria
      * @param callback          callback to invoke on completion
@@ -2695,19 +2636,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
         }), requestPropertiesJS);
-    }-*/;
-
-    /**
-     * Perform a "fetch" DataSource operation against this DataSource, sending search criteria and retrieving matching
-     * records. <P> This is identical to {@link com.smartgwt.client.data.DataSource#fetchData} except that {@link
-     * com.smartgwt.client.data.DSRequest#getTextMatchStyle textMatchStyle} is set to "substring" to cause case
-     * insensitive substring matching (if the server respects this setting).
-     *
-     * @param criteria search criteria
-     */
-    public native void filterData(Criteria criteria) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.filterData(criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()());
     }-*/;
 
     /**
