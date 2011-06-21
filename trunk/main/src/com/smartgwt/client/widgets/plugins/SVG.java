@@ -166,5 +166,3 @@ public class SVG extends BrowserPlugin {
 
 
 
-
-
