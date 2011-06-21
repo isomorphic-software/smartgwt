@@ -120,6 +120,25 @@ public class SectionItem extends CanvasItem {
     }
 
     /**
+     * If true, the header for this Section will be included in the page's tab order for accessibility.
+     *
+     * @param canTabToHeader canTabToHeader Default value is null
+     */
+    public void setCanTabToHeader(Boolean canTabToHeader) {
+        setAttribute("canTabToHeader", canTabToHeader);
+    }
+
+    /**
+     * If true, the header for this Section will be included in the page's tab order for accessibility.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanTabToHeader()  {
+        return getAttributeAsBoolean("canTabToHeader");
+    }
+
+    /**
      * Whether this form section should be initially collapsed. Can be set programmatically via {@link
      * com.smartgwt.client.widgets.form.fields.SectionItem#expandSection SectionItem.expandSection} and {@link
      * com.smartgwt.client.widgets.form.fields.SectionItem#collapseSection SectionItem.collapseSection}.

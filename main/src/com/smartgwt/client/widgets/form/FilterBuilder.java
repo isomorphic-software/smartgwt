@@ -798,7 +798,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
             var jType = @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(fieldTypeEnum,type),
                 jOperatorId = @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(operatorIdEnum,operatorId),
                 jItemType = @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(itemTypeEnum,itemType);
-            var formItemJ = jObj.@com.smartgwt.client.widgets.form.FilterBuilder::getValueFieldProperties(Lcom/smartgwt/client/types/FieldType;Ljava/lang/String;Lcom/smartgwt/client/types/OperatorId;Lcom/smartgwt/client/types/ValueItemType;)(jType, fieldName, jOperatorId, jItemType);
+            if(jType == null) jType = @com.smartgwt.client.types.FieldType::CUSTOM;
+            var formItemJ = jObj.@com.smartgwt.client.widgets.form.FilterBuilder::getValueFieldProperties(Lcom/smartgwt/client/types/FieldType;Ljava/lang/String;Lcom/smartgwt/client/types/OperatorId;Lcom/smartgwt/client/types/ValueItemType;Ljava/lang/String;)(jType, fieldName, jOperatorId, jItemType, type);
             if (formItemJ == null) return null;
             return formItemJ.@com.smartgwt.client.widgets.form.fields.FormItem::getEditorTypeConfig()();
         });
@@ -936,12 +937,14 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * @param fieldName name of the DataSource field for this filter row
      * @param operatorId {@link com.smartgwt.client.types.OperatorId} for the chosen operator
      * @param itemType What valueItem is being generated.
+     * @param fieldType type of the DataSource field for this filter row. Typically one would use the {@param type} parameter but this value is useful when the
+     * {@link FieldType} is a custom SimpleType in which case the type will be {@link FieldType#CUSTOM} and this parameter is the name of the SimpleType
      *
      * @return properties for the value field
      */
-    public native FormItem getValueFieldProperties(FieldType type, String fieldName, OperatorId operatorId, ValueItemType itemType) /*-{
+    public native FormItem getValueFieldProperties(FieldType type, String fieldName, OperatorId operatorId, ValueItemType itemType, String fieldType) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.__getValueFieldProperties(type == null ? "custom" : type.@com.smartgwt.client.types.FieldType::getValue()(), fieldName, operatorId.@com.smartgwt.client.types.OperatorId::getValue()(), itemType.@com.smartgwt.client.types.ValueItemType::getValue()());
+        var ret = self.__getValueFieldProperties(type == @com.smartgwt.client.types.FieldType::CUSTOM ? fieldType : type.@com.smartgwt.client.types.FieldType::getValue()(), fieldName, operatorId.@com.smartgwt.client.types.OperatorId::getValue()(), itemType.@com.smartgwt.client.types.ValueItemType::getValue()());
         if(ret == null || ret === undefined) return null;
         var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
         if(retVal == null) {
@@ -950,10 +953,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         return retVal;
     }-*/;
 
-
-
 }
-
 
 
 
