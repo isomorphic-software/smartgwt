@@ -822,8 +822,265 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         self.setItemProperties(item, props);
     }-*/;
 
-}
+    /**
+     * Checks or unchecks the menu item according to the value of newState, and redraws the menu if necessary. Returns true if
+     * there's a change in the checked state.
+     * @param item MenuItem in question, or it's index
+     *
+     * @return true if the checked state was changed
+     */
+    public native Boolean setItemChecked(MenuItem item) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var itemJS = item.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.setItemChecked(itemJS);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
 
+    /**
+     * Checks or unchecks the menu item according to the value of newState, and redraws the menu if necessary. Returns true if
+     * there's a change in the checked state.
+     * @param item MenuItem in question, or it's index
+     *
+     * @return true if the checked state was changed
+     */
+    public native Boolean setItemChecked(int item) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.setItemChecked(item);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+
+    /**
+     * Checks or unchecks the menu item according to the value of newState, and redraws the menu if necessary. Returns true if
+     * there's a change in the checked state.
+     * @param item MenuItem in question, or it's index
+     * @param newState true to check the menu item, false to uncheck it.  If not                             passed, true is assumed
+     *
+     * @return true if the checked state was changed
+     */
+    public native Boolean setItemChecked(MenuItem item, boolean newState) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var itemJS = item.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.setItemChecked(itemJS, newState);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Checks or unchecks the menu item according to the value of newState, and redraws the menu if necessary. Returns true if
+     * there's a change in the checked state.
+     * @param item MenuItem in question, or it's index
+     * @param newState true to check the menu item, false to uncheck it.  If not                             passed, true is assumed
+     *
+     * @return true if the checked state was changed
+     */
+    public native Boolean setItemChecked(int item, boolean newState) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.setItemChecked(item, newState);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Enables or disables the menu item according to the value of newState, and redraws the menu if necessary. Returns true if
+     * there's a change in the enabled state.
+     * @param item MenuItem in question, or it's index
+     *
+     * @return true if the enabled state was changed
+     */
+    public native Boolean setItemEnabled(MenuItem item) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var itemJS = item.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.setItemEnabled(itemJS);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Enables or disables the menu item according to the value of newState, and redraws the menu if necessary. Returns true if
+     * there's a change in the enabled state.
+     * @param item MenuItem in question, or it's index
+     *
+     * @return true if the enabled state was changed
+     */
+    public native Boolean setItemEnabled(int item) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.setItemEnabled(item);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+
+    /**
+     * Enables or disables the menu item according to the value of newState, and redraws the menu if necessary. Returns true if
+     * there's a change in the enabled state.
+     * @param item MenuItem in question, or it's index
+     * @param newState true to enable the menu item, false to disable it.  If not                             passed, true is assumed
+     *
+     * @return true if the enabled state was changed
+     */
+    public native Boolean setItemEnabled(MenuItem item, boolean newState) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var itemJS = item.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.setItemEnabled(itemJS, newState);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Enables or disables the menu item according to the value of newState, and redraws the menu if necessary. Returns true if
+     * there's a change in the enabled state.
+     * @param item MenuItem in question, or it's index
+     * @param newState true to enable the menu item, false to disable it.  If not                             passed, true is assumed
+     *
+     * @return true if the enabled state was changed
+     */
+    public native Boolean setItemEnabled(int item, boolean newState) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.setItemEnabled(item, newState);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+
+    /**
+     * Sets the icon and disabled icon (if specified) for a particular menu item and redraws the menu if necessary. Returns
+     * true if the icon changed.
+     * @param item MenuItem in question, or it's index
+     * @param newIcon new icon URL
+     *
+     * @return true == something changed, redraw is called for
+     */
+    public native Boolean setItemIcon(MenuItem item, String newIcon) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var itemJS = item.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.setItemIcon(itemJS, newIcon);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Sets the icon and disabled icon (if specified) for a particular menu item and redraws the menu if necessary. Returns
+     * true if the icon changed.
+     * @param item MenuItem in question, or it's index
+     * @param newIcon new icon URL
+     *
+     * @return true == something changed, redraw is called for
+     */
+    public native Boolean setItemIcon(int item, String newIcon) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.setItemIcon(item, newIcon);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Sets the icon and disabled icon (if specified) for a particular menu item and redraws the menu if necessary. Returns
+     * true if the icon changed.
+     * @param item MenuItem in question, or it's index
+     * @param newIcon new icon URL
+     * @param newDisabledIcon new icon URL for disabled image
+     *
+     * @return true == something changed, redraw is called for
+     */
+    public native Boolean setItemIcon(MenuItem item, String newIcon, String newDisabledIcon) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var itemJS = item.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.setItemIcon(itemJS, newIcon, newDisabledIcon);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Sets the icon and disabled icon (if specified) for a particular menu item and redraws the menu if necessary. Returns
+     * true if the icon changed.
+     * @param item MenuItem in question, or it's index
+     * @param newIcon new icon URL
+     * @param newDisabledIcon new icon URL for disabled image
+     *
+     * @return true == something changed, redraw is called for
+     */
+    public native Boolean setItemIcon(int item, String newIcon, String newDisabledIcon) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.setItemIcon(item, newIcon, newDisabledIcon);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Sets the title of a particular menu item to the string specified by newTitle and redraws the menu if necessary.
+     * @param item MenuItem in question, or it's index
+     * @param newTitle new title
+     *
+     * @return true if the title was changed, and false otherwise
+     */
+    public native Boolean setItemTitle(MenuItem item, String newTitle) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var itemJS = item.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.setItemTitle(itemJS, newTitle);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Sets the title of a particular menu item to the string specified by newTitle and redraws the menu if necessary.
+     * @param item MenuItem in question, or it's index
+     * @param newTitle new title
+     *
+     * @return true if the title was changed, and false otherwise
+     */
+    public native Boolean setItemTitle(int item, String newTitle) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.setItemTitle(item, newTitle);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+}
 
 
 
