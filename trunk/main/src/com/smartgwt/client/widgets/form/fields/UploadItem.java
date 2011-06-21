@@ -69,7 +69,14 @@ import com.google.gwt.event.shared.HasHandlers;
  * the upload item is lost (because an HTML upload field may not be created with a value). For this reason, if you are
  * building a form that combines an UploadItem with other FormItems that could trigger redraw()s, recommended practice is
  * to place each UploadItem in a distinct DynamicForm instance and create the visual appearance of a single logical form
- * via combining the DynamicForms in a {@link com.smartgwt.client.widgets.layout.Layout}.
+ * via combining the DynamicForms in a {@link com.smartgwt.client.widgets.layout.Layout}. <P> <B>NOTE: Browser-specific
+ * behaviors:</B>  <ul> <li> while getDisplayValue() can be used to retrieve the filesystem path of the uploaded file on
+ * some browsers, different browsers will return either just the file name without path or the full path.  It is plausible
+ * that some browsers may switch behavior in the future to not supply this value at all.  Do not rely on this value. <li>
+ * the appearance of the UploadItem is not consistent across browsers and we do not recommend trying to make it consistent
+ * or trying to apply styling to the upload control at all.  It is a potential security problem if an end user is unable to
+ * reliably recognize the upload control, hence, all browsers limit what styling can be applied.  Various hacks exists to
+ * get further control of styling, but it is likely these hacks will be broken by browser upgrades in the future. </ul>
  * @see com.smartgwt.client.docs.Upload Upload overview and related methods
  */
 public class UploadItem extends TextItem {

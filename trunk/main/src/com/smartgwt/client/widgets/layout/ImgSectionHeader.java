@@ -158,4 +158,3 @@ public class ImgSectionHeader extends HLayout {
 
 
 
-

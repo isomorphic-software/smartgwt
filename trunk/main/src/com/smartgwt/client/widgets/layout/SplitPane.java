@@ -59,9 +59,9 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * extends VLayout A device- and orientation-sensitive layout that implements the common pattern of rendering  two panes
- * side-by-side on desktop devices and tablets (eg iPad) in landscape orientation,  while switching to showing a single
- * pane for handset-sized devices or tablets in portrait orientation. <P> The SplitPane's main components are the {@link
+ * A device- and orientation-sensitive layout that implements the common pattern of rendering  two panes side-by-side on
+ * desktop devices and tablets (eg iPad) in landscape orientation,  while switching to showing a single pane for
+ * handset-sized devices or tablets in portrait orientation. <P> The SplitPane's main components are the {@link
  * com.smartgwt.client.widgets.layout.SplitPane#getNavigationPane navigationPane} and the {@link
  * com.smartgwt.client.widgets.layout.SplitPane#getDetailPane detailPane}. Both components will be displayed side by side
  * as columns when viewed on a desktop device or a tablet in landscape mode.<br> Only one pane will be shown at a time when

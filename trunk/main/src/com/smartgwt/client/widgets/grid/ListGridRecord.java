@@ -59,48 +59,31 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * A ListGridRecord contains attributes which are values for each
- * {@link com.smartgwt.client.widgets.grid.ListGridField} in a ListGrid.  A ListGridRecord may
- * have additional attributes which affect the record's appearance or behavior, or which hold
- * data for use by custom logic or other, related components.
- * <p>
- * For example a ListGrid that defines the following fields:
- * <pre>
- *    new ListGridField("field1");
- *    new ListGridField("field2");
- * </pre>
- * Might use the following data:
- * <pre>
- *    record = new ListGridRecord();
- *    record.setAttribute("field1", "foo");
- *    record.setAttribute("field2", "bar");
- *    record.setAttribute("customAttribute", 5);
- * </pre>
- * The Record above has attributes whose names match the name of a ListGridField, as well as
- * additional attribute.  The record also has an attribute "customAttribute" which will have no
- * effect by default but which may be accessed by custom logic.
- * <P>
- * Like all Record subclasses, ListGridRecords can be converted to other Record subclasses, all
- * of which are wrappers over an underlying data format common to all DataBoundComponents.  See
- * {@link com.smartgwt.client.data.Record} for details.
- * <P>
- * However data is provided to a ListGrid, ListGridRecords can be accessed via getRecordList(),
- * which returns a {@link com.smartgwt.client.data.RecordList} with a number of convenient APIs
- * for looking up records.  If data is being loaded from a DataSource, it will not available
- * until the DataArrived event fires, and the ListGrid.getResultSet() API can be used to
- * retrieve a {@link com.smartgwt.client.data.ResultSet} object, a subclass of RecordList with
- * APIs related to managing a filtered and sorted subset of a remote dataset.
- * <P>
- * Note that, after records have been supplied to the ListGrid or loaded from a DataSource,
- * directly changing an attribute of a Record via setAttribute() will not notify the ListGrid
- * that the Record has changed or cause any kind of persistence operation to occur. 
- * Instead, use ListGrid.setEditValue() to apply a change meant to be saved as a user change
- * (see {@link com.smartgwt.client.docs.Editing editValues vs saved values} discussion).  
- * <P>
- * A call to setAttribute() is effectively a direct modification of the ListGrid's cache of
- * loaded data - when this is appropriate (for example, refreshing a client-side calculated value), 
- * use {@link com.smartgwt.client.widgets.grid.ListGrid#refreshCell ListGrid.refreshCell} to
- * refresh the display.
+ * A ListGridRecord is a JavaScript Object whose properties contain values for each&#010 {@link
+ * com.smartgwt.client.widgets.grid.ListGridField}.  A ListGridRecord may have additional properties which affect the&#010
+ * record's appearance or behavior, or which hold data for use by custom logic or other,&#010 related components.&#010
+ * <p>&#010 For example a ListGrid that defines the following fields:&#010 <pre>&#010 fields : [&#010     {name:
+ * "field1"},&#010     {name: "field2"}&#010 ],&#010 </pre>&#010 Might have the following data:&#010 <pre>&#010 data :
+ * [&#010     {field1: "foo", field2: "bar", customProperty:5},&#010     {field1: "field1 value", field2: "field2 value",
+ * enabled:false}&#010 ]&#010 </pre>&#010 Each line of code in the <code>data</code> array above creates one JavaScript
+ * Object via&#010 JavaScript {type:ObjectLiteral,object literal} notation.  These JavaScript Objects are&#010 used as
+ * ListGridRecords.&#010 <P>&#010 Both records shown above have properties whose names match the name property of a&#010
+ * ListGridField, as well as additional properties.  The second record will be disabled due to&#010
+ * <code>enabled:false</code>; the first record has a property "customProperty" which will&#010 have no effect by default
+ * but which may be accessed by custom logic.&#010 <P>&#010 After a ListGrid is created and has loaded data, records may be
+ * accessed via&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getData data}, for example, listGrid.data.get(0)
+ * retrieves the first record.&#010 ListGridRecords are also passed to many events, such as&#010 {@link
+ * com.smartgwt.client.widgets.grid.ListGrid#addCellClickHandler cellClick()}.&#010 <P>&#010 A ListGridRecord is always an
+ * ordinary JavaScript Object regardless of how the grid's&#010 dataset is loaded (static data, java server, XML web
+ * service, etc), and so supports the&#010 normal behaviors of JavaScript Objects, including accessing and assigning to
+ * properties&#010 via dot notation:&#010 <pre>&#010     var fieldValue = record.<i>fieldName</i>;&#010    
+ * record.<i>fieldName</i> = newValue;&#010 </pre>&#010 <P>&#010 Note however that simply assigning a value to a record
+ * won't cause the display to be&#010 automatically refreshed - {@link
+ * com.smartgwt.client.widgets.grid.ListGrid#refreshCell ListGrid.refreshCell} needs to be called.  Also,&#010 consider
+ * {@link com.smartgwt.client.docs.Editing editValues vs saved values} when directly modifying&#010 ListGridRecords.&#010
+ * <P>&#010 See the attributes in the API tab for the full list of special properties on&#010 ListGridRecords that will
+ * affect the grid's behavior.
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getData
  */
 public class ListGridRecord extends Record {
 
@@ -493,6 +476,7 @@ public class ListGridRecord extends Record {
     // ***********************************************************        
 
 }
+
 
 
 

@@ -615,7 +615,7 @@ public class OperationBinding extends DataClass {
      * @param requestProperties requestProperties Default value is null
      * @see com.smartgwt.client.data.DSRequest
      * @see com.smartgwt.client.data.DataSource#setRequestProperties
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setRequestProperties(DSRequest requestProperties) {
         setAttribute("requestProperties", requestProperties.getJsObj());
@@ -631,7 +631,7 @@ public class OperationBinding extends DataClass {
      * @return DSRequest
      * @see com.smartgwt.client.data.DSRequest
      * @see com.smartgwt.client.data.DataSource#getRequestProperties
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public DSRequest getRequestProperties()  {
         return new DSRequest(getAttributeAsJavaScriptObject("requestProperties"));

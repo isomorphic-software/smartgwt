@@ -120,5 +120,3 @@ public class CellRecord extends ListGridRecord {
 
 
 
-
-

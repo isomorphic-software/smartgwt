@@ -1106,7 +1106,9 @@ public class DataSourceField extends DataClass {
 
     /**
      * Default user-visible title for this field. <p> This will be picked up by DataBound components and other views over this
-     * DataSource.
+     * DataSource. <p> Note this property frequently does not need to be set since {@link
+     * com.smartgwt.client.data.DataSource#getAutoDeriveTitles autoDeriveTitles} (on by default) usually picks an appropriate
+     * user-visible title if you have a reasonable naming convention for your field names.
      *
      * @param title title Default value is null
      * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
@@ -1117,7 +1119,9 @@ public class DataSourceField extends DataClass {
 
     /**
      * Default user-visible title for this field. <p> This will be picked up by DataBound components and other views over this
-     * DataSource.
+     * DataSource. <p> Note this property frequently does not need to be set since {@link
+     * com.smartgwt.client.data.DataSource#getAutoDeriveTitles autoDeriveTitles} (on by default) usually picks an appropriate
+     * user-visible title if you have a reasonable naming convention for your field names.
      *
      *
      * @return String
@@ -1814,6 +1818,9 @@ public class DataSourceField extends DataClass {
     }
 
 }
+
+
+
 
 
 

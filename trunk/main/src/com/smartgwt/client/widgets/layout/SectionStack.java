@@ -170,10 +170,11 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     }
 
     /**
-     * If true, the headers for the sections (if shown) will be included in the page's tab order for accessibility.
+     * If true, the headers for the sections (if shown) will be included in the page's tab order for accessibility.  See {@link
+     * com.smartgwt.client.docs.Accessibility}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param canTabToHeaders canTabToHeaders Default value is false
+     * @param canTabToHeaders canTabToHeaders Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setCanTabToHeaders(Boolean canTabToHeaders)  throws IllegalStateException {
@@ -181,7 +182,8 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     }
 
     /**
-     * If true, the headers for the sections (if shown) will be included in the page's tab order for accessibility.
+     * If true, the headers for the sections (if shown) will be included in the page's tab order for accessibility.  See {@link
+     * com.smartgwt.client.docs.Accessibility}.
      *
      *
      * @return Boolean
@@ -959,7 +961,6 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      }-*/;
 
 }
-
 
 
 
