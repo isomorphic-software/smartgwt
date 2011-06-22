@@ -40,13 +40,18 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.layout.Layout#getAnimateMembers
  * @see com.smartgwt.client.widgets.layout.Layout#getAnimateMemberTime
  * @see com.smartgwt.client.widgets.layout.SectionStack#getAnimateSections
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateFolders
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateFolderMaxRows
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateFolderTime
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateFolderSpeed
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateFolderEffect
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveTime
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveSpeed
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolders
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderMaxRows
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderTime
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderSpeed
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderEffect
- * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveTime
- * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveSpeed
  */
 public interface Animation {
 }

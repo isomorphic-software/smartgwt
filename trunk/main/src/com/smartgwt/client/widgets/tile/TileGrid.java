@@ -202,6 +202,28 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     /**
+     * Properties for the {@link com.smartgwt.client.widgets.viewer.DetailViewer} that is automatically created to render the
+     * contents of tiles by default.
+     *
+     * @param detailViewerProperties detailViewerProperties Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setDetailViewerProperties(DetailViewer detailViewerProperties)  throws IllegalStateException {
+        setAttribute("detailViewerProperties", detailViewerProperties == null ? null : detailViewerProperties.getOrCreateJsObj(), false);
+    }
+
+    /**
+     * Properties for the {@link com.smartgwt.client.widgets.viewer.DetailViewer} that is automatically created to render the
+     * contents of tiles by default.
+     *
+     *
+     * @return DetailViewer
+     */
+    public DetailViewer getDetailViewerProperties()  {
+        return DetailViewer.getOrCreateRef(getAttributeAsJavaScriptObject("detailViewerProperties"));
+    }
+
+    /**
      * How many tiles should be present in a line when printing?
      *
      * @param printTilesPerLine printTilesPerLine Default value is null
@@ -315,6 +337,26 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     /**
+     * Common properties to use when creating every tile.
+     *
+     * @param tileProperties tileProperties Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTileProperties(Canvas tileProperties)  throws IllegalStateException {
+        setAttribute("tileProperties", tileProperties == null ? null : tileProperties.getOrCreateJsObj(), false);
+    }
+
+    /**
+     * Common properties to use when creating every tile.
+     *
+     *
+     * @return Canvas
+     */
+    public Canvas getTileProperties()  {
+        return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("tileProperties"));
+    }
+
+    /**
      * Horizontal alignment for tile values: "left", "right" or "center".
      *
      * @param tileValueAlign tileValueAlign Default value is "center"
@@ -352,6 +394,26 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      */
     public String getTileValueStyle()  {
         return getAttributeAsString("tileValueStyle");
+    }
+
+    /**
+     * Whether values should be allowed to wrap by default, or should be shown on one line regardless of length.
+     *
+     * @param wrapValues wrapValues Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setWrapValues(Boolean wrapValues)  throws IllegalStateException {
+        setAttribute("wrapValues", wrapValues, false);
+    }
+
+    /**
+     * Whether values should be allowed to wrap by default, or should be shown on one line regardless of length.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getWrapValues()  {
+        return getAttributeAsBoolean("wrapValues");
     }
 
     // ********************* Methods ***********************

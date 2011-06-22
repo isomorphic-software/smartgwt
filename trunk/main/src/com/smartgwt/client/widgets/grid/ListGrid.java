@@ -220,6 +220,131 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * When animating folder opening / closing, this property can be set to apply an animated acceleration effect. This allows
+     * the animation speed to be "weighted", for example expanding or collapsing at a faster rate toward the beginning of the
+     * animation than at the end. <P> For a ListGrid, this property applies when {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanGroupBy grouping} is enabled.
+     *
+     * @param animateFolderEffect animateFolderEffect Default value is null
+     */
+    public void setAnimateFolderEffect(AnimationAcceleration animateFolderEffect) {
+        setAttribute("animateFolderEffect", animateFolderEffect.getValue(), true);
+    }
+
+    /**
+     * When animating folder opening / closing, this property can be set to apply an animated acceleration effect. This allows
+     * the animation speed to be "weighted", for example expanding or collapsing at a faster rate toward the beginning of the
+     * animation than at the end. <P> For a ListGrid, this property applies when {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanGroupBy grouping} is enabled.
+     *
+     *
+     * @return AnimationAcceleration
+     */
+    public AnimationAcceleration getAnimateFolderEffect()  {
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateFolderEffect"));
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateFolders animateFolders} is true for this grid, this number
+     * can be set to designate the maximum number of rows to animate at a time when opening / closing a folder. <P> For a
+     * ListGrid, this property applies when {@link com.smartgwt.client.widgets.grid.ListGrid#getCanGroupBy grouping} is
+     * enabled.
+     *
+     * @param animateFolderMaxRows animateFolderMaxRows Default value is null
+     */
+    public void setAnimateFolderMaxRows(Integer animateFolderMaxRows) {
+        setAttribute("animateFolderMaxRows", animateFolderMaxRows, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateFolders animateFolders} is true for this grid, this number
+     * can be set to designate the maximum number of rows to animate at a time when opening / closing a folder. <P> For a
+     * ListGrid, this property applies when {@link com.smartgwt.client.widgets.grid.ListGrid#getCanGroupBy grouping} is
+     * enabled.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getAnimateFolderMaxRows()  {
+        return getAttributeAsInt("animateFolderMaxRows");
+    }
+
+    /**
+     * If true, when folders are opened / closed children will be animated into view. <P> For a ListGrid, this property applies
+     * when {@link com.smartgwt.client.widgets.grid.ListGrid#getCanGroupBy grouping} is enabled.
+     *
+     * @param animateFolders animateFolders Default value is true
+     */
+    public void setAnimateFolders(Boolean animateFolders) {
+        setAttribute("animateFolders", animateFolders, true);
+    }
+
+    /**
+     * If true, when folders are opened / closed children will be animated into view. <P> For a ListGrid, this property applies
+     * when {@link com.smartgwt.client.widgets.grid.ListGrid#getCanGroupBy grouping} is enabled.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAnimateFolders()  {
+        return getAttributeAsBoolean("animateFolders");
+    }
+
+    /**
+     * When animating folder opening / closing, this property designates the speed of the animation in pixels shown (or hidden)
+     * per second. Takes precedence over the  {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderTime
+     * animateFolderTime} property, which allows the developer to specify a duration for the animation rather than a speed. <P>
+     * For a ListGrid, this property applies when {@link com.smartgwt.client.widgets.grid.ListGrid#getCanGroupBy grouping} is
+     * enabled.
+     *
+     * @param animateFolderSpeed animateFolderSpeed Default value is 3000
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setAnimateFolderTime
+     */
+    public void setAnimateFolderSpeed(int animateFolderSpeed) {
+        setAttribute("animateFolderSpeed", animateFolderSpeed, true);
+    }
+
+    /**
+     * When animating folder opening / closing, this property designates the speed of the animation in pixels shown (or hidden)
+     * per second. Takes precedence over the  {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderTime
+     * animateFolderTime} property, which allows the developer to specify a duration for the animation rather than a speed. <P>
+     * For a ListGrid, this property applies when {@link com.smartgwt.client.widgets.grid.ListGrid#getCanGroupBy grouping} is
+     * enabled.
+     *
+     *
+     * @return int
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateFolderTime
+     */
+    public int getAnimateFolderSpeed()  {
+        return getAttributeAsInt("animateFolderSpeed");
+    }
+
+    /**
+     * When animating folder opening / closing, if {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderSpeed
+     * animateFolderSpeed} is not set, this property designates the duration of the animation in ms. <P> For a ListGrid, this
+     * property applies when {@link com.smartgwt.client.widgets.grid.ListGrid#getCanGroupBy grouping} is enabled.
+     *
+     * @param animateFolderTime animateFolderTime Default value is 100
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setAnimateFolderSpeed
+     */
+    public void setAnimateFolderTime(int animateFolderTime) {
+        setAttribute("animateFolderTime", animateFolderTime, true);
+    }
+
+    /**
+     * When animating folder opening / closing, if {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderSpeed
+     * animateFolderSpeed} is not set, this property designates the duration of the animation in ms. <P> For a ListGrid, this
+     * property applies when {@link com.smartgwt.client.widgets.grid.ListGrid#getCanGroupBy grouping} is enabled.
+     *
+     *
+     * @return int
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateFolderSpeed
+     */
+    public int getAnimateFolderTime()  {
+        return getAttributeAsInt("animateFolderTime");
+    }
+
+    /**
      * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanRemoveRecords canRemoveRecords} is enabled, should records
      * be animated out of view when they are removed by the user?
      *

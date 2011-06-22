@@ -36,12 +36,12 @@ package com.smartgwt.client.docs;
  * date being displayed, a Daylight Savings Time offset may also be applied based on the browser locale.  To disable this
  * behavior set String to false. <P> If a custom timezone is specified, it will be respected by all {@link
  * com.smartgwt.client.types.TimeDisplayFormat}s, and by the standard short {@link
- * com.smartgwt.client.types.DateDisplayFormat}s. However native JavaScript Date formatters,  including
- * <code>toLocaleString()</code> will not respect the specified timezone. Developers specifying a custom timezone may
- * therefore wish to modify the  Date.setNormalDisplayFormat to avoid using a native JS Date formatter function. <P> Note
- * that in addition to the system-wide date, datetime and time-formatting settings described above, databound components
- * also support applying custom display formats for date values. Typically this can be achieved via a custom
- * <code>dateFormatter</code> or <code>timeFormatter</code> at the field level (see {@link
+ * com.smartgwt.client.types.DateDisplayFormat}s when formatting dates representing datetime type values. However native
+ * JavaScript Date formatters,  including <code>toLocaleString()</code> will not respect the specified timezone. Developers
+ * specifying a custom timezone may therefore wish to modify the  Date.setNormalDisplayFormat to avoid using a native JS
+ * Date formatter function. <P> Note that in addition to the system-wide date, datetime and time-formatting settings
+ * described above, databound components also support applying custom display formats for date values. Typically this can
+ * be achieved via a custom <code>dateFormatter</code> or <code>timeFormatter</code> at the field level (see {@link
  * com.smartgwt.client.data.DataSourceField#getDateFormatter dateFormatter},  {@link
  * com.smartgwt.client.data.DataSourceField#getTimeFormatter timeFormatter} and for example {@link
  * com.smartgwt.client.widgets.grid.ListGridField#getDateFormatter dateFormatter}). Date formatting may also be configured
