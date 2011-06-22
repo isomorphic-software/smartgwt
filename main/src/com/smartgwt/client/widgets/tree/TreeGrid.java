@@ -130,8 +130,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolders animateFolders} is true for this treeGrid, this
-     * number can be set to designate the maximum number of rows to animate at a time when opening / closing a folder.
+     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolders animateFolders} is true for this grid, this number
+     * can be set to designate the maximum number of rows to animate at a time when opening / closing a folder.
      *
      * @param animateFolderMaxRows animateFolderMaxRows Default value is null
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderMaxRows
@@ -141,8 +141,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolders animateFolders} is true for this treeGrid, this
-     * number can be set to designate the maximum number of rows to animate at a time when opening / closing a folder.
+     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolders animateFolders} is true for this grid, this number
+     * can be set to designate the maximum number of rows to animate at a time when opening / closing a folder.
      *
      *
      * @return If {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolders animateFolders} is true for this treeGrid, this
@@ -181,7 +181,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * per second. Takes precedence over the  {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderTime
      * animateFolderTime} property, which allows the developer to specify a duration for the animation rather than a speed.
      *
-     * @param animateFolderSpeed animateFolderSpeed Default value is 1000
+     * @param animateFolderSpeed animateFolderSpeed Default value is 3000
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setAnimateFolderTime
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_tree" target="examples">Tree Folders Example</a>
      */
