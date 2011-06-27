@@ -9,6 +9,11 @@ import com.smartgwt.client.widgets.form.fields.FormItem;
  * Context object holding information about the cell being edited as part of a listGrid edit event.
  */
 public class ListGridEditorContext {
+
+    private int rowNum;
+    private ListGridField editField;
+    private ListGridRecord editedRecord;
+    private FormItem defaultProperties;
     
     ListGridEditorContext (JavaScriptObject jsContext) {
         
@@ -25,7 +30,6 @@ public class ListGridEditorContext {
          
     }
     
-    private FormItem defaultProperties;
     /**
      * Default FormItem properties to apply to the editor for this cell. These properties are derived automatically
      * from {@link ListGridField#setEditorType()}
@@ -38,7 +42,6 @@ public class ListGridEditorContext {
         defaultProperties = item;
     }
     
-    private int rowNum;
     /**
      * Returns the rowNum being edited
      * @return
@@ -51,7 +54,6 @@ public class ListGridEditorContext {
         this.rowNum = rowNum;
     }
     
-    private ListGridField editField;
     /**
      * Returns the field in which the editor will be displayed
      * @return
@@ -63,7 +65,6 @@ public class ListGridEditorContext {
         editField = field;
     }
     
-    private ListGridRecord editedRecord;
     /**
      * Similar to {@link ListGrid#getEditedRecord()}, this method returns a copy of the 
      * record being edited, with unsaved edit values applied.
