@@ -15,17 +15,13 @@
  */
  
 package com.smartgwt.client.widgets.calendar.events;
+import com.google.gwt.event.shared.EventHandler;
 
-import com.smartgwt.client.event.*;
-import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.event.shared.HasHandlers;
-
-public interface HasEventMovedHandlers extends HasHandlers {
+public interface BackgroundClickHandler extends EventHandler {
     /**
-     * Called when an event is moved via dragging by a user.  Call {@link com.smartgwt.client.widgets.calendar.events.CalendarEventMoved#cancel()} from within {@link EventMovedHandler#onEventMoved} to disallow the move.
+     * Callback fired when the mouse is clicked in a background-cell, ie, one without an  event.
      *
-     * @param handler the eventMoved handler
-     * @return {@link HandlerRegistration} used to remove this handler
+     * @param event the event
      */
-    HandlerRegistration addEventMovedHandler(EventMovedHandler handler);
+    void onBackgroundClick(com.smartgwt.client.widgets.calendar.events.BackgroundClickEvent event);
 }

@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.calendar.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface EventResizedHandler extends EventHandler {
-
+    /**
+     * Called when an event is resized via dragging by a user.  Call {@link com.smartgwt.client.widgets.calendar.events.CalendarEventResized#cancel()} from within {@link EventResizedHandler#onEventResized} to disallow the resize.
+     *
+     * @param event the event
+     */
     void onEventResized(com.smartgwt.client.widgets.calendar.events.CalendarEventResized event);
 }

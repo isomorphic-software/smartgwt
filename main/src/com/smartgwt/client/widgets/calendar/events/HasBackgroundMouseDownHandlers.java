@@ -20,15 +20,13 @@ import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
-public interface HasDayBodyClickHandlers extends HasHandlers {
+public interface HasBackgroundMouseDownHandlers extends HasHandlers {
     /**
-     * Called when the body area of a day in the month view is clicked on, outside of any links to a particular event. <P> By
-     * default, if the user can add events, shows a dialog for adding a new event for that day.  Call {@link com.smartgwt.client.widgets.calendar.events.DayBodyClickEvent#cancel()} from within {@link DayBodyClickHandler#onDayBodyClick} to cancel this
-     * action. <P> Not called if the day falls outside the current month and {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getShowOtherDays showOtherDays} is false.
+     * Callback fired when the mouse button is depressed over a background-cell, ie, one  without an event.  Call {@link com.smartgwt.client.widgets.calendar.events.BackgroundMouseDownEvent#cancel()} from within {@link BackgroundMouseDownHandler#onBackgroundMouseDown} to
+     * cancel the default behavior of allowing sweep selection via dragging.
      *
-     * @param handler the dayBodyClick handler
+     * @param handler the backgroundMouseDown handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
-    HandlerRegistration addDayBodyClickHandler(DayBodyClickHandler handler);
+    HandlerRegistration addBackgroundMouseDownHandler(BackgroundMouseDownHandler handler);
 }

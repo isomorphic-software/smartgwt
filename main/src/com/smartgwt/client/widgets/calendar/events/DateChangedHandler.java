@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.calendar.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface DateChangedHandler extends EventHandler {
-
+    /**
+     * Fires whenever the user changes the current date, including picking a specific date or navigating to a new week or
+     * month.
+     *
+     * @param event the event
+     */
     void onDateChanged(com.smartgwt.client.widgets.calendar.events.DateChangedEvent event);
 }

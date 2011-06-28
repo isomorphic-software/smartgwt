@@ -114,7 +114,7 @@ public class CalendarEventMoved extends BrowserEvent<EventMovedHandler>  impleme
 
 
     /**
-     * return false to disallow the move.
+     * Call this method to disallow the move.
      */
     public void cancel() {
         cancel = true;

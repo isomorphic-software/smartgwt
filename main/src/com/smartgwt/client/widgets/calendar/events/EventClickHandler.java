@@ -18,6 +18,12 @@ package com.smartgwt.client.widgets.calendar.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface EventClickHandler extends EventHandler {
-
+    /**
+     * Called whenever an event is clicked on in the day, week or month views. <P> By default a dialog appears showing details
+     * for the event, and offering the ability to edit events which are editable.  Call {@link com.smartgwt.client.widgets.calendar.events.CalendarEventClick#cancel()} from within {@link EventClickHandler#onEventClick} to cancel the default action.
+     * This is a good place to, for example, show a completely customized event dialog instead of the default one.
+     *
+     * @param event the event
+     */
     void onEventClick(com.smartgwt.client.widgets.calendar.events.CalendarEventClick event);
 }

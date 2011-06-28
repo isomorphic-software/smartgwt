@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.calendar.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface EventRemovedHandler extends EventHandler {
-
+    /**
+     * Notification fired whenever a user removes an event <P> In a calendar with a DataSource, eventRemoved() fires
+     * <b>after</b> the event has been successfully removed from the server
+     *
+     * @param event the event
+     */
     void onEventRemoved(com.smartgwt.client.widgets.calendar.events.CalendarEventRemoved event);
 }

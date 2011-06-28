@@ -18,6 +18,12 @@ package com.smartgwt.client.widgets.calendar.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface EventRemoveClickHandler extends EventHandler {
-
+    /**
+     * Called whenever the close icon of an event is clicked within the day or week view. Call {@link com.smartgwt.client.widgets.calendar.events.CalendarEventRemoveClick#cancel()} from within {@link EventRemoveClickHandler#onEventRemoveClick} to cancel the removal,
+     * or . <P> Implement this method to do something like, for example, showing a confirmation dialog  before
+     * an event is removed.
+     *
+     * @param event the event
+     */
     void onEventRemoveClick(com.smartgwt.client.widgets.calendar.events.CalendarEventRemoveClick event);
 }

@@ -18,6 +18,12 @@ package com.smartgwt.client.widgets.calendar.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface EventChangedHandler extends EventHandler {
-
+    /**
+     * Notification fired whenever a user changes an event, whether by dragging the event or by editing it in a dialog. <P> In
+     * a calendar with a DataSource, eventChanged() fires <b>after</b> the updated event has been successfully saved to the
+     * server
+     *
+     * @param event the event
+     */
     void onEventChanged(com.smartgwt.client.widgets.calendar.events.CalendarEventChangedEvent event);
 }

@@ -57,13 +57,13 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-public class CalendarEventResized extends BrowserEvent<EventResizedHandler>  implements Cancellable {
+public class BackgroundMouseDownEvent extends BrowserEvent<BackgroundMouseDownHandler>  implements Cancellable {
     private boolean cancel = false;
 
     /**
      * Handler type.
      */
-    private static Type<EventResizedHandler> TYPE;
+    private static Type<BackgroundMouseDownHandler> TYPE;
 
     /**
      * Fires a open event on all registered handlers in the handler manager.If no
@@ -73,10 +73,10 @@ public class CalendarEventResized extends BrowserEvent<EventResizedHandler>  imp
      * @param source the source of the handlers
      * @param jsObj the native event
      */
-    public static <S extends HasEventResizedHandlers & HasHandlers> void fire(
+    public static <S extends HasBackgroundMouseDownHandlers & HasHandlers> void fire(
         S source, JavaScriptObject jsObj) {
         if (TYPE != null) {
-            CalendarEventResized event = new CalendarEventResized(jsObj);
+            BackgroundMouseDownEvent event = new BackgroundMouseDownEvent(jsObj);
             source.fireEvent(event);
         }
     }
@@ -86,17 +86,17 @@ public class CalendarEventResized extends BrowserEvent<EventResizedHandler>  imp
      *
      * @return returns the handler type
      */
-    public static Type<EventResizedHandler> getType() {
+    public static Type<BackgroundMouseDownHandler> getType() {
         if (TYPE == null) {
-            TYPE = new Type<EventResizedHandler>();
+            TYPE = new Type<BackgroundMouseDownHandler>();
         }
         return TYPE;
     }
 
 
     @Override
-    protected void dispatch(EventResizedHandler handler) {
-        handler.onEventResized(this);
+    protected void dispatch(BackgroundMouseDownHandler handler) {
+        handler.onBackgroundMouseDown(this);
     }
 
     // Because of type erasure, our static type is
@@ -104,17 +104,17 @@ public class CalendarEventResized extends BrowserEvent<EventResizedHandler>  imp
 
     @SuppressWarnings("unchecked")
     @Override
-    public final Type<EventResizedHandler> getAssociatedType() {
+    public final Type<BackgroundMouseDownHandler> getAssociatedType() {
         return TYPE;
     }
 
-    public CalendarEventResized(JavaScriptObject jsObj) {
+    public BackgroundMouseDownEvent(JavaScriptObject jsObj) {
         super(jsObj);
     }
 
 
     /**
-     * Call this method to disallow the resize
+     * Call this method to suppress default behavior of allowing sweep     selection via dragging.
      */
     public void cancel() {
         cancel = true;
@@ -128,23 +128,13 @@ public class CalendarEventResized extends BrowserEvent<EventResizedHandler>  imp
     }
 
     /**
-     * new end date and time that event is being resized to
+     * start datetime of the selected slot
      *
-     * @return new end date and time that event is being resized to
+     * @return start datetime of the selected slot
      */
-    public  native Date getNewDate() /*-{
+    public  native Date getStartDate() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return (jsObj.newDate === undefined || jsObj.newDate == null) ? null: @com.smartgwt.client.util.JSOHelper::toDate(D)(jsObj.newDate.getTime());
-    }-*/;
-
-    /**
-     * 
-     *
-     * @return CalendarEvent
-     */
-    public  native CalendarEvent getEvent() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.calendar.CalendarEvent::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.event);
+        return (jsObj.startDate === undefined || jsObj.startDate == null) ? null: @com.smartgwt.client.util.JSOHelper::toDate(D)(jsObj.startDate.getTime());
     }-*/;
 
 

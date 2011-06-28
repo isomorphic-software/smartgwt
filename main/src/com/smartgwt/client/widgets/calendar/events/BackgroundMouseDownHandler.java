@@ -15,17 +15,14 @@
  */
  
 package com.smartgwt.client.widgets.calendar.events;
+import com.google.gwt.event.shared.EventHandler;
 
-import com.smartgwt.client.event.*;
-import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.event.shared.HasHandlers;
-
-public interface HasEventMovedHandlers extends HasHandlers {
+public interface BackgroundMouseDownHandler extends EventHandler {
     /**
-     * Called when an event is moved via dragging by a user.  Call {@link com.smartgwt.client.widgets.calendar.events.CalendarEventMoved#cancel()} from within {@link EventMovedHandler#onEventMoved} to disallow the move.
+     * Callback fired when the mouse button is depressed over a background-cell, ie, one  without an event.  Call {@link com.smartgwt.client.widgets.calendar.events.BackgroundMouseDownEvent#cancel()} from within {@link BackgroundMouseDownHandler#onBackgroundMouseDown} to
+     * cancel the default behavior of allowing sweep selection via dragging.
      *
-     * @param handler the eventMoved handler
-     * @return {@link HandlerRegistration} used to remove this handler
+     * @param event the event
      */
-    HandlerRegistration addEventMovedHandler(EventMovedHandler handler);
+    void onBackgroundMouseDown(com.smartgwt.client.widgets.calendar.events.BackgroundMouseDownEvent event);
 }

@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.calendar.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface EventMovedHandler extends EventHandler {
-
+    /**
+     * Called when an event is moved via dragging by a user.  Call {@link com.smartgwt.client.widgets.calendar.events.CalendarEventMoved#cancel()} from within {@link EventMovedHandler#onEventMoved} to disallow the move.
+     *
+     * @param event the event
+     */
     void onEventMoved(com.smartgwt.client.widgets.calendar.events.CalendarEventMoved event);
 }
