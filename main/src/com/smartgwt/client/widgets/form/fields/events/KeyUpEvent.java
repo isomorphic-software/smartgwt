@@ -114,7 +114,7 @@ public class KeyUpEvent extends AbstractSmartEvent<KeyUpHandler>  implements Can
 
 
     /**
-     * return false to attempt to cancel the event.  Note for general purpose                   APIs for managing whether user
+     * Call this method to attempt to cancel the event.  Note for general purpose                   APIs for managing whether user
      * input is allowed, use {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler FormItem.change}         
      *         or {@link com.smartgwt.client.widgets.form.fields.FormItem#setInputTransformer FormItem.transformInput} instead.
      */

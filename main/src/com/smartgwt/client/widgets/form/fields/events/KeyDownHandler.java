@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface KeyDownHandler extends EventHandler {
-
+    /**
+     * StringMethod fired in response to a keydown while focused in this form item.
+     *
+     * @param event the event
+     */
     void onKeyDown(com.smartgwt.client.widgets.form.fields.events.KeyDownEvent event);
 }

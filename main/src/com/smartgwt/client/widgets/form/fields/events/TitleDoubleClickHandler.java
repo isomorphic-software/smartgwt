@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface TitleDoubleClickHandler extends EventHandler {
-
+    /**
+     * Notification method fired when the user double-clicks the title for this item
+     *
+     * @param event the event
+     */
     void onTitleDoubleClick(com.smartgwt.client.widgets.form.fields.events.TitleDoubleClickEvent event);
 }

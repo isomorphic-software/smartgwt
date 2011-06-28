@@ -120,7 +120,10 @@ public class SectionItem extends CanvasItem {
     }
 
     /**
-     * If true, the header for this Section will be included in the page's tab order for accessibility.
+     * If true, the header for this Section will be included in the page's tab order for accessibility. May also be set at the
+     * {@link com.smartgwt.client.widgets.form.DynamicForm} level via  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getCanTabToSectionHeaders canTabToSectionHeaders}. <P> See {@link
+     * com.smartgwt.client.docs.Accessibility}.
      *
      * @param canTabToHeader canTabToHeader Default value is null
      */
@@ -129,7 +132,10 @@ public class SectionItem extends CanvasItem {
     }
 
     /**
-     * If true, the header for this Section will be included in the page's tab order for accessibility.
+     * If true, the header for this Section will be included in the page's tab order for accessibility. May also be set at the
+     * {@link com.smartgwt.client.widgets.form.DynamicForm} level via  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getCanTabToSectionHeaders canTabToSectionHeaders}. <P> See {@link
+     * com.smartgwt.client.docs.Accessibility}.
      *
      *
      * @return Boolean

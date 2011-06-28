@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface TitleClickHandler extends EventHandler {
-
+    /**
+     * Notification method fired when the user clicks the title for this item
+     *
+     * @param event the event
+     */
     void onTitleClick(com.smartgwt.client.widgets.form.fields.events.TitleClickEvent event);
 }

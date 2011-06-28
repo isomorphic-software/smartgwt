@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface FocusHandler extends EventHandler {
-
+    /**
+     * Called when this FormItem receives focus.
+     *
+     * @param event the event
+     */
     void onFocus(com.smartgwt.client.widgets.form.fields.events.FocusEvent event);
 }

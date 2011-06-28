@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface BlurHandler extends EventHandler {
-
+    /**
+     * Called when this FormItem loses focus.
+     *
+     * @param event the event
+     */
     void onBlur(com.smartgwt.client.widgets.form.fields.events.BlurEvent event);
 }

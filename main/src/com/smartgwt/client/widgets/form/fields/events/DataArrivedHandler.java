@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface DataArrivedHandler extends EventHandler {
-
+    /**
+     * If this item is showing a dataBound pickList, this notification method will be fired  when new data arrives from the
+     * server.
+     *
+     * @param event the event
+     */
     void onDataArrived(com.smartgwt.client.widgets.form.fields.events.DataArrivedEvent event);
 }
