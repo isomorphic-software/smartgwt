@@ -26,7 +26,7 @@ public interface HasHiddenValidationErrorsHandlers extends HasHandlers {
      * called when validation fails for<br> - a hidden field in this form<br> - if this form is databound, a datasource field
      * with specified validators, for which we   have no specified form item.<br> Implement this to provide custom validation
      * error handling for these fields.<br> By default hidden validation errors will be logged as warnings in the
-     * developerConsole. Return false from this method to suppress that behavior.
+     * developerConsole. Call {@link com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent#cancel()} from within {@link HiddenValidationErrorsHandler#onHiddenValidationErrors} from this method to suppress that behavior.
      *
      * @param handler the hiddenValidationErrors handler
      * @return {@link HandlerRegistration} used to remove this handler

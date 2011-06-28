@@ -18,6 +18,12 @@ package com.smartgwt.client.widgets.tile.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface SelectionChangedHandler extends EventHandler {
-
+    /**
+     * Called when selection changes within this tileGrid. Note this method fires for each record for which selection is
+     * modified - so when a user clicks inside a tileGrid this method will typically fire twice (once for the old record being
+     * deselected, and once for the new record being selected).
+     *
+     * @param event the event
+     */
     void onSelectionChanged(com.smartgwt.client.widgets.tile.events.SelectionChangedEvent event);
 }

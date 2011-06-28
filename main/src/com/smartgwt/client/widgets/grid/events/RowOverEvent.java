@@ -114,7 +114,7 @@ public class RowOverEvent extends GridRowColEvent<RowOverHandler>  implements Ca
 
 
     /**
-     * whether to cancel the event
+     * Calling this method cancels the event
      */
     public void cancel() {
         cancel = true;

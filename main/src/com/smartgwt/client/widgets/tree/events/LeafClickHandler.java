@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.tree.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface LeafClickHandler extends EventHandler {
-
+    /**
+     * This method is called when a leaf record is clicked on.
+     *
+     * @param event the event
+     */
     void onLeafClick(com.smartgwt.client.widgets.tree.events.LeafClickEvent event);
 }

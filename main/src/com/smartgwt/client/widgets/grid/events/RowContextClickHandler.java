@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface RowContextClickHandler extends EventHandler {
-
+    /**
+     * Called when a row receives a contextclick event.
+     *
+     * @param event the event
+     */
     void onRowContextClick(com.smartgwt.client.widgets.grid.events.RowContextClickEvent event);
 }

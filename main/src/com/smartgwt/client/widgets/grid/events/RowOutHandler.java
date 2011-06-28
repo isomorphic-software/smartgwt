@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface RowOutHandler extends EventHandler {
-
+    /**
+     * Called when the mouse pointer leaves a row
+     *
+     * @param event the event
+     */
     void onRowOut(com.smartgwt.client.widgets.grid.events.RowOutEvent event);
 }

@@ -114,7 +114,7 @@ public class CellMouseDownEvent extends GridRowColEvent<CellMouseDownHandler>  i
 
 
     /**
-     * whether to cancel the event
+     * Calling this method cancels the event
      */
     public void cancel() {
         cancel = true;

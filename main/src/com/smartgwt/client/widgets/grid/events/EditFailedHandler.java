@@ -18,6 +18,14 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface EditFailedHandler extends EventHandler {
-
+    /**
+     * Called when an attempt to save inline edits fails, due to a validation error or other server error. <P> The default
+     * implementation of editFailed does nothing for normal validation errors, which are displayed before editFailed() is
+     * called.  For any other errors, the default implementation will call {@link
+     * com.smartgwt.client.rpc.RPCManager#handleError RPCManager.handleError}, which by default will result in a warning
+     * dialog.
+     *
+     * @param event the event
+     */
     void onEditFailed(com.smartgwt.client.widgets.grid.events.EditFailedEvent event);
 }

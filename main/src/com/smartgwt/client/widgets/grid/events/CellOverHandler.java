@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface CellOverHandler extends EventHandler {
-
+    /**
+     * Called when the mouse pointer enters a cell
+     *
+     * @param event the event
+     */
     void onCellOver(com.smartgwt.client.widgets.grid.events.CellOverEvent event);
 }

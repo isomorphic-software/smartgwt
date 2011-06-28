@@ -114,7 +114,7 @@ public class EditorExitEvent extends AbstractSmartEvent<EditorExitHandler>  impl
 
 
     /**
-     * Returning false from this method will cancel the default behavior                      (for example saving the row) and
+     * Calling this method will cancel the default behavior                      (for example saving the row) and
      * leave the editor visible and focus                      in this edit cell.
      */
     public void cancel() {

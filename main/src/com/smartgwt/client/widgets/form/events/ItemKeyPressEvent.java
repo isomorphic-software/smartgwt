@@ -114,7 +114,7 @@ public class ItemKeyPressEvent extends BrowserEvent<ItemKeyPressHandler>  implem
 
 
     /**
-     * return false to cancel the keyPress, or true to allow it
+     * Call this method to cancel the keyPress
      */
     public void cancel() {
         cancel = true;

@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface CellHoverHandler extends EventHandler {
-
+    /**
+     * Called when the mouse hovers over a cell if this.canHover is true.   Returning false will suppress the hover text from
+     * being shown if this.showHover is true.
+     *
+     * @param event the event
+     */
     void onCellHover(com.smartgwt.client.widgets.grid.events.CellHoverEvent event);
 }

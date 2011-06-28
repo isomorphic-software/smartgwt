@@ -18,6 +18,13 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface HeaderDoubleClickHandler extends EventHandler {
-
+    /**
+     * Handle a double click in the list header. <P> By default, calls {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#autoFitField ListGrid.autoFitField} if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanAutoFitFields canAutoFitFields} is true and  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFitHeaderEvent autoFitHeaderEvent} is <code>"doubleClick"</code>.
+     *
+     * @param event the event
+     */
     void onHeaderDoubleClick(com.smartgwt.client.widgets.grid.events.HeaderDoubleClickEvent event);
 }

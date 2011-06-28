@@ -23,7 +23,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasEditorExitHandlers extends HasHandlers {
     /**
      * Callback fired when the user attempts to navigate away from the current edit cell,  or complete the current edit.<br>
-     * Return false from this method to cancel the default behavior (Saving / cancelling the current edit / moving to the next
+     * Call {@link com.smartgwt.client.widgets.grid.events.EditorExitEvent#cancel()} from within {@link EditorExitHandler#onEditorExit} from this method to cancel the default behavior (Saving / cancelling the current edit / moving to the next
      * edit cell)
      *
      * @param handler the editorExit handler

@@ -18,6 +18,13 @@ package com.smartgwt.client.widgets.tree.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface DataArrivedHandler extends EventHandler {
-
+    /**
+     * Notification method fired whenever this TreeGrid receives new data nodes from the  dataSource. Only applies to databound
+     * TreeGrids where {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} is a  ResultTree - either explicitly
+     * created and applied via {@link com.smartgwt.client.widgets.tree.TreeGrid#setData TreeGrid.setData} or automatically
+     * generated via a {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData fetchData()} call.
+     *
+     * @param event the event
+     */
     void onDataArrived(com.smartgwt.client.widgets.tree.events.DataArrivedEvent event);
 }

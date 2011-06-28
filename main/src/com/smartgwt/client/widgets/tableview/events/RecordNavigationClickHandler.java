@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.tableview.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface RecordNavigationClickHandler extends EventHandler {
-
+    /**
+     * Executed when the user clicks on a record, or on the navigate icon for a record depending on {@link
+     * com.smartgwt.client.types.NavigationMode}.
+     *
+     * @param event the event
+     */
     void onRecordNavigationClick(com.smartgwt.client.widgets.tableview.events.RecordNavigationClickEvent event);
 }

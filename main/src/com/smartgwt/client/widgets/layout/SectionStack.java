@@ -170,8 +170,9 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     }
 
     /**
-     * If true, the headers for the sections (if shown) will be included in the page's tab order for accessibility.  See {@link
-     * com.smartgwt.client.docs.Accessibility}.
+     * If true, the headers for the sections (if shown) will be included in the page's tab order for accessibility.  May be
+     * overridden at the Section level via  canTabToHeader <P> If unset, section headers will be focusable if 
+     * setScreenReaderMode has been called. See {@link com.smartgwt.client.docs.Accessibility}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canTabToHeaders canTabToHeaders Default value is null
@@ -182,8 +183,9 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     }
 
     /**
-     * If true, the headers for the sections (if shown) will be included in the page's tab order for accessibility.  See {@link
-     * com.smartgwt.client.docs.Accessibility}.
+     * If true, the headers for the sections (if shown) will be included in the page's tab order for accessibility.  May be
+     * overridden at the Section level via  canTabToHeader <P> If unset, section headers will be focusable if 
+     * setScreenReaderMode has been called. See {@link com.smartgwt.client.docs.Accessibility}.
      *
      *
      * @return Boolean

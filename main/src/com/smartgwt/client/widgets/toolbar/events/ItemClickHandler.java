@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.toolbar.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface ItemClickHandler extends EventHandler {
-
+    /**
+     * Called when one of the buttons receives a click event
+     *
+     * @param event the event
+     */
     void onItemClick(com.smartgwt.client.widgets.toolbar.events.ItemClickEvent event);
 }

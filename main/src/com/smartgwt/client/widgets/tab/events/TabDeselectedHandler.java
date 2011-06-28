@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.tab.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface TabDeselectedHandler extends EventHandler {
-
+    /**
+     * Notification fired when a tab is deselected.
+     *
+     * @param event the event
+     */
     void onTabDeselected(com.smartgwt.client.widgets.tab.events.TabDeselectedEvent event);
 }

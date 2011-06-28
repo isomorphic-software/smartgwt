@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.cube.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface FacetMovedHandler extends EventHandler {
-
+    /**
+     * Notification fired when a facet is moved.
+     *
+     * @param event the event
+     */
     void onFacetMoved(com.smartgwt.client.widgets.cube.events.FacetMovedEvent event);
 }

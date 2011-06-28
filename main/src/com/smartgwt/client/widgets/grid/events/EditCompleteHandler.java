@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface EditCompleteHandler extends EventHandler {
-
+    /**
+     * Callback fired when inline edits have been successfully saved. <P> No default implementation.
+     *
+     * @param event the event
+     */
     void onEditComplete(com.smartgwt.client.widgets.grid.events.EditCompleteEvent event);
 }

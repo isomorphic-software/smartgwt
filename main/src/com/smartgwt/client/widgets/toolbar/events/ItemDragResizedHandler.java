@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.toolbar.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface ItemDragResizedHandler extends EventHandler {
-
+    /**
+     * Observable, overrideable method - called when one of the Toolbar buttons is drag resized.
+     *
+     * @param event the event
+     */
     void onItemDragResized(com.smartgwt.client.widgets.toolbar.events.ItemResizedEvent event);
 }

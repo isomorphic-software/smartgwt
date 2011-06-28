@@ -114,7 +114,7 @@ public class TabContextMenuEvent extends BrowserEvent<TabContextMenuHandler>  im
 
 
     /**
-     * return false to cancel default right-click behavior
+     * Call this method to cancel default right-click behavior
      */
     public void cancel() {
         cancel = true;

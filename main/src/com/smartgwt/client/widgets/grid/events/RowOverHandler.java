@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface RowOverHandler extends EventHandler {
-
+    /**
+     * Called when the mouse pointer enters a row
+     *
+     * @param event the event
+     */
     void onRowOver(com.smartgwt.client.widgets.grid.events.RowOverEvent event);
 }

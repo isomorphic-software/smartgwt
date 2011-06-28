@@ -18,6 +18,12 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface EditorExitHandler extends EventHandler {
-
+    /**
+     * Callback fired when the user attempts to navigate away from the current edit cell,  or complete the current edit.<br>
+     * Call {@link com.smartgwt.client.widgets.grid.events.EditorExitEvent#cancel()} from within {@link EditorExitHandler#onEditorExit} from this method to cancel the default behavior (Saving / cancelling the current edit / moving to the next
+     * edit cell)
+     *
+     * @param event the event
+     */
     void onEditorExit(com.smartgwt.client.widgets.grid.events.EditorExitEvent event);
 }

@@ -112,7 +112,7 @@ public class RecordCollapseEvent extends BrowserEvent<RecordCollapseHandler>  im
 
 
     /**
-     * return false to cancel record collapse
+     * Call this method to cancel record collapse
      */
     public void cancel() {
         cancel = true;

@@ -18,6 +18,12 @@ package com.smartgwt.client.widgets.menu.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface ClickHandler extends EventHandler {
-
+    /**
+     * Executed when this menu item is clicked by the user. The click handler must be specified as a function or string of
+     * script.  Call {@link com.smartgwt.client.widgets.menu.events.MenuItemClickEvent#cancel()} from within {@link ClickHandler#onClick} to suppress the {@link com.smartgwt.client.widgets.menu.Menu#addItemClickHandler Menu.itemClick}
+     * handler if specified.
+     *
+     * @param event the event
+     */
     void onClick(com.smartgwt.client.widgets.menu.events.MenuItemClickEvent event);
 }

@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.cube.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface SortByFacetValuesHandler extends EventHandler {
-
+    /**
+     * Called when a sort control is clicked on a FacetValueHeader.  Does nothing by default.
+     *
+     * @param event the event
+     */
     void onSortByFacetValues(com.smartgwt.client.widgets.cube.events.SortByFacetValuesEvent event);
 }

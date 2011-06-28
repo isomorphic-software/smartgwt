@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface CellClickHandler extends EventHandler {
-
+    /**
+     * Called when a cell receives a click event.
+     *
+     * @param event the event
+     */
     void onCellClick(com.smartgwt.client.widgets.grid.events.CellClickEvent event);
 }

@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.tableview.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface ImageClickHandler extends EventHandler {
-
+    /**
+     * Executed when the user clicks on the image displayed in a record if {@link
+     * com.smartgwt.client.widgets.tableview.TableView#getIconField iconField} has been specified.
+     *
+     * @param event the event
+     */
     void onImageClick(com.smartgwt.client.widgets.tableview.events.ImageClickEvent event);
 }

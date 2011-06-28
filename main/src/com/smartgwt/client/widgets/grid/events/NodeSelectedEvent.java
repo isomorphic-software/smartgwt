@@ -112,7 +112,7 @@ public class NodeSelectedEvent extends BrowserEvent<NodeSelectedHandler>  implem
 
 
     /**
-     * Return false to cancel default behavior
+     * Call this method to cancel default behavior
      */
     public void cancel() {
         cancel = true;

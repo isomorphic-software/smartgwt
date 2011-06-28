@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface RowMouseUpHandler extends EventHandler {
-
+    /**
+     * Called when a row receives a mouseup event.
+     *
+     * @param event the event
+     */
     void onRowMouseUp(com.smartgwt.client.widgets.grid.events.RowMouseUpEvent event);
 }

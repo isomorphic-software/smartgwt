@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.cube.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface FacetRemovedHandler extends EventHandler {
-
+    /**
+     * Notification fired when a facet is removed.
+     *
+     * @param event the event
+     */
     void onFacetRemoved(com.smartgwt.client.widgets.cube.events.FacetRemovedEvent event);
 }

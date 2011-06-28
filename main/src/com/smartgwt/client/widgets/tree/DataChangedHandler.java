@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.tree;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface DataChangedHandler extends EventHandler {
-
+    /**
+     * Called when the structure of this tree is changed in any way.  Intended to be observed. <br><br> Note that on a big
+     * change (many items being added or deleted) this may be called multiple times
+     *
+     * @param event the event
+     */
     void onDataChanged(com.smartgwt.client.widgets.tree.DataChangedEvent event);
 }

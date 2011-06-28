@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.form.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface SearchHandler extends EventHandler {
-
+    /**
+     * A StringMethod that is automatically invoked if {@link com.smartgwt.client.widgets.form.FilterBuilder#getSaveOnEnter
+     * saveOnEnter} is set  and the user presses Enter whilst in a text-item in any clause or subclause.
+     *
+     * @param event the event
+     */
     void onSearch(com.smartgwt.client.widgets.form.events.FilterSearchEvent event);
 }

@@ -112,7 +112,7 @@ public class HeaderClickEvent extends BrowserEvent<HeaderClickHandler>  implemen
 
 
     /**
-     * return false to cancel the default header click behavior
+     * Call this method to cancel the default header click behavior
      */
     public void cancel() {
         cancel = true;

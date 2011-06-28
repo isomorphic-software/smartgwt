@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.cube.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface FacetAddedHandler extends EventHandler {
-
+    /**
+     * Notification fired when a new facet is added.
+     *
+     * @param event the event
+     */
     void onFacetAdded(com.smartgwt.client.widgets.cube.events.FacetAddedEvent event);
 }

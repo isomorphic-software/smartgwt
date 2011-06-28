@@ -24,7 +24,7 @@ public interface HasRecordClickHandlers extends HasHandlers {
     /**
      * Executed when this field is clicked on.  Note that if {@link
      * com.smartgwt.client.widgets.grid.ListGrid#addRecordClickHandler ListGrid.recordClick} is also defined, it will be fired
-     * for fields that define a recordClick handler if the field-level handler returns true. Return false to prevent the
+     * for fields that define a recordClick handler if the field-level handler returns true. Call {@link com.smartgwt.client.widgets.grid.events.RecordClickEvent#cancel()} from within {@link RecordClickHandler#onRecordClick} to prevent the
      * grid-level handler from firing.
      *
      * @param handler the recordClick handler

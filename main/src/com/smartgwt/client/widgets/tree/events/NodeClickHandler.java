@@ -18,6 +18,12 @@ package com.smartgwt.client.widgets.tree.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface NodeClickHandler extends EventHandler {
-
+    /**
+     * This method is called when a leaf or folder record is clicked on.  Note that if you set up a callback for
+     * <code>nodeClick()</code> and e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#addLeafClickHandler
+     * TreeGrid.leafClick}, then both will fire (in that order) if a leaf is clicked on.
+     *
+     * @param event the event
+     */
     void onNodeClick(com.smartgwt.client.widgets.tree.events.NodeClickEvent event);
 }

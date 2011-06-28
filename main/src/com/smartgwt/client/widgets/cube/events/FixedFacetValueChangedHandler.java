@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.cube.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface FixedFacetValueChangedHandler extends EventHandler {
-
+    /**
+     * Notification fired when a fixed facet value is set for some facet.
+     *
+     * @param event the event
+     */
     void onFixedFacetValueChanged(com.smartgwt.client.widgets.cube.events.FixedFacetValueChangedEvent event);
 }
