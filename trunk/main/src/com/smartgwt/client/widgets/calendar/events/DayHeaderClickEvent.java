@@ -114,7 +114,7 @@ public class DayHeaderClickEvent extends BrowserEvent<DayHeaderClickHandler>  im
 
 
     /**
-     * return false to cancel the action
+     * Call this method to cancel the action
      */
     public void cancel() {
         cancel = true;

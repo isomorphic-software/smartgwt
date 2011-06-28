@@ -114,7 +114,7 @@ public class CalendarEventClick extends BrowserEvent<EventClickHandler>  impleme
 
 
     /**
-     * false to cancel the default action
+     * Call this method to cancel the default action
      */
     public void cancel() {
         cancel = true;

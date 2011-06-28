@@ -57,13 +57,13 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-public class CalendarEventResized extends BrowserEvent<EventResizedHandler>  implements Cancellable {
+public class BackgroundClickEvent extends BrowserEvent<BackgroundClickHandler>  implements Cancellable {
     private boolean cancel = false;
 
     /**
      * Handler type.
      */
-    private static Type<EventResizedHandler> TYPE;
+    private static Type<BackgroundClickHandler> TYPE;
 
     /**
      * Fires a open event on all registered handlers in the handler manager.If no
@@ -73,10 +73,10 @@ public class CalendarEventResized extends BrowserEvent<EventResizedHandler>  imp
      * @param source the source of the handlers
      * @param jsObj the native event
      */
-    public static <S extends HasEventResizedHandlers & HasHandlers> void fire(
+    public static <S extends HasBackgroundClickHandlers & HasHandlers> void fire(
         S source, JavaScriptObject jsObj) {
         if (TYPE != null) {
-            CalendarEventResized event = new CalendarEventResized(jsObj);
+            BackgroundClickEvent event = new BackgroundClickEvent(jsObj);
             source.fireEvent(event);
         }
     }
@@ -86,17 +86,17 @@ public class CalendarEventResized extends BrowserEvent<EventResizedHandler>  imp
      *
      * @return returns the handler type
      */
-    public static Type<EventResizedHandler> getType() {
+    public static Type<BackgroundClickHandler> getType() {
         if (TYPE == null) {
-            TYPE = new Type<EventResizedHandler>();
+            TYPE = new Type<BackgroundClickHandler>();
         }
         return TYPE;
     }
 
 
     @Override
-    protected void dispatch(EventResizedHandler handler) {
-        handler.onEventResized(this);
+    protected void dispatch(BackgroundClickHandler handler) {
+        handler.onBackgroundClick(this);
     }
 
     // Because of type erasure, our static type is
@@ -104,17 +104,18 @@ public class CalendarEventResized extends BrowserEvent<EventResizedHandler>  imp
 
     @SuppressWarnings("unchecked")
     @Override
-    public final Type<EventResizedHandler> getAssociatedType() {
+    public final Type<BackgroundClickHandler> getAssociatedType() {
         return TYPE;
     }
 
-    public CalendarEventResized(JavaScriptObject jsObj) {
+    public BackgroundClickEvent(JavaScriptObject jsObj) {
         super(jsObj);
     }
 
 
     /**
-     * Call this method to disallow the resize
+     * Call this method to cancel the default behavior of creating a new      event at the selected location and showing its
+     * editor.
      */
     public void cancel() {
         cancel = true;
@@ -128,23 +129,23 @@ public class CalendarEventResized extends BrowserEvent<EventResizedHandler>  imp
     }
 
     /**
-     * new end date and time that event is being resized to
+     * start datetime of the selected slot
      *
-     * @return new end date and time that event is being resized to
+     * @return start datetime of the selected slot
      */
-    public  native Date getNewDate() /*-{
+    public  native Date getStartDate() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return (jsObj.newDate === undefined || jsObj.newDate == null) ? null: @com.smartgwt.client.util.JSOHelper::toDate(D)(jsObj.newDate.getTime());
+        return (jsObj.startDate === undefined || jsObj.startDate == null) ? null: @com.smartgwt.client.util.JSOHelper::toDate(D)(jsObj.startDate.getTime());
     }-*/;
 
     /**
-     * 
+     * end datetime of the selected slot
      *
-     * @return CalendarEvent
+     * @return end datetime of the selected slot
      */
-    public  native CalendarEvent getEvent() /*-{
+    public  native Date getEndDate() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.calendar.CalendarEvent::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.event);
+        return (jsObj.endDate === undefined || jsObj.endDate == null) ? null: @com.smartgwt.client.util.JSOHelper::toDate(D)(jsObj.endDate.getTime());
     }-*/;
 
 

@@ -114,7 +114,7 @@ public class CalendarEventRemoveClick extends BrowserEvent<EventRemoveClickHandl
 
 
     /**
-     * false to cancel the removal
+     * Call this method to cancel the removal
      */
     public void cancel() {
         cancel = true;
