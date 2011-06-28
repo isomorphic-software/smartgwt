@@ -98,7 +98,7 @@ public class TileView extends VLayout {
         tileGrid.setAutoFetchData(false);
         tileGrid.setAnimateTileChange(true);
 
-        DetailViewerField nameField = new DetailViewerField("name");
+        DetailViewerField nameField = new DetailViewerField("nodeTitle");
         nameField.setDetailFormatter(new DetailFormatter() {
             public String format(Object value, Record record, DetailViewerField field) {
                 return value.toString();
