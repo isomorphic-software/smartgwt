@@ -105,6 +105,8 @@
     <property name="gwt.user.jar" location="${gwt_home}/gwt-user.jar" />
 	<property name="gwt.dev.jar" location="${gwt_home}/gwt-dev-${build.host.platform}.jar" />
 	<property name="gwt.dev2.jar" location="${gwt_home}/gwt-dev.jar" />
+    <property name="gwt.validation.jar" location="${gwt_home}/validation-api-1.0.0.GA.jar" />
+    <property name="gwt.validation.sources.jar" location="${gwt_home}/validation-api-1.0.0.GA-sources.jar" />
 
     <!-- JUnit support -->
 	<property name="smartgwt.dev.staging.jar" location="${smartgwt.build.staging}/smartgwt-${smartgwt.version}/smartgwt.jar" />
