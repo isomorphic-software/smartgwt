@@ -25,6 +25,7 @@ import com.smartgwt.client.data.RecordList;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Button;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
@@ -216,7 +217,7 @@ public class ListGridItemSample extends ShowcasePanel {
             }
         });
         
-        Button setValueButton = new Button("Set Value: France");
+        IButton setValueButton = new IButton("Set Value: France");
         setValueButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
