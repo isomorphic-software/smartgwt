@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.calendar.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface EventAddedHandler extends EventHandler {
-
+    /**
+     * Notification fired whenever a user adds an event. <P> In a calendar with a DataSource, eventAdded() fires <b>after</b>
+     * the event has been successfully added to the server
+     *
+     * @param event the event
+     */
     void onEventAdded(com.smartgwt.client.widgets.calendar.events.CalendarEventAdded event);
 }
