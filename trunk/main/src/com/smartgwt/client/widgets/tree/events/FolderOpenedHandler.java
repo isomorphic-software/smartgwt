@@ -18,6 +18,12 @@ package com.smartgwt.client.widgets.tree.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface FolderOpenedHandler extends EventHandler {
-
+    /**
+     * This method is called when a folder is opened either via the user manipulating the expand/collapse control in the UI or
+     * via {@link com.smartgwt.client.widgets.tree.TreeGrid#openFolder TreeGrid.openFolder}.  You can return <code>false</code>
+     * to cancel the open.
+     *
+     * @param event the event
+     */
     void onFolderOpened(com.smartgwt.client.widgets.tree.events.FolderOpenedEvent event);
 }

@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.menu.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface ItemClickHandler extends EventHandler {
-
+    /**
+     * Executed when a menu item with no click handler is clicked by the user. This          itemClick handler must be
+     * specified as a function. It is passed an item parameter that          is a reference to the clicked menu item.
+     *
+     * @param event the event
+     */
     void onItemClick(com.smartgwt.client.widgets.menu.events.ItemClickEvent event);
 }

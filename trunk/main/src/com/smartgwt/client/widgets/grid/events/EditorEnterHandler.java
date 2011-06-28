@@ -18,6 +18,12 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface EditorEnterHandler extends EventHandler {
-
+    /**
+     * Callback fired when the user first starts editing a cell. <P> This callback is typically used to establish dynamic
+     * default values via {@link com.smartgwt.client.widgets.grid.ListGrid#setEditValue ListGrid.setEditValue} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#setEditValues ListGrid.setEditValues}.
+     *
+     * @param event the event
+     */
     void onEditorEnter(com.smartgwt.client.widgets.grid.events.EditorEnterEvent event);
 }

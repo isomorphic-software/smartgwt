@@ -18,6 +18,12 @@ package com.smartgwt.client.widgets.tab.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface TabSelectedHandler extends EventHandler {
-
+    /**
+     * Notification fired when a tab is selected. Note that this will only fire if  this tabSet is drawn. If a tab is selected
+     * before <code>TabSet.draw()</code>  is called, the <code>tabSelected()</code> notification will fire on 
+     * <code>draw()</code>
+     *
+     * @param event the event
+     */
     void onTabSelected(com.smartgwt.client.widgets.tab.events.TabSelectedEvent event);
 }

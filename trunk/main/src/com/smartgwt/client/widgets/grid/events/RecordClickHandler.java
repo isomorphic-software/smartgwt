@@ -18,6 +18,13 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface RecordClickHandler extends EventHandler {
-
+    /**
+     * Executed when this field is clicked on.  Note that if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#addRecordClickHandler ListGrid.recordClick} is also defined, it will be fired
+     * for fields that define a recordClick handler if the field-level handler returns true. Call {@link com.smartgwt.client.widgets.grid.events.RecordClickEvent#cancel()} from within {@link RecordClickHandler#onRecordClick} to prevent the
+     * grid-level handler from firing.
+     *
+     * @param event the event
+     */
     void onRecordClick(com.smartgwt.client.widgets.grid.events.RecordClickEvent event);
 }

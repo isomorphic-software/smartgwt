@@ -495,7 +495,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * perform some action when any record is clicked.<br> A record event handler can be specified either as a function to
      * execute, or as a string of script to evaluate. If the handler is defined as a string of script, all the parameters below
      * will be available as variables for use in the script.<br> If you want to cancel the click based on the parameters,
-     * return false. Otherwise, return  true so that the click event be registered with the tile.
+     * Call {@link com.smartgwt.client.widgets.tile.events.RecordClickEvent#cancel()} from within {@link RecordClickHandler#onRecordClick}. Otherwise, return  true so that the click event be registered with the tile.
      *
      * @param handler the recordClick handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -532,7 +532,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * to perform some action when any record is doubleclicked.<br> A record event handler can be specified either as a
      * function to execute, or as a string of script to evaluate. If the handler is defined as a string of script, all the
      * parameters below will be available as variables for use in the script.<br> If you want to cancel the doubleclick based
-     * on the parameters, return false. Otherwise, return  true so that the doubleclick event be registered with the tile.
+     * on the parameters, Call {@link com.smartgwt.client.widgets.tile.events.RecordDoubleClickEvent#cancel()} from within {@link RecordDoubleClickHandler#onRecordDoubleClick}. Otherwise, return  true so that the doubleclick event be registered with the tile.
      *
      * @param handler the recordDoubleClick handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -769,6 +769,18 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         Record[] data = Record.convertToRecordArray(dataJS);
         return data;
     }
+    
+    /**
+     * Return the tileGrid data as a {@link com.smartgwt.client.data.RecordList}. If the component is 
+     * bound to a DataSource,
+     * the actual type of the RecordList instance will be a {@link com.smartgwt.client.data.ResultSet}.
+     *
+     * @return the data
+     */
+    public RecordList getDataAsRecordList() {
+        return getRecordList();
+    }
+    
 
     /**
      * Perform a DataSource "add" operation to add new records to this component's DataSource.

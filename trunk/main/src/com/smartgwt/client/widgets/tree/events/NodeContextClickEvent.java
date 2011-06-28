@@ -114,7 +114,7 @@ public class NodeContextClickEvent extends BrowserEvent<NodeContextClickHandler>
 
 
     /**
-     * whether to cancel the event
+     * Calling this method cancels the event
      */
     public void cancel() {
         cancel = true;

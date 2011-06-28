@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface CellDoubleClickHandler extends EventHandler {
-
+    /**
+     * Called when a cell receives a double click event.
+     *
+     * @param event the event
+     */
     void onCellDoubleClick(com.smartgwt.client.widgets.grid.events.CellDoubleClickEvent event);
 }

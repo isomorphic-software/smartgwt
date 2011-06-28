@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.form.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface FilterChangedHandler extends EventHandler {
-
+    /**
+     * Handler fired when there is a change() event fired on any FormItem within the  filterBuilder.
+     *
+     * @param event the event
+     */
     void onFilterChanged(com.smartgwt.client.widgets.form.events.FilterChangedEvent event);
 }

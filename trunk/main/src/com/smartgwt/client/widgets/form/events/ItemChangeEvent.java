@@ -114,7 +114,7 @@ public class ItemChangeEvent extends BrowserEvent<ItemChangeHandler>  implements
 
 
     /**
-     * return false to cancel the change, or true to allow it
+     * Call this method to cancel the change
      */
     public void cancel() {
         cancel = true;

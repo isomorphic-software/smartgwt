@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.tree.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface FolderContextClickHandler extends EventHandler {
-
+    /**
+     * This method is called when a context click occurs on a folder record.
+     *
+     * @param event the event
+     */
     void onFolderContextClick(com.smartgwt.client.widgets.tree.events.FolderContextClickEvent event);
 }

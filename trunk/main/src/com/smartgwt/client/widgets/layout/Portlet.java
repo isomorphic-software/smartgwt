@@ -112,6 +112,25 @@ public class Portlet extends Window {
     }
 
     /**
+     * Whether to call {@link com.smartgwt.client.widgets.Canvas#destroy destroy()} when closing the Portlet.
+     *
+     * @param destroyOnClose destroyOnClose Default value is false
+     */
+    public void setDestroyOnClose(Boolean destroyOnClose) {
+        setAttribute("destroyOnClose", destroyOnClose, true);
+    }
+
+    /**
+     * Whether to call {@link com.smartgwt.client.widgets.Canvas#destroy destroy()} when closing the Portlet.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getDestroyOnClose()  {
+        return getAttributeAsBoolean("destroyOnClose");
+    }
+
+    /**
      * Specifies a minimum height for the Portlet. The height of rows within a {@link
      * com.smartgwt.client.widgets.layout.Portlet#getPortaLayout PortaLayout} will be adjusted to take into account the
      * minHeight of all the Portlets in that row.

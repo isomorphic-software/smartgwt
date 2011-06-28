@@ -1481,7 +1481,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Add a backgroundMouseDown handler.
      * <p>
-     * Callback fired when the mouse button is depressed over a background-cell, ie, one  without an event.  Return false to
+     * Callback fired when the mouse button is depressed over a background-cell, ie, one  without an event.  Call {@link com.smartgwt.client.widgets.calendar.events.BackgroundMouseDownEvent#cancel()} from within {@link BackgroundMouseDownHandler#onBackgroundMouseDown} to
      * cancel the default behavior of allowing sweep selection via dragging.
      *
      * @param handler the backgroundMouseDown handler
@@ -1572,7 +1572,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * Add a dayBodyClick handler.
      * <p>
      * Called when the body area of a day in the month view is clicked on, outside of any links to a particular event. <P> By
-     * default, if the user can add events, shows a dialog for adding a new event for that day.  Return false to cancel this
+     * default, if the user can add events, shows a dialog for adding a new event for that day.  Call {@link com.smartgwt.client.widgets.calendar.events.DayBodyClickEvent#cancel()} from within {@link DayBodyClickHandler#onDayBodyClick} to cancel this
      * action. <P> Not called if the day falls outside the current month and {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getShowOtherDays showOtherDays} is false.
      *
@@ -1612,7 +1612,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * Add a dayHeaderClick handler.
      * <p>
      * Called when the header area of a day in the month view is clicked on. <P> By default, moves to the day tab and shows the
-     * clicked days events. Return false to cancel this action. <P> Not called if the day falls outside the current month and
+     * clicked days events. Call {@link com.smartgwt.client.widgets.calendar.events.DayHeaderClickEvent#cancel()} from within {@link DayHeaderClickHandler#onDayHeaderClick} to cancel this action. <P> Not called if the day falls outside the current month and
      * {@link com.smartgwt.client.widgets.calendar.Calendar#getShowOtherDays showOtherDays} is false.
      *
      * @param handler the dayHeaderClick handler
@@ -1720,7 +1720,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * Add a eventClick handler.
      * <p>
      * Called whenever an event is clicked on in the day, week or month views. <P> By default a dialog appears showing details
-     * for the event, and offering the ability to edit events which are editable.  Return false to cancel the default action.
+     * for the event, and offering the ability to edit events which are editable.  Call {@link com.smartgwt.client.widgets.calendar.events.CalendarEventClick#cancel()} from within {@link EventClickHandler#onEventClick} to cancel the default action.
      * This is a good place to, for example, show a completely customized event dialog instead of the default one.
      *
      * @param handler the eventClick handler
@@ -1758,7 +1758,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Add a eventMoved handler.
      * <p>
-     * Called when an event is moved via dragging by a user.  Return false to disallow the move.
+     * Called when an event is moved via dragging by a user.  Call {@link com.smartgwt.client.widgets.calendar.events.CalendarEventMoved#cancel()} from within {@link EventMovedHandler#onEventMoved} to disallow the move.
      *
      * @param handler the eventMoved handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -1795,8 +1795,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Add a eventRemoveClick handler.
      * <p>
-     * Called whenever the close icon of an event is clicked within the day or week view. Return false to cancel the removal,
-     * or true to allow it. <P> Implement this method to do something like, for example, showing a confirmation dialog  before
+     * Called whenever the close icon of an event is clicked within the day or week view. Call {@link com.smartgwt.client.widgets.calendar.events.CalendarEventRemoveClick#cancel()} from within {@link EventRemoveClickHandler#onEventRemoveClick} to cancel the removal,
+     * or . <P> Implement this method to do something like, for example, showing a confirmation dialog  before
      * an event is removed.
      *
      * @param handler the eventRemoveClick handler
@@ -1868,7 +1868,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Add a eventResized handler.
      * <p>
-     * Called when an event is resized via dragging by a user.  Return false to disallow the resize.
+     * Called when an event is resized via dragging by a user.  Call {@link com.smartgwt.client.widgets.calendar.events.CalendarEventResized#cancel()} from within {@link EventResizedHandler#onEventResized} to disallow the resize.
      *
      * @param handler the eventResized handler
      * @return {@link HandlerRegistration} used to remove this handler

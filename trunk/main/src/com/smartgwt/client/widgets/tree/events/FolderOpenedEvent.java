@@ -114,7 +114,7 @@ public class FolderOpenedEvent extends BrowserEvent<FolderOpenedHandler>  implem
 
 
     /**
-     * false to cancel the open, true to all it to proceed
+     * Call this method to cancel the open, true to all it to proceed
      */
     public void cancel() {
         cancel = true;

@@ -114,7 +114,7 @@ public class FilterEditorSubmitEvent extends BrowserEvent<FilterEditorSubmitHand
 
 
     /**
-     * returning false will suppress the filter from occurring
+     * Calling this method will suppress the filter from occurring
      */
     public void cancel() {
         cancel = true;

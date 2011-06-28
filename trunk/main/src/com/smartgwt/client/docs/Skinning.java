@@ -21,10 +21,14 @@ package com.smartgwt.client.docs;
  *  the components use by default, or by using JavaScript properties to configure
  *  components to use new CSS styles and new image URLs.
  * 
- *  <li> You can change the appearance of an individual Smart GWT component by passing 
- *  properties to  create(), or you can skin all components of the
- *  same class at once, by using  addProperties() and 
- *   changeDefaults() to change the defaults for the class.
+ *  <li> You can change the appearance of an individual Smart GWT component by 
+ *  
+ *  
+ *  calling setter methods such as {@link com.smartgwt.client.widgets.Canvas#getStyleName setStyleName()} or
+ *  {@link com.smartgwt.client.widgets.Canvas#getBackgroundColor setBackgroundColor()}, or you can skin all
+ *  components of the same class at once, by using Canvas.setDefaultProperties().
+ *  to change the defaults for the class.
+ *  
  * 
  *  <li> A "skin" consists of:
  *  <ul>
@@ -35,10 +39,11 @@ package com.smartgwt.client.docs;
  *  </ul>
  *  
  *  <li>
- *  The example skins that come with Smart GWT are in
- *  <code>smartclientSDK/isomorphic/skins</code>.  The standard filesystem layout for a skin is:
+ *  The example skins that come with Smart GWT are 
+ *    
+ *  inside smartgwt.jar and smartgwt-skins.jar as GWT modules.  
+ *  The standard directory layout for a skin is:
  *  <pre>
- *     isomorphic/skins
  *         skin_styles.css
  *         load_skin.js
  *         images/
@@ -49,8 +54,16 @@ package com.smartgwt.client.docs;
  *             ... other directories containing
  *                 component or shared media ...
  *  </pre>
- *  <li> A skin is loaded via a &lt;SCRIPT SRC=&gt; tag that loads load_skin.js, or, if using
- *  the Smart GWT server, by specifying the "skin" property of the {@link loadISCTag}.
+ *  <li> 
+ *  
+ *  
+ *  A skin is implicitly loaded when you add an &lt;inherits&gt; tag in your .gwt.xml file to
+ *  include SmartGWT components (name="com.smartgwt(ee).SmartGWT(Pro|Power|EE)").  To switch skins,
+ *  add the "NoTheme" suffix to the "name" attribute of this &lt;inherits&gt; tag, then add
+ *  &lt;inherits name="com.smartclient.theme.enterpriseblue.<i>SkinName</i>"/&gt;.  These
+ *  tags cause a &lt;SCRIPT SRC=&gt; tag to be injected into your bootstrap .html page, which loads
+ *  load_skin.js for the appropriate skin.
+ *  
  *  load_skin.js loads the stylesheet and sets the CSS styleNames and media URLs that
  *  Smart GWT components will use.
  *  </ul>
@@ -65,34 +78,26 @@ package com.smartgwt.client.docs;
  *  <P>
  *  <b>Starting from the name of the component</b>
  *  <P>
- *  Given a Smart GWT component that you want to skin, use the search feature of the Smart GWT
- *  Reference to locate it, and open the "Instance APIs" tab.
+ *  
+ *  
+ *  Given a Smart GWT component that you want to skin, open it's JavaDoc:
+ *  
  *  <ul>
  *  <li> for properties that set CSS styles, look for properties whose name includes "style", eg
  *  {@link com.smartgwt.client.widgets.Button#getBaseStyle baseStyle}
  *  <li> for properties that control URLs to media, look for properties whose name includes
  *  "src", "image" or "icon", such as {@link com.smartgwt.client.widgets.Img#getSrc src}
- *  <li> for subcomponents that also support skinning, look for properties of type "AutoChild"
- *  and check the reference for the type of the AutoChild for settable properties.  For example,
- * {@link com.smartgwt.client.widgets.Window#getMinimizeButton minimizeButton} is an ImgButton and therefore supports
- * {@link com.smartgwt.client.widgets.ImgButton#getSrc src}.
+ *  <li> for subcomponents that also support skinning, 
+ *  
+ *  
+ *  look for methods like set<i>Subcomponent</i>Properties(), such as Window.setPaneContainerProperties().
+ *  
  *  </ul>
- *  <b>TIP</b>: the Instance APIs tab allows you to search within just the current class, limit 
- *  the display to just properties or methods, and sort by type.
+ *  
  *  <P>
  *  <b>Starting from a running example</b>
  *  <P>
- *  Open the Developer Console and use the Watch Tab to locate the component or subcomponent you 
- *  want to skin, then locate it in the documentation, as above.
- *  <P>
- *  If you don't find the component in the documentation, it may be a custom component specific
- *  to your organization.  To find the base Smart GWT component for a component named
- *  "MyComponent", use the following code to find out the name of the superclass:
- *  <pre>
- *      isc.<i>MyComponent</i>.getSuperClass().getClassName()
- *  </pre>
- *  Repeat this until you arrive at a Smart GWT built-in class.  You can execute this code in
- *  the "Eval JS" area of the Results pane of the Developer Console.
+ *  
  *  <P>
  *  Specific browsers offer alternate approaches to quickly discover the images or style names
  *  being used for a part of a Smart GWT component's appearance: 
@@ -130,7 +135,7 @@ package com.smartgwt.client.docs;
  *  Default image URLs for Smart GWT components are specified in <code>load_skin.js</code> via
  *  JavaScript, using calls to  Class.addProperties and
  *   Class.changeDefaults.  For example, the <code>load_skin.js</code> file
- *  from the "Smart GWT" sample skin includes the following code to establish the media used by
+ *  from the "Enterprise" skin includes the following code to establish the media used by
  *  {@link com.smartgwt.client.widgets.Window#getMinimizeButton minimizeButton}:
  *  <pre>
  *     isc.Window.changeDefaults("minimizeButtonDefaults", { 
@@ -138,6 +143,13 @@ package com.smartgwt.client.docs;
  *     });
  *  </pre>
  *  <P>
+ *  <b>NOTE:</b> These are JavaScript APIs and hence do not appear in SmartGWT
+ *  JavaDoc - you may want to refer to the &#82;martClient Reference available at
+ * <a href='http://www.smartclient.com/product/documentation.jsp'
+ * onclick="window.open('http://www.smartclient.com/product/documentation.jsp');return false;">Isomorphic.com</a> for these
+ * specific
+ *  APIs.
+ *  
  *  <h4>Specifying Image Sizes</h4>
  *  <P>
  *  Many Smart GWT components must know some image sizes in advance, in order to allow those
@@ -227,6 +239,19 @@ package com.smartgwt.client.docs;
  *         ...
  *     })
  *  </pre>
+ *  This creates a &#82;martClient class, which does not exist as a Java class.  To
+ *  make your SmartGWT widget use the settings on this Smart GWT class, call setScClassName() passing
+ *  the String name of the Smart GWT class.
+ *  <P>
+ *  <h4>Where to put skin-related JavaScript</h4>
+ *  <P>
+ *  If you're creating a custom skin, you can place JavaScript snippets such as those shown above in your
+ *  custom skin's load_skin.js file.  If you prefer not to create a custom skin for small customizations,
+ * you can execute JavaScript via a <a href='http://www.google.com/search?q=gwt+jsni'
+ * onclick="window.open('http://www.google.com/search?q=gwt+jsni');return false;">JSNI</a> method in
+ *  your Java code.  With this latter approach, be sure to change "isc." to "$wnd.isc." wherever it
+ *  appears, and to call the JSNI method before creating any SmartGWT components.
+ * 
  */
 public interface Skinning {
 }

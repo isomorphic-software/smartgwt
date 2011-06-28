@@ -112,7 +112,7 @@ public class FolderDropEvent extends BrowserEvent<FolderDropHandler>  implements
 
 
     /**
-     * return false to cancel standard folder drop processing
+     * Call this method to cancel standard folder drop processing
      */
     public void cancel() {
         cancel = true;

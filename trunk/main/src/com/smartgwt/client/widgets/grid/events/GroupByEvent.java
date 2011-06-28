@@ -114,7 +114,7 @@ public class GroupByEvent extends BrowserEvent<GroupByHandler>  implements Cance
 
 
     /**
-     * return false to cancel groupBy change.
+     * Call this method to cancel groupBy change.
      */
     public void cancel() {
         cancel = true;

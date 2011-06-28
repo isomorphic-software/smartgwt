@@ -114,7 +114,7 @@ public class TabDeselectedEvent extends BrowserEvent<TabDeselectedHandler>  impl
 
 
     /**
-     * return false to cancel the tab deselection
+     * Call this method to cancel the tab deselection
      */
     public void cancel() {
         cancel = true;

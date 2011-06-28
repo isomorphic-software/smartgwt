@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface RowHoverHandler extends EventHandler {
-
+    /**
+     * Called when the mouse hovers over a row if this.canHover is true.   Returning false will suppress the hover text from
+     * being shown if this.showHover is true.
+     *
+     * @param event the event
+     */
     void onRowHover(com.smartgwt.client.widgets.grid.events.RowHoverEvent event);
 }

@@ -222,6 +222,18 @@ public class PortalLayout extends Layout {
     }-*/;
             
     /**
+     * Gets the width of a column in the PortalLayout.
+     * @param colNumber Which column's width to get
+     *
+     * @return width
+     * @see com.smartgwt.client.widgets.Canvas#getWidth
+     */
+    public native int getColumnWidth(int colNumber) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getColumnWidth(colNumber);
+    }-*/;
+            
+    /**
      * Removes the specified column from this layout. All portlets displayed within this column will be destroyed when the
      * column is removed.
      * @param index column number to remove
@@ -239,6 +251,16 @@ public class PortalLayout extends Layout {
     public native void removePortlet(Portlet portlet) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removePortlet(portlet.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+            
+    /**
+     * Sets the width of a column in the PortalLayout.
+     * @param colNumber Which column's width to set.
+     * @param width How wide to make the column
+     */
+    public native void setColumnWidth(int colNumber, Number or String width) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setColumnWidth(colNumber, width);
     }-*/;
 
     // ********************* Static Methods ***********************
@@ -427,6 +449,26 @@ public class PortalLayout extends Layout {
     public native void addPortlet(Portlet portlet, int colNum, int rowNum, int rowOffset) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addPortlet(portlet.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), colNum, rowNum, rowOffset);
+    }-*/;
+    
+    /**
+     * Sets the width of a column in the PortalLayout.
+     * @param colNumber Which column's width to set.
+     * @param width How wide to make the column
+     */
+    public native void setColumnWidth(int colNumber, int width) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setColumnWidth(colNumber, width);
+    }-*/;
+
+    /**
+     * Sets the width of a column in the PortalLayout.
+     * @param colNumber Which column's width to set.
+     * @param width How wide to make the column
+     */
+    public native void setColumnWidth(int colNumber, String width) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setColumnWidth(colNumber, width);
     }-*/;
 
 

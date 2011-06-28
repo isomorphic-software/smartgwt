@@ -26,7 +26,7 @@ public interface HasRecordClickHandlers extends HasHandlers {
      * perform some action when any record is clicked.<br> A record event handler can be specified either as a function to
      * execute, or as a string of script to evaluate. If the handler is defined as a string of script, all the parameters below
      * will be available as variables for use in the script.<br> If you want to cancel the click based on the parameters,
-     * return false. Otherwise, return  true so that the click event be registered with the tile.
+     * Call {@link com.smartgwt.client.widgets.tile.events.RecordClickEvent#cancel()} from within {@link RecordClickHandler#onRecordClick}. Otherwise, return  true so that the click event be registered with the tile.
      *
      * @param handler the recordClick handler
      * @return {@link HandlerRegistration} used to remove this handler

@@ -4109,7 +4109,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * Add a dragRepositionMove handler.
      * <p>
-     * Executed every time the mouse moves while drag-repositioning. If this method does not return false, the {@link
+     * Executed every time the mouse moves while drag-repositioning. If this method does not Call {@link com.smartgwt.client.widgets.events.DragRepositionMoveEvent#cancel()} from within {@link DragRepositionMoveHandler#onDragRepositionMove}, the {@link
      * com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} (or outline if {@link
      * com.smartgwt.client.widgets.Canvas#getDragAppearance dragAppearance} is set to "outline" will automatically be moved as
      * appropriate whenever the mouse moves.
@@ -4228,7 +4228,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * Add a dragResizeMove handler.
      * <p>
-     * Executed every time the mouse moves while drag-resizing. If this method does not return false, the {@link
+     * Executed every time the mouse moves while drag-resizing. If this method does not Call {@link com.smartgwt.client.widgets.events.DragResizeMoveEvent#cancel()} from within {@link DragResizeMoveHandler#onDragResizeMove}, the {@link
      * com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} (or outline if {@link
      * com.smartgwt.client.widgets.Canvas#getDragAppearance dragAppearance} is set to "outline" will automatically be moved as
      * appropriate whenever the mouse moves.

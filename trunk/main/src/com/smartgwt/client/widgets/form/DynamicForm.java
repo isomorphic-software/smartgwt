@@ -361,6 +361,33 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
+     * If true, the headers for any {@link com.smartgwt.client.widgets.form.DynamicForm#getSectionItems SectionItems} will be
+     * included in the page's tab order for accessibility. May also be set at the item level via {@link
+     * com.smartgwt.client.widgets.form.fields.SectionItem#getCanTabToHeader canTabToHeader} <P> If unset, section headers will
+     * be focusable if  setScreenReaderMode has been called. See {@link com.smartgwt.client.docs.Accessibility}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canTabToSectionHeaders canTabToSectionHeaders Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCanTabToSectionHeaders(Boolean canTabToSectionHeaders)  throws IllegalStateException {
+        setAttribute("canTabToSectionHeaders", canTabToSectionHeaders, false);
+    }
+
+    /**
+     * If true, the headers for any {@link com.smartgwt.client.widgets.form.DynamicForm#getSectionItems SectionItems} will be
+     * included in the page's tab order for accessibility. May also be set at the item level via {@link
+     * com.smartgwt.client.widgets.form.fields.SectionItem#getCanTabToHeader canTabToHeader} <P> If unset, section headers will
+     * be focusable if  setScreenReaderMode has been called. See {@link com.smartgwt.client.docs.Accessibility}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanTabToSectionHeaders()  {
+        return getAttributeAsBoolean("canTabToSectionHeaders");
+    }
+
+    /**
      * Width of border for the table that form is drawn in. This is primarily used for debugging form layout.
      *
      * @param cellBorder cellBorder Default value is 0
@@ -2230,7 +2257,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * called when validation fails for<br> - a hidden field in this form<br> - if this form is databound, a datasource field
      * with specified validators, for which we   have no specified form item.<br> Implement this to provide custom validation
      * error handling for these fields.<br> By default hidden validation errors will be logged as warnings in the
-     * developerConsole. Return false from this method to suppress that behavior.
+     * developerConsole. Call {@link com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent#cancel()} from within {@link HiddenValidationErrorsHandler#onHiddenValidationErrors} from this method to suppress that behavior.
      *
      * @param handler the hiddenValidationErrors handler
      * @return {@link HandlerRegistration} used to remove this handler

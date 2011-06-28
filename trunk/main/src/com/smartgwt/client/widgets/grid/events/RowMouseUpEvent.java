@@ -114,7 +114,7 @@ public class RowMouseUpEvent extends GridRowColEvent<RowMouseUpHandler>  impleme
 
 
     /**
-     * whether to cancel the event
+     * Calling this method cancels the event
      */
     public void cancel() {
         cancel = true;

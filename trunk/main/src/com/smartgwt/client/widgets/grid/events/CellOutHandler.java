@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface CellOutHandler extends EventHandler {
-
+    /**
+     * Called when the mouse pointer leaves a cell
+     *
+     * @param event the event
+     */
     void onCellOut(com.smartgwt.client.widgets.grid.events.CellOutEvent event);
 }

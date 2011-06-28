@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface GroupByHandler extends EventHandler {
-
+    /**
+     * Callback fired when the listGrid is grouped or ungrouped.  <var class="SmartGwt">This event may be cancelled</var>
+     *
+     * @param event the event
+     */
     void onGroupBy(com.smartgwt.client.widgets.grid.events.GroupByEvent event);
 }

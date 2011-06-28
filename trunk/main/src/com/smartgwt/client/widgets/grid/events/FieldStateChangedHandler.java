@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface FieldStateChangedHandler extends EventHandler {
-
+    /**
+     * Notification method executed when columns are resized or reordered, or fields are  shown or hidden. Has no default
+     * implementation.
+     *
+     * @param event the event
+     */
     void onFieldStateChanged(com.smartgwt.client.widgets.grid.events.FieldStateChangedEvent event);
 }

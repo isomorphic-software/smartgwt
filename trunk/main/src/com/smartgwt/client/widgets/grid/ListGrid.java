@@ -6716,6 +6716,28 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * When multiple fields are sorted, set this to false to hide the sort-numeral  displayed by default after the sort-arrows
+     * in the header-buttons of sorted fields.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showSortNumerals showSortNumerals Default value is null
+     */
+    public void setShowSortNumerals(Boolean showSortNumerals) {
+        setAttribute("showSortNumerals", showSortNumerals, true);
+    }
+
+    /**
+     * When multiple fields are sorted, set this to false to hide the sort-numeral  displayed by default after the sort-arrows
+     * in the header-buttons of sorted fields.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowSortNumerals()  {
+        return getAttributeAsBoolean("showSortNumerals");
+    }
+
+    /**
      * When {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderSpans headerSpans} are in use, whether to show a
      * hierarchical column picker that includes both headerSpans and normal headers, with normal headers indented under
      * headerSpans similarly to how a {@link com.smartgwt.client.widgets.tree.TreeGrid} displays a Tree. <P> If
@@ -8239,7 +8261,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * Add a editorExit handler.
      * <p>
      * Callback fired when the user attempts to navigate away from the current edit cell,  or complete the current edit. <P>
-     * Return false from this method to cancel the default behavior (Saving / cancelling the current edit / moving to the next
+     * Call {@link com.smartgwt.client.widgets.grid.events.EditorExitEvent#cancel()} from within {@link EditorExitHandler#onEditorExit} from this method to cancel the default behavior (Saving / cancelling the current edit / moving to the next
      * edit cell). <P> This callback is typically used to dynamically update values or value maps for related fields (via
      * {@link com.smartgwt.client.widgets.grid.ListGrid#setEditValue ListGrid.setEditValue} and {@link
      * com.smartgwt.client.widgets.grid.ListGrid#setEditorValueMap ListGrid.setEditorValueMap} respectively, or to implement
@@ -8614,10 +8636,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * When multiple fields are sorted, this method returns the HTML for the sort-numeral that  appears after the sort-arrows
      * in the header-buttons of sorted fields.  If you don't want sort-numerals in the header-buttons, you can override this
-     * method to return null or an empty string. <P> Note that the sortIndex passed in is zero based. The default
-     * implementation of this method returns an HTML element with the {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getSortNumeralStyle sortNumeralStyle} applied to it, containing the specified
-     * sortIndex incremented by 1 (therefore showing the more user-friendly 1-based  numbering system).
+     * method to return null or an empty string, or set {@link com.smartgwt.client.widgets.grid.ListGrid#getShowSortNumerals
+     * showSortNumerals} to false. <P> Note that the sortIndex passed in is zero based. The default implementation of this
+     * method returns an HTML element with the {@link com.smartgwt.client.widgets.grid.ListGrid#getSortNumeralStyle
+     * sortNumeralStyle} applied to it, containing the specified sortIndex incremented by 1 (therefore showing the more
+     * user-friendly 1-based  numbering system).
      * @param fieldName The name of a sort-field to get the   {@link com.smartgwt.client.widgets.grid.ListGrid#getSortNumeralStyle sortNumeral}
      * HTML for.
      * @param sortIndex The sort index for the field.
@@ -9183,7 +9206,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * Add a rowEditorExit handler.
      * <p>
      * Callback fired when the user attempts to navigate away from the current edit row,  or complete the current edit. <P>
-     * Return false from this method to cancel the default behavior (Saving / cancelling the current edit / moving to the next
+     * Call {@link com.smartgwt.client.widgets.grid.events.RowEditorExitEvent#cancel()} from within {@link RowEditorExitHandler#onRowEditorExit} from this method to cancel the default behavior (Saving / cancelling the current edit / moving to the next
      * edit cell).
      *
      * @param handler the rowEditorExit handler
@@ -13327,8 +13350,47 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             return hoverCustomizer.@com.smartgwt.client.widgets.grid.HoverCustomizer::hoverHTML(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(valueJ, recordJ, rowNum, colNum);
         }));
     }-*/;
+    
 
-
+    /**
+     * This method allows developers to dynamically customize the form item displayed in an editable grid, based
+     * on the cell being edited.
+     * Note that {@link ListGridField#setEditorType()} allows a simpler static customization of FormItem properties
+     * for a specific field.
+     * @param customizer
+     */
+    public native void setEditorCustomizer(ListGridEditorCustomizer customizer) /*-{
+        var self;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            self =  this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+             self = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        self.editorCustomizer = customizer;
+        
+        if (self.customEditorPropertiesFunction) return;
+        self.customEditorPropertiesFunction = true;
+    
+        // disable reuse of form items since type is likely to change
+        self.updateEditorItemsInPlace = false;
+        
+        self.getEditorProperties = $debox($entry(function(editField, editedRecord, rowNum) {
+            var editProperties = this.Super("getEditorProperties", arguments);
+            var editorContext = { 
+                defaultProperties:editProperties,
+                rowNum:rowNum,
+                editField:editField,
+                editedRecord:editedRecord
+            };
+            var editorContextJ = @com.smartgwt.client.widgets.grid.ListGridEditorContext::new(Lcom/google/gwt/core/client/JavaScriptObject;)(editorContext);
+            
+            var customizerJ = this.editorCustomizer;
+            var editorJ = customizer.@com.smartgwt.client.widgets.grid.ListGridEditorCustomizer::getEditor(Lcom/smartgwt/client/widgets/grid/ListGridEditorContext;)(editorContextJ);
+        
+            return editorJ == null ? null : editorJ.@com.smartgwt.client.widgets.form.fields.FormItem::getEditorTypeConfig()();
+        }));
+        
+    }-*/;    
     /**
      * Perform a one-time horizontal auto-fit of the fields passed. Fields will be sized to match their contents or title (as
      * specified in {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitWidthApproach autoFitWidthApproach}) Does not

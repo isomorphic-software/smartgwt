@@ -2722,7 +2722,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * Add a editorExit handler.
      * <p>
      * Callback fired when the user attempts to navigate away from the current edit cell,  or complete the current edit.<br>
-     * Return false from this method to cancel the default behavior (Saving / cancelling the current edit / moving to the next
+     * Call {@link com.smartgwt.client.widgets.grid.events.EditorExitEvent#cancel()} from within {@link EditorExitHandler#onEditorExit} from this method to cancel the default behavior (Saving / cancelling the current edit / moving to the next
      * edit cell)
      *
      * @param handler the editorExit handler
@@ -2764,7 +2764,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * <p>
      * Executed when this field is clicked on.  Note that if {@link
      * com.smartgwt.client.widgets.grid.ListGrid#addRecordClickHandler ListGrid.recordClick} is also defined, it will be fired
-     * for fields that define a recordClick handler if the field-level handler returns true. Return false to prevent the
+     * for fields that define a recordClick handler if the field-level handler returns true. Call {@link com.smartgwt.client.widgets.grid.events.RecordClickEvent#cancel()} from within {@link RecordClickHandler#onRecordClick} to prevent the
      * grid-level handler from firing.
      *
      * @param handler the recordClick handler
@@ -3054,11 +3054,12 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-     * Name of form item type to use for the form item created to edit this field. (Only used if this field is
-     * editable). Note: If this is not specified, the edit-form item type may be derived from the editorType property,
-     * typically inherited from datasource fields, or from the type of the field (showing the appropriate form item for
-     * the data-type). See the Grid Editing overview for more on editing ListGrid fields.
-     *
+     * FormItem properties to use as a template for the form item created to edit this field. (Only used if this field is
+     * editable). Note: If this is not specified, the edit-form item type be the appropriate form item for
+     * the data-type of the field.
+     * <p>
+     * The {@link ListGrid#setEditorCustomizer()} API allows the developer to supply dynamic properties for the
+     * item based on the row as well as the field being edited.
      * <p><br>
      * <b>Note>: When you supply a custom FormItem via setEditorType(), you're really providing properties which are then used to
      * create multiple FormItems (eg, in grids, forms and trees) and there's an underlying limitation here where event handlers have

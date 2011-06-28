@@ -114,7 +114,7 @@ public class RowContextClickEvent extends GridRowColEvent<RowContextClickHandler
 
 
     /**
-     * whether to cancel the event
+     * Calling this method cancels the event
      */
     public void cancel() {
         cancel = true;

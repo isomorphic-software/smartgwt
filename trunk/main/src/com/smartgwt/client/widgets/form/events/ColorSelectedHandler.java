@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.form.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface ColorSelectedHandler extends EventHandler {
-
+    /**
+     * Override this method to be notified when the user selects a color either by clicking a basic color box in simple mode,
+     * or by clicking  the OK button in complex mode. It is not intended that client code  call this method.
+     *
+     * @param event the event
+     */
     void onColorSelected(com.smartgwt.client.widgets.form.events.ColorSelectedEvent event);
 }

@@ -114,7 +114,7 @@ public class RowHoverEvent extends GridRowColEvent<RowHoverHandler>  implements 
 
 
     /**
-     * whether to cancel the event (default behavior of showing the hover)
+     * Calling this method cancels the event (default behavior of showing the hover)
      */
     public void cancel() {
         cancel = true;

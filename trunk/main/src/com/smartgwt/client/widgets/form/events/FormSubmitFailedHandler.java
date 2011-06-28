@@ -18,6 +18,13 @@ package com.smartgwt.client.widgets.form.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface FormSubmitFailedHandler extends EventHandler {
-
+    /**
+     * Method called when an attempt to {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm natively submit} a form
+     * is unable to submit to the server. Default behavior is to display the {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getFormSubmitFailedWarning formSubmitFailedWarning} in a warning dialog.
+     * The most common cause for this failure is that the user has typed an invalid file-path into an upload type field.
+     *
+     * @param event the event
+     */
     void onFormSubmitFailed(com.smartgwt.client.widgets.form.events.FormSubmitFailedEvent event);
 }

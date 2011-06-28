@@ -112,7 +112,7 @@ public class RecordDropEvent extends BrowserEvent<RecordDropHandler>  implements
 
 
     /**
-     * return false to cancel the default record drop handling
+     * Call this method to cancel the default record drop handling
      */
     public void cancel() {
         cancel = true;

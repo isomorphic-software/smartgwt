@@ -112,7 +112,7 @@ public class RecordExpandEvent extends BrowserEvent<RecordExpandHandler>  implem
 
 
     /**
-     * return false to cancel record expansion
+     * Call this method to cancel record expansion
      */
     public void cancel() {
         cancel = true;

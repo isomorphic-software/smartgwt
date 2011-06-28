@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.form.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface SubmitValuesHandler extends EventHandler {
-
+    /**
+     * Triggered when a SubmitItem is included in the form is submitted and gets pressed.
+     *
+     * @param event the event
+     */
     void onSubmitValues(com.smartgwt.client.widgets.form.events.SubmitValuesEvent event);
 }

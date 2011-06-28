@@ -125,6 +125,31 @@ public class SectionStackSection extends RefDataClass {
     }
 
     /**
+     * If true, the header for this Section will be included in the page's tab order for accessibility. May also be set at the
+     * {@link com.smartgwt.client.widgets.layout.SectionStack} level via  {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#getCanTabToHeaders canTabToHeaders}. <P> See {@link
+     * com.smartgwt.client.docs.Accessibility}.
+     *
+     * @param canTabToHeader canTabToHeader Default value is null
+     */
+    public void setCanTabToHeader(Boolean canTabToHeader) {
+        setAttribute("canTabToHeader", canTabToHeader);
+    }
+
+    /**
+     * If true, the header for this Section will be included in the page's tab order for accessibility. May also be set at the
+     * {@link com.smartgwt.client.widgets.layout.SectionStack} level via  {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#getCanTabToHeaders canTabToHeaders}. <P> See {@link
+     * com.smartgwt.client.docs.Accessibility}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanTabToHeader()  {
+        return getAttributeAsBoolean("canTabToHeader");
+    }
+
+    /**
      * Optional ID for the section. If {@link com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs
      * useGlobalSectionIDs} is true, this property will be applied to the generated SectionStackHeader widget as a standard
      * widget ID, meaning it should be unique within a page. <P> <b>Backcompat Note</b>: Section stack sections may be uniquely

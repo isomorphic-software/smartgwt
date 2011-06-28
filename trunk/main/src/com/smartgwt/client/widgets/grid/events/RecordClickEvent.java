@@ -114,7 +114,7 @@ public class RecordClickEvent extends AbstractSmartEvent<RecordClickHandler>  im
 
 
     /**
-     * false to stop event bubbling
+     * Call this method to stop event bubbling
      */
     public void cancel() {
         cancel = true;

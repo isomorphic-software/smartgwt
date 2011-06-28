@@ -271,7 +271,8 @@ public class Criterion extends Criteria {
      * @param otherCriteria the passed criteria object
      */
     public void addCriteria(Criterion c) {
-        if (this.getAttributeAsString("operator").equals(OperatorId.AND.getValue())) {
+        String opString = this.getAttributeAsString("operator");
+        if (opString != null && opString.equals(OperatorId.AND.getValue())) {
             appendToCriterionList(c);
         } else {
             Criterion thisCopy = new Criterion(this);

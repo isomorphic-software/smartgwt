@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface RowEditorEnterHandler extends EventHandler {
-
+    /**
+     * Callback fired when the user starts editing a new row.
+     *
+     * @param event the event
+     */
     void onRowEditorEnter(com.smartgwt.client.widgets.grid.events.RowEditorEnterEvent event);
 }
