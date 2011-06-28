@@ -1,3 +1,19 @@
+/*
+ * Smart GWT (GWT for SmartClient)
+ * Copyright 2008 and beyond, Isomorphic Software, Inc.
+ *
+ * Smart GWT is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License version 3
+ * is published by the Free Software Foundation.  Smart GWT is also
+ * available under typical commercial license terms - see
+ * http://smartclient.com/license
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ */
+
 package com.smartgwt.sample.showcase.client.layout;
 
 import com.smartgwt.client.types.Alignment;
@@ -75,7 +91,7 @@ public class CenterAlignSample extends ShowcasePanel {
         hLayoutAlignCenter.setHeight100();
         hLayoutAlignCenter.setLayoutMargin(6);
         hLayoutAlignCenter.setMembersMargin(6);
-        hLayoutAlignCenter.setBorder("1px dashed blue");
+        hLayoutAlignCenter.setBorder("1px dashed 0083ff");
         hLayoutAlignCenter.setAlign(Alignment.CENTER); // As promised!
         
         hLayoutAlignCenter.addMember(new Canvas() {{

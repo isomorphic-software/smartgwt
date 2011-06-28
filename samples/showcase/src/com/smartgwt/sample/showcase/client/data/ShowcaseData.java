@@ -139,17 +139,12 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Offline Preferences", "grid-offline-pref-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new OfflinePreferencesSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("New Samples", "new-category", "root", "silk/new.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Hover Related Records", "grid-hover-related-records-new", "new-category", null, new GridHoverRelatedRecordsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Hover Custom", "grid-hover-custom-new", "new-category", null, new GridCustomHoverSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Editable Tabs", "tabs-editable-new", "new-category", null, new TabsEditableTitlesSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("User Defined Hilites", "grid-hiliting-user-defined-new", "new-category", null, new GridUserDefinedHilitingSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Pre-Defined Hilites", "grid-hiliting-pre-defined-new", "new-category", null, new GridPredefinedHilitingSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Data Driven Hilites", "grid-hiliting-data-driven-new", "new-category", null, new GridDataDrivenHilitingSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Formula Hilites", "grid-hiliting-formula-new", "new-category", null, new GridFormulaHilitingSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("24h based Calendar", "calendar-24h-new", "new-category", null, new CalendarDateTimeFormatSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Offline Preferences", "grid-offline-pref-new", "new-category", "crystal/16/apps/tooloptions.png", new OfflinePreferencesSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Multi-Field Search", "combobox-multifield-search-new", "new-category", null, new MultiFieldSearchSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Format Related Value", "format-related-value-new", "new-category", null, new FormatRelatedValueSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Format Dropdown", "format-dropdown-new", "new-category", null, new FormatDropDownSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Nested Editor", "nested-editor-new", "new-category", "silk/vcard_edit.png", new NestedEditorSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("ListGrid Item", "form-grid-item-new", "new-category", "silk/vcard_edit.png", new ListGridItemSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Center Align", "layout-center-align-new", "new-category", null, new CenterAlignSample.Factory(), true, idSuffix),
 
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
 
