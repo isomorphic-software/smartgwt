@@ -20,15 +20,6 @@
         <exclude name="com/smartgwt/client/Test.class"/>
     </fileset>
 
-<!--    <target name="gen-src" description="Generate SmartGWT code from metadata">
-        <fmpp sourceRoot="${smartgwt.root}/fmpp/src" outputRoot="src/org/smartgwt/client">
-            <data>
-                 tdd(data/style.tdd)
-                 birds: csv(data/birds.csv)
-            </data>
-        </fmpp>
-    </target>-->
-
     <target name="compile" description="Compile all class files">
         <mkdir dir="${javac.out}"/>
         <gwt.javac>
@@ -38,6 +29,7 @@
                 <pathelement location="${gwt.user.jar}"/>
 				<pathelement location="${gwt.dev.jar}"/>
 				<pathelement location="${gwt.dev2.jar}"/>
+				<pathelement location="${gwt.validation.jar}"/>				
             </classpath>
         </gwt.javac>
     </target>
