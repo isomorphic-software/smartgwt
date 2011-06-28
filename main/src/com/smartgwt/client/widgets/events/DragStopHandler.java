@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface DragStopHandler extends EventHandler {
-
+    /**
+     * Executed when the mouse button is released at the end of the drag. Your widget can use this opportunity to fire code
+     * based on the last location of the drag or reset any visual state that was sent.
+     *
+     * @param event the event
+     */
     void onDragStop(com.smartgwt.client.widgets.events.DragStopEvent event);
 }

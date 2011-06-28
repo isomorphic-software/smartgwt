@@ -114,7 +114,7 @@ public class HoverEvent extends BrowserEvent<HoverHandler>  implements Cancellab
 
 
     /**
-     * false to cancel the hover event.
+     * Call this method to cancel the hover event.
      */
     public void cancel() {
         cancel = true;

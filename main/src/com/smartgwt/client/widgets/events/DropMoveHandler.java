@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface DropMoveHandler extends EventHandler {
-
+    /**
+     * Executed whenever the compatible dragged object is moved over this drop target. You can use this to show a custom visual
+     * indication of where the drop would occur within the widget.
+     *
+     * @param event the event
+     */
     void onDropMove(com.smartgwt.client.widgets.events.DropMoveEvent event);
 }

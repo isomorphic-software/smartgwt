@@ -112,7 +112,7 @@ public class MinimizeClickEvent extends BrowserEvent<MinimizeClickHandler>  impl
 
 
     /**
-     * return false to cancel the default minimize behavior
+     * Call this method to cancel the default minimize behavior
      */
     public void cancel() {
         cancel = true;

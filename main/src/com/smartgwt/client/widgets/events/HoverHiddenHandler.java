@@ -18,6 +18,12 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface HoverHiddenHandler extends EventHandler {
-
+    /**
+     * If {@link com.smartgwt.client.widgets.Canvas#getShowHover showHover} is true for this canvas, this notification method
+     * will be fired whenever the hover shown in response to {@link com.smartgwt.client.widgets.Canvas#handleHover
+     * handleHover()} is  hidden. This method may be observed or overridden.
+     *
+     * @param event the event
+     */
     void onHoverHidden(com.smartgwt.client.widgets.events.HoverHiddenEvent event);
 }

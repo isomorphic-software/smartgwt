@@ -18,6 +18,13 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface DragRepositionMoveHandler extends EventHandler {
-
+    /**
+     * Executed every time the mouse moves while drag-repositioning. If this method does not Call {@link com.smartgwt.client.widgets.events.DragRepositionMoveEvent#cancel()} from within {@link DragRepositionMoveHandler#onDragRepositionMove}, the {@link
+     * com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} (or outline if {@link
+     * com.smartgwt.client.widgets.Canvas#getDragAppearance dragAppearance} is set to "outline" will automatically be moved as
+     * appropriate whenever the mouse moves.
+     *
+     * @param event the event
+     */
     void onDragRepositionMove(com.smartgwt.client.widgets.events.DragRepositionMoveEvent event);
 }

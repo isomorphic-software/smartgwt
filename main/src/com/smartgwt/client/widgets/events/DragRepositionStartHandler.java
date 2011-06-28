@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface DragRepositionStartHandler extends EventHandler {
-
+    /**
+     * Executed when dragging first starts. No default implementation.  Create this handler to set things up for the drag
+     * reposition.
+     *
+     * @param event the event
+     */
     void onDragRepositionStart(com.smartgwt.client.widgets.events.DragRepositionStartEvent event);
 }

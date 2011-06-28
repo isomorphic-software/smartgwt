@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface DragMoveHandler extends EventHandler {
-
+    /**
+     * Executed every time the mouse moves while dragging this canvas.
+     *
+     * @param event the event
+     */
     void onDragMove(com.smartgwt.client.widgets.events.DragMoveEvent event);
 }

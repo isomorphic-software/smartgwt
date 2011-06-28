@@ -112,7 +112,7 @@ public class RestoreClickEvent extends BrowserEvent<RestoreClickHandler>  implem
 
 
     /**
-     * return false to cancel the default restore behavior
+     * Call this method to cancel the default restore behavior
      */
     public void cancel() {
         cancel = true;

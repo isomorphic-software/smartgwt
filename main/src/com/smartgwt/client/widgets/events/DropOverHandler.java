@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface DropOverHandler extends EventHandler {
-
+    /**
+     * Executed when the compatible dragged object is first moved over this drop target. Your implementation can use this to
+     * show a custom visual indication that the object can be dropped here.
+     *
+     * @param event the event
+     */
     void onDropOver(com.smartgwt.client.widgets.events.DropOverEvent event);
 }

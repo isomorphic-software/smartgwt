@@ -114,7 +114,7 @@ public class DragRepositionStopEvent extends BrowserEvent<DragRepositionStopHand
 
 
     /**
-     * false to snap the {@link com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} (or outline) back to its          
+     * Call this method to snap the {@link com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} (or outline) back to its          
      *         original location or true to leave it at the current cursor position.
      */
     public void cancel() {

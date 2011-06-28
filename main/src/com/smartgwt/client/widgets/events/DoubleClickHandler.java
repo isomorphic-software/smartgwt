@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface DoubleClickHandler extends EventHandler {
-
+    /**
+     * Executed when the left mouse button is clicked twice in rapid succession (within {@link
+     * com.smartgwt.client.widgets.Canvas#getDoubleClickDelay doubleClickDelay} by default) in this object.
+     *
+     * @param event the event
+     */
     void onDoubleClick(com.smartgwt.client.widgets.events.DoubleClickEvent event);
 }

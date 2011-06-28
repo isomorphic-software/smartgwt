@@ -114,7 +114,7 @@ public class DragStartEvent extends BrowserEvent<DragStartHandler>  implements C
 
 
     /**
-     * false to cancel drag action.
+     * Call this method to cancel drag action.
      */
     public void cancel() {
         cancel = true;

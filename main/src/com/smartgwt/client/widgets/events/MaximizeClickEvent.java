@@ -112,7 +112,7 @@ public class MaximizeClickEvent extends BrowserEvent<MaximizeClickHandler>  impl
 
 
     /**
-     * return false to cancel the default maximize behavior
+     * Call this method to cancel the default maximize behavior
      */
     public void cancel() {
         cancel = true;

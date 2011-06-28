@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface FocusChangedHandler extends EventHandler {
-
+    /**
+     * Notification function fired when this widget receives or loses keyboard focus.
+     *
+     * @param event the event
+     */
     void onFocusChanged(com.smartgwt.client.widgets.events.FocusChangedEvent event);
 }

@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface MouseOutHandler extends EventHandler {
-
+    /**
+     * Executed when the mouse leaves this widget.  No default implementation.
+     *
+     * @param event the event
+     */
     void onMouseOut(com.smartgwt.client.widgets.events.MouseOutEvent event);
 }

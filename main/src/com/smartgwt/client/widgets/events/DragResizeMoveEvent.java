@@ -114,7 +114,7 @@ public class DragResizeMoveEvent extends BrowserEvent<DragResizeMoveHandler>  im
 
 
     /**
-     * false to suppress auto-resize of the {@link com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} or outline.
+     * Call this method to suppress auto-resize of the {@link com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} or outline.
      */
     public void cancel() {
         cancel = true;

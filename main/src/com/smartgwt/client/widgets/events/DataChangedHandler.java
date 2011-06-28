@@ -18,6 +18,12 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface DataChangedHandler extends EventHandler {
-
+    /**
+     * Method to override or observe in order to be notified when a user picks a date value. <P> Has no default behavior (so no
+     * need to call Super). <P> Use {@link com.smartgwt.client.widgets.DateChooser#getData DateChooser.getData} to get the
+     * current date value.
+     *
+     * @param event the event
+     */
     void onDataChanged(com.smartgwt.client.widgets.events.DataChangedEvent event);
 }

@@ -18,6 +18,12 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface MovedHandler extends EventHandler {
-
+    /**
+     * Notification method fired when this component is explicitly moved. Note that a component's position on the screen may
+     * also changed due to an ancestor being moved. The {@link com.smartgwt.client.widgets.Canvas#addParentMovedHandler
+     * Canvas.parentMoved} method provides a notification entry point to catch that case as well.
+     *
+     * @param event the event
+     */
     void onMoved(com.smartgwt.client.widgets.events.MovedEvent event);
 }

@@ -114,7 +114,7 @@ public class KeyPressEvent extends BrowserEvent<KeyPressHandler>  implements Can
 
 
     /**
-     * false to suppress native behavior in response to the keyPress, and prevent                    this event from bubbling
+     * Call this method to suppress native behavior in response to the keyPress, and prevent                    this event from bubbling
      * to this widget's parent, or true or undefined to bubble.
      */
     public void cancel() {

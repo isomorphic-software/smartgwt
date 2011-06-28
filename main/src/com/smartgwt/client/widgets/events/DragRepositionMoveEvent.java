@@ -114,7 +114,7 @@ public class DragRepositionMoveEvent extends BrowserEvent<DragRepositionMoveHand
 
 
     /**
-     * false to suppress auto-move of the {@link com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} or outline.
+     * Call this method to suppress auto-move of the {@link com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} or outline.
      */
     public void cancel() {
         cancel = true;

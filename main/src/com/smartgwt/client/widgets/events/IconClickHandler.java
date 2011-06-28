@@ -18,6 +18,12 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface IconClickHandler extends EventHandler {
-
+    /**
+     * If this button is showing an {@link com.smartgwt.client.widgets.StretchImgButton#getIcon icon}, a separate click handler
+     * for the icon may be defined as <code>this.iconClick</code>. Returning false will suppress the standard button click
+     * handling code.
+     *
+     * @param event the event
+     */
     void onIconClick(com.smartgwt.client.widgets.events.IconClickEvent event);
 }
