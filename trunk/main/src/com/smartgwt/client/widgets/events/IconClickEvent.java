@@ -114,7 +114,7 @@ public class IconClickEvent extends BrowserEvent<IconClickHandler>  implements C
 
 
     /**
-     * false to suppress the standard button click event
+     * Call this method to suppress the standard button click event
      */
     public void cancel() {
         cancel = true;

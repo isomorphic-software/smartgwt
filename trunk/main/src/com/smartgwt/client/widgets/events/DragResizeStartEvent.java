@@ -114,7 +114,7 @@ public class DragResizeStartEvent extends BrowserEvent<DragResizeStartHandler>  
 
 
     /**
-     * false to cancel the drag reposition action
+     * Call this method to cancel the drag reposition action
      */
     public void cancel() {
         cancel = true;

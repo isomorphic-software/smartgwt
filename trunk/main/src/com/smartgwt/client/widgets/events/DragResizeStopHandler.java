@@ -18,6 +18,14 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface DragResizeStopHandler extends EventHandler {
-
+    /**
+     * Executed when the mouse button is released at the end of the drag resize. Your widget can use this opportunity to fire
+     * custom code based upon where the mouse button was released, etc.  <p> Returning true from this handler will cause the
+     * {@link com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} (or outline if {@link
+     * com.smartgwt.client.widgets.Canvas#getDragAppearance dragAppearance} is set to "outline") to be left at its current
+     * size. Returning false from this handler will cause it to snap back to its original location size
+     *
+     * @param event the event
+     */
     void onDragResizeStop(com.smartgwt.client.widgets.events.DragResizeStopEvent event);
 }

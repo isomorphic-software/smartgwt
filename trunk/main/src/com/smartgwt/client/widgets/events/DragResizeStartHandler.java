@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface DragResizeStartHandler extends EventHandler {
-
+    /**
+     * Executed when resize dragging first starts. No default implementation.   Create this handler to set things up for the
+     * drag resize.
+     *
+     * @param event the event
+     */
     void onDragResizeStart(com.smartgwt.client.widgets.events.DragResizeStartEvent event);
 }

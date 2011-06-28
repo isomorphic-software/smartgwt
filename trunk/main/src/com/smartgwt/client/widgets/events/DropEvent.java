@@ -112,7 +112,7 @@ public class DropEvent extends BrowserEvent<DropHandler>  implements Cancellable
 
 
     /**
-     * return false to cancel default drop handling
+     * Call this method to cancel default drop handling
      */
     public void cancel() {
         cancel = true;

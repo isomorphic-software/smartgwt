@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface MouseOverHandler extends EventHandler {
-
+    /**
+     * Executed when mouse enters this widget.  No default implementation.
+     *
+     * @param event the event
+     */
     void onMouseOver(com.smartgwt.client.widgets.events.MouseOverEvent event);
 }

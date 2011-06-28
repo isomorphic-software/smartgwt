@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface CloseClickHandler extends EventHandler {
-
+    /**
+     * Handles a click on the close button of this window. The default implementation hides the window and returns false to
+     * cancel bubbling.  Override this method if you want other actions to be taken.
+     *
+     * @param event the event
+     */
     void onCloseClick(com.smartgwt.client.widgets.events.CloseClientEvent event);
 }

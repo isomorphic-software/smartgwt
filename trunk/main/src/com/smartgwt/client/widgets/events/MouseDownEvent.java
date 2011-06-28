@@ -114,7 +114,7 @@ public class MouseDownEvent extends BrowserEvent<MouseDownHandler>  implements C
 
 
     /**
-     * false to prevent this event from bubbling to this widget's parent, true or undefined to bubble.
+     * Call this method to prevent this event from bubbling to this widget's parent, true or undefined to bubble.
      */
     public void cancel() {
         cancel = true;

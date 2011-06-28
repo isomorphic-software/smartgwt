@@ -114,7 +114,7 @@ public class DragStopEvent extends BrowserEvent<DragStopHandler>  implements Can
 
 
     /**
-     * false to cancel drag interaction.
+     * Call this method to cancel drag interaction.
      */
     public void cancel() {
         cancel = true;

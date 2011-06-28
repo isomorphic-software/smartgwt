@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface MouseMoveHandler extends EventHandler {
-
+    /**
+     * Executed when the mouse moves within this widget.  No default implementation.
+     *
+     * @param event the event
+     */
     void onMouseMove(com.smartgwt.client.widgets.events.MouseMoveEvent event);
 }

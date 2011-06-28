@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface MouseWheelHandler extends EventHandler {
-
+    /**
+     * Executed when the mouse wheel is actuated.
+     *
+     * @param event the event
+     */
     void onMouseWheel(com.smartgwt.client.widgets.events.MouseWheelEvent event);
 }

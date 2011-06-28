@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface ScrolledHandler extends EventHandler {
-
+    /**
+     * Notification that this component has just scrolled.  Use with  observation. <P> Fires for both CSS and {@link
+     * com.smartgwt.client.widgets.Scrollbar "synthetic" scrollbars}.
+     *
+     * @param event the event
+     */
     void onScrolled(com.smartgwt.client.widgets.events.ScrolledEvent event);
 }

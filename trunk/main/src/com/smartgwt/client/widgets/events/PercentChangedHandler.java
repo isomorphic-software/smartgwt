@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface PercentChangedHandler extends EventHandler {
-
+    /**
+     * This method is called when the percentDone value changes. Observe this method to be notified upon a change to the
+     * percentDone value.
+     *
+     * @param event the event
+     */
     void onPercentChanged(com.smartgwt.client.widgets.events.PercentChangedEvent event);
 }

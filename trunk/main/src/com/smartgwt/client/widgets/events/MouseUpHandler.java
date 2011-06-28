@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface MouseUpHandler extends EventHandler {
-
+    /**
+     * Executed when the left mouse is released on this widget.  No default implementation.
+     *
+     * @param event the event
+     */
     void onMouseUp(com.smartgwt.client.widgets.events.MouseUpEvent event);
 }

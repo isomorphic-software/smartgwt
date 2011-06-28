@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface ButtonClickHandler extends EventHandler {
-
+    /**
+     * Fires when any button in this Dialog's toolbar is clicked.  Default implementation does nothing.
+     *
+     * @param event the event
+     */
     void onButtonClick(com.smartgwt.client.widgets.events.ButtonClickEvent event);
 }

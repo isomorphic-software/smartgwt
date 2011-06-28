@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface ValueChangedHandler extends EventHandler {
-
+    /**
+     * This method is called when the slider value changes. This occurs when the setValue method is called, or when the slider
+     * is moved. Observe this method to be notified when the slider value changes.
+     *
+     * @param event the event
+     */
     void onValueChanged(com.smartgwt.client.widgets.events.ValueChangedEvent event);
 }

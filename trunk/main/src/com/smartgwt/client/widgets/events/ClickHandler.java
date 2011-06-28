@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface ClickHandler extends EventHandler {
-
+    /**
+     * Executed when the left mouse is clicked (pressed and then released) on this widget.  No default implementation.
+     *
+     * @param event the event
+     */
     void onClick(com.smartgwt.client.widgets.events.ClickEvent event);
 }
