@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface DoubleClickHandler extends EventHandler {
-
+    /**
+     * Called when this FormItem is double-clicked.
+     *
+     * @param event the event
+     */
     void onDoubleClick(com.smartgwt.client.widgets.form.fields.events.DoubleClickEvent event);
 }

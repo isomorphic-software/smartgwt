@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface FormItemClickHandler extends EventHandler {
-
+    /**
+     * StringMethod action to fire when this icon is clicked      If unset the form item's <code>iconClick</code> method will
+     * be fired instead (if      specified).
+     *
+     * @param event the event
+     */
     void onFormItemClick(com.smartgwt.client.widgets.form.fields.events.FormItemIconClickEvent event);
 }

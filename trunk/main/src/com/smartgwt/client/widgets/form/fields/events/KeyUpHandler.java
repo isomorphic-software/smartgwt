@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface KeyUpHandler extends EventHandler {
-
+    /**
+     * StringMethod fired in response to a keyup while focused in this form item.
+     *
+     * @param event the event
+     */
     void onKeyUp(com.smartgwt.client.widgets.form.fields.events.KeyUpEvent event);
 }

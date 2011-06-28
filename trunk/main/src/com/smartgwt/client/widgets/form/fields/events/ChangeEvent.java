@@ -114,7 +114,7 @@ public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  implements C
 
 
     /**
-     * In your handler, return false to cancel the change, true to allow the change
+     * In your handler, Call this method to cancel the change,
      */
     public void cancel() {
         cancel = true;

@@ -18,6 +18,10 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface KeyPressHandler extends EventHandler {
-
+    /**
+     * StringMethod fired when the user presses a key while focused in this form item.
+     *
+     * @param event the event
+     */
     void onKeyPress(com.smartgwt.client.widgets.form.fields.events.KeyPressEvent event);
 }

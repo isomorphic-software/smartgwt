@@ -128,50 +128,6 @@ public class DateRangeItem extends CanvasItem {
     }
 
     /**
-     * Format for displaying dates in to the user.   Defaults to the system-wide default established by 
-     * setDefaultDisplayFormat.
-     *
-     * @param dateDisplayFormat dateDisplayFormat Default value is null
-     */
-    public void setDateDisplayFormat(DateDisplayFormat dateDisplayFormat) {
-        setAttribute("dateDisplayFormat", dateDisplayFormat.getValue());
-    }
-
-    /**
-     * Format for displaying dates in to the user.   Defaults to the system-wide default established by 
-     * setDefaultDisplayFormat.
-     *
-     *
-     * @return DateDisplayFormat
-     */
-    public DateDisplayFormat getDateDisplayFormat()  {
-        return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateDisplayFormat"));
-    }
-
-    /**
-     * Format for direct user input of date values. <P> If unset, the input format will be determined based on the specified
-     * {@link com.smartgwt.client.types.DateDisplayFormat} if possible, otherwise picked up from the Date class (see 
-     * Date.setInputFormat).
-     *
-     * @param dateInputFormat dateInputFormat Default value is null
-     */
-    public void setDateInputFormat(String dateInputFormat) {
-        setAttribute("dateInputFormat", dateInputFormat);
-    }
-
-    /**
-     * Format for direct user input of date values. <P> If unset, the input format will be determined based on the specified
-     * {@link com.smartgwt.client.types.DateDisplayFormat} if possible, otherwise picked up from the Date class (see 
-     * Date.setInputFormat).
-     *
-     *
-     * @return String
-     */
-    public String getDateInputFormat()  {
-        return getAttributeAsString("dateInputFormat");
-    }
-
-    /**
      * The title for the "from" part of the range.
      *
      * @param fromTitle fromTitle Default value is "From"
@@ -211,6 +167,31 @@ public class DateRangeItem extends CanvasItem {
      */
     public TitleOrientation getInnerTitleOrientation()  {
         return EnumUtil.getEnum(TitleOrientation.values(), getAttribute("innerTitleOrientation"));
+    }
+
+    /**
+     * For fields of type <code>"date"</code>, if this is an editable field such as a {@link
+     * com.smartgwt.client.widgets.form.fields.TextItem}, this property  allows you to specify the {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} applied to the item.
+     *
+     * @param inputFormat inputFormat Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setDateFormatter
+     */
+    public void setInputFormat(String inputFormat) {
+        setAttribute("inputFormat", inputFormat);
+    }
+
+    /**
+     * For fields of type <code>"date"</code>, if this is an editable field such as a {@link
+     * com.smartgwt.client.widgets.form.fields.TextItem}, this property  allows you to specify the {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} applied to the item.
+     *
+     *
+     * @return String
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter
+     */
+    public String getInputFormat()  {
+        return getAttributeAsString("inputFormat");
     }
 
     /**

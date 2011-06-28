@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface IconClickHandler extends EventHandler {
-
+    /**
+     * StringMethod.      Default action to fire when the user clicks on a form item icon. May be overridden      by setting
+     * <code>click</code> on the form item icon directly.
+     *
+     * @param event the event
+     */
     void onIconClick(com.smartgwt.client.widgets.form.fields.events.IconClickEvent event);
 }

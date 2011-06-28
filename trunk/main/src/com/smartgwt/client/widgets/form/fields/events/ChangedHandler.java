@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface ChangedHandler extends EventHandler {
-
+    /**
+     * Called when a FormItem's value has been changed as the result of user interaction.  This method fires after the newly
+     * specified value has been stored.
+     *
+     * @param event the event
+     */
     void onChanged(com.smartgwt.client.widgets.form.fields.events.ChangedEvent event);
 }

@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface IconKeyPressHandler extends EventHandler {
-
+    /**
+     * StringMethod.      Default action to fire when an icon has keyboard focus and the user types a key.      May be
+     * overridden by setting <code>keyPress</code> on the form item icon directly.
+     *
+     * @param event the event
+     */
     void onIconKeyPress(com.smartgwt.client.widgets.form.fields.events.IconKeyPressEvent event);
 }

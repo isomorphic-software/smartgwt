@@ -3409,7 +3409,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * Add a itemHover handler.
      * <p>
-     * Optional stringMethod to fire when the user hovers over this item. Return false to suppress default behavior of showing
+     * Optional stringMethod to fire when the user hovers over this item. Call {@link com.smartgwt.client.widgets.form.fields.events.ItemHoverEvent#cancel()} from within {@link ItemHoverHandler#onItemHover} to suppress default behavior of showing
      * a hover canvas containing the HTML returned by <code>formItem.itemHoverHTML()</code> / 
      * <code>form.itemHoverHTML()</code>.
      *
@@ -3612,7 +3612,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * Add a titleHover handler.
      * <p>
-     * Optional stringMethod to fire when the user hovers over this item's title. Return false to suppress default behavior of
+     * Optional stringMethod to fire when the user hovers over this item's title. Call {@link com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent#cancel()} from within {@link TitleHoverHandler#onTitleHover} to suppress default behavior of
      * showing a hover canvas containing the HTML returned by <code>formItem.titleHoverHTML()</code> / 
      * <code>form.titleHoverHTML()</code>.
      *

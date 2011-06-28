@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasItemHoverHandlers extends HasHandlers {
     /**
-     * Optional stringMethod to fire when the user hovers over this item. Return false to suppress default behavior of showing
+     * Optional stringMethod to fire when the user hovers over this item. Call {@link com.smartgwt.client.widgets.form.fields.events.ItemHoverEvent#cancel()} from within {@link ItemHoverHandler#onItemHover} to suppress default behavior of showing
      * a hover canvas containing the HTML returned by <code>formItem.itemHoverHTML()</code> / 
      * <code>form.itemHoverHTML()</code>.
      *
