@@ -54,7 +54,6 @@ public class CenterAlignSample extends ShowcasePanel {
         public LayoutAlignCenterExample(Canvas example, final String title) {
             this.setTitle(title);
             this.example = example;
-            this.setShowEdges(true);
             this.setLayoutMargin(2);
             this.setMembersMargin(2);
             
