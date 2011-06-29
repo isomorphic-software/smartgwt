@@ -15,10 +15,7 @@ public class MultiFieldSearchSample extends ShowcasePanel {
     private static final String DESCRIPTION =
     	"<p>Click on the SelectItem on the left to see the full set of data. "+
     	"You can enter filter criteria directly on the drop-down list in either field "+
-    	"to filter the set of options down to a managable size.</p>"+
-    	"<p>Now move focus to the ComboBoxItem and start typing. The set of options "+
-    	"displayed are automatically filtered against both fields as you type. "+
-    	"Tab or Enter keypress will complete selection.</p>";
+    	"to filter the set of options down to a managable size.</p>";
 
     public static class Factory implements PanelFactory {
     	private String id;
@@ -64,17 +61,8 @@ public class MultiFieldSearchSample extends ShowcasePanel {
 		filteredSelect.setPickListFields(skuField, itemNameField);
 		filteredSelect.setPickListProperties(pickListProperties);
 		
-		ComboBoxItem filteredCombo = new ComboBoxItem("filteredCombo");
-		filteredCombo.setTitle("Item (ComboBox)");
-		filteredCombo.setAddUnknownValues(true);
-		filteredCombo.setOptionDataSource(supplyItemDS);
-		filteredCombo.setDisplayField("itemName");
-		filteredCombo.setValueField("SKU");
-		filteredCombo.setPickListWidth(300);
-		filteredCombo.setPickListFields(skuField, itemNameField);
-		filteredCombo.setPickListProperties(pickListProperties);
 		
-		form.setItems(filteredSelect, filteredCombo);
+		form.setItems(filteredSelect);
 		return form;
     }
 
