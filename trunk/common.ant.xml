@@ -20,10 +20,10 @@
 		<isset property="${env.SC_VER}" />
     </condition>
 	
-	<property name="smartgwt.version" value="2.5" />
-	<property name="smartgwt.version.major" value="2" />
-	<property name="smartgwt.version.minor" value="5" />
-	<property name="smartgwt.previous_version" value="2.4" />
+	<property name="smartgwt.version" value="3.0" />
+	<property name="smartgwt.version.major" value="3" />
+	<property name="smartgwt.version.minor" value="0" />
+	<property name="smartgwt.previous_version" value="2.5" />
 
     <condition property="smartgwt.tools.check" value="${env.SMARTGWT_TOOLS}" else="${smartgwt.root}/../tools">
 		<isset property="env.SMARTGWT_TOOLS" />
