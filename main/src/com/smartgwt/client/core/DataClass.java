@@ -125,11 +125,11 @@ public class DataClass extends JsObject {
     }
 
     public void setAttribute(String property, DataClass value) {
-        JSOHelper.setAttribute(jsObj, property, value.getJsObj());
+        JSOHelper.setAttribute(jsObj, property, value == null ? null : value.getJsObj());
     }
 
     public void setAttribute(String property, BaseClass value) {
-        JSOHelper.setAttribute(jsObj, property, value.getOrCreateJsObj());
+        JSOHelper.setAttribute(jsObj, property, value == null ? null : value.getOrCreateJsObj());
     }
 
 
@@ -158,7 +158,7 @@ public class DataClass extends JsObject {
     }
 
     public void setAttribute(String property, ValueEnum value) {
-        JSOHelper.setAttribute(jsObj, property, value.getValue());
+        JSOHelper.setAttribute(jsObj, property, value == null ? null : value.getValue());
     }
     
     /**
