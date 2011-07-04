@@ -6066,6 +6066,15 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }-*/;
             
     /**
+     * Recursively show the canvas and all it's parents so the canvas will be visible. <P> If the widget has not yet been
+     * drawn, this method calls the draw method as well.
+     */
+    public native void showRecursively() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.showRecursively();
+    }-*/;
+            
+    /**
      * If this canvas is currently showing a hover (see {@link com.smartgwt.client.widgets.Canvas#handleHover
      * Canvas.handleHover}), this method can be called to update the contents of the hover. Has no effect if the hover canvas
      * is not showing for this widget.
