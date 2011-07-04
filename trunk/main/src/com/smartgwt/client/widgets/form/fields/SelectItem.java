@@ -305,6 +305,42 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     }
 
     /**
+     * If this item has a specified <code>optionDataSource</code> and this property is <code>true</code>, the list of fields
+     * used by this pickList will be passed to the datasource as {@link com.smartgwt.client.data.DSRequest#getOutputs outputs}.
+     * If the datasource supports this feature the returned fields will be limited to this list. A custom datasource will need
+     * to add code to implement field limiting. <P> This list of used fields consists of the values of {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField}, {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} and {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getPickListFields pickListFields}. <P> NOTE: When enabled, {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getSelectedRecord getSelectedRecord} will only include the fetched
+     * fields.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param fetchDisplayedFieldsOnly fetchDisplayedFieldsOnly Default value is null
+     */
+    public void setFetchDisplayedFieldsOnly(Boolean fetchDisplayedFieldsOnly) {
+        setAttribute("fetchDisplayedFieldsOnly", fetchDisplayedFieldsOnly);
+    }
+
+    /**
+     * If this item has a specified <code>optionDataSource</code> and this property is <code>true</code>, the list of fields
+     * used by this pickList will be passed to the datasource as {@link com.smartgwt.client.data.DSRequest#getOutputs outputs}.
+     * If the datasource supports this feature the returned fields will be limited to this list. A custom datasource will need
+     * to add code to implement field limiting. <P> This list of used fields consists of the values of {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField}, {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} and {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getPickListFields pickListFields}. <P> NOTE: When enabled, {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getSelectedRecord getSelectedRecord} will only include the fetched
+     * fields.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getFetchDisplayedFieldsOnly()  {
+        return getAttributeAsBoolean("fetchDisplayedFieldsOnly");
+    }
+
+    /**
      * If <code>filterLocally</code> is set for this item, and this item is showing options  from a dataSource, fetch the
      * entire set of options from the server, and use these values to map the item value to the appropriate display value. Also
      * use <code>"local"</code> type filtering on drop down list of options. <P> This means data will only be fetched once from
@@ -359,10 +395,13 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * com.smartgwt.client.widgets.grid.ListGrid}, based on the {@link com.smartgwt.client.types.MultipleAppearance} setting.
      * <P> The logical value of the formItem, as retrieved by {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue
      * getValue()} and set via {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue setValue()}, is an Array of
-     * Strings reflecting the selected values. <P> Note: <code>multiple:true</code> SelectItems do not currently support
-     * optionDataSource binding.  You can get around this by calling {@link com.smartgwt.client.data.DataSource#fetchData
-     * DataSource.fetchData} directly and calling {@link com.smartgwt.client.data.List#getValueMap
-     * dsResponse.data.getValueMap()} to obtain a valueMap.
+     * Strings reflecting the selected values. <P> When this value is true, we disable doubleClick events by default, instead
+     * issuing two single clicks by forcibly setting {@link com.smartgwt.client.widgets.Canvas#getNoDoubleClicks
+     * noDoubleClicks: true}. If you need to work with doubleClick events, you can disable this default behavior by explicitly
+     * setting formItem.pickListProperties.noDoubleClicks: false. <P> Note: <code>multiple:true</code> SelectItems do not
+     * currently support optionDataSource binding.  You can get around this by calling {@link
+     * com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData} directly and calling {@link
+     * com.smartgwt.client.data.List#getValueMap dsResponse.data.getValueMap()} to obtain a valueMap.
      *
      * @param multiple multiple Default value is false
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -377,10 +416,13 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * com.smartgwt.client.widgets.grid.ListGrid}, based on the {@link com.smartgwt.client.types.MultipleAppearance} setting.
      * <P> The logical value of the formItem, as retrieved by {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue
      * getValue()} and set via {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue setValue()}, is an Array of
-     * Strings reflecting the selected values. <P> Note: <code>multiple:true</code> SelectItems do not currently support
-     * optionDataSource binding.  You can get around this by calling {@link com.smartgwt.client.data.DataSource#fetchData
-     * DataSource.fetchData} directly and calling {@link com.smartgwt.client.data.List#getValueMap
-     * dsResponse.data.getValueMap()} to obtain a valueMap.
+     * Strings reflecting the selected values. <P> When this value is true, we disable doubleClick events by default, instead
+     * issuing two single clicks by forcibly setting {@link com.smartgwt.client.widgets.Canvas#getNoDoubleClicks
+     * noDoubleClicks: true}. If you need to work with doubleClick events, you can disable this default behavior by explicitly
+     * setting formItem.pickListProperties.noDoubleClicks: false. <P> Note: <code>multiple:true</code> SelectItems do not
+     * currently support optionDataSource binding.  You can get around this by calling {@link
+     * com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData} directly and calling {@link
+     * com.smartgwt.client.data.List#getValueMap dsResponse.data.getValueMap()} to obtain a valueMap.
      *
      *
      * @return Boolean
@@ -1285,6 +1327,28 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
             self.defaultValue = valuesJS;
         }
     }-*/;
+    
+    /**
+     * If true, multiple values may be selected. <P> The SelectItem will either render as a drop-down allowing multiple
+     * selections, or a multi-row list of options similar to a small headerless {@link
+     * com.smartgwt.client.widgets.grid.ListGrid}, based on the {@link com.smartgwt.client.types.MultipleAppearance} setting.
+     * <P> The logical value of the formItem, as retrieved by {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue
+     * getValue()} and set via {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue setValue()}, is an Array of
+     * Strings reflecting the selected values. <P> When this value is true, we disable doubleClick events by default, instead
+     * issuing two single clicks by forcibly setting {@link com.smartgwt.client.widgets.Canvas#getNoDoubleClicks
+     * noDoubleClicks: true}. If you need to work with doubleClick events, you can disable this default behavior by explicitly
+     * setting formItem.pickListProperties.noDoubleClicks: false. <P> Note: <code>multiple:true</code> SelectItems do not
+     * currently support optionDataSource binding.  You can get around this by calling {@link
+     * com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData} directly and calling {@link
+     * com.smartgwt.client.data.List#getValueMap dsResponse.data.getValueMap()} to obtain a valueMap.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Boolean isMultiple()  {
+        return getAttributeAsBoolean("multiple");
+    }
 
     /**
      * Only applies to databound items (see {@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource
