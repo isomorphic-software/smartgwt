@@ -198,7 +198,7 @@ public class CheckboxItem extends FormItem {
     }
 
     /**
-     * Should we should the label text next to the checkbox item.
+     * Should we show the label text next to the checkbox item.
      *
      * @param showLabel showLabel Default value is true
      */
@@ -207,7 +207,7 @@ public class CheckboxItem extends FormItem {
     }
 
     /**
-     * Should we should the label text next to the checkbox item.
+     * Should we show the label text next to the checkbox item.
      *
      *
      * @return Boolean

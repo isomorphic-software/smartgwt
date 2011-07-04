@@ -252,16 +252,6 @@ public class PortalLayout extends Layout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removePortlet(portlet.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-            
-    /**
-     * Sets the width of a column in the PortalLayout.
-     * @param colNumber Which column's width to set.
-     * @param width How wide to make the column
-     */
-    public native void setColumnWidth(int colNumber, Number or String width) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setColumnWidth(colNumber, width);
-    }-*/;
 
     // ********************* Static Methods ***********************
     /**

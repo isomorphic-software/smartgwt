@@ -1759,24 +1759,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }-*/;
             
     /**
-     * Copies all DataSource field values of a Record (including a TreeNode) to a new  Record, omitting component-specific
-     * metadata such as selected state from grids,  or parent folders for TreeNodes.
-     * @param record The record to be copied.
-     *
-     * @return A new copy of the record provided as an argument, with  component-specific metata data removed.
-     */
-    public native Record copyRecord(Record record) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var ret = self.copyRecord(record.@com.smartgwt.client.core.DataClass::getJsObj()());
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.data.Record::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
-    }-*/;
-            
-    /**
      * Perform a "fetch" DataSource operation against this DataSource, sending search criteria, retrieving matching records and
      * exporting the results.  See  {@link com.smartgwt.client.data.OperationBinding#getExportResults exportResults} or {@link
      * com.smartgwt.client.data.DSRequest#getExportResults exportResults} and for more information.
@@ -2931,7 +2913,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @param record to be copied   
      * @return {@link Record}
      */
-    public native Record copyRecord(Record record)/*-{
+    public native Record copyRecord(Record record) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();        
         return @com.smartgwt.client.data.Record::new(Lcom/google/gwt/core/client/JavaScriptObject;)(self.copyRecord(recordJS));
