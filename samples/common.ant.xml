@@ -45,6 +45,7 @@
 				<pathelement location="${gwt.user.jar}" />
 				<pathelement location="${gwt.dev.jar}" />
 				<pathelement location="${smartgwt.dev.jar}" />
+				<pathelement location="${gwt.validation.jar}" />				
 			</classpath>
 		</gwt.javac>
 		<java classname="com.smartgwt.sample.showcase.server.GenerateSourceFiles">
