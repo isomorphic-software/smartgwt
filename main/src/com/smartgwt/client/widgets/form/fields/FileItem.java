@@ -59,8 +59,13 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * Binary data interface for use in DynamicForms. Allows users to select a single file for upload. <P> See the {@link
- * com.smartgwt.client.docs.Upload Upload Overview} for information on using this control.
+ * Binary data interface for use in DynamicForms. Allows users to select a single file for upload. In read-only mode
+ * (canEdit:false) displays the contents of "imageFile" fields. <P> <b>Editable mode</b> <P> See the {@link
+ * com.smartgwt.client.docs.Upload Upload Overview} for information on using this control. <P> <b>Read-only mode</b> <P>
+ * Displays one of two UIs, according to the value of  {@link
+ * com.smartgwt.client.widgets.form.fields.FileItem#getShowFileInline showFileInline}.  If showFileInline is false, this
+ * Item displays the View and Download icons and the filename.  Otherwise, it streams the image-file  and displays it
+ * inline.
  * @see com.smartgwt.client.docs.Upload Upload overview and related methods
  */
 public class FileItem extends CanvasItem {
@@ -90,6 +95,25 @@ public class FileItem extends CanvasItem {
     }
 
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * Indicates whether to stream the image and display it inline or to display the View and Download icons.
+     *
+     * @param showFileInline showFileInline Default value is null
+     */
+    public void setShowFileInline(Boolean showFileInline) {
+        setAttribute("showFileInline", showFileInline);
+    }
+
+    /**
+     * Indicates whether to stream the image and display it inline or to display the View and Download icons.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowFileInline()  {
+        return getAttributeAsBoolean("showFileInline");
+    }
 
     // ********************* Methods ***********************
 
