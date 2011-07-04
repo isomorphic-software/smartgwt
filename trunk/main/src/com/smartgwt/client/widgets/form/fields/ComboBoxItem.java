@@ -299,6 +299,42 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
     }
 
     /**
+     * If this item has a specified <code>optionDataSource</code> and this property is <code>true</code>, the list of fields
+     * used by this pickList will be passed to the datasource as {@link com.smartgwt.client.data.DSRequest#getOutputs outputs}.
+     * If the datasource supports this feature the returned fields will be limited to this list. A custom datasource will need
+     * to add code to implement field limiting. <P> This list of used fields consists of the values of {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField}, {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} and {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getPickListFields pickListFields}. <P> NOTE: When enabled, {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getSelectedRecord getSelectedRecord} will only include the fetched
+     * fields.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param fetchDisplayedFieldsOnly fetchDisplayedFieldsOnly Default value is null
+     */
+    public void setFetchDisplayedFieldsOnly(Boolean fetchDisplayedFieldsOnly) {
+        setAttribute("fetchDisplayedFieldsOnly", fetchDisplayedFieldsOnly);
+    }
+
+    /**
+     * If this item has a specified <code>optionDataSource</code> and this property is <code>true</code>, the list of fields
+     * used by this pickList will be passed to the datasource as {@link com.smartgwt.client.data.DSRequest#getOutputs outputs}.
+     * If the datasource supports this feature the returned fields will be limited to this list. A custom datasource will need
+     * to add code to implement field limiting. <P> This list of used fields consists of the values of {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField}, {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} and {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getPickListFields pickListFields}. <P> NOTE: When enabled, {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getSelectedRecord getSelectedRecord} will only include the fetched
+     * fields.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getFetchDisplayedFieldsOnly()  {
+        return getAttributeAsBoolean("fetchDisplayedFieldsOnly");
+    }
+
+    /**
      * As the user types into this item's textBox, a comboBoxItem will show the pick-list of options, and filter the set of
      * results displayed by the current value in the text box. For a databound comboBoxItem, by default the entered value is
      * filtered against the {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDisplayField displayField} if one is
