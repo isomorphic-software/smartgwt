@@ -109,8 +109,8 @@ public class DataSourceField extends DataClass {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Whether this field can ever be edited by the user.  If set to <code>false</code>, no DataBound component will ever try
-     * to offer an editing interface for this field.
+     * Controls whether, by default, dataBoundComponents consider this field editable. <P> Set to <code>false</code> to draw
+     * this field read-only. (This can be overridden on a per-DataBoundComponent basis.)
      *
      * @param canEdit canEdit Default value is null
      * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
@@ -120,8 +120,8 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * Whether this field can ever be edited by the user.  If set to <code>false</code>, no DataBound component will ever try
-     * to offer an editing interface for this field.
+     * Controls whether, by default, dataBoundComponents consider this field editable. <P> Set to <code>false</code> to draw
+     * this field read-only. (This can be overridden on a per-DataBoundComponent basis.)
      *
      *
      * @return Boolean
@@ -580,7 +580,11 @@ public class DataSourceField extends DataClass {
      * Whether this field should be hidden from users by default within a DataBound component. This is generally used for
      * internal IDs and other fields not meaningful to users. <P> See {@link com.smartgwt.client.data.DataSourceField#getDetail
      * detail} for fields that should be hidden in a summary view such as a {@link com.smartgwt.client.widgets.grid.ListGrid},
-     * but still available to the user.
+     * but still available to the user. <p> <b>NOTE:</b> This property is <b>not</b> a security setting - data for hidden
+     * fields is  still delivered to the client, it just isn't shown to the user.  If you wish to make sure  that only
+     * appropriate data reaches the client, use either {@link com.smartgwt.client.docs.serverds.OperationBinding#outputs
+     * outputs} or a field-level declarative security setting like {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresRole viewRequiresRole}.
      *
      * @param hidden hidden Default value is false
      * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
@@ -593,7 +597,11 @@ public class DataSourceField extends DataClass {
      * Whether this field should be hidden from users by default within a DataBound component. This is generally used for
      * internal IDs and other fields not meaningful to users. <P> See {@link com.smartgwt.client.data.DataSourceField#getDetail
      * detail} for fields that should be hidden in a summary view such as a {@link com.smartgwt.client.widgets.grid.ListGrid},
-     * but still available to the user.
+     * but still available to the user. <p> <b>NOTE:</b> This property is <b>not</b> a security setting - data for hidden
+     * fields is  still delivered to the client, it just isn't shown to the user.  If you wish to make sure  that only
+     * appropriate data reaches the client, use either {@link com.smartgwt.client.docs.serverds.OperationBinding#outputs
+     * outputs} or a field-level declarative security setting like {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresRole viewRequiresRole}.
      *
      *
      * @return Boolean
@@ -659,125 +667,6 @@ public class DataSourceField extends DataClass {
      */
     public Boolean getInapplicable()  {
         return getAttributeAsBoolean("inapplicable");
-    }
-
-    /**
-     * For use with the Smart GWT server when populating Java Beans / POJOs based on data contained in a DSRequest,
-     * <code>javaClass</code> specifies the fully qualified Java className to be created and passed to the setter for the Java
-     * Bean Property with the same name as this field.   <code>javaClass</code> is used both when manually calling
-     * DataSource.setProperties() and when auto-populating POJO arguments of a {@link
-     * com.smartgwt.client.data.DataSourceField#getDmiOverview DMI} method. <P> The Java class to create does not normally have
-     * to be specified: Smart GWT will use Java reflection to inspect the type of argument expected by a setter method and will
-     * attempt conversion of inbound data to that type.  As described in the documentation for DataTools.setProperties(), this
-     * works for almost all typical cases.  However <code>field.javaClass</code> is useful for: <ul> <li> subobject of abstract
-     * or interface type: in this case Java Reflection is not sufficient to discover the concrete type that should be
-     * instantiated, and <code>javaClass</code> should be set instead.</li> <li> subobject of Collection or Map type, when Java
-     * generics are not used or the Collection member type or Map value type is abstract.  When Java generics are used (for
-     * example the setter takes an argument is of type Collection&lt;SomePOJO&gt; or Map&lt;KeyType,SomePOJO&gt;, Smart GWT
-     * will automatically attempt to convert inbound data to the type of the members of the Collection or values of the Map. 
-     * Without generics, <code>javaClass</code> needs to be specified.  Note that <code>javaClass</code> will take precedence
-     * over generics if both  are used. Also note that {@link com.smartgwt.client.data.DataSourceField#getJavaCollectionClass
-     * javaCollectionClass} can be specified if a particular Collection or Map type is needed, and {@link
-     * com.smartgwt.client.data.DataSourceField#getJavaKeyClass javaKeyClass} can be specified for a field of type
-     * <code>java.util.Map</code>.</li> </ul>
-     *
-     * @param javaClass javaClass Default value is null
-     */
-    public void setJavaClass(String javaClass) {
-        setAttribute("javaClass", javaClass);
-    }
-
-    /**
-     * For use with the Smart GWT server when populating Java Beans / POJOs based on data contained in a DSRequest,
-     * <code>javaClass</code> specifies the fully qualified Java className to be created and passed to the setter for the Java
-     * Bean Property with the same name as this field.   <code>javaClass</code> is used both when manually calling
-     * DataSource.setProperties() and when auto-populating POJO arguments of a {@link
-     * com.smartgwt.client.data.DataSourceField#getDmiOverview DMI} method. <P> The Java class to create does not normally have
-     * to be specified: Smart GWT will use Java reflection to inspect the type of argument expected by a setter method and will
-     * attempt conversion of inbound data to that type.  As described in the documentation for DataTools.setProperties(), this
-     * works for almost all typical cases.  However <code>field.javaClass</code> is useful for: <ul> <li> subobject of abstract
-     * or interface type: in this case Java Reflection is not sufficient to discover the concrete type that should be
-     * instantiated, and <code>javaClass</code> should be set instead.</li> <li> subobject of Collection or Map type, when Java
-     * generics are not used or the Collection member type or Map value type is abstract.  When Java generics are used (for
-     * example the setter takes an argument is of type Collection&lt;SomePOJO&gt; or Map&lt;KeyType,SomePOJO&gt;, Smart GWT
-     * will automatically attempt to convert inbound data to the type of the members of the Collection or values of the Map. 
-     * Without generics, <code>javaClass</code> needs to be specified.  Note that <code>javaClass</code> will take precedence
-     * over generics if both  are used. Also note that {@link com.smartgwt.client.data.DataSourceField#getJavaCollectionClass
-     * javaCollectionClass} can be specified if a particular Collection or Map type is needed, and {@link
-     * com.smartgwt.client.data.DataSourceField#getJavaKeyClass javaKeyClass} can be specified for a field of type
-     * <code>java.util.Map</code>.</li> </ul>
-     *
-     *
-     * @return String
-     */
-    public String getJavaClass()  {
-        return getAttributeAsString("javaClass");
-    }
-
-    /**
-     * See {@link com.smartgwt.client.data.DataSourceField#getJavaClass javaClass} - when auto-populating of Java Beans / POJOs
-     * based on  inbound DSRequest data, for a field of type Collection or Map,  <code>javaCollectionClass</code> can  be used
-     * to specify a particular concrete class to use.  If not specified, and a concrete Collection or Map class cannot be
-     * discovered using Java Reflection, the following concrete classes are used: <ul> <li> <code>java.util.ArrayList</code> is
-     * used for fields of type <code>List</code> <li> <code>java.util.HashSet</code> is used for fields of type
-     * <code>Set</code> <li> <code>java.util.LinkedList</code> is used for fields of type <code>Queue</code> <li>
-     * <code>org.apache.commons.collections.map.LinkedMap</code> is used for fields of type <code>Map</code> <li>
-     * <code>java.util.ArrayList</code> is used for fields that are otherwise of type <code>Collection</code> </ul> Note that
-     * this value is used even if the target Collection or Map is declared as a concrete class.  So, for example, if you set
-     * <code>javaCollectionClass</code> to  <code>java.util.LinkedList</code> but your setter method accepts a 
-     * <code>java.util.ArrayList</code>, you will get a ClassCastException.
-     *
-     * @param javaCollectionClass javaCollectionClass Default value is null
-     */
-    public void setJavaCollectionClass(String javaCollectionClass) {
-        setAttribute("javaCollectionClass", javaCollectionClass);
-    }
-
-    /**
-     * See {@link com.smartgwt.client.data.DataSourceField#getJavaClass javaClass} - when auto-populating of Java Beans / POJOs
-     * based on  inbound DSRequest data, for a field of type Collection or Map,  <code>javaCollectionClass</code> can  be used
-     * to specify a particular concrete class to use.  If not specified, and a concrete Collection or Map class cannot be
-     * discovered using Java Reflection, the following concrete classes are used: <ul> <li> <code>java.util.ArrayList</code> is
-     * used for fields of type <code>List</code> <li> <code>java.util.HashSet</code> is used for fields of type
-     * <code>Set</code> <li> <code>java.util.LinkedList</code> is used for fields of type <code>Queue</code> <li>
-     * <code>org.apache.commons.collections.map.LinkedMap</code> is used for fields of type <code>Map</code> <li>
-     * <code>java.util.ArrayList</code> is used for fields that are otherwise of type <code>Collection</code> </ul> Note that
-     * this value is used even if the target Collection or Map is declared as a concrete class.  So, for example, if you set
-     * <code>javaCollectionClass</code> to  <code>java.util.LinkedList</code> but your setter method accepts a 
-     * <code>java.util.ArrayList</code>, you will get a ClassCastException.
-     *
-     *
-     * @return String
-     */
-    public String getJavaCollectionClass()  {
-        return getAttributeAsString("javaCollectionClass");
-    }
-
-    /**
-     * See {@link com.smartgwt.client.data.DataSourceField#getJavaClass javaClass} - when auto-populating of Java Beans / POJOs
-     * based on  inbound DSRequest data, for a field of Map type, <code>javaKeyClass</code> can be used to specify a particular
-     * concrete class for the map keys.  If not specified, and a concrete type cannot be discovered using Java Reflection,
-     * <code>java.lang.Object</code> is used. Note that <code>javaKeyClass</code> take precedence over generics if both are
-     * used.
-     *
-     * @param javaKeyClass javaKeyClass Default value is null
-     */
-    public void setJavaKeyClass(String javaKeyClass) {
-        setAttribute("javaKeyClass", javaKeyClass);
-    }
-
-    /**
-     * See {@link com.smartgwt.client.data.DataSourceField#getJavaClass javaClass} - when auto-populating of Java Beans / POJOs
-     * based on  inbound DSRequest data, for a field of Map type, <code>javaKeyClass</code> can be used to specify a particular
-     * concrete class for the map keys.  If not specified, and a concrete type cannot be discovered using Java Reflection,
-     * <code>java.lang.Object</code> is used. Note that <code>javaKeyClass</code> take precedence over generics if both are
-     * used.
-     *
-     *
-     * @return String
-     */
-    public String getJavaKeyClass()  {
-        return getAttributeAsString("javaKeyClass");
     }
 
     /**
