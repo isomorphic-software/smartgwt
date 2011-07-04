@@ -41,57 +41,64 @@
       <hr/>
 
       <a name="2_5"></a>
-            <h2>Release Notes for Smart GWT 2.4</h2>
+            <h2>Release Notes for Smart GWT 2.5</h2>
               <ul>
-                <li><div>GWT 2.3 compatible</div></li>
-                <li><div>ARIA Support</div></li>
-                <li><div>New dataPath Feature</div></li>
+                <li><div>Added GWT 2.3 support. Dropped support for GWT 1.5.x</div></li>
+                <li><div>ARIA/Section 508 accessibility compliance</div></li>
+                <li><div>New dataPath Feature that provides a straightforward way to display or edit complex nested data</div></li>
                 <li>
                     <div><b>ListGrid</b>
                         <ul>
-                            <li><div>Added ListGrid.allowFilterExpressions to support use of expressions when filtering.  Allows expressions when producing criteria - for example  "<50 or ==99"</div></li>
-                            <li><div>Added ListGrid.autoFitWidthApproach</div></li>
-                            <li><div>Added ListGridField.dataPath</div></li>
-                            <li><div>Support for multi line summaries in groups and at the grid level</div></li>
-                            <li><div>New Group Title Column feature, added new showGroupSummaryInHeader attribute</div></li>
+                            <li><div>Added ListGrid allowFilterExpressions property to support use of expressions when filtering.  For example  "<50 or ==99"</div></li>
+                            <li><div>Support for multi-line summaries in groups and at the grid level</div></li>
+                            <li><div>Augment ListGrid state management such that get/setViewState also preserve hilites and grouping data, along with frozen field information</div></li>
+                            <li><div>New Group Title column feature; added new showGroupSummaryInHeader attribute</div></li>
                             <li><div>Added ListGridField.addSummaryFunction() API to allow set up of multiple summary functions per field,
                                 which display as multiple lines in the grid summary or per group summary</div></li>
-                            <li><div>Support for field.summaryTitle and SummaryFunctionType "title"to show arbitrary text in the summary row (or group summary row) for a field in a grid without having to write any code</div></li>
-                            <li><div>Exposed listGrid.getGroupByFields() - always gives back an array of strings</div></li>
-                            <li><div>Augment ListGrid state management such that get/setViewState also preserve hilites and grouping data, along with frozen field information</div></li>
-                            <li><div>New property 'formatOnFocusChange' If set, formatEditorValue re-runs whenever the item receives or loses focus, meaning the developer can show a prettier string while the user isn't actively editing it</div></li>
+                            <li><div>Support for ListGridField summaryTitle property and SummaryFunctionType "title" to show arbitrary text in the summary row (or group summary row) for a field in a grid without having to write any code</div></li>
                             <li><div>New viewStateChanged event fired from grouping, sorting, fieldState changed</div></li>
                             <li><div>New sortChanged event fired from setSort() whenever the sorting changes</div></li>
-                            <li><div>Fix for a bug where if the summary row is visible and an h-scrollbar is introduced,  a second h-scrollbar would display</div></li>
                             <li><div>Exposed 'getEditFormItem()' to get  the live edit item currently displayed to the user during editing</div></li>
+                            <li><div>Added ListGrid autoFitWidthApproach property</div></li>
+                            <li><div>Added ListGridField dataPath property</div></li>
+                            <li><div>Exposed listGrid.getGroupByFields()</div></li>
+                            <li><div>New property 'formatOnFocusChange' If set, formatEditorValue re-runs whenever the item receives or loses focus, meaning the developer can show a prettier string while the user isn't actively editing it</div></li>
+                            <li><div>Fix for a bug where if the summary row is visible and an h-scrollbar is introduced,  a second h-scrollbar would display</div></li>
                             <li><div>Addition of new ListGrid.saveRequestProperties, to allow for customization of the properties sent on the save Request</div></li>
                             <li><div>Improve performance of saveAllEdits() when processing a large number of edited rows</div></li>
                             <li><div>Enhance record summaries in grids by providing support for locally held data to be included </div></li>
                             <li><div>Fixed issue with grid.unsort() not correctly managing a cell selected for edit after a sort</div></li>
                             <li><div>Fix to remove performance issue with colSpanning incorrectly rendering row cells and causing unnecessary redraws</div></li>
                             <li><div>Enhanced record double click management</div></li>
-                            <li><div>Fix to updateRollOverCanvas() to only perform necessary ListGrid canvas chnages if there is an associated record or cell being rolled over</div></li>
+                            <li><div>Fix to updateRollOverCanvas() to only perform necessary ListGrid canvas changes if there is an associated record or cell being rolled over</div></li>
                             <li><div>Improved arrow key navigation with grouping by not toggling the group when a group node is selected</div></li>
-                            <li><div>Fix to ListGrid where if type-validation converted from string to number, and stored out the number value, a call to getEditValue() ] could replace the converted value with the original string value</div></li>
+                            <li><div>Fix to ListGrid where if type-validation converted from string to number, and stored out the number value, a call to getEditValue() could replace the converted value with the original string value</div></li>
                             <li><div>Fix to resolve an issue where using string values with setWidth(""*"" or “%”) with custom editors in FormItem or ListGrids threw an exception</div></li>
                             <li><div>Fix for ListGrid.hasChanges() detecting a change in DateItem fields even if the user does not actually make any changes in the cell</div></li>
                             <li><div>Fix to stop an error when calling setFields for a second time on a ListGrid but with one field less (to remove a field)</div></li>
                             <li><div>Fix to allow disable of the "configure sort" right-click menu item (in the sorting box at the top-right of the grid) in a ListGrid when multiSort is unavailable</div></li>
                             <li><div>New selectionUpdated event when ListGrid selections are updated</div></li>
-                            <li><div>New API ListGrid.getSelectedRecords() to return all Records that have been selected in a grid as a recordList</div></li>
+                            <li><div>New API ListGrid.getSelectedRecords() to return all Records that have been selected in a grid as a RecordList</div></li>
                             <li><div>Added refreshRecordComponent() API</div></li>
                             <li><div>New setAutoFitFieldWidths method to enable/disable autoFitFieldWidths at runtime</div></li>
-
+                            <li><div>Fix for bug where valueMaps were not being picked up correctly when calling 'exportClientData' on a grid</div></li>
+                            <li><div>Checkbox in selection column header correctly updates to reflect record selection state</div></li>
+                            <li><div>Performance improvement : selectAllRecords() and deselectAllRecords() now avoids calls updateRowSelection() API to refresh all rows</div></li>
+                            <li><div>When refreshing for cleared edit values on new rows, if the  body is frozen, refresh that as well</div></li>
+                            <li><div>Added showSortNumerals property</div></li>
+                            <li><div>Support for group summaries even when there are more than one groupByFields specified on the ListGrid (nested groups)</div></li>
+                            <li><div>New ListGrid boolean property editOnF2Keypress - if true, (the default) start editing on F2 keypress</div></li>
+                            <li><div>Support for sorting group headers by all fields when showGroupHeaderInSummary is true</div></li>
                         </ul>
                     </div>
                 </li>
                 <li>
                     <div><b>TreeGrid</b>
                         <ul>
-                            <li><div>Added TreeGrid.showDisabledSelectionCheckbox</div></li>
+                            <li><div>Added TreeGrid showDisabledSelectionCheckbox property</div></li>
+                            <li><div>Respecting fetchDelay when a FilterEditor is used with a TreeGrid</div></li>
                             <li><div>Fix to check if canCollapseGroup is false on TreeGrids, to avoid having to check open folder state on all folders</div></li>
-                            <li><div>Fix to treegrid dragging of a  node from root and dropping it into root (in the white space). Causing an error message about duplicate names</div></li>
-
+                            <li><div>Fix to TreeGrid dragging of a node from root and dropping it into root (in the white space). Causing an error message about duplicate names</div></li>
                         </ul>
                     </div>
                 </li>
@@ -121,6 +128,22 @@
                         </ul>
                     </div>
                 </li>
+                <li>
+                    <div><b>Img</b>
+                        <ul>
+                            <li><div>Added support for 'altText' to Img</div></li>
+                        </ul>
+                    </div>
+                </li>
+                 <li>
+                    <div><b>Menu and MenuButton</b>
+                        <ul>
+                            <li><div>Fix to avoid a possible crash during MenuBar draw if we have no menus</div></li>
+                            <li><div>Added MenuButton showMenuOnRollOver property</div></li>
+                        </ul>
+                    </div>
+                </li>
+
                   <li>
                     <div><b>FilterBuilder</b>
                         <ul>
@@ -142,6 +165,8 @@
                     <div><b>DynamicForm / ValuesManager</b>
                         <ul>
                             <li><div>Added FormItem.optionOperationId and operator</div></li>
+                            <li><div>FormItem.allowExpressions added to allow expressions in formItems when producing criteria - for example  "<50 or ==99" </div></li>
+                            <li><div>Support added for complex nested values within a ValuesManager with the saveData() callback</div></li>
                             <li><div>Support for parse / formatEditorValue in DateItems where useTextField is true</div></li>
                             <li><div>If an item has an explicit validator of type 'required', show the required styling using setRequiredIf</div></li>
                             <li><div>Fix to avoid a crash if a DynamicForm with no DataSource specified is embedded in a ValuesManager with a dataSource specified, and the
@@ -180,6 +205,20 @@
                             <li><div>RelativeDateItem : New properties 'showPastOptions' and 'showFutureOptions' to disable past or future options if desired</div></li>
                             <li><div>RelativeDateItem : New rangeRoundingGranularity feature - allows configuration, if  selecting N Days Ago whether that's to the nearest day, hour, second etc.</div></li>
                             <li><div>Added support for overriding the preset options in RelativeDateItem's</div></li>
+                            <li><div>Fixed error-icons not showing up with itemLayout: "absolute"</div></li>
+                            <li><div>Improved CanvasItem focus management</div></li>
+                            <li><div>CanvasItem now has a new showValues event to support customization of display values in embedded canvasses</div></li>
+                            <li><div>Enhancement to storeValue() for CanvasItems to manage a recordList or record directly</div></li>
+                            <li><div>Enhancement to PickListItem sizing functions by using ListGrid functions autoFitData() and autoFitFieldWidths()</div></li>
+                            <li><div>Enhancements to FormItem field formatting behaviours by performing form and datasource type management</div></li>
+                            <li><div>Fix to minor LinkItem issue where, in certain circumstances, clicking to the right of the link still performed the link action</div></li>
+                            <li><div>Improvements to CanvasItems click/double click events when clicking within an embedded Canvas</div></li>
+                            <li><div>New date range elements improved $weekAgo and $weekFromNow to allow the new range position API to be usable for setting to beginning or end of day</div></li>
+                            <li><div>New handleKeyPress API introduced to allow users to override any key presses before they are mapped</div></li>
+                            <li><div>Added canTabToSectionHeaders property to DynamicForm and SectionStackSection</div></li>
+                            <li><div>If allowEmptyValue is true and multiple is true on a SelectItem, not showing the empty row at the top of the drop down</div></li>
+                            <li><div>Fixed a bug where expanding/collapsing SectionItems could cause forms embedded in scrollable / scrolled parents to jump scroll position back to zero/zero</div></li>
+                            <li><div>Support null values for TimeItems</div></li>
                         </ul>
                     </div>
                 </li>
@@ -196,6 +235,7 @@
                     <div><b>TabSet</b>
                         <ul>
                             <li><div>TabSet  / Tab - added getTabCanvas() method to get the live tab canvas</div></li>
+                            <li><div>Added TabSet.useSimpleTabs allowing a simplified appearance for Tabs that doesn't require multiple images</div></li>
                         </ul>
                     </div>
                 </li>
@@ -212,11 +252,19 @@
                             <li><div>Enhancements to serializeFields() to handle nested DataSources</div></li>
                             <li><div>Fix to DataSource.handleUpdate to clear last update information for ResultSets to ensure the dataChanged API fires correctly</div></li>
                             <li><div>Correction to datasource.combineCriteria() to specifically mark the  component criteria as advanced to stop the criteria being presented as separate criteria, but as one set of advanced criteria</div></li>
-                            <li><div>Fix to ensure that if transformInput modifies an item's value while the user is typing in the field, focus ends up at the end of the field. </div></li>
+                            <li><div>Fix to ensure that if transformInput modifies an item's value while the user is typing in the field, focus ends up at the end of the field</div></li>
+                            <li><div>Support for DSField property nativeName in DataSource.getProperties() and DataSource.setProperties()</div></li>
                         </ul>
                     </div>
                 </li>
-
+                <li>
+                    <div><b>Selenium Support</b>
+                        <ul>
+                            <li><div>Drag and Drop recording / playback support for Selenium</div></li>
+                            <li><div>Double Click handling support for Selenium</div></li>
+                        </ul>
+                    </div>
+                </li>
                 <li>
                     <div><b>Other</b>
                         <ul>
@@ -224,11 +272,9 @@
                             <li><div>i18n enhancements</div></li>
                             <li><div>getSelectionRange support added for Opera 11 with Windows to allow text masking to perform properly</div></li>
                             <li><div>Corrected an issue with setStyleName() not rendering correctly if called after draw() on a Label</div></li>
-                            <li><div>Added support for 'altText' to Img</div></li>
+                            <li><div>Added functionality to allow cross-frame scripting without security exceptions</div></li>
+                            <li><div>Simplified event switching for offline support to be a single click service</div></li>
                             <li><div>Fix to an issue where browsers complain about mixed security content with Flashlets and https is now automatically detected and managed</div></li>
-                            <li><div>Fix to avoid a possible crash during MenuBar draw if we have no menus</div></li>
-                            <li><div>Drag and Drop recording / playback support for Selenium</div></li>
-                            <li><div>Double Click handling support for Selenium</div></li>
                             <li><div>Several <a href="http://code.google.com/p/smartgwt/issues/list?can=1&q=label%3ASmartGWT-2.5">additional enhancements and bug fixes</a> that were logged in tracker</div></li>
                         </ul>
                     </div>
