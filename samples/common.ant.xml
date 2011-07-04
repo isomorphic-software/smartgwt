@@ -66,10 +66,11 @@
 				<fileset dir="src" />
 				<fileset file="${gwt.user.jar}" />
 				<fileset file="${gwt.dev.jar}" />
+				<fileset file="${gwt.validation.sources.jar}" />				
 			</sourcefiles>
 			<targetfiles path="${sample.build}/war/${sample.package}/${sample.package}.nocache.html" />
 			<sequential>
-				<java dir="${sample.build}" classname="com.google.gwt.dev.Compiler" classpath="${sample.build}/src:${gwt.user.jar}:${gwt.dev.jar}:${gwt.dev2.jar}:${smartgwt.dev.jar}:${smartgwt-skins.dev.jar}" fork="yes" failonerror="true" maxmemory="512m">
+				<java dir="${sample.build}" classname="com.google.gwt.dev.Compiler" classpath="${sample.build}/src:${smartgwt.dev.jar}:${gwt.user.jar}:${gwt.dev.jar}:${gwt.dev2.jar}:${gwt.validation.jar}:${gwt.validation.sources.jar}:${smartgwt-skins.dev.jar}" fork="yes" failonerror="true" maxmemory="512m">
 					<arg value="com.smartgwt.sample.${sample.package}.${sample.module}" />
 				</java>
 				<!--
