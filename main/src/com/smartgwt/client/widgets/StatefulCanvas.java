@@ -782,10 +782,12 @@ public class StatefulCanvas extends Canvas {
      * etc. <P> For example, if <code>baseStyle</code> is set to "button", this component is {@link
      * com.smartgwt.client.widgets.StatefulCanvas#isSelected selected} and the mouse cursor is over this component, the style
      * "buttonSelectedOver" will be used.
+     *
+     * @return suffix to be appended to the baseStyle
      */
-    public native void getStateSuffix() /*-{
+    public native String getStateSuffix() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.getStateSuffix();
+        return self.getStateSuffix();
     }-*/;
             
     /**
