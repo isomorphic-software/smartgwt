@@ -12573,6 +12573,22 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
 
     /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor} is true, this method will return the criteria currently displayed in the <code>filterEditor</code>. Note that these values may differ from the criteria returned by {@link com.smartgwt.client.widgets.grid.ListGrid#getCriteria} if the filter editor values have been modified without performing an actual filter.
+     *
+     * @param omitHiddenFields  By default this method will include criteria applied to fields, including 
+     *              criteria that are not actually visible/editable in the filterEditor for the grid.
+     *              Pass in this parameter to get only values for visible fields returned.
+     * @return criteria currently displayed in the filterEditor
+     */
+    public native Criteria getFilterEditorCriteria(boolean omitHiddenFields) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getFilterEditorCriteria(omitHiddenFields);
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+    
+    /**
      * Validate the current edit value for the cell in question.  Called when the user moves to a&#010 new edit cell if {@link com.smartgwt.client.widgets.grid.ListGrid#getValidateByCell validateByCell} is true.<br>&#010 This method may also be called directly to perform cell level validation at any time.&#010
      *
      * @param rowNum    index of row to be validated.
