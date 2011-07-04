@@ -303,6 +303,39 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
+     * If set to false, the form will be marked read-only. A widget on the form is only considered editable if it is not
+     * individually marked read-only and all parents above it in the containment hierarchy, including the form, are also not
+     * marked read-only. This setting allows you to enable or disable editability of the form and all components at one time.
+     * <P> This setting differs from the enabled/disabled state in that most form items will allow copying of the contents
+     * while read-only but do not while disabled. <P> Note that a form and formItem are considered editable if canEdit is null
+     * (default) or <code>true</code>.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Is this form editable or read-only? Setting the form to non-editable causes all form items to render as read-only.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canEdit Can this form be edited?. Default value is null
+     */
+    public void setCanEdit(Boolean canEdit) {
+        setAttribute("canEdit", canEdit, true);
+    }
+
+    /**
+     * If set to false, the form will be marked read-only. A widget on the form is only considered editable if it is not
+     * individually marked read-only and all parents above it in the containment hierarchy, including the form, are also not
+     * marked read-only. This setting allows you to enable or disable editability of the form and all components at one time.
+     * <P> This setting differs from the enabled/disabled state in that most form items will allow copying of the contents
+     * while read-only but do not while disabled. <P> Note that a form and formItem are considered editable if canEdit is null
+     * (default) or <code>true</code>.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanEdit()  {
+        return getAttributeAsBoolean("canEdit");
+    }
+
+    /**
      * DynamicForms are considered to have focus if any of their form items have focus. Note that setting
      * <code>dynamicForm.canFocus</code> to false will have no effect on whether form items within the form may receive focus.
      * This property will only govern whether the form may receive focus if the form contains no focusable items.
@@ -2076,7 +2109,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *  dynamicFormInstance.cancel({ignoreTimeout: true, target: null});
      *  </pre>
      * 
-     * 
      */
     public native void cancel() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -2097,13 +2129,21 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *  dynamicFormInstance.cancel({ignoreTimeout: true, target: null});
      *  </pre>
      * 
-     * 
      * @param requestProperties additional properties to set on the RPCRequest                                          that will be issued
+     * @see com.smartgwt.client.widgets.form.DynamicForm#cancelEditing
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
      */
     public native void cancel(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.cancel(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+            
+    /**
+     * If the form or valuesManager has associated userTask workflow task than notify it about cancelling the changes.
+     */
+    public native void cancelEditing() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.cancelEditing();
     }-*/;
             
     /**
@@ -2143,6 +2183,14 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public native void clearValues() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.clearValues();
+    }-*/;
+            
+    /**
+     * Finish editing and store edited values in  process state.
+     */
+    public native void completeEditing() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.completeEditing();
     }-*/;
     /**
      * Add a formSubmitFailed handler.

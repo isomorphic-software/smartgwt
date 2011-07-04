@@ -227,7 +227,6 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      *  dynamicFormInstance.cancel({ignoreTimeout: true, target: null});
      *  </pre>
      * 
-     * 
      */
     public native void cancel() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -248,8 +247,8 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      *  dynamicFormInstance.cancel({ignoreTimeout: true, target: null});
      *  </pre>
      * 
-     * 
      * @param requestProperties additional properties to set on the RPCRequest                                          that will be issued
+     * @see com.smartgwt.client.widgets.form.DynamicForm#cancelEditing
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
      */
     public native void cancel(DSRequest requestProperties) /*-{
