@@ -203,7 +203,8 @@ public class FacetChart extends Canvas {
 
     /**
      * An array of colors to use for a series of visual elements representing data (eg columns, bars, pie slices), any of which
-     * may be adjacent to any other.
+     * may be adjacent to any other. <P> Colors must be in the format of a leading hash (#) plus 6 hexadecimal digits, for
+     * example,  "#FFFFFF" is white, "#FF0000" is pure red.
      *
      * @param dataColors dataColors Default value is see below
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -214,7 +215,8 @@ public class FacetChart extends Canvas {
 
     /**
      * An array of colors to use for a series of visual elements representing data (eg columns, bars, pie slices), any of which
-     * may be adjacent to any other.
+     * may be adjacent to any other. <P> Colors must be in the format of a leading hash (#) plus 6 hexadecimal digits, for
+     * example,  "#FFFFFF" is white, "#FF0000" is pure red.
      *
      *
      * @return String
