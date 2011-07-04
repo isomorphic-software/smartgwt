@@ -1759,24 +1759,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }-*/;
             
     /**
-     * Copies all DataSource field values of a Record (including a TreeNode) to a new  Record, omitting component-specific
-     * metadata such as selected state from grids,  or parent folders for TreeNodes.
-     * @param record The record to be copied.
-     *
-     * @return A new copy of the record provided as an argument, with  component-specific metata data removed.
-     */
-    public native Record copyRecord(Record record) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var ret = self.copyRecord(record.@com.smartgwt.client.core.DataClass::getJsObj()());
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.data.Record::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
-    }-*/;
-            
-    /**
      * Perform a "fetch" DataSource operation against this DataSource, sending search criteria, retrieving matching records and
      * exporting the results.  See  {@link com.smartgwt.client.data.OperationBinding#getExportResults exportResults} or {@link
      * com.smartgwt.client.data.DSRequest#getExportResults exportResults} and for more information.
@@ -1976,7 +1958,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * this DSResponse will <b>not</b> go through {@link com.smartgwt.client.data.DataSource#transformResponse
      * DataSource.transformResponse} or other processing that would normally occur for a DSResponse resulting from a DSRequest
      * sent by  the application in this page.
-     * @param dsResponse 
+     * @param dsResponse the provided DSResponse must minimally have                                 dataSource, operationType, and data set
      */
     public native void updateCaches(DSResponse dsResponse) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -2003,8 +1985,9 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * this DSResponse will <b>not</b> go through {@link com.smartgwt.client.data.DataSource#transformResponse
      * DataSource.transformResponse} or other processing that would normally occur for a DSResponse resulting from a DSRequest
      * sent by  the application in this page.
-     * @param dsResponse 
-     * @param dsRequest 
+     * @param dsResponse the provided DSResponse must minimally have                                 dataSource, operationType, and data set
+     * @param dsRequest optional dsRequest.  If not specified, a DSRequest will be                                automatically created based on
+     * the DataSource and operationType of                                the DSResponse
      */
     public native void updateCaches(DSResponse dsResponse, DSRequest dsRequest) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -2043,6 +2026,17 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }-*/;
 
     // ********************* Static Methods ***********************
+            
+    /**
+     * Create a copy of a criteria.
+     *
+     * @return copy of criteria
+     */
+    public static native Criteria copyCriteria() /*-{
+        var ret = $wnd.isc.DataSource.copyCriteria();
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
         
     // ***********************************************************        
 
@@ -3395,9 +3389,26 @@ nent has been created
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
     
-
+    /** 
+     * Split a criteria apart based on <code>fields</code>. A new simple criteria is returned with any criteria applicable to 
+     * the specified fields. The passed <code>criteria</code> is then <u>modified</u> to remove these fields resulting in two 
+     * distinct criteria.
+     * <P>
+     * Incoming criteria can be a simple or advanced criteria. For an +link{AdvancedCriteria} only a single level of criteria 
+     * with a top-level operator of "and" is supported.
+     * <P>
+     * To avoid modifying an original criteria, use +link{dataSource.copyCriteria} to make a copy to be passed in.
+     * @param criteria criteria to be split. May be modified if criteria is extracted.
+     * @param fields array of field names to extract from criteria
+     * @return extracted criteria
+     */
+    public native Criteria splitCriteria(Criteria criteria, String[] fields) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var jsCrit = criteria == null ? null : criteria.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret = self.splitCriteria(jsCrit, @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(fields));
+        return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
 }
 
 
