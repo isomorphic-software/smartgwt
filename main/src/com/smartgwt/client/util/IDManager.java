@@ -16,9 +16,7 @@ public class IDManager {
     // assigned to live JS objects in the global scope by maintaining a hashSet of assigned IDs
     private static HashSet<String> assignedIDs = new HashSet<String>();
     public static void isValidID(String id) {
-        
-        assert id.indexOf(".") == -1 : "Invalid ID. Cannot use \".\" in identifier.";
-        assert id.indexOf(" ") == -1 : "Invalid ID. Cannot use spaces in identifier.";
+        assert id.matches("[a-zA-Z_$][0-9a-zA-Z_$]*") : "Invalid ID : " + id+ ". Valid ID's must meet the following pattern [a-zA-Z_$][0-9a-zA-Z_$]*";
         
         if (assignedIDs.contains(id)) {
             SC.logWarn("Specified ID:" + id + " collides with the ID for an existing SmartGWT component or object.");
