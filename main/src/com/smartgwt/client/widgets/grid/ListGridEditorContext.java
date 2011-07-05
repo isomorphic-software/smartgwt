@@ -17,7 +17,7 @@ public class ListGridEditorContext {
     
     ListGridEditorContext (JavaScriptObject jsContext) {
         
-        FormItem item = FormItem.getOrCreateRef(JSOHelper.getAttributeAsJavaScriptObject(jsContext, "editProperties"));
+        FormItem item = FormItem.getOrCreateRef(JSOHelper.getAttributeAsJavaScriptObject(jsContext, "defaultProperties"));
         setDefaultProperties(item);
         
         setRowNum(JSOHelper.getAttributeAsInt(jsContext, "rowNum"));
