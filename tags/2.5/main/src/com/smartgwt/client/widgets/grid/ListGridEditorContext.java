@@ -32,7 +32,10 @@ public class ListGridEditorContext {
     
     /**
      * Default FormItem properties to apply to the editor for this cell. These properties are derived automatically
-     * from {@link ListGridField#setEditorType()}
+     * from {@link ListGridField#setEditorType()}. Note that this is provided for reference only - you do not need
+     * to return this object from {@link ListGridEditorCustomizer#getEditor(ListGridEditorContext)} in order to
+     * have the default properties be applied.
+     * 
      * @return
      */
     public FormItem getDefaultProperties() {
