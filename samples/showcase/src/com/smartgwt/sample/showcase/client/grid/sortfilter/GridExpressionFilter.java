@@ -60,7 +60,7 @@ public class GridExpressionFilter extends ShowcasePanel {
 
         AdvancedCriteria initialCriteria = new AdvancedCriteria(OperatorId.AND, new Criterion[]{
                 new Criterion("countryName", OperatorId.INOT_CONTAINS, "i"),
-                new Criterion("capital", OperatorId.BETWEEN_INCLUSIVE, "A", "F"),
+                new Criterion("capital", OperatorId.BETWEEN_INCLUSIVE, new String[] {"A", "F"}),
 
                 new AdvancedCriteria(OperatorId.OR, new Criterion[]{
                         new Criterion("population", OperatorId.LESS_THAN, 1000000),
