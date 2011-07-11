@@ -125,7 +125,7 @@ private static PrintWriter createOutputHTMLFile(final String sourceFileDirName,
   targetDir = targetSourceFilePath.substring(0, targetSourceFilePath.lastIndexOf('/'));
   new File(targetDir).mkdirs();
   result = new PrintWriter(targetSourceFilePath);
-  writeStartOfHTMLFile(result, sourceFileDirName);
+  writeStartOfHTMLFile(result, sourceFileDirName, targetSourceFilePath);
   return result;
 } // createOutputHTMLFile()
 
@@ -560,7 +560,7 @@ private static void writeStartOfDataHTMLFile() {
 //--------------------------------------------------------------------------------------------------
 
 private static void writeStartOfHTMLFile(final PrintWriter sourceWriter,
-                                         final String sourceFileDirName) {
+                                         final String sourceFileDirName, String targetSourceFilePath) {
   int depth;
   if (sourceFileDirName.contains("/public/")) {
     depth = sourceFileDirName.substring(sourceFileDirName.indexOf("/public/")).split("/").length - 1;
@@ -577,7 +577,27 @@ private static void writeStartOfHTMLFile(final PrintWriter sourceWriter,
   sourceWriter.println("<link rel='stylesheet' href='" + parentDirs +
                        "js/sh/SyntaxHighlighter.css' type='text/css' />");
   sourceWriter.println("<script src='" + parentDirs + "js/sh/shCore.js'></script>");
-  sourceWriter.println("<script src='" + parentDirs + "js/sh/shBrushJava.js'></script>");
+    String type;
+   if(targetSourceFilePath.contains(".xml")) {
+    type= "xml";
+  } else if(targetSourceFilePath.contains(".css")) {
+      type= "css";
+  } else if (targetSourceFilePath.contains(".js")){
+      type= "js";
+  } else {
+      type= "java";
+  }
+
+  if(type.equals(".xml")) {
+    sourceWriter.println("<script src='" + parentDirs + "js/sh/shBrushXml.js'></script>");
+  } else if(type.equals(".css")) {
+      sourceWriter.println("<script src='" + parentDirs + "js/sh/shBrushCss.js'></script>");
+  } else if (type.equals(".js")){
+      sourceWriter.println("<script src='" + parentDirs + "js/sh/shBrushJScript.js'></script>");
+  } else {
+      sourceWriter.println("<script src='" + parentDirs + "js/sh/shBrushJava.js'></script>");
+  }
+
   sourceWriter.println("<style>");
   sourceWriter.println("* {");
   sourceWriter.println("font-family:Courier New,monospace;");
@@ -596,7 +616,7 @@ private static void writeStartOfHTMLFile(final PrintWriter sourceWriter,
   sourceWriter.println("</style>");
   sourceWriter.println("</head>");
   sourceWriter.println("<body>");
-  sourceWriter.println("<textarea name='code' class='java:nogutter' rows='15' cols='120'>");
+  sourceWriter.println("<textarea name='code' class='" + type + ":nogutter' rows='15' cols='120'>");
 } // writeStartOfHTMLFile()
 
 //--------------------------------------------------------------------------------------------------
