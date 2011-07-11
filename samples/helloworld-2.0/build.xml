@@ -4,12 +4,16 @@
   <!-- Configure path to GWT SDK -->
   <property environment="env"/>
   <property name="gwt.sdk" value="${env.GWT_HOME}"/>
+  <property name="gwt.validation.jar" location="${gwt.sdk}/validation-api-1.0.0.GA.jar" />
+  <property name="gwt.validation.sources.jar" location="${gwt.sdk}/validation-api-1.0.0.GA-sources.jar" />
 
   <fail unless="gwt.sdk" message="You must set the GWT_HOME environment variable to point to your GWT SDK"/>
 
   <path id="project.class.path">
     <pathelement location="war/WEB-INF/classes"/>
     <pathelement location="${gwt.sdk}/gwt-user.jar"/>
+	<pathelement location="${gwt.validation.jar}"/>
+	<pathelement location="${gwt.validation.sources.jar}"/>
     <fileset dir="${gwt.sdk}" includes="gwt-dev*.jar"/>
     <!-- Add any additional non-server libs (such as JUnit) -->
     <fileset dir="war/WEB-INF/lib" includes="**/*.jar"/>
