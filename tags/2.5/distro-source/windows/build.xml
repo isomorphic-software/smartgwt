@@ -29,19 +29,6 @@
 			<zipfileset dir="src" prefix="${project.distname}" />
 
 			<zipfileset dir="${smartgwt.root}/samples" prefix="${project.distname}">
-				<include name="helloworld-1.5"/>
-				<include name="helloworld-1.5/**"/>
-				<exclude name="helloworld-1.5/build.xml" />
-				<exclude name="helloworld-1.5/*.iml" />
-			</zipfileset>
-
-			<zipfileset dir="${smartgwt.root}/samples" prefix="${project.distname}">
-				<include name="helloworld-1.6"/>
-				<include name="helloworld-1.6/**"/>
-				<exclude name="helloworld-1.6/*.iml" />
-			</zipfileset>
-
-			<zipfileset dir="${smartgwt.root}/samples" prefix="${project.distname}">
 				<include name="helloworld-2.0"/>
 				<include name="helloworld-2.0/**"/>
 				<exclude name="helloworld-2.0/*.iml" />
