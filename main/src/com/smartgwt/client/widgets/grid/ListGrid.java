@@ -13402,6 +13402,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         
         self.getEditorProperties = $debox($entry(function(editField, editedRecord, rowNum) {
             var editProperties = this.Super("getEditorProperties", arguments);
+            
             var editorContext = { 
                 defaultProperties:editProperties,
                 rowNum:rowNum,
@@ -13412,8 +13413,15 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             
             var customizerJ = this.editorCustomizer;
             var editorJ = customizer.@com.smartgwt.client.widgets.grid.ListGridEditorCustomizer::getEditor(Lcom/smartgwt/client/widgets/grid/ListGridEditorContext;)(editorContextJ);
-        
-            return editorJ == null ? null : editorJ.@com.smartgwt.client.widgets.form.fields.FormItem::getEditorTypeConfig()();
+            
+            var editorJS = editorJ == null ? null : editorJ.@com.smartgwt.client.widgets.form.fields.FormItem::getEditorTypeConfig()();
+            // Apply custom properties on top of standard item defaults.
+            // This ensures field.type, field-level change handlers etc should be picked up even if
+            // an otherwise custom item is provided.
+            if (editorJS != editProperties) {
+                $wnd.isc.addProperties(editProperties, editorJS);
+            }
+            return editProperties;
         }));
         
     }-*/;    

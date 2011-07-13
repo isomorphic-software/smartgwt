@@ -2062,14 +2062,15 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         });
 
         self.__getClientOnlyResponse = self.getClientOnlyResponse;
-        self.getClientOnlyResponse = $entry(function(dsRequest) {
+        self.getClientOnlyResponse = $entry(function(dsRequest, serverData) {
             var jObj = this.__ref;
             if(jObj === undefined) {
                 //handle case where oneTimeDS is cared from original DS (when clientOnly=true with dataURL)
                 jObj = $wnd.isc.DS.get(this.inheritsFrom).__ref;
             }
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
-            var responseJ = jObj.@com.smartgwt.client.data.DataSource::getClientOnlyResponse(Lcom/smartgwt/client/data/DSRequest;)(requestJ);
+            var serverDataJ = serverData == null ? null : @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(serverData);
+            var responseJ = jObj.@com.smartgwt.client.data.DataSource::getClientOnlyResponse(Lcom/smartgwt/client/data/DSRequest;[Lcom/smartgwt/client/data/Record;)(requestJ,serverDataJ);
             return responseJ == null ? null : responseJ.@com.smartgwt.client.data.DSResponse::getJsObj()();
         });
 
@@ -2417,16 +2418,27 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }-*/;
 
     /**
-     * Return a "spoofed" response for a {@link com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource.&#010 <P>&#010 The default implementation will {@link com.smartgwt.client.data.DataSource#getTestData testData} to provide an appropriate&#010 response, by using {@link com.smartgwt.client.data.DataSource#applyFilter} for a "fetch" request, and&#010 by modifying the <code>testData</code> for other requests.&#010 <P>&#010 Override this method to provide simulations of other server-side behavior, such as&#010 modifying other records, or to implement <b>synchronous</b> client-side data providers&#010 (such as Google Gears).  For <b>asynchronous</b> third-party data provides, such as&#010 GWT-RPC, HTML5 sockets, or bridges to plug-in based protocols (Java, Flash,&#010 Silverlight..), use ${isc.DocUtils.linkForRef('DSDataProtocol','dataProtocol:"clientCustom"')} instead. &#010 <P>&#010 Overriding this method is also a means of detecting that a normal DataSource (not&#010 clientOnly) would be contacting the server.&#010&#010
+     *  Return a "spoofed" response for a  {@link com.smartgwt.client.data.DataSource#getClientOnly clientOnly} or  {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} DataSource.
+     *  <p>
+     *  The default implementation will use DataSource.cacheData or testData to provide an appropriate response, by using client-side filtering for a "fetch" request, and by modifying the cacheData for other requests.
+     *  Override this method to provide simulations of other server-side behavior, such as modifying other records, or to implement synchronous client-side data providers (such as Google Gears).
+     *  <P>
+     *  For asynchronous third-party data providers, such as GWT-RPC, HTML5 sockets, or bridges to plug-in based protocols (Java, Flash, Silverlight..), use
+     *  {@link com.smartgwt.client.types.DSProtocol,'dataProtocol:"clientCustom"')} instead.
+     *  <p>
+     *  Overriding this method is also a means of detecting that a normal DataSource (not clientOnly) would be contacting the server. 
+     *  
      * <p>
      * <b>Note</b>: This is an override point
      * @param request DataSource request to respond to
+     * @param for cacheAllData DataSources, the data from the local cache
      *
      * @return DSResponse
     */
-    protected native DSResponse getClientOnlyResponse(DSRequest request) /*-{
+    protected native DSResponse getClientOnlyResponse(DSRequest request, Record[] serverData) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var ret = self.__getClientOnlyResponse(request.@com.smartgwt.client.data.DSRequest::getJsObj()());
+        var serverDataJS = serverData == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(serverData);
+        var ret = self.__getClientOnlyResponse(request.@com.smartgwt.client.data.DSRequest::getJsObj()(), serverDataJS);
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
