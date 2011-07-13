@@ -68,6 +68,7 @@ public class DragTilesMoveSample extends ShowcasePanel {
         listGrid.setFields(commonNameField2, lifeSpanField, statusField);
 
         VLayout vLayout = new VLayout(20);
+        vLayout.setMargin(10);
         vLayout.addMember(new HTMLFlow(DESCRIPTION));
 
         HLayout hLayout = new HLayout(10);
