@@ -3128,26 +3128,60 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return self.editNewRecord(initialValuesJS);
     }-*/;
 
-
-
+    /**
+     * Edit the record selected in the specified ListGrid.
+     * <br/><br/>
+     * Updates the values of this editor to match the selected record's values.
+     * <br/><br/>
+     * If this form has a dataSource, then saving via {@link com.smartgwt.client.widgets.form.DynamicForm#saveData()}  will use the "update" operation type.
+     *
+     * @param selectionComponent the List Grid whose currently selected record(s) is/are to be edited
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#update_grid_form_category" target="examples">Grid-Form Update Example</a>
+     */
     public native void editSelectedData(ListGrid selectionComponent) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var selectionComponentJS = selectionComponent.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.editSelectedData(selectionComponentJS);
     }-*/;
 
+    /**
+     * Edit the record selected in the specified ListGrid.
+     * <br/><br/>
+     * Updates the values of this editor to match the selected record's values.
+     * <br/><br/>
+     * If this form has a dataSource, then saving via {@link com.smartgwt.client.widgets.form.DynamicForm#saveData()}  will use the "update" operation type.
+     *
+     * @param listGridID the List Grid ID whose currently selected record(s) is/are to be edited
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#update_grid_form_category" target="examples">Grid-Form Update Example</a>
+     */
     public native void editSelectedData(String listGridID) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.editSelectedData(listGridID);
     }-*/;
 
+    /**
+     * Return search criteria based on the current set of values within this form.
+     * For simple criteria, each form item simply maps its value to it's fieldName.
+     * <br/><br/>
+     * See FormItem.getCriterion() for details on how form items generate advanced criteria. Note that any values or criteria
+     * specified via DynamicForm.setValues() or DynamicForm.setValuesAsCriteria() which do not correspond to an item within the
+     * form will be combined with the live item values when criteria are generated.
+     * <br/><br/>
+     * The returned criteria object can be used to filter data via methods such as ListGrid.fetchData(), DataSource.fetchData(), or,
+     * for more advanced usage, ResultSet.setCriteria().
+     * <br/><br/>
+     * Note that any form field which the user has left blank is omitted as criteria, that is, a blank field is assumed to mean "allow any value for this field" and not "this field must be blank". Examples of empty values include a blank text field or SelectItem with an empty selection.
+     *
+     *
+     * @return the criteria
+     */
+    //TODO add support for returning AdvancedCriteria
     public native Criteria getValuesAsCriteria() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var critJS = self.getValuesAsCriteria();
         if (critJS == null) critJS = @com.smartgwt.client.util.JSOHelper::createObject()();
         return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(critJS);
     }-*/;
-    
 
     /**
      * Return the current set of values within this form as a Record.

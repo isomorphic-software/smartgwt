@@ -2858,7 +2858,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * generateClickOnSpace}, {@link com.smartgwt.client.widgets.grid.ListGrid#getGenerateDoubleClickOnSpace
      * generateDoubleClickOnSpace}, {@link com.smartgwt.client.widgets.grid.ListGrid#getGenerateClickOnEnter
      * generateClickOnEnter} and  {@link com.smartgwt.client.widgets.grid.ListGrid#getGenerateDoubleClickOnEnter
-     * generateDoubleClickOnEnter}.
+     * generateDoubleClickOnEnter}. <P> If {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} is false, or
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent} is set to "none" this property has no effect.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param editOnF2Keypress editOnF2Keypress Default value is true
@@ -2876,7 +2877,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * generateClickOnSpace}, {@link com.smartgwt.client.widgets.grid.ListGrid#getGenerateDoubleClickOnSpace
      * generateDoubleClickOnSpace}, {@link com.smartgwt.client.widgets.grid.ListGrid#getGenerateClickOnEnter
      * generateClickOnEnter} and  {@link com.smartgwt.client.widgets.grid.ListGrid#getGenerateDoubleClickOnEnter
-     * generateDoubleClickOnEnter}.
+     * generateDoubleClickOnEnter}. <P> If {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} is false, or
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent} is set to "none" this property has no effect.
      *
      *
      * @return Boolean
@@ -6288,7 +6290,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * com.smartgwt.client.widgets.grid.ListGridField#getSummaryFunction field summary functions} are defined for some field
      * only the first will be displayed when this property is set to true.
      *
-     * @param showGroupSummaryInHeader showGroupSummaryInHeader Default value is false
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Setter for {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummaryInHeader showGroupSummaryInHeader}
+     *
+     * @param showGroupSummaryInHeader new showGroupSummaryInHeader state. Default value is false
      * @see com.smartgwt.client.widgets.grid.ListGrid#groupBy
      */
     public void setShowGroupSummaryInHeader(Boolean showGroupSummaryInHeader) {

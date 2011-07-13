@@ -348,7 +348,7 @@ public class Criterion extends Criteria {
      * <p>Otherwise, the present criteria is replaced with an "and" 
      * criteria, with two sub-criteria: the present criteria, and the passed criteria.
      *
-     * @param otherCriteria the passed criteria object
+     * @param c the passed criteria object
      */
     public void addCriteria(Criterion c) {
         String opString = this.getAttributeAsString("operator");
@@ -479,7 +479,7 @@ public class Criterion extends Criteria {
     /**
      * Retrieves the specified value for this criterion. Only applies to criterion where operator and value have
      * been specified - will not apply to criterion containing {@link #getCriteria(),sub criteria}.
-     * @return the value
+     * @return
      */
     public String getValueAsString() {
         return JSOHelper.getAttribute(getJsObj(), "value");
@@ -487,7 +487,7 @@ public class Criterion extends Criteria {
     /**
      * Retrieves the specified value for this criterion. Only applies to criterion where operator and value have
      * been specified - will not apply to criterion containing {@link #getCriteria(),sub criteria}.
-     * @return the value
+     * @return
      */
     public Integer getValueAsInteger() {
         return JSOHelper.getAttributeAsInt(getJsObj(), "value");
@@ -495,7 +495,7 @@ public class Criterion extends Criteria {
     /**
      * Retrieves the specified value for this criterion. Only applies to criterion where operator and value have
      * been specified - will not apply to criterion containing {@link #getCriteria(),sub criteria}.
-     * @return the value
+     * @return
      */
     public Float getValueAsFloat() {
         return JSOHelper.getAttributeAsFloat(getJsObj(), "value");
@@ -503,7 +503,7 @@ public class Criterion extends Criteria {
     /**
      * Retrieves the specified value for this criterion. Only applies to criterion where operator and value have
      * been specified - will not apply to criterion containing {@link #getCriteria(),sub criteria}.
-     * @return the value
+     * @return
      */
     public Date getValueAsDate() {
         return JSOHelper.getAttributeAsDate(getJsObj(), "value");
@@ -511,7 +511,7 @@ public class Criterion extends Criteria {
     /**
      * Retrieves the specified value for this criterion. Only applies to criterion where operator and value have
      * been specified - will not apply to criterion containing {@link #getCriteria(),sub criteria}.
-     * @return the value
+     * @return
      */
     public Boolean getValueAsBoolean() {
         return JSOHelper.getAttributeAsBoolean(getJsObj(), "value");
@@ -519,7 +519,7 @@ public class Criterion extends Criteria {
     /**
      * Retrieves the specified value for this criterion. Only applies to criterion where operator and value have
      * been specified - will not apply to criterion containing {@link #getCriteria(),sub criteria}.
-     * @return the value
+     * @return
      */
     public String[] getValueAsStringArray() {
         return JSOHelper.getAttributeAsStringArray(getJsObj(), "value");
@@ -527,7 +527,7 @@ public class Criterion extends Criteria {
     /**
      * Retrieves the specified value for this criterion. Only applies to criterion where operator and value have
      * been specified - will not apply to criterion containing {@link #getCriteria(),sub criteria}.
-     * @return the value
+     * @return
      */
     public int[] getValueAsIntArray() {
         return JSOHelper.getAttributeAsIntArray(getJsObj(), "value");
