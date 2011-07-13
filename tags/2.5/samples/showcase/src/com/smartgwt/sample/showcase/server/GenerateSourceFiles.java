@@ -374,7 +374,7 @@ private static void loadDataFileOrClassNames(final File fileOrDirectory) throws 
     String fileName = fileOrDirectory.getName();
     if (!fileName.endsWith(".class")) {
       String fileOrClassName;
-      String fileOrClassPath = fileOrDirectory.getPath().replace('\\', '/');
+      String fileOrClassPath = fileOrDirectory.getCanonicalPath().replace('\\', '/');
       if (fileName.endsWith(".java")) {
         fileOrClassName = fileName.substring(0, fileName.lastIndexOf('.'));
         fileOrClassPath = fileOrClassPath.substring(_showcaseClientDirLength + 1);
@@ -383,7 +383,7 @@ private static void loadDataFileOrClassNames(final File fileOrDirectory) throws 
         fileOrClassName = fileName;
         int publicIndex = fileOrClassPath.indexOf("war");
         fileOrClassPath = "data_files/" + fileOrClassPath.substring(publicIndex + 7);
-        generateDataHTMLFile(fileOrDirectory.getPath().replace('\\', '/'),
+        generateDataHTMLFile(fileOrDirectory.getCanonicalPath().replace('\\', '/'),
                              _sourceOutputDir + "/" + fileOrClassPath + ".html");
       }
       _dataFileMap.put(fileOrClassName, fileOrClassPath);
@@ -561,12 +561,16 @@ private static void writeStartOfDataHTMLFile() {
 
 private static void writeStartOfHTMLFile(final PrintWriter sourceWriter,
                                          final String sourceFileDirName, String targetSourceFilePath) {
-  int depth;
+  int depth = 0;
   if (sourceFileDirName.contains("/public/")) {
     depth = sourceFileDirName.substring(sourceFileDirName.indexOf("/public/")).split("/").length - 1;
   }
-  else {
+  else if (sourceFileDirName.contains("/com/")) {
     depth = sourceFileDirName.substring(sourceFileDirName.indexOf("/com/")).split("/").length - 5;
+  } else if (sourceFileDirName.contains("/war/")) {
+    depth = sourceFileDirName.substring(sourceFileDirName.indexOf("/war/")).split("/").length -2;
+  } else {
+      throw new RuntimeException("Unrecognized path " + sourceFileDirName);
   }
   String parentDirs = "";
   for (int i = 0; i < depth; i++) {
@@ -588,11 +592,11 @@ private static void writeStartOfHTMLFile(final PrintWriter sourceWriter,
       type= "java";
   }
 
-  if(type.equals(".xml")) {
+  if(type.equals("xml")) {
     sourceWriter.println("<script src='" + parentDirs + "js/sh/shBrushXml.js'></script>");
-  } else if(type.equals(".css")) {
+  } else if(type.equals("css")) {
       sourceWriter.println("<script src='" + parentDirs + "js/sh/shBrushCss.js'></script>");
-  } else if (type.equals(".js")){
+  } else if (type.equals("js")){
       sourceWriter.println("<script src='" + parentDirs + "js/sh/shBrushJScript.js'></script>");
   } else {
       sourceWriter.println("<script src='" + parentDirs + "js/sh/shBrushJava.js'></script>");
