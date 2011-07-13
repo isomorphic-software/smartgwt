@@ -1,4 +1,4 @@
-package src.com.smartgwt.sample.showcase.client.grid;
+package com.smartgwt.sample.showcase.client.grid;
 
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.rpc.RPCManager;
