@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -57,12 +54,12 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-public class CloseClientEvent extends BrowserEvent<CloseClickHandler>  {
+public class OkClickEvent extends BrowserEvent<OkClickHandler>  {
 
     /**
      * Handler type.
      */
-    private static Type<CloseClickHandler> TYPE;
+    private static Type<OkClickHandler> TYPE;
 
     /**
      * Fires a open event on all registered handlers in the handler manager.If no
@@ -72,10 +69,10 @@ public class CloseClientEvent extends BrowserEvent<CloseClickHandler>  {
      * @param source the source of the handlers
      * @param jsObj the native event
      */
-    public static <S extends HasCloseClickHandlers & HasHandlers> void fire(
+    public static <S extends HasOkClickHandlers & HasHandlers> void fire(
         S source, JavaScriptObject jsObj) {
         if (TYPE != null) {
-            CloseClientEvent event = new CloseClientEvent(jsObj);
+            OkClickEvent event = new OkClickEvent(jsObj);
             source.fireEvent(event);
         }
     }
@@ -85,17 +82,17 @@ public class CloseClientEvent extends BrowserEvent<CloseClickHandler>  {
      *
      * @return returns the handler type
      */
-    public static Type<CloseClickHandler> getType() {
+    public static Type<OkClickHandler> getType() {
         if (TYPE == null) {
-            TYPE = new Type<CloseClickHandler>();
+            TYPE = new Type<OkClickHandler>();
         }
         return TYPE;
     }
 
 
     @Override
-    protected void dispatch(CloseClickHandler handler) {
-        handler.onCloseClick(this);
+    protected void dispatch(OkClickHandler handler) {
+        handler.onOkClick(this);
     }
 
     // Because of type erasure, our static type is
@@ -103,11 +100,11 @@ public class CloseClientEvent extends BrowserEvent<CloseClickHandler>  {
 
     @SuppressWarnings("unchecked")
     @Override
-    public final Type<CloseClickHandler> getAssociatedType() {
+    public final Type<OkClickHandler> getAssociatedType() {
         return TYPE;
     }
 
-    public CloseClientEvent(JavaScriptObject jsObj) {
+    public OkClickEvent(JavaScriptObject jsObj) {
         super(jsObj);
     }
 
