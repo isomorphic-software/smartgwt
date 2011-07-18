@@ -6,10 +6,7 @@ import com.smartgwt.client.types.OperatorId;
 import com.smartgwt.client.types.TreeModelType;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Window;
-import com.smartgwt.client.widgets.events.CloseClickHandler;
-import com.smartgwt.client.widgets.events.CloseClientEvent;
-import com.smartgwt.client.widgets.events.DrawEvent;
-import com.smartgwt.client.widgets.events.DrawHandler;
+import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.events.ItemChangedEvent;
 import com.smartgwt.client.widgets.form.events.ItemChangedHandler;
@@ -284,7 +281,7 @@ public class TileView extends VLayout {
                 String historyToken = nodeID.substring(0, nodeID.indexOf(idSuffix));
                 History.newItem(historyToken, false);
                 window.addCloseClickHandler(new CloseClickHandler() {
-                    public void onCloseClick(CloseClientEvent event) {
+                    public void onCloseClick(CloseClickEvent event) {
                         History.newItem("", false);
                         window.destroy();
                     }
