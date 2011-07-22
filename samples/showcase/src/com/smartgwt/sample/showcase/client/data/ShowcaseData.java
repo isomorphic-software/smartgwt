@@ -79,6 +79,7 @@ import com.smartgwt.sample.showcase.client.tiling.BasicTilingSample;
 import com.smartgwt.sample.showcase.client.tiling.FilterSortTilingSample;
 import com.smartgwt.sample.showcase.client.tiling.LoadOnDemandTilingSample;
 import com.smartgwt.sample.showcase.client.tiling.TileEditingSample;
+import com.smartgwt.sample.showcase.client.toolstrip.RibbonBarSample;
 import com.smartgwt.sample.showcase.client.toolstrip.ToolStripSample;
 import com.smartgwt.sample.showcase.client.toolstrip.ToolStripVerticalSample;
 import com.smartgwt.sample.showcase.client.tree.*;
@@ -457,6 +458,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("ToolStrip", "toolstrip-category", "root", "silk/application_view_list.png", null, true, idSuffix),
                     new ExplorerTreeNode("ToolStrip", "toolstrip", "toolstrip-category", null, new ToolStripSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("ToolStrip (Vertical)", "toolstrip-vertical", "toolstrip-category", null, new ToolStripVerticalSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("RibbonBar", "ribbonbar", "toolstrip-category", null, new RibbonBarSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Other Controls", "controls-category", "root", "silk/timeline_marker.png", null, true, idSuffix),
                     new ExplorerTreeNode("Dialogs", "controls-category-dialogs", "controls-category", null, new DialogsSample.Factory(), true, idSuffix),
