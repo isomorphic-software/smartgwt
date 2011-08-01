@@ -10,7 +10,7 @@ import com.smartgwt.sample.showcase.client.combobox.*;
 import com.smartgwt.sample.showcase.client.dataintegration.json.FormServerJsonValidationSample;
 import com.smartgwt.sample.showcase.client.dataintegration.json.JsonSimpleSample;
 import com.smartgwt.sample.showcase.client.dataintegration.json.JsonXPathSample;
-import com.smartgwt.sample.showcase.client.dataintegration.json.YahooJsonServicesSample;
+//import com.smartgwt.sample.showcase.client.dataintegration.json.YahooJsonServicesSample;
 import com.smartgwt.sample.showcase.client.dataintegration.xml.FormServerXmlValidationSample;
 import com.smartgwt.sample.showcase.client.dataintegration.xml.RestfulDataSourceSample;
 import com.smartgwt.sample.showcase.client.dataintegration.xml.XmlXPathSample;
@@ -127,7 +127,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Animation Playpen", "featured-animation-playpen", "featured-category", "silk/layers.png", new AnimationPlaypenSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Master Detail", "featured-master-detail", "featured-category", "silk/application_split.png", new GridFormUpdateSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("RestDataSource", "featured-restfulds", "featured-category", "silk/arrow_refresh_small.png", new RestfulDataSourceSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Yahoo! JSON Service", "featured-json-integration-category-yahoo", "featured-category", "crystal/16/apps/yahoo_protocol.png", new YahooJsonServicesSample.Factory(), true, idSuffix),
+                    //new ExplorerTreeNode("Yahoo! JSON Service", "featured-json-integration-category-yahoo", "featured-category", "crystal/16/apps/yahoo_protocol.png", new YahooJsonServicesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Pattern Reuse", "featured-pattern-reuse", "featured-category", "silk/database_table.png", new PatternReuseSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("XSD DataSource", "featured-xsd-ds", "featured-category", "silk/database_gear.png", new XsdDataSourceSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("GWT Integration", "featured-gwt-integration", "featured-category", "gwt/icon16.png", new GwtShowcaseSample.Factory(), true, idSuffix),
@@ -485,7 +485,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("JSON", "json-integration-category", "data-integration-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Simple JSON", "json-integration-category-simple", "json-integration-category", null, new JsonSimpleSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("XPath Binding", "json-integration-category-xpath", "json-integration-category", null, new JsonXPathSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Yahoo! JSON Services", "json-integration-category-yahoo", "json-integration-category", "crystal/16/apps/yahoo_protocol.png", new YahooJsonServicesSample.Factory(), true, idSuffix),
+                    //new ExplorerTreeNode("Yahoo! JSON Services", "json-integration-category-yahoo", "json-integration-category", "crystal/16/apps/yahoo_protocol.png", new YahooJsonServicesSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Offline Support", "offline-category", "root", "silk/application_view_detail.png", null, true, idSuffix),
                     new ExplorerTreeNode("Offline Preferences", "grid-offline-pref", "offline-category", "crystal/16/apps/tooloptions.png", new OfflinePreferencesSample.Factory(), true, idSuffix),
