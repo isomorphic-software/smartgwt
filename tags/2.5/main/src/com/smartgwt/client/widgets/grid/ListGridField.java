@@ -3061,9 +3061,10 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * The {@link ListGrid#setEditorCustomizer()} API allows the developer to supply dynamic properties for the
      * item based on the row as well as the field being edited.
      * <p><br>
-     * <b>Note>: When you supply a custom FormItem via setEditorType(), you're really providing properties which are then used to
-     * create multiple FormItems (eg, in grids, forms and trees) and there's an underlying limitation here where event handlers have
-     * to be written to dynamically receive the actual FormItem rather than relying on "this" (because there's more than one "this").
+     * Note: the FormItem passed to setEditorType() is used as a "template" to create a FormItem whenever
+     * the ListGrid needs to show an interface for editing this field. See
+     * {@link com.smartgwt.client.data.DataSourceField#setEditorType} for a discussion of the limitations this
+     * pattern imposes upon event handling within the passed in item.
      *
      * @param editorType the editor type
      */
