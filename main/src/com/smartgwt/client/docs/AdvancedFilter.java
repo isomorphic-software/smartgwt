@@ -15,6 +15,9 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.Criterion
  * @see com.smartgwt.client.data.DataSource#addSearchOperator
  * @see com.smartgwt.client.data.DataSource#setTypeOperators
+ * @see com.smartgwt.client.widgets.form.DynamicForm#getAllowExpressions
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getAllowExpressions
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getValidOperators
  * @see com.smartgwt.client.data.Criterion#getOperator
  * @see com.smartgwt.client.data.Criterion#getFieldName
  * @see com.smartgwt.client.data.Criterion#getValue
@@ -23,9 +26,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.Criterion#getEnd
  * @see com.smartgwt.client.data.DataSourceField#getValidOperators
  * @see com.smartgwt.client.data.SimpleType#getValidOperators
- * @see com.smartgwt.client.widgets.form.DynamicForm#getAllowExpressions
- * @see com.smartgwt.client.widgets.form.fields.FormItem#getAllowExpressions
- * @see com.smartgwt.client.widgets.form.fields.FormItem#getValidOperators
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterExpressions
  * @see com.smartgwt.client.widgets.grid.ListGrid#getShowFilterExpressionLegendMenuItem
  * @see com.smartgwt.client.types.OperatorValueType

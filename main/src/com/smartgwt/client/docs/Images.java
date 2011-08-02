@@ -19,16 +19,16 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.util.Page#getURL
  * @see com.smartgwt.client.util.Page#loadStyleSheet
  * @see com.smartgwt.client.widgets.cube.CubeGrid#getSkinImgDir
- * @see com.smartgwt.client.widgets.tab.TabSet#getSkinImgDir
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSkinImgDir
  * @see com.smartgwt.client.widgets.Canvas#getAppImgDir
  * @see com.smartgwt.client.widgets.Canvas#getSkinImgDir
+ * @see com.smartgwt.client.widgets.tab.TabSet#getSkinImgDir
  * @see com.smartgwt.client.widgets.Scrollbar#getSkinImgDir
  * @see com.smartgwt.client.widgets.Scrollbar#getCornerSrc
  * @see com.smartgwt.client.widgets.Scrollbar#getHSrc
  * @see com.smartgwt.client.widgets.Scrollbar#getVSrc
  * @see com.smartgwt.client.widgets.Splitbar#getSkinImgDir
  * @see com.smartgwt.client.widgets.ImgSplitbar#getSkinImgDir
- * @see com.smartgwt.client.widgets.grid.ListGrid#getSkinImgDir
  */
 public interface Images {
 }

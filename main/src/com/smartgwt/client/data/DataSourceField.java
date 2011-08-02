@@ -286,67 +286,6 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * For a DataSource with {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType} "sql" or "hibernate",
-     * indicates that this field should be omitted by default from all SQL or Hibernate operations, and will only be used with
-     * {@link com.smartgwt.client.docs.CustomQueries custom queries}. <P> Having marked a field as <code>customSQL</code> you
-     * can refer to it via $criteria.<i>fieldName</i> or $values.<i>fieldName</i> in customized queries. <P> The following are
-     * situations where you would <b>not</b> use <code>customSQL</code>: <ul> <li>simple joins where you want to enable users
-     * to see and search on a field from another table; consider {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#tableName tableName} instead <li>fields where you want to calculate or
-     * transform values in SQL on load or save, but always perform the same calculation for each operationType; consider
-     * instead {@link com.smartgwt.client.docs.serverds.DataSourceField#sqlStorageStrategy sqlStorageStrategy} for some common
-     * cases, or  {@link com.smartgwt.client.docs.serverds.DataSourceField#customSelectExpression customSelectExpression},
-     * {@link com.smartgwt.client.docs.serverds.DataSourceField#customUpdateExpression customUpdateExpression} and {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#customInsertExpression customInsertExpression} for full customization
-     * <li>a special fetch is needed where the field needs to be excluded from the $defaultWhereClause so that it can be used
-     * in a custom &lt;whereClause&gt; - consider {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#excludeCriteriaFields excludeCriteriaFields} instead </ul> <P> Use
-     * customSQL in situations like: <ul> <li>there are multiple variations of the "fetch" operation with different {@link
-     * com.smartgwt.client.data.OperationBinding#getOperationId operationIds}, and the field is only used in some of them; in
-     * that case, consider using {@link com.smartgwt.client.docs.serverds.OperationBinding#customFields customFields} to
-     * selectively re-introduce SQL generation for the field only in operations where it's used. <li>the field represents
-     * hidden criteria on a field in another table where the field is never shown to the user <li>the field is a write-only
-     * value only saved in some operations <li>more than one data access strategy is in use (eg direct SQL for fetch and
-     * bean-based persistence accessed via DMI for saves) and certain fields are not available in SQL </ul>
-     *
-     * @param customSQL customSQL Default value is null
-     */
-    public void setCustomSQL(Boolean customSQL) {
-        setAttribute("customSQL", customSQL);
-    }
-
-    /**
-     * For a DataSource with {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType} "sql" or "hibernate",
-     * indicates that this field should be omitted by default from all SQL or Hibernate operations, and will only be used with
-     * {@link com.smartgwt.client.docs.CustomQueries custom queries}. <P> Having marked a field as <code>customSQL</code> you
-     * can refer to it via $criteria.<i>fieldName</i> or $values.<i>fieldName</i> in customized queries. <P> The following are
-     * situations where you would <b>not</b> use <code>customSQL</code>: <ul> <li>simple joins where you want to enable users
-     * to see and search on a field from another table; consider {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#tableName tableName} instead <li>fields where you want to calculate or
-     * transform values in SQL on load or save, but always perform the same calculation for each operationType; consider
-     * instead {@link com.smartgwt.client.docs.serverds.DataSourceField#sqlStorageStrategy sqlStorageStrategy} for some common
-     * cases, or  {@link com.smartgwt.client.docs.serverds.DataSourceField#customSelectExpression customSelectExpression},
-     * {@link com.smartgwt.client.docs.serverds.DataSourceField#customUpdateExpression customUpdateExpression} and {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#customInsertExpression customInsertExpression} for full customization
-     * <li>a special fetch is needed where the field needs to be excluded from the $defaultWhereClause so that it can be used
-     * in a custom &lt;whereClause&gt; - consider {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#excludeCriteriaFields excludeCriteriaFields} instead </ul> <P> Use
-     * customSQL in situations like: <ul> <li>there are multiple variations of the "fetch" operation with different {@link
-     * com.smartgwt.client.data.OperationBinding#getOperationId operationIds}, and the field is only used in some of them; in
-     * that case, consider using {@link com.smartgwt.client.docs.serverds.OperationBinding#customFields customFields} to
-     * selectively re-introduce SQL generation for the field only in operations where it's used. <li>the field represents
-     * hidden criteria on a field in another table where the field is never shown to the user <li>the field is a write-only
-     * value only saved in some operations <li>more than one data access strategy is in use (eg direct SQL for fetch and
-     * bean-based persistence accessed via DMI for saves) and certain fields are not available in SQL </ul>
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCustomSQL()  {
-        return getAttributeAsBoolean("customSQL");
-    }
-
-    /**
      * Preferred display format to use for date type values within this field. If this property is set on a field displayed in
      * a databound component such as a {@link com.smartgwt.client.widgets.form.DynamicForm} or {@link
      * com.smartgwt.client.widgets.grid.ListGrid} it will be respected (See {@link
@@ -417,31 +356,6 @@ public class DataSourceField extends DataClass {
      */
     public Boolean getDetail()  {
         return getAttributeAsBoolean("detail");
-    }
-
-    /**
-     * Sets the default FormItem to be used whenever this field is edited (whether in a grid, form, or other component). <P> If
-     * unset, a FormItem will be automatically chosen based on the type of the field, by the rules explained {@link
-     * com.smartgwt.client.types.FormItemType here}.
-     *
-     * @param editorType editorType Default value is null
-     * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
-     */
-    public void setEditorType(String editorType) {
-        setAttribute("editorType", editorType);
-    }
-
-    /**
-     * Sets the default FormItem to be used whenever this field is edited (whether in a grid, form, or other component). <P> If
-     * unset, a FormItem will be automatically chosen based on the type of the field, by the rules explained {@link
-     * com.smartgwt.client.types.FormItemType here}.
-     *
-     *
-     * @return String
-     * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
-     */
-    public String getEditorType()  {
-        return getAttributeAsString("editorType");
     }
 
     /**
@@ -1271,31 +1185,6 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * Used by the {@link com.smartgwt.client.widgets.BatchUploader} to map a field in an upload file to this  dataSourceField.
-     * This is only necessary if the dataSourceField's name and title differ  from the name of the field in the upload file
-     * (Smart GWT will automatically map upload  fields using the dataSourceField's title, if possible, if it does not get a
-     * direct match  on field name).
-     *
-     * @param uploadFieldName uploadFieldName Default value is null
-     */
-    public void setUploadFieldName(String uploadFieldName) {
-        setAttribute("uploadFieldName", uploadFieldName);
-    }
-
-    /**
-     * Used by the {@link com.smartgwt.client.widgets.BatchUploader} to map a field in an upload file to this  dataSourceField.
-     * This is only necessary if the dataSourceField's name and title differ  from the name of the field in the upload file
-     * (Smart GWT will automatically map upload  fields using the dataSourceField's title, if possible, if it does not get a
-     * direct match  on field name).
-     *
-     *
-     * @return String
-     */
-    public String getUploadFieldName()  {
-        return getAttributeAsString("uploadFieldName");
-    }
-
-    /**
      * Validators to be applied to this field. <p> Validators are applied whenever there is an attempt to save changes to a
      * field. <p> For the available set of built-in validators, and how to define a custom validator, see the {@link
      * com.smartgwt.client.widgets.form.validator.Validator} class.
@@ -1665,9 +1554,49 @@ public class DataSourceField extends DataClass {
      * Sets the default FormItem to be used whenever this field is edited (whether in a grid, form, or other component).
      * <P> If unset, a FormItem will be automatically chosen based on the type of the field.
      * <p><br>
-     * <b>Note</b> : When you supply a custom FormItem via setEditorType(), you're really providing properties which are then used
-     * to create multiple FormItems (eg, in grids, forms and trees) and there's an underlying limitation here where event handlers
-     * have to be written to dynamically receive the actual FormItem rather than relying on "this" (because there's more than one "this").
+     * Note: the FormItem passed to setEditorType() is used as a "template" to create a FormItem whenever
+     * a DataBoundComponent needs to show an interface for editing this field.  This means you need to 
+     * follow special rules:
+     * <ol>
+     * <li>In event handler code, you must obtain the current FormItem instance from the provided
+     *   Event object via getItem().  You cannot make method calls via "this" or via implicit instance 
+     *   scope: both "clearValue()" and "this.clearValue()" need to be written as "item.clearValue()" 
+     *   instead (where "item" is the result of event.getItem()).</li>
+     * <li>To store custom instance variables, you must use FormItem.getAttribute()/setAttribute()
+     *   (or their type-specific variants).  You cannot store and retrieve instance variables 
+     *   via "this" - "this.someVariable = 5" will not work.</li>
+     * <li>You may not override superclass methods - your behaviors have to be implemented via event handlers</li>
+     * <li>If you create a custom subclass, the FormItem you receive in an event handler will be of a generic
+     *   type and must be converted before you can call custom methods.  Conversion is done via 
+     *   <code>new MyCustomItem(item.getJsObj());</code> (complete code sample below).<br>
+     *   Note that this conversion does not actually cause creation or rendering of a new 
+     *   widget and is comparable in cost to a typecast.</li>
+     * </ol>
+     * Example code demonstrating using an eventHandler to call a method on custom subclass of TextItem:
+     * <pre>
+     * class MyCustomItem extends TextItem {
+     *      MyCustomItem (JavaScriptObject config) {
+     *      }
+     *      
+     *      MyCustomItem(String name) {
+     *          setInitHandler(new FormItemInitHandler() {
+     *              public void onInit(FormItem item) {
+     *                  // correct
+     *                  new MyCustomItem(item.getJsObj()).customMethod();
+     *                  
+     *                  // incorrect, will throw an error
+     *                  // ((MyCustomItem)item).customMethod();
+     *              }
+     *          }
+     *      }
+     *      
+     *      void customMethod() { ... }
+     *  }
+     *  
+     *  ...
+     *  
+     *  myDataSource.setEditorType(new MyCustomItem("field1"));
+     *  </pre>
      *
      * @param editorType editorType Default value is null
      */
