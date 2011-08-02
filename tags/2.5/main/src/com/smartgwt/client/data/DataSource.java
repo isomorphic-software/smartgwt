@@ -961,8 +961,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *  descriptor (.ds.xml file) and control server-side behavior such as what Java object to route
      * DSRequest to ({@link com.smartgwt.client.docs.serverds.OperationBinding#serverObject serverObject}) or customizations to
      * SQL / HQL queries
-     * ({@link com.smartgwt.client.docs.serverds.OperationBinding#customSQL customSQL} and {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#customHQL customHQL}).  See the 
+     * ({@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} and {@link
+     * com.smartgwt.client.data.OperationBinding#getCustomHQL customHQL}).  See the 
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#javaDataIntegration" target="examples">Java Integration
      * samples</a>.
      *  <P>
@@ -1027,8 +1027,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *  descriptor (.ds.xml file) and control server-side behavior such as what Java object to route
      * DSRequest to ({@link com.smartgwt.client.docs.serverds.OperationBinding#serverObject serverObject}) or customizations to
      * SQL / HQL queries
-     * ({@link com.smartgwt.client.docs.serverds.OperationBinding#customSQL customSQL} and {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#customHQL customHQL}).  See the 
+     * ({@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} and {@link
+     * com.smartgwt.client.data.OperationBinding#getCustomHQL customHQL}).  See the 
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#javaDataIntegration" target="examples">Java Integration
      * samples</a>.
      *  <P>
