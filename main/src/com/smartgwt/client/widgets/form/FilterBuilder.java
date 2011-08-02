@@ -201,6 +201,26 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
+     * The title for the {@link com.smartgwt.client.widgets.form.FilterBuilder#getFieldPicker field-picker} select-item.
+     *
+     * @param fieldPickerTitle fieldPickerTitle Default value is "Field Name"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setFieldPickerTitle(String fieldPickerTitle)  throws IllegalStateException {
+        setAttribute("fieldPickerTitle", fieldPickerTitle, false);
+    }
+
+    /**
+     * The title for the {@link com.smartgwt.client.widgets.form.FilterBuilder#getFieldPicker field-picker} select-item.
+     *
+     *
+     * @return String
+     */
+    public String getFieldPickerTitle()  {
+        return getAttributeAsString("fieldPickerTitle");
+    }
+
+    /**
      * Title for the "And Not" operator (only applicable to the "inline" appearance)
      *
      * @param inlineAndNotTitle inlineAndNotTitle Default value is "and not"
@@ -338,6 +358,48 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      */
     public String getMissingFieldPrompt()  {
         return getAttributeAsString("missingFieldPrompt");
+    }
+
+    /**
+     * The title for the operator-picker select-item.
+     *
+     * @param operatorPickerTitle operatorPickerTitle Default value is "Operator"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setOperatorPickerTitle(String operatorPickerTitle)  throws IllegalStateException {
+        setAttribute("operatorPickerTitle", operatorPickerTitle, false);
+    }
+
+    /**
+     * The title for the operator-picker select-item.
+     *
+     *
+     * @return String
+     */
+    public String getOperatorPickerTitle()  {
+        return getAttributeAsString("operatorPickerTitle");
+    }
+
+    /**
+     * The title for the Operator RadioGroupItem displayed in the {@link
+     * com.smartgwt.client.widgets.form.FilterBuilder#getRadioOperatorForm radioOperatorForm}.
+     *
+     * @param radioOperatorTitle radioOperatorTitle Default value is "Overall Operator"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setRadioOperatorTitle(String radioOperatorTitle)  throws IllegalStateException {
+        setAttribute("radioOperatorTitle", radioOperatorTitle, false);
+    }
+
+    /**
+     * The title for the Operator RadioGroupItem displayed in the {@link
+     * com.smartgwt.client.widgets.form.FilterBuilder#getRadioOperatorForm radioOperatorForm}.
+     *
+     *
+     * @return String
+     */
+    public String getRadioOperatorTitle()  {
+        return getAttributeAsString("radioOperatorTitle");
     }
 
     /**
@@ -597,6 +659,28 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      */
     public LogicalOperator getTopOperator()  {
         return EnumUtil.getEnum(LogicalOperator.values(), getAttribute("topOperator"));
+    }
+
+    /**
+     * The title for the left-aligned Operator selectItem in the {@link
+     * com.smartgwt.client.widgets.form.FilterBuilder#getTopOperatorForm topOperatorForm}.
+     *
+     * @param topOperatorTitle topOperatorTitle Default value is "Clause Operator"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTopOperatorTitle(String topOperatorTitle)  throws IllegalStateException {
+        setAttribute("topOperatorTitle", topOperatorTitle, false);
+    }
+
+    /**
+     * The title for the left-aligned Operator selectItem in the {@link
+     * com.smartgwt.client.widgets.form.FilterBuilder#getTopOperatorForm topOperatorForm}.
+     *
+     *
+     * @return String
+     */
+    public String getTopOperatorTitle()  {
+        return getAttributeAsString("topOperatorTitle");
     }
 
     /**
@@ -956,6 +1040,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }-*/;
 
 }
+
+
 
 
 

@@ -3431,6 +3431,26 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * The prompt to show when the mouse hovers over the Filter button in the FilterEditor.
+     *
+     * @param filterButtonPrompt filterButtonPrompt Default value is "Filter"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setFilterButtonPrompt(String filterButtonPrompt)  throws IllegalStateException {
+        setAttribute("filterButtonPrompt", filterButtonPrompt, false);
+    }
+
+    /**
+     * The prompt to show when the mouse hovers over the Filter button in the FilterEditor.
+     *
+     *
+     * @return String
+     */
+    public String getFilterButtonPrompt()  {
+        return getAttributeAsString("filterButtonPrompt");
+    }
+
+    /**
      * If we're showing the filterEditor (this.showFilterEditor is true), this property  determines whether this list should be
      * filtered every time the user puts focus in a different field in the filter editor.
      * <p><b>Note : </b> This is an advanced setting</p>
