@@ -1,0 +1,746 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+      <title>Smart GWT Release Notes</title>
+
+      <style>
+         body {
+            background-color: white;
+            color: #333333;
+            font-family: arial,helvetica,sans-serif;
+            font-size: 12px;
+            margin: 20px;
+         }
+
+         li {
+            margin-bottom: 0.5em;
+         }
+
+         li div {
+            margin-top: 0.2em;
+         }
+
+         code {
+            font-size: medium;
+         }
+      </style></head>
+
+   <body>
+      <h1>Smart GWT Release Notes</h1>
+      <ul>
+            <li><a href="#2_5">2.5</a></li>
+            <li><a href="#2_4">2.4</a></li>
+            <li><a href="#2_2">2.2</a></li>
+            <li><a href="#2_1">2.1</a></li>
+            <li><a href="#2_0">2.0</a></li>
+            <li><a href="#1_3">1.3</a></li>
+            <li><a href="#1_2">1.2</a></li>
+            <li><a href="#1_1">1.1</a></li>
+            <li><a href="#1_0_b2">1.0 b2</a></li>
+      </ul>
+      <hr/>
+
+      <a name="2_5"></a>
+            <h2>Release Notes for Smart GWT 2.5</h2>
+              <ul>
+                <li><div>Added GWT 2.3 support. Dropped support for GWT 1.5.x</div></li>
+                <li><div>IE 9 and Firefox 5 support</div></li>
+                <li><div>ARIA/Section 508 accessibility compliance</div></li>
+                <li><div>New dataPath Feature that provides a straightforward way to display or edit complex nested data</div></li>
+                <li>
+                    <div><b>ListGrid</b>
+                        <ul>
+                            <li><div>Significant performance improvement in IE</div></li>
+                            <li><div>Added ListGrid allowFilterExpressions property to support use of expressions when filtering.  For example  "<50 or ==99"</div></li>
+                            <li><div>Support for multi-line summaries in groups and at the grid level</div></li>
+                            <li><div>Augment ListGrid state management such that get/setViewState also preserve hilites and grouping data, along with frozen field information</div></li>
+                            <li><div>Added ListGrid.setEditorCustomizer(..) which allows you to dynamically return FormItem properties per cell</div></li>
+                            <li><div>New Group Title column feature; added new showGroupSummaryInHeader attribute</div></li>
+                            <li><div>Added ListGridField.addSummaryFunction() API to allow set up of multiple summary functions per field,
+                                which display as multiple lines in the grid summary or per group summary</div></li>
+                            <li><div>Support for ListGridField summaryValueTitle property and SummaryFunctionType "title" to show arbitrary text in the summary row (or group summary row) for a field in a grid without having to write any code</div></li>
+                            <li><div>New viewStateChanged event fired from grouping, sorting, fieldState changed</div></li>
+                            <li><div>New sortChanged event fired from setSort() whenever the sorting changes</div></li>
+                            <li><div>Exposed 'getEditFormItem()' to get  the live edit item currently displayed to the user during editing</div></li>
+                            <li><div>Added ListGrid autoFitWidthApproach property</div></li>
+                            <li><div>Added ListGridField dataPath property</div></li>
+                            <li><div>Exposed listGrid.getGroupByFields()</div></li>
+                            <li><div>Fix for a bug where if the summary row is visible and an h-scrollbar is introduced,  a second h-scrollbar would display</div></li>
+                            <li><div>Addition of new ListGrid.saveRequestProperties, to allow for customization of the properties sent on the save Request</div></li>
+                            <li><div>Improve performance of saveAllEdits() when processing a large number of edited rows</div></li>
+                            <li><div>Enhance record summaries in grids by providing support for locally held data to be included </div></li>
+                            <li><div>Fixed issue with grid.unsort() not correctly managing a cell selected for edit after a sort</div></li>
+                            <li><div>Fix to remove performance issue with colSpanning incorrectly rendering row cells and causing unnecessary redraws</div></li>
+                            <li><div>Fix to updateRollOverCanvas() to only perform necessary ListGrid canvas changes if there is an associated record or cell being rolled over</div></li>
+                            <li><div>Improved arrow key navigation with grouping by not toggling the group when a group node is selected</div></li>
+                            <li><div>Fix to ListGrid where if type-validation converted from string to number, and stored out the number value, a call to getEditValue() could replace the converted value with the original string value</div></li>
+                            <li><div>Fix to resolve an issue where using string values with setWidth(""*"" or “%”) with custom editors in FormItem or ListGrids threw an exception</div></li>
+                            <li><div>Fix for ListGrid.hasChanges() detecting a change in DateItem fields even if the user does not actually make any changes in the cell</div></li>
+                            <li><div>Fix for a bug where calling setFields() with a subset of the currently visible fields in a ListGrid would fail to remove the fields not present in the new field-set</div></li>                            <li><div>Fix to allow disable of the "configure sort" right-click menu item (in the sorting box at the top-right of the grid) in a ListGrid when multiSort is unavailable</div></li>
+                            <li><div>New selectionUpdated event when ListGrid selections are updated</div></li>
+                            <li><div>New API ListGrid.getSelectedRecords() to return all Records that have been selected in a grid as a RecordList</div></li>
+                            <li><div>Added refreshRecordComponent() API</div></li>
+                            <li><div>New setAutoFitFieldWidths method to enable/disable autoFitFieldWidths at runtime</div></li>
+                            <li><div>Fix for bug where valueMaps were not being picked up correctly when calling 'exportClientData' on a grid</div></li>
+                            <li><div>Checkbox in selection column header correctly updates to reflect record selection state</div></li>
+                            <li><div>Performance improvement : selectAllRecords() and deselectAllRecords() now avoids call API to refresh selection appearance on every row - instead performs a single refresh to display the new selection</div></li>
+                            <li><div>When refreshing for cleared edit values on new rows, if the  body is frozen, refresh that as well</div></li>
+                            <li><div>Added showSortNumerals property</div></li>
+                            <li><div>Support for group summaries even when there are more than one groupByFields specified on the ListGrid (nested groups)</div></li>
+                            <li><div>New ListGrid boolean property editOnF2Keypress - if true, (the default) start editing on F2 keypress</div></li>
+                            <li><div>Support for sorting group headers by all fields when showGroupHeaderInSummary is true</div></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div><b>TreeGrid</b>
+                        <ul>
+                            <li><div>Added TreeGrid showDisabledSelectionCheckbox property</div></li>
+                            <li><div>Respecting fetchDelay when a FilterEditor is used with a TreeGrid</div></li>
+                            <li><div>Fix to check if canCollapseGroup is false on TreeGrids, to avoid having to check open folder state on all folders</div></li>
+                            <li><div>Fix to TreeGrid dragging of a node from root and dropping it into root (in the white space). Causing an error message about duplicate names</div></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div><b>Calendar</b>
+                        <ul>
+                            <li><div>Fix for an issue where overlapping events within a day could cause all the other events to assume they are also overlapping and render at half width</div></li>
+                            <li><div>Correction to calendar events heights where the events spans the midnight boundary</div></li>
+                            <li><div>Correction to calendar event resizing to disallow meaningless horizontal resizing</div></li>
+                            <li><div>Fix to timing of calendar refresh to avoid trying to refresh a calendar where the calendar is destroyed or is in mid-destroy</div></li>
+                            <li><div>Fix to Calendar events to correctly return the event details when adding or updating an event</div></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div><b>SectionStack</b>
+                        <ul>
+                            <li><div>Correction to bad printing of nested table components where SectionHeaders did not print correctly</div></li>
+                            <li><div>When destroying sections, if section.controls is specified but hasn't been added to the section as a descendant, explicitly destroy it</div></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div><b>TileGrid</b>
+                        <ul>
+                            <li><div>Fix issue where invalidateCache could inadvertently load all of the data for a datasource</div></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div><b>Img</b>
+                        <ul>
+                            <li><div>Added support for 'altText' to Img</div></li>
+                        </ul>
+                    </div>
+                </li>
+                 <li>
+                    <div><b>Menu and MenuButton</b>
+                        <ul>
+                            <li><div>Fix to avoid a possible crash during MenuBar draw if we have no menus</div></li>
+                            <li><div>Added MenuButton showMenuOnRollOver property</div></li>
+                        </ul>
+                    </div>
+                </li>
+
+                  <li>
+                    <div><b>FilterBuilder</b>
+                        <ul>
+                            <li><div>FilterBuilder reworked to make getValueFieldProperties() a more useful override point</div></li>
+                            <li><div>Added support for filterButtonProperties to customize the actionButton on the filterEditor</div></li>
+                            <li><div>Fixed bug with left align of  the last field in filterEditor</div></li>
+                            <li><div>Support for custom SimpleTypes</div></li>
+                            <li><div>Performance improvement when working with dataSources with a large number of specified fields - in getEditorTyper() avoid creating test formItems for all dataSource fields.</div></li>
+                            <li><div>Correction to FilterBuilder.getEditorType() for correctly attributing field type to operator when defined as using a fieldDataSource rather than a normal DataSource</div></li>
+                            <li><div>Added new Operator "iBetweenInclusive" client and server side - provides case-insensitive range searching for strings (for example:  "a...f" in a formItem allows for a case-insensitive search)</div></li>
+                            <li><div>Fix to ensure filterChanged() is fired in all cases when clauses are added and removed from filterBuilder</div></li>
+                            <li><div>Fix to ensure when using FieldValuesAreEqual in filterBuilder dates are compared by type correctly</div></li>
+                            <li><div>Correction to 'inSet' operator in FilterBuilder to handle when null or 0 criteria is returned</div></li>
+
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div><b>DynamicForm / ValuesManager</b>
+                        <ul>
+                            <li><div>Added FormItem.optionOperationId and operator</div></li>
+                            <li><div>FormItem.allowExpressions added to allow expressions in formItems when producing criteria - for example  "<50 or ==99" </div></li>
+                            <li><div>New property 'formatOnFocusChange' If set, formatEditorValue re-runs whenever the item receives or loses focus, meaning the developer can show a prettier string while the user isn't actively editing it</div></li>
+                            <li><div>Fixed an issue whereby when editing complex nested values in a ValuesManager (due to the dataPath feature), the saveData() callback was unreliable</div></li>
+                            <li><div>Support for parse / formatEditorValue in DateItems where useTextField is true</div></li>
+                            <li><div>If an item has an explicit validator of type 'required', show the required styling using setRequiredIf</div></li>
+                            <li><div>Fix to avoid a crash if a DynamicForm with no DataSource specified is embedded in a ValuesManager with a dataSource specified, and the
+                                    form has explicit fields.</div></li>
+                            <li><div>validateOnEditorExit: For ComboBoxItems where completeOnTab is true, don't validate as part of handleEditorExit if a tab is pending completion, wait for that completion to actually fire, then validate.</div></li>
+                            <li><div>RelativeDateItem inner comboBoxItem width fixed to match that of other selectItems on the form</div></li>
+                            <li><div>Added explicit 'innerTitleOrientation' to DateRangeItem</div></li>
+                            <li><div>ComboBoxItem : On focus, record the element value. On blur, only run mapValueToDisplay and reset the element value if it has changed since focus</div></li>
+                            <li><div>Fix to focus/blur processing to avoid custom parsers firing twice on ComboBoxItems</div></li>
+                            <li><div>Fixes to RelativeDateItem to correctly use getValue()/setValue() methods</div></li>
+                            <li><div>Support for passing a RelativeDate right into setValue() at the form or item level</div></li>
+                            <li><div>Fixes to sporadic ComboBoxItem.completeOnTab failures if the user tabs before data has loaded</div></li>
+                            <li><div>Enhanced FormItem.fetchMissingValues()to also manage optionDataSource events for retrieving a displayField value or selected record. Extended functionality will also maintain updates to these optionDataSource values</div></li>
+                            <li><div>If request.willHandleError:true is passed to save method on a form or valuesManager, allow the callback to fire even if the response returned validation errors.</div></li>
+                            <li><div>Fix for an issue where DateItems wouldn't detect change and therefore wouldn't validateOnExit if the user picked the value from a picker</div></li>
+                            <li><div>Correction to ComboBoxItem.filterData() to ensure all data has been loaded before issuing the filterComplete() API.</div></li>
+                            <li><div>Fix to clear existing errors from an invalid date field in text mode (useTextField) when a valid date is then selected</div></li>
+                            <li><div>Improvements to Picklist positioning by directly looking at the data if the pickList isn't drawn yet</div></li>
+                            <li><div>Correction to remove a specific use case issue in FormItems where Focus/Blur on multiple fields caused a loop</div></li>
+                            <li><div>Correction to Values Manager managed form to remove a failure when the form contains fields that have neither a name of a dataPath reference</div></li>
+                            <li><div>Enhance DateChooser functionality to round to end of day if rangePosition is set to end</div></li>
+                            <li><div>Corrected an error when defining pickListFields to ensure that if the showIf attribute is set to false the pickList Headers for those fields are ignored </div></li>
+                            <li><div>Enhancements to relative date items by using the field type to ensure a date item serializes as a date rather than a dateTime</div></li>
+                            <li><div>Fix to a specific case on ComboBoxItems where a repeat fetch operation was triggered when a fetch was already in operation. Related to rapid data entry use</div></li>
+                            <li><div>Fix to always include times in relative date-range criteria</div></li>
+                            <li><div>Fix to correctly handle mouseOver on icons within form items</div></li>
+                            <li><div>Fix to correctly manage focus on Items within a canvas within a DynamicForm, where clickmasks are specified</div></li>
+                            <li><div>Fix to date logic to correct issue, where in some time zone(s) [seen in Brazil], DST adjustments happen at 00:00 and calling APIs to set a Date value to 00:00 on the day when the DST switch happens returns a Date one day earlier at 23:00</div></li>
+                            <li><div>Fix to setValue() to allow it to manage roundPrecision as well as roundValues</div></li>
+                            <li><div>Improvements to serialization of Date objects being produced by DateItem or RelativeDateItem types to exclude time unless explicitly defined in the field type</div></li>
+                            <li><div>Fix mask validators to not result in a exception if not passed a string, or specifically passed a exceptional value</div></li>
+                            <li><div>Fix of an issue where single DateItem fields in Dynamic/Search forms, can appear as double Date range fields</div></li>
+                            <li><div>Fix tabindex/tabbing behavior of the MiniDateRangeItem popup</div></li>
+                            <li><div>New date range elements improved to $weekAgo and $weekFromNow to allow the new rangePosition API to be usable for setting to beginning or end of day</div></li>
+                            <li><div>RelativeDateItem : New properties 'showPastOptions' and 'showFutureOptions' to disable past or future options if desired</div></li>
+                            <li><div>RelativeDateItem : New rangeRoundingGranularity feature - allows configuration, if  selecting N Days Ago whether that's to the nearest day, hour, second etc.</div></li>
+                            <li><div>Added support for overriding the preset options in RelativeDateItem's</div></li>
+                            <li><div>Fixed error-icons not showing up with itemLayout: "absolute"</div></li>
+                            <li><div>Improved CanvasItem focus management</div></li>
+                            <li><div>CanvasItem now has a new showValues event to support customization of display values in embedded canvasses</div></li>
+                            <li><div>Enhancement to storeValue() for CanvasItems to manage a recordList or record directly</div></li>
+                            <li><div>Enhancement to PickListItem sizing functions by using ListGrid functions autoFitData() and autoFitFieldWidths()</div></li>
+                            <li><div>Enhancements to FormItem field formatting behaviours by performing form and datasource type management</div></li>
+                            <li><div>Fix to minor LinkItem issue where, in certain circumstances, clicking to the right of the link still performed the link action</div></li>
+                            <li><div>Improvements to CanvasItems click/double click events when clicking within an embedded Canvas</div></li>
+                            <li><div>New date range elements improved $weekAgo and $weekFromNow to allow the new range position API to be usable for setting to beginning or end of day</div></li>
+                            <li><div>New handleKeyPress API introduced to allow users to override any key presses before they are mapped</div></li>
+                            <li><div>Added canTabToSectionHeaders property to DynamicForm and SectionStackSection</div></li>
+                            <li><div>If allowEmptyValue is true and multiple is true on a SelectItem, not showing the empty row at the top of the drop down</div></li>
+                            <li><div>Fixed a bug where expanding/collapsing SectionItems could cause forms embedded in scrollable / scrolled parents to jump scroll position back to zero/zero</div></li>
+                            <li><div>Support null values for TimeItems</div></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div><b>DetailViewer</b>
+                        <ul>
+                            <li><div>Added DetailViewerField.name and DetailViewerField.dataPath</div></li>
+                            <li><div>DetailViewer now respects the new field.dateFormatter, field.timeFormatter, component.dateFormatter, component.datetimeFormatter and component.timeForamtter pattern</div></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <div><b>TabSet</b>
+                        <ul>
+                            <li><div>TabSet  / Tab - added getTabCanvas() method to get the live tab canvas</div></li>
+                            <li><div>Added TabSet.useSimpleTabs allowing a simplified appearance for Tabs that doesn't require multiple images</div></li>
+                        </ul>
+                    </div>
+                </li>
+                 <li>
+                    <div><b>Canvas</b>
+                        <ul>
+                            <li><div>Added "moved" and "parentMoved" event handlers</div></li>
+                        </ul>
+                    </div>
+                </li>
+                  <li>
+                    <div><b>DataSource</b>
+                        <ul>
+                            <li><div>Enhancements to serializeFields() to handle nested DataSources</div></li>
+                            <li><div>Fix to DataSource.handleUpdate to clear last update information for ResultSets to ensure the dataChanged API fires correctly</div></li>
+                            <li><div>Correction to datasource.combineCriteria() to specifically mark the  component criteria as advanced to stop the criteria being presented as separate criteria, but as one set of advanced criteria</div></li>
+                            <li><div>Fix to ensure that if transformInput modifies an item's value while the user is typing in the field, focus ends up at the end of the field</div></li>
+                            <li><div>Support for DSField property nativeName in DataSource.getProperties() and DataSource.setProperties()</div></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div><b>Selenium Support</b>
+                        <ul>
+                            <li><div>Drag and Drop recording / playback support for Selenium</div></li>
+                            <li><div>Double Click handling support for Selenium</div></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div><b>Other</b>
+                        <ul>
+                            <li><div>Various timezone conversion, date-time formatting fixes</div></li>
+                            <li><div>i18n enhancements</div></li>
+                            <li><div>getSelectionRange support added for Opera 11 with Windows to allow text masking to perform properly</div></li>
+                            <li><div>Corrected an issue with setStyleName() not rendering correctly if called after draw() on a Label</div></li>
+                            <li><div>Simplified event switching for offline support to be a single click service</div></li>
+                            <li><div>Fix to an issue where browsers complain about mixed security content with Flashlets and https is now automatically detected and managed</div></li>
+                            <li><div>Several <a href="http://code.google.com/p/smartgwt/issues/list?can=1&q=label%3ASmartGWT-2.5">additional enhancements and bug fixes</a> that were logged in tracker</div></li>
+                        </ul>
+                    </div>
+                </li>
+             </ul>
+
+
+
+<a name="2_4"></a>
+      <h2>Release Notes for Smart GWT 2.4</h2>
+        <ul>
+            <li><div>GWT 2.1.1 compatible</div></li>
+            <li><div>Added Smart GWT QuickStart Guide</div></li>
+            <li><div>Touch & Mobile support : Support for iPhone, iPad and iPod touch devices with no code changes required</div></li>
+            <li><div>Offline persistent storage support with seamless integration with DataSource's</div></li>
+            <li><div><a href="http://blog.isomorphic.com/?p=234">User Defined data highlighting</a></div></li>
+            <li><div><a href="http://blog.isomorphic.com/?p=248">Advanced Hover components</a> with built-in hover modes</div></li>
+            <li>New ultralight ‘Simplicity’ skin that is easily customizable and virtually image free</li>
+            <li>Performance improvements across the board with significant IE specific performance enhancements</li>
+            <li><div>Several new <a href="http://www.smartclient.com/smartgwt/showcase/" target="_blank">Showcase</a> samples under the "New Samples" side nav</div></li>
+            <li>
+                <div><b>ListGrid</b>
+                    <ul>
+                        <li><div>Per field autoFitWidthApproach now supported</div></li>
+                        <li><div>Added ListGrid "Auto Fit All" menu option</div></li>
+                        <li><div>Support for frozen fields and virtual scrolling with record components</div></li>
+                        <li><div>Various fixes related to the display of cell components in a ListGrid</div></li>
+                        <li><div>Support for Header Spans when printing</div></li>
+                        <li><div>Print support for a ListGrid with more than one frozen fields</div></li>
+                        <li><div>Improved support for printing ListGrid's with embedded components</div></li>
+                        <li><div>ListGridField's ChangeHandler event is now cancellable</div></li>
+                        <li><div>Significant performance optimizations to client side Advanced Filtering</div></li>
+                        <li><div>Added support for LinkURLPrefix and LinkURLSuffix on ListGridField</div></li>
+                        <li><div>Added support for handling large number of rows in IE 8 non-strict mode</div></li>
+                        <li><div>Added ListGrid.getCellHoverComponent() to support ListGrid cell hover components</div></li>
+                        <li><div>New ListGrid flag 'autoFitFieldsFillViewport' to enable / disable the autoFitExpandField behavior</div></li>
+                        <li><div>Handle a double-click on the ListGrid header menu context button the same as a double click elsewhere on the header button.
+                            This means basically auto-fit on double click over the menu button</div></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>TreeGrid</b>
+                    <ul>
+                        <li><div>Added TreeGrid.showOpener property to not show opener icons at all</div></li>
+                        <li><div>Fixed TreeGrid.invalidateCache to handle loadDataOnDemand:false trees</div></li>
+                        <li><div>Fixed gridSummaries for databound TreeGrids</div></li>
+                        <li><div>Fixed TreeGrid.setViewState(..) not re-selecting nodes</div></li>
+                        <li><div>Fixed TreeGrid.setSelectionType(MULTIPLE) selection behavior when selectionAppearance is "checkbox"</div></li>
+                        <li><div>For a cascade selection, loadOnDemand TreeGrid, push a full selection from parent down to the children upon load</div></li>
+
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>Calendar</b>
+                    <ul>
+                        <li><div>Added support for 24h based Calendars</div></li>
+                        <li><div>Calendar fix for issue where two overlapping events less than half an hour in length would be incorrectly rendered</div></li>
+                        <li><div>Fixed issue where Calendar.scrollToToday scrolls too far</div></li>
+                        <li><div>Handle the user selecting 0 hours (midnight) for the end date and ensuring the date doesn't end up incremented by more than one day</div></li>
+                        <li><div>Fixed Calendar issue where events that start and end in the hour starting at 12am caused an error</div></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>SectionStack</b>
+                    <ul>
+                        <li><div>Only show the 'pointer' cursor over canCollapse:true sections in a SectionStack</div></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>TileGrid</b>
+                    <ul>
+                        <li><div>Fixed TileGrid printing to work properly for orientation:vertical</div></li>
+                        <li><div>Fixed TileLayout issue where dragAppearance:'target' was breaking drag and drop</div></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>DynamicForm</b>
+                    <ul>
+                        <li><div>Fix wrapping of multiple Form Item icons in strict mode</div></li>
+                        <li><div>Added support for 'setRequired()' on a FormItem at runtime</div></li>
+                        <li><div>Exposed broswerSpellCheck property on DynamicForm and FormItem for enabling / disabling native browser spell check feature on text boxes</div></li>
+                        <li><div>Added DateItem.defaultDateChooserDate as a way to specify a default to show in the picker without specifying a default value for the item as a whole</div></li>
+                        <li><div>Added DynamicForm.getChangedValues() / getOldValues() -- allows you to get at the values remembered by 'rememberValues()'</div></li>
+                        <li><div>Added FormItem.canFocus property</div></li>
+                        <li><div>Added TextItem.printFullText attribute - if true, expand the text box to fit content</div></li>
+                        <li><div>Exposed textMatchStyle on SelectItem explicitly</div></li>
+                        <li><div>Fixed a DateItem bug whereby everyone in the eastern hemisphere would get off-by-one errors in dateTime items when picking dates from the chooser</div></li>
+                        <li><div>Fix for bug whereby entering dates into a DateTime item when the date crossed the Daylight Savings Time boundary would lead to the hours getting changed on blur</div></li>
+                        <li><div>Added support for specifying DateItem.emptyDisplayValue when in text mode</div></li>
+                        <li><div>Added support for specifying DateItem.showHintInField when in text mode</div></li>
+                        <li><div>Fix IE specific "blinking" of ComboBoxes on initial select</div></li>
+                        <li><div>SelectItem with multipleAppearance:"picklist" now supports comma separated formatted output (eg icons)</div></li>
+                        <li><div>Fixed issue where tabbing into a DateItem in useTextField:true mode caused the value to be saved as null instead of left to default value</div></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>DetailViewer</b>
+                    <ul>
+                        <li><div>Fixed issue if DetailViewer was given just a singular object as data</div></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <div><b>TabSet</b>
+                    <ul>
+                        <li><div>Support for Tab title user editing (TabSet.canEditTabTitles and Tab.canEditTitle properties)</div></li>
+                        <li><div>Added TabSet.paneMargin property</div></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>Other</b>
+                    <ul>
+                        <li><div>i18n enhancements</div></li>
+                        <li><div>Improved Selenium support</div></li>
+                        <li><div>Added support for hover components on any Canvas using Canvas.showHoverComponents and overriding getHoverComponent()</div></li>
+                        <li><div>Fixed bug where dates already in UTC would be applied a UTC offset</div></li>
+                        <li><div>36 <a href="http://code.google.com/p/smartgwt/issues/list?can=1&q=label%3ASmartGWT-2.4">additional enhancements and bug fixes</a> that were logged in tracker</div></li>
+                    </ul>
+                </div>
+            </li>
+         </ul>
+
+ <a name="2_2"></a>
+      <h2>Release Notes for Smart GWT 2.2</h2>
+        <ul>
+            <li><div><b>Selenium support</b></div></li>
+            <li><div>Removed need for setting <b>isomorphicDir</b> variable in host html file</div></li>
+            <li>Support for the <b>prototype pattern</b> where the default attributes of a given Canvas (or subclass) can be user specified by passing a prototypical instance to the static method <b>[Canvas or subclass].setDefaultProperties(Canvas or subclass prototype instance)</b></li>
+            <li><div>Added <b>DateRangeItem</b>, <b>MiniDateRangeItem</b> and <b>Relative Date</b> support to DynamicForm</div></li>
+            <li><div><b>Javadoc enhancements</b> : Over 200 API's now have relevant Showcase example in the @see links</div></li>
+            <li><div>Several new <a href="http://www.smartclient.com/smartgwt/showcase/" target="_blank">Showcase</a> samples under the "New Samples" side nav</div></li>
+            <li>
+                <div><b>ListGrid</b>
+                    <ul>
+                        <li>Performance improvements</li>
+                        <li>Editable grid related fixes</li>
+                        <li><div>Added ListGrid.isPartiallySelected(record) API.</div></li>
+                        <li><div>Changed the default recordComponentPoolingMode to "viewport"</div></li>
+                        <li><div>Enhancements to make grouping / editing / autoSaveEdits:false work better</div></li>
+                        <li>Setting canFilter:false on an image field now results in no icon in filterEditor</li>
+                        <li>With multi-level grouping and groupTitleField set, subgroups now shows indentation</li>
+                        <li><div>Support for showHintInField for editable ListGrid fields</div></li>
+                        <li><div>Make the "select all" checkbox header be disabled only when all rows aren't cached. As soon as all rows become cached, enable it.</div></li>
+                        <li>For a user-created field, offer a "Remove [summary|formula] field" context menu item that removes the field (not just hides it)</li>
+                        <li>Fixed row-numbering when grouped - now skips group-header rows when counting</li>
+                        <li>Fixes for unnecessary fetches when scrolling to data provided via an ResultSet initialized with a sparse array</li>
+                        <li>Fixed show/hideField and freeze/unfreezeField with recordComponents</li>
+                        <li><div>Fix of issue where shorter total column length than overall grid length was causing the rolloverCanvas to be misaligned</div></li>
+                        <li>Fixed sorting when grouped</li>
+                        <li><div>Fix for issue where rollOver styling could get stuck on the first row edited if modal editing was true</div></li>
+                        <li><div>Fix for issue where selectionState wasn't properly re-applied after grouping</div></li>
+                        <li><div>Fixed recordComponentsByCell bug that misaligned controls on scroll</div></li>
+                        <li><div>Fix getSortState() always returned null for the current sort-field</div></li>
+                        <li><div>Fix virtualScrolling and recordComponents in the presence of a frozen body</div></li>
+                        <li><div>Fix for issue where setViewState was not allowing user-shown fields to get passed as visible to the component.</div></li>
+                        <li><div>With checkbox selection and summary rows, summary rows are no longer selectable (no checkbox appear)</div></li>
+                        <li><div>Fix issue where checkbox field hover was wrongly appearing for all rows instead of just the checkbox header</div></li>
+                        <li><div>Fix issue where collapsing a record that also had a recordComponent would remove the first component embedded on the record</div></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>TreeGrid</b>
+                    <ul>
+                        <li><div>Support separateFolders without forcing sorting by title</div></li>
+                        <li><div>New attribute sortFoldersBeforeLeaves</div></li>
+                        <li><div>New property Tree.indexByLevel causes us to maintain an set of indices of nodes, one for each level of the Tree </div></li>
+                        <li><div>New method Tree.getLevelNodes() returns the set of nodes at a particular level of the Tree, or optionally at a particular level below an arbitrary node in the Tree.</div></li>
+                        <li><div>Fixed Tree sort normalizer not handling floats correctly</div></li>
+                        <li><div>Fixes related to reparenting nodes</div></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>FilterBuilder</b>
+                    <ul>
+                        <li><div>Various enhancements</div></li>
+                        <li><div>Fixed occasional bad drawing problem in Chrome/Windows and Chrome/Safari/Mac</div></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <div><b>DynamicForm</b>
+                    <ul>
+                        <li><div>Support for FormItem cell height</div></li>
+                        <li><div>DynamicForm editing of AdvancedCriteria now supported</div></li>
+                        <li><div>Fix for validation errors not being displayed properly when a FileItem is included on a form</div></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>Other</b>
+                    <ul>
+                        <li><div>i18n enhancements</div></li>
+                        <li><div>Multi-property sort support for ResultSet and RecordList</div></li>
+                        <li><div>Improved TileView print support</div></li>
+                        <li><div>In Safari / Chrome in strict mode we have to use "pointer" rather than "hand" to get the pointy-finger cursor</div></li>
+                        <li><div>Fixed Development Mode issue with callbacks having a boolean return value</div></li>
+                        <li><div>Fixed timezone bug with dateTime formatting</div></li>
+                        <li>Better Transitional Doctype support</li>
+                        <li><div>Dev Console Enhancements : Ability to capture Selenium scLocator string for last clicked element</div></li>
+                        <li><div>Support DataSource.cacheAllData which causes a DataSource to load and cache all available data for a DataSource the first time there is a request to fetch data.</div></li>
+                        <li><div>Added DataSource.cacheMaxAge</div></li>
+                        <li><div>Allow reordering of ResultSets: implement the methods on ResultSet necessary to allow client-side reorder</div></li>
+                        <li><div>Error reporting improvements. JS stack traces are logged for non-IE browsers as well</div></li>
+                        <li><div>20 <a href="http://code.google.com/p/smartgwt/issues/list?can=1&q=label:SmartGWT-2.2">additional enhancements and bug fixes</a> that were logged in tracker</div></li>
+                    </ul>
+                </div>
+            </li>
+         </ul>
+
+    <a name="2_1"></a>
+      <h2>Release Notes for Smart GWT 2.1</h2>
+        <ul>
+            <li><div><b>GWT 2.0.3 compatible</b></div></li>
+            <li><div><b>New Graphite theme</b></div></li>
+            <li>
+                <div><b>ListGrid enhancements</b>
+                    <ul>
+                        <li>Record RollOver controls</li>
+                        <li>RollUnder Canvas support</li>
+                        <li>Background components</li>
+                        <li>Support for arbitrary widgets in cells</li>
+                        <li>Ability to display row numbers</li>
+                        <li>setMaxExpandedRecords(..) to control max. number of simultaneous expanded records</li>
+                        <li>ListGridField.setCanDragResize(), setCanReorder(), setAutoFreeze(), setShouldPrint() API's</li>
+                        <li>Checkbox selection with grouping</li>
+                        <li>MultiColumn sort enhancements</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>TreeGrid enhancements</b>
+                    <ul>
+                        <li>Support for Checkbox tree with Cascade selection</li>
+                        <li>Support for tri-state checkboxes (selected, unselected, partial)</li>
+                        <li>Performance enhancements</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>ToolStrip enhancements</b>
+                    <ul>
+                        <li>Significant improvement in appearance</li>
+                        <li>Added ToolStripButton and ToolStripMenuButton classes</li>
+                        <li>Vertical ToolStrips</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>Print support enhancements</b>
+                    <ul>
+                        <li>ability to control which components display in print view</li>
+                        <li>print styling on a per-component basis</li>
+                        <li>support print window customizations</li>
+                        <li>API for the number of records displayed in print view (can be different from UI view)</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>Browser Plugins as widgets</b>
+                    <ul>
+                        <li>Flashlet widget</li>
+                        <li>Applet widget</li>
+                        <li>ActiveXControl widget</li>
+                        <li>SVG widget</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>Other Widget enhancements</b>
+                    <ul>
+                        <li>Window : support for footer controls</li>
+                        <li>Calendar : control dragability of events</li>
+                        <li>New IMenuButton &amp; IPickTreeItem classes with improved appearance</li>
+                        <li>AdvancedCriteria enhancements and support for programmatic construction</li>
+                        <li>SectionStack drag reordering support</li>
+                        <li>FilterBuilder support for working with very large number of fields</li>
+                        <li>Convenience FormItem.setRequiredMessage(..) API</li>
+                        <li>TileGrids now automatically relayout if a tile resizes</li>
+                        <li>Added support for grouping for formula and summary fields</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>Performance enhancements</b>
+                    <ul>
+                        <li>Snappier TreeGrid expand / collapse</li>
+                        <li>Faster Canvas resize</li>
+                        <li>Faster Tab close (deferred destroy)</li>
+                    </ul>
+                </div>
+            </li>
+            <li><div>Logging of warnings and error to the GWT Developer Console in addition to the Smart GWT Dev. Console.</div></li>
+            <li><div>Improved exception handling and reporting.</div></li>
+            <li><div>i18n enhancements</div></li>
+            <li><div><a href="http://www.smartclient.com/smartgwt/showcase/" target="_blank">Showcase</a> enhancements and several new samples under the "New Samples" side nav</div></li>
+            <li><div>27 <a href="http://code.google.com/p/smartgwt/issues/list?can=1&q=label:SmartGWT-2.1">additional enhancements and bug fixes</a> that were logged in tracker</div></li>
+        </ul>
+
+    <a name="2_0"></a>
+      <h2>Release Notes for Smart GWT 2.0</h2>
+        <div>- GWT 2.0 support</div>
+        <div>- New Enterprise Blue theme, and significant improvements to Enterprise Gray Skin. Other skins deprecated and will have replacements in a future release.</div>
+        <div>- Theme specific collection of standard Window Icons, Picker Icons and Transfer Button icons as part of the core library.</div>
+        <div>- MS Excel like MultiColumn sort capabilities for ListGrid</div>
+        <div>- Support for ListGrid row expansions with in built expansion modes like details, editable form, related records as well
+            as allowing the user to display a custom widget via the override point ListGrid.getExpansionComponent(record)</div>
+        <div>- Exposed getGridSummary(field) as an override point. This allows you to return an entirely custom summary row value for any field</div>
+        <div>- Added the following methods to FormItem: setValueFormatter , setEditorValueFormatter and setEditorValueParser. These allow the user to customize the
+            display and parsing of input in a FormItem.</div>
+        <div>- Enhancements to DetailViewer and TileGrid so better support working interchangeably with the Records from any other DataBoundComponent</div>
+        <div>- Disabled state of all components fully supported. Missing media added.</div>
+        <div>- Various enhancements to support IE8 and Safari strict mode</div>
+        <div>- Support for "center" Layout alignment setting.</div>
+        <div>- Added DateTimeItem form field type.</div>
+        <div>- Support for masking DateItem, DateTimeItem and TimeItem input fields.</div>
+        <div>- Added Canvas.showClickMask(..) to do an 'auto-dismiss on outside click' type behavior on a component</div>
+        <div>- Fixed overflow issue with ListGrid.addData() under certain circumstances</div>
+        <div>- Fixed XSD support regression on Chrome / Safari</div>
+        <div>- Fixed "Too much recursion" issue with ValuesManager</div>
+        <div>- Fixed WSDL regression</div>
+        <div>- Javadoc improvements to link to GWT and JDK Javadoc APIs respectively</div>
+        <div>- Numerous new samples and improvements to the Showcase demo main page</div>
+        <div>- <a href="http://code.google.com/p/smartgwt/issues/list?can=1&q=label%3ASmartGWT-2.0">Various</a> additional enhancements and bug fixes that were logged in tracker</div>
+        <div>- See the detailed <a href="api-changes.html">API Changes</a> document</div>
+      <hr/>
+      <a name="1_3"></a>
+      <h2>Release Notes for Smart GWT 1.3</h2>
+        <p>In this release the SmartGwt modules have been slightly refactored so that by default the compile output does not include debug sources, unused resources, developer tools etc.
+            Some users were getting the wrong impression that the size of the compiled output was the size of their application. Most users are probably using either
+            <b>com.smartgwt.SmartGwt</b> or <b>com.smartgwt.SmartGwtNoScript</b> and will be unaffected by this refactoring. You will only notice that the compile output is a lot
+            smaller as it does not include the debug / readable source js files, and the developer console files. The most important change to keep in mind is that in order to use the Developer Console
+            (ie SC.showConsole() ), you will now need to inherit the following module : <b>&lt;inherits name="com.smartgwt.tools.SmartGwtTools"/&gt;</b></p>
+
+            <p>Users that happen be using <b>com.smartgwt.SmartGwtDebug</b> will need to inherit <b>com.smartgwt.debug.SmartGwtDebug</b> instead.</p>
+        <hr/>
+        <div>- Grid Summary support from group and columns</div>
+        <div>- Masking support for form text fields</div>
+        <div>- Support for user-defined reusable SimpleTypes for use in DataSources (eg ZipCode type)</div>
+        <div>- In-field hints support for SelectItem, ComboBoxItem and TextAreaItem</div>
+        <div>- Support for Finnish locale and other i18n enhancements</div>
+        <div>- TextAreaItem.getSelectedText() support</div>
+        <div>- Improved support for use of Smart GWT and MVP pattern</div>
+        <div>- FilterBuilder fixes</div>
+        <div>- RPCManager enhancements</div>
+        <div>- Ability to control order of month day and year selector in DateItem</div>
+        <div>- <a href="http://code.google.com/p/smartgwt/issues/list?can=1&q=label%3ASmartGWT-1.3">Various</a> additional enhancements and bug fixes that were logged in tracker</div>
+        <div>- New examples including a Grid Summary example in the Smart GWT Showcase (see "New Samples" side nav item in the Showcase)</div>
+      <hr/>
+
+      <a name="1_2"></a>
+      <h2>Release Notes for Smart GWT 1.2</h2>
+        <div>- Significant improvement in integration with core GWT widgets</div>
+        <div>- Hosted mode performance improvements</div>
+        <div>- GWT 1.7 support</div>
+        <div>- Updated Showcase sample to new GWT project structure</div>
+        <div>- Fully implemented the ResultSet API</div>
+        <div>- ListGrid performance enhancements</div>
+        <div>- Full support for Safari 4.0</div>
+        <div>- I18n enhancements.</div>
+        <div>- Support for Grid editing with all editors shown</div>
+        <div>- Auto-loading of dependent XML schema for loadWSDL() and loadXMLSchema()</div>
+        <div>- Extended WebService APIs to allow simplified input data and allow setting SOAP headers</div>
+        <div>- Numerous enhancements. See the detailed <a href="api-changes.html">API Changes</a> document</div>
+        <div>- enhancements to RPC Tab in Developer Console (shows component that initiated request, if applicable)</div>
+        <div>- <a href="http://code.google.com/p/smartgwt/issues/list?can=1&q=label%3ASmartGWT-1.2">Around 35</a> additional enhancements and bug fixes that were logged in tracker</div>
+        <div>- New examples including a mini-app in the Smart GWT Showcase (see "New Samples" side nav item in the Showcase)</div>
+
+      <hr/>
+      <a name="1_1"></a>
+      <h2>Release Notes for Smart GWT 1.1</h2>
+        <div>- <b>Unified DataBoundComponent</b> interface which is implemented by DynamicForm, ListGrid, TreeGrid, Menu, ColumnTree, TileGrid, DetailViewer and Calendar.</div>
+        <div>- Consistent representation of a Record which can be used by any DataBoundComponent</div>
+        <div>- Support for <b>GWT-RPC DataSource</b> with DataBoundComponents</div>
+        <div>- Various component and skin <b>performance improvements</b></div>
+        <div>- <b>Formula and Summary fields</b>: built-in wizards for end users to define formula fields that can compute values using other fields, or summary fields
+            that can combine other fields with intervening / surrounding text. Available in all DataBoundComponents, easy to persist as preferences</div>
+        <div>- <b>I18n support</b> with resource bundles from 14 locales</div>
+        <div>- Significant <b>improvements to Javadocs</b> with tons of documentation on various concepts. (over 30MB on disk)</div>
+        <div>- API's to save and restore the display and selection state of various components to/from the server</div>
+        <div>- <b>Automatic databound dragging</b> behaviors: grids and trees will now inspect data relations declared in DataSources and automatically “do the right thing” for a databound drag</div>
+        <div>- Numerous enhancements. See the detailed <a href="api-changes.html">API Changes</a> document</div>
+        <div>- <a href="http://code.google.com/p/smartgwt/issues/list?can=1&q=label%3ASmartGWT-1.0b3">Over 50</a> additional enhancements and bug fixes that were logged in tracker</div>
+        <div>- Several new events and extension points on various components to allow advanced usage</div>
+        <div>- A helloworld-1.6 starter project for Smart GWT with GWT 1.6</div>
+        <div>- Several new examples in the Smart GWT Showcase (see "New Samples" side nav item in the Showcase)</div>
+
+      <h3>Key API's added</h3>
+
+      <h4>DateUtil</h4>
+        <div>- Ability to globally set the Date input and rendered formats across the application</div>
+
+      <h4>DataBoundComponent</h4>
+        <div>- ability to select / deselect records, fetch / filter data and carry out various other operations on any DataBoundComponent</div>
+
+      <h4>DataSource and DataSourceField</h4>
+        <div>- ability to specify custom field value extractor logic for a given DataSourceField</div>
+        <div>- API's to control http caching and result batch size</div>
+        <div>- DataSourceField.setCanSortClientOnly</div>
+
+       <h4>Window</h4>
+        <div>- listeners for minimize, maximize, restore and close</div>
+
+        <h4>Calendar</h4>
+        <div>- support for customizing event edit dialog fields</div>
+        <div>- event remove listener</div>
+
+      <h4>Forms</h4>
+        <div>- convenience constructors for various FormItems</div>
+        <div>- support for customizing form field and title tooltips</div>
+        <div>- TextItem : support for character casing and entry restrictions (regexp based)</div>
+        <div>- TextItem : support for hints displayed in-field</div>
+        <div>- ComboBoxItem : fetchDelay setting</div>
+        <div>- AutoFitTextAreaItem: autofits to contained text as the user types</div>
+
+       <h4>Column Tree (Miller Columns)</h4>
+        <div>- added node selected listener</div>
+
+        <h4>ListGrid</h4>
+            <div>- Grouping modes: built-in and custom grouping modes, such as the ability to group a date column by week, day, month or year</div>
+            <div>- added header click listener</div>
+            <div>- added record drop listener</div>
+            <div>- ability to customize grid groupings by record values and also group title</div>
+            <div>- support for adding custom formula and summary fields on the fly</div>
+            <div>- ability to register custom handler to control visibility of a ListGridField</div>
+            <div>- added ListGridField.setCanFreeze, ListGridField.setCanSort</div>
+
+        <h4>SectionStack (Accordion)</h4>
+            <div>- added section header click event</div>
+
+        <h4>TreeGrid</h4>
+            <div>- added folder drop listener</div>
+            <div>- ability to override getIcon() / getNodeTitle() to allow users to have custom node icon / title logic</div>
+      <hr/>
+
+      <a name="1_0_b2"></a>
+      <h2>Release Notes for Smart GWT 1.0 b2</h2>
+        <div>- GWT 1.6 M1 and M2 support. GWT 1.5.3 continues to be fully supported.</div>
+        <div>- New lightweight <b>Enterprise Gray</b> skin</div>
+        <div>- Performance improvements</div>
+        <div>- various API enhancements and bug fixes</div>
+        <div>- complete support for WebServices (WSDL)</div>
+        <div>- Additional Developer Tools (Inspect DOM and monitor RPC calls from hosted mode)</div>
+        <div>- <b>Portal</b> support and samples</div>
+        <div>- HTML based <b>Print Preview</b> support. No longer requires JSP.</div>
+        <div>- Support for auto-arranging and overlapping <b>Calendar</b> events</div>
+        <div>- Support for checkbox selection for ListGrids</div>
+        <div>- improved support for users to wire DataSource's with GWT-RPC calls</div>
+        <div>- Improved javadocs</div>
+        <div>- Separated additional skins into a smartgwt-skins.jar</div>
+        <div>- Chrome, Firefox 3.1, and OSX hosted mode support</div>
+
+      <hr/>
+      <a name="1_0_b1"></a>
+      <h2>Release Notes for Smart GWT 1.0 b1</h2>
+
+      <p>Initial Release</p>
+        <div><b>GWT 1.5.3</b> (or greater) required</div>
+   </body></html>
+
