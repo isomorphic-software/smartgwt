@@ -201,6 +201,37 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
+     * Only applicable when exporting to native spreadsheet formats <code>XLS</code> and  <code>OOXML</code>. <p> If set, we
+     * export date fields as strings that exactly match the formatting present in the  {@link
+     * com.smartgwt.client.widgets.DataBoundComponent} from which we are exporting.  Note that this will mean  the values are
+     * plain strings in the spreadsheet. <p> The default behavior when this property is not set is to export date fields as
+     * real date  values in the spreadsheet, using whichever date format is prevalent (the format specified on the field in the
+     * component, the dataSourceField or the current system default, in that  order).  This may result in the spreadsheet cell
+     * having a different format to the value  that the user sees in the <code>DataBoundComponent</code> we are exporting from.
+     *
+     * @param exportDatesAsFormattedString exportDatesAsFormattedString Default value is null
+     */
+    public void setExportDatesAsFormattedString(Boolean exportDatesAsFormattedString) {
+        setAttribute("exportDatesAsFormattedString", exportDatesAsFormattedString);
+    }
+
+    /**
+     * Only applicable when exporting to native spreadsheet formats <code>XLS</code> and  <code>OOXML</code>. <p> If set, we
+     * export date fields as strings that exactly match the formatting present in the  {@link
+     * com.smartgwt.client.widgets.DataBoundComponent} from which we are exporting.  Note that this will mean  the values are
+     * plain strings in the spreadsheet. <p> The default behavior when this property is not set is to export date fields as
+     * real date  values in the spreadsheet, using whichever date format is prevalent (the format specified on the field in the
+     * component, the dataSourceField or the current system default, in that  order).  This may result in the spreadsheet cell
+     * having a different format to the value  that the user sees in the <code>DataBoundComponent</code> we are exporting from.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getExportDatesAsFormattedString()  {
+        return getAttributeAsBoolean("exportDatesAsFormattedString");
+    }
+
+    /**
      * The character to use as a field-separator in CSV exports.  The default delimiter is comma.
      *
      * @param exportDelimiter exportDelimiter Default value is ","
@@ -1053,6 +1084,7 @@ public class DSRequest extends RPCRequest {
     }
 
 }
+
 
 
 

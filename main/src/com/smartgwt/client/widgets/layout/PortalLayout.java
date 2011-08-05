@@ -296,7 +296,7 @@ public class PortalLayout extends Layout {
             var colNumJ = @java.lang.Integer::new(I)(colNum);
             var dropPositionJ = dropPosition == null ? null : @java.lang.Integer::new(I)(dropPosition);
             var jPortlet = jObj.@com.smartgwt.client.widgets.layout.PortalLayout::getDropPortlet(Lcom/smartgwt/client/widgets/Canvas;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)(dragTargetJ,rowNumJ,colNumJ,dropPositionJ);
-            return jPortlet.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
+            return jPortlet == null ? null : jPortlet.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
 
         });
         

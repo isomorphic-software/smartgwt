@@ -426,7 +426,7 @@ public class DateItem extends FormItem {
      * property allows customization of the  order of the day, month and year selector fields.  If unset these fields will
      * match the specified inputFormat for this item. <P> Note: selectors may be ommitted entirely by setting selectorFormat to
      * (for example)  <code>"MD"</code>. In this case the value for the omitted selector will match the {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue defaultValue} specified for the item.  For example, if
+     * com.smartgwt.client.widgets.form.fields.DateItem#getDefaultValue defaultValue} specified for the item.  For example, if
      * the selector format is "MD" (month and day only), the year comes from the Date specified as the defaultValue.
      *
      * @param selectorFormat selectorFormat Default value is null
@@ -440,7 +440,7 @@ public class DateItem extends FormItem {
      * property allows customization of the  order of the day, month and year selector fields.  If unset these fields will
      * match the specified inputFormat for this item. <P> Note: selectors may be ommitted entirely by setting selectorFormat to
      * (for example)  <code>"MD"</code>. In this case the value for the omitted selector will match the {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue defaultValue} specified for the item.  For example, if
+     * com.smartgwt.client.widgets.form.fields.DateItem#getDefaultValue defaultValue} specified for the item.  For example, if
      * the selector format is "MD" (month and day only), the year comes from the Date specified as the defaultValue.
      *
      *

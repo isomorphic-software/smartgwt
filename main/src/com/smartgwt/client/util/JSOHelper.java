@@ -96,7 +96,7 @@ public class JSOHelper {
     }-*/;
 
     public static native boolean isArray(JavaScriptObject jsObj)/*-{
-        return $wnd.isA.Array(jsObj);
+        return $wnd.isc.isA.Array(jsObj);
     }-*/;
     
     public static Element[] toElementArray(JavaScriptObject array) {

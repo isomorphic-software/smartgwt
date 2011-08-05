@@ -961,8 +961,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *  descriptor (.ds.xml file) and control server-side behavior such as what Java object to route
      * DSRequest to ({@link com.smartgwt.client.docs.serverds.OperationBinding#serverObject serverObject}) or customizations to
      * SQL / HQL queries
-     * ({@link com.smartgwt.client.docs.serverds.OperationBinding#customSQL customSQL} and {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#customHQL customHQL}).  See the 
+     * ({@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} and {@link
+     * com.smartgwt.client.data.OperationBinding#getCustomHQL customHQL}).  See the 
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#javaDataIntegration" target="examples">Java Integration
      * samples</a>.
      *  <P>
@@ -1027,8 +1027,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *  descriptor (.ds.xml file) and control server-side behavior such as what Java object to route
      * DSRequest to ({@link com.smartgwt.client.docs.serverds.OperationBinding#serverObject serverObject}) or customizations to
      * SQL / HQL queries
-     * ({@link com.smartgwt.client.docs.serverds.OperationBinding#customSQL customSQL} and {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#customHQL customHQL}).  See the 
+     * ({@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} and {@link
+     * com.smartgwt.client.data.OperationBinding#getCustomHQL customHQL}).  See the 
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#javaDataIntegration" target="examples">Java Integration
      * samples</a>.
      *  <P>
@@ -1958,7 +1958,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * this DSResponse will <b>not</b> go through {@link com.smartgwt.client.data.DataSource#transformResponse
      * DataSource.transformResponse} or other processing that would normally occur for a DSResponse resulting from a DSRequest
      * sent by  the application in this page.
-     * @param dsResponse the provided DSResponse must minimally have                                 dataSource, operationType, and data set
+     * @param dsResponse 
      */
     public native void updateCaches(DSResponse dsResponse) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -1985,9 +1985,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * this DSResponse will <b>not</b> go through {@link com.smartgwt.client.data.DataSource#transformResponse
      * DataSource.transformResponse} or other processing that would normally occur for a DSResponse resulting from a DSRequest
      * sent by  the application in this page.
-     * @param dsResponse the provided DSResponse must minimally have                                 dataSource, operationType, and data set
-     * @param dsRequest optional dsRequest.  If not specified, a DSRequest will be                                automatically created based on
-     * the DataSource and operationType of                                the DSResponse
+     * @param dsResponse 
+     * @param dsRequest 
      */
     public native void updateCaches(DSResponse dsResponse, DSRequest dsRequest) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -2026,17 +2025,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }-*/;
 
     // ********************* Static Methods ***********************
-            
-    /**
-     * Create a copy of a criteria.
-     *
-     * @return copy of criteria
-     */
-    public static native Criteria copyCriteria() /*-{
-        var ret = $wnd.isc.DataSource.copyCriteria();
-        if(ret == null || ret === undefined) return null;
-        return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-    }-*/;
         
     // ***********************************************************        
 
@@ -2074,14 +2062,15 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         });
 
         self.__getClientOnlyResponse = self.getClientOnlyResponse;
-        self.getClientOnlyResponse = $entry(function(dsRequest) {
+        self.getClientOnlyResponse = $entry(function(dsRequest, serverData) {
             var jObj = this.__ref;
             if(jObj === undefined) {
                 //handle case where oneTimeDS is cared from original DS (when clientOnly=true with dataURL)
                 jObj = $wnd.isc.DS.get(this.inheritsFrom).__ref;
             }
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
-            var responseJ = jObj.@com.smartgwt.client.data.DataSource::getClientOnlyResponse(Lcom/smartgwt/client/data/DSRequest;)(requestJ);
+            var serverDataJ = serverData == null ? null : @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(serverData);
+            var responseJ = jObj.@com.smartgwt.client.data.DataSource::getClientOnlyResponse(Lcom/smartgwt/client/data/DSRequest;[Lcom/smartgwt/client/data/Record;)(requestJ,serverDataJ);
             return responseJ == null ? null : responseJ.@com.smartgwt.client.data.DSResponse::getJsObj()();
         });
 
@@ -2429,16 +2418,27 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }-*/;
 
     /**
-     * Return a "spoofed" response for a {@link com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource.&#010 <P>&#010 The default implementation will {@link com.smartgwt.client.data.DataSource#getTestData testData} to provide an appropriate&#010 response, by using {@link com.smartgwt.client.data.DataSource#applyFilter} for a "fetch" request, and&#010 by modifying the <code>testData</code> for other requests.&#010 <P>&#010 Override this method to provide simulations of other server-side behavior, such as&#010 modifying other records, or to implement <b>synchronous</b> client-side data providers&#010 (such as Google Gears).  For <b>asynchronous</b> third-party data provides, such as&#010 GWT-RPC, HTML5 sockets, or bridges to plug-in based protocols (Java, Flash,&#010 Silverlight..), use ${isc.DocUtils.linkForRef('DSDataProtocol','dataProtocol:"clientCustom"')} instead. &#010 <P>&#010 Overriding this method is also a means of detecting that a normal DataSource (not&#010 clientOnly) would be contacting the server.&#010&#010
+     *  Return a "spoofed" response for a  {@link com.smartgwt.client.data.DataSource#getClientOnly clientOnly} or  {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} DataSource.
+     *  <p>
+     *  The default implementation will use DataSource.cacheData or testData to provide an appropriate response, by using client-side filtering for a "fetch" request, and by modifying the cacheData for other requests.
+     *  Override this method to provide simulations of other server-side behavior, such as modifying other records, or to implement synchronous client-side data providers (such as Google Gears).
+     *  <P>
+     *  For asynchronous third-party data providers, such as GWT-RPC, HTML5 sockets, or bridges to plug-in based protocols (Java, Flash, Silverlight..), use
+     *  {@link com.smartgwt.client.types.DSProtocol,'dataProtocol:"clientCustom"')} instead.
+     *  <p>
+     *  Overriding this method is also a means of detecting that a normal DataSource (not clientOnly) would be contacting the server. 
+     *  
      * <p>
      * <b>Note</b>: This is an override point
      * @param request DataSource request to respond to
+     * @param for cacheAllData DataSources, the data from the local cache
      *
      * @return DSResponse
     */
-    protected native DSResponse getClientOnlyResponse(DSRequest request) /*-{
+    protected native DSResponse getClientOnlyResponse(DSRequest request, Record[] serverData) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var ret = self.__getClientOnlyResponse(request.@com.smartgwt.client.data.DSRequest::getJsObj()());
+        var serverDataJS = serverData == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(serverData);
+        var ret = self.__getClientOnlyResponse(request.@com.smartgwt.client.data.DSRequest::getJsObj()(), serverDataJS);
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
@@ -2925,7 +2925,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @param record to be copied   
      * @return {@link Record}
      */
-    public native Record copyRecord(Record record)/*-{
+    public native Record copyRecord(Record record) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();        
         return @com.smartgwt.client.data.Record::new(Lcom/google/gwt/core/client/JavaScriptObject;)(self.copyRecord(recordJS));
@@ -3389,26 +3389,9 @@ nent has been created
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
+
     
-    /** 
-     * Split a criteria apart based on <code>fields</code>. A new simple criteria is returned with any criteria applicable to 
-     * the specified fields. The passed <code>criteria</code> is then <u>modified</u> to remove these fields resulting in two 
-     * distinct criteria.
-     * <P>
-     * Incoming criteria can be a simple or advanced criteria. For an +link{AdvancedCriteria} only a single level of criteria 
-     * with a top-level operator of "and" is supported.
-     * <P>
-     * To avoid modifying an original criteria, use +link{dataSource.copyCriteria} to make a copy to be passed in.
-     * @param criteria criteria to be split. May be modified if criteria is extracted.
-     * @param fields array of field names to extract from criteria
-     * @return extracted criteria
-     */
-    public native Criteria splitCriteria(Criteria criteria, String[] fields) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var jsCrit = criteria == null ? null : criteria.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var ret = self.splitCriteria(jsCrit, @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(fields));
-        return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-    }-*/;
+
 }
 
 

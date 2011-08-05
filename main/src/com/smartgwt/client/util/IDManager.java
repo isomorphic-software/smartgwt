@@ -15,9 +15,10 @@ public class IDManager {
     // We therefore check for window[ID] being already assigned and we track SGWT IDs that haven't yet been
     // assigned to live JS objects in the global scope by maintaining a hashSet of assigned IDs
     private static HashSet<String> assignedIDs = new HashSet<String>();
+
     public static void isValidID(String id) {
         assert id.matches("[a-zA-Z_$][0-9a-zA-Z_$]*") : "Invalid ID : " + id+ ". Valid ID's must meet the following pattern [a-zA-Z_$][0-9a-zA-Z_$]*";
-        
+
         if (assignedIDs.contains(id)) {
             SC.logWarn("Specified ID:" + id + " collides with the ID for an existing SmartGWT component or object.");
             return;

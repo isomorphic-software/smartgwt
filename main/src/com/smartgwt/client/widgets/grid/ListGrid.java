@@ -2858,7 +2858,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * generateClickOnSpace}, {@link com.smartgwt.client.widgets.grid.ListGrid#getGenerateDoubleClickOnSpace
      * generateDoubleClickOnSpace}, {@link com.smartgwt.client.widgets.grid.ListGrid#getGenerateClickOnEnter
      * generateClickOnEnter} and  {@link com.smartgwt.client.widgets.grid.ListGrid#getGenerateDoubleClickOnEnter
-     * generateDoubleClickOnEnter}.
+     * generateDoubleClickOnEnter}. <P> If {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} is false, or
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent} is set to "none" this property has no effect.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param editOnF2Keypress editOnF2Keypress Default value is true
@@ -2876,7 +2877,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * generateClickOnSpace}, {@link com.smartgwt.client.widgets.grid.ListGrid#getGenerateDoubleClickOnSpace
      * generateDoubleClickOnSpace}, {@link com.smartgwt.client.widgets.grid.ListGrid#getGenerateClickOnEnter
      * generateClickOnEnter} and  {@link com.smartgwt.client.widgets.grid.ListGrid#getGenerateDoubleClickOnEnter
-     * generateDoubleClickOnEnter}.
+     * generateDoubleClickOnEnter}. <P> If {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} is false, or
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent} is set to "none" this property has no effect.
      *
      *
      * @return Boolean
@@ -3426,6 +3428,26 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public String getFieldVisibilitySubmenuTitle()  {
         return getAttributeAsString("fieldVisibilitySubmenuTitle");
+    }
+
+    /**
+     * The prompt to show when the mouse hovers over the Filter button in the FilterEditor.
+     *
+     * @param filterButtonPrompt filterButtonPrompt Default value is "Filter"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setFilterButtonPrompt(String filterButtonPrompt)  throws IllegalStateException {
+        setAttribute("filterButtonPrompt", filterButtonPrompt, false);
+    }
+
+    /**
+     * The prompt to show when the mouse hovers over the Filter button in the FilterEditor.
+     *
+     *
+     * @return String
+     */
+    public String getFilterButtonPrompt()  {
+        return getAttributeAsString("filterButtonPrompt");
     }
 
     /**
@@ -6288,7 +6310,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * com.smartgwt.client.widgets.grid.ListGridField#getSummaryFunction field summary functions} are defined for some field
      * only the first will be displayed when this property is set to true.
      *
-     * @param showGroupSummaryInHeader showGroupSummaryInHeader Default value is false
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Setter for {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummaryInHeader showGroupSummaryInHeader}
+     *
+     * @param showGroupSummaryInHeader new showGroupSummaryInHeader state. Default value is false
      * @see com.smartgwt.client.widgets.grid.ListGrid#groupBy
      */
     public void setShowGroupSummaryInHeader(Boolean showGroupSummaryInHeader) {
@@ -12547,8 +12572,13 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @param  criteria new criteria to show
      */
     public native void setCriteria(Criteria criteria) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setCriteria(criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()());
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+                self.setCriteria(criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()());
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.initialCriteria = (criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()());
+        }
     }-*/;
 
     /**
@@ -13392,6 +13422,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         
         self.getEditorProperties = $debox($entry(function(editField, editedRecord, rowNum) {
             var editProperties = this.Super("getEditorProperties", arguments);
+            
             var editorContext = { 
                 defaultProperties:editProperties,
                 rowNum:rowNum,
@@ -13402,8 +13433,15 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             
             var customizerJ = this.editorCustomizer;
             var editorJ = customizer.@com.smartgwt.client.widgets.grid.ListGridEditorCustomizer::getEditor(Lcom/smartgwt/client/widgets/grid/ListGridEditorContext;)(editorContextJ);
-        
-            return editorJ == null ? null : editorJ.@com.smartgwt.client.widgets.form.fields.FormItem::getEditorTypeConfig()();
+            
+            var editorJS = editorJ == null ? null : editorJ.@com.smartgwt.client.widgets.form.fields.FormItem::getEditorTypeConfig()();
+            // Apply custom properties on top of standard item defaults.
+            // This ensures field.type, field-level change handlers etc should be picked up even if
+            // an otherwise custom item is provided.
+            if (editorJS != editProperties) {
+                $wnd.isc.addProperties(editProperties, editorJS);
+            }
+            return editProperties;
         }));
         
     }-*/;    

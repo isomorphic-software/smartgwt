@@ -282,36 +282,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Is this form item editable or read-only? Setting the form item to non-editable causes it to render as read-only. Can be
-     * updated at runtime via the <code>setCanEdit()</code> method. <P> This setting differs from the enabled/disabled state in
-     * that most form items will allow copying of the contents while read-only but do not while disabled.
-     *
-     * <br><br>If this method is called after the component has been drawn/initialized:
-     * Is this form item editable or read-only? Setting the form item to non-editable causes it to render as read-only. <P> This setting differs from the enabled/disabled state in that most form items will allow copying of the contents while read-only but do not while disabled.
-     *
-     * @param canEdit Can this form item be edited?. Default value is null
-     * @see com.smartgwt.client.widgets.form.fields.FormItem#setCanEdit
-     * @see com.smartgwt.client.widgets.form.DynamicForm#setCanEdit
-     */
-    public void setCanEdit(Boolean canEdit) {
-        setAttribute("canEdit", canEdit);
-    }
-
-    /**
-     * Is this form item editable or read-only? Setting the form item to non-editable causes it to render as read-only. Can be
-     * updated at runtime via the <code>setCanEdit()</code> method. <P> This setting differs from the enabled/disabled state in
-     * that most form items will allow copying of the contents while read-only but do not while disabled.
-     *
-     *
-     * @return Boolean
-     * @see com.smartgwt.client.widgets.form.fields.FormItem#setCanEdit
-     * @see com.smartgwt.client.widgets.form.DynamicForm#setCanEdit
-     */
-    public Boolean getCanEdit()  {
-        return getAttributeAsBoolean("canEdit");
-    }
-
-    /**
      * Is this form item focusable? Setting this property to true on an otherwise non-focusable element such as a {@link
      * com.smartgwt.client.widgets.form.fields.StaticTextItem} will cause the item to be included in the page's tab order and
      * respond to keyboard events.

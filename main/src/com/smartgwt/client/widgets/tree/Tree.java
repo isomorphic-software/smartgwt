@@ -1139,7 +1139,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         setAttribute("data", nodes, false);
     }
 
-    public ListGridRecord[] getData() {
+  public ListGridRecord[] getData() {
         JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
         ListGridRecord[] data = convertToTreeNodeRecordArray(dataJS);
         return data;
@@ -1203,45 +1203,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         var parentJ = @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(parent);
         return parentJ;
     }-*/;
-    
-    /**
-     * Filters this tree by the provided criteria, returning a new Tree containing just the nodes that match the criteria. <P>
-     * If <code>filterMode</code> is "keepParents", parents are retained if any of their children match the criteria even if
-     * those parents do not match the criteria.
-     * @param criteria criteria to filter by
-     *
-     * @return filtered tree
-     */
-    public native Tree getFilteredTree(Criteria criteria) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var ret = self.getFilteredTree(criteria);
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.core.BaseClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.tree.Tree::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
-    }-*/;
 
-    /**
-     * Filters this tree by the provided criteria, returning a new Tree containing just the nodes that match the criteria. <P>
-     * If <code>filterMode</code> is "keepParents", parents are retained if any of their children match the criteria even if
-     * those parents do not match the criteria.
-     * @param criteria criteria to filter by
-     * @param filterMode mode to use for filtering, defaults to "strict"
-     * @param dataSource dataSource to use for filtering, if this Tree does not                                  already have one
-     *
-     * @return filtered tree
-     */
-    public native Tree getFilteredTree(Criteria criteria, TreeFilterMode filterMode, DataSource dataSource) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var ret = self.getFilteredTree(criteria, filterMode, dataSource.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()());
-        var retVal = @com.smartgwt.client.core.BaseClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.tree.Tree::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
-    }-*/;
 
     /**
      * This method is provided as a mechanism to link new nodes into the tree of modelType "parent".  This method

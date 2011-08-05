@@ -3,6 +3,17 @@ package com.smartgwt.client.docs;
 
 /**
  * Width and height of an object
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getRect
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getPageRect
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getVisibleHeight
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getIconHeight
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getWidth
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getVisibleWidth
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getIconWidth
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getLeft
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getTop
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getDrawnRowHeight
+ * @see com.smartgwt.client.widgets.grid.ListGrid#setHeaderHeight
  * @see com.smartgwt.client.widgets.Canvas#setRect
  * @see com.smartgwt.client.widgets.Canvas#getWidth
  * @see com.smartgwt.client.widgets.Canvas#setWidth
@@ -29,17 +40,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#parentResized
  * @see com.smartgwt.client.widgets.Canvas#setOverflow
  * @see com.smartgwt.client.widgets.Canvas#adjustForContent
- * @see com.smartgwt.client.widgets.form.fields.FormItem#getRect
- * @see com.smartgwt.client.widgets.form.fields.FormItem#getPageRect
- * @see com.smartgwt.client.widgets.form.fields.FormItem#getVisibleHeight
- * @see com.smartgwt.client.widgets.form.fields.FormItem#getIconHeight
- * @see com.smartgwt.client.widgets.form.fields.FormItem#getWidth
- * @see com.smartgwt.client.widgets.form.fields.FormItem#getVisibleWidth
- * @see com.smartgwt.client.widgets.form.fields.FormItem#getIconWidth
- * @see com.smartgwt.client.widgets.form.fields.FormItem#getLeft
- * @see com.smartgwt.client.widgets.form.fields.FormItem#getTop
- * @see com.smartgwt.client.widgets.grid.ListGrid#getDrawnRowHeight
- * @see com.smartgwt.client.widgets.grid.ListGrid#setHeaderHeight
  * @see com.smartgwt.client.util.Page#resizeTo
  * @see com.smartgwt.client.util.Page#getWidth
  * @see com.smartgwt.client.util.Page#getHeight
@@ -47,6 +47,16 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.util.Page#getScrollHeight
  * @see com.smartgwt.client.util.Page#getScrollLeft
  * @see com.smartgwt.client.util.Page#getScrollTop
+ * @see com.smartgwt.client.grid.GridRenderer#getFixedColumnWidths
+ * @see com.smartgwt.client.grid.GridRenderer#getAutoFit
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getBodyOverflow
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderHeight
+ * @see com.smartgwt.client.widgets.menu.Menu#getDefaultWidth
+ * @see com.smartgwt.client.widgets.menu.Menu#getCellHeight
+ * @see com.smartgwt.client.widgets.tile.TileLayout#getTileSize
+ * @see com.smartgwt.client.widgets.tile.TileLayout#getTileWidth
+ * @see com.smartgwt.client.widgets.tile.TileLayout#getTileHeight
+ * @see com.smartgwt.client.widgets.tile.TileLayout#getOverflow
  * @see com.smartgwt.client.widgets.Canvas#getWidth
  * @see com.smartgwt.client.widgets.Canvas#getHeight
  * @see com.smartgwt.client.widgets.Canvas#getDefaultWidth
@@ -70,16 +80,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.ImgButton#getAutoFit
  * @see com.smartgwt.client.widgets.StretchImgButton#getAutoFit
  * @see com.smartgwt.client.widgets.toolbar.ToolStrip#getHeight
- * @see com.smartgwt.client.grid.GridRenderer#getFixedColumnWidths
- * @see com.smartgwt.client.grid.GridRenderer#getAutoFit
- * @see com.smartgwt.client.widgets.grid.ListGrid#getBodyOverflow
- * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderHeight
- * @see com.smartgwt.client.widgets.menu.Menu#getDefaultWidth
- * @see com.smartgwt.client.widgets.menu.Menu#getCellHeight
- * @see com.smartgwt.client.widgets.tile.TileLayout#getTileSize
- * @see com.smartgwt.client.widgets.tile.TileLayout#getTileWidth
- * @see com.smartgwt.client.widgets.tile.TileLayout#getTileHeight
- * @see com.smartgwt.client.widgets.tile.TileLayout#getOverflow
  * @see com.smartgwt.client.types.Overflow
  */
 public interface Sizing {

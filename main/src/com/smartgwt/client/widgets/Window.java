@@ -46,7 +46,10 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -1203,8 +1206,8 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * @return {@link HandlerRegistration} used to remove this handler
      */
     public HandlerRegistration addCloseClickHandler(com.smartgwt.client.widgets.events.CloseClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.CloseClickEvent.getType()) == 0) setupCloseClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.CloseClickEvent.getType());
+        if(getHandlerCount(com.smartgwt.client.widgets.events.CloseClientEvent.getType()) == 0) setupCloseClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.CloseClientEvent.getType());
     }
 
     private native void setupCloseClickEvent() /*-{
@@ -1214,7 +1217,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
             obj.addProperties({closeClick:$entry(function(){
                         var param = {};
-                        var event = @com.smartgwt.client.widgets.events.CloseClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        var event = @com.smartgwt.client.widgets.events.CloseClientEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     })
              });
@@ -1222,7 +1225,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
             obj.closeClick = $entry(function(){
                    var param = {};
-                   var event = @com.smartgwt.client.widgets.events.CloseClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   var event = @com.smartgwt.client.widgets.events.CloseClientEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                });
         }

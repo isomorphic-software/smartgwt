@@ -376,7 +376,6 @@ public class Showcase implements EntryPoint, HistoryListener {
                 } else {
                     mainTabSet.selectTab(tab);
                 }
-                History.newItem(explorerTreeNode.getNodeID(), false);
             }
         }
     }

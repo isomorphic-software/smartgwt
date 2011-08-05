@@ -218,6 +218,7 @@ public class ListGridItemSample extends ShowcasePanel {
         });
         
         IButton setValueButton = new IButton("Set Value: France");
+        setValueButton.setAutoFit(true);
         setValueButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {

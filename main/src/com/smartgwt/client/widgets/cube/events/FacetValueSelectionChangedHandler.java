@@ -14,19 +14,14 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.widgets.events;
+package com.smartgwt.client.widgets.cube.events;
+import com.google.gwt.event.shared.EventHandler;
 
-import com.smartgwt.client.event.*;
-import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.event.shared.HasHandlers;
-
-public interface HasApplyClickHandlers extends HasHandlers {
+public interface FacetValueSelectionChangedHandler extends EventHandler {
     /**
-     * Handle a click on the 'apply' button of this Dialog.   Default implementation is to call <code>saveData()</code>, but
-     * NOT close the Dialog.
+     * Handler/Notification function for facetValue selection change (no default implementation).
      *
-     * @param handler the applyClick handler
-     * @return {@link HandlerRegistration} used to remove this handler
+     * @param event the event
      */
-    HandlerRegistration addApplyClickHandler(ApplyClickHandler handler);
+    void onFacetValueSelectionChanged(com.smartgwt.client.widgets.cube.events.FacetValueSelectionChangedEvent event);
 }

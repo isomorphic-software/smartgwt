@@ -59,13 +59,7 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * A FormItem that displays an HTML URL. In read-only mode (canEdit:false) the URL is shown as a link; in editable mode the
- * URL is shown in a textbox. <P> The link to open is specified as the item value with {@link
- * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue} or  {@link
- * com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue defaultValue}. The link title defaults to the URL
- * unless {@link com.smartgwt.client.widgets.form.fields.LinkItem#getLinkTitle linkTitle} is specified. <P> Additionally, a
- * custom action can be triggered when the link is clicked: see {@link
- * com.smartgwt.client.widgets.form.fields.LinkItem#getTarget target} for details.
+ * A FormItem that displays an HTML link
  */
 public class LinkItem extends StaticTextItem {
 

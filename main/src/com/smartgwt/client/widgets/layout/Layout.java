@@ -409,7 +409,8 @@ public class Layout extends Canvas {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Method to force a reflow of the layout after directly assigning a value to any of the layout*Margin properties. Takes no arguments.
      *
-     * @param layoutMargin layoutMargin Default value is null
+     * @param layoutMargin optional new setting for layout.layoutMargin.  Regardless of whether a new                          layout margin is
+     * passed, the layout reflows according to the current settings                          for layoutStartMargin et al. Default value is null
      * @see com.smartgwt.client.widgets.layout.Layout#setLayoutLeftMargin
      * @see com.smartgwt.client.widgets.layout.Layout#setLayoutRightMargin
      * @see com.smartgwt.client.widgets.layout.Layout#setLayoutBottomMargin

@@ -14,7 +14,7 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.widgets.events;
+package com.smartgwt.client.widgets.cube.events;
 
 
 
@@ -46,7 +46,10 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -54,12 +57,12 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-public class OkClickEvent extends BrowserEvent<OkClickHandler>  {
+public class FacetValueSelectionChangedEvent extends BrowserEvent<FacetValueSelectionChangedHandler>  {
 
     /**
      * Handler type.
      */
-    private static Type<OkClickHandler> TYPE;
+    private static Type<FacetValueSelectionChangedHandler> TYPE;
 
     /**
      * Fires a open event on all registered handlers in the handler manager.If no
@@ -69,10 +72,10 @@ public class OkClickEvent extends BrowserEvent<OkClickHandler>  {
      * @param source the source of the handlers
      * @param jsObj the native event
      */
-    public static <S extends HasOkClickHandlers & HasHandlers> void fire(
+    public static <S extends HasFacetValueSelectionChangedHandlers & HasHandlers> void fire(
         S source, JavaScriptObject jsObj) {
         if (TYPE != null) {
-            OkClickEvent event = new OkClickEvent(jsObj);
+            FacetValueSelectionChangedEvent event = new FacetValueSelectionChangedEvent(jsObj);
             source.fireEvent(event);
         }
     }
@@ -82,17 +85,17 @@ public class OkClickEvent extends BrowserEvent<OkClickHandler>  {
      *
      * @return returns the handler type
      */
-    public static Type<OkClickHandler> getType() {
+    public static Type<FacetValueSelectionChangedHandler> getType() {
         if (TYPE == null) {
-            TYPE = new Type<OkClickHandler>();
+            TYPE = new Type<FacetValueSelectionChangedHandler>();
         }
         return TYPE;
     }
 
 
     @Override
-    protected void dispatch(OkClickHandler handler) {
-        handler.onOkClick(this);
+    protected void dispatch(FacetValueSelectionChangedHandler handler) {
+        handler.onFacetValueSelectionChanged(this);
     }
 
     // Because of type erasure, our static type is
@@ -100,15 +103,35 @@ public class OkClickEvent extends BrowserEvent<OkClickHandler>  {
 
     @SuppressWarnings("unchecked")
     @Override
-    public final Type<OkClickHandler> getAssociatedType() {
+    public final Type<FacetValueSelectionChangedHandler> getAssociatedType() {
         return TYPE;
     }
 
-    public OkClickEvent(JavaScriptObject jsObj) {
+    public FacetValueSelectionChangedEvent(JavaScriptObject jsObj) {
         super(jsObj);
     }
 
 
+
+    /**
+     * facetValues with new selection state
+     *
+     * @return facetValues with new selection state
+     */
+    public  native FacetValueMap getFacetValues() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        return @com.smartgwt.client.widgets.cube.FacetValueMap::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.facetValues);
+    }-*/;
+
+    /**
+     * new selection state
+     *
+     * @return new selection state
+     */
+    public  native boolean getNewState() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        return jsObj.newState;
+    }-*/;
 
 
 }

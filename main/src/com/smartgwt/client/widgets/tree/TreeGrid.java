@@ -700,42 +700,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * Mode of fetching records from server. <P> In a ResultTree, "basic" fetchMode implies that if search criteria change, the
-     * entire tree will be discarded and re-fetched from the server. {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getOpenState TreeGrid.getOpenState} will be preserved. <P> fetchMode:"local"
-     * implies that local filtering will be performed. See {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getKeepParentsOnFilter keepParentsOnFilter} for additional filtering details.
-     * <P> fetchMode:"paged" does not apply to ResultTrees. Instead, {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getLoadDataOnDemand loadDataOnDemand} is used for folder-by-folder loading of
-     * tree data. If enough nodes exist that paging is desirable within a folder, a better UI can be obtained by showing an
-     * adjacent ListGrid (similar to Outlook email) to show a large number of child nodes.
-     *
-     * @param dataFetchMode dataFetchMode Default value is "basic"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setDataFetchMode(FetchMode dataFetchMode)  throws IllegalStateException {
-        setAttribute("dataFetchMode", dataFetchMode.getValue(), false);
-    }
-
-    /**
-     * Mode of fetching records from server. <P> In a ResultTree, "basic" fetchMode implies that if search criteria change, the
-     * entire tree will be discarded and re-fetched from the server. {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getOpenState TreeGrid.getOpenState} will be preserved. <P> fetchMode:"local"
-     * implies that local filtering will be performed. See {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getKeepParentsOnFilter keepParentsOnFilter} for additional filtering details.
-     * <P> fetchMode:"paged" does not apply to ResultTrees. Instead, {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getLoadDataOnDemand loadDataOnDemand} is used for folder-by-folder loading of
-     * tree data. If enough nodes exist that paging is desirable within a folder, a better UI can be obtained by showing an
-     * adjacent ListGrid (similar to Outlook email) to show a large number of child nodes.
-     *
-     *
-     * @return FetchMode
-     */
-    public FetchMode getDataFetchMode()  {
-        return EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
-    }
-
-    /**
      * Specifies the type of nodes displayed in the treeGrid.
      *
      * @param displayNodeType displayNodeType Default value is Tree.FOLDERS_AND_LEAVES
@@ -906,42 +870,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * If set, tree-based filtering is performed such that parent nodes are kept as long as they have children that match the
-     * filter criteria, even if the parents themselves do not match the filter criteria. If not set, filtering will exclude
-     * parent nodes not matching the criteria and all nodes below it in the tree. <P> When enabled, fetchMode:"local" is
-     * automatically enabled so that all filtering behavior shifts to the client-side and full criteria are no longer sent to
-     * the server.  Instead, server fetches will always load all nodes, or with {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getLoadDataOnDemand loadDataOnDemand}:true, will always load all nodes under a
-     * given parent.  This means that the server does not need to implement special tree filtering logic. <P> Optionally, 
-     * serverFilterFields can be set to a list of field names that will be sent to the server whenever they are present in the
-     * criteria.
-     *
-     * @param keepParentsOnFilter keepParentsOnFilter Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setKeepParentsOnFilter(Boolean keepParentsOnFilter)  throws IllegalStateException {
-        setAttribute("keepParentsOnFilter", keepParentsOnFilter, false);
-    }
-
-    /**
-     * If set, tree-based filtering is performed such that parent nodes are kept as long as they have children that match the
-     * filter criteria, even if the parents themselves do not match the filter criteria. If not set, filtering will exclude
-     * parent nodes not matching the criteria and all nodes below it in the tree. <P> When enabled, fetchMode:"local" is
-     * automatically enabled so that all filtering behavior shifts to the client-side and full criteria are no longer sent to
-     * the server.  Instead, server fetches will always load all nodes, or with {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getLoadDataOnDemand loadDataOnDemand}:true, will always load all nodes under a
-     * given parent.  This means that the server does not need to implement special tree filtering logic. <P> Optionally, 
-     * serverFilterFields can be set to a list of field names that will be sent to the server whenever they are present in the
-     * criteria.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getKeepParentsOnFilter()  {
-        return getAttributeAsBoolean("keepParentsOnFilter");
-    }
-
-    /**
      * For databound treeGrid instances, should the entire tree of data be loaded on initial  fetch, or should folders load
      * their children as they are opened. <P> If unset, calling {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData
      * TreeGrid.fetchData} will default it to true, otherwise, if a ResultTree is passed to {@link
@@ -950,7 +878,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * load further children.  See  defaultIsFolder for how to control this behavior.
      *
      * @param loadDataOnDemand loadDataOnDemand Default value is null
-     * @see com.smartgwt.client.widgets.tree.TreeGrid#setDataFetchMode
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_databinding_init_ondemand" target="examples">Initial Data & Load on Demand Example</a>
      */
@@ -968,7 +895,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      *
      * @return Boolean
-     * @see com.smartgwt.client.widgets.tree.TreeGrid#getDataFetchMode
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_databinding_init_ondemand" target="examples">Initial Data & Load on Demand Example</a>
      */
@@ -1215,28 +1141,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      */
     public Boolean getSeparateFolders()  {
         return getAttributeAsBoolean("separateFolders");
-    }
-
-    /**
-     * When {@link com.smartgwt.client.widgets.tree.TreeGrid#getKeepParentsOnFilter keepParentsOnFilter} is enabled, this
-     * property lists field names that will be sent to the server if they are present in criteria.
-     *
-     * @param serverFilterFields serverFilterFields Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setServerFilterFields(String... serverFilterFields)  throws IllegalStateException {
-        setAttribute("serverFilterFields", serverFilterFields, false);
-    }
-
-    /**
-     * When {@link com.smartgwt.client.widgets.tree.TreeGrid#getKeepParentsOnFilter keepParentsOnFilter} is enabled, this
-     * property lists field names that will be sent to the server if they are present in criteria.
-     *
-     *
-     * @return String
-     */
-    public String[] getServerFilterFields()  {
-        return getAttributeAsStringArray("serverFilterFields");
     }
 
     /**
@@ -1821,7 +1725,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * {@link com.smartgwt.client.widgets.tree.TreeGrid#setOpenState TreeGrid.setOpenState} to open the same set of folders
      * within the treeGrid's data (assuming the nodes are still present in the data).
      *
-     * @return current open state for the grid.
+     * @return current sort state for the grid.
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setOpenState
      */
     public native String getOpenState() /*-{

@@ -125,7 +125,7 @@ private static PrintWriter createOutputHTMLFile(final String sourceFileDirName,
   targetDir = targetSourceFilePath.substring(0, targetSourceFilePath.lastIndexOf('/'));
   new File(targetDir).mkdirs();
   result = new PrintWriter(targetSourceFilePath);
-  writeStartOfHTMLFile(result, sourceFileDirName);
+  writeStartOfHTMLFile(result, sourceFileDirName, targetSourceFilePath);
   return result;
 } // createOutputHTMLFile()
 
@@ -374,7 +374,7 @@ private static void loadDataFileOrClassNames(final File fileOrDirectory) throws 
     String fileName = fileOrDirectory.getName();
     if (!fileName.endsWith(".class")) {
       String fileOrClassName;
-      String fileOrClassPath = fileOrDirectory.getPath().replace('\\', '/');
+      String fileOrClassPath = fileOrDirectory.getCanonicalPath().replace('\\', '/');
       if (fileName.endsWith(".java")) {
         fileOrClassName = fileName.substring(0, fileName.lastIndexOf('.'));
         fileOrClassPath = fileOrClassPath.substring(_showcaseClientDirLength + 1);
@@ -383,7 +383,7 @@ private static void loadDataFileOrClassNames(final File fileOrDirectory) throws 
         fileOrClassName = fileName;
         int publicIndex = fileOrClassPath.indexOf("war");
         fileOrClassPath = "data_files/" + fileOrClassPath.substring(publicIndex + 7);
-        generateDataHTMLFile(fileOrDirectory.getPath().replace('\\', '/'),
+        generateDataHTMLFile(fileOrDirectory.getCanonicalPath().replace('\\', '/'),
                              _sourceOutputDir + "/" + fileOrClassPath + ".html");
       }
       _dataFileMap.put(fileOrClassName, fileOrClassPath);
@@ -560,13 +560,17 @@ private static void writeStartOfDataHTMLFile() {
 //--------------------------------------------------------------------------------------------------
 
 private static void writeStartOfHTMLFile(final PrintWriter sourceWriter,
-                                         final String sourceFileDirName) {
-  int depth;
+                                         final String sourceFileDirName, String targetSourceFilePath) {
+  int depth = 0;
   if (sourceFileDirName.contains("/public/")) {
     depth = sourceFileDirName.substring(sourceFileDirName.indexOf("/public/")).split("/").length - 1;
   }
-  else {
+  else if (sourceFileDirName.contains("/com/")) {
     depth = sourceFileDirName.substring(sourceFileDirName.indexOf("/com/")).split("/").length - 5;
+  } else if (sourceFileDirName.contains("/war/")) {
+    depth = sourceFileDirName.substring(sourceFileDirName.indexOf("/war/")).split("/").length -2;
+  } else {
+      throw new RuntimeException("Unrecognized path " + sourceFileDirName);
   }
   String parentDirs = "";
   for (int i = 0; i < depth; i++) {
@@ -577,7 +581,27 @@ private static void writeStartOfHTMLFile(final PrintWriter sourceWriter,
   sourceWriter.println("<link rel='stylesheet' href='" + parentDirs +
                        "js/sh/SyntaxHighlighter.css' type='text/css' />");
   sourceWriter.println("<script src='" + parentDirs + "js/sh/shCore.js'></script>");
-  sourceWriter.println("<script src='" + parentDirs + "js/sh/shBrushJava.js'></script>");
+    String type;
+   if(targetSourceFilePath.contains(".xml")) {
+    type= "xml";
+  } else if(targetSourceFilePath.contains(".css")) {
+      type= "css";
+  } else if (targetSourceFilePath.contains(".js")){
+      type= "js";
+  } else {
+      type= "java";
+  }
+
+  if(type.equals("xml")) {
+    sourceWriter.println("<script src='" + parentDirs + "js/sh/shBrushXml.js'></script>");
+  } else if(type.equals("css")) {
+      sourceWriter.println("<script src='" + parentDirs + "js/sh/shBrushCss.js'></script>");
+  } else if (type.equals("js")){
+      sourceWriter.println("<script src='" + parentDirs + "js/sh/shBrushJScript.js'></script>");
+  } else {
+      sourceWriter.println("<script src='" + parentDirs + "js/sh/shBrushJava.js'></script>");
+  }
+
   sourceWriter.println("<style>");
   sourceWriter.println("* {");
   sourceWriter.println("font-family:Courier New,monospace;");
@@ -596,7 +620,7 @@ private static void writeStartOfHTMLFile(final PrintWriter sourceWriter,
   sourceWriter.println("</style>");
   sourceWriter.println("</head>");
   sourceWriter.println("<body>");
-  sourceWriter.println("<textarea name='code' class='java:nogutter' rows='15' cols='120'>");
+  sourceWriter.println("<textarea name='code' class='" + type + ":nogutter' rows='15' cols='120'>");
 } // writeStartOfHTMLFile()
 
 //--------------------------------------------------------------------------------------------------

@@ -46,7 +46,10 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -64,7 +67,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * com.smartgwt.client.widgets.Window} class instead, where arbitrary components can be added to the body area via {@link
  * com.smartgwt.client.widgets.Window#addItem Window.addItem}.
  */
-public class Dialog extends Window  implements com.smartgwt.client.widgets.events.HasButtonClickHandlers, com.smartgwt.client.widgets.events.HasYesClickHandlers, com.smartgwt.client.widgets.events.HasNoClickHandlers, com.smartgwt.client.widgets.events.HasApplyClickHandlers, com.smartgwt.client.widgets.events.HasCancelClickHandlers, com.smartgwt.client.widgets.events.HasCloseClickHandlers, com.smartgwt.client.widgets.events.HasOkClickHandlers {
+public class Dialog extends Window  implements com.smartgwt.client.widgets.events.HasButtonClickHandlers {
 
     public static Dialog getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -82,11 +85,6 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
 
     public Dialog(JavaScriptObject jsObj){
         super(jsObj);
-    }
-
-    public Dialog(String title) {
-        setTitle(title);
-        scClassName = "Dialog";
     }
 
     protected native JavaScriptObject create()/*-{
@@ -267,40 +265,15 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
     }
 
     // ********************* Methods ***********************
+            
     /**
-     * Add a applyClick handler.
-     * <p>
      * Handle a click on the 'apply' button of this Dialog.   Default implementation is to call <code>saveData()</code>, but
      * NOT close the Dialog.
-     *
-     * @param handler the applyClick handler
-     * @return {@link HandlerRegistration} used to remove this handler
      */
-    public HandlerRegistration addApplyClickHandler(com.smartgwt.client.widgets.events.ApplyClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.ApplyClickEvent.getType()) == 0) setupApplyClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.ApplyClickEvent.getType());
-    }
-
-    private native void setupApplyClickEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({applyClick:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.ApplyClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.applyClick = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.ApplyClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
-        }
-   }-*/;
+    public native void applyClick() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.applyClick();
+    }-*/;
     /**
      * Add a buttonClick handler.
      * <p>
@@ -334,142 +307,42 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
                });
         }
    }-*/;
+            
     /**
-     * Add a cancelClick handler.
-     * <p>
      * Handle a click on the 'cancel' button of this Dialog. Default implementation is to return null and hide the Dialog.
      * Override to do something else.
-     *
-     * @param handler the cancelClick handler
-     * @return {@link HandlerRegistration} used to remove this handler
      */
-    public HandlerRegistration addCancelClickHandler(com.smartgwt.client.widgets.events.CancelClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.CancelClickEvent.getType()) == 0) setupCancelClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.CancelClickEvent.getType());
-    }
-
-    private native void setupCancelClickEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({cancelClick:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.CancelClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.cancelClick = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.CancelClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
-        }
-   }-*/;
+    public native void cancelClick() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.cancelClick();
+    }-*/;
+            
     /**
-     * Add a closeClick handler.
-     * <p>
      * Handles a click on the close button of this window. The default implementation hides the window and returns false to
      * cancel bubbling.  Override this method if you want other actions to be taken.
-     *
-     * @param handler the closeClick handler
-     * @return {@link HandlerRegistration} used to remove this handler
      */
-    public HandlerRegistration addCloseClickHandler(com.smartgwt.client.widgets.events.CloseClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.CloseClickEvent.getType()) == 0) setupCloseClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.CloseClickEvent.getType());
-    }
-
-    private native void setupCloseClickEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({closeClick:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.CloseClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.closeClick = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.CloseClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
-        }
-   }-*/;
+    public native void closeClick() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.closeClick();
+    }-*/;
+            
     /**
-     * Add a noClick handler.
-     * <p>
      * Handle a click on the 'no' button of this Dialog. Default implementation is to return <code>false</code>. Override to do
      * something else.
-     *
-     * @param handler the noClick handler
-     * @return {@link HandlerRegistration} used to remove this handler
      */
-    public HandlerRegistration addNoClickHandler(com.smartgwt.client.widgets.events.NoClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.NoClickEvent.getType()) == 0) setupNoClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.NoClickEvent.getType());
-    }
-
-    private native void setupNoClickEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({noClick:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.NoClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.noClick = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.NoClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
-        }
-   }-*/;
+    public native void noClick() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.noClick();
+    }-*/;
+            
     /**
-     * Add a okClick handler.
-     * <p>
      * Handle a click on the 'ok' button of this Dialog. Default implementation is to call <code>saveData()</code>, hide the
      * Dialog, then return <code>true</code>.   Override to do something else.
-     *
-     * @param handler the okClick handler
-     * @return {@link HandlerRegistration} used to remove this handler
      */
-    public HandlerRegistration addOkClickHandler(com.smartgwt.client.widgets.events.OkClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.OkClickEvent.getType()) == 0) setupOkClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.OkClickEvent.getType());
-    }
-
-    private native void setupOkClickEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({okClick:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.OkClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.okClick = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.OkClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
-        }
-   }-*/;
+    public native void okClick() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.okClick();
+    }-*/;
             
     /**
      * Method to save this Dialog's data. Called from <code>okClick()</code>,  <code>applyClick()</code>. No default
@@ -479,40 +352,15 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.saveData();
     }-*/;
+            
     /**
-     * Add a yesClick handler.
-     * <p>
      * Handle a click on the 'yes' button of this Dialog. Default implementation is to return <code>true</code>. Override to do
      * something else
-     *
-     * @param handler the yesClick handler
-     * @return {@link HandlerRegistration} used to remove this handler
      */
-    public HandlerRegistration addYesClickHandler(com.smartgwt.client.widgets.events.YesClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.YesClickEvent.getType()) == 0) setupYesClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.YesClickEvent.getType());
-    }
-
-    private native void setupYesClickEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({yesClick:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.YesClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.yesClick = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.YesClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
-        }
-   }-*/;
+    public native void yesClick() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.yesClick();
+    }-*/;
 
     // ********************* Static Methods ***********************
     /**
@@ -537,32 +385,6 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
     // ***********************************************************        
 
 
-
-    /**
-     * OK  Button object to fire dialog's "okClick()" method on click.
-     */
-    public static Button OK = new Button("OK");
-    /**
-     * APPLY Button object to fire dialog's "applyClick()" method on click.
-     */
-    public static Button APPLY = new Button("Apply");
-    /**
-     * YES Button object to fire dialog's "yesClick()" method on click
-     */
-    public static Button YES = new Button("Yes");
-    /**
-     * NO  Button object to fire dialog's "noClick()" method on click.
-     */
-    public static Button NO = new Button("No");
-    /**
-     * CANCEL  Button object to fire dialog's "cancelClick()" method on click.
-     */
-    public static Button CANCEL = new Button("Cancel");
-    /**
-     * DONE  Button object to fire dialog's "doneClick()" method on click.
-     */
-    public static Button DONE = new Button("Done");
-
     /**
      * Array of Buttons to show in the {@link com.smartgwt.client.widgets.Dialog#getShowToolbar showToolbar}, if shown.
      * <P> The set of buttons to use is typically set by calling one of the shortcuts.
@@ -571,7 +393,7 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
      * @throws IllegalStateException this property cannot be changed after the component has been rendered
      */
     public void setToolbarButtons(Canvas... toolbarButtons) {
-        setAttribute("toolbarButtons", replaceButtonsWithDefault(toolbarButtons), false);
+        setAttribute("toolbarButtons", toolbarButtons, false);
     }
 
     /**
@@ -592,7 +414,7 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setButtons(Button... buttons)  throws IllegalStateException {
-        setAttribute("buttons", replaceButtonsWithDefault(buttons), false);
+        setAttribute("buttons", buttons, false);
     }
 
     /**
@@ -605,32 +427,6 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
     public void setMessageStyle(String messageStyle)  throws IllegalStateException {
         setAttribute("messageStyle", messageStyle, false);
     }
-
-    private JavaScriptObject[] replaceButtonsWithDefault(Canvas... buttons) {
-        JavaScriptObject[] result = new JavaScriptObject[buttons.length];
-        for (int i = 0; i < buttons.length; i++) {
-            if (buttons[i] == Dialog.OK) {
-                result[i] = getButton("OK");
-            } else if (buttons[i] == Dialog.APPLY) {
-                result[i] = getButton("APPLY");
-            } else if (buttons[i] == Dialog.CANCEL) {
-                result[i] = getButton("CANCEL");
-            } else if (buttons[i] == Dialog.DONE) {
-                result[i] = getButton("DONE");
-            } else if (buttons[i] == Dialog.NO) {
-                result[i] = getButton("NO");
-            } else if (buttons[i] == Dialog.YES) {
-                result[i] = getButton("YES");
-            } else {
-                result[i] = buttons[i].getOrCreateJsObj();
-            }
-        }
-        return result;
-    }
-    
-    private native JavaScriptObject getButton(String name) /*-{
-        return $wnd.isc.Dialog[name];
-    }-*/;
 
 }
 

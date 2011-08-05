@@ -105,7 +105,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * @see com.smartgwt.client.widgets.cube.Facet
  * @see com.smartgwt.client.widgets.cube.FacetValue
  */
-public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.cube.events.HasFacetAddedHandlers, com.smartgwt.client.widgets.cube.events.HasFacetMovedHandlers, com.smartgwt.client.widgets.cube.events.HasFacetRemovedHandlers, com.smartgwt.client.widgets.cube.events.HasFixedFacetValueChangedHandlers, com.smartgwt.client.widgets.cube.events.HasSortByFacetIdHandlers, com.smartgwt.client.widgets.cube.events.HasSortByFacetValuesHandlers {
+public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.cube.events.HasFacetAddedHandlers, com.smartgwt.client.widgets.cube.events.HasFacetMovedHandlers, com.smartgwt.client.widgets.cube.events.HasFacetRemovedHandlers, com.smartgwt.client.widgets.cube.events.HasFixedFacetValueChangedHandlers, com.smartgwt.client.widgets.cube.events.HasFacetValueSelectionChangedHandlers, com.smartgwt.client.widgets.cube.events.HasSortByFacetIdHandlers, com.smartgwt.client.widgets.cube.events.HasSortByFacetValuesHandlers {
 
     public static CubeGrid getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -1768,6 +1768,39 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
             obj.facetRemoved = $entry(function(){
                    var param = {"facetId" : arguments[0]};
                    var event = @com.smartgwt.client.widgets.cube.events.FacetRemovedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
+        }
+   }-*/;
+    /**
+     * Add a facetValueSelectionChanged handler.
+     * <p>
+     * Handler/Notification function for facetValue selection change (no default implementation).
+     *
+     * @param handler the facetValueSelectionChanged handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addFacetValueSelectionChangedHandler(com.smartgwt.client.widgets.cube.events.FacetValueSelectionChangedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.cube.events.FacetValueSelectionChangedEvent.getType()) == 0) setupFacetValueSelectionChangedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.cube.events.FacetValueSelectionChangedEvent.getType());
+    }
+
+    private native void setupFacetValueSelectionChangedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({facetValueSelectionChanged:$entry(function(){
+                        var param = {"facetValues" : arguments[0], "newState" : arguments[1]};
+                        var event = @com.smartgwt.client.widgets.cube.events.FacetValueSelectionChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.facetValueSelectionChanged = $entry(function(){
+                   var param = {"facetValues" : arguments[0], "newState" : arguments[1]};
+                   var event = @com.smartgwt.client.widgets.cube.events.FacetValueSelectionChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                });
         }

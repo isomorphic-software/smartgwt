@@ -14,15 +14,18 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.widgets.events;
-import com.google.gwt.event.shared.EventHandler;
+package com.smartgwt.client.widgets.cube.events;
 
-public interface YesClickHandler extends EventHandler {
+import com.smartgwt.client.event.*;
+import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.event.shared.HasHandlers;
+
+public interface HasFacetValueSelectionChangedHandlers extends HasHandlers {
     /**
-     * Handle a click on the 'yes' button of this Dialog. Default implementation is to return <code>true</code>. Override to do
-     * something else
+     * Handler/Notification function for facetValue selection change (no default implementation).
      *
-     * @param event the event
+     * @param handler the facetValueSelectionChanged handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
-    void onYesClick(com.smartgwt.client.widgets.events.YesClickEvent event);
+    HandlerRegistration addFacetValueSelectionChangedHandler(FacetValueSelectionChangedHandler handler);
 }

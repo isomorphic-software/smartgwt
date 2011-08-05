@@ -69,8 +69,56 @@ public class LiveGridFetchSample extends ShowcasePanel {
         ListGridField nextShipment = new ListGridField("nextShipment", 100);
         nextShipment.setType(ListGridFieldType.DATE);
 
-
-
+        // Additional fields to display - use "setDisplayField" to simply re-display data from
+        // other fields in each record.
+        ListGridField itemName2 = new ListGridField("itemName2", 100);
+        itemName2.setTitle("Item Name 2");
+        itemName2.setDisplayField("itemName");
+        
+        ListGridField sku2 = new ListGridField("sku2", 100);
+        sku2.setTitle("SKU 2");
+        sku2.setDisplayField("SKU");
+        
+        ListGridField description2 = new ListGridField("description2", 150);
+        description2.setTitle("Description 2");
+        description2.setDisplayField("description");
+        
+        ListGridField category2 = new ListGridField("category2", 100);
+        category2.setTitle("Category 2");
+        category2.setDisplayField("category");
+        
+        ListGridField units2 = new ListGridField ("units2", 100);
+        units2.setTitle("Units 2");
+        units2.setDisplayField("units");
+        
+        ListGridField unitCost2 = new ListGridField("unitCost2", 100);
+        unitCost2.setTitle("Unit Cost 2");
+        unitCost2.setDisplayField("unitCost");
+        
+        ListGridField itemName3 = new ListGridField("itemName3", 100);
+        itemName3.setTitle("Item Name 3");
+        itemName3.setDisplayField("itemName");
+        
+        ListGridField sku3 = new ListGridField("sku3", 100);
+        sku3.setTitle("SKU 3");
+        sku3.setDisplayField("SKU");
+        
+        ListGridField description3 = new ListGridField("description3", 150);
+        description3.setTitle("Description 3");
+        description3.setDisplayField("description");
+        
+        ListGridField category3 = new ListGridField("category3", 100);
+        category3.setTitle("Category 3");
+        category3.setDisplayField("category");
+        
+        ListGridField units3 = new ListGridField ("units3", 100);
+        units3.setTitle("Units 3");
+        units3.setDisplayField("units");
+        
+        ListGridField unitCost3 = new ListGridField("unitCost3", 100);
+        unitCost3.setTitle("Unit Cost 3");
+        unitCost3.setDisplayField("unitCost");
+        
         final ListGrid listGrid = new ListGrid();
         listGrid.setWidth100();
         listGrid.setHeight100();
@@ -78,8 +126,8 @@ public class LiveGridFetchSample extends ShowcasePanel {
         listGrid.setDataSource(dataSource);
 
         listGrid.setFields(rowNum, itemName, sku, description, category, units, unitCost,
-                            itemName, sku, description, category, units, unitCost,
-                            itemName, sku, description, category, units, unitCost);
+                            itemName2, sku2, description2, category2, units2, unitCost2,
+                            itemName3, sku3, description3, category3, units3, unitCost3);
 
         return listGrid;
     }

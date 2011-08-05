@@ -109,8 +109,8 @@ public class DataSourceField extends DataClass {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Controls whether, by default, dataBoundComponents consider this field editable. <P> Set to <code>false</code> to draw
-     * this field read-only. (This can be overridden on a per-DataBoundComponent basis.)
+     * Whether this field can ever be edited by the user.  If set to <code>false</code>, no DataBound component will ever try
+     * to offer an editing interface for this field.
      *
      * @param canEdit canEdit Default value is null
      * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
@@ -120,8 +120,8 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * Controls whether, by default, dataBoundComponents consider this field editable. <P> Set to <code>false</code> to draw
-     * this field read-only. (This can be overridden on a per-DataBoundComponent basis.)
+     * Whether this field can ever be edited by the user.  If set to <code>false</code>, no DataBound component will ever try
+     * to offer an editing interface for this field.
      *
      *
      * @return Boolean
@@ -286,67 +286,6 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * For a DataSource with {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType} "sql" or "hibernate",
-     * indicates that this field should be omitted by default from all SQL or Hibernate operations, and will only be used with
-     * {@link com.smartgwt.client.docs.CustomQueries custom queries}. <P> Having marked a field as <code>customSQL</code> you
-     * can refer to it via $criteria.<i>fieldName</i> or $values.<i>fieldName</i> in customized queries. <P> The following are
-     * situations where you would <b>not</b> use <code>customSQL</code>: <ul> <li>simple joins where you want to enable users
-     * to see and search on a field from another table; consider {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#tableName tableName} instead <li>fields where you want to calculate or
-     * transform values in SQL on load or save, but always perform the same calculation for each operationType; consider
-     * instead {@link com.smartgwt.client.docs.serverds.DataSourceField#sqlStorageStrategy sqlStorageStrategy} for some common
-     * cases, or  {@link com.smartgwt.client.docs.serverds.DataSourceField#customSelectExpression customSelectExpression},
-     * {@link com.smartgwt.client.docs.serverds.DataSourceField#customUpdateExpression customUpdateExpression} and {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#customInsertExpression customInsertExpression} for full customization
-     * <li>a special fetch is needed where the field needs to be excluded from the $defaultWhereClause so that it can be used
-     * in a custom &lt;whereClause&gt; - consider {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#excludeCriteriaFields excludeCriteriaFields} instead </ul> <P> Use
-     * customSQL in situations like: <ul> <li>there are multiple variations of the "fetch" operation with different {@link
-     * com.smartgwt.client.data.OperationBinding#getOperationId operationIds}, and the field is only used in some of them; in
-     * that case, consider using {@link com.smartgwt.client.docs.serverds.OperationBinding#customFields customFields} to
-     * selectively re-introduce SQL generation for the field only in operations where it's used. <li>the field represents
-     * hidden criteria on a field in another table where the field is never shown to the user <li>the field is a write-only
-     * value only saved in some operations <li>more than one data access strategy is in use (eg direct SQL for fetch and
-     * bean-based persistence accessed via DMI for saves) and certain fields are not available in SQL </ul>
-     *
-     * @param customSQL customSQL Default value is null
-     */
-    public void setCustomSQL(Boolean customSQL) {
-        setAttribute("customSQL", customSQL);
-    }
-
-    /**
-     * For a DataSource with {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType} "sql" or "hibernate",
-     * indicates that this field should be omitted by default from all SQL or Hibernate operations, and will only be used with
-     * {@link com.smartgwt.client.docs.CustomQueries custom queries}. <P> Having marked a field as <code>customSQL</code> you
-     * can refer to it via $criteria.<i>fieldName</i> or $values.<i>fieldName</i> in customized queries. <P> The following are
-     * situations where you would <b>not</b> use <code>customSQL</code>: <ul> <li>simple joins where you want to enable users
-     * to see and search on a field from another table; consider {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#tableName tableName} instead <li>fields where you want to calculate or
-     * transform values in SQL on load or save, but always perform the same calculation for each operationType; consider
-     * instead {@link com.smartgwt.client.docs.serverds.DataSourceField#sqlStorageStrategy sqlStorageStrategy} for some common
-     * cases, or  {@link com.smartgwt.client.docs.serverds.DataSourceField#customSelectExpression customSelectExpression},
-     * {@link com.smartgwt.client.docs.serverds.DataSourceField#customUpdateExpression customUpdateExpression} and {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#customInsertExpression customInsertExpression} for full customization
-     * <li>a special fetch is needed where the field needs to be excluded from the $defaultWhereClause so that it can be used
-     * in a custom &lt;whereClause&gt; - consider {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#excludeCriteriaFields excludeCriteriaFields} instead </ul> <P> Use
-     * customSQL in situations like: <ul> <li>there are multiple variations of the "fetch" operation with different {@link
-     * com.smartgwt.client.data.OperationBinding#getOperationId operationIds}, and the field is only used in some of them; in
-     * that case, consider using {@link com.smartgwt.client.docs.serverds.OperationBinding#customFields customFields} to
-     * selectively re-introduce SQL generation for the field only in operations where it's used. <li>the field represents
-     * hidden criteria on a field in another table where the field is never shown to the user <li>the field is a write-only
-     * value only saved in some operations <li>more than one data access strategy is in use (eg direct SQL for fetch and
-     * bean-based persistence accessed via DMI for saves) and certain fields are not available in SQL </ul>
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCustomSQL()  {
-        return getAttributeAsBoolean("customSQL");
-    }
-
-    /**
      * Preferred display format to use for date type values within this field. If this property is set on a field displayed in
      * a databound component such as a {@link com.smartgwt.client.widgets.form.DynamicForm} or {@link
      * com.smartgwt.client.widgets.grid.ListGrid} it will be respected (See {@link
@@ -417,31 +356,6 @@ public class DataSourceField extends DataClass {
      */
     public Boolean getDetail()  {
         return getAttributeAsBoolean("detail");
-    }
-
-    /**
-     * Sets the default FormItem to be used whenever this field is edited (whether in a grid, form, or other component). <P> If
-     * unset, a FormItem will be automatically chosen based on the type of the field, by the rules explained {@link
-     * com.smartgwt.client.types.FormItemType here}.
-     *
-     * @param editorType editorType Default value is null
-     * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
-     */
-    public void setEditorType(String editorType) {
-        setAttribute("editorType", editorType);
-    }
-
-    /**
-     * Sets the default FormItem to be used whenever this field is edited (whether in a grid, form, or other component). <P> If
-     * unset, a FormItem will be automatically chosen based on the type of the field, by the rules explained {@link
-     * com.smartgwt.client.types.FormItemType here}.
-     *
-     *
-     * @return String
-     * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
-     */
-    public String getEditorType()  {
-        return getAttributeAsString("editorType");
     }
 
     /**
@@ -580,11 +494,7 @@ public class DataSourceField extends DataClass {
      * Whether this field should be hidden from users by default within a DataBound component. This is generally used for
      * internal IDs and other fields not meaningful to users. <P> See {@link com.smartgwt.client.data.DataSourceField#getDetail
      * detail} for fields that should be hidden in a summary view such as a {@link com.smartgwt.client.widgets.grid.ListGrid},
-     * but still available to the user. <p> <b>NOTE:</b> This property is <b>not</b> a security setting - data for hidden
-     * fields is  still delivered to the client, it just isn't shown to the user.  If you wish to make sure  that only
-     * appropriate data reaches the client, use either {@link com.smartgwt.client.docs.serverds.OperationBinding#outputs
-     * outputs} or a field-level declarative security setting like {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresRole viewRequiresRole}.
+     * but still available to the user.
      *
      * @param hidden hidden Default value is false
      * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
@@ -597,11 +507,7 @@ public class DataSourceField extends DataClass {
      * Whether this field should be hidden from users by default within a DataBound component. This is generally used for
      * internal IDs and other fields not meaningful to users. <P> See {@link com.smartgwt.client.data.DataSourceField#getDetail
      * detail} for fields that should be hidden in a summary view such as a {@link com.smartgwt.client.widgets.grid.ListGrid},
-     * but still available to the user. <p> <b>NOTE:</b> This property is <b>not</b> a security setting - data for hidden
-     * fields is  still delivered to the client, it just isn't shown to the user.  If you wish to make sure  that only
-     * appropriate data reaches the client, use either {@link com.smartgwt.client.docs.serverds.OperationBinding#outputs
-     * outputs} or a field-level declarative security setting like {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresRole viewRequiresRole}.
+     * but still available to the user.
      *
      *
      * @return Boolean
@@ -667,6 +573,125 @@ public class DataSourceField extends DataClass {
      */
     public Boolean getInapplicable()  {
         return getAttributeAsBoolean("inapplicable");
+    }
+
+    /**
+     * For use with the Smart GWT server when populating Java Beans / POJOs based on data contained in a DSRequest,
+     * <code>javaClass</code> specifies the fully qualified Java className to be created and passed to the setter for the Java
+     * Bean Property with the same name as this field.   <code>javaClass</code> is used both when manually calling
+     * DataSource.setProperties() and when auto-populating POJO arguments of a {@link
+     * com.smartgwt.client.data.DataSourceField#getDmiOverview DMI} method. <P> The Java class to create does not normally have
+     * to be specified: Smart GWT will use Java reflection to inspect the type of argument expected by a setter method and will
+     * attempt conversion of inbound data to that type.  As described in the documentation for DataTools.setProperties(), this
+     * works for almost all typical cases.  However <code>field.javaClass</code> is useful for: <ul> <li> subobject of abstract
+     * or interface type: in this case Java Reflection is not sufficient to discover the concrete type that should be
+     * instantiated, and <code>javaClass</code> should be set instead.</li> <li> subobject of Collection or Map type, when Java
+     * generics are not used or the Collection member type or Map value type is abstract.  When Java generics are used (for
+     * example the setter takes an argument is of type Collection&lt;SomePOJO&gt; or Map&lt;KeyType,SomePOJO&gt;, Smart GWT
+     * will automatically attempt to convert inbound data to the type of the members of the Collection or values of the Map. 
+     * Without generics, <code>javaClass</code> needs to be specified.  Note that <code>javaClass</code> will take precedence
+     * over generics if both  are used. Also note that {@link com.smartgwt.client.data.DataSourceField#getJavaCollectionClass
+     * javaCollectionClass} can be specified if a particular Collection or Map type is needed, and {@link
+     * com.smartgwt.client.data.DataSourceField#getJavaKeyClass javaKeyClass} can be specified for a field of type
+     * <code>java.util.Map</code>.</li> </ul>
+     *
+     * @param javaClass javaClass Default value is null
+     */
+    public void setJavaClass(String javaClass) {
+        setAttribute("javaClass", javaClass);
+    }
+
+    /**
+     * For use with the Smart GWT server when populating Java Beans / POJOs based on data contained in a DSRequest,
+     * <code>javaClass</code> specifies the fully qualified Java className to be created and passed to the setter for the Java
+     * Bean Property with the same name as this field.   <code>javaClass</code> is used both when manually calling
+     * DataSource.setProperties() and when auto-populating POJO arguments of a {@link
+     * com.smartgwt.client.data.DataSourceField#getDmiOverview DMI} method. <P> The Java class to create does not normally have
+     * to be specified: Smart GWT will use Java reflection to inspect the type of argument expected by a setter method and will
+     * attempt conversion of inbound data to that type.  As described in the documentation for DataTools.setProperties(), this
+     * works for almost all typical cases.  However <code>field.javaClass</code> is useful for: <ul> <li> subobject of abstract
+     * or interface type: in this case Java Reflection is not sufficient to discover the concrete type that should be
+     * instantiated, and <code>javaClass</code> should be set instead.</li> <li> subobject of Collection or Map type, when Java
+     * generics are not used or the Collection member type or Map value type is abstract.  When Java generics are used (for
+     * example the setter takes an argument is of type Collection&lt;SomePOJO&gt; or Map&lt;KeyType,SomePOJO&gt;, Smart GWT
+     * will automatically attempt to convert inbound data to the type of the members of the Collection or values of the Map. 
+     * Without generics, <code>javaClass</code> needs to be specified.  Note that <code>javaClass</code> will take precedence
+     * over generics if both  are used. Also note that {@link com.smartgwt.client.data.DataSourceField#getJavaCollectionClass
+     * javaCollectionClass} can be specified if a particular Collection or Map type is needed, and {@link
+     * com.smartgwt.client.data.DataSourceField#getJavaKeyClass javaKeyClass} can be specified for a field of type
+     * <code>java.util.Map</code>.</li> </ul>
+     *
+     *
+     * @return String
+     */
+    public String getJavaClass()  {
+        return getAttributeAsString("javaClass");
+    }
+
+    /**
+     * See {@link com.smartgwt.client.data.DataSourceField#getJavaClass javaClass} - when auto-populating of Java Beans / POJOs
+     * based on  inbound DSRequest data, for a field of type Collection or Map,  <code>javaCollectionClass</code> can  be used
+     * to specify a particular concrete class to use.  If not specified, and a concrete Collection or Map class cannot be
+     * discovered using Java Reflection, the following concrete classes are used: <ul> <li> <code>java.util.ArrayList</code> is
+     * used for fields of type <code>List</code> <li> <code>java.util.HashSet</code> is used for fields of type
+     * <code>Set</code> <li> <code>java.util.LinkedList</code> is used for fields of type <code>Queue</code> <li>
+     * <code>org.apache.commons.collections.map.LinkedMap</code> is used for fields of type <code>Map</code> <li>
+     * <code>java.util.ArrayList</code> is used for fields that are otherwise of type <code>Collection</code> </ul> Note that
+     * this value is used even if the target Collection or Map is declared as a concrete class.  So, for example, if you set
+     * <code>javaCollectionClass</code> to  <code>java.util.LinkedList</code> but your setter method accepts a 
+     * <code>java.util.ArrayList</code>, you will get a ClassCastException.
+     *
+     * @param javaCollectionClass javaCollectionClass Default value is null
+     */
+    public void setJavaCollectionClass(String javaCollectionClass) {
+        setAttribute("javaCollectionClass", javaCollectionClass);
+    }
+
+    /**
+     * See {@link com.smartgwt.client.data.DataSourceField#getJavaClass javaClass} - when auto-populating of Java Beans / POJOs
+     * based on  inbound DSRequest data, for a field of type Collection or Map,  <code>javaCollectionClass</code> can  be used
+     * to specify a particular concrete class to use.  If not specified, and a concrete Collection or Map class cannot be
+     * discovered using Java Reflection, the following concrete classes are used: <ul> <li> <code>java.util.ArrayList</code> is
+     * used for fields of type <code>List</code> <li> <code>java.util.HashSet</code> is used for fields of type
+     * <code>Set</code> <li> <code>java.util.LinkedList</code> is used for fields of type <code>Queue</code> <li>
+     * <code>org.apache.commons.collections.map.LinkedMap</code> is used for fields of type <code>Map</code> <li>
+     * <code>java.util.ArrayList</code> is used for fields that are otherwise of type <code>Collection</code> </ul> Note that
+     * this value is used even if the target Collection or Map is declared as a concrete class.  So, for example, if you set
+     * <code>javaCollectionClass</code> to  <code>java.util.LinkedList</code> but your setter method accepts a 
+     * <code>java.util.ArrayList</code>, you will get a ClassCastException.
+     *
+     *
+     * @return String
+     */
+    public String getJavaCollectionClass()  {
+        return getAttributeAsString("javaCollectionClass");
+    }
+
+    /**
+     * See {@link com.smartgwt.client.data.DataSourceField#getJavaClass javaClass} - when auto-populating of Java Beans / POJOs
+     * based on  inbound DSRequest data, for a field of Map type, <code>javaKeyClass</code> can be used to specify a particular
+     * concrete class for the map keys.  If not specified, and a concrete type cannot be discovered using Java Reflection,
+     * <code>java.lang.Object</code> is used. Note that <code>javaKeyClass</code> take precedence over generics if both are
+     * used.
+     *
+     * @param javaKeyClass javaKeyClass Default value is null
+     */
+    public void setJavaKeyClass(String javaKeyClass) {
+        setAttribute("javaKeyClass", javaKeyClass);
+    }
+
+    /**
+     * See {@link com.smartgwt.client.data.DataSourceField#getJavaClass javaClass} - when auto-populating of Java Beans / POJOs
+     * based on  inbound DSRequest data, for a field of Map type, <code>javaKeyClass</code> can be used to specify a particular
+     * concrete class for the map keys.  If not specified, and a concrete type cannot be discovered using Java Reflection,
+     * <code>java.lang.Object</code> is used. Note that <code>javaKeyClass</code> take precedence over generics if both are
+     * used.
+     *
+     *
+     * @return String
+     */
+    public String getJavaKeyClass()  {
+        return getAttributeAsString("javaKeyClass");
     }
 
     /**
@@ -1160,31 +1185,6 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * Used by the {@link com.smartgwt.client.widgets.BatchUploader} to map a field in an upload file to this  dataSourceField.
-     * This is only necessary if the dataSourceField's name and title differ  from the name of the field in the upload file
-     * (Smart GWT will automatically map upload  fields using the dataSourceField's title, if possible, if it does not get a
-     * direct match  on field name).
-     *
-     * @param uploadFieldName uploadFieldName Default value is null
-     */
-    public void setUploadFieldName(String uploadFieldName) {
-        setAttribute("uploadFieldName", uploadFieldName);
-    }
-
-    /**
-     * Used by the {@link com.smartgwt.client.widgets.BatchUploader} to map a field in an upload file to this  dataSourceField.
-     * This is only necessary if the dataSourceField's name and title differ  from the name of the field in the upload file
-     * (Smart GWT will automatically map upload  fields using the dataSourceField's title, if possible, if it does not get a
-     * direct match  on field name).
-     *
-     *
-     * @return String
-     */
-    public String getUploadFieldName()  {
-        return getAttributeAsString("uploadFieldName");
-    }
-
-    /**
      * Validators to be applied to this field. <p> Validators are applied whenever there is an attempt to save changes to a
      * field. <p> For the available set of built-in validators, and how to define a custom validator, see the {@link
      * com.smartgwt.client.widgets.form.validator.Validator} class.
@@ -1554,9 +1554,49 @@ public class DataSourceField extends DataClass {
      * Sets the default FormItem to be used whenever this field is edited (whether in a grid, form, or other component).
      * <P> If unset, a FormItem will be automatically chosen based on the type of the field.
      * <p><br>
-     * <b>Note</b> : When you supply a custom FormItem via setEditorType(), you're really providing properties which are then used
-     * to create multiple FormItems (eg, in grids, forms and trees) and there's an underlying limitation here where event handlers
-     * have to be written to dynamically receive the actual FormItem rather than relying on "this" (because there's more than one "this").
+     * Note: the FormItem passed to setEditorType() is used as a "template" to create a FormItem whenever
+     * a DataBoundComponent needs to show an interface for editing this field.  This means you need to 
+     * follow special rules:
+     * <ol>
+     * <li>In event handler code, you must obtain the current FormItem instance from the provided
+     *   Event object via getItem().  You cannot make method calls via "this" or via implicit instance 
+     *   scope: both "clearValue()" and "this.clearValue()" need to be written as "item.clearValue()" 
+     *   instead (where "item" is the result of event.getItem()).</li>
+     * <li>To store custom instance variables, you must use FormItem.getAttribute()/setAttribute()
+     *   (or their type-specific variants).  You cannot store and retrieve instance variables 
+     *   via "this" - "this.someVariable = 5" will not work.</li>
+     * <li>You may not override superclass methods - your behaviors have to be implemented via event handlers</li>
+     * <li>If you create a custom subclass, the FormItem you receive in an event handler will be of a generic
+     *   type and must be converted before you can call custom methods.  Conversion is done via 
+     *   <code>new MyCustomItem(item.getJsObj());</code> (complete code sample below).<br>
+     *   Note that this conversion does not actually cause creation or rendering of a new 
+     *   widget and is comparable in cost to a typecast.</li>
+     * </ol>
+     * Example code demonstrating using an eventHandler to call a method on custom subclass of TextItem:
+     * <pre>
+     * class MyCustomItem extends TextItem {
+     *      MyCustomItem (JavaScriptObject config) {
+     *      }
+     *      
+     *      MyCustomItem(String name) {
+     *          setInitHandler(new FormItemInitHandler() {
+     *              public void onInit(FormItem item) {
+     *                  // correct
+     *                  new MyCustomItem(item.getJsObj()).customMethod();
+     *                  
+     *                  // incorrect, will throw an error
+     *                  // ((MyCustomItem)item).customMethod();
+     *              }
+     *          }
+     *      }
+     *      
+     *      void customMethod() { ... }
+     *  }
+     *  
+     *  ...
+     *  
+     *  myDataSource.setEditorType(new MyCustomItem("field1"));
+     *  </pre>
      *
      * @param editorType editorType Default value is null
      */
