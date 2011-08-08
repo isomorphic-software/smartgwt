@@ -8,7 +8,7 @@ import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.events.CloseClickHandler;
-import com.smartgwt.client.widgets.events.CloseClientEvent;
+import com.smartgwt.client.widgets.events.CloseClickEvent;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.DateItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
@@ -69,7 +69,7 @@ public class WindowModalitySample extends ShowcasePanel {
                 winModal.setShowModalMask(true);
                 winModal.centerInPage();
                 winModal.addCloseClickHandler(new CloseClickHandler() {
-                    public void onCloseClick(CloseClientEvent event) {
+                    public void onCloseClick(CloseClickEvent event) {
                         buttonTouchThis.setTitle("Touch This");
                         winModal.destroy();
                     }
