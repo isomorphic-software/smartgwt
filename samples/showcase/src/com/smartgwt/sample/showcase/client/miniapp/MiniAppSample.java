@@ -21,7 +21,7 @@ import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.events.CloseClickHandler;
-import com.smartgwt.client.widgets.events.CloseClientEvent;
+import com.smartgwt.client.widgets.events.CloseClickEvent;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
@@ -76,7 +76,7 @@ public class MiniAppSample extends ShowcasePanel {
                         animateOutline.hide();
                         final FullScreenApplication appWindow = new FullScreenApplication();
                         appWindow.addCloseClickHandler(new CloseClickHandler() {
-                            public void onCloseClick(CloseClientEvent event) {
+                            public void onCloseClick(CloseClickEvent event) {
                                 animateOutline.setRect(0, 0, Page.getWidth(), Page.getHeight());
                                 animateOutline.show();
                                 appWindow.destroy();
