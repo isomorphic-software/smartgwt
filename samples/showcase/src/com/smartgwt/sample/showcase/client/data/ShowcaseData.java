@@ -146,6 +146,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Nested Editor", "nested-editor-new", "new-category", "silk/vcard_edit.png", new NestedEditorSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("ListGrid Item", "form-grid-item-new", "new-category", "silk/vcard_edit.png", new ListGridItemSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Center Align", "layout-center-align-new", "new-category", null, new CenterAlignSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Custom ListGrid Layout", "grid-components-new", "new-category", null, new GridComponentsSample.Factory(), true, idSuffix),
+                    
 
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
 
@@ -188,6 +190,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Custom Header Context Menu", "grid-appearance-custom-menu", "grid-appearance-category", null, new CustomHeaderMenuSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid Top Header", "grid-top-header", "grid-appearance-category", null, new GridTopHeaderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Row Numbering", "grid-row-numbering", "grid-appearance-category", null, new RowNumberingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Custom Layout", "grid-components", "grid-appearance-category", null, new GridComponentsSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Interaction", "grid-interaction-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Rollover", "grid-interaction-rollover", "grid-interaction-category", null, new RolloverSample.Factory(), true, idSuffix),
