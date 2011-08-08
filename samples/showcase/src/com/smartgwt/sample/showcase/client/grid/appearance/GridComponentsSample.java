@@ -22,7 +22,10 @@ import com.smartgwt.sample.showcase.client.data.CountryXmlDS;
 
 public class GridComponentsSample extends ShowcasePanel {
 
-    private static final String DESCRIPTION = "xxx";
+    private static final String DESCRIPTION = "ListGrids can be customized by changing the order of " +
+            "standard components, and adding entirely custom components. In this example the filter " +
+            "row is showing below the ListGrid header bar, and a custom set of controls has been " +
+            "added underneath the body. ";
     public static class Factory implements PanelFactory {
         private String id;
 
