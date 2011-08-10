@@ -24,5 +24,5 @@ public interface CloseClickHandler extends EventHandler {
      *
      * @param event the event
      */
-    void onCloseClick(com.smartgwt.client.widgets.events.CloseClientEvent event);
+    void onCloseClick(com.smartgwt.client.widgets.events.CloseClickEvent event);
 }
