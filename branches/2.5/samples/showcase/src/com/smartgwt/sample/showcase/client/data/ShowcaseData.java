@@ -140,7 +140,6 @@ public class ShowcaseData {
 
                     new ExplorerTreeNode("New Samples", "new-category", "root", "silk/new.png", null, true, idSuffix),
                     new ExplorerTreeNode("Custom Cell Editors", "grid-custom-editing-cell-new", "new-category", null, new GridCellEditorCustomizerSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Expression Filter", "grid-exp-filter-new", "new-category", null, new GridExpressionFilter.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Multi Line Summaries", "grid-ml-summary-new", "new-category", null, new GridMultiLineSummariesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid Header Summary", "grid-header-summary-new", "new-category", null, new GridSummariesInHeaderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Expression Filter", "grid-exp-filter-new", "new-category", null, new GridExpressionFilter.Factory(), true, idSuffix),
