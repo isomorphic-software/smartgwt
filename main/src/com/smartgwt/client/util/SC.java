@@ -542,6 +542,15 @@ public class SC {
     }-*/;
 
     /**
+     * Returns true is the optional Charts module has been loaded.
+     *
+     * @return true if Charts module is loaded
+     */
+    public static native boolean hasCharts()/*-{
+        return $wnd.isc.FacetChart != null;
+    }-*/;
+
+    /**
      * Returns true is the optional Drawing module has been loaded.
      *
      * @return true if Drawing module is loaded
