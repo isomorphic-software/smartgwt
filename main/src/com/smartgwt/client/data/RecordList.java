@@ -707,7 +707,7 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
      */
     public native void addListAt(Record[] list, int pos) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        return self.addListAt(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(list), pos);
+        self.addListAt(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(list), pos);
     }-*/;
 
     /**
@@ -820,7 +820,6 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
                     return @com.smartgwt.client.data.RecordList::normalizedValue(Ljava/lang/Number;)(value);
                 }
             })));
-        return this;
     }-*/;
 
     private static double normalizedValue(Number number) {
