@@ -15,7 +15,7 @@ public class MultiFieldSearchSample extends ShowcasePanel {
     private static final String DESCRIPTION =
     	"<p>Click on the SelectItem on the left to see the full set of data. "+
     	"You can enter filter criteria directly on the drop-down list in either field "+
-    	"to filter the set of options down to a manageable size.</p>";
+    	"to filter the set of options down to a managable size.</p>";
 
     public static class Factory implements PanelFactory {
     	private String id;

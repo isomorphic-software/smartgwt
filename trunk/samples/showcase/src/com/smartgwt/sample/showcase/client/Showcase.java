@@ -20,6 +20,7 @@ import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.Layout;
 import com.smartgwt.client.widgets.layout.LayoutSpacer;
@@ -376,7 +377,6 @@ public class Showcase implements EntryPoint, HistoryListener {
                 } else {
                     mainTabSet.selectTab(tab);
                 }
-                History.newItem(explorerTreeNode.getNodeID(), false);
             }
         }
     }
@@ -389,6 +389,10 @@ public class Showcase implements EntryPoint, HistoryListener {
             for (ExplorerTreeNode explorerTreeNode : showcaseData) {
                 if (explorerTreeNode.getNodeID().equals(historyToken)) {
                     showSample(explorerTreeNode);
+                    ListGridRecord selectedRecord = sideNav.getSelectedRecord();
+                    if(selectedRecord != null) {
+                        sideNav.deselectRecord(selectedRecord);
+                    }
                     sideNav.selectRecord(explorerTreeNode);
                     Tree tree = sideNav.getData();
                     TreeNode categoryNode = tree.getParent(explorerTreeNode);
