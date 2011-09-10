@@ -16,6 +16,7 @@
 
 package com.smartgwt.sample.showcase.client;
 
+import com.smartgwt.client.types.SelectionStyle;
 import com.smartgwt.client.types.SortArrow;
 import com.smartgwt.client.types.TreeModelType;
 import com.smartgwt.client.widgets.tree.Tree;
@@ -33,6 +34,7 @@ public class SideNavTree extends TreeGrid {
     public SideNavTree() {
         setWidth100();
         setHeight100();
+        setSelectionType(SelectionStyle.SINGLE);
         setCustomIconProperty("icon");
         setAnimateFolderTime(100);
         setAnimateFolders(true);

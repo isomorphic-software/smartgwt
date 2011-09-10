@@ -90,7 +90,7 @@ public class CenterAlignSample extends ShowcasePanel {
         hLayoutAlignCenter.setHeight100();
         hLayoutAlignCenter.setLayoutMargin(6);
         hLayoutAlignCenter.setMembersMargin(6);
-        hLayoutAlignCenter.setBorder("1px dashed 0083ff");
+        hLayoutAlignCenter.setBorder("1px dashed blue");
         hLayoutAlignCenter.setAlign(Alignment.CENTER); // As promised!
         
         hLayoutAlignCenter.addMember(new Canvas() {{

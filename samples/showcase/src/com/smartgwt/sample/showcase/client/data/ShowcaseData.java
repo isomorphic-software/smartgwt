@@ -47,7 +47,7 @@ import com.smartgwt.sample.showcase.client.combobox.SelectedValueComboBoxSample;
 import com.smartgwt.sample.showcase.client.dataintegration.json.FormServerJsonValidationSample;
 import com.smartgwt.sample.showcase.client.dataintegration.json.JsonSimpleSample;
 import com.smartgwt.sample.showcase.client.dataintegration.json.JsonXPathSample;
-import com.smartgwt.sample.showcase.client.dataintegration.json.YahooJsonServicesSample;
+//import com.smartgwt.sample.showcase.client.dataintegration.json.YahooJsonServicesSample;
 import com.smartgwt.sample.showcase.client.dataintegration.xml.FormServerXmlValidationSample;
 import com.smartgwt.sample.showcase.client.dataintegration.xml.RestfulDataSourceSample;
 import com.smartgwt.sample.showcase.client.dataintegration.xml.XmlXPathSample;
@@ -115,13 +115,7 @@ import com.smartgwt.sample.showcase.client.forms.validation.FormBuiltinsSample;
 import com.smartgwt.sample.showcase.client.forms.validation.FormRegularExpressionSample;
 import com.smartgwt.sample.showcase.client.forms.validation.FormTypeSample;
 import com.smartgwt.sample.showcase.client.forms.validation.FormValueTransformSample;
-import com.smartgwt.sample.showcase.client.grid.GridCellWidgetsSample;
-import com.smartgwt.sample.showcase.client.grid.GridDataBoundDragDropSample;
-import com.smartgwt.sample.showcase.client.grid.GridDependentSelectsSample;
-import com.smartgwt.sample.showcase.client.grid.GridFilterBulderSample;
-import com.smartgwt.sample.showcase.client.grid.GridNestedFilterBulderSample;
-import com.smartgwt.sample.showcase.client.grid.GridSummariesSample;
-import com.smartgwt.sample.showcase.client.grid.LiveGridFetchSample;
+import com.smartgwt.sample.showcase.client.grid.*;
 import com.smartgwt.sample.showcase.client.grid.appearance.AlternateRecordStyleSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.AnimatedSelectionSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.CellStylesSample;
@@ -173,15 +167,7 @@ import com.smartgwt.sample.showcase.client.grid.datatypes.GridDataTypesLinkTextS
 import com.smartgwt.sample.showcase.client.grid.datatypes.GridDataTypesListSample;
 import com.smartgwt.sample.showcase.client.grid.datatypes.GridDataTypesLongTextSample;
 import com.smartgwt.sample.showcase.client.grid.datatypes.GridDataTypesTextSample;
-import com.smartgwt.sample.showcase.client.grid.editing.GridCustomEditorsSample;
-import com.smartgwt.sample.showcase.client.grid.editing.GridDataValidationSample;
-import com.smartgwt.sample.showcase.client.grid.editing.GridDisableEditingSample;
-import com.smartgwt.sample.showcase.client.grid.editing.GridEditAllRowsSample;
-import com.smartgwt.sample.showcase.client.grid.editing.GridEditByCellSample;
-import com.smartgwt.sample.showcase.client.grid.editing.GridEditByRowSample;
-import com.smartgwt.sample.showcase.client.grid.editing.GridEnterNewRowSample;
-import com.smartgwt.sample.showcase.client.grid.editing.GridMassUpdateSample;
-import com.smartgwt.sample.showcase.client.grid.editing.GridModalEditingSample;
+import com.smartgwt.sample.showcase.client.grid.editing.*;
 import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionDetailFieldSample;
 import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionDetailsSample;
 import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionEditorSample;
@@ -217,18 +203,7 @@ import com.smartgwt.sample.showcase.client.grid.interaction.RolloverSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.SimpleSelectSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.SingleSelectSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.ValueHoverTipsSample;
-import com.smartgwt.sample.showcase.client.grid.sortfilter.AdaptiveFilterSample;
-import com.smartgwt.sample.showcase.client.grid.sortfilter.AdaptiveSortSample;
-import com.smartgwt.sample.showcase.client.grid.sortfilter.DisableSortSample;
-import com.smartgwt.sample.showcase.client.grid.sortfilter.GridBigFilterSample;
-import com.smartgwt.sample.showcase.client.grid.sortfilter.GridDateRangeFilterSample;
-import com.smartgwt.sample.showcase.client.grid.sortfilter.GridDisableFilterSample;
-import com.smartgwt.sample.showcase.client.grid.sortfilter.GridFilterSample;
-import com.smartgwt.sample.showcase.client.grid.sortfilter.GridLiveFilterSample;
-import com.smartgwt.sample.showcase.client.grid.sortfilter.GridSortSample;
-import com.smartgwt.sample.showcase.client.grid.sortfilter.MultiLevelSortSample;
-import com.smartgwt.sample.showcase.client.grid.sortfilter.SortArrowsSample;
-import com.smartgwt.sample.showcase.client.grid.sortfilter.SortDataTypesSample;
+import com.smartgwt.sample.showcase.client.grid.sortfilter.*;
 import com.smartgwt.sample.showcase.client.gwtintegration.GwtShowcaseSample;
 import com.smartgwt.sample.showcase.client.layout.CenterAlignSample;
 import com.smartgwt.sample.showcase.client.layout.NestingSample;
@@ -322,7 +297,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Animation Playpen", "featured-animation-playpen", "featured-category", "silk/layers.png", new AnimationPlaypenSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Master Detail", "featured-master-detail", "featured-category", "silk/application_split.png", new GridFormUpdateSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("RestDataSource", "featured-restfulds", "featured-category", "silk/arrow_refresh_small.png", new RestfulDataSourceSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Yahoo! JSON Service", "featured-json-integration-category-yahoo", "featured-category", "crystal/16/apps/yahoo_protocol.png", new YahooJsonServicesSample.Factory(), true, idSuffix),
+                    //new ExplorerTreeNode("Yahoo! JSON Service", "featured-json-integration-category-yahoo", "featured-category", "crystal/16/apps/yahoo_protocol.png", new YahooJsonServicesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Pattern Reuse", "featured-pattern-reuse", "featured-category", "silk/database_table.png", new PatternReuseSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("XSD DataSource", "featured-xsd-ds", "featured-category", "silk/database_gear.png", new XsdDataSourceSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("GWT Integration", "featured-gwt-integration", "featured-category", "gwt/icon16.png", new GwtShowcaseSample.Factory(), true, idSuffix),
@@ -334,6 +309,11 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Offline Preferences", "grid-offline-pref-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new OfflinePreferencesSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("New Samples", "new-category", "root", "silk/new.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Custom Cell Editors", "grid-custom-editing-cell-new", "new-category", null, new GridCellEditorCustomizerSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Expression Filter", "grid-exp-filter-new", "new-category", null, new GridExpressionFilter.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Multi Line Summaries", "grid-ml-summary-new", "new-category", null, new GridMultiLineSummariesSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Grid Header Summary", "grid-header-summary-new", "new-category", null, new GridSummariesInHeaderSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Expression Filter", "grid-exp-filter-new", "new-category", null, new GridExpressionFilter.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Multi-Field Search", "combobox-multifield-search-new", "new-category", null, new MultiFieldSearchSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Format Related Value", "format-related-value-new", "new-category", null, new FormatRelatedValueSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Format Dropdown", "format-dropdown-new", "new-category", null, new FormatDropDownSample.Factory(), true, idSuffix),
@@ -375,7 +355,6 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Format Values", "grid-appearance-format-values", "grid-appearance-category", null, new FormatValuesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Empty Values", "grid-appearance-empty-values", "grid-appearance-category", null, new EmptyValuesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Empty Grid", "grid-appearance-empty-grid", "grid-appearance-category", null, new EmptyGridSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Preferences", "grid-appearance-preferences", "grid-appearance-category", null, new GridPreferencesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Alternate Records", "grid-appearance-alternate", "grid-appearance-category", null, new AlternateRecordStyleSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Column Align", "grid-appearance-columnalign", "grid-appearance-category", null, new ColumnAlignSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Column Header", "grid-appearance-columnheader", "grid-appearance-category", null, new ColumnHeadersSample.Factory(), true, idSuffix),
@@ -428,15 +407,17 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Big Filter", "grid-big-filter", "grid-filter-category", null, new GridBigFilterSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Disable Filter", "grid-sortfilter-disable-filter", "grid-filter-category", null, new GridDisableFilterSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Date Range Filtering", "grid-daterange-filtering", "grid-filter-category", null, new GridDateRangeFilterSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Expression Filter", "grid-exp-filter", "grid-filter-category", null, new GridExpressionFilter.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Editing", "grid-editing-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Edit by Row", "grid-editing-row", "grid-editing-category", null, new GridEditByRowSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Edit by Cell", "grid-editing-cell", "grid-editing-category", null, new GridEditByCellSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Custom Cell Editors", "grid-custom-editing-cell", "grid-editing-category", null, new GridCellEditorCustomizerSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Enter New Rows", "grid-editing-new-row", "grid-editing-category", null, new GridEnterNewRowSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Mass Update", "grid-editing-mass-update", "grid-editing-category", null, new GridMassUpdateSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Modal Editing", "grid-editing-modal", "grid-editing-category", null, new GridModalEditingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Disable Editing", "grid-editing-disable", "grid-editing-category", null, new GridDisableEditingSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Custom Editors", "grid-editing-custom-editors", "grid-editing-category", null, new GridCustomEditorsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Custom Column Editors", "grid-editing-custom-editors", "grid-editing-category", null, new GridCustomEditorsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Data Validation", "grid-editing-data-validation", "grid-editing-category", null, new GridDataValidationSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Dependent Selects (Grid)", "grid-editing-dependent-selects", "grid-editing-category", null, new GridDependentSelectsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid All Editors", "grid-all-editors", "grid-editing-category", null, new GridEditAllRowsSample.Factory(), true, idSuffix),
@@ -508,10 +489,13 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Remove", "remove-grid-form-category", "grid-form-category", "pieces/16/cube_blue.png", new GridRecordRemoveSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Pattern Reuse", "pattern-reuse-grid-form-category", "grid-form-category", "silk/database_table.png", new PatternReuseSample.Factory(), true, idSuffix),
 
+                    new ExplorerTreeNode("Preferences", "grid-appearance-preferences", "grid-category", null, new GridPreferencesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Live Grid", "live-grid", "grid-category", null, new LiveGridFetchSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Dependent Selects (Grid)", "dependent-selects-grid", "grid-category", null, new GridDependentSelectsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Databound Dragging", "grid-db-dragging", "grid-category", "silk/database_link.png", new GridDataBoundDragDropSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid Summaries", "grid-summaries", "grid-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Grid Header Summaries", "grid-header-summaries", "grid-category", "crystal/16/apps/tooloptions.png", new GridSummariesInHeaderSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Multiline Summaries", "grid-ml-summaries", "grid-category", "crystal/16/apps/tooloptions.png", new GridMultiLineSummariesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Printing", "grid-print-grid", "grid-category", "silk/printer.png", new PrintingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid Cell Widgets", "grid-cell-widgets", "grid-category", null, new GridCellWidgetsSample.Factory(), true, idSuffix),
 
@@ -675,7 +659,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("JSON", "json-integration-category", "data-integration-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Simple JSON", "json-integration-category-simple", "json-integration-category", null, new JsonSimpleSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("XPath Binding", "json-integration-category-xpath", "json-integration-category", null, new JsonXPathSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Yahoo! JSON Services", "json-integration-category-yahoo", "json-integration-category", "crystal/16/apps/yahoo_protocol.png", new YahooJsonServicesSample.Factory(), true, idSuffix),
+                    //new ExplorerTreeNode("Yahoo! JSON Services", "json-integration-category-yahoo", "json-integration-category", "crystal/16/apps/yahoo_protocol.png", new YahooJsonServicesSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Offline Support", "offline-category", "root", "silk/application_view_detail.png", null, true, idSuffix),
                     new ExplorerTreeNode("Offline Preferences", "grid-offline-pref", "offline-category", "crystal/16/apps/tooloptions.png", new OfflinePreferencesSample.Factory(), true, idSuffix),

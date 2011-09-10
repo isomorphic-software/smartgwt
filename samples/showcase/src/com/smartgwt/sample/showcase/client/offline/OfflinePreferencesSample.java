@@ -76,8 +76,8 @@ public class OfflinePreferencesSample extends ShowcasePanel {
 
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setLeaveScrollbarGap(true);
-        countryGrid.setCanFreezeFields(false);
-        countryGrid.setCanGroupBy(false);
+        countryGrid.setCanFreezeFields(true);
+        countryGrid.setCanGroupBy(true);
         countryGrid.setWidth100();
         countryGrid.setHeight(224);
         countryGrid.setDataSource(CountryXmlDS.getInstance());

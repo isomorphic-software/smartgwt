@@ -3,6 +3,8 @@ package com.smartgwt.sample.showcase.client.grid.sortfilter;
 import com.google.gwt.user.client.Timer;
 import com.smartgwt.client.data.DSRequest;
 import com.smartgwt.client.data.DSResponse;
+import com.smartgwt.client.data.Record;
+import com.smartgwt.client.types.DSOperationType;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Label;
@@ -51,9 +53,11 @@ public class AdaptiveFilterSample extends ShowcasePanel {
             //If working with a real server that returns data dynamically based on start/end row, override
             //transformResponse instead.
 
+            
             @Override
-            public DSResponse getClientOnlyResponse(DSRequest request) {
-                DSResponse response = super.getClientOnlyResponse(request);
+            public DSResponse getClientOnlyResponse(DSRequest request, Record[] serverData) {
+                DSResponse response = super.getClientOnlyResponse(request, serverData);
+                if(request.getOperationType() == DSOperationType.FETCH) {}
                 int totalRows = response.getTotalRows();
                 int startRow = response.getStartRow();
                 int endRow = response.getEndRow();
