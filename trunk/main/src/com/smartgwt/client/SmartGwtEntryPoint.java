@@ -120,13 +120,13 @@ public class SmartGwtEntryPoint implements EntryPoint {
                     }
                 } else if(objType == 'boolean') {
                     return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(obj);
-                } else if($wnd.isA.Date(obj)) {
+                } else if($wnd.isc.isA.Date(obj)) {
                     return @com.smartgwt.client.util.JSOHelper::toDate(D)(obj.getTime());
                 } else if (obj._constructor && obj._constructor == 'DateRange') {
                     return @com.smartgwt.client.widgets.form.fields.DateRangeItem::convertToDateRange(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
                 } else if(@com.smartgwt.client.util.JSOHelper::isJSO(Ljava/lang/Object;)(obj)) {
                     return obj;
-                } else if($wnd.isA.Array(obj)) {
+                } else if($wnd.isc.isA.Array(obj)) {
                     return @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
                 } else {
                     //handle case where object may be a GWT created class instance
@@ -177,7 +177,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    	 	
 	    	 	for (var fieldName in object) {
 	    	 		// Not sure whether this could really happen
-	    	 		if(!$wnd.isA.String(fieldName)){
+	    	 		if(!$wnd.isc.isA.String(fieldName)){
 	    	 			continue;
 	    	 		}
 	    	 		
