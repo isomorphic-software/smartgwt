@@ -18,4 +18,6 @@ This module is useful if you already have the SmartClient resources available in
 
     <entry-point class='com.smartgwt.client.SmartGwtEntryPoint'/>
 
+  	<set-configuration-property name="document.compatMode" value="BackCompat"/>
+
 </module>
