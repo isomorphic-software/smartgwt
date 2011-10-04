@@ -23,5 +23,6 @@ and manually add the script includes in your host html file.
 
   	<add-linker name="smartgwt" />
 
+  	<set-configuration-property name="document.compatMode" value="BackCompat"/>
 
 </module>
