@@ -864,13 +864,14 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
         return "";
     }
 
-    public String toString() {
-        if (true || !isDrawn()) {
-            return "<<SmartGWT Component>>::" + getClass() + ", ID:" + getID();
-        } else {
-            return super.toString();
+    public native String toString()/*-{
+        try {
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            return $wnd.isc.echo(self);
+        } catch (e) {
+            return "ERROR: " + e.name + " -- " + e.message;
         }
-    }
+    }-*/;
 
     public boolean equals(Object obj) {
         if (obj instanceof BaseWidget) {
