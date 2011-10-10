@@ -18,6 +18,7 @@ public abstract class GridRowColEvent<H extends EventHandler> extends BrowserEve
      */
     public native ListGridRecord getRecord() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        if (jsObj.record == null) return null;
         var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
         if(retVal == null) {
             retVal = @com.smartgwt.client.widgets.grid.ListGridRecord::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
