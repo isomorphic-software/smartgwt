@@ -11,8 +11,7 @@
 
 	<!-- Mirror directory for scripts; makes building distro easier -->
 	<property name="samples.scripts" value="${smartgwt.build.out}/samples-scripts" />
-	<!-- Use the uppercase name rather than the lowercase name -->
-	<property name="sample.build" value="${smartgwt.build.out}/samples/${sample.main}" />
+	<property name="sample.build" value="${smartgwt.build.out}/samples/${sample.root}" />
 
 	<target name="source" description="Copy source to the output folder">
 		<mkdir dir="${sample.build}/src" />
