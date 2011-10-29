@@ -17,7 +17,7 @@ import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class TabsCloseableSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "Click on the red close icons to close tabs. Tabbed views can have any mixture of closeable and permanent tabs.";
+    private static final String DESCRIPTION = "Click on the close icons to close tabs. Tabbed views can have any mixture of closeable and permanent tabs.";
 
     public static class Factory implements PanelFactory {
         private String id;

@@ -21,7 +21,7 @@ public class FormulaSummaryBuilderSample extends ShowcasePanel {
 
     private static final String DESCRIPTION = "<p><b>Formula and Summary fields</b> provide built-in wizards for end users " +
             "to define formula fields that can compute values using other fields, or summary fields that can combine other fields with " +
-            "intervening / surrounding text. Available in all DataBoundComponents, easy to persist aspreferences.</p>" +
+            "intervening / surrounding text. Available in all DataBoundComponents, easy to persist as preferences.</p>" +
             "<p>The Formula and Summary Builder are accessible from the grid header context menu. They can also be invoked programatically as " +
             "demonstracted by clicking the buttons in this sample</p>" +
             "<p>Launch the Formula Builder and enter the title of the new field, and the desired formula. For example, enter <b>Population Density</b> " +
