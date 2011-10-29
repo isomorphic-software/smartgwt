@@ -13,7 +13,7 @@ import com.smartgwt.sample.showcase.client.data.WorldXmlDS;
 
 public class GridDataBoundFilterSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Click the buttons to filter (partial match) records from the server. "
-    	                                      + "Also see the Grids > Sort & filter > Filter example for automatic databound  "
+    	                                      + "Also see the Grids > Filtering > Live Filter example for automatic databound  "
     	                                      + "Filter operations triggered by user input.";
 
     public static class Factory implements PanelFactory {

@@ -18,7 +18,7 @@ import com.smartgwt.sample.showcase.client.data.CountryData;
 
 public class GridCellWidgetsSample extends ShowcasePanel {
     private static final String DESCRIPTION = "<p>This example illustrates embedding arbitrary widgets in ListGrid cells. Notice how reordering the column with widgets " +
-            "works as any other column. Smart GWT users widget pooling to maximize efficiency however for better performance consider using one or more fields of type ListGridFieldType.ICON</p>."; 
+            "works as any other column. Smart GWT uses widget pooling to maximize efficiency however for better performance consider using one or more fields of type ListGridFieldType.ICON</p>."; 
 
 
     public static class Factory implements PanelFactory {
