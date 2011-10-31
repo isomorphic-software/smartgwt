@@ -327,8 +327,10 @@ public class JSOHelper {
     }
 
     public static native int getJavaScriptObjectArraySize(JavaScriptObject elem) /*-{
-	    if (elem) return elem.length;
-	    return 0;
+        var length;
+	    if (elem) length = elem.length;
+	    if (length == null) length = 0;
+	    return length;
     }-*/;
 
     public static native int getIntValueFromJavaScriptObjectArray(JavaScriptObject elem, int i) /*-{
