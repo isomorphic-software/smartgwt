@@ -28,6 +28,7 @@
    <body>
       <h1>Smart GWT Release Notes</h1>
       <ul>
+            <li><a href="#3_0">3.0</a></li>
             <li><a href="#2_5">2.5</a></li>
             <li><a href="#2_4">2.4</a></li>
             <li><a href="#2_2">2.2</a></li>
@@ -40,6 +41,105 @@
       </ul>
       <hr/>
 
+      <a name="3_0"></a>
+            <h2>Release Notes for Smart GWT 3.0</h2>
+            <h5>Backwards Compatibility notes</h5>
+            SmartGWT upgrades are fully backwards compatible unless otherwise noted. For all new APIs which replace existing APIs, the older versions will continue to be supported (though marked as deprecated), with the following exceptions:
+            <ul>
+                <div><li>SmartGWT 2.5 introduced an erroneously named event and handler pair <code>com.smartgwt.client.widgets.events.CloseClientEvent</code> and <code>com.smartgwt.client.widgets.events.CloseClientHandler</code>. These have been removed in favor of the correctly named <code>com.smartgwt.client.widgets.events.CloseClickEvent</code> and <code>com.smartgwt.client.widgets.events.CloseClickHandler</code></li></div>
+                <div><li>The zero argument method <code>com.smartgwt.client.data.DataSource.fetchData()</code> has been removed from the framework. This method served no useful purpose and led to a lot of confusion. For application code to meaningfully react to a <code>DataSource.fetchData()</code> call, a <code>DSCallback</code> must be passed to the method.</li></div>
+            </ul>
+            <h5>Notes on specific new features and fixes:</h5>
+            <ul>
+                <div><li>Numerous ScreenReader enhancements and fixes, including aria-label support for all FormItems, Buttons, FilterBuilder, prompts on form items, improving native focus on elements (including listGrid), cross browser support</div></li>
+                <div><li>Drawing module now supported in SmartGWT LGPL and enhanced with much extended APIs and better examples</div></li>
+                <div><li>Numerous improvements in support for mobile browsers (including Android Browser and iOS Safari)</div></li>
+                <div><li>show native focus indicators on Chrome and Safari browsers</div></li>
+                <div><li>Lots of skinning changes.</div></li>
+                <li>
+                <div><b>DataBinding and related functionality</b>
+                    <ul>
+                        <div><li>Various enhancements around working with AdvancedCriteria.</div></li>
+                        <div><li>Support for transaction queueing for RestDataSources</div></li>
+                        <div><li>DataSource.dropUnknownCriteria feature - if set to true (the default) client side filtering will ignore criteria for fieldNames not explicitly present in the DataSource.</div></li>
+                        <div><li>Fix for an issue where "xsd:type" attributes on XML responses could confuse client side code to parse XML into Record objects</div></li>
+                    </ul>
+                </div>
+                </li>
+                <li>
+                <div><b>Miscellaneous Component / UI changes</b>
+                    <ul>
+                        <div><li>Support for new ToolStrip related components ToolStripGroups, RibbonBar, RibbonGroup</div></li>
+                        <div><li>PortalLayout and Portlet classes made public in SmartGWT</div></li>
+                        <div><li>Respect "minWidth" / "minHeight" specified on a percentage sized component</div></li>
+                        <div><li>ToolStrip and related components added to Visual Builder</li></div>
+                        <div><li>Various visual builder fixes and editMode fixes</div></li>
+                        <div><li>Various improvements to Calendar</div></li>        
+                        <div><li>Fix for an issue with ctrl / alt key detection in Windows (non US keyboard mappings)</div></li>
+                        <div><li>Various tab order fixes</div></li>
+                        <div><li>Fixed some interactions with modal prompts and click masks</div></li>
+                        <div><li>Fix for DateChooser year menu positioning bug</div></li>
+                        <div><li>Chrome-specific fix for issue where tabSet close click could fail to remove unselected tabs in some skins</div></li>
+                        <div><li>Some fixes / other work on dataPath</div></li>
+                        <div><li>Fixed some issues around dragAppearance:"tracker" and dragResize/dragReposition</div></li>
+                        <div><li>Fix for a potential memory leak in RestDataSource when serializing requests</div></li>
+                        <div><li>Improvements to APIs for customizing Dialogs</li></div>
+                    </ul>
+                </div>
+                </li>
+                <li>
+                <div><b>ListGrid, TileGrid and TreeGrid</b></div>
+                    <ul>
+                        <div><li>ListGrid reworked to be a VLayout subclass, with support for customizing sub-components via listGrid.gridComponents</div></li>
+                        <div><li>Support for delayed / batched removal of records from a ListGrid (via deferRemoval attribute)</div></li>
+                        <div><li>Support for ListGridField.multiple</div></li>
+                        <div><li>Support for recordContextClick on TileGrids</div></li>
+                        <div><li>Better support for cascading selection in TreeGrids with incrementally loaded data.</div></li>                                        
+                        <div><li>Various issues to do with filterEditor field order, sizing, visibility</div></li>
+                        <div><li>Various fixes around recordComponents' life-cycle management</div></li>
+                        <div><li>Fixed a bug where expansion components / record components could get "lost" on server side data change</div></li>
+                        <div><li>Fix for error dragging into a grid with all disabled records</div></li>
+                        <div><li>ListGridField autoFitWidth logic fixes</div></li>
+                        <div><li>Force a refresh when explicitly recalculating summary values even if data appears unchanged, and added support for recalculating grid level summaries without recalculating summaries at all levels in the grid.</div></li>
+                        <div><li>On 'setData()' on a grouped grid, reapply initial group open state rather than attempting to apply current tree open state to the new data</div></li>
+                        <div><li>Fixed an issue where frozen body could leave whitespace at the bottom when rapidly scrolling</div></li>
+                        <div><li>Fix for an issue where expansion components could interfere with the positioning of recordComponents</div></li>
+                        <div><li>Fix for an issue where allowFilterExpressions could confuse checkbox-items in the ListGrid filterEditor</div></li>
+                        <div><li>Fix for an issue where hilites could not be applied to a ListGrid before initialization</li></div>
+                        <div><li>Fix for a bug where <code>getBodyScrollLeft()</code> and <code>getBodyScrollTop()</code> would throw an Exception attempting to convert <code>int</code> to <code>Integer</code></li></div>
+                    </ul>
+                </div>
+                </li>
+                <li>
+                <div><b>Forms</b>
+                    <ul>
+                        <div><li>FormItem item vertical alignment support</div></li>
+                        <div><li>Numerous fixes to the "allowExpressions" / "allowFilterExpressions" functionality expression items</div></li>
+                        <div><li>FormItem selectOnFocus won't override actual cursor insertion based on mouse click position.</div></li>
+                        <div><li>Various ComboBoxItem stability improvements / fixes around filtering, addUnknownValues false, showHintInField</div></li>
+                        <div><li>DataBoundPicktreeItem - support for initial criteria and invalidating cache</div></li>
+                        <div><li>Fix for possible memory leaks failing to clear up generated dateRangeItem dialog box and related components</div></li>
+                        <div><li>Fix for tabIndex issues around RadioGroupItems</div></li>
+                        <div><li>MultiFileItem now available in SmartGWT</div></li>
+                        <div><li>Fixed some formatting issues with DateItems showing error icons</div></li>
+                        <div><li>Fix for issue where cellHover component fieldNum could be incorrect while frozen fields were showing</div></li>
+                        <div><li>Fix for icon positioning with RelativeDateItems</div></li>
+                        <div><li>Fix for erroneous sorting of null entries in datetime type fields.</div></li>
+                        <div><li>Added workaround for native IE issue whereby assigning certain HTML strings to certain DOM elements' innerHTML at runtime can generate runtime errors. This came up setting StaticTextItem values</div></li>
+                        <div><li>Fixed a case where SelectItem/ComboBoxItem.fetchData() could fail to drop cached data</div></li>
+                        <div><li>Avoid writing out the title suffix for a form item with no title</div></li>
+                        <div><li>Support for applying "inSet" criteria to AdvancedCriteria via multiple:true selectItem</div></li>
+                        <div><li>Some enhancements / fixes around FormItems and optionDataSource</div></li>
+                        <div><li>Fixed some issues where RelativeDateItems could show the wrong absolute date value for some shortcuts</div></li>
+                        <div><li>Fix for an issue where dateItems could fire changed more often than necessary</div></li>
+                        <div><li>ComboBoxItem/SelectItem: Fix for an issue where the pickList header could fail to respect the height specified in pickListProperties</div></li>
+                        <div><li>Fix for an issue where ButtonItems could fail to show disabled state properly</div></li>
+                        <div><li>CanvasItem click handler responds to mouse click or Enter keypress as with standard widget click handling</div></li>
+                        <div><li>Fix for an issue where a call to <code>getValues()</code> before draw on a multiple select item could cause an Exception</li></div>
+                        <div><li>New <code>FilterBuilder.getCriteria()</code> method which takes a parameter allowing the developer to include null values in the generated criteria.</li></div>
+                    </ul>
+                </div>
+                </li>
       <a name="2_5"></a>
             <h2>Release Notes for Smart GWT 2.4</h2>
               <ul>
