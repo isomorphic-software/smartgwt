@@ -1,4 +1,4 @@
-<project name="SmartGWT" default="build" basedir=".">
+<project name="smartgwt" default="build" basedir=".">
 	<property name="smartgwt.root" location="." />
 	<property name="project.tail" value="" />
 	<import file="${smartgwt.root}/common.ant.xml" />
@@ -260,7 +260,7 @@ if (!(isc.loadSkin || window.loadSkin)) {
 
 	<target name="diff-report" depends="main">
 
-		<get src="http://www.smartclient.com/smartgwt/builds/release-${smartgwt.previous_version}/smartgwt.jar" 
+		<get src="http://www.smartclient.com/maven2/com/smartgwt/smartgwt/${smartgwt.previous_version}/smartgwt-${smartgwt.previous_version}.jar" 
 		    dest="${smartgwt.build.out}/smartgwt-${smartgwt.previous_version}.jar" 
 		    verbose="false"
 		    usetimestamp="true"/>
@@ -282,7 +282,7 @@ if (!(isc.loadSkin || window.loadSkin)) {
               message="Cannot find file '${PREVIOUS_JAR}' "/>
 
 	    <jarjardiff destfile="${smartgwt.build.out}/diff.xml"
-	                name="SmartGWT"
+	                name="smartgwt"
 	                oldlabel="${smartgwt.previous_version}"
 	                newlabel="${smartgwt.version}">
 	        <old>
