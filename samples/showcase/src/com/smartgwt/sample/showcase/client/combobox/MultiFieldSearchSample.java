@@ -61,8 +61,17 @@ public class MultiFieldSearchSample extends ShowcasePanel {
 		filteredSelect.setPickListFields(skuField, itemNameField);
 		filteredSelect.setPickListProperties(pickListProperties);
 		
-		
-		form.setItems(filteredSelect);
+		ComboBoxItem filteredCombo = new ComboBoxItem();
+        filteredCombo.setTitle("Item (ComboBox)");
+        filteredCombo.setAddUnknownValues(false);
+        filteredCombo.setOptionDataSource(supplyItemDS);
+        filteredCombo.setDisplayField("itemName");
+        filteredCombo.setValueField("SKU");
+        filteredCombo.setPickListWidth(300);
+        filteredCombo.setFilterFields("SKU", "itemName");
+        filteredCombo.setPickListFields(skuField, itemNameField);
+        		
+		form.setItems(filteredSelect, filteredCombo);
 		return form;
     }
 
