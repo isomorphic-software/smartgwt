@@ -15,7 +15,10 @@ public class MultiFieldSearchSample extends ShowcasePanel {
     private static final String DESCRIPTION =
     	"<p>Click on the SelectItem on the left to see the full set of data. "+
     	"You can enter filter criteria directly on the drop-down list in either field "+
-    	"to filter the set of options down to a managable size.</p>";
+    	"to filter the set of options down to a managable size. </p>"+
+    	"<p>Now move focus to the ComboBoxItem and start typing. The set of options "+
+    	"displayed are automatically filtered against both fields as you type. "+
+    	"Tab or Enter keypress will complete selection.</p>";
 
     public static class Factory implements PanelFactory {
     	private String id;
