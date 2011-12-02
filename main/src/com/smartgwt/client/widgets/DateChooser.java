@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -255,6 +252,26 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
      */
     public String getCancelButtonTitle()  {
         return getAttributeAsString("cancelButtonTitle");
+    }
+
+    /**
+     * How long (how many characters) shxxould be day names be. May be 1, 2 or 3 characters.
+     *
+     * @param dayNameLength dayNameLength Default value is 2
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setDayNameLength(int dayNameLength)  throws IllegalStateException {
+        setAttribute("dayNameLength", dayNameLength, false);
+    }
+
+    /**
+     * How long (how many characters) shxxould be day names be. May be 1, 2 or 3 characters.
+     *
+     *
+     * @return int
+     */
+    public int getDayNameLength()  {
+        return getAttributeAsInt("dayNameLength");
     }
 
     /**

@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -13,14 +13,12 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
-
+ 
 package com.smartgwt.client.types;
 
 /**
- * <code>ControlNames</code> are strings used to specify which UI controls should appear&#010  in the editor
- * toolbar.<br>
+ * <code>ControlNames</code> are strings used to specify which UI controls should appear  in the editor toolbar.<br>
  */
-
 public enum ControlName implements ValueEnum {
     /**
      * A button to make the current selection bold.
@@ -63,9 +61,10 @@ public enum ControlName implements ValueEnum {
      */
     COLOR("color"),
     /**
-     * A color picker allowing the user to set the text background  color
+     * A color picker allowing the user to set the text background color
      */
     BACKGROUNDCOLOR("backgroundColor");
+
     private String value;
 
     ControlName(String value) {
@@ -76,4 +75,3 @@ public enum ControlName implements ValueEnum {
         return this.value;
     }
 }
-

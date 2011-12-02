@@ -17,29 +17,25 @@
 package com.smartgwt.client.types;
 
 /**
- * Is this page being viewed in landscape or portrait orientation? Typically used with mobile
- * devices.
+ * Is this page being viewed in landscape or portrait orientation? Typically used with mobile devices.
  */
-
 public enum PageOrientation implements ValueEnum {
-
     /**
      * Landscape orientation: page is wider than it is tall.
      */
     LANDSCAPE("landscape"),
-
     /**
      * Portrait orientation: page is taller than it is wide.
      */
     PORTRAIT("portrait");
+
     private String value;
 
     PageOrientation(String value) {
         this.value = value;
     }
-    
+
     public String getValue() {
         return this.value;
     }
 }
-

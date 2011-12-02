@@ -14,7 +14,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tile.TileGrid#transferSelectedData
  * @see com.smartgwt.client.util.EventHandler#getDragRect
  * @see com.smartgwt.client.widgets.Canvas#getEventEdge
- * @see com.smartgwt.client.widgets.Window#getKeepInParentRect
  * @see com.smartgwt.client.widgets.Canvas#getCanDrag
  * @see com.smartgwt.client.widgets.Canvas#getDragStartDistance
  * @see com.smartgwt.client.widgets.Canvas#getDragIntersectStyle
@@ -26,6 +25,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#getEdgeCursorMap
  * @see com.smartgwt.client.widgets.Canvas#getKeepInParentRect
  * @see com.smartgwt.client.widgets.Canvas#getDragAppearance
+ * @see com.smartgwt.client.widgets.Canvas#getDragResizeAppearance
+ * @see com.smartgwt.client.widgets.Canvas#getDragRepositionAppearance
  * @see com.smartgwt.client.widgets.Canvas#getDragType
  * @see com.smartgwt.client.widgets.Canvas#getDragTarget
  * @see com.smartgwt.client.widgets.Canvas#getShowDragShadow
@@ -43,11 +44,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#getSnapVDirection
  * @see com.smartgwt.client.widgets.Canvas#getSnapAxis
  * @see com.smartgwt.client.widgets.Canvas#getSnapOnDrop
- * @see com.smartgwt.client.widgets.layout.Layout#getCanDropComponents
- * @see com.smartgwt.client.widgets.layout.Layout#getDropLineThickness
- * @see com.smartgwt.client.widgets.layout.Layout#getShowDragPlaceHolder
- * @see com.smartgwt.client.widgets.layout.Layout#getPlaceHolderProperties
- * @see com.smartgwt.client.widgets.layout.Layout#getPlaceHolderDefaults
  * @see com.smartgwt.client.grid.GridRenderer#getSnapToCells
  * @see com.smartgwt.client.grid.GridRenderer#getSnapInsideBorder
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanDragRecordsOut
@@ -56,6 +52,13 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getManyItemsImage
  * @see com.smartgwt.client.widgets.tile.TileGrid#getTileDragAppearance
+ * @see com.smartgwt.client.widgets.Window#getKeepInParentRect
+ * @see com.smartgwt.client.widgets.drawing.DrawItem#getDragStartDistance
+ * @see com.smartgwt.client.widgets.layout.Layout#getCanDropComponents
+ * @see com.smartgwt.client.widgets.layout.Layout#getDropLineThickness
+ * @see com.smartgwt.client.widgets.layout.Layout#getShowDragPlaceHolder
+ * @see com.smartgwt.client.widgets.layout.Layout#getPlaceHolderProperties
+ * @see com.smartgwt.client.widgets.layout.Layout#getPlaceHolderDefaults
  * @see com.smartgwt.client.types.DragAppearance
  * @see com.smartgwt.client.types.DragIntersectStyle
  */

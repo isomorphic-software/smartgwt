@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -117,6 +114,26 @@ public class FilterClause extends HStack {
      */
     public Criteria getCriterion()  {
         return new Criteria(getAttributeAsJavaScriptObject("criterion"));
+    }
+
+    /**
+     * The title for the {@link com.smartgwt.client.widgets.form.FilterBuilder#getFieldPicker field-picker} select-item.
+     *
+     * @param fieldPickerTitle fieldPickerTitle Default value is "Field Name"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setFieldPickerTitle(String fieldPickerTitle)  throws IllegalStateException {
+        setAttribute("fieldPickerTitle", fieldPickerTitle, false);
+    }
+
+    /**
+     * The title for the {@link com.smartgwt.client.widgets.form.FilterBuilder#getFieldPicker field-picker} select-item.
+     *
+     *
+     * @return String
+     */
+    public String getFieldPickerTitle()  {
+        return getAttributeAsString("fieldPickerTitle");
     }
 
     /**
@@ -205,6 +222,26 @@ public class FilterClause extends HStack {
      */
     public Boolean getValidateOnChange()  {
         return getAttributeAsBoolean("validateOnChange");
+    }
+
+    /**
+     * The title for the value-item.
+     *
+     * @param valueItemTitle valueItemTitle Default value is "Value"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setValueItemTitle(String valueItemTitle)  throws IllegalStateException {
+        setAttribute("valueItemTitle", valueItemTitle, false);
+    }
+
+    /**
+     * The title for the value-item.
+     *
+     *
+     * @return String
+     */
+    public String getValueItemTitle()  {
+        return getAttributeAsString("valueItemTitle");
     }
 
     // ********************* Methods ***********************

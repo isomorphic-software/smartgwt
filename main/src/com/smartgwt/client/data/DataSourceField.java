@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -97,12 +94,15 @@ public class DataSourceField extends DataClass {
         
     }
 
-    public DataSourceField(String name, FieldType type, String title, int length, boolean required) {
+    public DataSourceField(String name, FieldType type, String title, int length, boolean required
+				) {
         setName(name);
 		setType(type);
 		setTitle(title);
 		setLength(length);
-		setRequired(required);
+		setRequired
+				(required
+				);
         
     }
 
@@ -110,7 +110,10 @@ public class DataSourceField extends DataClass {
 
     /**
      * Controls whether, by default, dataBoundComponents consider this field editable. <P> Set to <code>false</code> to draw
-     * this field read-only. (This can be overridden on a per-DataBoundComponent basis.)
+     * this field read-only (this can be overridden on a  per-DataBoundComponent basis).  Note that this setting only prevents
+     * the user from  modifying the field's value through the UI; the value can still be modified  programmatically, and it
+     * will still be saved in the normal way.  If you wish to prevent a field from being saved, use {@link
+     * com.smartgwt.client.data.DataSourceField#getCanSave canSave}:false instead (or in addition).
      *
      * @param canEdit canEdit Default value is null
      * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
@@ -121,7 +124,10 @@ public class DataSourceField extends DataClass {
 
     /**
      * Controls whether, by default, dataBoundComponents consider this field editable. <P> Set to <code>false</code> to draw
-     * this field read-only. (This can be overridden on a per-DataBoundComponent basis.)
+     * this field read-only (this can be overridden on a  per-DataBoundComponent basis).  Note that this setting only prevents
+     * the user from  modifying the field's value through the UI; the value can still be modified  programmatically, and it
+     * will still be saved in the normal way.  If you wish to prevent a field from being saved, use {@link
+     * com.smartgwt.client.data.DataSourceField#getCanSave canSave}:false instead (or in addition).
      *
      *
      * @return Boolean
@@ -180,9 +186,14 @@ public class DataSourceField extends DataClass {
      * will default to being non-editable in standard editing components ({@link com.smartgwt.client.widgets.form.DynamicForm},
      * editable {@link com.smartgwt.client.widgets.grid.ListGrid}), but will be editable when displayed for filtering purposes
      * only (in a {@link com.smartgwt.client.widgets.form.SearchForm} or {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor ListGrid filter editor}. <P> Note: if {@link
-     * com.smartgwt.client.data.DataSourceField#getCanEdit canEdit} is explicitly specified it will take precedence over this
-     * behavior.
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor ListGrid filter editor}.  If {@link
+     * com.smartgwt.client.data.DataSourceField#getCanEdit canEdit} is explicitly specified it will take  precedence over this
+     * client-side behavior, but the server will still enforce the no-save policy (described below). <p> NOTE: If you are using
+     * Smart GWT Server and have specified <code>canSave: false</code>  for a field in a DataSource definition
+     * (<code>.ds.xml</code> file), this is enforced on  the server.  This means that we will strip out any attempt to set the
+     * value of such a  field before trying to process any update or add request, similar to what happens when  a {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#editRequiresAuthentication field-level declarative security check}
+     * fails.
      *
      * @param canSave canSave Default value is null
      * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
@@ -196,9 +207,14 @@ public class DataSourceField extends DataClass {
      * will default to being non-editable in standard editing components ({@link com.smartgwt.client.widgets.form.DynamicForm},
      * editable {@link com.smartgwt.client.widgets.grid.ListGrid}), but will be editable when displayed for filtering purposes
      * only (in a {@link com.smartgwt.client.widgets.form.SearchForm} or {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor ListGrid filter editor}. <P> Note: if {@link
-     * com.smartgwt.client.data.DataSourceField#getCanEdit canEdit} is explicitly specified it will take precedence over this
-     * behavior.
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor ListGrid filter editor}.  If {@link
+     * com.smartgwt.client.data.DataSourceField#getCanEdit canEdit} is explicitly specified it will take  precedence over this
+     * client-side behavior, but the server will still enforce the no-save policy (described below). <p> NOTE: If you are using
+     * Smart GWT Server and have specified <code>canSave: false</code>  for a field in a DataSource definition
+     * (<code>.ds.xml</code> file), this is enforced on  the server.  This means that we will strip out any attempt to set the
+     * value of such a  field before trying to process any update or add request, similar to what happens when  a {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#editRequiresAuthentication field-level declarative security check}
+     * fails.
      *
      *
      * @return Boolean
@@ -225,6 +241,63 @@ public class DataSourceField extends DataClass {
      */
     public Boolean getCanSortClientOnly()  {
         return getAttributeAsBoolean("canSortClientOnly");
+    }
+
+    /**
+     * If false, this property indicates that this field is considered "server only".  This means: <ul> <li>Components cannot
+     * bind to the field; even if you explicitly add a field with the same      name to your {@link
+     * com.smartgwt.client.widgets.DataBoundComponent dataBoundComponent}, it will be dropped</li> <li>If you are using Smart
+     * GWT Server, the client will never be sent a value for the      field</li> <li>If you are using Smart GWT Server, then
+     * similar to {@link com.smartgwt.client.data.DataSourceField#getCanEdit canEdit}, no updates     to the field are allowed
+     * from the client.  If you explicitly add a value for the field      to, eg, a record you are passing to {@link
+     * com.smartgwt.client.data.DataSource#updateData DataSource.updateData}, the server will strip     the value out of the
+     * record before processing the update request. </ul> <code>canView:false</code> is <b>not</b> the same thing as {@link
+     * com.smartgwt.client.data.DataSourceField#getHidden hidden}.  Use  <code>canView:false</code> when you want to prevent
+     * the client from ever seeing a field's  definition or values; use <code>hidden:true</code> if it is fine from a security
+     * perspective that a field's definition and values are sent to the browser, but the field should not by default appear in
+     * user interface elements (but could do in some cases, like a special screen for advanced users or administrators, for
+     * example). <p> Note that this property must be set explicitly to false to have an effect; a null or  undefined setting is
+     * treated the same as true. <P> This property is used to implement field-level view security: failing a  {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresAuthentication viewRequiresAuthentication},  {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresRole viewRequiresRole} or {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#viewRequires viewRequires} test is  equivalent to setting
+     * <code>canView:false</code> on the field (and, indeed, from the  client's perspective, the field <em>has</em> had
+     * <code>canView:false</code> set).
+     *
+     * @param canView canView Default value is null
+     * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
+     */
+    public void setCanView(Boolean canView) {
+        setAttribute("canView", canView);
+    }
+
+    /**
+     * If false, this property indicates that this field is considered "server only".  This means: <ul> <li>Components cannot
+     * bind to the field; even if you explicitly add a field with the same      name to your {@link
+     * com.smartgwt.client.widgets.DataBoundComponent dataBoundComponent}, it will be dropped</li> <li>If you are using Smart
+     * GWT Server, the client will never be sent a value for the      field</li> <li>If you are using Smart GWT Server, then
+     * similar to {@link com.smartgwt.client.data.DataSourceField#getCanEdit canEdit}, no updates     to the field are allowed
+     * from the client.  If you explicitly add a value for the field      to, eg, a record you are passing to {@link
+     * com.smartgwt.client.data.DataSource#updateData DataSource.updateData}, the server will strip     the value out of the
+     * record before processing the update request. </ul> <code>canView:false</code> is <b>not</b> the same thing as {@link
+     * com.smartgwt.client.data.DataSourceField#getHidden hidden}.  Use  <code>canView:false</code> when you want to prevent
+     * the client from ever seeing a field's  definition or values; use <code>hidden:true</code> if it is fine from a security
+     * perspective that a field's definition and values are sent to the browser, but the field should not by default appear in
+     * user interface elements (but could do in some cases, like a special screen for advanced users or administrators, for
+     * example). <p> Note that this property must be set explicitly to false to have an effect; a null or  undefined setting is
+     * treated the same as true. <P> This property is used to implement field-level view security: failing a  {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresAuthentication viewRequiresAuthentication},  {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresRole viewRequiresRole} or {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#viewRequires viewRequires} test is  equivalent to setting
+     * <code>canView:false</code> on the field (and, indeed, from the  client's perspective, the field <em>has</em> had
+     * <code>canView:false</code> set).
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
+     */
+    public Boolean getCanView()  {
+        return getAttributeAsBoolean("canView");
     }
 
     /**
@@ -283,67 +356,6 @@ public class DataSourceField extends DataClass {
      */
     public String getChildTagName()  {
         return getAttributeAsString("childTagName");
-    }
-
-    /**
-     * For a DataSource with {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType} "sql" or "hibernate",
-     * indicates that this field should be omitted by default from all SQL or Hibernate operations, and will only be used with
-     * {@link com.smartgwt.client.docs.CustomQueries custom queries}. <P> Having marked a field as <code>customSQL</code> you
-     * can refer to it via $criteria.<i>fieldName</i> or $values.<i>fieldName</i> in customized queries. <P> The following are
-     * situations where you would <b>not</b> use <code>customSQL</code>: <ul> <li>simple joins where you want to enable users
-     * to see and search on a field from another table; consider {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#tableName tableName} instead <li>fields where you want to calculate or
-     * transform values in SQL on load or save, but always perform the same calculation for each operationType; consider
-     * instead {@link com.smartgwt.client.docs.serverds.DataSourceField#sqlStorageStrategy sqlStorageStrategy} for some common
-     * cases, or  {@link com.smartgwt.client.docs.serverds.DataSourceField#customSelectExpression customSelectExpression},
-     * {@link com.smartgwt.client.docs.serverds.DataSourceField#customUpdateExpression customUpdateExpression} and {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#customInsertExpression customInsertExpression} for full customization
-     * <li>a special fetch is needed where the field needs to be excluded from the $defaultWhereClause so that it can be used
-     * in a custom &lt;whereClause&gt; - consider {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#excludeCriteriaFields excludeCriteriaFields} instead </ul> <P> Use
-     * customSQL in situations like: <ul> <li>there are multiple variations of the "fetch" operation with different {@link
-     * com.smartgwt.client.data.OperationBinding#getOperationId operationIds}, and the field is only used in some of them; in
-     * that case, consider using {@link com.smartgwt.client.docs.serverds.OperationBinding#customFields customFields} to
-     * selectively re-introduce SQL generation for the field only in operations where it's used. <li>the field represents
-     * hidden criteria on a field in another table where the field is never shown to the user <li>the field is a write-only
-     * value only saved in some operations <li>more than one data access strategy is in use (eg direct SQL for fetch and
-     * bean-based persistence accessed via DMI for saves) and certain fields are not available in SQL </ul>
-     *
-     * @param customSQL customSQL Default value is null
-     */
-    public void setCustomSQL(Boolean customSQL) {
-        setAttribute("customSQL", customSQL);
-    }
-
-    /**
-     * For a DataSource with {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType} "sql" or "hibernate",
-     * indicates that this field should be omitted by default from all SQL or Hibernate operations, and will only be used with
-     * {@link com.smartgwt.client.docs.CustomQueries custom queries}. <P> Having marked a field as <code>customSQL</code> you
-     * can refer to it via $criteria.<i>fieldName</i> or $values.<i>fieldName</i> in customized queries. <P> The following are
-     * situations where you would <b>not</b> use <code>customSQL</code>: <ul> <li>simple joins where you want to enable users
-     * to see and search on a field from another table; consider {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#tableName tableName} instead <li>fields where you want to calculate or
-     * transform values in SQL on load or save, but always perform the same calculation for each operationType; consider
-     * instead {@link com.smartgwt.client.docs.serverds.DataSourceField#sqlStorageStrategy sqlStorageStrategy} for some common
-     * cases, or  {@link com.smartgwt.client.docs.serverds.DataSourceField#customSelectExpression customSelectExpression},
-     * {@link com.smartgwt.client.docs.serverds.DataSourceField#customUpdateExpression customUpdateExpression} and {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#customInsertExpression customInsertExpression} for full customization
-     * <li>a special fetch is needed where the field needs to be excluded from the $defaultWhereClause so that it can be used
-     * in a custom &lt;whereClause&gt; - consider {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#excludeCriteriaFields excludeCriteriaFields} instead </ul> <P> Use
-     * customSQL in situations like: <ul> <li>there are multiple variations of the "fetch" operation with different {@link
-     * com.smartgwt.client.data.OperationBinding#getOperationId operationIds}, and the field is only used in some of them; in
-     * that case, consider using {@link com.smartgwt.client.docs.serverds.OperationBinding#customFields customFields} to
-     * selectively re-introduce SQL generation for the field only in operations where it's used. <li>the field represents
-     * hidden criteria on a field in another table where the field is never shown to the user <li>the field is a write-only
-     * value only saved in some operations <li>more than one data access strategy is in use (eg direct SQL for fetch and
-     * bean-based persistence accessed via DMI for saves) and certain fields are not available in SQL </ul>
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCustomSQL()  {
-        return getAttributeAsBoolean("customSQL");
     }
 
     /**
@@ -417,31 +429,6 @@ public class DataSourceField extends DataClass {
      */
     public Boolean getDetail()  {
         return getAttributeAsBoolean("detail");
-    }
-
-    /**
-     * Sets the default FormItem to be used whenever this field is edited (whether in a grid, form, or other component). <P> If
-     * unset, a FormItem will be automatically chosen based on the type of the field, by the rules explained {@link
-     * com.smartgwt.client.types.FormItemType here}.
-     *
-     * @param editorType editorType Default value is null
-     * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
-     */
-    public void setEditorType(String editorType) {
-        setAttribute("editorType", editorType);
-    }
-
-    /**
-     * Sets the default FormItem to be used whenever this field is edited (whether in a grid, form, or other component). <P> If
-     * unset, a FormItem will be automatically chosen based on the type of the field, by the rules explained {@link
-     * com.smartgwt.client.types.FormItemType here}.
-     *
-     *
-     * @return String
-     * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
-     */
-    public String getEditorType()  {
-        return getAttributeAsString("editorType");
     }
 
     /**
@@ -582,9 +569,9 @@ public class DataSourceField extends DataClass {
      * detail} for fields that should be hidden in a summary view such as a {@link com.smartgwt.client.widgets.grid.ListGrid},
      * but still available to the user. <p> <b>NOTE:</b> This property is <b>not</b> a security setting - data for hidden
      * fields is  still delivered to the client, it just isn't shown to the user.  If you wish to make sure  that only
-     * appropriate data reaches the client, use either {@link com.smartgwt.client.docs.serverds.OperationBinding#outputs
-     * outputs} or a field-level declarative security setting like {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresRole viewRequiresRole}.
+     * appropriate data reaches the client, use {@link com.smartgwt.client.docs.serverds.OperationBinding#outputs outputs},
+     * {@link com.smartgwt.client.data.DataSourceField#getCanView canView}:false on the field, or a field-level declarative
+     * security setting like  {@link com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresRole viewRequiresRole}.
      *
      * @param hidden hidden Default value is false
      * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
@@ -599,9 +586,9 @@ public class DataSourceField extends DataClass {
      * detail} for fields that should be hidden in a summary view such as a {@link com.smartgwt.client.widgets.grid.ListGrid},
      * but still available to the user. <p> <b>NOTE:</b> This property is <b>not</b> a security setting - data for hidden
      * fields is  still delivered to the client, it just isn't shown to the user.  If you wish to make sure  that only
-     * appropriate data reaches the client, use either {@link com.smartgwt.client.docs.serverds.OperationBinding#outputs
-     * outputs} or a field-level declarative security setting like {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresRole viewRequiresRole}.
+     * appropriate data reaches the client, use {@link com.smartgwt.client.docs.serverds.OperationBinding#outputs outputs},
+     * {@link com.smartgwt.client.data.DataSourceField#getCanView canView}:false on the field, or a field-level declarative
+     * security setting like  {@link com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresRole viewRequiresRole}.
      *
      *
      * @return Boolean
@@ -670,6 +657,37 @@ public class DataSourceField extends DataClass {
     }
 
     /**
+     * Indicates this field should be fetched from another, related DataSource. <P> A foreignKey declaration must exist between
+     * the two DataSources, establishing either a 1-to-1 relationship or a many-to-1 relationship from this DataSource to the
+     * related DataSource. <P> {@link com.smartgwt.client.data.DataSourceField#getName name} will default to the name of the
+     * included field, or you can specify a different name. <P> If both DataSources are SQLDataSources (or a subclass), the
+     * related data will be retrieved via a SQL join.  Otherwise, the related data will be retrieved via performing a DSRequest
+     * against the related DataSource once the data from the primary DataSource has been retrieved. <P> An included field is
+     * {@link com.smartgwt.client.data.DataSourceField#getCanEdit canEdit:false} by default.
+     *
+     * @param includeFrom includeFrom Default value is null
+     */
+    public void setIncludeFrom(String includeFrom) {
+        setAttribute("includeFrom", includeFrom);
+    }
+
+    /**
+     * Indicates this field should be fetched from another, related DataSource. <P> A foreignKey declaration must exist between
+     * the two DataSources, establishing either a 1-to-1 relationship or a many-to-1 relationship from this DataSource to the
+     * related DataSource. <P> {@link com.smartgwt.client.data.DataSourceField#getName name} will default to the name of the
+     * included field, or you can specify a different name. <P> If both DataSources are SQLDataSources (or a subclass), the
+     * related data will be retrieved via a SQL join.  Otherwise, the related data will be retrieved via performing a DSRequest
+     * against the related DataSource once the data from the primary DataSource has been retrieved. <P> An included field is
+     * {@link com.smartgwt.client.data.DataSourceField#getCanEdit canEdit:false} by default.
+     *
+     *
+     * @return String
+     */
+    public String getIncludeFrom()  {
+        return getAttributeAsString("includeFrom");
+    }
+
+    /**
      * Maximum number of characters allowed.  Applicable only to fields of text type. <P> <b>NOTE:</b> For DataSources of type
      * "sql", this property has a bearing on the type of  column we use when the underlying table is created by a DataSource 
      * {@link com.smartgwt.client.docs.SqlDataSource import} in the {@link com.smartgwt.client.docs.AdminConsole Admin
@@ -682,14 +700,15 @@ public class DataSourceField extends DataClass {
      * style="color:white;background-color:black;"><b>Database product</b></td>     <td
      * style="color:white;background-color:black;"><b>VARCHAR limit *</b></td>     <td
      * style="color:white;background-color:black;"><b>Type used above limit</b></td></tr>
-     * <tr><td>HSQLDB</td><td>None</td><td>-</td></tr> <tr><td>IBM DB2</td><td>4000</td><td>CLOB</td></tr> <tr><td> Microsoft
-     * SQL Server </td><td>8000</td><td>TEXT</td></tr> <tr><td>MySQL</td><td> 255 / 65535 / 16M </td><td> TEXT / MEDIUMTEXT /
-     * LONGTEXT ** </td></tr> <tr><td>Oracle</td><td>4000</td><td>CLOB</td></tr>
-     * <tr><td>PostgreSQL</td><td>4000</td><td>TEXT</td></tr> </table><br> <b>*</b> The "VARCHAR limit" referred to here is a
-     * limit used by the Smart GWT Server; it is not necessarily imposed by the database.  For example, DB2's VARCHAR limit is
-     * not 4000 characters; it actually varies from about 4K to about 32K, depending on how the server has  been configured.<p>
-     * <b>**</b> MySQL has a limit of 255 characters for VARCHAR, 65,535 characters for TEXT and  16,777,215 for MEDIUMTEXT;
-     * therefore, with that one product, we have three thresholds for a  change in storage type.
+     * <tr><td>HSQLDB</td><td>None</td><td>-</td></tr> <tr><td>IBM DB2</td><td>4000</td><td>CLOB</td></tr>
+     * <tr><td>Firebird</td><td>32767</td><td>BLOB with subtype 1</td></tr> <tr><td> Microsoft SQL Server
+     * </td><td>8000</td><td>TEXT</td></tr> <tr><td>MySQL</td><td> 255 / 65535 / 16M </td><td> TEXT / MEDIUMTEXT / LONGTEXT **
+     * </td></tr> <tr><td>Oracle</td><td>4000</td><td>CLOB</td></tr> <tr><td>PostgreSQL</td><td>4000</td><td>TEXT</td></tr>
+     * </table><br> <b>*</b> The "VARCHAR limit" referred to here is a limit used by the Smart GWT Server; it is not
+     * necessarily imposed by the database.  For example, DB2's VARCHAR limit is not 4000 characters; it actually varies from
+     * about 4K to about 32K, depending on how the server has  been configured.<p> <b>**</b> MySQL has a limit of 255
+     * characters for VARCHAR, 65,535 characters for TEXT and  16,777,215 for MEDIUMTEXT; therefore, with that one product, we
+     * have three thresholds for a  change in storage type.
      *
      * @param length length Default value is null
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_longtext" target="examples">Long Text Example</a>
@@ -711,14 +730,15 @@ public class DataSourceField extends DataClass {
      * style="color:white;background-color:black;"><b>Database product</b></td>     <td
      * style="color:white;background-color:black;"><b>VARCHAR limit *</b></td>     <td
      * style="color:white;background-color:black;"><b>Type used above limit</b></td></tr>
-     * <tr><td>HSQLDB</td><td>None</td><td>-</td></tr> <tr><td>IBM DB2</td><td>4000</td><td>CLOB</td></tr> <tr><td> Microsoft
-     * SQL Server </td><td>8000</td><td>TEXT</td></tr> <tr><td>MySQL</td><td> 255 / 65535 / 16M </td><td> TEXT / MEDIUMTEXT /
-     * LONGTEXT ** </td></tr> <tr><td>Oracle</td><td>4000</td><td>CLOB</td></tr>
-     * <tr><td>PostgreSQL</td><td>4000</td><td>TEXT</td></tr> </table><br> <b>*</b> The "VARCHAR limit" referred to here is a
-     * limit used by the Smart GWT Server; it is not necessarily imposed by the database.  For example, DB2's VARCHAR limit is
-     * not 4000 characters; it actually varies from about 4K to about 32K, depending on how the server has  been configured.<p>
-     * <b>**</b> MySQL has a limit of 255 characters for VARCHAR, 65,535 characters for TEXT and  16,777,215 for MEDIUMTEXT;
-     * therefore, with that one product, we have three thresholds for a  change in storage type.
+     * <tr><td>HSQLDB</td><td>None</td><td>-</td></tr> <tr><td>IBM DB2</td><td>4000</td><td>CLOB</td></tr>
+     * <tr><td>Firebird</td><td>32767</td><td>BLOB with subtype 1</td></tr> <tr><td> Microsoft SQL Server
+     * </td><td>8000</td><td>TEXT</td></tr> <tr><td>MySQL</td><td> 255 / 65535 / 16M </td><td> TEXT / MEDIUMTEXT / LONGTEXT **
+     * </td></tr> <tr><td>Oracle</td><td>4000</td><td>CLOB</td></tr> <tr><td>PostgreSQL</td><td>4000</td><td>TEXT</td></tr>
+     * </table><br> <b>*</b> The "VARCHAR limit" referred to here is a limit used by the Smart GWT Server; it is not
+     * necessarily imposed by the database.  For example, DB2's VARCHAR limit is not 4000 characters; it actually varies from
+     * about 4K to about 32K, depending on how the server has  been configured.<p> <b>**</b> MySQL has a limit of 255
+     * characters for VARCHAR, 65,535 characters for TEXT and  16,777,215 for MEDIUMTEXT; therefore, with that one product, we
+     * have three thresholds for a  change in storage type.
      *
      *
      * @return Integer
@@ -1037,7 +1057,7 @@ public class DataSourceField extends DataClass {
      * tableName + "_" + columnName is chosen), and is  never required for databases where inserting null into a sequence
      * column is sufficient (MySQL, SQL Server, DB2 and others).   <P> You would only need to set sequenceName if you are
      * integrating with a pre-existing table stored in a database where the sequence must be named for insertion to work
-     * (Oracle, Postgres) OR you are trying to use the same sequence across multiple DataSources.
+     * (Oracle, Postgres, Firebird) OR you are trying to use the same sequence across multiple DataSources.
      *
      * @param sequenceName sequenceName Default value is null
      * @see com.smartgwt.client.docs.SqlDataSource SqlDataSource overview and related methods
@@ -1053,7 +1073,7 @@ public class DataSourceField extends DataClass {
      * tableName + "_" + columnName is chosen), and is  never required for databases where inserting null into a sequence
      * column is sufficient (MySQL, SQL Server, DB2 and others).   <P> You would only need to set sequenceName if you are
      * integrating with a pre-existing table stored in a database where the sequence must be named for insertion to work
-     * (Oracle, Postgres) OR you are trying to use the same sequence across multiple DataSources.
+     * (Oracle, Postgres, Firebird) OR you are trying to use the same sequence across multiple DataSources.
      *
      *
      * @return String
@@ -1103,6 +1123,42 @@ public class DataSourceField extends DataClass {
      */
     public String getSummaryValueTitle()  {
         return getAttributeAsString("summaryValueTitle");
+    }
+
+    /**
+     * Preferred time-format to apply to date type values within this field.  If this property is specified on a field
+     * displayed within a dataBound component such as a {@link com.smartgwt.client.widgets.grid.ListGrid} or {@link
+     * com.smartgwt.client.widgets.form.DynamicForm}, any dates displayed in this field will be formatted as times using the
+     * appropriate format. <P> This is most commonly only applied to fields specified as type <code>"time"</code> though if no
+     * explicit {@link com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} is specified it will be
+     * respected for other  fields as well. <P> See {@link com.smartgwt.client.widgets.grid.ListGridField#getTimeFormatter
+     * timeFormatter} and {@link com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter} for more
+     * information.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param timeFormatter timeFormatter Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
+        setAttribute("timeFormatter", timeFormatter.getValue());
+    }
+
+    /**
+     * Preferred time-format to apply to date type values within this field.  If this property is specified on a field
+     * displayed within a dataBound component such as a {@link com.smartgwt.client.widgets.grid.ListGrid} or {@link
+     * com.smartgwt.client.widgets.form.DynamicForm}, any dates displayed in this field will be formatted as times using the
+     * appropriate format. <P> This is most commonly only applied to fields specified as type <code>"time"</code> though if no
+     * explicit {@link com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} is specified it will be
+     * respected for other  fields as well. <P> See {@link com.smartgwt.client.widgets.grid.ListGridField#getTimeFormatter
+     * timeFormatter} and {@link com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter} for more
+     * information.
+     *
+     *
+     * @return TimeDisplayFormat
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public TimeDisplayFormat getTimeFormatter()  {
+        return EnumUtil.getEnum(TimeDisplayFormat.values(), getAttribute("timeFormatter"));
     }
 
     /**
@@ -1157,31 +1213,6 @@ public class DataSourceField extends DataClass {
      */
     public FieldType getType()  {
         return EnumUtil.getEnum(FieldType.values(), getAttribute("type"));
-    }
-
-    /**
-     * Used by the {@link com.smartgwt.client.widgets.BatchUploader} to map a field in an upload file to this  dataSourceField.
-     * This is only necessary if the dataSourceField's name and title differ  from the name of the field in the upload file
-     * (Smart GWT will automatically map upload  fields using the dataSourceField's title, if possible, if it does not get a
-     * direct match  on field name).
-     *
-     * @param uploadFieldName uploadFieldName Default value is null
-     */
-    public void setUploadFieldName(String uploadFieldName) {
-        setAttribute("uploadFieldName", uploadFieldName);
-    }
-
-    /**
-     * Used by the {@link com.smartgwt.client.widgets.BatchUploader} to map a field in an upload file to this  dataSourceField.
-     * This is only necessary if the dataSourceField's name and title differ  from the name of the field in the upload file
-     * (Smart GWT will automatically map upload  fields using the dataSourceField's title, if possible, if it does not get a
-     * direct match  on field name).
-     *
-     *
-     * @return String
-     */
-    public String getUploadFieldName()  {
-        return getAttributeAsString("uploadFieldName");
     }
 
     /**
@@ -1554,9 +1585,49 @@ public class DataSourceField extends DataClass {
      * Sets the default FormItem to be used whenever this field is edited (whether in a grid, form, or other component).
      * <P> If unset, a FormItem will be automatically chosen based on the type of the field.
      * <p><br>
-     * <b>Note</b> : When you supply a custom FormItem via setEditorType(), you're really providing properties which are then used
-     * to create multiple FormItems (eg, in grids, forms and trees) and there's an underlying limitation here where event handlers
-     * have to be written to dynamically receive the actual FormItem rather than relying on "this" (because there's more than one "this").
+     * Note: the FormItem passed to setEditorType() is used as a "template" to create a FormItem whenever
+     * a DataBoundComponent needs to show an interface for editing this field.  This means you need to 
+     * follow special rules:
+     * <ol>
+     * <li>In event handler code, you must obtain the current FormItem instance from the provided
+     *   Event object via getItem().  You cannot make method calls via "this" or via implicit instance 
+     *   scope: both "clearValue()" and "this.clearValue()" need to be written as "item.clearValue()" 
+     *   instead (where "item" is the result of event.getItem()).</li>
+     * <li>To store custom instance variables, you must use FormItem.getAttribute()/setAttribute()
+     *   (or their type-specific variants).  You cannot store and retrieve instance variables 
+     *   via "this" - "this.someVariable = 5" will not work.</li>
+     * <li>You may not override superclass methods - your behaviors have to be implemented via event handlers</li>
+     * <li>If you create a custom subclass, the FormItem you receive in an event handler will be of a generic
+     *   type and must be converted before you can call custom methods.  Conversion is done via 
+     *   <code>new MyCustomItem(item.getJsObj());</code> (complete code sample below).<br>
+     *   Note that this conversion does not actually cause creation or rendering of a new 
+     *   widget and is comparable in cost to a typecast.</li>
+     * </ol>
+     * Example code demonstrating using an eventHandler to call a method on custom subclass of TextItem:
+     * <pre>
+     * class MyCustomItem extends TextItem {
+     *      MyCustomItem (JavaScriptObject config) {
+     *      }
+     *      
+     *      MyCustomItem(String name) {
+     *          setInitHandler(new FormItemInitHandler() {
+     *              public void onInit(FormItem item) {
+     *                  // correct
+     *                  new MyCustomItem(item.getJsObj()).customMethod();
+     *                  
+     *                  // incorrect, will throw an error
+     *                  // ((MyCustomItem)item).customMethod();
+     *              }
+     *          }
+     *      }
+     *      
+     *      void customMethod() { ... }
+     *  }
+     *  
+     *  ...
+     *  
+     *  myDataSource.setEditorType(new MyCustomItem("field1"));
+     *  </pre>
      *
      * @param editorType editorType Default value is null
      */
@@ -1913,6 +1984,7 @@ public class DataSourceField extends DataClass {
     }
 
 }
+
 
 
 

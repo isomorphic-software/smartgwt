@@ -5,21 +5,20 @@ package com.smartgwt.client.docs;
  * <h3>Mobile Application Development</h3>
  * Smart GWT supports building web applications that can be accessed by mobile devices that support modern web browsers,
  * specifically: <ul> <li> Safari on iOS devices (iPad, iPhone, iPod Touch) <li> Android's default (WebKit-based) browser
- * <li> Blackberry devices that use a WebKit-based browser (future) <li> Palm OS devices that use a WebKit-based browser
- * (future) <li> Windows Phone 7 (future: once IE mobile is based on IE9) </ul> Via "packaging" technologies such as
- * Titanium and Phonegap, a Smart GWT web application can be +link{packaged as an installable native
- * application,nativeMobileApps} that can be delivered via the "App Store" for the target mobile platform.  Applications
- * packaged in this way have access to phone-specific data and services such as contacts stored on the phone, or the
- * ability to invoke the device's camera. <P> <h3>Finger / touch events</h3> <P> Mobile and touch devices support "touch
- * events" that correspond to finger actions on the screen.  By default, Smart GWT simply sends touch events to UI
- * components as normal mouse events.  Specifically: <ul> <li> a finger tap gesture will trigger mouseDown, mouseUp and
- * click events <li> a touch-and-slide interaction will trigger drag and drop, firing the normal Smart GWT      sequence of
- * dragStart, dragMove, and dragStop <li> a touch-and-hold interaction will trigger a contextMenu event, and will trigger a
- * hover      if no contextMenu is shown </ul> This means that most applications that are written initially to target
- * desktop computers need little or no modification in order be able to run on tablet-sized devices (eg the iPad).  For
- * handset-sized devices (phones, iPod touch), conditional logic may need to be added to make different use of the screen
- * real estate. <P> <h3>Mobile look and feel</h3> <P> The "Mobile" skin should be used whenever mobile devices are
- * detected.  This skin roughly mimics the appearance of the iOS default widgets wherever there is an iOS widget that
+ * <li> Windows Phone 7 (future, for 'Mango' and up) <li> Blackberry devices that use a WebKit-based browser (future) </ul>
+ * Via "packaging" technologies such as Titanium and Phonegap, a Smart GWT web application can be +link{packaged as an
+ * installable native application,nativeMobileApps} that can be delivered via the "App Store" for the target mobile
+ * platform.  Applications packaged in this way have access to phone-specific data and services such as contacts stored on
+ * the phone, or the ability to invoke the device's camera. <P> <h3>Finger / touch events</h3> <P> Mobile and touch devices
+ * support "touch events" that correspond to finger actions on the screen.  By default, Smart GWT simply sends touch events
+ * to UI components as normal mouse events.  Specifically: <ul> <li> a finger tap gesture will trigger mouseDown, mouseUp
+ * and click events <li> a touch-and-slide interaction will trigger drag and drop, firing the normal Smart GWT     
+ * sequence of dragStart, dragMove, and dragStop <li> a touch-and-hold interaction will trigger a contextMenu event, and
+ * will trigger a hover      if no contextMenu is shown </ul> This means that most applications that are written initially
+ * to target desktop computers need little or no modification in order be able to run on tablet-sized devices (eg the
+ * iPad).  For handset-sized devices (phones, iPod touch), conditional logic may need to be added to make different use of
+ * the screen real estate. <P> <h3>Mobile look and feel</h3> <P> The "Mobile" skin should be used whenever mobile devices
+ * are detected.  This skin roughly mimics the appearance of the iOS default widgets wherever there is an iOS widget that
  * corresponds closely to a given Smart GWT widget.  It also makes extensive use of CSS3 to minimize the use of images
  * while still providing an attractive look and feel. <P> In addition, this skin also changes the behavior of some Smart
  * GWT widgets to match the UI idioms common on mobile devices.  For example, the TabSet component switches to

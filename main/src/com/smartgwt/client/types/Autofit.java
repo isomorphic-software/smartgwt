@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -13,20 +13,23 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
-
+ 
 package com.smartgwt.client.types;
 
 /**
+ * Possible values for to change the behavior of how data will fill the ListGrid.
  */
 public enum Autofit implements ValueEnum {
-
-    HORIZONTAL("horizontal"),
     /**
-     * Stick to left side of container.
+     * expand vertically to accommodate records.
      */
     VERTICAL("vertical"),
     /**
-     * Stick to right side of container.
+     * expand horizontally to accommodate fields.
+     */
+    HORIZONTAL("horizontal"),
+    /**
+     * expand horizontally and vertically to accommodate content.
      */
     BOTH("both");
 

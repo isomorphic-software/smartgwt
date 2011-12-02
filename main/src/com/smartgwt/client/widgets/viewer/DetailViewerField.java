@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -354,6 +351,31 @@ public class DetailViewerField extends DataClass {
      */
     public Integer getImageWidth()  {
         return getAttributeAsInt("imageWidth");
+    }
+
+    /**
+     * Indicates this field's values come from another, related DataSource.   The individual field will inherit settings such
+     * as {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getType field.type} and {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getTitle field.title} from the related DataSource just like fields
+     * from the primary DataSource.
+     *
+     * @param includeFrom includeFrom Default value is null
+     */
+    public void setIncludeFrom(String includeFrom) {
+        setAttribute("includeFrom", includeFrom);
+    }
+
+    /**
+     * Indicates this field's values come from another, related DataSource.   The individual field will inherit settings such
+     * as {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getType field.type} and {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getTitle field.title} from the related DataSource just like fields
+     * from the primary DataSource.
+     *
+     *
+     * @return String
+     */
+    public String getIncludeFrom()  {
+        return getAttributeAsString("includeFrom");
     }
 
     /**

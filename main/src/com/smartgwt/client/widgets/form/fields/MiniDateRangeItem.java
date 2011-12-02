@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -95,6 +92,27 @@ public class MiniDateRangeItem extends StaticTextItem {
     }
 
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * Mini DateRangeItems are marked as canFocus:true, and set up with properties such that focus will always go to the icon
+     * to launch the dateRange dialog. Set canFocus to false to  suppress this behavior.
+     *
+     * @param canFocus canFocus Default value is true
+     */
+    public void setCanFocus(Boolean canFocus) {
+        setAttribute("canFocus", canFocus);
+    }
+
+    /**
+     * Mini DateRangeItems are marked as canFocus:true, and set up with properties such that focus will always go to the icon
+     * to launch the dateRange dialog. Set canFocus to false to  suppress this behavior.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanFocus()  {
+        return getAttributeAsBoolean("canFocus");
+    }
 
     /**
      * Format for displaying dates in to the user.   <P> If this attribute is unset, the display value is formatted

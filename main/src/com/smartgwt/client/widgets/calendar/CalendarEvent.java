@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -83,33 +80,42 @@ public class CalendarEvent extends Record {
         super(jsObj);
     }
 
-    public CalendarEvent(int eventId, String name, String description, java.util.Date startDate, java.util.Date endDate) {
+    public CalendarEvent(int eventId, String name, String description, java.util.Date startDate, java.util.Date endDate
+				) {
+        setEventId(eventId);
+		setName(name);
+		setDescription(description);
+		setStartDate(startDate);
+		setEndDate
+				(endDate
+				);
+        
+    }
+
+    public CalendarEvent(int eventId, String name, String description, java.util.Date startDate, java.util.Date endDate, boolean canEdit
+				) {
         setEventId(eventId);
 		setName(name);
 		setDescription(description);
 		setStartDate(startDate);
 		setEndDate(endDate);
+		setCanEdit
+				(canEdit
+				);
         
     }
 
-    public CalendarEvent(int eventId, String name, String description, java.util.Date startDate, java.util.Date endDate, boolean canEdit) {
+    public CalendarEvent(int eventId, String name, String description, java.util.Date startDate, java.util.Date endDate, boolean canEdit, String eventWindowStyle
+				) {
         setEventId(eventId);
 		setName(name);
 		setDescription(description);
 		setStartDate(startDate);
 		setEndDate(endDate);
 		setCanEdit(canEdit);
-        
-    }
-
-    public CalendarEvent(int eventId, String name, String description, java.util.Date startDate, java.util.Date endDate, boolean canEdit, String eventWindowStyle) {
-        setEventId(eventId);
-		setName(name);
-		setDescription(description);
-		setStartDate(startDate);
-		setEndDate(endDate);
-		setCanEdit(canEdit);
-		setEventWindowStyle(eventWindowStyle);
+		setEventWindowStyle
+				(eventWindowStyle
+				);
         
     }
 

@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -80,6 +77,40 @@ public class DSRequest extends RPCRequest {
     }
 
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * For fetch operation, an optional comma separated list of fields to fetch from another, related DataSource. <P> Fields
+     * should be specified in the format  <code>"localFieldName:relatedDataSourceID.relatedDataSourceFieldName"</code>. where
+     * <code><i>relatedDataSourceID</i></code> is the ID of the related dataSource, and
+     * <code><i>relatedDataSourceFieldName</i></code> is the field for which you want to fetch related values. The returned
+     * field values will be stored on  the data returned to the client under the specified <code><i>localFieldName</i></code>.
+     * Note that this will be applied in addition to any specified {@link com.smartgwt.client.data.DSRequest#getOutputs
+     * outputs}. <P> Note that as with {@link com.smartgwt.client.data.DataSourceField#getIncludeFrom includeFrom}, the related
+     * dataSource must be linked to the primary datasource via a foreignKey relationship.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param additionalOutputs additionalOutputs Default value is null
+     */
+    public void setAdditionalOutputs(String additionalOutputs) {
+        setAttribute("additionalOutputs", additionalOutputs);
+    }
+
+    /**
+     * For fetch operation, an optional comma separated list of fields to fetch from another, related DataSource. <P> Fields
+     * should be specified in the format  <code>"localFieldName:relatedDataSourceID.relatedDataSourceFieldName"</code>. where
+     * <code><i>relatedDataSourceID</i></code> is the ID of the related dataSource, and
+     * <code><i>relatedDataSourceFieldName</i></code> is the field for which you want to fetch related values. The returned
+     * field values will be stored on  the data returned to the client under the specified <code><i>localFieldName</i></code>.
+     * Note that this will be applied in addition to any specified {@link com.smartgwt.client.data.DSRequest#getOutputs
+     * outputs}. <P> Note that as with {@link com.smartgwt.client.data.DataSourceField#getIncludeFrom includeFrom}, the related
+     * dataSource must be linked to the primary datasource via a foreignKey relationship.
+     *
+     *
+     * @return String
+     */
+    public String getAdditionalOutputs()  {
+        return getAttributeAsString("additionalOutputs");
+    }
 
     /**
      * For requests submitted by a {@link com.smartgwt.client.widgets.DataBoundComponent}, the {@link
@@ -201,6 +232,37 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
+     * Only applicable when exporting to native spreadsheet formats <code>XLS</code> and  <code>OOXML</code>. <p> If set, we
+     * export date fields as strings that exactly match the formatting present in the  {@link
+     * com.smartgwt.client.widgets.DataBoundComponent} from which we are exporting.  Note that this will mean  the values are
+     * plain strings in the spreadsheet. <p> The default behavior when this property is not set is to export date fields as
+     * real date  values in the spreadsheet, using whichever date format is prevalent (the format specified on the field in the
+     * component, the dataSourceField or the current system default, in that  order).  This may result in the spreadsheet cell
+     * having a different format to the value  that the user sees in the <code>DataBoundComponent</code> we are exporting from.
+     *
+     * @param exportDatesAsFormattedString exportDatesAsFormattedString Default value is null
+     */
+    public void setExportDatesAsFormattedString(Boolean exportDatesAsFormattedString) {
+        setAttribute("exportDatesAsFormattedString", exportDatesAsFormattedString);
+    }
+
+    /**
+     * Only applicable when exporting to native spreadsheet formats <code>XLS</code> and  <code>OOXML</code>. <p> If set, we
+     * export date fields as strings that exactly match the formatting present in the  {@link
+     * com.smartgwt.client.widgets.DataBoundComponent} from which we are exporting.  Note that this will mean  the values are
+     * plain strings in the spreadsheet. <p> The default behavior when this property is not set is to export date fields as
+     * real date  values in the spreadsheet, using whichever date format is prevalent (the format specified on the field in the
+     * component, the dataSourceField or the current system default, in that  order).  This may result in the spreadsheet cell
+     * having a different format to the value  that the user sees in the <code>DataBoundComponent</code> we are exporting from.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getExportDatesAsFormattedString()  {
+        return getAttributeAsBoolean("exportDatesAsFormattedString");
+    }
+
+    /**
      * The character to use as a field-separator in CSV exports.  The default delimiter is comma.
      *
      * @param exportDelimiter exportDelimiter Default value is ","
@@ -220,8 +282,8 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-     * Specifies whether the exported data will be downloaded to the file-system or displayed in a  new window. See {@link
-     * com.smartgwt.client.types.ExportDisplay} for more information.
+     * Specifies whether the exported data will be downloaded as an attachment or displayed in a  new browser window. See
+     * {@link com.smartgwt.client.types.ExportDisplay} for more information.
      *
      * @param exportDisplay exportDisplay Default value is "download"
      */
@@ -230,8 +292,8 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-     * Specifies whether the exported data will be downloaded to the file-system or displayed in a  new window. See {@link
-     * com.smartgwt.client.types.ExportDisplay} for more information.
+     * Specifies whether the exported data will be downloaded as an attachment or displayed in a  new browser window. See
+     * {@link com.smartgwt.client.types.ExportDisplay} for more information.
      *
      *
      * @return ExportDisplay
@@ -241,19 +303,27 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-     * The name of the file to save the exported data into.
+     * The name of the file to save the exported data into.  If  {@link
+     * com.smartgwt.client.data.DSRequest#getExportToFilesystem exportToFilesystem} is set, this is the name of the  file the
+     * server creates on its filesystem.  If {@link com.smartgwt.client.data.DSRequest#getExportToClient exportToClient} is
+     * set, this is the filename that will appear to the browser.
      *
      * @param exportFilename exportFilename Default value is null
+     * @see com.smartgwt.client.data.DSRequest#setExportPath
      */
     public void setExportFilename(String exportFilename) {
         setAttribute("exportFilename", exportFilename);
     }
 
     /**
-     * The name of the file to save the exported data into.
+     * The name of the file to save the exported data into.  If  {@link
+     * com.smartgwt.client.data.DSRequest#getExportToFilesystem exportToFilesystem} is set, this is the name of the  file the
+     * server creates on its filesystem.  If {@link com.smartgwt.client.data.DSRequest#getExportToClient exportToClient} is
+     * set, this is the filename that will appear to the browser.
      *
      *
      * @return String
+     * @see com.smartgwt.client.data.DSRequest#getExportPath
      */
     public String getExportFilename()  {
         return getAttributeAsString("exportFilename");
@@ -295,6 +365,43 @@ public class DSRequest extends RPCRequest {
      */
     public String getExportHeader()  {
         return getAttributeAsString("exportHeader");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.data.DSRequest#getExportToFilesystem exportToFilesystem} is set, optionally specifies a 
+     * path to use when saving the file.  This path is relative to the default export path, which is set using the
+     * <code>server.properties</code> setting <code>export.location</code>; this is the project webRoot by default.  For
+     * example, with the default setting of  <code>export.location</code>, an <code>exportPath</code> of
+     * <code>"shared/ds"</code> and  an {@link com.smartgwt.client.data.DSRequest#getExportFilename exportFilename} of
+     * <code>"exportedData.csv"</code>, Smart GWT Server would export to file <code>$webRoot/shared/ds/exportedData.csv</code>.
+     * <p> If you do not specify this property, Smart GWT Server will export to the file indicated  by
+     * <code>exportFilename</code> directly in the default export location. <p> This property is only applicable when {@link
+     * com.smartgwt.client.data.DSRequest#getExportToFilesystem exportToFilesystem} is set.
+     *
+     * @param exportPath exportPath Default value is null
+     * @see com.smartgwt.client.data.DSRequest#setExportFilename
+     */
+    public void setExportPath(String exportPath) {
+        setAttribute("exportPath", exportPath);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.data.DSRequest#getExportToFilesystem exportToFilesystem} is set, optionally specifies a 
+     * path to use when saving the file.  This path is relative to the default export path, which is set using the
+     * <code>server.properties</code> setting <code>export.location</code>; this is the project webRoot by default.  For
+     * example, with the default setting of  <code>export.location</code>, an <code>exportPath</code> of
+     * <code>"shared/ds"</code> and  an {@link com.smartgwt.client.data.DSRequest#getExportFilename exportFilename} of
+     * <code>"exportedData.csv"</code>, Smart GWT Server would export to file <code>$webRoot/shared/ds/exportedData.csv</code>.
+     * <p> If you do not specify this property, Smart GWT Server will export to the file indicated  by
+     * <code>exportFilename</code> directly in the default export location. <p> This property is only applicable when {@link
+     * com.smartgwt.client.data.DSRequest#getExportToFilesystem exportToFilesystem} is set.
+     *
+     *
+     * @return String
+     * @see com.smartgwt.client.data.DSRequest#getExportFilename
+     */
+    public String getExportPath()  {
+        return getAttributeAsString("exportPath");
     }
 
     /**
@@ -439,6 +546,64 @@ public class DSRequest extends RPCRequest {
      */
     public String getExportTitleSeparatorChar()  {
         return getAttributeAsString("exportTitleSeparatorChar");
+    }
+
+    /**
+     * If set, Smart GWT Server will export data back to the client, either as a file download  or as content in a new browser
+     * window, depending on the setting of {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay}. <p> Note
+     * that it is perfectly valid to specify both this property and  {@link
+     * com.smartgwt.client.data.DSRequest#getExportToFilesystem exportToFilesystem}; in this case the data is both  exported to
+     * a file on the server filesystem, and downloaded to the client.  If you specify  <em>neither</em> property, the export
+     * no-ops.
+     *
+     * @param exportToClient exportToClient Default value is true
+     */
+    public void setExportToClient(Boolean exportToClient) {
+        setAttribute("exportToClient", exportToClient);
+    }
+
+    /**
+     * If set, Smart GWT Server will export data back to the client, either as a file download  or as content in a new browser
+     * window, depending on the setting of {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay}. <p> Note
+     * that it is perfectly valid to specify both this property and  {@link
+     * com.smartgwt.client.data.DSRequest#getExportToFilesystem exportToFilesystem}; in this case the data is both  exported to
+     * a file on the server filesystem, and downloaded to the client.  If you specify  <em>neither</em> property, the export
+     * no-ops.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getExportToClient()  {
+        return getAttributeAsBoolean("exportToClient");
+    }
+
+    /**
+     * If set, Smart GWT Server will export data to a file on the <b>server</b> filesystem.  The file we export to is
+     * determined by the {@link com.smartgwt.client.data.DSRequest#getExportFilename exportFilename} and  {@link
+     * com.smartgwt.client.data.DSRequest#getExportPath exportPath}. <p> Note that it is perfectly valid to specify both this
+     * property and  {@link com.smartgwt.client.data.DSRequest#getExportToClient exportToClient}; in this case the data is both
+     * exported to a file on the server filesystem, and downloaded to the client.  If you specify  <em>neither</em> property,
+     * the export no-ops.
+     *
+     * @param exportToFilesystem exportToFilesystem Default value is false
+     */
+    public void setExportToFilesystem(Boolean exportToFilesystem) {
+        setAttribute("exportToFilesystem", exportToFilesystem);
+    }
+
+    /**
+     * If set, Smart GWT Server will export data to a file on the <b>server</b> filesystem.  The file we export to is
+     * determined by the {@link com.smartgwt.client.data.DSRequest#getExportFilename exportFilename} and  {@link
+     * com.smartgwt.client.data.DSRequest#getExportPath exportPath}. <p> Note that it is perfectly valid to specify both this
+     * property and  {@link com.smartgwt.client.data.DSRequest#getExportToClient exportToClient}; in this case the data is both
+     * exported to a file on the server filesystem, and downloaded to the client.  If you specify  <em>neither</em> property,
+     * the export no-ops.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getExportToFilesystem()  {
+        return getAttributeAsBoolean("exportToFilesystem");
     }
 
     /**
@@ -649,6 +814,43 @@ public class DSRequest extends RPCRequest {
      */
     public Integer getStartRow()  {
         return getAttributeAsInt("startRow");
+    }
+
+    /**
+     * If true, results will be streamed on the server, rather than all records being read into  server memory at once; this
+     * approach is appropriate for retrieving or exporting large datasets without swamping the server.   <p> Although this
+     * property can be set without any particular concerns (small datasets can be  streamed just as readily as large ones),
+     * bear in mind that although streaming enables the processing of very large datasets, processing and downloading very
+     * large datasets in a  normal client/server flow will very rarely give an acceptable user experience.  Streaming is of
+     * more practical use in a batch setting - for example, a disconnected  {@link
+     * com.smartgwt.client.data.DSRequest#getExportToFilesystem export}. <p> Note that streaming requires specific server
+     * support; of Smart GWT's built-in DataSource types, only <code>SQLDataSource</code> is able to stream results.  This
+     * property is ignored by other DataSource types. <p> See also the server-side documentation for <code>DSResponse</code>, 
+     * <code>SQLDataSource</code> and <code>StreamingResponseIterator</code>.
+     *
+     * @param streamResults streamResults Default value is false
+     */
+    public void setStreamResults(String streamResults) {
+        setAttribute("streamResults", streamResults);
+    }
+
+    /**
+     * If true, results will be streamed on the server, rather than all records being read into  server memory at once; this
+     * approach is appropriate for retrieving or exporting large datasets without swamping the server.   <p> Although this
+     * property can be set without any particular concerns (small datasets can be  streamed just as readily as large ones),
+     * bear in mind that although streaming enables the processing of very large datasets, processing and downloading very
+     * large datasets in a  normal client/server flow will very rarely give an acceptable user experience.  Streaming is of
+     * more practical use in a batch setting - for example, a disconnected  {@link
+     * com.smartgwt.client.data.DSRequest#getExportToFilesystem export}. <p> Note that streaming requires specific server
+     * support; of Smart GWT's built-in DataSource types, only <code>SQLDataSource</code> is able to stream results.  This
+     * property is ignored by other DataSource types. <p> See also the server-side documentation for <code>DSResponse</code>, 
+     * <code>SQLDataSource</code> and <code>StreamingResponseIterator</code>.
+     *
+     *
+     * @return String
+     */
+    public String getStreamResults()  {
+        return getAttributeAsString("streamResults");
     }
 
     /**

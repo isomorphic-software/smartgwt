@@ -112,8 +112,10 @@ package com.smartgwt.client.docs;
  * <a href='http://code.google.com/intl/en/appengine/docs/java/datastore/queriesandindexes.html#Restrictions_on_Queries'
  * onclick="window.open('http://code.google.com/intl/en/appengine/docs/java/datastore/queriesandindexes.html#Restrictions_on_Queries');return
  * false;">GAE queries limitations</a>
- *  this DataSource implementation supports only single inequality criteria in filter.
+ *  this DataSource implementation supports only single inequality criteria in filter.<br/>
  *  Only <code>TextMatchStyle.STARTS_WITH</code> filtering mode is supported for text fields.<br/>
+ *  All queries are case sensitive because GAE does not support <code>upper()/lower()</code> functions in criterias.<br/>
+ *  <code>TextMatchStyle.EXACT</code> is used for all number fields.<br/>
  *  <b><code>com.isomorphic.jpa.EMFProviderLMT</code></b> or
  *  <b><code>com.isomorphic.jpa.EMFProviderNoTransactions</code></b> should be used as
  *  transaction providers (depending whether you use transactions or not).<br/>

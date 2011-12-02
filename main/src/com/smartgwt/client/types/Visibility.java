@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -13,12 +13,11 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
-
+ 
 package com.smartgwt.client.types;
 
 /**
  */
-
 public enum Visibility implements ValueEnum {
     /**
      * The widget visibility will match that of its parent (usually visible).
@@ -32,6 +31,7 @@ public enum Visibility implements ValueEnum {
      * The widget will always be hidden even when its parent is visible.
      */
     HIDDEN("hidden");
+
     private String value;
 
     Visibility(String value) {
@@ -42,4 +42,3 @@ public enum Visibility implements ValueEnum {
         return this.value;
     }
 }
-

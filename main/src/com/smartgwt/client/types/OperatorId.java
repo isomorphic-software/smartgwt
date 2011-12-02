@@ -17,18 +17,16 @@
 package com.smartgwt.client.types;
 
 /**
- * An operator is used as part of a {@link com.smartgwt.client.data.Criterion} when specifying
- * {@link com.smartgwt.client.data.AdvancedCriteria}. <P> This list of operators indicates the set
- * of operators built into Smart GWT DataSources, which can be used for both client and
- * server-side filtering.   You can extend the list of operators with {@link
- * com.smartgwt.client.data.DataSource#addSearchOperator DataSource.addSearchOperator}.
+ * An operator is used as part of a {@link com.smartgwt.client.data.Criterion} when specifying {@link
+ * com.smartgwt.client.data.AdvancedCriteria}. <P> This list of operators indicates the set of operators built into Smart
+ * GWT DataSources, which can be used for both client and server-side filtering.   You can extend the list of operators
+ * with {@link com.smartgwt.client.data.DataSource#addSearchOperator DataSource.addSearchOperator}.
  */
 public enum OperatorId implements ValueEnum {
     /**
      * exactly equal to
      */
     EQUALS("equals"),
-    
     /**
      * not equal to
      */
@@ -73,7 +71,6 @@ public enum OperatorId implements ValueEnum {
      * Contains as sub-string (case insensitive)
      */
     ICONTAINS("iContains"),
-    
     /**
      * Starts with (case insensitive)
      */
@@ -107,6 +104,10 @@ public enum OperatorId implements ValueEnum {
      */
     INOT_ENDS_WITH("iNotEndsWith"),
     /**
+     * shortcut for "greaterOrEqual" + "and" + "lessOrEqual" (case insensitive)
+     */
+    IBETWEEN_INCLUSIVE("iBetweenInclusive"),
+    /**
      * Regular expression match
      */
     REGEXP("regexp"),
@@ -119,15 +120,15 @@ public enum OperatorId implements ValueEnum {
      */
     IS_NULL("isNull"),
     /**
-     * value is non-null.  Note empty string ("") is non-null
+     * value is non-null. Note empty string ("") is non-null
      */
     NOT_NULL("notNull"),
     /**
-     * value is in a set of values.  Specify criterion.value as an Array
+     * value is in a set of values. Specify criterion.value as an Array
      */
     IN_SET("inSet"),
     /**
-     * value is not in a set of values.  Specify criterion.value as an Array
+     * value is not in a set of values. Specify criterion.value as an Array
      */
     NOT_IN_SET("notInSet"),
     /**
@@ -155,8 +156,7 @@ public enum OperatorId implements ValueEnum {
      */
     LESS_OR_EQUAL_FIELD("lessOrEqualField"),
     /**
-     * Contains as sub-string (match case) another field value (specify fieldName as
-     * criterion.value)
+     * Contains as sub-string (match case) another field value (specify fieldName as criterion.value)
      */
     CONTAINS_FIELD("containsField"),
     /**
@@ -180,23 +180,21 @@ public enum OperatorId implements ValueEnum {
      */
     OR("or"),
     /**
-     * shortcut for greaterThan + lessThan + and. Specify criterion.start and criterion.end
+     * shortcut for "greaterThan" + "lessThan" + "and". Specify criterion.start and criterion.end
      */
     BETWEEN("between"),
     /**
-     * shortcut for greaterOrEqual + lessOrEqual + and. 
-     * Specify criterion.start and criterion.end
+     * shortcut for "greaterOrEqual" + "lessOrEqual" + "and". Specify criterion.start and criterion.end
      */
     BETWEEN_INCLUSIVE("betweenInclusive");
-    
+
     private String value;
-    
+
     OperatorId(String value) {
         this.value = value;
     }
-    
+
     public String getValue() {
         return this.value;
     }
 }
-

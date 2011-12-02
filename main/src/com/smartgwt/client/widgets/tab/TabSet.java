@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -1376,6 +1373,23 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
                }));
         }
    }-*/;
+            
+    /**
+     * Search for a tab that contains a pane.
+     * @param pane pane to show
+     *
+     * @return tab that contains passed pane
+     */
+    public native Tab tabForPane(Canvas pane) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.tabForPane(pane.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.tab.Tab::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
     /**
      * Add a tabSelected handler.
      * <p>

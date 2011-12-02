@@ -19,28 +19,23 @@ package com.smartgwt.client.types;
 /**
  * Appearance for a SelectItem that allows multiple selection
  */
-
 public enum MultipleAppearance implements ValueEnum {
-
     /**
-     * a drop-down picklist that allows multiple choices by              clicking on a checkbox next
-     * to each item
+     * a drop-down picklist that allows multiple choices by clicking on a checkbox next to each item
      */
     PICKLIST("picklist"),
-
     /**
-     * a grid that displays all items in-place. Multiple selection              acccomplished by
-     * ctrl-click or shift-click.
+     * a grid that displays all items in-place. Multiple selection is accomplished by ctrl-click or shift-click.
      */
     GRID("grid");
+
     private String value;
 
     MultipleAppearance(String value) {
         this.value = value;
     }
-    
+
     public String getValue() {
         return this.value;
     }
 }
-

@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -278,37 +275,6 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
     }
 
     /**
-     * Optional ID for the tab, which can later be used to reference the tab. APIs requiring a reference to a tab will accept
-     * the tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab TabSet.selectTab}, {@link
-     * com.smartgwt.client.widgets.tab.TabSet#updateTab TabSet.updateTab}, {@link
-     * com.smartgwt.client.widgets.tab.TabSet#removeTab TabSet.removeTab}].<br> The ID will also be passed to the {@link
-     * com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler TabSet.tabSelected} and {@link
-     * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler TabSet.tabDeselected} handler functions, if specified.
-     * <p> Note that if you provide an ID, it must be globally unique.
-     *
-     * @param ID ID Default value is null
-     */
-    public void setID(String ID) {
-        setAttribute("ID", ID);
-    }
-
-    /**
-     * Optional ID for the tab, which can later be used to reference the tab. APIs requiring a reference to a tab will accept
-     * the tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab TabSet.selectTab}, {@link
-     * com.smartgwt.client.widgets.tab.TabSet#updateTab TabSet.updateTab}, {@link
-     * com.smartgwt.client.widgets.tab.TabSet#removeTab TabSet.removeTab}].<br> The ID will also be passed to the {@link
-     * com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler TabSet.tabSelected} and {@link
-     * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler TabSet.tabDeselected} handler functions, if specified.
-     * <p> Note that if you provide an ID, it must be globally unique.
-     *
-     *
-     * @return String
-     */
-    public String getID()  {
-        return getAttributeAsString("ID");
-    }
-
-    /**
      * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true for this TabSet, if set this
      * property will determine the title of the picker menu item for this tab. If unset, {@link
      * com.smartgwt.client.widgets.tab.Tab#getTitle title} will be used instead
@@ -435,6 +401,38 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
         
     // ***********************************************************        
 
+
+    /**
+     * Optional ID for the tab, which can later be used to reference the tab. APIs requiring a reference to a tab will accept
+     * the tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab TabSet.selectTab}, {@link
+     * com.smartgwt.client.widgets.tab.TabSet#updateTab TabSet.updateTab}, {@link
+     * com.smartgwt.client.widgets.tab.TabSet#removeTab TabSet.removeTab}].<br> The ID will also be passed to the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler TabSet.tabSelected} and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler TabSet.tabDeselected} handler functions, if specified.
+     * <p> Note that if you provide an ID, it must be globally unique.
+     *
+     * @param ID ID Default value is null
+     */
+    public void setID(String ID) {
+        IDManager.isValidID(ID);
+        setAttribute("ID", ID);
+    }
+
+    /**
+     * Optional ID for the tab, which can later be used to reference the tab. APIs requiring a reference to a tab will accept
+     * the tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab TabSet.selectTab}, {@link
+     * com.smartgwt.client.widgets.tab.TabSet#updateTab TabSet.updateTab}, {@link
+     * com.smartgwt.client.widgets.tab.TabSet#removeTab TabSet.removeTab}].<br> The ID will also be passed to the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler TabSet.tabSelected} and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler TabSet.tabDeselected} handler functions, if specified.
+     * <p> Note that if you provide an ID, it must be globally unique.
+     *
+     *
+     * @return String
+     */
+    public String getID()  {
+        return getAttributeAsString("ID");
+    }
 
     /**
      * Specifies the title of the this tab.  To change the title after the TabSet has been created, call {@link

@@ -17,7 +17,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.FormItem#focusInItem
  * @see com.smartgwt.client.widgets.form.fields.FormItem#blurItem
  * @see com.smartgwt.client.widgets.Canvas#TAB_INDEX_FLOOR
- * @see com.smartgwt.client.widgets.Window#getCanFocusInHeaderButtons
  * @see com.smartgwt.client.widgets.Canvas#getCanFocus
  * @see com.smartgwt.client.widgets.Canvas#getTabIndex
  * @see com.smartgwt.client.widgets.Canvas#getAccessKey
@@ -31,6 +30,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getSelectOnFocus
  * @see com.smartgwt.client.widgets.form.fields.TextItem#getSelectOnFocus
  * @see com.smartgwt.client.widgets.form.fields.TextAreaItem#getSelectOnFocus
+ * @see com.smartgwt.client.widgets.Window#getCanFocusInHeaderButtons
  */
 public interface Focus {
 }
