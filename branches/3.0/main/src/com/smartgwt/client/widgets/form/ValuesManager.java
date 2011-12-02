@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -104,6 +101,30 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         return $wnd.isc[scClassName].create(config);
     }-*/;
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * If explicitly set to false, prevents the ValuesManager from automatically propagating data value changes to its members.
+     * You can manually synchronize member data values  at any time with a call to {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#synchronizeMembers ValuesManager.synchronizeMembers}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param autoSynchronize autoSynchronize Default value is null
+     */
+    public void setAutoSynchronize(Boolean autoSynchronize) {
+        setAttribute("autoSynchronize", autoSynchronize, true);
+    }
+
+    /**
+     * If explicitly set to false, prevents the ValuesManager from automatically propagating data value changes to its members.
+     * You can manually synchronize member data values  at any time with a call to {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#synchronizeMembers ValuesManager.synchronizeMembers}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAutoSynchronize()  {
+        return getAttributeAsBoolean("autoSynchronize");
+    }
 
     /**
      * If set to true, client-side validators will not run on the form when validate() is called.  Server-side validators (if
@@ -388,6 +409,16 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
     public native void showFieldErrors() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.showFieldErrors();
+    }-*/;
+            
+    /**
+     * Update all of this ValuesManager's members to reflect the current values held by the   ValuesManager.  It is not
+     * normally necesary to manually synchronize members, but you   will need to do so if you switch off {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#getAutoSynchronize automatic synchronization}.
+     */
+    public native void synchronizeMembers() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.synchronizeMembers();
     }-*/;
             
     /**

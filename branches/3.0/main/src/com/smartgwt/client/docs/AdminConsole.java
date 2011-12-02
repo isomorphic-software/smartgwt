@@ -4,20 +4,44 @@ package com.smartgwt.client.docs;
 /**
  * <h3>Admin Console</h3>
  * The Admin Console allows you to configure database access for DataSources that use
- *  Smart GWT's built-in {@link com.smartgwt.client.docs.SqlDataSource SQL engine}.
+ *  Smart GWT's built-in {@link com.smartgwt.client.docs.SqlDataSource SQL engine}.  You can either use the Admin
+ *  Console UI (as explained below) or directly specify equivalent properties in your
+ *  server.properties file (see "Manually specifying.." below).
  *  <P>
- *  NOTE: You must have the Isomorphic Smart GWT package installed and your servlet engine
- *  started. 
- *  <p>
- *  Direct your browser to the following URL to access the Admin Console: 
- *  <p>
- * &nbsp;&nbsp;<a href='http://localhost:8080/tools/adminConsole.jsp'
- * onclick="window.open('http://localhost:8080/tools/adminConsole.jsp');return
- * false;">http://localhost:8080/tools/adminConsole.jsp</a>
- *  <p>
- *  The common default servlet engine port 8080 is used in the URL given above. Adjust your URL
- *  as necessary if you are using a different port and replace localhost with the machine name
- *  running the servlet engine if you are accessing it from a remote machine.
+ *  
+ *  
+ *  To use the Admin Console, make sure you have followed the 
+ *  {@link com.smartgwt.client.docs.SgwtEESetup full installation instructions} - double check that you have the
+ *  correct GWT &lt;inherits&gt; as shown in those instructions.  Then, launch your GWT project
+ *  from your IDE, and open a web browser to <i>moduleBaseURL</i>/tools/adminConsole.jsp.  For
+ *  example, if you load your application by going to a URL that ends in
+ *  builtinds/builtinds.html, the correct URL for the Admin Console is builtinds/tools/adminConsole.jsp.
+ *  <P>
+ *  If it's not clear what URL to use, you can add the following code to your onModuleLoad()
+ *  method to create a button that opens the Admin Console:
+ *  <pre>
+ *    IButton adminButton = new IButton("Admin Console"); 
+ *    adminButton.addClickHandler(new ClickHandler() { 
+ *      public void onClick(ClickEvent event) { 
+ *        com.smartgwtee.tools.client.SCEE.openDataSourceConsole(); 
+ *      } 
+ *    }); 
+ *    adminButton.draw();
+ *  </pre>
+ *  NOTE: if you are using Pro Edition, the method to call is
+ *  com.smartgwtpro.tools.client.SCPRO.openDataSourceConsole(), and for Power Edition,
+ *  com.smartgwtpower.tools.client.SCPower.openDataSourceConsole().
+ *  
+ *  Having opened the Admin Console, available JNDI connections will be discovered and shown
+ *  automatically.  If you aren't using JDNI, use the GUI to enter and test JDBC settings. Both
+ *  ConnectionManager and JDBC DataSource settings are supported. Once you've got a working
+ *  connection, set it as the default connection using the "Set as Default" button.
+ *  
+ *  <P>
+ *  These settings will be written to server.properties in your deployment directory - use
+ *  the "Download server.properties" button to download the settings and merge them to the
+ *  server.properties file in your Eclipse (or other IDE) project.
+ *  
  *  <P>
  *  <b>Test Data</b>
  *  <p>

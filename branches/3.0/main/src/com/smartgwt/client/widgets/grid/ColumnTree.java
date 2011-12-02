@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -260,6 +257,33 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     }
 
     /**
+     * How to fetch and manage records retrieve from the server.  See {@link com.smartgwt.client.types.FetchMode}. <P> This
+     * setting only applies to the {@link com.smartgwt.client.data.ResultSet} automatically created by calling {@link
+     * com.smartgwt.client.widgets.grid.ColumnTree#fetchData ColumnTree.fetchData}.  If a pre-existing ResultSet is passed to
+     * setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode fetchMode} applies.
+     *
+     * @param dataFetchMode dataFetchMode Default value is "paged"
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
+    public void setDataFetchMode(FetchMode dataFetchMode) {
+        setAttribute("dataFetchMode", dataFetchMode.getValue(), true);
+    }
+
+    /**
+     * How to fetch and manage records retrieve from the server.  See {@link com.smartgwt.client.types.FetchMode}. <P> This
+     * setting only applies to the {@link com.smartgwt.client.data.ResultSet} automatically created by calling {@link
+     * com.smartgwt.client.widgets.grid.ColumnTree#fetchData ColumnTree.fetchData}.  If a pre-existing ResultSet is passed to
+     * setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode fetchMode} applies.
+     *
+     *
+     * @return FetchMode
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
+    public FetchMode getDataFetchMode()  {
+        return EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
+    }
+
+    /**
      * A title for the leftmost column if {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is set
      * (the remaining columns have their titles derived from the item selected in the column to the left). Ignored if {@link
      * com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is not set.<br><br> Note: if you do not want a
@@ -416,6 +440,32 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      */
     public Boolean getShowCustomIconOpen()  {
         return getAttributeAsBoolean("showCustomIconOpen");
+    }
+
+    /**
+     * Whether to show fields marked <code>detail:true</code> when a DataBoundComponent is  given a DataSource but no
+     * <code>component.fields</code>. <p> The <code>detail</code> property is used on DataSource fields to mark fields that 
+     * shouldn't appear by default in a view that tries to show many records in a small space.
+     *
+     * @param showDetailFields showDetailFields Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
+    public void setShowDetailFields(Boolean showDetailFields)  throws IllegalStateException {
+        setAttribute("showDetailFields", showDetailFields, false);
+    }
+
+    /**
+     * Whether to show fields marked <code>detail:true</code> when a DataBoundComponent is  given a DataSource but no
+     * <code>component.fields</code>. <p> The <code>detail</code> property is used on DataSource fields to mark fields that 
+     * shouldn't appear by default in a view that tries to show many records in a small space.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
+    public Boolean getShowDetailFields()  {
+        return getAttributeAsBoolean("showDetailFields");
     }
 
     /**
@@ -958,33 +1008,6 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
 
     // ********************* DataBoundComponent Properties / Attributes ***********************
 
-    /**
-     * How to fetch and manage records retrieve from the server.  See {@link com.smartgwt.client.types.FetchMode}. <P> This
-     * setting only applies to the {@link com.smartgwt.client.data.ResultSet} automatically created by calling {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData}.  If a pre-existing ResultSet is passed to
-     * setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode fetchMode} applies.
-     *
-     * @param dataFetchMode dataFetchMode Default value is "paged"
-     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
-     */
-    public void setDataFetchMode(FetchMode fetchMode) {
-        setAttribute("dataFetchMode", fetchMode, true);
-    }
-
-    /**
-     * How to fetch and manage records retrieve from the server.  See {@link com.smartgwt.client.types.FetchMode}. <P> This
-     * setting only applies to the {@link com.smartgwt.client.data.ResultSet} automatically created by calling {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData}.  If a pre-existing ResultSet is passed to
-     * setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode fetchMode} applies.
-     *
-     *
-     * @return FetchMode
-     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
-     */
-    public FetchMode getDataFetchMode() {
-        return EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
-    }
-    
     public void setDataPageSize(int dataPageSize) {
         setAttribute("dataPageSize", dataPageSize, true);
     }
@@ -1007,14 +1030,6 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
 
     public Boolean getShowHiddenFields() {
         return getAttributeAsBoolean("showHiddenFields");
-    }
-
-    public void setShowDetailFields(Boolean showDetailFields) {
-        setAttribute("showDetailFields", showDetailFields, true);
-    }
-
-    public Boolean getShowDetailFields() {
-        return getAttributeAsBoolean("showDetailFields");
     }
 
     public void setShowComplexFields(Boolean showComplexFields) {
@@ -1156,9 +1171,15 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * @param hilites array of hilite objects
      */
     public native void setHilites(Hilite[] hilites)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var isCreated = this.@com.smartgwt.client.widgets.BaseWidget::isCreated()();
         var hilitesJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(hilites);
-        self.setHilites(hilitesJS);
+        if (isCreated) {
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.setHilites(hilitesJS);
+        } else {
+            var obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.hilites = hilitesJS;
+        }
     }-*/;
 
     /**

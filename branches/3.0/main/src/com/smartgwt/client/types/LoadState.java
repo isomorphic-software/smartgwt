@@ -19,36 +19,31 @@ package com.smartgwt.client.types;
 /**
  * Trees that dynamically load nodes keep track of whether each node has loaded its children.
  */
-
 public enum LoadState implements ValueEnum {
-
     /**
      * children have not been loaded and are not loading
      */
     UNLOADED(null),
-
     /**
      * currently in the process of loading
      */
     LOADING("loading"),
-
     /**
      * folders only are already loaded
      */
     FOLDERS_LOADED("foldersLoaded"),
-
     /**
      * already fully loaded
      */
     LOADED("loaded");
+
     private String value;
 
     LoadState(String value) {
         this.value = value;
     }
-    
+
     public String getValue() {
         return this.value;
     }
 }
-

@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -200,6 +197,57 @@ public class PickTreeItem extends CanvasItem {
     }
 
     /**
+     * If set, this FormItem will map stored values to display values as though a ValueMap were specified, by fetching records
+     * from the  specified <code>optionDataSource</code> and extracting the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} and  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} in loaded records, to derive one valueMap
+     * entry per record loaded from the optionDataSource. <P> With the default setting of {@link
+     * com.smartgwt.client.widgets.form.fields.PickTreeItem#getFetchMissingValues fetchMissingValues}, fetches will be
+     * initiated against the optionDataSource any time the FormItem has a non-null value and no corresponding display value is
+     * available.  This includes when the form is first initialized, as well as any subsequent calls to {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue}, such as may happen when {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editRecord DynamicForm.editRecord} is called.  Retrieved values are
+     * automatically cached by the FormItem. <P> Note that if a normal, static {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueMap valueMap} is <b>also</b> specified for the field (either
+     * directly in the form item or as part of the field definition in the dataSource), it will be preferred to the data
+     * derived from the optionDataSource for whatever mappings are present. <P> In a databound form, if {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} is specified for a FormItem and 
+     * <code>optionDataSource</code> is unset, <code>optionDataSource</code> will default to the form's current DataSource
+     *
+     * @param optionDataSource optionDataSource Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">List - Combo Box Example</a>
+     */
+    public void setOptionDataSource(DataSource optionDataSource) {
+        setAttribute("optionDataSource", optionDataSource == null ? null : optionDataSource.getOrCreateJsObj());
+    }
+
+    /**
+     * If set, this FormItem will map stored values to display values as though a ValueMap were specified, by fetching records
+     * from the  specified <code>optionDataSource</code> and extracting the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} and  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} in loaded records, to derive one valueMap
+     * entry per record loaded from the optionDataSource. <P> With the default setting of {@link
+     * com.smartgwt.client.widgets.form.fields.PickTreeItem#getFetchMissingValues fetchMissingValues}, fetches will be
+     * initiated against the optionDataSource any time the FormItem has a non-null value and no corresponding display value is
+     * available.  This includes when the form is first initialized, as well as any subsequent calls to {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue}, such as may happen when {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editRecord DynamicForm.editRecord} is called.  Retrieved values are
+     * automatically cached by the FormItem. <P> Note that if a normal, static {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueMap valueMap} is <b>also</b> specified for the field (either
+     * directly in the form item or as part of the field definition in the dataSource), it will be preferred to the data
+     * derived from the optionDataSource for whatever mappings are present. <P> In a databound form, if {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} is specified for a FormItem and 
+     * <code>optionDataSource</code> is unset, <code>optionDataSource</code> will default to the form's current DataSource
+     *
+     *
+     * @return DataSource
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">List - Combo Box Example</a>
+     */
+    public DataSource getOptionDataSource()  {
+        return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("optionDataSource"));
+    }
+
+    /**
      * Which field in the tree-data should be returned as this item's value? If unspecified, the path will be used
      *
      * @param valueField valueField Default value is null
@@ -221,6 +269,16 @@ public class PickTreeItem extends CanvasItem {
     }
 
     // ********************* Methods ***********************
+            
+    /**
+     * Only applies to databound items (see {@link com.smartgwt.client.widgets.form.fields.PickTreeItem#getOptionDataSource
+     * optionDataSource}).<br> Performs a fetch type operation on this item's DataSource to retrieve/refresh the tree of data
+     * displayed as rows in this items menu.
+     */
+    public native void fetchData() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.fetchData();
+    }-*/;
 
     // ********************* Static Methods ***********************
         

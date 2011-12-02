@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -63,7 +60,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * "tiles", where each tile represents one object, and the tiles are laid out in a grid with multiple tiles per row.  Each
  * tile displays one or more properties of the object it represents.
  */
-public class TileGrid extends TileLayout  implements DataBoundComponent, com.smartgwt.client.widgets.tile.events.HasRecordClickHandlers, com.smartgwt.client.widgets.tile.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.tile.events.HasSelectionChangedHandlers {
+public class TileGrid extends TileLayout  implements DataBoundComponent, com.smartgwt.client.widgets.tile.events.HasRecordClickHandlers, com.smartgwt.client.widgets.tile.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.tile.events.HasRecordContextClickHandlers, com.smartgwt.client.widgets.tile.events.HasSelectionChangedHandlers {
 
     public static TileGrid getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -202,6 +199,33 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     /**
+     * How to fetch and manage records retrieve from the server.  See {@link com.smartgwt.client.types.FetchMode}. <P> This
+     * setting only applies to the {@link com.smartgwt.client.data.ResultSet} automatically created by calling {@link
+     * com.smartgwt.client.widgets.tile.TileGrid#fetchData TileGrid.fetchData}.  If a pre-existing ResultSet is passed to
+     * setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode fetchMode} applies.
+     *
+     * @param dataFetchMode dataFetchMode Default value is "paged"
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
+    public void setDataFetchMode(FetchMode dataFetchMode) {
+        setAttribute("dataFetchMode", dataFetchMode.getValue(), true);
+    }
+
+    /**
+     * How to fetch and manage records retrieve from the server.  See {@link com.smartgwt.client.types.FetchMode}. <P> This
+     * setting only applies to the {@link com.smartgwt.client.data.ResultSet} automatically created by calling {@link
+     * com.smartgwt.client.widgets.tile.TileGrid#fetchData TileGrid.fetchData}.  If a pre-existing ResultSet is passed to
+     * setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode fetchMode} applies.
+     *
+     *
+     * @return FetchMode
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
+    public FetchMode getDataFetchMode()  {
+        return EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
+    }
+
+    /**
      * Properties for the {@link com.smartgwt.client.widgets.viewer.DetailViewer} that is automatically created to render the
      * contents of tiles by default.
      *
@@ -288,6 +312,28 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      */
     public Boolean getShowAllRecords()  {
         return getAttributeAsBoolean("showAllRecords");
+    }
+
+    /**
+     * By default, TileGrids will not show fields marked {@link com.smartgwt.client.data.DataSourceField#getDetail detail:true}
+     * in the DataSource.  See also {@link com.smartgwt.client.widgets.tile.TileGrid#getFields fields}.
+     *
+     * @param showDetailFields showDetailFields Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowDetailFields(Boolean showDetailFields)  throws IllegalStateException {
+        setAttribute("showDetailFields", showDetailFields, false);
+    }
+
+    /**
+     * By default, TileGrids will not show fields marked {@link com.smartgwt.client.data.DataSourceField#getDetail detail:true}
+     * in the DataSource.  See also {@link com.smartgwt.client.widgets.tile.TileGrid#getFields fields}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowDetailFields()  {
+        return getAttributeAsBoolean("showDetailFields");
     }
 
     /**
@@ -523,6 +569,48 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
                    var event = @com.smartgwt.client.widgets.tile.events.RecordClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                });
+        }
+   }-*/;
+    /**
+     * Add a recordContextClick handler.
+     * <p>
+     * Executed when the tileGrid receives a context-click (right mouse button) event on a tile. The default implementation
+     * does nothing -- override to perform some action when any record is right-clicked.<br>  Cancel the event to suppress the
+     * native browser context menu. <P> A record event handler can be specified either as a function to execute, or as a string
+     * of script to evaluate. If the handler is defined as a string of script, all the parameters below will be available as
+     * variables for use in the script.<br> If you want to cancel the click based on the parameters, Call {@link com.smartgwt.client.widgets.tile.events.RecordContextClickEvent#cancel()} from within {@link RecordContextClickHandler#onRecordContextClick}. Otherwise,
+     * return  true so that the click event be registered with the tile.
+     *
+     * @param handler the recordContextClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addRecordContextClickHandler(com.smartgwt.client.widgets.tile.events.RecordContextClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tile.events.RecordContextClickEvent.getType()) == 0) setupRecordContextClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tile.events.RecordContextClickEvent.getType());
+    }
+
+    private native void setupRecordContextClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({recordContextClick:$debox($entry(function(){
+                        var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
+                        var event = @com.smartgwt.client.widgets.tile.events.RecordContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    }))
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.recordContextClick = $debox($entry(function(){
+                   var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
+                   var event = @com.smartgwt.client.widgets.tile.events.RecordContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               }));
         }
    }-*/;
     /**
@@ -912,33 +1000,6 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
     // ********************* DataBoundComponent Properties / Attributes ***********************
 
-    /**
-     * How to fetch and manage records retrieve from the server.  See {@link com.smartgwt.client.types.FetchMode}. <P> This
-     * setting only applies to the {@link com.smartgwt.client.data.ResultSet} automatically created by calling {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData}.  If a pre-existing ResultSet is passed to
-     * setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode fetchMode} applies.
-     *
-     * @param dataFetchMode dataFetchMode Default value is "paged"
-     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
-     */
-    public void setDataFetchMode(FetchMode fetchMode) {
-        setAttribute("dataFetchMode", fetchMode, true);
-    }
-
-    /**
-     * How to fetch and manage records retrieve from the server.  See {@link com.smartgwt.client.types.FetchMode}. <P> This
-     * setting only applies to the {@link com.smartgwt.client.data.ResultSet} automatically created by calling {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData}.  If a pre-existing ResultSet is passed to
-     * setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode fetchMode} applies.
-     *
-     *
-     * @return FetchMode
-     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
-     */
-    public FetchMode getDataFetchMode() {
-        return EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
-    }
-    
     public void setDataPageSize(int dataPageSize) {
         setAttribute("dataPageSize", dataPageSize, true);
     }
@@ -961,14 +1022,6 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
     public Boolean getShowHiddenFields() {
         return getAttributeAsBoolean("showHiddenFields");
-    }
-
-    public void setShowDetailFields(Boolean showDetailFields) {
-        setAttribute("showDetailFields", showDetailFields, true);
-    }
-
-    public Boolean getShowDetailFields() {
-        return getAttributeAsBoolean("showDetailFields");
     }
 
     public void setShowComplexFields(Boolean showComplexFields) {
@@ -1110,9 +1163,15 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * @param hilites array of hilite objects
      */
     public native void setHilites(Hilite[] hilites)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var isCreated = this.@com.smartgwt.client.widgets.BaseWidget::isCreated()();
         var hilitesJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(hilites);
-        self.setHilites(hilitesJS);
+        if (isCreated) {
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.setHilites(hilitesJS);
+        } else {
+            var obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.hilites = hilitesJS;
+        }
     }-*/;
 
     /**

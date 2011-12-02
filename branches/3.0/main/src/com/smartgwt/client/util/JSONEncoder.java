@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -273,17 +270,6 @@ public class JSONEncoder extends DataClass {
     // ********************* Methods ***********************
             
     /**
-     * Serialize an object as a JSON string.
-     * @param object object to serialize
-     *
-     * @return object encoded as a JSON String
-     */
-    public native String encode(Object object) /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        return self.encode(object);
-    }-*/;
-            
-    /**
      * Encode a JavaScript Date value. <P> By default, follows the {@link com.smartgwt.client.util.JSONEncoder#getDateFormat
      * dateFormat} setting.  Override to do custom encoding.
      * @param theDate JavaScript date object to be serialized
@@ -304,6 +290,30 @@ public class JSONEncoder extends DataClass {
     
     private native static JavaScriptObject createJSONEncoder() /*-{
         return $wnd.isc.JSONEncoder.create();
+    }-*/;
+    
+    /**
+     * Serialize an object as a JSON string.
+     * @param object object to serialize
+     *
+     * @return object encoded as a JSON String
+     */
+    public native String encode(Object object) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        return self.encode(object);
+    }-*/;
+    
+    public native String encode(DataClass object) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var jsObj = object.@com.smartgwt.client.core.DataClass::getJsObj()();
+        return self.encode(jsObj);
+    
+    }-*/;
+    
+    public native String encode (BaseClass object) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var jsObj = object.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        return self.encode(jsObj);
     }-*/;
 
 

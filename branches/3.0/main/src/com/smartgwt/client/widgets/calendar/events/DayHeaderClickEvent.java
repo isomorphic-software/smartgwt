@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -138,16 +135,6 @@ public class DayHeaderClickEvent extends BrowserEvent<DayHeaderClickHandler>  im
     }-*/;
 
     /**
-     * the calendar itself
-     *
-     * @return the calendar itself
-     */
-    public  native Calendar getCalendar() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.calendar.Calendar::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.calendar);
-    }-*/;
-
-    /**
      * the row number to which the parameter date belongs
      *
      * @return the row number to which the parameter date belongs
@@ -168,6 +155,15 @@ public class DayHeaderClickEvent extends BrowserEvent<DayHeaderClickHandler>  im
     }-*/;
 
 
+    /**
+     * the calendar itself
+     *
+     * @return the calendar itself
+     */
+    public  native com.smartgwt.client.widgets.calendar.Calendar getCalendar() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        return @com.smartgwt.client.widgets.calendar.Calendar::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.calendar);
+    }-*/;
     /**
      * events that fall on this day
      *

@@ -4,7 +4,7 @@
  *
  * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * is published by the Free Software Foundation.  Smart GWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -13,35 +13,28 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
-
+ 
 package com.smartgwt.client.types;
 
 /**
- * Selection model for CubeGrid indicating which cells in the body should be selected
- *  when row or column headers are selected.
+ * Selection model for {@link com.smartgwt.client.widgets.cube.CubeGrid} indicating which cells in the body should be
+ * selected when row or column headers are selected.
  */
 public enum AutoSelectionModel implements ValueEnum {
-    /**
-     * Show the Save As dialog and download the file
-     */
-    DOWNLOAD("download"),
     /**
      * Rows and Columns will be selected on header selection
      */
     BOTH("both"),
-    
     /**
-     *   Rows will be selected on row-header selection
+     * Rows will be selected on row-header selection
      */
     ROWS("rows"),
-    
     /**
-     *   Columns will be selected on column-header selection
+     * Columns will be selected on column-header selection
      */
-    COLUMNS("cols"),
-    
+    COLS("cols"),
     /**
-     *   Selecting row or column headers will not select cells in the body.
+     * Selecting row or column headers will not select cells in the body.
      */
     NONE("none");
 

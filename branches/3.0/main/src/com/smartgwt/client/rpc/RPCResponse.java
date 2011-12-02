@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -169,7 +166,21 @@ public class RPCResponse extends DataClass {
      */
     public void setStatus(int status) {
         setAttribute("status", status);
+   }
+   
+    /**
+     * HTTP headers returned by the server, as a Map of Header name -> Header value
+     * <p>
+     * Headers are available only when the default {@link com.smartgwt.client.types.RPCTransport} 
+     * "xmlHttpRequest" is in use, and browsers may limit access to headers for cross-domain requests 
+     * or in other security-sensitive scenarios.
+     *
+     * @return the http headers
+     */
+    public Map getHttpHeaders() {
+        return  getAttributeAsMap("httpHeaders");
     }
+
 
 }
 

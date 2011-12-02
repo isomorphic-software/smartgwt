@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -185,6 +182,29 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      */
     public Boolean getAutoFetchData()  {
         return getAttributeAsBoolean("autoFetchData");
+    }
+
+    /**
+     * For databound pickLists (see  optionDataSource), by default Smart GWT will cache and re-use datasets shown by pickLists
+     * in an LRU (least recently used) caching pattern. <P> Setting this flag to false avoids this caching for situations where
+     * it is too aggressive.
+     *
+     * @param cachePickListResults cachePickListResults Default value is true
+     */
+    public void setCachePickListResults(Boolean cachePickListResults) {
+        setAttribute("cachePickListResults", cachePickListResults);
+    }
+
+    /**
+     * For databound pickLists (see  optionDataSource), by default Smart GWT will cache and re-use datasets shown by pickLists
+     * in an LRU (least recently used) caching pattern. <P> Setting this flag to false avoids this caching for situations where
+     * it is too aggressive.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCachePickListResults()  {
+        return getAttributeAsBoolean("cachePickListResults");
     }
 
     /**
@@ -812,11 +832,13 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
     }-*/;
             
     /**
-     * Returns the {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} for this form item. If
-     * unset, and {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is explicitly
-     * specified, this method will return the title field for the <code>optionDataSource</code>
+     * Returns the <code>displayField</code> for this item. This will typically be specified explicitly via the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} attribute. However, if  that property is
+     * unset, and the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} for this item is 
+     * hidden in the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, this method
+     * will return the title field for the <code>optionDataSource</code>.
      *
-     * @return display field name, or null
+     * @return display field name, or null if there is no separate display field to use.
      */
     public native String getDisplayFieldName() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();

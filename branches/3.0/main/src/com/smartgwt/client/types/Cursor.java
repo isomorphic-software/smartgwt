@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -13,19 +13,14 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+ 
 package com.smartgwt.client.types;
 
 /**
- * You can use whatever cursors are valid for your deployment platforms, but keep in mind that&#010 visual
- * representation may vary by browser and OS.
+ * You can use whatever cursors are valid for your deployment platforms, but keep in mind that visual representation may
+ * vary by browser and OS.
  */
-
 public enum Cursor implements ValueEnum {
-
-    ALL_SCROLL("all-scroll"),
-
-    ARROW("arrow"),
-
     /**
      * Use the default arrow cursor for this browser/OS.
      */
@@ -55,6 +50,12 @@ public enum Cursor implements ValueEnum {
      */
     TEXT("text"),
     /**
+     * Use the normal hand pointer that appears when you hover over a link
+     */
+    POINTER("pointer"),
+    ARROW("arrow"),
+    ALL_SCROLL("all-scroll"),
+    /**
      * Use the 'crosshair' ( + ) cursor.
      */
     CROSSHAIR("crosshair"),
@@ -62,11 +63,6 @@ public enum Cursor implements ValueEnum {
      * Use the column resize cursor (horizontal double-tipped arrow)
      */
     COL_RESIZE("col-resize"),
-
-    /**
-     * Use the normal hand pointer that appears when you hover over a link
-     */
-    POINTER("pointer"),
     /**
      * Use the row resize cursor (vertical double-tipped arrow)
      */
@@ -107,6 +103,7 @@ public enum Cursor implements ValueEnum {
      * Use the "not-allowed" cursor.
      */
     NOT_ALLOWED("not-allowed");
+
     private String value;
 
     Cursor(String value) {
@@ -117,4 +114,3 @@ public enum Cursor implements ValueEnum {
         return this.value;
     }
 }
-

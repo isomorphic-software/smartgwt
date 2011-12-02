@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -77,6 +74,7 @@ public class SectionStackSection extends RefDataClass {
 
     public SectionStackSection(){
         setID(com.smartgwt.client.util.SC.generateID("SectionStackSection"));
+				
     }
 
     public SectionStackSection(JavaScriptObject jsObj){
@@ -86,6 +84,7 @@ public class SectionStackSection extends RefDataClass {
     public SectionStackSection(String title) {
         setTitle(title);
         setID(com.smartgwt.client.util.SC.generateID("SectionStackSection"));
+				
     }
 
     // ********************* Properties / Attributes ***********************
@@ -345,10 +344,20 @@ public class SectionStackSection extends RefDataClass {
         jsObj.items.push(componentJS);
     }-*/;
 
+    /**
+     *  Custom controls to be shown on top of this section header. 
+     * @param controls
+     */
     public void setControls(Canvas... controls) {
         setAttribute("controls", controls);
     }
-   
+    
+    public native Canvas[] getControls () /*-{
+        var jsObj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        if (jsObj.controls == null) return null;
+        return @com.smartgwt.client.widgets.Canvas::convertToCanvasArray(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.controls);
+    }-*/;
+
     /**
      * Once a SectionStackSection has been applied to a SectionStack, this method may be used to return  a pointer to the 
      * SectionStack in which this section header is embedded.
@@ -376,6 +385,7 @@ public class SectionStackSection extends RefDataClass {
     }-*/;
 
 }
+
 
 
 

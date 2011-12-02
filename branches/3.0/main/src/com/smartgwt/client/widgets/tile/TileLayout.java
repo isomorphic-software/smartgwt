@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -206,7 +203,7 @@ public class TileLayout extends Canvas {
     }
 
     /**
-     * Direction of tiling.  See also TileLayoutPolicy.
+     * Direction of tiling.  See also {@link com.smartgwt.client.types.TileLayoutPolicy}.
      *
      * @param orientation orientation Default value is "horizontal"
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -216,7 +213,7 @@ public class TileLayout extends Canvas {
     }
 
     /**
-     * Direction of tiling.  See also TileLayoutPolicy.
+     * Direction of tiling.  See also {@link com.smartgwt.client.types.TileLayoutPolicy}.
      *
      *
      * @return Orientation
@@ -397,7 +394,7 @@ public class TileLayout extends Canvas {
 
     /**
      * Number of tiles to show in each line.  Auto-derived from {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize
-     * tileSize} for some layout modes.  See TileLayoutPolicy. This can also affect {@link
+     * tileSize} for some layout modes.  See {@link com.smartgwt.client.types.TileLayoutPolicy}. This can also affect {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
      *
@@ -410,7 +407,7 @@ public class TileLayout extends Canvas {
 
     /**
      * Number of tiles to show in each line.  Auto-derived from {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize
-     * tileSize} for some layout modes.  See TileLayoutPolicy. This can also affect {@link
+     * tileSize} for some layout modes.  See {@link com.smartgwt.client.types.TileLayoutPolicy}. This can also affect {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
      *

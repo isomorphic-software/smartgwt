@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -103,7 +100,16 @@ public class Img extends StatefulCanvas {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * If specified this property will be included as the <code>alt</code> text for the image HMTL element.
+     * If specified this property will be included as the <code>alt</code> text for the image HMTL element. This is useful for
+     * improving application accessibility. <P> <b><code>altText</code> and hover prompt / tooltip behavior:</b> Note that some
+     * browsers, including Internet Explorer 9, show a native hover tooltip containing the  img tag's <code>alt</code>
+     * attribute. Developers should not rely on this behavior to show the user a hover prompt - instead the {@link
+     * com.smartgwt.client.widgets.Img#getPrompt prompt} attribute should be used.<br> To set alt text <i>and</i> ensure a
+     * hover prompt shows up in all browsers, developers may set {@link com.smartgwt.client.widgets.Img#getPrompt prompt} and
+     * <code>altText</code> to the same value. If both  these attributes are set, the standard Smart GWT prompt behavior will
+     * show a hover prompt in most browsers, but will be suppressed for browsers where a native tooltip  is shown for altText.
+     * Note that setting <code>altText</code> and <code>prompt</code> to different values is not recommended - the prompt value
+     * will be ignored in favor of the altText in this case.
      *
      * @param altText altText Default value is null
      * @see com.smartgwt.client.docs.Accessibility Accessibility overview and related methods
@@ -113,7 +119,16 @@ public class Img extends StatefulCanvas {
     }
 
     /**
-     * If specified this property will be included as the <code>alt</code> text for the image HMTL element.
+     * If specified this property will be included as the <code>alt</code> text for the image HMTL element. This is useful for
+     * improving application accessibility. <P> <b><code>altText</code> and hover prompt / tooltip behavior:</b> Note that some
+     * browsers, including Internet Explorer 9, show a native hover tooltip containing the  img tag's <code>alt</code>
+     * attribute. Developers should not rely on this behavior to show the user a hover prompt - instead the {@link
+     * com.smartgwt.client.widgets.Img#getPrompt prompt} attribute should be used.<br> To set alt text <i>and</i> ensure a
+     * hover prompt shows up in all browsers, developers may set {@link com.smartgwt.client.widgets.Img#getPrompt prompt} and
+     * <code>altText</code> to the same value. If both  these attributes are set, the standard Smart GWT prompt behavior will
+     * show a hover prompt in most browsers, but will be suppressed for browsers where a native tooltip  is shown for altText.
+     * Note that setting <code>altText</code> and <code>prompt</code> to different values is not recommended - the prompt value
+     * will be ignored in favor of the altText in this case.
      *
      *
      * @return String
@@ -214,6 +229,27 @@ public class Img extends StatefulCanvas {
     }
 
     /**
+     * Prompt displayed in hover canvas if {@link com.smartgwt.client.widgets.Canvas#getShowHover showHover} is true.
+     *
+     * @param prompt prompt Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_hovers" target="examples">Hovers / Tooltips Example</a>
+     */
+    public void setPrompt(String prompt) {
+        setAttribute("prompt", prompt, true);
+    }
+
+    /**
+     * Prompt displayed in hover canvas if {@link com.smartgwt.client.widgets.Canvas#getShowHover showHover} is true.
+     *
+     *
+     * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_hovers" target="examples">Hovers / Tooltips Example</a>
+     */
+    public String getPrompt()  {
+        return getAttributeAsString("prompt");
+    }
+
+    /**
      * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} will be  displayed
      * for this component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating
      * over the component
@@ -310,6 +346,21 @@ public class Img extends StatefulCanvas {
     }
 
     // ********************* Methods ***********************
+            
+    /**
+     * If <code>this.showHover</code> is true, when the user holds the mouse over this Canvas for long enough to trigger a
+     * hover event, a hover canvas is shown by default. This method returns the contents of that hover canvas. <P> Overridden
+     * from Canvas: <br> If {@link com.smartgwt.client.widgets.Img#getPrompt prompt} is specified, and {@link
+     * com.smartgwt.client.widgets.Img#getAltText altText} is unset, default implementation is unchanged - the prompt text will
+     * be displayed in the hover.<br> If {@link com.smartgwt.client.widgets.Img#getAltText altText} and {@link
+     * com.smartgwt.client.widgets.Img#getPrompt prompt} are set this method will return null to suppress the standard hover
+     * behavior in browsers where the alt attribute on an img tag causes a native tooltip to appear, such as Internet Explorer.
+     * On other browsers the altText value will be returned.
+     */
+    public native void getHoverHTML() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.getHoverHTML();
+    }-*/;
             
     /**
      * Refresh the image being shown.  Call this when the {@link com.smartgwt.client.widgets.Img#getSrc src} attribute has not

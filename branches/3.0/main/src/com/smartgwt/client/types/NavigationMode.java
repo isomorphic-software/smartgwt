@@ -4,7 +4,7 @@
  *
  * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * is published by the Free Software Foundation.  Smart GWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -13,23 +13,21 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
-
+ 
 package com.smartgwt.client.types;
 
 /**
- * Controls the navigation mode of records displayed in a TableView
+ * Controls the navigation mode of records.
  */
 public enum NavigationMode implements ValueEnum {
     /**
      * Clicking anywhere on the record navigates
      */
-	 WHOLE_RECORD("wholeRecord"),
+    WHOLE_RECORD("wholeRecord"),
     /**
      * Only clicking directly on the navigation icon triggers navigation
-     * 
      */
-	 NAVICON_ONLY("navIconOnly");
-
+    NAVICON_ONLY("navIconOnly");
 
     private String value;
 

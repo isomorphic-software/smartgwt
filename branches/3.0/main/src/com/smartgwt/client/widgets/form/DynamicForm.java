@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -98,7 +95,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * See the "fontSelector" form in the <a href="http://www.smartclient.com/smartgwt/showcase/#toolstrip"
  * target="examples">Toolstrip example</a>.
  */
-public class DynamicForm extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.form.events.HasSubmitValuesHandlers, com.smartgwt.client.widgets.form.events.HasItemChangeHandlers, com.smartgwt.client.widgets.form.events.HasItemChangedHandlers, com.smartgwt.client.widgets.form.events.HasItemKeyPressHandlers, com.smartgwt.client.widgets.form.events.HasFormSubmitFailedHandlers, com.smartgwt.client.widgets.form.events.HasHiddenValidationErrorsHandlers {
+public class DynamicForm extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.form.events.HasSubmitValuesHandlers, com.smartgwt.client.widgets.form.events.HasItemChangeHandlers, com.smartgwt.client.widgets.form.events.HasItemChangedHandlers, com.smartgwt.client.widgets.form.events.HasItemKeyPressHandlers, com.smartgwt.client.widgets.form.events.HasFormSubmitFailedHandlers, com.smartgwt.client.widgets.form.events.HasHiddenValidationErrorsHandlers, com.smartgwt.client.widgets.form.events.HasAsyncValidationReplyHandlers {
 
     public static DynamicForm getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -460,6 +457,33 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      */
     public int getCellPadding()  {
         return getAttributeAsInt("cellPadding");
+    }
+
+    /**
+     * How to fetch and manage records retrieve from the server.  See {@link com.smartgwt.client.types.FetchMode}. <P> This
+     * setting only applies to the {@link com.smartgwt.client.data.ResultSet} automatically created by calling {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#fetchData DynamicForm.fetchData}.  If a pre-existing ResultSet is passed to
+     * setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode fetchMode} applies.
+     *
+     * @param dataFetchMode dataFetchMode Default value is "paged"
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
+    public void setDataFetchMode(FetchMode dataFetchMode) {
+        setAttribute("dataFetchMode", dataFetchMode.getValue(), true);
+    }
+
+    /**
+     * How to fetch and manage records retrieve from the server.  See {@link com.smartgwt.client.types.FetchMode}. <P> This
+     * setting only applies to the {@link com.smartgwt.client.data.ResultSet} automatically created by calling {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#fetchData DynamicForm.fetchData}.  If a pre-existing ResultSet is passed to
+     * setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode fetchMode} applies.
+     *
+     *
+     * @return FetchMode
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
+    public FetchMode getDataFetchMode()  {
+        return EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
     }
 
     /**
@@ -1357,7 +1381,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * DynamicForm.focusInItem}), all text within the item will be selected. <P> Note that this flag affects only programmatic
      * focus.  It's the normal behavior of text fields to select all text if the user navigates into them via keyboard, or if
      * the user navigates via mouse, to place the text insertion point at the mouse click, and Smart GWT preserves these
-     * behaviors.  <code>selectOnFocus</code> if only needed for cases like a form within a pop-up dialog that should have the
+     * behaviors.  <code>selectOnFocus</code> is only needed for cases like a form within a pop-up dialog that should have the
      * first field selected. <P> If <code>selectOnFocus</code> is false, the selection is not modified on focus - any previous
      * selection within the item will be maintained. <P> May be overridden at the form item level via {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getSelectOnFocus selectOnFocus}.
@@ -1376,7 +1400,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * DynamicForm.focusInItem}), all text within the item will be selected. <P> Note that this flag affects only programmatic
      * focus.  It's the normal behavior of text fields to select all text if the user navigates into them via keyboard, or if
      * the user navigates via mouse, to place the text insertion point at the mouse click, and Smart GWT preserves these
-     * behaviors.  <code>selectOnFocus</code> if only needed for cases like a form within a pop-up dialog that should have the
+     * behaviors.  <code>selectOnFocus</code> is only needed for cases like a form within a pop-up dialog that should have the
      * first field selected. <P> If <code>selectOnFocus</code> is false, the selection is not modified on focus - any previous
      * selection within the item will be maintained. <P> May be overridden at the form item level via {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getSelectOnFocus selectOnFocus}.
@@ -1417,6 +1441,26 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      */
     public Boolean getShowComplexFieldsRecursively()  {
         return getAttributeAsBoolean("showComplexFieldsRecursively");
+    }
+
+    /**
+     * For databound forms, whether to show fields marked as detail fields.
+     *
+     * @param showDetailFields showDetailFields Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowDetailFields(Boolean showDetailFields)  throws IllegalStateException {
+        setAttribute("showDetailFields", showDetailFields, false);
+    }
+
+    /**
+     * For databound forms, whether to show fields marked as detail fields.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowDetailFields()  {
+        return getAttributeAsBoolean("showDetailFields");
     }
 
     /**
@@ -2186,7 +2230,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }-*/;
             
     /**
-     * Finish editing and store edited values in  process state.
+     * Finish editing and store edited values in {@link com.smartgwt.client.util.workflow.Process#getState process state}.
      */
     public native void completeEditing() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -2299,6 +2343,39 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return @com.smartgwt.client.data.AdvancedCriteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
     /**
+     * Add a asyncValidationReply handler.
+     * <p>
+     * Notification fired when an asynchronous validation completes.
+     *
+     * @param handler the asyncValidationReply handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addAsyncValidationReplyHandler(com.smartgwt.client.widgets.form.events.AsyncValidationReplyHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.events.AsyncValidationReplyEvent.getType()) == 0) setupAsyncValidationReplyEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.events.AsyncValidationReplyEvent.getType());
+    }
+
+    private native void setupAsyncValidationReplyEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({handleAsyncValidationReply:$entry(function(){
+                        var param = {"success" : arguments[0], "errors" : arguments[1]};
+                        var event = @com.smartgwt.client.widgets.form.events.AsyncValidationReplyEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.handleAsyncValidationReply = $entry(function(){
+                   var param = {"success" : arguments[0], "errors" : arguments[1]};
+                   var event = @com.smartgwt.client.widgets.form.events.AsyncValidationReplyEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
+        }
+   }-*/;
+    /**
      * Add a hiddenValidationErrors handler.
      * <p>
      * Method to display validation error messages for fields that are not currently visible  in this form.<br> This will be
@@ -2397,6 +2474,25 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public native Boolean isNewRecord() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var retVal =self.isNewRecord();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+            
+    /**
+     * Is this component waiting for an asynchronous validation to complete? This method will return true after {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#validate DynamicForm.validate} is called on a component with server-side
+     * validators for some field(s), until the server responds. <P> Note that the notification method {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#addHandleAsyncValidationReplyHandler
+     * DynamicForm.handleAsyncValidationReply} will be fired when validation completes.
+     *
+     * @return true if this widget has pending asynchronous validations in process
+     */
+    public native Boolean isPendingAsyncValidation() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.isPendingAsyncValidation();
         if(retVal == null || retVal === undefined) {
             return null;
         } else {
@@ -2646,7 +2742,12 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * validators will be run even if there is no  associated item in the form.<br> Validators will also be run on hidden form
      * items<br> In both these cases, validation failure can be handled via  {@link
      * com.smartgwt.client.widgets.form.DynamicForm#addHandleHiddenValidationErrorsHandler
-     * DynamicForm.handleHiddenValidationErrors}
+     * DynamicForm.handleHiddenValidationErrors} <P> If this form has any fields which require server-side validation  (see
+     * {@link com.smartgwt.client.docs.serverds.Validator#serverCondition serverCondition}) this will also be initialized. Such
+     * validation will occur asynchronously.  Developers can use {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#isPendingAsyncValidation DynamicForm.isPendingAsyncValidation} and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#addHandleAsyncValidationReplyHandler
+     * DynamicForm.handleAsyncValidationReply} to detect and respond to asynchronous validation.
      * @param validateHiddenFields Should validators be processed for non-visible fields         such as dataSource fields with no associated item or
      * fields with visibility set to         <code>"hidden"</code>?
      *
@@ -3176,26 +3277,60 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return self.editNewRecord(initialValuesJS);
     }-*/;
 
-
-
+    /**
+     * Edit the record selected in the specified ListGrid.
+     * <br/><br/>
+     * Updates the values of this editor to match the selected record's values.
+     * <br/><br/>
+     * If this form has a dataSource, then saving via {@link com.smartgwt.client.widgets.form.DynamicForm#saveData()}  will use the "update" operation type.
+     *
+     * @param selectionComponent the List Grid whose currently selected record(s) is/are to be edited
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#update_grid_form_category" target="examples">Grid-Form Update Example</a>
+     */
     public native void editSelectedData(ListGrid selectionComponent) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var selectionComponentJS = selectionComponent.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.editSelectedData(selectionComponentJS);
     }-*/;
 
+    /**
+     * Edit the record selected in the specified ListGrid.
+     * <br/><br/>
+     * Updates the values of this editor to match the selected record's values.
+     * <br/><br/>
+     * If this form has a dataSource, then saving via {@link com.smartgwt.client.widgets.form.DynamicForm#saveData()}  will use the "update" operation type.
+     *
+     * @param listGridID the List Grid ID whose currently selected record(s) is/are to be edited
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#update_grid_form_category" target="examples">Grid-Form Update Example</a>
+     */
     public native void editSelectedData(String listGridID) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.editSelectedData(listGridID);
     }-*/;
 
+    /**
+     * Return search criteria based on the current set of values within this form.
+     * For simple criteria, each form item simply maps its value to it's fieldName.
+     * <br/><br/>
+     * See FormItem.getCriterion() for details on how form items generate advanced criteria. Note that any values or criteria
+     * specified via DynamicForm.setValues() or DynamicForm.setValuesAsCriteria() which do not correspond to an item within the
+     * form will be combined with the live item values when criteria are generated.
+     * <br/><br/>
+     * The returned criteria object can be used to filter data via methods such as ListGrid.fetchData(), DataSource.fetchData(), or,
+     * for more advanced usage, ResultSet.setCriteria().
+     * <br/><br/>
+     * Note that any form field which the user has left blank is omitted as criteria, that is, a blank field is assumed to mean "allow any value for this field" and not "this field must be blank". Examples of empty values include a blank text field or SelectItem with an empty selection.
+     *
+     *
+     * @return the criteria
+     */
+    //TODO add support for returning AdvancedCriteria
     public native Criteria getValuesAsCriteria() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var critJS = self.getValuesAsCriteria();
         if (critJS == null) critJS = @com.smartgwt.client.util.JSOHelper::createObject()();
         return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(critJS);
     }-*/;
-    
 
     /**
      * Return the current set of values within this form as a Record.
@@ -3562,33 +3697,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
     // ********************* DataBoundComponent Properties / Attributes ***********************
 
-    /**
-     * How to fetch and manage records retrieve from the server.  See {@link com.smartgwt.client.types.FetchMode}. <P> This
-     * setting only applies to the {@link com.smartgwt.client.data.ResultSet} automatically created by calling {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData}.  If a pre-existing ResultSet is passed to
-     * setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode fetchMode} applies.
-     *
-     * @param dataFetchMode dataFetchMode Default value is "paged"
-     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
-     */
-    public void setDataFetchMode(FetchMode fetchMode) {
-        setAttribute("dataFetchMode", fetchMode, true);
-    }
-
-    /**
-     * How to fetch and manage records retrieve from the server.  See {@link com.smartgwt.client.types.FetchMode}. <P> This
-     * setting only applies to the {@link com.smartgwt.client.data.ResultSet} automatically created by calling {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData}.  If a pre-existing ResultSet is passed to
-     * setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode fetchMode} applies.
-     *
-     *
-     * @return FetchMode
-     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
-     */
-    public FetchMode getDataFetchMode() {
-        return EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
-    }
-    
     public void setDataPageSize(int dataPageSize) {
         setAttribute("dataPageSize", dataPageSize, true);
     }
@@ -3611,14 +3719,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
     public Boolean getShowHiddenFields() {
         return getAttributeAsBoolean("showHiddenFields");
-    }
-
-    public void setShowDetailFields(Boolean showDetailFields) {
-        setAttribute("showDetailFields", showDetailFields, true);
-    }
-
-    public Boolean getShowDetailFields() {
-        return getAttributeAsBoolean("showDetailFields");
     }
 
     public void setShowComplexFields(Boolean showComplexFields) {
@@ -3760,9 +3860,15 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @param hilites array of hilite objects
      */
     public native void setHilites(Hilite[] hilites)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var isCreated = this.@com.smartgwt.client.widgets.BaseWidget::isCreated()();
         var hilitesJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(hilites);
-        self.setHilites(hilitesJS);
+        if (isCreated) {
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.setHilites(hilitesJS);
+        } else {
+            var obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.hilites = hilitesJS;
+        }
     }-*/;
 
     /**

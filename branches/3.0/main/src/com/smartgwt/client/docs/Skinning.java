@@ -144,7 +144,7 @@ package com.smartgwt.client.docs;
  *  </pre>
  *  <P>
  *  <b>NOTE:</b> These are JavaScript APIs and hence do not appear in SmartGWT
- *  JavaDoc - you may want to refer to the &#82;martClient Reference available at
+ *  JavaDoc - you may want to refer to the &#83;martClient Reference available at
  * <a href='http://www.smartclient.com/product/documentation.jsp'
  * onclick="window.open('http://www.smartclient.com/product/documentation.jsp');return false;">Isomorphic.com</a> for these
  * specific
@@ -239,7 +239,7 @@ package com.smartgwt.client.docs;
  *         ...
  *     })
  *  </pre>
- *  This creates a &#82;martClient class, which does not exist as a Java class.  To
+ *  This creates a &#83;martClient class, which does not exist as a Java class.  To
  *  make your SmartGWT widget use the settings on this Smart GWT class, call setScClassName() passing
  *  the String name of the Smart GWT class.
  *  <P>

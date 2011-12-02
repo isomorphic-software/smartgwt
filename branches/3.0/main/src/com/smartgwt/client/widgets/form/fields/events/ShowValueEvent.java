@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -131,6 +128,26 @@ public class ShowValueEvent extends AbstractSmartEvent<ShowValueHandler>  {
     public  native Object getDataValue() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
         return $wnd.SmartGWT.convertToJavaType(jsObj.dataValue);
+    }-*/;
+
+    /**
+     * the dynamicForm in which this item is contained
+     *
+     * @return the dynamicForm in which this item is contained
+     */
+    public  native DynamicForm getForm() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        return @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.form);
+    }-*/;
+
+    /**
+     * the live form item instance
+     *
+     * @return the live form item instance
+     */
+    public  native CanvasItem getItem() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        return @com.smartgwt.client.widgets.form.fields.CanvasItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
     }-*/;
 
 

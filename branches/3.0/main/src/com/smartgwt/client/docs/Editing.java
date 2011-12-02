@@ -54,49 +54,52 @@ package com.smartgwt.client.docs;
  * changes)</b> <P> The term "editValues" means changes that the user has made to the dataset which have not been saved. 
  * The grid manages and stores editValues separately from the data itself in order to allow the user to revert to original
  * values, and in order to enable to grid to send only updated fields to the server.   <P> Because editValues are stored
- * separately, if you directly access the dataset (eg via  <code>grid.data.get()</code>) you will see the records without
- * the user's unsaved changes. Many APIs exist for retrieving and managing editValues (search for editValue). For the
- * common case of needing to access the record-as-edited, you can call  {@link
+ * separately, if you directly access the dataset (eg via  <code>grid.getData().get()</code>) you will see the records
+ * without the user's unsaved changes. Many APIs exist for retrieving and managing editValues (search for editValue). For
+ * the common case of needing to access the record-as-edited, you can call  {@link
  * com.smartgwt.client.widgets.grid.ListGrid#getEditedRecord grid.getEditedRecord(rowNum)}. <P> When accessing and
  * manipulating edited data, you should think carefully about whether you want to be working with the original data or with
  * the edited version.  Values entered by the user may not have been validated yet, or may have failed validation, hence
  * you may find a String value in a field of type "date" or "int", which could cause naive formatters or totaling functions
- * to crash. <P> Setting editValues is fully equivalent to the user making changes to data via the editing UI. If you
- * <i>also</i> allow editing external to the grid, setting editValues is one way to  combine changes from external editors
- * into the grid's edits, so that you can do a single  save. <P> <b>Customizing Cell Editors</b> <P> When a cell is being
- * edited, the editor displayed in the cell will be a {@link com.smartgwt.client.widgets.form.fields.FormItem}. The editor
- * type for the cell will be determined by {@link com.smartgwt.client.widgets.grid.ListGrid#getEditorType
- * ListGrid.getEditorType} based on the specified {@link com.smartgwt.client.widgets.grid.ListGridField#getEditorType
- * editorType} or {@link com.smartgwt.client.widgets.grid.ListGridField#getType data type} for the field in question. <P>
- * You can customize the editor by setting {@link com.smartgwt.client.widgets.grid.ListGridField#getEditorProperties
- * editorProperties} to a set of properties that is valid for that FormItem type.  Custom FormItem classes are also
- * allowed, for example, you may use {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcons icons} to create an
- * icon that launches a separate {@link com.smartgwt.client.widgets.Dialog} in order to provide an arbitrary interface that
- * allows the user to select the value for a field. <P> <b>Events</b> <P> Editing triggers several events which you can
- * provide handlers for in order to customize editing behavior.  Some of the most popular are {@link
- * com.smartgwt.client.widgets.grid.ListGridField#change field.change()}, {@link
- * com.smartgwt.client.widgets.grid.ListGridField#changed field.changed()} for detecting changes made by the user, {@link
- * com.smartgwt.client.widgets.grid.ListGrid#addCellChangedHandler ListGrid.cellChanged} for detecting changes that have
- * been successfully saved, and {@link com.smartgwt.client.widgets.grid.ListGrid#addEditorEnterHandler
- * ListGrid.editorEnter} and {@link com.smartgwt.client.widgets.grid.ListGrid#addEditorExitHandler editorExit()} for
- * detecting user navigation during editing. <P> You can also install event handlers directly on the FormItem-based editors
- * used in the grid via {@link com.smartgwt.client.widgets.grid.ListGridField#getEditorProperties editorProperties} as
- * mentioned above.  When handling events on items, or which involve items, be aware that in addition to standard  {@link
- * com.smartgwt.client.widgets.form.fields.FormItem} APIs, editors have the following properties: <P> -
- * <code>rowNum</code>: The rowNum of the record being edited.<br> - <code>colNum</code>: The colNum of the cell being
- * edited.<br> - <code>grid</code>: A pointer back to the listGrid containing the record.
- * @see com.smartgwt.client.widgets.cube.CubeGrid#setEditValue
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditValue
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditedRecord
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditedCell
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditValues
- * @see com.smartgwt.client.widgets.cube.CubeGrid#clearEditValue
- * @see com.smartgwt.client.widgets.cube.CubeGrid#saveEdits
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getAllEditCells
- * @see com.smartgwt.client.widgets.cube.CubeGrid#discardAllEdits
- * @see com.smartgwt.client.widgets.cube.CubeGrid#recordHasChanges
- * @see com.smartgwt.client.widgets.cube.CubeGrid#hasChanges
- * @see com.smartgwt.client.widgets.cube.CubeGrid#saveAllEdits
+ * to crash. <P> Setting editValues via APIs such as {@link com.smartgwt.client.widgets.grid.ListGrid#setEditValue
+ * ListGrid.setEditValue} is fully equivalent to the user making changes to data via the editing UI.  If you <i>also</i>
+ * allow editing external to the grid, setting editValues is one way to combine changes from external editors into the
+ * grid's edits, so that you can do a single save. <P> <b>Customizing Cell Editors</b> <P> When a cell is being edited, the
+ * editor displayed in the cell will be a {@link com.smartgwt.client.widgets.form.fields.FormItem}. The editor type for the
+ * cell will be determined by {@link com.smartgwt.client.widgets.grid.ListGrid#getEditorType ListGrid.getEditorType} based
+ * on the specified {@link com.smartgwt.client.widgets.grid.ListGridField#getEditorType editorType} or {@link
+ * com.smartgwt.client.widgets.grid.ListGridField#getType data type} for the field in question. <P> You can customize the
+ * editor by setting {@link com.smartgwt.client.widgets.grid.ListGridField#getEditorProperties editorProperties} to a set
+ * of properties that is valid for that FormItem type.  Custom FormItem classes are also allowed, for example, you may use
+ * {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcons icons} to create an icon that launches a separate
+ * {@link com.smartgwt.client.widgets.Dialog} in order to provide an arbitrary interface that allows the user to select the
+ * value for a field. <P> <b>Events</b> <P> Editing triggers several events which you can provide handlers for in order to
+ * customize editing behavior.  Some of the most popular are {@link com.smartgwt.client.widgets.grid.ListGridField#change
+ * field.change()}, {@link com.smartgwt.client.widgets.grid.ListGridField#changed field.changed()} for detecting changes
+ * made by the user, {@link com.smartgwt.client.widgets.grid.ListGrid#addCellChangedHandler ListGrid.cellChanged} for
+ * detecting changes that have been successfully saved, and {@link
+ * com.smartgwt.client.widgets.grid.ListGrid#addEditorEnterHandler editorEnter} and {@link
+ * com.smartgwt.client.widgets.grid.ListGrid#addEditorExitHandler editorExit()} for detecting user navigation during
+ * editing. <P>   <code>ListGridField.setEditorType()</code> can be used to customize the editors shown for each field,
+ * including providing FormItem-specific event handlers.  However, ListGrid-provided event APIs should be used wherever
+ * possible (for example, use <code>EditorEnterEvent</code> rather than <code>FocusEvent</code>).  If, in a FormItem event
+ * handler, you need access to the ListGrid, you can either declare the event handler as a Java "inner class" in a scope
+ * where the ListGrid is available as a final variable, or you can use <code>event.getItem().getContainerWidget()</code>. 
+ * Note the ListGrid APIs {@link com.smartgwt.client.widgets.grid.ListGrid#getEditRow getEditRow()} and {@link
+ * com.smartgwt.client.widgets.grid.ListGrid#getEditCol getEditCol()} indicate what cell is being edited. <P> For more
+ * dynamic editor customization, include changing the type of editor used on a per-row basis, use {@link
+ * com.smartgwt.client.widgets.grid.ListGrid#getSetEditorCustomizer setEditorCustomizer}. <P> <b>NOTE:</b> with both APIs,
+ * in effect several FormItems are generated from the customized FormItem you provide - see the docs for {@link
+ * com.smartgwt.client.data.DataSourceField#getSetEditorType setEditorType} for special coding patterns that apply in this
+ * case.  <P> <b>Binary Fields</b> <P> The ListGrid will automatically show "view" and "download" icon buttons for binary
+ * field types (see {@link com.smartgwt.client.types.ListGridFieldType}).  However, you cannot use an upload control
+ * embedded within a ListGrid row to upload files (regardless of whether you use FileItem or UploadItem).  This is because,
+ * in the browser's security model, native HTML upload controls cannot be re-created and populated with a chosen file, and
+ * the ListGrid needs to be able to re-create editors at any time in order to handle loading data on scroll, scrolling
+ * editors in and out of view, adding new rows, changing sort direction, and other use cases. <P> However you <i>can</i>
+ * create an editor with an {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcons FormItem icon} that pops up a
+ * separate Window containing a FileItem in a DynamicForm, so long as the form in the Window saves the uploaded file
+ * immediately rather than trying to have the grid perform the save.
  * @see com.smartgwt.client.widgets.form.DynamicForm#getEditorType
  * @see com.smartgwt.client.widgets.grid.ListGridField#defaultDynamicValue
  * @see com.smartgwt.client.widgets.grid.events.EditorEnterEvent
@@ -106,6 +109,10 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGridField#parseEditorValue
  * @see com.smartgwt.client.widgets.grid.ListGridField#change
  * @see com.smartgwt.client.widgets.grid.ListGridField#changed
+ * @see com.smartgwt.client.widgets.grid.ListGrid#markRecordRemoved
+ * @see com.smartgwt.client.widgets.grid.ListGrid#recordMarkedAsRemoved
+ * @see com.smartgwt.client.widgets.grid.ListGrid#unmarkRecordRemoved
+ * @see com.smartgwt.client.widgets.grid.ListGrid#markSelectionRemoved
  * @see com.smartgwt.client.widgets.grid.ListGrid#canEditCell
  * @see com.smartgwt.client.widgets.grid.ListGrid#startEditing
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEditorValueMap
@@ -141,6 +148,18 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#formatEditorValue
  * @see com.smartgwt.client.widgets.grid.ListGrid#parseEditorValue
  * @see com.smartgwt.client.widgets.tree.TreeGrid#startEditingNew
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#setEditValue
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditValue
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditedRecord
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditedCell
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditValues
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#clearEditValue
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#saveEdits
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getAllEditCells
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#discardAllEdits
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#recordHasChanges
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#hasChanges
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#saveAllEdits
  * @see com.smartgwt.client.widgets.calendar.Calendar#getEventSnapGap
  * @see com.smartgwt.client.widgets.calendar.Calendar#getShowQuickEventDialog
  * @see com.smartgwt.client.widgets.calendar.Calendar#getEventEditorFields
@@ -160,12 +179,14 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGridField#getEditorType
  * @see com.smartgwt.client.widgets.grid.ListGridField#getEditorProperties
  * @see com.smartgwt.client.widgets.grid.ListGrid#getModalEditing
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getMultiple
  * @see com.smartgwt.client.widgets.grid.ListGridField#getEditorValueMap
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanEdit
  * @see com.smartgwt.client.widgets.grid.ListGrid#getRecordEditProperty
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAlwaysShowEditors
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEditByCell
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getDeferRemoval
  * @see com.smartgwt.client.widgets.grid.ListGrid#getWaitForSave
  * @see com.smartgwt.client.widgets.grid.ListGrid#getStopOnErrors
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits
@@ -189,7 +210,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.types.RowEndEditAction
  * @see com.smartgwt.client.types.EnterKeyEditAction
  * @see com.smartgwt.client.types.EscapeKeyEditAction
- * @see com.smartgwt.client.types.EditCompletionEvent
  * @see com.smartgwt.client.types.ListGridEditEvent
  */
 public interface Editing {

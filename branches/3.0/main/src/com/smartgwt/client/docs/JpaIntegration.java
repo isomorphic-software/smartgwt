@@ -8,28 +8,12 @@ package com.smartgwt.client.docs;
  *  The implementation class for JPA 2.0 is <code>com.isomorphic.jpa.JPA2DataSource</code>.
  * Both implementations support search with simple {@link com.smartgwt.client.data.Criteria} and {@link
  * com.smartgwt.client.data.AdvancedCriteria}.</br>
- *  The primary difference between JPA 1.0 and JPA 2.0 implementations is how data is fetched:
- *  the JPA 1.0 implementation creates
- *  a JPQL query string for fetching while the JPA 2.0 implementation uses Criteria API.
- *  <p/>
- *  <b>Tested JPA 2.0 providers</b>
- *  <p/><ul>
- *  <li>Hibernate 3.6.1 - <strong>PASS</strong>. <b>Minimum version 3.6.1</b> - older versions
- *  have a bug in the Criteria API
- *  implementation which prevents correct negation of conjunction and disjunction predicates.</li>
- *  <li>EclipseLink 2.2.0 - <strong>PASS</strong>.</li>
- *  <li>OpenJPA 2.1.0 - <strong>FAIL</strong>. Does not support "lower(FIELD_NAME) LIKE lower('value')".
- *  According to the exception message only "lower(FIELD_NAME) LIKE 'value'" is supported:
- * <pre>org.apache.openjpa.persistence.ArgumentException: The filter listener "matches" requires a constant
- * argument.</pre></li>
- *  <li>DataNucleus 2.2.2 - <strong>FAIL</strong>. Was not able to create even a simple query with Criteria API.</li>
- *  <li>ObjectDB 2.1.0 - <strong>FAIL</strong>. Does not support Criteria API:
- *  <pre>java.lang.UnsupportedOperationException: Unsupported feature - JPA Criteria Builder</pre></li>
- *  </ul>
- *  <b>Note:</b> MySQL DB - 'like' operator is used in a case insensitive manner. Check
+ * JPA 1.0 and JPA 2.0 implementations use JPQL for data fetch. <b>Note:</b> MySQL DB - 'like' operator is used in a case
+ * insensitive manner. Check
  * <a href="http://dev.mysql.com/doc/refman/5.5/en/case-sensitivity.html">MySQL Reference Manual :: C.5.5.1 Case
  * Sensitivity in String Searches</a>
- *  for more information.
+ *  for more information.<p/>
+ *  JPA 2.0 implementation uses Metadata API for data source generation from mapped entities.
  *  <p/>
  *  <b>JPA configuration</b>
  *  <p/>
@@ -76,8 +60,8 @@ package com.smartgwt.client.docs;
  *  <p/>
  *  <b>JPA transactions</b>
  *  <p/>
- *  JPA provides two mechanisms for transactions: for JEE applications JPA provides integration
- *  with JTA (Container Managed Transactions); for JSE applications JPA has a native
+ *  JPA provides three mechanisms for transactions: for JEE applications JPA provides integration
+ *  with JTA (Bean Managed Transactions and Container Managed Transactions); for JSE applications JPA has a native
  *  <code>EntityTransaction</code> implementation (Locally Managed Transactions).
  *  The transaction mechanism should be configured in the <code>server.properties</code> file by setting
  *  property <b><code>jpa.emfProvider</code></b> to the fully qualified class name of the provider
@@ -91,13 +75,10 @@ package com.smartgwt.client.docs;
  *       the name of the persistence unit configured in <code>persistence.xml</code> file. For example:<pre>
  *  jpa.persistenceUnitName: PERSISTENCE_UNIT_NAME
  *       </pre></li>
- *  <li><b><code>com.isomorphic.jpa.EMFProviderCMT</code></b> - for Container Managed Transactions.
- *       Every fetch or DML operation acquires the transaction object from the JEE container.
- *       After successful method execution the container commits the transaction. In case of execution
- *       failure <code>tx.setRollbackOnly()</code> is used to notify container to rollback the
- *       transaction.<br/>
+ *  <li><b><code>com.isomorphic.jpa.EMFProviderBMT</code></b> - for Bean Managed Transactions.
+ *       Every fetch or DML operation acquires the transaction object from the container and starts it.<br/>
  *       This implementation reads two properties from the <code>server.properties</code> file:
- *       <b><code>jpa.cmt.entityManager</code></b> and <b><code>jpa.cmt.transaction</code></b>
+ *       <b><code>jpa.entityManager</code></b> and <b><code>jpa.entityManagerFactory</code></b>
  *       containing appropriate resource name references configured in
  *       <code>/WEB-INF/web.xml</code>. Configuration example:<pre>
  *  &lt;!-- EntityManager resource reference name declaration --&gt;
@@ -106,15 +87,49 @@ package com.smartgwt.client.docs;
  *     &lt;persistence-unit-name&gt;PERSISTENCE_UNIT_NAME&lt;/persistence-unit-name&gt;
  *  &lt;/persistence-context-ref&gt;
  * 
- *  &lt;!-- Transaction resource reference name declaration --&gt;
- *  &lt;resource-env-ref&gt;
- *      &lt;resource-env-ref-name&gt;persistence/tx&lt;/resource-env-ref-name&gt;
- *      &lt;resource-env-ref-type&gt;javax.transaction.UserTransaction&lt;/resource-env-ref-type&gt;
- *  &lt;/resource-env-ref&gt;
+ *  &lt;!-- EntityManagerFactory resource reference name declaration --&gt;
+ *   &lt;persistence-unit-ref&gt;
+ *       &lt;persistence-unit-ref-name&gt;persistence/emf&lt;/persistence-unit-ref-name&gt;
+ *       &lt;persistence-unit-name&gt;PERSISTENCE_UNIT_NAME&lt;/persistence-unit-name&gt;
+ *   &lt;/persistence-unit-ref&gt;
  * 
  *  #Property values for sample references:
- *  jpa.cmt.entityManager: persistence/em
- *  jpa.cmt.transaction: persistence/tx
+ *  jpa.entityManager: persistence/em
+ *  jpa.entityManagerFactory: persistence/emf
+ *       </pre></li>
+ *  <li><b><code>com.isomorphic.jpa.EMFProviderCMT</code></b> - for Container Managed Transactions.
+ *       Every fetch or DML operation acquires the transaction object from the JEE container.
+ *       After successful method execution the container commits the transaction. In case of execution
+ *       failure <code>tx.setRollbackOnly()</code> is used to notify container to rollback the
+ *       transaction.<br/>
+ *       This implementation reads two properties from the <code>server.properties</code> file:
+ *       <b><code>jpa.entityManager</code></b> and <b><code>jpa.entityManagerFactory</code></b>
+ *       containing appropriate resource name references configured in
+ *       <code>/META-INF/ejb-jar.xml</code>. Configuration example:<pre>
+ *  &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+ *  &lt;ejb-jar
+ *       version = "3.0"
+ *       xmlns = "http://java.sun.com/xml/ns/javaee"
+ *       xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+ *       xsi:schemaLocation = "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd"&gt;
+ *       &lt;enterprise-beans&gt;
+ *           &lt;session&gt;
+ *               &lt;ejb-name&gt;TestEJB&lt;/ejb-name&gt;
+ *               &lt;persistence-context-ref&gt;
+ *                   &lt;persistence-context-ref-name&gt;persistence/em&lt;/persistence-context-ref-name&gt;
+ *                   &lt;persistence-unit-name&gt;PERSISTENCE_UNIT_NAME&lt;/persistence-unit-name&gt;
+ *               &lt;/persistence-context-ref&gt;
+ *               &lt;persistence-unit-ref&gt;
+ *                   &lt;persistence-unit-ref-name&gt;persistence/emf&lt;/persistence-unit-ref-name&gt;
+ *                   &lt;persistence-unit-name&gt;PERSISTENCE_UNIT_NAME&lt;/persistence-unit-name&gt;
+ *               &lt;/persistence-unit-ref&gt;
+ *          &lt;/session&gt;
+ *      &lt;/enterprise-beans&gt;
+ *  &lt;/ejb-jar&gt;
+ * 
+ *  #Property values for sample references:
+ *  jpa.entityManager: persistence/em
+ *  jpa.entityManagerFactory: persistence/emf
  *       </pre></li>
  *  <li><b><code>com.isomorphic.jpa.EMFProviderNoTransactions</code></b> - transactions are
  *       not used.<br/>
@@ -124,10 +139,29 @@ package com.smartgwt.client.docs;
  *  jpa.persistenceUnitName: PERSISTENCE_UNIT_NAME
  *       </pre></li>
  *  </ul>
- *  You can provide your own implementation of
+ *  You can set <b><code>jpa.emfProvider</code></b> to your own implementation of
  *  <code>com.isomorphic.jpa.EMFProviderInterface</code> if you have specific requirements for
- *  transaction handling.
- *  <p/>
+ *  transaction handling. <code>EMF</code> will instantiate provided implementation on initialization (static) and
+ *  will use same instance every time. By using own implementation you can have complete control over creating/using
+ *  <code>EntityManagerFactory</code> and <code>EntityManager</code> instances. For example: you can create
+ *  <code>EMFProviderSpring</code> which will look-up <code>EntityManagerFactory</code> and <code>EntityManager</code>
+ *  instances in Spring and will feed it to <code>JPADataSource</code>.<p/>
+ *  <b>Additional configurations:</b><p/>
+ *  In case you have several persistence units defined in your <code>persistence.xml</code> you can have additional
+ *  configurations in <code>server.properties</code> file. Additional configurations
+ *  (prefixed with <b><code>jpa.</code></b>) should have name, <b><code>emfProvider</code></b> property and other
+ *  properties required by specified EMF provider implementation.
+ *  For example:<pre>
+ *  jpa.configName.emfProvider: com.isomorphic.jpa.EMFProviderLMT
+ *  jpa.configName.persistenceUnitName: ANOTHER_PERSISTENCE_UNIT_NAME</pre>
+ *  To use additional JPA configuration you have to set <b><code>jpaConfig</code></b> property in data source
+ *  definition:<pre>
+ *  &lt;DataSource
+ *      ID="countryDS"
+ *      serverConstructor="com.isomorphic.jpa.JPA2DataSource"
+ *      beanClassName="com.smartgwt.sample.showcase.server.jpa.Country"
+ *      jpaConfig="configName"
+ *  &gt;</pre>
  *  <b>Transaction management:</b>
  *  <p/><ul>
  * <li>Operating under {@link com.smartgwt.client.rpc.RPCManager} (<code>{@link com.smartgwt.client.data.DSRequest}</code>
@@ -143,7 +177,14 @@ package com.smartgwt.client.docs;
  *           of <code>EntityManager</code> avoiding lazy loading exceptions when creating JS response and
  *           traversing through persistent object tree;</li>
  *       <li>Registers itself to <code>RPCManager.registerFreeResourcesHandler()</code> for <code>freeResources()</code>
- *       execution to release <code>EntityManager</code>.</li></ul></li>
+ *       execution to release <code>EntityManager</code>.</li></ul><br/>
+ *  If you want to use same <code>EntityManager</code> and transaction in your custom data source implementation you can
+ *  acquire it by <pre>JPAConnectionHolder holder = DataSource.getTransactionObject(req, EMF.TRANSACTION_ATTR);</pre>
+ *  <code>JPAConnectionHolder</code> instance contains references to entity manager and transaction object
+ *  used by <code>JPADataSource</code>. You should never commit/rollback automatic transaction.
+ *  Overall commit/rollback will be issued by <code>RPCManager</code> and will be handled by <code>JPADataSource</code>
+ *  object which started transaction.
+ *  </li>
  *  <li>Operating without {@link com.smartgwt.client.rpc.RPCManager}:<ul>
  *       <li>starts new transaction;</li>
  *       <li>commits/rolls back transaction and releases <code>EntityManager</code> if

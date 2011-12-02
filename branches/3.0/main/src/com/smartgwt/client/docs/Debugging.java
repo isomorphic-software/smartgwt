@@ -5,11 +5,29 @@ package com.smartgwt.client.docs;
  * <h3>Debugging</h3>
  * <h4>Built-in Diagnostics</h4>
  *  <P>
- *  In any page in which ISC has been loaded, you have access to the Developer Console,
- *  which can be opened by entering the following URL into your browser from the running
- *  application:
- *  <pre>
- *      javascript:isc.showConsole()</pre>
+ *  The Smart GWT Developer Console is a suite of development tools implemented in Smart GWT itself. 
+ *  The Console runs in its own browser window, parallel to your running application, so it is always 
+ *  available in every browser, and in every deployment environment.
+ *  <P>
+ *  The Developer Console can be opened by calling <code>isc.showConsole()</code> on any page in which 
+ *  Smart GWT has been loaded. You can create a bookmark in your browser to quickly show the Console on 
+ *  any Smart GWT application, without any changes to the application code:
+ *  <P>
+ *  1. Create a new bookmark in your browser.<BR>
+ *  2. Enter url "javascript:isc.showConsole()".<BR>
+ *  3. Label the bookmark as "Show Console".<BR>
+ *  4. Consider adding this to the Bookmarks Toolbar. This allows one-click access to the Console 
+ *  from any Smart GWT application.
+ *  <P>
+ *  Note: For most browsers you can evaluate javascript directly from the browser URL bar by entering 
+ *  <code>javascript:<i>string to evaluate</i></code> directly in the URL bar, so setting up a bookmark 
+ *  is not strictly necessary. For Firefox 6 and above, this feature has been disallowed, but the bookmark 
+ *  approach will still work. Alternatively developers could use 
+ * <a href='http://blog.mozilla.com/devtools/2011/08/15/introducing-scratchpad/'
+ * onclick="window.open('http://blog.mozilla.com/devtools/2011/08/15/introducing-scratchpad/');return false;">Firefox
+ * Scratchpad</a> 
+ *  to launch the console.
+ *  <P>
  *  Basic information on the features of the Developer Console can be found in the QuickStart
  *  Guide.  This topic focuses on use of the log system and related debugging facilities.
  *  <P>
@@ -41,19 +59,11 @@ package com.smartgwt.client.docs;
  *  <P>
  *  <h4>Debugging JavaScript Errors</h4>
  *  <P>
- *  Isomorphic recommends the FireFox browser as the primary development platform.  In FireFox,
- *  JavaScript errors are reported both in the Smart GWT Developer Console and in the FireFox
- *  JavaScript console, which can be opened by entering the special
- *  url "javascript:" in the address bar.
- *  <P>
- *  Isomorphic currently recommends that every Smart GWT developer install either the 
- * <a href='https://addons.mozilla.org/firefox/1815/'
- * onclick="window.open('https://addons.mozilla.org/firefox/1815/');return false;">Console2</a> or
- * <a href='http://www.getfirebug.com/' onclick="window.open('http://www.getfirebug.com/');return false;">Firebug</a>
- * extensions for FireFox.  "Console2" simply
- *  replaces the default FireFox JavaScript console with a more functional console;
- *  Firebug aims to be a true debugger.  Both tools will typically load or identify the correct
- *  file and line number where a JS error occurred.
+ *  Javascript errors will typically be reported in the Developer Console. Wherever possible a stack 
+ *  trace will be included which can help determine the cause of the error.
+ *  In addition to this, recent versions of the Firefox browser (versions 6.0 and above) ship with some 
+ *  useful development tools including the Error Console for reporting errors. We also recommend Console2 
+ *  and Firebug for debugging in Firefox.
  *  <P>
  *  In Internet Explorer, when JS errors occur, Smart GWT is able to report full stack traces
  *  in the Developer Console.  This can be invaluable when your code triggers a JS error

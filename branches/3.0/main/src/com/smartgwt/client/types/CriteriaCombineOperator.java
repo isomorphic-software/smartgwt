@@ -18,22 +18,19 @@ package com.smartgwt.client.types;
 
 /**
  * The logical operator to use when combining criteria objects with the  {@link
- * com.smartgwt.client.data.DataSource#combineCriteria} method.
+ * com.smartgwt.client.data.DataSource#combineCriteria DataSource.combineCriteria} method.
  */
-
 public enum CriteriaCombineOperator implements ValueEnum {
-
     AND("and"),
-
     OR("or");
+
     private String value;
 
     CriteriaCombineOperator(String value) {
         this.value = value;
     }
-    
+
     public String getValue() {
         return this.value;
     }
 }
-
