@@ -12,6 +12,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getValue
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getID
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getPrompt
+ * @see com.smartgwt.client.widgets.form.fields.CanvasItem#getPrompt
  * @see com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField
  * @see com.smartgwt.client.widgets.form.fields.DateItem#getUseMask
  * @see com.smartgwt.client.widgets.form.fields.DateItem#getMaskDateSeparator

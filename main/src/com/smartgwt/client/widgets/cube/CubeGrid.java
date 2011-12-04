@@ -87,17 +87,17 @@ import com.google.gwt.event.shared.HasHandlers;
  * column headers only scroll horizontally - so the facet values for the visible cells are always displayed. <P> <B>Data
  * Loading</B> <P> Data can be provided to the Cube via  data as an Array of {@link
  * com.smartgwt.client.widgets.cube.CellRecord CellRecords}, each representing the data for one cell. <P> For large
- * datasets, +link{provide a DataSource,cubeGrid.dataSource} with one field per facetId, and the CubeGrid will load data on
- * demand to fill the visible area, including lazily loading data for expanding/collapsing tree facets and when facetValues
- * are made visible programmatically or via menus. <P> <B>Picking Facets</B> <P> By "facet" we mean an aspect of the data
- * which is orthogonal to other aspects of the data, that is, combining values from any two "facets" should make sense. <P>
- * For example, in sales data, two facets might be "quarter" and "region" - it makes sense to combine any quarter and
- * region, although for some combinations, there may not be data available. <P>  An example of two aspects that would
- * <b>not</b> be independent facets are "state" and "city" - it's senseless to combine arbitrary states with arbitrary
- * cities - most combinations are invalid.  Consider instead a {@link com.smartgwt.client.widgets.cube.Facet#getIsTree tree
- * facet} that combines "city" and "state" values.   <P> Note that if "city" and "state" are represented as facets, they
- * may look correct if they are both on the same axis of the grid and {@link
- * com.smartgwt.client.widgets.cube.CubeGrid#getHideEmptyFacetValues hideEmptyFacetValues} is used to trim nonsense
+ * datasets, {@link com.smartgwt.client.widgets.cube.CubeGrid#getDataSource provide a DataSource} with one field per
+ * facetId, and the CubeGrid will load data on demand to fill the visible area, including lazily loading data for
+ * expanding/collapsing tree facets and when facetValues are made visible programmatically or via menus. <P> <B>Picking
+ * Facets</B> <P> By "facet" we mean an aspect of the data which is orthogonal to other aspects of the data, that is,
+ * combining values from any two "facets" should make sense. <P> For example, in sales data, two facets might be "quarter"
+ * and "region" - it makes sense to combine any quarter and region, although for some combinations, there may not be data
+ * available. <P>  An example of two aspects that would <b>not</b> be independent facets are "state" and "city" - it's
+ * senseless to combine arbitrary states with arbitrary cities - most combinations are invalid.  Consider instead a {@link
+ * com.smartgwt.client.widgets.cube.Facet#getIsTree tree facet} that combines "city" and "state" values.   <P> Note that if
+ * "city" and "state" are represented as facets, they may look correct if they are both on the same axis of the grid and
+ * {@link com.smartgwt.client.widgets.cube.CubeGrid#getHideEmptyFacetValues hideEmptyFacetValues} is used to trim nonsense
  * combinations, but if the data is {@link com.smartgwt.client.widgets.cube.CubeGrid#getCanMoveFacets pivoted} such that
  * "state" and "city" are on opposing axes, there will be a roughly diagonal "stripe" of data for combinations of "state"
  * and "city" that make sense, and all other space will be blank.  This is a strong indication that two facets should be
@@ -105,7 +105,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * @see com.smartgwt.client.widgets.cube.Facet
  * @see com.smartgwt.client.widgets.cube.FacetValue
  */
-public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.cube.events.HasFacetAddedHandlers, com.smartgwt.client.widgets.cube.events.HasFacetMovedHandlers, com.smartgwt.client.widgets.cube.events.HasFacetRemovedHandlers, com.smartgwt.client.widgets.cube.events.HasFixedFacetValueChangedHandlers, com.smartgwt.client.widgets.cube.events.HasSortByFacetIdHandlers, com.smartgwt.client.widgets.cube.events.HasSortByFacetValuesHandlers {
+public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.cube.events.HasFacetAddedHandlers, com.smartgwt.client.widgets.cube.events.HasFacetMovedHandlers, com.smartgwt.client.widgets.cube.events.HasFacetRemovedHandlers, com.smartgwt.client.widgets.cube.events.HasFixedFacetValueChangedHandlers, com.smartgwt.client.widgets.cube.events.HasFacetValueSelectionChangedHandlers, com.smartgwt.client.widgets.cube.events.HasSortByFacetIdHandlers, com.smartgwt.client.widgets.cube.events.HasSortByFacetValuesHandlers {
 
     public static CubeGrid getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -119,7 +119,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
 
     public CubeGrid(){
         checkAnalyticsLoaded();
-                        setAutoFetchData(false);
+					setAutoFetchData(false);
                 scClassName = "CubeGrid";
     }
 
@@ -187,7 +187,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setAutoSelectValues(AutoSelectionModel autoSelectValues)  throws IllegalStateException {
-        setAttribute("autoSelectValues", autoSelectValues.getValue(), false);
+        setAttribute("autoSelectValues", autoSelectValues == null ? null : autoSelectValues.getValue(), false);
     }
 
     /**
@@ -538,7 +538,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @param cellAlign cellAlign Default value is "center"
      */
     public void setCellAlign(Alignment cellAlign) {
-        setAttribute("cellAlign", cellAlign.getValue(), true);
+        setAttribute("cellAlign", cellAlign == null ? null : cellAlign.getValue(), true);
     }
 
     /**
@@ -621,7 +621,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @param chartType chartType Default value is "Column"
      */
     public void setChartType(ChartType chartType) {
-        setAttribute("chartType", chartType.getValue(), true);
+        setAttribute("chartType", chartType == null ? null : chartType.getValue(), true);
     }
 
     /**
@@ -722,7 +722,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @see com.smartgwt.client.widgets.Canvas#setHoverAlign
      */
     public void setFacetLabelHoverAlign(Alignment facetLabelHoverAlign) {
-        setAttribute("facetLabelHoverAlign", facetLabelHoverAlign.getValue(), true);
+        setAttribute("facetLabelHoverAlign", facetLabelHoverAlign == null ? null : facetLabelHoverAlign.getValue(), true);
     }
 
     /**
@@ -794,7 +794,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @see com.smartgwt.client.widgets.Canvas#setHoverVAlign
      */
     public void setFacetLabelHoverVAlign(VerticalAlignment facetLabelHoverVAlign) {
-        setAttribute("facetLabelHoverVAlign", facetLabelHoverVAlign.getValue(), true);
+        setAttribute("facetLabelHoverVAlign", facetLabelHoverVAlign == null ? null : facetLabelHoverVAlign.getValue(), true);
     }
 
     /**
@@ -861,7 +861,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @param facetTitleAlign facet to update. Default value is "center"
      */
     public void setFacetTitleAlign(Alignment facetTitleAlign) {
-        setAttribute("facetTitleAlign", facetTitleAlign.getValue(), true);
+        setAttribute("facetTitleAlign", facetTitleAlign == null ? null : facetTitleAlign.getValue(), true);
     }
 
     /**
@@ -880,7 +880,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @param facetValueAlign facetValueAlign Default value is "center"
      */
     public void setFacetValueAlign(Alignment facetValueAlign) {
-        setAttribute("facetValueAlign", facetValueAlign.getValue(), true);
+        setAttribute("facetValueAlign", facetValueAlign == null ? null : facetValueAlign.getValue(), true);
     }
 
     /**
@@ -902,7 +902,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @see com.smartgwt.client.widgets.Canvas#setHoverAlign
      */
     public void setFacetValueHoverAlign(Alignment facetValueHoverAlign) {
-        setAttribute("facetValueHoverAlign", facetValueHoverAlign.getValue(), true);
+        setAttribute("facetValueHoverAlign", facetValueHoverAlign == null ? null : facetValueHoverAlign.getValue(), true);
     }
 
     /**
@@ -974,7 +974,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @see com.smartgwt.client.widgets.Canvas#setHoverVAlign
      */
     public void setFacetValueHoverVAlign(VerticalAlignment facetValueHoverVAlign) {
-        setAttribute("facetValueHoverVAlign", facetValueHoverVAlign.getValue(), true);
+        setAttribute("facetValueHoverVAlign", facetValueHoverVAlign == null ? null : facetValueHoverVAlign.getValue(), true);
     }
 
     /**
@@ -1050,7 +1050,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setHideEmptyAxis(Axis hideEmptyAxis)  throws IllegalStateException {
-        setAttribute("hideEmptyAxis", hideEmptyAxis.getValue(), false);
+        setAttribute("hideEmptyAxis", hideEmptyAxis == null ? null : hideEmptyAxis.getValue(), false);
     }
 
     /**
@@ -1091,6 +1091,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * Hilites to be applied to the data for this component.  See {@link com.smartgwt.client.docs.Hiliting}.
      *
      * @param hilites hilites Default value is null
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
     public void setHilites(Hilite... hilites) {
         setAttribute("hilites", hilites, true);
@@ -1101,6 +1102,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      *
      *
      * @return Hilite
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
     public Hilite[] getHilites()  {
         return Hilite.convertToHiliteArray(getAttributeAsJavaScriptObject("hilites"));
@@ -1333,7 +1335,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @param sortDirection sortDirection Default value is Array.ASCENDING
      */
     public void setSortDirection(SortDirection sortDirection) {
-        setAttribute("sortDirection", sortDirection.getValue(), true);
+        setAttribute("sortDirection", sortDirection == null ? null : sortDirection.getValue(), true);
     }
 
     /**
@@ -1768,6 +1770,39 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
             obj.facetRemoved = $entry(function(){
                    var param = {"facetId" : arguments[0]};
                    var event = @com.smartgwt.client.widgets.cube.events.FacetRemovedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
+        }
+   }-*/;
+    /**
+     * Add a facetValueSelectionChanged handler.
+     * <p>
+     * Handler/Notification function for facetValue selection change (no default implementation).
+     *
+     * @param handler the facetValueSelectionChanged handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addFacetValueSelectionChangedHandler(com.smartgwt.client.widgets.cube.events.FacetValueSelectionChangedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.cube.events.FacetValueSelectionChangedEvent.getType()) == 0) setupFacetValueSelectionChangedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.cube.events.FacetValueSelectionChangedEvent.getType());
+    }
+
+    private native void setupFacetValueSelectionChangedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({facetValueSelectionChanged:$entry(function(){
+                        var param = {"facetValues" : arguments[0], "newState" : arguments[1]};
+                        var event = @com.smartgwt.client.widgets.cube.events.FacetValueSelectionChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.facetValueSelectionChanged = $entry(function(){
+                   var param = {"facetValues" : arguments[0], "newState" : arguments[1]};
+                   var event = @com.smartgwt.client.widgets.cube.events.FacetValueSelectionChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                });
         }

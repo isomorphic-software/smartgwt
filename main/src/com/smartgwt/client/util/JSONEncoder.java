@@ -105,7 +105,7 @@ public class JSONEncoder extends DataClass {
      * @param circularReferenceMode circularReferenceMode Default value is "path"
      */
     public void setCircularReferenceMode(JSONCircularReferenceMode circularReferenceMode) {
-        setAttribute("circularReferenceMode", circularReferenceMode.getValue());
+        setAttribute("circularReferenceMode", circularReferenceMode == null ? null : circularReferenceMode.getValue());
     }
 
     /**
@@ -126,7 +126,7 @@ public class JSONEncoder extends DataClass {
      * @param dateFormat dateFormat Default value is "xmlSchema"
      */
     public void setDateFormat(JSONDateFormat dateFormat) {
-        setAttribute("dateFormat", dateFormat.getValue());
+        setAttribute("dateFormat", dateFormat == null ? null : dateFormat.getValue());
     }
 
     /**
@@ -172,7 +172,7 @@ public class JSONEncoder extends DataClass {
      * @param serializeInstances serializeInstances Default value is "long"
      */
     public void setSerializeInstances(JSONInstanceSerializationMode serializeInstances) {
-        setAttribute("serializeInstances", serializeInstances.getValue());
+        setAttribute("serializeInstances", serializeInstances == null ? null : serializeInstances.getValue());
     }
 
     /**
@@ -273,17 +273,6 @@ public class JSONEncoder extends DataClass {
     // ********************* Methods ***********************
             
     /**
-     * Serialize an object as a JSON string.
-     * @param object object to serialize
-     *
-     * @return object encoded as a JSON String
-     */
-    public native String encode(Object object) /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        return self.encode(object);
-    }-*/;
-            
-    /**
      * Encode a JavaScript Date value. <P> By default, follows the {@link com.smartgwt.client.util.JSONEncoder#getDateFormat
      * dateFormat} setting.  Override to do custom encoding.
      * @param theDate JavaScript date object to be serialized
@@ -304,6 +293,30 @@ public class JSONEncoder extends DataClass {
     
     private native static JavaScriptObject createJSONEncoder() /*-{
         return $wnd.isc.JSONEncoder.create();
+    }-*/;
+    
+    /**
+     * Serialize an object as a JSON string.
+     * @param object object to serialize
+     *
+     * @return object encoded as a JSON String
+     */
+    public native String encode(Object object) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        return self.encode(object);
+    }-*/;
+    
+    public native String encode(DataClass object) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var jsObj = object.@com.smartgwt.client.core.DataClass::getJsObj()();
+        return self.encode(jsObj);
+    
+    }-*/;
+    
+    public native String encode (BaseClass object) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var jsObj = object.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        return self.encode(jsObj);
     }-*/;
 
 

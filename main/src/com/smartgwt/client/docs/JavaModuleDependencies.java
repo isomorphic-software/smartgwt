@@ -32,15 +32,14 @@ package com.smartgwt.client.docs;
  * &nbsp;&nbsp;&nbsp;&nbsp;commons-discovery<br> &nbsp;&nbsp;&nbsp;&nbsp;commons-logging<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;jaxrpc<br> &nbsp;&nbsp;&nbsp;&nbsp;saaj<br> &nbsp;&nbsp;&nbsp;&nbsp;wsdl4j<br> </li>
  * <li><b>isomorphic_tools</b>: Contains back-end logic for the "Admin Console" tool visible in the Developer Console, and
- * also standalone from the SDK home page.  This is an SDK-only tool, not intended for production deployment, and further
- * intended for rapid prototyping only.  Do not deploy this module to production, but you may use it in your development if
- * you're using the Smart GWT rapid prototyping SQL engine.<br> &nbsp;&nbsp;<u>Requires</u>:<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_sql<br> </li>
- * <li><b>isomorphic_embedded_tomcat</b>: This contains the bootstrap class for the Embedded Tomcat engine shipped with the
- * Smart GWT SDK.  It is not intended to be used in any way other than via the start_embedded_tomcat.bat|sh|command scripts
- * in the webRoot of the SDK.<br> &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;All JARs under WEB-INF/embeddedTomcat/lib<br> </li> <li><b>isomorphic_spring</b>: Required for
- * {@link com.smartgwt.client.docs.DmiOverview DMI} dispatches to Spring beans (via {@link
+ * also standalone from the SDK home page.  Also contains the the various data importers and exporters, and the server-side
+ * components of the BatchUploader.<br> &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br>
+ * &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_sql<br> </li> <li><b>isomorphic_embedded_tomcat</b>: This contains the bootstrap
+ * class for the Embedded Tomcat engine shipped with the Smart GWT SDK.  It is not intended to be used in any way other
+ * than via the start_embedded_tomcat.bat|sh|command scripts in the webRoot of the SDK.<br>
+ * &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br> &nbsp;&nbsp;&nbsp;&nbsp;All JARs under
+ * WEB-INF/embeddedTomcat/lib<br> </li> <li><b>isomorphic_spring</b>: Required for {@link
+ * com.smartgwt.client.docs.DmiOverview DMI} dispatches to Spring beans (via {@link
  * com.smartgwt.client.docs.serverds.ServerObject#lookupStyle lookupStyle} : "spring").<br>
  * &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br> &nbsp;&nbsp;&nbsp;&nbsp;spring<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;commons-logging<br> </li> <li><b>isomorphic_examples</b>: Contains code for various Smart GWT

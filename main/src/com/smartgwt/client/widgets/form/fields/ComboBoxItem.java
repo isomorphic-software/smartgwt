@@ -188,6 +188,29 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
     }
 
     /**
+     * For databound pickLists (see  optionDataSource), by default Smart GWT will cache and re-use datasets shown by pickLists
+     * in an LRU (least recently used) caching pattern. <P> Setting this flag to false avoids this caching for situations where
+     * it is too aggressive.
+     *
+     * @param cachePickListResults cachePickListResults Default value is true
+     */
+    public void setCachePickListResults(Boolean cachePickListResults) {
+        setAttribute("cachePickListResults", cachePickListResults);
+    }
+
+    /**
+     * For databound pickLists (see  optionDataSource), by default Smart GWT will cache and re-use datasets shown by pickLists
+     * in an LRU (least recently used) caching pattern. <P> Setting this flag to false avoids this caching for situations where
+     * it is too aggressive.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCachePickListResults()  {
+        return getAttributeAsBoolean("cachePickListResults");
+    }
+
+    /**
      * If true, when the pickList is showing, the user can select the current value by hitting the <code>Tab</code> key.
      *
      * @param completeOnTab completeOnTab Default value is null
@@ -572,6 +595,33 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
     }
 
     /**
+     * Indicates whether or not this ComboBoxItem will load its list of options  {@link
+     * com.smartgwt.client.data.DataSource#getProgressiveLoading progressively}.  This property is copied onto the underlying
+     * PickList.
+     *
+     * @param progressiveLoading progressiveLoading Default value is true
+     * @see com.smartgwt.client.data.DataSource#setProgressiveLoading
+     * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
+     */
+    public void setProgressiveLoading(Boolean progressiveLoading) {
+        setAttribute("progressiveLoading", progressiveLoading);
+    }
+
+    /**
+     * Indicates whether or not this ComboBoxItem will load its list of options  {@link
+     * com.smartgwt.client.data.DataSource#getProgressiveLoading progressively}.  This property is copied onto the underlying
+     * PickList.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.data.DataSource#getProgressiveLoading
+     * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
+     */
+    public Boolean getProgressiveLoading()  {
+        return getAttributeAsBoolean("progressiveLoading");
+    }
+
+    /**
      * If true, even non-matching options will be shown, with configurable  {@link
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getSeparatorRows separator rows} in between.  Not valid for {@link
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getOptionDataSource databound pickLists}.
@@ -697,7 +747,7 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      * @param textMatchStyle textMatchStyle Default value is "startsWith"
      */
     public void setTextMatchStyle(TextMatchStyle textMatchStyle) {
-        setAttribute("textMatchStyle", textMatchStyle.getValue());
+        setAttribute("textMatchStyle", textMatchStyle == null ? null : textMatchStyle.getValue());
     }
 
     /**
@@ -812,11 +862,13 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
     }-*/;
             
     /**
-     * Returns the {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} for this form item. If
-     * unset, and {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is explicitly
-     * specified, this method will return the title field for the <code>optionDataSource</code>
+     * Returns the <code>displayField</code> for this item. This will typically be specified explicitly via the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} attribute. However, if  that property is
+     * unset, and the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} for this item is 
+     * hidden in the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, this method
+     * will return the title field for the <code>optionDataSource</code>.
      *
-     * @return display field name, or null
+     * @return display field name, or null if there is no separate display field to use.
      */
     public native String getDisplayFieldName() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();

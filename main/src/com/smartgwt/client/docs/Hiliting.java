@@ -22,6 +22,36 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.cube.CubeGrid#hiliteCell
  * @see com.smartgwt.client.widgets.cube.CubeGrid#hiliteCellList
  * @see com.smartgwt.client.widgets.cube.CubeGrid#hiliteFacetValue
+ * @see com.smartgwt.client.data.Hilite
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getHilites
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIcons
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconPosition
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconSize
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconWidth
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconHeight
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconLeftPadding
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconRightPadding
+ * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getCanHilite
+ * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getHiliteIconPosition
+ * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getHiliteIconSize
+ * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getHiliteIconWidth
+ * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getHiliteIconHeight
+ * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getHiliteIconLeftPadding
+ * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getHiliteIconRightPadding
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getHiliteIcons
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconPosition
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconSize
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconWidth
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconHeight
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconLeftPadding
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconRightPadding
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconPosition
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconSize
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconWidth
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconHeight
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconLeftPadding
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconRightPadding
+ * @see com.smartgwt.client.types.HiliteIconPosition
  */
 public interface Hiliting {
 }

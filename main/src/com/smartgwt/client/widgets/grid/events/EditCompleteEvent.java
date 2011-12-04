@@ -140,8 +140,7 @@ public class EditCompleteEvent extends BrowserEvent<EditCompleteHandler>  {
      */
     public  native EditCompletionEvent getEditCompletionEvent() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            var enumValues = @com.smartgwt.client.types.EditCompletionEvent::values()();
-            return @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(enumValues, jsObj.editCompletionEvent);
+        return jsObj.editCompletionEvent;
     }-*/;
 
     /**

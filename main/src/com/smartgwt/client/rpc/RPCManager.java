@@ -295,6 +295,19 @@ public class RPCManager {
         $wnd.isc.RPCManager.actionURL = actionURL;
     }-*/;
 
+    
+    /**
+     * Converts {@link com.smartgwt.client.widgets.Canvas#getPrintHTML printable HTML} generated from live UI components into a
+     * .pdf and downloads it ("Save As.." dialog). <P> Requires the Smart GWT server framework, but does not require use of
+     * server-based databinding.
+     * @param canvas Canvas that has exportable widgets, or HTML fragment                                     derived from
+     * @param requestProperties Request properties for the export to pdf object
+     */
+
+    public static native void exportContent(Canvas canvas, DSRequest requestProperties) /*-{
+        var jsCanvas = canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        $wnd.isc.RPCManager.exportContent(jsCanvas, requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;  
 
     /**
      * Specifies URL where credentials should be submitted to attempt relogin when session timeout is encountered during a background RPC.

@@ -118,6 +118,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#getBackgroundRepeat
  * @see com.smartgwt.client.widgets.Canvas#getBackgroundPosition
  * @see com.smartgwt.client.data.DataSourceField#getDateFormatter
+ * @see com.smartgwt.client.data.DataSourceField#getTimeFormatter
  * @see com.smartgwt.client.widgets.DateChooser#getFirstDayOfWeek
  * @see com.smartgwt.client.widgets.form.DynamicForm#getLongTextEditorThreshold
  * @see com.smartgwt.client.widgets.form.DynamicForm#getLongTextEditorType
@@ -295,6 +296,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getShowRollOver
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectionType
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectionProperty
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getRemovedCSSText
  * @see com.smartgwt.client.widgets.grid.ListGrid#getShowHeader
  * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderBarStyle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderBackgroundColor
@@ -326,6 +328,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.types.Direction
  * @see com.smartgwt.client.types.ImageStyle
  * @see com.smartgwt.client.types.SortArrow
+ * @see com.smartgwt.client.types.ListGridComponent
  */
 public interface Appearance {
 }

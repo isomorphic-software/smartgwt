@@ -132,7 +132,7 @@ public class TextItem extends FormItem {
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_keypress_filter" target="examples">KeyPress Filters Example</a>
      */
     public void setCharacterCasing(CharacterCasing characterCasing) {
-        setAttribute("characterCasing", characterCasing.getValue());
+        setAttribute("characterCasing", characterCasing == null ? null : characterCasing.getValue());
     }
 
     /**

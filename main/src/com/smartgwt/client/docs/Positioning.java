@@ -34,6 +34,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#getVSnapOrigin
  * @see com.smartgwt.client.widgets.Canvas#getHSnapOrigin
  * @see com.smartgwt.client.widgets.Canvas#setOverflow
+ * @see com.smartgwt.client.widgets.drawing.DrawItem#getPageLeft
+ * @see com.smartgwt.client.widgets.drawing.DrawItem#getPageTop
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getRect
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getPageRect
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getLeft

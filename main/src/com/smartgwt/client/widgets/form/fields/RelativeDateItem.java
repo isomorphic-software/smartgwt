@@ -415,7 +415,7 @@ public class RelativeDateItem extends CanvasItem {
      * @param operator operator Default value is "greaterThan"
      */
     public void setOperator(OperatorId operator) {
-        setAttribute("operator", operator.getValue());
+        setAttribute("operator", operator == null ? null : operator.getValue());
     }
 
     /**
@@ -481,7 +481,7 @@ public class RelativeDateItem extends CanvasItem {
      * @see com.smartgwt.client.widgets.form.fields.RelativeDateItem#setRangeRoundingGranularity
      */
     public void setRangePosition(RelativeDateRangePosition rangePosition) {
-        setAttribute("rangePosition", rangePosition.getValue());
+        setAttribute("rangePosition", rangePosition == null ? null : rangePosition.getValue());
     }
 
     /**

@@ -106,7 +106,7 @@ public class DateTimeItem extends DateItem {
      * @see com.smartgwt.client.widgets.form.fields.DateTimeItem#setInputFormat
      */
     public void setDisplayFormat(DateDisplayFormat displayFormat) {
-        setAttribute("displayFormat", displayFormat.getValue());
+        setAttribute("displayFormat", displayFormat == null ? null : displayFormat.getValue());
     }
 
     /**

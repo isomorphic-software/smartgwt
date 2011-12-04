@@ -151,7 +151,7 @@ public class OperationBinding extends DataClass {
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setDataFormat(DSDataFormat dataFormat) {
-        setAttribute("dataFormat", dataFormat.getValue());
+        setAttribute("dataFormat", dataFormat == null ? null : dataFormat.getValue());
     }
 
     /**
@@ -188,7 +188,7 @@ public class OperationBinding extends DataClass {
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setDataProtocol(DSProtocol dataProtocol) {
-        setAttribute("dataProtocol", dataProtocol.getValue());
+        setAttribute("dataProtocol", dataProtocol == null ? null : dataProtocol.getValue());
     }
 
     /**
@@ -232,7 +232,7 @@ public class OperationBinding extends DataClass {
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setDataTransport(RPCTransport dataTransport) {
-        setAttribute("dataTransport", dataTransport.getValue());
+        setAttribute("dataTransport", dataTransport == null ? null : dataTransport.getValue());
     }
 
     /**
@@ -312,7 +312,7 @@ public class OperationBinding extends DataClass {
      * @param exportAs exportAs Default value is "csv"
      */
     public void setExportAs(ExportFormat exportAs) {
-        setAttribute("exportAs", exportAs.getValue());
+        setAttribute("exportAs", exportAs == null ? null : exportAs.getValue());
     }
 
     /**
@@ -552,7 +552,7 @@ public class OperationBinding extends DataClass {
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setOperationType(DSOperationType operationType) {
-        setAttribute("operationType", operationType.getValue());
+        setAttribute("operationType", operationType == null ? null : operationType.getValue());
     }
 
     /**

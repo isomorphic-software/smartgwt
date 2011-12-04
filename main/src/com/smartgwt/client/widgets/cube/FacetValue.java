@@ -109,7 +109,7 @@ public class FacetValue extends RefDataClass {
      * @param align align Default value is null
      */
     public void setAlign(Alignment align) {
-        setAttribute("align", align.getValue());
+        setAttribute("align", align == null ? null : align.getValue());
     }
 
     /**
@@ -207,7 +207,7 @@ public class FacetValue extends RefDataClass {
      * @param cellAlign cellAlign Default value is facet.cellAlign
      */
     public void setCellAlign(Alignment cellAlign) {
-        setAttribute("cellAlign", cellAlign.getValue());
+        setAttribute("cellAlign", cellAlign == null ? null : cellAlign.getValue());
     }
 
     /**
@@ -289,7 +289,7 @@ public class FacetValue extends RefDataClass {
      * @param selectionBoundary selectionBoundary Default value is null
      */
     public void setSelectionBoundary(SelectionBoundary selectionBoundary) {
-        setAttribute("selectionBoundary", selectionBoundary.getValue());
+        setAttribute("selectionBoundary", selectionBoundary == null ? null : selectionBoundary.getValue());
     }
 
     /**

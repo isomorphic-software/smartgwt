@@ -97,7 +97,7 @@ public class ImgTab extends StretchImgButton {
      * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
     public void setAlign(Alignment align) {
-        setAttribute("align", align.getValue(), true);
+        setAttribute("align", align == null ? null : align.getValue(), true);
     }
 
     /**

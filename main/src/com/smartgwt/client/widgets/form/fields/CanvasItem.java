@@ -94,7 +94,8 @@ public class CanvasItem extends FormItem  implements com.smartgwt.client.widgets
     }
 
     public CanvasItem(){
-        setAttribute("editorType", "CanvasItem"); setupCanvasConstructor();
+        setAttribute("editorType", "CanvasItem");
+					setupCanvasConstructor();
     }
 
     public CanvasItem(JavaScriptObject jsObj){
@@ -103,16 +104,39 @@ public class CanvasItem extends FormItem  implements com.smartgwt.client.widgets
 
     public CanvasItem(String name) {
         setName(name);
-        setAttribute("editorType", "CanvasItem"); setupCanvasConstructor();
+        setAttribute("editorType", "CanvasItem");
+					setupCanvasConstructor();
     }
 
     public CanvasItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setAttribute("editorType", "CanvasItem"); setupCanvasConstructor();
+        setAttribute("editorType", "CanvasItem");
+					setupCanvasConstructor();
     }
 
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getPrompt prompt} is specified for this item, should the
+     * prompt be applied to the {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvas canvas} for this item?
+     *
+     * @param applyPromptToCanvas applyPromptToCanvas Default value is true
+     */
+    public void setApplyPromptToCanvas(Boolean applyPromptToCanvas) {
+        setAttribute("applyPromptToCanvas", applyPromptToCanvas);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getPrompt prompt} is specified for this item, should the
+     * prompt be applied to the {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvas canvas} for this item?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getApplyPromptToCanvas()  {
+        return getAttributeAsBoolean("applyPromptToCanvas");
+    }
 
     /**
      * The canvas that will be displayed inside this item.  You can pass an instance you've  already created, or its global ID
@@ -179,7 +203,7 @@ public class CanvasItem extends FormItem  implements com.smartgwt.client.widgets
      * @param overflow overflow Default value is null
      */
     public void setOverflow(Overflow overflow) {
-        setAttribute("overflow", overflow.getValue());
+        setAttribute("overflow", overflow == null ? null : overflow.getValue());
     }
 
     /**
@@ -190,6 +214,30 @@ public class CanvasItem extends FormItem  implements com.smartgwt.client.widgets
      */
     public Overflow getOverflow()  {
         return EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
+    }
+
+    /**
+     * This text is shown as a tooltip prompt when the cursor hovers over this item.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Set the {@link com.smartgwt.client.widgets.form.fields.FormItem#getPrompt prompt} for this item. Default implementation will also apply the prompt to {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvas canvas} if {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getApplyPromptToCanvas applyPromptToCanvas} is true.
+     *
+     * @param prompt new prompt for the item.. Default value is null
+     * @see com.smartgwt.client.docs.Basics Basics overview and related methods
+     */
+    public void setPrompt(String prompt) {
+        setAttribute("prompt", prompt);
+    }
+
+    /**
+     * This text is shown as a tooltip prompt when the cursor hovers over this item.
+     *
+     *
+     * @return String
+     * @see com.smartgwt.client.docs.Basics Basics overview and related methods
+     */
+    public String getPrompt()  {
+        return getAttributeAsString("prompt");
     }
 
     /**
@@ -369,7 +417,7 @@ public class CanvasItem extends FormItem  implements com.smartgwt.client.widgets
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
             obj.showValue = $entry(function(){
-                var param = {"displayValue" : arguments[0], "dataValue" : arguments[1]};
+                var param = {"displayValue" : arguments[0], "dataValue" : arguments[1], "form" : arguments[2], "item" : arguments[3]};
                 var event = @com.smartgwt.client.widgets.form.fields.events.ShowValueEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
@@ -380,21 +428,37 @@ public class CanvasItem extends FormItem  implements com.smartgwt.client.widgets
     // ***********************************************************        
 
 
-    protected native void setupCanvasConstructor() /*-{
-	    var self = this.@com.smartgwt.client.widgets.form.fields.CanvasItem::getJsObj()();
+    
+    private static CanvasItem getCanvasItemRef (JavaScriptObject jsObj) {
+        if (jsObj == null) return null;
+        RefDataClass obj = RefDataClass.getRef(jsObj);
+        if (obj == null) return null;
+        
+        if(obj instanceof CanvasItem) {
+            return (CanvasItem) obj;
+        } else {
+            return null;
+        }
+    }
 
+
+    protected native void setupCanvasConstructor() /*-{
+        var self = this.@com.smartgwt.client.widgets.form.fields.CanvasItem::getJsObj()();
         if(self == null) return null;
-	    self.createCanvas = $debox($entry(function() {
-	        var jObj = this.__ref;
+        self.createCanvas = $debox($entry(function() {
+            
             //in cases where a SGWT FormItem instance is used for a setEditorType(..) call, there will
             //not be a SGWT object ref associated with the JS object. In this case, simply return
-            if(jObj == null) return null;
-	        var jCanvas = jObj.@com.smartgwt.client.widgets.form.fields.CanvasItem::createCanvas()();
-
-	        if (jCanvas != null) return jCanvas.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
-	        return this.canvas;
-	    }));
-	}-*/;
+            // Note the check for 'getCanavsItemRef' rather than just getRef ensures the Java Object
+            // is actually a CanvasItem (rather than a generic "FormItem" instance)
+            var jObj = @com.smartgwt.client.widgets.form.fields.CanvasItem::getCanvasItemRef(Lcom/google/gwt/core/client/JavaScriptObject;)(this);
+            
+            if(jObj == null) return this.canvas;
+            var jCanvas = jObj.@com.smartgwt.client.widgets.form.fields.CanvasItem::createCanvas()();
+            if (jCanvas != null) return jCanvas.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
+            return this.canvas;
+        }));
+    }-*/;    
     
     /**
      * This method is called to dynamically create a canvas for this CanvasItem.

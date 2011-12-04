@@ -114,6 +114,27 @@ public class DetailViewerField extends DataClass {
     }
 
     /**
+     * Determines whether this field can be hilited.  Set to false to prevent this field from appearing in HiliteEditor.
+     *
+     * @param canHilite canHilite Default value is null
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public void setCanHilite(Boolean canHilite) {
+        setAttribute("canHilite", canHilite);
+    }
+
+    /**
+     * Determines whether this field can be hilited.  Set to false to prevent this field from appearing in HiliteEditor.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public Boolean getCanHilite()  {
+        return getAttributeAsBoolean("canHilite");
+    }
+
+    /**
      * If specified, cells in this field will be rendered using this css className rather than {@link
      * com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle cellStyle}
      *
@@ -175,7 +196,7 @@ public class DetailViewerField extends DataClass {
      * @see com.smartgwt.client.widgets.grid.ListGridField#setTimeFormatter
      */
     public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter.getValue());
+        setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue());
     }
 
     /**
@@ -243,6 +264,168 @@ public class DetailViewerField extends DataClass {
      */
     public Integer getHeight()  {
         return getAttributeAsInt("height");
+    }
+
+    /**
+     * Height for hilite icons for this field. Overrides {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconSize hiliteIconSize}, {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconHeight hiliteIconHeight}, and {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getHiliteIconSize hiliteIconSize}.
+     *
+     * @param hiliteIconHeight hiliteIconHeight Default value is null
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public void setHiliteIconHeight(Integer hiliteIconHeight) {
+        setAttribute("hiliteIconHeight", hiliteIconHeight);
+    }
+
+    /**
+     * Height for hilite icons for this field. Overrides {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconSize hiliteIconSize}, {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconHeight hiliteIconHeight}, and {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getHiliteIconSize hiliteIconSize}.
+     *
+     *
+     * @return Integer
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public Integer getHiliteIconHeight()  {
+        return getAttributeAsInt("hiliteIconHeight");
+    }
+
+    /**
+     * How much padding should there be on the left of {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIcons
+     * hilite icons}  for this field? Overrides {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconLeftPadding
+     * hiliteIconLeftPadding}
+     *
+     * @param hiliteIconLeftPadding hiliteIconLeftPadding Default value is null
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public void setHiliteIconLeftPadding(Integer hiliteIconLeftPadding) {
+        setAttribute("hiliteIconLeftPadding", hiliteIconLeftPadding);
+    }
+
+    /**
+     * How much padding should there be on the left of {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIcons
+     * hilite icons}  for this field? Overrides {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconLeftPadding
+     * hiliteIconLeftPadding}
+     *
+     *
+     * @return Integer
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public Integer getHiliteIconLeftPadding()  {
+        return getAttributeAsInt("hiliteIconLeftPadding");
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIcons hiliteIcons} are present, where the hilite
+     * icon will be placed  relative to the field value.  See {@link com.smartgwt.client.types.HiliteIconPosition}. Overrides
+     * {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconPosition hiliteIconPosition}
+     *
+     * @param hiliteIconPosition hiliteIconPosition Default value is null
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public void setHiliteIconPosition(HiliteIconPosition hiliteIconPosition) {
+        setAttribute("hiliteIconPosition", hiliteIconPosition == null ? null : hiliteIconPosition.getValue());
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIcons hiliteIcons} are present, where the hilite
+     * icon will be placed  relative to the field value.  See {@link com.smartgwt.client.types.HiliteIconPosition}. Overrides
+     * {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconPosition hiliteIconPosition}
+     *
+     *
+     * @return HiliteIconPosition
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public HiliteIconPosition getHiliteIconPosition()  {
+        return EnumUtil.getEnum(HiliteIconPosition.values(), getAttribute("hiliteIconPosition"));
+    }
+
+    /**
+     * How much padding should there be on the right of {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIcons
+     * hilite icons}  for this field? Overrides {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconRightPadding hiliteIconRightPadding}
+     *
+     * @param hiliteIconRightPadding hiliteIconRightPadding Default value is null
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public void setHiliteIconRightPadding(Integer hiliteIconRightPadding) {
+        setAttribute("hiliteIconRightPadding", hiliteIconRightPadding);
+    }
+
+    /**
+     * How much padding should there be on the right of {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIcons
+     * hilite icons}  for this field? Overrides {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconRightPadding hiliteIconRightPadding}
+     *
+     *
+     * @return Integer
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public Integer getHiliteIconRightPadding()  {
+        return getAttributeAsInt("hiliteIconRightPadding");
+    }
+
+    /**
+     * Default width and height of {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIcons hilite icons} in this
+     * field. Takes precedence over hiliteIconWidth, hiliteIconHeight and hiliteIconSize specified at the component level. Can
+     * be overridden via {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getHiliteIconWidth hiliteIconWidth} and
+     * {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getHiliteIconHeight hiliteIconHeight}
+     *
+     * @param hiliteIconSize hiliteIconSize Default value is null
+     * @see com.smartgwt.client.widgets.viewer.DetailViewer#setHiliteIconSize
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setHiliteIconWidth
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setHiliteIconHeight
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public void setHiliteIconSize(Integer hiliteIconSize) {
+        setAttribute("hiliteIconSize", hiliteIconSize);
+    }
+
+    /**
+     * Default width and height of {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIcons hilite icons} in this
+     * field. Takes precedence over hiliteIconWidth, hiliteIconHeight and hiliteIconSize specified at the component level. Can
+     * be overridden via {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getHiliteIconWidth hiliteIconWidth} and
+     * {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getHiliteIconHeight hiliteIconHeight}
+     *
+     *
+     * @return Integer
+     * @see com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconSize
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getHiliteIconWidth
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getHiliteIconHeight
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public Integer getHiliteIconSize()  {
+        return getAttributeAsInt("hiliteIconSize");
+    }
+
+    /**
+     * Width for hilite icons for this field. Overrides {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconSize hiliteIconSize}, {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconWidth hiliteIconWidth}, and {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getHiliteIconSize hiliteIconSize}.
+     *
+     * @param hiliteIconWidth hiliteIconWidth Default value is null
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public void setHiliteIconWidth(Integer hiliteIconWidth) {
+        setAttribute("hiliteIconWidth", hiliteIconWidth);
+    }
+
+    /**
+     * Width for hilite icons for this field. Overrides {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconSize hiliteIconSize}, {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconWidth hiliteIconWidth}, and {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getHiliteIconSize hiliteIconSize}.
+     *
+     *
+     * @return Integer
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public Integer getHiliteIconWidth()  {
+        return getAttributeAsInt("hiliteIconWidth");
     }
 
     /**
@@ -430,7 +613,7 @@ public class DetailViewerField extends DataClass {
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
-        setAttribute("timeFormatter", timeFormatter.getValue());
+        setAttribute("timeFormatter", timeFormatter == null ? null : timeFormatter.getValue());
     }
 
     /**

@@ -96,7 +96,7 @@ public class HeaderSpan extends DataClass {
      * @param align align Default value is "center"
      */
     public void setAlign(Alignment align) {
-        setAttribute("align", align.getValue());
+        setAttribute("align", align == null ? null : align.getValue());
     }
 
     /**
@@ -199,7 +199,7 @@ public class HeaderSpan extends DataClass {
      * @param valign valign Default value is null
      */
     public void setValign(VerticalAlignment valign) {
-        setAttribute("valign", valign.getValue());
+        setAttribute("valign", valign == null ? null : valign.getValue());
     }
 
     /**

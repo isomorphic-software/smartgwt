@@ -529,7 +529,7 @@ public class RPCRequest extends DataClass {
      * @see com.smartgwt.client.docs.RpcPrompt RpcPrompt overview and related methods
      */
     public void setPromptStyle(PromptStyle promptStyle) {
-        setAttribute("promptStyle", promptStyle.getValue());
+        setAttribute("promptStyle", promptStyle == null ? null : promptStyle.getValue());
     }
 
     /**
@@ -692,7 +692,7 @@ public class RPCRequest extends DataClass {
      * @see com.smartgwt.client.rpc.RPCManager#defaultTransport
      */
     public void setTransport(RPCTransport transport) {
-        setAttribute("transport", transport.getValue());
+        setAttribute("transport", transport == null ? null : transport.getValue());
     }
 
     /**

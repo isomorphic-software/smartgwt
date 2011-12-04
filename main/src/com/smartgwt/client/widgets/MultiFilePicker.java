@@ -59,7 +59,8 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * The MultiFilePicker is a pop-up picker used by the MultiFileItem to allow the user to enter several files for upload.
+ * The MultiFilePicker is a pop-up picker used by the {@link com.smartgwt.client.widgets.form.fields.MultiFileItem} to
+ * allow the user to enter several files for upload.
  * @see com.smartgwt.client.docs.Upload Upload overview and related methods
  */
 public class MultiFilePicker extends VStack {

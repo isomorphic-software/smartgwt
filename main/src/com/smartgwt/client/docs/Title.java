@@ -10,6 +10,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getTitleAlign
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getTitleVAlign
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getWrapTitle
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getVAlign
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getTitleClassName
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getTitleErrorClassName
  */

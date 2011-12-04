@@ -26,6 +26,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#getEdgeCursorMap
  * @see com.smartgwt.client.widgets.Canvas#getKeepInParentRect
  * @see com.smartgwt.client.widgets.Canvas#getDragAppearance
+ * @see com.smartgwt.client.widgets.Canvas#getDragResizeAppearance
+ * @see com.smartgwt.client.widgets.Canvas#getDragRepositionAppearance
  * @see com.smartgwt.client.widgets.Canvas#getDragType
  * @see com.smartgwt.client.widgets.Canvas#getDragTarget
  * @see com.smartgwt.client.widgets.Canvas#getShowDragShadow
@@ -43,6 +45,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#getSnapVDirection
  * @see com.smartgwt.client.widgets.Canvas#getSnapAxis
  * @see com.smartgwt.client.widgets.Canvas#getSnapOnDrop
+ * @see com.smartgwt.client.widgets.drawing.DrawItem#getDragStartDistance
  * @see com.smartgwt.client.widgets.layout.Layout#getCanDropComponents
  * @see com.smartgwt.client.widgets.layout.Layout#getDropLineThickness
  * @see com.smartgwt.client.widgets.layout.Layout#getShowDragPlaceHolder

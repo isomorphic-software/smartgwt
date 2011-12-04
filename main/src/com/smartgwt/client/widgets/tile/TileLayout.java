@@ -144,7 +144,7 @@ public class TileLayout extends Canvas {
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_drag_copy" target="examples">Drag copy Example</a>
      */
     public void setDragDataAction(DragDataAction dragDataAction) {
-        setAttribute("dragDataAction", dragDataAction.getValue(), true);
+        setAttribute("dragDataAction", dragDataAction == null ? null : dragDataAction.getValue(), true);
     }
 
     /**
@@ -206,17 +206,17 @@ public class TileLayout extends Canvas {
     }
 
     /**
-     * Direction of tiling.  See also TileLayoutPolicy.
+     * Direction of tiling.  See also {@link com.smartgwt.client.types.TileLayoutPolicy}.
      *
      * @param orientation orientation Default value is "horizontal"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setOrientation(Orientation orientation)  throws IllegalStateException {
-        setAttribute("orientation", orientation.getValue(), false);
+        setAttribute("orientation", orientation == null ? null : orientation.getValue(), false);
     }
 
     /**
-     * Direction of tiling.  See also TileLayoutPolicy.
+     * Direction of tiling.  See also {@link com.smartgwt.client.types.TileLayoutPolicy}.
      *
      *
      * @return Orientation
@@ -235,7 +235,7 @@ public class TileLayout extends Canvas {
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public void setOverflow(Overflow overflow)  throws IllegalStateException {
-        setAttribute("overflow", overflow.getValue(), false);
+        setAttribute("overflow", overflow == null ? null : overflow.getValue(), false);
     }
 
     /**
@@ -397,7 +397,7 @@ public class TileLayout extends Canvas {
 
     /**
      * Number of tiles to show in each line.  Auto-derived from {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize
-     * tileSize} for some layout modes.  See TileLayoutPolicy. This can also affect {@link
+     * tileSize} for some layout modes.  See {@link com.smartgwt.client.types.TileLayoutPolicy}. This can also affect {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
      *
@@ -410,7 +410,7 @@ public class TileLayout extends Canvas {
 
     /**
      * Number of tiles to show in each line.  Auto-derived from {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize
-     * tileSize} for some layout modes.  See TileLayoutPolicy. This can also affect {@link
+     * tileSize} for some layout modes.  See {@link com.smartgwt.client.types.TileLayoutPolicy}. This can also affect {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
      *

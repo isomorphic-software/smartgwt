@@ -106,6 +106,30 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
     // ********************* Properties / Attributes ***********************
 
     /**
+     * If explicitly set to false, prevents the ValuesManager from automatically propagating data value changes to its members.
+     * You can manually synchronize member data values  at any time with a call to {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#synchronizeMembers ValuesManager.synchronizeMembers}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param autoSynchronize autoSynchronize Default value is null
+     */
+    public void setAutoSynchronize(Boolean autoSynchronize) {
+        setAttribute("autoSynchronize", autoSynchronize, true);
+    }
+
+    /**
+     * If explicitly set to false, prevents the ValuesManager from automatically propagating data value changes to its members.
+     * You can manually synchronize member data values  at any time with a call to {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#synchronizeMembers ValuesManager.synchronizeMembers}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAutoSynchronize()  {
+        return getAttributeAsBoolean("autoSynchronize");
+    }
+
+    /**
      * If set to true, client-side validators will not run on the form when validate() is called.  Server-side validators (if
      * any) will still run on attempted save.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -148,7 +172,7 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      * @param saveOperationType Operation type to use as a default. Valid values are  <code>"add"</code> or <code>"update"</code>.. Default value is null
      */
     public void setSaveOperationType(DSOperationType saveOperationType) {
-        setAttribute("saveOperationType", saveOperationType.getValue(), true);
+        setAttribute("saveOperationType", saveOperationType == null ? null : saveOperationType.getValue(), true);
     }
 
     /**
@@ -388,6 +412,16 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
     public native void showFieldErrors() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.showFieldErrors();
+    }-*/;
+            
+    /**
+     * Update all of this ValuesManager's members to reflect the current values held by the   ValuesManager.  It is not
+     * normally necesary to manually synchronize members, but you   will need to do so if you switch off {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#getAutoSynchronize automatic synchronization}.
+     */
+    public native void synchronizeMembers() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.synchronizeMembers();
     }-*/;
             
     /**

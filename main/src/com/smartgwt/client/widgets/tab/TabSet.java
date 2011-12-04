@@ -447,7 +447,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * @param paneContainerOverflow new overflow setting. Default value is Canvas.AUTO
      */
     public void setPaneContainerOverflow(Overflow paneContainerOverflow) {
-        setAttribute("paneContainerOverflow", paneContainerOverflow.getValue(), true);
+        setAttribute("paneContainerOverflow", paneContainerOverflow == null ? null : paneContainerOverflow.getValue(), true);
     }
 
     /**
@@ -1056,7 +1056,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_align" target="examples">Align Example</a>
      */
     public void setTabBarAlign(Side tabBarAlign)  throws IllegalStateException {
-        setAttribute("tabBarAlign", tabBarAlign.getValue(), false);
+        setAttribute("tabBarAlign", tabBarAlign == null ? null : tabBarAlign.getValue(), false);
     }
 
     /**
@@ -1080,7 +1080,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_orientation" target="examples">Orientation Example</a>
      */
     public void setTabBarPosition(Side tabBarPosition)  throws IllegalStateException {
-        setAttribute("tabBarPosition", tabBarPosition.getValue(), false);
+        setAttribute("tabBarPosition", tabBarPosition == null ? null : tabBarPosition.getValue(), false);
     }
 
     /**
@@ -1376,6 +1376,23 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
                }));
         }
    }-*/;
+            
+    /**
+     * Search for a tab that contains a pane.
+     * @param pane pane to show
+     *
+     * @return tab that contains passed pane
+     */
+    public native Tab tabForPane(Canvas pane) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.tabForPane(pane.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.tab.Tab::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
     /**
      * Add a tabSelected handler.
      * <p>

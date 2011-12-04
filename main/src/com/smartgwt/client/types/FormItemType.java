@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -13,17 +13,19 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
-
+ 
 package com.smartgwt.client.types;
 
 /**
- * DynamicForms automatically choose the FormItem type for a field based on the&#010 <code>type</code> property of the
- * field.  The table below describes the default FormItem&#010 chosen for various values of the <code>type</code>
- * property.&#010 <P>&#010 You can also set {@link com.smartgwt.client.widgets.form.fields.FormItem#setEditorType(com.smartgwt.client.widgets.form.fields.FormItem) field.editorType} to
- * the classname of a&#010 {@link com.smartgwt.client.widgets.form.fields.FormItem} to override this default mapping.
+ * DynamicForms automatically choose the FormItem type for a field based on the <code>type</code> property of the field. 
+ * The table below describes the default FormItem chosen for various values of the <code>type</code> property. <P> You can
+ * also set {@link com.smartgwt.client.widgets.form.fields.FormItem#getEditorType field.editorType} to the classname of a
+ * {@link com.smartgwt.client.widgets.form.fields.FormItem} to override this default mapping.  You can alternatively
+ * override {@link com.smartgwt.client.widgets.form.DynamicForm#getEditorType DynamicForm.getEditorType} to create a form
+ * with different rules for which FormItems are chosen. <P>
  */
-
 public enum FormItemType implements ValueEnum {
+
     /**
      * Rendered as a {@link com.smartgwt.client.widgets.form.fields.TextItem}, unless the lenght of the field (as specified by
      * {@link com.smartgwt.client.data.DataSourceField#setLength(Integer) length}  attribute) is larger than the value&#010 specified by
@@ -124,5 +126,5 @@ public enum FormItemType implements ValueEnum {
     public String getValue() {
         return this.value;
     }
-}
 
+}

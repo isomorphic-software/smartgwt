@@ -13,30 +13,26 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
-
+ 
 package com.smartgwt.client.types;
 
 /**
- * Possible values for the state of ListGrid groups when groupBy is called.
- *
- * @see com.smartgwt.client.widgets.grid.ListGrid#setGroupStartOpen
+ * Possible values for the state of ListGrid groups when groupBy is called
  */
 public enum GroupStartOpen implements ValueEnum {
-
     /**
      * open all groups
      */
     ALL("all"),
-
     /**
      * open the first group
      */
     FIRST("first"),
-
     /**
      * start with all groups closed
      */
     NONE("none");
+
     private String value;
 
     GroupStartOpen(String value) {

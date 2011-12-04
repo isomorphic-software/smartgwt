@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -13,24 +13,25 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
-
+ 
 package com.smartgwt.client.types;
 
 /**
+ * For "fetch" operations, how search criteria should be interpreted for text fields.
  */
 public enum TextMatchStyle implements ValueEnum {
     /**
-     * Exact.
+     * test for exact match
      */
     EXACT("exact"),
     /**
-     * Starts with.
+     * test for case-insenstive substring match
      */
-    STARTS_WITH("startsWith"),
+    SUBSTRING("substring"),
     /**
-     * Substring
+     * test for the beginning of the value matching the search criteria
      */
-    SUBSTRING("substring");
+    STARTS_WITH("startsWith");
 
     private String value;
 

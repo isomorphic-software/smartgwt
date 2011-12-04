@@ -455,7 +455,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @see com.smartgwt.client.data.DataSource#compareCriteria
      */
     public void setCriteriaPolicy(CriteriaPolicy criteriaPolicy) {
-        setAttribute("criteriaPolicy", criteriaPolicy.getValue(), true);
+        setAttribute("criteriaPolicy", criteriaPolicy == null ? null : criteriaPolicy.getValue(), true);
     }
 
     /**
@@ -511,7 +511,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#json_integration_category_simple" target="examples">Simple JSON Example</a>
      */
     public void setDataFormat(DSDataFormat dataFormat)  throws IllegalStateException {
-        setAttribute("dataFormat", dataFormat.getValue(), false);
+        setAttribute("dataFormat", dataFormat == null ? null : dataFormat.getValue(), false);
     }
 
     /**
@@ -544,7 +544,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setDataTransport(RPCTransport dataTransport)  throws IllegalStateException {
-        setAttribute("dataTransport", dataTransport.getValue(), false);
+        setAttribute("dataTransport", dataTransport == null ? null : dataTransport.getValue(), false);
     }
 
     /**
@@ -665,6 +665,32 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+     * If the criteria applied to a fetch type operation contain fields that are not present in the dataSource, should they be
+     * ignored when performing filtering on the client. This property is useful for cases where you custom server logic makes
+     * use of criteria  values to determine what set of records to return to the client, but the data does not actually have
+     * record values for these fields and as such the client-side filtering logic should ignore them.
+     *
+     * @param dropUnknownCriteria dropUnknownCriteria Default value is true
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setDropUnknownCriteria(Boolean dropUnknownCriteria)  throws IllegalStateException {
+        setAttribute("dropUnknownCriteria", dropUnknownCriteria, false);
+    }
+
+    /**
+     * If the criteria applied to a fetch type operation contain fields that are not present in the dataSource, should they be
+     * ignored when performing filtering on the client. This property is useful for cases where you custom server logic makes
+     * use of criteria  values to determine what set of records to return to the client, but the data does not actually have
+     * record values for these fields and as such the client-side filtering logic should ignore them.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getDropUnknownCriteria()  {
+        return getAttributeAsBoolean("dropUnknownCriteria");
+    }
+
+    /**
      * The name of the property this DataSource uses for constant name when translating Java enumerated types to and from
      * Javascript, if the {@link com.smartgwt.client.types.EnumTranslateStrategy} is set to "bean".  Defaults to "_constant" if
      * not set. <p>  This property is only applicable if you are using the Smart GWT server
@@ -699,7 +725,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setEnumTranslateStrategy(EnumTranslateStrategy enumTranslateStrategy)  throws IllegalStateException {
-        setAttribute("enumTranslateStrategy", enumTranslateStrategy.getValue(), false);
+        setAttribute("enumTranslateStrategy", enumTranslateStrategy == null ? null : enumTranslateStrategy.getValue(), false);
     }
 
     /**
@@ -1132,6 +1158,69 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+     * If true, causes Smart GWT Server to use the "progressive loading" pattern for  fetches on this dataSource, as described
+     * in the <b>Paging and total dataset length</b> section of the {@link com.smartgwt.client.data.ResultSet ResultSet
+     * documentation}.  Essentially, this means that we avoid issuing a row count query and instead advertise total rows as
+     * being slightly  more than the number of rows we have already read (see {@link
+     * com.smartgwt.client.docs.serverds.DataSource#endGap endGap}).  This  allows users to load more of a dataset by scrolling
+     * past the end of the currently-loaded rows, but it prevents them from scrolling directly to the end of the dataset. <p>
+     * Generally, progressive loading is appropriate when you have to deal with very large  datasets. Note that by default, a
+     * dataSource will switch into progressive loading mode  automatically when it detects that it is dealing with a dataset
+     * beyond a certain size -  see {@link com.smartgwt.client.docs.serverds.DataSource#progressiveLoadingThreshold
+     * progressiveLoadingThreshold}. <p> This setting can be overridden for individual fetch operations with the  {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#progressiveLoading progressiveLoading} property, and also at the
+     * level of the individual {@link com.smartgwt.client.data.DSRequest#getProgressiveLoading DSRequest}.  You can also
+     * specify  <code>progressiveLoading</code> on  {@link com.smartgwt.client.widgets.DataBoundComponent#getProgressiveLoading
+     * DataBoundComponents} and certain types of  <code>FormItem</code> - {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getProgressiveLoading SelectItem} and  {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getProgressiveLoading ComboBoxItem}. <p> Currently, this property
+     * only applies to users of the built-in SQLDataSource, but you  could use it in custom DataSource implementations to
+     * trigger the server behavior  described in the <code>ResultSet</code> documentation linked to above.
+     *
+     * @param progressiveLoading progressiveLoading Default value is null
+     * @see com.smartgwt.client.docs.serverds.OperationBinding#progressiveLoading
+     * @see com.smartgwt.client.docs.serverds.DataSource#progressiveLoadingThreshold
+     * @see com.smartgwt.client.docs.serverds.DataSource#lookAhead
+     * @see com.smartgwt.client.docs.serverds.DataSource#endGap
+     * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
+     */
+    public void setProgressiveLoading(Boolean progressiveLoading) {
+        setAttribute("progressiveLoading", progressiveLoading, true);
+    }
+
+    /**
+     * If true, causes Smart GWT Server to use the "progressive loading" pattern for  fetches on this dataSource, as described
+     * in the <b>Paging and total dataset length</b> section of the {@link com.smartgwt.client.data.ResultSet ResultSet
+     * documentation}.  Essentially, this means that we avoid issuing a row count query and instead advertise total rows as
+     * being slightly  more than the number of rows we have already read (see {@link
+     * com.smartgwt.client.docs.serverds.DataSource#endGap endGap}).  This  allows users to load more of a dataset by scrolling
+     * past the end of the currently-loaded rows, but it prevents them from scrolling directly to the end of the dataset. <p>
+     * Generally, progressive loading is appropriate when you have to deal with very large  datasets. Note that by default, a
+     * dataSource will switch into progressive loading mode  automatically when it detects that it is dealing with a dataset
+     * beyond a certain size -  see {@link com.smartgwt.client.docs.serverds.DataSource#progressiveLoadingThreshold
+     * progressiveLoadingThreshold}. <p> This setting can be overridden for individual fetch operations with the  {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#progressiveLoading progressiveLoading} property, and also at the
+     * level of the individual {@link com.smartgwt.client.data.DSRequest#getProgressiveLoading DSRequest}.  You can also
+     * specify  <code>progressiveLoading</code> on  {@link com.smartgwt.client.widgets.DataBoundComponent#getProgressiveLoading
+     * DataBoundComponents} and certain types of  <code>FormItem</code> - {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getProgressiveLoading SelectItem} and  {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getProgressiveLoading ComboBoxItem}. <p> Currently, this property
+     * only applies to users of the built-in SQLDataSource, but you  could use it in custom DataSource implementations to
+     * trigger the server behavior  described in the <code>ResultSet</code> documentation linked to above.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.serverds.OperationBinding#progressiveLoading
+     * @see com.smartgwt.client.docs.serverds.DataSource#progressiveLoadingThreshold
+     * @see com.smartgwt.client.docs.serverds.DataSource#lookAhead
+     * @see com.smartgwt.client.docs.serverds.DataSource#endGap
+     * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
+     */
+    public Boolean getProgressiveLoading()  {
+        return getAttributeAsBoolean("progressiveLoading");
+    }
+
+    /**
      * For dataSources of {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType} "sql", determines whether
      * we qualify column names with table names in any SQL we generate.  This property can be overridden on specific
      * operationBindings.
@@ -1424,7 +1513,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * [A] If set to true, both client and server-side advanced filtering used by Smart GWT will follow
+     * If set to true, both client and server-side advanced filtering used by Smart GWT will follow
      *  SQL99 behavior for dealing with NULL values, which is often counter-intuitive to users.
      *  Specifically, when a field has NULL value, all of the following expressions are false:
      *  <pre>
@@ -1433,6 +1522,12 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *     not (field == "someValue")   (normally true)
      *     not (field != "someValue")   (normally false)
      *  </pre>
+     *  This property can be overridden per-query by specifying <code>strictSQLFiltering</code>
+     *  directly as a property on the {@link com.smartgwt.client.data.AdvancedCriteria}.
+     *  <p>
+     *  <b>NOTE:</b> On the server side, this property is only applicable if you are using one of
+     *  the built-in DataSource types (SQL, Hibernate or JPA/JPA2)
+     * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param strictSQLFiltering strictSQLFiltering Default value is false
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -1442,7 +1537,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * [A] If set to true, both client and server-side advanced filtering used by Smart GWT will follow
+     * If set to true, both client and server-side advanced filtering used by Smart GWT will follow
      *  SQL99 behavior for dealing with NULL values, which is often counter-intuitive to users.
      *  Specifically, when a field has NULL value, all of the following expressions are false:
      *  <pre>
@@ -1451,6 +1546,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *     not (field == "someValue")   (normally true)
      *     not (field != "someValue")   (normally false)
      *  </pre>
+     *  This property can be overridden per-query by specifying <code>strictSQLFiltering</code>
+     *  directly as a property on the {@link com.smartgwt.client.data.AdvancedCriteria}.
+     *  <p>
+     *  <b>NOTE:</b> On the server side, this property is only applicable if you are using one of
+     *  the built-in DataSource types (SQL, Hibernate or JPA/JPA2)
      *
      *
      * @return Boolean
@@ -1728,6 +1828,22 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     // ********************* Methods ***********************
             
     /**
+     * Convenience method to compare two Date objects appropriately, depending on whether the passed-in fieldName refers to a
+     * field of {@link com.smartgwt.client.types.FieldType type} "datetime" or  "date".  In the former case, the dates are
+     * compared using  Date.compareDates; in the latter case, or if the supplied fieldName is null or unknown to this
+     * DataSource, the dates are compared using  Date.compareLogicalDates.
+     * @param date1 First date in comparison
+     * @param date2 Second date in comparison
+     * @param fieldName The name of the field for which the comparison is being run
+     *
+     * @return 0 if equal, -1 if first date &gt; second date, 1 if second date &gt;                  first date
+     */
+    public native int compareDates(Date date1, Date date2, String fieldName) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        return self.compareDates(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date1), @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date2), fieldName);
+    }-*/;
+            
+    /**
      * Takes all relative date values found anywhere within a Criteria / AdvancedCriteria object and converts them to concrete
      * date values, returning the new criteria object.
      * @param criteria criteria to convert
@@ -1774,11 +1890,14 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * com.smartgwt.client.data.DSRequest#getExportResults exportResults} and for more information.
      * @param criteria search criteria
      * @param requestProperties additional properties to set on                                                       the DSRequest that will be issued
+     * @param callback callback to invoke on completion.  Note that this parameter                                  only applies where {@link
+     * com.smartgwt.client.data.DSRequest#getExportToClient exportToClient} is                                   explicitly set
+     * to false, because  file downloads do not                                   provide ordinary Smart GWT callbacks
      * @see com.smartgwt.client.docs.Operations Operations overview and related methods
      */
-    public native void exportData(Criteria criteria, DSRequest requestProperties) /*-{
+    public native void exportData(Criteria criteria, DSRequest requestProperties, DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.exportData(criteria == null ? null : criteria.@com.smartgwt.client.core.DataClass::getJsObj()(), requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+        self.exportData(criteria == null ? null : criteria.@com.smartgwt.client.core.DataClass::getJsObj()(), requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()(), callback);
     }-*/;
             
     /**
@@ -2074,14 +2193,15 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         });
 
         self.__getClientOnlyResponse = self.getClientOnlyResponse;
-        self.getClientOnlyResponse = $entry(function(dsRequest) {
+        self.getClientOnlyResponse = $entry(function(dsRequest, serverData) {
             var jObj = this.__ref;
             if(jObj === undefined) {
                 //handle case where oneTimeDS is cared from original DS (when clientOnly=true with dataURL)
                 jObj = $wnd.isc.DS.get(this.inheritsFrom).__ref;
             }
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
-            var responseJ = jObj.@com.smartgwt.client.data.DataSource::getClientOnlyResponse(Lcom/smartgwt/client/data/DSRequest;)(requestJ);
+            var serverDataJ = serverData == null ? null : @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(serverData);
+            var responseJ = jObj.@com.smartgwt.client.data.DataSource::getClientOnlyResponse(Lcom/smartgwt/client/data/DSRequest;[Lcom/smartgwt/client/data/Record;)(requestJ,serverDataJ);
             return responseJ == null ? null : responseJ.@com.smartgwt.client.data.DSResponse::getJsObj()();
         });
 
@@ -2429,16 +2549,27 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }-*/;
 
     /**
-     * Return a "spoofed" response for a {@link com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource.&#010 <P>&#010 The default implementation will {@link com.smartgwt.client.data.DataSource#getTestData testData} to provide an appropriate&#010 response, by using {@link com.smartgwt.client.data.DataSource#applyFilter} for a "fetch" request, and&#010 by modifying the <code>testData</code> for other requests.&#010 <P>&#010 Override this method to provide simulations of other server-side behavior, such as&#010 modifying other records, or to implement <b>synchronous</b> client-side data providers&#010 (such as Google Gears).  For <b>asynchronous</b> third-party data provides, such as&#010 GWT-RPC, HTML5 sockets, or bridges to plug-in based protocols (Java, Flash,&#010 Silverlight..), use ${isc.DocUtils.linkForRef('DSDataProtocol','dataProtocol:"clientCustom"')} instead. &#010 <P>&#010 Overriding this method is also a means of detecting that a normal DataSource (not&#010 clientOnly) would be contacting the server.&#010&#010
+     *  Return a "spoofed" response for a  {@link com.smartgwt.client.data.DataSource#getClientOnly clientOnly} or  {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} DataSource.
+     *  <p>
+     *  The default implementation will use DataSource.cacheData or testData to provide an appropriate response, by using client-side filtering for a "fetch" request, and by modifying the cacheData for other requests.
+     *  Override this method to provide simulations of other server-side behavior, such as modifying other records, or to implement synchronous client-side data providers (such as Google Gears).
+     *  <P>
+     *  For asynchronous third-party data providers, such as GWT-RPC, HTML5 sockets, or bridges to plug-in based protocols (Java, Flash, Silverlight..), use
+     *  {@link com.smartgwt.client.types.DSProtocol,'dataProtocol:"clientCustom"')} instead.
+     *  <p>
+     *  Overriding this method is also a means of detecting that a normal DataSource (not clientOnly) would be contacting the server. 
+     *  
      * <p>
      * <b>Note</b>: This is an override point
      * @param request DataSource request to respond to
+     * @param for cacheAllData DataSources, the data from the local cache
      *
      * @return DSResponse
     */
-    protected native DSResponse getClientOnlyResponse(DSRequest request) /*-{
+    protected native DSResponse getClientOnlyResponse(DSRequest request, Record[] serverData) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var ret = self.__getClientOnlyResponse(request.@com.smartgwt.client.data.DSRequest::getJsObj()());
+        var serverDataJS = serverData == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(serverData);
+        var ret = self.__getClientOnlyResponse(request.@com.smartgwt.client.data.DSRequest::getJsObj()(), serverDataJS);
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
@@ -2925,7 +3056,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @param record to be copied   
      * @return {@link Record}
      */
-    public native Record copyRecord(Record record)/*-{
+    public native Record copyRecord(Record record) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();        
         return @com.smartgwt.client.data.Record::new(Lcom/google/gwt/core/client/JavaScriptObject;)(self.copyRecord(recordJS));
@@ -3256,13 +3387,56 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * request will run through normal security checks, so if your application requires authentication, the user must have a
      * valid session and be authorized to access the binary field. <P> Similarly, accessing this URL has the same performance
      * as using {@link com.smartgwt.client.data.DataSource#downloadFile DataSource.downloadFile}.
-     * @param data Record (including primary key value) containing the file to view.
+     * @param data Record or value of primary key field for record containing the file to view.
+     * @return a URL to directly access the stored file
      */
-    public native void getFileURL(Record data) /*-{
+    public native String getFileURL(Record data) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var recordJS = data.@com.smartgwt.client.data.Record::getJsObj()();
+        return self.getFileURL(recordJS);
+    }-*/;
 
-        self.getFileURL(recordJS);
+    /**
+     * Returns a direct URL to access a file stored in a field of type:"binary". <P> This URL as be used as the "src" attribute
+     * of an Img widget or &lt;img&gt; tag (if the file is an image), or can be used in an ordinary HTML link (&lt;a&gt; tag)
+     * to download the file. However, for the latter use case, see also {@link com.smartgwt.client.data.DataSource#downloadFile
+     * DataSource.downloadFile} and {@link com.smartgwt.client.data.DataSource#viewFile DataSource.viewFile}. <P> The URL
+     * returned is not to a static file on disk, rather, the returned URL essentially encodes a DSRequest as URL parameters, in
+     * a format understood by the IDACall servlet that comes with the Server Framework.   <P> Hence, this URL will dynamically
+     * retrieve whatever file is currently stored in the binary field via executing a normal DSRequest server side.  The
+     * request will run through normal security checks, so if your application requires authentication, the user must have a
+     * valid session and be authorized to access the binary field. <P> Similarly, accessing this URL has the same performance
+     * as using {@link com.smartgwt.client.data.DataSource#downloadFile DataSource.downloadFile}.
+     * @param data Record or value of primary key field for record containing the file to view.
+     * @param fieldName optional name of the binary field containing the file.  If not provided, the first binary field is used
+     * @return a URL to directly access the stored file
+     */
+    public native String getFileURL(Record data, String fieldName) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var recordJS = data.@com.smartgwt.client.data.Record::getJsObj()();
+        return self.getFileURL(data, fieldName);
+    }-*/;
+
+    /**
+     * Returns a direct URL to access a file stored in a field of type:"binary". <P> This URL as be used as the "src" attribute
+     * of an Img widget or &lt;img&gt; tag (if the file is an image), or can be used in an ordinary HTML link (&lt;a&gt; tag)
+     * to download the file. However, for the latter use case, see also {@link com.smartgwt.client.data.DataSource#downloadFile
+     * DataSource.downloadFile} and {@link com.smartgwt.client.data.DataSource#viewFile DataSource.viewFile}. <P> The URL
+     * returned is not to a static file on disk, rather, the returned URL essentially encodes a DSRequest as URL parameters, in
+     * a format understood by the IDACall servlet that comes with the Server Framework.   <P> Hence, this URL will dynamically
+     * retrieve whatever file is currently stored in the binary field via executing a normal DSRequest server side.  The
+     * request will run through normal security checks, so if your application requires authentication, the user must have a
+     * valid session and be authorized to access the binary field. <P> Similarly, accessing this URL has the same performance
+     * as using {@link com.smartgwt.client.data.DataSource#downloadFile DataSource.downloadFile}.
+     * @param data Record or value of primary key field for record containing the file to view.
+     * @param fieldName optional name of the binary field containing the file.  If not provided, the first binary field is used
+     * @param requestProperties additional properties to set on the DSRequest that will be issued
+     * @return a URL to directly access the stored file
+     */
+    public native String getFileURL(Record data, String fieldName, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var recordJS = data.@com.smartgwt.client.data.Record::getJsObj()();
+        return self.getFileURL(data, fieldName, requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
     /**
@@ -3389,6 +3563,7 @@ nent has been created
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
+
     
     /** 
      * Split a criteria apart based on <code>fields</code>. A new simple criteria is returned with any criteria applicable to 
@@ -3398,7 +3573,7 @@ nent has been created
      * Incoming criteria can be a simple or advanced criteria. For an +link{AdvancedCriteria} only a single level of criteria 
      * with a top-level operator of "and" is supported.
      * <P>
-     * To avoid modifying an original criteria, use +link{dataSource.copyCriteria} to make a copy to be passed in.
+     * To avoid modifying an original criteria, use {@link com.smartgwt.client.data.DataSource#copyCriteria() dataSource.copyCriteria} to make a copy to be passed in.
      * @param criteria criteria to be split. May be modified if criteria is extracted.
      * @param fields array of field names to extract from criteria
      * @return extracted criteria
@@ -3409,6 +3584,7 @@ nent has been created
         var ret = self.splitCriteria(jsCrit, @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(fields));
         return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
+
 }
 
 

@@ -3,6 +3,16 @@ package com.smartgwt.client.docs;
 
 /**
  * Width and height of an object
+ * @see com.smartgwt.client.widgets.layout.Portlet#setHeight
+ * @see com.smartgwt.client.widgets.layout.Portlet#setRowHeight
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanStretchColumnWidths
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanShrinkColumnWidths
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#setStretchColumnWidthsProportionally
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#setPreventUnderflow
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#setColumnPreventUnderflow
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#setPreventRowUnderflow
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanResizeColumns
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanResizePortlets
  * @see com.smartgwt.client.widgets.Canvas#setRect
  * @see com.smartgwt.client.widgets.Canvas#getWidth
  * @see com.smartgwt.client.widgets.Canvas#setWidth
@@ -47,6 +57,17 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.util.Page#getScrollHeight
  * @see com.smartgwt.client.util.Page#getScrollLeft
  * @see com.smartgwt.client.util.Page#getScrollTop
+ * @see com.smartgwt.client.widgets.layout.Portlet#getRowHeight
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getOverflow
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getColumnOverflow
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanStretchColumnWidths
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanShrinkColumnWidths
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getStretchColumnWidthsProportionally
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getPreventUnderflow
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getPreventColumnUnderflow
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getPreventRowUnderflow
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanResizeColumns
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanResizePortlets
  * @see com.smartgwt.client.widgets.Canvas#getWidth
  * @see com.smartgwt.client.widgets.Canvas#getHeight
  * @see com.smartgwt.client.widgets.Canvas#getDefaultWidth
