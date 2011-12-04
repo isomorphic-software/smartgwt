@@ -149,7 +149,7 @@ public class TextAreaItem extends FormItem {
      * @param iconVAlign iconVAlign Default value is Canvas.TOP
      */
     public void setIconVAlign(VerticalAlignment iconVAlign) {
-        setAttribute("iconVAlign", iconVAlign.getValue());
+        setAttribute("iconVAlign", iconVAlign == null ? null : iconVAlign.getValue());
     }
 
     /**

@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -13,25 +13,24 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
-
+ 
 package com.smartgwt.client.types;
 
 /**
- * Valid display formats for dates.  These strings are the names of formatters which can be &#010 passed to
- * <code>Date.setNormalDisplayFormat()</code> or <code>Date.setShortDisplayFormat()</code>&#010 and will be subsequently
- * used as default long or short formatters for date objects by&#010 SmartClient components.<br>&#010 Default set of
- * valid display formats is as follows:<br><br>
+ * Valid display formats for dates.  These strings are the names of formatters which can be  passed to
+ * <code>Date.setNormalDisplayFormat()</code> or <code>Date.setShortDisplayFormat()</code> and will be subsequently used as
+ * default long or short formatters for date objects by Smart GWT components.<br> Default set of valid display formats is
+ * as follows:<br><br>
  */
-
 public enum DateDisplayFormat implements ValueEnum {
     /**
-     * Default native browser 'toString()' implementation. May vary by browser.<br>&#010 <i>Example</i>: <code>Fri Nov
-     * 04 2005 11:03:00 GMT-0800 (Pacific Standard Time)</code>
+     * Default native browser 'toString()' implementation. May vary by browser.<br> <i>Example</i>: <code>Fri Nov 04 2005
+     * 11:03:00 GMT-0800 (Pacific Standard Time)</code>
      */
     TOSTRING("toString"),
     /**
-     * Default native browser 'toLocaleString()' implementation. May vary by browser.&#010 <i>Example</i>: <code>Friday,
-     * November 04, 2005 11:03:00 AM</code>
+     * Default native browser 'toLocaleString()' implementation. May vary by browser. <i>Example</i>: <code>Friday, November
+     * 04, 2005 11:03:00 AM</code>
      */
     TOLOCALESTRING("toLocaleString"),
     /**
@@ -63,13 +62,13 @@ public enum DateDisplayFormat implements ValueEnum {
      */
     TOSERIALIZEABLEDATE("toSerializeableDate"),
     /**
-     * Date in the format &lt;YYYYMMDD&gt;T&lt;HHMMSS&gt;Z <i>Example</i>: <code>20051104T111001Z</code>&#010 <br>&#010
-     * <br>&#010 Note: In addition to these standard formats, custom formatting can be set by passing&#010 a function
-     * directly to {@link com.smartgwt.client.util.DateUtil#setNormalDateDisplayFormat(DateDisplayFormat)} et al. This &#010 function will
-     * then be executed whenever the appropriate formatter method is called [eg &#010
-     * Date.toNormalDate, in the scope of the date instance in question.
+     * Date in the format &lt;YYYYMMDD&gt;T&lt;HHMMSS&gt;Z <i>Example</i>: <code>20051104T111001Z</code> <br> <br> Note: In
+     * addition to these standard formats, custom formatting can be set by passing a function directly to 
+     * Date.setNormalDisplayFormat et al. This  function will then be executed whenever the appropriate formatter method is
+     * called [eg   Date.toNormalDate], in the scope of the date instance in question.
      */
     TODATESTAMP("toDateStamp");
+
     private String value;
 
     DateDisplayFormat(String value) {
@@ -80,4 +79,3 @@ public enum DateDisplayFormat implements ValueEnum {
         return this.value;
     }
 }
-

@@ -230,6 +230,29 @@ public class Hilite extends RefDataClass {
     }
 
     /**
+     * URL of an icon to show when this hilite is applied to a cell.  Position of the icon  is controlled by {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getHiliteIconPosition hiliteIconPosition} or  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconPosition hiliteIconPosition}.
+     *
+     * @param icon icon Default value is null
+     */
+    public void setIcon(String icon) {
+        setAttribute("icon", icon);
+    }
+
+    /**
+     * URL of an icon to show when this hilite is applied to a cell.  Position of the icon  is controlled by {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getHiliteIconPosition hiliteIconPosition} or  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconPosition hiliteIconPosition}.
+     *
+     *
+     * @return String
+     */
+    public String getIcon()  {
+        return getAttributeAsString("icon");
+    }
+
+    /**
      * Unique id for this hilite definition.   <P> For hilites that include {@link com.smartgwt.client.data.Hilite#getCriteria
      * criteria} this is not required. <P> If you are explicitly marking records for hiliting, set {@link
      * com.smartgwt.client.widgets.DataBoundComponent#getHiliteProperty hiliteProperty} on the record to this id.

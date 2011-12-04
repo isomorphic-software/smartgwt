@@ -274,6 +274,19 @@ public class DSResponse extends RPCResponse {
         return dataJS == null ? null : new RecordList(dataJS);
     }
 
+    /**
+     * HTTP headers returned by the server, as a Map of Header name -> Header value
+     * <p>
+     * Headers are available only when the default {@link com.smartgwt.client.types.RPCTransport} 
+     * "xmlHttpRequest" is in use, and browsers may limit access to headers for cross-domain requests 
+     * or in other security-sensitive scenarios.
+     *
+     * @return the http headers
+     */
+    public Map getHttpHeaders() {
+        return  getAttributeAsMap("httpHeaders");
+    }
+
 }
 
 

@@ -183,6 +183,29 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     }
 
     /**
+     * For databound pickLists (see  optionDataSource), by default Smart GWT will cache and re-use datasets shown by pickLists
+     * in an LRU (least recently used) caching pattern. <P> Setting this flag to false avoids this caching for situations where
+     * it is too aggressive.
+     *
+     * @param cachePickListResults cachePickListResults Default value is true
+     */
+    public void setCachePickListResults(Boolean cachePickListResults) {
+        setAttribute("cachePickListResults", cachePickListResults);
+    }
+
+    /**
+     * For databound pickLists (see  optionDataSource), by default Smart GWT will cache and re-use datasets shown by pickLists
+     * in an LRU (least recently used) caching pattern. <P> Setting this flag to false avoids this caching for situations where
+     * it is too aggressive.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCachePickListResults()  {
+        return getAttributeAsBoolean("cachePickListResults");
+    }
+
+    /**
      * Base CSS class name for a form item's control box (surrounds text box and picker). <P> NOTE: See the {@link
      * CompoundFormItem_skinning} discussion for special skinning considerations.
      *
@@ -439,7 +462,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * @param multipleAppearance multipleAppearance Default value is "picklist"
      */
     public void setMultipleAppearance(MultipleAppearance multipleAppearance) {
-        setAttribute("multipleAppearance", multipleAppearance.getValue());
+        setAttribute("multipleAppearance", multipleAppearance == null ? null : multipleAppearance.getValue());
     }
 
     /**
@@ -567,6 +590,33 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      */
     public Integer getPickerIconWidth()  {
         return getAttributeAsInt("pickerIconWidth");
+    }
+
+    /**
+     * Indicates whether or not this SelectItem will load its list of options  {@link
+     * com.smartgwt.client.data.DataSource#getProgressiveLoading progressively}.  This property is copied onto the underlying
+     * PickList.
+     *
+     * @param progressiveLoading progressiveLoading Default value is null
+     * @see com.smartgwt.client.data.DataSource#setProgressiveLoading
+     * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
+     */
+    public void setProgressiveLoading(Boolean progressiveLoading) {
+        setAttribute("progressiveLoading", progressiveLoading);
+    }
+
+    /**
+     * Indicates whether or not this SelectItem will load its list of options  {@link
+     * com.smartgwt.client.data.DataSource#getProgressiveLoading progressively}.  This property is copied onto the underlying
+     * PickList.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.data.DataSource#getProgressiveLoading
+     * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
+     */
+    public Boolean getProgressiveLoading()  {
+        return getAttributeAsBoolean("progressiveLoading");
     }
 
     /**
@@ -725,7 +775,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * @param textMatchStyle textMatchStyle Default value is "startsWith"
      */
     public void setTextMatchStyle(TextMatchStyle textMatchStyle) {
-        setAttribute("textMatchStyle", textMatchStyle.getValue());
+        setAttribute("textMatchStyle", textMatchStyle == null ? null : textMatchStyle.getValue());
     }
 
     /**
@@ -808,11 +858,13 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     }-*/;
             
     /**
-     * Returns the {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} for this form item. If
-     * unset, and {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is explicitly
-     * specified, this method will return the title field for the <code>optionDataSource</code>
+     * Returns the <code>displayField</code> for this item. This will typically be specified explicitly via the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} attribute. However, if  that property is
+     * unset, and the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} for this item is 
+     * hidden in the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, this method
+     * will return the title field for the <code>optionDataSource</code>.
      *
-     * @return display field name, or null
+     * @return display field name, or null if there is no separate display field to use.
      */
     public native String getDisplayFieldName() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
@@ -1304,7 +1356,12 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      */
     public native String[] getValues() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var value = self.getValue();
+        var value;
+        if(self.getValue) {
+             value = self.getValue();
+        } else {
+            value = self.value;
+        }
         if(value == null) {
             value = [];
         } else if(!$wnd.isc.isA.Array(value)) {
@@ -1324,7 +1381,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
         if(self.setValue) {
             self.setValue(valuesJS);
         } else {
-            self.defaultValue = valuesJS;
+            self.value = valuesJS;
         }
     }-*/;
     

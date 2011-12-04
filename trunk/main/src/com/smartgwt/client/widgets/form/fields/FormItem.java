@@ -119,7 +119,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setAlign(Alignment align) {
-        setAttribute("align", align.getValue());
+        setAttribute("align", align == null ? null : align.getValue());
     }
 
     /**
@@ -142,28 +142,30 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * example, entering ">5" means values greater than 5, and ">0 and <5" means values between 0 and 5. <P> The following
      * table lists character sequences that can be entered as a prefix to a value,  and the corresponding  operator that will
      * be used.  Note that in the absence of a prefix, the operator specified via {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator} is used. <P> <table style='font-size:14;'>
-     * <tr><td><b>Prefix</b></td><td><b>Operator</b></td></tr> <tr><td>&lt;</td><td>lessThan</td></tr>
-     * <tr><td>&gt;</td><td>greaterThan</td></tr> <tr><td>&lt;=</td><td>lessThanOrEqual</td></tr>
-     * <tr><td>&gt;=</td><td>greaterThanOrEqual</td></tr> <tr><td>someValue...someValue</td><td>betweenInclusive</td></tr>
-     * <tr><td>!</td><td>notEqual</td></tr> <tr><td>^</td><td>startsWith</td></tr> <tr><td>|</td><td>endsWith</td></tr>
-     * <tr><td>!^</td><td>notStartsWith plus logical not</td></tr> <tr><td>!@</td><td>notEndsWith plus logical not</td></tr>
-     * <tr><td>~</td><td>contains</td></tr> <tr><td>!~</td><td>notContains</td></tr> <tr><td>#</td><td>isNull</td></tr>
-     * <tr><td>!#</td><td>isNotNull</td></tr> <tr><td>==</td><td>exact match (for fields where 'contains' is the
-     * default)</td></tr> </table> <P> Two further special notations are allowed: <ul> <li> /<i>regex</i>/ means the value is
-     * taken as a regular expression and applied via the "regexp" operator <li> =.<i>fieldName</i> means the value should match
-     * the value of another field.  Either the user-visible title of the field (field.title) or the field's name (field.name)
-     * may be used. </ul> <P> In all cases, if an operator is disallowed for the field (via {@link
-     * com.smartgwt.client.data.DataSourceField#getValidOperators field.validOperators} at either the dataSource or field
-     * level), the operator character is ignored (treated as part of a literal value). <P> By default, the case-insensitive
-     * version of the operator is used (eg, startsWith will actually use "iStartsWith").  To avoid this, explicitly set
-     * item.operator (the default operator) to any case sensitive operator (eg "equals" or "contains") and case sensitive
-     * operators will be used for user-entered expressions. <P> Compound expressions (including "and" and "or") are allowed
-     * only for numeric or date/time types. <P> To enable this behavior for all fields in a form that allow text entry, see
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#getAllowExpressions allowExpressions}. <P> <P> Note that, like
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator}, enabling
-     * <code>allowExpressions:true</code> causes {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria
-     * form.getValuesAsCriteria()}) to return {@link com.smartgwt.client.data.AdvancedCriteria}.
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator} is used. Also note  that whatever you enter will
+     * be used literally, including any whitespace characters. For  example if you input '== China ' then ' China ' will be the
+     * value. <P> <table style='font-size:14;'> <tr><td><b>Prefix</b></td><td><b>Operator</b></td></tr>
+     * <tr><td>&lt;</td><td>lessThan</td></tr> <tr><td>&gt;</td><td>greaterThan</td></tr>
+     * <tr><td>&lt;=</td><td>lessThanOrEqual</td></tr> <tr><td>&gt;=</td><td>greaterThanOrEqual</td></tr>
+     * <tr><td>someValue...someValue</td><td>betweenInclusive</td></tr> <tr><td>!</td><td>notEqual</td></tr>
+     * <tr><td>^</td><td>startsWith</td></tr> <tr><td>|</td><td>endsWith</td></tr> <tr><td>!^</td><td>notStartsWith plus
+     * logical not</td></tr> <tr><td>!@</td><td>notEndsWith plus logical not</td></tr> <tr><td>~</td><td>contains</td></tr>
+     * <tr><td>!~</td><td>notContains</td></tr> <tr><td>#</td><td>isNull</td></tr> <tr><td>!#</td><td>isNotNull</td></tr>
+     * <tr><td>==</td><td>exact match (for fields where 'contains' is the default)</td></tr> </table> <P> Two further special
+     * notations are allowed: <ul> <li> /<i>regex</i>/ means the value is taken as a regular expression and applied via the
+     * "regexp" operator <li> =.<i>fieldName</i> means the value should match the value of another field.  Either the
+     * user-visible title of the field (field.title) or the field's name (field.name) may be used. </ul> <P> In all cases, if
+     * an operator is disallowed for the field (via {@link com.smartgwt.client.data.DataSourceField#getValidOperators
+     * field.validOperators} at either the dataSource or field level), the operator character is ignored (treated as part of a
+     * literal value). <P> By default, the case-insensitive version of the operator is used (eg, startsWith will actually use
+     * "iStartsWith").  To avoid this, explicitly set item.operator (the default operator) to any case sensitive operator (eg
+     * "equals" or "contains") and case sensitive operators will be used for user-entered expressions. <P> Compound expressions
+     * (including "and" and "or") are allowed only for numeric or date/time types. <P> To enable this behavior for all fields
+     * in a form that allow text entry, see {@link com.smartgwt.client.widgets.form.DynamicForm#getAllowExpressions
+     * allowExpressions}. <P> <P> Note that, like {@link com.smartgwt.client.widgets.form.fields.FormItem#getOperator
+     * operator}, enabling <code>allowExpressions:true</code> causes {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria form.getValuesAsCriteria()}) to return {@link
+     * com.smartgwt.client.data.AdvancedCriteria}.
      *
      * @param allowExpressions allowExpressions Default value is null
      */
@@ -177,28 +179,30 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * example, entering ">5" means values greater than 5, and ">0 and <5" means values between 0 and 5. <P> The following
      * table lists character sequences that can be entered as a prefix to a value,  and the corresponding  operator that will
      * be used.  Note that in the absence of a prefix, the operator specified via {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator} is used. <P> <table style='font-size:14;'>
-     * <tr><td><b>Prefix</b></td><td><b>Operator</b></td></tr> <tr><td>&lt;</td><td>lessThan</td></tr>
-     * <tr><td>&gt;</td><td>greaterThan</td></tr> <tr><td>&lt;=</td><td>lessThanOrEqual</td></tr>
-     * <tr><td>&gt;=</td><td>greaterThanOrEqual</td></tr> <tr><td>someValue...someValue</td><td>betweenInclusive</td></tr>
-     * <tr><td>!</td><td>notEqual</td></tr> <tr><td>^</td><td>startsWith</td></tr> <tr><td>|</td><td>endsWith</td></tr>
-     * <tr><td>!^</td><td>notStartsWith plus logical not</td></tr> <tr><td>!@</td><td>notEndsWith plus logical not</td></tr>
-     * <tr><td>~</td><td>contains</td></tr> <tr><td>!~</td><td>notContains</td></tr> <tr><td>#</td><td>isNull</td></tr>
-     * <tr><td>!#</td><td>isNotNull</td></tr> <tr><td>==</td><td>exact match (for fields where 'contains' is the
-     * default)</td></tr> </table> <P> Two further special notations are allowed: <ul> <li> /<i>regex</i>/ means the value is
-     * taken as a regular expression and applied via the "regexp" operator <li> =.<i>fieldName</i> means the value should match
-     * the value of another field.  Either the user-visible title of the field (field.title) or the field's name (field.name)
-     * may be used. </ul> <P> In all cases, if an operator is disallowed for the field (via {@link
-     * com.smartgwt.client.data.DataSourceField#getValidOperators field.validOperators} at either the dataSource or field
-     * level), the operator character is ignored (treated as part of a literal value). <P> By default, the case-insensitive
-     * version of the operator is used (eg, startsWith will actually use "iStartsWith").  To avoid this, explicitly set
-     * item.operator (the default operator) to any case sensitive operator (eg "equals" or "contains") and case sensitive
-     * operators will be used for user-entered expressions. <P> Compound expressions (including "and" and "or") are allowed
-     * only for numeric or date/time types. <P> To enable this behavior for all fields in a form that allow text entry, see
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#getAllowExpressions allowExpressions}. <P> <P> Note that, like
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator}, enabling
-     * <code>allowExpressions:true</code> causes {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria
-     * form.getValuesAsCriteria()}) to return {@link com.smartgwt.client.data.AdvancedCriteria}.
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator} is used. Also note  that whatever you enter will
+     * be used literally, including any whitespace characters. For  example if you input '== China ' then ' China ' will be the
+     * value. <P> <table style='font-size:14;'> <tr><td><b>Prefix</b></td><td><b>Operator</b></td></tr>
+     * <tr><td>&lt;</td><td>lessThan</td></tr> <tr><td>&gt;</td><td>greaterThan</td></tr>
+     * <tr><td>&lt;=</td><td>lessThanOrEqual</td></tr> <tr><td>&gt;=</td><td>greaterThanOrEqual</td></tr>
+     * <tr><td>someValue...someValue</td><td>betweenInclusive</td></tr> <tr><td>!</td><td>notEqual</td></tr>
+     * <tr><td>^</td><td>startsWith</td></tr> <tr><td>|</td><td>endsWith</td></tr> <tr><td>!^</td><td>notStartsWith plus
+     * logical not</td></tr> <tr><td>!@</td><td>notEndsWith plus logical not</td></tr> <tr><td>~</td><td>contains</td></tr>
+     * <tr><td>!~</td><td>notContains</td></tr> <tr><td>#</td><td>isNull</td></tr> <tr><td>!#</td><td>isNotNull</td></tr>
+     * <tr><td>==</td><td>exact match (for fields where 'contains' is the default)</td></tr> </table> <P> Two further special
+     * notations are allowed: <ul> <li> /<i>regex</i>/ means the value is taken as a regular expression and applied via the
+     * "regexp" operator <li> =.<i>fieldName</i> means the value should match the value of another field.  Either the
+     * user-visible title of the field (field.title) or the field's name (field.name) may be used. </ul> <P> In all cases, if
+     * an operator is disallowed for the field (via {@link com.smartgwt.client.data.DataSourceField#getValidOperators
+     * field.validOperators} at either the dataSource or field level), the operator character is ignored (treated as part of a
+     * literal value). <P> By default, the case-insensitive version of the operator is used (eg, startsWith will actually use
+     * "iStartsWith").  To avoid this, explicitly set item.operator (the default operator) to any case sensitive operator (eg
+     * "equals" or "contains") and case sensitive operators will be used for user-entered expressions. <P> Compound expressions
+     * (including "and" and "or") are allowed only for numeric or date/time types. <P> To enable this behavior for all fields
+     * in a form that allow text entry, see {@link com.smartgwt.client.widgets.form.DynamicForm#getAllowExpressions
+     * allowExpressions}. <P> <P> Note that, like {@link com.smartgwt.client.widgets.form.fields.FormItem#getOperator
+     * operator}, enabling <code>allowExpressions:true</code> causes {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria form.getValuesAsCriteria()}) to return {@link
+     * com.smartgwt.client.data.AdvancedCriteria}.
      *
      *
      * @return Boolean
@@ -491,7 +495,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter.getValue());
+        setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue());
     }
 
     /**
@@ -991,7 +995,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @see com.smartgwt.client.widgets.form.DynamicForm#setItemHoverAlign
      */
     public void setHoverAlign(Alignment hoverAlign) {
-        setAttribute("hoverAlign", hoverAlign.getValue());
+        setAttribute("hoverAlign", hoverAlign == null ? null : hoverAlign.getValue());
     }
 
     /**
@@ -1097,7 +1101,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @see com.smartgwt.client.widgets.form.DynamicForm#setItemHoverVAlign
      */
     public void setHoverVAlign(VerticalAlignment hoverVAlign) {
-        setAttribute("hoverVAlign", hoverVAlign.getValue());
+        setAttribute("hoverVAlign", hoverVAlign == null ? null : hoverVAlign.getValue());
     }
 
     /**
@@ -1179,7 +1183,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @param iconVAlign iconVAlign Default value is "bottom"
      */
     public void setIconVAlign(VerticalAlignment iconVAlign) {
-        setAttribute("iconVAlign", iconVAlign.getValue());
+        setAttribute("iconVAlign", iconVAlign == null ? null : iconVAlign.getValue());
     }
 
     /**
@@ -1432,7 +1436,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
      */
     public void setOperator(OperatorId operator) {
-        setAttribute("operator", operator.getValue());
+        setAttribute("operator", operator == null ? null : operator.getValue());
     }
 
     /**
@@ -1627,7 +1631,10 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * This text is shown as a tooltip prompt when the cursor hovers over this item.
      *
-     * @param prompt prompt Default value is null
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Set the {@link com.smartgwt.client.widgets.form.fields.FormItem#getPrompt prompt} for this item
+     *
+     * @param prompt new prompt for the item.. Default value is null
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public void setPrompt(String prompt) {
@@ -2401,7 +2408,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextAlign(Alignment textAlign) {
-        setAttribute("textAlign", textAlign.getValue());
+        setAttribute("textAlign", textAlign == null ? null : textAlign.getValue());
     }
 
     /**
@@ -2455,7 +2462,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
-        setAttribute("timeFormatter", timeFormatter.getValue());
+        setAttribute("timeFormatter", timeFormatter == null ? null : timeFormatter.getValue());
     }
 
     /**
@@ -2501,7 +2508,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @param titleAlign titleAlign Default value is null
      */
     public void setTitleAlign(Alignment titleAlign) {
-        setAttribute("titleAlign", titleAlign.getValue());
+        setAttribute("titleAlign", titleAlign == null ? null : titleAlign.getValue());
     }
 
     /**
@@ -2546,7 +2553,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @see com.smartgwt.client.widgets.form.DynamicForm#setTitleOrientation
      */
     public void setTitleOrientation(TitleOrientation titleOrientation) {
-        setAttribute("titleOrientation", titleOrientation.getValue());
+        setAttribute("titleOrientation", titleOrientation == null ? null : titleOrientation.getValue());
     }
 
     /**
@@ -2593,7 +2600,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @param titleVAlign titleVAlign Default value is Canvas.CENTER
      */
     public void setTitleVAlign(VerticalAlignment titleVAlign) {
-        setAttribute("titleVAlign", titleVAlign.getValue());
+        setAttribute("titleVAlign", titleVAlign == null ? null : titleVAlign.getValue());
     }
 
     /**
@@ -2707,6 +2714,33 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      */
     public OperatorId[] getValidOperators()  {
         return (OperatorId[]) EnumUtil.getEnums(OperatorId.values(), getAttributeAsStringArray("validOperators"));
+    }
+
+    /**
+     * Vertical alignment of this item within its cell. Note that this will have no user-visible effect unless the row in which
+     * this item is rendered is taller than the height of the actual item, either due to another item in the row forcing it to
+     * expand or due to  an explicit {@link com.smartgwt.client.widgets.form.fields.FormItem#getCellHeight cellHeight} having
+     * been set. Has no effect if {@link com.smartgwt.client.widgets.form.DynamicForm#getItemLayout itemLayout} is set to
+     * <code>"absolute"</code> for the form.
+     *
+     * @param vAlign vAlign Default value is Canvas.CENTER
+     */
+    public void setVAlign(VerticalAlignment vAlign) {
+        setAttribute("vAlign", vAlign == null ? null : vAlign.getValue());
+    }
+
+    /**
+     * Vertical alignment of this item within its cell. Note that this will have no user-visible effect unless the row in which
+     * this item is rendered is taller than the height of the actual item, either due to another item in the row forcing it to
+     * expand or due to  an explicit {@link com.smartgwt.client.widgets.form.fields.FormItem#getCellHeight cellHeight} having
+     * been set. Has no effect if {@link com.smartgwt.client.widgets.form.DynamicForm#getItemLayout itemLayout} is set to
+     * <code>"absolute"</code> for the form.
+     *
+     *
+     * @return VerticalAlignment
+     */
+    public VerticalAlignment getVAlign()  {
+        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("vAlign"));
     }
 
     /**
@@ -3200,11 +3234,13 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }-*/;
             
     /**
-     * Returns the {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} for this form item. If
-     * unset, and {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is explicitly
-     * specified, this method will return the title field for the <code>optionDataSource</code>
+     * Returns the <code>displayField</code> for this item. This will typically be specified explicitly via the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} attribute. However, if  that property is
+     * unset, and the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} for this item is 
+     * hidden in the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, this method
+     * will return the title field for the <code>optionDataSource</code>.
      *
-     * @return display field name, or null
+     * @return display field name, or null if there is no separate display field to use.
      */
     public native String getDisplayFieldName() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
@@ -3430,6 +3466,24 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public native Boolean isDrawn() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var retVal =self.isDrawn();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+            
+    /**
+     * Return true if the form item is currently visible. Note that like the similar {@link
+     * com.smartgwt.client.widgets.Canvas#isVisible Canvas API}, it indicates visibility settings only and so will return true
+     * for an item that is not drawn.
+     *
+     * @return true if the form item is visible
+     * @see com.smartgwt.client.docs.Visibility Visibility overview and related methods
+     */
+    public native Boolean isVisible() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.isVisible();
         if(retVal == null || retVal === undefined) {
             return null;
         } else {

@@ -205,7 +205,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
      * @param navigationMode navigationMode Default value is "wholeRecord"
      */
     public void setNavigationMode(NavigationMode navigationMode) {
-        setAttribute("navigationMode", navigationMode.getValue(), true);
+        setAttribute("navigationMode", navigationMode == null ? null : navigationMode.getValue(), true);
     }
 
     /**
@@ -284,7 +284,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
      * @param recordLayout recordLayout Default value is "titleOnly"
      */
     public void setRecordLayout(RecordLayout recordLayout) {
-        setAttribute("recordLayout", recordLayout.getValue(), true);
+        setAttribute("recordLayout", recordLayout == null ? null : recordLayout.getValue(), true);
     }
 
     /**
@@ -390,7 +390,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
      * @param tableMode tableMode Default value is "plain"
      */
     public void setTableMode(TableMode tableMode) {
-        setAttribute("tableMode", tableMode.getValue(), true);
+        setAttribute("tableMode", tableMode == null ? null : tableMode.getValue(), true);
     }
 
     /**

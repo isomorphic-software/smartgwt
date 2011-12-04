@@ -97,6 +97,27 @@ public class MiniDateRangeItem extends StaticTextItem {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * Mini DateRangeItems are marked as canFocus:true, and set up with properties such that focus will always go to the icon
+     * to launch the dateRange dialog. Set canFocus to false to  suppress this behavior.
+     *
+     * @param canFocus canFocus Default value is true
+     */
+    public void setCanFocus(Boolean canFocus) {
+        setAttribute("canFocus", canFocus);
+    }
+
+    /**
+     * Mini DateRangeItems are marked as canFocus:true, and set up with properties such that focus will always go to the icon
+     * to launch the dateRange dialog. Set canFocus to false to  suppress this behavior.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanFocus()  {
+        return getAttributeAsBoolean("canFocus");
+    }
+
+    /**
      * Format for displaying dates in to the user.   <P> If this attribute is unset, the display value is formatted
      * intelligently according to the dates involved.  For example, if both dates appear in the same month, the value will be 
      * formatted as <code>Month date1 - date2, Year</code> and, if in different months of the same year, <code>Month1 date1 -
@@ -105,7 +126,7 @@ public class MiniDateRangeItem extends StaticTextItem {
      * @param dateDisplayFormat dateDisplayFormat Default value is null
      */
     public void setDateDisplayFormat(DateDisplayFormat dateDisplayFormat) {
-        setAttribute("dateDisplayFormat", dateDisplayFormat.getValue());
+        setAttribute("dateDisplayFormat", dateDisplayFormat == null ? null : dateDisplayFormat.getValue());
     }
 
     /**

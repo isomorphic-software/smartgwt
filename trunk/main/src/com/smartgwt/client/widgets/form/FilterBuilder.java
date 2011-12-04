@@ -63,7 +63,9 @@ import com.google.gwt.event.shared.HasHandlers;
  * and sub-clauses using "AND" and "OR" operators. <P> A FilterBuilder produces an {@link
  * com.smartgwt.client.data.AdvancedCriteria} object, which the {@link com.smartgwt.client.data.DataSource} subsystem can
  * use to filter datasets, including the ability to perform such filtering within the browser for datasets that are
- * completely loaded.
+ * completely loaded. <P> The operators available for each field can be customized at the DataSource level via {@link
+ * com.smartgwt.client.data.DataSourceField#getValidOperators validOperators}, {@link
+ * com.smartgwt.client.data.DataSource#setTypeOperators DataSource.setTypeOperators} and related APIs.
  */
 public class FilterBuilder extends Layout  implements com.smartgwt.client.widgets.form.events.HasFilterChangedHandlers, com.smartgwt.client.widgets.form.events.HasSearchHandlers {
 
@@ -198,6 +200,26 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      */
     public FormItem getFieldPickerProperties()  {
         return FormItem.getOrCreateRef(getAttributeAsJavaScriptObject("fieldPickerProperties"));
+    }
+
+    /**
+     * The title for the {@link com.smartgwt.client.widgets.form.FilterBuilder#getFieldPicker field-picker} select-item.
+     *
+     * @param fieldPickerTitle fieldPickerTitle Default value is "Field Name"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setFieldPickerTitle(String fieldPickerTitle)  throws IllegalStateException {
+        setAttribute("fieldPickerTitle", fieldPickerTitle, false);
+    }
+
+    /**
+     * The title for the {@link com.smartgwt.client.widgets.form.FilterBuilder#getFieldPicker field-picker} select-item.
+     *
+     *
+     * @return String
+     */
+    public String getFieldPickerTitle()  {
+        return getAttributeAsString("fieldPickerTitle");
     }
 
     /**
@@ -338,6 +360,48 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      */
     public String getMissingFieldPrompt()  {
         return getAttributeAsString("missingFieldPrompt");
+    }
+
+    /**
+     * The title for the operator-picker select-item.
+     *
+     * @param operatorPickerTitle operatorPickerTitle Default value is "Operator"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setOperatorPickerTitle(String operatorPickerTitle)  throws IllegalStateException {
+        setAttribute("operatorPickerTitle", operatorPickerTitle, false);
+    }
+
+    /**
+     * The title for the operator-picker select-item.
+     *
+     *
+     * @return String
+     */
+    public String getOperatorPickerTitle()  {
+        return getAttributeAsString("operatorPickerTitle");
+    }
+
+    /**
+     * The title for the Operator RadioGroupItem displayed in the {@link
+     * com.smartgwt.client.widgets.form.FilterBuilder#getRadioOperatorForm radioOperatorForm}.
+     *
+     * @param radioOperatorTitle radioOperatorTitle Default value is "Overall Operator"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setRadioOperatorTitle(String radioOperatorTitle)  throws IllegalStateException {
+        setAttribute("radioOperatorTitle", radioOperatorTitle, false);
+    }
+
+    /**
+     * The title for the Operator RadioGroupItem displayed in the {@link
+     * com.smartgwt.client.widgets.form.FilterBuilder#getRadioOperatorForm radioOperatorForm}.
+     *
+     *
+     * @return String
+     */
+    public String getRadioOperatorTitle()  {
+        return getAttributeAsString("radioOperatorTitle");
     }
 
     /**
@@ -490,9 +554,10 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
-     * If true, causes a CheckboxItem to appear to the left of each clause in "inline"   appearance.  This checkbox allows the
-     * user to select  individual clauses so that, for example, clauses can be removed from the filterBuilder  by application
-     * code.  This property is ignored for appearances other than "inline".
+     * If true, causes a CheckboxItem to appear to the left of each clause in "inline"  {@link
+     * com.smartgwt.client.types.TopOperatorAppearance appearance}.  This checkbox allows the user to select  individual
+     * clauses so that, for example, clauses can be removed from the filterBuilder  by application code.  This property is
+     * ignored for appearances other than "inline".
      *
      * @param showSelectionCheckbox showSelectionCheckbox Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -502,9 +567,10 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
-     * If true, causes a CheckboxItem to appear to the left of each clause in "inline"   appearance.  This checkbox allows the
-     * user to select  individual clauses so that, for example, clauses can be removed from the filterBuilder  by application
-     * code.  This property is ignored for appearances other than "inline".
+     * If true, causes a CheckboxItem to appear to the left of each clause in "inline"  {@link
+     * com.smartgwt.client.types.TopOperatorAppearance appearance}.  This checkbox allows the user to select  individual
+     * clauses so that, for example, clauses can be removed from the filterBuilder  by application code.  This property is
+     * ignored for appearances other than "inline".
      *
      *
      * @return Boolean
@@ -514,8 +580,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
-     * Whether to show a button that allows the user to add subclauses.  Defaults to false if  the TopOperatorAppearance is
-     * "radio" or "inline", true in all other cases.
+     * Whether to show a button that allows the user to add subclauses.  Defaults to false if  the {@link
+     * com.smartgwt.client.types.TopOperatorAppearance} is "radio" or "inline", true in all other cases.
      *
      * @param showSubClauseButton showSubClauseButton Default value is See Description
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -525,8 +591,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
-     * Whether to show a button that allows the user to add subclauses.  Defaults to false if  the TopOperatorAppearance is
-     * "radio" or "inline", true in all other cases.
+     * Whether to show a button that allows the user to add subclauses.  Defaults to false if  the {@link
+     * com.smartgwt.client.types.TopOperatorAppearance} is "radio" or "inline", true in all other cases.
      *
      *
      * @return Boolean
@@ -577,7 +643,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
 
     /**
      * Default logical operator for all top-level clauses in the FilterBuilder. <P> May be able to be changed by the user via
-     * the UI, according to TopOperatorAppearance.
+     * the UI, according to {@link com.smartgwt.client.types.TopOperatorAppearance}.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Programmatically change the {@link com.smartgwt.client.widgets.form.FilterBuilder#getTopOperator topOperator} for this FilterBuilder.
@@ -585,18 +651,40 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * @param topOperator new top-level operator. Default value is "and"
      */
     public void setTopOperator(LogicalOperator topOperator) {
-        setAttribute("topOperator", topOperator.getValue(), true);
+        setAttribute("topOperator", topOperator == null ? null : topOperator.getValue(), true);
     }
 
     /**
      * Default logical operator for all top-level clauses in the FilterBuilder. <P> May be able to be changed by the user via
-     * the UI, according to TopOperatorAppearance.
+     * the UI, according to {@link com.smartgwt.client.types.TopOperatorAppearance}.
      *
      *
      * @return LogicalOperator
      */
     public LogicalOperator getTopOperator()  {
         return EnumUtil.getEnum(LogicalOperator.values(), getAttribute("topOperator"));
+    }
+
+    /**
+     * The title for the left-aligned Operator selectItem in the {@link
+     * com.smartgwt.client.widgets.form.FilterBuilder#getTopOperatorForm topOperatorForm}.
+     *
+     * @param topOperatorTitle topOperatorTitle Default value is "Clause Operator"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTopOperatorTitle(String topOperatorTitle)  throws IllegalStateException {
+        setAttribute("topOperatorTitle", topOperatorTitle, false);
+    }
+
+    /**
+     * The title for the left-aligned Operator selectItem in the {@link
+     * com.smartgwt.client.widgets.form.FilterBuilder#getTopOperatorForm topOperatorForm}.
+     *
+     *
+     * @return String
+     */
+    public String getTopOperatorTitle()  {
+        return getAttributeAsString("topOperatorTitle");
     }
 
     /**
@@ -698,14 +786,14 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * otherwise,  use {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem} for before/after/between operators on
      * date fields, otherwise,  use the same editor as would be chosen by a {@link
      * com.smartgwt.client.widgets.form.SearchForm}.
-     * @param fieldName DataSourceField definition
+     * @param field DataSourceField definition
      * @param operatorId {@link com.smartgwt.client.types.OperatorId} for the chosen operator
      *
      * @return Smart GWT class to use (must be subclass of FormItem)
      */
-    public native String getEditorType(DataSourceField fieldName, OperatorId operatorId) /*-{
+    public native String getEditorType(DataSourceField field, OperatorId operatorId) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getEditorType(fieldName.@com.smartgwt.client.core.DataClass::getJsObj()(), operatorId.@com.smartgwt.client.types.OperatorId::getValue()());
+        return self.getEditorType(field.@com.smartgwt.client.core.DataClass::getJsObj()(), operatorId.@com.smartgwt.client.types.OperatorId::getValue()());
     }-*/;
     /**
      * Add a search handler.
@@ -867,18 +955,27 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
-     * Initial criteria. <P> When initialized with criteria, appropriate clauses for editing the provided criteria will
-     * be automatically generated. <P> Note that empty or partial criteria are allowed, for example, criteria that
-     * specify {@link com.smartgwt.client.data.Criterion#getFieldName fieldName} only will generate an expression with the
-     * operator not chosen yet, and a ${isc.DocUtils.linkForRef('object:Criterion')} with a logical operator ("and" or
-     * "or") but not ${isc.DocUtils.linkForRef('criteria.criteria','subcriteria')} defined will generate an empty
-     * subclause.
+     * Get the edited criteria entered by the user.
      *
      * @return Get the criteria entered by the user.
      */
     public native AdvancedCriteria getCriteria() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var critJS = self.getCriteria();
+        return @com.smartgwt.client.data.AdvancedCriteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(critJS);
+    }-*/;
+    
+    /**
+     * Get the edited criteria entered by the user.
+     *
+     * @param By default if a user has selected a field and operator type, but has failed to enter a value for 
+     *          the field it will be skipped. This optional parameter allows you to retrieve all criteria, 
+     *          including those with an empty value attribute.
+     * @return Get the criteria entered by the user.
+     */
+    public native AdvancedCriteria getCriteria(boolean includeEmptyValues) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var critJS = self.getCriteria(includeEmptyValues);
         return @com.smartgwt.client.data.AdvancedCriteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(critJS);
     }-*/;
     
@@ -956,9 +1053,6 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }-*/;
 
 }
-
-
-
 
 
 

@@ -61,7 +61,7 @@ import com.google.gwt.event.shared.HasHandlers;
 /**
  * Canvas is the base abstraction for cross-browser DHTML drawing.  All DHTML widgets inherit from the Canvas class.
  */
-public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.events.HasDropHandlers, com.smartgwt.client.widgets.events.HasResizedHandlers, com.smartgwt.client.widgets.events.HasClickHandlers, com.smartgwt.client.widgets.events.HasDoubleClickHandlers, com.smartgwt.client.widgets.events.HasDragMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStartHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStopHandlers, com.smartgwt.client.widgets.events.HasDragResizeMoveHandlers, com.smartgwt.client.widgets.events.HasDragResizeStartHandlers, com.smartgwt.client.widgets.events.HasDragResizeStopHandlers, com.smartgwt.client.widgets.events.HasDragStartHandlers, com.smartgwt.client.widgets.events.HasDragStopHandlers, com.smartgwt.client.widgets.events.HasDropMoveHandlers, com.smartgwt.client.widgets.events.HasDropOutHandlers, com.smartgwt.client.widgets.events.HasDropOverHandlers, com.smartgwt.client.widgets.events.HasMouseDownHandlers, com.smartgwt.client.widgets.events.HasMouseMoveHandlers, com.smartgwt.client.widgets.events.HasMouseOutHandlers, com.smartgwt.client.widgets.events.HasMouseOverHandlers, com.smartgwt.client.widgets.events.HasMouseStillDownHandlers, com.smartgwt.client.widgets.events.HasMouseUpHandlers, com.smartgwt.client.widgets.events.HasMouseWheelHandlers, com.smartgwt.client.widgets.events.HasKeyPressHandlers, com.smartgwt.client.widgets.events.HasKeyDownHandlers, com.smartgwt.client.widgets.events.HasRightMouseDownHandlers, com.smartgwt.client.widgets.events.HasHoverHandlers, com.smartgwt.client.widgets.events.HasHoverHiddenHandlers, com.smartgwt.client.widgets.events.HasScrolledHandlers, com.smartgwt.client.widgets.events.HasMovedHandlers, com.smartgwt.client.widgets.events.HasParentMovedHandlers, com.smartgwt.client.widgets.events.HasFocusChangedHandlers, com.smartgwt.client.widgets.events.HasShowContextMenuHandlers, com.smartgwt.client.widgets.events.HasVisibilityChangedHandlers {
+public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.events.HasDropHandlers, com.smartgwt.client.widgets.events.HasResizedHandlers, com.smartgwt.client.widgets.events.HasClickHandlers, com.smartgwt.client.widgets.events.HasDoubleClickHandlers, com.smartgwt.client.widgets.events.HasDragMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStartHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStopHandlers, com.smartgwt.client.widgets.events.HasDragResizeMoveHandlers, com.smartgwt.client.widgets.events.HasDragResizeStartHandlers, com.smartgwt.client.widgets.events.HasDragResizeStopHandlers, com.smartgwt.client.widgets.events.HasDragStartHandlers, com.smartgwt.client.widgets.events.HasDragStopHandlers, com.smartgwt.client.widgets.events.HasDropMoveHandlers, com.smartgwt.client.widgets.events.HasDropOutHandlers, com.smartgwt.client.widgets.events.HasDropOverHandlers, com.smartgwt.client.widgets.events.HasMouseDownHandlers, com.smartgwt.client.widgets.events.HasMouseUpHandlers, com.smartgwt.client.widgets.events.HasMouseMoveHandlers, com.smartgwt.client.widgets.events.HasMouseOutHandlers, com.smartgwt.client.widgets.events.HasMouseOverHandlers, com.smartgwt.client.widgets.events.HasMouseStillDownHandlers, com.smartgwt.client.widgets.events.HasMouseWheelHandlers, com.smartgwt.client.widgets.events.HasKeyPressHandlers, com.smartgwt.client.widgets.events.HasKeyDownHandlers, com.smartgwt.client.widgets.events.HasRightMouseDownHandlers, com.smartgwt.client.widgets.events.HasHoverHandlers, com.smartgwt.client.widgets.events.HasHoverHiddenHandlers, com.smartgwt.client.widgets.events.HasScrolledHandlers, com.smartgwt.client.widgets.events.HasMovedHandlers, com.smartgwt.client.widgets.events.HasParentMovedHandlers, com.smartgwt.client.widgets.events.HasFocusChangedHandlers, com.smartgwt.client.widgets.events.HasShowContextMenuHandlers, com.smartgwt.client.widgets.events.HasVisibilityChangedHandlers {
 
     public static Canvas getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -133,7 +133,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param animateAcceleration animateAcceleration Default value is "smoothEnd"
      */
     public void setAnimateAcceleration(AnimationAcceleration animateAcceleration) {
-        setAttribute("animateAcceleration", animateAcceleration.getValue(), true);
+        setAttribute("animateAcceleration", animateAcceleration == null ? null : animateAcceleration.getValue(), true);
     }
 
     /**
@@ -176,7 +176,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param animateHideAcceleration animateHideAcceleration Default value is null
      */
     public void setAnimateHideAcceleration(AnimationAcceleration animateHideAcceleration) {
-        setAttribute("animateHideAcceleration", animateHideAcceleration.getValue(), true);
+        setAttribute("animateHideAcceleration", animateHideAcceleration == null ? null : animateHideAcceleration.getValue(), true);
     }
 
     /**
@@ -218,7 +218,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param animateMoveAcceleration animateMoveAcceleration Default value is null
      */
     public void setAnimateMoveAcceleration(AnimationAcceleration animateMoveAcceleration) {
-        setAttribute("animateMoveAcceleration", animateMoveAcceleration.getValue(), true);
+        setAttribute("animateMoveAcceleration", animateMoveAcceleration == null ? null : animateMoveAcceleration.getValue(), true);
     }
 
     /**
@@ -260,7 +260,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param animateRectAcceleration animateRectAcceleration Default value is null
      */
     public void setAnimateRectAcceleration(AnimationAcceleration animateRectAcceleration) {
-        setAttribute("animateRectAcceleration", animateRectAcceleration.getValue(), true);
+        setAttribute("animateRectAcceleration", animateRectAcceleration == null ? null : animateRectAcceleration.getValue(), true);
     }
 
     /**
@@ -304,7 +304,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param animateResizeAcceleration animateResizeAcceleration Default value is null
      */
     public void setAnimateResizeAcceleration(AnimationAcceleration animateResizeAcceleration) {
-        setAttribute("animateResizeAcceleration", animateResizeAcceleration.getValue(), true);
+        setAttribute("animateResizeAcceleration", animateResizeAcceleration == null ? null : animateResizeAcceleration.getValue(), true);
     }
 
     /**
@@ -346,7 +346,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param animateScrollAcceleration animateScrollAcceleration Default value is null
      */
     public void setAnimateScrollAcceleration(AnimationAcceleration animateScrollAcceleration) {
-        setAttribute("animateScrollAcceleration", animateScrollAcceleration.getValue(), true);
+        setAttribute("animateScrollAcceleration", animateScrollAcceleration == null ? null : animateScrollAcceleration.getValue(), true);
     }
 
     /**
@@ -388,7 +388,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param animateShowAcceleration animateShowAcceleration Default value is null
      */
     public void setAnimateShowAcceleration(AnimationAcceleration animateShowAcceleration) {
-        setAttribute("animateShowAcceleration", animateShowAcceleration.getValue(), true);
+        setAttribute("animateShowAcceleration", animateShowAcceleration == null ? null : animateShowAcceleration.getValue(), true);
     }
 
     /**
@@ -488,6 +488,98 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      */
     public String getAriaRole()  {
         return getAttributeAsString("ariaRole");
+    }
+
+    /**
+     * If true, this canvas will draw itself immediately after it is created.
+     *  <P>
+     *  <b>Note</b> that you should turn this OFF for any canvases that are provided as children
+     *  of other canvases, or they will draw initially, then be clear()ed and drawn again when
+     *  added as children, causing a large performance penalty.  
+     *  <P>
+     *  For example, the following code is incorrect and will cause extra draw()s:
+     *  <P>
+     *  <pre>
+     *      isc.Layout.create({
+     *          members : [
+     *              isc.ListGrid.create()
+     *          ]
+     *      });
+     *  </pre>
+     *  It should instead be:
+     *  <pre>
+     *      isc.Layout.create({
+     *          members : [
+     *              isc.ListGrid.create(<b>{ autoDraw: false }</b>)
+     *          ]
+     *      });
+     *  </pre>
+     *  In order to avoid unwanted autoDrawing systematically, it is recommend that you call
+     *  {@link com.smartgwt.client.util.isc#setAutoDraw isc.setAutoDraw(false)} immediately after Smart GWT is loaded
+     *  and before any components are created, then set <code>autoDraw:true</code> or call
+     *  draw() explicitly to draw components.  
+     *  <P>
+     *  Otherwise, if the global setting for autoDraw remains <code>true</code>, you must set
+     *  autoDraw:false, as shown above, on every component in your application that 
+     *  should not immediately draw: all Canvas children, Layout members, Window items, Tab
+     *  panes, etc, however deeply nested.  Forgetting to set autoDraw:false will result in one
+     *  more clear()s - these are reported on the Results tab of the 
+     *  {@link com.smartgwt.client.docs.Debugging Developer Console}, and can be tracked to individual components by
+     *  using the "clears" log category in the Developer Console.
+     *
+     * @param autoDraw autoDraw Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Drawing Drawing overview and related methods
+     * 
+     */
+    public void setAutoDraw(Boolean autoDraw)  throws IllegalStateException {
+        setAttribute("autoDraw", autoDraw, false);
+    }
+
+    /**
+     * If true, this canvas will draw itself immediately after it is created.
+     *  <P>
+     *  <b>Note</b> that you should turn this OFF for any canvases that are provided as children
+     *  of other canvases, or they will draw initially, then be clear()ed and drawn again when
+     *  added as children, causing a large performance penalty.  
+     *  <P>
+     *  For example, the following code is incorrect and will cause extra draw()s:
+     *  <P>
+     *  <pre>
+     *      isc.Layout.create({
+     *          members : [
+     *              isc.ListGrid.create()
+     *          ]
+     *      });
+     *  </pre>
+     *  It should instead be:
+     *  <pre>
+     *      isc.Layout.create({
+     *          members : [
+     *              isc.ListGrid.create(<b>{ autoDraw: false }</b>)
+     *          ]
+     *      });
+     *  </pre>
+     *  In order to avoid unwanted autoDrawing systematically, it is recommend that you call
+     *  {@link com.smartgwt.client.util.isc#setAutoDraw isc.setAutoDraw(false)} immediately after Smart GWT is loaded
+     *  and before any components are created, then set <code>autoDraw:true</code> or call
+     *  draw() explicitly to draw components.  
+     *  <P>
+     *  Otherwise, if the global setting for autoDraw remains <code>true</code>, you must set
+     *  autoDraw:false, as shown above, on every component in your application that 
+     *  should not immediately draw: all Canvas children, Layout members, Window items, Tab
+     *  panes, etc, however deeply nested.  Forgetting to set autoDraw:false will result in one
+     *  more clear()s - these are reported on the Results tab of the 
+     *  {@link com.smartgwt.client.docs.Debugging Developer Console}, and can be tracked to individual components by
+     *  using the "clears" log category in the Developer Console.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Drawing Drawing overview and related methods
+     * 
+     */
+    public Boolean getAutoDraw()  {
+        return getAttributeAsBoolean("autoDraw");
     }
 
     /**
@@ -597,7 +689,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setBackgroundRepeat(BkgndRepeat backgroundRepeat)  throws IllegalStateException {
-        setAttribute("backgroundRepeat", backgroundRepeat.getValue(), false);
+        setAttribute("backgroundRepeat", backgroundRepeat == null ? null : backgroundRepeat.getValue(), false);
     }
 
     /**
@@ -1035,7 +1127,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_cursors" target="examples">Cursors Example</a>
      */
     public void setCursor(Cursor cursor) {
-        setAttribute("cursor", cursor.getValue(), true);
+        setAttribute("cursor", cursor == null ? null : cursor.getValue(), true);
     }
 
     /**
@@ -1396,7 +1488,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.docs.Cues Cues overview and related methods
      */
     public void setDisabledCursor(Cursor disabledCursor) {
-        setAttribute("disabledCursor", disabledCursor.getValue(), true);
+        setAttribute("disabledCursor", disabledCursor == null ? null : disabledCursor.getValue(), true);
     }
 
     /**
@@ -1432,18 +1524,22 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * Visual appearance to show when the object is being dragged.
+     * Visual appearance to show when the object is being dragged. May be overridden for dragResize or dragReposition events
+     * via {@link com.smartgwt.client.widgets.Canvas#getDragResizeAppearance dragResizeAppearance}  and {@link
+     * com.smartgwt.client.widgets.Canvas#getDragRepositionAppearance dragRepositionAppearance}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dragAppearance dragAppearance Default value is EventHandler.OUTLINE
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public void setDragAppearance(DragAppearance dragAppearance) {
-        setAttribute("dragAppearance", dragAppearance.getValue(), true);
+        setAttribute("dragAppearance", dragAppearance == null ? null : dragAppearance.getValue(), true);
     }
 
     /**
-     * Visual appearance to show when the object is being dragged.
+     * Visual appearance to show when the object is being dragged. May be overridden for dragResize or dragReposition events
+     * via {@link com.smartgwt.client.widgets.Canvas#getDragResizeAppearance dragResizeAppearance}  and {@link
+     * com.smartgwt.client.widgets.Canvas#getDragRepositionAppearance dragRepositionAppearance}.
      *
      *
      * @return DragAppearance
@@ -1462,7 +1558,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public void setDragIntersectStyle(DragIntersectStyle dragIntersectStyle) {
-        setAttribute("dragIntersectStyle", dragIntersectStyle.getValue(), true);
+        setAttribute("dragIntersectStyle", dragIntersectStyle == null ? null : dragIntersectStyle.getValue(), true);
     }
 
     /**
@@ -1504,6 +1600,32 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
+     * If {@link com.smartgwt.client.widgets.Canvas#getCanDragReposition canDragReposition} is true, this attributes specifies
+     * the visual appearance  to show during drag reposition. If unset {@link
+     * com.smartgwt.client.widgets.Canvas#getDragAppearance dragAppearance} will be used.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param dragRepositionAppearance dragRepositionAppearance Default value is null
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     */
+    public void setDragRepositionAppearance(DragAppearance dragRepositionAppearance) {
+        setAttribute("dragRepositionAppearance", dragRepositionAppearance == null ? null : dragRepositionAppearance.getValue(), true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Canvas#getCanDragReposition canDragReposition} is true, this attributes specifies
+     * the visual appearance  to show during drag reposition. If unset {@link
+     * com.smartgwt.client.widgets.Canvas#getDragAppearance dragAppearance} will be used.
+     *
+     *
+     * @return DragAppearance
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     */
+    public DragAppearance getDragRepositionAppearance()  {
+        return EnumUtil.getEnum(DragAppearance.values(), getAttribute("dragRepositionAppearance"));
+    }
+
+    /**
      * Cursor to switch to if the mouse is over a widget that is drag repositionable.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -1511,7 +1633,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public void setDragRepositionCursor(Cursor dragRepositionCursor) {
-        setAttribute("dragRepositionCursor", dragRepositionCursor.getValue(), true);
+        setAttribute("dragRepositionCursor", dragRepositionCursor == null ? null : dragRepositionCursor.getValue(), true);
     }
 
     /**
@@ -1523,6 +1645,32 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      */
     public Cursor getDragRepositionCursor()  {
         return EnumUtil.getEnum(Cursor.values(), getAttribute("dragRepositionCursor"));
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Canvas#getCanDragResize canDragResize} is true, this attributes specifies the
+     * visual appearance  to show during drag resize. If unset {@link com.smartgwt.client.widgets.Canvas#getDragAppearance
+     * dragAppearance} will be used.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param dragResizeAppearance dragResizeAppearance Default value is null
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     */
+    public void setDragResizeAppearance(DragAppearance dragResizeAppearance) {
+        setAttribute("dragResizeAppearance", dragResizeAppearance == null ? null : dragResizeAppearance.getValue(), true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Canvas#getCanDragResize canDragResize} is true, this attributes specifies the
+     * visual appearance  to show during drag resize. If unset {@link com.smartgwt.client.widgets.Canvas#getDragAppearance
+     * dragAppearance} will be used.
+     *
+     *
+     * @return DragAppearance
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     */
+    public DragAppearance getDragResizeAppearance()  {
+        return EnumUtil.getEnum(DragAppearance.values(), getAttribute("dragResizeAppearance"));
     }
 
     /**
@@ -1936,7 +2084,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.widgets.Canvas#setShowHover
      */
     public void setHoverAlign(Alignment hoverAlign) {
-        setAttribute("hoverAlign", hoverAlign.getValue(), true);
+        setAttribute("hoverAlign", hoverAlign == null ? null : hoverAlign.getValue(), true);
     }
 
     /**
@@ -2099,7 +2247,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.widgets.Canvas#setShowHover
      */
     public void setHoverVAlign(VerticalAlignment hoverVAlign) {
-        setAttribute("hoverVAlign", hoverVAlign.getValue(), true);
+        setAttribute("hoverVAlign", hoverVAlign == null ? null : hoverVAlign.getValue(), true);
     }
 
     /**
@@ -2174,7 +2322,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
     public void setHtmlPosition(DrawPosition htmlPosition) {
-        setAttribute("htmlPosition", htmlPosition.getValue(), true);
+        setAttribute("htmlPosition", htmlPosition == null ? null : htmlPosition.getValue(), true);
     }
 
     /**
@@ -2196,7 +2344,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param locateChildrenBy locateChildrenBy Default value is null
      */
     public void setLocateChildrenBy(LocatorStrategy locateChildrenBy) {
-        setAttribute("locateChildrenBy", locateChildrenBy.getValue(), true);
+        setAttribute("locateChildrenBy", locateChildrenBy == null ? null : locateChildrenBy.getValue(), true);
     }
 
     /**
@@ -2216,7 +2364,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param locateChildrenType locateChildrenType Default value is null
      */
     public void setLocateChildrenType(LocatorTypeStrategy locateChildrenType) {
-        setAttribute("locateChildrenType", locateChildrenType.getValue(), true);
+        setAttribute("locateChildrenType", locateChildrenType == null ? null : locateChildrenType.getValue(), true);
     }
 
     /**
@@ -2236,7 +2384,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param locatePeersBy locatePeersBy Default value is null
      */
     public void setLocatePeersBy(LocatorStrategy locatePeersBy) {
-        setAttribute("locatePeersBy", locatePeersBy.getValue(), true);
+        setAttribute("locatePeersBy", locatePeersBy == null ? null : locatePeersBy.getValue(), true);
     }
 
     /**
@@ -2256,7 +2404,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param locatePeersType locatePeersType Default value is null
      */
     public void setLocatePeersType(LocatorTypeStrategy locatePeersType) {
-        setAttribute("locatePeersType", locatePeersType.getValue(), true);
+        setAttribute("locatePeersType", locatePeersType == null ? null : locatePeersType.getValue(), true);
     }
 
     /**
@@ -2540,7 +2688,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public void setOverflow(Overflow overflow) {
-        setAttribute("overflow", overflow.getValue(), true);
+        setAttribute("overflow", overflow == null ? null : overflow.getValue(), true);
     }
 
     /**
@@ -2607,7 +2755,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public void setPercentBox(PercentBoxModel percentBox)  throws IllegalStateException {
-        setAttribute("percentBox", percentBox.getValue(), false);
+        setAttribute("percentBox", percentBox == null ? null : percentBox.getValue(), false);
     }
 
     /**
@@ -2671,7 +2819,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * 
      */
     public void setPosition(Positioning position) {
-        setAttribute("position", position.getValue(), true);
+        setAttribute("position", position == null ? null : position.getValue(), true);
     }
 
     /**
@@ -3696,7 +3844,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setVisibility(Visibility visibility) {
-        setAttribute("visibility", visibility.getValue(), true);
+        setAttribute("visibility", visibility == null ? null : visibility.getValue(), true);
     }
 
     /**
@@ -4111,7 +4259,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * <p>
      * Executed every time the mouse moves while drag-repositioning. If this method does not Call {@link com.smartgwt.client.widgets.events.DragRepositionMoveEvent#cancel()} from within {@link DragRepositionMoveHandler#onDragRepositionMove}, the {@link
      * com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} (or outline if {@link
-     * com.smartgwt.client.widgets.Canvas#getDragAppearance dragAppearance} is set to "outline" will automatically be moved as
+     * com.smartgwt.client.widgets.Canvas#getDragAppearance dragAppearance} is set to "outline") will automatically be moved as
      * appropriate whenever the mouse moves.
      *
      * @param handler the dragRepositionMove handler
@@ -4230,7 +4378,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * <p>
      * Executed every time the mouse moves while drag-resizing. If this method does not Call {@link com.smartgwt.client.widgets.events.DragResizeMoveEvent#cancel()} from within {@link DragResizeMoveHandler#onDragResizeMove}, the {@link
      * com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} (or outline if {@link
-     * com.smartgwt.client.widgets.Canvas#getDragAppearance dragAppearance} is set to "outline" will automatically be moved as
+     * com.smartgwt.client.widgets.Canvas#getDragAppearance dragAppearance} is set to "outline") will automatically be moved as
      * appropriate whenever the mouse moves.
      *
      * @param handler the dragResizeMove handler
@@ -6262,6 +6410,21 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             return obj;
         }
     }-*/;
+
+    protected void onDetach() {
+        super.onDetach();
+        //when a SmartGWT widget is removed from a parent GWT widget container, make sure we carry out proper cleanup
+        clear();
+    }
+
+
+    protected void onAttach() {
+        super.onAttach();
+        //upon attach to a GWT container, draw the SmartGWT widget if it has not been previously drawn
+        if(!isDrawn()) {
+            draw();
+        }
+    }
 
     /**
      * Multiple styles are currently not supported. This method essentially calls {@link #setStyleName(String)}

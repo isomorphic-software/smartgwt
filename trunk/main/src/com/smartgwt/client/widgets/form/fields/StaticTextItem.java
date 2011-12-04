@@ -145,7 +145,7 @@ public class StaticTextItem extends FormItem {
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter.getValue());
+        setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue());
     }
 
     /**

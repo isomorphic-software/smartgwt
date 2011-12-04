@@ -79,11 +79,8 @@ import com.google.gwt.event.shared.HasHandlers;
  *   134   => 01:34:00
  *  </pre>
  *  <P>
- *  Values entered by the user are stored as JavaScript <code>Date</code> objects in GMT/UTC
- *  time regardless of the local time zone.  Note if you log, alert() or otherwise convert a
- *  Date into a String, the default behavior is to show it in local time.  To see the correct
- *  time value, use the JavaScript built-in APIs dateValue.getUTCHours/Minutes/Seconds() or the
- *  String.
+ *  Values entered by the user are stored as JavaScript <code>Date</code> objects in local time.  The day,
+ *  month and year values of this <code>Date</code> object are not relevant and should be ignored.
  */
 public class TimeItem extends TextItem {
 
@@ -195,7 +192,7 @@ public class TimeItem extends TextItem {
      * @param timeFormatter timeFormatter Default value is "toShort24HourTime"
      */
     public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
-        setAttribute("timeFormatter", timeFormatter.getValue());
+        setAttribute("timeFormatter", timeFormatter == null ? null : timeFormatter.getValue());
     }
 
     /**

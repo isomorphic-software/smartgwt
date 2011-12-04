@@ -138,7 +138,7 @@ public class DateItem extends FormItem {
      * @param dateFormatter dateFormatter Default value is null
      */
     public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter.getValue());
+        setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue());
     }
 
     /**
@@ -432,7 +432,7 @@ public class DateItem extends FormItem {
      * @param selectorFormat selectorFormat Default value is null
      */
     public void setSelectorFormat(DateItemSelectorFormat selectorFormat) {
-        setAttribute("selectorFormat", selectorFormat.getValue());
+        setAttribute("selectorFormat", selectorFormat == null ? null : selectorFormat.getValue());
     }
 
     /**
@@ -491,7 +491,7 @@ public class DateItem extends FormItem {
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextAlign(Alignment textAlign) {
-        setAttribute("textAlign", textAlign.getValue());
+        setAttribute("textAlign", textAlign == null ? null : textAlign.getValue());
     }
 
     /**

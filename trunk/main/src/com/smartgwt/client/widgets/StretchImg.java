@@ -168,7 +168,7 @@ public class StretchImg extends StatefulCanvas {
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setImageType(ImageStyle imageType) {
-        setAttribute("imageType", imageType.getValue(), true);
+        setAttribute("imageType", imageType == null ? null : imageType.getValue(), true);
     }
 
     /**

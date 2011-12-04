@@ -102,7 +102,55 @@ public class ToolStrip extends Layout {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Customized resizeBar with typical appearance for a ToolStrip
+     * If set, this attribute affects the alignment of the titles in  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup
+     * ToolStripGroups}.  You can override this at the  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitleAlign
+     * individual ToolStripGroup} level.
+     *
+     * @param groupTitleAlign groupTitleAlign Default value is "center"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setGroupTitleAlign(Alignment groupTitleAlign)  throws IllegalStateException {
+        setAttribute("groupTitleAlign", groupTitleAlign == null ? null : groupTitleAlign.getValue(), false);
+    }
+
+    /**
+     * If set, this attribute affects the alignment of the titles in  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup
+     * ToolStripGroups}.  You can override this at the  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitleAlign
+     * individual ToolStripGroup} level.
+     *
+     *
+     * @return Alignment
+     */
+    public Alignment getGroupTitleAlign()  {
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("groupTitleAlign"));
+    }
+
+    /**
+     * If set, this attribute affects the orientation of the titles in  {@link
+     * com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroups}.  You can override this at the  {@link
+     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitleAlign individual ToolStripGroup} level.
+     *
+     * @param groupTitleOrientation groupTitleOrientation Default value is "top"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setGroupTitleOrientation(VerticalAlignment groupTitleOrientation)  throws IllegalStateException {
+        setAttribute("groupTitleOrientation", groupTitleOrientation == null ? null : groupTitleOrientation.getValue(), false);
+    }
+
+    /**
+     * If set, this attribute affects the orientation of the titles in  {@link
+     * com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroups}.  You can override this at the  {@link
+     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitleAlign individual ToolStripGroup} level.
+     *
+     *
+     * @return VerticalAlignment
+     */
+    public VerticalAlignment getGroupTitleOrientation()  {
+        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("groupTitleOrientation"));
+    }
+
+    /**
+     * Customized resizeBar with typical appearance for a ToolStrip.
      *
      * @param resizeBarClass resizeBarClass Default value is "ToolStripResizer"
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -112,7 +160,7 @@ public class ToolStrip extends Layout {
     }
 
     /**
-     * Customized resizeBar with typical appearance for a ToolStrip
+     * Customized resizeBar with typical appearance for a ToolStrip.
      *
      *
      * @return String
@@ -122,7 +170,7 @@ public class ToolStrip extends Layout {
     }
 
     /**
-     * Thickness of the resizeBars in pixels
+     * Thickness of the resizeBars in pixels.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param resizeBarSize resizeBarSize Default value is 14
@@ -133,7 +181,7 @@ public class ToolStrip extends Layout {
     }
 
     /**
-     * Thickness of the resizeBars in pixels
+     * Thickness of the resizeBars in pixels.
      *
      *
      * @return int
@@ -182,6 +230,30 @@ public class ToolStrip extends Layout {
      */
     public int getSeparatorSize()  {
         return getAttributeAsInt("separatorSize");
+    }
+
+    /**
+     * If set, this attribute affects whether {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroups} in
+     * this ToolStrip show their header control.  You can override this at the  {@link
+     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#getShowTitle individual ToolStripGroup} level.
+     *
+     * @param showGroupTitle showGroupTitle Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowGroupTitle(Boolean showGroupTitle)  throws IllegalStateException {
+        setAttribute("showGroupTitle", showGroupTitle, false);
+    }
+
+    /**
+     * If set, this attribute affects whether {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroups} in
+     * this ToolStrip show their header control.  You can override this at the  {@link
+     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#getShowTitle individual ToolStripGroup} level.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowGroupTitle()  {
+        return getAttributeAsBoolean("showGroupTitle");
     }
 
     /**

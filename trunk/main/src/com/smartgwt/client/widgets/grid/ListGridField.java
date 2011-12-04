@@ -160,7 +160,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @param autoFitWidthApproach autoFitWidthApproach Default value is null
      */
     public void setAutoFitWidthApproach(AutoFitWidthApproach autoFitWidthApproach) {
-        setAttribute("autoFitWidthApproach", autoFitWidthApproach.getValue());
+        setAttribute("autoFitWidthApproach", autoFitWidthApproach == null ? null : autoFitWidthApproach.getValue());
     }
 
     /**
@@ -556,7 +556,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setCellAlign(Alignment cellAlign) {
-        setAttribute("cellAlign", cellAlign.getValue());
+        setAttribute("cellAlign", cellAlign == null ? null : cellAlign.getValue());
     }
 
     /**
@@ -640,7 +640,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @see com.smartgwt.client.widgets.grid.ListGridField#setTimeFormatter
      */
     public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter.getValue());
+        setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue());
     }
 
     /**
@@ -758,6 +758,50 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      */
     public String getDisplayField()  {
         return getAttributeAsString("displayField");
+    }
+
+    /**
+     * If a {@link com.smartgwt.client.widgets.grid.ListGridField#getDisplayField displayField} is set, should this field show
+     * record values from the <code>displayField</code>? <P> If {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getDisplayField displayField} is specified, and there is no separate
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource}, by default we will show
+     * display-field values from the same record. Setting this property to false would disable this behavior. <P>
+     * Alternatively, if there is a {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource}
+     * (and  {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap} is false), the
+     * displayField would be ignored for the field and the underlying {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getName record[fieldName] value} would be displayed to the user. This
+     * property may be set to true to override this behavior and pick up values from the <code>displayField</code> for display
+     * in this field even when there is an optionDataSource set. <P> Note that this property has no effect on fields with an
+     * explicitly specified valueMap, or with an optionDataSource where {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap} is true.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param displayValueFromRecord displayValueFromRecord Default value is null
+     */
+    public void setDisplayValueFromRecord(Boolean displayValueFromRecord) {
+        setAttribute("displayValueFromRecord", displayValueFromRecord);
+    }
+
+    /**
+     * If a {@link com.smartgwt.client.widgets.grid.ListGridField#getDisplayField displayField} is set, should this field show
+     * record values from the <code>displayField</code>? <P> If {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getDisplayField displayField} is specified, and there is no separate
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource}, by default we will show
+     * display-field values from the same record. Setting this property to false would disable this behavior. <P>
+     * Alternatively, if there is a {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource}
+     * (and  {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap} is false), the
+     * displayField would be ignored for the field and the underlying {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getName record[fieldName] value} would be displayed to the user. This
+     * property may be set to true to override this behavior and pick up values from the <code>displayField</code> for display
+     * in this field even when there is an optionDataSource set. <P> Note that this property has no effect on fields with an
+     * explicitly specified valueMap, or with an optionDataSource where {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap} is true.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getDisplayValueFromRecord()  {
+        return getAttributeAsBoolean("displayValueFromRecord");
     }
 
     /**
@@ -965,7 +1009,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public void setEnterKeyEditAction(EnterKeyEditAction enterKeyEditAction) {
-        setAttribute("enterKeyEditAction", enterKeyEditAction.getValue());
+        setAttribute("enterKeyEditAction", enterKeyEditAction == null ? null : enterKeyEditAction.getValue());
     }
 
     /**
@@ -1011,7 +1055,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public void setEscapeKeyEditAction(EscapeKeyEditAction escapeKeyEditAction) {
-        setAttribute("escapeKeyEditAction", escapeKeyEditAction.getValue());
+        setAttribute("escapeKeyEditAction", escapeKeyEditAction == null ? null : escapeKeyEditAction.getValue());
     }
 
     /**
@@ -1084,7 +1128,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @param filterOperator filterOperator Default value is null
      */
     public void setFilterOperator(OperatorId filterOperator) {
-        setAttribute("filterOperator", filterOperator.getValue());
+        setAttribute("filterOperator", filterOperator == null ? null : filterOperator.getValue());
     }
 
     /**
@@ -1248,6 +1292,164 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      */
     public String getHeaderTitleStyle()  {
         return getAttributeAsString("headerTitleStyle");
+    }
+
+    /**
+     * Height for hilite icons for this field. Overrides {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconSize
+     * hiliteIconSize}, {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconHeight hiliteIconHeight}, and {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconSize hiliteIconSize}.
+     *
+     * @param hiliteIconHeight hiliteIconHeight Default value is null
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public void setHiliteIconHeight(Integer hiliteIconHeight) {
+        setAttribute("hiliteIconHeight", hiliteIconHeight);
+    }
+
+    /**
+     * Height for hilite icons for this field. Overrides {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconSize
+     * hiliteIconSize}, {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconHeight hiliteIconHeight}, and {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconSize hiliteIconSize}.
+     *
+     *
+     * @return Integer
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public Integer getHiliteIconHeight()  {
+        return getAttributeAsInt("hiliteIconHeight");
+    }
+
+    /**
+     * How much padding should there be on the left of {@link com.smartgwt.client.widgets.DataBoundComponent#getHiliteIcons
+     * hilite icons}  for this field? Overrides {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconLeftPadding
+     * hiliteIconLeftPadding}
+     *
+     * @param hiliteIconLeftPadding hiliteIconLeftPadding Default value is null
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public void setHiliteIconLeftPadding(Integer hiliteIconLeftPadding) {
+        setAttribute("hiliteIconLeftPadding", hiliteIconLeftPadding);
+    }
+
+    /**
+     * How much padding should there be on the left of {@link com.smartgwt.client.widgets.DataBoundComponent#getHiliteIcons
+     * hilite icons}  for this field? Overrides {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconLeftPadding
+     * hiliteIconLeftPadding}
+     *
+     *
+     * @return Integer
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public Integer getHiliteIconLeftPadding()  {
+        return getAttributeAsInt("hiliteIconLeftPadding");
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIcons hiliteIcons} are present, where the hilite icon
+     * will be placed  relative to the field value.  See {@link com.smartgwt.client.types.HiliteIconPosition}. Overrides {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconPosition hiliteIconPosition}.
+     *
+     * @param hiliteIconPosition hiliteIconPosition Default value is null
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public void setHiliteIconPosition(HiliteIconPosition hiliteIconPosition) {
+        setAttribute("hiliteIconPosition", hiliteIconPosition == null ? null : hiliteIconPosition.getValue());
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIcons hiliteIcons} are present, where the hilite icon
+     * will be placed  relative to the field value.  See {@link com.smartgwt.client.types.HiliteIconPosition}. Overrides {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconPosition hiliteIconPosition}.
+     *
+     *
+     * @return HiliteIconPosition
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public HiliteIconPosition getHiliteIconPosition()  {
+        return EnumUtil.getEnum(HiliteIconPosition.values(), getAttribute("hiliteIconPosition"));
+    }
+
+    /**
+     * How much padding should there be on the right of {@link com.smartgwt.client.widgets.DataBoundComponent#getHiliteIcons
+     * hilite icons}  for this field? Overrides {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconRightPadding
+     * hiliteIconRightPadding}
+     *
+     * @param hiliteIconRightPadding hiliteIconRightPadding Default value is null
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public void setHiliteIconRightPadding(Integer hiliteIconRightPadding) {
+        setAttribute("hiliteIconRightPadding", hiliteIconRightPadding);
+    }
+
+    /**
+     * How much padding should there be on the right of {@link com.smartgwt.client.widgets.DataBoundComponent#getHiliteIcons
+     * hilite icons}  for this field? Overrides {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconRightPadding
+     * hiliteIconRightPadding}
+     *
+     *
+     * @return Integer
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public Integer getHiliteIconRightPadding()  {
+        return getAttributeAsInt("hiliteIconRightPadding");
+    }
+
+    /**
+     * Default width and height of {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIcons hilite icons} in this field.
+     * Takes precedence over hiliteIconWidth, hiliteIconHeight and hiliteIconSize specified at the component level. Can be
+     * overridden via {@link com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconWidth hiliteIconWidth} and  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconHeight hiliteIconHeight}
+     *
+     * @param hiliteIconSize hiliteIconSize Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setHiliteIconSize
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setHiliteIconWidth
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setHiliteIconHeight
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public void setHiliteIconSize(Integer hiliteIconSize) {
+        setAttribute("hiliteIconSize", hiliteIconSize);
+    }
+
+    /**
+     * Default width and height of {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIcons hilite icons} in this field.
+     * Takes precedence over hiliteIconWidth, hiliteIconHeight and hiliteIconSize specified at the component level. Can be
+     * overridden via {@link com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconWidth hiliteIconWidth} and  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconHeight hiliteIconHeight}
+     *
+     *
+     * @return Integer
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconSize
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconWidth
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconHeight
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public Integer getHiliteIconSize()  {
+        return getAttributeAsInt("hiliteIconSize");
+    }
+
+    /**
+     * Width for hilite icons for this field. Overrides {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconSize
+     * hiliteIconSize}, {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconWidth hiliteIconWidth}, and {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconSize hiliteIconSize}.
+     *
+     * @param hiliteIconWidth hiliteIconWidth Default value is null
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public void setHiliteIconWidth(Integer hiliteIconWidth) {
+        setAttribute("hiliteIconWidth", hiliteIconWidth);
+    }
+
+    /**
+     * Width for hilite icons for this field. Overrides {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconSize
+     * hiliteIconSize}, {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconWidth hiliteIconWidth}, and {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconSize hiliteIconSize}.
+     *
+     *
+     * @return Integer
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
+     */
+    public Integer getHiliteIconWidth()  {
+        return getAttributeAsInt("hiliteIconWidth");
     }
 
     /**
@@ -1765,6 +1967,37 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+     * Indicates that this field should always be Array-valued. This property will be  passed through to the generated
+     * edit-item when editing the field - so if {@link com.smartgwt.client.widgets.grid.ListGridField#getValueMap valueMap} is
+     * set, the default editor will be a {@link com.smartgwt.client.widgets.form.fields.SelectItem} with {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getMultiple multiple} set to true. <P> Note that for databound grids
+     * it typically makes sense to set {@link com.smartgwt.client.data.DataSourceField#getMultiple multiple} rather than
+     * setting the property directly on the ListGridField object.
+     *
+     * @param multiple multiple Default value is null
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     */
+    public void setMultiple(Boolean multiple) {
+        setAttribute("multiple", multiple);
+    }
+
+    /**
+     * Indicates that this field should always be Array-valued. This property will be  passed through to the generated
+     * edit-item when editing the field - so if {@link com.smartgwt.client.widgets.grid.ListGridField#getValueMap valueMap} is
+     * set, the default editor will be a {@link com.smartgwt.client.widgets.form.fields.SelectItem} with {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getMultiple multiple} set to true. <P> Note that for databound grids
+     * it typically makes sense to set {@link com.smartgwt.client.data.DataSourceField#getMultiple multiple} rather than
+     * setting the property directly on the ListGridField object.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     */
+    public Boolean getMultiple()  {
+        return getAttributeAsBoolean("multiple");
+    }
+
+    /**
      * Name of this field.  Must be unique within this ListGrid. <P> The name of field is also the property in each record
      * which holds the value for that field. <P> If a {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource
      * dataSource} is specified and the DataSource has a field with the same name, the ListGridField and DataSourceField are
@@ -1847,7 +2080,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @param optionTextMatchStyle optionTextMatchStyle Default value is null
      */
     public void setOptionTextMatchStyle(TextMatchStyle optionTextMatchStyle) {
-        setAttribute("optionTextMatchStyle", optionTextMatchStyle.getValue());
+        setAttribute("optionTextMatchStyle", optionTextMatchStyle == null ? null : optionTextMatchStyle.getValue());
     }
 
     /**
@@ -2340,7 +2573,10 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 
     /**
      * If this field has a valueIcons property specified, setting this property to true will  prevent the valueIcon being
-     * written out into this field's cells.
+     * written out into this field's cells. <P> Note this property may also be set to false to avoid showing the standard
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanTrueImage booleanTrueImage} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getBooleanFalseImage booleanFalseImage} for fields of type
+     * <code>boolean</code>.
      *
      * @param suppressValueIcon suppressValueIcon Default value is null
      * @see com.smartgwt.client.widgets.grid.ListGridField#setValueIcons
@@ -2353,7 +2589,10 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 
     /**
      * If this field has a valueIcons property specified, setting this property to true will  prevent the valueIcon being
-     * written out into this field's cells.
+     * written out into this field's cells. <P> Note this property may also be set to false to avoid showing the standard
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanTrueImage booleanTrueImage} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getBooleanFalseImage booleanFalseImage} for fields of type
+     * <code>boolean</code>.
      *
      *
      * @return Boolean
@@ -2409,7 +2648,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
-        setAttribute("timeFormatter", timeFormatter.getValue());
+        setAttribute("timeFormatter", timeFormatter == null ? null : timeFormatter.getValue());
     }
 
     /**
@@ -2458,7 +2697,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-     * ListGrids picks a renderer for the view and edit mode of a field based on this attribute.
+     * ListGrids picks a renderer for the view and edit mode of a field based on this attribute.  See {@link
+     * com.smartgwt.client.types.ListGridFieldType} for a summary of how types are rendered.
      *
      * @param type type Default value is "text"
      * @see com.smartgwt.client.types.ListGridFieldType
@@ -2466,11 +2706,12 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setType(ListGridFieldType type) {
-        setAttribute("type", type.getValue());
+        setAttribute("type", type == null ? null : type.getValue());
     }
 
     /**
-     * ListGrids picks a renderer for the view and edit mode of a field based on this attribute.
+     * ListGrids picks a renderer for the view and edit mode of a field based on this attribute.  See {@link
+     * com.smartgwt.client.types.ListGridFieldType} for a summary of how types are rendered.
      *
      *
      * @return ListGridFieldType
@@ -3061,9 +3302,10 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * The {@link ListGrid#setEditorCustomizer()} API allows the developer to supply dynamic properties for the
      * item based on the row as well as the field being edited.
      * <p><br>
-     * <b>Note>: When you supply a custom FormItem via setEditorType(), you're really providing properties which are then used to
-     * create multiple FormItems (eg, in grids, forms and trees) and there's an underlying limitation here where event handlers have
-     * to be written to dynamically receive the actual FormItem rather than relying on "this" (because there's more than one "this").
+     * Note: the FormItem passed to setEditorType() is used as a "template" to create a FormItem whenever
+     * the ListGrid needs to show an interface for editing this field. See
+     * {@link com.smartgwt.client.data.DataSourceField#setEditorType} for a discussion of the limitations this
+     * pattern imposes upon event handling within the passed in item.
      *
      * @param editorType the editor type
      */
@@ -3118,14 +3360,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         setAttribute("filterEditorValueMap", filterEditorValueMap);
     }
 
-    /**
-     * When using a valueMap, set multiple to true if a select list box is desired instead of a combobox when editing the cell.
-     *
-     * @param multiple true for select list
-     */
-    public void setMultiple(boolean multiple) {
-        setAttribute("multiple", multiple);
-    }
 
     /**
      * A valueMap to use for editors shown for this field. By default if this is not specified field.valueMap will be used instead.

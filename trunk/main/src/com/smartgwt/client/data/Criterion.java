@@ -111,7 +111,7 @@ public class Criterion extends Criteria {
      * @param operator operator Default value is null
      */
     public void setOperator(OperatorId operator) {
-        setAttribute("operator", operator.getValue());
+        setAttribute("operator", operator == null ? null : operator.getValue());
     }
 
     /**
@@ -159,9 +159,9 @@ public class Criterion extends Criteria {
     /**
      * Constructor for Criterion with fieldName, operator and value.
      * 
-     * @param fieldName
-     * @param operator
-     * @param value
+     * @param fieldName the field name
+     * @param operator the operator
+     * @param value the value
      */
     public Criterion(String fieldName, OperatorId operator, Integer value) {
         this(fieldName, operator);
@@ -169,11 +169,27 @@ public class Criterion extends Criteria {
     }
     
     /**
+     * Constructor for Criterion with fieldName, operator, start and end values. This constructor is only valid when
+     * the operator is {@link OperatorId#BETWEEN} or {@link OperatorId#BETWEEN_INCLUSIVE}
+     *
+     * @param fieldName the field name
+     * @param operator the operator
+     * @param start the start value
+     * @param end the end value
+     */
+    public Criterion(String fieldName, OperatorId operator, Integer start, Integer end) {
+        this(fieldName, operator);
+        assert operator == OperatorId.BETWEEN || operator == OperatorId.BETWEEN_INCLUSIVE : "The operator type must be OperatorId.BETWEEN or OperatorId.BETWEEN_INCLUSIVE";
+        setAttribute("start", start);
+        setAttribute("end", end);
+    }
+
+    /**
      * Constructor for Criterion with fieldName, operator and value.
      * 
-     * @param fieldName
-     * @param operator
-     * @param value
+     * @param fieldName the field name
+     * @param operator the operator
+     * @param value the value
      */
     public Criterion(String fieldName, OperatorId operator, String value) {
         this(fieldName, operator);
@@ -181,11 +197,27 @@ public class Criterion extends Criteria {
     }
 
     /**
+     * Constructor for Criterion with fieldName, operator, start and end values. This constructor is only valid when
+     * the operator is {@link OperatorId#BETWEEN} or {@link OperatorId#BETWEEN_INCLUSIVE}
+     *
+     * @param fieldName the field name
+     * @param operator the operator
+     * @param start the start value
+     * @param end the end value
+     */
+    public Criterion(String fieldName, OperatorId operator, String start, String end) {
+        this(fieldName, operator);
+        assert operator == OperatorId.BETWEEN || operator == OperatorId.BETWEEN_INCLUSIVE : "The operator type must be OperatorId.BETWEEN or OperatorId.BETWEEN_INCLUSIVE";
+        setAttribute("start", start);
+        setAttribute("end", end);
+    }
+
+    /**
      * Constructor for Criterion with fieldName, operator and value.
      * 
-     * @param fieldName
-     * @param operator
-     * @param value
+     * @param fieldName the field name
+     * @param operator the operator
+     * @param value the value
      */
     public Criterion(String fieldName, OperatorId operator, Float value) {
         this(fieldName, operator);
@@ -193,11 +225,27 @@ public class Criterion extends Criteria {
     }
 
     /**
+     * Constructor for Criterion with fieldName, operator, start and end values. This constructor is only valid when
+     * the operator is {@link OperatorId#BETWEEN} or {@link OperatorId#BETWEEN_INCLUSIVE}
+     *
+     * @param fieldName the field name
+     * @param operator the operator
+     * @param start the start value
+     * @param end the end value
+     */
+    public Criterion(String fieldName, OperatorId operator, Float start, Float end) {
+        this(fieldName, operator);
+        assert operator == OperatorId.BETWEEN || operator == OperatorId.BETWEEN_INCLUSIVE : "The operator type must be OperatorId.BETWEEN or OperatorId.BETWEEN_INCLUSIVE";
+        setAttribute("start", start);
+        setAttribute("end", end);
+    }
+
+    /**
      * Constructor for Criterion with fieldName, operator and value.
      * 
-     * @param fieldName
-     * @param operator
-     * @param value
+     * @param fieldName the field name
+     * @param operator the operator
+     * @param value the value
      */
     public Criterion(String fieldName, OperatorId operator, Date value) {
         this(fieldName, operator);
@@ -205,29 +253,61 @@ public class Criterion extends Criteria {
     }
 
     /**
+     * Constructor for Criterion with fieldName, operator, start and end values. This constructor is only valid when
+     * the operator is {@link OperatorId#BETWEEN} or {@link OperatorId#BETWEEN_INCLUSIVE}
+     *
+     * @param fieldName the field name
+     * @param operator the operator
+     * @param start the start value
+     * @param end the end value
+     */
+    public Criterion(String fieldName, OperatorId operator, Date start, Date end) {
+        this(fieldName, operator);
+        assert operator == OperatorId.BETWEEN || operator == OperatorId.BETWEEN_INCLUSIVE : "The operator type must be OperatorId.BETWEEN or OperatorId.BETWEEN_INCLUSIVE";
+        setAttribute("start", start);
+        setAttribute("end", end);
+    }
+
+    /**
      * Constructor for Criterion with fieldName, operator and value.
      * 
-     * @param fieldName
-     * @param operator
-     * @param value
+     * @param fieldName the field name
+     * @param operator the operator
+     * @param value the value
      */
     public Criterion(String fieldName, OperatorId operator, Boolean value) {
         this(fieldName, operator);
         setAttribute("value", value);
     }
-    
+
     /**
      * Constructor for Criterion with fieldName, operator and value.
      * Note that JavaScript does not natively have an equivalent format to 
      * Java long (fixed point 64 bit). As such the value passed in will be
      * converted to a double value for storage.
-     * @param fieldName
-     * @param operator
-     * @param value
+     * @param fieldName  the field name
+     * @param operator the operator
+     * @param value the value
      */
     public Criterion(String fieldName, OperatorId operator, Long value) {
         this(fieldName, operator);
         setAttribute("value", value);
+    }
+
+    /**
+     * Constructor for Criterion with fieldName, operator, start and end values. This constructor is only valid when
+     * the operator is {@link OperatorId#BETWEEN} or {@link OperatorId#BETWEEN_INCLUSIVE}
+     *
+     * @param fieldName the field name
+     * @param operator the operator
+     * @param start the start value
+     * @param end the end value
+     */
+    public Criterion(String fieldName, OperatorId operator, Long start, Long end) {
+        this(fieldName, operator);
+        assert operator == OperatorId.BETWEEN || operator == OperatorId.BETWEEN_INCLUSIVE : "The operator type must be OperatorId.BETWEEN or OperatorId.BETWEEN_INCLUSIVE";
+        setAttribute("start", start);
+        setAttribute("end", end);
     }
 
     public Criterion(String fieldName, OperatorId operator, Integer[] value) {
@@ -268,7 +348,7 @@ public class Criterion extends Criteria {
      * <p>Otherwise, the present criteria is replaced with an "and" 
      * criteria, with two sub-criteria: the present criteria, and the passed criteria.
      *
-     * @param otherCriteria the passed criteria object
+     * @param c the passed criteria object
      */
     public void addCriteria(Criterion c) {
         String opString = this.getAttributeAsString("operator");
@@ -455,7 +535,6 @@ public class Criterion extends Criteria {
     
 
 }
-
 
 
 

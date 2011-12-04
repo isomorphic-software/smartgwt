@@ -88,18 +88,31 @@ import com.google.gwt.event.shared.HasHandlers;
  *  RestDataSource is typically used with PHP, Ruby, Python, Perl or custom server technologies,
  *  and represents an alternative to installing the Smart GWT Server in a Java technology
  *  stack, or using {@link com.smartgwt.client.docs.WsdlBinding WSDL-based binding} with .NET or other WSDL-capable
- *  technologies.
+ *  technologies.  Note that Smart GWT Server also provides built-in support for the REST
+ *  protocol via its RESTHandler servlet; this is primarily to allow non-Smart GWT clients
+ *  to make use of DataSource operations.  If you particularly wished to do so, you could use
+ *  RestDataSource to make a Smart GWT app talk to the Smart GWT Server using REST rather 
+ *  than the proprietary wire format normally used when communicating with Smart GWT Server
+ *  (this is how we are able to write automated tests for the RESTHandler servlet).  However,
+ *  doing this provides no benefit, imposes a number of inconveniences, and makes a handful 
+ *  of server-based features less useful 
+ * ({@link com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresAuthentication field-level declarative security},
+ * for 
+ *  example), so we strongly recommend that you do <em>not</em> do this; it is only mentioned
+ *  here for completeness while we are discussing REST.
  *  <P>
  *  The request and response formats used by the RestDataSource allow for many of the available
  *  features of Smart GWT's databinding system to be used, including data paging, searching &
  *  sorting, {@link com.smartgwt.client.data.DSRequest#getOldValues long transactions}, 
- * {@link com.smartgwt.client.data.ResultSet automatic cache sync} and {@link com.smartgwt.client.docs.Relogin relogin}. 
- * However advanced
- *  features such as {@link com.smartgwt.client.docs.Upload uploading / binary fields},
- *  {@link com.smartgwt.client.rpc.RPCManager#startQueue queuing} and transaction chaining,
- * {@link com.smartgwt.client.widgets.grid.ListGrid#exportData export} and all {@link com.smartgwt.client.docs.IscServer
- * server-based features} aren't
- *  available with RestDataSource and need to be re-implemented as needed.
+ *  {@link com.smartgwt.client.data.ResultSet automatic cache sync}, {@link com.smartgwt.client.docs.Relogin relogin} and 
+ *  {@link com.smartgwt.client.rpc.RPCManager#startQueue queuing}.  However,  advanced
+ *  features such as {@link com.smartgwt.client.docs.Upload uploading / binary fields} and  
+ * {@link com.smartgwt.client.widgets.grid.ListGrid#exportData export} aren't available with RestDataSource and need to be 
+ *  re-implemented as needed.  Most, though not all, {@link com.smartgwt.client.docs.IscServer server-based features}
+ *  are still available when using RestDataSource, as long as you are also using the RESTHandler 
+ *  servlet that is part of Smart GWT Server.  However, as noted above, this approach is not 
+ *  recommended; if you are using Isomorphic technology both client- and server-side, it makes
+ *  more sense to use the proprietary wire format.
  *  <P>
  *  <span style="font-weight:bold;font-size:16px;">Examples</span>
  *  <p>
@@ -121,7 +134,7 @@ import com.google.gwt.event.shared.HasHandlers;
  *           &lt;field1&gt;value&lt;/field1&gt;
  *           &lt;field2&gt;value&lt;/field2&gt;
  *       &lt;/record&gt;
- *       <i>... 75 total records ... </i>
+ *       <i>... 76 total records ... </i>
  *     &lt;/data&gt;
  *  &lt;/response&gt;
  *  </pre>
@@ -195,7 +208,7 @@ import com.google.gwt.event.shared.HasHandlers;
  *        data:[
  *            {field1:"value", field2:"value"},
  *            {field1:"value", field2:"value"},
- *            <i>... 75 total records ...</i>
+ *            <i>... 76 total records ...</i>
  *        ]
  *     }
  *  }
@@ -273,21 +286,256 @@ import com.google.gwt.event.shared.HasHandlers;
  *  <pre>
  *     &lt;request&gt;
  *         &lt;data&gt;
- *             &lt;countryDS&gt;
- *                 &lt;countryCode&gt;US&lt;/countryCode&gt;
- *                 &lt;countryName&gt;Edited Value&lt;/countryName&gt;
- *                 &lt;capital&gt;Edited Value&lt;/capital&gt;
- *                 &lt;continent&gt;Edited Value&lt;/continent&gt;
- *             &lt;/countryDS&gt;
+ *             &lt;countryCode&gt;US&lt;/countryCode&gt;
+ *             &lt;countryName&gt;Edited Value&lt;/countryName&gt;
+ *             &lt;capital&gt;Edited Value&lt;/capital&gt;
+ *             &lt;continent&gt;Edited Value&lt;/continent&gt;
  *         &lt;/data&gt;
  *         &lt;dataSource&gt;countryDS&lt;/dataSource&gt;
  *         &lt;operationType&gt;update&lt;/operationType&gt;
  *     &lt/request&gt;
  *  </pre>
+ *  An example of an XML message for a fetch operation passing simple criteria:
+ *  <pre>
+ *     &lt;request&gt;
+ *         &lt;data&gt;
+ *             &lt;continent&gt;North America&lt;/continent&gt;
+ *         &lt;/data&gt;
+ *         &lt;dataSource&gt;countryDS&lt;/dataSource&gt;
+ *         &lt;operationType&gt;fetch&lt;/operationType&gt;
+ *         &lt;startRow&gt;0&lt;/startRow&gt;
+ *         &lt;endRow&gt;75&lt;/endRow&gt;
+ *         &lt;componentId&gt;worldGrid&lt;/componentId&gt;
+ *         &lt;textMatchStyle&gt;exact&lt;/textMatchStyle&gt;
+ *     &lt/request&gt;
+ *  </pre>
+ *  And an example of an XML message for a fetch operation passing AdvancedCriteria:
+ *  <pre>
+ *     &lt;request&gt;
+ *         &lt;data&gt;
+ *             &lt;_constructor&gt;AdvancedCriteria&lt;/_constructor&gt;
+ *             &lt;operator&gt;or&lt;/operator&gt;
+ *             &lt;criteria&gt;
+ *                 &lt;criterion&gt;
+ *                     &lt;fieldName&gt;continent&lt;/fieldName&gt;
+ *                     &lt;operator&gt;equals&lt;/continent&gt;
+ *                     &lt;value&gt;North America&lt;/value&gt;
+ *                 &lt;/criterion&gt;
+ *                 &lt;criterion&gt;
+ *                     &lt;operator&gt;and&lt;/operator&gt;
+ *                     &lt;criteria&gt;
+ *                         &lt;criterion&gt;
+ *                             &lt;fieldName&gt;continent&lt;/fieldName&gt;
+ *                             &lt;operator&gt;equals&lt;/operator&gt;
+ *                             &lt;value&gt;Europe&lt;/value&gt;
+ *                         &lt;/criterion&gt;
+ *                         &lt;criterion&gt;
+ *                             &lt;fieldName&gt;population&lt;/fieldName&gt;
+ *                             &lt;operator&gt;greaterThan&lt;/operator&gt;
+ *                             &lt;value&gt;50000000&lt;/value&gt;
+ *                         &lt;/criterion&gt;
+ *                     &lt;/criteria&gt;
+ *                 &lt;/criterion&gt;
+ *             &lt;/criteria&gt;
+ *         &lt;/data&gt;
+ *         &lt;dataSource&gt;countryDS&lt;/dataSource&gt;
+ *         &lt;operationType&gt;fetch&lt;/operationType&gt;
+ *         &lt;startRow&gt;0&lt;/startRow&gt;
+ *         &lt;endRow&gt;75&lt;/endRow&gt;
+ *         &lt;componentId&gt;worldGrid&lt;/componentId&gt;
+ *     &lt/request&gt;
+ *  </pre>
+ *  JSON messages are just the plain JSON form of the structures shown in the above XML 
+ *  examples.  To show the last of the three XML examples in JSON form:
+ *  <pre>
+ *  {
+ *      data: {
+ *          _constructor: "AdvancedCriteria",
+ *          operator: "or",
+ *          criteria: [
+ *              { fieldName: "continent", operator: "equals", value: "North America },
+ *              { operator: "and", criteria: [
+ *                  { fieldName: "continent", operator: "equals", value: "Europe" },
+ *                  { fieldName: "population", operator: "greaterThan", value: 50000000 }
+ *              ] }
+ *          ]
+ *      }
+ *      dataSource: "countryDS",
+ *      operationType: "fetch",
+ *      startRow: 0,
+ *      endRow: 75,
+ *      componentId: "worldGrid"
+ *  }
+ *  </pre>
  *  The {@link com.smartgwt.client.data.RestDataSource#getOperationBindings default OperationBindings} for a RestDataSource
  *  specify dataProtocol as "getParams" for the fetch operation, and "postParams" for update,
  *  add and remove operations.
  *  <P>
+ *  <b>Date, time and datetime values</b>
+ *  <P>
+ *  Date, time and datetime values must be communicated using XML Schema format, as in the 
+ *  following examples:<br>
+ *  <code>&nbsp;&nbsp;&lt;dateField&gt;2007-04-22&lt;/dateField&gt;</code><br>
+ *  <code>&nbsp;&nbsp;&lt;timeField&gt;11:07:13&lt;/timeField&gt;</code><br>
+ *  <code>&nbsp;&nbsp;&lt;dateTimeField&gt;2007-04-22T11:07:13&lt;/dateTimeField&gt;</code>
+ *  <P>
+ *  And the equivalent in JSON:<br>
+ *  <code>&nbsp;&nbsp;dateField: "2007-04-22"<br>
+ *  <code>&nbsp;&nbsp;timeField: "11:07:13"<br>
+ *  <code>&nbsp;&nbsp;dateTimeField: "2007-04-22T11:07:13"</code>
+ *  <P>
+ *  Both RestDataSource on the client-side and the RESTHandler servlet on the server side 
+ *  automatically handle encoding and decoding temporal values using these formats.
+ *  <P>
+ *  Fields of type "date" and "time" are considered to hold logical date and time values, as 
+ *  discussed in the {@link com.smartgwt.client.docs.DateFormatAndStorage date and time handling article}, and are 
+ *  not affected by timezones.  Fields of type "datetime" will be converted to UTC on the 
+ *  client side by RestDataSource, and will be sent back down to the client as UTC by the 
+ *  server-side RESTHandler.  We recommend that your own REST client and/or server code do the
+ *  same thing (ie, transmit all datetime values in both directions as UTC).
+ *  <P>
+ *  <b>RestDataSource queuing support</b>
+ *  <P>
+ *  RestDataSource supports {@link com.smartgwt.client.rpc.RPCManager#startQueue queuing} of DSRequests.  This allows 
+ *  you to send multiple requests to the server in a single HTTP turnaround, thus minimizing 
+ *  network traffic and allowing the server to treat multiple requests as a single transaction,
+ *  if the server is able to do so (in Power Edition and above, the Smart GWT Server
+ *  transparently supports grouping multiple REST requests in a queue into a single database
+ *  transaction when using one of the built-in DataSource types).
+ *  <P>
+ *  If you want to use queuing with RestDataSource, you must use the "postMessage" dataProtocol
+ *  with either XML or JSON dataFormat.  Message format is similar to the non-queued examples 
+ *  shown earlier: it is simply extended to cope with the idea of multiple DSRequests 
+ *  encapsulated in the message.
+ *  <P>
+ *  An example of the XML message sent from RestDataSource to the server for two update requests
+ *  combined into a queue, using XML dataFormat:
+ *  <pre>
+ *  &lt;transaction&gt;
+ *      &lt;operations&gt;
+ *          &lt;request&gt;
+ *              &lt;data&gt;
+ *                  &lt;pk&gt;1&lt;/pk&gt;
+ *                  &lt;countryName&gt;Edited Value&lt;/countryName&gt;
+ *                  &lt;capital&gt;Edited Value&lt;/capital&gt;
+ *                  &lt;continent&gt;Edited Value&lt;/continent&gt;
+ *              &lt;/data&gt;
+ *              &lt;dataSource&gt;countryDS&lt;/dataSource&gt;
+ *              &lt;operationType&gt;update&lt;/operationType&gt;
+ *          &lt/request&gt;
+ *          &lt;request&gt;
+ *              &lt;data&gt;
+ *                  &lt;pk&gt;2&lt;/pk&gt;
+ *                  &lt;capital&gt;Edited Value&lt;/capital&gt;
+ *                  &lt;population&gt;123456&lt;/population&gt;
+ *              &lt;/data&gt;
+ *              &lt;dataSource&gt;countryDS&lt;/dataSource&gt;
+ *              &lt;operationType&gt;update&lt;/operationType&gt;
+ *          &lt/request&gt;
+ *      &lt;/operations&gt;
+ *  &lt;transaction&gt;
+ *  </pre>
+ *  And the same message in JSON format:
+ *  <pre>
+ *  { 
+ *      transaction: { 
+ *          operations: [{
+ *              dataSource:"countryDS", 
+ *              operationType:"update", 
+ *              data: {
+ *                  pk: 1
+ *                  countryName: "Edited Value",
+ *                  capital: "Edited Value",
+ *                  continent: "Edited Value"
+ *              }
+ *          }, {
+ *              dataSource:"countryDS", 
+ *              operationType:"update", 
+ *              data: {
+ *                  pk: 2,
+ *                  capital: "Edited Value",
+ *                  popuilation: 123456
+ *              }
+ *          }]
+ *      }
+ *  }
+ *  </pre>
+ *  RestDataSource expects the response to a queue of requests to be a queue of responses in 
+ *  the same order as the original requests.  Again, the message format is very similar to the 
+ *  unqueued REST format, it just has an outer container construct.  Note also that the 
+ *  individual DSResponses in a queued response have an extra property, 
+ *  <code>queueStatus</code>.  This allows each individual response to determine whether the 
+ *  queue as a whole succeeded.  For example, if the first update succeeded but the second 
+ *  failed validation, the first response would have a <code>status</code> of 0, but a 
+ *  <code>queueStatus</code> of -1, while the second response would have both properties set
+ *  to -1.
+ *  <P>
+ *  The update queue example given above would expect a response like this (in XML):
+ *  <pre>
+ *  &lt;responses&gt;
+ *      &lt;response&gt;
+ *          &lt;status&gt;0&lt;/status&gt;
+ *          &lt;queueStatus&gt;0&lt;/queueStatus&gt;
+ *          &lt;data&gt;
+ *              &lt;record&gt;
+ *                  &lt;countryName&gt;Edited Value&lt;/countryName&gt;
+ *                  &lt;gdp&gt;1700.0&lt;/gdp&gt;
+ *                  &lt;continent&gt;Edited Value&lt;/continent&gt;
+ *                  &lt;capital&gt;Edited Value&lt;/capital&gt;
+ *                  &lt;pk&gt;1&lt;/pk&gt;
+ *              &lt;/record&gt;
+ *          &lt;/data&gt;
+ *      &lt;/response&gt;
+ *      &lt;response&gt;
+ *          &lt;status&gt;0&lt;/status&gt;
+ *          &lt;queueStatus&gt;0&lt;/queueStatus&gt;
+ *          &lt;data&gt;
+ *              &lt;record&gt;
+ *                  &lt;countryName&gt;United States&lt;/countryName&gt;
+ *                  &lt;gdp&gt;7247700.0&lt;/gdp&gt;
+ *                  &lt;continent&gt;North America&lt;/continent&gt;
+ *                  &lt;independence&gt;1776-07-04&lt;/independence&gt;
+ *                  &lt;capital&gt;Washington DC&lt;/capital&gt;
+ *                  &lt;pk&gt;2&lt;/pk&gt;
+ *                  &lt;population&gt;123456&lt;/population&gt;
+ *              &lt;/record&gt;
+ *          &lt;/data&gt;
+ *      &lt;/response&gt;
+ *  &lt;/responses&gt;
+ *  </pre>
+ *  And in JSON:
+ *  <pre>
+ *  [
+ *  {
+ *      response: {
+ *          queueStatus: 0,
+ *          status: 0, 
+ *          data: [{
+ *              countryName: "Edited Value",
+ *              gdp: 1700.0,
+ *              continent":"Edited Value",
+ *              capital: "Edited Value",
+ *              pk: 1
+ *          }]
+ *      }
+ *  },
+ *  {
+ *      response: {
+ *          queueStatus: 0,
+ *          status: 0,
+ *          data: [{
+ *              countryName:"United States",
+ *              gdp: 7247700.0,
+ *              continent":"North America,
+ *              independence: Date.parseServerDate(1776,6,4),
+ *              capital: "Washington DC",
+ *              pk: 2,
+ *              population: 123456
+ *          }]
+ *      }
+ *  }
+ *  ]
+ *  </pre>
  *  <b>Hierarchical (Tree) data:</b>
  *  <P>
  *  To create a hierarchical DataSource, in the DataSource's <code>fields</code> array, a field 
@@ -305,7 +553,8 @@ import com.google.gwt.event.shared.HasHandlers;
  *     ]
  *  });
  *  </pre>
- *  Tree Data is then treated on the server as a flat list of records linked by parent id.<br>
+ *  Tree Data is then treated on the server as a flat list of records linked by parent id.
+ *  <P>
  * Tree data is typically displayed using a dataBound {@link com.smartgwt.client.widgets.tree.TreeGrid} component.
  * TreeGrids
  *  automatically create a ResultTree data object, which requests data directly
@@ -335,12 +584,15 @@ import com.google.gwt.event.shared.HasHandlers;
  *  </pre>
  *  The structure of responses for Add, Update and Delete type requests will be the 
  *  same regardless of whether the data is hierarchical. However you should be aware that 
- *  the underlying data storage may need to be managed slightly differently in some cases.<br>
+ *  the underlying data storage may need to be managed slightly differently in some cases.
+ *  <P>
  *  Specifically, Add and Update operations may change the structure of the tree by returning a 
  *  new parent id field value for the modified node. Depending on how your data is stored you 
- *  may need to include special back-end logic to handle this.<br>
+ *  may need to include special back-end logic to handle this.
+ *  <P>
  *  Also, if a user deletes a folder within a databound tree, any children of that folder will 
- *  also be dropped from the tree, and can be removed from the back-end data storage.<br>
+ *  also be dropped from the tree, and can be removed from the back-end data storage.
+ *  <P>
  *  Note: For a general overview of binding components to Tree structured data, see 
  *  {@link com.smartgwt.client.docs.TreeDataBinding Tree Databinding}.
  */

@@ -154,7 +154,7 @@ public class DateRangeItem extends CanvasItem {
      * @param innerTitleOrientation innerTitleOrientation Default value is null
      */
     public void setInnerTitleOrientation(TitleOrientation innerTitleOrientation) {
-        setAttribute("innerTitleOrientation", innerTitleOrientation.getValue());
+        setAttribute("innerTitleOrientation", innerTitleOrientation == null ? null : innerTitleOrientation.getValue());
     }
 
     /**
@@ -412,8 +412,6 @@ public class DateRangeItem extends CanvasItem {
     }-*/;
 
 }
-
-
 
 
 

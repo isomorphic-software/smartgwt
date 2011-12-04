@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -13,55 +13,47 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
-
+ 
 package com.smartgwt.client.types;
 
 /**
- * An enum of time-units available for use with the {@link RelativeDateItem}
+ * An enum of time-units available for use with the {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem}
  */
 public enum TimeUnit implements ValueEnum {
     /**
-     * A millisecond time-unit
+     * a millisecond time-unit
      */
     MILLISECOND("millisecond"),
-    
     /**
-     * A second time-unit
+     * a second time-unit
      */
     SECOND("second"),
-    
     /**
-     * A minute time-unit
+     * a minute time-unit
      */
     MINUTE("minute"),
-    
     /**
-     * An hour time-unit
+     * an hour time-unit
      */
     HOUR("hour"),
-    
     /**
-     * A day time-unit
+     * a day time-unit
      */
     DAY("day"),
-    
     /**
-     * A week time-unit
+     * a week time-unit
      */
     WEEK("week"),
-    
     /**
-     * A month time-unit
+     * a month time-unit
      */
     MONTH("month"),
-    
     /**
-     * A quarter (3-month) time-unit
+     * a quarter (3 month) time-unit
      */
     QUARTER("quarter"),
-    
     /**
-     * A year time-unit
+     * a year time-unit
      */
     YEAR("year");
 
@@ -75,4 +67,3 @@ public enum TimeUnit implements ValueEnum {
         return this.value;
     }
 }
-

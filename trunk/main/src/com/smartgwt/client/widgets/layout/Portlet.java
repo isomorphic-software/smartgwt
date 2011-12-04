@@ -156,6 +156,27 @@ public class Portlet extends Window {
     }
 
     /**
+     * Specifies a minimum width for the Portlet.
+     *
+     * @param minWidth minWidth Default value is 70
+     * @see com.smartgwt.client.widgets.Canvas#setMinWidth
+     */
+    public void setMinWidth(int minWidth) {
+        setAttribute("minWidth", minWidth, true);
+    }
+
+    /**
+     * Specifies a minimum width for the Portlet.
+     *
+     *
+     * @return int
+     * @see com.smartgwt.client.widgets.Canvas#getMinWidth
+     */
+    public int getMinWidth()  {
+        return getAttributeAsInt("minWidth");
+    }
+
+    /**
      * If true, {@link com.smartgwt.client.widgets.layout.Portlet#getCloseConfirmationMessage closeConfirmationMessage} will be
      * displayed before portlets are closed
      *
@@ -238,7 +259,7 @@ public class Portlet extends Window {
      * for this Portlet, not the actual height of the row it is in.
      *
      *
-     * @return String
+     * @return Integer
      */
     public Integer getRowHeight()  {
         return getAttributeAsInt("rowHeight");
@@ -276,10 +297,60 @@ public class Portlet extends Window {
     public String getRowHeightAsString()  {
         return getAttributeAsString("rowHeight");
     }
+	
+    /**
+     * If you set the height of a Portlet, then that height will be used as the 
+     * Portlet's {@link com.smartgwt.client.widgets.layout.Portlet#getRowHeight rowHeight} (if no rowHeight is set).
+     * <p>
+     * After initialization, the {@link com.smartgwt.client.widgets.layout.PortalLayout} manages the height of Portlets. If you
+     * want to change the height, use {@link com.smartgwt.client.widgets.layout.PortalLayout#setRowHeight}.
+     *
+     * @param height height Default value is null
+     */
+    public void setHeight(int height) {
+        setAttribute("height", height, true);
+    }
+
+    /**
+     * If you set the height of a Portlet, then that height will be used as the 
+     * Portlet's {@link com.smartgwt.client.widgets.layout.Portlet#getRowHeight rowHeight} (if no rowHeight is set).
+     * <p>
+     * After initialization, the {@link com.smartgwt.client.widgets.layout.PortalLayout} manages the height of Portlets. If you
+     * want to change the height, use {@link com.smartgwt.client.widgets.layout.PortalLayout#setRowHeight}.
+     *
+     * @return Integer
+     */
+    public Integer getHeight()  {
+        return getAttributeAsInt("height");
+    }
+
+    /**
+     * If you set the height of a Portlet, then that height will be used as the 
+     * Portlet's {@link com.smartgwt.client.widgets.layout.Portlet#getRowHeight rowHeight} (if no rowHeight is set).
+     * <p>
+     * After initialization, the {@link com.smartgwt.client.widgets.layout.PortalLayout} manages the height of Portlets. If you
+     * want to change the height, use {@link com.smartgwt.client.widgets.layout.PortalLayout#setRowHeight}.
+     *
+     * @param height height Default value is null
+     */
+    public void setHeight(String height) {
+        setAttribute("height", height, true);
+    }
+
+    /**
+     * If you set the height of a Portlet, then that height will be used as the 
+     * Portlet's {@link com.smartgwt.client.widgets.layout.Portlet#getRowHeight rowHeight} (if no rowHeight is set).
+     * <p>
+     * After initialization, the {@link com.smartgwt.client.widgets.layout.PortalLayout} manages the height of Portlets. If you
+     * want to change the height, use {@link com.smartgwt.client.widgets.layout.PortalLayout#setRowHeight}.
+     *
+     * @return String
+     */
+    public String getHeightAsString()  {
+        return getAttributeAsString("height");
+    }
 
 }
-
-
 
 
 

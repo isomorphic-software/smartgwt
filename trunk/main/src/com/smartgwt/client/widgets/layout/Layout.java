@@ -263,7 +263,7 @@ public class Layout extends Canvas {
      * @see com.smartgwt.client.widgets.Canvas#setShowResizeBar
      */
     public void setDefaultResizeBars(LayoutResizeBarPolicy defaultResizeBars) {
-        setAttribute("defaultResizeBars", defaultResizeBars.getValue(), true);
+        setAttribute("defaultResizeBars", defaultResizeBars == null ? null : defaultResizeBars.getValue(), true);
     }
 
     /**
@@ -340,7 +340,7 @@ public class Layout extends Canvas {
      * @param hPolicy hPolicy Default value is "fill"
      */
     public void setHPolicy(LayoutPolicy hPolicy) {
-        setAttribute("hPolicy", hPolicy.getValue(), true);
+        setAttribute("hPolicy", hPolicy == null ? null : hPolicy.getValue(), true);
     }
 
     /**
@@ -409,7 +409,8 @@ public class Layout extends Canvas {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Method to force a reflow of the layout after directly assigning a value to any of the layout*Margin properties. Takes no arguments.
      *
-     * @param layoutMargin layoutMargin Default value is null
+     * @param layoutMargin optional new setting for layout.layoutMargin.  Regardless of whether a new                          layout margin is
+     * passed, the layout reflows according to the current settings                          for layoutStartMargin et al. Default value is null
      * @see com.smartgwt.client.widgets.layout.Layout#setLayoutLeftMargin
      * @see com.smartgwt.client.widgets.layout.Layout#setLayoutRightMargin
      * @see com.smartgwt.client.widgets.layout.Layout#setLayoutBottomMargin
@@ -518,7 +519,7 @@ public class Layout extends Canvas {
      * @param locateMembersBy locateMembersBy Default value is null
      */
     public void setLocateMembersBy(LocatorStrategy locateMembersBy) {
-        setAttribute("locateMembersBy", locateMembersBy.getValue(), true);
+        setAttribute("locateMembersBy", locateMembersBy == null ? null : locateMembersBy.getValue(), true);
     }
 
     /**
@@ -538,7 +539,7 @@ public class Layout extends Canvas {
      * @param locateMembersType locateMembersType Default value is null
      */
     public void setLocateMembersType(LocatorTypeStrategy locateMembersType) {
-        setAttribute("locateMembersType", locateMembersType.getValue(), true);
+        setAttribute("locateMembersType", locateMembersType == null ? null : locateMembersType.getValue(), true);
     }
 
     /**
@@ -654,7 +655,7 @@ public class Layout extends Canvas {
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setOverflow(Overflow overflow)  throws IllegalStateException {
-        setAttribute("overflow", overflow.getValue(), false);
+        setAttribute("overflow", overflow == null ? null : overflow.getValue(), false);
     }
 
     /**
@@ -862,7 +863,7 @@ public class Layout extends Canvas {
      * @param vPolicy vPolicy Default value is "fill"
      */
     public void setVPolicy(LayoutPolicy vPolicy) {
-        setAttribute("vPolicy", vPolicy.getValue(), true);
+        setAttribute("vPolicy", vPolicy == null ? null : vPolicy.getValue(), true);
     }
 
     /**

@@ -133,6 +133,26 @@ public class ShowValueEvent extends AbstractSmartEvent<ShowValueHandler>  {
         return $wnd.SmartGWT.convertToJavaType(jsObj.dataValue);
     }-*/;
 
+    /**
+     * the dynamicForm in which this item is contained
+     *
+     * @return the dynamicForm in which this item is contained
+     */
+    public  native DynamicForm getForm() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        return @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.form);
+    }-*/;
+
+    /**
+     * the live form item instance
+     *
+     * @return the live form item instance
+     */
+    public  native CanvasItem getItem() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        return @com.smartgwt.client.widgets.form.fields.CanvasItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
+    }-*/;
+
 
     
     /**

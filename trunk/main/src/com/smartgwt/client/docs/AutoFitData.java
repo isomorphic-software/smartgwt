@@ -15,6 +15,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFitExtraRecords
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxWidth
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxColumns
+ * @see com.smartgwt.client.types.Autofit
  */
 public interface AutoFitData {
 }

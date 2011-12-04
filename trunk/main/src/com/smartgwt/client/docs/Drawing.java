@@ -2,7 +2,8 @@
 package com.smartgwt.client.docs;
 
 /**
- * Rendering an object on the page
+ * Rendering an object on the page. Include the Drawing module your SmartGWT application by including <code>&lt;inherits
+ * name="com.smartgwt.Drawing"/&gt;</code> in your GWT module XML.
  * @see com.smartgwt.client.widgets.Canvas#isDrawn
  * @see com.smartgwt.client.widgets.Canvas#getInnerHTML
  * @see com.smartgwt.client.widgets.Canvas#draw

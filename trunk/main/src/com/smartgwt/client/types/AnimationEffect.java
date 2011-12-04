@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -13,28 +13,27 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
-
+ 
 package com.smartgwt.client.types;
 
-
+/**
+ * String specifying effect to apply during an animated show or hide.
+ */
 public enum AnimationEffect implements ValueEnum {
     /**
-     * content slides out of view as the window shrinks
+     * content slides into or out of view as the widget grows or shrinks
      */
     SLIDE("slide"),
-
     /**
-     * default: content is clipped as the window shrinks
+     * content is revealed or wiped as the widget grows or shrinks
      */
     WIPE("wipe"),
-
     /**
-     * widget fades out of view, from current opacity to transparent
+     * widget's opacity smoothly fades into or out of view
      */
     FADE("fade"),
-
     /**
-     * widget moves offscreen to the left of its drawn position
+     * widget moves into position from offscreen
      */
     FLY("fly");
 

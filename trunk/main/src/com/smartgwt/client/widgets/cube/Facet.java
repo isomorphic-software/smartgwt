@@ -104,7 +104,7 @@ public class Facet extends RefDataClass {
      * @see com.smartgwt.client.widgets.cube.Facet#setCellAlign
      */
     public void setAlign(Alignment align) {
-        setAttribute("align", align.getValue());
+        setAttribute("align", align == null ? null : align.getValue());
     }
 
     /**
@@ -207,7 +207,7 @@ public class Facet extends RefDataClass {
      * @see com.smartgwt.client.widgets.cube.CubeGrid#setCellAlign
      */
     public void setCellAlign(Alignment cellAlign) {
-        setAttribute("cellAlign", cellAlign.getValue());
+        setAttribute("cellAlign", cellAlign == null ? null : cellAlign.getValue());
     }
 
     /**
@@ -322,7 +322,7 @@ public class Facet extends RefDataClass {
      * @param selectionBoundary selectionBoundary Default value is null
      */
     public void setSelectionBoundary(SelectionBoundary selectionBoundary) {
-        setAttribute("selectionBoundary", selectionBoundary.getValue());
+        setAttribute("selectionBoundary", selectionBoundary == null ? null : selectionBoundary.getValue());
     }
 
     /**
@@ -440,7 +440,7 @@ public class Facet extends RefDataClass {
      * @see com.smartgwt.client.widgets.cube.CubeGrid#setFacetTitleAlign
      */
     public void setTitleAlign(Alignment titleAlign) {
-        setAttribute("titleAlign", titleAlign.getValue());
+        setAttribute("titleAlign", titleAlign == null ? null : titleAlign.getValue());
     }
 
     /**

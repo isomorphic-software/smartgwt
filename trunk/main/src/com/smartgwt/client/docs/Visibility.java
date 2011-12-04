@@ -7,6 +7,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#showRecursively
  * @see com.smartgwt.client.widgets.Canvas#hide
  * @see com.smartgwt.client.widgets.Canvas#isVisible
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#isVisible
  * @see com.smartgwt.client.widgets.menu.Menu#showContextMenu
  * @see com.smartgwt.client.widgets.menu.Menu#hideContextMenu
  * @see com.smartgwt.client.widgets.menu.Menu#showSubmenu

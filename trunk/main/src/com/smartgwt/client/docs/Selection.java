@@ -9,7 +9,7 @@ package com.smartgwt.client.docs;
  * list for selection purposes).
  * @see com.smartgwt.client.widgets.cube.CubeGrid#getEventRow
  * @see com.smartgwt.client.widgets.cube.CubeGrid#getEventColumn
- * @see com.smartgwt.client.widgets.cube.CubeGrid#facetValueSelectionChanged
+ * @see com.smartgwt.client.widgets.cube.events.FacetValueSelectionChangedEvent
  * @see com.smartgwt.client.widgets.cube.CubeGrid#getSelectedCells
  * @see com.smartgwt.client.widgets.cube.CubeGrid#getSelectedCellIds
  * @see com.smartgwt.client.widgets.cube.CubeGrid#anyCellSelected

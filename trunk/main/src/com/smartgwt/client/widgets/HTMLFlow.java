@@ -344,7 +344,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      * @param httpMethod httpMethod Default value is "GET"
      */
     public void setHttpMethod(SendMethod httpMethod) {
-        setAttribute("httpMethod", httpMethod.getValue(), true);
+        setAttribute("httpMethod", httpMethod == null ? null : httpMethod.getValue(), true);
     }
 
     /**

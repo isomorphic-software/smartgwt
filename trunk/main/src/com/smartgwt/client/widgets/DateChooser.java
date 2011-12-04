@@ -258,6 +258,26 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     }
 
     /**
+     * How long (how many characters) shxxould be day names be. May be 1, 2 or 3 characters.
+     *
+     * @param dayNameLength dayNameLength Default value is 2
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setDayNameLength(int dayNameLength)  throws IllegalStateException {
+        setAttribute("dayNameLength", dayNameLength, false);
+    }
+
+    /**
+     * How long (how many characters) shxxould be day names be. May be 1, 2 or 3 characters.
+     *
+     *
+     * @return int
+     */
+    public int getDayNameLength()  {
+        return getAttributeAsInt("dayNameLength");
+    }
+
+    /**
      * Whether it should be valid to pick a weekend day.  If set to true, weekend days appear in disabled style and cannot be
      * picked.  <P> Which days are considered weekends is controlled by  weekendDays.
      *

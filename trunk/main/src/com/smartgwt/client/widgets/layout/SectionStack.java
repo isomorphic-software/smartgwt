@@ -301,7 +301,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      * @param locateSectionsBy locateSectionsBy Default value is null
      */
     public void setLocateSectionsBy(LocatorStrategy locateSectionsBy) {
-        setAttribute("locateSectionsBy", locateSectionsBy.getValue(), true);
+        setAttribute("locateSectionsBy", locateSectionsBy == null ? null : locateSectionsBy.getValue(), true);
     }
 
     /**
@@ -326,7 +326,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      * @param locateSectionsType locateSectionsType Default value is null
      */
     public void setLocateSectionsType(LocatorTypeStrategy locateSectionsType) {
-        setAttribute("locateSectionsType", locateSectionsType.getValue(), true);
+        setAttribute("locateSectionsType", locateSectionsType == null ? null : locateSectionsType.getValue(), true);
     }
 
     /**
@@ -348,7 +348,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setOverflow(Overflow overflow)  throws IllegalStateException {
-        setAttribute("overflow", overflow.getValue(), false);
+        setAttribute("overflow", overflow == null ? null : overflow.getValue(), false);
     }
 
     /**
@@ -388,14 +388,11 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     }
 
     /**
-     * Name of the Canvas subclass to use as a header that labels the section and allows showing and hiding.  The default class
-     * can be skinned, or trivial subclasses created to allow different appearances for headers in different SectionStacks. <P>
-     * Very advanced developers can use the following information to create custom header classes. <P> The SectionStack will
-     * instantiate this class, giving the following properties on init: <ul> <li><code>layout</code>: the SectionStack
-     * <li><code>expanded</code>: true or false <li><code>hidden</code>: true or false <li><code>title</code>: section title
-     * </ul> From then on, when the sectionHeader is clicked on, it should call {@link
-     * com.smartgwt.client.widgets.layout.SectionStack#sectionHeaderClick SectionStack.sectionHeaderClick}. <P> Whenever the
-     * section is hidden or shown, sectionHeader.setExpanded(true|false) will be called if implemented.
+     * Name of a Smart GWT class to use for creating section headers.  This will default to either {@link
+     * com.smartgwt.client.widgets.layout.SectionHeader "SectionHeader"} or {@link
+     * com.smartgwt.client.widgets.layout.ImgSectionHeader "ImgSectionHeader"} depending on the skin.  You can use the
+     * &#83;martClient class system to create a simple Smart GWT subclass of either SectionHeader or ImgSectionHeader for use
+     * with this API - see the {@link com.smartgwt.client.docs.Skinning Skinning Guide} for details.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param sectionHeaderClass sectionHeaderClass Default value is "SectionHeader"
@@ -406,14 +403,11 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     }
 
     /**
-     * Name of the Canvas subclass to use as a header that labels the section and allows showing and hiding.  The default class
-     * can be skinned, or trivial subclasses created to allow different appearances for headers in different SectionStacks. <P>
-     * Very advanced developers can use the following information to create custom header classes. <P> The SectionStack will
-     * instantiate this class, giving the following properties on init: <ul> <li><code>layout</code>: the SectionStack
-     * <li><code>expanded</code>: true or false <li><code>hidden</code>: true or false <li><code>title</code>: section title
-     * </ul> From then on, when the sectionHeader is clicked on, it should call {@link
-     * com.smartgwt.client.widgets.layout.SectionStack#sectionHeaderClick SectionStack.sectionHeaderClick}. <P> Whenever the
-     * section is hidden or shown, sectionHeader.setExpanded(true|false) will be called if implemented.
+     * Name of a Smart GWT class to use for creating section headers.  This will default to either {@link
+     * com.smartgwt.client.widgets.layout.SectionHeader "SectionHeader"} or {@link
+     * com.smartgwt.client.widgets.layout.ImgSectionHeader "ImgSectionHeader"} depending on the skin.  You can use the
+     * &#83;martClient class system to create a simple Smart GWT subclass of either SectionHeader or ImgSectionHeader for use
+     * with this API - see the {@link com.smartgwt.client.docs.Skinning Skinning Guide} for details.
      *
      *
      * @return String
@@ -495,7 +489,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_sections_expand_collapse" target="examples">Expand / Collapse Example</a>
      */
     public void setVisibilityMode(VisibilityMode visibilityMode) {
-        setAttribute("visibilityMode", visibilityMode.getValue(), true);
+        setAttribute("visibilityMode", visibilityMode == null ? null : visibilityMode.getValue(), true);
     }
 
     /**
@@ -522,6 +516,23 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     public native int getSectionNumber(String sectionName) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getSectionNumber(sectionName);
+    }-*/;
+            
+    /**
+     * Search for a section that contains passed item.
+     * @param item item to show
+     *
+     * @return section that contains passed item.
+     */
+    public native SectionStackSection sectionForItem(Canvas item) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.sectionForItem(item.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.layout.SectionStackSection::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
     }-*/;
             
     /**

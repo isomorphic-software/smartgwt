@@ -138,16 +138,6 @@ public class DayBodyClickEvent extends BrowserEvent<DayBodyClickHandler>  implem
     }-*/;
 
     /**
-     * the calendar itself
-     *
-     * @return the calendar itself
-     */
-    public  native Calendar getCalendar() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.calendar.Calendar::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.calendar);
-    }-*/;
-
-    /**
      * the row number to which the parameter date belongs
      *
      * @return the row number to which the parameter date belongs
@@ -168,6 +158,15 @@ public class DayBodyClickEvent extends BrowserEvent<DayBodyClickHandler>  implem
     }-*/;
 
 
+    /**
+     * the calendar itself
+     *
+     * @return the calendar itself
+     */
+    public  native com.smartgwt.client.widgets.calendar.Calendar getCalendar() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        return @com.smartgwt.client.widgets.calendar.Calendar::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.calendar);
+    }-*/;
     /**
      * events that fall on this day
      *

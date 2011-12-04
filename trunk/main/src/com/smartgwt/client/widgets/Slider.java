@@ -501,7 +501,10 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * a fixed number of decimal places controlled by {@link com.smartgwt.client.widgets.Slider#getRoundPrecision
      * roundPrecision}.
      *
-     * @param roundValues roundValues Default value is true
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} property of the slider
+     *
+     * @param roundValues round slider values?. Default value is true
      */
     public void setRoundValues(Boolean roundValues) {
         setAttribute("roundValues", roundValues, true);
@@ -575,7 +578,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
      * Indicates whether a label for the value of the slider should be displayed. The default position for this label is to the
-     * right of a horizontal slider, or below a vertical slider.
+     * right of a vertical slider, or below a horizontal  slider.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getShowValue showValue} property of the slider
@@ -589,7 +592,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
      * Indicates whether a label for the value of the slider should be displayed. The default position for this label is to the
-     * right of a horizontal slider, or below a vertical slider.
+     * right of a vertical slider, or below a horizontal  slider.
      *
      *
      * @return Boolean
@@ -760,7 +763,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * @see com.smartgwt.client.widgets.StretchImg#setImageType
      */
     public void setTrackImageType(ImageStyle trackImageType) {
-        setAttribute("trackImageType", trackImageType.getValue(), true);
+        setAttribute("trackImageType", trackImageType == null ? null : trackImageType.getValue(), true);
     }
 
     /**
@@ -954,15 +957,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     // ********************* Methods ***********************
-            
-    /**
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} property of the slider
-     * @param roundValues round slider values?
-     */
-    public native void setRoundValue(boolean roundValues) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setRoundValue(roundValues);
-    }-*/;
     /**
      * Add a valueChanged handler.
      * <p>
@@ -1039,9 +1033,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     // ***********************************************************        
 
 }
-
-
-
 
 
 

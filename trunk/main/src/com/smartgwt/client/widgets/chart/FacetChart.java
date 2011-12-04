@@ -59,10 +59,113 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * HTML5-based charting engine, implementing most  chartTypes of the Chart interface. <P> Can be used directly, or
- * specified as {@link com.smartgwt.client.widgets.grid.ListGrid#getChartConstructor chartConstructor} or {@link
- * com.smartgwt.client.widgets.cube.CubeGrid#getChartConstructor chartConstructor}. <P> In order to use this component, you
- * must load the Drawing module (ISC_Drawing.js) before loading the Analytics module (ISC_Analytics.js).
+ * HTML5-based charting engine, implementing most  chartTypes of the
+ *  Chart interface.
+ *  <P>
+ * Can be used directly, or specified as {@link com.smartgwt.client.widgets.grid.ListGrid#getChartConstructor
+ * chartConstructor} or
+ *  {@link com.smartgwt.client.widgets.cube.CubeGrid#getChartConstructor chartConstructor}.
+ *  <P>
+ * To create a FacetChart, set {@link com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} to an Array of Facet
+ * objects describing the
+ * chart dimensions and {@link com.smartgwt.client.widgets.chart.FacetChart#getValueProperty valueProperty} to value field
+ * name. For example:
+ *  
+ *  
+ *  <code>
+ *  <pre>
+ *  // Creating data
+ *  Record sprRec = new Record();
+ *  sprRec.setAttribute("season", "Spring");
+ *  sprRec.setAttribute("temp", "79");
+ *  Record sumRec = new Record();
+ *  sumRec.setAttribute("season", "Summer");
+ *  sumRec.setAttribute("temp", "102");
+ *  Record autRec = new Record();
+ *  autRec.setAttribute("season", "Autumn");
+ *  autRec.setAttribute("temp", "81");
+ *  Record winRec = new Record();
+ *  winRec.setAttribute("season", "Winter");
+ *  winRec.setAttribute("temp", "59");
+ *  
+ *  // Creating chart
+ *  FacetChart chart = new FacetChart();
+ *  chart.setFacets(new Facet("season", "Season"));
+ *  chart.setValueProperty("temp");
+ *  chart.setData(new Record[]{sprRec, sumRec, autRec, winRec});
+ *  chart.setTitle("Average temperature in Las Vegas");
+ *  </pre>
+ *  </code>
+ *  
+ *  "Inlined facet" is another method to provide data to the chart. <code>data</code> is a single CellRecord or
+ *  Array of CellRecords where each record contains multiple data values.  In this case, one facet definition
+ *  is considered "inlined", meaning that the facetValueIds from this facet appear as properties in each
+ *  record, and each such property holds one data value. For example:
+ *  
+ *  
+ *  <code>
+ *  <pre>
+ *  // Creating data
+ *  CellRecord lvRec = new CellRecord();
+ *  lvRec.setAttribute("spring", "79");
+ *  lvRec.setAttribute("summer", "102");
+ *  lvRec.setAttribute("autumn", "81");
+ *  lvRec.setAttribute("winter", "59");
+ *  
+ *  // Creating inlined facet
+ *  Facet inlinedFacet = new Facet();
+ *  inlinedFacet.setInlinedValues(true);
+ *  inlinedFacet.setValues(
+ *          new FacetValue("spring", "Spring"),
+ *          new FacetValue("summer", "Summer"),
+ *          new FacetValue("autumn", "Autumn"),
+ *          new FacetValue("winter", "Winter"));
+ *  
+ *  // Creating chart
+ *  FacetChart chart = new FacetChart();
+ *  chart.setFacets(inlinedFacet);
+ *  chart.setData(new Record[]{lvRec});
+ *  chart.setTitle("Average temperature in Las Vegas");
+ *  </pre>
+ *  </code>
+ *  Example with two facets:
+ *  <code>
+ *  <pre>
+ *  // Creating data
+ *  CellRecord lvRec = new CellRecord();
+ *  lvRec.setAttribute("city", "Las Vegas");
+ *  lvRec.setAttribute("spring", "79");
+ *  lvRec.setAttribute("summer", "102");
+ *  lvRec.setAttribute("autumn", "81");
+ *  lvRec.setAttribute("winter", "59");
+ *  CellRecord nyRec = new CellRecord();
+ *  nyRec.setAttribute("city", "New York");
+ *  nyRec.setAttribute("spring", "60");
+ *  nyRec.setAttribute("summer", "83");
+ *  nyRec.setAttribute("autumn", "66");
+ *  nyRec.setAttribute("winter", "40");
+ *  
+ *  // Creating inlined facet
+ *  Facet inlinedFacet = new Facet();
+ *  inlinedFacet.setInlinedValues(true);
+ *  inlinedFacet.setValues(
+ *          new FacetValue("spring", "Spring"),
+ *          new FacetValue("summer", "Summer"),
+ *          new FacetValue("autumn", "Autumn"),
+ *          new FacetValue("winter", "Winter"));
+ *  
+ *  // Creating chart
+ *  FacetChart chart = new FacetChart();
+ *  chart.setFacets(inlinedFacet, new Facet("city", "City"));
+ *  chart.setData(new Record[]{lvRec, nyRec});
+ *  chart.setStacked(false);
+ *  chart.setTitle("Average temperatures");
+ *  </pre>
+ *  </code>
+ *  
+ *  <P>
+ *  In order to use this component, you must load the Drawing module (ISC_Drawing.js) before
+ *  loading the Charts module (ISC_Charts.js).
  */
 public class FacetChart extends Canvas {
 
@@ -167,7 +270,7 @@ public class FacetChart extends Canvas {
      * @param chartType new chart type. Default value is "Column"
      */
     public void setChartType(ChartType chartType) {
-        setAttribute("chartType", chartType.getValue(), true);
+        setAttribute("chartType", chartType == null ? null : chartType.getValue(), true);
     }
 
     /**

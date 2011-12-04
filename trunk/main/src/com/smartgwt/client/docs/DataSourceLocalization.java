@@ -44,7 +44,7 @@ package com.smartgwt.client.docs;
  *  &lt;DataSource xmlns:fmt="urn:jsptld:/WEB-INF/fmt.tld"&gt;
  *      &lt;fields&gt;
  *          &lt;field name="itemName"&gt;
- *              &lt;title&gt;&lt;fmt:message key="itemTitle"&gt;&lt;/title&gt;
+ *              &lt;title&gt;&lt;fmt:message key="itemTitle"/&gt;&lt;/title&gt;
  *              &lt;validators&gt;
  *                  &lt;Validator type="lengthRange" max="40"&gt;
  *                      &lt;errorMessage&gt;&lt;fmt:message key="itemLengthRangeValidator"/&gt;&lt;/errorMessage&gt;

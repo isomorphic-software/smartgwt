@@ -90,7 +90,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     public TreeGrid(){
-        setAnimateFolderSpeed(3000);setAlternateRecordStyles(false);scClassName = "TreeGrid";
+        setAnimateFolderSpeed(3000);setAlternateRecordStyles(false);
+				scClassName = "TreeGrid";
     }
 
     public TreeGrid(JavaScriptObject jsObj){
@@ -114,7 +115,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * @param animateFolderEffect animateFolderEffect Default value is null
      */
     public void setAnimateFolderEffect(AnimationAcceleration animateFolderEffect) {
-        setAttribute("animateFolderEffect", animateFolderEffect.getValue(), true);
+        setAttribute("animateFolderEffect", animateFolderEffect == null ? null : animateFolderEffect.getValue(), true);
     }
 
     /**
@@ -236,7 +237,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle == null ? null : autoFetchTextMatchStyle.getValue(), false);
     }
 
     /**
@@ -714,7 +715,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setDataFetchMode(FetchMode dataFetchMode)  throws IllegalStateException {
-        setAttribute("dataFetchMode", dataFetchMode.getValue(), false);
+        setAttribute("dataFetchMode", dataFetchMode == null ? null : dataFetchMode.getValue(), false);
     }
 
     /**
@@ -742,7 +743,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * @see com.smartgwt.client.types.DisplayNodeType
      */
     public void setDisplayNodeType(DisplayNodeType displayNodeType) {
-        setAttribute("displayNodeType", displayNodeType.getValue(), true);
+        setAttribute("displayNodeType", displayNodeType == null ? null : displayNodeType.getValue(), true);
     }
 
     /**

@@ -26,6 +26,12 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionDetails
  * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionRelated
  * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionEditor
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionEditorShowSaveDialog
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionEditorSaveDialogPrompt
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionEditorCollapseOnSave
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getShowExpansionEditorSaveButton
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionEditorSaveButton
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionEditorSaveButtonTitle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionDetailRelated
  * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionLayout
  * @see com.smartgwt.client.widgets.grid.ListGrid#getChildExpansionMode

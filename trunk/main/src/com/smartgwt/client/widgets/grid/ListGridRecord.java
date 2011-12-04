@@ -321,7 +321,7 @@ public class ListGridRecord extends Record {
     }
 
     /**
-     * Default property name denoting whether this record is enabled. Property name may be modified for some grid via {@link
+     * Default property name denoting whether this record is enabled. Property name may be  modified for some grid via {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty recordEnabledProperty}.
      *
      * @param enabled enabled Default value is null
@@ -332,7 +332,7 @@ public class ListGridRecord extends Record {
     }
 
     /**
-     * Default property name denoting whether this record is enabled. Property name may be modified for some grid via {@link
+     * Default property name denoting whether this record is enabled. Property name may be  modified for some grid via {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty recordEnabledProperty}.
      *
      *
