@@ -2,8 +2,8 @@ package com.smartgwt.sample.showcase.client.drawing;
 
 import com.smartgwt.client.types.Cursor;
 import com.smartgwt.client.types.Overflow;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.drawing.DrawCurve;
 import com.smartgwt.client.widgets.drawing.DrawItem;
 import com.smartgwt.client.widgets.drawing.DrawLabel;
@@ -28,11 +28,12 @@ import com.smartgwt.client.widgets.drawing.events.MouseUpEvent;
 import com.smartgwt.client.widgets.drawing.events.MouseUpHandler;
 import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.events.DrawHandler;
+import com.smartgwt.client.widgets.layout.VStack;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class DrawingMouseEventsSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "Below is a sampling of the events that can be applied to shapes.";
+    private static final String DESCRIPTION = "Shows some of the mouse events that apply to shapes.";
 
     public static class Factory implements PanelFactory {
 
@@ -57,13 +58,21 @@ public class DrawingMouseEventsSample extends ShowcasePanel {
         DrawPane drawPane = new DrawPane();
         drawPane.setHeight(450);
         drawPane.setWidth(700);
-        drawPane.setLeft(25);
         drawPane.setShowEdges(true);
         drawPane.setEdgeSize(4);
         drawPane.setBackgroundColor("papayawhip");
         drawPane.setOverflow(Overflow.HIDDEN);
         drawPane.setCursor(Cursor.AUTO);
-        drawPane.draw();
+        
+        final Label label = new Label();
+        label.setBorder("1px solid black");
+        label.setHeight(30);
+        label.setWidth(700);
+        label.setPadding(5);
+        
+        VStack layout = new VStack();
+        layout.setMembersMargin(10);
+        layout.setMembers(drawPane, label);
         
         drawPane.addDrawHandler(new DrawHandler() {
             
@@ -199,37 +208,37 @@ public class DrawingMouseEventsSample extends ShowcasePanel {
                     drawItem.addClickHandler(new ClickHandler() {
                         @Override
                         public void onClick(ClickEvent event) {
-                            SC.logWarn("Click on " + ((DrawItem)event.getSource()).getID());
+                            label.setContents("Click on " + ((DrawItem)event.getSource()).getID());
                         }
                     });
                     drawItem.addMouseDownHandler(new MouseDownHandler() {
                         @Override
                         public void onMouseDown(MouseDownEvent event) {
-                           SC.logWarn("Mouse is Down on " + ((DrawItem)event.getSource()).getID());
+                        	label.setContents("Mouse is Down on " + ((DrawItem)event.getSource()).getID());
                         }
                     });
                     drawItem.addMouseUpHandler(new MouseUpHandler() {
                         @Override
                         public void onMouseUp(MouseUpEvent event) {
-                            SC.logWarn("Mouse Up on " + ((DrawItem)event.getSource()).getID());    
+                        	label.setContents("Mouse Up on " + ((DrawItem)event.getSource()).getID());    
                         }
                     });
                     drawItem.addMouseMoveHandler(new MouseMoveHandler() {
                         @Override
                         public void onMouseMove(MouseMoveEvent event) {
-                            SC.logWarn("Mouse Move on " + ((DrawItem)event.getSource()).getID()); 
+                        	label.setContents("Mouse Move on " + ((DrawItem)event.getSource()).getID()); 
                         }
                     });
                     drawItem.addMouseOverHandler(new MouseOverHandler() {
                         @Override
                         public void onMouseOver(MouseOverEvent event) {
-                            SC.logWarn("Mouse Over " + ((DrawItem)event.getSource()).getID());    
+                        	label.setContents("Mouse Over " + ((DrawItem)event.getSource()).getID());    
                         }
                     });
                     drawItem.addClickHandler(new ClickHandler() {
                         @Override
                         public void onClick(ClickEvent event) {
-                            SC.logWarn("Mouse Click on " + ((DrawItem)event.getSource()).getID());    
+                        	label.setContents("Mouse Click on " + ((DrawItem)event.getSource()).getID());    
                         }
                     });
 
@@ -237,7 +246,7 @@ public class DrawingMouseEventsSample extends ShowcasePanel {
             }
         });
 
-        return drawPane;
+        return layout;
     }
 
     public String getIntro() {
