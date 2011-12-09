@@ -2,8 +2,10 @@ package com.smartgwt.sample.showcase.client;
 
 import com.google.gwt.user.client.History;
 import com.smartgwt.client.data.Record;
+import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.OperatorId;
 import com.smartgwt.client.types.TreeModelType;
+import com.smartgwt.client.types.TitleOrientation;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.events.*;
@@ -54,10 +56,12 @@ public class TileView extends VLayout {
     private CheckboxItem accordionCB;
     private CheckboxItem buttonsCB;
     private CheckboxItem menusCB;
+    private CheckboxItem toolStripCB;
     private CheckboxItem otherControlsCB;
     private CheckboxItem dataIntegrationCB;
     private CheckboxItem dragDropCB;
     private CheckboxItem basicsCB;
+    private CheckboxItem drawingCB;
     private CheckboxItem effectsCB;
     private CheckboxItem ascendingItem;
     private CheckboxItem disabledModeCB;
@@ -123,6 +127,7 @@ public class TileView extends VLayout {
         filterForm = new DynamicForm();
         filterForm.setBorder("1px solid #9C9C9C");
         filterForm.setNumCols(8);
+        filterForm.setColWidths(16, "*", 16, "*", 16, "*", 16, "*");
         filterForm.setAutoFocus(false);
         filterForm.setPadding(5);
 
@@ -134,6 +139,9 @@ public class TileView extends VLayout {
         });
 
         searchItem = new TextItem("description", "Search");
+        searchItem.setTitleOrientation(TitleOrientation.TOP);
+        searchItem.setColSpan(2);
+        searchItem.setTitleAlign(Alignment.LEFT);
         searchItem.addKeyPressHandler(new KeyPressHandler() {
             public void onKeyPress(KeyPressEvent event) {
                 if("enter".equalsIgnoreCase(event.getKeyName())) {
@@ -158,8 +166,12 @@ public class TileView extends VLayout {
 
         numSamplesItem = new SliderItem("numSamples");
         numSamplesItem.setTitle("# of Samples");
+        numSamplesItem.setTitleOrientation(TitleOrientation.TOP);
+        numSamplesItem.setColSpan(2);
+        numSamplesItem.setTitleAlign(Alignment.LEFT);
         numSamplesItem.setMinValue(1);
-        numSamplesItem.setMaxValue(100);
+        // grep '^ *new ExplorerTreeNode' ShowcaseData.java | grep -o 'new [^.,]*\.Factory()' | sort | uniq | wc
+        numSamplesItem.setMaxValue(291);
         numSamplesItem.setDefaultValue(100);
         numSamplesItem.setHeight(50);
         numSamplesItem.setOperator(OperatorId.LESS_THAN);
@@ -180,10 +192,12 @@ public class TileView extends VLayout {
         accordionCB = new CheckboxItem("accordionCB", "Accordion / Sections");
         buttonsCB = new CheckboxItem("buttonsCB", "Buttons");
         menusCB = new CheckboxItem("menusCB", "Menus");
+        toolStripCB = new CheckboxItem("toolStripCB", "ToolStrip");
         otherControlsCB = new CheckboxItem("otherControlsCB", "Other Controls");
         dataIntegrationCB = new CheckboxItem("dataIntegrationCB", "Data Integration");
         dragDropCB = new CheckboxItem("dragDropCB", "Drag &amp; Drop");
         basicsCB = new CheckboxItem("basicsCB", "Basics");
+        drawingCB = new CheckboxItem("drawingCB", "Drawing");
         effectsCB = new CheckboxItem("effectsCB", "Effects &amp; Animation");
 
         ascendingItem = new CheckboxItem("chkSortDir");
@@ -193,9 +207,11 @@ public class TileView extends VLayout {
 
 
 
-        filterForm.setFields(searchItem, numSamplesItem, ascendingItem, disabledModeCB, featuredCB, newSamplesCB, comboBoxCB, gridsCB, treeCB,
-                calendarCB, tilesCB, formsCB, layoutCB, windowsCB, tabsCB, accordionCB, buttonsCB, menusCB,
-                otherControlsCB, dataIntegrationCB, dragDropCB, basicsCB, effectsCB);
+        filterForm.setFields(searchItem, numSamplesItem, ascendingItem, disabledModeCB, 
+            featuredCB, newSamplesCB, comboBoxCB, gridsCB, treeCB, calendarCB, tilesCB,
+            formsCB, layoutCB, windowsCB, tabsCB, accordionCB, buttonsCB, menusCB,
+            toolStripCB, otherControlsCB, dataIntegrationCB, dragDropCB, basicsCB, drawingCB,
+            effectsCB);
 
         filterForm.addItemChangedHandler(new ItemChangedHandler() {
             public void onItemChanged(ItemChangedEvent event) {
@@ -230,10 +246,12 @@ public class TileView extends VLayout {
         if (accordionCB.getValueAsBoolean()) categories.add("layout_sections_category");
         if (buttonsCB.getValueAsBoolean()) categories.add("buttons_category");
         if (menusCB.getValueAsBoolean()) categories.add("menus_category");
+        if (toolStripCB.getValueAsBoolean()) categories.add("toolstrip_category");
         if (otherControlsCB.getValueAsBoolean()) categories.add("controls_category");
         if (dataIntegrationCB.getValueAsBoolean()) categories.add("data_integration_category");
         if (dragDropCB.getValueAsBoolean()) categories.add("effects_dd_category");
         if (basicsCB.getValueAsBoolean()) categories.add("basics_category");
+        if (drawingCB.getValueAsBoolean()) categories.add("drawing");
         if (effectsCB.getValueAsBoolean()) categories.add("effects_category");
 
 
