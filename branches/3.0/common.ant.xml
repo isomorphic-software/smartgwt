@@ -16,7 +16,7 @@
 	<!-- Global Properties -->
 	<property environment="env" />
     <property name="SC_HOME" value="${env.SC_HOME}"/>
-    <condition property="SC_VER" value="${env.SC_VER}" else="trunk">
+    <condition property="SC_VER" value="${env.SC_VER}" else="8.2-3.0">
 		<isset property="${env.SC_VER}" />
     </condition>
 	
@@ -25,7 +25,7 @@
 	<property name="smartgwt.version.minor" value="0" />
 	<property name="smartgwt.previous_version" value="2.5" />
 
-    <condition property="smartgwt.tools.check" value="${env.SMARTGWT_TOOLS}" else="${smartgwt.root}/../tools">
+    <condition property="smartgwt.tools.check" value="${env.SMARTGWT_TOOLS}" else="${smartgwt.root}/../../tools">
 		<isset property="env.SMARTGWT_TOOLS" />
 	</condition>
     <property name="smartclient.version" value="${SC_VER}" />
