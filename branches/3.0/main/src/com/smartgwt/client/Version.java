@@ -49,6 +49,6 @@ public final class Version {
      * @return the library build time
      */
     public static Date getBuildDate() {
-        return DateTimeFormat.getFormat("MM/dd/yyyy hh:mm Z").parse("12/01/2011 01:52 -0800");
+        return DateTimeFormat.getFormat("MM/dd/yyyy hh:mm Z").parse("12/09/2011 10:28 +0000");
     }
 }
