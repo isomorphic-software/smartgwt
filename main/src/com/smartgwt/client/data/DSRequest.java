@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -80,6 +77,40 @@ public class DSRequest extends RPCRequest {
     }
 
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * For fetch operation, an optional comma separated list of fields to fetch from another, related DataSource. <P> Fields
+     * should be specified in the format  <code>"localFieldName:relatedDataSourceID.relatedDataSourceFieldName"</code>. where
+     * <code><i>relatedDataSourceID</i></code> is the ID of the related dataSource, and
+     * <code><i>relatedDataSourceFieldName</i></code> is the field for which you want to fetch related values. The returned
+     * field values will be stored on  the data returned to the client under the specified <code><i>localFieldName</i></code>.
+     * Note that this will be applied in addition to any specified {@link com.smartgwt.client.data.DSRequest#getOutputs
+     * outputs}. <P> Note that as with {@link com.smartgwt.client.data.DataSourceField#getIncludeFrom includeFrom}, the related
+     * dataSource must be linked to the primary datasource via a foreignKey relationship.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param additionalOutputs additionalOutputs Default value is null
+     */
+    public void setAdditionalOutputs(String additionalOutputs) {
+        setAttribute("additionalOutputs", additionalOutputs);
+    }
+
+    /**
+     * For fetch operation, an optional comma separated list of fields to fetch from another, related DataSource. <P> Fields
+     * should be specified in the format  <code>"localFieldName:relatedDataSourceID.relatedDataSourceFieldName"</code>. where
+     * <code><i>relatedDataSourceID</i></code> is the ID of the related dataSource, and
+     * <code><i>relatedDataSourceFieldName</i></code> is the field for which you want to fetch related values. The returned
+     * field values will be stored on  the data returned to the client under the specified <code><i>localFieldName</i></code>.
+     * Note that this will be applied in addition to any specified {@link com.smartgwt.client.data.DSRequest#getOutputs
+     * outputs}. <P> Note that as with {@link com.smartgwt.client.data.DataSourceField#getIncludeFrom includeFrom}, the related
+     * dataSource must be linked to the primary datasource via a foreignKey relationship.
+     *
+     *
+     * @return String
+     */
+    public String getAdditionalOutputs()  {
+        return getAttributeAsString("additionalOutputs");
+    }
 
     /**
      * For requests submitted by a {@link com.smartgwt.client.widgets.DataBoundComponent}, the {@link
@@ -165,7 +196,7 @@ public class DSRequest extends RPCRequest {
      * @param exportAs exportAs Default value is "csv"
      */
     public void setExportAs(ExportFormat exportAs) {
-        setAttribute("exportAs", exportAs == null ? null : exportAs.getValue());
+        setAttribute("exportAs", exportAs.getValue());
     }
 
     /**
@@ -257,7 +288,7 @@ public class DSRequest extends RPCRequest {
      * @param exportDisplay exportDisplay Default value is "download"
      */
     public void setExportDisplay(ExportDisplay exportDisplay) {
-        setAttribute("exportDisplay", exportDisplay == null ? null : exportDisplay.getValue());
+        setAttribute("exportDisplay", exportDisplay.getValue());
     }
 
     /**
@@ -734,7 +765,7 @@ public class DSRequest extends RPCRequest {
      * @param operationType operationType Default value is null
      */
     public void setOperationType(DSOperationType operationType) {
-        setAttribute("operationType", operationType == null ? null : operationType.getValue());
+        setAttribute("operationType", operationType.getValue());
     }
 
     /**
@@ -748,35 +779,6 @@ public class DSRequest extends RPCRequest {
      */
     public DSOperationType getOperationType()  {
         return EnumUtil.getEnum(DSOperationType.values(), getAttribute("operationType"));
-    }
-
-    /**
-     * Sets {@link com.smartgwt.client.data.DataSource#getProgressiveLoading progressive loading mode} for this specific
-     * request, overriding the OperationBinding- and DataSource-level settings.  Note that this  setting applies only to fetch
-     * requests - it has no effect if specified on any other kind  of request.
-     *
-     * @param progressiveLoading progressiveLoading Default value is null
-     * @see com.smartgwt.client.data.DataSource#setProgressiveLoading
-     * @see com.smartgwt.client.docs.serverds.OperationBinding#progressiveLoading
-     * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
-     */
-    public void setProgressiveLoading(Boolean progressiveLoading) {
-        setAttribute("progressiveLoading", progressiveLoading);
-    }
-
-    /**
-     * Sets {@link com.smartgwt.client.data.DataSource#getProgressiveLoading progressive loading mode} for this specific
-     * request, overriding the OperationBinding- and DataSource-level settings.  Note that this  setting applies only to fetch
-     * requests - it has no effect if specified on any other kind  of request.
-     *
-     *
-     * @return Boolean
-     * @see com.smartgwt.client.data.DataSource#getProgressiveLoading
-     * @see com.smartgwt.client.docs.serverds.OperationBinding#progressiveLoading
-     * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
-     */
-    public Boolean getProgressiveLoading()  {
-        return getAttributeAsBoolean("progressiveLoading");
     }
 
 
@@ -860,7 +862,7 @@ public class DSRequest extends RPCRequest {
      * @param textMatchStyle textMatchStyle Default value is "exact"
      */
     public void setTextMatchStyle(TextMatchStyle textMatchStyle) {
-        setAttribute("textMatchStyle", textMatchStyle == null ? null : textMatchStyle.getValue());
+        setAttribute("textMatchStyle", textMatchStyle.getValue());
     }
 
     /**
@@ -1048,7 +1050,7 @@ public class DSRequest extends RPCRequest {
      * @param validationMode validationMode Default value is "full"
      */
     public void setValidationMode(ValidationMode validationMode) {
-        setAttribute("validationMode", validationMode == null ? null : validationMode.getValue());
+        setAttribute("validationMode", validationMode.getValue());
     }
 
     /**

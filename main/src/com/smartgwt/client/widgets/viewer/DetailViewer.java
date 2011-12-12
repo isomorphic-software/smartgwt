@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -162,7 +159,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public void setDataFetchMode(FetchMode dataFetchMode) {
-        setAttribute("dataFetchMode", dataFetchMode == null ? null : dataFetchMode.getValue(), true);
+        setAttribute("dataFetchMode", dataFetchMode.getValue(), true);
     }
 
     /**
@@ -191,7 +188,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * @param dateFormatter dateFormatter Default value is null
      */
     public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue(), true);
+        setAttribute("dateFormatter", dateFormatter.getValue(), true);
     }
 
     /**
@@ -225,7 +222,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setDatetimeFormatter(DateDisplayFormat datetimeFormatter) {
-        setAttribute("datetimeFormatter", datetimeFormatter == null ? null : datetimeFormatter.getValue(), true);
+        setAttribute("datetimeFormatter", datetimeFormatter.getValue(), true);
     }
 
     /**
@@ -344,201 +341,6 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      */
     public String getHeaderStyle()  {
         return getAttributeAsString("headerStyle");
-    }
-
-    /**
-     * Height for hilite icons for this listGrid. Overrides {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconSize hiliteIconSize}. Can be overridden at the field level
-     *
-     * @param hiliteIconHeight hiliteIconHeight Default value is null
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public void setHiliteIconHeight(Integer hiliteIconHeight) {
-        setAttribute("hiliteIconHeight", hiliteIconHeight, true);
-    }
-
-    /**
-     * Height for hilite icons for this listGrid. Overrides {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconSize hiliteIconSize}. Can be overridden at the field level
-     *
-     *
-     * @return Integer
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public Integer getHiliteIconHeight()  {
-        return getAttributeAsInt("hiliteIconHeight");
-    }
-
-    /**
-     * How much padding should there be on the left of {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIcons
-     * hilite icons} by default? Can be overridden at the field level
-     *
-     * @param hiliteIconLeftPadding hiliteIconLeftPadding Default value is 2
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public void setHiliteIconLeftPadding(int hiliteIconLeftPadding) {
-        setAttribute("hiliteIconLeftPadding", hiliteIconLeftPadding, true);
-    }
-
-    /**
-     * How much padding should there be on the left of {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIcons
-     * hilite icons} by default? Can be overridden at the field level
-     *
-     *
-     * @return int
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public int getHiliteIconLeftPadding()  {
-        return getAttributeAsInt("hiliteIconLeftPadding");
-    }
-
-    /**
-     * When {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIcons hiliteIcons} are present, where the hilite
-     * icon will be placed  relative to the field value.  See {@link com.smartgwt.client.types.HiliteIconPosition}. Can be
-     * overriden at the field level.
-     *
-     * @param hiliteIconPosition hiliteIconPosition Default value is "before"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public void setHiliteIconPosition(HiliteIconPosition hiliteIconPosition)  throws IllegalStateException {
-        setAttribute("hiliteIconPosition", hiliteIconPosition == null ? null : hiliteIconPosition.getValue(), false);
-    }
-
-    /**
-     * When {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIcons hiliteIcons} are present, where the hilite
-     * icon will be placed  relative to the field value.  See {@link com.smartgwt.client.types.HiliteIconPosition}. Can be
-     * overriden at the field level.
-     *
-     *
-     * @return HiliteIconPosition
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public HiliteIconPosition getHiliteIconPosition()  {
-        return EnumUtil.getEnum(HiliteIconPosition.values(), getAttribute("hiliteIconPosition"));
-    }
-
-    /**
-     * How much padding should there be on the right of {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIcons
-     * hilite icons} by default? Can be overridden at the field level
-     *
-     * @param hiliteIconRightPadding hiliteIconRightPadding Default value is 2
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public void setHiliteIconRightPadding(int hiliteIconRightPadding) {
-        setAttribute("hiliteIconRightPadding", hiliteIconRightPadding, true);
-    }
-
-    /**
-     * How much padding should there be on the right of {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIcons
-     * hilite icons} by default? Can be overridden at the field level
-     *
-     *
-     * @return int
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public int getHiliteIconRightPadding()  {
-        return getAttributeAsInt("hiliteIconRightPadding");
-    }
-
-    /**
-     * Specifies a list of icons that can be used in {@link com.smartgwt.client.widgets.DataBoundComponent#editHilites
-     * hilites}. <P> <code>hiliteIcons</code> should be specified as an Array of String. When present, the hilite editing
-     * interface shown when {@link com.smartgwt.client.widgets.DataBoundComponent#editHilites DataBoundComponent.editHilites}
-     * is called  will offer the user a drop down for picking one of these icons when defining either a  simple or advanced
-     * hilite rule. <P> If the user picks an icon, the created hiliting rule will have {@link
-     * com.smartgwt.client.data.Hilite#getIcon icon} set to  the chosen icon.  {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getHiliteIconPosition hiliteIconPosition} controls where the icon will 
-     * appear for that field -- the default is that it appears in front of the normal cell content. This can also be overriden
-     * at the field level.
-     *
-     * @param hiliteIcons hiliteIcons Default value is ["[SKINIMG]/Dialog/notify.png", "[SKINIMG]/Dialog/warn.png", "[SKINIMG]/actions/approve.png"]
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public void setHiliteIcons(String... hiliteIcons)  throws IllegalStateException {
-        setAttribute("hiliteIcons", hiliteIcons, false);
-    }
-
-    /**
-     * Specifies a list of icons that can be used in {@link com.smartgwt.client.widgets.DataBoundComponent#editHilites
-     * hilites}. <P> <code>hiliteIcons</code> should be specified as an Array of String. When present, the hilite editing
-     * interface shown when {@link com.smartgwt.client.widgets.DataBoundComponent#editHilites DataBoundComponent.editHilites}
-     * is called  will offer the user a drop down for picking one of these icons when defining either a  simple or advanced
-     * hilite rule. <P> If the user picks an icon, the created hiliting rule will have {@link
-     * com.smartgwt.client.data.Hilite#getIcon icon} set to  the chosen icon.  {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getHiliteIconPosition hiliteIconPosition} controls where the icon will 
-     * appear for that field -- the default is that it appears in front of the normal cell content. This can also be overriden
-     * at the field level.
-     *
-     *
-     * @return String
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public String[] getHiliteIcons()  {
-        return getAttributeAsStringArray("hiliteIcons");
-    }
-
-    /**
-     * Default width and height of {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIcons hilite icons} for this
-     * component. Can be overridden at the component level via explicit  {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconWidth hiliteIconWidth} and {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconHeight hiliteIconHeight}, or at the field level via  {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconSize hiliteIconSize}, {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconWidth hiliteIconWidth} and  {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconHeight hiliteIconHeight}
-     *
-     * @param hiliteIconSize hiliteIconSize Default value is 12
-     * @see com.smartgwt.client.widgets.viewer.DetailViewer#setHiliteIconWidth
-     * @see com.smartgwt.client.widgets.viewer.DetailViewer#setHiliteIconHeight
-     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setHiliteIconSize
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public void setHiliteIconSize(int hiliteIconSize) {
-        setAttribute("hiliteIconSize", hiliteIconSize, true);
-    }
-
-    /**
-     * Default width and height of {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIcons hilite icons} for this
-     * component. Can be overridden at the component level via explicit  {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconWidth hiliteIconWidth} and {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconHeight hiliteIconHeight}, or at the field level via  {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconSize hiliteIconSize}, {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconWidth hiliteIconWidth} and  {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconHeight hiliteIconHeight}
-     *
-     *
-     * @return int
-     * @see com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconWidth
-     * @see com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconHeight
-     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getHiliteIconSize
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public int getHiliteIconSize()  {
-        return getAttributeAsInt("hiliteIconSize");
-    }
-
-    /**
-     * Width for hilite icons for this component. Overrides {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconSize hiliteIconSize}. Can be overridden at the field level.
-     *
-     * @param hiliteIconWidth hiliteIconWidth Default value is null
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public void setHiliteIconWidth(Integer hiliteIconWidth) {
-        setAttribute("hiliteIconWidth", hiliteIconWidth, true);
-    }
-
-    /**
-     * Width for hilite icons for this component. Overrides {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconSize hiliteIconSize}. Can be overridden at the field level.
-     *
-     *
-     * @return Integer
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public Integer getHiliteIconWidth()  {
-        return getAttributeAsInt("hiliteIconWidth");
     }
 
     /**
@@ -868,7 +670,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
-        setAttribute("timeFormatter", timeFormatter == null ? null : timeFormatter.getValue(), true);
+        setAttribute("timeFormatter", timeFormatter.getValue(), true);
     }
 
     /**

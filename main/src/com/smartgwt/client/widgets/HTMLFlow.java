@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -344,7 +341,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      * @param httpMethod httpMethod Default value is "GET"
      */
     public void setHttpMethod(SendMethod httpMethod) {
-        setAttribute("httpMethod", httpMethod == null ? null : httpMethod.getValue(), true);
+        setAttribute("httpMethod", httpMethod.getValue(), true);
     }
 
     /**

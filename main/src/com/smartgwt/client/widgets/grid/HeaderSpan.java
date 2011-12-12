@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -96,7 +93,7 @@ public class HeaderSpan extends DataClass {
      * @param align align Default value is "center"
      */
     public void setAlign(Alignment align) {
-        setAttribute("align", align == null ? null : align.getValue());
+        setAttribute("align", align.getValue());
     }
 
     /**
@@ -199,7 +196,7 @@ public class HeaderSpan extends DataClass {
      * @param valign valign Default value is null
      */
     public void setValign(VerticalAlignment valign) {
-        setAttribute("valign", valign == null ? null : valign.getValue());
+        setAttribute("valign", valign.getValue());
     }
 
     /**

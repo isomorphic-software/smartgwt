@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -145,7 +142,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle == null ? null : autoFetchTextMatchStyle.getValue(), false);
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
     }
 
     /**
@@ -361,7 +358,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * @param currentViewName The name of the view that should be made visible.. Default value is null
      */
     public void setCurrentViewName(ViewName currentViewName) {
-        setAttribute("currentViewName", currentViewName == null ? null : currentViewName.getValue(), true);
+        setAttribute("currentViewName", currentViewName.getValue(), true);
     }
 
     /**
@@ -384,7 +381,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public void setDataFetchMode(FetchMode dataFetchMode) {
-        setAttribute("dataFetchMode", dataFetchMode == null ? null : dataFetchMode.getValue(), true);
+        setAttribute("dataFetchMode", dataFetchMode.getValue(), true);
     }
 
     /**
@@ -408,7 +405,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * @param dateFormatter dateFormatter Default value is null
      */
     public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue(), true);
+        setAttribute("dateFormatter", dateFormatter.getValue(), true);
     }
 
     /**

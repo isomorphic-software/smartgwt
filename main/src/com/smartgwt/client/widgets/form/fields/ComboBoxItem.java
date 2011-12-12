@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -595,33 +592,6 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
     }
 
     /**
-     * Indicates whether or not this ComboBoxItem will load its list of options  {@link
-     * com.smartgwt.client.data.DataSource#getProgressiveLoading progressively}.  This property is copied onto the underlying
-     * PickList.
-     *
-     * @param progressiveLoading progressiveLoading Default value is true
-     * @see com.smartgwt.client.data.DataSource#setProgressiveLoading
-     * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
-     */
-    public void setProgressiveLoading(Boolean progressiveLoading) {
-        setAttribute("progressiveLoading", progressiveLoading);
-    }
-
-    /**
-     * Indicates whether or not this ComboBoxItem will load its list of options  {@link
-     * com.smartgwt.client.data.DataSource#getProgressiveLoading progressively}.  This property is copied onto the underlying
-     * PickList.
-     *
-     *
-     * @return Boolean
-     * @see com.smartgwt.client.data.DataSource#getProgressiveLoading
-     * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
-     */
-    public Boolean getProgressiveLoading()  {
-        return getAttributeAsBoolean("progressiveLoading");
-    }
-
-    /**
      * If true, even non-matching options will be shown, with configurable  {@link
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getSeparatorRows separator rows} in between.  Not valid for {@link
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getOptionDataSource databound pickLists}.
@@ -747,7 +717,7 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      * @param textMatchStyle textMatchStyle Default value is "startsWith"
      */
     public void setTextMatchStyle(TextMatchStyle textMatchStyle) {
-        setAttribute("textMatchStyle", textMatchStyle == null ? null : textMatchStyle.getValue());
+        setAttribute("textMatchStyle", textMatchStyle.getValue());
     }
 
     /**

@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -145,7 +142,7 @@ public class StaticTextItem extends FormItem {
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue());
+        setAttribute("dateFormatter", dateFormatter.getValue());
     }
 
     /**

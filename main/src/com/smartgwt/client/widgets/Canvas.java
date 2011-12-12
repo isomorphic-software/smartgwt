@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -133,7 +130,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param animateAcceleration animateAcceleration Default value is "smoothEnd"
      */
     public void setAnimateAcceleration(AnimationAcceleration animateAcceleration) {
-        setAttribute("animateAcceleration", animateAcceleration == null ? null : animateAcceleration.getValue(), true);
+        setAttribute("animateAcceleration", animateAcceleration.getValue(), true);
     }
 
     /**
@@ -176,7 +173,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param animateHideAcceleration animateHideAcceleration Default value is null
      */
     public void setAnimateHideAcceleration(AnimationAcceleration animateHideAcceleration) {
-        setAttribute("animateHideAcceleration", animateHideAcceleration == null ? null : animateHideAcceleration.getValue(), true);
+        setAttribute("animateHideAcceleration", animateHideAcceleration.getValue(), true);
     }
 
     /**
@@ -218,7 +215,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param animateMoveAcceleration animateMoveAcceleration Default value is null
      */
     public void setAnimateMoveAcceleration(AnimationAcceleration animateMoveAcceleration) {
-        setAttribute("animateMoveAcceleration", animateMoveAcceleration == null ? null : animateMoveAcceleration.getValue(), true);
+        setAttribute("animateMoveAcceleration", animateMoveAcceleration.getValue(), true);
     }
 
     /**
@@ -260,7 +257,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param animateRectAcceleration animateRectAcceleration Default value is null
      */
     public void setAnimateRectAcceleration(AnimationAcceleration animateRectAcceleration) {
-        setAttribute("animateRectAcceleration", animateRectAcceleration == null ? null : animateRectAcceleration.getValue(), true);
+        setAttribute("animateRectAcceleration", animateRectAcceleration.getValue(), true);
     }
 
     /**
@@ -304,7 +301,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param animateResizeAcceleration animateResizeAcceleration Default value is null
      */
     public void setAnimateResizeAcceleration(AnimationAcceleration animateResizeAcceleration) {
-        setAttribute("animateResizeAcceleration", animateResizeAcceleration == null ? null : animateResizeAcceleration.getValue(), true);
+        setAttribute("animateResizeAcceleration", animateResizeAcceleration.getValue(), true);
     }
 
     /**
@@ -346,7 +343,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param animateScrollAcceleration animateScrollAcceleration Default value is null
      */
     public void setAnimateScrollAcceleration(AnimationAcceleration animateScrollAcceleration) {
-        setAttribute("animateScrollAcceleration", animateScrollAcceleration == null ? null : animateScrollAcceleration.getValue(), true);
+        setAttribute("animateScrollAcceleration", animateScrollAcceleration.getValue(), true);
     }
 
     /**
@@ -388,7 +385,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param animateShowAcceleration animateShowAcceleration Default value is null
      */
     public void setAnimateShowAcceleration(AnimationAcceleration animateShowAcceleration) {
-        setAttribute("animateShowAcceleration", animateShowAcceleration == null ? null : animateShowAcceleration.getValue(), true);
+        setAttribute("animateShowAcceleration", animateShowAcceleration.getValue(), true);
     }
 
     /**
@@ -689,7 +686,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setBackgroundRepeat(BkgndRepeat backgroundRepeat)  throws IllegalStateException {
-        setAttribute("backgroundRepeat", backgroundRepeat == null ? null : backgroundRepeat.getValue(), false);
+        setAttribute("backgroundRepeat", backgroundRepeat.getValue(), false);
     }
 
     /**
@@ -1127,7 +1124,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_cursors" target="examples">Cursors Example</a>
      */
     public void setCursor(Cursor cursor) {
-        setAttribute("cursor", cursor == null ? null : cursor.getValue(), true);
+        setAttribute("cursor", cursor.getValue(), true);
     }
 
     /**
@@ -1488,7 +1485,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.docs.Cues Cues overview and related methods
      */
     public void setDisabledCursor(Cursor disabledCursor) {
-        setAttribute("disabledCursor", disabledCursor == null ? null : disabledCursor.getValue(), true);
+        setAttribute("disabledCursor", disabledCursor.getValue(), true);
     }
 
     /**
@@ -1533,7 +1530,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public void setDragAppearance(DragAppearance dragAppearance) {
-        setAttribute("dragAppearance", dragAppearance == null ? null : dragAppearance.getValue(), true);
+        setAttribute("dragAppearance", dragAppearance.getValue(), true);
     }
 
     /**
@@ -1558,7 +1555,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public void setDragIntersectStyle(DragIntersectStyle dragIntersectStyle) {
-        setAttribute("dragIntersectStyle", dragIntersectStyle == null ? null : dragIntersectStyle.getValue(), true);
+        setAttribute("dragIntersectStyle", dragIntersectStyle.getValue(), true);
     }
 
     /**
@@ -1609,7 +1606,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public void setDragRepositionAppearance(DragAppearance dragRepositionAppearance) {
-        setAttribute("dragRepositionAppearance", dragRepositionAppearance == null ? null : dragRepositionAppearance.getValue(), true);
+        setAttribute("dragRepositionAppearance", dragRepositionAppearance.getValue(), true);
     }
 
     /**
@@ -1633,7 +1630,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public void setDragRepositionCursor(Cursor dragRepositionCursor) {
-        setAttribute("dragRepositionCursor", dragRepositionCursor == null ? null : dragRepositionCursor.getValue(), true);
+        setAttribute("dragRepositionCursor", dragRepositionCursor.getValue(), true);
     }
 
     /**
@@ -1657,7 +1654,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public void setDragResizeAppearance(DragAppearance dragResizeAppearance) {
-        setAttribute("dragResizeAppearance", dragResizeAppearance == null ? null : dragResizeAppearance.getValue(), true);
+        setAttribute("dragResizeAppearance", dragResizeAppearance.getValue(), true);
     }
 
     /**
@@ -2084,7 +2081,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.widgets.Canvas#setShowHover
      */
     public void setHoverAlign(Alignment hoverAlign) {
-        setAttribute("hoverAlign", hoverAlign == null ? null : hoverAlign.getValue(), true);
+        setAttribute("hoverAlign", hoverAlign.getValue(), true);
     }
 
     /**
@@ -2247,7 +2244,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.widgets.Canvas#setShowHover
      */
     public void setHoverVAlign(VerticalAlignment hoverVAlign) {
-        setAttribute("hoverVAlign", hoverVAlign == null ? null : hoverVAlign.getValue(), true);
+        setAttribute("hoverVAlign", hoverVAlign.getValue(), true);
     }
 
     /**
@@ -2322,7 +2319,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
     public void setHtmlPosition(DrawPosition htmlPosition) {
-        setAttribute("htmlPosition", htmlPosition == null ? null : htmlPosition.getValue(), true);
+        setAttribute("htmlPosition", htmlPosition.getValue(), true);
     }
 
     /**
@@ -2344,7 +2341,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param locateChildrenBy locateChildrenBy Default value is null
      */
     public void setLocateChildrenBy(LocatorStrategy locateChildrenBy) {
-        setAttribute("locateChildrenBy", locateChildrenBy == null ? null : locateChildrenBy.getValue(), true);
+        setAttribute("locateChildrenBy", locateChildrenBy.getValue(), true);
     }
 
     /**
@@ -2364,7 +2361,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param locateChildrenType locateChildrenType Default value is null
      */
     public void setLocateChildrenType(LocatorTypeStrategy locateChildrenType) {
-        setAttribute("locateChildrenType", locateChildrenType == null ? null : locateChildrenType.getValue(), true);
+        setAttribute("locateChildrenType", locateChildrenType.getValue(), true);
     }
 
     /**
@@ -2384,7 +2381,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param locatePeersBy locatePeersBy Default value is null
      */
     public void setLocatePeersBy(LocatorStrategy locatePeersBy) {
-        setAttribute("locatePeersBy", locatePeersBy == null ? null : locatePeersBy.getValue(), true);
+        setAttribute("locatePeersBy", locatePeersBy.getValue(), true);
     }
 
     /**
@@ -2404,7 +2401,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param locatePeersType locatePeersType Default value is null
      */
     public void setLocatePeersType(LocatorTypeStrategy locatePeersType) {
-        setAttribute("locatePeersType", locatePeersType == null ? null : locatePeersType.getValue(), true);
+        setAttribute("locatePeersType", locatePeersType.getValue(), true);
     }
 
     /**
@@ -2688,7 +2685,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public void setOverflow(Overflow overflow) {
-        setAttribute("overflow", overflow == null ? null : overflow.getValue(), true);
+        setAttribute("overflow", overflow.getValue(), true);
     }
 
     /**
@@ -2755,7 +2752,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public void setPercentBox(PercentBoxModel percentBox)  throws IllegalStateException {
-        setAttribute("percentBox", percentBox == null ? null : percentBox.getValue(), false);
+        setAttribute("percentBox", percentBox.getValue(), false);
     }
 
     /**
@@ -2819,7 +2816,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * 
      */
     public void setPosition(Positioning position) {
-        setAttribute("position", position == null ? null : position.getValue(), true);
+        setAttribute("position", position.getValue(), true);
     }
 
     /**
@@ -3844,7 +3841,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setVisibility(Visibility visibility) {
-        setAttribute("visibility", visibility == null ? null : visibility.getValue(), true);
+        setAttribute("visibility", visibility.getValue(), true);
     }
 
     /**
@@ -6410,21 +6407,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             return obj;
         }
     }-*/;
-
-    protected void onDetach() {
-        super.onDetach();
-        //when a SmartGWT widget is removed from a parent GWT widget container, make sure we carry out proper cleanup
-        clear();
-    }
-
-
-    protected void onAttach() {
-        super.onAttach();
-        //upon attach to a GWT container, draw the SmartGWT widget if it has not been previously drawn
-        if(!isDrawn()) {
-            draw();
-        }
-    }
 
     /**
      * Multiple styles are currently not supported. This method essentially calls {@link #setStyleName(String)}

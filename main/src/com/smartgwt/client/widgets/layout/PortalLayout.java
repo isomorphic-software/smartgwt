@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -317,7 +314,7 @@ public class PortalLayout extends Layout {
      * 
      */
     public void setColumnOverflow(Overflow columnOverflow) {
-        setAttribute("columnOverflow", columnOverflow == null ? null : columnOverflow.getValue(), true);
+        setAttribute("columnOverflow", columnOverflow.getValue(), true);
     }
 
     /**
@@ -386,7 +383,7 @@ public class PortalLayout extends Layout {
      * 
      */
     public void setOverflow(Overflow overflow) {
-        setAttribute("overflow", overflow == null ? null : overflow.getValue(), true);
+        setAttribute("overflow", overflow.getValue(), true);
     }
 
     /**

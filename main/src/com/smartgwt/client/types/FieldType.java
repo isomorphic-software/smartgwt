@@ -116,9 +116,7 @@ public enum FieldType implements ValueEnum {
     /**
      * Fields of this type are automatically populated by the Smart GWT Server with the current authenticated userId as part of
      * "add" and "update"  operations. By default, fields of this type are hidden and not editable; the server ignores any
-     * value that the client sends in a field of this type. Note that the "authenticated user" can be set explicitly on the
-     * server-side  <code>RPCManager</code> using the setUserId() method, or it can come from the servlet API if you are using
-     * its built-in authentication scheme. See the server-side Javadocs for <code>RPCManager</code>.
+     * value that the client sends in a field of this type.
      */
     MODIFIER("modifier"),
     /**
@@ -130,7 +128,7 @@ public enum FieldType implements ValueEnum {
     /**
      * Fields of this type are automatically populated by the Smart GWT Server with the current authenticated userId as part of
      * "add" operations. By default, fields of this type are hidden and not editable; the server ignores any value that the
-     * client sends in a field of this type. The notes about type "modifier" also apply to fields of this type.
+     * client sends in a field of this type.
      */
     CREATOR("creator"),
     /**
@@ -149,7 +147,7 @@ public enum FieldType implements ValueEnum {
     CUSTOM("custom"),
     /**
      * A special field type specifically for use with Unicode data in conjunction with the Microsoft SQL Server database. Field
-     * type "ntext" implies the  use of {@link com.smartgwt.client.docs.serverds.DataSourceField#sqlStorageStrategy
+     * type "ntext" implies the  use of {@link com.smartgwt.client.data.DataSourceField#getSqlStorageStrategy
      * sqlStorageStrategy} "ntext"; other than that, this type is identical to "text"
      */
     NTEXT("ntext");

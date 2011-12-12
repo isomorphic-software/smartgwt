@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -88,7 +85,7 @@ public class CellRecord extends ListGridRecord {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Default property name denoting whether this record is enabled. Property name may be  modified for some grid via {@link
+     * Default property name denoting whether this record is enabled. Property name may be modified for some grid via {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty recordEnabledProperty}.
      *
      * @param enabled enabled Default value is null
@@ -99,7 +96,7 @@ public class CellRecord extends ListGridRecord {
     }
 
     /**
-     * Default property name denoting whether this record is enabled. Property name may be  modified for some grid via {@link
+     * Default property name denoting whether this record is enabled. Property name may be modified for some grid via {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty recordEnabledProperty}.
      *
      *

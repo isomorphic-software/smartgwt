@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -622,7 +619,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setMinimizeAcceleration(AnimationAcceleration minimizeAcceleration) {
-        setAttribute("minimizeAcceleration", minimizeAcceleration == null ? null : minimizeAcceleration.getValue(), true);
+        setAttribute("minimizeAcceleration", minimizeAcceleration.getValue(), true);
     }
 
     /**

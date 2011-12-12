@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -203,7 +200,7 @@ public class CanvasItem extends FormItem  implements com.smartgwt.client.widgets
      * @param overflow overflow Default value is null
      */
     public void setOverflow(Overflow overflow) {
-        setAttribute("overflow", overflow == null ? null : overflow.getValue());
+        setAttribute("overflow", overflow.getValue());
     }
 
     /**

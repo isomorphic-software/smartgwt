@@ -348,5 +348,5 @@ if (!(isc.loadSkin || window.loadSkin)) {
 	</target>
 	<target name="fixcrlf" description="task to convert all java files to have a consistent line end character">
 		<fixcrlf srcdir="main/src" includes="**/*.java" eol="crlf" eof="asis"/>
-    </target>
+	</target>
 </project>

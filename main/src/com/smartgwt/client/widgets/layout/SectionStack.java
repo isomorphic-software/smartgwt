@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -301,7 +298,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      * @param locateSectionsBy locateSectionsBy Default value is null
      */
     public void setLocateSectionsBy(LocatorStrategy locateSectionsBy) {
-        setAttribute("locateSectionsBy", locateSectionsBy == null ? null : locateSectionsBy.getValue(), true);
+        setAttribute("locateSectionsBy", locateSectionsBy.getValue(), true);
     }
 
     /**
@@ -326,7 +323,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      * @param locateSectionsType locateSectionsType Default value is null
      */
     public void setLocateSectionsType(LocatorTypeStrategy locateSectionsType) {
-        setAttribute("locateSectionsType", locateSectionsType == null ? null : locateSectionsType.getValue(), true);
+        setAttribute("locateSectionsType", locateSectionsType.getValue(), true);
     }
 
     /**
@@ -348,7 +345,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setOverflow(Overflow overflow)  throws IllegalStateException {
-        setAttribute("overflow", overflow == null ? null : overflow.getValue(), false);
+        setAttribute("overflow", overflow.getValue(), false);
     }
 
     /**
@@ -489,7 +486,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_sections_expand_collapse" target="examples">Expand / Collapse Example</a>
      */
     public void setVisibilityMode(VisibilityMode visibilityMode) {
-        setAttribute("visibilityMode", visibilityMode == null ? null : visibilityMode.getValue(), true);
+        setAttribute("visibilityMode", visibilityMode.getValue(), true);
     }
 
     /**

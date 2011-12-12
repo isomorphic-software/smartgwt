@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -529,7 +526,7 @@ public class RPCRequest extends DataClass {
      * @see com.smartgwt.client.docs.RpcPrompt RpcPrompt overview and related methods
      */
     public void setPromptStyle(PromptStyle promptStyle) {
-        setAttribute("promptStyle", promptStyle == null ? null : promptStyle.getValue());
+        setAttribute("promptStyle", promptStyle.getValue());
     }
 
     /**
@@ -692,7 +689,7 @@ public class RPCRequest extends DataClass {
      * @see com.smartgwt.client.rpc.RPCManager#defaultTransport
      */
     public void setTransport(RPCTransport transport) {
-        setAttribute("transport", transport == null ? null : transport.getValue());
+        setAttribute("transport", transport.getValue());
     }
 
     /**

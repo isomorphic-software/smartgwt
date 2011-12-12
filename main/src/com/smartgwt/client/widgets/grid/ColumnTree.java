@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -110,7 +107,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle == null ? null : autoFetchTextMatchStyle.getValue(), false);
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
     }
 
     /**
@@ -269,7 +266,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public void setDataFetchMode(FetchMode dataFetchMode) {
-        setAttribute("dataFetchMode", dataFetchMode == null ? null : dataFetchMode.getValue(), true);
+        setAttribute("dataFetchMode", dataFetchMode.getValue(), true);
     }
 
     /**

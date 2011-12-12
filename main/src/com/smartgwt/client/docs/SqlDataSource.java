@@ -24,7 +24,7 @@ package com.smartgwt.client.docs;
  * operations with any database product that supports standard SQL92 syntax and data types, plus a couple  of
  * widely-implemented features that are not actually part of the standard.  Specifically, this means we do not support:<ul>
  * <li>Sequences</li> <li>Paging via SQL limit queries</li> <li>{@link
- * com.smartgwt.client.docs.serverds.DataSource#autoJoinTransactions Automatic transaction management} <li>Long text values
+ * com.smartgwt.client.data.DataSource#getAutoJoinTransactions Automatic transaction management} <li>Long text values
  * (there is no real definition of "long" here - we try to use a standard VARCHAR, but different databases will support
  * different maximum values for this)</li> <li>Databases that do not implement the widely-supported LOWER() function</li>
  * <li>Databases that do not support the ability to perform string-type operations on numeric columns - for example,

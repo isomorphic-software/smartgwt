@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -126,7 +123,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle == null ? null : autoFetchTextMatchStyle.getValue(), false);
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
     }
 
     /**
@@ -211,7 +208,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public void setDataFetchMode(FetchMode dataFetchMode) {
-        setAttribute("dataFetchMode", dataFetchMode == null ? null : dataFetchMode.getValue(), true);
+        setAttribute("dataFetchMode", dataFetchMode.getValue(), true);
     }
 
     /**
@@ -279,7 +276,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_editing_category" target="examples">Editing Example</a>
      */
     public void setSelectionType(SelectionStyle selectionType) {
-        setAttribute("selectionType", selectionType == null ? null : selectionType.getValue(), true);
+        setAttribute("selectionType", selectionType.getValue(), true);
     }
 
     /**
@@ -370,7 +367,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public void setTileDragAppearance(DragAppearance tileDragAppearance) {
-        setAttribute("tileDragAppearance", tileDragAppearance == null ? null : tileDragAppearance.getValue(), true);
+        setAttribute("tileDragAppearance", tileDragAppearance.getValue(), true);
     }
 
     /**

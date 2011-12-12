@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -109,7 +106,7 @@ public class FacetValue extends RefDataClass {
      * @param align align Default value is null
      */
     public void setAlign(Alignment align) {
-        setAttribute("align", align == null ? null : align.getValue());
+        setAttribute("align", align.getValue());
     }
 
     /**
@@ -207,7 +204,7 @@ public class FacetValue extends RefDataClass {
      * @param cellAlign cellAlign Default value is facet.cellAlign
      */
     public void setCellAlign(Alignment cellAlign) {
-        setAttribute("cellAlign", cellAlign == null ? null : cellAlign.getValue());
+        setAttribute("cellAlign", cellAlign.getValue());
     }
 
     /**
@@ -289,7 +286,7 @@ public class FacetValue extends RefDataClass {
      * @param selectionBoundary selectionBoundary Default value is null
      */
     public void setSelectionBoundary(SelectionBoundary selectionBoundary) {
-        setAttribute("selectionBoundary", selectionBoundary == null ? null : selectionBoundary.getValue());
+        setAttribute("selectionBoundary", selectionBoundary.getValue());
     }
 
     /**

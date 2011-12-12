@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -200,7 +197,7 @@ public class ToolStripGroup extends VLayout {
      * @param titleAlign the new alignment for the text, left or right. Default value is "center"
      */
     public void setTitleAlign(Alignment titleAlign) {
-        setAttribute("titleAlign", titleAlign == null ? null : titleAlign.getValue(), true);
+        setAttribute("titleAlign", titleAlign.getValue(), true);
     }
 
     /**
@@ -245,7 +242,7 @@ public class ToolStripGroup extends VLayout {
      * @param titleOrientation the new orientation for the title, either bottom or top. Default value is "top"
      */
     public void setTitleOrientation(VerticalAlignment titleOrientation) {
-        setAttribute("titleOrientation", titleOrientation == null ? null : titleOrientation.getValue(), true);
+        setAttribute("titleOrientation", titleOrientation.getValue(), true);
     }
 
     /**

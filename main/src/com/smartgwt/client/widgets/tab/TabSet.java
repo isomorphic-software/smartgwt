@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -447,7 +444,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * @param paneContainerOverflow new overflow setting. Default value is Canvas.AUTO
      */
     public void setPaneContainerOverflow(Overflow paneContainerOverflow) {
-        setAttribute("paneContainerOverflow", paneContainerOverflow == null ? null : paneContainerOverflow.getValue(), true);
+        setAttribute("paneContainerOverflow", paneContainerOverflow.getValue(), true);
     }
 
     /**
@@ -1056,7 +1053,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_align" target="examples">Align Example</a>
      */
     public void setTabBarAlign(Side tabBarAlign)  throws IllegalStateException {
-        setAttribute("tabBarAlign", tabBarAlign == null ? null : tabBarAlign.getValue(), false);
+        setAttribute("tabBarAlign", tabBarAlign.getValue(), false);
     }
 
     /**
@@ -1080,7 +1077,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_orientation" target="examples">Orientation Example</a>
      */
     public void setTabBarPosition(Side tabBarPosition)  throws IllegalStateException {
-        setAttribute("tabBarPosition", tabBarPosition == null ? null : tabBarPosition.getValue(), false);
+        setAttribute("tabBarPosition", tabBarPosition.getValue(), false);
     }
 
     /**

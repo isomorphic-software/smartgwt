@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -151,7 +148,7 @@ public class OperationBinding extends DataClass {
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setDataFormat(DSDataFormat dataFormat) {
-        setAttribute("dataFormat", dataFormat == null ? null : dataFormat.getValue());
+        setAttribute("dataFormat", dataFormat.getValue());
     }
 
     /**
@@ -188,7 +185,7 @@ public class OperationBinding extends DataClass {
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setDataProtocol(DSProtocol dataProtocol) {
-        setAttribute("dataProtocol", dataProtocol == null ? null : dataProtocol.getValue());
+        setAttribute("dataProtocol", dataProtocol.getValue());
     }
 
     /**
@@ -232,7 +229,7 @@ public class OperationBinding extends DataClass {
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setDataTransport(RPCTransport dataTransport) {
-        setAttribute("dataTransport", dataTransport == null ? null : dataTransport.getValue());
+        setAttribute("dataTransport", dataTransport.getValue());
     }
 
     /**
@@ -312,7 +309,7 @@ public class OperationBinding extends DataClass {
      * @param exportAs exportAs Default value is "csv"
      */
     public void setExportAs(ExportFormat exportAs) {
-        setAttribute("exportAs", exportAs == null ? null : exportAs.getValue());
+        setAttribute("exportAs", exportAs.getValue());
     }
 
     /**
@@ -552,7 +549,7 @@ public class OperationBinding extends DataClass {
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setOperationType(DSOperationType operationType) {
-        setAttribute("operationType", operationType == null ? null : operationType.getValue());
+        setAttribute("operationType", operationType.getValue());
     }
 
     /**

@@ -100,18 +100,6 @@ package com.smartgwt.client.docs;
  * create an editor with an {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcons FormItem icon} that pops up a
  * separate Window containing a FileItem in a DynamicForm, so long as the form in the Window saves the uploaded file
  * immediately rather than trying to have the grid perform the save.
- * @see com.smartgwt.client.widgets.cube.CubeGrid#setEditValue
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditValue
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditedRecord
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditedCell
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditValues
- * @see com.smartgwt.client.widgets.cube.CubeGrid#clearEditValue
- * @see com.smartgwt.client.widgets.cube.CubeGrid#saveEdits
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getAllEditCells
- * @see com.smartgwt.client.widgets.cube.CubeGrid#discardAllEdits
- * @see com.smartgwt.client.widgets.cube.CubeGrid#recordHasChanges
- * @see com.smartgwt.client.widgets.cube.CubeGrid#hasChanges
- * @see com.smartgwt.client.widgets.cube.CubeGrid#saveAllEdits
  * @see com.smartgwt.client.widgets.form.DynamicForm#getEditorType
  * @see com.smartgwt.client.widgets.grid.ListGridField#defaultDynamicValue
  * @see com.smartgwt.client.widgets.grid.events.EditorEnterEvent
@@ -160,6 +148,18 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#formatEditorValue
  * @see com.smartgwt.client.widgets.grid.ListGrid#parseEditorValue
  * @see com.smartgwt.client.widgets.tree.TreeGrid#startEditingNew
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#setEditValue
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditValue
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditedRecord
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditedCell
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditValues
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#clearEditValue
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#saveEdits
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getAllEditCells
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#discardAllEdits
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#recordHasChanges
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#hasChanges
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#saveAllEdits
  * @see com.smartgwt.client.widgets.calendar.Calendar#getEventSnapGap
  * @see com.smartgwt.client.widgets.calendar.Calendar#getShowQuickEventDialog
  * @see com.smartgwt.client.widgets.calendar.Calendar#getEventEditorFields

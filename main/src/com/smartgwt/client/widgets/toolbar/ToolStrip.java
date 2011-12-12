@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -110,7 +107,7 @@ public class ToolStrip extends Layout {
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setGroupTitleAlign(Alignment groupTitleAlign)  throws IllegalStateException {
-        setAttribute("groupTitleAlign", groupTitleAlign == null ? null : groupTitleAlign.getValue(), false);
+        setAttribute("groupTitleAlign", groupTitleAlign.getValue(), false);
     }
 
     /**
@@ -134,7 +131,7 @@ public class ToolStrip extends Layout {
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setGroupTitleOrientation(VerticalAlignment groupTitleOrientation)  throws IllegalStateException {
-        setAttribute("groupTitleOrientation", groupTitleOrientation == null ? null : groupTitleOrientation.getValue(), false);
+        setAttribute("groupTitleOrientation", groupTitleOrientation.getValue(), false);
     }
 
     /**

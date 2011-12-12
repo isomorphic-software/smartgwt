@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -199,7 +196,7 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
      * @param endArrow style of arrow to use. Default value is null
      */
     public void setEndArrow(ArrowStyle endArrow) {
-        setAttribute("endArrow", endArrow == null ? null : endArrow.getValue(), true);
+        setAttribute("endArrow", endArrow.getValue(), true);
     }
 
     /**
@@ -291,7 +288,7 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
      * @param lineCap new lineCap to use. Default value is "round"
      */
     public void setLineCap(LineCap lineCap) {
-        setAttribute("lineCap", lineCap == null ? null : lineCap.getValue(), true);
+        setAttribute("lineCap", lineCap.getValue(), true);
     }
 
     /**
@@ -358,7 +355,7 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
      * @param linePattern new linePattern to use. Default value is "solid"
      */
     public void setLinePattern(LinePattern linePattern) {
-        setAttribute("linePattern", linePattern == null ? null : linePattern.getValue(), true);
+        setAttribute("linePattern", linePattern.getValue(), true);
     }
 
     /**
@@ -489,7 +486,7 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
      * @param startArrow style of arrow to use. Default value is null
      */
     public void setStartArrow(ArrowStyle startArrow) {
-        setAttribute("startArrow", startArrow == null ? null : startArrow.getValue(), true);
+        setAttribute("startArrow", startArrow.getValue(), true);
     }
 
     /**

@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -270,7 +267,7 @@ public class FacetChart extends Canvas {
      * @param chartType new chart type. Default value is "Column"
      */
     public void setChartType(ChartType chartType) {
-        setAttribute("chartType", chartType == null ? null : chartType.getValue(), true);
+        setAttribute("chartType", chartType.getValue(), true);
     }
 
     /**

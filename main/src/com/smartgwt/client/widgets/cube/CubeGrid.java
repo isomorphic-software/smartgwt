@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -187,7 +184,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setAutoSelectValues(AutoSelectionModel autoSelectValues)  throws IllegalStateException {
-        setAttribute("autoSelectValues", autoSelectValues == null ? null : autoSelectValues.getValue(), false);
+        setAttribute("autoSelectValues", autoSelectValues.getValue(), false);
     }
 
     /**
@@ -538,7 +535,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @param cellAlign cellAlign Default value is "center"
      */
     public void setCellAlign(Alignment cellAlign) {
-        setAttribute("cellAlign", cellAlign == null ? null : cellAlign.getValue(), true);
+        setAttribute("cellAlign", cellAlign.getValue(), true);
     }
 
     /**
@@ -621,7 +618,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @param chartType chartType Default value is "Column"
      */
     public void setChartType(ChartType chartType) {
-        setAttribute("chartType", chartType == null ? null : chartType.getValue(), true);
+        setAttribute("chartType", chartType.getValue(), true);
     }
 
     /**
@@ -722,7 +719,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @see com.smartgwt.client.widgets.Canvas#setHoverAlign
      */
     public void setFacetLabelHoverAlign(Alignment facetLabelHoverAlign) {
-        setAttribute("facetLabelHoverAlign", facetLabelHoverAlign == null ? null : facetLabelHoverAlign.getValue(), true);
+        setAttribute("facetLabelHoverAlign", facetLabelHoverAlign.getValue(), true);
     }
 
     /**
@@ -794,7 +791,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @see com.smartgwt.client.widgets.Canvas#setHoverVAlign
      */
     public void setFacetLabelHoverVAlign(VerticalAlignment facetLabelHoverVAlign) {
-        setAttribute("facetLabelHoverVAlign", facetLabelHoverVAlign == null ? null : facetLabelHoverVAlign.getValue(), true);
+        setAttribute("facetLabelHoverVAlign", facetLabelHoverVAlign.getValue(), true);
     }
 
     /**
@@ -861,7 +858,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @param facetTitleAlign facet to update. Default value is "center"
      */
     public void setFacetTitleAlign(Alignment facetTitleAlign) {
-        setAttribute("facetTitleAlign", facetTitleAlign == null ? null : facetTitleAlign.getValue(), true);
+        setAttribute("facetTitleAlign", facetTitleAlign.getValue(), true);
     }
 
     /**
@@ -880,7 +877,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @param facetValueAlign facetValueAlign Default value is "center"
      */
     public void setFacetValueAlign(Alignment facetValueAlign) {
-        setAttribute("facetValueAlign", facetValueAlign == null ? null : facetValueAlign.getValue(), true);
+        setAttribute("facetValueAlign", facetValueAlign.getValue(), true);
     }
 
     /**
@@ -902,7 +899,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @see com.smartgwt.client.widgets.Canvas#setHoverAlign
      */
     public void setFacetValueHoverAlign(Alignment facetValueHoverAlign) {
-        setAttribute("facetValueHoverAlign", facetValueHoverAlign == null ? null : facetValueHoverAlign.getValue(), true);
+        setAttribute("facetValueHoverAlign", facetValueHoverAlign.getValue(), true);
     }
 
     /**
@@ -974,7 +971,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @see com.smartgwt.client.widgets.Canvas#setHoverVAlign
      */
     public void setFacetValueHoverVAlign(VerticalAlignment facetValueHoverVAlign) {
-        setAttribute("facetValueHoverVAlign", facetValueHoverVAlign == null ? null : facetValueHoverVAlign.getValue(), true);
+        setAttribute("facetValueHoverVAlign", facetValueHoverVAlign.getValue(), true);
     }
 
     /**
@@ -1050,7 +1047,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setHideEmptyAxis(Axis hideEmptyAxis)  throws IllegalStateException {
-        setAttribute("hideEmptyAxis", hideEmptyAxis == null ? null : hideEmptyAxis.getValue(), false);
+        setAttribute("hideEmptyAxis", hideEmptyAxis.getValue(), false);
     }
 
     /**
@@ -1091,7 +1088,6 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * Hilites to be applied to the data for this component.  See {@link com.smartgwt.client.docs.Hiliting}.
      *
      * @param hilites hilites Default value is null
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
     public void setHilites(Hilite... hilites) {
         setAttribute("hilites", hilites, true);
@@ -1102,7 +1098,6 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      *
      *
      * @return Hilite
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
     public Hilite[] getHilites()  {
         return Hilite.convertToHiliteArray(getAttributeAsJavaScriptObject("hilites"));
@@ -1335,7 +1330,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @param sortDirection sortDirection Default value is Array.ASCENDING
      */
     public void setSortDirection(SortDirection sortDirection) {
-        setAttribute("sortDirection", sortDirection == null ? null : sortDirection.getValue(), true);
+        setAttribute("sortDirection", sortDirection.getValue(), true);
     }
 
     /**

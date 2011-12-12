@@ -125,11 +125,6 @@ package com.smartgwt.client.docs;
  *  Template.  Also note, if a given fieldName appears more than once in AdvancedCriteria,
  *  $advancedCriteria.<i>fieldName</i> will return the value for the first {@link com.smartgwt.client.data.Criterion} that
  *  uses the fieldName, as found by depth-first search.
- *  <p>
- *  NOTE: $advancedCriteria falls back to simple criteria values if the current criteria object 
- *  is not an <code>AdvancedCriteria</code>.  This means that you can safely use $advancedCriteria
- *  in circumstances where you cannot predict in advance whether your server code will be handed
- *  a simple criteria or an AdvancedCriteria.
  * 
  *  <h4>Stored procedures</h4>
  *  It is possible to include templated calls to SQL stored procedures in a

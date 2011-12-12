@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -455,7 +452,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @see com.smartgwt.client.data.DataSource#compareCriteria
      */
     public void setCriteriaPolicy(CriteriaPolicy criteriaPolicy) {
-        setAttribute("criteriaPolicy", criteriaPolicy == null ? null : criteriaPolicy.getValue(), true);
+        setAttribute("criteriaPolicy", criteriaPolicy.getValue(), true);
     }
 
     /**
@@ -511,7 +508,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#json_integration_category_simple" target="examples">Simple JSON Example</a>
      */
     public void setDataFormat(DSDataFormat dataFormat)  throws IllegalStateException {
-        setAttribute("dataFormat", dataFormat == null ? null : dataFormat.getValue(), false);
+        setAttribute("dataFormat", dataFormat.getValue(), false);
     }
 
     /**
@@ -544,7 +541,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setDataTransport(RPCTransport dataTransport)  throws IllegalStateException {
-        setAttribute("dataTransport", dataTransport == null ? null : dataTransport.getValue(), false);
+        setAttribute("dataTransport", dataTransport.getValue(), false);
     }
 
     /**
@@ -725,7 +722,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setEnumTranslateStrategy(EnumTranslateStrategy enumTranslateStrategy)  throws IllegalStateException {
-        setAttribute("enumTranslateStrategy", enumTranslateStrategy == null ? null : enumTranslateStrategy.getValue(), false);
+        setAttribute("enumTranslateStrategy", enumTranslateStrategy.getValue(), false);
     }
 
     /**
@@ -987,8 +984,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *  descriptor (.ds.xml file) and control server-side behavior such as what Java object to route
      * DSRequest to ({@link com.smartgwt.client.docs.serverds.OperationBinding#serverObject serverObject}) or customizations to
      * SQL / HQL queries
-     * ({@link com.smartgwt.client.docs.serverds.OperationBinding#customSQL customSQL} and {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#customHQL customHQL}).  See the 
+     * ({@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} and {@link
+     * com.smartgwt.client.data.OperationBinding#getCustomHQL customHQL}).  See the 
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#javaDataIntegration" target="examples">Java Integration
      * samples</a>.
      *  <P>
@@ -1053,8 +1050,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *  descriptor (.ds.xml file) and control server-side behavior such as what Java object to route
      * DSRequest to ({@link com.smartgwt.client.docs.serverds.OperationBinding#serverObject serverObject}) or customizations to
      * SQL / HQL queries
-     * ({@link com.smartgwt.client.docs.serverds.OperationBinding#customSQL customSQL} and {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#customHQL customHQL}).  See the 
+     * ({@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} and {@link
+     * com.smartgwt.client.data.OperationBinding#getCustomHQL customHQL}).  See the 
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#javaDataIntegration" target="examples">Java Integration
      * samples</a>.
      *  <P>
@@ -1155,69 +1152,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      */
     public Boolean getPreventHTTPCaching()  {
         return getAttributeAsBoolean("preventHTTPCaching");
-    }
-
-    /**
-     * If true, causes Smart GWT Server to use the "progressive loading" pattern for  fetches on this dataSource, as described
-     * in the <b>Paging and total dataset length</b> section of the {@link com.smartgwt.client.data.ResultSet ResultSet
-     * documentation}.  Essentially, this means that we avoid issuing a row count query and instead advertise total rows as
-     * being slightly  more than the number of rows we have already read (see {@link
-     * com.smartgwt.client.docs.serverds.DataSource#endGap endGap}).  This  allows users to load more of a dataset by scrolling
-     * past the end of the currently-loaded rows, but it prevents them from scrolling directly to the end of the dataset. <p>
-     * Generally, progressive loading is appropriate when you have to deal with very large  datasets. Note that by default, a
-     * dataSource will switch into progressive loading mode  automatically when it detects that it is dealing with a dataset
-     * beyond a certain size -  see {@link com.smartgwt.client.docs.serverds.DataSource#progressiveLoadingThreshold
-     * progressiveLoadingThreshold}. <p> This setting can be overridden for individual fetch operations with the  {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#progressiveLoading progressiveLoading} property, and also at the
-     * level of the individual {@link com.smartgwt.client.data.DSRequest#getProgressiveLoading DSRequest}.  You can also
-     * specify  <code>progressiveLoading</code> on  {@link com.smartgwt.client.widgets.DataBoundComponent#getProgressiveLoading
-     * DataBoundComponents} and certain types of  <code>FormItem</code> - {@link
-     * com.smartgwt.client.widgets.form.fields.SelectItem#getProgressiveLoading SelectItem} and  {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getProgressiveLoading ComboBoxItem}. <p> Currently, this property
-     * only applies to users of the built-in SQLDataSource, but you  could use it in custom DataSource implementations to
-     * trigger the server behavior  described in the <code>ResultSet</code> documentation linked to above.
-     *
-     * @param progressiveLoading progressiveLoading Default value is null
-     * @see com.smartgwt.client.docs.serverds.OperationBinding#progressiveLoading
-     * @see com.smartgwt.client.docs.serverds.DataSource#progressiveLoadingThreshold
-     * @see com.smartgwt.client.docs.serverds.DataSource#lookAhead
-     * @see com.smartgwt.client.docs.serverds.DataSource#endGap
-     * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
-     */
-    public void setProgressiveLoading(Boolean progressiveLoading) {
-        setAttribute("progressiveLoading", progressiveLoading, true);
-    }
-
-    /**
-     * If true, causes Smart GWT Server to use the "progressive loading" pattern for  fetches on this dataSource, as described
-     * in the <b>Paging and total dataset length</b> section of the {@link com.smartgwt.client.data.ResultSet ResultSet
-     * documentation}.  Essentially, this means that we avoid issuing a row count query and instead advertise total rows as
-     * being slightly  more than the number of rows we have already read (see {@link
-     * com.smartgwt.client.docs.serverds.DataSource#endGap endGap}).  This  allows users to load more of a dataset by scrolling
-     * past the end of the currently-loaded rows, but it prevents them from scrolling directly to the end of the dataset. <p>
-     * Generally, progressive loading is appropriate when you have to deal with very large  datasets. Note that by default, a
-     * dataSource will switch into progressive loading mode  automatically when it detects that it is dealing with a dataset
-     * beyond a certain size -  see {@link com.smartgwt.client.docs.serverds.DataSource#progressiveLoadingThreshold
-     * progressiveLoadingThreshold}. <p> This setting can be overridden for individual fetch operations with the  {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#progressiveLoading progressiveLoading} property, and also at the
-     * level of the individual {@link com.smartgwt.client.data.DSRequest#getProgressiveLoading DSRequest}.  You can also
-     * specify  <code>progressiveLoading</code> on  {@link com.smartgwt.client.widgets.DataBoundComponent#getProgressiveLoading
-     * DataBoundComponents} and certain types of  <code>FormItem</code> - {@link
-     * com.smartgwt.client.widgets.form.fields.SelectItem#getProgressiveLoading SelectItem} and  {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getProgressiveLoading ComboBoxItem}. <p> Currently, this property
-     * only applies to users of the built-in SQLDataSource, but you  could use it in custom DataSource implementations to
-     * trigger the server behavior  described in the <code>ResultSet</code> documentation linked to above.
-     *
-     *
-     * @return Boolean
-     * @see com.smartgwt.client.docs.serverds.OperationBinding#progressiveLoading
-     * @see com.smartgwt.client.docs.serverds.DataSource#progressiveLoadingThreshold
-     * @see com.smartgwt.client.docs.serverds.DataSource#lookAhead
-     * @see com.smartgwt.client.docs.serverds.DataSource#endGap
-     * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
-     */
-    public Boolean getProgressiveLoading()  {
-        return getAttributeAsBoolean("progressiveLoading");
     }
 
     /**

@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -178,7 +175,7 @@ public class Img extends StatefulCanvas {
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setImageType(ImageStyle imageType) {
-        setAttribute("imageType", imageType == null ? null : imageType.getValue(), true);
+        setAttribute("imageType", imageType.getValue(), true);
     }
 
     /**

@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -228,7 +225,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @param animateFolderEffect animateFolderEffect Default value is null
      */
     public void setAnimateFolderEffect(AnimationAcceleration animateFolderEffect) {
-        setAttribute("animateFolderEffect", animateFolderEffect == null ? null : animateFolderEffect.getValue(), true);
+        setAttribute("animateFolderEffect", animateFolderEffect.getValue(), true);
     }
 
     /**
@@ -610,7 +607,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle == null ? null : autoFetchTextMatchStyle.getValue(), false);
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
     }
 
     /**
@@ -699,7 +696,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * <code>null</code>.. Default value is null
      */
     public void setAutoFitData(Autofit autoFitData) {
-        setAttribute("autoFitData", autoFitData == null ? null : autoFitData.getValue(), true);
+        setAttribute("autoFitData", autoFitData.getValue(), true);
     }
 
     /**
@@ -934,7 +931,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @see com.smartgwt.client.widgets.grid.ListGrid#setAutoFitFieldWidths
      */
     public void setAutoFitIconFields(AutoFitIconFieldType autoFitIconFields) {
-        setAttribute("autoFitIconFields", autoFitIconFields == null ? null : autoFitIconFields.getValue(), true);
+        setAttribute("autoFitIconFields", autoFitIconFields.getValue(), true);
     }
 
     /**
@@ -1093,7 +1090,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @param autoFitWidthApproach new AutoFitWidth approach. Default value is "value"
      */
     public void setAutoFitWidthApproach(AutoFitWidthApproach autoFitWidthApproach) {
-        setAttribute("autoFitWidthApproach", autoFitWidthApproach == null ? null : autoFitWidthApproach.getValue(), true);
+        setAttribute("autoFitWidthApproach", autoFitWidthApproach.getValue(), true);
     }
 
     /**
@@ -1260,7 +1257,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_autofit_rows" target="examples">Rows Example</a>
      */
     public void setBodyOverflow(Overflow bodyOverflow) {
-        setAttribute("bodyOverflow", bodyOverflow == null ? null : bodyOverflow.getValue(), true);
+        setAttribute("bodyOverflow", bodyOverflow.getValue(), true);
     }
 
     /**
@@ -1719,7 +1716,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Property name on a record that will be checked to determine whether a record can be  expanded.
+     * Property name on a record that will be checked to determine whether a record can be expanded.
      *
      * @param canExpandRecordProperty canExpandRecordProperty Default value is "canExpand"
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -1730,7 +1727,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Property name on a record that will be checked to determine whether a record can be  expanded.
+     * Property name on a record that will be checked to determine whether a record can be expanded.
      *
      *
      * @return String
@@ -2209,7 +2206,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @param chartType chartType Default value is "Column"
      */
     public void setChartType(ChartType chartType) {
-        setAttribute("chartType", chartType == null ? null : chartType.getValue(), true);
+        setAttribute("chartType", chartType.getValue(), true);
     }
 
     /**
@@ -2374,7 +2371,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @param childExpansionMode childExpansionMode Default value is null
      */
     public void setChildExpansionMode(ExpansionMode childExpansionMode) {
-        setAttribute("childExpansionMode", childExpansionMode == null ? null : childExpansionMode.getValue(), true);
+        setAttribute("childExpansionMode", childExpansionMode.getValue(), true);
     }
 
     /**
@@ -2565,7 +2562,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public void setDataFetchMode(FetchMode dataFetchMode) {
-        setAttribute("dataFetchMode", dataFetchMode == null ? null : dataFetchMode.getValue(), true);
+        setAttribute("dataFetchMode", dataFetchMode.getValue(), true);
     }
 
     /**
@@ -2600,7 +2597,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @param dateFormatter dateFormatter Default value is null
      */
     public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue(), true);
+        setAttribute("dateFormatter", dateFormatter.getValue(), true);
     }
 
     /**
@@ -2639,7 +2636,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setDatetimeFormatter(DateDisplayFormat datetimeFormatter) {
-        setAttribute("datetimeFormatter", datetimeFormatter == null ? null : datetimeFormatter.getValue(), true);
+        setAttribute("datetimeFormatter", datetimeFormatter.getValue(), true);
     }
 
     /**
@@ -2776,7 +2773,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setDragTrackerMode(DragTrackerMode dragTrackerMode)  throws IllegalStateException {
-        setAttribute("dragTrackerMode", dragTrackerMode == null ? null : dragTrackerMode.getValue(), false);
+        setAttribute("dragTrackerMode", dragTrackerMode.getValue(), false);
     }
 
     /**
@@ -2895,7 +2892,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_editing_row" target="examples">Edit by row Example</a>
      */
     public void setEditEvent(ListGridEditEvent editEvent) {
-        setAttribute("editEvent", editEvent == null ? null : editEvent.getValue(), true);
+        setAttribute("editEvent", editEvent.getValue(), true);
     }
 
     /**
@@ -3195,7 +3192,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public void setEnterKeyEditAction(EnterKeyEditAction enterKeyEditAction) {
-        setAttribute("enterKeyEditAction", enterKeyEditAction == null ? null : enterKeyEditAction.getValue(), true);
+        setAttribute("enterKeyEditAction", enterKeyEditAction.getValue(), true);
     }
 
     /**
@@ -3251,7 +3248,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public void setEscapeKeyEditAction(EscapeKeyEditAction escapeKeyEditAction) {
-        setAttribute("escapeKeyEditAction", escapeKeyEditAction == null ? null : escapeKeyEditAction.getValue(), true);
+        setAttribute("escapeKeyEditAction", escapeKeyEditAction.getValue(), true);
     }
 
     /**
@@ -3290,41 +3287,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return getAttributeAsBoolean("expansionCanEdit");
     }
 
-
-    /**
-     * When {@link com.smartgwt.client.types.ExpansionMode} is <i>editor</i>, should the row be collapsed following a  save
-     * initiated by the expansion-component's {@link com.smartgwt.client.widgets.grid.ListGrid#getExpansionEditorSaveButton
-     * save button}.
-     *
-     * <b>Note :</b> This method should be called only after the widget has been rendered.
-     *
-     * @return Boolean
-     * @throws IllegalStateException if widget has not yet been rendered.
-     */
-    public Boolean getExpansionEditorCollapseOnSave() throws IllegalStateException {
-        errorIfNotCreated("expansionEditorCollapseOnSave");
-        return getAttributeAsBoolean("expansionEditorCollapseOnSave");
-    }
-
-
-    /**
-     * The title for the {@link com.smartgwt.client.widgets.grid.ListGrid#getExpansionEditorSaveButton
-     * expansionEditorSaveButton}.
-     *
-     * <b>Note :</b> This method should be called only after the widget has been rendered.
-     *
-     * @return String
-     * @throws IllegalStateException if widget has not yet been rendered.
-     */
-    public String getExpansionEditorSaveButtonTitle() throws IllegalStateException {
-        errorIfNotCreated("expansionEditorSaveButtonTitle");
-        return getAttributeAsString("expansionEditorSaveButtonTitle");
-    }
-
     /**
      * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is true and {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getExpansionMode expansionMode} is <i>editor</i>, the prompt to display in a
-     * dialog when an expanded row is collapsed while it's nested editor has changed values.
+     * com.smartgwt.client.widgets.grid.ListGrid#getExpansionMode expansionMode} is <i>editor</i>, the prompt to display when
+     * an expanded row is collapsed while it's nested editor has changed values.
      *
      * @param expansionEditorSaveDialogPrompt expansionEditorSaveDialogPrompt Default value is "You have unsaved changes - do you want to save them now?"
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -3335,38 +3301,14 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is true and {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getExpansionMode expansionMode} is <i>editor</i>, the prompt to display in a
-     * dialog when an expanded row is collapsed while it's nested editor has changed values.
+     * com.smartgwt.client.widgets.grid.ListGrid#getExpansionMode expansionMode} is <i>editor</i>, the prompt to display when
+     * an expanded row is collapsed while it's nested editor has changed values.
      *
      *
      * @return String
      */
     public String getExpansionEditorSaveDialogPrompt()  {
         return getAttributeAsString("expansionEditorSaveDialogPrompt");
-    }
-
-    /**
-     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is true and {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getExpansionMode expansionMode} is <i>editor</i>, whether a dialog should be
-     * displayed when an expanded row is collapsed while it's nested editor has changed values.
-     *
-     * @param expansionEditorShowSaveDialog expansionEditorShowSaveDialog Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setExpansionEditorShowSaveDialog(Boolean expansionEditorShowSaveDialog)  throws IllegalStateException {
-        setAttribute("expansionEditorShowSaveDialog", expansionEditorShowSaveDialog, false);
-    }
-
-    /**
-     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is true and {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getExpansionMode expansionMode} is <i>editor</i>, whether a dialog should be
-     * displayed when an expanded row is collapsed while it's nested editor has changed values.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getExpansionEditorShowSaveDialog()  {
-        return getAttributeAsBoolean("expansionEditorShowSaveDialog");
     }
 
     /**
@@ -3489,7 +3431,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @param expansionMode expansionMode Default value is null
      */
     public void setExpansionMode(ExpansionMode expansionMode) {
-        setAttribute("expansionMode", expansionMode == null ? null : expansionMode.getValue(), true);
+        setAttribute("expansionMode", expansionMode.getValue(), true);
     }
 
     /**
@@ -4433,7 +4375,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setHeaderAutoFitEvent(AutoFitEvent headerAutoFitEvent)  throws IllegalStateException {
-        setAttribute("headerAutoFitEvent", headerAutoFitEvent == null ? null : headerAutoFitEvent.getValue(), false);
+        setAttribute("headerAutoFitEvent", headerAutoFitEvent.getValue(), false);
     }
 
     /**
@@ -4710,201 +4652,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Height for hilite icons for this listGrid. Overrides {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconSize
-     * hiliteIconSize}. Can be overridden at the field level
-     *
-     * @param hiliteIconHeight hiliteIconHeight Default value is null
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public void setHiliteIconHeight(Integer hiliteIconHeight) {
-        setAttribute("hiliteIconHeight", hiliteIconHeight, true);
-    }
-
-    /**
-     * Height for hilite icons for this listGrid. Overrides {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconSize
-     * hiliteIconSize}. Can be overridden at the field level
-     *
-     *
-     * @return Integer
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public Integer getHiliteIconHeight()  {
-        return getAttributeAsInt("hiliteIconHeight");
-    }
-
-    /**
-     * How much padding should there be on the left of {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIcons hilite
-     * icons} by default? Can be overridden at the field level
-     *
-     * @param hiliteIconLeftPadding hiliteIconLeftPadding Default value is 2
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public void setHiliteIconLeftPadding(int hiliteIconLeftPadding) {
-        setAttribute("hiliteIconLeftPadding", hiliteIconLeftPadding, true);
-    }
-
-    /**
-     * How much padding should there be on the left of {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIcons hilite
-     * icons} by default? Can be overridden at the field level
-     *
-     *
-     * @return int
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public int getHiliteIconLeftPadding()  {
-        return getAttributeAsInt("hiliteIconLeftPadding");
-    }
-
-    /**
-     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIcons hiliteIcons} are present, where the hilite icon
-     * will be placed  relative to the field value.  See {@link com.smartgwt.client.types.HiliteIconPosition}. Can be overriden
-     * at the field level.
-     *
-     * @param hiliteIconPosition hiliteIconPosition Default value is "before"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public void setHiliteIconPosition(HiliteIconPosition hiliteIconPosition)  throws IllegalStateException {
-        setAttribute("hiliteIconPosition", hiliteIconPosition == null ? null : hiliteIconPosition.getValue(), false);
-    }
-
-    /**
-     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIcons hiliteIcons} are present, where the hilite icon
-     * will be placed  relative to the field value.  See {@link com.smartgwt.client.types.HiliteIconPosition}. Can be overriden
-     * at the field level.
-     *
-     *
-     * @return HiliteIconPosition
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public HiliteIconPosition getHiliteIconPosition()  {
-        return EnumUtil.getEnum(HiliteIconPosition.values(), getAttribute("hiliteIconPosition"));
-    }
-
-    /**
-     * How much padding should there be on the right of {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIcons hilite
-     * icons} by default? Can be overridden at the field level
-     *
-     * @param hiliteIconRightPadding hiliteIconRightPadding Default value is 2
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public void setHiliteIconRightPadding(int hiliteIconRightPadding) {
-        setAttribute("hiliteIconRightPadding", hiliteIconRightPadding, true);
-    }
-
-    /**
-     * How much padding should there be on the right of {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIcons hilite
-     * icons} by default? Can be overridden at the field level
-     *
-     *
-     * @return int
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public int getHiliteIconRightPadding()  {
-        return getAttributeAsInt("hiliteIconRightPadding");
-    }
-
-    /**
-     * Specifies a list of icons that can be used in {@link com.smartgwt.client.widgets.DataBoundComponent#editHilites
-     * hilites}. <P> <code>hiliteIcons</code> should be specified as an Array of String. When present, the hilite editing
-     * interface shown when {@link com.smartgwt.client.widgets.DataBoundComponent#editHilites DataBoundComponent.editHilites}
-     * is called  will offer the user a drop down for picking one of these icons when defining either a  simple or advanced
-     * hilite rule. <P> If the user picks an icon, the created hiliting rule will have {@link
-     * com.smartgwt.client.data.Hilite#getIcon icon} set to  the chosen icon.  {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getHiliteIconPosition hiliteIconPosition} controls where the icon will 
-     * appear for that field -- the default is that it appears in front of the normal cell content. This can also be overriden
-     * at the field level.
-     *
-     * @param hiliteIcons hiliteIcons Default value is ["[SKINIMG]/Dialog/notify.png", "[SKINIMG]/Dialog/warn.png", "[SKINIMG]/actions/approve.png"]
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public void setHiliteIcons(String... hiliteIcons)  throws IllegalStateException {
-        setAttribute("hiliteIcons", hiliteIcons, false);
-    }
-
-    /**
-     * Specifies a list of icons that can be used in {@link com.smartgwt.client.widgets.DataBoundComponent#editHilites
-     * hilites}. <P> <code>hiliteIcons</code> should be specified as an Array of String. When present, the hilite editing
-     * interface shown when {@link com.smartgwt.client.widgets.DataBoundComponent#editHilites DataBoundComponent.editHilites}
-     * is called  will offer the user a drop down for picking one of these icons when defining either a  simple or advanced
-     * hilite rule. <P> If the user picks an icon, the created hiliting rule will have {@link
-     * com.smartgwt.client.data.Hilite#getIcon icon} set to  the chosen icon.  {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getHiliteIconPosition hiliteIconPosition} controls where the icon will 
-     * appear for that field -- the default is that it appears in front of the normal cell content. This can also be overriden
-     * at the field level.
-     *
-     *
-     * @return String
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public String[] getHiliteIcons()  {
-        return getAttributeAsStringArray("hiliteIcons");
-    }
-
-    /**
-     * Default width and height of {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIcons hilite icons} for this
-     * component. Can be overridden at the component level via explicit  {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconWidth hiliteIconWidth} and {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconHeight hiliteIconHeight}, or at the field level via  {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconSize hiliteIconSize}, {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconWidth hiliteIconWidth} and  {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconHeight hiliteIconHeight}
-     *
-     * @param hiliteIconSize hiliteIconSize Default value is 12
-     * @see com.smartgwt.client.widgets.grid.ListGrid#setHiliteIconWidth
-     * @see com.smartgwt.client.widgets.grid.ListGrid#setHiliteIconHeight
-     * @see com.smartgwt.client.widgets.grid.ListGridField#setHiliteIconSize
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public void setHiliteIconSize(int hiliteIconSize) {
-        setAttribute("hiliteIconSize", hiliteIconSize, true);
-    }
-
-    /**
-     * Default width and height of {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIcons hilite icons} for this
-     * component. Can be overridden at the component level via explicit  {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconWidth hiliteIconWidth} and {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconHeight hiliteIconHeight}, or at the field level via  {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconSize hiliteIconSize}, {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconWidth hiliteIconWidth} and  {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconHeight hiliteIconHeight}
-     *
-     *
-     * @return int
-     * @see com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconWidth
-     * @see com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconHeight
-     * @see com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconSize
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public int getHiliteIconSize()  {
-        return getAttributeAsInt("hiliteIconSize");
-    }
-
-    /**
-     * Width for hilite icons for this component. Overrides {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconSize
-     * hiliteIconSize}. Can be overridden at the field level.
-     *
-     * @param hiliteIconWidth hiliteIconWidth Default value is null
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public void setHiliteIconWidth(Integer hiliteIconWidth) {
-        setAttribute("hiliteIconWidth", hiliteIconWidth, true);
-    }
-
-    /**
-     * Width for hilite icons for this component. Overrides {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconSize
-     * hiliteIconSize}. Can be overridden at the field level.
-     *
-     *
-     * @return Integer
-     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-     */
-    public Integer getHiliteIconWidth()  {
-        return getAttributeAsInt("hiliteIconWidth");
-    }
-
-    /**
      * When {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHoverComponents showHoverComponents()} is true, the builtin
      * mode to use when automatically creating a hover component for rows in this grid. <P> A number of builtin modes are
      * provided - see {@link com.smartgwt.client.types.HoverMode}.  You can also override {@link
@@ -4915,7 +4662,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @param hoverMode hoverMode Default value is null
      */
     public void setHoverMode(HoverMode hoverMode) {
-        setAttribute("hoverMode", hoverMode == null ? null : hoverMode.getValue(), true);
+        setAttribute("hoverMode", hoverMode.getValue(), true);
     }
 
     /**
@@ -5173,7 +4920,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_editing_new_row" target="examples">Enter new rows Example</a>
      */
     public void setListEndEditAction(RowEndEditAction listEndEditAction) {
-        setAttribute("listEndEditAction", listEndEditAction == null ? null : listEndEditAction.getValue(), true);
+        setAttribute("listEndEditAction", listEndEditAction.getValue(), true);
     }
 
     /**
@@ -5881,7 +5628,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @param recordComponentPoolingMode recordComponentPoolingMode Default value is "viewport"
      */
     public void setRecordComponentPoolingMode(RecordComponentPoolingMode recordComponentPoolingMode) {
-        setAttribute("recordComponentPoolingMode", recordComponentPoolingMode == null ? null : recordComponentPoolingMode.getValue(), true);
+        setAttribute("recordComponentPoolingMode", recordComponentPoolingMode.getValue(), true);
     }
 
     /**
@@ -5926,7 +5673,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @see com.smartgwt.client.widgets.grid.ListGrid#setShowRecordComponents
      */
     public void setRecordComponentPosition(EmbeddedPosition recordComponentPosition) {
-        setAttribute("recordComponentPosition", recordComponentPosition == null ? null : recordComponentPosition.getValue(), true);
+        setAttribute("recordComponentPosition", recordComponentPosition.getValue(), true);
     }
 
     /**
@@ -6163,7 +5910,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public void setRowEndEditAction(RowEndEditAction rowEndEditAction) {
-        setAttribute("rowEndEditAction", rowEndEditAction == null ? null : rowEndEditAction.getValue(), true);
+        setAttribute("rowEndEditAction", rowEndEditAction.getValue(), true);
     }
 
     /**
@@ -6368,7 +6115,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
     public void setSelectionAppearance(SelectionAppearance selectionAppearance) {
-        setAttribute("selectionAppearance", selectionAppearance == null ? null : selectionAppearance.getValue(), true);
+        setAttribute("selectionAppearance", selectionAppearance.getValue(), true);
     }
 
     /**
@@ -6436,7 +6183,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_multiselect" target="examples">Multiple select Example</a>
      */
     public void setSelectionType(SelectionStyle selectionType) {
-        setAttribute("selectionType", selectionType == null ? null : selectionType.getValue(), true);
+        setAttribute("selectionType", selectionType.getValue(), true);
     }
 
     /**
@@ -6632,24 +6379,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public Boolean getShowEmptyMessage()  {
         return getAttributeAsBoolean("showEmptyMessage");
-    }
-
-
-    /**
-     * When {@link com.smartgwt.client.types.ExpansionMode} is <i>editor</i>, should a Save button be shown below the the
-     * expanded editor? <P> Note that if an expanded-row containing an editor is collapsed while changes are  oustanding,
-     * changes will be either be automatically updated to the grid, or will first show a confirmation dialog, according to the
-     * value of  {@link com.smartgwt.client.widgets.grid.ListGrid#getExpansionEditorShowSaveDialog
-     * expansionEditorShowSaveDialog}.
-     *
-     * <b>Note :</b> This method should be called only after the widget has been rendered.
-     *
-     * @return Boolean
-     * @throws IllegalStateException if widget has not yet been rendered.
-     */
-    public Boolean getShowExpansionEditorSaveButton() throws IllegalStateException {
-        errorIfNotCreated("showExpansionEditorSaveButton");
-        return getAttributeAsBoolean("showExpansionEditorSaveButton");
     }
 
     /**
@@ -7294,7 +7023,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowSortArrow(SortArrow showSortArrow) {
-        setAttribute("showSortArrow", showSortArrow == null ? null : showSortArrow.getValue(), true);
+        setAttribute("showSortArrow", showSortArrow.getValue(), true);
     }
 
     /**

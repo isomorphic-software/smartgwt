@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -192,7 +189,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle == null ? null : autoFetchTextMatchStyle.getValue(), false);
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
     }
 
     /**
@@ -472,7 +469,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public void setDataFetchMode(FetchMode dataFetchMode) {
-        setAttribute("dataFetchMode", dataFetchMode == null ? null : dataFetchMode.getValue(), true);
+        setAttribute("dataFetchMode", dataFetchMode.getValue(), true);
     }
 
     /**
@@ -506,7 +503,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @param dateFormatter dateFormatter Default value is null
      */
     public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue(), true);
+        setAttribute("dateFormatter", dateFormatter.getValue(), true);
     }
 
     /**
@@ -542,7 +539,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @param datetimeFormatter datetimeFormatter Default value is null
      */
     public void setDatetimeFormatter(DateDisplayFormat datetimeFormatter) {
-        setAttribute("datetimeFormatter", datetimeFormatter == null ? null : datetimeFormatter.getValue(), true);
+        setAttribute("datetimeFormatter", datetimeFormatter.getValue(), true);
     }
 
     /**
@@ -596,7 +593,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
      */
     public void setEncoding(Encoding encoding) {
-        setAttribute("encoding", encoding == null ? null : encoding.getValue(), true);
+        setAttribute("encoding", encoding.getValue(), true);
     }
 
     /**
@@ -814,7 +811,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setHoverAlign
      */
     public void setItemHoverAlign(Alignment itemHoverAlign) {
-        setAttribute("itemHoverAlign", itemHoverAlign == null ? null : itemHoverAlign.getValue(), true);
+        setAttribute("itemHoverAlign", itemHoverAlign.getValue(), true);
     }
 
     /**
@@ -973,7 +970,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public void setItemLayout(FormLayoutType itemLayout) {
-        setAttribute("itemLayout", itemLayout == null ? null : itemLayout.getValue(), true);
+        setAttribute("itemLayout", itemLayout.getValue(), true);
     }
 
     /**
@@ -1054,7 +1051,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
      */
     public void setMethod(FormMethod method) {
-        setAttribute("method", method == null ? null : method.getValue(), true);
+        setAttribute("method", method.getValue(), true);
     }
 
     /**
@@ -1327,7 +1324,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @param saveOperationType Operation type to use as a default. Valid values are  <code>"add"</code> or <code>"update"</code>.. Default value is null
      */
     public void setSaveOperationType(DSOperationType saveOperationType) {
-        setAttribute("saveOperationType", saveOperationType == null ? null : saveOperationType.getValue(), true);
+        setAttribute("saveOperationType", saveOperationType.getValue(), true);
     }
 
     /**
@@ -1360,7 +1357,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public void setSectionVisibilityMode(VisibilityMode sectionVisibilityMode) {
-        setAttribute("sectionVisibilityMode", sectionVisibilityMode == null ? null : sectionVisibilityMode.getValue(), true);
+        setAttribute("sectionVisibilityMode", sectionVisibilityMode.getValue(), true);
     }
 
     /**
@@ -1871,7 +1868,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @param timeFormatter timeFormatter Default value is null
      */
     public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
-        setAttribute("timeFormatter", timeFormatter == null ? null : timeFormatter.getValue(), true);
+        setAttribute("timeFormatter", timeFormatter.getValue(), true);
     }
 
     /**
@@ -1897,7 +1894,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @param titleAlign titleAlign Default value is null
      */
     public void setTitleAlign(Alignment titleAlign) {
-        setAttribute("titleAlign", titleAlign == null ? null : titleAlign.getValue(), true);
+        setAttribute("titleAlign", titleAlign.getValue(), true);
     }
 
     /**
@@ -1930,7 +1927,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_titles" target="examples">Titles Example</a>
      */
     public void setTitleOrientation(TitleOrientation titleOrientation) {
-        setAttribute("titleOrientation", titleOrientation == null ? null : titleOrientation.getValue(), true);
+        setAttribute("titleOrientation", titleOrientation.getValue(), true);
     }
 
     /**

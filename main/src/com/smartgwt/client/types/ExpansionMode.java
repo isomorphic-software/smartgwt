@@ -40,15 +40,8 @@ public enum ExpansionMode implements ValueEnum {
      */
     RELATED("related"),
     /**
-     * Show a {@link com.smartgwt.client.widgets.form.DynamicForm} to edit those fields from the record which are not already
-     * present in the grid. If the record is collapsed with unsaved changes and {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getExpansionEditorShowSaveDialog expansionEditorShowSaveDialog} is not set,
-     * Edits will be saved automatically, or stored as  editValues if  {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits} is false. Otherwise, a confirmation dialog is
-     * displayed. Can optionally show a  {@link com.smartgwt.client.widgets.grid.ListGrid#getShowExpansionEditorSaveButton save
-     * button} and {@link com.smartgwt.client.widgets.grid.ListGrid#getExpansionEditorCollapseOnSave auto-collapse} when save
-     * is pressed.  If a record fails validation on save and the field in question is not visible in the grid, the record is
-     * automatically expanded and validated to show the errors.
+     * Show a {@link com.smartgwt.client.widgets.form.DynamicForm} to edit those fields from the record which not already
+     * present in the grid.
      */
     EDITOR("editor"),
     /**

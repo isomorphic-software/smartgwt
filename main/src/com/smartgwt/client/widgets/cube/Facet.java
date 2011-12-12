@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -104,7 +101,7 @@ public class Facet extends RefDataClass {
      * @see com.smartgwt.client.widgets.cube.Facet#setCellAlign
      */
     public void setAlign(Alignment align) {
-        setAttribute("align", align == null ? null : align.getValue());
+        setAttribute("align", align.getValue());
     }
 
     /**
@@ -207,7 +204,7 @@ public class Facet extends RefDataClass {
      * @see com.smartgwt.client.widgets.cube.CubeGrid#setCellAlign
      */
     public void setCellAlign(Alignment cellAlign) {
-        setAttribute("cellAlign", cellAlign == null ? null : cellAlign.getValue());
+        setAttribute("cellAlign", cellAlign.getValue());
     }
 
     /**
@@ -322,7 +319,7 @@ public class Facet extends RefDataClass {
      * @param selectionBoundary selectionBoundary Default value is null
      */
     public void setSelectionBoundary(SelectionBoundary selectionBoundary) {
-        setAttribute("selectionBoundary", selectionBoundary == null ? null : selectionBoundary.getValue());
+        setAttribute("selectionBoundary", selectionBoundary.getValue());
     }
 
     /**
@@ -440,7 +437,7 @@ public class Facet extends RefDataClass {
      * @see com.smartgwt.client.widgets.cube.CubeGrid#setFacetTitleAlign
      */
     public void setTitleAlign(Alignment titleAlign) {
-        setAttribute("titleAlign", titleAlign == null ? null : titleAlign.getValue());
+        setAttribute("titleAlign", titleAlign.getValue());
     }
 
     /**

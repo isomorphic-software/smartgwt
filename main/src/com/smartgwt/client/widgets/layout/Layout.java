@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -263,7 +260,7 @@ public class Layout extends Canvas {
      * @see com.smartgwt.client.widgets.Canvas#setShowResizeBar
      */
     public void setDefaultResizeBars(LayoutResizeBarPolicy defaultResizeBars) {
-        setAttribute("defaultResizeBars", defaultResizeBars == null ? null : defaultResizeBars.getValue(), true);
+        setAttribute("defaultResizeBars", defaultResizeBars.getValue(), true);
     }
 
     /**
@@ -340,7 +337,7 @@ public class Layout extends Canvas {
      * @param hPolicy hPolicy Default value is "fill"
      */
     public void setHPolicy(LayoutPolicy hPolicy) {
-        setAttribute("hPolicy", hPolicy == null ? null : hPolicy.getValue(), true);
+        setAttribute("hPolicy", hPolicy.getValue(), true);
     }
 
     /**
@@ -519,7 +516,7 @@ public class Layout extends Canvas {
      * @param locateMembersBy locateMembersBy Default value is null
      */
     public void setLocateMembersBy(LocatorStrategy locateMembersBy) {
-        setAttribute("locateMembersBy", locateMembersBy == null ? null : locateMembersBy.getValue(), true);
+        setAttribute("locateMembersBy", locateMembersBy.getValue(), true);
     }
 
     /**
@@ -539,7 +536,7 @@ public class Layout extends Canvas {
      * @param locateMembersType locateMembersType Default value is null
      */
     public void setLocateMembersType(LocatorTypeStrategy locateMembersType) {
-        setAttribute("locateMembersType", locateMembersType == null ? null : locateMembersType.getValue(), true);
+        setAttribute("locateMembersType", locateMembersType.getValue(), true);
     }
 
     /**
@@ -655,7 +652,7 @@ public class Layout extends Canvas {
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setOverflow(Overflow overflow)  throws IllegalStateException {
-        setAttribute("overflow", overflow == null ? null : overflow.getValue(), false);
+        setAttribute("overflow", overflow.getValue(), false);
     }
 
     /**
@@ -863,7 +860,7 @@ public class Layout extends Canvas {
      * @param vPolicy vPolicy Default value is "fill"
      */
     public void setVPolicy(LayoutPolicy vPolicy) {
-        setAttribute("vPolicy", vPolicy == null ? null : vPolicy.getValue(), true);
+        setAttribute("vPolicy", vPolicy.getValue(), true);
     }
 
     /**

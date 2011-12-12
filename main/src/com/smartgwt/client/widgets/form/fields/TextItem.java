@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -132,7 +129,7 @@ public class TextItem extends FormItem {
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_keypress_filter" target="examples">KeyPress Filters Example</a>
      */
     public void setCharacterCasing(CharacterCasing characterCasing) {
-        setAttribute("characterCasing", characterCasing == null ? null : characterCasing.getValue());
+        setAttribute("characterCasing", characterCasing.getValue());
     }
 
     /**

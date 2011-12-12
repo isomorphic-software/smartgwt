@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -651,7 +648,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * @param topOperator new top-level operator. Default value is "and"
      */
     public void setTopOperator(LogicalOperator topOperator) {
-        setAttribute("topOperator", topOperator == null ? null : topOperator.getValue(), true);
+        setAttribute("topOperator", topOperator.getValue(), true);
     }
 
     /**

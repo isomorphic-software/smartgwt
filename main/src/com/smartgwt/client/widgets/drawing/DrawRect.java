@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -140,7 +137,7 @@ public class DrawRect extends DrawItem {
      * @param lineCap lineCap Default value is "butt"
      */
     public void setLineCap(LineCap lineCap) {
-        setAttribute("lineCap", lineCap == null ? null : lineCap.getValue(), true);
+        setAttribute("lineCap", lineCap.getValue(), true);
     }
 
     /**

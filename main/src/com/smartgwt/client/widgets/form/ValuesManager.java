@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -172,7 +169,7 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      * @param saveOperationType Operation type to use as a default. Valid values are  <code>"add"</code> or <code>"update"</code>.. Default value is null
      */
     public void setSaveOperationType(DSOperationType saveOperationType) {
-        setAttribute("saveOperationType", saveOperationType == null ? null : saveOperationType.getValue(), true);
+        setAttribute("saveOperationType", saveOperationType.getValue(), true);
     }
 
     /**

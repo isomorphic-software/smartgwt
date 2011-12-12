@@ -42,8 +42,8 @@ package com.smartgwt.client.docs;
  * an Ajax interface (such as an embedded help system), embed the HTML into an {@link com.smartgwt.client.widgets.HTMLFlow}
  * (whose default ARIA role is "article") and ensure the HTML itself is accessible (for example, has "alt" attributes on
  * all images which are semantically meaningful) </ul>
- * @see com.smartgwt.client.widgets.Img#getAltText
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanTabToHeader
+ * @see com.smartgwt.client.widgets.Img#getAltText
  */
 public interface Accessibility {
 }

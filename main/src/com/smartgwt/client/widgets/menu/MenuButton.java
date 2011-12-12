@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -354,14 +351,6 @@ public class MenuButton extends Button {
     }
 
     // ********************* Methods ***********************
-            
-    /**
-     * Programmaticly forces this MenuButton to show it's menu.
-     */
-    public native void showMenu() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.showMenu();
-    }-*/;
 
     // ********************* Static Methods ***********************
     /**
@@ -386,6 +375,13 @@ public class MenuButton extends Button {
     // ***********************************************************        
 
 
+    /**
+     * Shows the Menu associated with the MenuButton. Lazily creates the menu if necessary.
+     */
+    public native void showMenu() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.showMenu();
+    }-*/;
 
 }
 

@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -282,7 +279,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public void setModelType(TreeModelType modelType) {
-        setAttribute("modelType", modelType == null ? null : modelType.getValue(), true);
+        setAttribute("modelType", modelType.getValue(), true);
     }
 
     /**

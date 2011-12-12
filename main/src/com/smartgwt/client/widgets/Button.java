@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -106,7 +103,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_toggle" target="examples">Radio / Toggle Behavior Example</a>
      */
     public void setActionType(SelectionType actionType) {
-        setAttribute("actionType", actionType == null ? null : actionType.getValue(), true);
+        setAttribute("actionType", actionType.getValue(), true);
     }
 
     /**
@@ -131,7 +128,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setAlign(Alignment align) {
-        setAttribute("align", align == null ? null : align.getValue(), true);
+        setAttribute("align", align.getValue(), true);
     }
 
     /**
@@ -669,7 +666,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
     public void setState(State state) {
-        setAttribute("state", state == null ? null : state.getValue(), true);
+        setAttribute("state", state.getValue(), true);
     }
 
     /**
@@ -726,7 +723,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setValign(VerticalAlignment valign) {
-        setAttribute("valign", valign == null ? null : valign.getValue(), true);
+        setAttribute("valign", valign.getValue(), true);
     }
 
     /**

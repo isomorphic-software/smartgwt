@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -119,7 +116,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setAlign(Alignment align) {
-        setAttribute("align", align == null ? null : align.getValue());
+        setAttribute("align", align.getValue());
     }
 
     /**
@@ -495,7 +492,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue());
+        setAttribute("dateFormatter", dateFormatter.getValue());
     }
 
     /**
@@ -995,7 +992,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @see com.smartgwt.client.widgets.form.DynamicForm#setItemHoverAlign
      */
     public void setHoverAlign(Alignment hoverAlign) {
-        setAttribute("hoverAlign", hoverAlign == null ? null : hoverAlign.getValue());
+        setAttribute("hoverAlign", hoverAlign.getValue());
     }
 
     /**
@@ -1101,7 +1098,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @see com.smartgwt.client.widgets.form.DynamicForm#setItemHoverVAlign
      */
     public void setHoverVAlign(VerticalAlignment hoverVAlign) {
-        setAttribute("hoverVAlign", hoverVAlign == null ? null : hoverVAlign.getValue());
+        setAttribute("hoverVAlign", hoverVAlign.getValue());
     }
 
     /**
@@ -1183,7 +1180,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @param iconVAlign iconVAlign Default value is "bottom"
      */
     public void setIconVAlign(VerticalAlignment iconVAlign) {
-        setAttribute("iconVAlign", iconVAlign == null ? null : iconVAlign.getValue());
+        setAttribute("iconVAlign", iconVAlign.getValue());
     }
 
     /**
@@ -1436,7 +1433,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
      */
     public void setOperator(OperatorId operator) {
-        setAttribute("operator", operator == null ? null : operator.getValue());
+        setAttribute("operator", operator.getValue());
     }
 
     /**
@@ -2408,7 +2405,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextAlign(Alignment textAlign) {
-        setAttribute("textAlign", textAlign == null ? null : textAlign.getValue());
+        setAttribute("textAlign", textAlign.getValue());
     }
 
     /**
@@ -2462,7 +2459,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
-        setAttribute("timeFormatter", timeFormatter == null ? null : timeFormatter.getValue());
+        setAttribute("timeFormatter", timeFormatter.getValue());
     }
 
     /**
@@ -2508,7 +2505,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @param titleAlign titleAlign Default value is null
      */
     public void setTitleAlign(Alignment titleAlign) {
-        setAttribute("titleAlign", titleAlign == null ? null : titleAlign.getValue());
+        setAttribute("titleAlign", titleAlign.getValue());
     }
 
     /**
@@ -2553,7 +2550,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @see com.smartgwt.client.widgets.form.DynamicForm#setTitleOrientation
      */
     public void setTitleOrientation(TitleOrientation titleOrientation) {
-        setAttribute("titleOrientation", titleOrientation == null ? null : titleOrientation.getValue());
+        setAttribute("titleOrientation", titleOrientation.getValue());
     }
 
     /**
@@ -2600,7 +2597,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @param titleVAlign titleVAlign Default value is Canvas.CENTER
      */
     public void setTitleVAlign(VerticalAlignment titleVAlign) {
-        setAttribute("titleVAlign", titleVAlign == null ? null : titleVAlign.getValue());
+        setAttribute("titleVAlign", titleVAlign.getValue());
     }
 
     /**
@@ -2726,7 +2723,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @param vAlign vAlign Default value is Canvas.CENTER
      */
     public void setVAlign(VerticalAlignment vAlign) {
-        setAttribute("vAlign", vAlign == null ? null : vAlign.getValue());
+        setAttribute("vAlign", vAlign.getValue());
     }
 
     /**

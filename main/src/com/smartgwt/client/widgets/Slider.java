@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -763,7 +760,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * @see com.smartgwt.client.widgets.StretchImg#setImageType
      */
     public void setTrackImageType(ImageStyle trackImageType) {
-        setAttribute("trackImageType", trackImageType == null ? null : trackImageType.getValue(), true);
+        setAttribute("trackImageType", trackImageType.getValue(), true);
     }
 
     /**

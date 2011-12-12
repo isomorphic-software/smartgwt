@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -227,29 +224,6 @@ public class Hilite extends RefDataClass {
      */
     public String getHtmlValue()  {
         return getAttributeAsString("htmlValue");
-    }
-
-    /**
-     * URL of an icon to show when this hilite is applied to a cell.  Position of the icon  is controlled by {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getHiliteIconPosition hiliteIconPosition} or  {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconPosition hiliteIconPosition}.
-     *
-     * @param icon icon Default value is null
-     */
-    public void setIcon(String icon) {
-        setAttribute("icon", icon);
-    }
-
-    /**
-     * URL of an icon to show when this hilite is applied to a cell.  Position of the icon  is controlled by {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getHiliteIconPosition hiliteIconPosition} or  {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconPosition hiliteIconPosition}.
-     *
-     *
-     * @return String
-     */
-    public String getIcon()  {
-        return getAttributeAsString("icon");
     }
 
     /**

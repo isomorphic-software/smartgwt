@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -97,7 +94,7 @@ public class ImgTab extends StretchImgButton {
      * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
     public void setAlign(Alignment align) {
-        setAttribute("align", align == null ? null : align.getValue(), true);
+        setAttribute("align", align.getValue(), true);
     }
 
     /**

@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -144,7 +141,7 @@ public class TileLayout extends Canvas {
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_drag_copy" target="examples">Drag copy Example</a>
      */
     public void setDragDataAction(DragDataAction dragDataAction) {
-        setAttribute("dragDataAction", dragDataAction == null ? null : dragDataAction.getValue(), true);
+        setAttribute("dragDataAction", dragDataAction.getValue(), true);
     }
 
     /**
@@ -212,7 +209,7 @@ public class TileLayout extends Canvas {
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setOrientation(Orientation orientation)  throws IllegalStateException {
-        setAttribute("orientation", orientation == null ? null : orientation.getValue(), false);
+        setAttribute("orientation", orientation.getValue(), false);
     }
 
     /**
@@ -235,7 +232,7 @@ public class TileLayout extends Canvas {
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public void setOverflow(Overflow overflow)  throws IllegalStateException {
-        setAttribute("overflow", overflow == null ? null : overflow.getValue(), false);
+        setAttribute("overflow", overflow.getValue(), false);
     }
 
     /**

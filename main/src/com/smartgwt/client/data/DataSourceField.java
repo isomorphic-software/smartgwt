@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -362,67 +359,6 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * For a DataSource with {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType} "sql" or "hibernate",
-     * indicates that this field should be omitted by default from all SQL or Hibernate operations, and will only be used with
-     * {@link com.smartgwt.client.docs.CustomQueries custom queries}. <P> Having marked a field as <code>customSQL</code> you
-     * can refer to it via $criteria.<i>fieldName</i> or $values.<i>fieldName</i> in customized queries. <P> The following are
-     * situations where you would <b>not</b> use <code>customSQL</code>: <ul> <li>simple joins where you want to enable users
-     * to see and search on a field from another table; consider {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#tableName tableName} instead <li>fields where you want to calculate or
-     * transform values in SQL on load or save, but always perform the same calculation for each operationType; consider
-     * instead {@link com.smartgwt.client.docs.serverds.DataSourceField#sqlStorageStrategy sqlStorageStrategy} for some common
-     * cases, or  {@link com.smartgwt.client.docs.serverds.DataSourceField#customSelectExpression customSelectExpression},
-     * {@link com.smartgwt.client.docs.serverds.DataSourceField#customUpdateExpression customUpdateExpression} and {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#customInsertExpression customInsertExpression} for full customization
-     * <li>a special fetch is needed where the field needs to be excluded from the $defaultWhereClause so that it can be used
-     * in a custom &lt;whereClause&gt; - consider {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#excludeCriteriaFields excludeCriteriaFields} instead </ul> <P> Use
-     * customSQL in situations like: <ul> <li>there are multiple variations of the "fetch" operation with different {@link
-     * com.smartgwt.client.data.OperationBinding#getOperationId operationIds}, and the field is only used in some of them; in
-     * that case, consider using {@link com.smartgwt.client.docs.serverds.OperationBinding#customFields customFields} to
-     * selectively re-introduce SQL generation for the field only in operations where it's used. <li>the field represents
-     * hidden criteria on a field in another table where the field is never shown to the user <li>the field is a write-only
-     * value only saved in some operations <li>more than one data access strategy is in use (eg direct SQL for fetch and
-     * bean-based persistence accessed via DMI for saves) and certain fields are not available in SQL </ul>
-     *
-     * @param customSQL customSQL Default value is null
-     */
-    public void setCustomSQL(Boolean customSQL) {
-        setAttribute("customSQL", customSQL);
-    }
-
-    /**
-     * For a DataSource with {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType} "sql" or "hibernate",
-     * indicates that this field should be omitted by default from all SQL or Hibernate operations, and will only be used with
-     * {@link com.smartgwt.client.docs.CustomQueries custom queries}. <P> Having marked a field as <code>customSQL</code> you
-     * can refer to it via $criteria.<i>fieldName</i> or $values.<i>fieldName</i> in customized queries. <P> The following are
-     * situations where you would <b>not</b> use <code>customSQL</code>: <ul> <li>simple joins where you want to enable users
-     * to see and search on a field from another table; consider {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#tableName tableName} instead <li>fields where you want to calculate or
-     * transform values in SQL on load or save, but always perform the same calculation for each operationType; consider
-     * instead {@link com.smartgwt.client.docs.serverds.DataSourceField#sqlStorageStrategy sqlStorageStrategy} for some common
-     * cases, or  {@link com.smartgwt.client.docs.serverds.DataSourceField#customSelectExpression customSelectExpression},
-     * {@link com.smartgwt.client.docs.serverds.DataSourceField#customUpdateExpression customUpdateExpression} and {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#customInsertExpression customInsertExpression} for full customization
-     * <li>a special fetch is needed where the field needs to be excluded from the $defaultWhereClause so that it can be used
-     * in a custom &lt;whereClause&gt; - consider {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#excludeCriteriaFields excludeCriteriaFields} instead </ul> <P> Use
-     * customSQL in situations like: <ul> <li>there are multiple variations of the "fetch" operation with different {@link
-     * com.smartgwt.client.data.OperationBinding#getOperationId operationIds}, and the field is only used in some of them; in
-     * that case, consider using {@link com.smartgwt.client.docs.serverds.OperationBinding#customFields customFields} to
-     * selectively re-introduce SQL generation for the field only in operations where it's used. <li>the field represents
-     * hidden criteria on a field in another table where the field is never shown to the user <li>the field is a write-only
-     * value only saved in some operations <li>more than one data access strategy is in use (eg direct SQL for fetch and
-     * bean-based persistence accessed via DMI for saves) and certain fields are not available in SQL </ul>
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCustomSQL()  {
-        return getAttributeAsBoolean("customSQL");
-    }
-
-    /**
      * Preferred display format to use for date type values within this field. If this property is set on a field displayed in
      * a databound component such as a {@link com.smartgwt.client.widgets.form.DynamicForm} or {@link
      * com.smartgwt.client.widgets.grid.ListGrid} it will be respected (See {@link
@@ -437,7 +373,7 @@ public class DataSourceField extends DataClass {
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue());
+        setAttribute("dateFormatter", dateFormatter.getValue());
     }
 
     /**
@@ -718,6 +654,37 @@ public class DataSourceField extends DataClass {
      */
     public Boolean getInapplicable()  {
         return getAttributeAsBoolean("inapplicable");
+    }
+
+    /**
+     * Indicates this field should be fetched from another, related DataSource. <P> A foreignKey declaration must exist between
+     * the two DataSources, establishing either a 1-to-1 relationship or a many-to-1 relationship from this DataSource to the
+     * related DataSource. <P> {@link com.smartgwt.client.data.DataSourceField#getName name} will default to the name of the
+     * included field, or you can specify a different name. <P> If both DataSources are SQLDataSources (or a subclass), the
+     * related data will be retrieved via a SQL join.  Otherwise, the related data will be retrieved via performing a DSRequest
+     * against the related DataSource once the data from the primary DataSource has been retrieved. <P> An included field is
+     * {@link com.smartgwt.client.data.DataSourceField#getCanEdit canEdit:false} by default.
+     *
+     * @param includeFrom includeFrom Default value is null
+     */
+    public void setIncludeFrom(String includeFrom) {
+        setAttribute("includeFrom", includeFrom);
+    }
+
+    /**
+     * Indicates this field should be fetched from another, related DataSource. <P> A foreignKey declaration must exist between
+     * the two DataSources, establishing either a 1-to-1 relationship or a many-to-1 relationship from this DataSource to the
+     * related DataSource. <P> {@link com.smartgwt.client.data.DataSourceField#getName name} will default to the name of the
+     * included field, or you can specify a different name. <P> If both DataSources are SQLDataSources (or a subclass), the
+     * related data will be retrieved via a SQL join.  Otherwise, the related data will be retrieved via performing a DSRequest
+     * against the related DataSource once the data from the primary DataSource has been retrieved. <P> An included field is
+     * {@link com.smartgwt.client.data.DataSourceField#getCanEdit canEdit:false} by default.
+     *
+     *
+     * @return String
+     */
+    public String getIncludeFrom()  {
+        return getAttributeAsString("includeFrom");
     }
 
     /**
@@ -1173,7 +1140,7 @@ public class DataSourceField extends DataClass {
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
-        setAttribute("timeFormatter", timeFormatter == null ? null : timeFormatter.getValue());
+        setAttribute("timeFormatter", timeFormatter.getValue());
     }
 
     /**
@@ -1231,7 +1198,7 @@ public class DataSourceField extends DataClass {
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public void setType(FieldType type) {
-        setAttribute("type", type == null ? null : type.getValue());
+        setAttribute("type", type.getValue());
     }
 
     /**
@@ -1246,31 +1213,6 @@ public class DataSourceField extends DataClass {
      */
     public FieldType getType()  {
         return EnumUtil.getEnum(FieldType.values(), getAttribute("type"));
-    }
-
-    /**
-     * Used by the {@link com.smartgwt.client.widgets.BatchUploader} to map a field in an upload file to this  dataSourceField.
-     * This is only necessary if the dataSourceField's name and title differ  from the name of the field in the upload file
-     * (Smart GWT will automatically map upload  fields using the dataSourceField's title, if possible, if it does not get a
-     * direct match  on field name).
-     *
-     * @param uploadFieldName uploadFieldName Default value is null
-     */
-    public void setUploadFieldName(String uploadFieldName) {
-        setAttribute("uploadFieldName", uploadFieldName);
-    }
-
-    /**
-     * Used by the {@link com.smartgwt.client.widgets.BatchUploader} to map a field in an upload file to this  dataSourceField.
-     * This is only necessary if the dataSourceField's name and title differ  from the name of the field in the upload file
-     * (Smart GWT will automatically map upload  fields using the dataSourceField's title, if possible, if it does not get a
-     * direct match  on field name).
-     *
-     *
-     * @return String
-     */
-    public String getUploadFieldName()  {
-        return getAttributeAsString("uploadFieldName");
     }
 
     /**

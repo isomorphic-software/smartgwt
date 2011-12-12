@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -138,7 +135,7 @@ public class DateItem extends FormItem {
      * @param dateFormatter dateFormatter Default value is null
      */
     public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue());
+        setAttribute("dateFormatter", dateFormatter.getValue());
     }
 
     /**
@@ -432,7 +429,7 @@ public class DateItem extends FormItem {
      * @param selectorFormat selectorFormat Default value is null
      */
     public void setSelectorFormat(DateItemSelectorFormat selectorFormat) {
-        setAttribute("selectorFormat", selectorFormat == null ? null : selectorFormat.getValue());
+        setAttribute("selectorFormat", selectorFormat.getValue());
     }
 
     /**
@@ -491,7 +488,7 @@ public class DateItem extends FormItem {
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextAlign(Alignment textAlign) {
-        setAttribute("textAlign", textAlign == null ? null : textAlign.getValue());
+        setAttribute("textAlign", textAlign.getValue());
     }
 
     /**

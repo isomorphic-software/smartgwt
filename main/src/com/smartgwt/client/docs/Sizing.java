@@ -3,16 +3,6 @@ package com.smartgwt.client.docs;
 
 /**
  * Width and height of an object
- * @see com.smartgwt.client.widgets.layout.Portlet#setHeight
- * @see com.smartgwt.client.widgets.layout.Portlet#setRowHeight
- * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanStretchColumnWidths
- * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanShrinkColumnWidths
- * @see com.smartgwt.client.widgets.layout.PortalLayout#setStretchColumnWidthsProportionally
- * @see com.smartgwt.client.widgets.layout.PortalLayout#setPreventUnderflow
- * @see com.smartgwt.client.widgets.layout.PortalLayout#setColumnPreventUnderflow
- * @see com.smartgwt.client.widgets.layout.PortalLayout#setPreventRowUnderflow
- * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanResizeColumns
- * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanResizePortlets
  * @see com.smartgwt.client.widgets.Canvas#setRect
  * @see com.smartgwt.client.widgets.Canvas#getWidth
  * @see com.smartgwt.client.widgets.Canvas#setWidth
@@ -50,6 +40,16 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getTop
  * @see com.smartgwt.client.widgets.grid.ListGrid#getDrawnRowHeight
  * @see com.smartgwt.client.widgets.grid.ListGrid#setHeaderHeight
+ * @see com.smartgwt.client.widgets.layout.Portlet#setHeight
+ * @see com.smartgwt.client.widgets.layout.Portlet#setRowHeight
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanStretchColumnWidths
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanShrinkColumnWidths
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#setStretchColumnWidthsProportionally
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#setPreventUnderflow
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#setColumnPreventUnderflow
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#setPreventRowUnderflow
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanResizeColumns
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanResizePortlets
  * @see com.smartgwt.client.util.Page#resizeTo
  * @see com.smartgwt.client.util.Page#getWidth
  * @see com.smartgwt.client.util.Page#getHeight
@@ -57,17 +57,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.util.Page#getScrollHeight
  * @see com.smartgwt.client.util.Page#getScrollLeft
  * @see com.smartgwt.client.util.Page#getScrollTop
- * @see com.smartgwt.client.widgets.layout.Portlet#getRowHeight
- * @see com.smartgwt.client.widgets.layout.PortalLayout#getOverflow
- * @see com.smartgwt.client.widgets.layout.PortalLayout#getColumnOverflow
- * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanStretchColumnWidths
- * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanShrinkColumnWidths
- * @see com.smartgwt.client.widgets.layout.PortalLayout#getStretchColumnWidthsProportionally
- * @see com.smartgwt.client.widgets.layout.PortalLayout#getPreventUnderflow
- * @see com.smartgwt.client.widgets.layout.PortalLayout#getPreventColumnUnderflow
- * @see com.smartgwt.client.widgets.layout.PortalLayout#getPreventRowUnderflow
- * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanResizeColumns
- * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanResizePortlets
  * @see com.smartgwt.client.widgets.Canvas#getWidth
  * @see com.smartgwt.client.widgets.Canvas#getHeight
  * @see com.smartgwt.client.widgets.Canvas#getDefaultWidth
@@ -83,14 +72,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#getSnapEdge
  * @see com.smartgwt.client.widgets.Canvas#getSnapOffsetLeft
  * @see com.smartgwt.client.widgets.Canvas#getSnapOffsetTop
- * @see com.smartgwt.client.widgets.StatefulCanvas#getAutoFit
- * @see com.smartgwt.client.widgets.Button#getAutoFit
- * @see com.smartgwt.client.widgets.Img#getSize
- * @see com.smartgwt.client.widgets.Label#getWrap
- * @see com.smartgwt.client.widgets.Label#getAutoFit
- * @see com.smartgwt.client.widgets.ImgButton#getAutoFit
- * @see com.smartgwt.client.widgets.StretchImgButton#getAutoFit
- * @see com.smartgwt.client.widgets.toolbar.ToolStrip#getHeight
  * @see com.smartgwt.client.grid.GridRenderer#getFixedColumnWidths
  * @see com.smartgwt.client.grid.GridRenderer#getAutoFit
  * @see com.smartgwt.client.widgets.grid.ListGrid#getBodyOverflow
@@ -101,6 +82,25 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tile.TileLayout#getTileWidth
  * @see com.smartgwt.client.widgets.tile.TileLayout#getTileHeight
  * @see com.smartgwt.client.widgets.tile.TileLayout#getOverflow
+ * @see com.smartgwt.client.widgets.layout.Portlet#getRowHeight
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getOverflow
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getColumnOverflow
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanStretchColumnWidths
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanShrinkColumnWidths
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getStretchColumnWidthsProportionally
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getPreventUnderflow
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getPreventColumnUnderflow
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getPreventRowUnderflow
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanResizeColumns
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanResizePortlets
+ * @see com.smartgwt.client.widgets.StatefulCanvas#getAutoFit
+ * @see com.smartgwt.client.widgets.Button#getAutoFit
+ * @see com.smartgwt.client.widgets.Img#getSize
+ * @see com.smartgwt.client.widgets.Label#getWrap
+ * @see com.smartgwt.client.widgets.Label#getAutoFit
+ * @see com.smartgwt.client.widgets.ImgButton#getAutoFit
+ * @see com.smartgwt.client.widgets.StretchImgButton#getAutoFit
+ * @see com.smartgwt.client.widgets.toolbar.ToolStrip#getHeight
  * @see com.smartgwt.client.types.Overflow
  */
 public interface Sizing {

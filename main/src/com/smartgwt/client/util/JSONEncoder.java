@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -105,7 +102,7 @@ public class JSONEncoder extends DataClass {
      * @param circularReferenceMode circularReferenceMode Default value is "path"
      */
     public void setCircularReferenceMode(JSONCircularReferenceMode circularReferenceMode) {
-        setAttribute("circularReferenceMode", circularReferenceMode == null ? null : circularReferenceMode.getValue());
+        setAttribute("circularReferenceMode", circularReferenceMode.getValue());
     }
 
     /**
@@ -126,7 +123,7 @@ public class JSONEncoder extends DataClass {
      * @param dateFormat dateFormat Default value is "xmlSchema"
      */
     public void setDateFormat(JSONDateFormat dateFormat) {
-        setAttribute("dateFormat", dateFormat == null ? null : dateFormat.getValue());
+        setAttribute("dateFormat", dateFormat.getValue());
     }
 
     /**
@@ -172,7 +169,7 @@ public class JSONEncoder extends DataClass {
      * @param serializeInstances serializeInstances Default value is "long"
      */
     public void setSerializeInstances(JSONInstanceSerializationMode serializeInstances) {
-        setAttribute("serializeInstances", serializeInstances == null ? null : serializeInstances.getValue());
+        setAttribute("serializeInstances", serializeInstances.getValue());
     }
 
     /**

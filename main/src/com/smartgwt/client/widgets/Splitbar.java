@@ -46,10 +46,7 @@ import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -150,7 +147,7 @@ public class Splitbar extends StretchImg {
      * @param cursor cursor Default value is "hand"
      */
     public void setCursor(Cursor cursor) {
-        setAttribute("cursor", cursor == null ? null : cursor.getValue(), true);
+        setAttribute("cursor", cursor.getValue(), true);
     }
 
     /**
@@ -193,7 +190,7 @@ public class Splitbar extends StretchImg {
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setHResizeCursor(Cursor hResizeCursor)  throws IllegalStateException {
-        setAttribute("hResizeCursor", hResizeCursor == null ? null : hResizeCursor.getValue(), false);
+        setAttribute("hResizeCursor", hResizeCursor.getValue(), false);
     }
 
     /**
@@ -387,7 +384,7 @@ public class Splitbar extends StretchImg {
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setVResizeCursor(Cursor vResizeCursor)  throws IllegalStateException {
-        setAttribute("vResizeCursor", vResizeCursor == null ? null : vResizeCursor.getValue(), false);
+        setAttribute("vResizeCursor", vResizeCursor.getValue(), false);
     }
 
     /**
