@@ -1,0 +1,7 @@
+<ListGrid
+    ID="newsViewer"
+    width="100%"
+    height="300"
+    dataSource="newsFeed"
+    autoFetchData="true"
+/>

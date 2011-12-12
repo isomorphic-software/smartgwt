@@ -1,0 +1,26 @@
+  <DataSource ID="contactsDS"
+              serverType="sql">
+      <fields>
+          <field primaryKey="true"
+                 name="id"          hidden="true"       type="sequence" />
+          <field name="salutation"  title="Title"       type="text" >
+              <valueMap>
+                  <value>Ms</value>
+                  <value>Mr</value>
+                  <value>Mrs</value>
+              </valueMap>
+              </field>
+          <field name="firstname"   title="First Name"  type="text" />
+          <field name="lastname"    title="Last Name"   type="text" />
+          <field name="birthday"    title="Birthday"    type="date" />
+          <field name="employment"  title="Status"      type="text" >
+              <valueMap>
+                  <value>Employed</value>
+                  <value>Unemployed</value>
+              </valueMap>
+              </field>
+          <field name="bio"         title="Bio"         type="text" 
+                                                        length="2000"  />
+          <field name="followup"    title="Follow up"   type="boolean" />
+      </fields>
+  </DataSource>

@@ -1,0 +1,352 @@
+<project name="smartgwt" default="build" basedir=".">
+	<property name="smartgwt.root" location="." />
+	<property name="project.tail" value="" />
+	<import file="${smartgwt.root}/common.ant.xml" />
+
+	<!-- "build" is the default when subprojects are directly targetted -->
+	<property name="target" value="build" />
+
+	<target name="dist" depends="main, doc, samples" description="Run the distributions">
+		<gwt.ant dir="distro-source" />
+	</target>
+
+   	<target name="doc" depends="buildtools, main" description="Build doc">
+		<gwt.ant dir="doc" />
+	</target>
+
+    <target name="main"  description="Run SmartGWT">
+		<gwt.ant dir="main" />
+	</target>
+
+
+	<target name="samples" depends="main" description="Build samples">
+		<gwt.ant dir="samples" />
+	</target>
+
+	<target name="buildtools" description="Build the build tools">
+		<gwt.ant dir="build-tools" />
+	</target>
+
+
+    <target name="-do" depends="dist" description="Run all subprojects" />
+
+	<target name="build" description="Builds GWT">
+		<antcall target="-do">
+			<param name="target" value="build" />
+		</antcall>
+	</target>
+
+	<target name="checkstyle" description="Static analysis of GWT source">
+		<antcall target="-do">
+			<param name="target" value="checkstyle" />
+		</antcall>
+	</target>
+
+	<target name="test" depends="build" description="Test GWT">
+		<antcall target="-do">
+			<param name="target" value="test" />
+		</antcall>
+	</target>
+
+	<target name="clean" description="Cleans the entire GWT build">
+		<delete dir="${smartgwt.build}" />
+	</target>
+
+    <target name="smartclient-jar" depends="setup-smartclient-jar" description="make smartclient.jar">
+        <property environment="env"/>
+
+        <fail unless="SC_HOME" message="You must pass the SC_HOME environment variable"/>
+
+        <available file="${SC_HOME}/smartclientSDK" type="dir" property="smartclient.sdk.exists"/>
+
+        <fail unless="smartclient.sdk.exists"
+              message="Cannot find '${SC_HOME}/smartclientSDK' SDK directory; perhaps you should verify the SC_HOME environment variable"/>
+
+        <mkdir dir="${smartgwt.tools.lib}/sc/${SC_VER}"/>
+        
+		<replace dir="${SC_HOME}/smartclientSDK/isomorphic/skins" includes="**/load_skin.js" token="showShadow:true" value="showShadow:false"/>
+		
+        <replace file="${SC_HOME}/smartclientSDK/isomorphic/system/development/ISC_DeveloperConsole.js/"
+                 token="../../system/reference/skin/images/"
+                 value="../../system/helpers/skin/images/"/>
+		
+        <zip destfile="${smartgwt.tools.lib}/sc/${SC_VER}/smartclient.jar">
+            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/modules" includes="*.js"
+                        prefix="com/smartclient/public/sc/modules">
+                <exclude name="**/ISC_ClassBrowser.js"/>
+                <exclude name="**/ISC_DSBrowser.js"/>
+                <exclude name="**/ISC_EBay.js"/>
+                <exclude name="**/ISC_Kapow.js"/>
+                <exclude name="**/ISC_SalesForce.js"/>
+                <exclude name="**/ISC_SQLBrowser.js"/>
+            </zipfileset>
+
+            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/development"                        includes="ISC_DBConsole.js,ISC_DeveloperConsole.js,ISC_DocViewer.js,ISC_FileViewer.js,ISC_FileLoader.js,ISC_SyntaxHiliter.js,ISC_Tools.js,ISC_Core.js,ISC_Foundation.js,ISC_Containers.js,ISC_Grids.js,ISC_Forms.js,ISC_DataBinding.js"
+                        prefix="com/smartclient/tools/public/sc/system/development"/>
+
+            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/helpers" includes="printFrame.*,empty.html,*.css,*.svg,isomorphic_applets.jar"
+                        prefix="com/smartclient/debug/public/sc/system/helpers"/>
+		    <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/helpers" includes="printFrame.*,empty.html,*.css,*.svg,isomorphic_applets.jar"
+			            prefix="com/smartclient/public/sc/system/helpers"/>
+
+            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/reference"
+                        includes="skin/images/server_client_exchange.png"
+                        prefix="com/smartclient/debug/public/sc/system/helpers"/>
+            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/reference"
+                        includes="skin/images/server_client_exchange.png"
+                        prefix="com/smartclient/public/sc/system/helpers"/>
+
+            <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/modules" includes="*.js"
+                        prefix="com/smartclient/debug/public/sc/modules-debug"/>
+
+            <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/schema" includes="*.xml"
+                        prefix="com/smartclient/public/sc/schema"/>
+
+
+            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/schema" includes="*.xsl,*.wsdl"
+                        prefix="com/smartclient/debug/public/sc/system/schema"/>
+
+            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/schema" includes="*.xsl,*.wsdl"
+                        prefix="com/smartclient/public/sc/system/schema"/>
+
+            <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/application" includes="*.js"
+                        prefix="com/smartclient/debug/public/sc/client/application"/>
+            <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/browser" includes="*.js"
+                        prefix="com/smartclient/debug/public/sc/client/browser"/>
+            <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/communications" includes="*.js"
+                        prefix="com/smartclient/debug/public/sc/client/communications"/>
+            <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/debug" includes="*.js"
+                        prefix="com/smartclient/debug/public/sc/client/debug"/>
+            <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/event" includes="*.js"
+                        prefix="com/smartclient/debug/public/sc/client/event"/>
+            <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/language" includes="*.js"
+                        prefix="com/smartclient/debug/public/sc/client/language"/>
+            <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/standalone" includes="*.js"
+                        prefix="com/smartclient/debug/public/sc/client/standalone"/>
+            <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/tools" includes="*.js"
+                        prefix="com/smartclient/debug/public/sc/client/tools"/>
+            <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/widgets" includes="*.js"
+                        prefix="com/smartclient/debug/public/sc/client/widgets"/>
+            <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/widgets/form" includes="*.js"
+                        prefix="com/smartclient/debug/public/sc/client/widgets/form"/>
+
+            <zipfileset dir="${smartgwt.build.out}/temp/schema" includes="*.js"
+                        prefix="com/smartclient/debug/public/sc/client/schema"/>
+
+            <zipfileset dir="${smartgwt.build.out}/temp" includes="initsc.js"
+                        prefix="com/smartclient/public/sc"/>
+
+            <zipfileset dir="${smartgwt.build.out}/temp" includes="Log.html"
+                        prefix="com/smartclient/tools/public/sc/system/helpers"/>
+
+            <zipfileset dirmode="755" filemode="644" src="${smartgwt.tools.lib}/sc/smartclient_tpl.jar"/>
+						
+			<zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/Enterprise" includes="**/*.*" excludes="*.gz,*.psd"
+					                        prefix="com/smartclient/theme/enterprise/public/sc/skins/Enterprise"/>	
+					
+             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/EnterpriseBlue" includes="**/*.*" excludes="*.gz,*.psd"
+					                        prefix="com/smartclient/theme/enterpriseblue/public/sc/skins/EnterpriseBlue"/>
+
+             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/Graphite" includes="**/*.*" excludes="*.gz,*.psd"
+					                        prefix="com/smartclient/theme/graphite/public/sc/skins/Graphite"/>
+																	
+			<zipfileset dir="${SC_HOME}/smartclientSDK/tools/selenium" includes="**/*.*"
+						prefix="com/smartclient/tools/public/tools/selenium"/>
+        </zip>
+		
+		<zip destfile="${smartgwt.tools.lib}/sc/${SC_VER}/smartgwt-skins.jar">
+			<zipfileset dirmode="755" filemode="644" src="${smartgwt.tools.lib}/sc/skins_tpl.jar"/>
+
+             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/Simplicity" includes="**/*.*" excludes="*.gz,*.psd"
+					                        prefix="com/smartclient/theme/simplicity/public/sc/skins/Simplicity"/>
+
+             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/Mobile" includes="**/*.*" excludes="*.gz,*.psd"
+					                        prefix="com/smartclient/theme/mobile/public/sc/skins/Mobile"/>
+
+			<zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/BlackOps" includes="**/*.*" excludes="*.gz"
+                        prefix="com/smartclient/theme/blackops/public/sc/skins/BlackOps"/>
+
+            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/SilverWave" includes="**/*.*" excludes="*.gz"
+                        prefix="com/smartclient/theme/silverwave/public/sc/skins/SilverWave"/>
+
+            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/TreeFrog" includes="**/*.*" excludes="*.gz"
+                        prefix="com/smartclient/theme/treefrog/public/sc/skins/TreeFrog"/>
+			
+			<zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/fleet" includes="**/*.*" excludes="*.gz"
+                        prefix="com/smartclient/theme/fleet/public/sc/skins/fleet"/>
+						
+		</zip>
+
+        <!--DEV ONLY-->
+		<!--
+		<delete dir="${smartgwt.root}/main/src/com/smartclient"/>
+	    <unjar dest="${smartgwt.root}/main/src" src="${smartgwt.tools.lib}/sc/${SC_VER}/smartclient.jar"/>
+		-->
+		<move file="${smartgwt.root}/fmpp/data/referenceDocs.xml" tofile="${smartgwt.root}/fmpp/data/referenceDocs-bak.xml" failonerror="false"/>
+		<copy file="${SC_HOME}/smartclientSDK/isomorphic/system/reference/referenceDocs.xml" tofile="${smartgwt.root}/fmpp/data/referenceDocs.xml" failonerror="false"/>
+	
+        <mkdir dir="${smartgwt.build.out}/doc"/>
+		<copy file="${SC_HOME}/smartclientSDK/isomorphic/login/loginRequiredMarker.html" tofile="${smartgwt.build.out}/doc/loginRequiredMarker.html"/>
+    </target>
+
+
+    <target name="setup-smartclient-jar">
+        <delete dir="${smartgwt.build.out}/target"/>
+        <delete dir="${smartgwt.build.out}/temp/schema"/>
+
+        <copy todir="${smartgwt.build.out}/temp/schema">
+            <fileset dir="${SC_HOME}/smartclientSDK/source/client/schema" includes="*.xml"/>
+            <globmapper from="*.xml" to="*.xml.js"/>
+        </copy>
+
+        <echo file="${smartgwt.build.out}/temp/initsc.js">if(typeof isomorphicDir == 'undefined'){isomorphicDir = "sc/";}</echo>
+        <echo file="${smartgwt.build.out}/temp/Log.html"><![CDATA[
+<!--======================================================================
+    Isomorphic SmartClient Developer Console
+    Copyright 2000-2007 Isomorphic Software, Inc. (www.isomorphic.com)
+    All rights reserved.
+======================================================================-->
+
+<HTML>
+<TITLE>SmartClient Developer Console</TITLE>
+<HEAD>
+<SCRIPT>
+var isomorphicDir = "../../";
+
+window.suppressAutoLogWindow = true;
+window.useSimpleNames = false;
+</SCRIPT>
+<!--  -->
+
+<SCRIPT src=../development/ISC_FileLoader.js?isc_version=${SC_VER}.js></SCRIPT>
+<SCRIPT>isc.FileLoader.modulesDir = "system/development/";</SCRIPT>
+<SCRIPT src=../development/ISC_Core.js?isc_version=${SC_VER}.js></SCRIPT>
+<SCRIPT src=../development/ISC_Foundation.js?isc_version=${SC_VER}.js></SCRIPT>
+<SCRIPT src=../development/ISC_Containers.js?isc_version=${SC_VER}.js></SCRIPT>
+<SCRIPT src=../development/ISC_Grids.js?isc_version=${SC_VER}.js></SCRIPT>
+<SCRIPT src=../development/ISC_Forms.js?isc_version=${SC_VER}.js></SCRIPT>
+<SCRIPT src=../development/ISC_DataBinding.js?isc_version=${SC_VER}.js></SCRIPT>
+<SCRIPT src=../development/ISC_Tools.js?isc_version=${SC_VER}.js></SCRIPT>
+
+<SCRIPT type="text/javascript">
+    if(isc.Browser.isSafari) {
+          isc.Browser.safariVersion = 525;
+        }
+</SCRIPT>
+<SCRIPT>
+
+if (!(isc.loadSkin || window.loadSkin)) {
+    document.write("<script src="+window.opener.isc.Page.getSkinDir()+"load_skin.js?isc_version=${SC_VER}.js></"+"script>");
+}
+</SCRIPT>
+<SCRIPT>isc.deferAutoDraw = true;</SCRIPT>
+
+</HEAD>
+<BODY LEFTMARGIN=0 TOPMARGIN=0 BGCOLOR=DDDDDD ONBLUR='saveState()'
+      STYLE="overflow:hidden">
+
+<SCRIPT src="../development/ISC_DeveloperConsole.js"></SCRIPT>
+
+</BODY>
+</HTML>
+
+<!--======================================================================
+    Isomorphic SmartClient Developer Console
+    Copyright 2000-2007 Isomorphic Software, Inc. (www.isomorphic.com)
+    All rights reserved.
+======================================================================-->]]></echo>
+
+    </target>		
+
+	<target name="diff-report" depends="main">
+
+		<get src="http://www.smartclient.com/maven2/com/smartgwt/smartgwt/${smartgwt.previous_version}/smartgwt-${smartgwt.previous_version}.jar" 
+		    dest="${smartgwt.build.out}/smartgwt-${smartgwt.previous_version}.jar" 
+		    verbose="false"
+		    usetimestamp="true"/>
+		
+		<property name="dependencyfinder.home" location="${smartgwt.tools.lib}/dependency-finder/1.2.1" />
+		<taskdef name="jarjardiff" classname="com.jeantessier.dependencyfinder.ant.JarJarDiff">
+			<classpath>
+				<pathelement location="${dependencyfinder.home}/DependencyFinder.jar" />
+				<pathelement location="${dependencyfinder.home}/jakarta-oro.jar" />
+				<pathelement location="${dependencyfinder.home}/log4j.jar" />
+			</classpath>
+		</taskdef>
+				
+		<property name="PREVIOUS_JAR" value="${smartgwt.build.out}/smartgwt-${smartgwt.previous_version}.jar"/>
+
+        <available file="${PREVIOUS_JAR}" type="file" property="oldjar.exists"/>
+
+        <fail unless="oldjar.exists"
+              message="Cannot find file '${PREVIOUS_JAR}' "/>
+
+	    <jarjardiff destfile="${smartgwt.build.out}/diff.xml"
+	                name="smartgwt"
+	                oldlabel="${smartgwt.previous_version}"
+	                newlabel="${smartgwt.version}">
+	        <old>
+	            <pathelement location="${PREVIOUS_JAR}"/>
+	        </old>
+	        <new>
+	            <pathelement location="${project.lib}"/>
+	        </new>
+	    </jarjardiff>
+	    <xslt style="${dependencyfinder.home}/etc/DiffToHTML.xsl"
+	          in="${smartgwt.build.out}/diff.xml"
+	          out="${smartgwt.root}/distro-source/core/src/api-changes.html"/>
+			
+	</target>
+
+	<target name="upload-trans">
+		<taskdef name="trans-upload" classname="UploadTask" classpath="${smartgwt.tools.lib}/ant-trans/ant-trans.jar"/>
+		<property name="i18n.dir" value="${smartgwt.root}/main/src/com/smartgwt/client/i18n"/>		
+		<trans-upload api="" translationFile="SmartGwtMessages_ar.properties" file="${i18n.dir}/SmartGwtMessages_ar.properties" />
+	</target>
+
+	<target name="download-trans">
+		<taskdef name="trans-download" classname="DownloadTask" classpath="${smartgwt.tools.lib}/ant-trans/ant-trans.jar"/>
+		
+		<property name="i18n.dir" value="${smartgwt.root}/main/src/com/smartgwt/client/i18n"/>
+		<property name="trans.api" value=""/>
+				
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_ba.properties" locale="ba" />		
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_cr.properties" locale="cr" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_cs.properties" locale="cs" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_de.properties" locale="de" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_el.properties" locale="el" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_es.properties" locale="es" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_fi.properties" locale="fi" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_fr.properties" locale="fr" />		
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_fr_FR.properties" locale="fr_FR" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_it.properties" locale="it" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_nb_NO.properties" locale="nb_NO" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_nl.properties" locale="nl" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_pl.properties" locale="pl" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_pt.properties" locale="pt" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_pt_BR.properties" locale="pt_BR" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_ro_RO.properties" locale="ro_RO" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_ru_RU.properties" locale="ru_RU" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_sk.properties" locale="sk" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_sr.properties" locale="sr" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_sr_Latn.properties" locale="sr_Latn" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_zh_CN.properties" locale="zh_CN" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_ja.properties" locale="ja" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_es.properties" locale="es" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_pl_PL.properties" locale="pl_PL" />
+		<trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_id.properties" locale="id" />
+        <trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_zh_TW.properties" locale="zh_TW" />
+        <trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_hu_HU.properties" locale="hu_HU" />
+        <trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_ar.properties" locale="ar" />
+        <trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_uk_UA.properties" locale="uk_UA" />
+        <trans-download api="${trans.api}" translationFile="SmartGwtMessages.properties" file="${i18n.dir}/SmartGwtMessages_sv_SE.properties" locale="sv_SE" />
+        <!--99translations incorrectly double escapes the backslash in unicode character, remove the extra token-->
+        <replace dir="${i18n.dir}" value="\u">
+            <include name="**/*.properties"/>
+                <replacetoken>\\u</replacetoken>
+        </replace>
+	</target>
+	<target name="fixcrlf" description="task to convert all java files to have a consistent line end character">
+		<fixcrlf srcdir="main/src" includes="**/*.java" eol="crlf" eof="asis"/>
+	</target>
+</project>
