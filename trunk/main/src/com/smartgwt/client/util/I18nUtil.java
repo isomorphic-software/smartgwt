@@ -141,21 +141,6 @@ public class I18nUtil {
             $wnd.isc.GroupingMessages.addClassProperties({byMinutesTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::grouping_byMinutesTitle()()});
             $wnd.isc.GroupingMessages.addClassProperties({bySecondsTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::grouping_bySecondsTitle()()});
             $wnd.isc.GroupingMessages.addClassProperties({byMillisecondsTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::grouping_byMillisecondsTitle()()});
-
-            if($wnd.isc.builtinTypes) {
-                $wnd.isc.addProperties($wnd.isc.builtinTypes.date.groupingModes, {day: $wnd.isc.GroupingMessages.byDayTitle});
-                $wnd.isc.addProperties($wnd.isc.builtinTypes.date.groupingModes, {week: $wnd.isc.GroupingMessages.byWeekTitle});
-                $wnd.isc.addProperties($wnd.isc.builtinTypes.date.groupingModes, {month: $wnd.isc.GroupingMessages.byMonthTitle});
-                $wnd.isc.addProperties($wnd.isc.builtinTypes.date.groupingModes, {quarter: $wnd.isc.GroupingMessages.byQuarterTitle});
-                $wnd.isc.addProperties($wnd.isc.builtinTypes.date.groupingModes, {year: $wnd.isc.GroupingMessages.byYearTitle});
-                $wnd.isc.addProperties($wnd.isc.builtinTypes.date.groupingModes, {dayOfMonth: $wnd.isc.GroupingMessages.byDayOfMonthTitle});
-                $wnd.isc.addProperties($wnd.isc.builtinTypes.date.groupingModes, {upcoming: $wnd.isc.GroupingMessages.byUpcomingTitle});
-
-                $wnd.isc.addProperties($wnd.isc.builtinTypes.time.groupingModes, {hours: $wnd.isc.GroupingMessages.byHoursTitle});
-                $wnd.isc.addProperties($wnd.isc.builtinTypes.time.groupingModes, {minutes: $wnd.isc.GroupingMessages.byMinutesTitle});
-                $wnd.isc.addProperties($wnd.isc.builtinTypes.time.groupingModes, {seconds: $wnd.isc.GroupingMessages.bySecondsTitle});
-                $wnd.isc.addProperties($wnd.isc.builtinTypes.time.groupingModes, {milliseconds: $wnd.isc.GroupingMessages.byMillisecondsTitle});
-            }
         }
 
         if($wnd.isc.Validator) {
