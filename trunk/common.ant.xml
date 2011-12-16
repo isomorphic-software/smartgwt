@@ -21,7 +21,7 @@
     </condition>
 	
     <condition property="smartgwt.version" value="${env.SMARTGWT_VERSION}" else="3.x">
-		<isset property="${env.SMARTGWT_VERSION}" />
+		<isset property="env.SMARTGWT_VERSION" />
     </condition>
     
 	<property name="smartgwt.previous_version" value="3.0" />
