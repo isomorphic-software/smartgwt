@@ -56,7 +56,7 @@ public class FilterSortTilingSample extends ShowcasePanel {
         vStack.setWidth100();
 
         final TileGrid tileGrid = new TileGrid();
-        tileGrid.setTileWidth(150);
+        tileGrid.setTileWidth(158);
         tileGrid.setTileHeight(205);
         tileGrid.setHeight(400);
         tileGrid.setCanReorderTiles(true);
