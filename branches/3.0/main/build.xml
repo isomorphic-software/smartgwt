@@ -156,14 +156,21 @@ public final class Version {
      * @return the library major version
      */
     public static String getMajor() {
-        return "${smartgwt.version.major}";
+        return "${smartgwt.version}.0".split("\\.")[0];
     }
 
     /**
      * @return the library minor version
      */
     public static String getMinor() {
-        return "${smartgwt.version.minor}";
+        return "${smartgwt.version}.0".split("\\.")[1];
+    }
+
+    /**
+     * @return the library patch version
+     */
+    public static String getPatch() {
+        return "${smartgwt.version}.0.0".split("\\.")[2];
     }
 
     /**
