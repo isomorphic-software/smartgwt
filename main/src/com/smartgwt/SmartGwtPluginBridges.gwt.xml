@@ -18,10 +18,7 @@
 Inheriting this module injects the PluginBridges Javascript file. This module inherits the default com.smartgwt.SmartGwt
 module which in turn injects all the other SmartClient JS files with the the Enterprise theme.
 
-If you want mode control over what JavaScript files are included, inherit SmartGwtNoScript instead
-and manually add the sc/modules/ISC_PluginBridges.js script include in your host html file.
-
-THIS MODULE HAS BEEN DEPRECATED. USE the com.smartgwt.PluginBridges module instead
+THIS MODULE HAS BEEN DEPRECATED. USE the com.smartgwt.PluginBridgesWidgets module instead
 -->        
 
 <module>
@@ -29,5 +26,7 @@ THIS MODULE HAS BEEN DEPRECATED. USE the com.smartgwt.PluginBridges module inste
     <inherits name="com.smartgwt.SmartGwt"/>
 
     <script src="sc/modules/ISC_PluginBridges.js"/>
+    <entry-point class='com.smartgwt.client.PluginBridges_DeprecatedEntryPoint'/>
+    
 
 </module>
