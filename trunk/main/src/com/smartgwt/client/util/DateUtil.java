@@ -219,6 +219,47 @@ public class DateUtil {
         );
     }-*/;
     
+    /**
+     * Create a new Date to represent a logical date value (rather than a specific datetime value),
+     *  typically for display in a +link{DataSourceField.type,date type field}. The generated
+     *  Date value will have year, month and date set to the specified values (in browser native local time).
+     *  <P>
+     * See the {@link com.smartgwt.client.docs.DateFormatAndStorage docs} for a discussion of the difference between
+     * datetime field values and logical date field values, logical time field values.
+     *  
+     *  @param year
+     *  @param month
+     *  @param date
+     *  @return Date representing a logical date. 
+     */
+    public static native Date createLogicalDate(int year, int month, int date) /*-{
+        var jsDate = $wnd.Date.createLogicalDate(year, month, date);
+        if (jsDate == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toDate(D)(jsDate.getTime());
+    }-*/;
+    
+    /**
+     * Create a new Date object to represent a logical time value (rather than a specific datetime
+     * value), typically for display in a +link{DataSourceField.type,time type field}. The generated
+     * Date value will have year, month and date set to the epoch date (Jan 1 1970), and time 
+     * elements set to the supplied hour, minute and second (in browser native local time).
+     * <P>
+     * See the {@link com.smartgwt.client.docs.DateFormatAndStorage docs} for a discussion of the difference between
+     * datetime field values and logical date field values, logical time field values.
+     * 
+     * @param hour (0-23)
+     * @param minute (0-59)
+     * @param second (0-59)
+     * @param millisecond (0-999)
+     * @return new Date representing the time in question
+     */
+    public static native Date createLogicalTime(int hour, int minute, int second, int millisecond) /*-{
+        var jsDate = $wnd.Date.createLogicalTime(hour, minute, second, millisecond);
+        if (jsDate == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toDate(D)(jsDate.getTime());
+    }-*/;
+    
+
     // Wrappers for the standard Date format / parser functions applied to the Date class in SC.
     // Note that GWT has date parsing and formatting functions via Java util classes - just exposing these
     // for completeness as they're the standards used by components by default
