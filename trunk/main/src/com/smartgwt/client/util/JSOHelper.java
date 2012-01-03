@@ -28,6 +28,7 @@ import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.widgets.BaseWidget;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -697,6 +698,27 @@ public class JSOHelper {
         var dateJS = $wnd.Date.create();
         dateJS.setTime(@com.smartgwt.client.util.JSOHelper::getTime(Ljava/util/Date;)(date));
         return dateJS;
+    }-*/;
+    
+    
+    // Helper to get logical JS date / time objects. These objects will be recognized
+    // as logical date / times for formatting / serialization purposes by the SmartClient system.
+    public static JavaScriptObject getJSLogicalDate(Date date) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        return getJSLogicalDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE));
+    }
+    public static native JavaScriptObject getJSLogicalDate(int year, int month, int date) /*-{
+        return $wnd.Date.createLogicalTime(year, month, date);
+    }-*/;
+
+    public static JavaScriptObject getJSLogicalTime(Date date) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        return getJSLogicalTime(c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), c.get(Calendar.SECOND), c.get(Calendar.MILLISECOND));
+    }
+    public static native JavaScriptObject getJSLogicalTime(int hour, int minute, int second, int millisecond) /*-{
+        return $wnd.Date.createLogicalTime(hour, minute, second, millisecond);
     }-*/;
 
     public static Boolean toBoolean(boolean value) {
