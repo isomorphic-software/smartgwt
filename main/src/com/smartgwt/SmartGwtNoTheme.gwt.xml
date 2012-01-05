@@ -17,4 +17,7 @@
     
   	<set-configuration-property name="document.compatMode" value="BackCompat"/>
 
+  	<source path='client'/>
+  	<source path='logicalstructure'/>
+  	
 </module>

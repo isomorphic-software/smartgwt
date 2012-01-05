@@ -27,6 +27,8 @@ import com.google.gwt.user.client.ui.Widget;
 import com.smartgwt.client.core.BaseClass;
 import com.smartgwt.client.core.DataClass;
 import com.smartgwt.client.core.Function;
+import com.smartgwt.client.core.NativeObject;
+import com.smartgwt.client.core.LogicalStructure;
 import com.smartgwt.client.types.Positioning;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.util.DOMUtil;
@@ -35,11 +37,13 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.events.DrawHandler;
+import com.smartgwt.logicalstructure.core.LogicalStructureObject;
+import com.smartgwt.logicalstructure.widgets.BaseWidgetLogicalStructure;
 
 import java.util.Date;
 import java.util.Map;
 
-public abstract class BaseWidget extends Widget implements HasHandlers {
+public abstract class BaseWidget extends Widget implements HasHandlers, LogicalStructure {
 
     private Function onRenderFn;
 
@@ -893,4 +897,20 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
         return getID().hashCode();
     }
 
+    public NativeObject nativeObject;
+
+    public LogicalStructureObject setLogicalStructure(LogicalStructureObject s) {
+        s.scClassName = getScClassName();
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        BaseWidgetLogicalStructure s = new BaseWidgetLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
+    
+    public void initNativeObject() {
+        this.nativeObject = new NativeObject(this);
+    }
 }

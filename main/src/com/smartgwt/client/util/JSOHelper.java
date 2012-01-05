@@ -542,7 +542,7 @@ public class JSOHelper {
     	}
     	return (List)javaObj;
     }
- 
+    
     public static JavaScriptObject convertToJavaScriptDate(Date date) {
         if(date == null) return null;
         JavaScriptObject dateJS = doConvertToJavaScriptDate(date.getTime());

@@ -25,4 +25,7 @@ and manually add the script includes in your host html file.
 
   	<set-configuration-property name="document.compatMode" value="BackCompat"/>
 
+  	<source path='client'/>
+  	<source path='logicalstructure'/>
+  	
 </module>
