@@ -34,4 +34,7 @@ include them yourself in your host html file as follows :
 
   	<set-configuration-property name="document.compatMode" value="BackCompat"/>
 
+  	<source path='client'/>
+  	<source path='logicalstructure'/>
+  	
 </module>

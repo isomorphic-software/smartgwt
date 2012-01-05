@@ -20,4 +20,7 @@ This module is useful if you already have the SmartClient resources available in
 
   	<set-configuration-property name="document.compatMode" value="BackCompat"/>
 
+  	<source path='client'/>
+  	<source path='logicalstructure'/>
+  	
 </module>
