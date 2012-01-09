@@ -2023,13 +2023,31 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String operators_andTitle();
 
   /**
+   * Translated "between (inclusive, match case)".
+   * 
+   * @return translated "between (inclusive, match case)"
+   */
+  @DefaultMessage("between (inclusive, match case)")
+  @Key("operators_betweenInclusiveTitle")
+  String operators_betweenInclusiveTitle();
+
+  /**
+   * Translated "between (match case)".
+   * 
+   * @return translated "between (match case)"
+   */
+  @DefaultMessage("between (match case)")
+  @Key("operators_betweenTitle")
+  String operators_betweenTitle();
+
+  /**
    * Translated "between (inclusive)".
    * 
    * @return translated "between (inclusive)"
    */
   @DefaultMessage("between (inclusive)")
-  @Key("operators_betweenInclusiveTitle")
-  String operators_betweenInclusiveTitle();
+  @Key("operators_iBetweenInclusiveTitle")
+  String operators_iBetweenInclusiveTitle();
 
   /**
    * Translated "between".
@@ -2037,8 +2055,8 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    * @return translated "between"
    */
   @DefaultMessage("between")
-  @Key("operators_betweenTitle")
-  String operators_betweenTitle();
+  @Key("operators_iBetweenTitle")
+  String operators_iBetweenTitle();
 
   /**
    * Translated "contains (match case) another field value".
