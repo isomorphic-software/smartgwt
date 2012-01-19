@@ -69,6 +69,10 @@ public class Criteria extends DataClass {
         JSOHelper.setAttribute(jsObj, field, value);
     }
 
+    public void addCriteria(String field, Long value) {
+        JSOHelper.setAttribute(jsObj, field, value);
+    }
+
     public void addCriteria(String field, String[] value) {
         JSOHelper.setAttribute(jsObj, field, value);
     }
@@ -103,6 +107,8 @@ public class Criteria extends DataClass {
                 addCriteria(field, (Date) value);
             } else if (value instanceof Boolean) {
                 addCriteria(field, (Boolean) value);
+            } else if (value instanceof Long) {
+                addCriteria(field, (Long) value);
             } else {
                 JSOHelper.setAttribute(jsObj, field, value);
             }
