@@ -175,6 +175,13 @@ public class JSOHelper {
         }
     }
 
+    public static void setAttribute(JavaScriptObject elem, String attr, Long value) {
+        if (value == null) {
+            setNullAttribute(elem, attr);
+        } else {
+            setAttribute(elem, attr, value.longValue());
+        }
+    }
 
     public static void setAttribute(JavaScriptObject elem, String attr, Double value) {
         if (value == null) {
