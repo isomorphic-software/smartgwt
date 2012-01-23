@@ -41,10 +41,28 @@ public abstract class RequestTransformer {
      * Return the result of the default transformed response.
      *
      * @param dsRequest the request
-     *
+     * @deprecated use {@link getDefaultTransformRequest(DSRequest)} instead
      * @return the default transformed response
      */
     public native Object getDefaultTransformResponse(DSRequest dsRequest)/*-{
+        var self = this.@com.smartgwt.client.data.RequestTransformer::dsJsObj;
+        var data = self.__transformRequest(dsRequest.@com.smartgwt.client.data.DSRequest::getJsObj()());
+        if(@com.smartgwt.client.data.DataSource::isRecord(Ljava/lang/Object;)(data)) {
+            data = data.@com.smartgwt.client.data.Record::getJsObj()();
+        } else if (@com.smartgwt.client.data.DataSource::isRecordArray(Ljava/lang/Object;)(data)) {
+            data = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(data);
+        }
+        return data;
+    }-*/;
+
+    /**
+     * Return the result of the default transformed request.
+     *
+     * @param dsRequest the request
+     *
+     * @return the default transformed request
+     */
+    public native Object getDefaultTransformRequest(DSRequest dsRequest)/*-{
         var self = this.@com.smartgwt.client.data.RequestTransformer::dsJsObj;
         var data = self.__transformRequest(dsRequest.@com.smartgwt.client.data.DSRequest::getJsObj()());
         if(@com.smartgwt.client.data.DataSource::isRecord(Ljava/lang/Object;)(data)) {
