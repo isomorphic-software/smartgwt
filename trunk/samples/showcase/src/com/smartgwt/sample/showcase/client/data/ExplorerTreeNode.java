@@ -2,6 +2,7 @@ package com.smartgwt.sample.showcase.client.data;
 
 import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.sample.showcase.client.PanelFactory;
+import com.smartgwt.sample.showcase.client.ShowcaseConfiguration;
 
 public class ExplorerTreeNode extends TreeNode {
 
@@ -17,10 +18,21 @@ public class ExplorerTreeNode extends TreeNode {
         setIcon(icon);
 
         setFactory(factory);
+
+        if (ShowcaseConfiguration.getSingleton().isOpenForTesting() && null != factory) {
+            String className = factory.getClass().getName().replaceFirst("\\$.*$","");
+            setSampleClassName(className);
+        }
         
         if(nodeID.equals("featured-category") || nodeID.equals("new-category")) {
             setIsOpen(true);
         }
+    }
+    public void setSampleClassName(String name) {
+        setAttribute("sampleClassName",name);
+    }
+    public String getSampleClassName() {
+        return getAttribute("sampleClassName");
     }
 
     public void setFactory(PanelFactory factory) {
