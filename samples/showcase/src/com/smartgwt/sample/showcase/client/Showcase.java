@@ -160,6 +160,11 @@ public class Showcase implements EntryPoint, HistoryListener {
             }
         });
 
+        // open example tree completely for automated test framework
+        if (ShowcaseConfiguration.getSingleton().isOpenForTesting()) {
+            sideNav.getData().openAll();
+        }
+
         sideNavLayout.addMember(sideNav);
         hLayout.addMember(sideNavLayout);
 
@@ -354,7 +359,8 @@ public class Showcase implements EntryPoint, HistoryListener {
                     tab = mainTabSet.getTab(tabID);
                 }
                 if (tab == null) {
-                    Canvas panel = factory.create();
+                    boolean autotest = ShowcaseConfiguration.getSingleton().isOpenForTesting();
+                    Canvas panel = autotest ? SampleResultsManager.create(mainTabSet, factory) : factory.create();
                     tab = new Tab();
                     tab.setID(factory.getID() + "_tab");
                     //store history token on tab so that when an already open is selected, one can retrieve the
