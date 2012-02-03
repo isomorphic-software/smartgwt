@@ -210,7 +210,7 @@ public class SampleResultsManager implements UncaughtExceptionHandler {
                           detail : errors };
         var parent = this.@com.smartgwt.sample.showcase.client.SampleResultsManager::parent;
         var parentJsObj = parent.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
-        var viewerJsObj = $wnd.isc.DetailViewer.createDetailViewerForTestResults(parentJsObj, results);
+        var viewerJsObj = $wnd.isc.AutoTest.createDetailViewerForTestResults(parentJsObj, results);
         var viewer = @com.smartgwt.client.widgets.viewer.DetailViewer::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(viewerJsObj);
         viewer.@com.smartgwt.client.widgets.viewer.DetailViewer::doInit()();
         return viewer;
