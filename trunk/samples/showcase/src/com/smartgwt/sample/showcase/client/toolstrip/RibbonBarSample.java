@@ -61,21 +61,21 @@ public class RibbonBarSample extends ShowcasePanel {
         editGroup.setTitle("Edit");
         editGroup.setNumRows(3);
         editGroup.setRowHeight(24);
-        fileGroup.addControl(getIconButton("Edit", "piece_blue", false));
-        fileGroup.addControl(getIconButton("Copy", "pawn_green", false));
-        fileGroup.addControl(getIconButton("Paste", "cube_yellow", false));
-        fileGroup.addControl(getIconMenuButton("Undo", null, menu, false));
-        fileGroup.addControl(getIconMenuButton("Redo", null, menu, false));
+        editGroup.addControl(getIconButton("Edit", "piece_blue", false));
+        editGroup.addControl(getIconButton("Copy", "pawn_green", false));
+        editGroup.addControl(getIconButton("Paste", "cube_yellow", false));
+        editGroup.addControl(getIconMenuButton("Undo", null, menu, false));
+        editGroup.addControl(getIconMenuButton("Redo", null, menu, false));
 
 
         RibbonGroup insertGroup = new RibbonGroup();
         insertGroup.setTitle("Insert");
         insertGroup.setNumRows(3);
         insertGroup.setRowHeight(24);
-        fileGroup.addControl(getIconMenuButton("Picture", null, menu, false));
-        fileGroup.addControl(getIconButton("Link", "pawn_white", false));
-        fileGroup.addControl(getIconButton("Document", "star_yellow", false));
-        fileGroup.addControl(getIconButton("Video", "piece_red", false));
+        insertGroup.addControl(getIconMenuButton("Picture", null, menu, false));
+        insertGroup.addControl(getIconButton("Link", "pawn_white", false));
+        insertGroup.addControl(getIconButton("Document", "star_yellow", false));
+        insertGroup.addControl(getIconButton("Video", "piece_red", false));
 
         ribbonBar.addMember(fileGroup);
         ribbonBar.addMember(editGroup);
@@ -89,8 +89,8 @@ public class RibbonBarSample extends ShowcasePanel {
         IconButton button = new IconButton(title);
         button.setTitle(title);
         if (iconName == null) iconName = "cube_blue";
-        button.setIcon("/images/pieces/16/" + iconName + ".png");
-        button.setLargeIcon("/images/pieces/48/" + iconName + ".png");
+        button.setIcon("images/pieces/16/" + iconName + ".png");
+        button.setLargeIcon("images/pieces/48/" + iconName + ".png");
         if (vertical == true) button.setOrientation("vertical");
         return button;
     }
@@ -99,8 +99,8 @@ public class RibbonBarSample extends ShowcasePanel {
         IconMenuButton button = new IconMenuButton();
         button.setTitle(title);
         if (iconName == null) iconName = "cube_blue";
-        button.setIcon("/images/pieces/16/" + iconName + ".png");
-        button.setLargeIcon("/images/pieces/48/" + iconName + ".png");
+        button.setIcon("images/pieces/16/" + iconName + ".png");
+        button.setLargeIcon("images/pieces/48/" + iconName + ".png");
         if (vertical == true) button.setOrientation("vertical");
         if (menu != null) button.setMenu(menu);
 
