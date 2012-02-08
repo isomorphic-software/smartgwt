@@ -142,6 +142,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String calendar_weekViewTitle();
 
   /**
+   * Translated "Click to select a new color".
+   * 
+   * @return translated "Click to select a new color"
+   */
+  @DefaultMessage("Click to select a new color")
+  @Key("colorItem_pickerIconPrompt")
+  String colorItem_pickerIconPrompt();
+
+  /**
    * Translated "Basic Colors:".
    * 
    * @return translated "Basic Colors:"
@@ -1049,6 +1058,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Remove")
   @Key("filterClause_removeButtonPrompt")
   String filterClause_removeButtonPrompt();
+
+  /**
+   * Translated "null".
+   * 
+   * @return translated "null"
+   */
+  @DefaultMessage("null")
+  @Key("formItem_pickerIconPrompt")
+  String formItem_pickerIconPrompt();
 
   /**
    * Translated "Auto hide fields used in formula".
