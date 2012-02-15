@@ -363,7 +363,7 @@ public class JSOHelper {
 
     public static native Object getAttributeAsObject(JavaScriptObject elem, String attr) /*-{
 	    var ret = elem[attr];
-	    return (ret === undefined) ? null : ret;
+	    return (ret === undefined) ? null : $wnd.SmartGWT.convertToJavaType(ret);
     }-*/;
 
     public static Map getAttributeAsMap(JavaScriptObject elem, String attr) {
