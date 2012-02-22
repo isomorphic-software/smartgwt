@@ -18,6 +18,7 @@ package com.smartgwt.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Window;
 import com.smartgwt.client.rpc.RPCManager;
 import com.smartgwt.client.types.PromptStyle;
@@ -65,30 +66,36 @@ public class SmartGwtEntryPoint implements EntryPoint {
             $wnd.isc.isA.FUNCTION_STR = '[object Function]';
             $wnd.isc.isA.DATE_STR = '[object Date]';
             $wnd.isc.isA.ARRAY_STR = '[object Array]';
-
+            
             $wnd.isc.isA.Function = function (object) {
                 if (object == null) return false;
+                if ($wnd.SmartGWT.isNativeJavaObject(object)) return false;
                 return Object.prototype.toString.apply(object) === this.FUNCTION_STR;
             };
             $wnd.isc.isA.String = function (object) {
                 if (object == null) return false;
+                if ($wnd.SmartGWT.isNativeJavaObject(object)) return false;
                 if (object.Class != null && object.Class == this._$String) return true;
                 return typeof object == "string";
             };
             $wnd.isc.isA.Number = function (object) {
                 if (object == null) return false;
+                if ($wnd.SmartGWT.isNativeJavaObject(object)) return false;
                 return typeof object === 'number' && isFinite(object);
             };
             $wnd.isc.isA.Boolean = function (object) {
                 if (object == null) return false;
+                if ($wnd.SmartGWT.isNativeJavaObject(object)) return false;
                 return typeof object == "boolean";
             };
             $wnd.isc.isA.Date = function (object) {
                 if (object == null) return false;
+                if ($wnd.SmartGWT.isNativeJavaObject(object)) return false;
                 return Object.prototype.toString.apply(object) === this.DATE_STR;
             };
             $wnd.isc.isA.Array = function (object) {
                 if (object == null) return false;
+                if ($wnd.SmartGWT.isNativeJavaObject(object)) return false;
                 return Object.prototype.toString.apply(object) === this.ARRAY_STR;
             };
         }
@@ -189,6 +196,20 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    	 }
         };
         
+        // In JSNI, we may be passed GWT Java Object references.
+        // These typically can not be directly manipulated -- this check will test for such objects.
+        $wnd.SmartGWT.isNativeJavaObject = function (object) {
+            // From observation "typeof" reports "function" for native Java objects in Firefox in development mode
+            // and in OmniWeb, in development mode
+            // In all other browsers, typeof reports as "object"
+            var type = typeof object;
+            if (type != "function" && type != "object") return false;
+            if (@com.smartgwt.client.util.JSOHelper::isJSO(Ljava/lang/Object;)(object)) return false;
+            return true;
+        };
+          
+        // Given a GWT Java Object such as a java.lang.Integer, convert to the primitive type (an int) 
+        // so we can manipulate the value directly in JavaScript
         $wnd.SmartGWT.convertToPrimitiveType = function (object) {
             if (object == null) return null;
 
