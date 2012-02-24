@@ -355,6 +355,35 @@ public class JSOHelper {
     public static native JavaScriptObject getValueFromJavaScriptObjectArray(JavaScriptObject elem, int i) /*-{
 	    return elem[i];
     }-*/;
+    
+    // Lists of cells are stored as arrays of 2 element arrays in JS.
+    // Helpers to convert between this and the equivalent format in Java (int[][])
+    public static int[][] getCellArray(JavaScriptObject jsCells) {
+        if (jsCells == null) return null;
+        
+        int length = JSOHelper.getArrayLength(jsCells);
+        int[][] cells = new int[length][];
+        
+        for (int i = 0; i < length; i++) {
+            JavaScriptObject jsCell = JSOHelper.getValueFromJavaScriptObjectArray(jsCells, i);
+            cells[i] = new int[2];
+            cells[i][0] = JSOHelper.getIntArrayValue(jsCell, 0);
+            cells[i][1] = JSOHelper.getIntArrayValue(jsCell, 1);
+        }
+        return cells;   
+    }
+    
+    public static JavaScriptObject convertToCellArray(int[][] cells) {
+        if (cells == null) return null;
+        JavaScriptObject jsCells = JSOHelper.createJavaScriptArray();
+        for (int i = 0; i < cells.length; i++) {
+            int[] cell = cells[i];
+            JavaScriptObject jsCell = JSOHelper.convertToJavaScriptArray(cell);
+            JSOHelper.setArrayValue(jsCells, i, jsCell);            
+        }
+        return jsCells;
+    }
+    
 
     public static native boolean getAttributeAsBoolean(JavaScriptObject elem, String attr) /*-{
 	    var ret = elem[attr];
