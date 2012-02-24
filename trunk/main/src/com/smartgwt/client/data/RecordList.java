@@ -906,6 +906,20 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
          */
         Object normalize(Record record, String fieldName);
     }
+
+    /**
+     * Return a RecordList with the items between position start and end, non-inclusive at the end.
+     * @param start start position
+     * @param end end position
+     *
+     * @return a RecordList with the items from start -> end-1
+     */
+    public native RecordList getRangeList(int start, int end) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret =  self.getRange(start, end);
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.data.RecordList::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
 }
 
 
