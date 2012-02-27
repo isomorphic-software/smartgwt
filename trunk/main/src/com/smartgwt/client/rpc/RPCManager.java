@@ -295,7 +295,22 @@ public class RPCManager {
         $wnd.isc.RPCManager.actionURL = actionURL;
     }-*/;
 
-    
+    /**
+     * Returns URL of ScreenLoaderServlet servlet.
+     */
+    public static native String getScreenLoaderURL() /*-{
+        return $wnd.isc.RPCManager.screenLoaderURL;
+    }-*/;
+
+    /**
+     * The screenLoaderURL specifies the URL where ScreenLoaderServlet is installed.
+     *
+     * @param screenLoaderURL the URL for ScreenLoaderServlet .
+     */
+    public static native void setScreenLoaderURL(String screenLoaderURL) /*-{
+        $wnd.isc.RPCManager.screenLoaderURL = screenLoaderURL;
+    }-*/;
+
     /**
      * Converts {@link com.smartgwt.client.widgets.Canvas#getPrintHTML printable HTML} generated from live UI components into a
      * .pdf and downloads it ("Save As.." dialog). <P> Requires the Smart GWT server framework, but does not require use of
