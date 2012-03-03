@@ -198,6 +198,7 @@ import com.smartgwt.sample.showcase.client.grid.interaction.DragReorderSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.DragSelectSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.HeaderHoverTipsSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.MultipleSelectSample;
+import com.smartgwt.sample.showcase.client.grid.interaction.CellSelectionSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.RecordClicksSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.RolloverSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.SimpleSelectSample;
@@ -374,6 +375,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Simple Select", "grid-interaction-simpleselect", "grid-interaction-category", null, new SimpleSelectSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Checkbox Select", "grid-interaction-checkboxselect", "grid-interaction-category", "silk/application_side_boxes.png", new CheckboxSelectSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Multiple Select", "grid-interaction-multiselect", "grid-interaction-category", null, new MultipleSelectSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Cell Selection", "grid-interaction-cellselection", "grid-interaction-category", null, new CellSelectionSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag Select", "grid-interaction-dragselect", "grid-interaction-category", null, new DragSelectSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Value Hover Tips", "grid-interaction-value-hover", "grid-interaction-category", null, new ValueHoverTipsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Header Hover Tips", "grid-interaction-header-hover", "grid-interaction-category", null, new HeaderHoverTipsSample.Factory(), true, idSuffix),
