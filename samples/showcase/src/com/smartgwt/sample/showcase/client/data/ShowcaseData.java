@@ -52,6 +52,7 @@ import com.smartgwt.sample.showcase.client.dataintegration.xml.FormServerXmlVali
 import com.smartgwt.sample.showcase.client.dataintegration.xml.RestfulDataSourceSample;
 import com.smartgwt.sample.showcase.client.dataintegration.xml.XmlXPathSample;
 import com.smartgwt.sample.showcase.client.drawing.DrawingMouseEventsSample;
+import com.smartgwt.sample.showcase.client.drawing.GaugeSample;
 import com.smartgwt.sample.showcase.client.drawing.LinesAndArrowheadsSample;
 import com.smartgwt.sample.showcase.client.drawing.RotationSample;
 import com.smartgwt.sample.showcase.client.drawing.ShapeGallerySample;
@@ -325,7 +326,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Simple Gradient", "simple-gradient-new", "new-category", null, new SimpleGradientSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Linear Gradient", "linear-gradient-new", "new-category", null, new LinearGradientSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Radial Gradient", "radial-gradient-new", "new-category", null, new RadialGradientSample.Factory(), true, idSuffix),
-                    
+                    new ExplorerTreeNode("Gauge", "gauge-new", "new-category", null, new GaugeSample.Factory(), true, idSuffix),
+
 
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
 
@@ -719,8 +721,7 @@ public class ShowcaseData {
                     //new ExplorerTreeNode("Keyboard Events", "basics-interaction-keyboard", "basics-interaction-category", null, null, false, idSuffix),
                     new ExplorerTreeNode("Modality", "basics-interaction-modality", "basics-interaction-category", null, new WindowModalitySample.Factory(), true, idSuffix),
 
-                    
-                    
+
                     new ExplorerTreeNode("Drawing", "drawing", "root", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Shape Gallery", "shape-gallery", "drawing", null, new ShapeGallerySample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Rotation", "rotation", "drawing", null, new RotationSample.Factory(), true, idSuffix),
@@ -731,8 +732,9 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Simple Gradient", "simple-gradient", "gradients", null, new SimpleGradientSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Linear Gradient", "linear-gradient", "gradients", null, new LinearGradientSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Radial Gradient", "radial-gradient", "gradients", null, new RadialGradientSample.Factory(), true, idSuffix),
-                    
-                    
+                    new ExplorerTreeNode("Gauge", "gauge", "drawing", null, new GaugeSample.Factory(), true, idSuffix),
+
+
                     new ExplorerTreeNode("Effects", "effects-category", "root", "silk/shape_move_front.png", null, true, idSuffix),
                     new ExplorerTreeNode("Animation", "effects-animation-category", "effects-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Animation Playpen", "effects-animation-playpen", "effects-animation-category", null, new AnimationPlaypenSample.Factory(), true, idSuffix),
