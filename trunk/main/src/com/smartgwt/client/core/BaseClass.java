@@ -301,6 +301,23 @@ public abstract class BaseClass {
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 
+    protected native String[] getAttributeAsStringArray(String property)/*-{
+        var ret;
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            ret = widget.getProperty(property);
+        } else {
+            var config = this.@com.smartgwt.client.core.BaseClass::config;
+            if(config[property] != undefined) {
+                ret = config[property];
+            } else {
+               var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
+            }
+        }
+        return ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
     public Map getAttributeAsMap(String property) {
         return JSOHelper.getAttributeAsMap(getOrCreateJsObj(), property);
     }
