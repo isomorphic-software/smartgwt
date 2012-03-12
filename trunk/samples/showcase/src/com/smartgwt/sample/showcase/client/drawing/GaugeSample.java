@@ -64,7 +64,6 @@ public class GaugeSample extends ShowcasePanel {
 
     private DynamicForm sectorFillColorsForm;
 
-    @Override
     public String getIntro() {
         return DESCRIPTION;
     }
