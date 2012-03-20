@@ -604,6 +604,8 @@ public interface DataBoundComponent extends HasFetchDataHandlers {
     /**
      * The DataSource that this component should bind to for default fields and for performing&#010 {@link com.smartgwt.client.data.DSRequest}.&#010 <P>&#010 Can be specified as either a DataSource instance or the String ID of a DataSource.
      * Bind to a new DataSource.&#010 <P>&#010 Like passing the "dataSource" property on creation, binding to a DataSource means that the&#010 component will use the DataSource to provide default data for its fields.&#010 <P>&#010 When binding to a new DataSource, if the component has any existing "fields" or has a dataset,&#010 these will be discarded by default, since it is assumed the new DataSource may represent a&#010 completely unrelated set of objects.  If the old "fields" are still relevant, pass them to&#010 setDataSource().&#010 &#010
+     * <p>
+     * You can also refer to setDataSource(dataSource, fields) as an alternative method if the widget has an implementation of it.
      *
      * @param dataSource DataSource to bind to. Default value is null
      */
