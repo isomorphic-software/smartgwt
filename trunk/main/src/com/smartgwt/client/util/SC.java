@@ -422,6 +422,44 @@ public class SC {
 	}-*/;
 
     /**
+     * Log an informative message.
+     *
+     * @param message the message to log
+     */
+    public static native void logInfo(String message) /*-{
+    	$wnd.isc.Log.logInfo(message);
+	}-*/;
+
+    /**
+     * Log an informative message.
+     *
+     * @param message  the message to log
+     * @param category category to log in, defaults to "Log"
+     */
+    public static native void logInfo(String message, String category) /*-{
+    	$wnd.isc.Log.logInfo(message, category);
+	}-*/;
+
+    /**
+     * Log a debugging.
+     *
+     * @param message the message to log
+     */
+    public static native void logDebug(String message) /*-{
+    	$wnd.isc.Log.logDebug(message);
+	}-*/;
+
+    /**
+     * Log a debugging
+     *
+     * @param message  the message to log
+     * @param category category to log in, defaults to "Log"
+     */
+    public static native void logDebug(String message, String category) /*-{
+    	$wnd.isc.Log.logDebug(message, category);
+	}-*/;
+
+    /**
      * Logs the echoed object as a warning, prefixed with an optional message.
      *
      * @param value object to echo
