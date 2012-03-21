@@ -1,7 +1,5 @@
 package com.smartgwt.sample.showcase.client.drawing;
 
-import java.util.LinkedHashMap;
-
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.drawing.Gauge;
 import com.smartgwt.client.widgets.form.DynamicForm;
@@ -9,7 +7,7 @@ import com.smartgwt.client.widgets.form.fields.ButtonItem;
 import com.smartgwt.client.widgets.form.fields.CheckboxItem;
 import com.smartgwt.client.widgets.form.fields.ColorPickerItem;
 import com.smartgwt.client.widgets.form.fields.FormItem;
-import com.smartgwt.client.widgets.form.fields.SelectItem;
+import com.smartgwt.client.widgets.form.fields.FormItemIcon;
 import com.smartgwt.client.widgets.form.fields.SliderItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.form.fields.events.BlurEvent;
@@ -18,6 +16,8 @@ import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.client.widgets.form.fields.events.ClickEvent;
 import com.smartgwt.client.widgets.form.fields.events.ClickHandler;
+import com.smartgwt.client.widgets.form.fields.events.FormItemClickHandler;
+import com.smartgwt.client.widgets.form.fields.events.FormItemIconClickEvent;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
@@ -59,10 +59,9 @@ public class GaugeSample extends ShowcasePanel {
     private TextItem labelSuffixConfigItem;
     private TextItem newSectorValueTextItem;
     private ButtonItem addSectorButtonItem;
-    private SelectItem deleteSectorSelectItem;
     private SliderItem gaugeValueConfigItem;
 
-    private DynamicForm sectorFillColorsForm;
+    private DynamicForm sectorsForm;
 
     public String getIntro() {
         return DESCRIPTION;
@@ -77,6 +76,16 @@ public class GaugeSample extends ShowcasePanel {
         gauge.setHeight(400);
         gauge.setNumMajorTicks(11);
         gauge.setNumMinorTicks(101);
+        gauge.setValue(45);
+        gauge.addSector(10);
+        gauge.addSector(30);
+        gauge.addSector(60);
+        gauge.addSector(90);
+        gauge.setSectorFillColor(0, "#FF0000");
+        gauge.setSectorFillColor(1, "#FF6600");
+        gauge.setSectorFillColor(2, "#FFFF00");
+        gauge.setSectorFillColor(3, "#99CC00");
+        gauge.setSectorFillColor(4, "#00FF00");
 
         configForm = new DynamicForm();
         configForm.setNumCols(3);
@@ -84,14 +93,13 @@ public class GaugeSample extends ShowcasePanel {
         configForm.setIsGroup(true);
         configForm.setGroupTitle("Configuration");
 
-        sectorFillColorsForm = new DynamicForm();
-        sectorFillColorsForm.setNumCols(2);
-        sectorFillColorsForm.setWidth(250);
-        sectorFillColorsForm.setIsGroup(true);
-        sectorFillColorsForm.setGroupTitle("Sector Fill Colors");
+        sectorsForm = new DynamicForm();
+        sectorsForm.setNumCols(2);
+        sectorsForm.setWidth(250);
+        sectorsForm.setIsGroup(true);
+        sectorsForm.setGroupTitle("Sector Fill Colors");
 
-        drawnClockwiseConfigItem = new CheckboxItem();
-        drawnClockwiseConfigItem.setName("Draw Clockwise?");
+        drawnClockwiseConfigItem = new CheckboxItem("chkbox_drawnClockwise", "Draw Clockwise?");
         drawnClockwiseConfigItem.setEndRow(true);
         drawnClockwiseConfigItem.setValue(gauge.getDrawnClockwise());
         drawnClockwiseConfigItem.addChangedHandler(new ChangedHandler() {
@@ -101,8 +109,7 @@ public class GaugeSample extends ShowcasePanel {
             }
         });
 
-        minValueConfigItem = new TextItem();
-        minValueConfigItem.setName("Min. Value");
+        minValueConfigItem = new TextItem("text_minValue", "Min. Value");
         minValueConfigItem.setEndRow(true);
         minValueConfigItem.setValue(String.valueOf(gauge.getMinValue()));
         minValueConfigItem.addBlurHandler(new BlurHandler() {
@@ -111,12 +118,11 @@ public class GaugeSample extends ShowcasePanel {
                 float minValue = Float.parseFloat(minValueConfigItem.getValueAsString());
                 gauge.setMinValue(minValue);
                 updateGaugeValueConfigItem();
-                updateDeleteSectorSelectItem();
+                makeSectorsForm();
             }
         });
 
-        maxValueConfigItem = new TextItem();
-        maxValueConfigItem.setName("Max. Value");
+        maxValueConfigItem = new TextItem("text_maxValue", "Max. Value");
         maxValueConfigItem.setEndRow(true);
         maxValueConfigItem.setValue(String.valueOf(gauge.getMaxValue()));
         maxValueConfigItem.addBlurHandler(new BlurHandler() {
@@ -125,12 +131,11 @@ public class GaugeSample extends ShowcasePanel {
                 float maxValue = Float.parseFloat(maxValueConfigItem.getValueAsString());
                 gauge.setMaxValue(maxValue);
                 updateGaugeValueConfigItem();
-                updateDeleteSectorSelectItem();
+                makeSectorsForm();
             }
         });
 
-        numMajorTicksConfigItem = new TextItem();
-        numMajorTicksConfigItem.setName("# Major Ticks");
+        numMajorTicksConfigItem = new TextItem("text_numMajorTicks", "# Major Ticks");
         numMajorTicksConfigItem.setEndRow(true);
         numMajorTicksConfigItem.setValue(String.valueOf(gauge.getNumMajorTicks()));
         numMajorTicksConfigItem.addBlurHandler(new BlurHandler() {
@@ -141,8 +146,7 @@ public class GaugeSample extends ShowcasePanel {
             }
         });
 
-        numMinorTicksConfigItem = new TextItem();
-        numMinorTicksConfigItem.setName("# Minor Ticks");
+        numMinorTicksConfigItem = new TextItem("text_numMinorTicks", "# Minor Ticks");
         numMinorTicksConfigItem.setEndRow(true);
         numMinorTicksConfigItem.setValue(String.valueOf(gauge.getNumMinorTicks()));
         numMinorTicksConfigItem.addBlurHandler(new BlurHandler() {
@@ -153,8 +157,7 @@ public class GaugeSample extends ShowcasePanel {
             }
         });
 
-        labelPrefixConfigItem = new TextItem();
-        labelPrefixConfigItem.setName("Label Prefix");
+        labelPrefixConfigItem = new TextItem("text_labelPrefix", "Label Prefix");
         labelPrefixConfigItem.setEndRow(true);
         labelPrefixConfigItem.setValue(gauge.getLabelPrefix());
         labelPrefixConfigItem.addBlurHandler(new BlurHandler() {
@@ -164,8 +167,7 @@ public class GaugeSample extends ShowcasePanel {
             }
         });
 
-        labelSuffixConfigItem = new TextItem();
-        labelSuffixConfigItem.setName("Label Suffix");
+        labelSuffixConfigItem = new TextItem("text_labelSuffix", "Label Suffix");
         labelSuffixConfigItem.setEndRow(true);
         labelSuffixConfigItem.setValue(gauge.getLabelSuffix());
         labelSuffixConfigItem.addBlurHandler(new BlurHandler() {
@@ -175,45 +177,23 @@ public class GaugeSample extends ShowcasePanel {
             }
         });
 
-        makeSectorFillColorConfigItems();
-
-        newSectorValueTextItem = new TextItem();
-        newSectorValueTextItem.setName("New Sector - Value");
+        newSectorValueTextItem = new TextItem("text_newSectorValue", "New Sector - Value");
         newSectorValueTextItem.setEndRow(false);
 
-        addSectorButtonItem = new ButtonItem();
-        addSectorButtonItem.setName("Add Sector");
+        addSectorButtonItem = new ButtonItem("button_addSector", "Add Sector");
         addSectorButtonItem.setStartRow(false);
         addSectorButtonItem.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
                 float value = Float.parseFloat(newSectorValueTextItem.getValueAsString());
                 gauge.addSector(value);
-                updateSectorConfig();
+                makeSectorsForm();
             }
         });
 
-        deleteSectorSelectItem = new SelectItem();
-        deleteSectorSelectItem.setName("Delete Sector");
-        deleteSectorSelectItem.setEndRow(true);
-        deleteSectorSelectItem.addChangedHandler(new ChangedHandler() {
-            @Override
-            public void onChanged(ChangedEvent event) {
-                Object o = event.getValue();
-                if (o != null) {
-                    String value = o.toString().trim();
-                    if (value.length() != 0) {
-                        int sectorIndex = Integer.parseInt(value) - 1;
-                        gauge.removeSector(sectorIndex);
-                        updateSectorConfig();
-                    }
-                }
-            }
-        });
-        updateDeleteSectorSelectItem();
+        makeSectorsForm();
 
-        gaugeValueConfigItem = new SliderItem();
-        gaugeValueConfigItem.setName("Value");
+        gaugeValueConfigItem = new SliderItem("slider_gaugeValue", "Value");
         gaugeValueConfigItem.setColSpan(2);
         gaugeValueConfigItem.addChangedHandler(new ChangedHandler() {
             @Override
@@ -225,7 +205,7 @@ public class GaugeSample extends ShowcasePanel {
 
         updateGaugeValueConfigItem();
 
-        FormItem[] formItems = new FormItem[11];
+        FormItem[] formItems = new FormItem[10];
         formItems[0] = drawnClockwiseConfigItem;
         formItems[1] = minValueConfigItem;
         formItems[2] = maxValueConfigItem;
@@ -235,29 +215,22 @@ public class GaugeSample extends ShowcasePanel {
         formItems[6] = labelSuffixConfigItem;
         formItems[7] = newSectorValueTextItem;
         formItems[8] = addSectorButtonItem;
-        formItems[9] = deleteSectorSelectItem;
-        formItems[10] = gaugeValueConfigItem;
+        formItems[9] = gaugeValueConfigItem;
         configForm.setItems(formItems);
 
         hLayout.addMember(gauge);
         hLayout.addMember(configForm);
-        hLayout.addMember(sectorFillColorsForm);
+        hLayout.addMember(sectorsForm);
 
         return hLayout;
     }
 
-    private void updateSectorConfig() {
-        makeSectorFillColorConfigItems();
-        updateDeleteSectorSelectItem();
-    }
-
-    private void makeSectorFillColorConfigItems() {
-        int numSectors = gauge.getNumSectors();
+    private void makeSectorsForm() {
+        final int numSectors = gauge.getNumSectors();
         ColorPickerItem[] sectorFillColorConfigItems = new ColorPickerItem[numSectors];
         for (int i = 0; i < numSectors; ++i) {
             final ColorPickerItem colorPickerItem;
-            sectorFillColorConfigItems[i] = colorPickerItem = new ColorPickerItem();
-            colorPickerItem.setName("Sector " + (i + 1) + " Color");
+            sectorFillColorConfigItems[i] = colorPickerItem = new ColorPickerItem("colorpick_sector" + (i + 1) + "Color", "Sector " + (i + 1));
 
             final int sectorIndex = i;
             colorPickerItem.addChangedHandler(new ChangedHandler() {
@@ -267,35 +240,29 @@ public class GaugeSample extends ShowcasePanel {
                     gauge.setSectorFillColor(sectorIndex, value);
                 }
             });
+            if (numSectors != 1) {
+                FormItemIcon icon = new FormItemIcon();
+                icon.setSrc("[SKIN]/actions/remove.png");
+                icon.addFormItemClickHandler(new FormItemClickHandler() {
+
+                    @Override
+                    public void onFormItemClick(FormItemIconClickEvent event) {
+                        assert numSectors > 1;
+                        gauge.removeSector(sectorIndex);
+                        makeSectorsForm();
+                    }
+                });
+                colorPickerItem.setIcons(icon);
+            }
         }
 
-        sectorFillColorsForm.setItems(sectorFillColorConfigItems);
+        sectorsForm.setItems(sectorFillColorConfigItems);
 
         for (int i = 0; i < numSectors; ++i) {
             ColorPickerItem colorPickerItem = sectorFillColorConfigItems[i];
             String fillColor = gauge.getSectorFillColor(i);
             colorPickerItem.setDefaultValue(fillColor);
             colorPickerItem.setValue(fillColor);
-        }
-    }
-
-    private void updateDeleteSectorSelectItem() {
-        int numSectors = gauge.getNumSectors();
-        LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
-        valueMap.put("", "");
-        for (int i = 0; i < numSectors; ++i) {
-            String key = String.valueOf(i + 1);
-            String value = key + ": " + gauge.getSectorLabelContents(i);
-            valueMap.put(key, value);
-        }
-
-        deleteSectorSelectItem.setValueMap(valueMap);
-        deleteSectorSelectItem.setValue("");
-
-        if (numSectors == 1) {
-            deleteSectorSelectItem.disable();
-        } else {
-            deleteSectorSelectItem.enable();
         }
     }
 
