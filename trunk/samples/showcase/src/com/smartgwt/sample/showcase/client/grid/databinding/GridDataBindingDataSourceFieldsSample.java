@@ -41,7 +41,6 @@ public class GridDataBindingDataSourceFieldsSample extends ShowcasePanel {
         countryGrid.setShowAllRecords(true);
         countryGrid.setDataSource(CountryDS.getInstance());
         countryGrid.setAutoFetchData(true);
-        countryGrid.setCanEdit(true);
 
         return countryGrid;
     }
