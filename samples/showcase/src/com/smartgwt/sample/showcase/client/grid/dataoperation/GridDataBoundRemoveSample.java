@@ -8,6 +8,7 @@ import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.rpc.RPCManager;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.WorldXmlDS;
@@ -83,9 +84,11 @@ public class GridDataBoundRemoveSample extends ShowcasePanel {
         removeAll.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				ListGridRecord[] selectedRecords = countryGrid.getSelection();
+                boolean wasQueuing = RPCManager.startQueue();
 				for(ListGridRecord rec: selectedRecords) {
 					countryGrid.removeData(rec);
 				}
+                if (!wasQueuing) RPCManager.sendQueue();
 			}        	
         });
         removeAll.setLeft(320);

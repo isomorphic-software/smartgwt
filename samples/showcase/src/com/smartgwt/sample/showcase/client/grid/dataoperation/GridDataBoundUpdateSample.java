@@ -60,8 +60,10 @@ public class GridDataBoundUpdateSample extends ShowcasePanel {
 			public void onClick(ClickEvent event) {
 				ListGridRecord selectedRecord = countryGrid.getSelectedRecord();
 				if(selectedRecord != null) {
-					selectedRecord.setAttribute("continent", "Europe");
-					countryGrid.updateData(selectedRecord);
+                    ListGridRecord newRecord = new ListGridRecord();
+                    newRecord.setAttribute("pk", selectedRecord.getAttribute("pk"));
+                    newRecord.setAttribute("continent", "Europe");
+					countryGrid.updateData(newRecord);
 				}
 			}        	
         });
@@ -74,8 +76,10 @@ public class GridDataBoundUpdateSample extends ShowcasePanel {
 			public void onClick(ClickEvent event) {
 				ListGridRecord selectedRecord = countryGrid.getSelectedRecord();
 				if(selectedRecord != null) {
-					selectedRecord.setAttribute("continent", "Asia");
-					countryGrid.updateData(selectedRecord);
+                    ListGridRecord newRecord = new ListGridRecord();
+                    newRecord.setAttribute("pk", selectedRecord.getAttribute("pk"));
+                    newRecord.setAttribute("continent", "Asia");
+					countryGrid.updateData(newRecord);
 				}
 			}        	
         });
