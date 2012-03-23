@@ -65,6 +65,9 @@ public class RestfulDataSourceSample extends ShowcasePanel {
                 super.transformResponse(response, request, data);
             }
         };
+        // These lines are not required for this sample to work, but they demonstrate how you can configure RestDataSource 
+        // with OperationBindings in order to control settings such as whether to use the GET, POST or PUT HTTP methods,
+        // and whether to send data as URL parameters vs as posted JSON or XML messages.
         DataSourceTextField countryCode = new DataSourceTextField("countryCode", "Code");
         OperationBinding fetch = new OperationBinding();
         fetch.setOperationType(DSOperationType.FETCH);
