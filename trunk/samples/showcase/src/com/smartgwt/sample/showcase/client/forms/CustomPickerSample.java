@@ -81,21 +81,21 @@ public class CustomPickerSample extends ShowcasePanel {
             final IButton yes = new IButton("YES");
             yes.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
                 public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
-                    YesNoMaybeItem.seCurrentValue(yes.getTitle());
+                    YesNoMaybeItem.setCurrentValue(yes.getTitle());
                 }
             });
 
             final IButton no = new IButton("NO");
             no.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
                 public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
-                    YesNoMaybeItem.seCurrentValue(no.getTitle());
+                    YesNoMaybeItem.setCurrentValue(no.getTitle());
                 }
             });
 
             final IButton maybe = new IButton("MAYBE");
             maybe.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
                 public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
-                    YesNoMaybeItem.seCurrentValue(maybe.getTitle());
+                    YesNoMaybeItem.setCurrentValue(maybe.getTitle());
                 }
             });
 
@@ -105,7 +105,7 @@ public class CustomPickerSample extends ShowcasePanel {
         }
         
         // set the specified value and dismiss the picker dialog
-        private static void seCurrentValue(String value) {
+        private static void setCurrentValue(String value) {
             currentEditor.setValue(value);
             dialog.hide();
         }
