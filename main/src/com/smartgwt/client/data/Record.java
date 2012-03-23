@@ -56,6 +56,37 @@ import com.google.gwt.core.client.JavaScriptObject;
  */
 public class Record extends RefDataClass {
 
+    /**
+     * Creates a shallow copy of <code>record</code> containing its attributes for properties
+     * named in <code>properties</code>.
+     *
+     * @param record the record to copy attributes from.
+     * @param properties an array of properties to copy.
+     * @return a copy of <code>record</code> containing only the attributes for properties
+     * named in <code>properties</code>.
+     */
+    public static Record copyAttributes(Record record, String... properties) {
+        Record copyOfRecord = new Record();
+        copyAttributesInto(copyOfRecord, record, properties);
+        return copyOfRecord;
+    }
+
+    /**
+     * Shallow copies the attributes of <code>record</code> to <code>destRecord</code> for
+     * properties named in <code>properties</code>.
+     *
+     * @param destRecord (out) destination record into which attributes are copied.
+     * @param record the record to copy attributes from.
+     * @param properties an array of properties to copy.
+     */
+    public static void copyAttributesInto(Record destRecord, Record record, String... properties) {
+        for (String property : properties) {
+            if (property == null) continue;
+            Object attr = record.getAttributeAsObject(property);
+            destRecord.setAttribute(property, attr);
+        }
+    }
+
     public Record() {
     }
 
