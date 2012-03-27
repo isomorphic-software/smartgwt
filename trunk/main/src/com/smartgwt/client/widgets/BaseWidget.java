@@ -870,7 +870,12 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
 
     public native String toString()/*-{
         try {
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            var self;
+            if (this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+                self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            } else {
+                self = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            }
             return $wnd.isc.echo(self);
         } catch (e) {
             return "ERROR: " + e.name + " -- " + e.message;
