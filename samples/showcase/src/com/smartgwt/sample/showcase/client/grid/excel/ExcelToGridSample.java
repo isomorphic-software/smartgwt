@@ -127,10 +127,10 @@ public class ExcelToGridSample extends ShowcasePanel
 
         int[][] cells = this.countryList.getCellSelection().getSelectedCells();
         if (cells.length > 0) {
-            int firstRow = cells[0][0];
-            for (int i = 0; i < cells.length; i++) {
-                if (cells[i][0] != firstRow) break;
-                fieldNames.add(this.countryList.getFieldName(cells[i][1]));
+            int firstCol = cells[0][1];
+            ListGridField[] fields = this.countryList.getFields();
+            for (int col = firstCol; col < fields.length; col++) {
+                fieldNames.add(this.countryList.getFieldName(col));
             }
         }
         TextImportSettings settings = new TextImportSettings();
