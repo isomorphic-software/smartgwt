@@ -497,10 +497,10 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Remove", "remove-grid-form-category", "grid-form-category", "pieces/16/cube_blue.png", new GridRecordRemoveSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Pattern Reuse", "pattern-reuse-grid-form-category", "grid-form-category", "silk/database_table.png", new PatternReuseSample.Factory(), true, idSuffix),
 
-                    new ExplorerTreeNode("Cut &amp; Paste", "grid-cut-paste-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Grid to Excel", "grid-to-excel-category", "grid-cut-paste-category", null, new GridToExcelSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Grid to Grid", "grid-to-grid-category", "grid-cut-paste-category", null, new GridToGridSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Excel to Grid", "excel-to-grid-category", "grid-cut-paste-category", null, new ExcelToGridSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Copy and Paste", "grid-copy-paste-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Grid to Excel", "grid-to-excel-category", "grid-copy-paste-category", null, new GridToExcelSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Grid to Grid", "grid-to-grid-category", "grid-copy-paste-category", null, new GridToGridSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Excel to Grid", "excel-to-grid-category", "grid-copy-paste-category", null, new ExcelToGridSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Preferences", "grid-appearance-preferences", "grid-category", null, new GridPreferencesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Live Grid", "live-grid", "grid-category", null, new LiveGridFetchSample.Factory(), true, idSuffix),
