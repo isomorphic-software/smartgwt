@@ -662,12 +662,18 @@ public class JSOHelper {
     }-*/;
 
     public static JavaScriptObject convertToJavaScriptArray(Object[] array) {
+        return convertToJavaScriptArray(array, false);
+    }
+
+    public static JavaScriptObject convertToJavaScriptArray(Object[] array, boolean strict) {
         if(array == null) return null;
         JavaScriptObject jsArray = createJavaScriptArray();
         for (int i = 0; i < array.length; i++) {
             Object val = array[i];
-            
-            if (val instanceof String) {
+
+            if (val == null) {
+                JSOHelper.setArrayValue(jsArray, i, val);
+            } else if (val instanceof String) {
                 JSOHelper.setArrayValue(jsArray, i, (String) val);
             } else if (val instanceof Integer) {
                 JSOHelper.setArrayValue(jsArray, i, ((Integer) val).intValue());
@@ -676,7 +682,7 @@ public class JSOHelper {
             } else if (val instanceof Double) {
                 JSOHelper.setArrayValue(jsArray, i, ((Double) val).doubleValue());
             } else if (val instanceof Long) {
-                    JSOHelper.setArrayValue(jsArray, i, ((Long) val).doubleValue());
+                JSOHelper.setArrayValue(jsArray, i, ((Long) val).doubleValue());
             } else if (val instanceof Boolean) {
                 JSOHelper.setArrayValue(jsArray, i, ((Boolean) val).booleanValue());
             } else if (val instanceof Date) {
@@ -700,8 +706,12 @@ public class JSOHelper {
                 JSOHelper.setArrayValue(jsArray, i, convertToJavaScriptArray((Object[]) val));
             } else if (val instanceof Map) {
                 JSOHelper.setArrayValue(jsArray, i, convertMapToJavascriptObject((Map)val));
-            } else if (val instanceof Object) {
-                JSOHelper.setArrayValue(jsArray, i, ((Object) val));
+            } else {
+                if (strict) {
+                    assert val != null;
+                    assert ! (val instanceof JavaScriptObject);
+                    throw new UnsupportedOperationException("Can not convert element " + i + " of the array to a JavaScriptObject.  Instances of class `" + (val.getClass().getName()) + "' can not automatically be converted.  Please see the SmartClient documentation of RPCRequest.data for a table of Java types that can be converted automatically.");
+                } else JSOHelper.setArrayValue(jsArray, i, ((Object) val));
             } 
         }
         return jsArray;
