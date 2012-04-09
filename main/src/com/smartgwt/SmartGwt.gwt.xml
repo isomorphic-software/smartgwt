@@ -22,10 +22,22 @@ and manually add the script includes in your host html file.
 	<define-linker name="smartgwt_domain_sync" class="com.smartgwt.linker.SmartGwtDomainSyncLinker" />
 
   	<add-linker name="smartgwt" />
-
-  	<set-configuration-property name="document.compatMode" value="BackCompat"/>
-
+    
   	<source path='client'/>
   	<source path='logicalstructure'/>
-  	
+
+    <set-configuration-property name="document.compatMode" value="BackCompat"/>
+
+	<generate-with class="com.smartgwt.rebind.PropertyHelperGenerator">
+        <when-type-assignable class="com.smartgwt.client.widgets.Canvas"/>
+    </generate-with>
+
+    <generate-with class="com.smartgwt.rebind.CanvasFactoryGenerator">
+        <when-type-assignable class="com.smartgwt.client.bean.CanvasFactory"/>
+    </generate-with>
+
+	<generate-with class="com.smartgwt.rebind.CanvasAdapterGenerator">
+        <when-type-assignable class="com.smartgwt.client.bean.RegisterAllCanvas"/>
+    </generate-with>
+
 </module>

@@ -22,5 +22,17 @@ This module is useful if you already have the SmartClient resources available in
 
   	<source path='client'/>
   	<source path='logicalstructure'/>
+
+	<generate-with class="com.smartgwt.rebind.PropertyHelperGenerator">
+        <when-type-assignable class="com.smartgwt.client.widgets.Canvas"/>
+    </generate-with>
+
+    <generate-with class="com.smartgwt.rebind.CanvasFactoryGenerator">
+        <when-type-assignable class="com.smartgwt.client.bean.CanvasFactory"/>
+    </generate-with>
+
+	<generate-with class="com.smartgwt.rebind.CanvasAdapterGenerator">
+        <when-type-assignable class="com.smartgwt.client.bean.RegisterAllCanvas"/>
+    </generate-with>
   	
 </module>
