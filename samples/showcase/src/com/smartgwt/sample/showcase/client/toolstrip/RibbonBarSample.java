@@ -5,6 +5,7 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IconButton;
 import com.smartgwt.client.widgets.menu.IconMenuButton;
 import com.smartgwt.client.widgets.menu.Menu;
+import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.toolbar.RibbonBar;
 import com.smartgwt.client.widgets.toolbar.RibbonGroup;
 import com.smartgwt.sample.showcase.client.PanelFactory;
@@ -46,12 +47,16 @@ public class RibbonBarSample extends ShowcasePanel {
         ribbonBar.setLayoutMargin(2);
 
         Menu menu = new Menu();
+        
+        menu.addItem(new MenuItem("Document", "icons/16/document_plain_new.png", "Ctrl+D"));
+        menu.addItem(new MenuItem("Picture", "icons/16/folder_out.png", "Ctrl+P"));
+        menu.addItem(new MenuItem("Email", "icons/16/disk_blue.png", "Ctrl+E"));
 
         RibbonGroup fileGroup = new RibbonGroup();
         fileGroup.setTitle("File");
         fileGroup.setTitleAlign(Alignment.LEFT);
-        fileGroup.setNumRows(1);
-        fileGroup.setRowHeight(76);
+        fileGroup.setNumRows(3);
+        fileGroup.setRowHeight(26);
         fileGroup.addControl(getIconMenuButton("New", "piece_blue", menu, true));
         fileGroup.addControl(getIconButton("Open", "star_yellow", true));
         fileGroup.addControl(getIconButton("Save", "pawn_red", true));
@@ -60,7 +65,7 @@ public class RibbonBarSample extends ShowcasePanel {
         RibbonGroup editGroup = new RibbonGroup();
         editGroup.setTitle("Edit");
         editGroup.setNumRows(3);
-        editGroup.setRowHeight(24);
+        editGroup.setRowHeight(26);
         editGroup.addControl(getIconButton("Edit", "piece_blue", false));
         editGroup.addControl(getIconButton("Copy", "pawn_green", false));
         editGroup.addControl(getIconButton("Paste", "cube_yellow", false));
@@ -71,8 +76,8 @@ public class RibbonBarSample extends ShowcasePanel {
         RibbonGroup insertGroup = new RibbonGroup();
         insertGroup.setTitle("Insert");
         insertGroup.setNumRows(3);
-        insertGroup.setRowHeight(24);
-        insertGroup.addControl(getIconMenuButton("Picture", null, menu, false));
+        insertGroup.setRowHeight(26);
+        insertGroup.addControl(getIconMenuButton("Picture", null, menu, true));
         insertGroup.addControl(getIconButton("Link", "pawn_white", false));
         insertGroup.addControl(getIconButton("Document", "star_yellow", false));
         insertGroup.addControl(getIconButton("Video", "piece_red", false));
@@ -89,8 +94,8 @@ public class RibbonBarSample extends ShowcasePanel {
         IconButton button = new IconButton(title);
         button.setTitle(title);
         if (iconName == null) iconName = "cube_blue";
-        button.setIcon("images/pieces/16/" + iconName + ".png");
-        button.setLargeIcon("images/pieces/48/" + iconName + ".png");
+        button.setIcon("pieces/16/" + iconName + ".png");
+        button.setLargeIcon("pieces/48/" + iconName + ".png");
         if (vertical == true) button.setOrientation("vertical");
         return button;
     }
@@ -99,8 +104,8 @@ public class RibbonBarSample extends ShowcasePanel {
         IconMenuButton button = new IconMenuButton();
         button.setTitle(title);
         if (iconName == null) iconName = "cube_blue";
-        button.setIcon("images/pieces/16/" + iconName + ".png");
-        button.setLargeIcon("images/pieces/48/" + iconName + ".png");
+        button.setIcon("pieces/16/" + iconName + ".png");
+        button.setLargeIcon("pieces/48/" + iconName + ".png");
         if (vertical == true) button.setOrientation("vertical");
         if (menu != null) button.setMenu(menu);
 
