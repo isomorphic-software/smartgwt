@@ -35,7 +35,29 @@ public class CanvasRegistry {
      */
     public static void register(Class clazz, PropertyHelper propertyHelper) {
         registryMap.put(clazz.getName(), propertyHelper);
+        registerJS(clazz.getName());
     }
+
+    private static native void registerJS(String className) /*-{
+        $wnd.isc.SGWTRegistry.registerBean(className,
+                function() {
+                    return {
+                        isSGWT: true,
+                        className : className,
+                        instance : @com.smartgwt.client.bean.CanvasUtil::newInstance(Ljava/lang/String;)(className)
+                    };
+                },
+                function(bean, json) {
+                    @com.smartgwt.client.bean.CanvasUtil::setProperties(Ljava/lang/Object;Lcom/google/gwt/core/client/JavaScriptObject;)(bean, json);
+                },
+                function(className) {
+                    return @com.smartgwt.client.bean.CanvasUtil::getProperties(Ljava/lang/String;)(className);
+                },
+                function(bean) {
+                    return bean.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
+                }
+        );
+    }-*/;
 
     /**
      * Return the property helper associated with a class.
