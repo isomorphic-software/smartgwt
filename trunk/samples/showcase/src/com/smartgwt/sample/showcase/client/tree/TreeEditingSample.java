@@ -48,6 +48,7 @@ public class TreeEditingSample extends ShowcasePanel {
 		TreeGridField fieldSalary = new TreeGridField("Salary");
 
 		TreeGrid employeeTree = new TreeGrid();
+        employeeTree.setID("employeeTree");
 		employeeTree.setWidth(500);
 		employeeTree.setHeight(250);
 		employeeTree.setDataSource(EmployeeXmlDS.getInstance());
@@ -64,6 +65,7 @@ public class TreeEditingSample extends ShowcasePanel {
 		employeeTree.setFields(fieldName, fieldJob, fieldSalary);
 		
 		final ListGrid employeeGrid = new ListGrid();
+        employeeGrid.setID("employeeGrid");
 		employeeGrid.setWidth(500);
 		employeeGrid.setHeight(250);
         employeeGrid.setEmptyMessage("Select an Employee from the PickTree Item above.");
@@ -86,6 +88,7 @@ public class TreeEditingSample extends ShowcasePanel {
 		});
 
 		SearchForm searchForm = new SearchForm();
+        searchForm.setID("employeeSearchForm");
 		searchForm.setWidth(200);
 		searchForm.setHeight(30);
 		searchForm.setFields(searchPickTree);
