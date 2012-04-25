@@ -61,6 +61,10 @@ public class SmartGwtEntryPoint implements EntryPoint {
             if ($wnd.isc.isA.Date(v)) return v;
             return v == undefined || v == null ? null : v.valueOf();
         }};
+        
+        // use an object as the array loading marker (this will allow new Record(...) to work with unloaded rows)
+        $wnd.Array.LOADING = new Object();
+        $wnd.Array.LOADING.loadingMarker = true;
 
         if(!@com.google.gwt.core.client.GWT::isScript()()){
             $wnd.isc.Log.addClassMethods({
@@ -70,9 +74,6 @@ public class SmartGwtEntryPoint implements EntryPoint {
             });
             //support option of triggering JS debugger by default in hosted mode if JS error is encountered
             @com.smartgwt.client.util.SC::setEnableJSDebugger(Z)(true);
-
-            //allow lazy loading of grids to work in hosted mode
-            $wnd.Array.LOADING = new Object();
 
             $wnd.isc.isA.FUNCTION_STR = '[object Function]';
             $wnd.isc.isA.DATE_STR = '[object Date]';
