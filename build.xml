@@ -355,6 +355,7 @@ if (!(isc.loadSkin || window.loadSkin)) {
         <translations.copy dir="${translations.data}" todir="${translations.i18n}" locale="ar" />
         <translations.copy dir="${translations.data}" todir="${translations.i18n}" locale="uk-UA" tolocale="uk_UA" />
         <translations.copy dir="${translations.data}" todir="${translations.i18n}" locale="sv-SE" tolocale="sv_SE" />
+        <translations.copy dir="${translations.data}" todir="${translations.i18n}" locale="hr" />
         
         <delete dir="${translations.tmp}"/>
     </target>
