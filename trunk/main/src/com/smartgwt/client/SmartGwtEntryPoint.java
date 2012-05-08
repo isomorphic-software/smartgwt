@@ -36,7 +36,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
         // If we can't find window.isc, the JavaScript libs are not present.
         if ($wnd.isc == null) {
             var message = "Core SmartClient JavaScript libraries appear not to be loaded.\nIf inheriting the NoScript SmartGWT modules, verify that " +
-                            "the HTML file includes <script src=...> tags to load the SmartClient module .js files from the appropriately location within the " +
+                            "the HTML file includes <script src=...> tags to load the SmartClient module .js files from the appropriate location within the " +
                             "WAR.\nBy default these files are present under [GWT app name]/sc/modules/. ";
             @com.google.gwt.core.client.GWT::log(Ljava/lang/String;Ljava/lang/Throwable;)(message, @com.smartgwt.client.core.JsObject.SGWT_WARN::new(Ljava/lang/String;)(message));
             return;
