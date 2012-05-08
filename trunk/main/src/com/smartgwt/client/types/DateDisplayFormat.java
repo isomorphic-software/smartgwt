@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,14 +17,13 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Valid display formats for dates.  These strings are the names of formatters which can be  passed to
  * <code>Date.setNormalDisplayFormat()</code> or <code>Date.setShortDisplayFormat()</code> and will be subsequently used as
  * default long or short formatters for date objects by Smart GWT components.<br> Default set of valid display formats is
  * as follows:<br><br>
  */
+@Deprecated
 public enum DateDisplayFormat implements ValueEnum {
     /**
      * Default native browser 'toString()' implementation. May vary by browser.<br> <i>Example</i>: <code>Fri Nov 04 2005
@@ -68,7 +70,6 @@ public enum DateDisplayFormat implements ValueEnum {
      * called [eg   Date.toNormalDate], in the scope of the date instance in question.
      */
     TODATESTAMP("toDateStamp");
-
     private String value;
 
     DateDisplayFormat(String value) {
@@ -79,3 +80,4 @@ public enum DateDisplayFormat implements ValueEnum {
         return this.value;
     }
 }
+        

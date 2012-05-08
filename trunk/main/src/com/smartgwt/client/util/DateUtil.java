@@ -2,6 +2,7 @@ package com.smartgwt.client.util;
 
 import java.util.Date;
 
+import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.data.RelativeDate;
 import com.smartgwt.client.types.DateDisplayFormat;
 import com.smartgwt.client.types.RelativeDateRangePosition;
@@ -10,6 +11,110 @@ import com.smartgwt.client.types.RelativeDateRangePosition;
  * Date related utility methods.
  */
 public class DateUtil {
+
+    private static final class NativeDateDisplayFormatter implements DateDisplayFormatter {
+    
+        private String functionName;
+    
+        public NativeDateDisplayFormatter(String functionName) {
+            this.functionName = functionName;
+        }
+
+        @Override
+        public native String format(Date date) /*-{
+            if (date == null) {
+                return null;
+            } else {
+                var functionName = this.@com.smartgwt.client.util.DateUtil.NativeDateDisplayFormatter::functionName;
+                var dateJS = @com.smartgwt.client.util.JSOHelper::toDateJS(Ljava/util/Date;)(date);
+                return $wnd.isc.Date.prototype[functionName].call(dateJS);
+            }
+        }-*/;
+
+        /*
+         * The native function name of is a <code>String</code> such that
+         * <code>$wnd.isc.isA.Function($wnd.isc.Date.prototype[fnName])</code> is true.
+         */
+        public String getNativeFunctionName() {
+            return functionName;
+        }
+
+        public static String nativeNameOf(DateDisplayFormatter formatter) {
+            if (formatter instanceof NativeDateDisplayFormatter) {
+                return ((NativeDateDisplayFormatter) formatter).getNativeFunctionName();
+            } else {
+                return null;
+            }
+        }
+    }
+
+    /**
+     * Default native browser 'toString()' implementation. May vary by browser.<br> <i>Example</i>: <code>Fri Nov 04 2005
+     * 11:03:00 GMT-0800 (Pacific Standard Time)</code>
+     */
+    public static final DateDisplayFormatter TOSTRING = new NativeDateDisplayFormatter("toString");
+
+    /**
+     * Default native browser 'toLocaleString()' implementation. May vary by browser. <i>Example</i>: <code>Friday, November
+     * 04, 2005 11:03:00 AM</code>
+     */
+    public static final DateDisplayFormatter TOLOCALESTRING = new NativeDateDisplayFormatter("toLocaleString");
+
+    /**
+     * Short date in format MM/DD/YYYY.<br> <i>Example</i>: <code>11/4/2005</code>
+     */
+    public static final DateDisplayFormatter TOUSSHORTDATE = new NativeDateDisplayFormatter("toUSShortDate");
+
+    /**
+     * Short date with time in format MM/DD/YYYY HH:MM<br> <i>Example</i>: <code>11/4/2005 11:03</code>
+     */
+    public static final DateDisplayFormatter TOUSSHORTDATETIME = new NativeDateDisplayFormatter("toUSShortDatetime");
+
+    /**
+     * Short date in format DD/MM/YYYY.<br> <i>Example</i>: <code>4/11/2005</code>
+     */
+    public static final DateDisplayFormatter TOEUROPEANSHORTDATE = new NativeDateDisplayFormatter("toEuropeanShortDate");
+
+    /**
+     * Short date with time in format DD/MM/YYYY HH:MM<br> <i>Example</i>: <code>4/11/2005 11:03</code>
+     */
+    public static final DateDisplayFormatter TOEUROPEANSHORTDATETIME = new NativeDateDisplayFormatter("toEuropeanShortDatetime");
+
+    /**
+     * Short date in format YYYY/MM/DD.<br> <i>Example</i>: <code>2005/11/4</code>
+     */
+    public static final DateDisplayFormatter TOJAPANSHORTDATE = new NativeDateDisplayFormatter("toJapanShortDate");
+
+    /**
+     * Short date with time in format YYYY/MM/DD HH:MM<br> <i>Example</i>: <code>2005/11/4 11:03</code>
+     */
+    public static final DateDisplayFormatter TOJAPANSHORTDATETIME = new NativeDateDisplayFormatter("toJapanShortDatetime");
+
+    /**
+     * Date in the format YYYY-MM-DD HH:MM:SS<br> <i>Example</i>: <code>2005-11-04 11:09:15</code>
+     */
+    public static final DateDisplayFormatter TOSERIALIZEABLEDATE = new NativeDateDisplayFormatter("toSerializeableDate");
+
+    /**
+     * Date in the format &lt;YYYYMMDD&gt;T&lt;HHMMSS&gt;Z <i>Example</i>: <code>20051104T111001Z</code>
+     */
+    public static final DateDisplayFormatter TODATESTAMP = new NativeDateDisplayFormatter("toDateStamp");
+
+    /*
+     * Convert the supplied date display formatter to a JavaScript function.  If the formatter
+     * happens to correspond to a native JavaScript date function then the returned value is
+     * the string name of that native JavaScript function.  The return value is
+     * suitable for passing to $wnd.Date.setNormalDisplayFormat(), .setShortDisplayFormat(), or
+     * .setShortDatetimeDisplayFormat().
+     */
+    private static final native JavaScriptObject convertDateDisplayFormatterToJS(DateDisplayFormatter formatter) /*-{
+        var functionName = @com.smartgwt.client.util.DateUtil.NativeDateDisplayFormatter::nativeNameOf(Lcom/smartgwt/client/util/DateDisplayFormatter;)(formatter);
+        return functionName || function () {
+                var date = this;
+                var dateJ = date == null || date === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(date.getTime());
+                return formatter.@com.smartgwt.client.util.DateDisplayFormatter::format(Ljava/util/Date;)(dateJ);
+            };
+    }-*/;
 
     /**
      * Globally sets the offset from UTC to use when formatting values of type datetime and time with 
@@ -45,8 +150,8 @@ public class DateUtil {
      * @param whether time and datetimes should account for daylight savings time in this application
      */
     public static native void setAdjustForDST(boolean adjustForDST) /*-{
-		$wnd.isc.Time.adjustForDST = adjustForDST;
-	}-*/;
+        $wnd.isc.Time.adjustForDST = adjustForDST;
+    }-*/;
 
     /**
      * Sets a new default separator that will be used when formatting dates. By default, this is a forward slash character: "/"
@@ -65,7 +170,7 @@ public class DateUtil {
     public static native String getDefaultDateSeparator() /*-{
         return $wnd.Date.getDefaultDateSeperator();
     }-*/;
-	
+    
     /**
      * Set the default format for date objects to the DateDisplayFormat passed in. After calling this method, subsequent calls to Date.toNormalDate will return a string formatted according to this format specification.
      * <br>
@@ -73,7 +178,9 @@ public class DateUtil {
      * Initial default normalDisplayFormat is "toLocaleString"
      *
      * @param format the DateDisplayFormat
+     * @deprecated This method is deprecated in favor of {@link #setNormalDateDisplayFormatter(DateDisplayFormatter)}.
      */
+    @Deprecated
     public static native void setNormalDateDisplayFormat(DateDisplayFormat format) /*-{
         $wnd.Date.setNormalDisplayFormat(format.@com.smartgwt.client.types.DateDisplayFormat::getValue()());
     }-*/;
@@ -85,6 +192,9 @@ public class DateUtil {
      * <P>
      * When writing custom date formatting and parsing logic, developers may find the 
      * {@link com.google.gwt.i18n.client.DateTimeFormat} class helpful.
+     *
+     * SmartGWT includes several built-in DateDisplayFormatters for common formats - see
+     * {@link DateDisplayFormatter} for details.
      *
      * Sample code :
      * <pre>
@@ -101,12 +211,8 @@ public class DateUtil {
      * @param formatter the DateDisplayFormatter
      */
     public static native void setNormalDateDisplayFormatter(DateDisplayFormatter formatter) /*-{
-        $wnd.Date.setNormalDisplayFormat(function() {
-                var date = this;
-                var dateJ = date == null || date === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(date.getTime());
-                return formatter.@com.smartgwt.client.util.DateDisplayFormatter::format(Ljava/util/Date;)(dateJ);
-            }
-        );
+        var formatterJS = @com.smartgwt.client.util.DateUtil::convertDateDisplayFormatterToJS(Lcom/smartgwt/client/util/DateDisplayFormatter;)(formatter);
+        $wnd.Date.setNormalDisplayFormat(formatterJS);
     }-*/;
 
     /**
@@ -124,7 +230,9 @@ public class DateUtil {
      * for a useful overview of standard date formats per country.
      *
      * @param format the DateDisplayFormat
-     */    
+     * @deprecated This method is deprecated in favor of {@link #setShortDateDisplayFormatter(DateDisplayFormatter)}.
+     */
+    @Deprecated
     public static native void setShortDateDisplayFormat(DateDisplayFormat format) /*-{
         $wnd.Date.setShortDisplayFormat(format.@com.smartgwt.client.types.DateDisplayFormat::getValue()());
     }-*/;
@@ -147,6 +255,9 @@ public class DateUtil {
      * When writing custom date formatting and parsing logic, developers may find the 
      * {@link com.google.gwt.i18n.client.DateTimeFormat} class helpful.
      *
+     * SmartGWT includes several built-in DateDisplayFormatters for common formats - see
+     * {@link DateDisplayFormatter} for details.
+     *
      * Sample code :
      * <pre>
      * DateUtil.setShortDateDisplayFormatter(new DateDisplayFormatter() {
@@ -162,12 +273,8 @@ public class DateUtil {
      * @param formatter the DateDisplayFormatter
      */
     public static native void setShortDateDisplayFormatter(DateDisplayFormatter formatter) /*-{
-        $wnd.Date.setShortDisplayFormat(function() {
-                var date = this;
-                var dateJ = date == null || date === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(date.getTime());
-                return formatter.@com.smartgwt.client.util.DateDisplayFormatter::format(Ljava/util/Date;)(dateJ);
-            }
-        );
+        var formatterJS = @com.smartgwt.client.util.DateUtil::convertDateDisplayFormatterToJS(Lcom/smartgwt/client/util/DateDisplayFormatter;)(formatter);
+        $wnd.Date.setShortDisplayFormat(formatterJS);
     }-*/;
     
     /**
@@ -185,7 +292,9 @@ public class DateUtil {
      * for a useful overview of standard date formats per country.
      *
      * @param format the DateDisplayFormat
-     */    
+     * @deprecated This method is deprecated in favor of {@link setShortDatetimeDisplayFormatter(DateDisplayFormatter)}.
+     */
+    @Deprecated
     public static native void setShortDatetimeDisplayFormat(DateDisplayFormat format) /*-{
         $wnd.Date.setShortDatetimeDisplayFormat(format.@com.smartgwt.client.types.DateDisplayFormat::getValue()());
     }-*/;
@@ -208,15 +317,14 @@ public class DateUtil {
      * When writing custom date formatting and parsing logic, developers may find the 
      * {@link com.google.gwt.i18n.client.DateTimeFormat} class helpful.
      *
+     * SmartGWT includes several built-in DateDisplayFormatters for common formats - see
+     * {@link DateDisplayFormatter} for details.
+     *
      * @param formatter the DateDisplayFormatter
      */
     public static native void setShortDatetimeDisplayFormatter(DateDisplayFormatter formatter) /*-{
-        $wnd.Date.setShortDatetimeDisplayFormat(function() {
-                var date = this;
-                var dateJ = date == null || date === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(date.getTime());
-                return formatter.@com.smartgwt.client.util.DateDisplayFormatter::format(Ljava/util/Date;)(dateJ);
-            }
-        );
+        var formatterJS = @com.smartgwt.client.util.DateUtil::convertDateDisplayFormatterToJS(Lcom/smartgwt/client/util/DateDisplayFormatter;)(formatter);
+        $wnd.Date.setShortDatetimeDisplayFormat(formatterJS);
     }-*/;
     
     /**
@@ -334,6 +442,23 @@ public class DateUtil {
         var jsDate = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date);
         return jsDate.toShortDate();
         
+    }-*/;
+    
+    /**
+     * Format a date as a string according to the format specified by
+     * {@link #setNormalDateDisplayFormat(DateDisplayFormat)} or
+     * {@link #setNormalDateDisplayFormatter(DateDisplayFormatter)}.
+     * <P>
+     * This calls the standard date formatting function used by SmartGWT components to display normal-formatted
+     * dates.
+     *
+     * @param date
+     * @return Returns a String containing the formatted date
+     */
+    public static native String formatAsNormalDate(Date date) /*-{
+        if (date == null) return "";
+        var jsDate = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date);
+        return jsDate.toNormalDate();
     }-*/;
     
     /**
