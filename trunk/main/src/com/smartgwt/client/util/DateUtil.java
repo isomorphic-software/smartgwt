@@ -13,9 +13,9 @@ import com.smartgwt.client.types.RelativeDateRangePosition;
 public class DateUtil {
 
     private static final class NativeDateDisplayFormatter implements DateDisplayFormatter {
-    
+
         private String functionName;
-    
+
         public NativeDateDisplayFormatter(String functionName) {
             this.functionName = functionName;
         }
@@ -104,11 +104,103 @@ public class DateUtil {
      * Convert the supplied date display formatter to a JavaScript function.  If the formatter
      * happens to correspond to a native JavaScript date function then the returned value is
      * the string name of that native JavaScript function.  The return value is
-     * suitable for passing to $wnd.Date.setNormalDisplayFormat(), .setShortDisplayFormat(), or
-     * .setShortDatetimeDisplayFormat().
+     * suitable for passing to $wnd.isc.Date.prototype.setNormalDisplayFormat(), setShortDisplayFormat(), or
+     * setShortDatetimeDisplayFormat().
      */
     private static final native JavaScriptObject convertDateDisplayFormatterToJS(DateDisplayFormatter formatter) /*-{
         var functionName = @com.smartgwt.client.util.DateUtil.NativeDateDisplayFormatter::nativeNameOf(Lcom/smartgwt/client/util/DateDisplayFormatter;)(formatter);
+        return functionName || function () {
+                var date = this;
+                var dateJ = date == null || date === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(date.getTime());
+                return formatter.@com.smartgwt.client.util.DateDisplayFormatter::format(Ljava/util/Date;)(dateJ);
+            };
+    }-*/;
+
+    private static final class NativeTimeDisplayFormatter implements DateDisplayFormatter {
+
+        private String functionName;
+
+        public NativeTimeDisplayFormatter(String functionName) {
+            this.functionName = functionName;
+        }
+
+        @Override
+        public native String format(Date date) /*-{
+            if (date == null) {
+                return null;
+            } else {
+                var functionName = this.@com.smartgwt.client.util.DateUtil.NativeTimeDisplayFormatter::functionName;
+                var dateJS = @com.smartgwt.client.util.JSOHelper::toDateJS(Ljava/util/Date;)(date);
+                return $wnd.isc.Time.format.call($wnd.isc.Time, dateJS, functionName);
+            }
+        }-*/;
+
+        public String getNativeFunctionName() {
+            return functionName;
+        }
+
+        public static String nativeNameOf(DateDisplayFormatter formatter) {
+            if (formatter instanceof NativeTimeDisplayFormatter) {
+                return ((NativeTimeDisplayFormatter) formatter).getNativeFunctionName();
+            } else {
+                return null;
+            }
+        }
+    }
+
+    /**
+     * String will display with seconds and am/pm indicator: <code>[H]H:MM:SS am|pm</code>. <br> Example: <code>3:25:15
+     * pm</code>
+     */
+    public static final DateDisplayFormatter TOTIME = new NativeTimeDisplayFormatter("toTime");
+
+    /**
+     * String will display with seconds in 24 hour time: <code>[H]H:MM:SS</code>. <br> Example: <code>15:25:15</code>
+     */
+    public static final DateDisplayFormatter TO24HOURTIME = new NativeTimeDisplayFormatter("to24HourTime");
+
+    /**
+     * String will display with seconds, with a 2 digit hour and am/pm indicator: <code>HH:MM:SS am|pm</code>. <br> Example:
+     * <code>03:25:15 pm</code>
+     */
+    public static final DateDisplayFormatter TOPADDEDTIME = new NativeTimeDisplayFormatter("toPaddedTime");
+
+    /**
+     * String will display with seconds, with a 2 digit hour in 24 hour format: <code>HH:MM:SS</code>. <br> Examples:
+     * <code>15:25:15</code>, <code>03:16:45</code>
+     */
+    public static final DateDisplayFormatter TOPADDED24HOURTIME = new NativeTimeDisplayFormatter("toPadded24HourTime");
+
+    /**
+     * String will have no seconds and be in 12 hour format: <code>[H]H:MM am|pm</code>.<br> Example: <code>3:25 pm</code>
+     */
+    public static final DateDisplayFormatter TOSHORTTIME = new NativeTimeDisplayFormatter("toShortTime");
+
+    /**
+     * String will have no seconds and be in 24 hour format: <code>[H]H:MM</code>.<br> Example:<code>15:25</code>
+     */
+    public static final DateDisplayFormatter TOSHORT24HOURTIME = new NativeTimeDisplayFormatter("toShort24HourTime");
+
+    /**
+     * String will have no seconds and will display a 2 digit hour, in 12 hour clock format: <code>HH:MM am|pm</code>.<br>
+     * Example: <code>03:25 pm</code>
+     */
+    public static final DateDisplayFormatter TOSHORTPADDEDTIME = new NativeTimeDisplayFormatter("toShortPaddedTime");
+
+    /**
+     * String will have no seconds and will display with a 2 digit hour in 24 hour clock format: <code>HH:MM</code>.<br>
+     * Examples: <code>15:25</code>, <code>03:16</code>
+     */
+    public static final DateDisplayFormatter TOSHORTPADDED24HOURTIME = new NativeTimeDisplayFormatter("toShortPadded24HourTime");
+
+    /*
+     * Convert the supplied date display formatter to a JavaScript function.  If the formatter
+     * happens to correspond to a SmartClient time function then the returned value is
+     * the string name of that function.  The return value is suitable for passing to
+     * $wnd.isc.Time.setShortDisplayFormat() or setNormalDisplayFormat().
+     */
+    private static final native JavaScriptObject convertTimeDisplayFormatterToJS(DateDisplayFormatter formatter) /*-{
+        var functionName = @com.smartgwt.client.util.DateUtil.NativeTimeDisplayFormatter::nativeNameOf(Lcom/smartgwt/client/util/DateDisplayFormatter;)(formatter);
         return functionName || function () {
                 var date = this;
                 var dateJ = date == null || date === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(date.getTime());
@@ -243,10 +335,6 @@ public class DateUtil {
      * The formatter passed in will be used by default by SmartGwt components when formatting date values
      * to short date format (and by {@link #formatAsShortDate(Date)}).
      * <P>
-     * Note that {@link DateUtil#setShortDateDisplayFormat(DateDisplayFormat)} 
-     * and {@link DateUtil#setDefaultDateSeparator(String)} already provide support for most standard "short date"
-     * formats without the need for a custom formatter.
-     * <P>
      * If a custom short date formatter is applied, bear in mind that it will be applied by default when
      * editing date values, so the system will need to be able to parse an edited date string in this format
      * back to a live date object. Developers calling this method will therefore also commonly want to
@@ -304,10 +392,6 @@ public class DateUtil {
      * Set up a system wide default short datetime formatting function.
      * The formatter passed in will be used by default by SmartGwt components when formatting date values
      * to short datetime format (and by {@link #formatAsShortDatetime(Date)}).
-     * <P>
-     * Note that {@link DateUtil#setShortDatetimeDisplayFormat(DateDisplayFormat)} 
-     * and {@link DateUtil#setDefaultDateSeparator(String)} already provide support for most standard "short date"
-     * formats without the need for a custom formatter.
      * <P>
      * If a custom short datetime formatter is applied, bear in mind that it will be applied by default when
      * editing date values, so the system will need to be able to parse an edited date string in this format
@@ -604,5 +688,39 @@ public class DateUtil {
         var jsDate = $wnd.isc.DateUtil.getAbsoluteDate(relativeDate, baseDate, position);
         if (jsDate == null) return null;
         return @com.smartgwt.client.util.JSOHelper::toDate(D)(jsDate.getTime());
+    }-*/;
+
+    /**
+     * Set up a system wide default normal time formatting function.
+     * After calling this method, subsequent calls to <code>isc.Time.toTime()</code> will return
+     * a string formatted according to this formatter specification.
+     * <b>Note</b>: this will be the standard time format used by SmartGWT components.
+     * The initial default normal time display formatter is <code>DateUtil.TOTIME</code>.
+     * <P>
+     * SmartGWT includes several built-in DateDisplayFormatters for common formats - see
+     * {@link DateDisplayFormatter} for details.
+     *
+     * @param formatter the DateDisplayFormatter
+     */
+    public static native void setNormalTimeDisplayFormatter(DateDisplayFormatter formatter) /*-{
+        var formatterJS = @com.smartgwt.client.util.DateUtil::convertTimeDisplayFormatterToJS(Lcom/smartgwt/client/util/DateDisplayFormatter;)(formatter);
+        $wnd.isc.Time.setNormalDisplayFormat(formatterJS);
+    }-*/;
+
+    /**
+     * Set up a system wide default short time formatting function.
+     * After calling this method, subsequent calls to <code>isc.Time.toShortTime()</code> will return
+     * a string formatted according to this formatter specification.
+     * <b>Note</b>: this will be the standard time format used by SmartGWT components.
+     * The initial default normal time display formatter is <code>DateUtil.TOSHORTTIME</code>.
+     * <P>
+     * SmartGWT includes several built-in DateDisplayFormatters for common formats - see
+     * {@link DateDisplayFormatter} for details.
+     *
+     * @param formatter the DateDisplayFormatter
+     */
+    public static native void setShortTimeDisplayFormatter(DateDisplayFormatter formatter) /*-{
+        var formatterJS = @com.smartgwt.client.util.DateUtil::convertTimeDisplayFormatterToJS(Lcom/smartgwt/client/util/DateDisplayFormatter;)(formatter);
+        $wnd.isc.Time.setShortDisplayFormat(formatterJS);
     }-*/;
 }
