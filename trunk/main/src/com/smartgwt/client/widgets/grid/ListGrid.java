@@ -6076,6 +6076,15 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * Returns a {@link com.google.gwt.core.client.JavaScriptObject} containing default
+     * {@link com.smartgwt.client.widgets.grid.ListGridField} attributes of remove fields.
+     */
+    public native JavaScriptObject getRemoveFieldDefaults() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.removeFieldDefaults;
+    }-*/;
+
+    /**
      * The title to use for the {@link com.smartgwt.client.widgets.grid.ListGrid#getRemoveFieldDefaults remove field}.  Note
      * that this text will appear in the column-picker but the not in the field-header because the removeField has {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getShowTitle showTitle} set to false by default.  This can be changed via
