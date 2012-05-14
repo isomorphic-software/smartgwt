@@ -667,6 +667,84 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
     }-*/;
 
     /**
+     * Return a RecordList with the items between position start and end, non-inclusive at the end.
+     * @param start start position
+     * @param end end position
+     *
+     * @return a RecordList containing the items from start -> end-1
+     */
+    public native RecordList getRangeAsRecordList(int start, int end) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var recordsJS =  self.getRange(start, end);
+        return (recordsJS == null || recordsJS === undefined) ? null :
+                @com.smartgwt.client.data.RecordList::new(Lcom/google/gwt/core/client/JavaScriptObject;)(recordsJS);
+    }-*/;
+
+    /**
+     * Returns all rows that match the current criteria.
+     * <P>
+     * This method will not trigger a fetch to load more records.  getAllVisibileRows() will return
+     * null if {@link ResultSet#lengthIsKnown()} is false.
+     * <P>
+     * Records are returned in a new List but the Records within it are the same
+     * instances that the ResultSet is holding onto.  Hence it's safe to add or remove records from
+     * the List without affecting the ResultSet but modifying the Records themselves is a direct
+     * modification of the client-side cache.
+     * @return the records in the cache that match the current criteria, possibly null
+     */
+    public native RecordList getAllVisibleRows() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var recordsJS =  self.getAllVisibleRows();
+        return (recordsJS == null || recordsJS === undefined) ? null :
+                @com.smartgwt.client.data.RecordList::new(Lcom/google/gwt/core/client/JavaScriptObject;)(recordsJS);
+    }-*/;
+
+    /**
+     * Determine whether the ResultSet is showing a filtered, proper subset of the cached rows.
+     * This happens if {@link ResultSet#getUseClientFiltering() client filtering} is enabled.  Rows may have been
+     * loaded from the server when a more restrictive criteria is applied such that filtering could
+     * be performed on the client side.
+     * <P>
+     * This method returns false if data is not loaded yet.
+     * @return true if the ResultSet is showing a filtered subset of the cached rows,
+     * false otherwise.
+     * @see ResultSet#getAllCachedRows()
+     */
+    public native Boolean usingFilteredData() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var retVal = self.usingFilteredData();
+        if (retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Return all rows that have been cached.  This is potentially a superset of all rows that are
+     * available via {@link ResultSet#getAllVisibleRows()} if the ResultSet is using client-side filtering to
+     * display a subset of loaded rows (see the {@link ResultSet ResultSet overview}).
+     * <P>
+     * If {@link ResultSet#usingFilteredData()} returns false, this is the same list as would be returned by
+     * {@link ResultSet#getAllVisibleRows()}.
+     * <P>
+     * This method will not trigger a fetch to load more records.  getAllCachedRows() will return
+     * null if {@link ResultSet#lengthIsKnown()} is false.
+     * <P>
+     * Records are returned in a new List but the Records within it are the same
+     * instances that the ResultSet is holding onto.  Hence it's safe to add or remove records from
+     * the List without affecting the ResultSet but modifying the Records themselves is a direct
+     * modification of the client-side cache.
+     * @return the records in the cache, possibly null
+     */
+    public native RecordList getAllCachedRows() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var recordsJS =  self.getAllCachedRows();
+        return (recordsJS == null || recordsJS === undefined) ? null :
+                @com.smartgwt.client.data.RecordList::new(Lcom/google/gwt/core/client/JavaScriptObject;)(recordsJS);
+    }-*/;
+
+    /**
      * Whether the ResultSet actually knows how many records are available from the server. The ResultSet will not know how
      * many records are available when initially fetching and  filtering data. Note that the value returned from {@link
      * ResultSet#getLength} will be  an arbitrary, large value if the actual length is not known.
