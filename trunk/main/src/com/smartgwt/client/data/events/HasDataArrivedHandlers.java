@@ -23,7 +23,7 @@ public interface HasDataArrivedHandlers extends HasHandlers {
     /**
      * Notification fired when data has arrived from the server and has been successfully integrated into the cache. <P> When
      * <code>dataArrived()</code> fires, an immediate call to <code>getRange()</code> with the <code>startRow</code> and
-     * <code>endRow</code> passed as arguments will return a List with no <code>Array.LOADING</code> markers.
+     * <code>endRow</code> passed as arguments will return a List with no {@link ResultSet#getLoadingMarker() loading markers}.
      *
      * @param handler the dataArrived handler
      * @return {@link HandlerRegistration} used to remove this handler

@@ -62,8 +62,8 @@ public class SmartGwtEntryPoint implements EntryPoint {
             return v == undefined || v == null ? null : v.valueOf();
         }};
         
-        // use an object as the array loading marker (this will allow new Record(...) to work with unloaded rows)
-        $wnd.Array.LOADING = new Object();
+        // use a new Record as the array loading marker (this will allow new Record(...) to work with unloaded rows)
+        $wnd.Array.LOADING = @com.smartgwt.client.data.Record::new()();
         $wnd.Array.LOADING.loadingMarker = true;
 
         if(!@com.google.gwt.core.client.GWT::isScript()()){
