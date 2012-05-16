@@ -653,7 +653,7 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
     /**
      * Return the items between position start and end, non-inclusive at the end, possibly  containing markers for records that
      * haven't loaded yet. <P> Calling getRange for records that have not yet loaded will trigger an asynchronous fetch.  The
-     * returned data will contain the marker value <code>Array.LOADING</code> as a placeholder for records being fetched.  If
+     * returned data will contain the {@link ResultSet#getLoadingMarker() loading marker} as a placeholder for records being fetched.  If
      * any rows needed to be fetched, <code>dataArrived()</code> will fire when they arrive.
      * @param start start position
      * @param end end position
@@ -681,7 +681,9 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
     }-*/;
 
     /**
-     * Returns all rows that match the current criteria.
+     * Returns a list of the currently visible data, that is, all rows that match the current
+     * criteria, with null entries or {@link ResultSet#getLoadingMarker() loading markers} for
+     * rows that are not yet loaded or in the process of loading, respectively.
      * <P>
      * This method will not trigger a fetch to load more records.  getAllVisibileRows() will return
      * null if {@link ResultSet#lengthIsKnown()} is false.
@@ -721,7 +723,7 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
     }-*/;
 
     /**
-     * Return all rows that have been cached.  This is potentially a superset of all rows that are
+     * Returns a list of all rows that have been cached.  This is potentially a superset of all rows that are
      * available via {@link ResultSet#getAllVisibleRows()} if the ResultSet is using client-side filtering to
      * display a subset of loaded rows (see the {@link ResultSet ResultSet overview}).
      * <P>
@@ -927,7 +929,7 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
     /**
      * Notification fired when data has arrived from the server and has been successfully integrated into the cache. <P> When
      * <code>dataArrived()</code> fires, an immediate call to <code>getRange()</code> with the <code>startRow</code> and
-     * <code>endRow</code> passed as arguments will return a List with no <code>Array.LOADING</code> markers.
+     * <code>endRow</code> passed as arguments will return a List with no {@link ResultSet#getLoadingMarker() loading markers}.
      * @param startRow starting index of rows that have just loaded
      * @param endRow ending index of rows that have just loaded, non-inclusive
      */
@@ -1263,7 +1265,7 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
      * <p>
      * Notification fired when data has arrived from the server and has been successfully integrated into the cache. <P> When
      * <code>dataArrived()</code> fires, an immediate call to <code>getRange()</code> with the <code>startRow</code> and
-     * <code>endRow</code> passed as arguments will return a List with no <code>Array.LOADING</code> markers.
+     * <code>endRow</code> passed as arguments will return a List with no {@link ResultSet#getLoadingMarker() loading markers}.
      *
      * @param handler the dataArrived handler
      * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
@@ -1344,5 +1346,15 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
 
     public static native boolean isResultSet(JavaScriptObject data) /*-{
         return $wnd.isc.isA.ResultSet(data);
+    }-*/;
+
+    /**
+     * Returns the singleton marker object that is used as a placeholder for records that are being
+     * loaded from the server.
+     * @return the loading marker
+     */
+    public static native Record getLoadingMarker() /*-{
+        var recordJS = $wnd.isc.ResultSet.getLoadingMarker();
+        return @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(recordJS);
     }-*/;
 }
