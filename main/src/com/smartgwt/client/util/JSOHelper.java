@@ -531,15 +531,17 @@ public class JSOHelper {
      * @param jsObj the javascript object
      * @param listAsArray Should arrays be converted to Object[] or List
      * @return the map
-     * @throws IllegalArgumentException if unable to convert pass JavaScript object to a map
+     * @throws IllegalArgumentException if unable to convert the passed JavaScript object to a map
      */
     public static Map convertToMap(JavaScriptObject jsObj, boolean listAsArray) {
     	Object javaObj = convertToJava(jsObj, listAsArray);
-    	if (javaObj instanceof Map) {
+        if (javaObj == null) {
+            return (Map) null;
+        } else if (javaObj instanceof Map) {
     		return (Map) javaObj;
     	} else {
-    		throw new IllegalArgumentException("convertToMap - unable to convert JavaScript object passed in to a Map"
-    				+ SC.echo(jsObj));
+    		throw new IllegalArgumentException("convertToMap - unable to convert the passed "
+                + "JavaScript object to a Map.  JavaScript is: " + SC.echo(jsObj));
     	}
     }
 
