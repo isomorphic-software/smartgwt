@@ -33,6 +33,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
     private static boolean initialized = false;
 
     private static native void init() /*-{
+        
         // If we can't find window.isc, the JavaScript libs are not present.
         if ($wnd.isc == null) {
             var message = "Core SmartClient JavaScript libraries appear not to be loaded.\nIf inheriting the NoScript SmartGWT modules, verify that " +
@@ -43,13 +44,13 @@ public class SmartGwtEntryPoint implements EntryPoint {
 
         }
         
-        
         //pre GWT 2.0 fallback
         if(typeof $entry === "undefined") {
             $entry = function(jsFunction) {
                         return jsFunction;
                      };
         }
+
         if ($wnd.isc.Browser.isIE && $wnd.isc.Browser.version >= 7) {
             $wnd.isc.EventHandler._IECanSetKeyCode = {};
         }
@@ -63,8 +64,28 @@ public class SmartGwtEntryPoint implements EntryPoint {
         }};
         
         // use a new Record as the array loading marker (this will allow new Record(...) to work with unloaded rows)
-        $wnd.Array.LOADING = @com.smartgwt.client.data.Record::new()();
+        var loadingRecord = @com.smartgwt.client.data.Record::new()();
+        $wnd.Array.LOADING = loadingRecord.@com.smartgwt.client.data.Record::getJsObj()();
         $wnd.Array.LOADING.loadingMarker = true;
+        
+        // Set a flag so SC code can easily determine that SGWT is running
+        $wnd.isc.Browser.isSGWT = true;
+
+        //convert javascript data types into corresponding Java wrapper types
+        //int -> Integer, float -> Float, boolean -> Boolean and date - > java.util.Date
+        $wnd.SmartGWT ={};
+        
+        // In JSNI, we may be passed GWT Java Object references.
+        // These typically can not be directly manipulated -- this check will test for such objects.
+        $wnd.SmartGWT.isNativeJavaObject = function (object) {
+            // From observation "typeof" reports "function" for native Java objects in Firefox in development mode
+            // and in OmniWeb, in development mode
+            // In all other browsers, typeof reports as "object"
+            var type = typeof object;
+            if (type != "function" && type != "object") return false;
+            if (@com.smartgwt.client.util.JSOHelper::isJSO(Ljava/lang/Object;)(object)) return false;
+            return true;
+        };
 
         if(!@com.google.gwt.core.client.GWT::isScript()()){
             $wnd.isc.Log.addClassMethods({
@@ -72,6 +93,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
                   @com.google.gwt.core.client.GWT::log(Ljava/lang/String;Ljava/lang/Throwable;)(message, @com.smartgwt.client.core.JsObject.SGWT_WARN::new(Ljava/lang/String;)(message));
               }
             });
+
             //support option of triggering JS debugger by default in hosted mode if JS error is encountered
             @com.smartgwt.client.util.SC::setEnableJSDebugger(Z)(true);
 
@@ -109,15 +131,9 @@ public class SmartGwtEntryPoint implements EntryPoint {
                 if (object == null) return false;
                 if ($wnd.SmartGWT.isNativeJavaObject(object)) return false;
                 return Object.prototype.toString.apply(object) === this.ARRAY_STR;
-            };
+            };            
         }
 
-		// Set a flag so SC code can easily determine that SGWT is running
-		$wnd.isc.Browser.isSGWT = true;
-
-        //convert javascript data types into corresponding Java wrapper types
-        //int -> Integer, float -> Float, boolean -> Boolean and date - > java.util.Date
-        $wnd.SmartGWT ={};
         $wnd.SmartGWT.convertToJavaType = function(obj) {
                 if(obj == null || obj === undefined) return null;
                 var objType = typeof obj;
@@ -207,18 +223,6 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    	 	return javaMap;
 	    	 }
         };
-        
-        // In JSNI, we may be passed GWT Java Object references.
-        // These typically can not be directly manipulated -- this check will test for such objects.
-        $wnd.SmartGWT.isNativeJavaObject = function (object) {
-            // From observation "typeof" reports "function" for native Java objects in Firefox in development mode
-            // and in OmniWeb, in development mode
-            // In all other browsers, typeof reports as "object"
-            var type = typeof object;
-            if (type != "function" && type != "object") return false;
-            if (@com.smartgwt.client.util.JSOHelper::isJSO(Ljava/lang/Object;)(object)) return false;
-            return true;
-        };
           
         // Given a GWT Java Object such as a java.lang.Integer, convert to the primitive type (an int) 
         // so we can manipulate the value directly in JavaScript
@@ -250,7 +254,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
 
             return object;
         };
-
+        
 
         if ($wnd.isc.RPCManager.__fireReplyCallback == null) {
             $wnd.isc.RPCManager.__fireReplyCallback = $wnd.isc.RPCManager.fireReplyCallback;
@@ -261,7 +265,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
             	}
             	return this.__fireReplyCallback(callback, request, response, data);
             }
-        }
+        }        
     }-*/;
 
     public void onModuleLoad() {
