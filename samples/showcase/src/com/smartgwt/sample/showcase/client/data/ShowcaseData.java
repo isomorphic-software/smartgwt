@@ -346,7 +346,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Add on the fly", "select-other-combobox-category", "combobox-category", null, new SelectOtherFieldSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Picktree", "picktree-combobox-category", "combobox-category", null, new PickTreeFieldSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Multi-Select", "multi-select-combobox-category", "combobox-category", null, new SelectMultipleSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("MultiComboBox", "multicombobox-category", "combobox-category", null, new MultiComboBoxSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Multi ComboBox", "multicombobox-category", "combobox-category", null, new MultiComboBoxSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Grids", "grid-category", "root", "silk/application_view_detail.png", null, true, idSuffix),
                     new ExplorerTreeNode("Appearance", "grid-appearance-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),

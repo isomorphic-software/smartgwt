@@ -1,23 +1,33 @@
 package com.smartgwt.sample.showcase.client.combobox;
 
-import com.smartgwt.client.types.Alignment;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.smartgwt.client.types.MultiComboBoxLayoutStyle;
+import com.smartgwt.client.types.TitleOrientation;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.form.DynamicForm;
-import com.smartgwt.client.widgets.form.fields.ComboBoxItem;
-import com.smartgwt.client.widgets.form.fields.DateTimeItem;
-import com.smartgwt.client.widgets.form.fields.HeaderItem;
 import com.smartgwt.client.widgets.form.fields.MultiComboBoxItem;
+import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.SpacerItem;
-import com.smartgwt.client.widgets.form.fields.SubmitItem;
+import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
+import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.EmployeeXmlDS;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
 
 public class MultiComboBoxSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "A few examples of a MultiComboBox";
+    private static final String DESCRIPTION = "An example of a MultiComboBox";
+
+    private static final Map<String, MultiComboBoxLayoutStyle> layoutStyles;
+    static {
+        final MultiComboBoxLayoutStyle[] values = MultiComboBoxLayoutStyle.values();
+        layoutStyles = new HashMap<String, MultiComboBoxLayoutStyle>(values.length);
+
+        for (MultiComboBoxLayoutStyle value : values) {
+            layoutStyles.put(value.getValue(), value);
+        }
+    }
 
     public static class Factory implements PanelFactory {
         private String id;
@@ -38,70 +48,39 @@ public class MultiComboBoxSample extends ShowcasePanel {
     }
 
     public Canvas getViewPanel() {
-        final int commonHeight = 100;
-        final String lighterGrey = "#f0f0f0", darkerGrey = "#e0e0e0";
+
+        final MultiComboBoxLayoutStyle initialLayoutStyle = MultiComboBoxLayoutStyle.VERTICAL;
 
         final DynamicForm form = new DynamicForm();
         form.setMargin(10);
-        form.setCellPadding(4);
-        form.setWidth(500);
+        form.setNumCols(2);
+        form.setColWidths(500, 120);
+        form.setCellPadding(15);
+        form.setTitleOrientation(TitleOrientation.TOP);
 
-        HeaderItem bomHeader = new HeaderItem();
-        bomHeader.setDefaultValue("Bill of Materials");
+        final MultiComboBoxItem supplies = new MultiComboBoxItem("supplies", "Items");
+        supplies.setOptionDataSource(ItemSupplyXmlDS.getInstance());
+        supplies.setDisplayField("itemName");
+        supplies.setValueField("itemID");
+        supplies.setAutoFetchData(true);
+        supplies.setLayoutStyle(initialLayoutStyle);
 
-        MultiComboBoxItem bom = new MultiComboBoxItem("bom", "Items");
-        bom.setOptionDataSource(ItemSupplyXmlDS.getInstance());
-        bom.setDisplayField("itemName");
-        bom.setValueField("itemID");
-        ComboBoxItem bomComboBoxProperties = new ComboBoxItem();
-        bomComboBoxProperties.setAutoFetchData(true);
-        bom.setComboBoxItemProperties(bomComboBoxProperties);
-        bom.setLayoutStyle(MultiComboBoxLayoutStyle.FLOW);
-        bom.setShrinkwrapButtonValues(true);
-        bom.setHeight(commonHeight);
+        final SpacerItem spacer1 = new SpacerItem(), spacer2 = new SpacerItem();
 
-        SpacerItem spacer = new SpacerItem();
+        final SelectItem layoutStyleSelector = new SelectItem();
+        layoutStyleSelector.setTitle("Change layout style");
+        layoutStyleSelector.setDefaultValue(initialLayoutStyle.getValue());
+        layoutStyleSelector.setValueMap(layoutStyles.keySet().toArray(new String[0]));
+        layoutStyleSelector.addChangedHandler(new ChangedHandler() {
+            @Override
+            public void onChanged(ChangedEvent event) {
+                String value = (String) event.getValue();
+                supplies.setLayoutStyle(layoutStyles.get(value));
+            }
+            
+        });
 
-        HeaderItem scheduleHeader = new HeaderItem();
-        scheduleHeader.setDefaultValue("Schedule a Meeting");
-
-        DateTimeItem dateTime = new DateTimeItem("dateAndTime", "Date &amp; Time");
-
-        MultiComboBoxItem conferenceRooms = new MultiComboBoxItem("conferenceRooms", "Reserve Conference Rooms");
-        ComboBoxItem conferenceRoomsComboBoxProperties = new ComboBoxItem();
-        conferenceRoomsComboBoxProperties.setValueMap("Main", "Floor 13", "Basement", "Annex", "Courtyard");
-        conferenceRooms.setComboBoxItemProperties(conferenceRoomsComboBoxProperties);
-        conferenceRooms.setLayoutStyle(MultiComboBoxLayoutStyle.HORIZONTAL);
-
-        MultiComboBoxItem attendees = new MultiComboBoxItem("employees", "Employees to Attend");
-        attendees.setOptionDataSource(EmployeeXmlDS.getInstance());
-        attendees.setDisplayField("Name");
-        attendees.setValueField("EmployeeId");
-        ComboBoxItem attendeesComboBoxProperties = new ComboBoxItem();
-        attendeesComboBoxProperties.setAutoFetchData(true);
-        attendees.setComboBoxItemProperties(attendeesComboBoxProperties);
-        IButton attendeeButtonProperties = new IButton();
-        attendeeButtonProperties.setAlign(Alignment.LEFT);
-        attendeeButtonProperties.setIcon("[SKIN]actions/ok.png");
-        attendeeButtonProperties.setIconAlign("left");
-        attendees.setButtonProperties(attendeeButtonProperties);
-        attendees.setLayoutStyle(MultiComboBoxLayoutStyle.VERTICAL);
-        attendees.setHeight(commonHeight);
-
-        SubmitItem submit = new SubmitItem();
-        submit.setTitle("Send");
-
-        form.setFields(bomHeader, bom, spacer, scheduleHeader, dateTime, conferenceRooms, attendees, submit);
-        // Ensure that DynamicForm.create() has been called.  This allows us to obtain the
-        // canvases of the MultiComboBoxItems via CanvasItem.getCanvas().
-        form.getOrCreateJsObj();
-
-        bom.getCanvas().setBackgroundColor(lighterGrey);
-        bom.getCanvas().setBorder("1px solid " + darkerGrey);
-        conferenceRooms.getCanvas().setBackgroundColor(lighterGrey);
-        conferenceRooms.getCanvas().setBorder("1px solid " + darkerGrey);
-        attendees.getCanvas().setBackgroundColor(lighterGrey);
-        attendees.getCanvas().setBorder("1px solid " + darkerGrey);
+        form.setFields(supplies, spacer1, spacer2, layoutStyleSelector);
 
         return form;
     }
