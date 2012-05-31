@@ -173,7 +173,8 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    	 	var javaMap = @java.util.LinkedHashMap::new()();
 	    	 	// If it's a tree node, clean it up before converting otherwise we may end up serializing out
 	    	 	// all parents and children!
-	    	 	if (object._isc_tree != null || object.$42c != null) {
+	    	 	var treeProp = $wnd.isc.Tree.getPrototype().treeProperty;
+	    	 	if (object[treeProp] != null) {
 	    	 	    object = $wnd.isc.Tree.getCleanNodeData(object);
 	    	 	}
 	    	 	
