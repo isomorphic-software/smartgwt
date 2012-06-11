@@ -16,6 +16,12 @@
 
 package com.smartgwt.client.util;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.core.BaseClass;
@@ -23,15 +29,8 @@ import com.smartgwt.client.core.DataClass;
 import com.smartgwt.client.core.Function;
 import com.smartgwt.client.core.RefDataClass;
 import com.smartgwt.client.data.Record;
-import com.smartgwt.client.data.ResultSet;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.widgets.BaseWidget;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Internal helper class.
@@ -41,6 +40,14 @@ public class JSOHelper {
     private JSOHelper() {
     }
 
+    /**
+     * Returns the javascript class name.
+     * @return
+     */
+    public static native String getClassName(JavaScriptObject javaScriptObject)/*-{
+        return javaScriptObject.getClassName();
+    }-*/;
+    
     /**
      * Evaluate the passed string as Javascript
      *
