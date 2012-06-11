@@ -141,7 +141,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
                     return obj;
                 } else if (objType == 'number') {
                     if(obj.toString().indexOf('.') == -1) {
-                        if(obj <= @java.lang.Integer::MAX_VALUE) {
+                        if(obj <= @java.lang.Integer::MAX_VALUE && obj >= @java.lang.Integer::MIN_VALUE) {
                             return @com.smartgwt.client.util.JSOHelper::toInteger(I)(obj);
                         } else {
                           return @com.smartgwt.client.util.JSOHelper::toLong(D)(obj);
@@ -206,7 +206,8 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    	 	var javaMap = @java.util.LinkedHashMap::new()();
 	    	 	// If it's a tree node, clean it up before converting otherwise we may end up serializing out
 	    	 	// all parents and children!
-	    	 	if (object._isc_tree != null || object.$42c != null) {
+                var treeProp = $wnd.isc.Tree.getPrototype().treeProperty;
+                if (object[treeProp] != null) {
 	    	 	    object = $wnd.isc.Tree.getCleanNodeData(object);
 	    	 	}
 	    	 	
