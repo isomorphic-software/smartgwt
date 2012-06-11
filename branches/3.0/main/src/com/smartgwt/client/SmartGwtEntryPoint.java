@@ -108,7 +108,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
                     return obj;
                 } else if (objType == 'number') {
                     if(obj.toString().indexOf('.') == -1) {
-                        if(obj <= @java.lang.Integer::MAX_VALUE) {
+                        if(obj <= @java.lang.Integer::MAX_VALUE && obj >= @java.lang.Integer::MIN_VALUE) {
                             return @com.smartgwt.client.util.JSOHelper::toInteger(I)(obj);
                         } else {
                           return @com.smartgwt.client.util.JSOHelper::toLong(D)(obj);
