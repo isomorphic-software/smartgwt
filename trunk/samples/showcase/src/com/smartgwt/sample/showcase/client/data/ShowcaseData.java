@@ -31,8 +31,10 @@ import com.smartgwt.sample.showcase.client.calendar.CalendarDateTimeFormatSample
 import com.smartgwt.sample.showcase.client.calendar.CompactCalendarSample;
 import com.smartgwt.sample.showcase.client.calendar.CustomEventCalendarSample;
 import com.smartgwt.sample.showcase.client.calendar.DataBoundCalendarSample;
+import com.smartgwt.sample.showcase.client.calendar.DataBoundTimelineSample;
 import com.smartgwt.sample.showcase.client.calendar.OverlappingEventsCalendarSample;
 import com.smartgwt.sample.showcase.client.calendar.SimpleCalendarSample;
+import com.smartgwt.sample.showcase.client.calendar.SimpleTimelineSample;
 import com.smartgwt.sample.showcase.client.calendar.WorkdayCalendarSample;
 import com.smartgwt.sample.showcase.client.combobox.ComboBoxStyledSample;
 import com.smartgwt.sample.showcase.client.combobox.DropdownListGridSample;
@@ -552,6 +554,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Event Auto-Arranging", "event-autoarranging-calendar-category", "calendar-category", "crystal/16/actions/5days.png", new AutoArrangeEventsCalendarSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Event Overlapping", "event-overlapping-calendar-category", "calendar-category", "crystal/16/actions/5days.png", new OverlappingEventsCalendarSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("24h based Calendar", "calendar-24h", "calendar-category", null, new CalendarDateTimeFormatSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Simple Timeline", "simple-timeline", "calendar-category", null, new SimpleTimelineSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Databound Timeline", "databound-timeline", "calendar-category", null, new DataBoundTimelineSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Data View / Tiling", "tiling-category", "root", "crystal/16/actions/view_icon.png", null, true, idSuffix),
                     new ExplorerTreeNode("Basic", "tiling-basic", "tiling-category", null, new BasicTilingSample.Factory(), true, idSuffix),
