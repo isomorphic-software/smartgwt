@@ -96,6 +96,15 @@ public class SmartGwtEntryPoint implements EntryPoint {
 
             //support option of triggering JS debugger by default in hosted mode if JS error is encountered
             @com.smartgwt.client.util.SC::setEnableJSDebugger(Z)(true);
+            
+            // Log a warning about the known issues with Chrome / Hosted Mode
+            if ($wnd.isc.Browser.isChrome) {
+                $wnd.isc.Log.logWarn("WARNING: due to bugs in Chrome, GWT development mode in Chrome is not reliable and should not be used.  " +
+                    "This does not affect compiled mode in Chrome, which works.  Note that the same bug makes GWT development " +
+                    "mode in Chrome very slow as well, so other browsers will be faster as " +
+                    "well.  More details including links to Chrome bugs here: " +
+                    "http://forums.smartclient.com/showthread.php?t=8159#aChrome");
+            }
 
             $wnd.isc.isA.FUNCTION_STR = '[object Function]';
             $wnd.isc.isA.DATE_STR = '[object Date]';
