@@ -465,6 +465,27 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
     }-*/;
 
+    protected native Date[] getAttributeAsDateArray(String property)/*-{
+        
+        var ret;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            var widget = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            ret = widget.getProperty(property);
+        } else {
+            var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
+            if(config[property] != undefined) {
+                ret = config[property];
+            } else {
+               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
+            }
+        }
+        if (!$wnd.isc.isA.Array(ret)) return null;
+        
+        return @com.smartgwt.client.util.JSOHelper::convertToJavaDateArray(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        
+    }-*/;
+    
     protected native Integer getAttributeAsInt(String property)/*-{
         var ret;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {

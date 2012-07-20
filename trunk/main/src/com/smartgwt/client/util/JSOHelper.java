@@ -864,6 +864,16 @@ public class JSOHelper {
         var ret = array[index];
         return (ret === undefined || ret == null) ? null : @com.smartgwt.client.util.JSOHelper::toFloat(F)(ret);
     }-*/;
+
+    public native static Date getDateArrayValue (JavaScriptObject array, int i) /*-{
+        if (array == null || !$wnd.isc.isAn.Array(array)) return null;
+        var val = array[i];
+        if (!$wnd.isc.isA.Date(val)) return null;
+        return @com.smartgwt.client.util.JSOHelper::toDate(D)(val.getTime());
+        
+    }-*/;
+
+
     
     public static native int getArrayLength(JavaScriptObject array) /*-{
         return array.length;
@@ -905,7 +915,16 @@ public class JSOHelper {
         }
         return arr;
     }
-
+    
+    public static Date[] convertToJavaDateArray(JavaScriptObject array) {
+        int length = getArrayLength(array);
+        Date[] arr = new Date[length];
+        for (int i =0; i < length; i++) {
+            arr[i] = getDateArrayValue(array, i);
+        }
+        return arr;
+    }
+    
 
     public static Object[] convertToJavaObjectArray(JavaScriptObject array) {
         if (array == null) return new Object[]{};
