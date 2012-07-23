@@ -8,6 +8,8 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.data.RelativeDate;
 import com.smartgwt.client.types.DateDisplayFormat;
 import com.smartgwt.client.types.RelativeDateRangePosition;
+import com.smartgwt.client.widgets.FiscalCalendar;
+
 
 /**
  * Date related utility methods.
@@ -61,6 +63,16 @@ public class DateUtil {
      * 04, 2005 11:03:00 AM</code>
      */
     public static final DateDisplayFormatter TOLOCALESTRING = new NativeDateDisplayFormatter("toLocaleString");
+
+    /**
+     * Normal date format for the locale
+     */
+    public static final DateDisplayFormatter TONORMALDATE = new NativeDateDisplayFormatter("toNormalDate");
+
+    /**
+     * Normal datetime format for the locale
+     */
+    public static final DateDisplayFormatter TONORMALDATETIME = new NativeDateDisplayFormatter("toNormalDatetime");
 
     /**
      * Short date in format MM/DD/YYYY.<br> <i>Example</i>: <code>11/4/2005</code>
@@ -277,6 +289,19 @@ public class DateUtil {
     @Deprecated
     public static native void setNormalDateDisplayFormat(DateDisplayFormat format) /*-{
         $wnd.Date.setNormalDisplayFormat(format.@com.smartgwt.client.types.DateDisplayFormat::getValue()());
+    }-*/;
+
+    /**
+     * Set the default datetime format for date objects to the DateDisplayFormat passed in. After calling this method, subsequent calls to Date.toNormalDate will return a string formatted according to this format specification.
+     * <br>
+     * <b>Note</b>: this will be the standard long datetime format used by SmartGWT components.
+     * Initial default normalDatetimeDisplayFormat is "toLocaleString"
+     *
+     * @param format the DateDisplayFormatter
+     */
+    public static native void setNormalDatetimeDisplayFormatter(DateDisplayFormatter formatter) /*-{
+        var formatterJS = @com.smartgwt.client.util.DateUtil::convertDateDisplayFormatterToJS(Lcom/smartgwt/client/util/DateDisplayFormatter;)(formatter);
+        $wnd.Date.setNormalDatetimeDisplayFormat(formatterJS);
     }-*/;
 
     /**
@@ -793,5 +818,72 @@ public class DateUtil {
         return @com.smartgwt.client.util.JSOHelper::toDate(D)(jsDatetime.getTime());
         
     }-*/;
+
+
+/* -- fiscal year support --*/
+
+    /**
+     * Set the system wide {@link com.cmartget.client.widgets.FiscalCalendar} for use when working with Dates.
+     *
+     * @param fiscalCalendar the FiscalCalendar
+     */
+    public static native void setFiscalCalendar(FiscalCalendar fiscalCalendar) /*-{
+        var jsCalendar = fiscalCalendar.@com.smartgwt.client.widgets.FiscalCalendar::getJsObj()();
+        $wnd.isc.Date.setFiscalCalendar(jsCalendar);
+    }-*/;
+
+    /**
+     * Get the system wide {@link com.cmartget.client.widgets.FiscalCalendar}.
+     *
+     * @return
+     */
+    public static native FiscalCalendar getFiscalCalendar() /*-{
+        var jsCalendar = $wnd.isc.Date.getFiscalCalendar();
+        return @com.smartgwt.client.widgets.FiscalCalendar::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsCalendar);
+    }-*/;
+
+    /**
+     * Get the start date of the fiscal period in which the passed date exists.
+     *
+     * @return
+     */
+    public static native Date getFiscalStartDate(Date date, FiscalCalendar fiscalCalendar) /*-{
+        var jsDate = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date);
+        var jsCalendar = null;
+        if (fiscalCalendar != null) {
+            jsCalendar = fiscalCalendar.@com.smartgwt.client.widgets.FiscalCalendar::getJsObj()();
+        }
+        var startDate = $wnd.isc.Date.getFiscalStartDate(jsDate, jsCalendar);
+        return @com.smartgwt.client.util.JSOHelper::toDate(D)(startDate.getTime());
+    }-*/;
+    
+    /**
+     * Get the fiscal year of the fiscal period in which the passed date exists.
+     *
+     * @return
+     */
+    public static native Integer getFiscalYear(Date date, FiscalCalendar fiscalCalendar) /*-{
+        var jsDate = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date);
+        var jsCalendar = null;
+        if (fiscalCalendar != null) {
+            jsCalendar = fiscalCalendar.@com.smartgwt.client.widgets.FiscalCalendar::getJsObj()();
+        }
+        return $wnd.isc.Date.getFiscalYear(jsDate, jsCalendar);
+    }-*/;
+
+    /**
+     * Get the fiscal week in the period in which the passed date exists.
+     *
+     * @return
+     */
+    public static native Integer getFiscalWeek(Date date, FiscalCalendar fiscalCalendar) /*-{
+        var jsDate = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date);
+        var jsCalendar = null;
+        if (fiscalCalendar != null) {
+            jsCalendar = fiscalCalendar.@com.smartgwt.client.widgets.FiscalCalendar::getJsObj()();
+        }
+        return $wnd.isc.Date.getFiscalWeek(jsDate, jsCalendar);
+    }-*/;
+    
     
 }
