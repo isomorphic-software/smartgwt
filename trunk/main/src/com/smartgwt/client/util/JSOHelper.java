@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.JsArray;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.core.BaseClass;
 import com.smartgwt.client.core.DataClass;
@@ -89,7 +90,7 @@ public class JSOHelper {
     	if (com.smartgwt.client.data.ResultSet.isResultSet(array)) {
     		array = JSOHelper.resultSetToArray(array);
     	}
-        int length = getJavaScriptObjectArraySize(array);
+        final int length = getJavaScriptObjectArraySize(array);
         JavaScriptObject[] recs = new JavaScriptObject[length];
         for (int i = 0; i < length; i++) {
             recs[i] = getValueFromJavaScriptObjectArray(array, i);
@@ -327,10 +328,11 @@ public class JSOHelper {
     }
 
     public static String[] getAttributeAsStringArray(JavaScriptObject elem, String attr) {
-        String[] rtn = null;
-        JavaScriptObject hold = getAttributeAsJavaScriptObject(elem, attr);
+        final JavaScriptObject hold = getAttributeAsJavaScriptObject(elem, attr);
 
-        if (hold != null) {
+        final String[] rtn;
+        if (hold == null) rtn = null;
+        else {
             rtn = new String[getJavaScriptObjectArraySize(hold)];
 
             for (int i = 0; i < rtn.length; i++) {
@@ -669,6 +671,18 @@ public class JSOHelper {
         dateJS.setTime(time);
         return dateJS;
     }-*/;
+
+    public static <O extends JavaScriptObject> JsArray<O> convertToJsArray(O[] array) {
+        if (array == null) return null;
+        else {
+            final JsArray<O> ret = (JsArray<O>)JavaScriptObject.createArray();
+            ret.setLength(array.length);
+            for (int i = 0; i < array.length; ++i) {
+                ret.set(i, array[i]);
+            }
+            return ret;
+        }
+    }
 
     public static JavaScriptObject convertToJavaScriptArray(Object[] array) {
         return convertToJavaScriptArray(array, false);
