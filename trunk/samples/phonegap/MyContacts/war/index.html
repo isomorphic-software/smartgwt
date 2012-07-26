@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1, width=device-width">
+    <title>My Contacts</title>
+
+    <script type="text/javascript" language="JavaScript">
+      var scriptName;
+      if (navigator.userAgent.indexOf("Android") > -1) {
+          scriptName = "cordova-2.0.0-android.js";
+      } else if (navigator.userAgent.indexOf("iPhone") > -1 || navigator.userAgent.indexOf("iPad") > -1) {
+          scriptName = "cordova-2.0.0-iOS.js";
+      }
+      if (scriptName) document.write("<script type='text/javascript' charset='UTF-8' language='JavaScript' src='" + encodeURI(scriptName) + "'><" + "/script>");
+    </script>
+    <script type="text/javascript" charset="UTF-8" language="JavaScript" src="mycontacts/mycontacts.nocache.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript" language="JavaScript">
+    document.addEventListener("deviceready", function onDeviceReady() {
+        window.isDeviceReady = true;
+        document.removeEventListener("deviceready", arguments.callee, false);
+    }, false);
+    </script>
+  </body>
+</html>
