@@ -601,6 +601,33 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String date_shortDatetimeFormat();
 
   /**
+   * Translated "toLocaleString".
+   * 
+   * @return translated "toLocaleString"
+   */
+  @DefaultMessage("toLocaleString")
+  @Key("date_normalDateFormat")
+  String date_normalDateFormat();
+
+  /**
+   * Translated "toLocaleString".
+   * 
+   * @return translated "toLocaleString"
+   */
+  @DefaultMessage("toLocaleString")
+  @Key("date_normalDatetimeFormat")
+  String date_normalDatetimeFormat();
+
+  /**
+   * Translated "MDY".
+   * 
+   * @return translated "MDY"
+   */
+  @DefaultMessage("MDY")
+  @Key("date_inputFormat")
+  String date_inputFormat();
+
+  /**
    * Translated "Sun".
    * 
    * @return translated "Sun"
