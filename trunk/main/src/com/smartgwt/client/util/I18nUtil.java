@@ -387,6 +387,13 @@ public class I18nUtil {
         var dateSeparator = messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_dateSeparator()();
         if (dateSeparator != null) $wnd.Date.setDefaultDateSeparator(dateSeparator);
         
+        var normalDateFormat = messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_normalDateFormat()();
+        if (normalDateFormat != null) $wnd.isc.Date.setNormalDateDisplayFormat(normalDateFormat);
+        var normalDatetimeFormat = messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_normalDatetimeFormat()();
+        if (normalDatetimeFormat != null) $wnd.isc.Date.setNormalDatetimeDisplayFormat(normalDatetimeFormat);
+        var inputFormat = messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_inputFormat()();
+        if (inputFormat != null) $wnd.isc.Date.setInputFormat(inputFormat);
+
         $wnd.isc.addProperties($wnd.Date, {shortDayNames: [
             messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_1()(),
             messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_2()(),
