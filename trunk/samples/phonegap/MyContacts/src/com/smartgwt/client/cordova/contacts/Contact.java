@@ -98,7 +98,7 @@ public class Contact extends JavaScriptObject {
     }-*/;
 
     public final void save() {
-        remove(null);
+        save(null);
     }
 
     public final void save(SaveContactSuccessFunction contactSuccess) {
