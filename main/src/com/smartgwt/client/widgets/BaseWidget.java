@@ -232,6 +232,27 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         self.draw();
     }-*/;
 
+    /**
+     * Permanently destroy a Canvas and all of it's children / members, recursively.
+     * <P>
+     * Like {@link Canvas#clear()} calling <code>destroy()</code> removes all HTML for the component;
+     * unlike clear(), a destroyed Canvas is permanently unusable: it cannot be draw()'n again and
+     * cannot be referenced by its global ID. This method also removes all JavaScript references to
+     * the Canvas outside of application code, making it eligible for garbage collection (though 
+     * developers will need to release any references to the canvas held in application code themselves).
+     * <P>
+     * Any attempt to call a method on a destroyed Canvas will generally result in an error.  If your
+     * application is forced to hold onto Canvas's that might be destroy()d without warning, you can
+     * avoid errors by checking for the {@link Canvas#getDestroyed()} property.  If you override certain Canvas
+     * methods, your code may be called while a Canvas is being destroy()d; in this case you can avoid
+     * extra work (and possibly errors) by checking for the +{@link Canvas#getDestroying()} property.
+     * <P>
+     * Note that <code>destroy()</code> should not be called directly in event handling code for this
+     * canvas. For this reason, wherever possible we recommend using {@link Canvas#markForDestroy()}
+     * instead of calling this method directly. 
+     * <P>
+     * <b>Note</b>: This is an override point
+     */
     public native void destroy() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var id = self.ID;
