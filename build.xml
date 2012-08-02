@@ -187,6 +187,7 @@
 	
         <mkdir dir="${smartgwt.build.out}/doc"/>
 		<copy file="${SC_HOME}/smartclientSDK/isomorphic/login/loginRequiredMarker.html" tofile="${smartgwt.build.out}/doc/loginRequiredMarker.html"/>
+		<copy file="${SC_HOME}/smartclientSDK/isomorphic/login/loginSuccessMarker.html" tofile="${smartgwt.build.out}/doc/loginSuccessMarker.html"/>
     </target>
 
 
