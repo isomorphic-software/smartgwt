@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="SmartGWT QA Support" default="build" basedir=".">
+  <!-- Configure path to GWT SDK -->
+  <property environment="env" />
+  <property name="gwt.sdk" value="${env.GWT_HOME}" />
+
+  <fail unless="gwt.sdk" message="You must set the GWT_HOME environment variable to point to your GWT SDK" />
+
+  <path id="project.class.path">
+    <pathelement location="build" />
+    <pathelement location="${gwt.sdk}/gwt-user.jar" />
+    <pathelement location="${gwt.sdk}/validation-api-1.0.0.GA.jar" />
+    <pathelement location="${gwt.sdk}/validation-api-1.0.0.GA-sources.jar" />
+    <fileset dir="${gwt.sdk}" includes="gwt-dev*.jar" />
+    <fileset dir="../build/lib" includes="**/*.jar" />
+  </path>
+
+  <target name="javac" description="Compile java source">
+    <mkdir dir="build" />
+    <javac srcdir="src" includes="**" encoding="utf-8" destdir="build"
+        source="1.5" target="1.5" nowarn="true"
+        debug="true" debuglevel="lines,vars,source">
+      <classpath refid="project.class.path"/>
+      <compilerarg value="-Xlint"/> 
+    </javac>
+  </target>
+
+  <!-- The main module where the bulk of the testing code would go. -->
+  <target name="qa" depends="javac" description="Compile main QA support module">
+    <mkdir dir="generated/qa" />
+    <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+      <classpath>
+        <pathelement location="src" />
+        <path refid="project.class.path" />
+      </classpath>
+      
+      <jvmarg value="-Xmx512M" />
+      
+      <arg value="-war" /><arg value="build" />
+      <arg value="-gen" /><arg value="generated/qa" />
+      
+      <!-- These can be helpful to uncomment for debugging. -->
+      <arg value="-style" /><arg value="PRETTY" />
+      <!-- <arg value="-draftCompile" /> -->
+      <arg value="-strict" />
+      
+      <arg value="com.smartgwt.QA" />
+    </java>
+  </target>
+
+  <!-- The other module is for cases where we want to test loading two modules at once. -->
+  <target name="qa2" depends="javac" description="Compile other QA support module">
+    <mkdir dir="generated/qa2" />
+    <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+      <classpath>
+        <pathelement location="src" />
+        <path refid="project.class.path" />
+      </classpath>
+      
+      <jvmarg value="-Xmx512M" />
+      
+      <arg value="-war" /><arg value="build" />
+      <arg value="-gen" /><arg value="generated/qa2" />
+      
+      <!-- These can be helpful to uncomment for debugging. -->
+      <!-- <arg value="-style" /><arg value="PRETTY" /> -->
+      <!-- <arg value="-draftCompile" /> -->
+      <arg value="-strict" />
+      
+      <arg value="com.smartgwt.QA2" />
+    </java>
+  </target>
+
+  <property name="jsDir" value="${user.home}/go/qa/SGWT_Compiled_Modules" />
+
+  <!-- We copy the generated JavaScript modules to the smartclient/QA/ directory, so that
+       the QA files can use <script> tags to load them. -->
+  <target name="copyjs" depends="qa,qa2" description="Copy generated Javascript to SmartClient QA dir">
+    <mkdir dir="${jsDir}" />
+    <delete>
+      <fileset dir="${jsDir}" includes="*.cache.html *.nocache.js" />
+    </delete>
+    <copy todir="${jsDir}">
+      <fileset dir="build/qa" includes="*.cache.html *.nocache.js" />
+      <fileset dir="build/qa2" includes="*.cache.html *.nocache.js" />
+    </copy>
+  </target>
+
+  <target name="clean" description="Cleans this project">
+    <delete dir="build" failonerror="false" />
+    <delete dir="generated" failonerror="false" />
+    <delete dir="gwt-unitCache" failonerror="false" />
+  </target>
+
+  <target name="build" depends="copyjs" />
+</project>
