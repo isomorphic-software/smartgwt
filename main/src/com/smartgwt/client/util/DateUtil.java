@@ -9,6 +9,7 @@ import com.smartgwt.client.data.RelativeDate;
 import com.smartgwt.client.types.DateDisplayFormat;
 import com.smartgwt.client.types.RelativeDateRangePosition;
 import com.smartgwt.client.widgets.FiscalCalendar;
+import com.smartgwt.client.widgets.FiscalYear;
 
 
 /**
@@ -858,17 +859,46 @@ public class DateUtil {
     }-*/;
     
     /**
-     * Get the fiscal year of the fiscal period in which the passed date exists.
+     * Get the start date of the fiscal period for the passed year.
      *
      * @return
      */
-    public static native Integer getFiscalYear(Date date, FiscalCalendar fiscalCalendar) /*-{
+    public static native Date getFiscalStartDate(Integer year, FiscalCalendar fiscalCalendar) /*-{
+        var jsCalendar = null;
+        if (fiscalCalendar != null) {
+            jsCalendar = fiscalCalendar.@com.smartgwt.client.widgets.FiscalCalendar::getJsObj()();
+        }
+        var startDate = $wnd.isc.Date.getFiscalStartDate(year, jsCalendar);
+        return @com.smartgwt.client.util.JSOHelper::toDate(D)(startDate.getTime());
+    }-*/;
+
+    /**
+     * Get the fiscal year object in which the passed date exists.
+     *
+     * @return
+     */
+    public static native FiscalYear getFiscalYear(Date date, FiscalCalendar fiscalCalendar) /*-{
         var jsDate = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date);
         var jsCalendar = null;
         if (fiscalCalendar != null) {
             jsCalendar = fiscalCalendar.@com.smartgwt.client.widgets.FiscalCalendar::getJsObj()();
         }
-        return $wnd.isc.Date.getFiscalYear(jsDate, jsCalendar);
+        var jsFiscalYear = $wnd.isc.Date.getFiscalYear(jsDate, jsCalendar);
+        return @com.smartgwt.client.widgets.FiscalYear::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsFiscalYear);
+    }-*/;
+
+    /**
+     * Get the fiscal year object for the passed year.
+     *
+     * @return
+     */
+    public static native FiscalYear getFiscalYear(Integer year, FiscalCalendar fiscalCalendar) /*-{
+        var jsCalendar = null;
+        if (fiscalCalendar != null) {
+            jsCalendar = fiscalCalendar.@com.smartgwt.client.widgets.FiscalCalendar::getJsObj()();
+        }
+        var jsFiscalYear = $wnd.isc.Date.getFiscalYear(year, jsCalendar);
+        return @com.smartgwt.client.widgets.FiscalYear::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsFiscalYear);
     }-*/;
 
     /**
@@ -885,5 +915,20 @@ public class DateUtil {
         return $wnd.isc.Date.getFiscalWeek(jsDate, jsCalendar);
     }-*/;
     
+    /**
+     * Should the Fiscal Year picker be displayed by default in all DateChoosers?
+     *
+     */
+    public static native void setShowChooserFiscalYearPickers (boolean showFiscalYearPickers) /*-{
+        $wnd.isc.Date.setShowChooserFiscalYearPickers(showFiscalYearPickers);
+    }-*/;
     
-}
+    /**
+     * Should the Week picker be displayed by default in all DateChoosers?
+     *
+     */
+    public static native void setShowChooserWeekPickers (boolean showWeekPickers) /*-{
+        $wnd.isc.Date.setShowChooserWeekPickers(showWeekPickers);
+    }-*/;
+
+    }
