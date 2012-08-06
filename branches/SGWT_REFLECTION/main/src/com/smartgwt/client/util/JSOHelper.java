@@ -1004,6 +1004,14 @@ public class JSOHelper {
                 setNullAttribute(valueJS, key);
             } else if(value instanceof String[]) {
                 setAttribute(valueJS, key, convertToJavaScriptArray((String[]) value));
+            } else if (value instanceof Object[]) {
+                setAttribute(valueJS, key, convertToJavaScriptArray((Object[]) value));
+            } else if (value instanceof int[]) {
+                setAttribute(valueJS, key, convertToJavaScriptArray((int[]) value));
+            } else if (value instanceof double[]) {
+                setAttribute(valueJS, key, convertToJavaScriptArray((double[]) value));
+            } else if (value instanceof long[]) {
+                setAttribute(valueJS, key, convertToJavaScriptArray((double[]) value));
             } else if (value instanceof Map) {
             	JavaScriptObject innerMapJS = convertMapToJavascriptObject((Map) value); 
             	setAttribute(valueJS, key, innerMapJS);
