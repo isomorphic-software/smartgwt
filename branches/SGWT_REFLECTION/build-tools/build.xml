@@ -1,0 +1,22 @@
+<project name="buildtools" default="build" basedir=".">
+	<property name="smartgwt.root" location=".." />
+	<property name="project.tail" value="build-tools" />
+	<import file="${smartgwt.root}/common.ant.xml" />
+
+	<!-- "build" is the default when subprojects are directly targetted -->
+	<property name="target" value="build" />
+
+	<target name="doctool" description="Build the doctool">
+		<gwt.ant dir="doctool" />
+	</target>
+
+	<target name="-do" depends="doctool" description="Run all subprojects"/>
+	
+	<target name="build" description="Builds GWT">
+		<antcall target="-do">
+			<param name="target" value="build" />
+		</antcall>
+	</target>
+
+
+</project>
