@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 1.7.0//EN" 
+    "http://google-web-toolkit.googlecode.com/svn/tags/1.7.0/distro-source/core/src/gwt-module.dtd">
+    
+<!-- The main module used for SmartGWT testing from the SmartClient QA system. -->   
+
+<module rename-to="qa">
+    <source path="qa" />
+    <inherits name='com.google.gwt.user.User'/>
+    <inherits name="com.smartgwt.tools.SmartGwtTools"/>
+    <inherits name="com.smartgwt.SmartGwtNoSmartClient"/>
+    
+    <!-- Just generate a single permutation ... saves compile time and (total) script size -->
+    <collapse-all-properties />
+    <entry-point class='com.smartgwt.qa.QAEntryPoint'/>
+    
+    <generate-with class="com.smartgwt.rebind.TestRunnerExportGenerator">
+        <when-type-assignable class="com.smartgwt.qa.TestRunner.Export" />
+    </generate-with>
+</module>
