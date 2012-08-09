@@ -43,7 +43,15 @@ public class SmartGwtEntryPoint implements EntryPoint {
             return;
 
         }
-        
+
+        var asBuiltSCVersionNumber = @com.smartgwt.client.Version::getSCVersionNumber()();
+        if ($wnd.isc.versionNumber != asBuiltSCVersionNumber) {
+            var message = "This build of Smart GWT " + @com.smartgwt.client.Version::getVersion()() + " was built for SmartClient version " + asBuiltSCVersionNumber +
+                          " but SmartClient version " + $wnd.isc.versionNumber + " is loaded.";
+            @com.google.gwt.core.client.GWT::log(Ljava/lang/String;Ljava/lang/Throwable;)(message, @com.smartgwt.client.core.JsObject.SGWT_WARN::new(Ljava/lang/String;)(message));
+            return;
+        }
+
         //pre GWT 2.0 fallback
         if(typeof $entry === "undefined") {
             $entry = function(jsFunction) {
