@@ -50,7 +50,6 @@ public class SmartGwtEntryPoint implements EntryPoint {
                           " but SmartClient version " + $wnd.isc.versionNumber + " is loaded.\n\nTo correct this problem, clear GWT's unitcache, run a GWT compile, " +
                           "restart the browser, and clear the browser's cache before visiting any pages.";
             @com.google.gwt.core.client.GWT::log(Ljava/lang/String;Ljava/lang/Throwable;)(message, @com.smartgwt.client.core.JsObject.SGWT_WARN::new(Ljava/lang/String;)(message));
-            return;
         }
 
         //pre GWT 2.0 fallback
