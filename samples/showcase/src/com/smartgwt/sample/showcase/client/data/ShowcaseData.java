@@ -226,6 +226,7 @@ import com.smartgwt.sample.showcase.client.other.ProgressBarSample;
 import com.smartgwt.sample.showcase.client.other.SliderSample;
 import com.smartgwt.sample.showcase.client.other.TypeReuseSample;
 import com.smartgwt.sample.showcase.client.portal.SimplePortalSample;
+import com.smartgwt.sample.showcase.client.portal.SimplePortalManualSample;
 import com.smartgwt.sample.showcase.client.printing.PrintingSample;
 import com.smartgwt.sample.showcase.client.sections.ExpandCollapseSample;
 import com.smartgwt.sample.showcase.client.sections.SectionsAddRemoveSample;
@@ -307,7 +308,6 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Pattern Reuse", "featured-pattern-reuse", "featured-category", "silk/database_table.png", new PatternReuseSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("XSD DataSource", "featured-xsd-ds", "featured-category", "silk/database_gear.png", new XsdDataSourceSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("GWT Integration", "featured-gwt-integration", "featured-category", "gwt/icon16.png", new GwtShowcaseSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portal", "featured-portal", "featured-category", "silk/application_view_tile.png", new SimplePortalSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Databound Dragging", "grid-db-dragging-featured-category", "featured-category", "silk/database_link.png", new GridDataBoundDragDropSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Adaptive Filter", "grid-adaptive-filter-featured-category", "featured-category", "crystal/16/actions/show_table_row.png", new AdaptiveFilterSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Formula &amp; Summary Builder", "formula-sumamry-builder-featured-category", "featured-category", "crystal/oo/sc_insertformula.png", new FormulaSummaryBuilderSample.Factory(), true, idSuffix),
@@ -615,7 +615,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("User Sizing", "layout-user-sizing", "layout-category", null, new UserSizingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Border Layout", "layout-border", "layout-category", null, new FreeSpaceSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Center Align", "layout-center-align", "layout-category", null, new CenterAlignSample.Factory(), true, idSuffix),
-
+                    new ExplorerTreeNode("Portal", "layout-portal", "layout-category", "silk/application_view_tile.png", new SimplePortalSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Portal(manual)", "layout-portal-manual", "layout-category", "silk/application_view_tile.png", new SimplePortalManualSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Windows", "layout-windows-category", "root", "silk/application_cascade.png", null, true, idSuffix),
                     new ExplorerTreeNode("Auto Size", "layout-windows-autosize", "layout-windows-category", null, new WindowAutoSizeSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Modality", "layout-windows-modality", "layout-windows-category", null, new WindowModalitySample.Factory(), true, idSuffix),
