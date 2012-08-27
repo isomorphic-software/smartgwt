@@ -38,6 +38,7 @@ public class DragMoveSample extends ShowcasePanel {
         ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(300);
         countryGrid.setHeight(224);
+        countryGrid.setID("countryList1");
         countryGrid.setShowAllRecords(true);
         countryGrid.setCanReorderRecords(true);
         countryGrid.setCanDragRecordsOut(true);
@@ -61,6 +62,7 @@ public class DragMoveSample extends ShowcasePanel {
         countryGrid2.setWidth(200);
         countryGrid2.setHeight(224);
         countryGrid2.setLeft(350);
+        countryGrid2.setID("countryList2");
         countryGrid2.setShowAllRecords(true);
         countryGrid2.setEmptyMessage("Drop Rows Here");
         countryGrid2.setCanReorderFields(true);

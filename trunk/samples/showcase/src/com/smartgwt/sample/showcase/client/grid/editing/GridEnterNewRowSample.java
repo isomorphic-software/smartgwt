@@ -48,6 +48,7 @@ public class GridEnterNewRowSample extends ShowcasePanel {
         countryGrid.setHeight(224);
         countryGrid.setShowAllRecords(true);
         countryGrid.setCellHeight(22);
+        countryGrid.setID("countryList");
         countryGrid.setDataSource(CountryXmlDS.getInstance());
 
         ListGridField countryCodeField = new ListGridField("countryCode", "Flag", 40);
@@ -56,6 +57,7 @@ public class GridEnterNewRowSample extends ShowcasePanel {
         countryCodeField.setImageURLPrefix("flags/16/");
         countryCodeField.setImageURLSuffix(".png");
         countryCodeField.setCanEdit(false);
+        countryCodeField.setRequired(false);
 
         ListGridField nameField = new ListGridField("countryName", "Country");
         ListGridField continentField = new ListGridField("continent", "Continent");

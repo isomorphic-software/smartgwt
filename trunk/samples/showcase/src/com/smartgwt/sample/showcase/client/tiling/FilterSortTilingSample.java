@@ -59,6 +59,7 @@ public class FilterSortTilingSample extends ShowcasePanel {
         tileGrid.setTileWidth(158);
         tileGrid.setTileHeight(205);
         tileGrid.setHeight(400);
+        tileGrid.setID("boundList");
         tileGrid.setCanReorderTiles(true);
         tileGrid.setShowAllRecords(true);
         tileGrid.setDataSource(AnimalXmlDS.getInstance());
@@ -129,6 +130,7 @@ public class FilterSortTilingSample extends ShowcasePanel {
         sortForm.setIsGroup(true);
         sortForm.setGroupTitle("Sort");
         sortForm.setAutoFocus(false);
+        sortForm.setID("sortForm");
         sortForm.setNumCols(6);
 
         SelectItem sortItem = new SelectItem();

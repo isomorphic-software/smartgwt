@@ -33,6 +33,7 @@ public class GridSimpleFreezeSample extends ShowcasePanel {
         final ListGrid supplyItemGrid = new ListGrid();
         supplyItemGrid.setWidth(500);
         supplyItemGrid.setHeight(224);
+        supplyItemGrid.setID("supplyList");
         supplyItemGrid.setDataSource(ItemSupplyXmlDS.getInstance());
         supplyItemGrid.setAutoFetchData(true);
 
