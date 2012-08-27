@@ -11,6 +11,7 @@ module if you want to launch the Developer Console using SC.showConsole()
     <inherits name="com.google.gwt.event.Event"/>
 
     <inherits name="com.smartgwt.SmartGwtNoSmartClient"/>
+    <inherits name="com.smartclient.theme.enterprise.EnterpriseResources"/>
     <inherits name="com.smartclient.tools.SmartClientTools"/>
 
 </module>
