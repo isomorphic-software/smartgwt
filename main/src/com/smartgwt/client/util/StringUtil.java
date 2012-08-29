@@ -153,5 +153,15 @@ public class StringUtil {
 
         return str.substring(0, maxWidth - 3) + "...";
     }
+
+    /**
+     * Tests whether the given string is a valid JavaScript identifier.
+     *
+     * @param string the string to test.
+     * @return <code>true</code> if <code>string</code> is a valid JavaScript identifier; <code>false</code> otherwise.
+     */
+    public static native boolean isValidID(String string) /*-{
+        return string == null ? false : $wnd.String.isValidID(string);
+    }-*/;
 }
 

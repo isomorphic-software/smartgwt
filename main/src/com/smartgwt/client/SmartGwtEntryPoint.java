@@ -148,7 +148,9 @@ public class SmartGwtEntryPoint implements EntryPoint {
                 if (object == null) return false;
                 if ($wnd.SmartGWT.isNativeJavaObject(object)) return false;
                 return Object.prototype.toString.apply(object) === this.ARRAY_STR;
-            };            
+            };
+
+            $wnd.isc.Canvas.validateFieldNames = true;
         }
 
         $wnd.SmartGWT.convertToJavaType = function(obj) {
