@@ -4,6 +4,8 @@ import com.smartgwt.client.data.DSCallback;
 import com.smartgwt.client.data.DSRequest;
 import com.smartgwt.client.data.DSResponse;
 import com.smartgwt.client.data.Record;
+import com.smartgwt.client.data.SortSpecifier;
+import com.smartgwt.client.types.SortDirection;
 import com.smartgwt.client.types.DragAppearance;
 import com.smartgwt.client.types.SelectionStyle;
 import com.smartgwt.client.widgets.Canvas;
@@ -131,7 +133,8 @@ public class TileEditingSample extends ShowcasePanel {
 
         tileGrid.fetchData(null, new DSCallback() {
             public void execute(DSResponse response, Object rawData, DSRequest request) {
-                tileGrid.sortByProperty("lifeSpan", true);
+                SortSpecifier specifier = new SortSpecifier("lifeSpan", SortDirection.ASCENDING);
+                tileGrid.getResultSet().setSort(new SortSpecifier[] { specifier });
             }
         });
         return vStack;
