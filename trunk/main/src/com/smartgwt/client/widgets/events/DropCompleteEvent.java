@@ -19,6 +19,8 @@ package com.smartgwt.client.widgets.events;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.HasHandlers;
 
+import com.smartgwt.client.data.Record;
+
 public class DropCompleteEvent extends BrowserEvent<DropCompleteHandler> {
 
     /**
@@ -55,7 +57,7 @@ public class DropCompleteEvent extends BrowserEvent<DropCompleteHandler> {
 
     @Override
     protected void dispatch(DropCompleteHandler handler) {
-        handler.onFilterData(this);
+        handler.onDropComplete(this);
     }
 
     // Because of type erasure, our static type is
@@ -69,4 +71,17 @@ public class DropCompleteEvent extends BrowserEvent<DropCompleteHandler> {
     public DropCompleteEvent(JavaScriptObject jsObj) {
         super(jsObj);
     }
+    
+    /**
+     * The list of records transferred by the most recent drop event or {@link com.smartgwt.client.widgets.DataBoundComponent#transferSelectedData transferSelectedData} call.
+     *
+     * @return The list of transferred records
+     */
+    public native Record[] getTransferredRecords() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var jsList =  jsObj.transferredRecords;
+        if (!jsList) return null;
+        return @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(jsList);
+    }-*/;
+
 }
