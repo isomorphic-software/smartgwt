@@ -1906,6 +1906,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String miniDateRangeItem_toDateOnlyPrefix();
 
   /**
+   * Translated "Enter values".
+   * 
+   * @return translated "Enter values"
+   */
+  @DefaultMessage("Enter values")
+  @Key("multiComboBoxItem_defaultHint")
+  String multiComboBoxItem_defaultHint();
+
+  /**
    * Translated "Click icon to add...".
    * 
    * @return translated "Click icon to add..."
