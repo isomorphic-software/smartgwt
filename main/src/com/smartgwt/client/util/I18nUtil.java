@@ -203,6 +203,10 @@ public class I18nUtil {
             $wnd.isc.ColorItem.addProperties({pickerIconPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorItem_pickerIconPrompt()()});
         }
 
+        if($wnd.isc.MultiComboBoxItem) {
+            $wnd.isc.MultiComboBoxItem.addProperties({defaultHint: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiComboBoxItem_defaultHint()()});
+        }
+
         if($wnd.isc.MultiFilePicker) {
             $wnd.isc.MultiFilePicker.addProperties({emptyMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiFilePicker_emptyMessage()()});
         }
