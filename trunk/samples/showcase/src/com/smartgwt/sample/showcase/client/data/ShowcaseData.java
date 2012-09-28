@@ -187,6 +187,7 @@ import com.smartgwt.sample.showcase.client.grid.gridform.XsdDataSourceSample;
 import com.smartgwt.sample.showcase.client.grid.grouping.GridCustomGroupingSample;
 import com.smartgwt.sample.showcase.client.grid.grouping.GridDynamicGroupingSample;
 import com.smartgwt.sample.showcase.client.grid.grouping.GroupedEditingSample;
+import com.smartgwt.sample.showcase.client.grid.grouping.GridGroupingModesSample;
 import com.smartgwt.sample.showcase.client.grid.hiliting.GridDataDrivenHilitingSample;
 import com.smartgwt.sample.showcase.client.grid.hiliting.GridFormulaHilitingSample;
 import com.smartgwt.sample.showcase.client.grid.hiliting.GridPredefinedHilitingSample;
@@ -454,6 +455,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Dynamic Grouping", "grid-grouping-dynamic", "grid-grouping-category", null, new GridDynamicGroupingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grouped Editing", "grid-grouping-editing", "grid-grouping-category", null, new GroupedEditingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Custom Grouping", "grid-grouping-custom", "grid-grouping-category", null, new GridCustomGroupingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Grouping Modes", "grid-grouping-modes", "grid-grouping-category", null, new GridGroupingModesSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Hiliting", "grid-hiliting-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("User Defined", "grid-hiliting-user-defined", "grid-hiliting-category", null, new GridUserDefinedHilitingSample.Factory(), true, idSuffix),
