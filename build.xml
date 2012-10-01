@@ -18,6 +18,7 @@
 		<gwt.ant dir="main" />
 	</target>
 
+    
 
 	<target name="samples" depends="main" description="Build samples">
 		<gwt.ant dir="samples" />
