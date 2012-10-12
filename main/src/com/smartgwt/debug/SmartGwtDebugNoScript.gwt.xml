@@ -1,7 +1,7 @@
 <!--
-Packages the deploy debug / readable version of the SmartClient JS files. No theme is packaged / injected
-with this module. You will need to manually include the JS files in your host HTML file as follows:
-
+Packages the deploy debug / readable version of the SmartClient JS files. No theme is packages / injected
+with this module. You will need to still manually include the JS files in your host html file as follows :
+        
 <script src=[module-name]/sc/modules-debug/ISC_Core.js></script>
 
 <script src=[module-name]/sc/modules-debug/ISC_Foundation.js></script>
@@ -16,7 +16,7 @@ with this module. You will need to manually include the JS files in your host HT
 <module>
     <inherits name='com.google.gwt.user.User'/>
     <inherits name="com.google.gwt.xml.XML"/>
-    <inherits name="com.google.gwt.i18n.I18N"/>
+    <inherits name="com.google.gwt.i18n.I18N"/>    
     <inherits name="com.google.gwt.json.JSON"/>
     <inherits name="com.google.gwt.http.HTTP"/>
     <inherits name="com.google.gwt.event.Event"/>
