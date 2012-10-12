@@ -1,0 +1,31 @@
+<!--
+Inheriting this module injects all the SmartClient JavaScript files along with the Enterprise theme.
+Inheriting this module might result in you injecting more files that you need for example the Calendar.js
+If you want more control over what JavaScript files are included, inherit SmartGwtNoScript instead
+and manually add the script includes in your host html file.
+-->        
+
+<module>
+    <inherits name='com.google.gwt.user.User'/>
+    <inherits name="com.google.gwt.xml.XML"/>
+    <inherits name="com.google.gwt.i18n.I18N"/>
+    <inherits name="com.google.gwt.json.JSON"/>
+    <inherits name="com.google.gwt.http.HTTP"/>
+    <inherits name="com.google.gwt.event.Event"/>
+
+    <inherits name="com.smartclient.SmartClientDefault"/>
+    <inherits name="com.smartclient.theme.enterprise.Enterprise"/>
+
+    <entry-point class='com.smartgwt.client.SmartGwtEntryPoint'/>
+
+	<define-linker name="smartgwt" class="com.smartgwt.linker.SmartGwtLinker" />
+	<define-linker name="smartgwt_domain_sync" class="com.smartgwt.linker.SmartGwtDomainSyncLinker" />
+
+  	<add-linker name="smartgwt" />
+    
+  	<source path='client'/>
+  	<source path='logicalstructure'/>
+
+    <set-configuration-property name="document.compatMode" value="BackCompat"/>
+
+</module>
