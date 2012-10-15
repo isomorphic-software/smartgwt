@@ -59,9 +59,12 @@
         <fail unless="SC_HOME" message="You must pass the SC_HOME environment variable"/>
 
         <available file="${SC_HOME}/smartclientSDK" type="dir" property="smartclient.sdk.exists"/>
+        <available file="${SC_HOME}/smartclientSDK/isomorphic/system/modules-debug" type="dir" property="smartclient.sdk.modules-debug.exists"/>
 
         <fail unless="smartclient.sdk.exists"
               message="Cannot find '${SC_HOME}/smartclientSDK' SDK directory; perhaps you should verify the SC_HOME environment variable"/>
+        <fail unless="smartclient.sdk.modules-debug.exists"
+              message="Cannot find directory '${SC_HOME}/smartclientSDK/isomorphic/system/modules-debug'"/>
 
         <mkdir dir="${smartgwt.tools.lib}/sc/${SC_VER}"/>
         
@@ -72,6 +75,15 @@
                  value="../../system/helpers/skin/images/"/>
 		
         <zip destfile="${smartgwt.tools.lib}/sc/${SC_VER}/smartclient.jar">
+            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/modules-debug" includes="*.js"
+                        prefix="com/smartclient/debug/public/sc/modules-debug">
+                <exclude name="**/ISC_ClassBrowser.js"/>
+                <exclude name="**/ISC_DSBrowser.js"/>
+                <exclude name="**/ISC_EBay.js"/>
+                <exclude name="**/ISC_Kapow.js"/>
+                <exclude name="**/ISC_SalesForce.js"/>
+                <exclude name="**/ISC_SQLBrowser.js"/>
+            </zipfileset>
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/modules" includes="*.js"
                         prefix="com/smartclient/public/sc/modules">
                 <exclude name="**/ISC_ClassBrowser.js"/>
@@ -97,22 +109,19 @@
                         includes="skin/images/server_client_exchange.png"
                         prefix="com/smartclient/public/sc/system/helpers"/>
 
-            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/modules-debug" includes="*.js"
-                        prefix="com/smartclient/debug/public/sc/modules-debug"/>
-
+            <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/schema" includes="*.xml"
+                        prefix="com/smartclient/debug/public/sc/schema"/>
             <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/schema" includes="*.xml"
                         prefix="com/smartclient/public/sc/schema"/>
 
 
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/schema" includes="*.xsl,*.wsdl"
                         prefix="com/smartclient/debug/public/sc/system/schema"/>
-
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/schema" includes="*.xsl,*.wsdl"
                         prefix="com/smartclient/public/sc/system/schema"/>
 
-            <zipfileset dir="${smartgwt.build.out}/temp/schema" includes="*.js"
-                        prefix="com/smartclient/debug/public/sc/client/schema"/>
-
+            <zipfileset dir="${smartgwt.build.out}/temp/schema" includes="initsc.js"
+                        prefix="com/smartclient/debug/public/sc"/>
             <zipfileset dir="${smartgwt.build.out}/temp" includes="initsc.js"
                         prefix="com/smartclient/public/sc"/>
 
