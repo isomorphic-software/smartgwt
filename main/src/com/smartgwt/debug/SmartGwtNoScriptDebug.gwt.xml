@@ -22,7 +22,7 @@ with this module. You will need to manually include the JS files in your host HT
     <inherits name="com.google.gwt.event.Event"/>
 
     <inherits name="com.smartgwt.SmartGwtNoSmartClient"/>
-    <inherits name="com.smartclient.debug.SmartClientDebugNoScript"/>
+    <inherits name="com.smartclient.debug.SmartClientNoScriptDebug"/>
 
 	<define-linker name="smartgwt" class="com.smartgwt.linker.SmartGwtLinker" />
   	<add-linker name="smartgwt" />
