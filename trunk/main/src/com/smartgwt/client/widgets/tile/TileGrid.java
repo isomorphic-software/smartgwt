@@ -13,7 +13,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
- 
+
 package com.smartgwt.client.widgets.tile;
 
 
@@ -56,7 +56,6 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * A TileGrid is a {@link com.smartgwt.client.widgets.DataBoundComponent} that displays a list of objects as a set of
@@ -466,7 +465,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#addData
      * TileGrid.addData}.
@@ -475,7 +474,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addTile();
     }-*/;
-            
+
     /**
      * Notification method fired when new data arrives from the server to be displayed in this tileGrid, (for example in
      * response to the user scrolling a new set of tiles into view). Only applies to databound tileGrid where the {@link
@@ -489,7 +488,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.dataArrived(startRecord, endRecord);
     }-*/;
-            
+
     /**
      * Return "title" HTML to display as a drag tracker when the user drags some record.<br> Default implementation will
      * display the cell value for the title field (see  {@link com.smartgwt.client.widgets.grid.ListGrid#getTitleField
@@ -505,11 +504,11 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getDragTrackerTitle(record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum);
     }-*/;
-            
+
     /**
      * Returns a snapshot of the current presentation of this grid's fields as  a String object. <P> This object can be passed
      * to {@link com.smartgwt.client.widgets.tile.TileGrid#setFieldState TileGrid.setFieldState} to reset this grid's fields to
-     * the current state. <P> Note that the information stored includes the current width and visibility of each of this 
+     * the current state. <P> Note that the information stored includes the current width and visibility of each of this
      * grid's fields.
      *
      * @return current state of this grid's fields.
@@ -519,7 +518,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getFieldState();
     }-*/;
-            
+
     /**
      * Return the first selected record in this component
      *
@@ -653,7 +652,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
                });
         }
    }-*/;
-            
+
     /**
      * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#removeData
      * TileGrid.removeData}.
@@ -697,7 +696,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
                });
         }
    }-*/;
-            
+
     /**
      * Sets some presentation properties (visibility, width, userFormula and userSummary) of the  grid fields based on the
      * String object passed in.<br> Used to restore previous state retrieved from the grid by a call to {@link
@@ -717,7 +716,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * properties of this class. Can also be used for skinning / styling purposes.
      * <P>
      * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
-     * underlying class (including those automatically generated in JavaScript). 
+     * underlying class (including those automatically generated in JavaScript).
      * This method should not be used to apply standard EventHandlers or override methods for
      * a class - use a custom subclass instead.
      *
@@ -728,8 +727,8 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     	delete properties.ID;
         $wnd.isc.TileGrid.addProperties(properties);
     }-*/;
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
 	protected void onInit () {
@@ -789,7 +788,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var canvasJS = self._getTile(recordNum);
         if(canvasJS == null) return null;
         var canvas = @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(canvasJS);
-        
+
         return canvas;
     }-*/;
 
@@ -833,7 +832,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * that accepts component specific records.
      *
      * @param data array of Record objects.
-     * @see #setData(TileRecord[])   
+     * @see #setData(TileRecord[])
      */
     public void setData(Record[] data) {
         setAttribute("data", data, true);
@@ -849,7 +848,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     public void setData(RecordList data) {
         setAttribute("data", data == null ? null : data.getOrCreateJsObj(), true);
     }
-    
+
     /**
      * A List of TileRecord objects, specifying the data to be used to create the tiles.
      *
@@ -860,9 +859,9 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         Record[] data = Record.convertToRecordArray(dataJS);
         return data;
     }
-    
+
     /**
-     * Return the tileGrid data as a {@link com.smartgwt.client.data.RecordList}. If the component is 
+     * Return the tileGrid data as a {@link com.smartgwt.client.data.RecordList}. If the component is
      * bound to a DataSource,
      * the actual type of the RecordList instance will be a {@link com.smartgwt.client.data.ResultSet}.
      *
@@ -871,7 +870,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     public RecordList getDataAsRecordList() {
         return getRecordList();
     }
-    
+
 
     /**
      * Perform a DataSource "add" operation to add new records to this component's DataSource.
@@ -1151,7 +1150,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
     /**
      * Set the current hilites based on a hiliteState String previously returned from getHilitesState.
-     *  
+     *
      * @param hiliteState hilites state encoded as a String
      */
     public native void setHiliteState(String hiliteState)  /*-{
@@ -1575,14 +1574,14 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-    
+
    /**
-    * Exports this component's data with client-side formatters applied, so is suitable for 
-    * direct display to users.  This feature requires the SmartClient server, but does not 
+    * Exports this component's data with client-side formatters applied, so is suitable for
+    * direct display to users.  This feature requires the SmartClient server, but does not
     * rely on any server-side DataSources.
-    * <P>To export unformatted data from this component's dataSource, see 
+    * <P>To export unformatted data from this component's dataSource, see
     * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
-    * which does not include client-side formatters, 
+    * which does not include client-side formatters,
     * but relies on both the SmartClient server and server-side DataSources.
     * @see com.smartgwt.client.data.DataSource#exportClientData
     */
@@ -1592,12 +1591,12 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }-*/;
 
    /**
-    * Exports this component's data with client-side formatters applied, so is suitable for 
-    * direct display to users.  This feature requires the SmartClient server, but does not 
+    * Exports this component's data with client-side formatters applied, so is suitable for
+    * direct display to users.  This feature requires the SmartClient server, but does not
     * rely on any server-side DataSources.
     * <P>To export unformatted data from this component's dataSource, see
     * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
-    * which does not include client-side formatters, 
+    * which does not include client-side formatters,
     * but relies on both the SmartClient server and server-side DataSources.
     * @param requestProperties Request properties for the export
     * @see com.smartgwt.client.data.DataSource#exportClientData
@@ -1641,6 +1640,70 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         }
     }-*/;
 
+
+    /**
+     * Add a {@link com.smartgwt.client.widgets.DropCompleteHandler}.  See that class's documentation for a definition of "drop complete",
+     * and how it differs from "drag complete" ({@link com.smartgwt.client.widgets.DragCompleteHandler}).
+     *
+     * @param handler the DropCompleteHandler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDropCompleteHandler(DropCompleteHandler handler) {
+        if(getHandlerCount(DropCompleteEvent.getType()) == 0) setupDropCompleteEvent();
+        return doAddHandler(handler, DropCompleteEvent.getType());
+    }
+
+    private native void setupDropCompleteEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({dropComplete:$debox($entry(function(){
+                    var param = {"transferredRecords" : arguments[0]};
+                    var event = @com.smartgwt.client.widgets.events.DropCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                }))
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.dropComplete = $debox($entry(function(){
+                var param = {"transferredRecords" : arguments[0]};
+                var event = @com.smartgwt.client.widgets.events.DropCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            }));
+        }
+    }-*/;
+
+    /**
+     * Add a {@link com.smartgwt.client.widgets.DragCompleteHandler}.  See that class's documentation for a definition of "drag complete",
+     * and how it differs from "drop complete" ({@link com.smartgwt.client.widgets.DropCompleteHandler}).
+     *
+     * @param handler the DropCompleteHandler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDragCompleteHandler(DragCompleteHandler handler) {
+        if(getHandlerCount(DragCompleteEvent.getType()) == 0) setupDragCompleteEvent();
+        return doAddHandler(handler, DragCompleteEvent.getType());
+    }
+
+    private native void setupDragCompleteEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({dragComplete:$debox($entry(function(){
+                    var event = @com.smartgwt.client.widgets.events.DragCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)();
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                }))
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.dragComplete = $debox($entry(function(){
+                var event = @com.smartgwt.client.widgets.events.DragCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)();
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            }));
+        }
+    }-*/;
 }
 
 
