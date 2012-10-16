@@ -120,7 +120,7 @@
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/schema" includes="*.xsl,*.wsdl"
                         prefix="com/smartclient/public/sc/system/schema"/>
 
-            <zipfileset dir="${smartgwt.build.out}/temp/schema" includes="initsc.js"
+            <zipfileset dir="${smartgwt.build.out}/temp" includes="initsc.js"
                         prefix="com/smartclient/debug/public/sc"/>
             <zipfileset dir="${smartgwt.build.out}/temp" includes="initsc.js"
                         prefix="com/smartclient/public/sc"/>
