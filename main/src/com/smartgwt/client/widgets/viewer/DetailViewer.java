@@ -13,7 +13,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
- 
+
 package com.smartgwt.client.widgets.viewer;
 
 
@@ -56,7 +56,6 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * Displays one or more records "horizontally" with one property per line.
@@ -448,7 +447,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * is called  will offer the user a drop down for picking one of these icons when defining either a  simple or advanced
      * hilite rule. <P> If the user picks an icon, the created hiliting rule will have {@link
      * com.smartgwt.client.data.Hilite#getIcon icon} set to  the chosen icon.  {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getHiliteIconPosition hiliteIconPosition} controls where the icon will 
+     * com.smartgwt.client.widgets.DataBoundComponent#getHiliteIconPosition hiliteIconPosition} controls where the icon will
      * appear for that field -- the default is that it appears in front of the normal cell content. This can also be overriden
      * at the field level.
      *
@@ -467,7 +466,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * is called  will offer the user a drop down for picking one of these icons when defining either a  simple or advanced
      * hilite rule. <P> If the user picks an icon, the created hiliting rule will have {@link
      * com.smartgwt.client.data.Hilite#getIcon icon} set to  the chosen icon.  {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getHiliteIconPosition hiliteIconPosition} controls where the icon will 
+     * com.smartgwt.client.widgets.DataBoundComponent#getHiliteIconPosition hiliteIconPosition} controls where the icon will
      * appear for that field -- the default is that it appears in front of the normal cell content. This can also be overriden
      * at the field level.
      *
@@ -768,7 +767,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     /**
      * Whether to show fields marked <code>detail:true</code> when a DataBoundComponent is  given a DataSource but no
-     * <code>component.fields</code>. <p> The <code>detail</code> property is used on DataSource fields to mark fields that 
+     * <code>component.fields</code>. <p> The <code>detail</code> property is used on DataSource fields to mark fields that
      * shouldn't appear by default in a view that tries to show many records in a small space.
      *
      * @param showDetailFields showDetailFields Default value is true
@@ -781,7 +780,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     /**
      * Whether to show fields marked <code>detail:true</code> when a DataBoundComponent is  given a DataSource but no
-     * <code>component.fields</code>. <p> The <code>detail</code> property is used on DataSource fields to mark fields that 
+     * <code>component.fields</code>. <p> The <code>detail</code> property is used on DataSource fields to mark fields that
      * shouldn't appear by default in a view that tries to show many records in a small space.
      *
      *
@@ -924,7 +923,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Return the message to show if the component has no data. Default implementation returns a  centered {@link
      * com.smartgwt.client.widgets.viewer.DetailViewer#getEmptyMessage emptyMessage} or "&amp;nbsp;" if showEmptyMessage is
@@ -947,7 +946,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * properties of this class. Can also be used for skinning / styling purposes.
      * <P>
      * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
-     * underlying class (including those automatically generated in JavaScript). 
+     * underlying class (including those automatically generated in JavaScript).
      * This method should not be used to apply standard EventHandlers or override methods for
      * a class - use a custom subclass instead.
      *
@@ -958,11 +957,11 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     	delete properties.ID;
         $wnd.isc.DetailViewer.addProperties(properties);
     }-*/;
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
-	
+
     /**
      * An array of records, specifying data. Note that DetailViewers do not observe changes to the data array (in other
      * words they will not automatically re-draw when the data provided via this property is altered)
@@ -979,7 +978,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * that accepts component specific records.
      *
      * @param data array of Record objects.
-     * @see #setData(DetailViewerRecord[])   
+     * @see #setData(DetailViewerRecord[])
      */
     public void setData(Record[] data) {
         setAttribute("data", data, true);
@@ -1198,7 +1197,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     /**
      * Set the current hilites based on a hiliteState String previously returned from getHilitesState.
-     *  
+     *
      * @param hiliteState hilites state encoded as a String
      */
     public native void setHiliteState(String hiliteState)  /*-{
@@ -1482,6 +1481,14 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         return getAttributeAsBoolean("autoFetchData");
     }
 
+    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle) throws IllegalStateException {
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
+    }
+
+    public TextMatchStyle getAutoFetchTextMatchStyle() {
+        return TextMatchStyle.valueOf(getAttributeAsString("autoFetchTextMatchStyle"));
+    }
+
     public void setAutoFetchAsFilter(Boolean autoFetchAsFilter) throws IllegalStateException {
         setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
     }
@@ -1622,14 +1629,14 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-    
+
    /**
-    * Exports this component's data with client-side formatters applied, so is suitable for 
-    * direct display to users.  This feature requires the SmartClient server, but does not 
+    * Exports this component's data with client-side formatters applied, so is suitable for
+    * direct display to users.  This feature requires the SmartClient server, but does not
     * rely on any server-side DataSources.
-    * <P>To export unformatted data from this component's dataSource, see 
+    * <P>To export unformatted data from this component's dataSource, see
     * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
-    * which does not include client-side formatters, 
+    * which does not include client-side formatters,
     * but relies on both the SmartClient server and server-side DataSources.
     * @see com.smartgwt.client.data.DataSource#exportClientData
     */
@@ -1639,12 +1646,12 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     }-*/;
 
    /**
-    * Exports this component's data with client-side formatters applied, so is suitable for 
-    * direct display to users.  This feature requires the SmartClient server, but does not 
+    * Exports this component's data with client-side formatters applied, so is suitable for
+    * direct display to users.  This feature requires the SmartClient server, but does not
     * rely on any server-side DataSources.
     * <P>To export unformatted data from this component's dataSource, see
     * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
-    * which does not include client-side formatters, 
+    * which does not include client-side formatters,
     * but relies on both the SmartClient server and server-side DataSources.
     * @param requestProperties Request properties for the export
     * @see com.smartgwt.client.data.DataSource#exportClientData
@@ -1683,6 +1690,70 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
             obj.onFetchData = $debox($entry(function(){
                 var param = {"criteria" : arguments[0], "requestProperties" : arguments[1]};
                 var event = @com.smartgwt.client.widgets.events.FetchDataEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            }));
+        }
+    }-*/;
+
+    /**
+     * Add a {@link com.smartgwt.client.widgets.DropCompleteHandler}.  See that class's documentation for a definition of "drop complete",
+     * and how it differs from "drag complete" ({@link com.smartgwt.client.widgets.DragCompleteHandler}).
+     *
+     * @param handler the DropCompleteHandler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDropCompleteHandler(DropCompleteHandler handler) {
+        if(getHandlerCount(DropCompleteEvent.getType()) == 0) setupDropCompleteEvent();
+        return doAddHandler(handler, DropCompleteEvent.getType());
+    }
+
+    private native void setupDropCompleteEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({dropComplete:$debox($entry(function(){
+                    var param = {"transferredRecords" : arguments[0]};
+                    var event = @com.smartgwt.client.widgets.events.DropCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                }))
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.dropComplete = $debox($entry(function(){
+                var param = {"transferredRecords" : arguments[0]};
+                var event = @com.smartgwt.client.widgets.events.DropCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            }));
+        }
+    }-*/;
+
+    /**
+     * Add a {@link com.smartgwt.client.widgets.DragCompleteHandler}.  See that class's documentation for a definition of "drag complete",
+     * and how it differs from "drop complete" ({@link com.smartgwt.client.widgets.DropCompleteHandler}).
+     *
+     * @param handler the DropCompleteHandler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDragCompleteHandler(DragCompleteHandler handler) {
+        if(getHandlerCount(DragCompleteEvent.getType()) == 0) setupDragCompleteEvent();
+        return doAddHandler(handler, DragCompleteEvent.getType());
+    }
+
+    private native void setupDragCompleteEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({dragComplete:$debox($entry(function(){
+                    var event = @com.smartgwt.client.widgets.events.DragCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)();
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                }))
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.dragComplete = $debox($entry(function(){
+                var event = @com.smartgwt.client.widgets.events.DragCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)();
                 selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             }));
         }

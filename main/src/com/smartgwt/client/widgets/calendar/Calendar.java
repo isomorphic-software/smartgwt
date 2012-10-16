@@ -13,7 +13,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
- 
+
 package com.smartgwt.client.widgets.calendar;
 
 
@@ -56,7 +56,6 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * The Calendar component provides several different ways for a user to view and edit a set of events. Note that the
@@ -402,7 +401,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Date formatter for displaying events. Default is to use the system-wide default short date format, configured via 
+     * Date formatter for displaying events. Default is to use the system-wide default short date format, configured via
      * Date.setShortDisplayFormat.  Specify any valid {@link com.smartgwt.client.types.DateDisplayFormat}.
      *
      * @param dateFormatter dateFormatter Default value is null
@@ -412,7 +411,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Date formatter for displaying events. Default is to use the system-wide default short date format, configured via 
+     * Date formatter for displaying events. Default is to use the system-wide default short date format, configured via
      * Date.setShortDisplayFormat.  Specify any valid {@link com.smartgwt.client.types.DateDisplayFormat}.
      *
      *
@@ -1178,7 +1177,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Whether to show fields marked <code>detail:true</code> when a DataBoundComponent is  given a DataSource but no
-     * <code>component.fields</code>. <p> The <code>detail</code> property is used on DataSource fields to mark fields that 
+     * <code>component.fields</code>. <p> The <code>detail</code> property is used on DataSource fields to mark fields that
      * shouldn't appear by default in a view that tries to show many records in a small space.
      *
      * @param showDetailFields showDetailFields Default value is true
@@ -1191,7 +1190,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Whether to show fields marked <code>detail:true</code> when a DataBoundComponent is  given a DataSource but no
-     * <code>component.fields</code>. <p> The <code>detail</code> property is used on DataSource fields to mark fields that 
+     * <code>component.fields</code>. <p> The <code>detail</code> property is used on DataSource fields to mark fields that
      * shouldn't appear by default in a view that tries to show many records in a small space.
      *
      *
@@ -1253,7 +1252,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Suppresses the display of weekend days in the week and month views, and disallows the creation of events on weekends. 
+     * Suppresses the display of weekend days in the week and month views, and disallows the creation of events on weekends.
      * Which days are considered weekends is controlled by  weekendDays.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
@@ -1268,7 +1267,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Suppresses the display of weekend days in the week and month views, and disallows the creation of events on weekends. 
+     * Suppresses the display of weekend days in the week and month views, and disallows the creation of events on weekends.
      * Which days are considered weekends is controlled by  weekendDays.
      *
      *
@@ -1603,10 +1602,10 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                });
         }
    }-*/;
-            
+
     /**
      * Should the parameter date be considered a workday? By default this method tries to find the parameter date day in {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdays workdays}, and returns true if found. Override this method to 
+     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdays workdays}, and returns true if found. Override this method to
      * provide custom logic for determining workday, for example returning false on holidays.
      * @param date date to check for being a workday
      *
@@ -1955,7 +1954,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                }));
         }
    }-*/;
-            
+
     /**
      * Gets the day of the week (0-6) that the mouse is currently over.
      *
@@ -1966,7 +1965,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getActiveDay();
     }-*/;
-            
+
     /**
      * Gets a date object representing the date over which the mouse is hovering for the current selected view. For month view,
      * the time will be set to midnight of the active day. For dayview and week view, the time will be the rounded to the
@@ -1983,7 +1982,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
             return @com.smartgwt.client.util.JSOHelper::toDate(D)(retVal.getTime());
         }
     }-*/;
-            
+
     /**
      * Move to the next day, week, or month, depending on which tab is selected.
      */
@@ -1991,7 +1990,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.next();
     }-*/;
-            
+
     /**
      * Move to the previous day, week, or month, depending on which tab is selected.
      */
@@ -1999,7 +1998,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.previous();
     }-*/;
-            
+
     /**
      * Fires whenever the user changes the current date, including picking a specific date or navigating to a new week or
      * month.
@@ -2009,7 +2008,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.selectTab(tabnum);
     }-*/;
-            
+
     /**
      * Sets the range over which the timeline will display events
      * @param start start of range
@@ -2028,7 +2027,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * properties of this class. Can also be used for skinning / styling purposes.
      * <P>
      * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
-     * underlying class (including those automatically generated in JavaScript). 
+     * underlying class (including those automatically generated in JavaScript).
      * This method should not be used to apply standard EventHandlers or override methods for
      * a class - use a custom subclass instead.
      *
@@ -2039,8 +2038,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     	delete properties.ID;
         $wnd.isc.Calendar.addProperties(properties);
     }-*/;
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
 	protected void onInit() {
@@ -2055,7 +2054,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
             var jObj = this.__ref;
             var dateJ = @com.smartgwt.client.util.JSOHelper::toDate(D)(date.getTime());
             var eventsJ = events == null ? null : @com.smartgwt.client.widgets.calendar.CalendarEvent::convertToCalendarEventArray(Lcom/google/gwt/core/client/JavaScriptObject;)(events);
-            var calendarJ = @com.smartgwt.client.widgets.calendar.Calendar::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(calendar);            
+            var calendarJ = @com.smartgwt.client.widgets.calendar.Calendar::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(calendar);
             return jObj.@com.smartgwt.client.widgets.calendar.Calendar::getDayBodyHTML(Ljava/util/Date;[Lcom/smartgwt/client/widgets/calendar/CalendarEvent;Lcom/smartgwt/client/widgets/calendar/Calendar;II)(dateJ, eventsJ, calendarJ, rowNum, colNum);
         }));
     }-*/;
@@ -2125,7 +2124,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         }
         return jsArray;
     }
-        
+
     /**
      * The set of fields for the {@link com.smartgwt.client.widgets.calendar.Calendar#getEventDialog eventDialog}.  <p> The default set of fields are:  <pre>    {name: "name", title: "Event Name", type: nameType, width: 250 },    {name: "save", title: "Save Event", type: "SubmitItem", endRow: false},    {name: "details", title: "Edit Details", type: "button", startRow: false} </pre> See the Customized Binding example below for more information on altering default datasource  fields within forms.
      *
@@ -2184,7 +2183,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     public void setTimeFormatter(TimeFormatter timeFormatter) {
         setAttribute("timeFormatter", timeFormatter, true);
     }
-    
+
     /**
      * Display format to use for the time portion of events' date information.
      *
@@ -2292,7 +2291,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     public void setShowAddEventButton(Boolean showAddEventButton) throws IllegalStateException {
         setAttribute("showAddEventButton", showAddEventButton, false);
     }
-	
+
     /**
      * Array of days that are considered workdays when {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday
      * showWorkday} is true
@@ -2477,7 +2476,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Set the current hilites based on a hiliteState String previously returned from getHilitesState.
-     *  
+     *
      * @param hiliteState hilites state encoded as a String
      */
     public native void setHiliteState(String hiliteState)  /*-{
@@ -2901,14 +2900,14 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-    
+
    /**
-    * Exports this component's data with client-side formatters applied, so is suitable for 
-    * direct display to users.  This feature requires the SmartClient server, but does not 
+    * Exports this component's data with client-side formatters applied, so is suitable for
+    * direct display to users.  This feature requires the SmartClient server, but does not
     * rely on any server-side DataSources.
-    * <P>To export unformatted data from this component's dataSource, see 
+    * <P>To export unformatted data from this component's dataSource, see
     * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
-    * which does not include client-side formatters, 
+    * which does not include client-side formatters,
     * but relies on both the SmartClient server and server-side DataSources.
     * @see com.smartgwt.client.data.DataSource#exportClientData
     */
@@ -2918,12 +2917,12 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
 
    /**
-    * Exports this component's data with client-side formatters applied, so is suitable for 
-    * direct display to users.  This feature requires the SmartClient server, but does not 
+    * Exports this component's data with client-side formatters applied, so is suitable for
+    * direct display to users.  This feature requires the SmartClient server, but does not
     * rely on any server-side DataSources.
     * <P>To export unformatted data from this component's dataSource, see
     * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
-    * which does not include client-side formatters, 
+    * which does not include client-side formatters,
     * but relies on both the SmartClient server and server-side DataSources.
     * @param requestProperties Request properties for the export
     * @see com.smartgwt.client.data.DataSource#exportClientData
@@ -2967,6 +2966,70 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         }
     }-*/;
 
+
+    /**
+     * Add a {@link com.smartgwt.client.widgets.DropCompleteHandler}.  See that class's documentation for a definition of "drop complete",
+     * and how it differs from "drag complete" ({@link com.smartgwt.client.widgets.DragCompleteHandler}).
+     *
+     * @param handler the DropCompleteHandler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDropCompleteHandler(DropCompleteHandler handler) {
+        if(getHandlerCount(DropCompleteEvent.getType()) == 0) setupDropCompleteEvent();
+        return doAddHandler(handler, DropCompleteEvent.getType());
+    }
+
+    private native void setupDropCompleteEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({dropComplete:$debox($entry(function(){
+                    var param = {"transferredRecords" : arguments[0]};
+                    var event = @com.smartgwt.client.widgets.events.DropCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                }))
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.dropComplete = $debox($entry(function(){
+                var param = {"transferredRecords" : arguments[0]};
+                var event = @com.smartgwt.client.widgets.events.DropCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            }));
+        }
+    }-*/;
+
+    /**
+     * Add a {@link com.smartgwt.client.widgets.DragCompleteHandler}.  See that class's documentation for a definition of "drag complete",
+     * and how it differs from "drop complete" ({@link com.smartgwt.client.widgets.DropCompleteHandler}).
+     *
+     * @param handler the DropCompleteHandler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDragCompleteHandler(DragCompleteHandler handler) {
+        if(getHandlerCount(DragCompleteEvent.getType()) == 0) setupDragCompleteEvent();
+        return doAddHandler(handler, DragCompleteEvent.getType());
+    }
+
+    private native void setupDragCompleteEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({dragComplete:$debox($entry(function(){
+                    var event = @com.smartgwt.client.widgets.events.DragCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)();
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                }))
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.dragComplete = $debox($entry(function(){
+                var event = @com.smartgwt.client.widgets.events.DragCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)();
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            }));
+        }
+    }-*/;
 }
 
 

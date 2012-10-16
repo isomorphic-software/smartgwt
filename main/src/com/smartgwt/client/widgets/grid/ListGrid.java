@@ -13,7 +13,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
- 
+
 package com.smartgwt.client.widgets.grid;
 
 
@@ -56,7 +56,6 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * A ListGrid is a {@link com.smartgwt.client.widgets.DataBoundComponent} that displays a list of objects in a grid, where
@@ -366,7 +365,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveRecord animating record removal}, this property 
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveRecord animating record removal}, this property
      * designates the speed of the animation in pixels per second. Takes precedence over the {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveTime animateRemoveTime} property, which allows the developer
      * to specify a duration for the animation rather than a speed.
@@ -379,7 +378,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveRecord animating record removal}, this property 
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveRecord animating record removal}, this property
      * designates the speed of the animation in pixels per second. Takes precedence over the {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveTime animateRemoveTime} property, which allows the developer
      * to specify a duration for the animation rather than a speed.
@@ -723,7 +722,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The field to expand if {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldWidths autoFitFieldWidths} and 
+     * The field to expand if {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldWidths autoFitFieldWidths} and
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldsFillViewport autoFitFieldsFillViewport} are enabled and
      * auto-fitting will not fill all available horizontal space. <P> If unset, will default to the text field with the longest
      * {@link com.smartgwt.client.data.DataSourceField#getLength length} if length is set, otherwise, the first text field with
@@ -738,7 +737,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The field to expand if {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldWidths autoFitFieldWidths} and 
+     * The field to expand if {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldWidths autoFitFieldWidths} and
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldsFillViewport autoFitFieldsFillViewport} are enabled and
      * auto-fitting will not fill all available horizontal space. <P> If unset, will default to the text field with the longest
      * {@link com.smartgwt.client.data.DataSourceField#getLength length} if length is set, otherwise, the first text field with
@@ -853,7 +852,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * <P> Note that for <code>icon</code> type fields, the {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getAutoFitIconFields autoFitIconFields}  property setting may turn on
      * auto-fit-width behavior for specific fields by default, even if <code>autoFitFieldWidths</code> is false for the grid as
-     * a whole. <P> By default the  <P> Using this feature has a performance penalty roughly comparable to always rendering 
+     * a whole. <P> By default the  <P> Using this feature has a performance penalty roughly comparable to always rendering
      * one additional field per field where autofitting is enabled.  Specifically, enabling it for all fields would be
      * comparable to <i>both</i> doubling the number of fields <i>and</i> disabling {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getShowAllColumns horizontal incremental rendering}. In a grid where only half
@@ -895,7 +894,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * <P> Note that for <code>icon</code> type fields, the {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getAutoFitIconFields autoFitIconFields}  property setting may turn on
      * auto-fit-width behavior for specific fields by default, even if <code>autoFitFieldWidths</code> is false for the grid as
-     * a whole. <P> By default the  <P> Using this feature has a performance penalty roughly comparable to always rendering 
+     * a whole. <P> By default the  <P> Using this feature has a performance penalty roughly comparable to always rendering
      * one additional field per field where autofitting is enabled.  Specifically, enabling it for all fields would be
      * comparable to <i>both</i> doubling the number of fields <i>and</i> disabling {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getShowAllColumns horizontal incremental rendering}. In a grid where only half
@@ -914,7 +913,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Smart GWT listGrids have special logic to automatically size fields that are displayed as an icon - that is fields with 
+     * Smart GWT listGrids have special logic to automatically size fields that are displayed as an icon - that is fields with
      * {@link com.smartgwt.client.types.ListGridFieldType type:"icon"}, fields displaying only {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getShowValueIconOnly value icons}, and boolean fields (which are rendered
      * as a checkmark type icon by default. <P> This attribute controls this behavior - governing whether icon fields should be
@@ -938,7 +937,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Smart GWT listGrids have special logic to automatically size fields that are displayed as an icon - that is fields with 
+     * Smart GWT listGrids have special logic to automatically size fields that are displayed as an icon - that is fields with
      * {@link com.smartgwt.client.types.ListGridFieldType type:"icon"}, fields displaying only {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getShowValueIconOnly value icons}, and boolean fields (which are rendered
      * as a checkmark type icon by default. <P> This attribute controls this behavior - governing whether icon fields should be
@@ -1055,7 +1054,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData autoFitData} is set to <code>"horizontal"</code> or
      * <code>"both"</code> this property provides an upper limit on how far the ListGrid will expand horizontally to
      * accommodate its content.  If content exceeds this width, scrollbars will be introduced as usual.   In addition to this
-     * property, {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxColumns autoFitMaxColumns} allows you to limit 
+     * property, {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxColumns autoFitMaxColumns} allows you to limit
      * horizontal expansion based on the number of columns to be rendered.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
@@ -1072,7 +1071,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData autoFitData} is set to <code>"horizontal"</code> or
      * <code>"both"</code> this property provides an upper limit on how far the ListGrid will expand horizontally to
      * accommodate its content.  If content exceeds this width, scrollbars will be introduced as usual.   In addition to this
-     * property, {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxColumns autoFitMaxColumns} allows you to limit 
+     * property, {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxColumns autoFitMaxColumns} allows you to limit
      * horizontal expansion based on the number of columns to be rendered.
      *
      *
@@ -1203,7 +1202,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * com.smartgwt.client.widgets.grid.ListGrid#getEditPendingBaseStyle this.editFailedPendingStyle} is defined, and     the
      * cell is displaying an edit value that has not yet been saved (see      {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits}) return this value.</li> <li>Otherwise return
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordBaseStyleProperty record[listGrid.recordBaseStyleProperty]},  
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordBaseStyleProperty record[listGrid.recordBaseStyleProperty]},
      * if defined, otherwise {@link com.smartgwt.client.widgets.grid.ListGridField#getBaseStyle field.baseStyle}.</li> </ul> If
      * no custom style is found for the cell as described above, the default baseStyle will be returned. If {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle baseStyle} is specified this will be used. Otherwise for grids
@@ -1248,7 +1247,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Overflow setting for the "body", that is, the area of the grid where data values are rendered. <P> By setting both the
-     * grid itself and the body to overflow:visible, it is possible to "auto-fit" to the rendered height or width of the rows. 
+     * grid itself and the body to overflow:visible, it is possible to "auto-fit" to the rendered height or width of the rows.
      * Note that in this case <code>grid.width</code> and <code>grid.height</code> act as minimums.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
@@ -1265,7 +1264,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Overflow setting for the "body", that is, the area of the grid where data values are rendered. <P> By setting both the
-     * grid itself and the body to overflow:visible, it is possible to "auto-fit" to the rendered height or width of the rows. 
+     * grid itself and the body to overflow:visible, it is possible to "auto-fit" to the rendered height or width of the rows.
      * Note that in this case <code>grid.width</code> and <code>grid.height</code> act as minimums.
      *
      *
@@ -1629,8 +1628,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * If this property is true, users can drag the mouse to select text within grid rows. This is mutually exclusive with 
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#getCanDragReorder rearranging rows or cells by dragging}, and with 
+     * If this property is true, users can drag the mouse to select text within grid rows. This is mutually exclusive with
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getCanDragReorder rearranging rows or cells by dragging}, and with
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getCanDragSelect drag selection of rows}.
      *
      * @param canDragSelectText canDragSelectText Default value is false
@@ -1641,8 +1640,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * If this property is true, users can drag the mouse to select text within grid rows. This is mutually exclusive with 
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#getCanDragReorder rearranging rows or cells by dragging}, and with 
+     * If this property is true, users can drag the mouse to select text within grid rows. This is mutually exclusive with
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getCanDragReorder rearranging rows or cells by dragging}, and with
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getCanDragSelect drag selection of rows}.
      *
      *
@@ -1654,7 +1653,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Can the user edit cells in this listGrid? Can be set for the listGrid, and overridden for       individual fields.<br>  
+     * Can the user edit cells in this listGrid? Can be set for the listGrid, and overridden for       individual fields.<br>
      * If 'canEdit' is false at the listGrid level, fields can never be edited - in this case      the canEdit property on
      * individual fields will be ignored.<br>      If 'canEdit' is set to true at the listGrid level, setting the 'canEdit'
      * property to      false at the field level will prevent the field from being edited inline.<br>      If 'canEdit' is not
@@ -1674,7 +1673,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Can the user edit cells in this listGrid? Can be set for the listGrid, and overridden for       individual fields.<br>  
+     * Can the user edit cells in this listGrid? Can be set for the listGrid, and overridden for       individual fields.<br>
      * If 'canEdit' is false at the listGrid level, fields can never be edited - in this case      the canEdit property on
      * individual fields will be ignored.<br>      If 'canEdit' is set to true at the listGrid level, setting the 'canEdit'
      * property to      false at the field level will prevent the field from being edited inline.<br>      If 'canEdit' is not
@@ -2591,7 +2590,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * default to fields of type <code>"datetime"</code>. <P> Note that if {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getDateFormatter dateFormatter} or {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getTimeFormatter timeFormatter} are specified those properties will take
-     * precedence over the component level settings. <P> If unset, date values will be formatted according to the system wide  
+     * precedence over the component level settings. <P> If unset, date values will be formatted according to the system wide
      * short display format or   short datetime display format for datetime type fields. <P> If this field is editable the
      * dateFormatter will also be passed to the editor created to edit this field as {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getDateFormatter dateFormatter}. In this case you may also need to set
@@ -2612,7 +2611,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * default to fields of type <code>"datetime"</code>. <P> Note that if {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getDateFormatter dateFormatter} or {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getTimeFormatter timeFormatter} are specified those properties will take
-     * precedence over the component level settings. <P> If unset, date values will be formatted according to the system wide  
+     * precedence over the component level settings. <P> If unset, date values will be formatted according to the system wide
      * short display format or   short datetime display format for datetime type fields. <P> If this field is editable the
      * dateFormatter will also be passed to the editor created to edit this field as {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getDateFormatter dateFormatter}. In this case you may also need to set
@@ -3531,7 +3530,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * <b>Note: This property only has an effect in Internet Explorer</b> <P> Advanced property to improve performance for
-     * dynamic styling of gridRenderer cells in Internet Explorer, at the expense of slightly slower initial drawing, and some 
+     * dynamic styling of gridRenderer cells in Internet Explorer, at the expense of slightly slower initial drawing, and some
      * limitations on supported styling options. <P> <code>fastCellUpdates</code> speeds up the dynamic styling system used by
      * rollovers, selections, and custom styling that calls {@link com.smartgwt.client.grid.GridRenderer#refreshCellStyle
      * GridRenderer.refreshCellStyle}, at the cost of slightly slower draw() and redraw() times. <P> Notes: <ul> <li>When this
@@ -4002,32 +4001,32 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * The default value of <code>gridComponents</code> is an Array of {@link com.smartgwt.client.types.ListGridComponent}s
      * listing
      *  the standard components in their default order:
-     *  
+     *
      *  <var class="SmartGwt">
      *  <pre>
-     *     [ListGridComponent.FILTER_EDITOR, ListGridComponent.HEADER, ListGridComponent.BODY, 
+     *     [ListGridComponent.FILTER_EDITOR, ListGridComponent.HEADER, ListGridComponent.BODY,
      *      ListGridComponent.SUMMARY_ROW]
      *  </pre>
      *  </var>
-     * 
+     *
      *  You can override <code>gridComponents</code> to change the order of standard components.
      *  You can also omit standard components this way, although it more efficient to
      * use the related "show" property if available (eg {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor
      * showFilterEditor}). Note that
      *  this array must contain an entry for the <code>"body"</code> - listGrids with no body showing
      *  are unsupported.<br>
-     *  <i>Advanced note:</i> The live components generated for each of these standard 
+     *  <i>Advanced note:</i> The live components generated for each of these standard
      *  {@link com.smartgwt.client.types.ListGridComponent} types may differ across different listGrids. For example if this
      * grid has any {@link com.smartgwt.client.widgets.grid.ListGridField#getFrozen frozen fields}, the "body" entry will
      * actually
-     *  be created as an HLayout containing two GridRenderers (one for frozen fields, 
+     *  be created as an HLayout containing two GridRenderers (one for frozen fields,
      *  and one for unfrozen fields). This is really an implementation detail - the "body" entry
      *  in the gridComponents array simply specifies where the UI for the body should render within
-     *  the ListGrid layout. 
+     *  the ListGrid layout.
      *  <P>
      *  By embedding a Canvas directly in this list you can add arbitrary additional components to the
      *  listGrid as members, and have them be displayed alongside the standard automatically generated
-     *  parts of the ListGrid. 
+     *  parts of the ListGrid.
      *  <P>
      *  Note that having added controls to gridComponents, you can still call APIs directly on
      *  those controls to change their appearance, and you can also show() and hide() them if
@@ -4054,32 +4053,32 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * The default value of <code>gridComponents</code> is an Array of {@link com.smartgwt.client.types.ListGridComponent}s
      * listing
      *  the standard components in their default order:
-     *  
+     *
      *  <var class="SmartGwt">
      *  <pre>
-     *     [ListGridComponent.FILTER_EDITOR, ListGridComponent.HEADER, ListGridComponent.BODY, 
+     *     [ListGridComponent.FILTER_EDITOR, ListGridComponent.HEADER, ListGridComponent.BODY,
      *      ListGridComponent.SUMMARY_ROW]
      *  </pre>
      *  </var>
-     * 
+     *
      *  You can override <code>gridComponents</code> to change the order of standard components.
      *  You can also omit standard components this way, although it more efficient to
      * use the related "show" property if available (eg {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor
      * showFilterEditor}). Note that
      *  this array must contain an entry for the <code>"body"</code> - listGrids with no body showing
      *  are unsupported.<br>
-     *  <i>Advanced note:</i> The live components generated for each of these standard 
+     *  <i>Advanced note:</i> The live components generated for each of these standard
      *  {@link com.smartgwt.client.types.ListGridComponent} types may differ across different listGrids. For example if this
      * grid has any {@link com.smartgwt.client.widgets.grid.ListGridField#getFrozen frozen fields}, the "body" entry will
      * actually
-     *  be created as an HLayout containing two GridRenderers (one for frozen fields, 
+     *  be created as an HLayout containing two GridRenderers (one for frozen fields,
      *  and one for unfrozen fields). This is really an implementation detail - the "body" entry
      *  in the gridComponents array simply specifies where the UI for the body should render within
-     *  the ListGrid layout. 
+     *  the ListGrid layout.
      *  <P>
      *  By embedding a Canvas directly in this list you can add arbitrary additional components to the
      *  listGrid as members, and have them be displayed alongside the standard automatically generated
-     *  parts of the ListGrid. 
+     *  parts of the ListGrid.
      *  <P>
      *  Note that having added controls to gridComponents, you can still call APIs directly on
      *  those controls to change their appearance, and you can also show() and hide() them if
@@ -4152,7 +4151,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * requires loading of all records that match the current filter criteria before records can be grouped.  The default
      * maximum represents a number of records which are safe to load in legacy browsers such as Internet Explorer 8 (modern
      * browsers can handle far more), and is also a good upper limit from the perspective of loading data from a database. <P>
-     * Going beyond this limit can cause "script running slowly" errors from legacy browsers (as well as high database load). 
+     * Going beyond this limit can cause "script running slowly" errors from legacy browsers (as well as high database load).
      * To build an interface for grouping that handles arbitrary data volume, use a TreeGrid with {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#getLoadDataOnDemand loadDataOnDemand} with server-side grouping code.
      *
@@ -4170,7 +4169,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * requires loading of all records that match the current filter criteria before records can be grouped.  The default
      * maximum represents a number of records which are safe to load in legacy browsers such as Internet Explorer 8 (modern
      * browsers can handle far more), and is also a good upper limit from the perspective of loading data from a database. <P>
-     * Going beyond this limit can cause "script running slowly" errors from legacy browsers (as well as high database load). 
+     * Going beyond this limit can cause "script running slowly" errors from legacy browsers (as well as high database load).
      * To build an interface for grouping that handles arbitrary data volume, use a TreeGrid with {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#getLoadDataOnDemand loadDataOnDemand} with server-side grouping code.
      *
@@ -4811,7 +4810,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * is called  will offer the user a drop down for picking one of these icons when defining either a  simple or advanced
      * hilite rule. <P> If the user picks an icon, the created hiliting rule will have {@link
      * com.smartgwt.client.data.Hilite#getIcon icon} set to  the chosen icon.  {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getHiliteIconPosition hiliteIconPosition} controls where the icon will 
+     * com.smartgwt.client.widgets.DataBoundComponent#getHiliteIconPosition hiliteIconPosition} controls where the icon will
      * appear for that field -- the default is that it appears in front of the normal cell content. This can also be overriden
      * at the field level.
      *
@@ -4830,7 +4829,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * is called  will offer the user a drop down for picking one of these icons when defining either a  simple or advanced
      * hilite rule. <P> If the user picks an icon, the created hiliting rule will have {@link
      * com.smartgwt.client.data.Hilite#getIcon icon} set to  the chosen icon.  {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getHiliteIconPosition hiliteIconPosition} controls where the icon will 
+     * com.smartgwt.client.widgets.DataBoundComponent#getHiliteIconPosition hiliteIconPosition} controls where the icon will
      * appear for that field -- the default is that it appears in front of the normal cell content. This can also be overriden
      * at the field level.
      *
@@ -5349,7 +5348,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * When the length of the field specified by {@link com.smartgwt.client.data.DataSourceField#getLength length} exceeds 
+     * When the length of the field specified by {@link com.smartgwt.client.data.DataSourceField#getLength length} exceeds
      * <code>this.longTextEditorThreshold</code> show an edit field of this type rather than the standard text field when the
      * field enters inline edit mode.
      *
@@ -5361,7 +5360,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * When the length of the field specified by {@link com.smartgwt.client.data.DataSourceField#getLength length} exceeds 
+     * When the length of the field specified by {@link com.smartgwt.client.data.DataSourceField#getLength length} exceeds
      * <code>this.longTextEditorThreshold</code> show an edit field of this type rather than the standard text field when the
      * field enters inline edit mode.
      *
@@ -5539,7 +5538,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle baseStyle} is unset, base style will be derived from 
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle baseStyle} is unset, base style will be derived from
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getNormalBaseStyle normalBaseStyle} if this grid has fixed row heights
      * and  the specified {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHeight cellHeight} matches this value.
      * Otherwise {@link com.smartgwt.client.widgets.grid.ListGrid#getTallBaseStyle tallBaseStyle} will be used.
@@ -5552,7 +5551,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle baseStyle} is unset, base style will be derived from 
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle baseStyle} is unset, base style will be derived from
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getNormalBaseStyle normalBaseStyle} if this grid has fixed row heights
      * and  the specified {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHeight cellHeight} matches this value.
      * Otherwise {@link com.smartgwt.client.widgets.grid.ListGrid#getTallBaseStyle tallBaseStyle} will be used.
@@ -6294,7 +6293,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * For editable grids with a specified {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource}, where 
+     * For editable grids with a specified {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource}, where
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveLocally saveLocally} is false, this attribute may be used to
      * specify standard DSRequest properties to apply to all save operations performed by this grid (whether triggered by user
      * interaction, or explicit saveEdits or saveAllEdits call). <P> An example usage would be to customize the prompt
@@ -6314,7 +6313,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * For editable grids with a specified {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource}, where 
+     * For editable grids with a specified {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource}, where
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveLocally saveLocally} is false, this attribute may be used to
      * specify standard DSRequest properties to apply to all save operations performed by this grid (whether triggered by user
      * interaction, or explicit saveEdits or saveAllEdits call). <P> An example usage would be to customize the prompt
@@ -6581,7 +6580,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Whether to include fields marked <code>detail:true</code> from this component's  <code>DataSource</code>. <P> Fields may
      * also be included directly in this component's <code>fields</code> array in which case they will be present regardless of
-     * the <code>detail</code> attribute. <p> When this property is <code>true</code>, <code>ListGrid</code>s will include all 
+     * the <code>detail</code> attribute. <p> When this property is <code>true</code>, <code>ListGrid</code>s will include all
      * detail fields, but they will be initially hidden.  The user may show these fields via the default header context menu
      * ({@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu}). Setting this
      * property to false will completely exclude all detail fields from the list grid's fields array, such that they cannot be
@@ -6602,7 +6601,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Whether to include fields marked <code>detail:true</code> from this component's  <code>DataSource</code>. <P> Fields may
      * also be included directly in this component's <code>fields</code> array in which case they will be present regardless of
-     * the <code>detail</code> attribute. <p> When this property is <code>true</code>, <code>ListGrid</code>s will include all 
+     * the <code>detail</code> attribute. <p> When this property is <code>true</code>, <code>ListGrid</code>s will include all
      * detail fields, but they will be initially hidden.  The user may show these fields via the default header context menu
      * ({@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu}). Setting this
      * property to false will completely exclude all detail fields from the list grid's fields array, such that they cannot be
@@ -6674,9 +6673,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#filterData ListGrid.filterData} or {@link
      * com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData} is called directly
      *  while the filter editor is showing, the filter editor values will be updated to reflect the
-     *  new set of criteria. If you wish to retain the user entered filter criteria and 
+     *  new set of criteria. If you wish to retain the user entered filter criteria and
      *  programmatically modify a subset of field values programmatically this can be achieved by
-     *  deriving new criteria by copying the existing set of criteria and adding other changes - 
+     *  deriving new criteria by copying the existing set of criteria and adding other changes -
      *  something like this:
      *  <pre><code>
      *    var newCriteria = myListGrid.getFilterEditorCriteria();
@@ -6687,36 +6686,36 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      *    myListGrid.setCriteria(newCriteria);
      *  </code></pre>
      * In this example code we're using {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterEditorCriteria
-     * ListGrid.getFilterEditorCriteria} rather than 
+     * ListGrid.getFilterEditorCriteria} rather than
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getCriteria ListGrid.getCriteria} - this ensures that if the user has
      * typed a new value into
      *  the filter editor, but not yet clicked the filter button, we pick up the value the user
      *  entered.
      *  <P>
-     *  If you call <code>filterData()</code> and pass in criteria for dataSource 
+     *  If you call <code>filterData()</code> and pass in criteria for dataSource
      *  fields that are not present in the ListGrid, these criteria will continue to be applied along
      *  with the user visible criteria.
      *  <P>
      *  <b>filterEditor and advanced criteria</b>: If a developer calls <code>filterData()</code>
-     *  on a ListGrid and passes in {@link com.smartgwt.client.data.AdvancedCriteria}, expected behavior of the filter 
-     *  editor becomes ambiguous, as  AdvancedCriteria supports far more complex filter 
+     *  on a ListGrid and passes in {@link com.smartgwt.client.data.AdvancedCriteria}, expected behavior of the filter
+     *  editor becomes ambiguous, as  AdvancedCriteria supports far more complex filter
      *  expressions than the ordinary filterEditor is capable of expressing.
      *  <br>
-     *  The above example code assumes simple criteria, but if we wanted to apply advanced 
+     *  The above example code assumes simple criteria, but if we wanted to apply advanced
      * criteria to the grid we could call {@link com.smartgwt.client.data.DataSource#combineCriteria
      * DataSource.combineCriteria} rather than doing
      *  a simple addProperties() on the criteria object.
      *  <P>
-     *  Default behavior for AdvancedCriteria will combine the AdvancedCriteria with the values 
+     *  Default behavior for AdvancedCriteria will combine the AdvancedCriteria with the values
      *  in the filter editor as follows:
      *  <ul>
      *  <li>If the top level criteria has operator of type "and":<br>
      *   Each field in the top level
      *   criteria array for which a 'canFilter' true field is shown in the listGrid will show up
-     *   if the specified operator matches the default filter behavior 
+     *   if the specified operator matches the default filter behavior
      * (based on the {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle}).<br>
      *   If the user enters values in the filter editor, these will be combined with the
-     *   existing AdvancedCriteria by either replacing or adding field level criteria at the top 
+     *   existing AdvancedCriteria by either replacing or adding field level criteria at the top
      *   level.</li>
      *  <li>If the top level criteria is a single field-criteria:<br>
      *   If the field shows up in the listGrid and is canFilter:true, it will be displayed to
@@ -6753,9 +6752,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#filterData ListGrid.filterData} or {@link
      * com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData} is called directly
      *  while the filter editor is showing, the filter editor values will be updated to reflect the
-     *  new set of criteria. If you wish to retain the user entered filter criteria and 
+     *  new set of criteria. If you wish to retain the user entered filter criteria and
      *  programmatically modify a subset of field values programmatically this can be achieved by
-     *  deriving new criteria by copying the existing set of criteria and adding other changes - 
+     *  deriving new criteria by copying the existing set of criteria and adding other changes -
      *  something like this:
      *  <pre><code>
      *    var newCriteria = myListGrid.getFilterEditorCriteria();
@@ -6766,36 +6765,36 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      *    myListGrid.setCriteria(newCriteria);
      *  </code></pre>
      * In this example code we're using {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterEditorCriteria
-     * ListGrid.getFilterEditorCriteria} rather than 
+     * ListGrid.getFilterEditorCriteria} rather than
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getCriteria ListGrid.getCriteria} - this ensures that if the user has
      * typed a new value into
      *  the filter editor, but not yet clicked the filter button, we pick up the value the user
      *  entered.
      *  <P>
-     *  If you call <code>filterData()</code> and pass in criteria for dataSource 
+     *  If you call <code>filterData()</code> and pass in criteria for dataSource
      *  fields that are not present in the ListGrid, these criteria will continue to be applied along
      *  with the user visible criteria.
      *  <P>
      *  <b>filterEditor and advanced criteria</b>: If a developer calls <code>filterData()</code>
-     *  on a ListGrid and passes in {@link com.smartgwt.client.data.AdvancedCriteria}, expected behavior of the filter 
-     *  editor becomes ambiguous, as  AdvancedCriteria supports far more complex filter 
+     *  on a ListGrid and passes in {@link com.smartgwt.client.data.AdvancedCriteria}, expected behavior of the filter
+     *  editor becomes ambiguous, as  AdvancedCriteria supports far more complex filter
      *  expressions than the ordinary filterEditor is capable of expressing.
      *  <br>
-     *  The above example code assumes simple criteria, but if we wanted to apply advanced 
+     *  The above example code assumes simple criteria, but if we wanted to apply advanced
      * criteria to the grid we could call {@link com.smartgwt.client.data.DataSource#combineCriteria
      * DataSource.combineCriteria} rather than doing
      *  a simple addProperties() on the criteria object.
      *  <P>
-     *  Default behavior for AdvancedCriteria will combine the AdvancedCriteria with the values 
+     *  Default behavior for AdvancedCriteria will combine the AdvancedCriteria with the values
      *  in the filter editor as follows:
      *  <ul>
      *  <li>If the top level criteria has operator of type "and":<br>
      *   Each field in the top level
      *   criteria array for which a 'canFilter' true field is shown in the listGrid will show up
-     *   if the specified operator matches the default filter behavior 
+     *   if the specified operator matches the default filter behavior
      * (based on the {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle}).<br>
      *   If the user enters values in the filter editor, these will be combined with the
-     *   existing AdvancedCriteria by either replacing or adding field level criteria at the top 
+     *   existing AdvancedCriteria by either replacing or adding field level criteria at the top
      *   level.</li>
      *  <li>If the top level criteria is a single field-criteria:<br>
      *   If the field shows up in the listGrid and is canFilter:true, it will be displayed to
@@ -7881,7 +7880,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveLocally saveLocally} is specified, but this grid is bound to
      * a DataSource which includes remote field validators, by default edits will be saved synchronously and these validators
-     * will not be executed.<br> Set this property to <code>true</code> to ensure these remote validators are called when 
+     * will not be executed.<br> Set this property to <code>true</code> to ensure these remote validators are called when
      * saving edits in saveLocally mode. Note that since these remote validators need to run on  the server, saving with this
      * property set is asynchronous, even though the data that ultimately gets updated is already present on the client.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -7896,7 +7895,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveLocally saveLocally} is specified, but this grid is bound to
      * a DataSource which includes remote field validators, by default edits will be saved synchronously and these validators
-     * will not be executed.<br> Set this property to <code>true</code> to ensure these remote validators are called when 
+     * will not be executed.<br> Set this property to <code>true</code> to ensure these remote validators are called when
      * saving edits in saveLocally mode. Note that since these remote validators need to run on  the server, saving with this
      * property set is asynchronous, even though the data that ultimately gets updated is already present on the client.
      *
@@ -8277,7 +8276,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Attaches the component to the provided record. If <code>position</code> is specified as  <code>"within"</code> {@link
      * com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} and {@link com.smartgwt.client.widgets.Canvas#getSnapOffsetLeft
@@ -8334,11 +8333,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addEmbeddedComponent(component.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum, colNum, position.@com.smartgwt.client.types.EmbeddedPosition::getValue()());
     }-*/;
-            
+
     /**
      * Programmatically cause a field to auto-fit horizontally to it's contents or title. <P> Does not establish permanent
      * auto-fitting - use {@link com.smartgwt.client.widgets.grid.ListGrid#setAutoFitWidth ListGrid.setAutoFitWidth} to do so.
-     * @param fieldName 
+     * @param fieldName
      *
      * @return new width in pixels
      */
@@ -8384,7 +8383,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                }));
         }
    }-*/;
-            
+
     /**
      * Cancel the current edit without saving.
      */
@@ -8541,7 +8540,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                }));
         }
    }-*/;
-            
+
     /**
      * If this listGrid can be edited, this method will return true if the cell passed in has been edited, but the edits have
      * not yet been saved to the ListGrid's data object.
@@ -8746,7 +8745,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                }));
         }
    }-*/;
-            
+
     /**
      * Clear any stored validation errors for some row
      * @param rowNum index of row to clear validation error for
@@ -8755,7 +8754,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.clearRowErrors(rowNum);
     }-*/;
-            
+
     /**
      * This method clears any existing sort on this grid by calling {@link com.smartgwt.client.widgets.grid.ListGrid#setSort
      * ListGrid.setSort} with a null parameter.  The internal list of {@link com.smartgwt.client.data.SortSpecifier}s is
@@ -8765,7 +8764,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.clearSort();
     }-*/;
-            
+
     /**
      * Collapses a given {@link com.smartgwt.client.widgets.grid.ListGridRecord record} which has been previously expanded
      * using {@link com.smartgwt.client.widgets.grid.ListGrid#expandRecord ListGrid.expandRecord}.
@@ -8815,7 +8814,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                });
         }
    }-*/;
-            
+
     /**
      * Cancel outstanding edits for the specified rows, discarding edit values, and hiding editors  if appropriate. <P> Note
      * that if this method is called on a new edit row (created via  {@link
@@ -8841,7 +8840,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @param colNum Column to cancel. Note that this parameter is ignored in ListGrids but                        may be required in
      * subclasses of ListGrid where each cell represents                        one record in the data set (EG CubeGrid)
      * @param dontHideEditor By default this method will hide the editor if                              it is currently showing for the row in
-     * question. Passing in                              this parameter will leave the editor visible (and just reset          
+     * question. Passing in                              this parameter will leave the editor visible (and just reset
      *                    the edit values underneath the editor).
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
@@ -8853,7 +8852,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * Add a drawAreaChanged handler.
      * <p>
      * Notification method that fires when the drawArea changes due to scrolling.  Receives   the previous drawArea
-     * co-ordinates as parameters.  Call {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawArea ListGrid.getDrawArea} to 
+     * co-ordinates as parameters.  Call {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawArea ListGrid.getDrawArea} to
      * get the new drawArea co-ordinates. <P> Note that if this grid is showing any {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getFrozen frozen fields}, they will not be included in the
      * <code>oldStartCol</code>, <code>oldEndCol</code> range reported by this method. Frozen fields are assumed never to be
@@ -9036,7 +9035,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                }));
         }
    }-*/;
-            
+
     /**
      * Complete the current edit by storing the value and hiding the inline editor. Note that if {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits} is true, the value will be saved to the
@@ -9046,10 +9045,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.endEditing();
     }-*/;
-            
+
     /**
      * Expands a given {@link com.smartgwt.client.widgets.grid.ListGridRecord record} by creating a subcomponent and inserting
-     * it  in to the record's grid-row.  A number of built-in {@link com.smartgwt.client.types.ExpansionMode expansionModes} 
+     * it  in to the record's grid-row.  A number of built-in {@link com.smartgwt.client.types.ExpansionMode expansionModes}
      * are supported by the default implementation of  {@link com.smartgwt.client.widgets.grid.ListGrid#getExpansionComponent
      * getExpansionComponent()} and you can override that method to provide your own expansion behavior. <P> Once a record has
      * been expanded, the currently visible expansion component may be retrieved via {@link
@@ -9094,7 +9093,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                });
         }
    }-*/;
-            
+
     /**
      * If the filter editor ({@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor}) is visible
      * for this grid,  this method will perform a filter based on the current values in the editor.
@@ -9141,7 +9140,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                }));
         }
    }-*/;
-            
+
     /**
      * If the filter editor ({@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor}) is visible
      * for this grid,  this method will explicitly put focus into the specified field in the filter editor.
@@ -9161,7 +9160,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.focusInFilterEditor(fieldName);
     }-*/;
-            
+
     /**
      * Retrieves a copy of the current criteria for this component (may be null)
      *
@@ -9174,7 +9173,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-            
+
     /**
      * Method to calculate and return the default width of a field. This method is called to calculate the size of each field's
      * content as part of the  {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldWidths field auto fit} behavior.
@@ -9193,7 +9192,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getDefaultFieldWidth(field.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-            
+
     /**
      * Return "title" HTML to display as a drag tracker when the user drags some record.<br> Default implementation will
      * display the cell value for the title field (see  {@link com.smartgwt.client.widgets.grid.ListGrid#getTitleField
@@ -9209,10 +9208,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getDragTrackerTitle(record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum);
     }-*/;
-            
+
     /**
      * Get the drawn height of a row.
-     * @param rowNum 
+     * @param rowNum
      *
      * @return height
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
@@ -9221,7 +9220,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getDrawnRowHeight(rowNum);
     }-*/;
-            
+
     /**
      * Returns the column number of the most recent mouse event.
      *
@@ -9243,7 +9242,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getEventColumn(x);
     }-*/;
-            
+
     /**
      * Returns the row number of the most recent mouse event.
      *
@@ -9264,7 +9263,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getEventRow(y);
     }-*/;
-            
+
     /**
      * Returns a snapshot of the current presentation of this listGrid's fields as  a String object. <P> This object can later
      * be passed to {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldState ListGrid.setFieldState} to reset this grid's
@@ -9279,7 +9278,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getFieldState();
     }-*/;
-            
+
     /**
      * This method returns the data to be displayed in the {@link com.smartgwt.client.widgets.grid.ListGrid#getSummaryRow
      * summaryRow} when {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is true. <P> By
@@ -9291,7 +9290,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.getGridSummaryData();
     }-*/;
-            
+
     /**
      * Return the pointer to a particular record by record number. Synonym for {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCellRecord ListGrid.getCellRecord}.
@@ -9311,7 +9310,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }
         return retVal;
     }-*/;
-            
+
     /**
      * Get the index of the provided record. <P> This is essentially the same as calling listGrid.data.indexOf(record), except
      * that  the currently visible range of records is checked first.  This is important for responsiveness in functions that
@@ -9324,7 +9323,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getRecordIndex(record.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-            
+
     /**
      * Return the first selected record in this component.<br><br> This method is appropriate if <code>{@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSelectionType selectionType}</code> is <code>"single"</code>, or if you
@@ -9345,7 +9344,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }
         return retVal;
     }-*/;
-            
+
     /**
      * Returns a snapshot of the current selection within this listGrid as  a String object.<br> This object can be passed to
      * {@link com.smartgwt.client.widgets.grid.ListGrid#setSelectedState ListGrid.setSelectedState} to reset this grid's
@@ -9358,7 +9357,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getSelectedState();
     }-*/;
-            
+
     /**
      * Returns the number of fields involved in this grid's current sort configuration.
      *
@@ -9368,7 +9367,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getSortFieldCount();
     }-*/;
-            
+
     /**
      * When multiple fields are sorted, this method returns the HTML for the sort-numeral that  appears after the sort-arrows
      * in the header-buttons of sorted fields.  If you don't want sort-numerals in the header-buttons, you can override this
@@ -9387,7 +9386,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getSortNumeralHTML(fieldName, sortIndex);
     }-*/;
-            
+
     /**
      * Returns a snapshot of the current sort state within this listGrid as  a String object.<br> This object can be passed to
      * {@link com.smartgwt.client.widgets.grid.ListGrid#setSortState ListGrid.setSortState} to reset this grid's sort to the
@@ -9400,7 +9399,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getSortState();
     }-*/;
-            
+
     /**
      * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu headerContextMenu} for this
      * grid and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanFreezeFields this.canFreezeFields} is true, this string
@@ -9416,7 +9415,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getToggleFreezeText(field.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-            
+
     /**
      * Returns a snapshot of the current view state of this ListGrid.<br> This includes the field state, sort state and
      * selected state of the grid, returned as a String object.<br> This object can be passed to {@link
@@ -9467,7 +9466,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                }));
         }
    }-*/;
-            
+
     /**
      * Whether the grid as a whole has any unsaved edits, in any row. Note that this method will return true if any rows are
      * {@link com.smartgwt.client.widgets.grid.ListGrid#markRecordRemoved marked as removed} in addition to any rows that have
@@ -9485,7 +9484,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Does this grid currently have errors associated with editValues for any row in the grid.
      *
@@ -9539,7 +9538,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                });
         }
    }-*/;
-            
+
     /**
      * Invalidates the currently visible set of {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents
      * recordComponents} and gets fresh ones for the visible rows in the grid according to the  {@link
@@ -9551,7 +9550,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.invalidateRecordComponents();
     }-*/;
-            
+
     /**
      * Identifies whether the passed-in field is the specially generated {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField checkboxField} used when {@link
@@ -9570,7 +9569,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Identifies whether the passed-in field is the specially generated {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getExpansionField expansionField} used when {@link
@@ -9589,7 +9588,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Returns true if the record is partially selected.
      * @param record record to check
@@ -9606,7 +9605,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Identifies whether the passed-in field is the specially generated {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getRowNumberField rowNumberField} used when {@link
@@ -9625,7 +9624,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Returns true if the record is selected.
      * @param record record to check
@@ -9642,7 +9641,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Returns true if the passed fieldName is in the current sort-specification.
      * @param fieldName The name of a field, visible, hidden or existing only in the dataSource
@@ -9658,7 +9657,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Marks the widget as "dirty" so that it will be added to a queue for redraw. Redraw of dirty components is handled by a
      * looping timer and will after a very short delay (typically less than 100ms). In most cases it is recommended that
@@ -9684,7 +9683,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.markForRedraw(reason);
     }-*/;
-            
+
     /**
      * Marks a record deleted such that a later call to {@link com.smartgwt.client.widgets.grid.ListGrid#saveEdits
      * ListGrid.saveEdits} or {@link com.smartgwt.client.widgets.grid.ListGrid#saveAllEdits ListGrid.saveAllEdits} will cause a
@@ -9701,7 +9700,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.markRecordRemoved(rowNum);
     }-*/;
-            
+
     /**
      * Marks the currently selected records as removed, as though {@link
      * com.smartgwt.client.widgets.grid.ListGrid#markRecordRemoved ListGrid.markRecordRemoved} had been called.
@@ -9710,7 +9709,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.markSelectionRemoved();
     }-*/;
-            
+
     /**
      * Refresh the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary grid summary}. Note unlike {@link
      * com.smartgwt.client.widgets.grid.ListGrid#recalculateSummaries ListGrid.recalculateSummaries}, this method will not
@@ -9804,7 +9803,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                });
         }
    }-*/;
-            
+
     /**
      * Returns true if the specified record is marked as removed via a call to  {@link
      * com.smartgwt.client.widgets.grid.ListGrid#markRecordRemoved ListGrid.markRecordRemoved}
@@ -9822,7 +9821,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Refresh an individual cell without redrawing the grid. <P> The cell's value, CSS class, and CSS text will be refreshed,
      * to the current values returned by getCellValue(), getCellStyle() and getCellCSSText() respectively.
@@ -9833,7 +9832,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.refreshCell(rowNum, colNum);
     }-*/;
-            
+
     /**
      * Refresh the styling of an individual cell without redrawing the grid. <P> The cell's CSS class and CSS text will be
      * refreshed, to the current values returned by getCellStyle() and getCellCSSText() respectively. <P> The cell's contents
@@ -9846,7 +9845,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.refreshCellStyle(rowNum, colNum);
     }-*/;
-            
+
     /**
      * Re-evaluates {@link com.smartgwt.client.widgets.grid.ListGridField#showIf ListGridField.showIf} for each field,
      * dynamically showing and  hiding the appropriate set of fields
@@ -9855,7 +9854,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.refreshFields();
     }-*/;
-            
+
     /**
      * Discards any currently visible set of {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents
      * recordComponent} and gets a fresh one for the specified record (or cell) according to the  {@link
@@ -9883,7 +9882,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.refreshRecordComponent(rowNum, colNum);
     }-*/;
-            
+
     /**
      * Refresh an entire row of cells without redrawing the grid. <P> The cells' values, CSS classes, and CSS text will be
      * refreshed, to the current values returned by getCellValue(), getCellStyle() and getCellCSSText() respectively.
@@ -9893,7 +9892,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.refreshRow(rowNum);
     }-*/;
-            
+
     /**
      * Handler fired when the user clicks the "remove" icon if {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCanRemoveRecords canRemoveRecords} is true. Default behavior will remove
@@ -9907,7 +9906,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeRecordClick(rowNum);
     }-*/;
-            
+
     /**
      * Reorder a particular field
      * @param fieldNum Number of the field to reorder
@@ -9917,7 +9916,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.reorderField(fieldNum, moveToPosition);
     }-*/;
-            
+
     /**
      * Reorder a set of adjacent fields, from start to end exclusive at the end, by distance moveDelta.<br><br> NOTE: start and
      * end coordinates are in terms of the currently visible fields, not the full set of fields.
@@ -9929,7 +9928,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.reorderFields(start, end, moveDelta);
     }-*/;
-            
+
     /**
      * Resize a particular field to a new width. Note that this method  will also set {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidth autoFitWidth} to false if it was previously true.
@@ -10049,7 +10048,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                }));
         }
    }-*/;
-            
+
     /**
      * If this listGrid can be edited, this method will return true if the row passed in has been edited, but the edits have
      * not yet been saved to the ListGrid's data object. <P> Note this method will not return true if a record has been marked
@@ -10070,7 +10069,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Does the specified row have unresolved errors?
      * @param rowNum rowNum to check for errors
@@ -10350,7 +10349,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                });
         }
    }-*/;
-            
+
     /**
      * Setter for  autoFitWidth. Enables or disables dynamic autoFitWidth behavior on the specified field. Note if the field is
      * currently autoFitWidth:true, and this method is disabling autoFit, the field will not be resized by default - if you
@@ -10363,7 +10362,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setAutoFitWidth(fieldName, autoFit);
     }-*/;
-            
+
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} is true, by default
      * any created record components are destroyed once they are no longer in use (for example in the ListGrid as a whole is
@@ -10377,7 +10376,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setDontAutoDestroyComponent(component.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), dontAutoDestroy);
     }-*/;
-            
+
     /**
      * Sets some presentation properties (visibility, width, userFormula and userSummary) of the  listGrid fields based on the
      * String object passed in.<br> Used to restore previous state retrieved from the grid by a call to {@link
@@ -10388,7 +10387,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setFieldState(fieldState);
     }-*/;
-            
+
     /**
      * Update the title of a {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderSpans headerSpan} dynamically.
      * @param name name of the headerSpan, as specified via {@link com.smartgwt.client.widgets.grid.HeaderSpan#getName name}.
@@ -10398,7 +10397,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setHeaderSpanTitle(name, newTitle);
     }-*/;
-            
+
     /**
      * Reset this grid's selection to match the String object passed in.<br> Used to restore previous state retrieved from the
      * grid by a call to  {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectedState ListGrid.getSelectedState}.
@@ -10408,7 +10407,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setSelectedState(selectedState);
     }-*/;
-            
+
     /**
      * Reset this grid's sort state (sort field and direction or list of  {@link com.smartgwt.client.data.SortSpecifier}s) to
      * match the  String object passed in.<br> Used to restore previous state retrieved from the grid by a call to  {@link
@@ -10419,7 +10418,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setSortState(sortState);
     }-*/;
-            
+
     /**
      * Reset this grid's view state to match the String object passed in.<br> Used to restore previous state retrieved from the
      * grid by a call to  {@link com.smartgwt.client.widgets.grid.ListGrid#getViewState ListGrid.getViewState}.
@@ -10429,7 +10428,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setViewState(viewState);
     }-*/;
-            
+
     /**
      * Start inline editing at the provided coordinates. <p> Invoked when a cell is editable and the <code>editEvent</code>
      * occurs on that cell.  Can also be invoked explicitly. <P> If this method is called while editing is already in progress,
@@ -10479,7 +10478,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                 return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Notification that the user is no longer hovering over some cell. Hides the current hover canvas if one is showing.
      */
@@ -10487,7 +10486,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.stopHover();
     }-*/;
-            
+
     /**
      * Toggles the sort-direction of the field with the passed name and resorts the grid.
      * @param fieldName The name of a field, visible, hidden or existing only in the    dataSource
@@ -10496,7 +10495,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.toggleSort(fieldName);
     }-*/;
-            
+
     /**
      * Removes the grouping from the listgrid, restoring its original data
      */
@@ -10504,7 +10503,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.ungroup();
     }-*/;
-            
+
     /**
      * Reverses a previous call to {@link com.smartgwt.client.widgets.grid.ListGrid#markRecordRemoved
      * ListGrid.markRecordRemoved}. <P> Note that a record that is marked for removal and then un-marked retains any uncommited
@@ -10516,7 +10515,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.unmarkRecordRemoved(rowNum);
     }-*/;
-            
+
     /**
      * Turn sorting off, typically because data has changed and is no longer sorted. <p> Calling <code>unsort()</code> disables
      * visual indication of which columns are sorted, and calls <code>unsort()</code> on the underlying dataset. <P> Note that
@@ -10529,7 +10528,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.unsort();
     }-*/;
-            
+
     /**
      * Validate the current set of edit values for the row in question. <P> Called when the user moves to a new edit row, or
      * when an edited record is to be saved if client side validation is enabled for this grid. <P> This method may also be
@@ -10583,7 +10582,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                });
         }
    }-*/;
-            
+
     /**
      * Compares the specified criteria with the current criteria applied to this component's data object and determines whether
      * the new criteria could be satisfied from the currently cached set of data, or if a new filter/fetch operation will be
@@ -10633,7 +10632,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * properties of this class. Can also be used for skinning / styling purposes.
      * <P>
      * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
-     * underlying class (including those automatically generated in JavaScript). 
+     * underlying class (including those automatically generated in JavaScript).
      * This method should not be used to apply standard EventHandlers or override methods for
      * a class - use a custom subclass instead.
      *
@@ -10644,8 +10643,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     	delete properties.ID;
         $wnd.isc.ListGrid.addProperties(properties);
     }-*/;
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
 	protected void onInit () {
@@ -10665,7 +10664,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.__getCellStyle = self.getCellStyle;
         self.getCellStyle = $debox($entry(function(record, rowNum, colNum) {
- 
+
             var jObj = this.__ref;
             var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             return jObj.@com.smartgwt.client.widgets.grid.ListGrid::getCellStyle(Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(recordJ, rowNum, colNum);
@@ -10702,11 +10701,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             return jObj.@com.smartgwt.client.widgets.grid.ListGrid::canEditCell(II)(rowNum, colNum);
         }));
 
-        
+
         self.__getRollOverCanvas = self.getRollOverCanvas;
         self.getRollOverCanvas = $entry(function(rowNum, colNum) {
             var jObj = this.__ref;
-            
+
             var rowNumJ = rowNum == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(rowNum),
             	colNumJ = colNum == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(colNum);
 
@@ -10723,7 +10722,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             var componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getRollUnderCanvas(Ljava/lang/Integer;Ljava/lang/Integer;)(rowNumJ, colNumJ);
             return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
         });
-        
+
         self.__createRecordComponent = self.createRecordComponent;
         if (self.__createRecordComponent == null) {
         	self.__createRecordComponent = function () {
@@ -10751,7 +10750,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             return ret;
         });
 
-        
+
         self.__updateRecordComponent = self.updateRecordComponent;
         if (self.__updateRecordComponent == null) {
         	self.__updateRecordComponent = function (record, colNum, component, recordChanged) {
@@ -10762,10 +10761,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 			var jObj = this.__ref;
     		var recordJ =  @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             var colNumJ = colNum == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(colNum);
-            var componentJ = component == null ? null : 
+            var componentJ = component == null ? null :
                @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
             componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::updateRecordComponent(Lcom/smartgwt/client/widgets/grid/ListGridRecord;Ljava/lang/Integer;Lcom/smartgwt/client/widgets/Canvas;Z)(recordJ, colNumJ, componentJ, recordChanged);
-            return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();        	
+            return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
         });
 
         self.__getExpansionComponent = self.getExpansionComponent;
@@ -10799,7 +10798,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             var dataSourceJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getRelatedDataSource(Lcom/smartgwt/client/widgets/grid/ListGridRecord;)(recordJ);
             return dataSourceJ == null ? null : dataSourceJ.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         });
-        
+
         self.__getValueIcon = self.getValueIcon;
         //the rowNum parameter is a non public parameter used for checking whether a cell is editable. Not exposed in the SGWT override method but
         //preserving the rownNum passthrough parameter
@@ -10829,7 +10828,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
             var componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getCellHoverComponent(Lcom/smartgwt/client/data/Record;Ljava/lang/Integer;Ljava/lang/Integer;)(recordJ,rowNumJ,colNumJ);
             return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
-        });    
+        });
     }-*/;
 
     /**
@@ -10893,7 +10892,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return retVal;
     }-*/;
 
-    
+
     /**
      * Returns the {@link com.smartgwt.client.data.DataSource} containing data related to the passed record.  Used when {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is true and {@link
@@ -10916,7 +10915,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }
         return retVal;
     }-*/;
-    
+
 
     /**
      * Removes an embedded component previously associated with the provided record.
@@ -10928,10 +10927,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeEmbeddedComponent(record.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-    
+
     /**
-     * Removes an embedded component from a grid. The record in which the component is embedded is 
-     * automatically derived from the Component passed in. If 
+     * Removes an embedded component from a grid. The record in which the component is embedded is
+     * automatically derived from the Component passed in. If
      * <code>destroyOnUnEmbed</code> is <code>true</code> for the component, it will also be destroyed.
      * @param component the embedded component
      */
@@ -10939,11 +10938,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeEmbeddedComponent(component.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-    
+
 
     /**
      * Removes an embedded component previously associated with the provided record and colNum.
-     * Only applies to components embedded directly in a specific cell. If 
+     * Only applies to components embedded directly in a specific cell. If
      * <code>destroyOnUnEmbed</code> is <code>true</code> for the component, it will also be destroyed.
      * @param record record that the component was previously attached to
      * @param colNum the colNum in which it appears
@@ -10952,7 +10951,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeEmbeddedComponent(record.@com.smartgwt.client.core.DataClass::getJsObj()(), colNum);
     }-*/;
-    
+
     /**
      * If  {@link com.smartgwt.client.widgets.grid.ListGrid#showRollUnderCanvas showRollUnderCanvas} is true, this
      * method will be called to create the canvas to display under the current row when a
@@ -10984,14 +10983,14 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return the embedded component
      */
     protected native Canvas createRecordComponent (ListGridRecord record, Integer colNum) /*-{
-    
+
       	var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-      	
+
       	record = record.@com.smartgwt.client.core.DataClass::getJsObj()();
       	colNum = colNum == null ? null : colNum.@java.lang.Integer::intValue()();
-      	
+
       	var component = self.__createRecordComponent(record, colNum);
-        return component == null ? null : 
+        return component == null ? null :
                @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
     }-*/;
 
@@ -11037,12 +11036,12 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         record = record.@com.smartgwt.client.core.DataClass::getJsObj()();
         colNum = colNum == null ? null : colNum.@java.lang.Integer::intValue()();
         component = component.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        
+
         component = self.__updateRecordComponent(record, colNum, component, recordChanged);
         return component == null ? null : @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
-        
+
     }-*/;
-    
+
     /**
      * If  {@link com.smartgwt.client.widgets.grid.ListGrid#showRollOverCanvas showRollOverCanvas} is true, this
      * method will be called to create the canvas to display over the current row when a
@@ -11053,14 +11052,14 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * <br><b>Note: This is an override point</b>
      *
      * @param rowNum Index of the current roll-over row
-     * @param colNum Index of the current roll-over column. This parameter will be null unless useCellRollOvers is true for the grid 
+     * @param colNum Index of the current roll-over column. This parameter will be null unless useCellRollOvers is true for the grid
      * @return the embedded component
      */
     protected native Canvas getRollOverCanvas(Integer rowNum, Integer colNum) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         rowNum = rowNum == null ? null : rowNum.@java.lang.Integer::intValue()();
         colNum = colNum == null ? null : colNum.@java.lang.Integer::intValue()();
-    
+
         var component = self.__getRollOverCanvas(rowNum, colNum);
         return @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
     }-*/;
@@ -11377,10 +11376,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * An array of Record objects, specifying the data to be used to populate the DataBoundComponent. 
+     * An array of Record objects, specifying the data to be used to populate the DataBoundComponent.
      *
      * @param data array of Record objects.
-     * @see #setData(ListGridRecord[])   
+     * @see #setData(ListGridRecord[])
      */
     public void setData(Record[] data) {
         setAttribute("data", data, true);
@@ -11404,7 +11403,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public RecordList getDataAsRecordList() {
         return getRecordList();
     }
-    
+
     /**
      * Synonym for {@link #setData(ListGridRecord[])}
      *
@@ -11415,14 +11414,14 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Returns the current set of records displayed in this grid as an array of ListGridRecord objects. 
+     * Returns the current set of records displayed in this grid as an array of ListGridRecord objects.
      * Note that if the ListGrid is grouped, you can call {@link #getGroupTree()}
      * to get the underlying Tree data representation. You can call {@link #isGrouped()} to test whether the ListGrid is
      * grouped on a field.
      * <p>
      * If this is a DataBound grid this method will return an empty array unless
      * the entire set of data for the current criteria has been loaded into the
-     * client, in which case all matching rows will be returned.  
+     * client, in which case all matching rows will be returned.
      * For DataBound grids, you can call {@link #getResultSet()} to retrieve
      * the current data set as a ResultSet object.
      *
@@ -11624,7 +11623,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * The RollUnder Canvas properties when {@link #setShowRollOver(Boolean) showRollover} is true and
-     * {@link #setShowRollOverCanvas(Boolean) showRollOverCanvas} is true. This canvas will be created and displayed behind the current rollOver 
+     * {@link #setShowRollOverCanvas(Boolean) showRollOverCanvas} is true. This canvas will be created and displayed behind the current rollOver
      * cell in the page's z-order, meaning it will only be visible if the cell styling is transparent.
      *
      * @param rollUnderCanvasProperties the roll under Canvas properties
@@ -11633,7 +11632,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public void setRollUnderCanvasProperties(Canvas rollUnderCanvasProperties) throws IllegalStateException {
         setAttribute("rollUnderCanvasProperties", rollUnderCanvasProperties.getConfig(), false);
     }
-    
+
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor} is true, this attribute may be
      * used to customize the filter button shown to the right of the filterEditor row.
@@ -11647,12 +11646,12 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Bind to a DataSource.
      * <P>
-     * Binding to a DataSource means that the component will use the DataSource to provide default data for 
+     * Binding to a DataSource means that the component will use the DataSource to provide default data for
      * its fields.
      * <P>
-     * When binding to a new DataSource, if the component has any existing "fields" or has a dataset, 
-     * these will be discarded by default, since it is assumed the new DataSource may represent a completely 
-     * unrelated set of objects. If the old "fields" are still relevant, pass them to setDataSource(). 
+     * When binding to a new DataSource, if the component has any existing "fields" or has a dataset,
+     * these will be discarded by default, since it is assumed the new DataSource may represent a completely
+     * unrelated set of objects. If the old "fields" are still relevant, pass them to setDataSource().
      * @param dataSource
      * @param fields
      */
@@ -11676,7 +11675,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         self.setDataSource(dataSource, fields);
     }-*/;
 
-    
+
     /**
      * An array of listGrid field configuration objects.  When a listGrid is initialized, if this property is set and there is
      * no value for the <code>fields</code> attribute, this.fields will be defaulted to a generated array of field objects
@@ -11710,7 +11709,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public void setDetailDS(DataSource detailDS) {
         setAttribute("detailDS", detailDS == null ? null : detailDS.getOrCreateJsObj(), true);
     }
-    
+
 
     /**
      * An array of listGrid field configuration objects.  When a listGrid is initialized, if this property is set and there is
@@ -11730,7 +11729,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public ListGridField[] getDefaultFields()  {
         return convertToListGridFieldArray(getAttributeAsJavaScriptObject("defaultFields"));
     }
-    
+
     /**
      * Standard properties to apply to the automatically generated checkbox field, shown when
      * {@link #setSelectionAppearance(),selectionAppearance} is set to "checkbox".
@@ -11781,7 +11780,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var topJS = top == null ? null : top.@java.lang.Integer::intValue()();
         body.scrollTo(leftJS, topJS);
      }-*/;
-    
+
     /**
      * Get the current scrollLeft for the body of this ListGrid
      * @return left scroll coordinate. May be null if this component has not been drawn.
@@ -11952,7 +11951,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var field = self.getField(fieldName);
 
         if(field == null || field === undefined) return null;
-        var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);        
+        var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
         return fieldJ;
     }-*/;
 
@@ -12117,7 +12116,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var ret = self.getEditCol();
         return ret == null ? -1 : ret;
     }-*/;
-    
+
     /**
      * Method to retrieve a live edit form item for an {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit editable}
      * ListGrid. This is the automatically generated editor displayed in a cell while editing the grid. <P> Note that this is
@@ -12129,7 +12128,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * into view.</li> <li>The items' values are managed by the ListGrid through the edit-values subsystem. If you want to
      * change an edit value for a field, call {@link com.smartgwt.client.widgets.grid.ListGrid#setEditValue
      * ListGrid.setEditValue} and the grid will handle updating the value in the live item if necessary. You should not need to
-     * call <code>setValue();</code> directly on the item and doing so will not always update the edit value for the grid. 
+     * call <code>setValue();</code> directly on the item and doing so will not always update the edit value for the grid.
      * </li></ul> In general - bear in mind that this is an advanced usage and if there is an equivalent API available on the
      * ListGrid it is always preferable to use that.
      * @param field fieldName or colNum to get the edit item for.
@@ -12147,7 +12146,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }
         return retVal;
     }-*/;
-    
+
     /**
      * Method to retrieve a live edit form item for an {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit editable}
      * ListGrid. This is the automatically generated editor displayed in a cell while editing the grid. <P> Note that this is
@@ -12159,7 +12158,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * into view.</li> <li>The items' values are managed by the ListGrid through the edit-values subsystem. If you want to
      * change an edit value for a field, call {@link com.smartgwt.client.widgets.grid.ListGrid#setEditValue
      * ListGrid.setEditValue} and the grid will handle updating the value in the live item if necessary. You should not need to
-     * call <code>setValue();</code> directly on the item and doing so will not always update the edit value for the grid. 
+     * call <code>setValue();</code> directly on the item and doing so will not always update the edit value for the grid.
      * </li></ul> In general - bear in mind that this is an advanced usage and if there is an equivalent API available on the
      * ListGrid it is always preferable to use that.
      * @param field fieldName or colNum to get the edit item for.
@@ -12349,7 +12348,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native void removeData(Record record, DSCallback callback, DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
-        var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();       
+        var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.removeData(recordJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
@@ -12494,10 +12493,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
 
     /**
-     * Save a number of outstanding edits for this ListGrid. If no rows are specified, all 
+     * Save a number of outstanding edits for this ListGrid. If no rows are specified, all
      * outstanding edits will be saved.
      *
-     * @return true if a save has been initiated (at least one row had changes, passed client-side validation, 
+     * @return true if a save has been initiated (at least one row had changes, passed client-side validation,
      *  and a save has been attempted).  false otherwise
      */
     public native boolean saveAllEdits() /*-{
@@ -12506,10 +12505,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
 
     /**
-     * Save a number of outstanding edits for this ListGrid. If no rows are specified, all 
+     * Save a number of outstanding edits for this ListGrid. If no rows are specified, all
      * outstanding edits will be saved.
      *
-     * 
+     *
      * @param callback this callback will be fired on a successful save. Note that if there are no pending edits to be saved this
      * callback will not fire - you can check for this condition using {@link #hasChanges()} or {@link #rowHasChanges()}.
      * Use {@link #addEditFailedHandler(EditFailedHandler)} to find out about failures encountered during saving (on a per-row basis).
@@ -12523,7 +12522,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
 
     /**
-     * Save a number of outstanding edits for this ListGrid. If no rows are specified, all 
+     * Save a number of outstanding edits for this ListGrid. If no rows are specified, all
      * outstanding edits will be saved.
      *
      * @param callback this callback will be fired on a successful save of the specified rows. Note that if there are no pending edits to be saved this
@@ -12593,7 +12592,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.freezeField(jsColNums);
     }-*/;
-    
+
     /**
      * Freeze the indicated fields, so that they remains in place and visible when horizontal scrolling occurs.
      *
@@ -12628,7 +12627,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Unfreeze the indicated fields, so that it will now scroll along with other fields when horizontal scrolling occurs.
-     * 
+     *
      * @param array of colNums to unfreeze
      */
     public native void unfreezeFields(int[] colNums) /*-{
@@ -12640,7 +12639,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Unfreeze the indicated fields, so that it will now scroll along with other fields when horizontal scrolling occurs.
-     * 
+     *
      * @param array of field names to unfreeze
      */
     public native void unfreezeFields(String[] fieldNames) /*-{
@@ -12673,7 +12672,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var ret = self.getVisibleRows();
         return @com.smartgwt.client.util.JSOHelper::convertToJavaInterArray(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-    
+
     /**
      * Returns the extents of the rows and columns current visible in this grid's viewport.
      *
@@ -12682,7 +12681,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native Integer[] getDrawArea() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getDrawArea();
-        return @com.smartgwt.client.util.JSOHelper::convertToJavaInterArray(Lcom/google/gwt/core/client/JavaScriptObject;)(ret); 
+        return @com.smartgwt.client.util.JSOHelper::convertToJavaInterArray(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
     /**
@@ -12853,10 +12852,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Returns the current temporary locally stored edit value for some field within a record being edited.
-     * 
+     *
      * @param rowNum index of the row for which the editValue should be returned
      * @param colNum index of the field for which value should be returned
-     * 
+     *
      * @return   edit value for the field in question
      */
     public native Object getEditValue(int rowNum, int colNum) /*-{
@@ -12868,7 +12867,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Modifies a field value being tracked as an unsaved user edit.
-     * 
+     *
      * @param rowNum row number
      * @param colNum column number of cell
      * @param value new value for the appropriate field
@@ -12962,7 +12961,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setEditValue(rowNum, colNum, value == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(value));
     }-*/;
-    
+
     /**
      * Modifies a field value being tracked as an unsaved user edit.
      *
@@ -13091,7 +13090,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * <li>it takes values for multiple fields</li>
      * <li>it clears out any previous edit values for the record</li>
      * </ul>
-     * 
+     *
      * @param rowNum the row num for the record being edited
      * @param values new values for the row
      */
@@ -13100,7 +13099,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var valuesJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(values);
         self.setEditValues(rowNum, valuesJS);
     }-*/;
-    
+
     /**
      * Returns the current temporary locally stored edit value for some field within a record being edited.
      *
@@ -13115,7 +13114,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var valueJ = $wnd.SmartGWT.convertToJavaType(value);
         return valueJ;
     }-*/;
-    
+
     private native JavaScriptObject getEditValueAsJSObj(int rowNum, String fieldName) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var value = self.getEditValue(rowNum, fieldName);
@@ -13212,7 +13211,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Returns the current set of unsaved edits for a given row being edited.
-     * 
+     *
      * @param rowNum rowNum of the record being edited
      * @return current editValues object for the row. This contains the current edit values in {fieldName1:value1, fieldName2:value2} format
      */
@@ -13241,7 +13240,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Set the validation errors for some row (replacing any pre-existant validation errors)
      *
-     * 
+     *
      * @param rowNum row to add validation error for
      * @param errors validation errors for the row. The key of the map must be the field name, and the value can either be a String error message
      * or an array of Strings for multiple errors
@@ -13254,7 +13253,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Set a validation error for some cell.
-     * 
+     *
      * @param rowNum row index of cell to add validation error for
      * @param fieldName field name of cell to add validation error for
      * @param errorMessage validation error message
@@ -13358,7 +13357,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             setAttribute("sortDirection", sortDirection == SortDirection.ASCENDING, true);
         }
     }
-    
+
     /**
      * Sorting direction of this ListGrid. If specified when the ListGrid is initialized, this property will be the default sorting direction for the {@link com.smartgwt.client.widgets.grid.ListGrid#getSortField sortField}. May be overridden by specifying {@link com.smartgwt.client.widgets.grid.ListGridField#getSortDirection sortDirection}. <P> After initialization, this property will be updated on {@link com.smartgwt.client.widgets.grid.ListGrid#sort} to reflect the current sort direction of the grid.
      *
@@ -13408,7 +13407,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor} is true, this method will return the criteria currently displayed in the <code>filterEditor</code>. Note that these values may differ from the criteria returned by {@link com.smartgwt.client.widgets.grid.ListGrid#getCriteria} if the filter editor values have been modified without performing an actual filter.
      *
-     * @param omitHiddenFields  By default this method will include criteria applied to fields, including 
+     * @param omitHiddenFields  By default this method will include criteria applied to fields, including
      *              criteria that are not actually visible/editable in the filterEditor for the grid.
      *              Pass in this parameter to get only values for visible fields returned.
      * @return criteria currently displayed in the filterEditor
@@ -13420,7 +13419,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
-    
+
     /**
      * Validate the current edit value for the cell in question.  Called when the user moves to a&#010 new edit cell if {@link com.smartgwt.client.widgets.grid.ListGrid#getValidateByCell validateByCell} is true.<br>&#010 This method may also be called directly to perform cell level validation at any time.&#010
      *
@@ -13533,13 +13532,13 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setValueMap(fieldName, @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(valueMap));
     }-*/;
-    
+
 
     /**
      * Set a valueMap to display for this field while editing.<br>
      * This method sets the +link{ListGridField.editorValueMap, field.editorValueMap} property and may be called
      * at runtime while editing the grid.
-     * 
+     *
      * @param fieldName Name  of field to update
      * @param valueMap ValueMap for the field
      */
@@ -13560,8 +13559,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setEditorValueMap(fieldName, @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(valueMap));
     }-*/;
-    
-    
+
+
     /**
      * Given a field with a specified {@link com.smargwt.client.widgets.grid.ListGridField#setValueMap(),valueMap}
      * or {@link com.smartgwt.client.widgets.grid.ListGridField#setDisplayField(),displayField},
@@ -13575,21 +13574,21 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var valueJ = $wnd.SmartGWT.convertToJavaType(valueJS);
         return valueJ;
     }-*/;
-    
+
     /**
      * Given a field with a specified {@link com.smargwt.client.widgets.grid.ListGridField#setValueMap(),valueMap}
      * or {@link com.smartgwt.client.widgets.grid.ListGridField#setDisplayField(),displayField},
      * this method will return the display value for any underlying data value.
      * @param fieldName Name of the field for which the displayValue is required
      * @param value data value for the field
-     */    
+     */
     public native Object getDisplayValue(String fieldName, float value) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var valueJS = self.getDisplayValue(fieldName, value);
         var valueJ = $wnd.SmartGWT.convertToJavaType(valueJS);
         return valueJ;
     }-*/;
-    
+
     /**
      * Given a field with a specified {@link com.smargwt.client.widgets.grid.ListGridField#setValueMap(),valueMap}
      * or {@link com.smartgwt.client.widgets.grid.ListGridField#setDisplayField(),displayField},
@@ -13603,28 +13602,28 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var valueJ = $wnd.SmartGWT.convertToJavaType(valueJS);
         return valueJ;
     }-*/;
-    
+
     /**
      * Given a field with a specified {@link com.smargwt.client.widgets.grid.ListGridField#setValueMap(),valueMap}
      * or {@link com.smartgwt.client.widgets.grid.ListGridField#setDisplayField(),displayField},
      * this method will return the display value for any underlying data value.
      * @param fieldName Name of the field for which the displayValue is required
      * @param value data value for the field
-     */    
+     */
     public native Object getDisplayValue(String fieldName, boolean value) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var valueJS = self.getDisplayValue(fieldName, value);
         var valueJ = $wnd.SmartGWT.convertToJavaType(valueJS);
         return valueJ;
     }-*/;
-    
+
     /**
      * Given a field with a specified {@link com.smargwt.client.widgets.grid.ListGridField#setValueMap(),valueMap}
      * or {@link com.smartgwt.client.widgets.grid.ListGridField#setDisplayField(),displayField},
      * this method will return the display value for any underlying data value.
      * @param fieldName Name of the field for which the displayValue is required
      * @param value data value for the field
-     */    
+     */
     public native Object getDisplayValue(String fieldName, Date value) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var dateJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(value);
@@ -13647,7 +13646,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Returns an array of every rowNum for which we have pending (unsubmitted) edits.
-     * 
+     *
      * @return array of rowNums for rows with edit values pending submission
      */
     public native int[] getAllEditRows() /*-{
@@ -13826,7 +13825,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             }));
         }
     }-*/;
-    
+
     /**
      * Add a sortChanged handler.
      * <p>
@@ -13861,32 +13860,32 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                });
         }
    }-*/;
-    
+
     /**
      * This method overrides {@link com.smartgwt.client.widgets.Canvas#willAcceptDrop} and works as follows:<br> <ul> <li>If
      * {@link com.smartgwt.client.widgets.Canvas#willAcceptDrop} (the superclass definition) returns false, this      method
      * always returns false.  This allows {@link com.smartgwt.client.widgets.Canvas#getDragType dragType} and     {@link
-     * com.smartgwt.client.widgets.Canvas#getDropTypes dropTypes} to be used to configure eligibility for drop.  By default,   
+     * com.smartgwt.client.widgets.Canvas#getDropTypes dropTypes} to be used to configure eligibility for drop.  By default,
      * a ListGrid has no dropTypes configured and so this check will not prevent a drop.</li> <li>If this is a self-drop, that
      * is, the user is dragging a record within this list, this is     an attempted drag-reorder.  If {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCanReorderRecords canReorderRecords} is      false, this method returns
      * false.</li> <li>If the {@link com.smartgwt.client.util.EventHandler#getDragTarget} is another widget, if     {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords} is false this method
      * returns false.</li> <li>If a call to {@link com.smartgwt.client.widgets.grid.ListGrid#getDragData} on the
-     * <code>dragTarget</code> fails to return     an record object or an array of records, this method returns false.</li> 
+     * <code>dragTarget</code> fails to return     an record object or an array of records, this method returns false.</li>
      * <li>If a the drop target record is disabled or has {@link
      * com.smartgwt.client.widgets.grid.ListGridRecord#getCanAcceptDrop canAcceptDrop}      set to false, return false.</li>
      * </ul> Note that this method may be called repeatedly during a drag-drop interaction to update the UI and notify the user
      * as to when they may validly drop data.
-     * 
+     *
      * <b> Note :</b> This is an override point
      *
      * @return true if this component will accept a drop of the dragData
      */
     public Boolean willAcceptDrop() {
-    	return super.willAcceptDrop();   
+    	return super.willAcceptDrop();
     }
-    
+
     /**
      * Add a handler that fires when records are dropped onto this ListGrid.
      * <P>
@@ -13895,15 +13894,15 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * If this is a self-drop, records are simply reordered.
      * <P>
      * For a drop from another widget, data is handled as though transferDragData() were called
-     * on the component from which records were dragged, which depending on the 
+     * on the component from which records were dragged, which depending on the
      * {@link ListGrid.dragDataAction dragDataAction} specified on the source component, may
      * either remove the source records from the original list
      * (<code>dragDataAction:"move"</code>) or just provide a copy to this list
      * (<code>dragDataAction:"copy"</code>).
      * <P>
      * If this grid is databound, the new records will be added to the dataset by calling
-     * dataSource.addData().  For all drops onto databound ListGrids from other databound 
-     * components, the {@link com.smartgwt.client.widgets.DataBoundComponent#addDropValues dropValues} 
+     * dataSource.addData().  For all drops onto databound ListGrids from other databound
+     * components, the {@link com.smartgwt.client.widgets.DataBoundComponent#addDropValues dropValues}
      * will be added as new attributes of each Record created from the dropped data.
      * <P>
      * For multi-node drops, Queuing is automatically used to combine all DSRequests into a
@@ -13956,8 +13955,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             }));
         }
     }-*/;
-    
-    
+
+
     /**
      * Add a recordExpand handler.
      * <p>
@@ -14063,7 +14062,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir, '[SKIN]/actions/sort_ascending.png');
         @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir, '[SKIN]/actions/sort_descending.png');
     }-*/;
-    
+
     /**
      * Returns a numeric value for the width of some field within this listGrid.
      * @param fieldNum Index of field for which width is to be determined.
@@ -14074,7 +14073,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getFieldWidth(fieldNum);
     }-*/;
- 
+
     /**
      * Returns a numeric value for the width of some field within this listGrid.
      * @param fieldName Name of field for which width is to be determined.
@@ -14133,10 +14132,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Return the underlying, ungrouped data of this DataBoundComponent as a {@link com.smartgwt.client.data.RecordList}.
      * <p>
-     * If this grid {@link #isGrouped is grouped}, 
-     * {@link com.smartgwt.client.widgets.DataBoundComponent#getRecordList} will return the 
+     * If this grid {@link #isGrouped is grouped},
+     * {@link com.smartgwt.client.widgets.DataBoundComponent#getRecordList} will return the
      * grouped data as a Tree.
-     * Use this method to return the underlying Array of Records or 
+     * Use this method to return the underlying Array of Records or
      * {@link com.smartgwt.client.data.ResultSet}, as if
      * the grid was ungrouped:
      * <pre>isGrouped() ? getOriginalRecordList() : getRecordList()</pre>
@@ -14199,7 +14198,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             return hoverCustomizer.@com.smartgwt.client.widgets.grid.HoverCustomizer::hoverHTML(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(valueJ, recordJ, rowNum, colNum);
         }));
     }-*/;
-    
+
 
     /**
      * This method allows developers to dynamically customize the form item displayed in an editable grid, based
@@ -14216,27 +14215,27 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
              self = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         }
         self.editorCustomizer = customizer;
-        
+
         if (self.customEditorPropertiesFunction) return;
         self.customEditorPropertiesFunction = true;
-    
+
         // disable reuse of form items since type is likely to change
         self.updateEditorItemsInPlace = false;
-        
+
         self.getEditorProperties = $debox($entry(function(editField, editedRecord, rowNum) {
             var editProperties = this.Super("getEditorProperties", arguments);
-            
-            var editorContext = { 
+
+            var editorContext = {
                 defaultProperties:editProperties,
                 rowNum:rowNum,
                 editField:editField,
                 editedRecord:editedRecord
             };
             var editorContextJ = @com.smartgwt.client.widgets.grid.ListGridEditorContext::new(Lcom/google/gwt/core/client/JavaScriptObject;)(editorContext);
-            
+
             var customizerJ = this.editorCustomizer;
             var editorJ = customizer.@com.smartgwt.client.widgets.grid.ListGridEditorCustomizer::getEditor(Lcom/smartgwt/client/widgets/grid/ListGridEditorContext;)(editorContextJ);
-            
+
             var editorJS = editorJ == null ? null : editorJ.@com.smartgwt.client.widgets.form.fields.FormItem::getEditorTypeConfig()();
             // Apply custom properties on top of standard item defaults.
             // This ensures field.type, field-level change handlers etc should be picked up even if
@@ -14246,8 +14245,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             }
             return editProperties;
         }));
-        
-    }-*/;    
+
+    }-*/;
     /**
      * Perform a one-time horizontal auto-fit of the fields passed. Fields will be sized to match their contents or title (as
      * specified in {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitWidthApproach autoFitWidthApproach}) Does not
@@ -14312,7 +14311,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var fieldsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(fields);
         self.hideFields(fieldsJS, suppressRelayout);
     }-*/;
-    
+
     /**
      * Force an array of fields to be shown. This method does not add new fields to the grid, it simply changes field
      * visibility. If a field.showIf expression exists, it will be destroyed. <P> Note: for showing multiple fields it is more
@@ -14325,7 +14324,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var fieldsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(fields);
         self.showFields(fieldsJS);
     }-*/;
-    
+
     /**
      * Force an array of fields to be shown. This method does not add new fields to the grid, it simply changes field
      * visibility. If a field.showIf expression exists, it will be destroyed. <P> Note: for showing multiple fields it is more
@@ -14338,7 +14337,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var fieldsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(fields);
         self.showFields(fieldsJS, suppressRelayout);
     }-*/;
-    
+
     /**
      * Force an array of fields to be shown. This method does not add new fields to the grid, it simply changes field
      * visibility. If a field.showIf expression exists, it will be destroyed. <P> Note: for showing multiple fields it is more
@@ -14351,7 +14350,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var fieldsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(fields);
         self.showFields(fieldsJS);
     }-*/;
-    
+
     /**
      * Force an array of fields to be shown. This method does not add new fields to the grid, it simply changes field
      * visibility. If a field.showIf expression exists, it will be destroyed. <P> Note: for showing multiple fields it is more
@@ -14379,7 +14378,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @param labelField name of the field
      *
      * @return created Chart instance
-     * 
+     *
      */
     public native FacetChart chartData(String labelField) /*-{
 	    var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -14415,9 +14414,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 	    var chartPropertiesJS = chartProperties == null ? null : chartProperties.@com.smartgwt.client.widgets.chart.FacetChart::getConfig()();
 	    var chartJS = self.chartData(labelField, dataFieldsJS, dataRowsJS, chartPropertiesJS, labelFieldFirst);
 	    return @com.smartgwt.client.widgets.chart.FacetChart::new(Lcom/google/gwt/core/client/JavaScriptObject;)(chartJS);
-	    
+
 	}-*/;
-    
+
     /**
      * Array of components that make up this grid. This array controls which standard and/or custom
      *  parts will be displayed within this ListGrid.
@@ -14430,30 +14429,30 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * The default value of <code>gridComponents</code> is an Array of {@link com.smartgwt.client.types.ListGridComponent}s
      * listing
      *  the standard components in their default order:
-     *  
+     *
      *  <pre>
-     *     [ListGridComponent.FILTER_EDITOR, ListGridComponent.HEADER, ListGridComponent.BODY, 
+     *     [ListGridComponent.FILTER_EDITOR, ListGridComponent.HEADER, ListGridComponent.BODY,
      *      ListGridComponent.SUMMARY_ROW]
      *  </pre>
-     * 
+     *
      *  You can override <code>gridComponents</code> to change the order of standard components.
      *  You can also omit standard components this way, although it more efficient to
      * use the related "show" property if available (eg {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor
      * showFilterEditor}). Note that
      *  this array must contain an entry for the <code>"body"</code> - listGrids with no body showing
      *  are unsupported.<br>
-     *  <i>Advanced note:</i> The live components generated for each of these standard 
+     *  <i>Advanced note:</i> The live components generated for each of these standard
      *  {@link com.smartgwt.client.types.ListGridComponent} types may differ across different listGrids. For example if this
      * grid has any {@link com.smartgwt.client.widgets.grid.ListGridField#getFrozen frozen fields}, the "body" entry will
      * actually
-     *  be created as an HLayout containing two GridRenderers (one for frozen fields, 
+     *  be created as an HLayout containing two GridRenderers (one for frozen fields,
      *  and one for unfrozen fields). This is really an implementation detail - the "body" entry
      *  in the gridComponents array simply specifies where the UI for the body should render within
-     *  the ListGrid layout. 
+     *  the ListGrid layout.
      *  <P>
      *  By embedding a Canvas directly in this list you can add arbitrary additional components to the
      *  listGrid as members, and have them be displayed alongside the standard automatically generated
-     *  parts of the ListGrid. 
+     *  parts of the ListGrid.
      *  <P>
      *  Note that having added controls to gridComponents, you can still call APIs directly on
      *  those controls to change their appearance, and you can also show() and hide() them if
@@ -14621,7 +14620,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Set the current hilites based on a hiliteState String previously returned from getHilitesState.
-     *  
+     *
      * @param hiliteState hilites state encoded as a String
      */
     public native void setHiliteState(String hiliteState)  /*-{
@@ -15045,14 +15044,14 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-    
+
    /**
-    * Exports this component's data with client-side formatters applied, so is suitable for 
-    * direct display to users.  This feature requires the SmartClient server, but does not 
+    * Exports this component's data with client-side formatters applied, so is suitable for
+    * direct display to users.  This feature requires the SmartClient server, but does not
     * rely on any server-side DataSources.
-    * <P>To export unformatted data from this component's dataSource, see 
+    * <P>To export unformatted data from this component's dataSource, see
     * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
-    * which does not include client-side formatters, 
+    * which does not include client-side formatters,
     * but relies on both the SmartClient server and server-side DataSources.
     * @see com.smartgwt.client.data.DataSource#exportClientData
     */
@@ -15062,12 +15061,12 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
 
    /**
-    * Exports this component's data with client-side formatters applied, so is suitable for 
-    * direct display to users.  This feature requires the SmartClient server, but does not 
+    * Exports this component's data with client-side formatters applied, so is suitable for
+    * direct display to users.  This feature requires the SmartClient server, but does not
     * rely on any server-side DataSources.
     * <P>To export unformatted data from this component's dataSource, see
     * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
-    * which does not include client-side formatters, 
+    * which does not include client-side formatters,
     * but relies on both the SmartClient server and server-side DataSources.
     * @param requestProperties Request properties for the export
     * @see com.smartgwt.client.data.DataSource#exportClientData
@@ -15111,6 +15110,69 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }
     }-*/;
 
+    /**
+     * Add a {@link com.smartgwt.client.widgets.DropCompleteHandler}.  See that class's documentation for a definition of "drop complete",
+     * and how it differs from "drag complete" ({@link com.smartgwt.client.widgets.DragCompleteHandler}).
+     *
+     * @param handler the DropCompleteHandler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDropCompleteHandler(DropCompleteHandler handler) {
+        if(getHandlerCount(DropCompleteEvent.getType()) == 0) setupDropCompleteEvent();
+        return doAddHandler(handler, DropCompleteEvent.getType());
+    }
+
+    private native void setupDropCompleteEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({dropComplete:$debox($entry(function(){
+                    var param = {"transferredRecords" : arguments[0]};
+                    var event = @com.smartgwt.client.widgets.events.DropCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                }))
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.dropComplete = $debox($entry(function(){
+                var param = {"transferredRecords" : arguments[0]};
+                var event = @com.smartgwt.client.widgets.events.DropCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            }));
+        }
+    }-*/;
+
+    /**
+     * Add a {@link com.smartgwt.client.widgets.DragCompleteHandler}.  See that class's documentation for a definition of "drag complete",
+     * and how it differs from "drop complete" ({@link com.smartgwt.client.widgets.DropCompleteHandler}).
+     *
+     * @param handler the DropCompleteHandler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDragCompleteHandler(DragCompleteHandler handler) {
+        if(getHandlerCount(DragCompleteEvent.getType()) == 0) setupDragCompleteEvent();
+        return doAddHandler(handler, DragCompleteEvent.getType());
+    }
+
+    private native void setupDragCompleteEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({dragComplete:$debox($entry(function(){
+                    var event = @com.smartgwt.client.widgets.events.DragCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)();
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                }))
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.dragComplete = $debox($entry(function(){
+                var event = @com.smartgwt.client.widgets.events.DragCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)();
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            }));
+        }
+    }-*/;
 }
 
 
