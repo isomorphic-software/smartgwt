@@ -439,4 +439,73 @@ public class DateUtil {
         if (jsDate == null) return null;
         return @com.smartgwt.client.util.JSOHelper::toDate(D)(jsDate.getTime());
     }-*/;
+    
+
+    /**
+     * Get a logical date - a value appropriate for a DataSourceField of type "date" - from a
+     * datetime value (a value from a DataSourceField of type "datetime").
+     * <P>
+     * This method correctly takes into account the current display timezone
+     * (see {@link setDefaultDisplayTimezone()}),, specifically, the returned Date
+     * will reflect the day, month and year that appears when the datetime is rendered
+     * by a SmartGWT component rather than the date values that would be returned by
+     * Date.getDay() et al (which can differ, since getDay() uses the browser's local timezone).
+     * <P>
+     * For further background on date, time and datetime types, storage and transmission, see
+     * {@link com.smartgwt.client.docs.DateFormatAndStorage, this overview}.
+     */
+    public static native Date getLogicalDateOnly (Date date) /*-{
+        var jsDate = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date);        
+        var jsLogicalDate = $wnd.Date.getLogicalDateOnly(jsDate);
+        if (jsLogicalDate == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toDate(D)(jsLogicalDate.getTime());
+    }-*/;
+    
+    /**
+     * Get a logical time - a value appropriate for a DataSourceField of type "time" - from a
+     * datetime value (a value from a DataSourceField of type "datetime").
+     * <P>
+     * This method correctly takes into account the current display timezone
+     * (see {@link setDefaultDisplayTimezone()}),
+     * specifically, the returned Date will
+     * reflect the hour, minute and second that appears when the datetime
+     * is rendered by a SmartGWT component rather than the time values that would be returned by
+     * Date.getHours() et al (which can differ, since getHours() uses the browser's local timezone).
+     * <P>
+     * For further background on date, time and datetime types, storage and transmission, see the
+     * {@link com.smartgwt.client.docs.DateFormatAndStorage, this overview}.
+     */
+    public static native Date getLogicalTimeOnly (Date date) /*-{
+        var jsDate = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date);
+        var jsLogicalTime = $wnd.Date.getLogicalTimeOnly(jsDate);
+        if (jsLogicalTime == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toDate(D)(jsLogicalTime.getTime());
+        
+    }-*/;
+    
+    /**
+     * Combine a logical date (a value appropriate for a DataSourceField of type "date") with a
+     * logical time (a value appropriate for a DataSourceField of type "time") into a datetime
+     * value (a value appropriate for a DataSourceField of type "datetime")
+     * <P>
+     * This method correctly takes into account the current display timezone
+     * (see {@link setDefaultDisplayTimezone()}), specifically, the returned datetime
+     * value will show the same date and time as the passed date and time objects when rendered by
+     * a SmartGWT component that has been configured with a field of type "datetime".
+     * <P>
+     * For further background on date, time and datetime types, storage
+     * {@link com.smartgwt.client.docs.DateFormatAndStorage, this overview}.
+     * @param date
+     * @param time
+     * @return
+     */
+    public static native Date combineLogicalDateAndTime (Date date, Date time) /*-{
+        var jsDate = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date);
+        var jsTime = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(time);
+
+        var jsDatetime = $wnd.Date.combineLogicalDateAndTime(jsDate, jsTime);
+        if (jsDatetime == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toDate(D)(jsDatetime.getTime());
+        
+    }-*/;
 }
