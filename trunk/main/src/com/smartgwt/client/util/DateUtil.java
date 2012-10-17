@@ -236,7 +236,7 @@ public class DateUtil {
      * applied when formatting datetimes.
      * {@link #setAdjustForDST(boolean)} may be used to disable this adjustment.
      *
-     * @param offset offset from UTC. This should be a string in the format <code>+/-HH:MM</code> for example <code>"-08:00"
+     * @param offset offset from UTC. This should be a string in the format <code>+/-HH:MM</code> for example <code>"-08:00"</code>
      */
     public static native void setDefaultDisplayTimezone(String offset) /*-{
         $wnd.isc.Time.setDefaultDisplayTimezone(offset);
