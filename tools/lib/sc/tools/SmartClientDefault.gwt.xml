@@ -1,5 +1,5 @@
 <module>
-   	<script src="sc/modules/ISC_Core.js"/>
+    <script src="sc/modules/ISC_Core.js"/>
     <script src="sc/modules/ISC_Foundation.js"/>
     <script src="sc/modules/ISC_Containers.js"/>
     <script src="sc/modules/ISC_Grids.js"/>

@@ -55,14 +55,18 @@ public class BuildDebugModule {
             hd.startDocument();
             AttributesImpl atts = new AttributesImpl();
             hd.startElement("", "", "module", atts);
+            hd.characters("\n    ".toCharArray(), 0, 5);
+            atts.clear();
+            atts.addAttribute("", "", "name", "CDATA", "com.smartclient.SmartClientNoScript");
+            hd.startElement("", "", "inherits", atts);
+            hd.endElement("", "", "inherits");
             for (int i = 0; i < nodes.getLength(); i++) {
                 String jsFileName = nodes.item(i).getTextContent();
                 if (jsFileName.indexOf("/") != -1)
                     jsFileName = jsFileName.substring(jsFileName.lastIndexOf("/"), jsFileName.length());
 
                 System.out.println("Processing \"" + jsFileName + "\" ...");
-                hd.characters("\n     ".toCharArray(), 0, 5);
-                hd.characters("\n     ".toCharArray(), 0, 5);
+                hd.characters("\n    ".toCharArray(), 0, 5);
                 atts.clear();
                 atts.addAttribute("", "", "src", "CDATA", "sc/modules-debug" + jsFileName);
                 hd.startElement("", "", "script", atts);

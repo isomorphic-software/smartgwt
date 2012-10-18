@@ -76,7 +76,7 @@
 		
         <zip destfile="${smartgwt.tools.lib}/sc/${SC_VER}/smartclient.jar">
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/modules-debug" includes="*.js"
-                        prefix="com/smartclient/debug/public/sc/modules-debug">
+                        prefix="com/smartclient/public/sc/modules-debug">
                 <exclude name="**/ISC_ClassBrowser.js"/>
                 <exclude name="**/ISC_DSBrowser.js"/>
                 <exclude name="**/ISC_EBay.js"/>
@@ -98,30 +98,19 @@
                         prefix="com/smartclient/tools/public/sc/system/development"/>
 
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/helpers" includes="printFrame.*,empty.html,*.css,*.svg,isomorphic_applets.jar"
-                        prefix="com/smartclient/debug/public/sc/system/helpers"/>
-		    <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/helpers" includes="printFrame.*,empty.html,*.css,*.svg,isomorphic_applets.jar"
-			            prefix="com/smartclient/public/sc/system/helpers"/>
+                        prefix="com/smartclient/public/sc/system/helpers"/>
 
-            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/reference"
-                        includes="skin/images/server_client_exchange.png"
-                        prefix="com/smartclient/debug/public/sc/system/helpers"/>
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/reference"
                         includes="skin/images/server_client_exchange.png"
                         prefix="com/smartclient/public/sc/system/helpers"/>
 
             <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/schema" includes="*.xml"
-                        prefix="com/smartclient/debug/public/sc/schema"/>
-            <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/schema" includes="*.xml"
                         prefix="com/smartclient/public/sc/schema"/>
 
 
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/schema" includes="*.xsl,*.wsdl"
-                        prefix="com/smartclient/debug/public/sc/system/schema"/>
-            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/schema" includes="*.xsl,*.wsdl"
                         prefix="com/smartclient/public/sc/system/schema"/>
 
-            <zipfileset dir="${smartgwt.build.out}/temp" includes="initsc.js"
-                        prefix="com/smartclient/debug/public/sc"/>
             <zipfileset dir="${smartgwt.build.out}/temp" includes="initsc.js"
                         prefix="com/smartclient/public/sc"/>
 
