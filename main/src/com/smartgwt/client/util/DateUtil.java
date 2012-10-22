@@ -455,10 +455,14 @@ public class DateUtil {
      * {@link com.smartgwt.client.docs.DateFormatAndStorage, this overview}.
      */
     public static native Date getLogicalDateOnly (Date date) /*-{
-        var jsDate = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date);        
-        var jsLogicalDate = $wnd.Date.getLogicalDateOnly(jsDate);
-        if (jsLogicalDate == null) return null;
-        return @com.smartgwt.client.util.JSOHelper::toDate(D)(jsLogicalDate.getTime());
+        var retVal =$wnd.isc.Date.getLogicalDateOnly(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date));
+        if (retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            retVal = @com.smartgwt.client.util.JSOHelper::toDate(D)(retVal.getTime());
+            retVal.logicalDate = true;
+            return retVal;
+        }
     }-*/;
     
     /**
@@ -476,11 +480,14 @@ public class DateUtil {
      * {@link com.smartgwt.client.docs.DateFormatAndStorage, this overview}.
      */
     public static native Date getLogicalTimeOnly (Date date) /*-{
-        var jsDate = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date);
-        var jsLogicalTime = $wnd.Date.getLogicalTimeOnly(jsDate);
-        if (jsLogicalTime == null) return null;
-        return @com.smartgwt.client.util.JSOHelper::toDate(D)(jsLogicalTime.getTime());
-        
+        var retVal = $wnd.isc.Date.getLogicalTimeOnly(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date));
+        if (retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            retVal = @com.smartgwt.client.util.JSOHelper::toDate(D)(retVal.getTime())
+            retVal.logicalTime = true;
+            return retVal;
+        }
     }-*/;
     
     /**
