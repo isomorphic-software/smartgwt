@@ -236,13 +236,14 @@ public class JSOHelper {
         if (value == null) {
             setAttribute(elem, attr, (String) null);
         } else {
-            setDateAttribute(elem, attr, value.getTime());
+            setDateAttribute(elem, attr, value.getTime(), value);
         }
     }
 
-    private static native void setDateAttribute(JavaScriptObject elem, String attr, double time) /*-{
-        var dateJS = $wnd.Date.create();
-        dateJS.setTime(time);
+    private static native void setDateAttribute(JavaScriptObject elem, String attr, double time, Date date) /*-{
+        var dateJS = new $wnd.Date(time);
+        dateJS.logicalDate = date.logicalDate;
+        dateJS.logicalTime = date.logicalTime;
         elem[attr] = dateJS;
     }-*/;
 
@@ -275,8 +276,15 @@ public class JSOHelper {
     }-*/;
 
     public static native Date getAttributeAsDate(JavaScriptObject elem, String attr) /*-{
-	    var ret = elem[attr];
-	    return (ret === undefined || ret == null) ? null: @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
+        var ret = elem[attr];
+        if (ret === undefined || ret == null) {
+            return null;
+        } else {
+            var retVal = @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
+            retVal.logicalDate = ret.logicalDate;
+            retVal.logicalTime = ret.logicalTime;
+            return retVal;
+        }
     }-*/;
 
     public static native Float getAttributeAsFloat(JavaScriptObject elem, String attr) /*-{
@@ -547,7 +555,7 @@ public class JSOHelper {
  
     public static JavaScriptObject convertToJavaScriptDate(Date date) {
         if(date == null) return null;
-        JavaScriptObject dateJS = doConvertToJavaScriptDate(date.getTime());
+        JavaScriptObject dateJS = doConvertToJavaScriptDate(date.getTime(), date);
         return dateJS;
     }
 
@@ -617,9 +625,10 @@ public class JSOHelper {
         return obj instanceof Boolean;
     }
 
-    private static native JavaScriptObject doConvertToJavaScriptDate(double time) /*-{
-        var dateJS = $wnd.Date.create();
-        dateJS.setTime(time);
+    private static native JavaScriptObject doConvertToJavaScriptDate(double time, Date date) /*-{
+        var dateJS = new $wnd.Date(time);
+        dateJS.logicalDate = date.logicalDate;
+        dateJS.logicalTime = date.logicalTime;
         return dateJS;
     }-*/;
 
@@ -695,11 +704,9 @@ public class JSOHelper {
         return new Date((long) millis);
     }
 
-    public static native JavaScriptObject toDateJS(Date date) /*-{
-        var dateJS = $wnd.Date.create();
-        dateJS.setTime(@com.smartgwt.client.util.JSOHelper::getTime(Ljava/util/Date;)(date));
-        return dateJS;
-    }-*/;
+    public static JavaScriptObject toDateJS(Date date) {
+        return convertToJavaScriptDate(date);
+    }
 
     public static Boolean toBoolean(boolean value) {
         return value;
@@ -717,13 +724,14 @@ public class JSOHelper {
         if(value == null) {
             setArrayValue(array, index, (String)null);
         } else {
-            setArrayDateValue(array, index, value.getTime());
+            setArrayDateValue(array, index, value.getTime(), value);
         }
     }
 
-    private static native void setArrayDateValue(JavaScriptObject array, int index, double time) /*-{
-        var dateJS = $wnd.Date.create();
-        dateJS.setTime(time);
+    private static native void setArrayDateValue(JavaScriptObject array, int index, double time, Date date) /*-{
+        var dateJS = new $wnd.Date(time);
+        dateJS.logicalDate = date.logicalDate;
+        dateJS.logicalTime = date.logicalTime;
         array[index] = dateJS;
     }-*/;
 
