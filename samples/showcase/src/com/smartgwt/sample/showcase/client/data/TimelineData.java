@@ -7,7 +7,7 @@ import java.util.Date;
 public class TimelineData {
 
     private static CalendarEvent[] records;
-    private static Date today = new Date(2012, 5, 2);
+    private static Date today = new Date(112, 5, 2);
     private static int year = today.getYear();
     private static int month = today.getMonth();
     private static int start = today.getDate();

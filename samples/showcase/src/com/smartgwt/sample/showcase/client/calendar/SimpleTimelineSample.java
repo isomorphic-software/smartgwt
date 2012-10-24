@@ -50,8 +50,8 @@ public class SimpleTimelineSample extends ShowcasePanel {
 
         Timeline calendar = new Timeline();
         calendar.setHeight(451);
-        calendar.setStartDate(new Date(2012, 5, 2));
-        calendar.setEndDate(new Date(2012, 5, 22));
+        calendar.setStartDate(new Date(112, 5, 2));
+        calendar.setEndDate(new Date(112, 5, 22));
         calendar.setData(TimelineData.getRecords());
         calendar.setLanes(developers);
         calendar.setCanResizeTimelineEvents(true);
