@@ -256,7 +256,9 @@ public class JSOHelper {
     }
 
     private static native void setDateAttribute(JavaScriptObject elem, String attr, double time, Date date) /*-{
-        var dateJS = new $wnd.Date(time);
+        // to get an isc.Date in all browers, must use $wnd.Date.create() rather than new $wnd.Date()
+        var dateJS = $wnd.Date.create();
+        dateJS.setTime(time);
         dateJS.logicalDate = date.logicalDate;
         dateJS.logicalTime = date.logicalTime;
         elem[attr] = dateJS;
@@ -675,7 +677,9 @@ public class JSOHelper {
     }
 
     private static native JavaScriptObject doConvertToJavaScriptDate(double time, Date date) /*-{
-        var dateJS = new $wnd.Date(time);
+        // to get an isc.Date in all browers, must use $wnd.Date.create() rather than new $wnd.Date()
+        var dateJS = $wnd.Date.create();
+        dateJS.setTime(time);
         dateJS.logicalDate = date.logicalDate;
         dateJS.logicalTime = date.logicalTime;
         return dateJS;
@@ -819,7 +823,9 @@ public class JSOHelper {
     }
 
     private static native void setArrayDateValue(JavaScriptObject array, int index, double time, Date date) /*-{
-        var dateJS = new $wnd.Date(time);
+        // to get an isc.Date in all browers, must use $wnd.Date.create() rather than new $wnd.Date()
+        var dateJS = $wnd.Date.create();
+        dateJS.setTime(time);
         dateJS.logicalDate = date.logicalDate;
         dateJS.logicalTime = date.logicalTime;
         array[index] = dateJS;
