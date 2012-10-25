@@ -24,6 +24,7 @@ import java.util.Map;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
+import com.google.gwt.core.client.JsDate;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.core.BaseClass;
 import com.smartgwt.client.core.DataClass;
@@ -242,30 +243,17 @@ public class JSOHelper {
     }-*/;
 
     public static native void setAttribute(JavaScriptObject elem, String attr, Function handler) /*-{
-	    elem[attr] = function() {
+	    elem[attr] = $entry(function() {
             handler.@com.smartgwt.client.core.Function::execute()();
-        };
+        });
     }-*/;
 
     public static void setAttribute(JavaScriptObject elem, String attr, Date value) {
-        if (value == null) {
-            setAttribute(elem, attr, (String) null);
-        } else {
-            setDateAttribute(elem, attr, value.getTime(), value);
-        }
+        setAttribute(elem, attr, convertToJavaScriptDate(value));
     }
 
-    private static native void setDateAttribute(JavaScriptObject elem, String attr, double time, Date date) /*-{
-        // to get an isc.Date in all browers, must use $wnd.Date.create() rather than new $wnd.Date()
-        var dateJS = $wnd.Date.create();
-        dateJS.setTime(time);
-        dateJS.logicalDate = date.logicalDate;
-        dateJS.logicalTime = date.logicalTime;
-        elem[attr] = dateJS;
-    }-*/;
-
     public static native void setObjectAttribute(JavaScriptObject elem, String attr, Object object) /*-{
-            elem[attr] = object;
+        elem[attr] = object;
     }-*/;
 
 
@@ -293,14 +281,19 @@ public class JSOHelper {
     }-*/;
 
     public static native Date getAttributeAsDate(JavaScriptObject elem, String attr) /*-{
-        var ret = elem[attr];
-        if (ret === undefined || ret == null) {
+        var jsD = elem[attr];
+        if (jsD == null || jsD === undefined) {
             return null;
         } else {
-            var retVal = @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
-            retVal.logicalDate = ret.logicalDate;
-            retVal.logicalTime = ret.logicalTime;
-            return retVal;
+            var ret;
+            if (jsD.logicalDate) {
+                ret = @com.smartgwt.client.util.LogicalDate::new(D)(jsD.getTime());
+            } else if (jsD.logicalTime) {
+                ret = @com.smartgwt.client.util.LogicalTime::new(D)(jsD.getTime());
+            } else {
+                ret = @com.smartgwt.client.util.JSOHelper::toDate(D)(jsD.getTime());
+            }
+            return ret;
         }
     }-*/;
 
@@ -603,11 +596,24 @@ public class JSOHelper {
     	}
     	return (List)javaObj;
     }
-    
-    public static JavaScriptObject convertToJavaScriptDate(Date date) {
-        if(date == null) return null;
-        JavaScriptObject dateJS = doConvertToJavaScriptDate(date.getTime(), date);
-        return dateJS;
+
+    private static native JsDate createJavaScriptDate(double time) /*-{
+        // Use $wnd.Date.create() instead of JsDate.create() so that instance methods like
+        // duplicate() are added to the resulting JavaScript date object.
+        var jsD = $wnd.Date.create();
+        jsD.setTime(time);
+        return jsD;
+    }-*/;
+
+    public static JsDate convertToJavaScriptDate(Date date) {
+        if (date == null) return null;
+        if (date instanceof LogicalDate) {
+            return ((LogicalDate)date).toJavaScriptDate();
+        } else if (date instanceof LogicalTime) {
+            return ((LogicalTime)date).toJavaScriptDate();
+        } else {
+            return createJavaScriptDate(date.getTime());
+        }
     }
 
     //explicitly cast Object to String to workaround GWT hosted mode but in certain browsers when originating string is obtained
@@ -675,15 +681,6 @@ public class JSOHelper {
     public static boolean isJavaBoolean(Object obj) {
         return obj instanceof Boolean;
     }
-
-    private static native JavaScriptObject doConvertToJavaScriptDate(double time, Date date) /*-{
-        // to get an isc.Date in all browers, must use $wnd.Date.create() rather than new $wnd.Date()
-        var dateJS = $wnd.Date.create();
-        dateJS.setTime(time);
-        dateJS.logicalDate = date.logicalDate;
-        dateJS.logicalTime = date.logicalTime;
-        return dateJS;
-    }-*/;
 
     public static <O extends JavaScriptObject> JsArray<O> convertToJsArray(O[] array) {
         if (array == null) return null;
@@ -786,19 +783,19 @@ public class JSOHelper {
     
     // Helper to get logical JS date / time objects. These objects will be recognized
     // as logical date / times for formatting / serialization purposes by the SmartClient system.
-    public static JavaScriptObject getJSLogicalDate(Date date) {
+    public static JsDate getJSLogicalDate(Date date) {
         return getJSLogicalDate(date.getYear(), date.getMonth(), date.getDate());
     }
-    public static native JavaScriptObject getJSLogicalDate(int year, int month, int date) /*-{
+    public static native JsDate getJSLogicalDate(int year, int month, int date) /*-{
         return $wnd.Date.createLogicalDate(year, month, date);
     }-*/;
 
-    public static native JavaScriptObject getJSLogicalTime(Date date) /*-{
+    public static native JsDate getJSLogicalTime(Date date) /*-{
         var time = @com.smartgwt.client.util.JSOHelper::getTime(Ljava/util/Date;)(date);
-        var jsDate = new Date().setTime(time);
+        var jsDate = $wnd.Date.create().setTime(time);
         return $wnd.Date.createLogicalTime(jsDate.getHours(), jsDate.getMinutes(), jsDate.getSeconds(), jsDate.getMilliseconds());
     }-*/;
-    public static native JavaScriptObject getJSLogicalTime(int hour, int minute, int second, int millisecond) /*-{
+    public static native JsDate getJSLogicalTime(int hour, int minute, int second, int millisecond) /*-{
         return $wnd.Date.createLogicalTime(hour, minute, second, millisecond);
     }-*/;
 
@@ -815,21 +812,8 @@ public class JSOHelper {
     }-*/;
 
     public static void setArrayValue(JavaScriptObject array, int index, Date value) {
-        if(value == null) {
-            setArrayValue(array, index, (String)null);
-        } else {
-            setArrayDateValue(array, index, value.getTime(), value);
-        }
+        setArrayValue(array, index, convertToJavaScriptDate(value));
     }
-
-    private static native void setArrayDateValue(JavaScriptObject array, int index, double time, Date date) /*-{
-        // to get an isc.Date in all browers, must use $wnd.Date.create() rather than new $wnd.Date()
-        var dateJS = $wnd.Date.create();
-        dateJS.setTime(time);
-        dateJS.logicalDate = date.logicalDate;
-        dateJS.logicalTime = date.logicalTime;
-        array[index] = dateJS;
-    }-*/;
 
     public static native void setArrayValue(JavaScriptObject array, int index, String value) /*-{
         array[index] = value;
@@ -893,14 +877,18 @@ public class JSOHelper {
         return (ret === undefined || ret == null) ? null : @com.smartgwt.client.util.JSOHelper::toFloat(F)(ret);
     }-*/;
 
-    public native static Date getDateArrayValue (JavaScriptObject array, int i) /*-{
+    public static native Date getDateArrayValue(JavaScriptObject array, int i) /*-{
         if (array == null || !$wnd.isc.isAn.Array(array)) return null;
         var val = array[i];
         if (!$wnd.isc.isA.Date(val)) return null;
-        var retVal = @com.smartgwt.client.util.JSOHelper::toDate(D)(val.getTime());
-        retVal.logicalDate = val.logicalDate;
-        retVal.logicalTime = val.logicalTime;
-        return retVal;
+        if (val.logicalDate) {
+            val = @com.smartgwt.client.util.LogicalDate::new(D)(val.getTime());
+        } else if (val.logicalTime) {
+            val = @com.smartgwt.client.util.LogicalTime::new(D)(val.getTime());
+        } else {
+            val = @com.smartgwt.client.util.JSOHelper::toDate(D)(val.getTime());
+        }
+        return val;
     }-*/;
 
 
