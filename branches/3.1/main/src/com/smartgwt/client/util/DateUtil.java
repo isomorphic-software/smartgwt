@@ -450,16 +450,14 @@ public class DateUtil {
      *  @param year
      *  @param month
      *  @param date
-     *  @return Date representing a logical date. 
+     *  @return LogicalDate representing a logical date. 
      */
-    public static native Date createLogicalDate(int year, int month, int date) /*-{
+    public static native LogicalDate createLogicalDate(int year, int month, int date) /*-{
         var jsDate = $wnd.Date.createLogicalDate(year, month, date);
         if (jsDate == null) return null;
-        var retVal = @com.smartgwt.client.util.JSOHelper::toDate(D)(jsDate.getTime());
-        retVal.logicalDate = true;
-        return retVal;
+        return @com.smartgwt.client.util.LogicalDate::new(D)(jsDate.getTime());
     }-*/;
-    
+
     /**
      * Create a new Date object to represent a logical time value (rather than a specific datetime
      * value), typically for display in a +link{DataSourceField.type,time type field}. The generated
@@ -473,16 +471,13 @@ public class DateUtil {
      * @param minute (0-59)
      * @param second (0-59)
      * @param millisecond (0-999)
-     * @return new Date representing the time in question
+     * @return new LogicalTime representing the time in question
      */
-    public static native Date createLogicalTime(int hour, int minute, int second, int millisecond) /*-{
+    public static native LogicalTime createLogicalTime(int hour, int minute, int second, int millisecond) /*-{
         var jsDate = $wnd.Date.createLogicalTime(hour, minute, second, millisecond);
         if (jsDate == null) return null;
-        var retVal = @com.smartgwt.client.util.JSOHelper::toDate(D)(jsDate.getTime());
-        retVal.logicalTime = true;
-        return retVal;
+        return @com.smartgwt.client.util.LogicalTime::new(D)(jsDate.getTime());
     }-*/;
-    
 
     // Wrappers for the standard Date format / parser functions applied to the Date class in SC.
     // Note that GWT has date parsing and formatting functions via Java util classes - just exposing these
