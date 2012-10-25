@@ -454,17 +454,15 @@ public class DateUtil {
      * For further background on date, time and datetime types, storage and transmission, see
      * {@link com.smartgwt.client.docs.DateFormatAndStorage, this overview}.
      */
-    public static native Date getLogicalDateOnly (Date date) /*-{
-        var retVal =$wnd.isc.Date.getLogicalDateOnly(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date));
-        if (retVal == null || retVal === undefined) {
+    public static native LogicalDate getLogicalDateOnly(Date date) /*-{
+        var jsD = $wnd.isc.Date.getLogicalDateOnly(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date));
+        if (jsD == null || jsD === undefined) {
             return null;
         } else {
-            retVal = @com.smartgwt.client.util.JSOHelper::toDate(D)(retVal.getTime());
-            retVal.logicalDate = true;
-            return retVal;
+            return @com.smartgwt.client.util.LogicalDate::new(D)(jsD.getTime());
         }
     }-*/;
-    
+
     /**
      * Get a logical time - a value appropriate for a DataSourceField of type "time" - from a
      * datetime value (a value from a DataSourceField of type "datetime").
@@ -479,17 +477,15 @@ public class DateUtil {
      * For further background on date, time and datetime types, storage and transmission, see the
      * {@link com.smartgwt.client.docs.DateFormatAndStorage, this overview}.
      */
-    public static native Date getLogicalTimeOnly (Date date) /*-{
-        var retVal = $wnd.isc.Date.getLogicalTimeOnly(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date));
-        if (retVal == null || retVal === undefined) {
+    public static native LogicalTime getLogicalTimeOnly(Date date) /*-{
+        var jsD = $wnd.isc.Date.getLogicalTimeOnly(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date));
+        if (jsD == null || jsD === undefined) {
             return null;
         } else {
-            retVal = @com.smartgwt.client.util.JSOHelper::toDate(D)(retVal.getTime())
-            retVal.logicalTime = true;
-            return retVal;
+            return @com.smartgwt.client.util.LogicalTime::new(D)(jsD.getTime());
         }
     }-*/;
-    
+
     /**
      * Combine a logical date (a value appropriate for a DataSourceField of type "date") with a
      * logical time (a value appropriate for a DataSourceField of type "time") into a datetime
