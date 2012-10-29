@@ -315,24 +315,26 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Grid Summaries", "grid-summaries-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Offline Preferences", "grid-offline-pref-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new OfflinePreferencesSample.Factory(), true, idSuffix),
 
-                    new ExplorerTreeNode("New Samples", "new-category", "root", "silk/new.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Custom Cell Editors", "grid-custom-editing-cell-new", "new-category", null, new GridCellEditorCustomizerSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Expression Filter", "grid-exp-filter-new", "new-category", null, new GridExpressionFilter.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Multiline Summaries", "grid-ml-summaries-new", "new-category", "crystal/16/apps/tooloptions.png", new GridMultiLineSummariesSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Grid Header Summaries", "grid-header-summaries-new", "new-category", "crystal/16/apps/tooloptions.png", new GridSummariesInHeaderSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Expression Filter", "grid-exp-filter-new", "new-category", null, new GridExpressionFilter.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Custom ListGrid Layout", "grid-components-new", "new-category", null, new GridComponentsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Preferences", "grid-appearance-preferences-new", "new-category", null, new GridPreferencesSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Shape Gallery", "shape-gallery-new", "new-category", null, new ShapeGallerySample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Rotation", "rotation-new", "new-category", null, new RotationSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Zoom and Pan", "zoom-and-pan-new", "new-category", null, new ZoomAndPanSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Lines and Arrowheads", "lines-and-arrowheads-new", "new-category", null, new LinesAndArrowheadsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Mouse Events", "mouse-events-new", "new-category", null, new DrawingMouseEventsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Simple Gradient", "simple-gradient-new", "new-category", null, new SimpleGradientSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Linear Gradient", "linear-gradient-new", "new-category", null, new LinearGradientSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Radial Gradient", "radial-gradient-new", "new-category", null, new RadialGradientSample.Factory(), true, idSuffix),
+                    
+                    new ExplorerTreeNode("New Samples", "new-category", "root", "silk/new.png", null, true, idSuffix), 
                     new ExplorerTreeNode("Gauge", "gauge-new", "new-category", null, new GaugeSample.Factory(), true, idSuffix),
-
+                    new ExplorerTreeNode("Multi ComboBox", "multicombobox-category-new", "new-category", null, new MultiComboBoxSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Cell Selection", "grid-interaction-cellselection-new", "new-category", null, new CellSelectionSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Grouping Modes", "grid-grouping-modes-new", "new-category", null, new GridGroupingModesSample.Factory(), true, idSuffix),
+                    
+                    new ExplorerTreeNode("Excel-style Copy and Paste", "grid-copy-paste-category-new", "new-category", "pieces/16/cube_blue.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Grid to Excel", "grid-to-excel-category-new", "grid-copy-paste-category-new", null, new GridToExcelSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Grid to Grid", "grid-to-grid-category-new", "grid-copy-paste-category-new", null, new GridToGridSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Excel to Grid", "excel-to-grid-category-new", "grid-copy-paste-category-new", null, new ExcelToGridSample.Factory(), true, idSuffix),
+                    
+                    new ExplorerTreeNode("Timeline", "timeline-category-new", "new-category", "pieces/16/cube_blue.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Simple Timeline", "simple-timeline-new", "timeline-category-new", null, new SimpleTimelineSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Databound Timeline", "databound-timeline-new", "timeline-category-new", null, new DataBoundTimelineSample.Factory(), true, idSuffix),
+                
+                    new ExplorerTreeNode("Portal","portal-category-new",  "new-category", "pieces/16/cube_blue.png", null, true, idSuffix),                   
+                    new ExplorerTreeNode("Portal", "layout-portal-new", "portal-category-new", "silk/application_view_tile.png", new SimplePortalSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Portal(manual)", "layout-portal-manual-new", "portal-category-new", "silk/application_view_tile.png", new SimplePortalManualSample.Factory(), true, idSuffix),
+     
 
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
 
