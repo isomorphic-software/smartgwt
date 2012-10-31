@@ -1969,11 +1969,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String multiSortDialog_firstSortLevelTitle();
 
   /**
-   * Translated "Columns may only be used once: $title is used multiple times.".
+   * Translated "Columns may only be used once: &#39;$title&#39; is used multiple times.".
    * 
-   * @return translated "Columns may only be used once: $title is used multiple times."
+   * @return translated "Columns may only be used once: &#39;$title&#39; is used multiple times."
    */
-  @DefaultMessage("Columns may only be used once: $title is used multiple times.")
+  @DefaultMessage("Columns may only be used once: &#39;$title&#39; is used multiple times.")
   @Key("multiSortDialog_invalidListPrompt")
   String multiSortDialog_invalidListPrompt();
 
