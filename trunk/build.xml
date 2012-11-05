@@ -6,7 +6,7 @@
 	<!-- "build" is the default when subprojects are directly targetted -->
 	<property name="target" value="build" />
 
-	<target name="dist" depends="main, doc, samples" description="Run the distributions">
+	<target name="dist" depends="main, doc, samples, qa" description="Run the distributions">
 		<gwt.ant dir="distro-source" />
 	</target>
 
@@ -16,9 +16,11 @@
 
     <target name="main"  description="Run SmartGWT">
 		<gwt.ant dir="main" />
-	</target>
+    </target>
 
-    
+    <target name="qa" depends="main" description="Compile support code for SmartClient QA tests">
+        <gwt.ant dir="qa" />
+    </target>
 
 	<target name="samples" depends="main" description="Build samples">
 		<gwt.ant dir="samples" />
