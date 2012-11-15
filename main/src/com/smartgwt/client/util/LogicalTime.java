@@ -6,6 +6,10 @@ import java.util.Date;
 
 public class LogicalTime extends Date {
 
+    private LogicalTime() {
+        super();
+    }
+
     private LogicalTime(long time) {
         super(time);
     }
