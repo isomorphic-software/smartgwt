@@ -10,11 +10,11 @@ public class LogicalDate extends Date {
         super();
     }
 
-    private LogicalDate(long time) {
+    LogicalDate(long time) {
         super(time);
     }
 
-    private LogicalDate(double time) {
+    LogicalDate(double time) {
         super((long)time);
     }
 
