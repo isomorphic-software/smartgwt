@@ -49,7 +49,7 @@ public class JSOHelper {
     public static native String getClassName(JavaScriptObject javaScriptObject)/*-{
         return javaScriptObject.getClassName();
     }-*/;
-    
+
     /**
      * Evaluate the passed string as Javascript
      *
@@ -66,7 +66,7 @@ public class JSOHelper {
     public static boolean isJSO(Object object) {
         return object instanceof JavaScriptObject;
     }
-    
+
     public static native String getAttribute(JavaScriptObject elem, String attr) /*-{
 	    var ret = elem[attr];
 	    return (ret === undefined || ret == null) ? null : String(ret);
@@ -81,7 +81,7 @@ public class JSOHelper {
 	    return (ret === undefined) ? null : ret;
     }-*/;
 
-    public static native JavaScriptObject[] getAttributeAsJavaScriptObjectArray(JavaScriptObject elem, String attr) /*-{        
+    public static native JavaScriptObject[] getAttributeAsJavaScriptObjectArray(JavaScriptObject elem, String attr) /*-{
         var arrayJS = elem[attr];
 	    return (arrayJS === undefined) ? null : @com.smartgwt.client.util.JSOHelper::toArray(Lcom/google/gwt/core/client/JavaScriptObject;)(arrayJS);
     }-*/;
@@ -101,13 +101,13 @@ public class JSOHelper {
     private static native JavaScriptObject resultSetToArray(JavaScriptObject rs) /*-{
     	if (!rs.lengthIsKnown() || !rs.allMatchingRowsCached()) return $wnd.Array.create();
     	return rs.getRange(0, rs.getLength());
-    	
+
     }-*/;
 
     public static native boolean isArray(JavaScriptObject jsObj)/*-{
         return $wnd.isc.isA.Array(jsObj);
     }-*/;
-    
+
     public static Element[] toElementArray(JavaScriptObject array) {
         int length = getJavaScriptObjectArraySize(array);
         Element[] recs = new Element[length];
@@ -367,35 +367,35 @@ public class JSOHelper {
     public static native JavaScriptObject getValueFromJavaScriptObjectArray(JavaScriptObject elem, int i) /*-{
 	    return elem[i];
     }-*/;
-    
+
     // Lists of cells are stored as arrays of 2 element arrays in JS.
     // Helpers to convert between this and the equivalent format in Java (int[][])
     public static int[][] getCellArray(JavaScriptObject jsCells) {
         if (jsCells == null) return null;
-        
+
         int length = JSOHelper.getArrayLength(jsCells);
         int[][] cells = new int[length][];
-        
+
         for (int i = 0; i < length; i++) {
             JavaScriptObject jsCell = JSOHelper.getValueFromJavaScriptObjectArray(jsCells, i);
             cells[i] = new int[2];
             cells[i][0] = JSOHelper.getIntArrayValue(jsCell, 0);
             cells[i][1] = JSOHelper.getIntArrayValue(jsCell, 1);
         }
-        return cells;   
+        return cells;
     }
-    
+
     public static JavaScriptObject convertToCellArray(int[][] cells) {
         if (cells == null) return null;
         JavaScriptObject jsCells = JSOHelper.createJavaScriptArray();
         for (int i = 0; i < cells.length; i++) {
             int[] cell = cells[i];
             JavaScriptObject jsCell = JSOHelper.convertToJavaScriptArray(cell);
-            JSOHelper.setArrayValue(jsCells, i, jsCell);            
+            JSOHelper.setArrayValue(jsCells, i, jsCell);
         }
         return jsCells;
     }
-    
+
 
     public static native boolean getAttributeAsBoolean(JavaScriptObject elem, String attr) /*-{
 	    var ret = elem[attr];
@@ -492,6 +492,15 @@ public class JSOHelper {
         return jsArray;
     }
 
+    public static JavaScriptObject convertToJavaScriptArray(float[] array) {
+        if(array == null) return null;
+        JavaScriptObject jsArray = createJavaScriptArray();
+        for (int i = 0; i < array.length; i++) {
+            JSOHelper.setArrayValue(jsArray, i, array[i]);
+        }
+        return jsArray;
+    }
+
     public static JavaScriptObject convertToJavaScriptArray(double[] array) {
         if(array == null) return null;
         JavaScriptObject jsArray = createJavaScriptArray();
@@ -524,7 +533,7 @@ public class JSOHelper {
      * JavaScript dates will be returned as Java Dates
      * Simple Javascript types such as integers, floats and strings will be returned as the equivalent
      * java object class (String, Integer, etc)
-     * 
+     *
      * @param object JavaScriptObject to convert
      * @param listAsArray Should arrays be converted to Object[] or List
      * @return converted Java object. May be a Map, a List or an Object[] depending on the underlying JS
@@ -533,11 +542,11 @@ public class JSOHelper {
     public native static Object convertToJava(JavaScriptObject object, boolean listAsArray) /*-{
     	return $wnd.SmartGWT.convertToJavaObject(object, listAsArray);
     }-*/;
-    
+
     public static Object convertToJava(JavaScriptObject object) {
     	return convertToJava(object, false);
     }
-    
+
     /**
      * Convert a Javascript object containing key:value pairs to a Map.
      * @param jsObj the javascript object
@@ -580,7 +589,7 @@ public class JSOHelper {
     	}
     	return (Object[])javaObj;
     }
-    
+
     /**
      * Convert a Javascript object to a List. If the Javascript object is not an array
      * in Javascript, a new List will be created containing the converted object as the only entry.
@@ -745,7 +754,7 @@ public class JSOHelper {
                     assert ! (val instanceof JavaScriptObject);
                     throw new UnsupportedOperationException("Can not convert element " + i + " of the array to a JavaScriptObject.  Instances of class `" + (val.getClass().getName()) + "' can not automatically be converted.  Please see the SmartClient documentation of RPCRequest.data for a table of Java types that can be converted automatically.");
                 } else JSOHelper.setArrayValue(jsArray, i, ((Object) val));
-            } 
+            }
         }
         return jsArray;
 
@@ -779,8 +788,8 @@ public class JSOHelper {
     public static JavaScriptObject toDateJS(Date date) {
         return convertToJavaScriptDate(date);
     }
-    
-    
+
+
     // Helper to get logical JS date / time objects. These objects will be recognized
     // as logical date / times for formatting / serialization purposes by the SmartClient system.
     public static JsDate getJSLogicalDate(Date date) {
@@ -802,7 +811,7 @@ public class JSOHelper {
     public static Boolean toBoolean(boolean value) {
         return value;
     }
-    
+
     public static native JavaScriptObject createJavaScriptArray() /*-{
         //Important : constructing an from JSNI array using [] or new Array() results in a
         //corrupted array object in the final javascript. The array ends up having the correct elements
@@ -867,6 +876,10 @@ public class JSOHelper {
         return array[index];
     }-*/;
 
+    public static native float getfloatArrayValue(JavaScriptObject array, int index) /*-{
+       return array[index];
+    }-*/;
+
     public static native Integer getIntegerArrayValue(JavaScriptObject array, int index) /*-{
         var ret = array[index];
         return (ret === undefined || ret == null) ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
@@ -892,7 +905,7 @@ public class JSOHelper {
     }-*/;
 
 
-    
+
     public static native int getArrayLength(JavaScriptObject array) /*-{
         return array.length;
     }-*/;
@@ -933,7 +946,7 @@ public class JSOHelper {
         }
         return arr;
     }
-    
+
     public static Date[] convertToJavaDateArray(JavaScriptObject array) {
         int length = getArrayLength(array);
         Date[] arr = new Date[length];
@@ -942,7 +955,7 @@ public class JSOHelper {
         }
         return arr;
     }
-    
+
 
     public static Object[] convertToJavaObjectArray(JavaScriptObject array) {
         if (array == null) return new Object[]{};
@@ -979,7 +992,7 @@ public class JSOHelper {
         setAttribute(jsObj, attr, valueJS);
     }
 
-    public static JavaScriptObject convertMapToJavascriptObject(Map valueMap) {    	
+    public static JavaScriptObject convertMapToJavascriptObject(Map valueMap) {
         if(valueMap == null) return null;
         JavaScriptObject valueJS = JSOHelper.createObject();
         for (Iterator iterator = valueMap.keySet().iterator(); iterator.hasNext();) {
@@ -993,7 +1006,7 @@ public class JSOHelper {
                 continue;
             }
             Object value = valueMap.get(key);
-            
+
             if (value instanceof JavaScriptObject) {
                 setAttribute(valueJS, key, (JavaScriptObject) value);
             } else if (value instanceof Date) {
@@ -1017,7 +1030,7 @@ public class JSOHelper {
             } else if (value instanceof long[]) {
                 setAttribute(valueJS, key, convertToJavaScriptArray((double[]) value));
             } else if (value instanceof Map) {
-            	JavaScriptObject innerMapJS = convertMapToJavascriptObject((Map) value); 
+            	JavaScriptObject innerMapJS = convertMapToJavascriptObject((Map) value);
             	setAttribute(valueJS, key, innerMapJS);
             } else if (value instanceof List){
                 setAttribute(valueJS, key, JSOHelper.convertToJavaScriptArray(((List)value).toArray()));
@@ -1036,7 +1049,7 @@ public class JSOHelper {
         return @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(props);
     }-*/;
 
-    public static native String getPropertiesAsString(JavaScriptObject jsObj) /*-{        
+    public static native String getPropertiesAsString(JavaScriptObject jsObj) /*-{
         var props = '{';
         for(var k in jsObj) {
             props += '\n' + k;
@@ -1048,7 +1061,7 @@ public class JSOHelper {
      * Adds all properties and methods from the propertiesObject to the destination object.
      *
      * @param destination the destination object
-     * @param propertiesObject the propertiesObject 
+     * @param propertiesObject the propertiesObject
      */
     public static native void addProperties(JavaScriptObject destination, JavaScriptObject propertiesObject) /*-{
         $wnd.isc.addProperties(destination, propertiesObject);
