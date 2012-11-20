@@ -52,7 +52,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }
 
     private static native void init()/*-{
-        $wnd.isc.setAutoDraw(false);               
+        $wnd.isc.setAutoDraw(false);
     }-*/;
 
     protected String id;
@@ -103,7 +103,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         return manager == null ? 0 : manager.getHandlerCount(type);
     }
 
-    public BaseWidget() {        
+    public BaseWidget() {
         String id = SC.generateID(getClass().getName());
         setID(id);
     }
@@ -123,6 +123,14 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     protected void setElement(Element elem) {
         super.setElement(elem);
         isElementSet = true;
+    }
+
+    /**
+     * Returns the javascript class name.
+     * @return
+     */
+    public String getClassName(){
+        return JSOHelper.getClassName(config);
     }
 
     /**
@@ -156,7 +164,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             var jObj = this.__ref;
             return jObj.@com.smartgwt.client.widgets.BaseWidget::getInnerHTML()();
         };
-        
+
         if (self.shouldRedrawOnResize == $wnd.isc.Canvas.getPrototype().shouldRedrawOnResize) {
         	self.shouldRedrawOnResize = function(deltaX, deltaY) {
         		var redrawOnResize = self.redrawOnResize;
@@ -174,7 +182,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
 				return redrawOnResize;
 			}
     	}
-        
+
         // onDraw() - undocumented method called from draw() as a draw-complete notification
         // Override this rather than overriding draw() directly - the latter adds a layer to the
         // stack depth on draw and when drawing deeply nested layouts etc increases the likelyhood
@@ -238,7 +246,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
      * Like {@link Canvas#clear()} calling <code>destroy()</code> removes all HTML for the component;
      * unlike clear(), a destroyed Canvas is permanently unusable: it cannot be draw()'n again and
      * cannot be referenced by its global ID. This method also removes all JavaScript references to
-     * the Canvas outside of application code, making it eligible for garbage collection (though 
+     * the Canvas outside of application code, making it eligible for garbage collection (though
      * developers will need to release any references to the canvas held in application code themselves).
      * <P>
      * Any attempt to call a method on a destroyed Canvas will generally result in an error.  If your
@@ -249,7 +257,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
      * <P>
      * Note that <code>destroy()</code> should not be called directly in event handling code for this
      * canvas. For this reason, wherever possible we recommend using {@link Canvas#markForDestroy()}
-     * instead of calling this method directly. 
+     * instead of calling this method directly.
      * <P>
      * <b>Note</b>: This is an override point
      */
@@ -396,8 +404,8 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         return $wnd.isc.Canvas.create(config);
     }-*/;
 
-    protected String getAttribute(String attribute) {
-        return getAttributeAsString(attribute);                  
+    public String getAttribute(String attribute) {
+        return getAttributeAsString(attribute);
     }
 
 
@@ -487,7 +495,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }-*/;
 
     protected native Date[] getAttributeAsDateArray(String property)/*-{
-        
+
         var ret;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             var widget = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
@@ -502,11 +510,11 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             }
         }
         if (!$wnd.isc.isA.Array(ret)) return null;
-        
+
         return @com.smartgwt.client.util.JSOHelper::convertToJavaDateArray(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        
+
     }-*/;
-    
+
     protected native Integer getAttributeAsInt(String property)/*-{
         var ret;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
@@ -685,6 +693,16 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }
 
     protected void setAttribute(String attribute, int[] value, boolean allowPostCreate) {
+        if (!isCreated()) {
+            JSOHelper.setAttribute(config, attribute, value);
+        } else if (allowPostCreate) {
+            setProperty(attribute, JSOHelper.convertToJavaScriptArray(value));
+        } else {
+            error(attribute, value.toString());
+        }
+    }
+
+    protected void setAttribute(String attribute, float[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -950,13 +968,13 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         s.scClassName = getScClassName();
         return s;
     }
-    
+
     public LogicalStructureObject getLogicalStructure() {
         BaseWidgetLogicalStructure s = new BaseWidgetLogicalStructure();
         setLogicalStructure(s);
         return s;
     }
-    
+
     public void initNativeObject() {
         this.nativeObject = new NativeObject(this);
     }

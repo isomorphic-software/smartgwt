@@ -59,14 +59,22 @@ public abstract class BaseClass {
     }
 
     public void setID(String id) {
-        
+
         if (this.id != null) {
             IDManager.unregisterID(this.id);
         }
-        
+
         IDManager.registerID(id);
         setAttribute("ID", id, false);
         this.id = id;
+    }
+
+    /**
+     * Returns the javascript class name.
+     * @return
+     */
+    public String getClassName(){
+        return JSOHelper.getClassName(config);
     }
 
     /**
@@ -111,17 +119,17 @@ public abstract class BaseClass {
         if (!isCreated()) {
             JavaScriptObject jsObj = create();
             JSOHelper.setAttribute(jsObj, SC.REF, this);
-            onInit();            
+            onInit();
             return jsObj;
         } else {
-            return getJsObj();            
+            return getJsObj();
         }
     }
 
     public static BaseClass getRef(JavaScriptObject jsObj) {
         return jsObj == null ? null : (BaseClass) JSOHelper.getAttributeAsObject(jsObj, SC.REF);
     }
-	
+
 	/**
 	 * Destroy this object.
 	 */
@@ -132,7 +140,7 @@ public abstract class BaseClass {
 		if (ID != null) {
 		    @com.smartgwt.client.util.IDManager::unregisterID(Ljava/lang/String;)(ID);
 		}
-	}-*/;	
+	}-*/;
 
     protected void error(String attribute, String value, boolean allowPostCreate) throws IllegalStateException {
         if (allowPostCreate) {
@@ -160,11 +168,11 @@ public abstract class BaseClass {
     protected void onInit() {}
 
 
- 
+
     public String getAttribute(String attribute) {
         return getAttributeAsString(attribute);
     }
-    
+
     public native String getAttributeAsString(String property)/*-{
         var ret;
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
