@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A device- and orientation-sensitive layout that implements the common pattern of rendering  two panes side-by-side on
@@ -73,22 +93,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class SplitPane extends VLayout {
 
-    public static SplitPane getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (SplitPane) obj;
-        } else {
-            return new SplitPane(jsObj);
+    public native static SplitPane getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("SplitPane",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.layout.SplitPane::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public SplitPane(){
         scClassName = "SplitPane";
     }
 
     public SplitPane(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "SplitPane";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -236,7 +267,7 @@ public class SplitPane extends VLayout {
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Sets the title for the Detail Pane.
      * @param title new title for the detail pane
@@ -245,7 +276,7 @@ public class SplitPane extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setDetailTitle(title);
     }-*/;
-            
+
     /**
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getLeftButtonIcon LeftButtonIcon}.
      * @param newIcon new icon for Left button
@@ -254,7 +285,7 @@ public class SplitPane extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setLeftButtonIcon(newIcon);
     }-*/;
-            
+
     /**
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getLeftButtonTitle leftButtonTitle}.  Note that this
      * is normally automatically set to the navigationPaneTitle or listPaneTitle as appropriate.
@@ -264,7 +295,7 @@ public class SplitPane extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setLeftButtonTitle(newTitle);
     }-*/;
-            
+
     /**
      * Sets the title for the List Pane.
      * @param title new title for the list pane
@@ -273,7 +304,7 @@ public class SplitPane extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setListTitle(title);
     }-*/;
-            
+
     /**
      * Sets the title for the Navigation Pane.
      * @param title new title for the navigation pane
@@ -282,7 +313,7 @@ public class SplitPane extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setNavigationTitle(title);
     }-*/;
-            
+
     /**
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getRightButtonIcon rightButtonIcon}.
      * @param newIcon new icon for right button
@@ -291,7 +322,7 @@ public class SplitPane extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setRightButtonIcon(newIcon);
     }-*/;
-            
+
     /**
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getRightButtonTitle rightButtonTitle}
      * @param newTitle new title for right button
@@ -300,7 +331,7 @@ public class SplitPane extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setRightButtonTitle(newTitle);
     }-*/;
-            
+
     /**
      * Show or hide the {@link com.smartgwt.client.widgets.layout.NavigationBar#getLeftButton leftButton}.  Note that the
      * default behavior is to automatically create and show a "back button" as the left button that allows transitioning back
@@ -311,7 +342,7 @@ public class SplitPane extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setShowLeftButton(visible);
     }-*/;
-            
+
     /**
      * Show or hide the {@link com.smartgwt.client.widgets.layout.NavigationBar#getRightButton rightButton}.
      * @param visible if true, the button will be shown, otherwise hidden.
@@ -320,7 +351,7 @@ public class SplitPane extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setShowRightButton(visible);
     }-*/;
-            
+
     /**
      * Causes a transition to the Detail Pane
      */
@@ -328,7 +359,7 @@ public class SplitPane extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.showDetailPane();
     }-*/;
-            
+
     /**
      * Causes a transition to the List Pane
      */
@@ -336,7 +367,7 @@ public class SplitPane extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.showListPane();
     }-*/;
-            
+
     /**
      * Causes a transition to the Navigation Pane
      */
@@ -389,7 +420,45 @@ public class SplitPane extends VLayout {
 	}-*/;
 
 
+    public LogicalStructureObject setLogicalStructure(SplitPaneLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.detailNavigationControl = getDetailNavigationControl();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SplitPane.detailNavigationControl:" + t.getMessage() + "\n";
+        }
+        try {
+            s.detailPane = getDetailPane();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SplitPane.detailPane:" + t.getMessage() + "\n";
+        }
+        try {
+            s.detailToolButtons = getDetailToolButtons();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SplitPane.detailToolButtonsArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.listPane = getListPane();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SplitPane.listPane:" + t.getMessage() + "\n";
+        }
+        try {
+            s.navigationBar = getNavigationBar();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SplitPane.navigationBar:" + t.getMessage() + "\n";
+        }
+        try {
+            s.navigationPane = getNavigationPane();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SplitPane.navigationPane:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        SplitPaneLogicalStructure s = new SplitPaneLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

@@ -51,11 +51,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class DragStart extends AbstractSmartEvent<DragStartHandler>  implements Cancellable {
@@ -94,7 +96,6 @@ public class DragStart extends AbstractSmartEvent<DragStartHandler>  implements 
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(DragStartHandler handler) {
         handler.onDragStart(this);
@@ -112,7 +113,6 @@ public class DragStart extends AbstractSmartEvent<DragStartHandler>  implements 
     public DragStart(JavaScriptObject jsObj) {
         super(jsObj);
     }
-
 
     /**
      * Call this method to cancel the default behavior of allowing the shape to be drag-moved

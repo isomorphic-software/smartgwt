@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * DrawItem subclass to render a single-line text label.
@@ -73,12 +93,18 @@ public class DrawLabel extends DrawItem {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
+    }
+
+
     public DrawLabel(){
         scClassName = "DrawLabel";
     }
 
     public DrawLabel(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "DrawLabel";
+        setJavaScriptObject(jsObj);
     }
 
     public native JavaScriptObject create()/*-{
@@ -89,9 +115,29 @@ public class DrawLabel extends DrawItem {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * Sets the text alignment from the x position. Similar to html5 context.textAlign, eg "start", "center", "end"
+     *
+     * @param alignment . See {@link com.smartgwt.client.docs.String String}. Default value is "start"
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setAlignment(String alignment)  throws IllegalStateException {
+        setAttribute("alignment", alignment, false);
+    }
+
+    /**
+     * Sets the text alignment from the x position. Similar to html5 context.textAlign, eg "start", "center", "end"
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     */
+    public String getAlignment()  {
+        return getAttributeAsString("alignment");
+    }
+
+    /**
      * This is the content that will exist as the label.
      *
-     * @param contents contents Default value is null
+     * @param contents . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setContents(String contents)  throws IllegalStateException {
@@ -102,7 +148,7 @@ public class DrawLabel extends DrawItem {
      * This is the content that will exist as the label.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getContents()  {
         return getAttributeAsString("contents");
@@ -111,7 +157,7 @@ public class DrawLabel extends DrawItem {
     /**
      * Font family name, similar to the CSS font-family attribute.
      *
-     * @param fontFamily fontFamily Default value is "Tahoma"
+     * @param fontFamily . See {@link com.smartgwt.client.docs.String String}. Default value is "Tahoma"
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setFontFamily(String fontFamily)  throws IllegalStateException {
@@ -122,7 +168,7 @@ public class DrawLabel extends DrawItem {
      * Font family name, similar to the CSS font-family attribute.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getFontFamily()  {
         return getAttributeAsString("fontFamily");
@@ -151,7 +197,7 @@ public class DrawLabel extends DrawItem {
     /**
      * Font style, similar to the CSS font-style attribute, eg "normal", "italic".
      *
-     * @param fontStyle fontStyle Default value is "normal"
+     * @param fontStyle . See {@link com.smartgwt.client.docs.String String}. Default value is "normal"
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setFontStyle(String fontStyle)  throws IllegalStateException {
@@ -162,7 +208,7 @@ public class DrawLabel extends DrawItem {
      * Font style, similar to the CSS font-style attribute, eg "normal", "italic".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getFontStyle()  {
         return getAttributeAsString("fontStyle");
@@ -171,7 +217,7 @@ public class DrawLabel extends DrawItem {
     /**
      * Font weight, similar to the CSS font-weight attribute, eg "normal", "bold".
      *
-     * @param fontWeight fontWeight Default value is "bold"
+     * @param fontWeight . See {@link com.smartgwt.client.docs.String String}. Default value is "bold"
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setFontWeight(String fontWeight)  throws IllegalStateException {
@@ -182,7 +228,7 @@ public class DrawLabel extends DrawItem {
      * Font weight, similar to the CSS font-weight attribute, eg "normal", "bold".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getFontWeight()  {
         return getAttributeAsString("fontWeight");
@@ -209,6 +255,26 @@ public class DrawLabel extends DrawItem {
     }
 
     /**
+     * Rotation in degrees. <p><b>NOTE:</b> For best results, only use rotation values 0, 90, 180, and 270 with DrawLabels.
+     *
+     * @param rotation rotation Default value is 0.0
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setRotation(float rotation)  throws IllegalStateException {
+        setAttribute("rotation", rotation, false);
+    }
+
+    /**
+     * Rotation in degrees. <p><b>NOTE:</b> For best results, only use rotation values 0, 90, 180, and 270 with DrawLabels.
+     *
+     *
+     * @return float
+     */
+    public float getRotation()  {
+        return getAttributeAsFloat("rotation");
+    }
+
+    /**
      * Sets the amount from the top of its positioning that the element should be placed.
      *
      * @param top top Default value is 0
@@ -229,7 +295,7 @@ public class DrawLabel extends DrawItem {
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Move both the start and end points of the line by a relative amount.
      * @param left change to left coordinate in pixels
@@ -239,7 +305,7 @@ public class DrawLabel extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.moveBy(left, top);
     }-*/;
-            
+
     /**
      * Move the label to the absolute x, y coordinates
      * @param left new startLeft coordinate in pixels
@@ -249,7 +315,7 @@ public class DrawLabel extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.moveTo(left, top);
     }-*/;
-            
+
     /**
      * Rotate the label by the absolute rotation in degrees
      * @param degrees number of degrees to rotate

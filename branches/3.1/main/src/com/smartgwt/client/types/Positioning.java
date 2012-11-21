@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  */
 public enum Positioning implements ValueEnum {
@@ -27,7 +28,6 @@ public enum Positioning implements ValueEnum {
      * The canvas is relatively positioned according to the document flow.
      */
     RELATIVE("relative");
-
     private String value;
 
     Positioning(String value) {
@@ -38,3 +38,4 @@ public enum Positioning implements ValueEnum {
         return this.value;
     }
 }
+        

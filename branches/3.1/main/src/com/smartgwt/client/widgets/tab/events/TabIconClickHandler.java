@@ -18,6 +18,13 @@ package com.smartgwt.client.widgets.tab.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface TabIconClickHandler extends EventHandler {
-
+    /**
+     * Method fired when the user clicks the icon for a tab, as specified via {@link
+     * com.smartgwt.client.widgets.tab.Tab#getIcon icon}. <P> Default behavior will fire <code>icon.click()</code> if
+     * specified, with two parameters <code>tab</code> (a pointer to the tab object and <code>tabSet</code> a pointer to the
+     * tabSet instance.
+     *
+     * @param event the event
+     */
     void onTabIconClick(com.smartgwt.client.widgets.tab.events.TabClickEvent event);
 }

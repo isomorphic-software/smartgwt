@@ -1,4 +1,4 @@
-
+	    
 package com.smartgwt.client.docs;
 
 /**
@@ -43,7 +43,8 @@ package com.smartgwt.client.docs;
  *  However, let's say that the first pane of the wizard is going to incorporate some dynamic
  *  user-specific data, such as the current user's name.  To load the username, we'll use an RPC
  *  operation targetting a .jsp called "getUserName.jsp" and show the wizard when it completes
- *  (see {@link com.smartgwt.client.rpc.RPCManager} for information on RPCs and how to construct a .jsp that can
+ * (see {@link com.smartgwt.client.rpc.RPCManager} for information on RPCs and how to construct a
+ * .jsp that can
  *  send an RPC response).
  *  <pre>
  *     function showNewUserWizard() {
@@ -86,7 +87,8 @@ package com.smartgwt.client.docs;
  *  and contained within a JSP is still a separately cacheable resource when loaded via a
  *  &lt;SCRIPT SRC&gt; tag and advertised as a cacheable resource via HTTP headers, because it
  *  is ultimately delivered to the browser as simple JavaScript.  Hence standard 
- *  {@link i18n internationalization} techniques such as using JSTL tags in a JSP remain
+ * {@link com.smartgwt.client.docs.I18n internationalization} techniques such as using JSTL tags
+ * in a JSP remain
  *  applicable.
  *  <br>
  *  The Smart GWT Architecture even allows you to capture all the gradations of cacheability

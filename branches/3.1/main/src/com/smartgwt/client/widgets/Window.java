@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A general purpose Window class for implementing dialogs, portlets, alerts, prompts, wizards and desktop-like windowing
@@ -68,24 +88,35 @@ import com.google.gwt.event.shared.HasHandlers;
  * simple prompts and confirmations, such as buttons with default actions, and single-method {@link
  * com.smartgwt.client.util.isc#warn shortcuts} for common application dialogs.
  */
-public class Window extends VLayout  implements com.smartgwt.client.widgets.events.HasMaximizeClickHandlers, com.smartgwt.client.widgets.events.HasMinimizeClickHandlers, com.smartgwt.client.widgets.events.HasRestoreClickHandlers, com.smartgwt.client.widgets.events.HasCloseClickHandlers {
+public class Window extends VLayout  implements com.smartgwt.client.widgets.events.HasCloseClickHandlers, com.smartgwt.client.widgets.events.HasMaximizeClickHandlers, com.smartgwt.client.widgets.events.HasMinimizeClickHandlers, com.smartgwt.client.widgets.events.HasRestoreClickHandlers {
 
-    public static Window getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (Window) obj;
-        } else {
-            return new Window(jsObj);
+    public native static Window getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("Window",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.Window::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public Window(){
         setShowHeaderIcon(false);scClassName = "Window";
     }
 
     public Window(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "Window";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -175,7 +206,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     /**
      * Color of the Window body. Overrides the background color specified in the style.
      *
-     * @param bodyColor bodyColor Default value is "#FFFFFF"
+     * @param bodyColor . See {@link com.smartgwt.client.docs.String String}. Default value is "#FFFFFF"
      * @see com.smartgwt.client.widgets.Window#flash
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -187,7 +218,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Color of the Window body. Overrides the background color specified in the style.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.Window#flash
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -198,7 +229,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     /**
      * Style of the Window body.
      *
-     * @param bodyStyle bodyStyle Default value is "windowBody"
+     * @param bodyStyle . See {@link com.smartgwt.client.docs.String String}. Default value is "windowBody"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setBodyStyle(String bodyStyle) {
@@ -209,7 +240,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Style of the Window body.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getBodyStyle()  {
@@ -293,7 +324,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * com.smartgwt.client.widgets.Window#getBodyConstructor bodyConstructor} for details.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param contentLayout contentLayout Default value is "vertical"
+     * @param contentLayout . See {@link com.smartgwt.client.docs.String String}. Default value is "vertical"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setContentLayout(String contentLayout) {
@@ -307,7 +338,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * com.smartgwt.client.widgets.Window#getBodyConstructor bodyConstructor} for details.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getContentLayout()  {
@@ -320,7 +351,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * com.smartgwt.client.widgets.HTMLFlow#getContentsType contentsType} property - be sure to read the HTMLFlow documentation
      * to understand circumstances where contentsType:"page" is <b>unsafe and not recommended</b>.
      *
-     * @param contentsType contentsType Default value is "page"
+     * @param contentsType . See {@link com.smartgwt.client.docs.String String}. Default value is "page"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.Window#setSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -336,7 +367,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * to understand circumstances where contentsType:"page" is <b>unsafe and not recommended</b>.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.Window#getSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -445,7 +476,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * property provides the URL of the background image for the header.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param headerSrc headerSrc Default value is "[SKIN]Window/headerGradient.gif" | null
+     * @param headerSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]Window/headerGradient.gif" | null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setHeaderSrc(String headerSrc) {
@@ -457,7 +488,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * property provides the URL of the background image for the header.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getHeaderSrc()  {
@@ -468,7 +499,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Style for the Window header.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param headerStyle headerStyle Default value is "WindowHeader"
+     * @param headerStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "WindowHeader"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setHeaderStyle(String headerStyle) {
@@ -479,7 +510,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Style for the Window header.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getHeaderStyle()  {
@@ -489,7 +520,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     /**
      * Highlight color for the Window body (shown when the body is flashed).
      *
-     * @param hiliteBodyColor hiliteBodyColor Default value is "#EEEEEE"
+     * @param hiliteBodyColor . See {@link com.smartgwt.client.docs.String String}. Default value is "#EEEEEE"
      * @see com.smartgwt.client.widgets.Window#flash
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -501,7 +532,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Highlight color for the Window body (shown when the body is flashed).
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.Window#flash
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -515,7 +546,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * com.smartgwt.client.widgets.Window#flash flashed}
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param hiliteHeaderSrc hiliteHeaderSrc Default value is "[SKIN]Window/headerGradient_hilite.gif" | null
+     * @param hiliteHeaderSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]Window/headerGradient_hilite.gif" | null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setHiliteHeaderSrc(String hiliteHeaderSrc) {
@@ -528,7 +559,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * com.smartgwt.client.widgets.Window#flash flashed}
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getHiliteHeaderSrc()  {
@@ -540,7 +571,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * flashed}
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param hiliteHeaderStyle hiliteHeaderStyle Default value is "WindowHeader"
+     * @param hiliteHeaderStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "WindowHeader"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setHiliteHeaderStyle(String hiliteHeaderStyle) {
@@ -552,7 +583,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * flashed}
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getHiliteHeaderStyle()  {
@@ -739,7 +770,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     /**
      * Specifies the CSS style for the modal mask.
      *
-     * @param modalMaskStyle modalMaskStyle Default value is "modalMask"
+     * @param modalMaskStyle . See {@link com.smartgwt.client.docs.String String}. Default value is "modalMask"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.Window#setModalMask
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -752,12 +783,48 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Specifies the CSS style for the modal mask.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.Window#getModalMask
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getModalMaskStyle()  {
         return getAttributeAsString("modalMaskStyle");
+    }
+
+    /**
+     * Renders the widget to be partly transparent. A widget's opacity property may be set to any number between 0
+     * (transparent) to 100 (opaque). Null means don't specify opacity directly, 100 is fully opaque. Note that heavy use of
+     * opacity may have a performance impact on some older browsers. <P> In older versions of Internet Explorer (Pre IE9 /
+     * HTML5), opacity is achieved through proprietary filters. If  {@link com.smartgwt.client.widgets.Canvas#neverUseFilters
+     * filters have been disabled} within this application developers must set {@link
+     * com.smartgwt.client.widgets.Canvas#getUseOpacityFilter useOpacityFilter} to true for specific components on which
+     * opacity support is required. <P> Also note that opacity is incompatible  with {@link
+     * com.smartgwt.client.widgets.Canvas#getUseBackMask backMasks}, and that this property is enabled by default for Window
+     * instances.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param opacity opacity Default value is null
+     */
+    public void setOpacity(Integer opacity) {
+        setAttribute("opacity", opacity, true);
+    }
+
+    /**
+     * Renders the widget to be partly transparent. A widget's opacity property may be set to any number between 0
+     * (transparent) to 100 (opaque). Null means don't specify opacity directly, 100 is fully opaque. Note that heavy use of
+     * opacity may have a performance impact on some older browsers. <P> In older versions of Internet Explorer (Pre IE9 /
+     * HTML5), opacity is achieved through proprietary filters. If  {@link com.smartgwt.client.widgets.Canvas#neverUseFilters
+     * filters have been disabled} within this application developers must set {@link
+     * com.smartgwt.client.widgets.Canvas#getUseOpacityFilter useOpacityFilter} to true for specific components on which
+     * opacity support is required. <P> Also note that opacity is incompatible  with {@link
+     * com.smartgwt.client.widgets.Canvas#getUseBackMask backMasks}, and that this property is enabled by default for Window
+     * instances.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getOpacity()  {
+        return getAttributeAsInt("opacity");
     }
 
     /**
@@ -1088,7 +1155,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the URL of the contents to display in the body of the window, redrawing if necessary.
      *
-     * @param src URL of new contents to be displayed in the window body. Default value is null
+     * @param src URL of new contents to be displayed in the window body. See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.widgets.Window#setContentsType
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -1103,7 +1170,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.Window#getContentsType
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -1117,7 +1184,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the text in the status bar of the window, redrawing if necessary.
      *
-     * @param status new text for the status bar. Default value is null
+     * @param status new text for the status bar. See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setStatus(String status) {
@@ -1128,7 +1195,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Text to show in the status bar of the window (if one is visible)
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getStatus()  {
@@ -1141,7 +1208,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the title text that appears in the window header; the header will be redrawn          if necessary.
      *
-     * @param title new title. Default value is "Untitled Window"
+     * @param title new title. See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is "Untitled Window"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTitle(String title) {
@@ -1152,15 +1219,50 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * title for this Window, shown in the header (if drawn)
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTitle()  {
         return getAttributeAsString("title");
     }
 
+    /**
+     * By default Windows show a {@link com.smartgwt.client.widgets.Canvas#getUseBackMask backMask} in Internet Explorer
+     * versions predating Internet Explorer 9. This is a workaround for a native browser issue whereby certain DOM elements
+     * such as <code>IFRAME</code>s (whether rendered within Smart GWT components via features such as {@link
+     * com.smartgwt.client.widgets.Canvas#getContentsURL contentsURL} or  explicitly written into the HTML of the page) will
+     * not be properly occluded by DOM elements which overlap them but have a higher z-index. <P> A side-effect of this is that
+     * the {@link com.smartgwt.client.widgets.Canvas#getOpacity opacity} can not be modified for the entire window. Developers
+     * may disable the backmask in order to support opacity in IE versions less than 9 by setting this property to false,
+     * however you should be aware that in doing this there is a potential for the "burn through" problem described above.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param useBackMask useBackMask Default value is varies
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setUseBackMask(Boolean useBackMask)  throws IllegalStateException {
+        setAttribute("useBackMask", useBackMask, false);
+    }
+
+    /**
+     * By default Windows show a {@link com.smartgwt.client.widgets.Canvas#getUseBackMask backMask} in Internet Explorer
+     * versions predating Internet Explorer 9. This is a workaround for a native browser issue whereby certain DOM elements
+     * such as <code>IFRAME</code>s (whether rendered within Smart GWT components via features such as {@link
+     * com.smartgwt.client.widgets.Canvas#getContentsURL contentsURL} or  explicitly written into the HTML of the page) will
+     * not be properly occluded by DOM elements which overlap them but have a higher z-index. <P> A side-effect of this is that
+     * the {@link com.smartgwt.client.widgets.Canvas#getOpacity opacity} can not be modified for the entire window. Developers
+     * may disable the backmask in order to support opacity in IE versions less than 9 by setting this property to false,
+     * however you should be aware that in doing this there is a potential for the "burn through" problem described above.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getUseBackMask()  {
+        return getAttributeAsBoolean("useBackMask");
+    }
+
     // ********************* Methods ***********************
-            
+
     /**
      * Same as {@link com.smartgwt.client.widgets.layout.Layout#addMember Layout.addMember}.  Note that in order to add items
      * to {@link com.smartgwt.client.widgets.Window#getBody body}, you use {@link com.smartgwt.client.widgets.Window#addItem
@@ -1179,15 +1281,15 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Window.addItem} rather than <code>addMember</code>.  Adding a member to  a Window adds the member as a sibling to the
      * header, body and other built-in Window subcomponents.
      * @param newMember the canvas object to be added to the layout
-     * @param position the position in the layout to place newMember (starts with 0);                                  if omitted, it will be
-     * added at the last position
+     * @param position the position in the layout to place newMember (starts with 0);                            if omitted, it will be added
+     * at the last position
      * @see com.smartgwt.client.widgets.Window#addMembers
      */
-    public native void addMember(Canvas newMember, int position) /*-{
+    public native void addMember(Canvas newMember, Integer position) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.addMember(newMember.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), position);
+        self.addMember(newMember.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), position == null ? null : position.@java.lang.Integer::intValue()());
     }-*/;
-            
+
     /**
      * Centers the Window in the page. This is called automatically in window.show() if Window.autoCenter is true. Note - if
      * the Window is a child of another widget, we center in the parent widget rather than centering in the page.
@@ -1213,24 +1315,31 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     private native void setupCloseClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var closeClick = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.CloseClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({closeClick:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.CloseClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
+            obj.addProperties({closeClick: 
+                function () {
+                    var param = {};
+                    return closeClick(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.closeClick = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.CloseClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.closeClick = 
+                function () {
+                    var param = {};
+                    return closeClick(param) == true;
+                }
+            ;
         }
    }-*/;
-            
+
     /**
      * Makes the window header flash if it's visible; if there's no header, or the header          is hidden, makes the window
      * body flash instead.          <p>   This method is executed when users click outside the bounds of a modal window   so
@@ -1240,7 +1349,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.flash();
     }-*/;
-            
+
     /**
      * Maximize the window. Fired when the user clicks the maximize button if  {@link
      * com.smartgwt.client.widgets.Window#getShowMaximizeButton this.showMaximizeButton} is true.<br> Default implementation
@@ -1253,7 +1362,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.maximize();
     }-*/;
-            
+
     /**
      * Minimize the window. Fired when the user clicks the minimize button if  {@link
      * com.smartgwt.client.widgets.Window#getShowMinimizeButton this.showMinimizeButton} is true.<br> Default implementation
@@ -1265,7 +1374,145 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.minimize();
     }-*/;
-            
+
+    /**
+     * Notification method fired when the user attempts to close the window via a click on the 'close' button, click outside
+     * the window if {@link com.smartgwt.client.widgets.Window#getDismissOnOutsideClick dismissOnOutsideClick} is true, or on
+     * escape keypress if {@link com.smartgwt.client.widgets.Window#getDismissOnEscape dismissOnEscape} is true.
+     *
+     * @return return false to cancel the default behavior     (firing {@link com.smartgwt.client.widgets.Window#addCloseClickHandler
+     * Window.closeClick})
+     */
+    public native Boolean onCloseClick() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.onCloseClick();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+    /**
+     * Add a maximizeClick handler.
+     * <p>
+     * Notification method fired when the user clicks the 'maximize' button.
+     *
+     * @param handler the maximizeClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addMaximizeClickHandler(com.smartgwt.client.widgets.events.MaximizeClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.MaximizeClickEvent.getType()) == 0) setupMaximizeClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.MaximizeClickEvent.getType());
+    }
+
+    private native void setupMaximizeClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        var onMaximizeClick = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.MaximizeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onMaximizeClick: 
+                function () {
+                    var param = {};
+                    return onMaximizeClick(param) == true;
+                }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onMaximizeClick = 
+                function () {
+                    var param = {};
+                    return onMaximizeClick(param) == true;
+                }
+            ;
+        }
+   }-*/;
+    /**
+     * Add a minimizeClick handler.
+     * <p>
+     * Notification method fired when the user clicks the 'minimize' button.
+     *
+     * @param handler the minimizeClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addMinimizeClickHandler(com.smartgwt.client.widgets.events.MinimizeClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.MinimizeClickEvent.getType()) == 0) setupMinimizeClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.MinimizeClickEvent.getType());
+    }
+
+    private native void setupMinimizeClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        var onMinimizeClick = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.MinimizeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onMinimizeClick: 
+                function () {
+                    var param = {};
+                    return onMinimizeClick(param) == true;
+                }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onMinimizeClick = 
+                function () {
+                    var param = {};
+                    return onMinimizeClick(param) == true;
+                }
+            ;
+        }
+   }-*/;
+    /**
+     * Add a restoreClick handler.
+     * <p>
+     * Notification method fired when the user clicks the 'restore' button.
+     *
+     * @param handler the restoreClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addRestoreClickHandler(com.smartgwt.client.widgets.events.RestoreClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.RestoreClickEvent.getType()) == 0) setupRestoreClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.RestoreClickEvent.getType());
+    }
+
+    private native void setupRestoreClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        var onRestoreClick = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.RestoreClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onRestoreClick: 
+                function () {
+                    var param = {};
+                    return onRestoreClick(param) == true;
+                }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onRestoreClick = 
+                function () {
+                    var param = {};
+                    return onRestoreClick(param) == true;
+                }
+            ;
+        }
+   }-*/;
+
     /**
      * Restores the window to its specified height and width after a call to {@link com.smartgwt.client.widgets.Window#minimize
      * Window.minimize} or  {@link com.smartgwt.client.widgets.Window#maximize Window.maximize}. Called from a click on the
@@ -1277,7 +1524,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.restore();
     }-*/;
-            
+
     /**
      * Should this window be dismissed (same effect as pressing the "Cancel" button) when the  user presses the "Escape"
      * key?<br> Default behavior: if {@link com.smartgwt.client.widgets.Window#getDismissOnEscape dismissOnEscape} is set, just
@@ -1505,118 +1752,6 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
-     * Add a onMaximizeClick handler.
-     * <p>
-     * Notification method fired when the user clicks the 'maximize' button.&#010
-     *
-     * @param handler the onMaximizeClick handler
-     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addMaximizeClickHandler(com.smartgwt.client.widgets.events.MaximizeClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.MaximizeClickEvent.getType()) == 0) setupMaximizeClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.MaximizeClickEvent.getType());
-    }
-    private native void setupMaximizeClickEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({onMaximizeClick:$debox($entry(function(){
-                    var param = {};
-                    var event = @com.smartgwt.client.widgets.events.MaximizeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                    return !ret;
-                }))
-            });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.onMaximizeClick = $debox($entry(function(){
-                var param = {};
-                var event = @com.smartgwt.client.widgets.events.MaximizeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                return !ret;
-            }));
-        }
-    }-*/;
-
-    /**
-     * Add a onMinimizeClick handler.
-     * <p>
-     * Notification method fired when the user clicks the 'minimize' button.&#010
-     *
-     * @param handler the onMinimizeClick handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addMinimizeClickHandler(com.smartgwt.client.widgets.events.MinimizeClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.MinimizeClickEvent.getType()) == 0) setupMinimizeClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.MinimizeClickEvent.getType());
-    }
-    private native void setupMinimizeClickEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({onMinimizeClick:$debox($entry(function(){
-                    var param = {};
-                    var event = @com.smartgwt.client.widgets.events.MinimizeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                    return !ret;
-                }))
-            });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.onMinimizeClick = $debox($entry(function(){
-                var param = {};
-                var event = @com.smartgwt.client.widgets.events.MinimizeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                return !ret;
-            }));
-        }
-    }-*/;
-
-    /**
-     * Add a onRestoreClick handler.
-     * <p>
-     * Notification method fired when the user clicks the 'restore' button.&#010
-     *
-     * @param handler the onRestoreClick handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addRestoreClickHandler(com.smartgwt.client.widgets.events.RestoreClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.RestoreClickEvent.getType()) == 0) setupRestoreClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.RestoreClickEvent.getType());
-    }
-    
-    private native void setupRestoreClickEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({onRestoreClick:$debox($entry(function(){
-                    var param = {};
-                    var event = @com.smartgwt.client.widgets.events.RestoreClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                    return !ret;
-                }))
-            });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.onRestoreClick = $debox($entry(function(){
-                var param = {};
-                var event = @com.smartgwt.client.widgets.events.RestoreClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                return !ret;
-            }));
-        }
-    }-*/;
-
-    /**
      * Preload primary window skin images
      */
     public static native void preloadImages() /*-{
@@ -1643,7 +1778,260 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         }
     }-*/;
 
+    public LogicalStructureObject setLogicalStructure(WindowLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.animateMinimize = getAttributeAsString("animateMinimize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.animateMinimize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoCenter = getAttributeAsString("autoCenter");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.autoCenter:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoSize = getAttributeAsString("autoSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.autoSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.bodyColor = getAttributeAsString("bodyColor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.bodyColor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.bodyDefaults = getAttributeAsString("bodyDefaults");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.bodyDefaults:" + t.getMessage() + "\n";
+        }
+        try {
+            s.bodyStyle = getAttributeAsString("bodyStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.bodyStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canDragReposition = getAttributeAsString("canDragReposition");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.canDragReposition:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canDragResize = getAttributeAsString("canDragResize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.canDragResize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canFocusInHeaderButtons = getAttributeAsString("canFocusInHeaderButtons");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.canFocusInHeaderButtons:" + t.getMessage() + "\n";
+        }
+        try {
+            s.contentLayout = getAttributeAsString("contentLayout");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.contentLayout:" + t.getMessage() + "\n";
+        }
+        try {
+            s.contentsType = getAttributeAsString("contentsType");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.contentsType:" + t.getMessage() + "\n";
+        }
+        try {
+            s.defaultMinimizeHeight = getAttributeAsString("defaultMinimizeHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.defaultMinimizeHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dismissOnEscape = getAttributeAsString("dismissOnEscape");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.dismissOnEscape:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dismissOnOutsideClick = getAttributeAsString("dismissOnOutsideClick");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.dismissOnOutsideClick:" + t.getMessage() + "\n";
+        }
+        try {
+            s.footerControls = getAttributeAsStringArray("footerControls");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.footerControlsArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.footerHeight = getAttributeAsString("footerHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.footerHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.headerControls = getAttributeAsStringArray("headerControls");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.headerControlsArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.headerIconDefaults = getAttributeAsString("headerIconDefaults");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.headerIconDefaults:" + t.getMessage() + "\n";
+        }
+        try {
+            s.headerSrc = getAttributeAsString("headerSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.headerSrc:" + t.getMessage() + "\n";
+        }
+        try {
+            s.headerStyle = getAttributeAsString("headerStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.headerStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hiliteBodyColor = getAttributeAsString("hiliteBodyColor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.hiliteBodyColor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hiliteHeaderSrc = getAttributeAsString("hiliteHeaderSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.hiliteHeaderSrc:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hiliteHeaderStyle = getAttributeAsString("hiliteHeaderStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.hiliteHeaderStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.isModal = getAttributeAsString("isModal");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.isModal:" + t.getMessage() + "\n";
+        }
+        try {
+            s.keepInParentRectAsString = getAttributeAsString("keepInParentRect");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.keepInParentRectAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.maximized = getAttributeAsString("maximized");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.maximized:" + t.getMessage() + "\n";
+        }
+        try {
+            s.minimizeAcceleration = getAttributeAsString("minimizeAcceleration");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.minimizeAcceleration:" + t.getMessage() + "\n";
+        }
+        try {
+            s.minimized = getAttributeAsString("minimized");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.minimized:" + t.getMessage() + "\n";
+        }
+        try {
+            s.minimizeHeight = getAttributeAsString("minimizeHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.minimizeHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.minimizeTime = getAttributeAsString("minimizeTime");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.minimizeTime:" + t.getMessage() + "\n";
+        }
+        try {
+            s.modalMaskOpacity = getAttributeAsString("modalMaskOpacity");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.modalMaskOpacity:" + t.getMessage() + "\n";
+        }
+        try {
+            s.modalMaskStyle = getAttributeAsString("modalMaskStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.modalMaskStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.opacity = getAttributeAsString("opacity");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.opacity:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showBody = getAttributeAsString("showBody");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.showBody:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showCloseButton = getAttributeAsString("showCloseButton");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.showCloseButton:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showFooter = getAttributeAsString("showFooter");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.showFooter:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showHeader = getAttributeAsString("showHeader");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.showHeader:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showHeaderBackground = getAttributeAsString("showHeaderBackground");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.showHeaderBackground:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showHeaderIcon = getAttributeAsString("showHeaderIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.showHeaderIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showMaximizeButton = getAttributeAsString("showMaximizeButton");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.showMaximizeButton:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showMinimizeButton = getAttributeAsString("showMinimizeButton");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.showMinimizeButton:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showModalMask = getAttributeAsString("showModalMask");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.showModalMask:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showResizer = getAttributeAsString("showResizer");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.showResizer:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showStatusBar = getAttributeAsString("showStatusBar");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.showStatusBar:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showTitle = getAttributeAsString("showTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.showTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.src = getAttributeAsString("src");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.src:" + t.getMessage() + "\n";
+        }
+        try {
+            s.status = getAttributeAsString("status");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.status:" + t.getMessage() + "\n";
+        }
+        try {
+            s.title = getAttributeAsString("title");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.title:" + t.getMessage() + "\n";
+        }
+        try {
+            s.useBackMask = getAttributeAsString("useBackMask");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Window.useBackMask:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        WindowLogicalStructure s = new WindowLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

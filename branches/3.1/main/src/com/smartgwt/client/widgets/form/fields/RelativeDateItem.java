@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A FormItem for entering a date relative to today or relative to some other date, or a specific date.  Typically used for
@@ -70,8 +90,12 @@ import com.google.gwt.event.shared.HasHandlers;
 public class RelativeDateItem extends CanvasItem {
 
     public static RelativeDateItem getOrCreateRef(JavaScriptObject jsObj) {
+    
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+ 
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (RelativeDateItem) obj;
@@ -80,12 +104,18 @@ public class RelativeDateItem extends CanvasItem {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public RelativeDateItem(){
         setAttribute("editorType", "RelativeDateItem");
     }
 
     public RelativeDateItem(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     public RelativeDateItem(String name) {
@@ -121,9 +151,10 @@ public class RelativeDateItem extends CanvasItem {
     }
 
     /**
-     * Only used if we're showing the date in a text field. When parsing a date, if the year is specified with only 2 digits
+     * Only used if we're showing the date in a text field. When parsing a date, if the year is specified with 1 or 2 digits
      * and is less than the centuryThreshold, then the year will be assumed to be 20xx; otherwise it will be interpreted
-     * according to default browser behaviour, which will consider it to be 19xx.
+     * according to default browser behaviour, which will consider it to be 19xx. <P> If you need to allow 1 and 2 digit years,
+     * set this attribute to  <code>null</code> to have the control retain your year-value as entered.
      *
      * @param centuryThreshold centuryThreshold Default value is 25
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -133,9 +164,10 @@ public class RelativeDateItem extends CanvasItem {
     }
 
     /**
-     * Only used if we're showing the date in a text field. When parsing a date, if the year is specified with only 2 digits
+     * Only used if we're showing the date in a text field. When parsing a date, if the year is specified with 1 or 2 digits
      * and is less than the centuryThreshold, then the year will be assumed to be 20xx; otherwise it will be interpreted
-     * according to default browser behaviour, which will consider it to be 19xx.
+     * according to default browser behaviour, which will consider it to be 19xx. <P> If you need to allow 1 and 2 digit years,
+     * set this attribute to  <code>null</code> to have the control retain your year-value as entered.
      *
      *
      * @return int
@@ -148,7 +180,7 @@ public class RelativeDateItem extends CanvasItem {
     /**
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "day".
      *
-     * @param daysAgoTitle daysAgoTitle Default value is "N days ago"
+     * @param daysAgoTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "N days ago"
      */
     public void setDaysAgoTitle(String daysAgoTitle) {
         setAttribute("daysAgoTitle", daysAgoTitle);
@@ -158,7 +190,7 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "day".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getDaysAgoTitle()  {
         return getAttributeAsString("daysAgoTitle");
@@ -167,7 +199,7 @@ public class RelativeDateItem extends CanvasItem {
     /**
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "day".
      *
-     * @param daysFromNowTitle daysFromNowTitle Default value is "N days from now"
+     * @param daysFromNowTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "N days from now"
      */
     public void setDaysFromNowTitle(String daysFromNowTitle) {
         setAttribute("daysFromNowTitle", daysFromNowTitle);
@@ -177,7 +209,7 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "day".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getDaysFromNowTitle()  {
         return getAttributeAsString("daysFromNowTitle");
@@ -230,7 +262,7 @@ public class RelativeDateItem extends CanvasItem {
     /**
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "hour".
      *
-     * @param hoursAgoTitle hoursAgoTitle Default value is "N hours ago"
+     * @param hoursAgoTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "N hours ago"
      */
     public void setHoursAgoTitle(String hoursAgoTitle) {
         setAttribute("hoursAgoTitle", hoursAgoTitle);
@@ -240,7 +272,7 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "hour".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getHoursAgoTitle()  {
         return getAttributeAsString("hoursAgoTitle");
@@ -249,7 +281,7 @@ public class RelativeDateItem extends CanvasItem {
     /**
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "hour".
      *
-     * @param hoursFromNowTitle hoursFromNowTitle Default value is "N hours from now"
+     * @param hoursFromNowTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "N hours from now"
      */
     public void setHoursFromNowTitle(String hoursFromNowTitle) {
         setAttribute("hoursFromNowTitle", hoursFromNowTitle);
@@ -259,7 +291,7 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "hour".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getHoursFromNowTitle()  {
         return getAttributeAsString("hoursFromNowTitle");
@@ -270,7 +302,7 @@ public class RelativeDateItem extends CanvasItem {
      * {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem#getDisplayFormat displayFormat} if possible, otherwise
      * picked up from the Date class (see  Date.setInputFormat).
      *
-     * @param inputFormat inputFormat Default value is null
+     * @param inputFormat . See {@link com.smartgwt.client.docs.DateInputFormat DateInputFormat}. Default value is null
      */
     public void setInputFormat(String inputFormat) {
         setAttribute("inputFormat", inputFormat);
@@ -283,12 +315,12 @@ public class RelativeDateItem extends CanvasItem {
      *
      *
      * @return If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
-     * method returns a standard String, determining how values entered by the user are to be converted to Javascript Date
-     * objects. <P> If an explicit {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} has been
-     * specified it will be returned, otherwise, the input format will be automatically derived from the {@link
+     * method returns a standard DateInputFormat, determining how values entered by the user are to be converted to Javascript
+     * Date objects. <P> If an explicit {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} has
+     * been specified it will be returned, otherwise, the input format will be automatically derived from the {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getDateFormatter dateFormatter} property. <P> Note that the inputFormat
      * will ignore any separator characters and padding of values. However if necessary entirely custom date formatting and
-     * parsing may be achieved via the  <code>setEditorValueFormatter()</code> and  <code>setEditorValueParser()</code> APIs.
+     * parsing may be achieved via the  <code>setEditorValueFormatter()</code> and  <code>setEditorValueParser()</code> APIs.. See {@link com.smartgwt.client.docs.DateInputFormat DateInputFormat}
      */
     public String getInputFormat()  {
         return getAttributeAsString("inputFormat");
@@ -297,7 +329,7 @@ public class RelativeDateItem extends CanvasItem {
     /**
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "millisecond".
      *
-     * @param millisecondsAgoTitle millisecondsAgoTitle Default value is "N milliseconds ago"
+     * @param millisecondsAgoTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "N milliseconds ago"
      */
     public void setMillisecondsAgoTitle(String millisecondsAgoTitle) {
         setAttribute("millisecondsAgoTitle", millisecondsAgoTitle);
@@ -307,7 +339,7 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "millisecond".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMillisecondsAgoTitle()  {
         return getAttributeAsString("millisecondsAgoTitle");
@@ -316,7 +348,7 @@ public class RelativeDateItem extends CanvasItem {
     /**
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "millisecond".
      *
-     * @param millisecondsFromNowTitle millisecondsFromNowTitle Default value is "N milliseconds from now"
+     * @param millisecondsFromNowTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "N milliseconds from now"
      */
     public void setMillisecondsFromNowTitle(String millisecondsFromNowTitle) {
         setAttribute("millisecondsFromNowTitle", millisecondsFromNowTitle);
@@ -326,7 +358,7 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "millisecond".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMillisecondsFromNowTitle()  {
         return getAttributeAsString("millisecondsFromNowTitle");
@@ -335,7 +367,7 @@ public class RelativeDateItem extends CanvasItem {
     /**
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "minute".
      *
-     * @param minutesAgoTitle minutesAgoTitle Default value is "N minutes ago"
+     * @param minutesAgoTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "N minutes ago"
      */
     public void setMinutesAgoTitle(String minutesAgoTitle) {
         setAttribute("minutesAgoTitle", minutesAgoTitle);
@@ -345,7 +377,7 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "minute".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMinutesAgoTitle()  {
         return getAttributeAsString("minutesAgoTitle");
@@ -354,7 +386,7 @@ public class RelativeDateItem extends CanvasItem {
     /**
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "minute".
      *
-     * @param minutesFromNowTitle minutesFromNowTitle Default value is "N minutes from now"
+     * @param minutesFromNowTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "N minutes from now"
      */
     public void setMinutesFromNowTitle(String minutesFromNowTitle) {
         setAttribute("minutesFromNowTitle", minutesFromNowTitle);
@@ -364,7 +396,7 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "minute".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMinutesFromNowTitle()  {
         return getAttributeAsString("minutesFromNowTitle");
@@ -373,7 +405,7 @@ public class RelativeDateItem extends CanvasItem {
     /**
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "month".
      *
-     * @param monthsAgoTitle monthsAgoTitle Default value is "N months ago"
+     * @param monthsAgoTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "N months ago"
      */
     public void setMonthsAgoTitle(String monthsAgoTitle) {
         setAttribute("monthsAgoTitle", monthsAgoTitle);
@@ -383,7 +415,7 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "month".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMonthsAgoTitle()  {
         return getAttributeAsString("monthsAgoTitle");
@@ -392,7 +424,7 @@ public class RelativeDateItem extends CanvasItem {
     /**
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "month".
      *
-     * @param monthsFromNowTitle monthsFromNowTitle Default value is "N months from now"
+     * @param monthsFromNowTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "N months from now"
      */
     public void setMonthsFromNowTitle(String monthsFromNowTitle) {
         setAttribute("monthsFromNowTitle", monthsFromNowTitle);
@@ -402,15 +434,16 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "month".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMonthsFromNowTitle()  {
         return getAttributeAsString("monthsFromNowTitle");
     }
 
     /**
-     * What operator to use when {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem#getCriterion
-     * RelativeDateItem.getCriterion} is called.
+     * What operator to use when <var class="smartclient"/>{@link
+     * com.smartgwt.client.widgets.form.fields.RelativeDateItem#getCriterion RelativeDateItem.getCriterion}</var> the
+     * <code>FormItemCriterionGetter</code>'s <code>getCriterion()</code> method is called.
      *
      * @param operator operator Default value is "greaterThan"
      */
@@ -419,8 +452,9 @@ public class RelativeDateItem extends CanvasItem {
     }
 
     /**
-     * What operator to use when {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem#getCriterion
-     * RelativeDateItem.getCriterion} is called.
+     * What operator to use when <var class="smartclient"/>{@link
+     * com.smartgwt.client.widgets.form.fields.RelativeDateItem#getCriterion RelativeDateItem.getCriterion}</var> the
+     * <code>FormItemCriterionGetter</code>'s <code>getCriterion()</code> method is called.
      *
      *
      * @return OperatorId
@@ -433,7 +467,7 @@ public class RelativeDateItem extends CanvasItem {
      * Smart GWT class for the {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem#getPicker dateChooser} autoChild
      * displayed to allow the user to directly select dates.
      *
-     * @param pickerConstructor pickerConstructor Default value is "DateChooser"
+     * @param pickerConstructor . See {@link com.smartgwt.client.docs.String String}. Default value is "DateChooser"
      */
     public void setPickerConstructor(String pickerConstructor) {
         setAttribute("pickerConstructor", pickerConstructor);
@@ -444,7 +478,7 @@ public class RelativeDateItem extends CanvasItem {
      * displayed to allow the user to directly select dates.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getPickerConstructor()  {
         return getAttributeAsString("pickerConstructor");
@@ -454,7 +488,7 @@ public class RelativeDateItem extends CanvasItem {
      * Prompt to show when the user hovers the mouse over the picker icon for this  RelativeDateItem. May be overridden for
      * localization of your application.
      *
-     * @param pickerIconPrompt pickerIconPrompt Default value is "Show Date Chooser"
+     * @param pickerIconPrompt . See {@link com.smartgwt.client.docs.String String}. Default value is "Show Date Chooser"
      */
     public void setPickerIconPrompt(String pickerIconPrompt) {
         setAttribute("pickerIconPrompt", pickerIconPrompt);
@@ -465,7 +499,7 @@ public class RelativeDateItem extends CanvasItem {
      * localization of your application.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getPickerIconPrompt()  {
         return getAttributeAsString("pickerIconPrompt");
@@ -500,7 +534,7 @@ public class RelativeDateItem extends CanvasItem {
     /**
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "second".
      *
-     * @param secondsAgoTitle secondsAgoTitle Default value is "N seconds ago"
+     * @param secondsAgoTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "N seconds ago"
      */
     public void setSecondsAgoTitle(String secondsAgoTitle) {
         setAttribute("secondsAgoTitle", secondsAgoTitle);
@@ -510,7 +544,7 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "second".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSecondsAgoTitle()  {
         return getAttributeAsString("secondsAgoTitle");
@@ -519,7 +553,7 @@ public class RelativeDateItem extends CanvasItem {
     /**
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "second".
      *
-     * @param secondsFromNowTitle secondsFromNowTitle Default value is "N seconds from now"
+     * @param secondsFromNowTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "N seconds from now"
      */
     public void setSecondsFromNowTitle(String secondsFromNowTitle) {
         setAttribute("secondsFromNowTitle", secondsFromNowTitle);
@@ -529,7 +563,7 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "second".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSecondsFromNowTitle()  {
         return getAttributeAsString("secondsFromNowTitle");
@@ -696,7 +730,8 @@ public class RelativeDateItem extends CanvasItem {
      * @see com.smartgwt.client.widgets.form.fields.RelativeDateItem#getRangeRoundingGranularity
      */
     public TimeUnit[] getTimeUnitOptions()  {
-        return (TimeUnit[]) EnumUtil.getEnums(TimeUnit.values(), getAttributeAsStringArray("timeUnitOptions"));
+        final String[] strings = getAttributeAsStringArray("timeUnitOptions");
+        return EnumUtil.getEnums(TimeUnit.values(), strings, strings == null ? null : new TimeUnit[strings.length]);
     }
 
     /**
@@ -727,7 +762,7 @@ public class RelativeDateItem extends CanvasItem {
     /**
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "week".
      *
-     * @param weeksAgoTitle weeksAgoTitle Default value is "N weeks ago"
+     * @param weeksAgoTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "N weeks ago"
      */
     public void setWeeksAgoTitle(String weeksAgoTitle) {
         setAttribute("weeksAgoTitle", weeksAgoTitle);
@@ -737,7 +772,7 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "week".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getWeeksAgoTitle()  {
         return getAttributeAsString("weeksAgoTitle");
@@ -746,7 +781,7 @@ public class RelativeDateItem extends CanvasItem {
     /**
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "week".
      *
-     * @param weeksFromNowTitle weeksFromNowTitle Default value is "N weeks from now"
+     * @param weeksFromNowTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "N weeks from now"
      */
     public void setWeeksFromNowTitle(String weeksFromNowTitle) {
         setAttribute("weeksFromNowTitle", weeksFromNowTitle);
@@ -756,7 +791,7 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "week".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getWeeksFromNowTitle()  {
         return getAttributeAsString("weeksFromNowTitle");
@@ -765,7 +800,7 @@ public class RelativeDateItem extends CanvasItem {
     /**
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "year".
      *
-     * @param yearsAgoTitle yearsAgoTitle Default value is "N years ago"
+     * @param yearsAgoTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "N years ago"
      */
     public void setYearsAgoTitle(String yearsAgoTitle) {
         setAttribute("yearsAgoTitle", yearsAgoTitle);
@@ -775,7 +810,7 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "year".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getYearsAgoTitle()  {
         return getAttributeAsString("yearsAgoTitle");
@@ -784,7 +819,7 @@ public class RelativeDateItem extends CanvasItem {
     /**
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "year".
      *
-     * @param yearsFromNowTitle yearsFromNowTitle Default value is "N years from now"
+     * @param yearsFromNowTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "N years from now"
      */
     public void setYearsFromNowTitle(String yearsFromNowTitle) {
         setAttribute("yearsFromNowTitle", yearsFromNowTitle);
@@ -794,14 +829,14 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "year".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getYearsFromNowTitle()  {
         return getAttributeAsString("yearsFromNowTitle");
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * RelativeDateItems do not make use of the standard {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#formatEditorValue FormItem.formatEditorValue} and {@link
@@ -822,7 +857,7 @@ public class RelativeDateItem extends CanvasItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.formatEditorValue();
     }-*/;
-            
+
     /**
      * Returns the raw text value typed into this items value text field
      */
@@ -830,7 +865,7 @@ public class RelativeDateItem extends CanvasItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.getEnteredValue();
     }-*/;
-            
+
     /**
      * RelativeDateItems do not make use of the standard {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#formatEditorValue FormItem.formatEditorValue} and {@link

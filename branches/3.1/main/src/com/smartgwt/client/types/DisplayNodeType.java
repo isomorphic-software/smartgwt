@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Flag passed to functions as displayNodeType, telling the function whether it should work on folders, leaves or both at
  * once.
@@ -33,7 +34,6 @@ public enum DisplayNodeType implements ValueEnum {
      * operate on leaves only, ignoring folders
      */
     LEAVES("leaves");
-
     private String value;
 
     DisplayNodeType(String value) {
@@ -44,3 +44,4 @@ public enum DisplayNodeType implements ValueEnum {
         return this.value;
     }
 }
+        

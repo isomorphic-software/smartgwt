@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A Img that behaves like a button, going through up/down/over state transitions in response to user events.  Supports an
@@ -65,22 +85,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class ImgButton extends Img {
 
-    public static ImgButton getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (ImgButton) obj;
-        } else {
-            return new ImgButton(jsObj);
+    public native static ImgButton getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("ImgButton",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.ImgButton::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public ImgButton(){
         scClassName = "ImgButton";
     }
 
     public ImgButton(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "ImgButton";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -185,7 +216,7 @@ public class ImgButton extends Img {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style.
      *
-     * @param baseStyle new base style. Default value is "imgButton"
+     * @param baseStyle new base style. See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "imgButton"
      */
     public void setBaseStyle(String baseStyle) {
         setAttribute("baseStyle", baseStyle, true);
@@ -203,7 +234,7 @@ public class ImgButton extends Img {
      * component, the style "buttonSelectedOver" will be used.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getBaseStyle()  {
         return getAttributeAsString("baseStyle");
@@ -243,7 +274,7 @@ public class ImgButton extends Img {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Change the icon being shown next to the title text.
      *
-     * @param icon URL of new icon. Default value is null
+     * @param icon URL of new icon. See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is null
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setIcon(String icon) {
@@ -255,7 +286,7 @@ public class ImgButton extends Img {
      * imgDir of this component.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public String getIcon()  {
@@ -265,7 +296,7 @@ public class ImgButton extends Img {
     /**
      * If this button is showing an icon should it be right or left aligned?
      *
-     * @param iconAlign iconAlign Default value is null
+     * @param iconAlign . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
@@ -277,7 +308,7 @@ public class ImgButton extends Img {
      * If this button is showing an icon should it be right or left aligned?
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public String getIconAlign()  {
@@ -313,7 +344,7 @@ public class ImgButton extends Img {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Changes the orientation of the icon relative to the text of the button.
      *
-     * @param iconOrientation The new orientation of the icon relative to the text of the button.. Default value is "left"
+     * @param iconOrientation The new orientation of the icon relative to the text of the button.. See {@link com.smartgwt.client.docs.String String}. Default value is "left"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
@@ -326,7 +357,7 @@ public class ImgButton extends Img {
      * <code>"left"</code> and <code>"right"</code>.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public String getIconOrientation()  {
@@ -451,7 +482,7 @@ public class ImgButton extends Img {
      * String identifier for this canvas's mutually exclusive selection group.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param radioGroup radioGroup Default value is null
+     * @param radioGroup . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.docs.State State overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_toggle" target="examples">Radio / Toggle Behavior Example</a>
      */
@@ -463,7 +494,7 @@ public class ImgButton extends Img {
      * String identifier for this canvas's mutually exclusive selection group.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.State State overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_toggle" target="examples">Radio / Toggle Behavior Example</a>
      */
@@ -729,9 +760,9 @@ public class ImgButton extends Img {
      * image name would be "findIcon_Disabled.gif".  Compound states such as "Selected", "Focused" and "Over" or "Down" will
      * have an intervening underscore, resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
      *
-     * @param src src Default value is "[SKIN]/ImgButton/button.png"
+     * @param src . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]/ImgButton/button.png"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_category" target="examples">Appearance Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_appearance" target="examples">Appearance Example</a>
      */
     public void setSrc(String src) {
         setAttribute("src", src, true);
@@ -744,9 +775,9 @@ public class ImgButton extends Img {
      * have an intervening underscore, resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_category" target="examples">Appearance Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_appearance" target="examples">Appearance Example</a>
      */
     public String getSrc()  {
         return getAttributeAsString("src");
@@ -797,7 +828,7 @@ public class ImgButton extends Img {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the title.
      *
-     * @param title new title. Default value is varies
+     * @param title new title. See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is varies
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public void setTitle(String title) {
@@ -808,7 +839,7 @@ public class ImgButton extends Img {
      * The text title to display in this button.
      *
      *
-     * @return Return the title - text/HTML drawn inside the component. <p> Default is to simply return this.title.
+     * @return Return the title - text/HTML drawn inside the component. <p> Default is to simply return this.title.. See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public String getTitle()  {
@@ -837,7 +868,7 @@ public class ImgButton extends Img {
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * This property contains the default 'action' for the Button to fire when activated.
      */
@@ -845,7 +876,7 @@ public class ImgButton extends Img {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.action();
     }-*/;
-            
+
     /**
      * Add this widget to the specified mutually exclusive selection group with the ID passed in. Selecting this widget will
      * then deselect any other StatefulCanvases with the same radioGroup ID. StatefulCanvases can belong to only one
@@ -856,7 +887,7 @@ public class ImgButton extends Img {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addToRadioGroup(groupID);
     }-*/;
-            
+
     /**
      * Select this object.
      */
@@ -864,7 +895,7 @@ public class ImgButton extends Img {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.deselect();
     }-*/;
-            
+
     /**
      * Find out if this object is selected
      *
@@ -880,7 +911,7 @@ public class ImgButton extends Img {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Remove this widget from the specified mutually exclusive selection group with the ID passed in. No-op's if this widget
      * is not a member of the groupID passed in. If no groupID is passed in, defaults to removing from whatever radioGroup this
@@ -903,7 +934,7 @@ public class ImgButton extends Img {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeFromRadioGroup(groupID);
     }-*/;
-            
+
     /**
      * Select this object.
      */
@@ -911,7 +942,7 @@ public class ImgButton extends Img {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.select();
     }-*/;
-            
+
     /**
      * Enable or disable this object
      * @param disabled true if this widget is to be disabled
@@ -943,10 +974,165 @@ public class ImgButton extends Img {
         
     // ***********************************************************        
 
+    public LogicalStructureObject setLogicalStructure(ImgButtonLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.actionType = getAttributeAsString("actionType");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.actionType:" + t.getMessage() + "\n";
+        }
+        try {
+            s.align = getAttributeAsString("align");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.align:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoFit = getAttributeAsString("autoFit");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.autoFit:" + t.getMessage() + "\n";
+        }
+        try {
+            s.baseStyle = getAttributeAsString("baseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.baseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hiliteAccessKey = getAttributeAsString("hiliteAccessKey");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.hiliteAccessKey:" + t.getMessage() + "\n";
+        }
+        try {
+            s.icon = getAttributeAsString("icon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.icon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconAlign = getAttributeAsString("iconAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.iconAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconHeight = getAttributeAsString("iconHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.iconHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconOrientation = getAttributeAsString("iconOrientation");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.iconOrientation:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconSize = getAttributeAsString("iconSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.iconSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconSpacing = getAttributeAsString("iconSpacing");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.iconSpacing:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconWidth = getAttributeAsString("iconWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.iconWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.labelHPad = getAttributeAsString("labelHPad");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.labelHPad:" + t.getMessage() + "\n";
+        }
+        try {
+            s.labelVPad = getAttributeAsString("labelVPad");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.labelVPad:" + t.getMessage() + "\n";
+        }
+        try {
+            s.radioGroup = getAttributeAsString("radioGroup");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.radioGroup:" + t.getMessage() + "\n";
+        }
+        try {
+            s.selected = getAttributeAsString("selected");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.selected:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDisabled = getAttributeAsString("showDisabled");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.showDisabled:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDisabledIcon = getAttributeAsString("showDisabledIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.showDisabledIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDown = getAttributeAsString("showDown");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.showDown:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDownIcon = getAttributeAsString("showDownIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.showDownIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showFocused = getAttributeAsString("showFocused");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.showFocused:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showFocusedIcon = getAttributeAsString("showFocusedIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.showFocusedIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showRollOver = getAttributeAsString("showRollOver");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.showRollOver:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showRollOverIcon = getAttributeAsString("showRollOverIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.showRollOverIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showSelectedIcon = getAttributeAsString("showSelectedIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.showSelectedIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showTitle = getAttributeAsString("showTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.showTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.src = getAttributeAsString("src");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.src:" + t.getMessage() + "\n";
+        }
+        try {
+            s.state = getAttributeAsString("state");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.state:" + t.getMessage() + "\n";
+        }
+        try {
+            s.title = getAttributeAsString("title");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.title:" + t.getMessage() + "\n";
+        }
+        try {
+            s.valign = getAttributeAsString("valign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.valign:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        ImgButtonLogicalStructure s = new ImgButtonLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-
-
-
 

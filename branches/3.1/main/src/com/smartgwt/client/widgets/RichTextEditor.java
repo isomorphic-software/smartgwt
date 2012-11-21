@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * RichTextEditing component.  Provides a rich-text editing area along with UI for executing rich-text commands on the
@@ -66,22 +86,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class RichTextEditor extends VLayout {
 
-    public static RichTextEditor getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (RichTextEditor) obj;
-        } else {
-            return new RichTextEditor(jsObj);
+    public native static RichTextEditor getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("RichTextEditor",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.RichTextEditor::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public RichTextEditor(){
         scClassName = "RichTextEditor";
     }
 
     public RichTextEditor(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "RichTextEditor";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -99,7 +130,7 @@ public class RichTextEditor extends VLayout {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Updates the current value of the edit area.
      *
-     * @param value value Default value is ""
+     * @param value . See {@link com.smartgwt.client.docs.String String}. Default value is ""
      */
     public void setValue(String value) {
         setAttribute("value", value, true);
@@ -109,14 +140,14 @@ public class RichTextEditor extends VLayout {
      * Initial value for the edit area.    Use <code>getValue()</code> and  <code>setValue()</code> to update at runtime.
      *
      *
-     * @return Retrieves the current value of the edit area.
+     * @return Retrieves the current value of the edit area.. See {@link com.smartgwt.client.docs.String String}
      */
     public String getValue()  {
         return getAttributeAsString("value");
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Display a warning if Rich Text Editing is not fully supported in this browser. Default behavior logs a warning to the
      * devloper console - Override this if a user-visible warning is required
@@ -125,7 +156,7 @@ public class RichTextEditor extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.doWarn();
     }-*/;
-            
+
     /**
      * Does this browser support the full RichTextEditor feature set. Returns false for browsers in which some features are not
      * natively supported - currently Safari and Opera.
@@ -176,7 +207,20 @@ public class RichTextEditor extends VLayout {
         setAttribute("controlGroups", controlGroups, false);
     }
 
+    public LogicalStructureObject setLogicalStructure(RichTextEditorLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.value = getAttributeAsString("value");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "RichTextEditor.value:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        RichTextEditorLogicalStructure s = new RichTextEditorLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -22,9 +22,11 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasCloseClickHandlers extends HasHandlers {
     /**
-     * When {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs} is set, this notification method fired when the user clicks &#010 the "close" icon for a tab.&#010 Return false to cancel default behavior of removing the tab from the TabSet&#010
+     * When {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs} is set, this notification method fired
+     * when the user clicks  the "close" icon for a tab. Call {@link com.smartgwt.client.widgets.tab.events.TabCloseClickEvent#cancel()} from within {@link CloseClickHandler#onCloseClick} to cancel default behavior of removing the tab from the
+     * TabSet
      *
-     * @param handler the onCloseClick handler
+     * @param handler the closeClick handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addCloseClickHandler(CloseClickHandler handler);

@@ -1,4 +1,4 @@
-
+	    
 package com.smartgwt.client.docs;
 
 /**
@@ -9,7 +9,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.calendar.Calendar#getEndDateField
  * @see com.smartgwt.client.widgets.calendar.Calendar#getLeadingDateField
  * @see com.smartgwt.client.widgets.calendar.Calendar#getTrailingDateField
- * @see com.smartgwt.client.widgets.calendar.Calendar#getEventTypeField
+ * @see com.smartgwt.client.widgets.calendar.Calendar#getLaneNameField
  * @see com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyleField
  * @see com.smartgwt.client.widgets.calendar.Calendar#getCanEditField
  * @see com.smartgwt.client.widgets.calendar.Calendar#getCanDragEventField

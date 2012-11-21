@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Controls the navigation mode of records.
  */
@@ -28,7 +29,6 @@ public enum NavigationMode implements ValueEnum {
      * Only clicking directly on the navigation icon triggers navigation
      */
     NAVICON_ONLY("navIconOnly");
-
     private String value;
 
     NavigationMode(String value) {
@@ -39,3 +39,4 @@ public enum NavigationMode implements ValueEnum {
         return this.value;
     }
 }
+        

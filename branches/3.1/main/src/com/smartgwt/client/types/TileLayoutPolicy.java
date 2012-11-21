@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Policy for laying out tiles.  <P> Because a TileLayout can be either horizontally or vertically oriented, the general
  * term "line" is used to mean either a row or column of tiles.  <P> <b>NOTE</b>: for typical form layouts (a variety of
@@ -37,7 +38,6 @@ public enum TileLayoutPolicy implements ValueEnum {
      * resized by the TileLayout and {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize} is ignored.
      */
     FLOW("flow");
-
     private String value;
 
     TileLayoutPolicy(String value) {
@@ -48,3 +48,4 @@ public enum TileLayoutPolicy implements ValueEnum {
         return this.value;
     }
 }
+        

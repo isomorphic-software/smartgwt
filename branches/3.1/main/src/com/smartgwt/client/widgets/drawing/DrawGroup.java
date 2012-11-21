@@ -45,25 +45,48 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
- * DrawItem subclass to manage a group of other DrawItem instances. <P>  A DrawGroup defines a local coordinate space, so a
- * group of DrawItems may be translated, scaled, or rotated together.  A DrawGroup has no visual representation other than
- * that of it's DrawItems. <P> DrawItems are added to a DrawGroup by creating the DrawItems with {@link
- * com.smartgwt.client.widgets.drawing.DrawItem#getDrawGroup drawGroup} set to a drawGroup. <P> DrawGroups may contain
- * other DrawGroups.
+ * DrawItem subclass to manage a group of other DrawItem instances. <P>  A DrawGroup has no local visual representation
+ * other than that of its drawItems. Adding items to a drawGroup allows for central event handling, and allows them to be
+ * manipulated (drawn, scaled, etc) together. <P> DrawItems are added to a DrawGroup by creating the DrawItems with {@link
+ * com.smartgwt.client.widgets.drawing.DrawItem#getDrawGroup drawGroup} set to a drawGroup, or by calling {@link
+ * com.smartgwt.client.widgets.drawing.DrawGroup#getAddItem addItem}. <P> DrawGroups handle events by having an explicitly
+ * specified group rectangle  (see {@link com.smartgwt.client.widgets.drawing.DrawGroup#getGetGroupRect getGroupRect}).
+ * This rectangle has no visual representation within the draw pane (is not visible) but any user-interactions within the
+ * specified coordinates will trigger group level events. <P> DrawGroups may contain other DrawGroups.
  */
 public class DrawGroup extends DrawItem {
 
@@ -77,12 +100,18 @@ public class DrawGroup extends DrawItem {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
+    }
+
+
     public DrawGroup(){
         scClassName = "DrawGroup";
     }
 
     public DrawGroup(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "DrawGroup";
+        setJavaScriptObject(jsObj);
     }
 
     public native JavaScriptObject create()/*-{
@@ -93,32 +122,35 @@ public class DrawGroup extends DrawItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Initial list of DrawItems for this DrawGroup. <P> DrawItems can be added to a DrawGroup after initialization by setting
-     * {@link com.smartgwt.client.widgets.drawing.DrawItem#getDrawGroup drawGroup}.
-     *
-     * @param drawItems drawItems Default value is null
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-     */
-    public void setDrawItems(DrawItem... drawItems)  throws IllegalStateException {
-        setAttribute("drawItems", drawItems, false);
-    }
-
-    /**
-     * Initial list of DrawItems for this DrawGroup. <P> DrawItems can be added to a DrawGroup after initialization by setting
-     * {@link com.smartgwt.client.widgets.drawing.DrawItem#getDrawGroup drawGroup}.
-     *
-     *
-     * @return DrawItem
-     */
-    public DrawItem[] getDrawItems()  {
-        return DrawItem.convertToDrawItemArray(getAttributeAsJavaScriptObject("drawItems"));
-    }
-
-    /**
-     * Left coordinate in pixels relative to the DrawPane, or owning DrawGroup.
+     * Height of the {@link com.smartgwt.client.widgets.drawing.DrawGroup#getGroupRect group rectangle} in pixels relative to
+     * the DrawPane.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
-     * Set the left coordinate of this drawGroup.  Also moves all member drawItems.
+     * Set the height of his drawGrop {@link com.smartgwt.client.widgets.drawing.DrawGroup#getGroupRect group rectangle}. Note that setting this attribute will not move or resize the drawItems in this group.
+     *
+     * @param height new height for the event rect. Default value is 1
+     */
+    public void setHeight(int height) {
+        setAttribute("height", height, true);
+    }
+
+    /**
+     * Height of the {@link com.smartgwt.client.widgets.drawing.DrawGroup#getGroupRect group rectangle} in pixels relative to
+     * the DrawPane.
+     *
+     *
+     * @return int
+     */
+    public int getHeight()  {
+        return getAttributeAsInt("height");
+    }
+
+    /**
+     * Left coordinate of the {@link com.smartgwt.client.widgets.drawing.DrawGroup#getGroupRect group rectangle} in pixels
+     * relative to the DrawPane.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Set the left coordinate of this drawGroup {@link com.smartgwt.client.widgets.drawing.DrawGroup#getGroupRect group rectangle}. Note that setting this attribute will not move the drawItems in this group.
      *
      * @param left new left coordinate in pixels. Default value is 0
      */
@@ -127,7 +159,8 @@ public class DrawGroup extends DrawItem {
     }
 
     /**
-     * Left coordinate in pixels relative to the DrawPane, or owning DrawGroup.
+     * Left coordinate of the {@link com.smartgwt.client.widgets.drawing.DrawGroup#getGroupRect group rectangle} in pixels
+     * relative to the DrawPane.
      *
      *
      * @return int
@@ -137,10 +170,11 @@ public class DrawGroup extends DrawItem {
     }
 
     /**
-     * Top coordinate in pixels relative to the DrawPane, or owning DrawGroup.
+     * Top coordinate of the {@link com.smartgwt.client.widgets.drawing.DrawGroup#getGroupRect group rectangle} in pixels
+     * relative to the DrawPane.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
-     * Set the top coordinate of this drawGroup.  Also moves all member drawItems.
+     * Set the top coordinate of this drawGroup {@link com.smartgwt.client.widgets.drawing.DrawGroup#getGroupRect group rectangle}. Note that setting this attribute will not move the drawItems in this group.
      *
      * @param top new top coordinate in pixels. Default value is 0
      */
@@ -149,7 +183,8 @@ public class DrawGroup extends DrawItem {
     }
 
     /**
-     * Top coordinate in pixels relative to the DrawPane, or owning DrawGroup.
+     * Top coordinate of the {@link com.smartgwt.client.widgets.drawing.DrawGroup#getGroupRect group rectangle} in pixels
+     * relative to the DrawPane.
      *
      *
      * @return int
@@ -158,12 +193,38 @@ public class DrawGroup extends DrawItem {
         return getAttributeAsInt("top");
     }
 
+    /**
+     * Width of the {@link com.smartgwt.client.widgets.drawing.DrawGroup#getGroupRect group rectangle} in pixels relative to
+     * the DrawPane.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Set the width of his drawGrop {@link com.smartgwt.client.widgets.drawing.DrawGroup#getGroupRect group rectangle}. Note that setting this attribute will not move or resize the drawItems in this group.
+     *
+     * @param width new width for the event rect. Default value is 1
+     */
+    public void setWidth(int width) {
+        setAttribute("width", width, true);
+    }
+
+    /**
+     * Width of the {@link com.smartgwt.client.widgets.drawing.DrawGroup#getGroupRect group rectangle} in pixels relative to
+     * the DrawPane.
+     *
+     *
+     * @return int
+     */
+    public int getWidth()  {
+        return getAttributeAsInt("width");
+    }
+
     // ********************* Methods ***********************
-            
+
     /**
      * Executed when the left mouse is clicked (pressed and then released) on this widget.  No default implementation.
      *
      * @return false to prevent this event from bubbling to this widget's parent, true or undefined to bubble.
+     * @see com.smartgwt.client.widgets.Canvas#getOffsetX
+     * @see com.smartgwt.client.widgets.Canvas#getOffsetY
      */
     public native Boolean click() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -174,58 +235,7 @@ public class DrawGroup extends DrawItem {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
-    /**
-     * Executed every time the mouse moves while dragging this canvas.
-     *
-     * @return false to cancel drag interaction.
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_pan" target="examples">Drag pan Example</a>
-     */
-    public native Boolean dragMove() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var retVal =self.dragMove();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * Executed when dragging first starts. Your widget can use this opportunity to set things up for the drag, such as setting
-     * the drag tracker. Returning false from this event handler will cancel the drag action entirely. <p> A drag action is
-     * considered to be begin when the mouse has moved {@link com.smartgwt.client.widgets.Canvas#getDragStartDistance
-     * dragStartDistance} with the left mouse down.
-     *
-     * @return false to cancel drag action.
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_pan" target="examples">Drag pan Example</a>
-     */
-    public native Boolean dragStart() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var retVal =self.dragStart();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * Executed when the mouse button is released at the end of the drag. Your widget can use this opportunity to fire code
-     * based on the last location of the drag or reset any visual state that was sent.
-     *
-     * @return false to cancel drag interaction.
-     */
-    public native Boolean dragStop() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var retVal =self.dragStop();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
+
     /**
      * Erases all DrawItems in the DrawGroup.
      */
@@ -233,11 +243,13 @@ public class DrawGroup extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.erase();
     }-*/;
-            
+
     /**
      * Executed when the left mouse down is pressed on this widget.  No default implementation.
      *
      * @return false to prevent this event from bubbling to this widget's parent, true or undefined to bubble.
+     * @see com.smartgwt.client.widgets.Canvas#getOffsetX
+     * @see com.smartgwt.client.widgets.Canvas#getOffsetY
      */
     public native Boolean mouseDown() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -248,11 +260,13 @@ public class DrawGroup extends DrawItem {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Executed when the mouse moves within this widget.  No default implementation.
      *
      * @return false to prevent this event from bubbling to this widget's parent, true or undefined to bubble.
+     * @see com.smartgwt.client.widgets.Canvas#getOffsetX
+     * @see com.smartgwt.client.widgets.Canvas#getOffsetY
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_mouse_events" target="examples">Mouse events Example</a>
      */
     public native Boolean mouseMove() /*-{
@@ -264,7 +278,7 @@ public class DrawGroup extends DrawItem {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Executed when the mouse leaves this widget.  No default implementation.
      *
@@ -280,11 +294,13 @@ public class DrawGroup extends DrawItem {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Executed when mouse enters this widget.  No default implementation.
      *
      * @return false to prevent this event from bubbling to this widget's parent, true or undefined to bubble.
+     * @see com.smartgwt.client.widgets.Canvas#getOffsetX
+     * @see com.smartgwt.client.widgets.Canvas#getOffsetY
      */
     public native Boolean mouseOver() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -295,11 +311,13 @@ public class DrawGroup extends DrawItem {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Executed when the left mouse is released on this widget.  No default implementation.
      *
      * @return false to prevent this event from bubbling to this widget's parent, true or undefined to bubble.
+     * @see com.smartgwt.client.widgets.Canvas#getOffsetX
+     * @see com.smartgwt.client.widgets.Canvas#getOffsetY
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_mouse_events" target="examples">Mouse events Example</a>
      */
     public native Boolean mouseUp() /*-{
@@ -311,9 +329,10 @@ public class DrawGroup extends DrawItem {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
-     * Move this drawGroup by the specified deltas for the left and top coordinate.  Also moves all member drawItems.
+     * Move all member drawItems by the specified number of pixels. Also updates the {@link
+     * com.smartgwt.client.widgets.drawing.DrawGroup#getGroupRect group rectangle}, moving it by the same offset.
      * @param left change to left coordinate in pixels
      * @param top change to top coordinate in pixels
      */
@@ -321,9 +340,11 @@ public class DrawGroup extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.moveBy(left, top);
     }-*/;
-            
+
     /**
-     * Set both the left and top coordinate of this drawGroup.  Also moves all member drawItems.
+     * Set both the left and top coordinate of this drawGroup {@link com.smartgwt.client.widgets.drawing.DrawGroup#getGroupRect
+     * group rectangle}.  Unlike {@link com.smartgwt.client.widgets.drawing.DrawGroup#moveBy DrawGroup.moveBy}, this will not
+     * move the drawItems in this group.
      * @param left new left coordinate in pixels
      * @param top new top coordinate in pixels
      */
@@ -331,7 +352,7 @@ public class DrawGroup extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.moveTo(left, top);
     }-*/;
-            
+
     /**
      * Scale all drawItem[] shapes by the x, y multipliers
      * @param x scale in the x direction
@@ -341,9 +362,9 @@ public class DrawGroup extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.scaleBy(x, y);
     }-*/;
-            
+
     /**
-     * Scale the shape by the x, y multipliers
+     * Scale the each item in the drawGroup by the x, y multipliers
      * @param x scale in the x direction
      * @param y scale in the y direction
      */
@@ -397,6 +418,47 @@ public class DrawGroup extends DrawItem {
         var selection = self.getCenter();
         return selection == null || selection === undefined ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaIntArray(Lcom/google/gwt/core/client/JavaScriptObject;)(selection);
     }-*/;  
+    
+    /**
+     * Initial list of DrawItems for this DrawGroup. <P> DrawItems can be added to a DrawGroup after initialization by setting
+     * {@link com.smartgwt.client.widgets.drawing.DrawItem#getDrawGroup drawGroup}.
+     *
+     * @param drawItems drawItems Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setDrawItems(DrawItem... drawItems)  throws IllegalStateException {
+        for (int i = 0; i < drawItems.length; i++) {
+            if (!drawItems[i].isCreated()) drawItems[i].create();
+        }
+        setAttribute("drawItems", drawItems, false);
+    }
+
+    /**
+     * Initial list of DrawItems for this DrawGroup. <P> DrawItems can be added to a DrawGroup after initialization by setting
+     * {@link com.smartgwt.client.widgets.drawing.DrawItem#getDrawGroup drawGroup}.
+     *
+     *
+     * @return DrawItem
+     */
+    public DrawItem[] getDrawItems()  {
+        return DrawItem.convertToDrawItemArray(getAttributeAsJavaScriptObject("drawItems"));
+    }
+    
+    /**
+     * This method will return an array of integers mapping out the coordinates (left, top, width, height) of the "group
+     * rectangle" for the group. This is the area of the drawPane where user interactions will fire event notifications on this
+     * drawGroup. <P> Developers may also use {@link com.smartgwt.client.widgets.drawing.DrawGroup#getLeft left}, {@link
+     * com.smartgwt.client.widgets.drawing.DrawGroup#getTop top}, {@link com.smartgwt.client.widgets.drawing.DrawGroup#getWidth
+     * width} and {@link com.smartgwt.client.widgets.drawing.DrawGroup#getHeight height} to manage each coordinate directly.
+     *
+     * @return 4 element array containing left, top, width, height of the group rectangle.
+     */
+    public native Rectangle getGroupRect() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var rect = self.getGroupRect();
+        return @com.smartgwt.client.core.Rectangle::new(IIII)(rect[0], rect[1],rect[2],rect[3]);
+    }-*/;
+
 
 
 }

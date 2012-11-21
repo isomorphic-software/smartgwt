@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Controls the display mode of TableView record display
  */
@@ -28,7 +29,6 @@ public enum TableMode implements ValueEnum {
      * Grouped table is a set of rows embedded in a rounded rectangle
      */
     GROUPED("grouped");
-
     private String value;
 
     TableMode(String value) {
@@ -39,3 +39,4 @@ public enum TableMode implements ValueEnum {
         return this.value;
     }
 }
+        

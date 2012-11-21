@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * The types listed below are built-in types that {@link com.smartgwt.client.widgets.DataBoundComponent databound
  * components} understand and treat specially (using type-specific form controls, validators, formatters, sorting logic,
@@ -98,9 +99,10 @@ public enum FieldType implements ValueEnum {
      * the value of the <code>name</code> attribute of this field. These fields are marked as {@link
      * com.smartgwt.client.data.DataSourceField#getHidden hidden}<code>:true</code> to suppress their rendering by default. You
      * can show one or more of these fields by specifying the field with a <code>hidden:false</code> override in the fields
-     * array of the databound component. <i>Stream / view file support for non-SQL DataSources: a non-SQL DataSource should
-     * provide an  instance of the Java type InputStream as a field value in DSResponse.data in order to allow  Smart GWT to
-     * download the file.</i>
+     * array of the databound component. <i>Stream / view file support for custom DataSources</i>: a custom DataSource or DMI 
+     * must implement the "viewFile" and "downloadFile" operationTypes and return a single Record with an byte[] as the field
+     * value for the binary field. For more detail see the overview of {@link com.smartgwt.client.docs.BinaryFields Binary
+     * Fields}.
      */
     BINARY("binary"),
     /**
@@ -153,7 +155,6 @@ public enum FieldType implements ValueEnum {
      * sqlStorageStrategy} "ntext"; other than that, this type is identical to "text"
      */
     NTEXT("ntext");
-
     private String value;
 
     FieldType(String value) {
@@ -164,3 +165,4 @@ public enum FieldType implements ValueEnum {
         return this.value;
     }
 }
+        

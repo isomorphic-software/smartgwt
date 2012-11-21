@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Section descriptor used by a SectionStack to describe a section of items which are shown or hidden together, and their
@@ -65,8 +85,12 @@ import com.google.gwt.event.shared.HasHandlers;
 public class SectionStackSection extends RefDataClass {
 
     public static SectionStackSection getOrCreateRef(JavaScriptObject jsObj) {
+    
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+ 
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (SectionStackSection) obj;
@@ -75,13 +99,19 @@ public class SectionStackSection extends RefDataClass {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public SectionStackSection(){
         setID(com.smartgwt.client.util.SC.generateID("SectionStackSection"));
 				
     }
 
     public SectionStackSection(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     public SectionStackSection(String title) {
@@ -163,7 +193,7 @@ public class SectionStackSection extends RefDataClass {
      * applied to the generated section header (thereby avoiding the page-level uniqueness requirement) by defaulting  {@link
      * com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs useGlobalSectionIDs} to false.
      *
-     * @param ID ID Default value is null
+     * @param ID . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setID(String ID) {
         setAttribute("ID", ID);
@@ -182,7 +212,7 @@ public class SectionStackSection extends RefDataClass {
      * com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs useGlobalSectionIDs} to false.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getID()  {
         return getAttributeAsString("ID");
@@ -196,7 +226,7 @@ public class SectionStackSection extends RefDataClass {
      * which may be used as a valid JavaScript identifier (should start with a letter and not contain space or special
      * characters such as "*").
      *
-     * @param name name Default value is null
+     * @param name . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setName(String name) {
         setAttribute("name", name);
@@ -211,7 +241,7 @@ public class SectionStackSection extends RefDataClass {
      * characters such as "*").
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getName()  {
         return getAttributeAsString("name");
@@ -386,6 +416,17 @@ public class SectionStackSection extends RefDataClass {
 	    
 	    return @com.smartgwt.client.widgets.layout.SectionHeader::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(sectionHeader);
     }-*/;
+
+    /**
+     * Setting icons to the SectionStackSection header. You will need a total of four images if you want to set this parameter.
+     *
+     * @param pathIcons This is the path to the icons that will be used by the header, eg.: If you pass "icon/16/folder.png" as a parameter,
+     * you will need to have four images in the icon/16 directory, these images must be: folder_opened.png, folder_closed.png,
+     * Disabled_folder_opened.png and Disabled_folder_closed.png.
+     */
+    public void setIcon(String pathIcons) {
+        setAttribute("icon", pathIcons);
+    }
 
 }
 

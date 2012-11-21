@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A set of properties that can be used to create an image.
@@ -68,12 +88,18 @@ public class ImgProperties extends DataClass {
         return new ImgProperties(jsObj);
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public ImgProperties(){
         
     }
 
     public ImgProperties(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     public ImgProperties(String src, int width, int height) {
@@ -88,7 +114,7 @@ public class ImgProperties extends DataClass {
     /**
      * Specifies the additional attributes to write in the tag.
      *
-     * @param extraStuff extraStuff Default value is null
+     * @param extraStuff . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setExtraStuff(String extraStuff) {
         setAttribute("extraStuff", extraStuff);
@@ -98,7 +124,7 @@ public class ImgProperties extends DataClass {
      * Specifies the additional attributes to write in the tag.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getExtraStuff()  {
         return getAttributeAsString("extraStuff");
@@ -126,7 +152,7 @@ public class ImgProperties extends DataClass {
     /**
      * Specifies the image-specific image directory to override the default.
      *
-     * @param imgDir imgDir Default value is null
+     * @param imgDir . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setImgDir(String imgDir) {
         setAttribute("imgDir", imgDir);
@@ -136,7 +162,7 @@ public class ImgProperties extends DataClass {
      * Specifies the image-specific image directory to override the default.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getImgDir()  {
         return getAttributeAsString("imgDir");
@@ -148,7 +174,7 @@ public class ImgProperties extends DataClass {
      * com.smartgwt.client.widgets.Canvas#setImage Canvas.setImage}</code>  with this name will act on the image object created
      * using this ImgProperties object.
      *
-     * @param name name Default value is null
+     * @param name . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setName(String name) {
         setAttribute("name", name);
@@ -161,7 +187,7 @@ public class ImgProperties extends DataClass {
      * using this ImgProperties object.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getName()  {
         return getAttributeAsString("name");
@@ -170,7 +196,7 @@ public class ImgProperties extends DataClass {
     /**
      * Specifies the URL of the image local to the skin or application directory.
      *
-     * @param src src Default value is null
+     * @param src . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setSrc(String src) {
         setAttribute("src", src);
@@ -180,7 +206,7 @@ public class ImgProperties extends DataClass {
      * Specifies the URL of the image local to the skin or application directory.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSrc()  {
         return getAttributeAsString("src");
@@ -212,9 +238,6 @@ public class ImgProperties extends DataClass {
     // ***********************************************************        
 
 }
-
-
-
 
 
 

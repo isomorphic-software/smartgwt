@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * The Progressbar widget class extends the StretchImg class to implement image-based progress bars (graphical bars whose
@@ -64,22 +84,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class Progressbar extends StretchImg  implements com.smartgwt.client.widgets.events.HasPercentChangedHandlers {
 
-    public static Progressbar getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (Progressbar) obj;
-        } else {
-            return new Progressbar(jsObj);
+    public native static Progressbar getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("Progressbar",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.Progressbar::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public Progressbar(){
         scClassName = "Progressbar";
     }
 
     public Progressbar(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "Progressbar";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -99,11 +130,10 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
      * Sets the breadth of the progressbar to newLength. This is the height of a horizontal progressbar, or the width of a vertical progressbar.
      *
      * @param breadth the new breadth of the progressbar. Default value is 20
-     * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setBreadth(int breadth)  throws IllegalStateException {
-        setAttribute("breadth", breadth, false);
+    public void setBreadth(int breadth) {
+        setAttribute("breadth", breadth, true);
     }
 
     /**
@@ -126,11 +156,10 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
      * Sets the length of the progressbar to newLength. This is the width of a horizontal progressbar, or the height of a vertical progressbar.
      *
      * @param length the new length of the progressbar. Default value is 100
-     * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setLength(int length)  throws IllegalStateException {
-        setAttribute("length", length, false);
+    public void setLength(int length) {
+        setAttribute("length", length, true);
     }
 
     /**
@@ -172,7 +201,7 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
     /**
      * The base file name for the progressbar image.
      *
-     * @param src src Default value is "[SKIN]progressbar.gif"
+     * @param src . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]progressbar.gif"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setSrc(String src) {
@@ -183,7 +212,7 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
      * The base file name for the progressbar image.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSrc()  {
@@ -229,21 +258,18 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
     private native void setupPercentChangedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var percentChanged = $entry(function(){
+            var param = {};
+
+                var event = @com.smartgwt.client.widgets.events.PercentChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({percentChanged:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.PercentChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({percentChanged:  percentChanged              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.percentChanged = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.PercentChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.percentChanged =  percentChanged             ;
         }
    }-*/;
 
@@ -269,7 +295,40 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
         
     // ***********************************************************        
 
+    public LogicalStructureObject setLogicalStructure(ProgressbarLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.breadth = getAttributeAsString("breadth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Progressbar.breadth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.length = getAttributeAsString("length");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Progressbar.length:" + t.getMessage() + "\n";
+        }
+        try {
+            s.percentDone = getAttributeAsString("percentDone");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Progressbar.percentDone:" + t.getMessage() + "\n";
+        }
+        try {
+            s.src = getAttributeAsString("src");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Progressbar.src:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vertical = getAttributeAsString("vertical");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Progressbar.vertical:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        ProgressbarLogicalStructure s = new ProgressbarLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

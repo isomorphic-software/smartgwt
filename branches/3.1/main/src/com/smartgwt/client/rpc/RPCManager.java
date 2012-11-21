@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * RPCManager is a static singleton class that manages transparent client/server RPC (remote
@@ -164,32 +184,9 @@ import com.google.gwt.event.shared.HasHandlers;
  *  }<br>
  *  </code>
  *  <br><br>
- *  <u><b>Error Handling</b></u>
+ *  <u><b>Error Handling</b></u><br><br>
+ *  Please see this {@link com.smartgwt.client.docs.ErrorHandling separate article} on error handling.
  *  <br>
- *  The {@link com.smartgwt.client.rpc.RPCResponse} object has an integer status field that the RPCManager inspects when
- *  the response is received from the server. If the value of this field is less than zero, the
- *  request is considered to have failed.  Otherwise it is considered to have succeeded.  This
- *  value is settable via the setStatus() method call on the RPCResponse server-side object.
- *  <br><br>
- *  If the status field shows a failure, the RPCManager will, by default, show a dialog with the
- *  contents of the {@link com.smartgwt.client.rpc.RPCRequest#getData data} field (which is assumed to contain a 
- *  meaningful description of the error that occurred).  If you specified a callback in your
- *  RPCRequest, it will <b>not</b> be called if the status shows a failure (see below for how to
- *  change this).
- *  <br><br>
- *  If the status field shows success, the RPCManager takes no special action.
- *  <br><br>
- *  The built-in status codes and default behavior are there for convenience.  You can choose to
- *  completely ignore it and handle errors as you see fit (for example by encoding them into the data
- *  field returned by the server, and always setting the RPCResponse status field to a success
- *  value).  In fact, the status field is automatically set to a success code
- *  (RPCResponse.STATUS_SUCCESS) by the constructor of the RPCResponse object on the server. 
- *  <br><br>
- *  If you choose to use the status field, but want to handle the errors yourself in your callback
- *  (and suppress the default error dialog popped up by the RPCManager), simply specify the
- *  {@link com.smartgwt.client.rpc.RPCRequest#getWillHandleError willHandleError:true} on your RPCRequest object.  This
- *  allows you to use the RPCManager.sendFailure() convenience methods on the server without the
- *  default error handling behavior on the client.
  */
 public class RPCManager {
 
@@ -198,7 +195,7 @@ public class RPCManager {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-            
+
     /**
      * Cancel a queue of requests (also called a transaction). <P> If a transactionId is passed, that transaction will be
      * cancelled, otherwise, the current  (not yet sent) transaction is cancelled.  You can retrieve the id of the current 
@@ -227,7 +224,7 @@ public class RPCManager {
     public static native void cancelQueue(String transactionNum) /*-{
         $wnd.isc.RPCManager.cancelQueue(transactionNum);
     }-*/;
-            
+
     /**
      * Erase all client-side record of a transaction, such that any response from the server will be ignored. <P> A transaction
      * means a batch of one or more RPCRequests that have already been sent to the server via {@link
@@ -239,7 +236,86 @@ public class RPCManager {
     public static native void clearTransaction(String transactionNum) /*-{
         $wnd.isc.RPCManager.clearTransaction(transactionNum);
     }-*/;
-            
+
+    /**
+     * Converts {@link com.smartgwt.client.widgets.Canvas#getPrintHTML printable HTML} generated from live UI components
+     *  into a .pdf and downloads it ("Save As.." dialog).
+     *  <P>
+     * For {@link com.smartgwt.client.widgets.drawing.DrawPane} and subclasses (e.g. {@link
+     * com.smartgwt.client.widgets.chart.FacetChart}) to export properly, the canvas
+     * parameter must be the widget itself, not the HTML obtained with {@link com.smartgwt.client.widgets.Canvas#getPrintHTML
+     * getPrintHTML()}.
+     *  <P>
+     *  You can use a custom skin when exporting your HTML content. To use a custom skin,
+     *  add a line to server.properties:
+     *  <pre>
+     *    skin.{skinName}.location: custom/skin
+     *  </pre>
+     *  Where {skinName} is the name of your custom skin, and the value is the path to your 
+     *  skin resources from the application webroot.
+     *  <P>
+     *  Requires the Smart GWT server framework, but does not require use of server-based
+     *  databinding - no .ds.xml files need to exist.
+     *  <P> 
+     *  See server-side docs for com.isomorphic.contentexport.PdfExport for more details on
+     *  server-side processing and code samples for redirecting PDF output to a file or
+     *  in-memory buffer, as well as instructions for adding additional stylesheets.
+     * 
+     * 
+     * @param canvas Canvas that has exportable widgets, or HTML fragment                                     derived from {@link
+     * com.smartgwt.client.widgets.Canvas#getPrintHTML getPrintHTML()}
+     */
+    public static native void exportContent(Canvas canvas) /*-{
+        $wnd.isc.RPCManager.exportContent(canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+
+    /**
+     * Converts {@link com.smartgwt.client.widgets.Canvas#getPrintHTML printable HTML} generated from live UI components
+     *  into a .pdf and downloads it ("Save As.." dialog).
+     *  <P>
+     * For {@link com.smartgwt.client.widgets.drawing.DrawPane} and subclasses (e.g. {@link
+     * com.smartgwt.client.widgets.chart.FacetChart}) to export properly, the canvas
+     * parameter must be the widget itself, not the HTML obtained with {@link com.smartgwt.client.widgets.Canvas#getPrintHTML
+     * getPrintHTML()}.
+     *  <P>
+     *  You can use a custom skin when exporting your HTML content. To use a custom skin,
+     *  add a line to server.properties:
+     *  <pre>
+     *    skin.{skinName}.location: custom/skin
+     *  </pre>
+     *  Where {skinName} is the name of your custom skin, and the value is the path to your 
+     *  skin resources from the application webroot.
+     *  <P>
+     *  Requires the Smart GWT server framework, but does not require use of server-based
+     *  databinding - no .ds.xml files need to exist.
+     *  <P> 
+     *  See server-side docs for com.isomorphic.contentexport.PdfExport for more details on
+     *  server-side processing and code samples for redirecting PDF output to a file or
+     *  in-memory buffer, as well as instructions for adding additional stylesheets.
+     * 
+     * 
+     * @param canvas Canvas that has exportable widgets, or HTML fragment                                     derived from {@link
+     * com.smartgwt.client.widgets.Canvas#getPrintHTML getPrintHTML()}
+     * @param requestProperties Request properties for the export to pdf object
+     */
+    public static native void exportContent(Canvas canvas, DSRequest requestProperties) /*-{
+        $wnd.isc.RPCManager.exportContent(canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+    /**
+     * Returns whether there are any pending RPC requests. <P>
+     *
+     * @return true if one or more RPC requests are pending, false otherwise.
+     */
+    public static native Boolean requestsArePending() /*-{
+        var retVal =$wnd.isc.RPCManager.requestsArePending();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
     /**
      * Resend a suspended transaction to the server.  See {@link com.smartgwt.client.rpc.RPCManager#suspendTransaction
      * RPCManager.suspendTransaction} for context.   <P> Note that the transaction must have been previously suspended, and in
@@ -264,7 +340,7 @@ public class RPCManager {
     public static native void resendTransaction(String transactionNum) /*-{
         $wnd.isc.RPCManager.resendTransaction(transactionNum);
     }-*/;
-            
+
     /**
      * Returns true if the XMLHttpRequest object is available, false otherwise.  See {@link
      * com.smartgwt.client.docs.PlatformDependencies} for more information on when XMLHttpRequest parser may not available and
@@ -294,35 +370,6 @@ public class RPCManager {
     public static native void setActionURL(String actionURL) /*-{
         $wnd.isc.RPCManager.actionURL = actionURL;
     }-*/;
-
-    /**
-     * Returns URL of ScreenLoaderServlet servlet.
-     */
-    public static native String getScreenLoaderURL() /*-{
-        return $wnd.isc.RPCManager.screenLoaderURL;
-    }-*/;
-
-    /**
-     * The screenLoaderURL specifies the URL where ScreenLoaderServlet is installed.
-     *
-     * @param screenLoaderURL the URL for ScreenLoaderServlet .
-     */
-    public static native void setScreenLoaderURL(String screenLoaderURL) /*-{
-        $wnd.isc.RPCManager.screenLoaderURL = screenLoaderURL;
-    }-*/;
-
-    /**
-     * Converts {@link com.smartgwt.client.widgets.Canvas#getPrintHTML printable HTML} generated from live UI components into a
-     * .pdf and downloads it ("Save As.." dialog). <P> Requires the Smart GWT server framework, but does not require use of
-     * server-based databinding.
-     * @param canvas Canvas that has exportable widgets, or HTML fragment                                     derived from
-     * @param requestProperties Request properties for the export to pdf object
-     */
-
-    public static native void exportContent(Canvas canvas, DSRequest requestProperties) /*-{
-        var jsCanvas = canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        $wnd.isc.RPCManager.exportContent(jsCanvas, requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
-    }-*/;  
 
     /**
      * Specifies URL where credentials should be submitted to attempt relogin when session timeout is encountered during a background RPC.
@@ -517,6 +564,8 @@ public class RPCManager {
      * of this object are accessed. For example, if you try to access XMLHttpRequest.status (for the HTTP status code) when the
      * network cable is unpluged in Windows, you'll get an Exception in Firefox.
      *
+     * See {@link com.smartgwt.client.docs.ErrorHandling} for an overview of SmartGWT error handling.
+     *
      * @param callback the callback
      */
     public static native void setHandleErrorCallback(HandleErrorCallback callback) /*-{
@@ -538,6 +587,8 @@ public class RPCManager {
      * <p>
      * The default implementation takes no action - by default transport errors are handled via {#setHandleErrorCallback()}, or by the standard request callback
      * methods, depending on request.willHandleError.
+     *
+     * See {@link com.smartgwt.client.docs.ErrorHandling} for an overview of SmartGWT error handling.
      *
      * @param callback the handleTransportError callback
      */
@@ -676,6 +727,73 @@ public class RPCManager {
     }
 
     /**
+     * Send an HTTP request to a remote host, potentially through the HttpProxy servlet installed on the Smart GWT Server. <P>
+     * This API allows contacting services which are hosted on servers other than the origin server if the HttpProxy servlet is
+     * enabled on the Smart GWT Server. <P> The HttpProxy will be used if the {@link
+     * com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL} starts with "http" and uses a hostname other than "localhost"
+     * or <code>window.location.hostname</code>, or if the port number differs, or if <code>request.useHttpProxy</code> is
+     * explicitly set.  Otherwise the request goes to the origin server (the server that returned the current page). <P> The
+     * {@link com.smartgwt.client.rpc.RPCRequest} properties that will be respected when relaying requests via the HttpProxy
+     * are:  {@link com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL}, {@link
+     * com.smartgwt.client.rpc.RPCRequest#getHttpMethod httpMethod},  {@link com.smartgwt.client.rpc.RPCRequest#getParams
+     * params}, {@link com.smartgwt.client.rpc.RPCRequest#getContentType contentType},  {@link
+     * com.smartgwt.client.rpc.RPCRequest#getHttpHeaders httpHeaders}, and {@link com.smartgwt.client.rpc.RPCRequest#getData
+     * data}.  In this case "data", if set, will be used as the request body for an HTTP POST. <P> Higher-level APIs like
+     * {@link com.smartgwt.client.data.DataSource} or {@link com.smartgwt.client.data.WebService} call through this API, and so
+     * automatically use the HttpProxy if {@link com.smartgwt.client.data.DataSource#getDataURL dataURL} or {@link
+     * com.smartgwt.client.data.WebService#setLocation webService.location} is set to a foreign server. <P> This API is only
+     * suitable for direct use when loading unstructured data that will not be shown in a {@link
+     * com.smartgwt.client.widgets.DataBoundComponent}.  For a WSDL-described web service, use {@link
+     * com.smartgwt.client.data.XMLTools#loadWSDL XMLTools.loadWSDL} instead.  For other web services, use a {@link
+     * com.smartgwt.client.data.DataSource} with {@link com.smartgwt.client.data.DataSource#getDataURL dataURL}, and use {@link
+     * com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest} and {@link
+     * com.smartgwt.client.data.DataSource#transformResponse DataSource.transformResponse} as necessary to form requests for
+     * the service and transform responses for display.
+     * @param request rpcRequest to be routed through the HttpProxy
+     */
+    public static native void sendProxied(RPCRequest request) /*-{
+        $wnd.isc.RPCManager.sendProxied(request.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+    /**
+     * Send an HTTP request to a remote host, potentially through the HttpProxy servlet installed on the Smart GWT Server. <P>
+     * This API allows contacting services which are hosted on servers other than the origin server if the HttpProxy servlet is
+     * enabled on the Smart GWT Server. <P> The HttpProxy will be used if the {@link
+     * com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL} starts with "http" and uses a hostname other than "localhost"
+     * or <code>window.location.hostname</code>, or if the port number differs, or if <code>request.useHttpProxy</code> is
+     * explicitly set.  Otherwise the request goes to the origin server (the server that returned the current page). <P> The
+     * {@link com.smartgwt.client.rpc.RPCRequest} properties that will be respected when relaying requests via the HttpProxy
+     * are:  {@link com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL}, {@link
+     * com.smartgwt.client.rpc.RPCRequest#getHttpMethod httpMethod},  {@link com.smartgwt.client.rpc.RPCRequest#getParams
+     * params}, {@link com.smartgwt.client.rpc.RPCRequest#getContentType contentType},  {@link
+     * com.smartgwt.client.rpc.RPCRequest#getHttpHeaders httpHeaders}, and {@link com.smartgwt.client.rpc.RPCRequest#getData
+     * data}.  In this case "data", if set, will be used as the request body for an HTTP POST. <P> Higher-level APIs like
+     * {@link com.smartgwt.client.data.DataSource} or {@link com.smartgwt.client.data.WebService} call through this API, and so
+     * automatically use the HttpProxy if {@link com.smartgwt.client.data.DataSource#getDataURL dataURL} or {@link
+     * com.smartgwt.client.data.WebService#setLocation webService.location} is set to a foreign server. <P> This API is only
+     * suitable for direct use when loading unstructured data that will not be shown in a {@link
+     * com.smartgwt.client.widgets.DataBoundComponent}.  For a WSDL-described web service, use {@link
+     * com.smartgwt.client.data.XMLTools#loadWSDL XMLTools.loadWSDL} instead.  For other web services, use a {@link
+     * com.smartgwt.client.data.DataSource} with {@link com.smartgwt.client.data.DataSource#getDataURL dataURL}, and use {@link
+     * com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest} and {@link
+     * com.smartgwt.client.data.DataSource#transformResponse DataSource.transformResponse} as necessary to form requests for
+     * the service and transform responses for display.
+     * @param request rpcRequest to be routed through the HttpProxy
+     * @param callback callback to invoke on RPC completion
+     */
+    public static native void sendProxied(RPCRequest request, final RPCCallback callback) /*-{
+        var rpcRequest = request.@com.smartgwt.client.core.DataClass::getJsObj()();
+        if (callback != null) {
+            rpcRequest.callback = $entry(function (rpcResponse, data, rpcRequest) {
+                var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcResponse);
+                var requestJ = @com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcRequest);
+                callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(responseJ, data, requestJ);
+            });
+        }
+        $wnd.isc.RPCManager.sendRequest(rpcRequest);
+    }-*/;
+
+    /**
      * Send the passed RPCRequest to the server. If queuing is in effect, this queues the request instead.
      *
      * @param rpcRequestProperties  RPCRequest to send to the server
@@ -692,11 +810,13 @@ public class RPCManager {
      */
     public static native void sendRequest(RPCRequest rpcRequestProperties, RPCCallback callback) /*-{
         var rpcRequest = rpcRequestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        rpcRequest.callback = $entry(function (rpcResponse, data, rpcRequest) {
-            var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcResponse);
-            var requestJ = @com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcRequest);
-            if(callback != null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(responseJ, data, requestJ);
-        });
+        if (callback != null) {
+            rpcRequest.callback = $entry(function (rpcResponse, data, rpcRequest) {
+                var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcResponse);
+                var requestJ = @com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcRequest);
+                callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(responseJ, data, requestJ);
+            });
+        }
         $wnd.isc.RPCManager.sendRequest(rpcRequest);
     }-*/;
 
@@ -760,6 +880,118 @@ public class RPCManager {
             if(callback != null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(responseJ, data, requestJ);
         }), requestParams == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(requestParams));
     }-*/;
+
+
+    /**
+     * Loads a screen saved in {@link com.smartgwt.client.docs.ComponentXML Component XML} format, using the {@link
+     * com.smartgwt.client.docs.ServletDetails ScreenLoaderServlet}. <P> For each <code>screenName</code> passed, the
+     * ScreenLoaderServlet will look for a file named <i>screenName</i>.ui.xml in the directory given by the "project.ui"
+     * setting, which defaults <i>webroot</i>/shared/ui and can be configured in server.properties. <P> By default, components
+     * in the loaded screen that have {@link com.smartgwt.client.widgets.Canvas#getID global IDs} will not actually be allowed
+     * to take those global IDs - instead, only widgets that have one of the global IDs passed as the <code>globals</code>
+     * parameter will actually receive their global IDs.  To override this behavior, pass the special value {@link
+     * com.smartgwt.client.rpc.RPCManager#ALL_GLOBALS ALL_GLOBALS} for the <code>globals</code> parameter. <P>  This API
+     * assumes the ScreenLoaderServlet is installed at the default location - to use a different location, use the
+     * <code>requestProperties</code> parameter to specify a different URL via {@link
+     * com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL}.  The <code>requestProperties</code> parameter can also be
+     * used to pass additional params to a custom ScreenLoaderServlet - see the "Dynamic Component XML" section of the {@link
+     * com.smartgwt.client.docs.ComponentXML Component XML overview}.
+     * @param screenName name of the screen to load
+     * @param callback callback for notification of screen being loaded
+     */
+    public static void loadScreen(String screenName, LoadScreenCallback callback) {
+        loadScreen(screenName, callback, null, null);        
+    }
+
+    /**
+     * Loads a screen saved in {@link com.smartgwt.client.docs.ComponentXML Component XML} format, using the {@link
+     * com.smartgwt.client.docs.ServletDetails ScreenLoaderServlet}. <P> For each <code>screenName</code> passed, the
+     * ScreenLoaderServlet will look for a file named <i>screenName</i>.ui.xml in the directory given by the "project.ui"
+     * setting, which defaults <i>webroot</i>/shared/ui and can be configured in server.properties. <P> By default, components
+     * in the loaded screen that have {@link com.smartgwt.client.widgets.Canvas#getID global IDs} will not actually be allowed
+     * to take those global IDs - instead, only widgets that have one of the global IDs passed as the <code>globals</code>
+     * parameter will actually receive their global IDs.  To override this behavior, pass the special value {@link
+     * com.smartgwt.client.rpc.RPCManager#ALL_GLOBALS ALL_GLOBALS} for the <code>globals</code> parameter. <P>  This API
+     * assumes the ScreenLoaderServlet is installed at the default location - to use a different location, use the
+     * <code>requestProperties</code> parameter to specify a different URL via {@link
+     * com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL}.  The <code>requestProperties</code> parameter can also be
+     * used to pass additional params to a custom ScreenLoaderServlet - see the "Dynamic Component XML" section of the {@link
+     * com.smartgwt.client.docs.ComponentXML Component XML overview}.
+     * @param screenName name of the screen to load
+     * @param callback callback for notification of screen being loaded
+     * @param globals widgets to allow to take their global IDs
+     */
+    public static void loadScreen(String screenName, LoadScreenCallback callback, String[] globals) {
+        loadScreen(screenName, callback, globals, null);
+    }
+    
+
+    /**
+     * Loads a screen saved in {@link com.smartgwt.client.docs.ComponentXML Component XML} format, using the {@link
+     * com.smartgwt.client.docs.ServletDetails ScreenLoaderServlet}. <P> For each <code>screenName</code> passed, the
+     * ScreenLoaderServlet will look for a file named <i>screenName</i>.ui.xml in the directory given by the "project.ui"
+     * setting, which defaults <i>webroot</i>/shared/ui and can be configured in server.properties. <P> By default, components
+     * in the loaded screen that have {@link com.smartgwt.client.widgets.Canvas#getID global IDs} will not actually be allowed
+     * to take those global IDs - instead, only widgets that have one of the global IDs passed as the <code>globals</code>
+     * parameter will actually receive their global IDs.  To override this behavior, pass the special value {@link
+     * com.smartgwt.client.rpc.RPCManager#ALL_GLOBALS ALL_GLOBALS} for the <code>globals</code> parameter. <P>  This API
+     * assumes the ScreenLoaderServlet is installed at the default location - to use a different location, use the
+     * <code>requestProperties</code> parameter to specify a different URL via {@link
+     * com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL}.  The <code>requestProperties</code> parameter can also be
+     * used to pass additional params to a custom ScreenLoaderServlet - see the "Dynamic Component XML" section of the {@link
+     * com.smartgwt.client.docs.ComponentXML Component XML overview}.
+     * @param screenName name of the screen to load
+     * @param callback callback for notification of screen being loaded
+     * @param globals widgets to allow to take their global IDs
+     * @param requestProperties optional properties for the request
+     */
+    public static native void loadScreen(String screenName, LoadScreenCallback callback, String[] globals, RPCRequest requestProperties) /*-{
+        var globalsJ = globals == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(globals);
+        var requestPropertiesJ = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
+        $wnd.isc.RPCManager.loadScreen(screenName, $entry(function (rpcResponse, data, rpcRequest) {
+            var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcResponse);
+            var requestJ = @com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcRequest);
+            if(callback != null) callback.@com.smartgwt.client.rpc.LoadScreenCallback::execute()();
+        }), globalsJ, requestPropertiesJ);
+    }-*/;
+    
+    /**
+     * ALL_GLOBALS constant used by the {@link com.smartgwt.client.rpc.RPCManager#loadScreen(String, LoadScreenCallback, String[])} API.
+     */
+    public static final String ALL_GLOBALS = "-ALL_GLOBALS";
+
+    
+    /**
+     * In Internet Explorer 9, when a string of 
+     * JavaScript is evaluated via the native <code>eval()</code> function, objects created 
+     * within that evaluation are not released from browser memory until the page is 
+     * reloaded.
+     * <P>
+     * SmartGWT uses the <code>eval()</code> function to evaluate JSON formatted
+     * responses to RPCRequests by default, making long running applications potentially
+     * susceptible to memory leaks over time.
+     * <P>
+     * Setting this property to <code>false</code> enables a workaround suggested on the
+     * <a href="http://support.microsoft.com/kb/2572253">Microsoft Knowledge Base</a> to 
+     * avoid such memory leaks by evaluating script in a hidden iframe and periodically
+     * refresh that frame. However developers should be aware of the following
+     * limitation with this setting: attempting to access certain object types including
+     * <code>Date</code> or <code>function</code> objects generated from such an 
+     * evaluation can subsequently lead to a JavaScript error with the message
+     * <code>"Can't execute code from a freed script"</code>.
+     * <P>
+     * This workaround therefore may not be suitable for all transactions or dataSources
+     * within a given application.
+     * <P>
+     * This property may also be specified for specific +link{RPCRequest.allowIE9Leak,RPCRequests}.
+     * <P>
+     * Note: This issue is discussed further in the online 
+     * <a href="http://forums.smartclient.com/showthread.php?t=8159">SmartGWT FAQ</a>.
+     */
+    public static native void setAllowIE9Leak(boolean allowLeak) /*-{
+        $wnd.isc.RPCManager.allowIE9Leak = allowLeak;
+    }-*/;
+           
 
 }
 

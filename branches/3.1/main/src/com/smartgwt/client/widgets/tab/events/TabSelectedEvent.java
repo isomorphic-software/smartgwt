@@ -45,16 +45,19 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class TabSelectedEvent extends BrowserEvent<TabSelectedHandler>  {
@@ -92,7 +95,6 @@ public class TabSelectedEvent extends BrowserEvent<TabSelectedHandler>  {
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(TabSelectedHandler handler) {
         handler.onTabSelected(this);
@@ -110,7 +112,6 @@ public class TabSelectedEvent extends BrowserEvent<TabSelectedHandler>  {
     public TabSelectedEvent(JavaScriptObject jsObj) {
         super(jsObj);
     }
-
 
 
     /**
@@ -151,6 +152,16 @@ public class TabSelectedEvent extends BrowserEvent<TabSelectedHandler>  {
     public  native Tab getTab() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
         return @com.smartgwt.client.widgets.tab.Tab::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tab);
+    }-*/;
+
+    /**
+     * the name of the newly selected tab
+     *
+     * @return the name of the newly selected tab
+     */
+    public  native String getName() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        return jsObj.name;
     }-*/;
 
 

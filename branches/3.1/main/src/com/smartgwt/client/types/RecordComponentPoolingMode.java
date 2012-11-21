@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * The method of component-pooling to employ for {@link
  * com.smartgwt.client.types.RecordComponentPoolingMode#getShowRecordComponents recordComponents}. <P>
@@ -37,7 +38,6 @@ public enum RecordComponentPoolingMode implements ValueEnum {
      * with a new record
      */
     RECYCLE("recycle");
-
     private String value;
 
     RecordComponentPoolingMode(String value) {
@@ -48,3 +48,4 @@ public enum RecordComponentPoolingMode implements ValueEnum {
         return this.value;
     }
 }
+        

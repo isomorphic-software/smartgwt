@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * FormItem for adding a Button to a form.
@@ -64,8 +84,12 @@ import com.google.gwt.event.shared.HasHandlers;
 public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widgets.form.fields.events.HasClickHandlers {
 
     public static ButtonItem getOrCreateRef(JavaScriptObject jsObj) {
+    
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+ 
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (ButtonItem) obj;
@@ -74,12 +98,18 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public ButtonItem(){
         setAttribute("editorType", "ButtonItem");
     }
 
     public ButtonItem(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     public ButtonItem(String name) {
@@ -121,7 +151,7 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
     /**
      * Optional <code>baseStyle</code> will be applied to the button.
      *
-     * @param baseStyle baseStyle Default value is null
+     * @param baseStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setBaseStyle(String baseStyle) {
@@ -132,7 +162,7 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
      * Optional <code>baseStyle</code> will be applied to the button.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getBaseStyle()  {
@@ -164,7 +194,7 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
      * Optional icon image to display on the button for this item.  See {@link com.smartgwt.client.widgets.Button#getIcon
      * icon}.
      *
-     * @param icon icon Default value is null
+     * @param icon . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setIcon(String icon) {
@@ -176,7 +206,7 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
      * icon}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getIcon()  {
@@ -241,13 +271,20 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
 
     private native void setupClickEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.click = $entry(function(){
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var click = $debox($entry(function(param){
+            var event = @com.smartgwt.client.widgets.form.fields.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        obj.click = 
+            function () {
                 var param = {"form" : arguments[0], "item" : arguments[1]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            });
+                return click(param) == true;
+            }
+        ;
    }-*/;
 
     // ********************* Static Methods ***********************

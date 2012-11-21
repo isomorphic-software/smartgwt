@@ -45,40 +45,71 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Simple subclass of button associated with a menu widget (gets shown below the button).
  */
 public class MenuButton extends Button {
 
-    public static MenuButton getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (MenuButton) obj;
-        } else {
-            return new MenuButton(jsObj);
+    public native static MenuButton getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("MenuButton",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.menu.MenuButton::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public MenuButton(){
         scClassName = "MenuButton";
     }
 
     public MenuButton(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "MenuButton";
+        setJavaScriptObject(jsObj);
     }
 
     public MenuButton(String title) {
@@ -170,7 +201,7 @@ public class MenuButton extends Button {
      * animation), "fade", "slide" and "wipe". If unspecified falls through to <code>menu.showAnimationEffect</code>
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param menuAnimationEffect menuAnimationEffect Default value is null
+     * @param menuAnimationEffect . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setMenuAnimationEffect(String menuAnimationEffect) {
         setAttribute("menuAnimationEffect", menuAnimationEffect, true);
@@ -181,7 +212,7 @@ public class MenuButton extends Button {
      * animation), "fade", "slide" and "wipe". If unspecified falls through to <code>menu.showAnimationEffect</code>
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMenuAnimationEffect()  {
         return getAttributeAsString("menuAnimationEffect");
@@ -193,7 +224,7 @@ public class MenuButton extends Button {
      * showMenuBelow}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param menuButtonImage menuButtonImage Default value is "[SKIN]menu_button.gif"
+     * @param menuButtonImage . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]menu_button.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.menu.MenuButton#setMenuButtonImageUp
      */
@@ -207,7 +238,7 @@ public class MenuButton extends Button {
      * showMenuBelow}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.widgets.menu.MenuButton#getMenuButtonImageUp
      */
     public String getMenuButtonImage()  {
@@ -220,7 +251,7 @@ public class MenuButton extends Button {
      * showMenuBelow}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param menuButtonImageUp menuButtonImageUp Default value is "[SKIN]menu_button_up.gif"
+     * @param menuButtonImageUp . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]menu_button_up.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.menu.MenuButton#setMenuButtonImage
      */
@@ -234,7 +265,7 @@ public class MenuButton extends Button {
      * showMenuBelow}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.widgets.menu.MenuButton#getMenuButtonImage
      */
     public String getMenuButtonImageUp()  {
@@ -337,7 +368,7 @@ public class MenuButton extends Button {
     /**
      * Default title for the button.
      *
-     * @param title title Default value is "Show Menu"
+     * @param title . See {@link com.smartgwt.client.docs.String String}. Default value is "Show Menu"
      */
     public void setTitle(String title) {
         setAttribute("title", title, true);
@@ -347,14 +378,14 @@ public class MenuButton extends Button {
      * Default title for the button.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getTitle()  {
         return getAttributeAsString("title");
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Programmaticly forces this MenuButton to show it's menu.
      */
@@ -387,7 +418,70 @@ public class MenuButton extends Button {
 
 
 
+    public LogicalStructureObject setLogicalStructure(MenuButtonLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.autoDestroyMenu = getAttributeAsString("autoDestroyMenu");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "MenuButton.autoDestroyMenu:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hiliteAccessKey = getAttributeAsString("hiliteAccessKey");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "MenuButton.hiliteAccessKey:" + t.getMessage() + "\n";
+        }
+        try {
+            s.menu = getMenu();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "MenuButton.menu:" + t.getMessage() + "\n";
+        }
+        try {
+            s.menuAnimationEffect = getAttributeAsString("menuAnimationEffect");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "MenuButton.menuAnimationEffect:" + t.getMessage() + "\n";
+        }
+        try {
+            s.menuButtonImage = getAttributeAsString("menuButtonImage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "MenuButton.menuButtonImage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.menuButtonImageUp = getAttributeAsString("menuButtonImageUp");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "MenuButton.menuButtonImageUp:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rollOverMenuHideDelay = getAttributeAsString("rollOverMenuHideDelay");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "MenuButton.rollOverMenuHideDelay:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showMenuBelow = getAttributeAsString("showMenuBelow");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "MenuButton.showMenuBelow:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showMenuButtonImage = getAttributeAsString("showMenuButtonImage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "MenuButton.showMenuButtonImage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showMenuOnRollOver = getAttributeAsString("showMenuOnRollOver");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "MenuButton.showMenuOnRollOver:" + t.getMessage() + "\n";
+        }
+        try {
+            s.title = getAttributeAsString("title");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "MenuButton.title:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        MenuButtonLogicalStructure s = new MenuButtonLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

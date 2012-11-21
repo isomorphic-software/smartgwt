@@ -45,42 +45,73 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A TileGrid is a {@link com.smartgwt.client.widgets.DataBoundComponent} that displays a list of objects as a set of
  * "tiles", where each tile represents one object, and the tiles are laid out in a grid with multiple tiles per row.  Each
  * tile displays one or more properties of the object it represents.
  */
-public class TileGrid extends TileLayout  implements DataBoundComponent, com.smartgwt.client.widgets.tile.events.HasRecordClickHandlers, com.smartgwt.client.widgets.tile.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.tile.events.HasRecordContextClickHandlers, com.smartgwt.client.widgets.tile.events.HasSelectionChangedHandlers {
+public class TileGrid extends TileLayout  implements DataBoundComponent, com.smartgwt.client.widgets.tile.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.tile.events.HasRecordClickHandlers, com.smartgwt.client.widgets.tile.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.tile.events.HasRecordContextClickHandlers, com.smartgwt.client.widgets.tile.events.HasSelectionChangedHandlers {
 
-    public static TileGrid getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (TileGrid) obj;
-        } else {
-            return new TileGrid(jsObj);
+    public native static TileGrid getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("TileGrid",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.tile.TileGrid::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public TileGrid(){
         scClassName = "TileGrid";
     }
 
     public TileGrid(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "TileGrid";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -114,32 +145,6 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      */
     public Boolean getAnimateTileChange()  {
         return getAttributeAsBoolean("animateTileChange");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchData autoFetchData} is <code>true</code>, this attribute
-     * allows the developer to specify a textMatchStyle for the initial {@link
-     * com.smartgwt.client.widgets.tile.TileGrid#fetchData TileGrid.fetchData} call.
-     *
-     * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is "substring"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
-     */
-    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle == null ? null : autoFetchTextMatchStyle.getValue(), false);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchData autoFetchData} is <code>true</code>, this attribute
-     * allows the developer to specify a textMatchStyle for the initial {@link
-     * com.smartgwt.client.widgets.tile.TileGrid#fetchData TileGrid.fetchData} call.
-     *
-     *
-     * @return TextMatchStyle
-     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
-     */
-    public TextMatchStyle getAutoFetchTextMatchStyle()  {
-        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
     }
 
     /**
@@ -236,7 +241,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setDetailViewerProperties(DetailViewer detailViewerProperties)  throws IllegalStateException {
-        setAttribute("detailViewerProperties", detailViewerProperties == null ? null : detailViewerProperties.getOrCreateJsObj(), false);
+        setAttribute("detailViewerProperties", detailViewerProperties == null ? null : detailViewerProperties.getConfig(), false);
     }
 
     /**
@@ -276,7 +281,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * @param selectionType selectionType Default value is Selection.MULTIPLE
      * @see com.smartgwt.client.types.SelectionStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_editing_category" target="examples">Editing Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tiling_editing" target="examples">Editing Example</a>
      */
     public void setSelectionType(SelectionStyle selectionType) {
         setAttribute("selectionType", selectionType == null ? null : selectionType.getValue(), true);
@@ -289,7 +294,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * @return SelectionStyle
      * @see com.smartgwt.client.types.SelectionStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_editing_category" target="examples">Editing Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tiling_editing" target="examples">Editing Example</a>
      */
     public SelectionStyle getSelectionType()  {
         return EnumUtil.getEnum(SelectionStyle.values(), getAttribute("selectionType"));
@@ -342,7 +347,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     /**
      * Style for the overall TileGrid component.
      *
-     * @param styleName styleName Default value is "tileGrid"
+     * @param styleName . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "tileGrid"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -354,7 +359,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * Style for the overall TileGrid component.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getStyleName()  {
@@ -392,7 +397,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setTileProperties(Canvas tileProperties)  throws IllegalStateException {
-        setAttribute("tileProperties", tileProperties == null ? null : tileProperties.getOrCreateJsObj(), false);
+        setAttribute("tileProperties", tileProperties == null ? null : tileProperties.getConfig(), false);
     }
 
     /**
@@ -408,7 +413,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     /**
      * Horizontal alignment for tile values: "left", "right" or "center".
      *
-     * @param tileValueAlign tileValueAlign Default value is "center"
+     * @param tileValueAlign . See {@link com.smartgwt.client.docs.String String}. Default value is "center"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setTileValueAlign(String tileValueAlign)  throws IllegalStateException {
@@ -419,16 +424,17 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * Horizontal alignment for tile values: "left", "right" or "center".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getTileValueAlign()  {
         return getAttributeAsString("tileValueAlign");
     }
 
     /**
-     * When using the default SimpleTile, CSS style for each value shown within a tile.
+     * When using the default {@link com.smartgwt.client.widgets.tile.SimpleTile}, CSS style for each value shown within a
+     * tile.
      *
-     * @param tileValueStyle tileValueStyle Default value is "tileValue"
+     * @param tileValueStyle . See {@link com.smartgwt.client.docs.CSSClassName CSSClassName}. Default value is "tileValue"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setTileValueStyle(String tileValueStyle)  throws IllegalStateException {
@@ -436,10 +442,11 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     /**
-     * When using the default SimpleTile, CSS style for each value shown within a tile.
+     * When using the default {@link com.smartgwt.client.widgets.tile.SimpleTile}, CSS style for each value shown within a
+     * tile.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSClassName CSSClassName}
      */
     public String getTileValueStyle()  {
         return getAttributeAsString("tileValueStyle");
@@ -466,7 +473,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#addData
      * TileGrid.addData}.
@@ -475,21 +482,57 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addTile();
     }-*/;
-            
     /**
+     * Add a dataArrived handler.
+     * <p>
      * Notification method fired when new data arrives from the server to be displayed in this tileGrid, (for example in
      * response to the user scrolling a new set of tiles into view). Only applies to databound tileGrid where the {@link
      * com.smartgwt.client.widgets.tile.TileGrid#getData data} attribute is a {@link com.smartgwt.client.data.ResultSet}. This
      * method is fired directly in response to {@link com.smartgwt.client.data.ResultSet#addDataArrivedHandler dataArrived()}
      * firing on the data object.
-     * @param startRecord starting index of the newly loaded set of records
-     * @param endRecord ending index of the newly loaded set of records (non inclusive).
+     *
+     * @param handler the dataArrived handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
-    public native void dataArrived(int startRecord, int endRecord) /*-{
+    public HandlerRegistration addDataArrivedHandler(com.smartgwt.client.widgets.tile.events.DataArrivedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tile.events.DataArrivedEvent.getType()) == 0) setupDataArrivedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tile.events.DataArrivedEvent.getType());
+    }
+
+    private native void setupDataArrivedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        var dataArrived = $entry(function(){
+            var param = {"startRecord" : arguments[0], "endRecord" : arguments[1]};
+
+                var event = @com.smartgwt.client.widgets.tile.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({dataArrived:  dataArrived              });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.dataArrived =  dataArrived             ;
+        }
+   }-*/;
+
+    /**
+     * Returns the tile currently under the mouse.
+     *
+     * @return the tile currently under the mouse
+     */
+    public native SimpleTile getCurrentTile() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.dataArrived(startRecord, endRecord);
+        var ret = self.getCurrentTile();
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.tile.SimpleTile::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
     }-*/;
-            
+
     /**
      * Return "title" HTML to display as a drag tracker when the user drags some record.<br> Default implementation will
      * display the cell value for the title field (see  {@link com.smartgwt.client.widgets.grid.ListGrid#getTitleField
@@ -505,12 +548,12 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getDragTrackerTitle(record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum);
     }-*/;
-            
+
     /**
-     * Returns a snapshot of the current presentation of this grid's fields as  a String object. <P> This object can be passed
-     * to {@link com.smartgwt.client.widgets.tile.TileGrid#setFieldState TileGrid.setFieldState} to reset this grid's fields to
-     * the current state. <P> Note that the information stored includes the current width and visibility of each of this 
-     * grid's fields.
+     * Returns a snapshot of the current presentation of this grid's fields as  a ListGridFieldState object. <P> This object
+     * can be passed to {@link com.smartgwt.client.widgets.tile.TileGrid#setFieldState TileGrid.setFieldState} to reset this
+     * grid's fields to the current state. <P> Note that the information stored includes the current width and visibility of
+     * each of this  grid's fields.
      *
      * @return current state of this grid's fields.
      * @see com.smartgwt.client.widgets.tile.TileGrid#setFieldState
@@ -519,7 +562,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getFieldState();
     }-*/;
-            
+
     /**
      * Return the first selected record in this component
      *
@@ -530,6 +573,34 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     public native TileRecord getSelectedRecord() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getSelectedRecord();
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.tile.TileRecord::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+
+    /**
+     * Returns the index of the specified tile.
+     * @param tile Tile you want to get the index for
+     *
+     * @return index of the tile in this tileGrid. Will return -1 if the specifiedtile is not displayed within this grid.
+     */
+    public native int getTileIndex(Canvas tile) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getTileIndex(tile.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+
+    /**
+     * Given a tile within this this tile-grid, this method will return the associated record from the TileGrid's data.
+     * @param tile Tile you want to get the record for
+     *
+     * @return Record associated with the specified tile
+     */
+    public native TileRecord getTileRecord(Canvas tile) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getTileRecord(tile.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
         if(ret == null || ret === undefined) return null;
         var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
         if(retVal == null) {
@@ -557,21 +628,18 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     private native void setupRecordClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var recordClick = $entry(function(){
+            var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
+
+                var event = @com.smartgwt.client.widgets.tile.events.RecordClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({recordClick:$entry(function(){
-                        var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
-                        var event = @com.smartgwt.client.widgets.tile.events.RecordClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({recordClick:  recordClick              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.recordClick = $entry(function(){
-                   var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
-                   var event = @com.smartgwt.client.widgets.tile.events.RecordClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.recordClick =  recordClick             ;
         }
    }-*/;
     /**
@@ -595,25 +663,28 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     private native void setupRecordContextClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var recordContextClick = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.tile.events.RecordContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({recordContextClick:$debox($entry(function(){
-                        var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
-                        var event = @com.smartgwt.client.widgets.tile.events.RecordContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({recordContextClick: 
+                function () {
+                    var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
+                    return recordContextClick(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.recordContextClick = $debox($entry(function(){
-                   var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
-                   var event = @com.smartgwt.client.widgets.tile.events.RecordContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.recordContextClick = 
+                function () {
+                    var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
+                    return recordContextClick(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -636,24 +707,21 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     private native void setupRecordDoubleClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var recordDoubleClick = $entry(function(){
+            var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
+
+                var event = @com.smartgwt.client.widgets.tile.events.RecordDoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({recordDoubleClick:$entry(function(){
-                        var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
-                        var event = @com.smartgwt.client.widgets.tile.events.RecordDoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({recordDoubleClick:  recordDoubleClick              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.recordDoubleClick = $entry(function(){
-                   var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
-                   var event = @com.smartgwt.client.widgets.tile.events.RecordDoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.recordDoubleClick =  recordDoubleClick             ;
         }
    }-*/;
-            
+
     /**
      * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#removeData
      * TileGrid.removeData}.
@@ -680,27 +748,24 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     private native void setupSelectionChangedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var selectionChanged = $entry(function(){
+            var param = {"record" : arguments[0], "state" : arguments[1]};
+
+                var event = @com.smartgwt.client.widgets.tile.events.SelectionChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({selectionChanged:$entry(function(){
-                        var param = {"record" : arguments[0], "state" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.tile.events.SelectionChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({selectionChanged:  selectionChanged              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.selectionChanged = $entry(function(){
-                   var param = {"record" : arguments[0], "state" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.tile.events.SelectionChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.selectionChanged =  selectionChanged             ;
         }
    }-*/;
-            
+
     /**
      * Sets some presentation properties (visibility, width, userFormula and userSummary) of the  grid fields based on the
-     * String object passed in.<br> Used to restore previous state retrieved from the grid by a call to {@link
+     * ListGridFieldState object passed in.<br> Used to restore previous state retrieved from the grid by a call to {@link
      * com.smartgwt.client.widgets.tile.TileGrid#getFieldState TileGrid.getFieldState}.
      * @param fieldState state to apply to the grid's fields.
      */
@@ -773,6 +838,21 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         return self._getTileHTML(record.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
+    /**
+     * Returns the tile for the passed record or record index.
+     * <P>
+     * Note that this method may be overridden but developers should be aware that this
+     * method may be called repeatedly for the same record each time the TileGrid refreshes
+     * that row. If you override this API, you will need to cache and re-use the same
+     * tile objects per record. Typically this would be achieved by storing a pool of Tile
+     * objects that are re-used if a Record with the same primaryKey is passed to getTile().
+     * <P>
+     * When calling this method directly, if {@link com.smartgwt.client.widgets.tile.TileGrid@showAllRecords} is false, this may 
+     * return null for records that are not currently visible.
+     * 
+     * @param tile (TileRecord) record
+     * @return (Canvas) tile for this record
+     */
     public native Canvas getTile(Record record) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var canvasJS = self._getTile(record.@com.smartgwt.client.core.DataClass::getJsObj()());
@@ -782,7 +862,20 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }-*/;
 
     /**
+     * Returns the tile for the passed record or record index.
+     * <P>
+     * Note that this method may be overridden but developers should be aware that this
+     * method may be called repeatedly for the same record each time the TileGrid refreshes
+     * that row. If you override this API, you will need to cache and re-use the same
+     * tile objects per record. Typically this would be achieved by storing a pool of Tile
+     * objects that are re-used if a Record with the same primaryKey is passed to getTile().
+     * <P>
+     * When calling this method directly, if +link{showAllRecords} is false, this may 
+     * return null for records that are not currently visible.
+     * <P>
      * This is an override point
+     * @param tile (int) index of record in this.data
+     * @return (Canvas) tile for this record
      */
     public native Canvas getTile(int recordNum) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -802,11 +895,19 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * com.smartgwt.client.widgets.grid.ListGrid}. <P> Only applicable if using the default {@link
      * com.smartgwt.client..SimpleTile} class for tiles. <P> For SimpleTiles, it is possible to use {@link
      * com.smartgwt.client.widgets.viewer.DetailViewerField#getCellStyle} and  {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getStateSuffix} to make a single field statefully styled: <pre>
-     * isc.TileGrid.create({      fields:[          {name:'animalName'           getCellStyle : function (value, field,
-     * record, viewer) {                  if (value == "Tiger") return "tigerStyle" +
-     * viewer.currentTile.getStateSuffix();                    else return view.tileGrid.tileValueStyle +
-     * viewer.currentTile.getStateSuffix();           }          }      ] }); </pre>
+     * com.smartgwt.client.widgets.StatefulCanvas#getStateSuffix} to make a single field statefully styled:
+     * <pre>
+     * final TileGrid tileGrid = new TileGrid();
+     * DetailViewerField animalNameField = new DetailViewerField("animalName");  
+     * animalNameField.setCellStyleHandler(new CellStyleHandler() {  
+     *   public String execute(Object value, DetailViewerField field, Record record) {
+     *     SimpleTile tile = tileGrid.getCurrentTile();
+     *     if (value == "Tiger") return "tigerStyle" + tile.getStateSuffix();
+     *     else return "nonTigerStyle" + tile.getStateSuffix();
+     *   }  
+     * });  
+     * tileGrid.setFields(animalNameField);  
+     * </pre>
      *
      * @param fields fields Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -998,6 +1099,37 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         return @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(selection);
     }-*/;
 
+    /**
+     * Bind to a DataSource.
+     * <P>
+     * Binding to a DataSource means that the component will use the DataSource to provide default data for 
+     * its fields.
+     * <P>
+     * When binding to a new DataSource, if the component has any existing "fields" or has a dataset, 
+     * these will be discarded by default, since it is assumed the new DataSource may represent a completely 
+     * unrelated set of objects. If the old "fields" are still relevant, pass them to setDataSource(). 
+     * @param dataSource
+     * @param fields
+     */
+    public void setDataSource(DataSource dataSource, DetailViewerField... fields) {
+        if (!isCreated()) {
+            setFields(fields);
+            setDataSource(dataSource);
+        } else {
+            JavaScriptObject jsFields = null;
+            if (fields != null) {
+                jsFields = JSOHelper.createJavaScriptArray();
+                for (int i = 0; i < fields.length; i++) {
+                    JSOHelper.setArrayValue(jsFields, i, fields[i].getJsObj());
+                }
+            }
+            setDataSourceJS(dataSource.getOrCreateJsObj(), jsFields);
+        }
+    }
+    private native void setDataSourceJS(JavaScriptObject dataSource, JavaScriptObject fields) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setDataSource(dataSource, fields);
+    }-*/;
 
 
 
@@ -1006,7 +1138,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     public void setDataPageSize(int dataPageSize) {
         setAttribute("dataPageSize", dataPageSize, true);
     }
-
+    
     public int getDataPageSize() {
         return getAttributeAsInt("dataPageSize");
     }
@@ -1265,7 +1397,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
     // ********************* Methods ***********************
 
-
+    
     public native void selectRecord(Record record)/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
@@ -1435,6 +1567,14 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         return getAttributeAsBoolean("autoFetchData");
     }
 
+    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle) throws IllegalStateException {
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
+    }
+
+    public TextMatchStyle getAutoFetchTextMatchStyle() {
+        return TextMatchStyle.valueOf(getAttributeAsString("autoFetchTextMatchStyle"));
+    }
+
     public void setAutoFetchAsFilter(Boolean autoFetchAsFilter) throws IllegalStateException {
         setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
     }
@@ -1540,68 +1680,21 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         return new RecordList(dataJS);
     }
 
-    /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
-     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
-     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
-     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
-     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
-     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
-     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
-     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
-     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
-     */
     public native void exportData() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportData();
     }-*/;
 
-    /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
-     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
-     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
-     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
-     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
-     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
-     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
-     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
-     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
-     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
-     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
-     */
     public native void exportData(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
     
-   /**
-    * Exports this component's data with client-side formatters applied, so is suitable for 
-    * direct display to users.  This feature requires the SmartClient server, but does not 
-    * rely on any server-side DataSources.
-    * <P>To export unformatted data from this component's dataSource, see 
-    * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
-    * which does not include client-side formatters, 
-    * but relies on both the SmartClient server and server-side DataSources.
-    * @see com.smartgwt.client.data.DataSource#exportClientData
-    */
     public native void exportClientData() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportClientData();
     }-*/;
 
-   /**
-    * Exports this component's data with client-side formatters applied, so is suitable for 
-    * direct display to users.  This feature requires the SmartClient server, but does not 
-    * rely on any server-side DataSources.
-    * <P>To export unformatted data from this component's dataSource, see
-    * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
-    * which does not include client-side formatters, 
-    * but relies on both the SmartClient server and server-side DataSources.
-    * @param requestProperties Request properties for the export
-    * @see com.smartgwt.client.data.DataSource#exportClientData
-    */
     public native void exportClientData(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportClientData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
@@ -1640,8 +1733,170 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
             }));
         }
     }-*/;
+    
+    /**
+     * Add a {@link com.smartgwt.client.widgets.DropCompleteHandler}.  See that class's documentation for a definition of "drop complete", 
+     * and how it differs from "drag complete" ({@link com.smartgwt.client.widgets.DragCompleteHandler}).
+     *
+     * @param handler the DropCompleteHandler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDropCompleteHandler(DropCompleteHandler handler) {
+        if(getHandlerCount(DropCompleteEvent.getType()) == 0) setupDropCompleteEvent();
+        return doAddHandler(handler, DropCompleteEvent.getType());
+    }
 
+    private native void setupDropCompleteEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({dropComplete:$debox($entry(function(){
+                    var param = {"transferredRecords" : arguments[0]};
+                    var event = @com.smartgwt.client.widgets.events.DropCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                }))
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.dropComplete = $debox($entry(function(){
+                var param = {"transferredRecords" : arguments[0]};
+                var event = @com.smartgwt.client.widgets.events.DropCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            }));
+        }
+    }-*/;
+    
+    /**
+     * Add a {@link com.smartgwt.client.widgets.DragCompleteHandler}.  See that class's documentation for a definition of "drag complete", 
+     * and how it differs from "drop complete" ({@link com.smartgwt.client.widgets.DropCompleteHandler}).
+     *
+     * @param handler the DropCompleteHandler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDragCompleteHandler(DragCompleteHandler handler) {
+        if(getHandlerCount(DragCompleteEvent.getType()) == 0) setupDragCompleteEvent();
+        return doAddHandler(handler, DragCompleteEvent.getType());
+    }
+
+    private native void setupDragCompleteEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({dragComplete:$debox($entry(function(){
+                    var event = @com.smartgwt.client.widgets.events.DragCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)();
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                }))
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.dragComplete = $debox($entry(function(){
+                var event = @com.smartgwt.client.widgets.events.DragCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)();
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            }));
+        }
+    }-*/;
+
+    public LogicalStructureObject setLogicalStructure(TileGridLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.animateTileChange = getAttributeAsString("animateTileChange");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.animateTileChange:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canAcceptDroppedRecords = getAttributeAsString("canAcceptDroppedRecords");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.canAcceptDroppedRecords:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canDragTilesOut = getAttributeAsString("canDragTilesOut");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.canDragTilesOut:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canReorderTiles = getAttributeAsString("canReorderTiles");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.canReorderTiles:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataFetchMode = getAttributeAsString("dataFetchMode");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.dataFetchMode:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataSourceAsDataSource = getDataSource();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.dataSourceAsDataSource:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataSourceAsString = getAttributeAsString("dataSource");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.dataSourceAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.detailViewerProperties = getAttributeAsString("detailViewerProperties");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.detailViewerProperties:" + t.getMessage() + "\n";
+        }
+        try {
+            s.printTilesPerLine = getAttributeAsString("printTilesPerLine");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.printTilesPerLine:" + t.getMessage() + "\n";
+        }
+        try {
+            s.selectionType = getAttributeAsString("selectionType");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.selectionType:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showAllRecords = getAttributeAsString("showAllRecords");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.showAllRecords:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDetailFields = getAttributeAsString("showDetailFields");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.showDetailFields:" + t.getMessage() + "\n";
+        }
+        try {
+            s.styleName = getAttributeAsString("styleName");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.styleName:" + t.getMessage() + "\n";
+        }
+        try {
+            s.tileDragAppearance = getAttributeAsString("tileDragAppearance");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.tileDragAppearance:" + t.getMessage() + "\n";
+        }
+        try {
+            s.tileProperties = getAttributeAsString("tileProperties");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.tileProperties:" + t.getMessage() + "\n";
+        }
+        try {
+            s.tileValueAlign = getAttributeAsString("tileValueAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.tileValueAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.tileValueStyle = getAttributeAsString("tileValueStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.tileValueStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.wrapValues = getAttributeAsString("wrapValues");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.wrapValues:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        TileGridLogicalStructure s = new TileGridLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

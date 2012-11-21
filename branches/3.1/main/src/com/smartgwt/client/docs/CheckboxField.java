@@ -1,4 +1,4 @@
-
+	    
 package com.smartgwt.client.docs;
 
 /**
@@ -11,6 +11,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCheckboxFieldPartialImage
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCheckboxFieldImageWidth
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCheckboxFieldImageHeight
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getCheckboxFieldHSpace
  */
 public interface CheckboxField {
 }

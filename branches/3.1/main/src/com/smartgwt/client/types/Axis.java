@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * An axis or "side" of a table.
  */
@@ -28,7 +29,6 @@ public enum Axis implements ValueEnum {
      * Column axis
      */
     COLUMN("column");
-
     private String value;
 
     Axis(String value) {
@@ -39,3 +39,4 @@ public enum Axis implements ValueEnum {
         return this.value;
     }
 }
+        

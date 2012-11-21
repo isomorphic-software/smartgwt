@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * DrawItem subclass to render oval shapes, including circles.
@@ -73,12 +93,18 @@ public class DrawOval extends DrawItem {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
+    }
+
+
     public DrawOval(){
         scClassName = "DrawOval";
     }
 
     public DrawOval(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "DrawOval";
+        setJavaScriptObject(jsObj);
     }
 
     public native JavaScriptObject create()/*-{
@@ -95,10 +121,9 @@ public class DrawOval extends DrawItem {
      * Change the center point for this oval.
      *
      * @param centerPoint left coordinate. Default value is null
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCenterPoint(Point centerPoint)  throws IllegalStateException {
-        setAttribute("centerPoint", centerPoint.getJsObj(), false);
+    public void setCenterPoint(Point centerPoint) {
+        setAttribute("centerPoint", centerPoint.getJsObj(), true);
     }
 
     /**
@@ -134,7 +159,7 @@ public class DrawOval extends DrawItem {
     }
 
     /**
-     * Left coordinate in pixels relative to the DrawPane, or owning DrawGroup.
+     * Left coordinate in pixels relative to the DrawPane.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the left coordinate of the drawOval
@@ -146,7 +171,7 @@ public class DrawOval extends DrawItem {
     }
 
     /**
-     * Left coordinate in pixels relative to the DrawPane, or owning DrawGroup.
+     * Left coordinate in pixels relative to the DrawPane.
      *
      *
      * @return int
@@ -163,10 +188,9 @@ public class DrawOval extends DrawItem {
      *
      * @param radius new radius. This will be applied on both axes, meaning calling this  method will always result in the drawOval being
      * rendered as a circle. Default value is null
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setRadius(Integer radius)  throws IllegalStateException {
-        setAttribute("radius", radius, false);
+    public void setRadius(Integer radius) {
+        setAttribute("radius", radius, true);
     }
 
     /**
@@ -180,7 +204,7 @@ public class DrawOval extends DrawItem {
     }
 
     /**
-     * Top coordinate in pixels relative to the DrawPane, or owning DrawGroup.
+     * Top coordinate in pixels relative to the DrawPane.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the top coordinate of the drawOval
@@ -192,7 +216,7 @@ public class DrawOval extends DrawItem {
     }
 
     /**
-     * Top coordinate in pixels relative to the DrawPane, or owning DrawGroup.
+     * Top coordinate in pixels relative to the DrawPane.
      *
      *
      * @return int
@@ -224,7 +248,7 @@ public class DrawOval extends DrawItem {
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Move the drawOval by the specified delta
      * @param dX number of pixels to move horizontally
@@ -234,7 +258,7 @@ public class DrawOval extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.moveBy(dX, dY);
     }-*/;
-            
+
     /**
      * Move the drawOval to the specified left/top position. You may also call {@link
      * com.smartgwt.client.widgets.drawing.DrawOval#setCenterPoint DrawOval.setCenterPoint} to reposition the oval around a new
@@ -246,7 +270,7 @@ public class DrawOval extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.moveTo(left, top);
     }-*/;
-            
+
     /**
      * Resize by the specified delta. Note that the resize will occur from the current top/left  coordinates, meaning the
      * center positon of the oval may change. You may also use {@link com.smartgwt.client.widgets.drawing.DrawOval#setRadii
@@ -258,7 +282,7 @@ public class DrawOval extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.resizeBy(dX, dY);
     }-*/;
-            
+
     /**
      * Resize to the specified size. Note that the resize will occur from the current top/left  coordinates, meaning the center
      * positon of the oval may change. You may also use {@link com.smartgwt.client.widgets.drawing.DrawOval#setRadii
@@ -270,7 +294,7 @@ public class DrawOval extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.resizeTo(width, height);
     }-*/;
-            
+
     /**
      * Resize and reposition the drawOval by setting its radius, and centerPoint.
      * @param cx new horizontal center point coordinate
@@ -282,7 +306,7 @@ public class DrawOval extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.setOval(cx, cy, rx, ry);
     }-*/;
-            
+
     /**
      * Resize the drawOval by setting its horizontal and vertical radius, and retaining its current center point.
      * @param rx new horizontal radius
@@ -292,7 +316,7 @@ public class DrawOval extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.setRadii(rx, ry);
     }-*/;
-            
+
     /**
      * Move and resize the drawOval to match the specified coordinates and size.
      * @param left new left coordinate

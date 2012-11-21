@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A Toolbar creates a vertical or horizontal strip of similar components (typically Buttons) and provides managed resizing
@@ -73,7 +93,8 @@ public abstract class Toolbar extends Layout  implements com.smartgwt.client.wid
     }
 
     public Toolbar(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "Toolbar";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -190,24 +211,21 @@ public abstract class Toolbar extends Layout  implements com.smartgwt.client.wid
     private native void setupItemClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var itemClick = $entry(function(){
+            var param = {"item" : arguments[0], "itemNum" : arguments[1]};
+
+                var event = @com.smartgwt.client.widgets.toolbar.events.ItemClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({itemClick:$entry(function(){
-                        var param = {"item" : arguments[0], "itemNum" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.toolbar.events.ItemClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({itemClick:  itemClick              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.itemClick = $entry(function(){
-                   var param = {"item" : arguments[0], "itemNum" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.toolbar.events.ItemClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.itemClick =  itemClick             ;
         }
    }-*/;
-            
+
     /**
      * Called when one of the buttons receives a double-click event
      * @param item pointer to the button in question
@@ -233,21 +251,18 @@ public abstract class Toolbar extends Layout  implements com.smartgwt.client.wid
     private native void setupItemDragResizedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var itemDragResized = $entry(function(){
+            var param = {"itemNum" : arguments[0], "newSize" : arguments[1]};
+
+                var event = @com.smartgwt.client.widgets.toolbar.events.ItemResizedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({itemDragResized:$entry(function(){
-                        var param = {"itemNum" : arguments[0], "newSize" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.toolbar.events.ItemResizedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({itemDragResized:  itemDragResized              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.itemDragResized = $entry(function(){
-                   var param = {"itemNum" : arguments[0], "newSize" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.toolbar.events.ItemResizedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.itemDragResized =  itemDragResized             ;
         }
    }-*/;
 
@@ -273,8 +288,35 @@ public abstract class Toolbar extends Layout  implements com.smartgwt.client.wid
         
     // ***********************************************************        
 
+    public LogicalStructureObject setLogicalStructure(ToolbarLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.canAcceptDrop = getAttributeAsString("canAcceptDrop");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Toolbar.canAcceptDrop:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canReorderItems = getAttributeAsString("canReorderItems");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Toolbar.canReorderItems:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canResizeItems = getAttributeAsString("canResizeItems");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Toolbar.canResizeItems:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vertical = getAttributeAsString("vertical");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Toolbar.vertical:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        ToolbarLogicalStructure s = new ToolbarLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-
 

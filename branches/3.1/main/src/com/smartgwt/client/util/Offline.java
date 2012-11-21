@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * The Offline class provides features for storing and retrieving values in persistent browser storage.  Because this
@@ -78,7 +98,7 @@ public class Offline {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-            
+
     /**
      * Explicitly sets this session into offline mode.  This setting will override whatever  state the browser reports.  This
      * allows users to manually set an application into  offline or online state.
@@ -86,7 +106,7 @@ public class Offline {
     public static native void goOffline() /*-{
         $wnd.isc.Offline.goOffline();
     }-*/;
-            
+
     /**
      * Explicitly sets this session into online mode.  This setting will override whatever  state the browser reports.  This
      * allows users to manually set an application into  offline or online state.
@@ -94,7 +114,7 @@ public class Offline {
     public static native void goOnline() /*-{
         $wnd.isc.Offline.goOnline();
     }-*/;
-            
+
     /**
      * Returns true if the current browser session is offline (ie, not connected to a network). If an online/offline state has
      * been set explicitly (see {@link com.smartgwt.client.util.Offline#goOffline Offline.goOffline} and  {@link
@@ -116,7 +136,7 @@ public class Offline {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Removes the key/value pair mapped by the passed-in key from browser-local storage
      * @param key The key to remove
@@ -124,7 +144,7 @@ public class Offline {
     public static native void remove(String key) /*-{
         $wnd.isc.Offline.remove(key);
     }-*/;
-            
+
     /**
      * Tells the Offline system to query the browser for the current online/offline state. Calling this method switches off the
      * explicit offline mode setting switched on by  calling {@link com.smartgwt.client.util.Offline#goOnline Offline.goOnline}

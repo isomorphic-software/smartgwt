@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface SortChangedHandler extends EventHandler {
-
+    /**
+     * Notification method executed when the {@link com.smartgwt.client.widgets.grid.ListGrid#setSort sort specifiers} change
+     * for this grid.
+     *
+     * @param event the event
+     */
     void onSortChanged(com.smartgwt.client.widgets.grid.events.SortEvent event);
 }

@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  */
 public enum Overflow implements ValueEnum {
@@ -48,7 +49,6 @@ public enum Overflow implements ValueEnum {
      * Clip vertically but extend the canvas's clip region horizontally if necessary.
      */
     CLIP_V("clip_v");
-
     private String value;
 
     Overflow(String value) {
@@ -59,3 +59,4 @@ public enum Overflow implements ValueEnum {
         return this.value;
     }
 }
+        

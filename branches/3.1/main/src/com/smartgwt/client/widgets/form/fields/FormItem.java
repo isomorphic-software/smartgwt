@@ -45,29 +45,53 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * An Item that can participate in a DynamicForm, managing some value. <P> FormItems are never directly created, instead,
  * FormItem descriptors are passed to a DynamicForm.  See the {@link com.smartgwt.client.widgets.form.DynamicForm}
  * documentation for details.
  */
-public class FormItem extends RefDataClass  implements com.smartgwt.client.widgets.form.fields.events.HasFocusHandlers, com.smartgwt.client.widgets.form.fields.events.HasBlurHandlers, com.smartgwt.client.widgets.form.fields.events.HasChangeHandlers, com.smartgwt.client.widgets.form.fields.events.HasChangedHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyPressHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyUpHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyDownHandlers, com.smartgwt.client.widgets.form.fields.events.HasIconClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasIconKeyPressHandlers, com.smartgwt.client.widgets.form.fields.events.HasItemHoverHandlers, com.smartgwt.client.widgets.form.fields.events.HasClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasDoubleClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasTitleHoverHandlers, com.smartgwt.client.widgets.form.fields.events.HasTitleClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasTitleDoubleClickHandlers {
+public class FormItem extends RefDataClass  implements com.smartgwt.client.widgets.form.fields.events.HasFocusHandlers, com.smartgwt.client.widgets.form.fields.events.HasBlurHandlers, com.smartgwt.client.widgets.form.fields.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.form.fields.events.HasEditorExitHandlers, com.smartgwt.client.widgets.form.fields.events.HasChangeHandlers, com.smartgwt.client.widgets.form.fields.events.HasChangedHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyPressHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyUpHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyDownHandlers, com.smartgwt.client.widgets.form.fields.events.HasIconClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasIconKeyPressHandlers, com.smartgwt.client.widgets.form.fields.events.HasItemHoverHandlers, com.smartgwt.client.widgets.form.fields.events.HasClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasDoubleClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasTitleHoverHandlers, com.smartgwt.client.widgets.form.fields.events.HasTitleClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasTitleDoubleClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasPickerIconClickHandlers {
 
     public static FormItem getOrCreateRef(JavaScriptObject jsObj) {
+    
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+ 
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (FormItem) obj;
@@ -76,12 +100,21 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public FormItem(){
         setName(com.smartgwt.client.util.SC.generateID(getClass().getName()));
+        form = null;
+        item = null;
+        setupFormItemConstructor();
     }
 
     public FormItem(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     // ********************* Properties / Attributes ***********************
@@ -90,7 +123,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * AccessKey - a keyboard shortcut to trigger a form item's default behavior.<br>      Note: Alt+ (or in Moz Firefox 2.0
      * and above, Shift+Alt+) the specified key will       trigger the form item's default behavior.
      *
-     * @param accessKey accessKey Default value is null
+     * @param accessKey . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
     public void setAccessKey(String accessKey) {
@@ -102,7 +135,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * and above, Shift+Alt+) the specified key will       trigger the form item's default behavior.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
     public String getAccessKey()  {
@@ -286,12 +319,17 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Is this form item editable or read-only? Setting the form item to non-editable causes it to render as read-only. Can be
-     * updated at runtime via the <code>setCanEdit()</code> method. <P> This setting differs from the enabled/disabled state in
-     * that most form items will allow copying of the contents while read-only but do not while disabled.
+     * Is this form item editable (canEdit:true) or read-only (canEdit:false)? Setting the form item to non-editable causes it
+     * to render as read-only. Can be updated at runtime via the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setCanEdit setCanEdit()} method. <P> This setting differs from the
+     * enabled/disabled state in that most form items will allow copying of the contents while read-only but do not while
+     * disabled. <P> Note that for forms bound to a {@link com.smartgwt.client.data.DataSource}, if this property is not
+     * explicitly set at the item level, its default value will match the {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getCanEditFieldAttribute canEditFieldAttribute} on the associated
+     * dataSource field.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
-     * Is this form item editable or read-only? Setting the form item to non-editable causes it to render as read-only. <P> This setting differs from the enabled/disabled state in that most form items will allow copying of the contents while read-only but do not while disabled.
+     * Is this form item editable (canEdit:true) or read-only (canEdit:false)? Setting the form item to non-editable causes it to render as read-only. <P> This setting differs from the enabled/disabled state in that most form items will allow copying of the contents while read-only but do not while disabled.
      *
      * @param canEdit Can this form item be edited?. Default value is null
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCanEdit
@@ -302,12 +340,18 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Is this form item editable or read-only? Setting the form item to non-editable causes it to render as read-only. Can be
-     * updated at runtime via the <code>setCanEdit()</code> method. <P> This setting differs from the enabled/disabled state in
-     * that most form items will allow copying of the contents while read-only but do not while disabled.
+     * Is this form item editable (canEdit:true) or read-only (canEdit:false)? Setting the form item to non-editable causes it
+     * to render as read-only. Can be updated at runtime via the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setCanEdit setCanEdit()} method. <P> This setting differs from the
+     * enabled/disabled state in that most form items will allow copying of the contents while read-only but do not while
+     * disabled. <P> Note that for forms bound to a {@link com.smartgwt.client.data.DataSource}, if this property is not
+     * explicitly set at the item level, its default value will match the {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getCanEditFieldAttribute canEditFieldAttribute} on the associated
+     * dataSource field.
      *
      *
-     * @return Boolean
+     * @return Is this form item editable or read-only? <P> This setting differs from the enabled/disabled state in that most form
+     * items will allow copying of the contents while read-only but do not while disabled.
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCanEdit
      * @see com.smartgwt.client.widgets.form.DynamicForm#setCanEdit
      */
@@ -370,7 +414,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Applied to the cell containing the form item. <P> NOTE: See the {@link CompoundFormItem_skinning} discussion for special
      * skinning considerations.
      *
-     * @param cellStyle cellStyle Default value is "formCell"
+     * @param cellStyle . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}. Default value is "formCell"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setCellStyle(String cellStyle) {
@@ -383,7 +427,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * skinning considerations.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getCellStyle()  {
@@ -420,7 +464,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * both fields but give the fields distinct names (eg "minDate" and "maxDate") and use those names for any programmatic
      * access, such as {@link com.smartgwt.client.widgets.form.DynamicForm#setValue DynamicForm.setValue}.
      *
-     * @param criteriaField criteriaField Default value is null
+     * @param criteriaField . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setCriteriaField(String criteriaField) {
         setAttribute("criteriaField", criteriaField);
@@ -440,7 +484,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * access, such as {@link com.smartgwt.client.widgets.form.DynamicForm#setValue DynamicForm.setValue}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getCriteriaField()  {
         return getAttributeAsString("criteriaField");
@@ -449,7 +493,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * dataPath for this item. Allows the user to edit details nested data structures in a flat set of form fields
      *
-     * @param dataPath dataPath Default value is null
+     * @param dataPath . See {@link com.smartgwt.client.docs.DataPath DataPath}. Default value is null
      */
     public void setDataPath(String dataPath) {
         setAttribute("dataPath", dataPath);
@@ -459,7 +503,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * dataPath for this item. Allows the user to edit details nested data structures in a flat set of form fields
      *
      *
-     * @return Return the dataPath for the this formItem.
+     * @return Return the dataPath for the this formItem.. See {@link com.smartgwt.client.docs.DataPath DataPath}
      */
     public String getDataPath()  {
         return getAttributeAsString("dataPath");
@@ -532,13 +576,67 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
+     * Applies only to fields of type "float" and enforces a minimum number of digits shown after the decimal point. <P> For
+     * example, a field value of 343.1, 343.104 and 343.09872677 would all be shown as 343.10 if decimalPad is 2. <P> The
+     * original unpadded value is always shown when the value is edited.
+     *
+     * @param decimalPad decimalPad Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setDecimalPad(Integer decimalPad) {
+        setAttribute("decimalPad", decimalPad);
+    }
+
+    /**
+     * Applies only to fields of type "float" and enforces a minimum number of digits shown after the decimal point. <P> For
+     * example, a field value of 343.1, 343.104 and 343.09872677 would all be shown as 343.10 if decimalPad is 2. <P> The
+     * original unpadded value is always shown when the value is edited.
+     *
+     *
+     * @return Integer
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Integer getDecimalPad()  {
+        return getAttributeAsInt("decimalPad");
+    }
+
+    /**
+     * Applies only to fields of type "float" and affects how many significant digits are shown. <P> For example, with
+     * decimalPrecision 3, if the field value is 343.672677, 343.673 is shown. <P> If the value is 125.2, 125.2 is shown -
+     * decimalPrecision will not cause extra zeros to be added.  Use {@link
+     * com.smartgwt.client.data.DataSourceField#getDecimalPad decimalPad} for this. <P> A number if always shown with its
+     * original precision when edited.
+     *
+     * @param decimalPrecision decimalPrecision Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setDecimalPrecision(Integer decimalPrecision) {
+        setAttribute("decimalPrecision", decimalPrecision);
+    }
+
+    /**
+     * Applies only to fields of type "float" and affects how many significant digits are shown. <P> For example, with
+     * decimalPrecision 3, if the field value is 343.672677, 343.673 is shown. <P> If the value is 125.2, 125.2 is shown -
+     * decimalPrecision will not cause extra zeros to be added.  Use {@link
+     * com.smartgwt.client.data.DataSourceField#getDecimalPad decimalPad} for this. <P> A number if always shown with its
+     * original precision when edited.
+     *
+     *
+     * @return Integer
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Integer getDecimalPrecision()  {
+        return getAttributeAsInt("decimalPrecision");
+    }
+
+    /**
      * Default icon image source.      Specify as the partial URL to an image, relative to the imgDir of this component. To
      * specify image source for a specific icon use the <code>icon.src</code> property.<br> If this item is drawn in the
      * disabled state, the url will be modified by adding  "_Disabled" to get a disabled state image for the icon. If
      * <code>icon.showOver</code> is true, this url will be modified by adding "_Over" to get an over state image for the icon.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param defaultIconSrc defaultIconSrc Default value is "[SKIN]/DynamicForm/default_formItem_icon.gif"
+     * @param defaultIconSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]/DynamicForm/default_formItem_icon.gif"
      */
     public void setDefaultIconSrc(String defaultIconSrc) {
         setAttribute("defaultIconSrc", defaultIconSrc);
@@ -551,7 +649,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * <code>icon.showOver</code> is true, this url will be modified by adding "_Over" to get an over state image for the icon.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getDefaultIconSrc()  {
         return getAttributeAsString("defaultIconSrc");
@@ -592,6 +690,31 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit canEdit} is set to false, should {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getIcons icons} be disabled by default? <P> This may also be specified
+     * at the icon level. See {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getDisableOnReadOnly
+     * disableOnReadOnly}.
+     *
+     * @param disableIconsOnReadOnly disableIconsOnReadOnly Default value is true
+     */
+    public void setDisableIconsOnReadOnly(Boolean disableIconsOnReadOnly) {
+        setAttribute("disableIconsOnReadOnly", disableIconsOnReadOnly);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit canEdit} is set to false, should {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getIcons icons} be disabled by default? <P> This may also be specified
+     * at the icon level. See {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getDisableOnReadOnly
+     * disableOnReadOnly}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getDisableIconsOnReadOnly()  {
+        return getAttributeAsBoolean("disableIconsOnReadOnly");
+    }
+
+    /**
      * Specifies an alternative field from which display values should be retrieved for this item. <P> The display field can be
      * either another field value in the same record or a field that must be retrieved from a related {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}. <P> If this item is not
@@ -607,7 +730,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * return the dataSource title field by default. <P> This essentially enables the specified <code>optionDataSource</code>
      * to be used as a server based {@link valueMap}.
      *
-     * @param displayField displayField Default value is null
+     * @param displayField . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.widgets.form.fields.FormItem#invalidateDisplayValueCache
      */
     public void setDisplayField(String displayField) {
@@ -631,7 +754,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * to be used as a server based {@link valueMap}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.form.fields.FormItem#invalidateDisplayValueCache
      */
     public String getDisplayField()  {
@@ -639,19 +762,47 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Text to display when this form item has a null or undefined value.
+     * Custom CSS text to be applied to cells with pending edits that have not yet been submitted.
+     * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param emptyDisplayValue emptyDisplayValue Default value is ""
+     * @param editPendingCSSText . See {@link com.smartgwt.client.docs.String String}. Default value is "color:#0066CC;"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setEditPendingCSSText(String editPendingCSSText) {
+        setAttribute("editPendingCSSText", editPendingCSSText);
+    }
+
+    /**
+     * Custom CSS text to be applied to cells with pending edits that have not yet been submitted.
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public String getEditPendingCSSText()  {
+        return getAttributeAsString("editPendingCSSText");
+    }
+
+    /**
+     * Text to display when this form item has a null or undefined value. <P> If the formItem has a databound pickList, and its
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} or {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} (if the former isn't set) has an undefined
+     * emptyCellValue field, that field will automatically be set using the emptyDisplayValue property.
+     *
+     * @param emptyDisplayValue . See {@link com.smartgwt.client.docs.String String}. Default value is ""
      */
     public void setEmptyDisplayValue(String emptyDisplayValue) {
         setAttribute("emptyDisplayValue", emptyDisplayValue);
     }
 
     /**
-     * Text to display when this form item has a null or undefined value.
+     * Text to display when this form item has a null or undefined value. <P> If the formItem has a databound pickList, and its
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} or {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} (if the former isn't set) has an undefined
+     * emptyCellValue field, that field will automatically be set using the emptyDisplayValue property.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getEmptyDisplayValue()  {
         return getAttributeAsString("emptyDisplayValue");
@@ -661,7 +812,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * This property allows the developer to specify an icon to display when this item has no value. It is configured in the
      * same way as any other valueIcon  (see {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons})
      *
-     * @param emptyValueIcon emptyValueIcon Default value is null
+     * @param emptyValueIcon . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setEmptyValueIcon(String emptyValueIcon) {
         setAttribute("emptyValueIcon", emptyValueIcon);
@@ -672,7 +823,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * same way as any other valueIcon  (see {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons})
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getEmptyValueIcon()  {
         return getAttributeAsString("emptyValueIcon");
@@ -723,7 +874,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * URL of the image to show as an error icon, if we're showing icons when validation errors occur.
      *
-     * @param errorIconSrc errorIconSrc Default value is "[SKIN]/DynamicForm/validation_error_icon.png"
+     * @param errorIconSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]/DynamicForm/validation_error_icon.png"
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setShowErrorIcon
      */
     public void setErrorIconSrc(String errorIconSrc) {
@@ -734,7 +885,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * URL of the image to show as an error icon, if we're showing icons when validation errors occur.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorIcon
      */
     public String getErrorIconSrc()  {
@@ -939,7 +1090,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the hint text for this item
      *
-     * @param hint new hint for the item. Default value is null
+     * @param hint new hint for the item. See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is null
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setHintStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_hints" target="examples">Hints Example</a>
@@ -953,7 +1104,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * to the right of the form item.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getHintStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_hints" target="examples">Hints Example</a>
@@ -968,7 +1119,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the hintStyle for this item
      *
-     * @param hintStyle new style for hint text. Default value is "formHint"
+     * @param hintStyle new style for hint text. See {@link com.smartgwt.client.docs.String String}. Default value is "formHint"
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setHint
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -980,7 +1131,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * CSS class for the "hint" string.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getHint
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -1076,7 +1227,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * Explicit CSS Style for any hover shown for this item.
      *
-     * @param hoverStyle hoverStyle Default value is null
+     * @param hoverStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is null
      * @see com.smartgwt.client.widgets.form.DynamicForm#setItemHoverStyle
      */
     public void setHoverStyle(String hoverStyle) {
@@ -1087,7 +1238,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Explicit CSS Style for any hover shown for this item.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.widgets.form.DynamicForm#getItemHoverStyle
      */
     public String getHoverStyle()  {
@@ -1160,7 +1311,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Default prompt (and tooltip-text) for icons.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param iconPrompt iconPrompt Default value is ""
+     * @param iconPrompt . See {@link com.smartgwt.client.docs.String String}. Default value is ""
      */
     public void setIconPrompt(String iconPrompt) {
         setAttribute("iconPrompt", iconPrompt);
@@ -1170,7 +1321,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Default prompt (and tooltip-text) for icons.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getIconPrompt()  {
         return getAttributeAsString("iconPrompt");
@@ -1221,7 +1372,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * valueIcons} when determining the URL for the image. Will not be applied if the <code>valueIcon</code> URL is absolute.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param imageURLPrefix imageURLPrefix Default value is null
+     * @param imageURLPrefix . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setImageURLPrefix(String imageURLPrefix) {
         setAttribute("imageURLPrefix", imageURLPrefix);
@@ -1232,7 +1383,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * valueIcons} when determining the URL for the image. Will not be applied if the <code>valueIcon</code> URL is absolute.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getImageURLPrefix()  {
         return getAttributeAsString("imageURLPrefix");
@@ -1244,7 +1395,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * <code>valueIcons</code> property would map values to the names of images without the <code>".gif"</code> extension.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param imageURLSuffix imageURLSuffix Default value is null
+     * @param imageURLSuffix . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setImageURLSuffix(String imageURLSuffix) {
         setAttribute("imageURLSuffix", imageURLSuffix);
@@ -1256,7 +1407,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * <code>valueIcons</code> property would map values to the names of images without the <code>".gif"</code> extension.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getImageURLSuffix()  {
         return getAttributeAsString("imageURLSuffix");
@@ -1318,7 +1469,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} applied to the item.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param inputFormat inputFormat Default value is null
+     * @param inputFormat . See {@link com.smartgwt.client.docs.DateInputFormat DateInputFormat}. Default value is null
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setDateFormatter
      */
     public void setInputFormat(String inputFormat) {
@@ -1331,7 +1482,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} applied to the item.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.DateInputFormat DateInputFormat}
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter
      */
     public String getInputFormat()  {
@@ -1373,7 +1524,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * unset, and the item has no specified name, default behavior is to identify by title (if available), otherwise by index.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param locateItemBy locateItemBy Default value is null
+     * @param locateItemBy . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setLocateItemBy(String locateItemBy) {
         setAttribute("locateItemBy", locateItemBy);
@@ -1388,7 +1539,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * unset, and the item has no specified name, default behavior is to identify by title (if available), otherwise by index.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getLocateItemBy()  {
         return getAttributeAsString("locateItemBy");
@@ -1398,7 +1549,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * If this item is displaying multiple values, this property will be the string that separates those values for display
      * purposes.
      *
-     * @param multipleValueSeparator multipleValueSeparator Default value is ', '
+     * @param multipleValueSeparator . See {@link com.smartgwt.client.docs.String String}. Default value is ', '
      */
     public void setMultipleValueSeparator(String multipleValueSeparator) {
         setAttribute("multipleValueSeparator", multipleValueSeparator);
@@ -1409,7 +1560,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * purposes.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMultipleValueSeparator()  {
         return getAttributeAsString("multipleValueSeparator");
@@ -1470,7 +1621,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * pick up display value mapping.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param optionOperationId optionOperationId Default value is null
+     * @param optionOperationId . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setOptionOperationId(String optionOperationId) {
         setAttribute("optionOperationId", optionOperationId);
@@ -1482,7 +1633,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * pick up display value mapping.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getOptionOperationId()  {
         return getAttributeAsString("optionOperationId");
@@ -1517,7 +1668,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * specifies the  {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getName name} applied to the picker icon
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param pickerIconName pickerIconName Default value is "picker"
+     * @param pickerIconName . See {@link com.smartgwt.client.docs.String String}. Default value is "picker"
      */
     public void setPickerIconName(String pickerIconName) {
         setAttribute("pickerIconName", pickerIconName);
@@ -1528,10 +1679,29 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * specifies the  {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getName name} applied to the picker icon
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getPickerIconName()  {
         return getAttributeAsString("pickerIconName");
+    }
+
+    /**
+     * Prompt to show when the user hovers the mouse over the picker icon.
+     *
+     * @param pickerIconPrompt . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     */
+    public void setPickerIconPrompt(String pickerIconPrompt) {
+        setAttribute("pickerIconPrompt", pickerIconPrompt);
+    }
+
+    /**
+     * Prompt to show when the user hovers the mouse over the picker icon.
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     */
+    public String getPickerIconPrompt()  {
+        return getAttributeAsString("pickerIconPrompt");
     }
 
     /**
@@ -1539,7 +1709,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * property governs the src of the picker icon image to be displayed.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param pickerIconSrc pickerIconSrc Default value is ""
+     * @param pickerIconSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is ""
      */
     public void setPickerIconSrc(String pickerIconSrc) {
         setAttribute("pickerIconSrc", pickerIconSrc);
@@ -1550,7 +1720,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * property governs the src of the picker icon image to be displayed.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getPickerIconSrc()  {
         return getAttributeAsString("pickerIconSrc");
@@ -1585,7 +1755,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.form.fields.FormItem#getTextBoxStyle textBoxStyle} will be used instead. Note that focused
      * styling will never be displayed while printing, though error and disabled styling will.
      *
-     * @param printTextBoxStyle printTextBoxStyle Default value is null
+     * @param printTextBoxStyle . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}. Default value is null
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
     public void setPrintTextBoxStyle(String printTextBoxStyle) {
@@ -1598,7 +1768,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * styling will never be displayed while printing, though error and disabled styling will.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
     public String getPrintTextBoxStyle()  {
@@ -1609,7 +1779,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Base CSS stylename for a form item's title when generating print HTML for the item. If unset {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getTitleStyle titleStyle} will be used instead.
      *
-     * @param printTitleStyle printTitleStyle Default value is null
+     * @param printTitleStyle . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}. Default value is null
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
     public void setPrintTitleStyle(String printTitleStyle) {
@@ -1621,7 +1791,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.form.fields.FormItem#getTitleStyle titleStyle} will be used instead.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
     public String getPrintTitleStyle()  {
@@ -1634,7 +1804,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the {@link com.smartgwt.client.widgets.form.fields.FormItem#getPrompt prompt} for this item
      *
-     * @param prompt new prompt for the item.. Default value is null
+     * @param prompt new prompt for the item.. See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public void setPrompt(String prompt) {
@@ -1645,11 +1815,30 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * This text is shown as a tooltip prompt when the cursor hovers over this item.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public String getPrompt()  {
         return getAttributeAsString("prompt");
+    }
+
+    /**
+     * If true, this item will cause the entire form to be redrawn when the item's "elementChanged" event is done firing
+     *
+     * @param redrawOnChange redrawOnChange Default value is false
+     */
+    public void setRedrawOnChange(Boolean redrawOnChange) {
+        setAttribute("redrawOnChange", redrawOnChange);
+    }
+
+    /**
+     * If true, this item will cause the entire form to be redrawn when the item's "elementChanged" event is done firing
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getRedrawOnChange()  {
+        return getAttributeAsBoolean("redrawOnChange");
     }
 
     /**
@@ -1717,7 +1906,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * The required message for required field errors.
      *
-     * @param requiredMessage requiredMessage Default value is null
+     * @param requiredMessage . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public void setRequiredMessage(String requiredMessage) {
@@ -1728,7 +1917,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * The required message for required field errors.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public String getRequiredMessage()  {
@@ -1754,6 +1943,27 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      */
     public int getRowSpan()  {
         return getAttributeAsInt("rowSpan");
+    }
+
+    /**
+     * Set this to true to allow the parent form to save it's data when 'Enter' is pressed on  this formItem and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter saveOnEnter} is true on the parent form.
+     *
+     * @param saveOnEnter saveOnEnter Default value is null
+     */
+    public void setSaveOnEnter(Boolean saveOnEnter) {
+        setAttribute("saveOnEnter", saveOnEnter);
+    }
+
+    /**
+     * Set this to true to allow the parent form to save it's data when 'Enter' is pressed on  this formItem and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter saveOnEnter} is true on the parent form.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSaveOnEnter()  {
+        return getAttributeAsBoolean("saveOnEnter");
     }
 
     /**
@@ -1876,7 +2086,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * compact validation error display consisting of just an icon, to the left of the item with the error message available
      * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
      * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
-     * them. See String for a  discussion for how error styling is calculated.
+     * them. See FormItemBaseStyle for a  discussion for how error styling is calculated.
      *
      * @param showErrorIcon showErrorIcon Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -1912,7 +2122,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * compact validation error display consisting of just an icon, to the left of the item with the error message available
      * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
      * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
-     * them. See String for a  discussion for how error styling is calculated.
+     * them. See FormItemBaseStyle for a  discussion for how error styling is calculated.
      *
      *
      * @return Boolean
@@ -1949,7 +2159,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * compact validation error display consisting of just an icon, to the left of the item with the error message available
      * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
      * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
-     * them. See String for a  discussion for how error styling is calculated.
+     * them. See FormItemBaseStyle for a  discussion for how error styling is calculated.
      *
      * @param showErrorStyle showErrorStyle Default value is null
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
@@ -1986,7 +2196,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * compact validation error display consisting of just an icon, to the left of the item with the error message available
      * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
      * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
-     * them. See String for a  discussion for how error styling is calculated.
+     * them. See FormItemBaseStyle for a  discussion for how error styling is calculated.
      *
      *
      * @return Boolean
@@ -2024,7 +2234,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * compact validation error display consisting of just an icon, to the left of the item with the error message available
      * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
      * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
-     * them. See String for a  discussion for how error styling is calculated.
+     * them. See FormItemBaseStyle for a  discussion for how error styling is calculated.
      *
      * @param showErrorText showErrorText Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -2060,7 +2270,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * compact validation error display consisting of just an icon, to the left of the item with the error message available
      * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
      * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
-     * them. See String for a  discussion for how error styling is calculated.
+     * them. See FormItemBaseStyle for a  discussion for how error styling is calculated.
      *
      *
      * @return Boolean
@@ -2209,7 +2419,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Should we show a special 'picker' {@link com.smartgwt.client.widgets.form.fields.FormItemIcon icon} for this form item.
      * Picker icons are customizable via {@link com.smartgwt.client.widgets.form.fields.FormItem#getPickerIconProperties
      * pickerIconProperties}. By default they will be rendered inside the Form Item's "control box" area, and will call {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#showPicker FormItem.showPicker} when clicked.
+     * com.smartgwt.client.widgets.form.fields.FormItem#addShowPickerHandler FormItem.showPicker} when clicked.
      *
      * @param showPickerIcon showPickerIcon Default value is false
      */
@@ -2221,7 +2431,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Should we show a special 'picker' {@link com.smartgwt.client.widgets.form.fields.FormItemIcon icon} for this form item.
      * Picker icons are customizable via {@link com.smartgwt.client.widgets.form.fields.FormItem#getPickerIconProperties
      * pickerIconProperties}. By default they will be rendered inside the Form Item's "control box" area, and will call {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#showPicker FormItem.showPicker} when clicked.
+     * com.smartgwt.client.widgets.form.fields.FormItem#addShowPickerHandler FormItem.showPicker} when clicked.
      *
      *
      * @return Boolean
@@ -2428,7 +2638,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * Base CSS class name for a form item's text box element. <P> NOTE: See the {@link CompoundFormItem_skinning} discussion
      * for special skinning considerations.
      *
-     * @param textBoxStyle textBoxStyle Default value is null
+     * @param textBoxStyle . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}. Default value is null
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -2441,7 +2651,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * for special skinning considerations.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -2484,7 +2694,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * User visible title for this form item.
      *
-     * @param title title Default value is null
+     * @param title . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public void setTitle(String title) {
@@ -2495,7 +2705,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * User visible title for this form item.
      *
      *
-     * @return Return the title of this formItem
+     * @return Return the title of this formItem. See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public String getTitle()  {
@@ -2570,10 +2780,10 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Base CSS class name for a form item's title. Note that this is a String so will pick up stateful suffixes on focus,
-     * disabled state change etc. by default.
+     * Base CSS class name for a form item's title. Note that this is a FormItemBaseStyle so will pick up stateful suffixes on
+     * focus, disabled state change etc. by default.
      *
-     * @param titleStyle titleStyle Default value is "formTitle"
+     * @param titleStyle . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}. Default value is "formTitle"
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      */
     public void setTitleStyle(String titleStyle) {
@@ -2581,11 +2791,11 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Base CSS class name for a form item's title. Note that this is a String so will pick up stateful suffixes on focus,
-     * disabled state change etc. by default.
+     * Base CSS class name for a form item's title. Note that this is a FormItemBaseStyle so will pick up stateful suffixes on
+     * focus, disabled state change etc. by default.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getCellStyle
      */
     public String getTitleStyle()  {
@@ -2713,7 +2923,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @return OperatorId
      */
     public OperatorId[] getValidOperators()  {
-        return (OperatorId[]) EnumUtil.getEnums(OperatorId.values(), getAttributeAsStringArray("validOperators"));
+        final String[] strings = getAttributeAsStringArray("validOperators");
+        return EnumUtil.getEnums(OperatorId.values(), strings, strings == null ? null : new OperatorId[strings.length]);
     }
 
     /**
@@ -2750,7 +2961,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * field to use as the underlying data value in records from the  optionDataSource.<br> If unset, assumed to be the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
      *
-     * @param valueField valueField Default value is null
+     * @param valueField . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setValueField(String valueField) {
         setAttribute("valueField", valueField);
@@ -2764,7 +2975,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getValueField()  {
         return getAttributeAsString("valueField");
@@ -2987,48 +3198,22 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     private native void setupBlurEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.blur = $entry(function(){
-                var param = {"form" : arguments[0], "item" : arguments[1]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.BlurEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var blur = $entry(function(){
+            var param = {"form" : arguments[0], "item" : arguments[1]};
+            var event = @com.smartgwt.client.widgets.form.fields.events.BlurEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
+        obj.blur =  blur         ;
    }-*/;
-            
+
     /**
      * Takes focus from this form item's focusable element.
      */
     public native void blurItem() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.blurItem();
-    }-*/;
-            
-    /**
-     * When a dynamic form is editing an advanced criteria object via {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#setValuesAsCriteria DynamicForm.setValuesAsCriteria}, this method is used
-     * to determine which sub-criteria apply to which form item(s). <P> This method will be called on each item, and passed the
-     * sub-criterion of the AdvancedCriteria object. It should return true if the item can edit the criterion, otherwise false.
-     * If it returns true, setValuesAsCriteria() will call  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setCriterion FormItem.setCriterion} to actually apply the criterion to
-     * the form item, and {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria
-     * DynamicForm.getValuesAsCriteria} can subsequently retrieve the edited criterion by calling {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getCriterion FormItem.getCriterion}. <P> Default implementation will
-     * return true if the criterion <code>fieldName</code> and <code>operator</code> match the fieldName and operator (or
-     * default operator) for this item.
-     * @param criterion sub-criterion from an AdvancedCriteria object
-     *
-     * @return return true if this item can edit the criterion in question.
-     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
-     */
-    public native Boolean canEditCriterion(Criterion criterion) /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var retVal =self.canEditCriterion(criterion.@com.smartgwt.client.core.DataClass::getJsObj()());
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
     }-*/;
     /**
      * Add a change handler.
@@ -3053,15 +3238,20 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     private native void setupChangeEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.change = $debox($entry(function(){
-                var param = {"form" : arguments[0], "item" : arguments[1], "value" : arguments[2], "oldValue" : arguments[3]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.ChangeEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var change = $debox($entry(function(param){
+            var event = @com.smartgwt.client.widgets.form.fields.events.ChangeEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
             }));
+        obj.change = 
+            function () {
+                var param = {"form" : arguments[0], "item" : arguments[1], "value" : arguments[2], "oldValue" : arguments[3]};
+                return change(param) == true;
+            }
+        ;
    }-*/;
     /**
      * Add a changed handler.
@@ -3079,15 +3269,16 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     private native void setupChangedEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.changed = $entry(function(){
-                var param = {"form" : arguments[0], "item" : arguments[1], "value" : arguments[2]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.ChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var changed = $entry(function(){
+            var param = {"form" : arguments[0], "item" : arguments[1], "value" : arguments[2]};
+            var event = @com.smartgwt.client.widgets.form.fields.events.ChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
+        obj.changed =  changed         ;
    }-*/;
-            
+
     /**
      * Clear the value for this form item. <P> Note that if a default value is specified, value will be set to that default
      * value, otherwise value will be cleared, (and removed from the containing form's values).
@@ -3112,13 +3303,20 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     private native void setupClickEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.click = $entry(function(){
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var click = $debox($entry(function(param){
+            var event = @com.smartgwt.client.widgets.form.fields.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        obj.click = 
+            function () {
                 var param = {"form" : arguments[0], "item" : arguments[1]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            });
+                return click(param) == true;
+            }
+        ;
    }-*/;
     /**
      * Add a doubleClick handler.
@@ -3135,13 +3333,76 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     private native void setupDoubleClickEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.doubleClick = $entry(function(){
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var doubleClick = $debox($entry(function(param){
+            var event = @com.smartgwt.client.widgets.form.fields.events.DoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        obj.doubleClick = 
+            function () {
                 var param = {"form" : arguments[0], "item" : arguments[1]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.DoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                return doubleClick(param) == true;
+            }
+        ;
+   }-*/;
+    /**
+     * Add a editorEnter handler.
+     * <p>
+     * Notification method fired when the user enters this formItem. Differs from {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#addFocusHandler FormItem.focus} in that while <code>focus</code> and
+     * <code>blur</code> may fire multiple as the user navigates sub elements of an item (such as interacting with a pick
+     * list), <code>editorEnter</code> will typically fire once when the user  starts to edit this item as a whole, and once
+     * when the user moves onto a different item or component
+     *
+     * @param handler the editorEnter handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addEditorEnterHandler(com.smartgwt.client.widgets.form.fields.events.EditorEnterHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.EditorEnterEvent.getType()) == 0) setupEditorEnterEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.EditorEnterEvent.getType());
+    }
+
+    private native void setupEditorEnterEvent() /*-{
+        var obj = null;
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var editorEnter = $entry(function(){
+            var param = {"form" : arguments[0], "item" : arguments[1], "value" : arguments[2]};
+            var event = @com.smartgwt.client.widgets.form.fields.events.EditorEnterEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
+        obj.editorEnter =  editorEnter         ;
+   }-*/;
+    /**
+     * Add a editorExit handler.
+     * <p>
+     * Notification method fired when the user leaves this formItem. Differs from {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#addBlurHandler FormItem.blur} in that while <code>focus</code> and
+     * <code>blur</code> may fire multiple as the user navigates sub elements of an item (such as interacting with a pick
+     * list), <code>editorEnter</code> will typically fire once when the user  starts to edit this item as a whole, and
+     * <code>editorExit</code> fires once when the  user moves onto a different item or component
+     *
+     * @param handler the editorExit handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addEditorExitHandler(com.smartgwt.client.widgets.form.fields.events.EditorExitHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.EditorExitEvent.getType()) == 0) setupEditorExitEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.EditorExitEvent.getType());
+    }
+
+    private native void setupEditorExitEvent() /*-{
+        var obj = null;
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var editorExit = $entry(function(){
+            var param = {"form" : arguments[0], "item" : arguments[1], "value" : arguments[2]};
+            var event = @com.smartgwt.client.widgets.form.fields.events.EditorExitEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
+        obj.editorExit =  editorExit         ;
    }-*/;
     /**
      * Add a focus handler.
@@ -3158,15 +3419,16 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     private native void setupFocusEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.focus = $entry(function(){
-                var param = {"form" : arguments[0], "item" : arguments[1]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.FocusEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var focus = $entry(function(){
+            var param = {"form" : arguments[0], "item" : arguments[1]};
+            var event = @com.smartgwt.client.widgets.form.fields.events.FocusEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
+        obj.focus =  focus         ;
    }-*/;
-            
+
     /**
      * Move the keyboard focus into this item's focusable element
      */
@@ -3174,65 +3436,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.focusInItem();
     }-*/;
-            
-    /**
-     * Override this method if you need to provide a specialized criterion from this formItem when creating an AdvancedCriteria
-     * via {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria DynamicForm.getValuesAsCriteria}. <P> This
-     * API is provided to allow you to specify a more complex criterion than the  "field-operator-value" criterions that are
-     * built-in.  Note that the built-in behavior is generally quite flexible and powerful enough for most requirements.  An
-     * example of a case where you might want to override this method is if you wanted to implement a date range  selection
-     * (ie, date &gt; x AND date &lt; y) on a form that was combining its other criteria  fields with an "or" operator. <P>
-     * Note that this method is part of the criteria editing subsystem: if overridden, it is likely that you will want to also
-     * override {@link com.smartgwt.client.widgets.form.fields.FormItem#hasAdvancedCriteria FormItem.hasAdvancedCriteria} to
-     * ensure this method is called by the form, and to support editing of existing advanced criteria you may also need to
-     * override {@link com.smartgwt.client.widgets.form.fields.FormItem#canEditCriterion FormItem.canEditCriterion} and  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setCriterion FormItem.setCriterion}. <P> The default implementation
-     * will return a criterion including the form item value, fieldName and specified {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator}, or a default operator derived from the form item
-     * data type if no explicit operator is specified.
-     *
-     * @return criterion object based on this fields current edited value(s).
-     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
-     */
-    public native Criterion getCriterion() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var ret = self.getCriterion();
-        if(ret == null || ret === undefined) return null;
-        return @com.smartgwt.client.data.Criterion::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-    }-*/;
 
-    /**
-     * Override this method if you need to provide a specialized criterion from this formItem when creating an AdvancedCriteria
-     * via {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria DynamicForm.getValuesAsCriteria}. <P> This
-     * API is provided to allow you to specify a more complex criterion than the  "field-operator-value" criterions that are
-     * built-in.  Note that the built-in behavior is generally quite flexible and powerful enough for most requirements.  An
-     * example of a case where you might want to override this method is if you wanted to implement a date range  selection
-     * (ie, date &gt; x AND date &lt; y) on a form that was combining its other criteria  fields with an "or" operator. <P>
-     * Note that this method is part of the criteria editing subsystem: if overridden, it is likely that you will want to also
-     * override {@link com.smartgwt.client.widgets.form.fields.FormItem#hasAdvancedCriteria FormItem.hasAdvancedCriteria} to
-     * ensure this method is called by the form, and to support editing of existing advanced criteria you may also need to
-     * override {@link com.smartgwt.client.widgets.form.fields.FormItem#canEditCriterion FormItem.canEditCriterion} and  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setCriterion FormItem.setCriterion}. <P> The default implementation
-     * will return a criterion including the form item value, fieldName and specified {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator}, or a default operator derived from the form item
-     * data type if no explicit operator is specified.
-     * @param textMatchStyle If passed assume the textMatchStyle   will be used when performing a fetch operation with these criteria. This may
-     * impact   the criterion's operator property.
-     *
-     * @return criterion object based on this fields current edited value(s).
-     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
-     */
-    public native Criterion getCriterion(TextMatchStyle textMatchStyle) /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var ret = self.getCriterion(textMatchStyle.@com.smartgwt.client.types.TextMatchStyle::getValue()());
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.data.Criterion::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
-    }-*/;
-            
     /**
      * Returns the <code>displayField</code> for this item. This will typically be specified explicitly via the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} attribute. However, if  that property is
@@ -3246,7 +3450,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.getDisplayFieldName();
     }-*/;
-            
+
     /**
      * Return the name for the this formItem.
      *
@@ -3257,7 +3461,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.getFieldName();
     }-*/;
-            
+
     /**
      * Return the fully-qualified dataPath for the this formItem (ie, the dataPath expressed  in absolute terms from the root
      * of the hierarchy, rather than relative to the item's  parent form).  Note that the item's name is substituted into the
@@ -3271,7 +3475,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.getFullDataPath();
     }-*/;
-            
+
     /**
      * Given an {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getName name} return a pointer to the icon
      * definition
@@ -3285,7 +3489,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.widgets.form.fields.FormItemIcon::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-            
+
     /**
      * Returns the drawn page-left coordinate of this form item in pixels.
      *
@@ -3296,7 +3500,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.getPageLeft();
     }-*/;
-            
+
     /**
      * Returns the drawn page-top coordinate of this form item in pixels.
      *
@@ -3307,7 +3511,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.getPageTop();
     }-*/;
-            
+
     /**
      * Get the record returned from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
      * optionDataSource} when {@link com.smartgwt.client.widgets.form.fields.FormItem#getFetchMissingValues fetchMissingValues}
@@ -3328,7 +3532,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         }
         return retVal;
     }-*/;
-            
+
     /**
      * Getter method to retrieve the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} for this
      * item. If unset, default behavior will return the {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name}
@@ -3341,14 +3545,14 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.getValueFieldName();
     }-*/;
-            
+
     /**
      * Does this form item produce an {@link com.smartgwt.client.data.AdvancedCriteria} sub criterion object? If this method
      * returns true, {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria DynamicForm.getValuesAsCriteria}
      * on the form containing this item will always return an {@link com.smartgwt.client.data.AdvancedCriteria} object, calling
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getCriterion FormItem.getCriterion} on each item to retrieve the
-     * individual criteria. <P> Default implementation will return <code>true</code> if {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator} is explicitly specified.
+     * <code>FormItemCriterionGetter.getCriterion()</code> on each item to retrieve the individual criteria. <P> Default
+     * implementation will return <code>true</code> if {@link com.smartgwt.client.widgets.form.fields.FormItem#getOperator
+     * operator} is explicitly specified.
      *
      * @return true if this item will return an AdvancedCriteria sub-criterion.
      * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
@@ -3362,7 +3566,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Hide this form item. <BR><BR> This will cause the form to redraw.  If this item had an item.showIf expression, it will
      * be destroyed.
@@ -3370,6 +3574,17 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public native void hide() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.hide();
+    }-*/;
+
+    /**
+     * This method will hide some icon in this item's {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcons icons}
+     * array, if it is  currently visible. Note that once this method has been called, andy previously specified {@link
+     * com.smartgwt.client.widgets.form.fields.FormItemIcon#showIf FormItemIcon.showIf} will be discarded.
+     * @param icon {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getName Name} of the icon to be hidden.
+     */
+    public native void hideIcon(String icon) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.hideIcon(icon);
     }-*/;
     /**
      * Add a iconClick handler.
@@ -3387,13 +3602,14 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     private native void setupIconClickEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.iconClick = $entry(function(){
-                var param = {"form" : arguments[0], "item" : arguments[1], "icon" : arguments[2]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.IconClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var iconClick = $entry(function(){
+            var param = {"form" : arguments[0], "item" : arguments[1], "icon" : arguments[2]};
+            var event = @com.smartgwt.client.widgets.form.fields.events.IconClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
+        obj.iconClick =  iconClick         ;
    }-*/;
     /**
      * Add a iconKeyPress handler.
@@ -3411,15 +3627,16 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     private native void setupIconKeyPressEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.iconKeyPress = $entry(function(){
-                var param = {"keyName" : arguments[0], "character" : arguments[1], "form" : arguments[2], "item" : arguments[3], "icon" : arguments[4]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.IconKeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var iconKeyPress = $entry(function(){
+            var param = {"keyName" : arguments[0], "character" : arguments[1], "form" : arguments[2], "item" : arguments[3], "icon" : arguments[4]};
+            var event = @com.smartgwt.client.widgets.form.fields.events.IconKeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
+        obj.iconKeyPress =  iconKeyPress         ;
    }-*/;
-            
+
     /**
      * If this item has a specified {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField}, the
      * value displayed to the user for this item may be derived from another field. <P> The display field can be either another
@@ -3439,7 +3656,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.invalidateDisplayValueCache();
     }-*/;
-            
+
     /**
      * Is this item disabled?
      *
@@ -3456,7 +3673,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Returns true if this item has been written out into the DOM.
      *
@@ -3472,7 +3689,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Return true if the form item is currently visible. Note that like the similar {@link
      * com.smartgwt.client.widgets.Canvas#isVisible Canvas API}, it indicates visibility settings only and so will return true
@@ -3507,13 +3724,14 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     private native void setupItemHoverEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.itemHover = $entry(function(){
-                var param = {"item" : arguments[0], "form" : arguments[1]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.ItemHoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var itemHover = $entry(function(){
+            var param = {"item" : arguments[0], "form" : arguments[1]};
+            var event = @com.smartgwt.client.widgets.form.fields.events.ItemHoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
+        obj.itemHover =  itemHover         ;
    }-*/;
     /**
      * Add a keyDown handler.
@@ -3530,15 +3748,20 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     private native void setupKeyDownEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.keyDown = $debox($entry(function(){
-                var param = {"item" : arguments[0], "form" : arguments[1], "keyName" : arguments[2]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.KeyDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var keyDown = $debox($entry(function(param){
+            var event = @com.smartgwt.client.widgets.form.fields.events.KeyDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
             }));
+        obj.keyDown = 
+            function () {
+                var param = {"item" : arguments[0], "form" : arguments[1], "keyName" : arguments[2]};
+                return keyDown(param) == true;
+            }
+        ;
    }-*/;
     /**
      * Add a keyPress handler.
@@ -3555,15 +3778,20 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     private native void setupKeyPressEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.keyPress = $debox($entry(function(){
-                var param = {"item" : arguments[0], "form" : arguments[1], "keyName" : arguments[2], "characterValue" : arguments[3]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.KeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var keyPress = $debox($entry(function(param){
+            var event = @com.smartgwt.client.widgets.form.fields.events.KeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
             }));
+        obj.keyPress = 
+            function () {
+                var param = {"item" : arguments[0], "form" : arguments[1], "keyName" : arguments[2], "characterValue" : arguments[3]};
+                return keyPress(param) == true;
+            }
+        ;
    }-*/;
     /**
      * Add a keyUp handler.
@@ -3580,30 +3808,22 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     private native void setupKeyUpEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.keyUp = $debox($entry(function(){
-                var param = {"item" : arguments[0], "form" : arguments[1], "keyName" : arguments[2]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.KeyUpEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var keyUp = $debox($entry(function(param){
+            var event = @com.smartgwt.client.widgets.form.fields.events.KeyUpEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
             }));
+        obj.keyUp = 
+            function () {
+                var param = {"item" : arguments[0], "form" : arguments[1], "keyName" : arguments[2]};
+                return keyUp(param) == true;
+            }
+        ;
    }-*/;
-            
-    /**
-     * Update this form item to reflect a criterion object from within an AdvancedCriteria. Called by {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#setValuesAsCriteria DynamicForm.setValuesAsCriteria} when {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#canEditCriterion FormItem.canEditCriterion} returns true for this item.
-     * <P> Default implementation simply calls {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue
-     * FormItem.setValue} with the <code>value</code> of the criterion passed in
-     * @param criterion criterion to edit
-     */
-    public native void setCriterion(Criterion criterion) /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.setCriterion(criterion.@com.smartgwt.client.core.DataClass::getJsObj()());
-    }-*/;
-            
+
     /**
      * If this field has a specified {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
      * optionDataSource}, should we perform a fetch against that dataSource to find the record that matches this field's value?
@@ -3629,7 +3849,24 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
+    /**
+     * Returns true if 'Enter' key presses in this formItem should allow a saveOnEnter: true parent form to save it's data. 
+     * The default implementation returns the value of {@link com.smartgwt.client.widgets.form.fields.FormItem#getSaveOnEnter
+     * saveOnEnter} or false if that property is unset.
+     *
+     * @return boolean indicating whether saving should be allowed to proceed
+     */
+    public native Boolean shouldSaveOnEnter() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.shouldSaveOnEnter();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
     /**
      * Show this form item. <BR><BR> This will cause the form to redraw.  If this item had an item.showIf expression, it will
      * be destroyed.
@@ -3638,7 +3875,48 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.show();
     }-*/;
-            
+
+    /**
+     * This method will show some icon in this item's {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcons icons}
+     * array, if it is not already visible. Note that once this method has been called, andy previously specified {@link
+     * com.smartgwt.client.widgets.form.fields.FormItemIcon#showIf FormItemIcon.showIf} will be discarded. <P> Note that if the
+     * form item's showIcons property is set to false, no icons will be displayed for the item. In this case this method will
+     * not cause the icon to be displayed.
+     * @param icon {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getName Name} of the icon to be shown.
+     */
+    public native void showIcon(String icon) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.showIcon(icon);
+    }-*/;
+    /**
+     * Add a pickerIconClick handler.
+     * <p>
+     * Method to show a picker for this item. By default this method is called if the user clicks on a {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon pickerIcon}.  May also be called programmatically.
+     * <P> Default implementation lazily creates and shows the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getPicker Picker Autochild}. May be overridden to implement some custom
+     * picker for this item.
+     *
+     * @param handler the pickerIconClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addPickerIconClickHandler(com.smartgwt.client.widgets.form.fields.events.PickerIconClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.PickerIconClickEvent.getType()) == 0) setupPickerIconClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.PickerIconClickEvent.getType());
+    }
+
+    private native void setupPickerIconClickEvent() /*-{
+        var obj = null;
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var showPicker = $entry(function(){
+            var param = {};
+            var event = @com.smartgwt.client.widgets.form.fields.events.PickerIconClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
+        obj.showPicker =  showPicker         ;
+   }-*/;
+
     /**
      * This method is fired when the user rolls off this item (or the title for this item) and will clear any hover canvas
      * shown by the item.
@@ -3662,13 +3940,20 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     private native void setupTitleClickEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.titleClick = $entry(function(){
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var titleClick = $debox($entry(function(param){
+            var event = @com.smartgwt.client.widgets.form.fields.events.TitleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        obj.titleClick = 
+            function () {
                 var param = {"form" : arguments[0], "item" : arguments[1]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.TitleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            });
+                return titleClick(param) == true;
+            }
+        ;
    }-*/;
     /**
      * Add a titleDoubleClick handler.
@@ -3685,13 +3970,20 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     private native void setupTitleDoubleClickEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.titleDoubleClick = $entry(function(){
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var titleDoubleClick = $debox($entry(function(param){
+            var event = @com.smartgwt.client.widgets.form.fields.events.TitleDoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        obj.titleDoubleClick = 
+            function () {
                 var param = {"form" : arguments[0], "item" : arguments[1]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.TitleDoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            });
+                return titleDoubleClick(param) == true;
+            }
+        ;
    }-*/;
     /**
      * Add a titleHover handler.
@@ -3710,15 +4002,16 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     private native void setupTitleHoverEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.titleHover = $entry(function(){
-                var param = {"item" : arguments[0], "form" : arguments[1]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var titleHover = $entry(function(){
+            var param = {"item" : arguments[0], "form" : arguments[1]};
+            var event = @com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
+        obj.titleHover =  titleHover         ;
    }-*/;
-            
+
     /**
      * Update the visual state of a FormItem to reflect any changes in state or any changes in style settings (eg {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getTextBoxStyle textBoxStyle}).  <P> Calls to
@@ -3729,7 +4022,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.updateState();
     }-*/;
-            
+
     /**
      * Validate this item.
      *
@@ -3750,9 +4043,46 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     // ***********************************************************        
 
 
+
+    private DynamicForm form;
+    private FormItem item;
+
     public FormItem(String name) {
         setName(name);
+        form = null;
+        item = null;
+        setupFormItemConstructor();
     }
+
+    private native void setupFormItemConstructor() /*-{
+        var me = this,
+            self = me.@com.smartgwt.client.widgets.form.fields.FormItem::getJsObj()();
+        if (self != null) {
+            self.sgwtCreate = $entry(function (form, item) {
+                var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(form),
+                    itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
+                me.@com.smartgwt.client.widgets.form.fields.FormItem::form = formJ;
+                me.@com.smartgwt.client.widgets.form.fields.FormItem::item = itemJ;
+            });
+
+            self.destroy = $entry(function () {
+                me.@com.smartgwt.client.widgets.form.fields.FormItem::form = null;
+                me.@com.smartgwt.client.widgets.form.fields.FormItem::item = null;
+                return this.Super("destroy", arguments);
+            });
+        }
+    }-*/;
+
+    private java.util.LinkedHashMap<String, Object> keyMap = null;
+
+    /**
+     * Returns the javascript class name.
+     * @return
+     */
+    public native String getClassName()/*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        return self.getClassName();
+    }-*/;
     
     /**
      * Specify a notification method to fire when this formItem is initialized in JavaScript. This allows developers
@@ -3852,6 +4182,14 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             JSOHelper.setAttribute(jsObj, attribute, value.getJsObj());
         } else {
             setProperty(attribute, value.getJsObj());
+        }
+    }
+
+    public void setAttribute(String attribute, BaseClass value) {
+        if (!isCreated()) {
+            JSOHelper.setAttribute(jsObj, attribute, value == null ? null : value.getOrCreateJsObj());
+        } else {
+            setProperty(attribute, value == null ? null : value.getOrCreateJsObj());
         }
     }
 
@@ -4022,7 +4360,12 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Name for this form field. <br><br> The FormItem's name determines the name of the property it edits within the form.
+     * Name for this form field.
+     * <p>
+     * The FormItem's name determines the name of the property it edits within the form. Must be
+     * unique within the form as well as a valid JavaScript identifier, as specified by ECMA-262
+     * Section 7.6 (the {@link com.smartgwt.client.util.StringUtil#isValidID(String)} function can
+     * be used to test whether a name is a valid JavaScript identifier).
      *
      * @param name name Default value is null
      */
@@ -4032,8 +4375,12 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Name for this form field. <br><br> The FormItem's name determines the name of the property it edits within the form.
-     *
+     * Name for this form field.
+     * <p>
+     * The FormItem's name determines the name of the property it edits within the form. Must be
+     * unique within the form as well as a valid JavaScript identifier, as specified by ECMA-262
+     * Section 7.6 (the {@link com.smartgwt.client.util.StringUtil#isValidID(String)} function can
+     * be used to test whether a name is a valid JavaScript identifier).
      *
      * @return String
      */
@@ -4185,6 +4532,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @param valueMap the value map
      */
     public void setValueMap(String... valueMap) {
+        keyMap = null;
         if (!isCreated()) {
             setAttribute("valueMap", valueMap);
         } else {
@@ -4198,10 +4546,18 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @param valueMap the value map
      */
     public void setValueMap(java.util.LinkedHashMap valueMap) {
+
+        keyMap = new java.util.LinkedHashMap<String, Object>();
+        java.util.LinkedHashMap newMap = new java.util.LinkedHashMap();
+        for (Object key : valueMap.keySet()) {
+            keyMap.put(key.toString(), key);
+            newMap.put(key.toString(), valueMap.get(key));
+        }
+
         if (!isCreated()) {
-            setAttribute("valueMap", valueMap);
+            setAttribute("valueMap", newMap);
         } else {
-            setValueMapMethod(JSOHelper.convertMapToJavascriptObject(valueMap));
+            setValueMapMethod(JSOHelper.convertMapToJavascriptObject(newMap));
         }
     }
 
@@ -4511,7 +4867,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
         for(var k in self) {
             //skip properties of FormItem properties that should not be applied to the target's editorType
-            if(k != '__ref' && k != 'type'  && k != 'editorType' && k != 'name') {
+            if(k != '__ref' && k != 'type'  && k != 'editorType' && k != 'name' && k != 'sgwtCreate' && k != 'destroy') {
                 config[k] = self[k];
             }
         }
@@ -4707,7 +5063,16 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      * @return value of this element
      */
-    public native Object getValue() /*-{
+    public Object getValue() {
+        Object value = _getValue();
+        
+        if (keyMap != null && keyMap.containsKey(value)) {
+            value = keyMap.get(value);
+        }
+        
+        return value;
+    }
+    public native Object _getValue() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var ret;
         if(self.setValue) {
@@ -4874,7 +5239,193 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public void disable() {
         setDisabled(true);
     }
-    
+
+    /**
+     * 
+     * @param nativeArray
+     * @return
+     */
+    public static FormItem[] convertToFormItemArray(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new FormItem[]{};
+        }
+        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
+        FormItem[] objects = new FormItem[componentsj.length];
+        for (int i = 0; i < componentsj.length; i++) {
+            JavaScriptObject componentJS = componentsj[i];
+            FormItem obj = (FormItem) RefDataClass.getRef(componentJS);
+            if (obj == null) obj = new FormItem(componentJS);
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+    /**
+     * When a dynamic form is editing an advanced criteria object via {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setValuesAsCriteria DynamicForm.setValuesAsCriteria}, this predicate is used
+     * to determine which sub-criteria apply to which form item(s). <P> This method will be called on each item, and passed the
+     * sub-criterion of the AdvancedCriteria object. It should return true if the item can edit the criterion, otherwise false.
+     * If it returns true, setValuesAsCriteria() will call  {@link
+     * com.smartgwt.client.widgets.form.FormItemCriterionSetter#setCriterion FormItemCriterionSetter.setCriterion} from
+     * the registered {@link com.smartgwt.client.widgets.form.fields.FormItem#setCriterionSetter FormItemCriterionSetter}
+     * to actually apply the criterion to
+     * the form item, and {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria
+     * DynamicForm.getValuesAsCriteria} can subsequently retrieve the edited criterion by calling {@link
+     * com.smartgwt.client.widgets.form.FormItemCriterionGetter#getCriterion FormItemCriterionGetter.getCriterion} from
+     * the registered {@link com.smartgwt.client.widgets.form.fields.FormItem#setCriterionGetter FormItemCriterionGetter}.
+     * <P> Default implementation will
+     * return true if the criterion <code>fieldName</code> and <code>operator</code> match the fieldName and operator (or
+     * default operator) for this item.
+     * @param predicate the predicate to determine the form items that can edit the criterion in question
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
+     */
+    public native void setCanEditCriterionPredicate(FormItemCanEditCriterionPredicate predicate) /*-{
+        var me = this,
+            self = me.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.canEditCriterion = $entry(function (criterion) {
+            var formJ = me.@com.smartgwt.client.widgets.form.fields.FormItem::form,
+                itemJ = me.@com.smartgwt.client.widgets.form.fields.FormItem::item,
+                criterionJ = (criterion == null ? null : @com.smartgwt.client.data.Criterion::new(Lcom/google/gwt/core/client/JavaScriptObject;)(criterion));
+            return predicate.@com.smartgwt.client.widgets.form.FormItemCanEditCriterionPredicate::canEditCriterion(Lcom/smartgwt/client/widgets/form/DynamicForm;Lcom/smartgwt/client/widgets/form/fields/FormItem;Lcom/smartgwt/client/data/Criterion;)(formJ, itemJ, criterionJ);
+        });
+    }-*/;
+
+    /**
+     * Calls the {@link com.smartgwt.client.widgets.form.FormItemCanEditCriterionPredicate.canEditCriterion canEditCriterion()}
+     * method of the {@link com.smartgwt.client.widgets.form.FormItemCanEditCriterionPredicate FormItemCanEditCriterionPredicate}
+     * that is registered with this field.
+     * @param criterion sub-criterion from an AdvancedCriteria object
+     *
+     * @return return true if this item can edit the criterion in question.
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
+     */
+    public final native Boolean canEditCriterion(Criterion criterion) /*-{
+        if (criterion == null) {
+            return null;
+        } else {
+            var self = this.@com.smartgwt.client.core.DataClass::getJsObj()(),
+                retVal = self.canEditCriterion(criterion.@com.smartgwt.client.core.DataClass::getJsObj()());
+            return (retVal == null || retVal === undefined ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal));
+        }
+    }-*/;
+
+    /**
+     * Provides a specialized criterion from this formItem when creating an AdvancedCriteria
+     * via {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria DynamicForm.getValuesAsCriteria}. <P> This
+     * API is provided to allow you to specify a more complex criterion than the  "field-operator-value" criterions that are
+     * built-in.  Note that the built-in behavior is generally quite flexible and powerful enough for most requirements.  An
+     * example of a case where you might want to override this method is if you wanted to implement a date range  selection
+     * (ie, date &gt; x AND date &lt; y) on a form that was combining its other criteria  fields with an "or" operator. <P>
+     * Note that this method is part of the criteria editing subsystem: if overridden, it is likely that you will want to also
+     * override {@link com.smartgwt.client.widgets.form.fields.FormItem#hasAdvancedCriteria FormItem.hasAdvancedCriteria} to
+     * ensure this method is called by the form, and to support editing of existing advanced criteria you may also need to
+     * set the {@link com.smartgwt.client.widgets.form.fields.FormItem#setCanEditCriterionPredicate FormItemCanEditCriterionPredicate}
+     * and the {@link com.smartgwt.client.widgets.form.fields.FormItem#setCriterionSetter FormItemCriterionSetter}.
+     * <P> The default implementation
+     * will return a criterion including the form item value, fieldName and specified {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator}, or a default operator derived from the form item
+     * data type if no explicit operator is specified.
+     * @param getter provides a method to get a criterion object based on this field's current edited value(s).
+     *
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
+     */
+    public native void setCriterionGetter(FormItemCriterionGetter getter) /*-{
+        var me = this,
+            self = me.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.getCriterion = $entry(function (textMatchStyle) {
+            var formJ = me.@com.smartgwt.client.widgets.form.fields.FormItem::form,
+                itemJ = me.@com.smartgwt.client.widgets.form.fields.FormItem::item,
+                textMatchStyleJ = @com.smartgwt.client.widgets.form.fields.FormItem::getTextMatchStyleForValue(Ljava/lang/String;)(textMatchStyle),
+                criterionJ;
+            if (textMatchStyleJ != null) {
+                criterionJ = getter.@com.smartgwt.client.widgets.form.FormItemCriterionGetter::getCriterion(Lcom/smartgwt/client/widgets/form/DynamicForm;Lcom/smartgwt/client/widgets/form/fields/FormItem;Lcom/smartgwt/client/types/TextMatchStyle;)(formJ, itemJ, textMatchStyleJ);
+            } else {
+                criterionJ = getter.@com.smartgwt.client.widgets.form.FormItemCriterionGetter::getCriterion(Lcom/smartgwt/client/widgets/form/DynamicForm;Lcom/smartgwt/client/widgets/form/fields/FormItem;)(formJ, itemJ);
+            }
+            return (criterionJ == null ? null : criterionJ.@com.smartgwt.client.core.DataClass::getJsObj()());
+        });
+    }-*/;
+
+    /**
+     * Calls the {@link com.smartgwt.client.widgets.form.FormItemCriterionGetter.getCriterion getCriterion()} method
+     * of the {@link com.smartgwt.client.widgets.form.FormItemCriterionGetter FormItemCriterionGetter}
+     * that is registered with this field.
+     * @return criterion object based on this fields current edited value(s).
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
+     */
+    public final native Criterion getCriterion() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret = self.getCriterion();
+        if (ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if (retVal == null) {
+            retVal = @com.smartgwt.client.data.Criterion::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+
+    /**
+     * Calls the {@link com.smartgwt.client.widgets.form.FormItemCriterionGetter.getCriterion getCriterion()} method
+     * of the {@link com.smartgwt.client.widgets.form.FormItemCriterionGetter FormItemCriterionGetter}
+     * that is registered with this field.
+     * @param textMatchStyle If passed assume the textMatchStyle   will be used when performing a fetch operation with these criteria. This may
+     * impact   the criterion's operator property.
+     *
+     * @return criterion object based on this fields current edited value(s).
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
+     */
+    public final native Criterion getCriterion(TextMatchStyle textMatchStyle) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret = self.getCriterion(textMatchStyle == null ? null : textMatchStyle.@com.smartgwt.client.types.TextMatchStyle::getValue()());
+        if (ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if (retVal == null) {
+            retVal = @com.smartgwt.client.data.Criterion::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+
+    private static TextMatchStyle getTextMatchStyleForValue(String value) {
+        for (TextMatchStyle textMatchStyle : TextMatchStyle.values()) {
+            if (textMatchStyle.getValue().equals(value)) {
+                return textMatchStyle;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Set the method to update this form item to reflect a criterion object from within an AdvancedCriteria. Called by {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setValuesAsCriteria DynamicForm.setValuesAsCriteria} when the
+     * registered {@link com.smartgwt.client.widgets.form.fields.FormItem#setCanEditCriterionPredicate FormItemCanEditCriterionPredicate}
+     * returns true for this item.
+     * <P> Default implementation simply calls {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue
+     * FormItem.setValue} with the <code>value</code> of the criterion passed in
+     * @param setter provides a method to update this field with the edited criterion
+     */
+    public native void setCriterionSetter(FormItemCriterionSetter setter) /*-{
+        var me = this,
+            self = me.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.setCriterion = $entry(function (criterion) {
+            var formJ = me.@com.smartgwt.client.widgets.form.fields.FormItem::form,
+                itemJ = me.@com.smartgwt.client.widgets.form.fields.FormItem::item,
+                criterionJ = (criterion == null ? null : @com.smartgwt.client.data.Criterion::new(Lcom/google/gwt/core/client/JavaScriptObject;)(criterion));
+            setter.@com.smartgwt.client.widgets.form.FormItemCriterionSetter::setCriterion(Lcom/smartgwt/client/widgets/form/DynamicForm;Lcom/smartgwt/client/widgets/form/fields/FormItem;Lcom/smartgwt/client/data/Criterion;)(formJ, itemJ, criterionJ);
+        });
+    }-*/;
+
+    /**
+     * Calls the {@link com.smartgwt.client.widgets.form.FormItemCriterionSetter.setCriterion setCriterion()} method
+     * of the {@link com.smartgwt.client.widgets.form.FormItemCriterionSetter FormItemCriterionSetter}
+     * that is registered with this field.
+     * @param criterion criterion to edit
+     */
+    public final native void setCriterion(Criterion criterion) /*-{
+        if (criterion != null) {
+            var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+            self.setCriterion(criterion.@com.smartgwt.client.core.DataClass::getJsObj()());
+        }
+    }-*/;
 
 }
 

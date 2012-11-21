@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Side of a component.
  */
@@ -36,7 +37,6 @@ public enum Side implements ValueEnum {
      * Bottom side
      */
     BOTTOM("bottom");
-
     private String value;
 
     Side(String value) {
@@ -47,3 +47,4 @@ public enum Side implements ValueEnum {
         return this.value;
     }
 }
+        

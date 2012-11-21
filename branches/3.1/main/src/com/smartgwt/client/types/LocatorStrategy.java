@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * The AutoTest subsystem relies on generating and parsing identifier strings to identify components on the page. A very
  * common pattern is identifying a specific component within a list of possible candidates. There are many many cases where
@@ -50,7 +51,6 @@ public enum LocatorStrategy implements ValueEnum {
      * Match by index
      */
     INDEX("index");
-
     private String value;
 
     LocatorStrategy(String value) {
@@ -61,3 +61,4 @@ public enum LocatorStrategy implements ValueEnum {
         return this.value;
     }
 }
+        

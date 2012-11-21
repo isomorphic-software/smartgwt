@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Appearance for a SelectItem that allows multiple selection
  */
@@ -28,7 +29,6 @@ public enum MultipleAppearance implements ValueEnum {
      * a grid that displays all items in-place. Multiple selection is accomplished by ctrl-click or shift-click.
      */
     GRID("grid");
-
     private String value;
 
     MultipleAppearance(String value) {

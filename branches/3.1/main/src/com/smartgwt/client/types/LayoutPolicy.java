@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Policy controlling how the Layout will manage member sizes on this axis.  <P>  See also {@link
  * com.smartgwt.client.widgets.layout.Layout#getOverflow overflow}.
@@ -34,7 +35,6 @@ public enum LayoutPolicy implements ValueEnum {
      * to their relative percentages. </ul>
      */
     FILL("fill");
-
     private String value;
 
     LayoutPolicy(String value) {
@@ -45,3 +45,4 @@ public enum LayoutPolicy implements ValueEnum {
         return this.value;
     }
 }
+        

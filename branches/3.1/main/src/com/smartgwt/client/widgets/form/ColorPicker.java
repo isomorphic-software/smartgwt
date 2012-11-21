@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * The ColorPicker widget allows the user to select a color from anywhere in the  color spectrum. It also supports
@@ -68,22 +88,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class ColorPicker extends Window  implements com.smartgwt.client.widgets.form.events.HasColorSelectedHandlers {
 
-    public static ColorPicker getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (ColorPicker) obj;
-        } else {
-            return new ColorPicker(jsObj);
+    public native static ColorPicker getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("ColorPicker",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.form.ColorPicker::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public ColorPicker(){
         scClassName = "ColorPicker";
     }
 
     public ColorPicker(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "ColorPicker";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -170,7 +201,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     /**
      * The label shown above the basic color blocks.
      *
-     * @param basicColorLabel basicColorLabel Default value is "Basic Colors:"
+     * @param basicColorLabel . See {@link com.smartgwt.client.docs.String String}. Default value is "Basic Colors:"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setBasicColorLabel(String basicColorLabel)  throws IllegalStateException {
@@ -181,7 +212,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * The label shown above the basic color blocks.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getBasicColorLabel()  {
         return getAttributeAsString("basicColorLabel");
@@ -190,7 +221,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     /**
      * Base CSS style applied to the basic color boxes
      *
-     * @param colorButtonBaseStyle colorButtonBaseStyle Default value is "ColorChooserCell"
+     * @param colorButtonBaseStyle . See {@link com.smartgwt.client.docs.String String}. Default value is "ColorChooserCell"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setColorButtonBaseStyle(String colorButtonBaseStyle)  throws IllegalStateException {
@@ -201,7 +232,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * Base CSS style applied to the basic color boxes
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getColorButtonBaseStyle()  {
         return getAttributeAsString("colorButtonBaseStyle");
@@ -230,7 +261,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     /**
      * The location of the crosshair image file
      *
-     * @param crosshairImageURL crosshairImageURL Default value is "[SKIN]ColorPicker/crosshair.png"
+     * @param crosshairImageURL . See {@link com.smartgwt.client.docs.String String}. Default value is "[SKIN]ColorPicker/crosshair.png"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setCrosshairImageURL(String crosshairImageURL)  throws IllegalStateException {
@@ -241,7 +272,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * The location of the crosshair image file
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getCrosshairImageURL()  {
         return getAttributeAsString("crosshairImageURL");
@@ -250,7 +281,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     /**
      * The default color. This is the color that is selected when the picker first loads
      *
-     * @param defaultColor defaultColor Default value is #808080
+     * @param defaultColor . See {@link com.smartgwt.client.docs.String String}. Default value is #808080
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setDefaultColor(String defaultColor)  throws IllegalStateException {
@@ -261,7 +292,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * The default color. This is the color that is selected when the picker first loads
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getDefaultColor()  {
         return getAttributeAsString("defaultColor");
@@ -293,7 +324,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * alpha  element). The defaultPickMode attribute specifies which of these two modes is  in force when the picker first
      * loads.
      *
-     * @param defaultPickMode defaultPickMode Default value is "simple"
+     * @param defaultPickMode . See {@link com.smartgwt.client.docs.String String}. Default value is "simple"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setDefaultPickMode(String defaultPickMode)  throws IllegalStateException {
@@ -307,7 +338,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * loads.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getDefaultPickMode()  {
         return getAttributeAsString("defaultPickMode");
@@ -337,7 +368,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * The label shown next to the opacity slider. Ignored if  {@link
      * com.smartgwt.client.widgets.form.ColorPicker#getSupportsTransparency supportsTransparency} is false.
      *
-     * @param opacitySliderLabel opacitySliderLabel Default value is "Opacity"
+     * @param opacitySliderLabel . See {@link com.smartgwt.client.docs.String String}. Default value is "Opacity"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setOpacitySliderLabel(String opacitySliderLabel)  throws IllegalStateException {
@@ -349,7 +380,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.form.ColorPicker#getSupportsTransparency supportsTransparency} is false.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getOpacitySliderLabel()  {
         return getAttributeAsString("opacitySliderLabel");
@@ -382,7 +413,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     /**
      * The label shown next to the selected color box.
      *
-     * @param selectedColorLabel selectedColorLabel Default value is "Selected Color"
+     * @param selectedColorLabel . See {@link com.smartgwt.client.docs.String String}. Default value is "Selected Color"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setSelectedColorLabel(String selectedColorLabel)  throws IllegalStateException {
@@ -393,7 +424,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * The label shown next to the selected color box.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSelectedColorLabel()  {
         return getAttributeAsString("selectedColorLabel");
@@ -451,7 +482,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     /**
      * The location of the color swatch image file
      *
-     * @param swatchImageURL swatchImageURL Default value is "[SKIN]ColorPicker/spectrum.png"
+     * @param swatchImageURL . See {@link com.smartgwt.client.docs.String String}. Default value is "[SKIN]ColorPicker/spectrum.png"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setSwatchImageURL(String swatchImageURL)  throws IllegalStateException {
@@ -462,7 +493,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * The location of the color swatch image file
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSwatchImageURL()  {
         return getAttributeAsString("swatchImageURL");
@@ -491,7 +522,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Override this method to be kept informed when the ColorPicker changes in real-time  (for example, if you need to update
      * your own GUI accordingly). Then use the  getXxxx() methods (for example, {@link
@@ -519,24 +550,21 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     private native void setupColorSelectedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var colorSelected = $entry(function(){
+            var param = {"color" : arguments[0], "opacity" : arguments[1]};
+
+                var event = @com.smartgwt.client.widgets.form.events.ColorSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({colorSelected:$entry(function(){
-                        var param = {"color" : arguments[0], "opacity" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.form.events.ColorSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({colorSelected:  colorSelected              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.colorSelected = $entry(function(){
-                   var param = {"color" : arguments[0], "opacity" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.form.events.ColorSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.colorSelected =  colorSelected             ;
         }
    }-*/;
-            
+
     /**
      * Returns the Blue element of the currently-selected color, as an integer from 0-255
      *
@@ -547,7 +575,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getBlue();
     }-*/;
-            
+
     /**
      * Returns the Green element of the currently-selected color, as an integer from 0-255
      *
@@ -558,7 +586,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getGreen();
     }-*/;
-            
+
     /**
      * Returns the currently-selected color, in HTML color representation form, as a string. HTML color representation is a
      * hash sign, followed by the red, green and blue elements of the color in 2-digit hex form - for example "#F17F1D"
@@ -570,7 +598,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getHtmlColor();
     }-*/;
-            
+
     /**
      * Returns the Hue of the currently-selected color, as an integer from 0-239
      *
@@ -581,7 +609,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getHue();
     }-*/;
-            
+
     /**
      * Returns the Luminosity (brightness) of the currently-selected color, as an  integer from 0-240
      *
@@ -592,7 +620,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getLuminosity();
     }-*/;
-            
+
     /**
      * Returns the Red element of the currently-selected color, as an integer from 0-255
      *
@@ -603,7 +631,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getRed();
     }-*/;
-            
+
     /**
      * Returns the Saturation of the currently-selected color, as an integer from 0-240
      *
@@ -614,7 +642,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getSaturation();
     }-*/;
-            
+
     /**
      * Sets the Blue element of the selected color
      * @param newValue An integer between 0 and 255
@@ -623,7 +651,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setBlue(newValue);
     }-*/;
-            
+
     /**
      * Sets the Green element of the selected color
      * @param newValue An integer between 0 and 255
@@ -632,7 +660,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setGreen(newValue);
     }-*/;
-            
+
     /**
      * Changes the selected color to the one represented by the supplied HTML color  string. Note that ths method only accepts
      * the parameter if it represents a  valid color (otherwise it is simply ignored).
@@ -642,7 +670,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setHtmlColor(newValue);
     }-*/;
-            
+
     /**
      * Sets the Hue of the selected color
      * @param newValue An integer between 0 and 239
@@ -651,7 +679,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setHue(newValue);
     }-*/;
-            
+
     /**
      * Sets the Luminosity (brightness) of the selected color
      * @param newValue An integer between 0 and 240
@@ -660,7 +688,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setLuminosity(newValue);
     }-*/;
-            
+
     /**
      * Sets the Opacity of the selected color. Ignored if opacity is switched off.
      * @param newValue An integer between 0 and 100
@@ -669,7 +697,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setOpacity(newValue);
     }-*/;
-            
+
     /**
      * Sets the Red element of the selected color
      * @param newValue An integer between 0 and 255
@@ -678,7 +706,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setRed(newValue);
     }-*/;
-            
+
     /**
      * Sets the Saturation of the selected color
      * @param newValue An integer between 0 and 240
@@ -710,8 +738,105 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         
     // ***********************************************************        
 
+    public LogicalStructureObject setLogicalStructure(ColorPickerLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.allowComplexMode = getAttributeAsString("allowComplexMode");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.allowComplexMode:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoCenterOnShow = getAttributeAsString("autoCenterOnShow");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.autoCenterOnShow:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoPosition = getAttributeAsString("autoPosition");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.autoPosition:" + t.getMessage() + "\n";
+        }
+        try {
+            s.basicColorLabel = getAttributeAsString("basicColorLabel");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.basicColorLabel:" + t.getMessage() + "\n";
+        }
+        try {
+            s.colorButtonBaseStyle = getAttributeAsString("colorButtonBaseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.colorButtonBaseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.colorButtonSize = getAttributeAsString("colorButtonSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.colorButtonSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.crosshairImageURL = getAttributeAsString("crosshairImageURL");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.crosshairImageURL:" + t.getMessage() + "\n";
+        }
+        try {
+            s.defaultColor = getAttributeAsString("defaultColor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.defaultColor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.defaultOpacity = getAttributeAsString("defaultOpacity");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.defaultOpacity:" + t.getMessage() + "\n";
+        }
+        try {
+            s.defaultPickMode = getAttributeAsString("defaultPickMode");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.defaultPickMode:" + t.getMessage() + "\n";
+        }
+        try {
+            s.lumWidth = getAttributeAsString("lumWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.lumWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.opacitySliderLabel = getAttributeAsString("opacitySliderLabel");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.opacitySliderLabel:" + t.getMessage() + "\n";
+        }
+        try {
+            s.opacityText = getAttributeAsString("opacityText");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.opacityText:" + t.getMessage() + "\n";
+        }
+        try {
+            s.selectedColorLabel = getAttributeAsString("selectedColorLabel");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.selectedColorLabel:" + t.getMessage() + "\n";
+        }
+        try {
+            s.supportsTransparency = getAttributeAsString("supportsTransparency");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.supportsTransparency:" + t.getMessage() + "\n";
+        }
+        try {
+            s.swatchHeight = getAttributeAsString("swatchHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.swatchHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.swatchImageURL = getAttributeAsString("swatchImageURL");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.swatchImageURL:" + t.getMessage() + "\n";
+        }
+        try {
+            s.swatchWidth = getAttributeAsString("swatchWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.swatchWidth:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        ColorPickerLogicalStructure s = new ColorPickerLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-
 

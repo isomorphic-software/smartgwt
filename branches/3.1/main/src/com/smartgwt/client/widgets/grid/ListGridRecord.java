@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A ListGridRecord is a JavaScript Object whose properties contain values for each
@@ -116,8 +136,12 @@ import com.google.gwt.event.shared.HasHandlers;
 public class ListGridRecord extends Record {
 
     public static ListGridRecord getOrCreateRef(JavaScriptObject jsObj) {
+    
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+ 
         if(obj != null && obj instanceof ListGridRecord) {
             obj.setJsObj(jsObj);
             return (ListGridRecord) obj;
@@ -126,12 +150,18 @@ public class ListGridRecord extends Record {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public ListGridRecord(){
         
     }
 
     public ListGridRecord(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     // ********************* Properties / Attributes ***********************
@@ -149,7 +179,7 @@ public class ListGridRecord extends Record {
      * <P> If your application's data uses the "_baseStyle" attribute for something else, the property name can be changed via
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordBaseStyleProperty recordBaseStyleProperty}.
      *
-     * @param _baseStyle _baseStyle Default value is null
+     * @param _baseStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is null
      */
     public void set_baseStyle(String _baseStyle) {
         setAttribute("_baseStyle", _baseStyle);
@@ -169,7 +199,7 @@ public class ListGridRecord extends Record {
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordBaseStyleProperty recordBaseStyleProperty}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String get_baseStyle()  {
         return getAttributeAsString("_baseStyle");
@@ -276,7 +306,7 @@ public class ListGridRecord extends Record {
      * <P> If your application's data uses the "customStyle" attribute for something else, the property name can be changed via
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordCustomStyleProperty recordCustomStyleProperty}.
      *
-     * @param customStyle customStyle Default value is null
+     * @param customStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is null
      */
     public void setCustomStyle(String customStyle) {
         setAttribute("customStyle", customStyle);
@@ -294,7 +324,7 @@ public class ListGridRecord extends Record {
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordCustomStyleProperty recordCustomStyleProperty}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getCustomStyle()  {
         return getAttributeAsString("customStyle");
@@ -447,7 +477,7 @@ public class ListGridRecord extends Record {
      * The HTML to display in this row for fields with fieldType set to link. This overrides  {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getLinkText linkText}.
      *
-     * @param linkText linkText Default value is null
+     * @param linkText . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.types.ListGridFieldType
      * @see com.smartgwt.client.types.FieldType
      * @see com.smartgwt.client.widgets.grid.ListGridField#setLinkText
@@ -462,7 +492,7 @@ public class ListGridRecord extends Record {
      * com.smartgwt.client.widgets.grid.ListGridField#getLinkText linkText}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.types.ListGridFieldType
      * @see com.smartgwt.client.types.FieldType
      * @see com.smartgwt.client.widgets.grid.ListGridField#getLinkText
@@ -478,7 +508,7 @@ public class ListGridRecord extends Record {
      * of this property.<br> Note: this attribute name is governed by {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSingleCellValueProperty singleCellValueProperty}.
      *
-     * @param singleCellValue singleCellValue Default value is null
+     * @param singleCellValue . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setSingleCellValue(String singleCellValue) {
         setAttribute("singleCellValue", singleCellValue);
@@ -491,7 +521,7 @@ public class ListGridRecord extends Record {
      * com.smartgwt.client.widgets.grid.ListGrid#getSingleCellValueProperty singleCellValueProperty}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSingleCellValue()  {
         return getAttributeAsString("singleCellValue");

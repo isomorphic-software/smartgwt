@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A subclass of Canvas that automatically arranges other Canvases according to a layout policy. <br><br> A Layout manages
@@ -78,22 +98,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class Layout extends Canvas {
 
-    public static Layout getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (Layout) obj;
-        } else {
-            return new Layout(jsObj);
+    public native static Layout getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("Layout",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.layout.Layout::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public Layout(){
         scClassName = "Layout";
     }
 
     public Layout(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "Layout";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -152,7 +183,7 @@ public class Layout extends Canvas {
      * Layouts provide a default implementation of a drag and drop interaction.  If you set
      *  {@link com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop}:true and <code>canDropComponents:true</code>
      * on a Layout, when a droppable Canvas ({@link com.smartgwt.client.widgets.Canvas#getCanDrop canDrop:true} is dragged over
-     *  the layout will show a dropLine (a simple insertion line) at the drop location.  
+     *  the layout, it will show a dropLine (a simple insertion line) at the drop location.  
      *  <P>
      *  When the drop occurs, the dragTarget (obtained using
      * {@link com.smartgwt.client.util.EventHandler#getDragTarget EventHandler.getDragTarget}) is added as a member of this
@@ -167,9 +198,9 @@ public class Layout extends Canvas {
      *  <P>
      * You can control the thickness of the dropLine via {@link com.smartgwt.client.widgets.layout.Layout#getDropLineThickness
      * dropLineThickness} and
-     *  you can customize the style using css styling in the skin file (look for .layoutDropLine in
-     *  skin_styles.css for your skin).  
-     *  <P>  
+     *  you can customize the style using css styling in the skin file (look for .layoutDropLine
+     *  in skin_styles.css for your skin).  
+     *  <P>
      *  If you want to dynamically create a component to be added to the Layout in response to a
      *  drop event you can do so as follows: 
      *  <pre>
@@ -206,7 +237,7 @@ public class Layout extends Canvas {
      * Layouts provide a default implementation of a drag and drop interaction.  If you set
      *  {@link com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop}:true and <code>canDropComponents:true</code>
      * on a Layout, when a droppable Canvas ({@link com.smartgwt.client.widgets.Canvas#getCanDrop canDrop:true} is dragged over
-     *  the layout will show a dropLine (a simple insertion line) at the drop location.  
+     *  the layout, it will show a dropLine (a simple insertion line) at the drop location.  
      *  <P>
      *  When the drop occurs, the dragTarget (obtained using
      * {@link com.smartgwt.client.util.EventHandler#getDragTarget EventHandler.getDragTarget}) is added as a member of this
@@ -221,9 +252,9 @@ public class Layout extends Canvas {
      *  <P>
      * You can control the thickness of the dropLine via {@link com.smartgwt.client.widgets.layout.Layout#getDropLineThickness
      * dropLineThickness} and
-     *  you can customize the style using css styling in the skin file (look for .layoutDropLine in
-     *  skin_styles.css for your skin).  
-     *  <P>  
+     *  you can customize the style using css styling in the skin file (look for .layoutDropLine
+     *  in skin_styles.css for your skin).  
+     *  <P>
      *  If you want to dynamically create a component to be added to the Layout in response to a
      *  drop event you can do so as follows: 
      *  <pre>
@@ -712,7 +743,7 @@ public class Layout extends Canvas {
      * its target member, and clicking on the bar to hide the target member.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param resizeBarClass resizeBarClass Default value is "Splitbar"
+     * @param resizeBarClass . See {@link com.smartgwt.client.docs.String String}. Default value is "Splitbar"
      * @see com.smartgwt.client.widgets.Splitbar
      * @see com.smartgwt.client.widgets.ImgSplitbar
      * @see com.smartgwt.client.widgets.layout.Layout#setResizeBarSize
@@ -734,7 +765,7 @@ public class Layout extends Canvas {
      * its target member, and clicking on the bar to hide the target member.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.Splitbar
      * @see com.smartgwt.client.widgets.ImgSplitbar
      * @see com.smartgwt.client.widgets.layout.Layout#getResizeBarSize
@@ -812,11 +843,34 @@ public class Layout extends Canvas {
     }
 
     /**
+     * Controls whether to show a drop-indicator during a drag and drop operation.  Set to  false if you either don't want to
+     * show drop-lines, or plan to create your own.
+     *
+     * @param showDropLines showDropLines Default value is null
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     */
+    public void setShowDropLines(Boolean showDropLines) {
+        setAttribute("showDropLines", showDropLines, true);
+    }
+
+    /**
+     * Controls whether to show a drop-indicator during a drag and drop operation.  Set to  false if you either don't want to
+     * show drop-lines, or plan to create your own.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     */
+    public Boolean getShowDropLines()  {
+        return getAttributeAsBoolean("showDropLines");
+    }
+
+    /**
      * For use in conjunction with {@link com.smartgwt.client.widgets.layout.Layout#getMemberOverlap memberOverlap}, controls
      * the z-stacking order of members. <P> If "lastOnTop", members stack from the first member at bottom to the last member at
      * top. If "firstOnTop", members stack from the last member at bottom to the first member at top.
      *
-     * @param stackZIndex stackZIndex Default value is null
+     * @param stackZIndex . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setStackZIndex(String stackZIndex)  throws IllegalStateException {
@@ -829,7 +883,7 @@ public class Layout extends Canvas {
      * top. If "firstOnTop", members stack from the last member at bottom to the first member at top.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getStackZIndex()  {
         return getAttributeAsString("stackZIndex");
@@ -877,7 +931,7 @@ public class Layout extends Canvas {
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Get the position a new member would be dropped.  This drop position switches in the middle of each member, and both
      * edges (before beginning, after end) are legal drop positions <p> Use this method to obtain the drop position for e.g. a
@@ -889,7 +943,7 @@ public class Layout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getDropPosition();
     }-*/;
-            
+
     /**
      * Return the breadth for a member of this layout which either didn't specify a breadth or specified a percent breadth with
      * {@link com.smartgwt.client.widgets.layout.Layout#getManagePercentBreadth managePercentBreadth}:true. <P> Called only for
@@ -902,7 +956,7 @@ public class Layout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.getMemberDefaultBreadth(member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), defaultBreadth);
     }-*/;
-            
+
     /**
      * Override point for changing the offset on the breadth axis for members, that is, the offset relative to the left edge
      * for a vertical layout, or the offset relative to the top edge for a horizontal layout. <P> The method is passed the
@@ -919,7 +973,7 @@ public class Layout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.getMemberOffset(member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), defaultOffset, alignment);
     }-*/;
-            
+
     /**
      * Returns true if the layout includes the specified canvas.
      * @param canvas the canvas to check for
@@ -935,7 +989,7 @@ public class Layout extends Canvas {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Calling this method hides the dropLine shown during a drag and drop interaction with a Layout that has {@link
      * com.smartgwt.client.widgets.layout.Layout#getCanDropComponents canDropComponents} set to true.  This method is only
@@ -946,7 +1000,7 @@ public class Layout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.hideDropLine();
     }-*/;
-            
+
     /**
      * Fires once at initialization if the layout has any initial members, and then fires whenever members are added, removed
      * or reordered.
@@ -955,7 +1009,7 @@ public class Layout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.membersChanged();
     }-*/;
-            
+
     /**
      * Layout members according to current settings. <P> Members will reflow automatically when the layout is resized, members
      * resize, the list of members changes or members change visibility.  It is only necessary to manually call
@@ -976,7 +1030,7 @@ public class Layout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.reflow(reason);
     }-*/;
-            
+
     /**
      * Layout members according to current settings, immediately. <br> Generally, when changes occur that require a layout to
      * reflow (such as members being shown or hidden), the Layout will reflow only after a delay, so that multiple changes
@@ -986,16 +1040,27 @@ public class Layout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.reflowNow();
     }-*/;
-            
+
     /**
-     * Removes the specified member from the layout. If it has a resize bar, the bar will be destroyed.
+     * Removes the specified member from the layout.  If it has a resize bar, the bar will be destroyed.
      * @param member the canvas to be removed from the layout
      */
     public native void removeMember(Canvas member) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeMember(member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-            
+
+    /**
+     * Removes the specified members from the layout. If any of the removed members have resize  bars, the bars will be
+     * destroyed.
+     * @param members array of members to be removed, or single member
+     */
+    public native void removeMembers(Canvas[] members) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        members = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(members);
+        self.removeMembers(members);
+    }-*/;
+
     /**
      * Shift a member of the layout to a new position
      * @param memberNum current position of the member to move to a new position
@@ -1005,7 +1070,7 @@ public class Layout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.reorderMember(memberNum, newPosition);
     }-*/;
-            
+
     /**
      * Move a range of members to a new position
      * @param start beginning of range of members to move
@@ -1016,7 +1081,7 @@ public class Layout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.reorderMembers(start, end, newPosition);
     }-*/;
-            
+
     /**
      * Hide all other members and make the single parameter member visible.
      * @param member member to show
@@ -1083,6 +1148,37 @@ public class Layout extends Canvas {
         var ret =  self.__getDropComponent(dragTarget == null ? null : dragTarget.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()(), dropPosition);
         return ret == null || ret == undefined ? null : @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
+
+   
+    private native void addMembers(Object[] newMembers, int position) /*-{
+        var membersJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(newMembers);
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.addMembers(membersJS, position);
+    }-*/;
+
+    /**
+     * Add one or more canvases to the layout.  NOTE: depending on the layout policy, adding
+     * a new member may cause existing members to resize.
+     * @param newMembers canvases to be added
+     */
+    public void addMembers(Canvas... newMembers) {
+        this.addMembers(newMembers, this.getMembers().length);
+    }
+
+    /**
+     * Add one or more canvases to the layout at specific positions.  NOTE: depending on the
+     * layout policy, adding a new member may cause existing members to  resize.
+     * @param newMembers array of canvases to be added
+     * @param position position to add newMembers
+     * position
+     */
+    public void addMembers(Canvas[] newMembers, int position) {
+        Object[] newMemberObjects = new Object[newMembers.length];
+        for (int i = 0; i < newMembers.length; i++) {
+            newMemberObjects[i] = newMembers[i].getOrCreateJsObj();
+        }
+        this.addMembers(newMemberObjects, position);
+    }
 
     /**
      * An array of canvases that will be contained within this layout. You can set the following properties on these
@@ -1271,21 +1367,6 @@ public class Layout extends Canvas {
         setAttribute("align", alignment.getValue(), true);
     }
 
-
-    /**
-     * Removes the specified members from the layout. If any of the removed members have resize  bars, the bars will be
-     * destroyed.
-     *
-     * @param members array of members to be removed, or reference to single
-     *                member.
-     */
-    public native void removeMembers(Canvas[] members) /*-{
-        var self  = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var membersJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(members);
-        self.removeMembers(membersJS);
-    }-*/;
-
-
     /**
      * Return the members in the Layout.
      *
@@ -1355,7 +1436,6 @@ public class Layout extends Canvas {
             callback.@com.smartgwt.client.core.Function::execute()();
         }));
     }-*/;
-
     /**
      * Given a numerical index or a member ID, return a pointer to the appropriate member. <p> If passed a member
      * Canvas, just returns it.
@@ -1367,6 +1447,19 @@ public class Layout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getMember(index);
         return ret == null ? null : @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+
+//        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+//        var ret = self.getMember(index);
+//
+//        if(ret==null){
+//           return null;
+//        }
+//        if(ret.__ref==null) {
+//            ret = @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)(ret.getClassName(),ret)
+//        } else {
+//            ret = @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+//        }
+//        return ret;
     }-*/;
 
     /**
@@ -1376,10 +1469,22 @@ public class Layout extends Canvas {
      * @param memberID identifier for the required member
      * @return member widget
      */
-    public native Canvas getMember(String memberID) /*-{
+    public native Canvas getMember(String memberID)/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getMember(memberID);
         return ret == null ? null : @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+      
+//        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+//        var ret  = self.getMember(memberID);
+//        if(ret==null){
+//           return null;
+//        }
+//        if(ret.__ref==null) {
+//            ret = @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)(ret.getClassName(),ret)
+//        } else {
+//            ret = @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+//        }
+//        return ret;
     }-*/;
 
     /**
@@ -1407,8 +1512,185 @@ public class Layout extends Canvas {
         return self.getMemberNumber(memberID);
     }-*/;
 
+    public LogicalStructureObject setLogicalStructure(LayoutLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.alignAsString = getAttributeAsString("align");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.alignAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateMembers = getAttributeAsString("animateMembers");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.animateMembers:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateMemberTime = getAttributeAsString("animateMemberTime");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.animateMemberTime:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canDropComponents = getAttributeAsString("canDropComponents");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.canDropComponents:" + t.getMessage() + "\n";
+        }
+        try {
+            s.defaultLayoutAlignAsString = getAttributeAsString("defaultLayoutAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.defaultLayoutAlignAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.defaultResizeBars = getAttributeAsString("defaultResizeBars");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.defaultResizeBars:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dropLineThickness = getAttributeAsString("dropLineThickness");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.dropLineThickness:" + t.getMessage() + "\n";
+        }
+        try {
+            s.enforcePolicy = getAttributeAsString("enforcePolicy");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.enforcePolicy:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hPolicy = getAttributeAsString("hPolicy");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.hPolicy:" + t.getMessage() + "\n";
+        }
+        try {
+            s.layoutBottomMargin = getAttributeAsString("layoutBottomMargin");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.layoutBottomMargin:" + t.getMessage() + "\n";
+        }
+        try {
+            s.layoutLeftMargin = getAttributeAsString("layoutLeftMargin");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.layoutLeftMargin:" + t.getMessage() + "\n";
+        }
+        try {
+            s.layoutMargin = getAttributeAsString("layoutMargin");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.layoutMargin:" + t.getMessage() + "\n";
+        }
+        try {
+            s.layoutRightMargin = getAttributeAsString("layoutRightMargin");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.layoutRightMargin:" + t.getMessage() + "\n";
+        }
+        try {
+            s.layoutTopMargin = getAttributeAsString("layoutTopMargin");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.layoutTopMargin:" + t.getMessage() + "\n";
+        }
+        try {
+            s.leaveScrollbarGap = getAttributeAsString("leaveScrollbarGap");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.leaveScrollbarGap:" + t.getMessage() + "\n";
+        }
+        try {
+            s.locateMembersBy = getAttributeAsString("locateMembersBy");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.locateMembersBy:" + t.getMessage() + "\n";
+        }
+        try {
+            s.locateMembersType = getAttributeAsString("locateMembersType");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.locateMembersType:" + t.getMessage() + "\n";
+        }
+        try {
+            s.managePercentBreadth = getAttributeAsString("managePercentBreadth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.managePercentBreadth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.memberOverlap = getAttributeAsString("memberOverlap");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.memberOverlap:" + t.getMessage() + "\n";
+        }
+        try {
+            s.members = getMembers();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.membersArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.membersMargin = getAttributeAsString("membersMargin");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.membersMargin:" + t.getMessage() + "\n";
+        }
+        try {
+            s.minMemberSize = getAttributeAsString("minMemberSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.minMemberSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.overflow = getAttributeAsString("overflow");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.overflow:" + t.getMessage() + "\n";
+        }
+        try {
+            s.paddingAsLayoutMargin = getAttributeAsString("paddingAsLayoutMargin");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.paddingAsLayoutMargin:" + t.getMessage() + "\n";
+        }
+        try {
+            s.placeHolderDefaults = getAttributeAsString("placeHolderDefaults");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.placeHolderDefaults:" + t.getMessage() + "\n";
+        }
+        try {
+            s.placeHolderProperties = getAttributeAsString("placeHolderProperties");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.placeHolderProperties:" + t.getMessage() + "\n";
+        }
+        try {
+            s.resizeBarClass = getAttributeAsString("resizeBarClass");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.resizeBarClass:" + t.getMessage() + "\n";
+        }
+        try {
+            s.resizeBarSize = getAttributeAsString("resizeBarSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.resizeBarSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.reverseOrder = getAttributeAsString("reverseOrder");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.reverseOrder:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDragPlaceHolder = getAttributeAsString("showDragPlaceHolder");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.showDragPlaceHolder:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDropLines = getAttributeAsString("showDropLines");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.showDropLines:" + t.getMessage() + "\n";
+        }
+        try {
+            s.stackZIndex = getAttributeAsString("stackZIndex");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.stackZIndex:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vertical = getAttributeAsString("vertical");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.vertical:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vPolicy = getAttributeAsString("vPolicy");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Layout.vPolicy:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        LayoutLogicalStructure s = new LayoutLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-
 

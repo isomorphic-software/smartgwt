@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Controls the output of the JSONEncoder when instances of Smart GWT classes (eg a ListGrid) are included in the data to
  * be serialized.
@@ -36,7 +37,6 @@ public enum JSONInstanceSerializationMode implements ValueEnum {
      * successfully (depending on other settings)
      */
     SKIP("skip");
-
     private String value;
 
     JSONInstanceSerializationMode(String value) {
@@ -47,3 +47,4 @@ public enum JSONInstanceSerializationMode implements ValueEnum {
         return this.value;
     }
 }
+        

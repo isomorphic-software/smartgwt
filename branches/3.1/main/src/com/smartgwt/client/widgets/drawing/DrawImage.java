@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * DrawItem subclass to render embedded images.
@@ -73,12 +93,18 @@ public class DrawImage extends DrawItem {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
+    }
+
+
     public DrawImage(){
         scClassName = "DrawImage";
     }
 
     public DrawImage(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "DrawImage";
+        setJavaScriptObject(jsObj);
     }
 
     public native JavaScriptObject create()/*-{
@@ -109,7 +135,7 @@ public class DrawImage extends DrawItem {
     }
 
     /**
-     * Left coordinate in pixels relative to the DrawPane, or owning DrawGroup.
+     * Left coordinate in pixels relative to the DrawPane.
      *
      * @param left left Default value is 0
      */
@@ -118,7 +144,7 @@ public class DrawImage extends DrawItem {
     }
 
     /**
-     * Left coordinate in pixels relative to the DrawPane, or owning DrawGroup.
+     * Left coordinate in pixels relative to the DrawPane.
      *
      *
      * @return int
@@ -133,7 +159,7 @@ public class DrawImage extends DrawItem {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Change the URL of the image displayed.
      *
-     * @param src new URL. Default value is "blank.png"
+     * @param src new URL. See {@link com.smartgwt.client.docs.String String}. Default value is "blank.png"
      */
     public void setSrc(String src) {
         setAttribute("src", src, true);
@@ -143,7 +169,7 @@ public class DrawImage extends DrawItem {
      * URL to the image file.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSrc()  {
         return getAttributeAsString("src");
@@ -152,7 +178,7 @@ public class DrawImage extends DrawItem {
     /**
      * Title (tooltip hover text) for this image.
      *
-     * @param title title Default value is null
+     * @param title . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setTitle(String title)  throws IllegalStateException {
@@ -163,14 +189,14 @@ public class DrawImage extends DrawItem {
      * Title (tooltip hover text) for this image.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getTitle()  {
         return getAttributeAsString("title");
     }
 
     /**
-     * Top coordinate in pixels relative to the DrawPane, or owning DrawGroup.
+     * Top coordinate in pixels relative to the DrawPane.
      *
      * @param top top Default value is 0
      */
@@ -179,7 +205,7 @@ public class DrawImage extends DrawItem {
     }
 
     /**
-     * Top coordinate in pixels relative to the DrawPane, or owning DrawGroup.
+     * Top coordinate in pixels relative to the DrawPane.
      *
      *
      * @return int
@@ -209,7 +235,7 @@ public class DrawImage extends DrawItem {
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Move the drawImage by the specified delta
      * @param dX number of pixels to move horizontally
@@ -219,7 +245,7 @@ public class DrawImage extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.moveBy(dX, dY);
     }-*/;
-            
+
     /**
      * Move the drawImage to the specified position
      * @param left new left coordinate

@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  */
 public enum Direction implements ValueEnum {
@@ -35,7 +36,6 @@ public enum Direction implements ValueEnum {
      * to the right of
      */
     RIGHT("right");
-
     private String value;
 
     Direction(String value) {
@@ -46,3 +46,4 @@ public enum Direction implements ValueEnum {
         return this.value;
     }
 }
+        

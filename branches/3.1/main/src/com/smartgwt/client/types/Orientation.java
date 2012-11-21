@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  */
 public enum Orientation implements ValueEnum {
@@ -27,7 +28,6 @@ public enum Orientation implements ValueEnum {
      * members laid out horizontally
      */
     HORIZONTAL("horizontal");
-
     private String value;
 
     Orientation(String value) {
@@ -38,3 +38,4 @@ public enum Orientation implements ValueEnum {
         return this.value;
     }
 }
+        

@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * FormItem intended for inserting blurbs of instructional HTML into DynamicForms. <p> Set the <code>defaultValue</code> of
@@ -65,8 +85,15 @@ import com.google.gwt.event.shared.HasHandlers;
 public class BlurbItem extends FormItem {
 
     public static BlurbItem getOrCreateRef(JavaScriptObject jsObj) {
+    
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+		if(obj != null && JSOHelper.getAttribute(jsObj,"__ref")==null) {
+            return com.smartgwt.client.util.ObjectFactory.createFormItem("BlurbItem",jsObj);
+
+        } else 
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (BlurbItem) obj;
@@ -75,12 +102,18 @@ public class BlurbItem extends FormItem {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public BlurbItem(){
         setAttribute("editorType", "BlurbItem");
     }
 
     public BlurbItem(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     public BlurbItem(String name) {
@@ -156,7 +189,7 @@ public class BlurbItem extends FormItem {
     /**
      * Base css style for this item.
      *
-     * @param textBoxStyle textBoxStyle Default value is "staticTextItem"
+     * @param textBoxStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "staticTextItem"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextBoxStyle(String textBoxStyle) {
@@ -167,7 +200,7 @@ public class BlurbItem extends FormItem {
      * Base css style for this item.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTextBoxStyle()  {

@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * An ordinary JavaScript object containing properties that describe a linear gradient
@@ -68,12 +88,18 @@ public class LinearGradient extends Gradient {
         return new LinearGradient(jsObj);
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public LinearGradient(){
         
     }
 
     public LinearGradient(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     // ********************* Properties / Attributes ***********************
@@ -81,7 +107,7 @@ public class LinearGradient extends Gradient {
     /**
      * 
      *
-     * @param x1 x1 Default value is null
+     * @param x1 . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setX1(String x1) {
         setAttribute("x1", x1);
@@ -91,7 +117,7 @@ public class LinearGradient extends Gradient {
      * 
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getX1()  {
         return getAttributeAsString("x1");
@@ -100,7 +126,7 @@ public class LinearGradient extends Gradient {
     /**
      * 
      *
-     * @param x2 x2 Default value is null
+     * @param x2 . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setX2(String x2) {
         setAttribute("x2", x2);
@@ -110,7 +136,7 @@ public class LinearGradient extends Gradient {
      * 
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getX2()  {
         return getAttributeAsString("x2");
@@ -119,7 +145,7 @@ public class LinearGradient extends Gradient {
     /**
      * 
      *
-     * @param y1 y1 Default value is null
+     * @param y1 . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setY1(String y1) {
         setAttribute("y1", y1);
@@ -129,7 +155,7 @@ public class LinearGradient extends Gradient {
      * 
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getY1()  {
         return getAttributeAsString("y1");
@@ -138,7 +164,7 @@ public class LinearGradient extends Gradient {
     /**
      * 
      *
-     * @param y2 y2 Default value is null
+     * @param y2 . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setY2(String y2) {
         setAttribute("y2", y2);
@@ -148,7 +174,7 @@ public class LinearGradient extends Gradient {
      * 
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getY2()  {
         return getAttributeAsString("y2");

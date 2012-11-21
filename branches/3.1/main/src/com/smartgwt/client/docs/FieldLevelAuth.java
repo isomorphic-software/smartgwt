@@ -1,4 +1,4 @@
-
+	    
 package com.smartgwt.client.docs;
 
 /**
@@ -7,6 +7,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.docs.serverds.DataSource#creatorOverrides
  * @see com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresAuthentication
  * @see com.smartgwt.client.docs.serverds.DataSourceField#editRequiresAuthentication
+ * @see com.smartgwt.client.docs.serverds.DataSourceField#initRequiresAuthentication
+ * @see com.smartgwt.client.docs.serverds.DataSourceField#updateRequiresAuthentication
  * @see com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresRole
  * @see com.smartgwt.client.docs.serverds.DataSourceField#editRequiresRole
  * @see com.smartgwt.client.docs.serverds.DataSourceField#initRequiresRole

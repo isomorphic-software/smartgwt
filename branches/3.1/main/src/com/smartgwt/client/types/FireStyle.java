@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Flags to set automatic removal of events from the page event registry.
  */
@@ -29,7 +30,6 @@ public enum FireStyle implements ValueEnum {
      * com.smartgwt.client.util.Page#clearEvent Page.clearEvent} had been called
      */
     FIRE_ONCE("FIRE_ONCE");
-
     private String value;
 
     FireStyle(String value) {
@@ -40,3 +40,4 @@ public enum FireStyle implements ValueEnum {
         return this.value;
     }
 }
+        

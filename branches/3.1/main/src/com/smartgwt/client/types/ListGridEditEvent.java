@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Event that will trigger inline editing.
  */
@@ -35,7 +36,6 @@ public enum ListGridEditEvent implements ValueEnum {
      * set.
      */
     NONE("none");
-
     private String value;
 
     ListGridEditEvent(String value) {
@@ -46,3 +46,4 @@ public enum ListGridEditEvent implements ValueEnum {
         return this.value;
     }
 }
+        

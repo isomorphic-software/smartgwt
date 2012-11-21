@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Subclass of DateItem for manipulating {@link com.smartgwt.client.types.FieldType datetimes}.
@@ -64,8 +84,12 @@ import com.google.gwt.event.shared.HasHandlers;
 public class DateTimeItem extends DateItem {
 
     public static DateTimeItem getOrCreateRef(JavaScriptObject jsObj) {
+    
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+ 
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (DateTimeItem) obj;
@@ -74,12 +98,18 @@ public class DateTimeItem extends DateItem {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public DateTimeItem(){
         setAttribute("editorType", "DateTimeItem");
     }
 
     public DateTimeItem(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     public DateTimeItem(String name) {
@@ -129,13 +159,13 @@ public class DateTimeItem extends DateItem {
      * property can be used to specify the input format for date strings.  If unset, the input format will be determined based
      * on the specified {@link com.smartgwt.client.widgets.form.fields.DateItem#getDateFormtter dateFormtter} if possible (see
      * {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat DateItem.getInputFormat}), otherwise picked up
-     * from the Date class (see  Date.setInputFormat). <P> Should be set to a standard String <P> Note that the String property
-     * is sufficient to parse date or datetime strings specified in most standard date formats. However should an entirely
-     * custom parsing function be required developers can  <code class="smartclient">implement a custom {@link
-     * com.smartgwt.client.widgets.form.fields.DateItem#parseEditorValue DateItem.parseEditorValue} method.</var> <code
-     * class="smartgwt">apply a custom <code>editorValueParser</code> function.</var>
+     * from the Date class (see  Date.setInputFormat). <P> Should be set to a standard DateInputFormat <P> Note that the
+     * DateInputFormat property is sufficient to parse date or datetime strings specified in most standard date formats.
+     * However should an entirely custom parsing function be required developers can  <code class="smartclient">implement a
+     * custom {@link com.smartgwt.client.widgets.form.fields.DateItem#parseEditorValue DateItem.parseEditorValue} method.</var>
+     * <code class="smartgwt">apply a custom <code>editorValueParser</code> function.</var>
      *
-     * @param inputFormat inputFormat Default value is null
+     * @param inputFormat . See {@link com.smartgwt.client.docs.DateInputFormat DateInputFormat}. Default value is null
      * @see com.smartgwt.client.widgets.form.fields.DateItem#setDisplayFormat
      */
     public void setInputFormat(String inputFormat) {
@@ -147,14 +177,14 @@ public class DateTimeItem extends DateItem {
      * property can be used to specify the input format for date strings.  If unset, the input format will be determined based
      * on the specified {@link com.smartgwt.client.widgets.form.fields.DateItem#getDateFormtter dateFormtter} if possible (see
      * {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat DateItem.getInputFormat}), otherwise picked up
-     * from the Date class (see  Date.setInputFormat). <P> Should be set to a standard String <P> Note that the String property
-     * is sufficient to parse date or datetime strings specified in most standard date formats. However should an entirely
-     * custom parsing function be required developers can  <code class="smartclient">implement a custom {@link
-     * com.smartgwt.client.widgets.form.fields.DateItem#parseEditorValue DateItem.parseEditorValue} method.</var> <code
-     * class="smartgwt">apply a custom <code>editorValueParser</code> function.</var>
+     * from the Date class (see  Date.setInputFormat). <P> Should be set to a standard DateInputFormat <P> Note that the
+     * DateInputFormat property is sufficient to parse date or datetime strings specified in most standard date formats.
+     * However should an entirely custom parsing function be required developers can  <code class="smartclient">implement a
+     * custom {@link com.smartgwt.client.widgets.form.fields.DateItem#parseEditorValue DateItem.parseEditorValue} method.</var>
+     * <code class="smartgwt">apply a custom <code>editorValueParser</code> function.</var>
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.DateInputFormat DateInputFormat}
      * @see com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat
      */
     public String getInputFormat()  {
@@ -189,7 +219,6 @@ public class DateTimeItem extends DateItem {
     // ***********************************************************        
 
 }
-
 
 
 

@@ -45,21 +45,58 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A ProcessElement is an abstract superclass for elements involved in a {@link com.smartgwt.client.util.workflow.Process},
  * such as a {@link com.smartgwt.client.util.workflow.Task} or {@link com.smartgwt.client.util.workflow.XORGateway}.
  */
-public abstract class ProcessElement extends BaseClass {
+public class ProcessElement extends BaseClass {
+
+    public static ProcessElement getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
+        BaseClass obj = BaseClass.getRef(jsObj);
+        if(obj != null) {
+            return (ProcessElement) obj;
+        } else {
+            return new ProcessElement(jsObj);
+        }
+    }
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
+    }
 
 
     public ProcessElement(){
@@ -67,7 +104,8 @@ public abstract class ProcessElement extends BaseClass {
     }
 
     public ProcessElement(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "ProcessElement";
+        setJavaScriptObject(jsObj);
     }
 
     public ProcessElement(String ID) {
@@ -98,7 +136,7 @@ public abstract class ProcessElement extends BaseClass {
      * assigned an ID, a <code>processElement</code> can be retrieve via {@link
      * com.smartgwt.client.util.workflow.Process#getElement Process.getElement}.
      *
-     * @param ID ID Default value is null
+     * @param ID . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setID(String ID)  throws IllegalStateException {
@@ -116,7 +154,7 @@ public abstract class ProcessElement extends BaseClass {
      * com.smartgwt.client.util.workflow.Process#getElement Process.getElement}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getID()  {
         return getAttributeAsString("ID");
@@ -128,7 +166,7 @@ public abstract class ProcessElement extends BaseClass {
      * checked first. <code>nextElement</code> does not need to be specified on most elements if you use {@link
      * com.smartgwt.client.util.workflow.Process#getSequences sequences}.
      *
-     * @param nextElement nextElement Default value is null
+     * @param nextElement . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setNextElement(String nextElement)  throws IllegalStateException {
@@ -142,7 +180,7 @@ public abstract class ProcessElement extends BaseClass {
      * com.smartgwt.client.util.workflow.Process#getSequences sequences}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getNextElement()  {
         return getAttributeAsString("nextElement");

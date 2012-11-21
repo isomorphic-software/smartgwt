@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * What to do if the user hits escape while editing a cell.
  */
@@ -28,7 +29,6 @@ public enum EscapeKeyEditAction implements ValueEnum {
      * end editing
      */
     DONE("done");
-
     private String value;
 
     EscapeKeyEditAction(String value) {
@@ -39,3 +39,4 @@ public enum EscapeKeyEditAction implements ValueEnum {
         return this.value;
     }
 }
+        

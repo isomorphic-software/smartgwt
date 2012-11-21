@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Checkbox form item, implemented with customizable checkbox images
@@ -64,8 +84,15 @@ import com.google.gwt.event.shared.HasHandlers;
 public class CheckboxItem extends FormItem {
 
     public static CheckboxItem getOrCreateRef(JavaScriptObject jsObj) {
+    
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+		if(obj != null && JSOHelper.getAttribute(jsObj,"__ref")==null) {
+            return com.smartgwt.client.util.ObjectFactory.createFormItem("CheckboxItem",jsObj);
+
+        } else 
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (CheckboxItem) obj;
@@ -74,12 +101,18 @@ public class CheckboxItem extends FormItem {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public CheckboxItem(){
         setAttribute("editorType", "CheckboxItem");
     }
 
     public CheckboxItem(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     public CheckboxItem(String name) {
@@ -117,12 +150,15 @@ public class CheckboxItem extends FormItem {
     }
 
     /**
-     * URL for the image to display when this checkbox is selected, or checked. This is the base image name - if
-     * <code>showValueIconOver</code> et al are set, the state (<code>"Over"</code>, <code>"Down"</code> and
-     * <code>"Disabled"</code>) will be added to this name as the user interacts with the checkbox, as well as the 
-     * <code>".gif"</code> extension
+     * URL for the image to display when this checkbox is selected, or checked. <P> This image is implemented using the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons subsystem}, and may be modified via the
+     * standard valueIcons properties such as {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getValueIconWidth
+     * valueIconWidth} <P> Note that this is the base image name - if {@link
+     * com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowValueIconOver showValueIconOver} et al are set, the state
+     * (<code>"Over"</code>, <code>"Down"</code> and <code>"Disabled"</code>) will be added to this name as the user interacts
+     * with the checkbox, as well as the  <code>".gif"</code> extension
      *
-     * @param checkedImage checkedImage Default value is "[SKIN]/DynamicForm/checked.gif"
+     * @param checkedImage . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]/DynamicForm/checked.gif"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setCheckedImage(String checkedImage) {
@@ -130,13 +166,16 @@ public class CheckboxItem extends FormItem {
     }
 
     /**
-     * URL for the image to display when this checkbox is selected, or checked. This is the base image name - if
-     * <code>showValueIconOver</code> et al are set, the state (<code>"Over"</code>, <code>"Down"</code> and
-     * <code>"Disabled"</code>) will be added to this name as the user interacts with the checkbox, as well as the 
-     * <code>".gif"</code> extension
+     * URL for the image to display when this checkbox is selected, or checked. <P> This image is implemented using the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons subsystem}, and may be modified via the
+     * standard valueIcons properties such as {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getValueIconWidth
+     * valueIconWidth} <P> Note that this is the base image name - if {@link
+     * com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowValueIconOver showValueIconOver} et al are set, the state
+     * (<code>"Over"</code>, <code>"Down"</code> and <code>"Disabled"</code>) will be added to this name as the user interacts
+     * with the checkbox, as well as the  <code>".gif"</code> extension
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getCheckedImage()  {
@@ -179,7 +218,7 @@ public class CheckboxItem extends FormItem {
     /**
      * URL for the image to display when this checkbox is partially selected
      *
-     * @param partialSelectedImage partialSelectedImage Default value is "[SKIN]/DynamicForm/partialcheck.gif"
+     * @param partialSelectedImage . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]/DynamicForm/partialcheck.gif"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setPartialSelectedImage(String partialSelectedImage) {
@@ -190,7 +229,7 @@ public class CheckboxItem extends FormItem {
      * URL for the image to display when this checkbox is partially selected
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getPartialSelectedImage()  {
@@ -238,9 +277,69 @@ public class CheckboxItem extends FormItem {
     }
 
     /**
+     * Should a "Disabled" state icon be shown when the item is disabled
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showValueIconDisabled showValueIconDisabled Default value is true
+     */
+    public void setShowValueIconDisabled(Boolean showValueIconDisabled) {
+        setAttribute("showValueIconDisabled", showValueIconDisabled);
+    }
+
+    /**
+     * Should a "Disabled" state icon be shown when the item is disabled
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowValueIconDisabled()  {
+        return getAttributeAsBoolean("showValueIconDisabled");
+    }
+
+    /**
+     * Should a "Down" state icon be shown when the mouse goes down over this checkbox
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showValueIconDown showValueIconDown Default value is true
+     */
+    public void setShowValueIconDown(Boolean showValueIconDown) {
+        setAttribute("showValueIconDown", showValueIconDown);
+    }
+
+    /**
+     * Should a "Down" state icon be shown when the mouse goes down over this checkbox
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowValueIconDown()  {
+        return getAttributeAsBoolean("showValueIconDown");
+    }
+
+    /**
+     * Should an "Over" state icon be shown when the user rolls over this checkbox
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showValueIconOver showValueIconOver Default value is true
+     */
+    public void setShowValueIconOver(Boolean showValueIconOver) {
+        setAttribute("showValueIconOver", showValueIconOver);
+    }
+
+    /**
+     * Should an "Over" state icon be shown when the user rolls over this checkbox
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowValueIconOver()  {
+        return getAttributeAsBoolean("showValueIconOver");
+    }
+
+    /**
      * Base CSS class for this item's title text
      *
-     * @param textBoxStyle textBoxStyle Default value is "labelAnchor"
+     * @param textBoxStyle . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}. Default value is "labelAnchor"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextBoxStyle(String textBoxStyle) {
@@ -251,7 +350,7 @@ public class CheckboxItem extends FormItem {
      * Base CSS class for this item's title text
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTextBoxStyle()  {
@@ -264,7 +363,7 @@ public class CheckboxItem extends FormItem {
      * label}. To modify the styling for that text, use {@link
      * com.smartgwt.client.widgets.form.fields.CheckboxItem#getTextBoxStyle textBoxStyle} instead.
      *
-     * @param titleStyle titleStyle Default value is null
+     * @param titleStyle . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}. Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTitleStyle(String titleStyle) {
@@ -278,7 +377,7 @@ public class CheckboxItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.CheckboxItem#getTextBoxStyle textBoxStyle} instead.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTitleStyle()  {
@@ -288,7 +387,7 @@ public class CheckboxItem extends FormItem {
     /**
      * URL for the image to display when this checkbox is not selected, or unchecked
      *
-     * @param uncheckedImage uncheckedImage Default value is "[SKIN]/DynamicForm/unchecked.gif"
+     * @param uncheckedImage . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]/DynamicForm/unchecked.gif"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setUncheckedImage(String uncheckedImage) {
@@ -299,7 +398,7 @@ public class CheckboxItem extends FormItem {
      * URL for the image to display when this checkbox is not selected, or unchecked
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getUncheckedImage()  {
@@ -313,7 +412,7 @@ public class CheckboxItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.CheckboxItem#getUncheckedImage uncheckedImage} will be used for null values
      * rather than this image.
      *
-     * @param unsetImage unsetImage Default value is "[SKIN]/DynamicForm/unsetcheck.gif"
+     * @param unsetImage . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]/DynamicForm/unsetcheck.gif"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setUnsetImage(String unsetImage) {
@@ -328,7 +427,7 @@ public class CheckboxItem extends FormItem {
      * rather than this image.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getUnsetImage()  {

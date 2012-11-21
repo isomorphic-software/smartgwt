@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Known chart types.  These are visual representations of data, not separate data models, although some chart types are
  * only capable of showing a single facet of data. <P> Concrete charting implementations may use any value for
@@ -47,14 +48,17 @@ public enum ChartType implements ValueEnum {
      */
     RADAR("Radar"),
     /**
-     * Circular chart with wedges representing values. Single facet only
+     * Circular chart with wedges representing values. Multiple or stacked pies for multiple facets.
      */
     PIE("Pie"),
     /**
-     * Like a pie chart with a central hole. Single facet only
+     * Like a pie chart with a central hole. Multiple or stacked doughnuts for multiple facets.
      */
-    DOUGHNUT("Doughnut");
-
+    DOUGHNUT("Doughnut"),
+    /**
+     * A chart with two continuous numeric axes and up to one discrete facet.
+     */
+    SCATTER("Scatter");
     private String value;
 
     ChartType(String value) {
@@ -65,3 +69,4 @@ public enum ChartType implements ValueEnum {
         return this.value;
     }
 }
+        

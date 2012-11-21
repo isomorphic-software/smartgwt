@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * FormItem for managing a text field.
@@ -64,8 +84,15 @@ import com.google.gwt.event.shared.HasHandlers;
 public class TextItem extends FormItem {
 
     public static TextItem getOrCreateRef(JavaScriptObject jsObj) {
+    
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+		if(obj != null && JSOHelper.getAttribute(jsObj,"__ref")==null) {
+            return com.smartgwt.client.util.ObjectFactory.createFormItem("TextItem",jsObj);
+
+        } else 
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (TextItem) obj;
@@ -74,12 +101,18 @@ public class TextItem extends FormItem {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public TextItem(){
         setAttribute("editorType", "TextItem");
     }
 
     public TextItem(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     public TextItem(String name) {
@@ -204,7 +237,7 @@ public class TextItem extends FormItem {
      * Set the keyPressFilter for this item
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param keyPressFilter new keyPress filter for the item. Default value is null
+     * @param keyPressFilter new keyPress filter for the item. See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.widgets.form.fields.TextItem#setCharacterCasing
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_keypress_filter" target="examples">KeyPress Filters Example</a>
      */
@@ -219,7 +252,7 @@ public class TextItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.TextItem#getMask mask}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.form.fields.TextItem#getCharacterCasing
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_keypress_filter" target="examples">KeyPress Filters Example</a>
      */
@@ -269,7 +302,7 @@ public class TextItem extends FormItem {
      * Set the mask for this item. <P> Note that the current value of the field is cleared when changing the mask.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param mask mask to apply to text item. Default value is null
+     * @param mask mask to apply to text item. See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.widgets.form.fields.TextItem#setKeyPressFilter
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_masking" target="examples">Text - Masked Example</a>
      */
@@ -295,7 +328,7 @@ public class TextItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem} or {@link com.smartgwt.client.widgets.form.fields.SpinnerItem}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.form.fields.TextItem#getKeyPressFilter
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_masking" target="examples">Text - Masked Example</a>
      */
@@ -329,7 +362,7 @@ public class TextItem extends FormItem {
      * Character that is used to fill required empty mask positions to display text while control has no focus.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param maskPadChar maskPadChar Default value is " "
+     * @param maskPadChar . See {@link com.smartgwt.client.docs.String String}. Default value is " "
      */
     public void setMaskPadChar(String maskPadChar) {
         setAttribute("maskPadChar", maskPadChar);
@@ -339,7 +372,7 @@ public class TextItem extends FormItem {
      * Character that is used to fill required empty mask positions to display text while control has no focus.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMaskPadChar()  {
         return getAttributeAsString("maskPadChar");
@@ -349,7 +382,7 @@ public class TextItem extends FormItem {
      * Character that is used to fill required empty mask positions to display text while control has focus.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param maskPromptChar maskPromptChar Default value is "_"
+     * @param maskPromptChar . See {@link com.smartgwt.client.docs.String String}. Default value is "_"
      */
     public void setMaskPromptChar(String maskPromptChar) {
         setAttribute("maskPromptChar", maskPromptChar);
@@ -359,7 +392,7 @@ public class TextItem extends FormItem {
      * Character that is used to fill required empty mask positions to display text while control has focus.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMaskPromptChar()  {
         return getAttributeAsString("maskPromptChar");
@@ -411,6 +444,29 @@ public class TextItem extends FormItem {
     }
 
     /**
+     * Text items will submit their containing form on enter keypress  if {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter saveOnEnter} is true. Setting this property to
+     * <code>false</code> will disable this behavior.
+     *
+     * @param saveOnEnter saveOnEnter Default value is true
+     */
+    public void setSaveOnEnter(Boolean saveOnEnter) {
+        setAttribute("saveOnEnter", saveOnEnter);
+    }
+
+    /**
+     * Text items will submit their containing form on enter keypress  if {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter saveOnEnter} is true. Setting this property to
+     * <code>false</code> will disable this behavior.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSaveOnEnter()  {
+        return getAttributeAsBoolean("saveOnEnter");
+    }
+
+    /**
      * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured
      * on a per-FormItem basis.  Normally all items in a form default to the value of {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
@@ -437,7 +493,8 @@ public class TextItem extends FormItem {
 
     /**
      * If showing hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
-     * com.smartgwt.client.widgets.form.fields.TextItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
+     * com.smartgwt.client.widgets.form.fields.TextItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it. If
+     * the item is disabled the suffix "DisabledHint" will be used.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHintInField showHintInField Default value is null
@@ -450,7 +507,8 @@ public class TextItem extends FormItem {
 
     /**
      * If showing hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
-     * com.smartgwt.client.widgets.form.fields.TextItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
+     * com.smartgwt.client.widgets.form.fields.TextItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it. If
+     * the item is disabled the suffix "DisabledHint" will be used.
      *
      *
      * @return Boolean
@@ -465,7 +523,7 @@ public class TextItem extends FormItem {
      * Base CSS class name for this item's input element. NOTE: See the {@link CompoundFormItem_skinning} discussion for
      * special skinning considerations.
      *
-     * @param textBoxStyle textBoxStyle Default value is "textItem"
+     * @param textBoxStyle . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}. Default value is "textItem"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextBoxStyle(String textBoxStyle) {
@@ -477,7 +535,7 @@ public class TextItem extends FormItem {
      * special skinning considerations.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTextBoxStyle()  {
@@ -506,7 +564,7 @@ public class TextItem extends FormItem {
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * If this item currently has focus, clear the current selection. leaving focus in the item. Has no effect if the item is
      * undrawn or unfocused. Only applies to text-based items.
@@ -522,11 +580,11 @@ public class TextItem extends FormItem {
      * @param start By default the text insertion cursor will be moved to the end of the   current value - pass in this parameter to move to
      * the start instead
      */
-    public native void deselectValue(boolean start) /*-{
+    public native void deselectValue(Boolean start) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.deselectValue(start);
+        self.deselectValue(start == null ? null : start.@java.lang.Boolean::booleanValue()());
     }-*/;
-            
+
     /**
      * Returns the raw text value typed into this form field, which can differ from  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} in various cases - for example: <ul>
@@ -544,7 +602,7 @@ public class TextItem extends FormItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.getEnteredValue();
     }-*/;
-            
+
     /**
      * Returns the hint text for this item. Default implementation returns {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getHint hint}, or  null if there is no hint to show.
@@ -556,7 +614,7 @@ public class TextItem extends FormItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.getHint();
     }-*/;
-            
+
     /**
      * Put focus in this item and select the entire value. Only applies to text based items
      */
@@ -564,7 +622,7 @@ public class TextItem extends FormItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.selectValue();
     }-*/;
-            
+
     /**
      * Puts focus into this form item and selects characters between the given indices. Only applies to drawn text based items.
      * @param start selection starting character index

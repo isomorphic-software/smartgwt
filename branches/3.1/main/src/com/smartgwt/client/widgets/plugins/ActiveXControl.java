@@ -45,40 +45,71 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * ISC Abstraction for ActiveX controls
  */
 public class ActiveXControl extends BrowserPlugin {
 
-    public static ActiveXControl getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (ActiveXControl) obj;
-        } else {
-            return new ActiveXControl(jsObj);
+    public native static ActiveXControl getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("ActiveXControl",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.plugins.ActiveXControl::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public ActiveXControl(){
         scClassName = "ActiveXControl";
     }
 
     public ActiveXControl(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "ActiveXControl";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -95,7 +126,7 @@ public class ActiveXControl extends BrowserPlugin {
      * generated HTML.  In practice it may be more handy to set the uuid  property on this object and let the classID be
      * generated from that.
      *
-     * @param classID classID Default value is null
+     * @param classID . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.plugins.ActiveXControl#setUuid
      */
@@ -109,7 +140,7 @@ public class ActiveXControl extends BrowserPlugin {
      * generated from that.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.plugins.ActiveXControl#getUuid
      */
     public String getClassID()  {
@@ -119,7 +150,7 @@ public class ActiveXControl extends BrowserPlugin {
     /**
      * Specifies the URL from which to load the ActiveX control.
      *
-     * @param codeBase codeBase Default value is null
+     * @param codeBase . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setCodeBase(String codeBase)  throws IllegalStateException {
@@ -130,7 +161,7 @@ public class ActiveXControl extends BrowserPlugin {
      * Specifies the URL from which to load the ActiveX control.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getCodeBase()  {
         return getAttributeAsString("codeBase");
@@ -142,7 +173,7 @@ public class ActiveXControl extends BrowserPlugin {
      * com.smartgwt.client.widgets.plugins.ActiveXControl#getPluginHandle ActiveXControl.getPluginHandle} to get a handle to
      * the element.
      *
-     * @param id id Default value is null
+     * @param id . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.plugins.ActiveXControl#getPluginHandle
      * @see com.smartgwt.client.widgets.plugins.ActiveXControl#getPluginID
@@ -158,7 +189,7 @@ public class ActiveXControl extends BrowserPlugin {
      * the element.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.plugins.ActiveXControl#getPluginHandle
      * @see com.smartgwt.client.widgets.plugins.ActiveXControl#getPluginID
      */
@@ -169,7 +200,7 @@ public class ActiveXControl extends BrowserPlugin {
     /**
      * Set this to the uuid of your Active X control - ISC will then generate the appropriate  classID entry for you.
      *
-     * @param uuid uuid Default value is null
+     * @param uuid . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setUuid(String uuid)  throws IllegalStateException {
@@ -180,14 +211,14 @@ public class ActiveXControl extends BrowserPlugin {
      * Set this to the uuid of your Active X control - ISC will then generate the appropriate  classID entry for you.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getUuid()  {
         return getAttributeAsString("uuid");
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Returns the ID for this ISC ActiveX control object.  If the <code>id</code> property was specified for the object, that
      * will be used, otherwise   the ID will be auto-generated.
@@ -256,7 +287,40 @@ public class ActiveXControl extends BrowserPlugin {
     }-*/;
             
 
+    public LogicalStructureObject setLogicalStructure(ActiveXControlLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.classID = getAttributeAsString("classID");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ActiveXControl.classID:" + t.getMessage() + "\n";
+        }
+        try {
+            s.codeBase = getAttributeAsString("codeBase");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ActiveXControl.codeBase:" + t.getMessage() + "\n";
+        }
+        try {
+            s.id = getAttributeAsString("id");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ActiveXControl.id:" + t.getMessage() + "\n";
+        }
+        try {
+            s.params = getAttributeAsString("params");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ActiveXControl.params:" + t.getMessage() + "\n";
+        }
+        try {
+            s.uuid = getAttributeAsString("uuid");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ActiveXControl.uuid:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        ActiveXControlLogicalStructure s = new ActiveXControlLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Response sent by the server in response to a {@link com.smartgwt.client.data.DSRequest DataSource request}.  Contains
@@ -70,15 +90,79 @@ public class DSResponse extends RPCResponse {
         return new DSResponse(jsObj);
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public DSResponse(){
         
     }
 
     public DSResponse(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
+    }
+
+    public DSResponse(String dataSource) {
+        setDataSource(dataSource);
+        
+    }
+
+    public DSResponse(String dataSource, DSOperationType operationType) {
+        setDataSource(dataSource);
+		setOperationType(operationType);
+        
+    }
+
+    public DSResponse(String dataSource, DSOperationType operationType, Record... data) {
+        setDataSource(dataSource);
+		setOperationType(operationType);
+		setData(data);
+        
     }
 
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * For "fetch" operations, this is the array of Records fetched.  For "update", "add", and "remove" operations, this is
+     * typically an array containing a single Record representing the record that was updated, added, or removed.
+     *
+     * @param data data Default value is null
+     */
+    public void setData(Record... data) {
+        setAttribute("data", data);
+    }
+
+    /**
+     * For "fetch" operations, this is the array of Records fetched.  For "update", "add", and "remove" operations, this is
+     * typically an array containing a single Record representing the record that was updated, added, or removed.
+     *
+     *
+     * @return Record
+     */
+    public Record[] getData()  {
+        return Record.convertToRecordArray(getAttributeAsJavaScriptObject("data"));
+    }
+
+    /**
+     * The DataSource of this DSResponse.
+     *
+     * @param dataSource . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     */
+    public void setDataSource(String dataSource) {
+        setAttribute("dataSource", dataSource);
+    }
+
+    /**
+     * The DataSource of this DSResponse.
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     */
+    public String getDataSource()  {
+        return getAttributeAsString("dataSource");
+    }
 
 
     /**
@@ -128,6 +212,60 @@ public class DSResponse extends RPCResponse {
         return getAttributeAsInt("offlineTimestamp");
     }
 
+    /**
+     * The operation type of the request corresponding to this DSResponse.
+     *
+     * @param operationType operationType Default value is null
+     */
+    public void setOperationType(DSOperationType operationType) {
+        setAttribute("operationType", operationType == null ? null : operationType.getValue());
+    }
+
+    /**
+     * The operation type of the request corresponding to this DSResponse.
+     *
+     *
+     * @return DSOperationType
+     */
+    public DSOperationType getOperationType()  {
+        return EnumUtil.getEnum(DSOperationType.values(), getAttribute("operationType"));
+    }
+
+    /**
+     * An extra property of each DSResponse to a queued request that indicates whether the queue as a whole succeeded.  A
+     * queueStatus of {@link com.smartgwt.client.rpc.RPCResponse#STATUS_SUCCESS STATUS_SUCCESS}, or 0, indicates that the queue
+     * succeeded whereas a queueStatus of {@link com.smartgwt.client.rpc.RPCResponse#STATUS_FAILURE STATUS_FAILURE}, or -1,
+     * indicates that the queue failed. <p>For example, if two "update" requests are sent in a queue and the first succeeded,
+     * but the second failed validation, then both DSResponses' queueStatus would be -1, but the {@link
+     * com.smartgwt.client.data.DSResponse#getStatus status} of the first would be {@link
+     * com.smartgwt.client.rpc.RPCResponse#STATUS_SUCCESS STATUS_SUCCESS} and the status of the second would be an error code
+     * such as {@link com.smartgwt.client.rpc.RPCResponse#STATUS_VALIDATION_ERROR STATUS_VALIDATION_ERROR}.
+     *
+     * @param queueStatus queueStatus
+     * @see com.smartgwt.client.docs.ErrorHandling ErrorHandling overview and related methods
+     */
+    public void setQueueStatus(int queueStatus) {
+        setAttribute("queueStatus", queueStatus);
+    }
+
+    /**
+     * An extra property of each DSResponse to a queued request that indicates whether the queue as a whole succeeded.  A
+     * queueStatus of {@link com.smartgwt.client.rpc.RPCResponse#STATUS_SUCCESS STATUS_SUCCESS}, or 0, indicates that the queue
+     * succeeded whereas a queueStatus of {@link com.smartgwt.client.rpc.RPCResponse#STATUS_FAILURE STATUS_FAILURE}, or -1,
+     * indicates that the queue failed. <p>For example, if two "update" requests are sent in a queue and the first succeeded,
+     * but the second failed validation, then both DSResponses' queueStatus would be -1, but the {@link
+     * com.smartgwt.client.data.DSResponse#getStatus status} of the first would be {@link
+     * com.smartgwt.client.rpc.RPCResponse#STATUS_SUCCESS STATUS_SUCCESS} and the status of the second would be an error code
+     * such as {@link com.smartgwt.client.rpc.RPCResponse#STATUS_VALIDATION_ERROR STATUS_VALIDATION_ERROR}.
+     *
+     *
+     * @return int
+     * @see com.smartgwt.client.docs.ErrorHandling ErrorHandling overview and related methods
+     */
+    public int getQueueStatus()  {
+        return getAttributeAsInt("queueStatus");
+    }
+
 
     /**
      * Starting row of returned server results, when using paged result fetching <p> Note that startRow and endRow are
@@ -138,6 +276,29 @@ public class DSResponse extends RPCResponse {
      */
     public Integer getStartRow()  {
         return getAttributeAsInt("startRow");
+    }
+
+    /**
+     * Same meaning as {@link com.smartgwt.client.rpc.RPCResponse#getStatus status}, except DSResponses have additional error
+     * codes, such as {@link com.smartgwt.client.rpc.RPCResponse#STATUS_VALIDATION_ERROR validation failure}.
+     *
+     * @param status status
+     * @see com.smartgwt.client.docs.ErrorHandling ErrorHandling overview and related methods
+     */
+    public void setStatus(int status) {
+        setAttribute("status", status);
+    }
+
+    /**
+     * Same meaning as {@link com.smartgwt.client.rpc.RPCResponse#getStatus status}, except DSResponses have additional error
+     * codes, such as {@link com.smartgwt.client.rpc.RPCResponse#STATUS_VALIDATION_ERROR validation failure}.
+     *
+     *
+     * @return int
+     * @see com.smartgwt.client.docs.ErrorHandling ErrorHandling overview and related methods
+     */
+    public int getStatus()  {
+        return getAttributeAsInt("status");
     }
 
 
@@ -242,26 +403,6 @@ public class DSResponse extends RPCResponse {
             jsObj = JSOHelper.getJSOArrayValue(jsObj, 0);
         }
         return JSOHelper.convertToMap(jsObj);
-    }
-
-    /**
-     * For DataSource operations, this is typically either an Array of records representing records (for "fetch"
-     * operations) or a array of a single record representing the updated record (for "update", "add" or "remove" operations).
-     *
-     * @param data the data
-     */
-    public void setData(Record[] data) {
-        setAttribute("data", data);
-    }
-
-    /**
-     * Return the data as an array of Records.
-     *
-     * @return the data
-     */
-    public Record[] getData() {
-        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
-        return Record.convertToRecordArray(dataJS);
     }
 
     /**

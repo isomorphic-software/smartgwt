@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * One of the supported formats for data-export.  If you are doing a  {@link
  * com.smartgwt.client.widgets.DataBoundComponent#exportClientData client export} to one of the native spreadsheet formats
@@ -44,7 +45,6 @@ public enum ExportFormat implements ValueEnum {
      * Export data in native Microsoft Excel 2007 format (also called XLSX)
      */
     OOXML("ooxml");
-
     private String value;
 
     ExportFormat(String value) {
@@ -55,3 +55,4 @@ public enum ExportFormat implements ValueEnum {
         return this.value;
     }
 }
+        
