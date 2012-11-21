@@ -45,40 +45,71 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * The Img widget class implements a simple widget that displays a single image.
  */
 public class Img extends StatefulCanvas {
 
-    public static Img getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (Img) obj;
-        } else {
-            return new Img(jsObj);
+    public native static Img getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("Img",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.Img::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public Img(){
         scClassName = "Img";
     }
 
     public Img(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "Img";
+        setJavaScriptObject(jsObj);
     }
 
     public Img(String src) {
@@ -114,7 +145,7 @@ public class Img extends StatefulCanvas {
      * Note that setting <code>altText</code> and <code>prompt</code> to different values is not recommended - the prompt value
      * will be ignored in favor of the altText in this case.
      *
-     * @param altText altText Default value is null
+     * @param altText . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.docs.Accessibility Accessibility overview and related methods
      */
     public void setAltText(String altText) {
@@ -134,7 +165,7 @@ public class Img extends StatefulCanvas {
      * will be ignored in favor of the altText in this case.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Accessibility Accessibility overview and related methods
      */
     public String getAltText()  {
@@ -224,7 +255,7 @@ public class Img extends StatefulCanvas {
      * attribute is ignored if the imageType is set to "tile"
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param name name Default value is "main"
+     * @param name . See {@link com.smartgwt.client.docs.String String}. Default value is "main"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setName(String name)  throws IllegalStateException {
@@ -234,7 +265,7 @@ public class Img extends StatefulCanvas {
     /**
      * Prompt displayed in hover canvas if {@link com.smartgwt.client.widgets.Canvas#getShowHover showHover} is true.
      *
-     * @param prompt prompt Default value is null
+     * @param prompt . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_hovers" target="examples">Hovers / Tooltips Example</a>
      */
     public void setPrompt(String prompt) {
@@ -245,7 +276,7 @@ public class Img extends StatefulCanvas {
      * Prompt displayed in hover canvas if {@link com.smartgwt.client.widgets.Canvas#getShowHover showHover} is true.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_hovers" target="examples">Hovers / Tooltips Example</a>
      */
     public String getPrompt()  {
@@ -307,7 +338,7 @@ public class Img extends StatefulCanvas {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Changes the URL of this image and redraws it. <P> Does nothing if the src has not changed - if <code>src</code> has not changed but other state has changed such that the image needs updating, call {@link com.smartgwt.client.widgets.Img#resetSrc Img.resetSrc} instead.
      *
-     * @param src new URL for the image. Default value is "blank.gif"
+     * @param src new URL for the image. See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "blank.gif"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setSrc(String src) {
@@ -321,7 +352,7 @@ public class Img extends StatefulCanvas {
      * have an intervening underscore, resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSrc()  {
@@ -349,7 +380,7 @@ public class Img extends StatefulCanvas {
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * If <code>this.showHover</code> is true, when the user holds the mouse over this Canvas for long enough to trigger a
      * hover event, a hover canvas is shown by default. This method returns the contents of that hover canvas. <P> Overridden
@@ -359,12 +390,15 @@ public class Img extends StatefulCanvas {
      * com.smartgwt.client.widgets.Img#getPrompt prompt} are set this method will return null to suppress the standard hover
      * behavior in browsers where the alt attribute on an img tag causes a native tooltip to appear, such as Internet Explorer.
      * On other browsers the altText value will be returned.
+     *
+     * @return the string to show in the hover
+     * @see com.smartgwt.client.widgets.Canvas#getShowHover
      */
-    public native void getHoverHTML() /*-{
+    public native String getHoverHTML() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.getHoverHTML();
+        return self.getHoverHTML();
     }-*/;
-            
+
     /**
      * Refresh the image being shown.  Call this when the {@link com.smartgwt.client.widgets.Img#getSrc src} attribute has not
      * changed, but other state that affects the image URL (such as being selected) has changed.
@@ -396,9 +430,60 @@ public class Img extends StatefulCanvas {
         
     // ***********************************************************        
 
+    public LogicalStructureObject setLogicalStructure(ImgLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.altText = getAttributeAsString("altText");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Img.altText:" + t.getMessage() + "\n";
+        }
+        try {
+            s.imageHeight = getAttributeAsString("imageHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Img.imageHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.imageType = getAttributeAsString("imageType");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Img.imageType:" + t.getMessage() + "\n";
+        }
+        try {
+            s.imageWidth = getAttributeAsString("imageWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Img.imageWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.prompt = getAttributeAsString("prompt");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Img.prompt:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showTitle = getAttributeAsString("showTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Img.showTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.size = getAttributeAsString("size");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Img.size:" + t.getMessage() + "\n";
+        }
+        try {
+            s.src = getAttributeAsString("src");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Img.src:" + t.getMessage() + "\n";
+        }
+        try {
+            s.usePNGFix = getAttributeAsString("usePNGFix");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Img.usePNGFix:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        ImgLogicalStructure s = new ImgLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-
-
 

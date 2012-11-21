@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Controls the style of TableView record display
  */
@@ -40,7 +41,6 @@ public enum RecordLayout implements ValueEnum {
      * Show  title,  description,  info and  data fields similar to the iPhoneOS Mail application
      */
     SUMMARY_FULL("summaryFull");
-
     private String value;
 
     RecordLayout(String value) {
@@ -51,3 +51,4 @@ public enum RecordLayout implements ValueEnum {
         return this.value;
     }
 }
+        

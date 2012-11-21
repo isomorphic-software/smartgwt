@@ -23,7 +23,6 @@ package com.smartgwt.client.types;
  * default long or short formatters for date objects by Smart GWT components.<br> Default set of valid display formats is
  * as follows:<br><br>
  */
-@Deprecated
 public enum DateDisplayFormat implements ValueEnum {
     /**
      * Default native browser 'toString()' implementation. May vary by browser.<br> <i>Example</i>: <code>Fri Nov 04 2005

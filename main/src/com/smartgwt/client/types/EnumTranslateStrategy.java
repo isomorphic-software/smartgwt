@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Determines how Java enums are translated to and from Javascript by the Smart GWT server.
  */
@@ -35,7 +36,6 @@ public enum EnumTranslateStrategy implements ValueEnum {
      * and {@link com.smartgwt.client.data.DataSource#getEnumConstantProperty enumConstantProperty} properties
      */
     BEAN("bean");
-
     private String value;
 
     EnumTranslateStrategy(String value) {
@@ -46,3 +46,4 @@ public enum EnumTranslateStrategy implements ValueEnum {
         return this.value;
     }
 }
+        

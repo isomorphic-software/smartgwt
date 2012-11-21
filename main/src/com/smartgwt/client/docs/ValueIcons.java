@@ -1,4 +1,4 @@
-
+	    
 package com.smartgwt.client.docs;
 
 /**
@@ -16,6 +16,9 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getValueIconRightPadding
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getImageURLPrefix
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getImageURLSuffix
+ * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowValueIconOver
+ * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowValueIconDown
+ * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowValueIconDisabled
  * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#getValueIconWidth
  * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#getValueIconHeight
  */

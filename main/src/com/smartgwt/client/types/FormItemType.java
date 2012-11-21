@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * DynamicForms automatically choose the FormItem type for a field based on the <code>type</code> property of the field. 
  * The table below describes the default FormItem chosen for various values of the <code>type</code> property. <P> You can
@@ -88,6 +89,7 @@ public enum FormItemType implements ValueEnum {
     DATE_ITEM("DateItem"),
     BLURB_ITEM("BlurbItem"),
     COMBOBOX_ITEM("ComboBoxItem"),
+    MULTICOMBOBOX_ITEM("MultiComboBoxItem"),
     SPACER_ITEM("SpacerItem"),
     ROWSPACER_ITEM("RowSpacerItem"),
     CHECKBOX_ITEM("CheckboxItem"),
@@ -128,3 +130,4 @@ public enum FormItemType implements ValueEnum {
     }
 
 }
+        

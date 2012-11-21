@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Item for manipulating Dates. <p> Can be rendered as a text field, or as 3 selects for day, month, year.  Includes
@@ -65,8 +85,15 @@ import com.google.gwt.event.shared.HasHandlers;
 public class DateItem extends FormItem {
 
     public static DateItem getOrCreateRef(JavaScriptObject jsObj) {
+    
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+		if(obj != null && JSOHelper.getAttribute(jsObj,"__ref")==null) {
+            return com.smartgwt.client.util.ObjectFactory.createFormItem("DateItem",jsObj);
+
+        } else 
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (DateItem) obj;
@@ -75,12 +102,18 @@ public class DateItem extends FormItem {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public DateItem(){
         setAttribute("editorType", "DateItem");
     }
 
     public DateItem(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     public DateItem(String name) {
@@ -97,9 +130,10 @@ public class DateItem extends FormItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Only used if we're showing the date in a text field. When parsing a date, if the year is specified with only 2 digits
+     * Only used if we're showing the date in a text field. When parsing a date, if the year is specified with 1 or 2 digits
      * and is less than the centuryThreshold, then the year will be assumed to be 20xx; otherwise it will be interpreted
-     * according to default browser behaviour, which will consider it to be 19xx.
+     * according to default browser behaviour, which will consider it to be 19xx. <P> If you need to allow 1 and 2 digit years,
+     * set this attribute to  <code>null</code> to have the control retain your year-value as entered.
      *
      * @param centuryThreshold centuryThreshold Default value is 25
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -109,9 +143,10 @@ public class DateItem extends FormItem {
     }
 
     /**
-     * Only used if we're showing the date in a text field. When parsing a date, if the year is specified with only 2 digits
+     * Only used if we're showing the date in a text field. When parsing a date, if the year is specified with 1 or 2 digits
      * and is less than the centuryThreshold, then the year will be assumed to be 20xx; otherwise it will be interpreted
-     * according to default browser behaviour, which will consider it to be 19xx.
+     * according to default browser behaviour, which will consider it to be 19xx. <P> If you need to allow 1 and 2 digit years,
+     * set this attribute to  <code>null</code> to have the control retain your year-value as entered.
      *
      *
      * @return int
@@ -308,13 +343,13 @@ public class DateItem extends FormItem {
      * property can be used to specify the input format for date strings.  If unset, the input format will be determined based
      * on the specified {@link com.smartgwt.client.widgets.form.fields.DateItem#getDateFormtter dateFormtter} if possible (see
      * {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat DateItem.getInputFormat}), otherwise picked up
-     * from the Date class (see  Date.setInputFormat). <P> Should be set to a standard String <P> Note that the String property
-     * is sufficient to parse date or datetime strings specified in most standard date formats. However should an entirely
-     * custom parsing function be required developers can  <code class="smartclient">implement a custom {@link
-     * com.smartgwt.client.widgets.form.fields.DateItem#parseEditorValue DateItem.parseEditorValue} method.</var> <code
-     * class="smartgwt">apply a custom <code>editorValueParser</code> function.</var>
+     * from the Date class (see  Date.setInputFormat). <P> Should be set to a standard DateInputFormat <P> Note that the
+     * DateInputFormat property is sufficient to parse date or datetime strings specified in most standard date formats.
+     * However should an entirely custom parsing function be required developers can  <code class="smartclient">implement a
+     * custom {@link com.smartgwt.client.widgets.form.fields.DateItem#parseEditorValue DateItem.parseEditorValue} method.</var>
+     * <code class="smartgwt">apply a custom <code>editorValueParser</code> function.</var>
      *
-     * @param inputFormat inputFormat Default value is null
+     * @param inputFormat . See {@link com.smartgwt.client.docs.DateInputFormat DateInputFormat}. Default value is null
      * @see com.smartgwt.client.widgets.form.fields.DateItem#setDisplayFormat
      */
     public void setInputFormat(String inputFormat) {
@@ -326,20 +361,20 @@ public class DateItem extends FormItem {
      * property can be used to specify the input format for date strings.  If unset, the input format will be determined based
      * on the specified {@link com.smartgwt.client.widgets.form.fields.DateItem#getDateFormtter dateFormtter} if possible (see
      * {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat DateItem.getInputFormat}), otherwise picked up
-     * from the Date class (see  Date.setInputFormat). <P> Should be set to a standard String <P> Note that the String property
-     * is sufficient to parse date or datetime strings specified in most standard date formats. However should an entirely
-     * custom parsing function be required developers can  <code class="smartclient">implement a custom {@link
-     * com.smartgwt.client.widgets.form.fields.DateItem#parseEditorValue DateItem.parseEditorValue} method.</var> <code
-     * class="smartgwt">apply a custom <code>editorValueParser</code> function.</var>
+     * from the Date class (see  Date.setInputFormat). <P> Should be set to a standard DateInputFormat <P> Note that the
+     * DateInputFormat property is sufficient to parse date or datetime strings specified in most standard date formats.
+     * However should an entirely custom parsing function be required developers can  <code class="smartclient">implement a
+     * custom {@link com.smartgwt.client.widgets.form.fields.DateItem#parseEditorValue DateItem.parseEditorValue} method.</var>
+     * <code class="smartgwt">apply a custom <code>editorValueParser</code> function.</var>
      *
      *
      * @return If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
-     * method returns a standard String, determining how values entered by the user are to be converted to Javascript Date
-     * objects. <P> If an explicit {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} has been
-     * specified it will be returned, otherwise, the input format will be automatically derived from the {@link
+     * method returns a standard DateInputFormat, determining how values entered by the user are to be converted to Javascript
+     * Date objects. <P> If an explicit {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} has
+     * been specified it will be returned, otherwise, the input format will be automatically derived from the {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getDateFormatter dateFormatter} property. <P> Note that the inputFormat
      * will ignore any separator characters and padding of values. However if necessary entirely custom date formatting and
-     * parsing may be achieved via the  <code>setEditorValueFormatter()</code> and  <code>setEditorValueParser()</code> APIs.
+     * parsing may be achieved via the  <code>setEditorValueFormatter()</code> and  <code>setEditorValueParser()</code> APIs.. See {@link com.smartgwt.client.docs.DateInputFormat DateInputFormat}
      * @see com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat
      */
     public String getInputFormat()  {
@@ -349,7 +384,7 @@ public class DateItem extends FormItem {
     /**
      * Validation error message to display if the user enters an invalid date
      *
-     * @param invalidDateStringMessage invalidDateStringMessage Default value is "Invalid date"
+     * @param invalidDateStringMessage . See {@link com.smartgwt.client.docs.String String}. Default value is "Invalid date"
      */
     public void setInvalidDateStringMessage(String invalidDateStringMessage) {
         setAttribute("invalidDateStringMessage", invalidDateStringMessage);
@@ -359,7 +394,7 @@ public class DateItem extends FormItem {
      * Validation error message to display if the user enters an invalid date
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getInvalidDateStringMessage()  {
         return getAttributeAsString("invalidDateStringMessage");
@@ -371,7 +406,7 @@ public class DateItem extends FormItem {
      * separator between date components. If unset  getDefaultSeparator will be used.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param maskDateSeparator maskDateSeparator Default value is null
+     * @param maskDateSeparator . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public void setMaskDateSeparator(String maskDateSeparator) {
@@ -404,7 +439,7 @@ public class DateItem extends FormItem {
      * Prompt to show when the user hovers the mouse over the picker icon for this DateItem. May be overridden for localization
      * of your application.
      *
-     * @param pickerIconPrompt pickerIconPrompt Default value is "Show Date Chooser"
+     * @param pickerIconPrompt . See {@link com.smartgwt.client.docs.String String}. Default value is "Show Date Chooser"
      */
     public void setPickerIconPrompt(String pickerIconPrompt) {
         setAttribute("pickerIconPrompt", pickerIconPrompt);
@@ -415,7 +450,7 @@ public class DateItem extends FormItem {
      * of your application.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getPickerIconPrompt()  {
         return getAttributeAsString("pickerIconPrompt");
@@ -448,6 +483,46 @@ public class DateItem extends FormItem {
      */
     public DateItemSelectorFormat getSelectorFormat()  {
         return EnumUtil.getEnum(DateItemSelectorFormat.values(), getAttribute("selectorFormat"));
+    }
+
+    /**
+     * When set to true, show a button that allows the calendar to be navigated by fiscal year.
+     *
+     * @param showChooserFiscalYearPicker showChooserFiscalYearPicker Default value is false
+     */
+    public void setShowChooserFiscalYearPicker(Boolean showChooserFiscalYearPicker) {
+        setAttribute("showChooserFiscalYearPicker", showChooserFiscalYearPicker);
+    }
+
+    /**
+     * When set to true, show a button that allows the calendar to be navigated by fiscal year.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowChooserFiscalYearPicker()  {
+        return getAttributeAsBoolean("showChooserFiscalYearPicker");
+    }
+
+    /**
+     * When set to true, show a button that allows the calendar to be navigated by week or fiscal week, depending on the value
+     * of {@link com.smartgwt.client.widgets.form.fields.DateItem#getShowChooserFiscalYearPicker showChooserFiscalYearPicker}.
+     *
+     * @param showChooserWeekPicker showChooserWeekPicker Default value is false
+     */
+    public void setShowChooserWeekPicker(Boolean showChooserWeekPicker) {
+        setAttribute("showChooserWeekPicker", showChooserWeekPicker);
+    }
+
+    /**
+     * When set to true, show a button that allows the calendar to be navigated by week or fiscal week, depending on the value
+     * of {@link com.smartgwt.client.widgets.form.fields.DateItem#getShowChooserFiscalYearPicker showChooserFiscalYearPicker}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowChooserWeekPicker()  {
+        return getAttributeAsBoolean("showChooserWeekPicker");
     }
 
     /**
@@ -485,9 +560,10 @@ public class DateItem extends FormItem {
 
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
-     * property governs the alignment of text within the text field.
+     * property governs the alignment of text within the text field. Defaults to <code>"right"</code> by default or
+     * <code>"left"</code> if the page is in {@link com.smartgwt.client.util.Page#isRTL rtl mode}.
      *
-     * @param textAlign textAlign Default value is Canvas.RIGHT
+     * @param textAlign textAlign Default value is varies
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextAlign(Alignment textAlign) {
@@ -496,7 +572,8 @@ public class DateItem extends FormItem {
 
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
-     * property governs the alignment of text within the text field.
+     * property governs the alignment of text within the text field. Defaults to <code>"right"</code> by default or
+     * <code>"left"</code> if the page is in {@link com.smartgwt.client.util.Page#isRTL rtl mode}.
      *
      *
      * @return Alignment
@@ -616,7 +693,7 @@ public class DateItem extends FormItem {
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true, falls through to
      * standard {@link com.smartgwt.client.widgets.form.fields.FormItem#deselectValue FormItem.deselectValue} implementation on
@@ -634,21 +711,39 @@ public class DateItem extends FormItem {
      * @param start If this parameter is passed, new cursor insertion position will be   moved to the start, rather than the end of this
      * item's value.
      */
-    public native void deselectValue(boolean start) /*-{
+    public native void deselectValue(Boolean start) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.deselectValue(start);
+        self.deselectValue(start == null ? null : start.@java.lang.Boolean::booleanValue()());
     }-*/;
-            
+
     /**
      * Returns the raw text value typed into this items text field if {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField}  is true (otherwise returns the result of
      * this.getValue()).
+     *
+     * @return value the user entered
      */
-    public native void getEnteredValue() /*-{
+    public native String getEnteredValue() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.getEnteredValue();
+        return self.getEnteredValue();
     }-*/;
-            
+
+    /**
+     * Returns the {@link com.smartgwt.client.widgets.FiscalCalendar} object that will be used by this DateChooser.
+     *
+     * @return the fiscal calendar for this chooser, if set, or the global            one otherwise
+     */
+    public native FiscalCalendar getFiscalCalendar() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret = self.getFiscalCalendar();
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.FiscalCalendar::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true, falls through to
      * standard {@link com.smartgwt.client.widgets.form.fields.FormItem#selectValue FormItem.selectValue} implementation on
@@ -658,7 +753,26 @@ public class DateItem extends FormItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.selectValue();
     }-*/;
-            
+
+    /**
+     * Sets the {@link com.smartgwt.client.widgets.FiscalCalendar} object that will be used by this item's DateChooser.  If 
+     * unset, the _link{Date.getFiscalCalendar, global fiscal calendar} is used.
+     */
+    public native void setFiscalCalendar() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.setFiscalCalendar();
+    }-*/;
+
+    /**
+     * Sets the {@link com.smartgwt.client.widgets.FiscalCalendar} object that will be used by this item's DateChooser.  If 
+     * unset, the _link{Date.getFiscalCalendar, global fiscal calendar} is used.
+     * @param fiscalCalendar the fiscal calendar for this chooser, if set, or the global            one otherwise
+     */
+    public native void setFiscalCalendar(FiscalCalendar fiscalCalendar) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.setFiscalCalendar(fiscalCalendar == null ? null : fiscalCalendar.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true, falls through to
      * standard {@link com.smartgwt.client.widgets.form.fields.FormItem#setSelectionRange FormItem.setSelectionRange}

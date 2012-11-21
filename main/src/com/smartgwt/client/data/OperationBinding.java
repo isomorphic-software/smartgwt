@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * An operationBinding tells a DataSource how to execute one of the basic DS operations: fetch, add, update, remove.  See
@@ -69,12 +89,18 @@ public class OperationBinding extends DataClass {
         return new OperationBinding(jsObj);
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public OperationBinding(){
         
     }
 
     public OperationBinding(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     public OperationBinding(DSOperationType operationType, String dataURL) {
@@ -84,6 +110,38 @@ public class OperationBinding extends DataClass {
     }
 
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * This property indicates whether this operation supports AdvancedCriteria. This setting  overrides {@link
+     * com.smartgwt.client.data.DataSource#getAllowAdvancedCriteria allowAdvancedCriteria} for this operation only. See {@link
+     * com.smartgwt.client.data.DataSource#supportsAdvancedCriteria DataSource.supportsAdvancedCriteria} for further
+     * information. <p> <b>NOTE:</b> If you specify this property in a DataSource descriptor  (<code>.ds.xml</code> file), it
+     * is enforced on the server.  This means that if you run  a request containing AdvancedCriteria against an
+     * OperationBinding that advertises itself as <code>allowAdvancedCriteria:false</code>, it will be rejected.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param allowAdvancedCriteria allowAdvancedCriteria Default value is null
+     * @see com.smartgwt.client.data.DataSource#setAllowAdvancedCriteria
+     */
+    public void setAllowAdvancedCriteria(Boolean allowAdvancedCriteria) {
+        setAttribute("allowAdvancedCriteria", allowAdvancedCriteria);
+    }
+
+    /**
+     * This property indicates whether this operation supports AdvancedCriteria. This setting  overrides {@link
+     * com.smartgwt.client.data.DataSource#getAllowAdvancedCriteria allowAdvancedCriteria} for this operation only. See {@link
+     * com.smartgwt.client.data.DataSource#supportsAdvancedCriteria DataSource.supportsAdvancedCriteria} for further
+     * information. <p> <b>NOTE:</b> If you specify this property in a DataSource descriptor  (<code>.ds.xml</code> file), it
+     * is enforced on the server.  This means that if you run  a request containing AdvancedCriteria against an
+     * OperationBinding that advertises itself as <code>allowAdvancedCriteria:false</code>, it will be rejected.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.data.DataSource#getAllowAdvancedCriteria
+     */
+    public Boolean getAllowAdvancedCriteria()  {
+        return getAttributeAsBoolean("allowAdvancedCriteria");
+    }
 
     /**
      * Ordinarily, "update" and "remove" operations are only allowed for {@link com.smartgwt.client.data.DataSource}s that have
@@ -121,7 +179,7 @@ public class OperationBinding extends DataClass {
      * function to call as part of the response for this operation. <P> Typically set once for the DataSource as a whole via
      * {@link com.smartgwt.client.data.DataSource#getCallbackParam callbackParam}.
      *
-     * @param callbackParam callbackParam Default value is "callback"
+     * @param callbackParam . See {@link com.smartgwt.client.docs.String String}. Default value is "callback"
      * @see com.smartgwt.client.data.DataSource#setCallbackParam
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
@@ -135,7 +193,7 @@ public class OperationBinding extends DataClass {
      * {@link com.smartgwt.client.data.DataSource#getCallbackParam callbackParam}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.data.DataSource#getCallbackParam
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
@@ -260,7 +318,7 @@ public class OperationBinding extends DataClass {
      * DataSource using a Web Service ({@link com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace} is
      * set).
      *
-     * @param dataURL dataURL Default value is null
+     * @param dataURL . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setDataURL(String dataURL) {
@@ -274,7 +332,7 @@ public class OperationBinding extends DataClass {
      * set).
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public String getDataURL()  {
@@ -331,7 +389,7 @@ public class OperationBinding extends DataClass {
      * list. <P> If exportFields is not provided, the exported output includes all visible fields  from the DataSource
      * (field.hidden=false), sorted in the order they're defined.
      *
-     * @param exportFields exportFields Default value is null
+     * @param exportFields . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setExportFields(String... exportFields) {
         setAttribute("exportFields", exportFields);
@@ -343,7 +401,7 @@ public class OperationBinding extends DataClass {
      * (field.hidden=false), sorted in the order they're defined.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String[] getExportFields()  {
         return getAttributeAsStringArray("exportFields");
@@ -352,7 +410,7 @@ public class OperationBinding extends DataClass {
     /**
      * The name of the file to save the exported data into.
      *
-     * @param exportFilename exportFilename Default value is null
+     * @param exportFilename . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setExportFilename(String exportFilename) {
         setAttribute("exportFilename", exportFilename);
@@ -362,7 +420,7 @@ public class OperationBinding extends DataClass {
      * The name of the file to save the exported data into.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getExportFilename()  {
         return getAttributeAsString("exportFilename");
@@ -503,7 +561,7 @@ public class OperationBinding extends DataClass {
     /**
      * The style of line-breaks to use in the exported output.  See LineBreakStyle for more information.
      *
-     * @param lineBreakStyle lineBreakStyle Default value is null
+     * @param lineBreakStyle . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setLineBreakStyle(String lineBreakStyle) {
         setAttribute("lineBreakStyle", lineBreakStyle);
@@ -513,7 +571,7 @@ public class OperationBinding extends DataClass {
      * The style of line-breaks to use in the exported output.  See LineBreakStyle for more information.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getLineBreakStyle()  {
         return getAttributeAsString("lineBreakStyle");
@@ -524,7 +582,7 @@ public class OperationBinding extends DataClass {
      * instance, a "fetch" that uses full text search and a "fetch" that accepts per-field search criteria.  See {@link
      * com.smartgwt.client.data.DSRequest#getOperationId operationId} for usage.
      *
-     * @param operationId operationId Default value is null
+     * @param operationId . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setOperationId(String operationId) {
@@ -537,7 +595,7 @@ public class OperationBinding extends DataClass {
      * com.smartgwt.client.data.DSRequest#getOperationId operationId} for usage.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public String getOperationId()  {
@@ -594,7 +652,7 @@ public class OperationBinding extends DataClass {
      * a tagName. <p> When a DataSource has a WebService, <code>recordName</code> can also be set to the name of any
      * <code>complexType</code> declared within the WebService's WSDL file.
      *
-     * @param recordName recordName Default value is null
+     * @param recordName . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_generic" target="examples">Weather SOAP Search Example</a>
      */
@@ -609,7 +667,7 @@ public class OperationBinding extends DataClass {
      * <code>complexType</code> declared within the WebService's WSDL file.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_generic" target="examples">Weather SOAP Search Example</a>
      */
@@ -631,7 +689,7 @@ public class OperationBinding extends DataClass {
      * about XPath, try the following search: <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank"
      * >http://www.google.com/search?q=xpath+tutorial</a>
      *
-     * @param recordXPath recordXPath Default value is null
+     * @param recordXPath . See {@link com.smartgwt.client.docs.XPathExpression XPathExpression}. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setRecordXPath(String recordXPath) {
@@ -653,7 +711,7 @@ public class OperationBinding extends DataClass {
      * >http://www.google.com/search?q=xpath+tutorial</a>
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.XPathExpression XPathExpression}
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public String getRecordXPath()  {
@@ -837,7 +895,7 @@ public class OperationBinding extends DataClass {
      * {@link com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest} for how to customize what data
      * is sent to the server.
      *
-     * @param wsOperation wsOperation Default value is null
+     * @param wsOperation . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_generic" target="examples">Weather SOAP Search Example</a>
      */
@@ -855,7 +913,7 @@ public class OperationBinding extends DataClass {
      * is sent to the server.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_generic" target="examples">Weather SOAP Search Example</a>
      */

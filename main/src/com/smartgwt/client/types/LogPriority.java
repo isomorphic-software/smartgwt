@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Priority levels for log messages
  */
@@ -40,7 +41,6 @@ public enum LogPriority implements ValueEnum {
      * diagnostics for developers
      */
     DEBUG("debug");
-
     private String value;
 
     LogPriority(String value) {
@@ -51,3 +51,4 @@ public enum LogPriority implements ValueEnum {
         return this.value;
     }
 }
+        

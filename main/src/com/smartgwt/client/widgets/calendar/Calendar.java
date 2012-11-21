@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * The Calendar component provides several different ways for a user to view and edit a set of events. Note that the
@@ -86,22 +106,34 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class Calendar extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.calendar.events.HasDayBodyClickHandlers, com.smartgwt.client.widgets.calendar.events.HasDayHeaderClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventChangedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventRemoveClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventMovedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventAddedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventRemovedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventResizedHandlers, com.smartgwt.client.widgets.calendar.events.HasDateChangedHandlers, com.smartgwt.client.widgets.calendar.events.HasBackgroundClickHandlers, com.smartgwt.client.widgets.calendar.events.HasBackgroundMouseDownHandlers {
 
-    public static Calendar getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (Calendar) obj;
-        } else {
-            return new Calendar(jsObj);
+    public native static Calendar getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("Calendar",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.calendar.Calendar::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
 
+
     public Calendar(){
-        scClassName = "Calendar";
+        checkCalendarLoaded();
+				scClassName = "Calendar";
     }
 
     public Calendar(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "Calendar";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -117,7 +149,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The text to be displayed when a user hovers over the {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getAddEventButton add event} toolbar button
      *
-     * @param addEventButtonHoverText addEventButtonHoverText Default value is "Add an event"
+     * @param addEventButtonHoverText . See {@link com.smartgwt.client.docs.String String}. Default value is "Add an event"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setAddEventButtonHoverText(String addEventButtonHoverText)  throws IllegalStateException {
@@ -129,43 +161,17 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * com.smartgwt.client.widgets.calendar.Calendar#getAddEventButton add event} toolbar button
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getAddEventButtonHoverText()  {
         return getAttributeAsString("addEventButtonHoverText");
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchData autoFetchData} is <code>true</code>, this
-     * attribute allows the developer to specify a textMatchStyle for the initial {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#fetchData Calendar.fetchData} call.
-     *
-     * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
-     */
-    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle == null ? null : autoFetchTextMatchStyle.getValue(), false);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchData autoFetchData} is <code>true</code>, this
-     * attribute allows the developer to specify a textMatchStyle for the initial {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#fetchData Calendar.fetchData} call.
-     *
-     *
-     * @return TextMatchStyle
-     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
-     */
-    public TextMatchStyle getAutoFetchTextMatchStyle()  {
-        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
-    }
-
-    /**
      * The base name for the CSS class applied to the grid cells of the day and week views of the calendar. This style will
      * have "Dark", "Over", "Selected", or "Disabled" appended to it according to the state of the cell.
      *
-     * @param baseStyle baseStyle Default value is "calendar"
+     * @param baseStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "calendar"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setBaseStyle(String baseStyle) {
@@ -177,7 +183,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * have "Dark", "Over", "Selected", or "Disabled" appended to it according to the state of the cell.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getBaseStyle()  {
@@ -187,7 +193,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * The title for the cancel button in the event editor
      *
-     * @param cancelButtonTitle cancelButtonTitle Default value is "Cancel"
+     * @param cancelButtonTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "Cancel"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
@@ -198,7 +204,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The title for the cancel button in the event editor
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getCancelButtonTitle()  {
         return getAttributeAsString("cancelButtonTitle");
@@ -249,7 +255,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Name of the field on each {@link com.smartgwt.client.widgets.calendar.CalendarEvent} that determines dragability.
      *
-     * @param canDragEventField canDragEventField Default value is "canEdit"
+     * @param canDragEventField . See {@link com.smartgwt.client.docs.String String}. Default value is "canEdit"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
@@ -261,7 +267,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * Name of the field on each {@link com.smartgwt.client.widgets.calendar.CalendarEvent} that determines dragability.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public String getCanDragEventField()  {
@@ -311,7 +317,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Name of the field on each {@link com.smartgwt.client.widgets.calendar.CalendarEvent} that determines editability.
      *
-     * @param canEditField canEditField Default value is "canEdit"
+     * @param canEditField . See {@link com.smartgwt.client.docs.String String}. Default value is "canEdit"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
@@ -323,11 +329,59 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * Name of the field on each {@link com.smartgwt.client.widgets.calendar.CalendarEvent} that determines editability.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public String getCanEditField()  {
         return getAttributeAsString("canEditField");
+    }
+
+    /**
+     * Can we edit the lane of the event, specified by the {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getLaneNameField laneNameField}? If so, the event can be dragged to a
+     * different {@link com.smartgwt.client.widgets.calendar.Calendar#getLanes lane} and, when it's editor is shown, an
+     * additional drop-down widget is provided allowing the user to select a different lane. <P> In either case, the event's
+     * {@link com.smartgwt.client.widgets.calendar.Calendar#getLaneNameField laneNameField} is updated automatically.
+     *
+     * @param canEditLane canEditLane Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCanEditLane(Boolean canEditLane)  throws IllegalStateException {
+        setAttribute("canEditLane", canEditLane, false);
+    }
+
+    /**
+     * Can we edit the lane of the event, specified by the {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getLaneNameField laneNameField}? If so, the event can be dragged to a
+     * different {@link com.smartgwt.client.widgets.calendar.Calendar#getLanes lane} and, when it's editor is shown, an
+     * additional drop-down widget is provided allowing the user to select a different lane. <P> In either case, the event's
+     * {@link com.smartgwt.client.widgets.calendar.Calendar#getLaneNameField laneNameField} is updated automatically.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanEditLane()  {
+        return getAttributeAsBoolean("canEditLane");
+    }
+
+    /**
+     * Can timeline events be stretched by their left and right edges?
+     *
+     * @param canResizeTimelineEvents canResizeTimelineEvents Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCanResizeTimelineEvents(Boolean canResizeTimelineEvents)  throws IllegalStateException {
+        setAttribute("canResizeTimelineEvents", canResizeTimelineEvents, false);
+    }
+
+    /**
+     * Can timeline events be stretched by their left and right edges?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanResizeTimelineEvents()  {
+        return getAttributeAsBoolean("canResizeTimelineEvents");
     }
 
     /**
@@ -402,6 +456,34 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * Indicates the type of controls to use in event-windows.  Valid values are those in the  {@link
+     * com.smartgwt.client.types.DateEditingStyle DateEditingStyle} type. <P> If unset, the editing style will be set to the
+     * field-type on the DataSource, if there is one. If there's no DataSource, it will be set to "date" if the  {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getTimelineGranularity granularity} is "day" or larger and "time" if
+     * granularity  is "minute" or smaller, otherwise "datetime".
+     *
+     * @param dateEditingStyle dateEditingStyle Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setDateEditingStyle(DateEditingStyle dateEditingStyle)  throws IllegalStateException {
+        setAttribute("dateEditingStyle", dateEditingStyle == null ? null : dateEditingStyle.getValue(), false);
+    }
+
+    /**
+     * Indicates the type of controls to use in event-windows.  Valid values are those in the  {@link
+     * com.smartgwt.client.types.DateEditingStyle DateEditingStyle} type. <P> If unset, the editing style will be set to the
+     * field-type on the DataSource, if there is one. If there's no DataSource, it will be set to "date" if the  {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getTimelineGranularity granularity} is "day" or larger and "time" if
+     * granularity  is "minute" or smaller, otherwise "datetime".
+     *
+     *
+     * @return DateEditingStyle
+     */
+    public DateEditingStyle getDateEditingStyle()  {
+        return EnumUtil.getEnum(DateEditingStyle.values(), getAttribute("dateEditingStyle"));
+    }
+
+    /**
      * Date formatter for displaying events. Default is to use the system-wide default short date format, configured via 
      * Date.setShortDisplayFormat.  Specify any valid {@link com.smartgwt.client.types.DateDisplayFormat}.
      *
@@ -426,7 +508,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The text to be displayed when a user hovers over the {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton date picker} toolbar button
      *
-     * @param datePickerHoverText datePickerHoverText Default value is "Choose a date"
+     * @param datePickerHoverText . See {@link com.smartgwt.client.docs.String String}. Default value is "Choose a date"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setDatePickerHoverText(String datePickerHoverText)  throws IllegalStateException {
@@ -438,7 +520,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton date picker} toolbar button
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getDatePickerHoverText()  {
         return getAttributeAsString("datePickerHoverText");
@@ -448,7 +530,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The base name for the CSS class applied to the day body of the month view of the calendar. This style will have "Dark",
      * "Over", "Selected", or "Disabled" appended to it according to the state of the cell.
      *
-     * @param dayBodyBaseStyle dayBodyBaseStyle Default value is "calMonthDayBody"
+     * @param dayBodyBaseStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "calMonthDayBody"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setDayBodyBaseStyle(String dayBodyBaseStyle) {
@@ -460,7 +542,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * "Over", "Selected", or "Disabled" appended to it according to the state of the cell.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getDayBodyBaseStyle()  {
@@ -471,7 +553,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The base name for the CSS class applied to the day headers of the month view. This style will have "Dark", "Over",
      * "Selected", or "Disabled" appended to it according to the state of the cell.
      *
-     * @param dayHeaderBaseStyle dayHeaderBaseStyle Default value is "calMonthDayHeader"
+     * @param dayHeaderBaseStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "calMonthDayHeader"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setDayHeaderBaseStyle(String dayHeaderBaseStyle) {
@@ -483,7 +565,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * "Selected", or "Disabled" appended to it according to the state of the cell.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getDayHeaderBaseStyle()  {
@@ -493,7 +575,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * The title for the day view
      *
-     * @param dayViewTitle dayViewTitle Default value is "Day"
+     * @param dayViewTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "Day"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setDayViewTitle(String dayViewTitle)  throws IllegalStateException {
@@ -504,7 +586,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The title for the day view
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getDayViewTitle()  {
         return getAttributeAsString("dayViewTitle");
@@ -513,7 +595,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * The name of the description field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
-     * @param descriptionField descriptionField Default value is "description"
+     * @param descriptionField . See {@link com.smartgwt.client.docs.String String}. Default value is "description"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setDescriptionField(String descriptionField)  throws IllegalStateException {
@@ -524,7 +606,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The name of the description field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getDescriptionField()  {
         return getAttributeAsString("descriptionField");
@@ -533,7 +615,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * The title for the edit button in the quick event dialog
      *
-     * @param detailsButtonTitle detailsButtonTitle Default value is "Edit Details"
+     * @param detailsButtonTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "Edit Details"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setDetailsButtonTitle(String detailsButtonTitle)  throws IllegalStateException {
@@ -544,7 +626,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The title for the edit button in the quick event dialog
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getDetailsButtonTitle()  {
         return getAttributeAsString("detailsButtonTitle");
@@ -575,9 +657,33 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * The end date of the calendar timeline view.  Has no effect in other views. <P> Note that this attribute may be
+     * automatically altered if  {@link com.smartgwt.client.widgets.calendar.Timeline#getHeaderLevels header-levels} to fit to
+     * header boundaries.
+     *
+     * @param endDate endDate Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setEndDate(java.util.Date endDate)  throws IllegalStateException {
+        setAttribute("endDate", endDate, false);
+    }
+
+    /**
+     * The end date of the calendar timeline view.  Has no effect in other views. <P> Note that this attribute may be
+     * automatically altered if  {@link com.smartgwt.client.widgets.calendar.Timeline#getHeaderLevels header-levels} to fit to
+     * header boundaries.
+     *
+     *
+     * @return java.util.Date
+     */
+    public java.util.Date getEndDate()  {
+        return getAttributeAsDate("endDate");
+    }
+
+    /**
      * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
-     * @param endDateField endDateField Default value is "endDate"
+     * @param endDateField . See {@link com.smartgwt.client.docs.String String}. Default value is "endDate"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
@@ -589,7 +695,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public String getEndDateField()  {
@@ -617,9 +723,28 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * The number of pixels to leave to the right of events so overlapping events can still be  added using the mouse.
+     *
+     * @param eventDragGap eventDragGap Default value is 10
+     */
+    public void setEventDragGap(int eventDragGap) {
+        setAttribute("eventDragGap", eventDragGap, true);
+    }
+
+    /**
+     * The number of pixels to leave to the right of events so overlapping events can still be  added using the mouse.
+     *
+     *
+     * @return int
+     */
+    public int getEventDragGap()  {
+        return getAttributeAsInt("eventDragGap");
+    }
+
+    /**
      * The title for the event name field in the quick event dialog
      *
-     * @param eventNameFieldTitle eventNameFieldTitle Default value is "Event Name"
+     * @param eventNameFieldTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "Event Name"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setEventNameFieldTitle(String eventNameFieldTitle)  throws IllegalStateException {
@@ -630,7 +755,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The title for the event name field in the quick event dialog
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getEventNameFieldTitle()  {
         return getAttributeAsString("eventNameFieldTitle");
@@ -664,7 +789,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * When set to true, events that start at the same time will not overlap each other to prevent  events having their close
-     * button hidden
+     * button hidden.
      *
      * @param eventOverlapIdenticalStartTimes eventOverlapIdenticalStartTimes Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -675,7 +800,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * When set to true, events that start at the same time will not overlap each other to prevent  events having their close
-     * button hidden
+     * button hidden.
      *
      *
      * @return Boolean
@@ -685,7 +810,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The size of the overlap, presented as a percentage of the width of events sharing timeslots
+     * The size of the overlap, presented as a percentage of the width of events sharing timeslots.
      *
      * @param eventOverlapPercent eventOverlapPercent Default value is 10
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -695,7 +820,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The size of the overlap, presented as a percentage of the width of events sharing timeslots
+     * The size of the overlap, presented as a percentage of the width of events sharing timeslots.
      *
      *
      * @return int
@@ -727,35 +852,11 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The name of the field which will determine the row in which this event will be displayed for the {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getTimelineView timelineView}
-     *
-     * @param eventTypeField eventTypeField Default value is "eventType"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     * @see com.smartgwt.client.widgets.calendar.CalendarEvent
-     */
-    public void setEventTypeField(String eventTypeField)  throws IllegalStateException {
-        setAttribute("eventTypeField", eventTypeField, false);
-    }
-
-    /**
-     * The name of the field which will determine the row in which this event will be displayed for the {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getTimelineView timelineView}
-     *
-     *
-     * @return String
-     * @see com.smartgwt.client.widgets.calendar.CalendarEvent
-     */
-    public String getEventTypeField()  {
-        return getAttributeAsString("eventTypeField");
-    }
-
-    /**
      * The base name for the CSS class applied to event windows within calendars. This style will have "Header", "HeaderLabel",
      * and "Body" appended to it, according to  which part of the event window is being styled. For example, to style the
      * header, define a css class called 'eventWindowHeader'.
      *
-     * @param eventWindowStyle eventWindowStyle Default value is "eventWindow"
+     * @param eventWindowStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "eventWindow"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setEventWindowStyle(String eventWindowStyle) {
@@ -768,7 +869,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * header, define a css class called 'eventWindowHeader'.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getEventWindowStyle()  {
@@ -780,7 +881,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * eventWindowStyle} for an individual {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.  See {@link
      * com.smartgwt.client.widgets.calendar.CalendarEvent#getEventWindowStyle eventWindowStyle}.
      *
-     * @param eventWindowStyleField eventWindowStyleField Default value is "eventWindowStyle"
+     * @param eventWindowStyleField . See {@link com.smartgwt.client.docs.String String}. Default value is "eventWindowStyle"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -794,7 +895,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * com.smartgwt.client.widgets.calendar.CalendarEvent#getEventWindowStyle eventWindowStyle}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getEventWindowStyleField()  {
@@ -821,6 +922,30 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * Configures the levels of {@link com.smartgwt.client.widgets.calendar.HeaderLevel headers} shown above the event area,
+     * and  their time units. <P> Header levels are provided from the top down, so the first header level should be the largest
+     *  time unit and the last one the smallest.  The smallest is then used for the actual  field-headers.
+     *
+     * @param headerLevels headerLevels Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setHeaderLevels(HeaderLevel... headerLevels)  throws IllegalStateException {
+        setAttribute("headerLevels", headerLevels, false);
+    }
+
+    /**
+     * Configures the levels of {@link com.smartgwt.client.widgets.calendar.HeaderLevel headers} shown above the event area,
+     * and  their time units. <P> Header levels are provided from the top down, so the first header level should be the largest
+     *  time unit and the last one the smallest.  The smallest is then used for the actual  field-headers.
+     *
+     *
+     * @return HeaderLevel
+     */
+    public HeaderLevel[] getHeaderLevels()  {
+        return HeaderLevel.convertToHeaderLevelArray(getAttributeAsJavaScriptObject("headerLevels"));
+    }
+
+    /**
      * The message to display in the {@link com.smartgwt.client.widgets.calendar.Calendar#getEventEditor eventEditor} when the
      * 'To' date is greater than the 'From' date and a save is attempted.
      *
@@ -843,9 +968,38 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
+     * The name of the field which will determine the {@link com.smartgwt.client.widgets.calendar.Calendar#getLanes lane} in
+     * which this  event will be displayed for the {@link com.smartgwt.client.widgets.calendar.Calendar#getTimelineView
+     * timelineView}
      *
-     * @param leadingDateField leadingDateField Default value is "leadingDate"
+     * @param laneNameField . See {@link com.smartgwt.client.docs.String String}. Default value is "lane"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.calendar.CalendarEvent
+     */
+    public void setLaneNameField(String laneNameField)  throws IllegalStateException {
+        setAttribute("laneNameField", laneNameField, false);
+    }
+
+    /**
+     * The name of the field which will determine the {@link com.smartgwt.client.widgets.calendar.Calendar#getLanes lane} in
+     * which this  event will be displayed for the {@link com.smartgwt.client.widgets.calendar.Calendar#getTimelineView
+     * timelineView}
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     * @see com.smartgwt.client.widgets.calendar.CalendarEvent
+     */
+    public String getLaneNameField()  {
+        return getAttributeAsString("laneNameField");
+    }
+
+    /**
+     * The name of the leading date field for each event.  When this attribute and  {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getTrailingDateField trailingDateField} are present in the data, a line
+     * extends out from the event showing the  extent of the leading and trailing dates - useful for visualizing a pipeline of
+     * events  where some can be moved a certain amount without affecting others.
+     *
+     * @param leadingDateField . See {@link com.smartgwt.client.docs.String String}. Default value is "leadingDate"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
@@ -854,10 +1008,13 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
+     * The name of the leading date field for each event.  When this attribute and  {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getTrailingDateField trailingDateField} are present in the data, a line
+     * extends out from the event showing the  extent of the leading and trailing dates - useful for visualizing a pipeline of
+     * events  where some can be moved a certain amount without affecting others.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public String getLeadingDateField()  {
@@ -867,7 +1024,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * The title for the month view
      *
-     * @param monthViewTitle monthViewTitle Default value is "Month"
+     * @param monthViewTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "Month"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setMonthViewTitle(String monthViewTitle)  throws IllegalStateException {
@@ -878,7 +1035,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The title for the month view
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMonthViewTitle()  {
         return getAttributeAsString("monthViewTitle");
@@ -887,7 +1044,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * The name of the name field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
-     * @param nameField nameField Default value is "name"
+     * @param nameField . See {@link com.smartgwt.client.docs.String String}. Default value is "name"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
@@ -899,7 +1056,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The name of the name field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public String getNameField()  {
@@ -910,7 +1067,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getNextButton
      * next}  toolbar button
      *
-     * @param nextButtonHoverText nextButtonHoverText Default value is "Next"
+     * @param nextButtonHoverText . See {@link com.smartgwt.client.docs.String String}. Default value is "Next"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setNextButtonHoverText(String nextButtonHoverText)  throws IllegalStateException {
@@ -922,7 +1079,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * next}  toolbar button
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getNextButtonHoverText()  {
         return getAttributeAsString("nextButtonHoverText");
@@ -932,7 +1089,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * In the month CSS style applied to both the header and body of days from other months when {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getShowOtherDays showOtherDays} is false.
      *
-     * @param otherDayBlankStyle otherDayBlankStyle Default value is "calMonthOtherDayBlank"
+     * @param otherDayBlankStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "calMonthOtherDayBlank"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -945,7 +1102,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * com.smartgwt.client.widgets.calendar.Calendar#getShowOtherDays showOtherDays} is false.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getOtherDayBlankStyle()  {
@@ -956,7 +1113,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The base name for the CSS class applied to the day body of the month view of the calendar. This style will have "Dark",
      * "Over", "Selected", or "Disabled" appended to it according to the state of the cell.
      *
-     * @param otherDayBodyBaseStyle otherDayBodyBaseStyle Default value is "calMonthDayBody"
+     * @param otherDayBodyBaseStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "calMonthDayBody"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setOtherDayBodyBaseStyle(String otherDayBodyBaseStyle) {
@@ -968,7 +1125,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * "Over", "Selected", or "Disabled" appended to it according to the state of the cell.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getOtherDayBodyBaseStyle()  {
@@ -979,7 +1136,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The base name for the CSS class applied to the day headers of the month view. This style will have "Dark", "Over",
      * "Selected", or "Disabled" appended to it according to the state of the cell.
      *
-     * @param otherDayHeaderBaseStyle otherDayHeaderBaseStyle Default value is "calMonthDayHeader"
+     * @param otherDayHeaderBaseStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "calMonthDayHeader"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setOtherDayHeaderBaseStyle(String otherDayHeaderBaseStyle) {
@@ -991,7 +1148,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * "Selected", or "Disabled" appended to it according to the state of the cell.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getOtherDayHeaderBaseStyle()  {
@@ -1002,7 +1159,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The text to be displayed when a user hovers over the {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton previous} toolbar button
      *
-     * @param previousButtonHoverText previousButtonHoverText Default value is "Previous"
+     * @param previousButtonHoverText . See {@link com.smartgwt.client.docs.String String}. Default value is "Previous"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setPreviousButtonHoverText(String previousButtonHoverText)  throws IllegalStateException {
@@ -1014,7 +1171,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton previous} toolbar button
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getPreviousButtonHoverText()  {
         return getAttributeAsString("previousButtonHoverText");
@@ -1042,7 +1199,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * The title for the save button in the quick event dialog and the event editor
      *
-     * @param saveButtonTitle saveButtonTitle Default value is "Save Event"
+     * @param saveButtonTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "Save Event"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setSaveButtonTitle(String saveButtonTitle)  throws IllegalStateException {
@@ -1053,7 +1210,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The title for the save button in the quick event dialog and the event editor
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSaveButtonTitle()  {
         return getAttributeAsString("saveButtonTitle");
@@ -1086,7 +1243,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * The base name for the CSS class applied to a cell that is selected via a mouse drag.
      *
-     * @param selectedCellStyle selectedCellStyle Default value is "calendarCellSelected"
+     * @param selectedCellStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "calendarCellSelected"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setSelectedCellStyle(String selectedCellStyle) {
@@ -1097,7 +1254,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The base name for the CSS class applied to a cell that is selected via a mouse drag.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSelectedCellStyle()  {
@@ -1203,6 +1360,28 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * If false, the event header will take up the entire space of the event. This is useful when you want to be able to drag
+     * reposition by the entire event and not just the header.
+     *
+     * @param showEventDescriptions showEventDescriptions Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowEventDescriptions(Boolean showEventDescriptions)  throws IllegalStateException {
+        setAttribute("showEventDescriptions", showEventDescriptions, false);
+    }
+
+    /**
+     * If false, the event header will take up the entire space of the event. This is useful when you want to be able to drag
+     * reposition by the entire event and not just the header.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowEventDescriptions()  {
+        return getAttributeAsBoolean("showEventDescriptions");
+    }
+
+    /**
      * If set to true, in the month view, days that fall in an adjacent month are still shown with a header and body area, and
      * are interactive.  Otherwise days from other months are rendered in the {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getOtherDayBlankStyle otherDayBlankStyle} and are non-interactive.
@@ -1250,6 +1429,25 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public Boolean getShowQuickEventDialog()  {
         return getAttributeAsBoolean("showQuickEventDialog");
+    }
+
+    /**
+     * If set to true, show the Timeline view.
+     *
+     * @param showTimelineView showTimelineView Default value is false
+     */
+    public void setShowTimelineView(Boolean showTimelineView) {
+        setAttribute("showTimelineView", showTimelineView, true);
+    }
+
+    /**
+     * If set to true, show the Timeline view.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowTimelineView()  {
+        return getAttributeAsBoolean("showTimelineView");
     }
 
     /**
@@ -1310,9 +1508,57 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * If true, events will be sized to the grid, even if they start and/or end at times between grid cells.
+     *
+     * @param sizeEventsToGrid sizeEventsToGrid Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setSizeEventsToGrid(Boolean sizeEventsToGrid)  throws IllegalStateException {
+        setAttribute("sizeEventsToGrid", sizeEventsToGrid, false);
+    }
+
+    /**
+     * If true, events will be sized to the grid, even if they start and/or end at times between grid cells.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSizeEventsToGrid()  {
+        return getAttributeAsBoolean("sizeEventsToGrid");
+    }
+
+    /**
+     * The start date of the calendar {@link com.smartgwt.client.widgets.calendar.Timeline timeline view}.  Has no effect in 
+     * other views.  If not specified, defaults to a 20-column timeline starting from the beginning  of the current {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getTimelineGranularity timelineGranularity}. <P> Note that this attribute
+     * may be automatically altered if  {@link com.smartgwt.client.widgets.calendar.Timeline#getHeaderLevels header-levels} to
+     * fit to header boundaries.
+     *
+     * @param startDate startDate Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setStartDate(java.util.Date startDate)  throws IllegalStateException {
+        setAttribute("startDate", startDate, false);
+    }
+
+    /**
+     * The start date of the calendar {@link com.smartgwt.client.widgets.calendar.Timeline timeline view}.  Has no effect in 
+     * other views.  If not specified, defaults to a 20-column timeline starting from the beginning  of the current {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getTimelineGranularity timelineGranularity}. <P> Note that this attribute
+     * may be automatically altered if  {@link com.smartgwt.client.widgets.calendar.Timeline#getHeaderLevels header-levels} to
+     * fit to header boundaries.
+     *
+     *
+     * @return java.util.Date
+     */
+    public java.util.Date getStartDate()  {
+        return getAttributeAsDate("startDate");
+    }
+
+    /**
      * The name of the start date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
-     * @param startDateField startDateField Default value is "startDate"
+     * @param startDateField . See {@link com.smartgwt.client.docs.String String}. Default value is "startDate"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
@@ -1324,7 +1570,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The name of the start date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public String getStartDateField()  {
@@ -1332,9 +1578,54 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * The granularity with which the timelineView will display events.  Possible values are those available in the built-in
+     * {@link com.smartgwt.client.types.TimeUnit TimeUnit} type.
+     *
+     * @param timelineGranularity timelineGranularity Default value is "day"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTimelineGranularity(TimeUnit timelineGranularity)  throws IllegalStateException {
+        setAttribute("timelineGranularity", timelineGranularity == null ? null : timelineGranularity.getValue(), false);
+    }
+
+    /**
+     * The granularity with which the timelineView will display events.  Possible values are those available in the built-in
+     * {@link com.smartgwt.client.types.TimeUnit TimeUnit} type.
+     *
+     *
+     * @return TimeUnit
+     */
+    public TimeUnit getTimelineGranularity()  {
+        return EnumUtil.getEnum(TimeUnit.values(), getAttribute("timelineGranularity"));
+    }
+
+    /**
+     * How many units of {@link com.smartgwt.client.widgets.calendar.Calendar#getTimelineGranularity timelineGranularity} each
+     * cell represents.
+     *
+     * @param timelineUnitsPerColumn timelineUnitsPerColumn Default value is 1
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTimelineUnitsPerColumn(int timelineUnitsPerColumn)  throws IllegalStateException {
+        setAttribute("timelineUnitsPerColumn", timelineUnitsPerColumn, false);
+    }
+
+    /**
+     * How many units of {@link com.smartgwt.client.widgets.calendar.Calendar#getTimelineGranularity timelineGranularity} each
+     * cell represents.
+     *
+     *
+     * @return int
+     */
+    public int getTimelineUnitsPerColumn()  {
+        return getAttributeAsInt("timelineUnitsPerColumn");
+    }
+
+
+    /**
      * The title for the timeline view
      *
-     * @param timelineViewTitle timelineViewTitle Default value is "Timeline"
+     * @param timelineViewTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "Timeline"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setTimelineViewTitle(String timelineViewTitle)  throws IllegalStateException {
@@ -1345,16 +1636,39 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The title for the timeline view
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getTimelineViewTitle()  {
         return getAttributeAsString("timelineViewTitle");
     }
 
     /**
-     * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
+     * The background color for today when +{timelineGranularity} is "day"
      *
-     * @param trailingDateField trailingDateField Default value is "trailingDate"
+     * @param todayBackgroundColor . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTodayBackgroundColor(String todayBackgroundColor)  throws IllegalStateException {
+        setAttribute("todayBackgroundColor", todayBackgroundColor, false);
+    }
+
+    /**
+     * The background color for today when +{timelineGranularity} is "day"
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     */
+    public String getTodayBackgroundColor()  {
+        return getAttributeAsString("todayBackgroundColor");
+    }
+
+    /**
+     * The name of the trailing date field for each event.  When this attribute and  {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getLeadingDateField leadingDateField} are present in the data, a line
+     * extends out from the event showing  the extent of the leading and trailing dates - useful for visualizing a pipeline of
+     * events  where some can be moved a certain amount without affecting others.
+     *
+     * @param trailingDateField . See {@link com.smartgwt.client.docs.String String}. Default value is "trailingDate"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
@@ -1363,10 +1677,13 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
+     * The name of the trailing date field for each event.  When this attribute and  {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getLeadingDateField leadingDateField} are present in the data, a line
+     * extends out from the event showing  the extent of the leading and trailing dates - useful for visualizing a pipeline of
+     * events  where some can be moved a certain amount without affecting others.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
     public String getTrailingDateField()  {
@@ -1398,7 +1715,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * The title for the week view
      *
-     * @param weekViewTitle weekViewTitle Default value is "Week"
+     * @param weekViewTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "Week"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setWeekViewTitle(String weekViewTitle)  throws IllegalStateException {
@@ -1409,7 +1726,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The title for the week view
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getWeekViewTitle()  {
         return getAttributeAsString("weekViewTitle");
@@ -1420,7 +1737,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * are within the workday, as defined by {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart workdayStart}
      * and {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd workdayEnd}.
      *
-     * @param workdayBaseStyle workdayBaseStyle Default value is "calendarWorkday"
+     * @param workdayBaseStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "calendarWorkday"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -1434,7 +1751,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * and {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd workdayEnd}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getWorkdayBaseStyle()  {
@@ -1447,7 +1764,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * specified as a String acceptable to String. <P> Both start and end time must fall on a 30 minute increment (eg 9:30, but
      * not 9:45).
      *
-     * @param workdayEnd workdayEnd Default value is "5:00pm"
+     * @param workdayEnd . See {@link com.smartgwt.client.docs.String String}. Default value is "5:00pm"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setWorkdayEnd(String workdayEnd)  throws IllegalStateException {
@@ -1461,7 +1778,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * not 9:45).
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getWorkdayEnd()  {
         return getAttributeAsString("workdayEnd");
@@ -1473,7 +1790,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * specified as a String acceptable to String. <P> Both start and end time must fall on a 30 minute increment (eg 9:30, but
      * not 9:45).
      *
-     * @param workdayStart workdayStart Default value is "9:00am"
+     * @param workdayStart . See {@link com.smartgwt.client.docs.String String}. Default value is "9:00am"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setWorkdayStart(String workdayStart)  throws IllegalStateException {
@@ -1487,13 +1804,23 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * not 9:45).
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getWorkdayStart()  {
         return getAttributeAsString("workdayStart");
     }
 
     // ********************* Methods ***********************
+
+    /**
+     * Adds a new {@link com.smartgwt.client.widgets.calendar.Lane} to the calendar in {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getTimelineView timelineView} mode.
+     * @param lane a new Lane object to add to the timeline view
+     */
+    public native void addLane(Lane lane) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.addLane(lane.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
     /**
      * Add a backgroundClick handler.
      * <p>
@@ -1510,25 +1837,28 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     private native void setupBackgroundClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var backgroundClick = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.calendar.events.BackgroundClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({backgroundClick:$debox($entry(function(){
-                        var param = {"startDate" : arguments[0], "endDate" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.calendar.events.BackgroundClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({backgroundClick: 
+                function () {
+                    var param = {"startDate" : arguments[0], "endDate" : arguments[1]};
+                    return backgroundClick(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.backgroundClick = $debox($entry(function(){
-                   var param = {"startDate" : arguments[0], "endDate" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.calendar.events.BackgroundClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.backgroundClick = 
+                function () {
+                    var param = {"startDate" : arguments[0], "endDate" : arguments[1]};
+                    return backgroundClick(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -1548,25 +1878,28 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     private native void setupBackgroundMouseDownEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var backgroundMouseDown = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.calendar.events.BackgroundMouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({backgroundMouseDown:$debox($entry(function(){
-                        var param = {"startDate" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.calendar.events.BackgroundMouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({backgroundMouseDown: 
+                function () {
+                    var param = {"startDate" : arguments[0]};
+                    return backgroundMouseDown(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.backgroundMouseDown = $debox($entry(function(){
-                   var param = {"startDate" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.calendar.events.BackgroundMouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.backgroundMouseDown = 
+                function () {
+                    var param = {"startDate" : arguments[0]};
+                    return backgroundMouseDown(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -1586,24 +1919,21 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     private native void setupDateChangedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var dateChanged = $entry(function(){
+            var param = {};
+
+                var event = @com.smartgwt.client.widgets.calendar.events.DateChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dateChanged:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.calendar.events.DateChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({dateChanged:  dateChanged              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dateChanged = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.calendar.events.DateChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.dateChanged =  dateChanged             ;
         }
    }-*/;
-            
+
     /**
      * Should the parameter date be considered a workday? By default this method tries to find the parameter date day in {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getWorkdays workdays}, and returns true if found. Override this method to 
@@ -1640,25 +1970,28 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     private native void setupDayBodyClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var dayBodyClick = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.calendar.events.DayBodyClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dayBodyClick:$debox($entry(function(){
-                        var param = {"date" : arguments[0], "events" : arguments[1], "calendar" : arguments[2], "rowNum" : arguments[3], "colNum" : arguments[4]};
-                        var event = @com.smartgwt.client.widgets.calendar.events.DayBodyClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({dayBodyClick: 
+                function () {
+                    var param = {"date" : arguments[0], "events" : arguments[1], "calendar" : arguments[2], "rowNum" : arguments[3], "colNum" : arguments[4]};
+                    return dayBodyClick(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dayBodyClick = $debox($entry(function(){
-                   var param = {"date" : arguments[0], "events" : arguments[1], "calendar" : arguments[2], "rowNum" : arguments[3], "colNum" : arguments[4]};
-                   var event = @com.smartgwt.client.widgets.calendar.events.DayBodyClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.dayBodyClick = 
+                function () {
+                    var param = {"date" : arguments[0], "events" : arguments[1], "calendar" : arguments[2], "rowNum" : arguments[3], "colNum" : arguments[4]};
+                    return dayBodyClick(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -1679,25 +2012,28 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     private native void setupDayHeaderClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var dayHeaderClick = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.calendar.events.DayHeaderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dayHeaderClick:$debox($entry(function(){
-                        var param = {"date" : arguments[0], "events" : arguments[1], "calendar" : arguments[2], "rowNum" : arguments[3], "colNum" : arguments[4]};
-                        var event = @com.smartgwt.client.widgets.calendar.events.DayHeaderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({dayHeaderClick: 
+                function () {
+                    var param = {"date" : arguments[0], "events" : arguments[1], "calendar" : arguments[2], "rowNum" : arguments[3], "colNum" : arguments[4]};
+                    return dayHeaderClick(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dayHeaderClick = $debox($entry(function(){
-                   var param = {"date" : arguments[0], "events" : arguments[1], "calendar" : arguments[2], "rowNum" : arguments[3], "colNum" : arguments[4]};
-                   var event = @com.smartgwt.client.widgets.calendar.events.DayHeaderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.dayHeaderClick = 
+                function () {
+                    var param = {"date" : arguments[0], "events" : arguments[1], "calendar" : arguments[2], "rowNum" : arguments[3], "colNum" : arguments[4]};
+                    return dayHeaderClick(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -1717,21 +2053,18 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     private native void setupEventAddedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var eventAdded = $entry(function(){
+            var param = {"event" : arguments[0]};
+
+                var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventAdded::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({eventAdded:$entry(function(){
-                        var param = {"event" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventAdded::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({eventAdded:  eventAdded              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.eventAdded = $entry(function(){
-                   var param = {"event" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventAdded::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.eventAdded =  eventAdded             ;
         }
    }-*/;
     /**
@@ -1752,21 +2085,18 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     private native void setupEventChangedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var eventChanged = $entry(function(){
+            var param = {"event" : arguments[0]};
+
+                var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({eventChanged:$entry(function(){
-                        var param = {"event" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({eventChanged:  eventChanged              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.eventChanged = $entry(function(){
-                   var param = {"event" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.eventChanged =  eventChanged             ;
         }
    }-*/;
     /**
@@ -1787,25 +2117,28 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     private native void setupEventClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var eventClick = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventClick::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({eventClick:$debox($entry(function(){
-                        var param = {"event" : arguments[0], "viewName" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventClick::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({eventClick: 
+                function () {
+                    var param = {"event" : arguments[0], "viewName" : arguments[1]};
+                    return eventClick(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.eventClick = $debox($entry(function(){
-                   var param = {"event" : arguments[0], "viewName" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventClick::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.eventClick = 
+                function () {
+                    var param = {"event" : arguments[0], "viewName" : arguments[1]};
+                    return eventClick(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -1824,25 +2157,28 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     private native void setupEventMovedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var eventMoved = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventMoved::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({eventMoved:$debox($entry(function(){
-                        var param = {"newDate" : arguments[0], "event" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventMoved::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({eventMoved: 
+                function () {
+                    var param = {"newDate" : arguments[0], "event" : arguments[1]};
+                    return eventMoved(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.eventMoved = $debox($entry(function(){
-                   var param = {"newDate" : arguments[0], "event" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventMoved::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.eventMoved = 
+                function () {
+                    var param = {"newDate" : arguments[0], "event" : arguments[1]};
+                    return eventMoved(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -1863,25 +2199,28 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     private native void setupEventRemoveClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var eventRemoveClick = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventRemoveClick::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({eventRemoveClick:$debox($entry(function(){
-                        var param = {"event" : arguments[0], "viewName" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventRemoveClick::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({eventRemoveClick: 
+                function () {
+                    var param = {"event" : arguments[0], "viewName" : arguments[1]};
+                    return eventRemoveClick(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.eventRemoveClick = $debox($entry(function(){
-                   var param = {"event" : arguments[0], "viewName" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventRemoveClick::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.eventRemoveClick = 
+                function () {
+                    var param = {"event" : arguments[0], "viewName" : arguments[1]};
+                    return eventRemoveClick(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -1901,21 +2240,18 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     private native void setupEventRemovedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var eventRemoved = $entry(function(){
+            var param = {"event" : arguments[0]};
+
+                var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventRemoved::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({eventRemoved:$entry(function(){
-                        var param = {"event" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventRemoved::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({eventRemoved:  eventRemoved              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.eventRemoved = $entry(function(){
-                   var param = {"event" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventRemoved::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.eventRemoved =  eventRemoved             ;
         }
    }-*/;
     /**
@@ -1934,28 +2270,39 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     private native void setupEventResizedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var eventResized = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventResized::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({eventResized:$debox($entry(function(){
-                        var param = {"newDate" : arguments[0], "event" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventResized::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({eventResized: 
+                function () {
+                    var param = {"newDate" : arguments[0], "event" : arguments[1]};
+                    return eventResized(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.eventResized = $debox($entry(function(){
-                   var param = {"newDate" : arguments[0], "event" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventResized::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.eventResized = 
+                function () {
+                    var param = {"newDate" : arguments[0], "event" : arguments[1]};
+                    return eventResized(param) == true;
+                }
+            ;
         }
    }-*/;
-            
+
+    /**
+     * A notification method fired when the events in the current view have been refreshed.
+     */
+    public native void eventsRendered() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.eventsRendered();
+    }-*/;
+
     /**
      * Gets the day of the week (0-6) that the mouse is currently over.
      *
@@ -1966,7 +2313,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getActiveDay();
     }-*/;
-            
+
     /**
      * Gets a date object representing the date over which the mouse is hovering for the current selected view. For month view,
      * the time will be set to midnight of the active day. For dayview and week view, the time will be the rounded to the
@@ -1983,7 +2330,71 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
             return @com.smartgwt.client.util.JSOHelper::toDate(D)(retVal.getTime());
         }
     }-*/;
-            
+
+    /**
+     * Returns the end of the selected week or month depending on the current calendar view.   For the month view, and for the
+     * week view when not showing weekends, this will often be a  different date than that returned by {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getVisibleEndDate Calendar.getVisibleEndDate}.
+     *
+     * @return period end date
+     */
+    public native Date getPeriodEndDate() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.getPeriodEndDate();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toDate(D)(retVal.getTime());
+        }
+    }-*/;
+
+    /**
+     * Returns the start of the selected week or month depending on the current calendar view.   For the month view, and for
+     * the week view when not showing weekends, this will often be a  different date than that returned by {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getVisibleEndDate Calendar.getVisibleEndDate}.
+     *
+     * @return period start date
+     */
+    public native Date getPeriodStartDate() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.getPeriodStartDate();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toDate(D)(retVal.getTime());
+        }
+    }-*/;
+
+    /**
+     * Returns the last visible date in the currently selected calendar view.
+     *
+     * @return last visible date
+     */
+    public native Date getVisibleEndDate() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.getVisibleEndDate();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toDate(D)(retVal.getTime());
+        }
+    }-*/;
+
+    /**
+     * Returns the first visible date in the currently selected calendar view.
+     *
+     * @return first visible date
+     */
+    public native Date getVisibleStartDate() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.getVisibleStartDate();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toDate(D)(retVal.getTime());
+        }
+    }-*/;
+
     /**
      * Move to the next day, week, or month, depending on which tab is selected.
      */
@@ -1991,7 +2402,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.next();
     }-*/;
-            
+
     /**
      * Move to the previous day, week, or month, depending on which tab is selected.
      */
@@ -1999,7 +2410,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.previous();
     }-*/;
-            
+
     /**
      * Fires whenever the user changes the current date, including picking a specific date or navigating to a new week or
      * month.
@@ -2009,7 +2420,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.selectTab(tabnum);
     }-*/;
-            
+
     /**
      * Sets the range over which the timeline will display events
      * @param start start of range
@@ -2204,6 +2615,39 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         return EnumUtil.getEnum(TimeDisplayFormat.values(), getAttribute("timeFormatter"));
     }
 
+    public native Lane[] getLanes() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return @com.smartgwt.client.widgets.calendar.Calendar::convertToLaneArray(Lcom/google/gwt/core/client/JavaScriptObject;)(self.lanes);
+    }-*/;
+    
+    /**
+     * Sets the timeline lanes for this calendar
+     *
+     * @param lanes array of Lane objects
+     */
+    public void setLanes(Lane... lanes) {
+        setAttribute("lanes", lanes, true);
+    }
+
+    public ListGridField[] getLaneFields() {
+        JavaScriptObject laneFieldsJS = getLaneFieldsJS();
+        return ListGrid.convertToListGridFieldArray(laneFieldsJS);
+    }
+    
+    private native JavaScriptObject getLaneFieldsJS() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.laneFields;
+    }-*/;
+
+    /**
+     * Sets the frozen timeline laneFields for this calendar
+     *
+     * @param laneFields array of ListGridField objects
+     */
+    public void setLaneFields(ListGridField... laneFields) {
+        setAttribute("laneFields", laneFields, true);
+    }
+    
     /**
      * A List of CalendarEvent objects, specifying the data to be used to populate the calendar.   <p> This property will typically not be explicitly specified for databound Calendars, where the data is returned from the server via databound component methods such as {@link com.smartgwt.client.widgets.calendar.Calendar#fetchData}. In this case the data objects will be set to a  {@link com.smartgwt.client.data.ResultSet} rather than a simple array.
      *
@@ -2213,6 +2657,26 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     public CalendarEvent[] getData()  {
         return getAttribute("data");
     }*/
+
+    /**
+     * Removes a lane from the calendar in {@link com.smartgwt.client.widgets.calendar.Calendar#getTimelineView timelineView}
+     * mode.
+     * @param lane the lane to remove
+     */
+    public native void removeLane(Lane lane) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.removeLane(lane);
+    }-*/;
+
+    /**
+     * Removes a lane from the calendar in {@link com.smartgwt.client.widgets.calendar.Calendar#getTimelineView timelineView}
+     * mode.
+     * @param laneName the name of the lane to remove
+     */
+    public native void removeLane(String laneName) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.removeLane(laneName);
+    }-*/;
 
     /**
      * Create a new event in this calendar instance.
@@ -2310,6 +2774,21 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         return data;
     }
 
+    private static Lane[] convertToLaneArray(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new Lane[]{};
+        }
+        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
+        Lane[] objects = new Lane[componentsj.length];
+        for (int i = 0; i < componentsj.length; i++) {
+            JavaScriptObject componentJS = componentsj[i];
+            Lane obj = (Lane) RefDataClass.getRef(componentJS);
+            if (obj == null) obj = new Lane(componentJS);
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
     private static CalendarEvent[] convertToCalendarEventArray(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
             return new CalendarEvent[]{};
@@ -2325,6 +2804,24 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         return objects;
 	}
 
+    private void checkCalendarLoaded () {
+        if (!calendarLoaded()) {
+            String errorMessage = "Attempt to create Calendar. This class requires the optional " +
+                                    "Calendar module which is not present in this build.";
+            SC.logWarn(errorMessage);
+            throw new UnsupportedOperationException(errorMessage);
+        }
+    }
+
+    /**
+     * Static method indicating whether the optional Calendar module is loaded for the page.
+     * The Calendar component requires this module.
+     * @return true if the Calendar module is present
+     */
+    public static native boolean calendarLoaded() /*-{
+        return ($wnd.isc.Calendar != null);
+    }-*/;
+
 
 
     // ********************* DataBoundComponent Properties / Attributes ***********************
@@ -2332,7 +2829,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     public void setDataPageSize(int dataPageSize) {
         setAttribute("dataPageSize", dataPageSize, true);
     }
-
+    
     public int getDataPageSize() {
         return getAttributeAsInt("dataPageSize");
     }
@@ -2591,7 +3088,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
     // ********************* Methods ***********************
 
-
+    
     public native void selectRecord(Record record)/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
@@ -2761,6 +3258,14 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         return getAttributeAsBoolean("autoFetchData");
     }
 
+    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle) throws IllegalStateException {
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
+    }
+
+    public TextMatchStyle getAutoFetchTextMatchStyle() {
+        return TextMatchStyle.valueOf(getAttributeAsString("autoFetchTextMatchStyle"));
+    }
+
     public void setAutoFetchAsFilter(Boolean autoFetchAsFilter) throws IllegalStateException {
         setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
     }
@@ -2866,68 +3371,21 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         return new RecordList(dataJS);
     }
 
-    /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
-     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
-     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
-     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
-     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
-     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
-     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
-     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
-     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
-     */
     public native void exportData() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportData();
     }-*/;
 
-    /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
-     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
-     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
-     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
-     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
-     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
-     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
-     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
-     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
-     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
-     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
-     */
     public native void exportData(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
     
-   /**
-    * Exports this component's data with client-side formatters applied, so is suitable for 
-    * direct display to users.  This feature requires the SmartClient server, but does not 
-    * rely on any server-side DataSources.
-    * <P>To export unformatted data from this component's dataSource, see 
-    * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
-    * which does not include client-side formatters, 
-    * but relies on both the SmartClient server and server-side DataSources.
-    * @see com.smartgwt.client.data.DataSource#exportClientData
-    */
     public native void exportClientData() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportClientData();
     }-*/;
 
-   /**
-    * Exports this component's data with client-side formatters applied, so is suitable for 
-    * direct display to users.  This feature requires the SmartClient server, but does not 
-    * rely on any server-side DataSources.
-    * <P>To export unformatted data from this component's dataSource, see
-    * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
-    * which does not include client-side formatters, 
-    * but relies on both the SmartClient server and server-side DataSources.
-    * @param requestProperties Request properties for the export
-    * @see com.smartgwt.client.data.DataSource#exportClientData
-    */
     public native void exportClientData(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportClientData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
@@ -2966,8 +3424,470 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
             }));
         }
     }-*/;
+    
+    /**
+     * Add a {@link com.smartgwt.client.widgets.DropCompleteHandler}.  See that class's documentation for a definition of "drop complete", 
+     * and how it differs from "drag complete" ({@link com.smartgwt.client.widgets.DragCompleteHandler}).
+     *
+     * @param handler the DropCompleteHandler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDropCompleteHandler(DropCompleteHandler handler) {
+        if(getHandlerCount(DropCompleteEvent.getType()) == 0) setupDropCompleteEvent();
+        return doAddHandler(handler, DropCompleteEvent.getType());
+    }
 
+    private native void setupDropCompleteEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({dropComplete:$debox($entry(function(){
+                    var param = {"transferredRecords" : arguments[0]};
+                    var event = @com.smartgwt.client.widgets.events.DropCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                }))
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.dropComplete = $debox($entry(function(){
+                var param = {"transferredRecords" : arguments[0]};
+                var event = @com.smartgwt.client.widgets.events.DropCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            }));
+        }
+    }-*/;
+    
+    /**
+     * Add a {@link com.smartgwt.client.widgets.DragCompleteHandler}.  See that class's documentation for a definition of "drag complete", 
+     * and how it differs from "drop complete" ({@link com.smartgwt.client.widgets.DropCompleteHandler}).
+     *
+     * @param handler the DropCompleteHandler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDragCompleteHandler(DragCompleteHandler handler) {
+        if(getHandlerCount(DragCompleteEvent.getType()) == 0) setupDragCompleteEvent();
+        return doAddHandler(handler, DragCompleteEvent.getType());
+    }
+
+    private native void setupDragCompleteEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({dragComplete:$debox($entry(function(){
+                    var event = @com.smartgwt.client.widgets.events.DragCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)();
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                }))
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.dragComplete = $debox($entry(function(){
+                var event = @com.smartgwt.client.widgets.events.DragCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)();
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            }));
+        }
+    }-*/;
+
+    public LogicalStructureObject setLogicalStructure(CalendarLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.addEventButtonHoverText = getAttributeAsString("addEventButtonHoverText");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.addEventButtonHoverText:" + t.getMessage() + "\n";
+        }
+        try {
+            s.baseStyle = getAttributeAsString("baseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.baseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.cancelButtonTitle = getAttributeAsString("cancelButtonTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.cancelButtonTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canCreateEvents = getAttributeAsString("canCreateEvents");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.canCreateEvents:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canDeleteEvents = getAttributeAsString("canDeleteEvents");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.canDeleteEvents:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canDragEventField = getAttributeAsString("canDragEventField");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.canDragEventField:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canDragEvents = getAttributeAsString("canDragEvents");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.canDragEvents:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canEditEvents = getAttributeAsString("canEditEvents");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.canEditEvents:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canEditField = getAttributeAsString("canEditField");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.canEditField:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canEditLane = getAttributeAsString("canEditLane");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.canEditLane:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canResizeTimelineEvents = getAttributeAsString("canResizeTimelineEvents");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.canResizeTimelineEvents:" + t.getMessage() + "\n";
+        }
+        try {
+            s.chosenDate = getAttributeAsString("chosenDate");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.chosenDate:" + t.getMessage() + "\n";
+        }
+        try {
+            s.currentViewName = getAttributeAsString("currentViewName");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.currentViewName:" + t.getMessage() + "\n";
+        }
+        try {
+            s.data = getData();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.dataArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataFetchMode = getAttributeAsString("dataFetchMode");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.dataFetchMode:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dateEditingStyle = getAttributeAsString("dateEditingStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.dateEditingStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dateFormatter = getAttributeAsString("dateFormatter");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.dateFormatter:" + t.getMessage() + "\n";
+        }
+        try {
+            s.datePickerHoverText = getAttributeAsString("datePickerHoverText");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.datePickerHoverText:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dayBodyBaseStyle = getAttributeAsString("dayBodyBaseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.dayBodyBaseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dayHeaderBaseStyle = getAttributeAsString("dayHeaderBaseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.dayHeaderBaseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dayViewTitle = getAttributeAsString("dayViewTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.dayViewTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.descriptionField = getAttributeAsString("descriptionField");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.descriptionField:" + t.getMessage() + "\n";
+        }
+        try {
+            s.detailsButtonTitle = getAttributeAsString("detailsButtonTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.detailsButtonTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.disableWeekends = getAttributeAsString("disableWeekends");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.disableWeekends:" + t.getMessage() + "\n";
+        }
+        try {
+            s.endDate = getAttributeAsString("endDate");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.endDate:" + t.getMessage() + "\n";
+        }
+        try {
+            s.endDateField = getAttributeAsString("endDateField");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.endDateField:" + t.getMessage() + "\n";
+        }
+        try {
+            s.eventAutoArrange = getAttributeAsString("eventAutoArrange");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.eventAutoArrange:" + t.getMessage() + "\n";
+        }
+        try {
+            s.eventDragGap = getAttributeAsString("eventDragGap");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.eventDragGap:" + t.getMessage() + "\n";
+        }
+        try {
+            s.eventNameFieldTitle = getAttributeAsString("eventNameFieldTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.eventNameFieldTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.eventOverlap = getAttributeAsString("eventOverlap");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.eventOverlap:" + t.getMessage() + "\n";
+        }
+        try {
+            s.eventOverlapIdenticalStartTimes = getAttributeAsString("eventOverlapIdenticalStartTimes");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.eventOverlapIdenticalStartTimes:" + t.getMessage() + "\n";
+        }
+        try {
+            s.eventOverlapPercent = getAttributeAsString("eventOverlapPercent");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.eventOverlapPercent:" + t.getMessage() + "\n";
+        }
+        try {
+            s.eventSnapGap = getAttributeAsString("eventSnapGap");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.eventSnapGap:" + t.getMessage() + "\n";
+        }
+        try {
+            s.eventWindowStyle = getAttributeAsString("eventWindowStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.eventWindowStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.eventWindowStyleField = getAttributeAsString("eventWindowStyleField");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.eventWindowStyleField:" + t.getMessage() + "\n";
+        }
+        try {
+            s.firstDayOfWeek = getAttributeAsString("firstDayOfWeek");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.firstDayOfWeek:" + t.getMessage() + "\n";
+        }
+        try {
+            s.headerLevels = getHeaderLevels();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.headerLevelsArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.invalidDateMessage = getAttributeAsString("invalidDateMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.invalidDateMessage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.laneFields = getLaneFields();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.laneFieldsArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.laneNameField = getAttributeAsString("laneNameField");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.laneNameField:" + t.getMessage() + "\n";
+        }
+        try {
+            s.lanes = getLanes();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.lanesArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.leadingDateField = getAttributeAsString("leadingDateField");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.leadingDateField:" + t.getMessage() + "\n";
+        }
+        try {
+            s.monthViewTitle = getAttributeAsString("monthViewTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.monthViewTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.nameField = getAttributeAsString("nameField");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.nameField:" + t.getMessage() + "\n";
+        }
+        try {
+            s.nextButtonHoverText = getAttributeAsString("nextButtonHoverText");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.nextButtonHoverText:" + t.getMessage() + "\n";
+        }
+        try {
+            s.otherDayBlankStyle = getAttributeAsString("otherDayBlankStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.otherDayBlankStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.otherDayBodyBaseStyle = getAttributeAsString("otherDayBodyBaseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.otherDayBodyBaseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.otherDayHeaderBaseStyle = getAttributeAsString("otherDayHeaderBaseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.otherDayHeaderBaseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.previousButtonHoverText = getAttributeAsString("previousButtonHoverText");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.previousButtonHoverText:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rowHeight = getAttributeAsString("rowHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.rowHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.saveButtonTitle = getAttributeAsString("saveButtonTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.saveButtonTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.scrollToWorkday = getAttributeAsString("scrollToWorkday");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.scrollToWorkday:" + t.getMessage() + "\n";
+        }
+        try {
+            s.selectedCellStyle = getAttributeAsString("selectedCellStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.selectedCellStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showControlsBar = getAttributeAsString("showControlsBar");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.showControlsBar:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDateChooser = getAttributeAsString("showDateChooser");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.showDateChooser:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDayHeaders = getAttributeAsString("showDayHeaders");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.showDayHeaders:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDetailFields = getAttributeAsString("showDetailFields");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.showDetailFields:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showEventDescriptions = getAttributeAsString("showEventDescriptions");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.showEventDescriptions:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showOtherDays = getAttributeAsString("showOtherDays");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.showOtherDays:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showQuickEventDialog = getAttributeAsString("showQuickEventDialog");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.showQuickEventDialog:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showTimelineView = getAttributeAsString("showTimelineView");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.showTimelineView:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showWeekends = getAttributeAsString("showWeekends");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.showWeekends:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showWorkday = getAttributeAsString("showWorkday");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.showWorkday:" + t.getMessage() + "\n";
+        }
+        try {
+            s.sizeEventsToGrid = getAttributeAsString("sizeEventsToGrid");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.sizeEventsToGrid:" + t.getMessage() + "\n";
+        }
+        try {
+            s.startDate = getAttributeAsString("startDate");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.startDate:" + t.getMessage() + "\n";
+        }
+        try {
+            s.startDateField = getAttributeAsString("startDateField");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.startDateField:" + t.getMessage() + "\n";
+        }
+        try {
+            s.timeFormatter = getAttributeAsString("timeFormatter");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.timeFormatter:" + t.getMessage() + "\n";
+        }
+        try {
+            s.timelineGranularity = getAttributeAsString("timelineGranularity");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.timelineGranularity:" + t.getMessage() + "\n";
+        }
+        try {
+            s.timelineUnitsPerColumn = getAttributeAsString("timelineUnitsPerColumn");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.timelineUnitsPerColumn:" + t.getMessage() + "\n";
+        }
+        try {
+            s.timelineViewTitle = getAttributeAsString("timelineViewTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.timelineViewTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.todayBackgroundColor = getAttributeAsString("todayBackgroundColor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.todayBackgroundColor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.trailingDateField = getAttributeAsString("trailingDateField");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.trailingDateField:" + t.getMessage() + "\n";
+        }
+        try {
+            s.weekEventBorderOverlap = getAttributeAsString("weekEventBorderOverlap");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.weekEventBorderOverlap:" + t.getMessage() + "\n";
+        }
+        try {
+            s.weekViewTitle = getAttributeAsString("weekViewTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.weekViewTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.workdayBaseStyle = getAttributeAsString("workdayBaseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.workdayBaseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.workdayEnd = getAttributeAsString("workdayEnd");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.workdayEnd:" + t.getMessage() + "\n";
+        }
+        try {
+            s.workdays = getAttributeAsString("workdays");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.workdays:" + t.getMessage() + "\n";
+        }
+        try {
+            s.workdayStart = getAttributeAsString("workdayStart");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.workdayStart:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        CalendarLogicalStructure s = new CalendarLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

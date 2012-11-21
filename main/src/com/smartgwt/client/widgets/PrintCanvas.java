@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * PrintCanvas is a subclass of canvas which renders printable content HTML and  provides APIs for printing this content as
@@ -65,22 +85,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class PrintCanvas extends Canvas {
 
-    public static PrintCanvas getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (PrintCanvas) obj;
-        } else {
-            return new PrintCanvas(jsObj);
+    public native static PrintCanvas getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("PrintCanvas",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.PrintCanvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public PrintCanvas(){
         scClassName = "PrintCanvas";
     }
 
     public PrintCanvas(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "PrintCanvas";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -93,11 +124,33 @@ public class PrintCanvas extends Canvas {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * Setting this property will cause the specified stylesheet to be loaded in this print canvas's frame. The stylesheet
+     * should be specified as a URL to load.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param externalStylesheet . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     */
+    public void setExternalStylesheet(String externalStylesheet) {
+        setAttribute("externalStylesheet", externalStylesheet, true);
+    }
+
+    /**
+     * Setting this property will cause the specified stylesheet to be loaded in this print canvas's frame. The stylesheet
+     * should be specified as a URL to load.
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     */
+    public String getExternalStylesheet()  {
+        return getAttributeAsString("externalStylesheet");
+    }
+
+    /**
      * Location of the special printFrame html file provided as part of the Smart GWT libraries. This file must be present at
      * the specified location for the printCanvas printing APIs.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param printFrameURL printFrameURL Default value is "[HELPERS]printFrame.html"
+     * @param printFrameURL . See {@link com.smartgwt.client.docs.String String}. Default value is "[HELPERS]printFrame.html"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setPrintFrameURL(String printFrameURL)  throws IllegalStateException {
@@ -109,14 +162,14 @@ public class PrintCanvas extends Canvas {
      * the specified location for the printCanvas printing APIs.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getPrintFrameURL()  {
         return getAttributeAsString("printFrameURL");
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Show the native print dialog and allow the user to print the current HTML for this printCanvas. Note that the
      * PrintCanvas must be drawn to be printed.
@@ -169,7 +222,25 @@ public class PrintCanvas extends Canvas {
          );
     }-*/;
 
+    public LogicalStructureObject setLogicalStructure(PrintCanvasLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.externalStylesheet = getAttributeAsString("externalStylesheet");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PrintCanvas.externalStylesheet:" + t.getMessage() + "\n";
+        }
+        try {
+            s.printFrameURL = getAttributeAsString("printFrameURL");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PrintCanvas.printFrameURL:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        PrintCanvasLogicalStructure s = new PrintCanvasLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

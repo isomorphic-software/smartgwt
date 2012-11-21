@@ -1,28 +1,31 @@
-
+	    
 package com.smartgwt.client.docs;
 
 /**
  * <h3>Google Application Engine (GAE)</h3>
- * <a href='http://code.google.com/appengine/' onclick="window.open('http://code.google.com/appengine/');return
- * false;">GAE</a> supports
+ * <a href='http://code.google.com/appengine/'
+ * onclick="window.open('http://code.google.com/appengine/');return false;">GAE</a> supports
  * <a href='http://code.google.com/appengine/docs/java/overview.html'
- * onclick="window.open('http://code.google.com/appengine/docs/java/overview.html');return false;">Java applications</a>.
+ * onclick="window.open('http://code.google.com/appengine/docs/java/overview.html');return
+ * false;">Java applications</a>.
  *  Google provides a great infrastructure for web applications. It takes care of many web
  *  application developer's headaches: hardware, operating system support, backups, scaling,
  *  security, mail etc. To run under GAE your application has to comply to GAE rules.
  *  The biggest difference is GAE datastore - it is not a relational database - instead they use
  * something called <a href='http://en.wikipedia.org/wiki/BigTable'
- * onclick="window.open('http://en.wikipedia.org/wiki/BigTable');return false;">BigTable</a>. To simplify development,
+ * onclick="window.open('http://en.wikipedia.org/wiki/BigTable');return false;">BigTable</a>. To
+ * simplify development,
  *  Google has adopted
  * <a href='http://www.datanucleus.org/products/accessplatform/'
- * onclick="window.open('http://www.datanucleus.org/products/accessplatform/');return false;">DataNucleus Access
- * Platform</a>
+ * onclick="window.open('http://www.datanucleus.org/products/accessplatform/');return
+ * false;">DataNucleus Access Platform</a>
  *  to provide
  * <a href='http://code.google.com/appengine/docs/java/datastore/usingjpa.html'
- * onclick="window.open('http://code.google.com/appengine/docs/java/datastore/usingjpa.html');return false;">JPA 1.0
- * support</a>.
+ * onclick="window.open('http://code.google.com/appengine/docs/java/datastore/usingjpa.html');return
+ * false;">JPA 1.0 support</a>.
  *  Because GAE datastore is not a relational database
- * <a href='http://code.google.com/appengine/docs/java/datastore/usingjpa.html#Unsupported_Features_of_JPA'
+ * <a
+ * href='http://code.google.com/appengine/docs/java/datastore/usingjpa.html#Unsupported_Features_of_JPA'
  * onclick="window.open('http://code.google.com/appengine/docs/java/datastore/usingjpa.html#Unsupported_Features_of_JPA');return
  * false;">some JPA features</a>
  *  are not supported by this JPA implementation.
@@ -34,9 +37,10 @@ package com.smartgwt.client.docs;
  * onclick="window.open('http://code.google.com/appengine/docs/java/config/appconfig.html');return
  * false;"><code>appengine-web.xml</code></a>
  *  which will hold Google's specific settings.<br/>
- *  One important thing to note: static and dynamic contents will be served from different servers.
+ * One important thing to note: static and dynamic contents will be served from different servers.
  *  There are
- * <a href='http://code.google.com/appengine/docs/java/config/appconfig.html#Static_Files_and_Resource_Files'
+ * <a
+ * href='http://code.google.com/appengine/docs/java/config/appconfig.html#Static_Files_and_Resource_Files'
  * onclick="window.open('http://code.google.com/appengine/docs/java/config/appconfig.html#Static_Files_and_Resource_Files');return
  * false;">special sections</a>
  *  in
@@ -44,9 +48,11 @@ package com.smartgwt.client.docs;
  * onclick="window.open('http://code.google.com/appengine/docs/java/config/appconfig.html');return
  * false;"><code>appengine-web.xml</code></a>
  *  specifying static and dynamic resources. All resources are duplicated if not specified.
- *  A single GAE application is limited to 3000 files. A typical Smart GWT application consists of many
+ * A single GAE application is limited to 3000 files. A typical Smart GWT application consists of
+ * many
  *  resources and it exceeds the limit when duplicated (even with a single theme).
- *  To run a Smart GWT application we have to split resources. Here is an example configuration:<pre>
+ * To run a Smart GWT application we have to split resources. Here is an example
+ * configuration:<pre>
  *  &lt;?xml version="1.0" encoding="UTF-8"?&gt;
  *  &lt;appengine-web-app xmlns="http://appengine.google.com/ns/1.0"&gt;
  *      &lt;application&gt;GAE_APPLICATION_NAME&lt;/application&gt;
@@ -104,17 +110,20 @@ package com.smartgwt.client.docs;
  *     private String id;
  *  }
  *  </pre>
- *  DataSource creation is similar to {@link com.smartgwt.client.docs.JpaIntegration standard JPA} with one
- * difference: property <b><code>{@link com.smartgwt.client.docs.serverds.DataSource#serverConstructor
- * serverConstructor}</code></b>
+ * DataSource creation is similar to {@link com.smartgwt.client.docs.JpaIntegration standard JPA}
+ * with one
+ * difference: property <b><code>{@link
+ * com.smartgwt.client.docs.serverds.DataSource#serverConstructor serverConstructor}</code></b>
  *  should be set to <b><code>com.isomorphic.jpa.GAEJPADataSource</code></b>.<br/>
  *  Because of
- * <a href='http://code.google.com/intl/en/appengine/docs/java/datastore/queriesandindexes.html#Restrictions_on_Queries'
+ * <a
+ * href='http://code.google.com/intl/en/appengine/docs/java/datastore/queriesandindexes.html#Restrictions_on_Queries'
  * onclick="window.open('http://code.google.com/intl/en/appengine/docs/java/datastore/queriesandindexes.html#Restrictions_on_Queries');return
  * false;">GAE queries limitations</a>
  *  this DataSource implementation supports only single inequality criteria in filter.<br/>
  *  Only <code>TextMatchStyle.STARTS_WITH</code> filtering mode is supported for text fields.<br/>
- *  All queries are case sensitive because GAE does not support <code>upper()/lower()</code> functions in criterias.<br/>
+ * All queries are case sensitive because GAE does not support <code>upper()/lower()</code>
+ * functions in criterias.<br/>
  *  <code>TextMatchStyle.EXACT</code> is used for all number fields.<br/>
  *  <b><code>com.isomorphic.jpa.EMFProviderLMT</code></b> or
  *  <b><code>com.isomorphic.jpa.EMFProviderNoTransactions</code></b> should be used as
@@ -142,11 +151,13 @@ package com.smartgwt.client.docs;
  *  ClassD has reference to ClassE,
  *  ClassD has reference to ClassF
  *  </pre>
- *  There are no foreign keys - the actual reference is encoded into the primary key of child entity.<br/>
+ * There are no foreign keys - the actual reference is encoded into the primary key of child
+ * entity.<br/>
  *  GAE datastore does not support many-to-many relationships.<br/>
  *  Unidirectional one-to-many relationships work only if the parent has a declaration of
  *  <code>List&lt;ChildEntityClass&gt;</code>.<br/>
- *  Unidirectional relationships do not work if only the child entity has reference to the parent.<br/>
+ * Unidirectional relationships do not work if only the child entity has reference to the
+ * parent.<br/>
  *  Bidirectional relationship example:<pre>
  *  &#64;Entity
  *  public class Country
@@ -186,7 +197,8 @@ package com.smartgwt.client.docs;
  *  </pre>
  *  Note: GAE does not support <code>FetchType.EAGER</code>.
  *  <p/> With
- * <b><a href='http://code.google.com/intl/en/appengine/docs/java/datastore/relationships.html#Unowned_Relationships'
+ * <b><a
+ * href='http://code.google.com/intl/en/appengine/docs/java/datastore/relationships.html#Unowned_Relationships'
  * onclick="window.open('http://code.google.com/intl/en/appengine/docs/java/datastore/relationships.html#Unowned_Relationships');return
  * false;">Unowned Relationships</a></b>
  *  (when you save parent's primary key as simple child's property) you can model unsupported

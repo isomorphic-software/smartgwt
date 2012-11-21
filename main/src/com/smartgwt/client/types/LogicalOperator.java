@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Operators that can evaluate a set of criteria and produce a combined result.
  */
@@ -32,7 +33,6 @@ public enum LogicalOperator implements ValueEnum {
      * true if all criteria are false
      */
     NOT("not");
-
     private String value;
 
     LogicalOperator(String value) {
@@ -43,3 +43,4 @@ public enum LogicalOperator implements ValueEnum {
         return this.value;
     }
 }
+        

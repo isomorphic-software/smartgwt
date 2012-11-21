@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * An derived class which is used for simple gradient definitions that only requires 2 colors and a direction
@@ -68,12 +88,18 @@ public class SimpleGradient extends Gradient {
         return new SimpleGradient(jsObj);
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public SimpleGradient(){
         
     }
 
     public SimpleGradient(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     // ********************* Properties / Attributes ***********************
@@ -100,7 +126,7 @@ public class SimpleGradient extends Gradient {
     /**
      * The color at the end of the gradient.
      *
-     * @param endColor endColor Default value is null
+     * @param endColor . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setEndColor(String endColor) {
         setAttribute("endColor", endColor);
@@ -110,7 +136,7 @@ public class SimpleGradient extends Gradient {
      * The color at the end of the gradient.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getEndColor()  {
         return getAttributeAsString("endColor");
@@ -119,7 +145,7 @@ public class SimpleGradient extends Gradient {
     /**
      * The color at the start of the gradient.
      *
-     * @param startColor startColor Default value is null
+     * @param startColor . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setStartColor(String startColor) {
         setAttribute("startColor", startColor);
@@ -129,7 +155,7 @@ public class SimpleGradient extends Gradient {
      * The color at the start of the gradient.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getStartColor()  {
         return getAttributeAsString("startColor");

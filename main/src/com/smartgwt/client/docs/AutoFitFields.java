@@ -1,4 +1,4 @@
-
+	    
 package com.smartgwt.client.docs;
 
 /**
@@ -10,6 +10,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderAutoFitEvent
  * @see com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidth
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldWidths
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoSizeHeaderSpans
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFitClipFields
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldsFillViewport
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFitExpandField

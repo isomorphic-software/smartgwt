@@ -45,40 +45,71 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Simple subclass of Img with appearance appropriate for a ToolStrip separator
  */
 public class ToolStripSeparator extends Img {
 
-    public static ToolStripSeparator getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (ToolStripSeparator) obj;
-        } else {
-            return new ToolStripSeparator(jsObj);
+    public native static ToolStripSeparator getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("ToolStripSeparator",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.toolbar.ToolStripSeparator::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public ToolStripSeparator(){
         scClassName = "ToolStripSeparator";
     }
 
     public ToolStripSeparator(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "ToolStripSeparator";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -93,7 +124,7 @@ public class ToolStripSeparator extends Img {
     /**
      * Image for horizontally oriented separator (for vertical toolstrips).
      *
-     * @param hSrc hSrc Default value is "[SKIN]hseparator.png"
+     * @param hSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]hseparator.png"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setHSrc(String hSrc)  throws IllegalStateException {
@@ -104,7 +135,7 @@ public class ToolStripSeparator extends Img {
      * Image for horizontally oriented separator (for vertical toolstrips).
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getHSrc()  {
         return getAttributeAsString("hSrc");
@@ -113,7 +144,7 @@ public class ToolStripSeparator extends Img {
     /**
      * Path to separator image.
      *
-     * @param skinImgDir skinImgDir Default value is "images/ToolStrip/"
+     * @param skinImgDir . See {@link com.smartgwt.client.docs.String String}. Default value is "images/ToolStrip/"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
@@ -124,7 +155,7 @@ public class ToolStripSeparator extends Img {
      * Path to separator image.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSkinImgDir()  {
         return getAttributeAsString("skinImgDir");
@@ -133,7 +164,7 @@ public class ToolStripSeparator extends Img {
     /**
      * Image for vertically oriented separator (for horizontal toolstrips).
      *
-     * @param vSrc vSrc Default value is "[SKIN]separator.png"
+     * @param vSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]separator.png"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setVSrc(String vSrc)  throws IllegalStateException {
@@ -144,7 +175,7 @@ public class ToolStripSeparator extends Img {
      * Image for vertically oriented separator (for horizontal toolstrips).
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getVSrc()  {
         return getAttributeAsString("vSrc");
@@ -174,7 +205,30 @@ public class ToolStripSeparator extends Img {
         
     // ***********************************************************        
 
+    public LogicalStructureObject setLogicalStructure(ToolStripSeparatorLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.hSrc = getAttributeAsString("hSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStripSeparator.hSrc:" + t.getMessage() + "\n";
+        }
+        try {
+            s.skinImgDir = getAttributeAsString("skinImgDir");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStripSeparator.skinImgDir:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vSrc = getAttributeAsString("vSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStripSeparator.vSrc:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        ToolStripSeparatorLogicalStructure s = new ToolStripSeparatorLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

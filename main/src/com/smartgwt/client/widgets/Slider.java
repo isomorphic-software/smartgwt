@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * The Slider class implements a GUI slider widget allowing the user to select a numeric   value from within a range by
@@ -70,22 +90,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class Slider extends Canvas  implements com.smartgwt.client.widgets.events.HasValueChangedHandlers {
 
-    public static Slider getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (Slider) obj;
-        } else {
-            return new Slider(jsObj);
+    public native static Slider getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("Slider",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.Slider::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public Slider(){
         scClassName = "Slider";
     }
 
     public Slider(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "Slider";
+        setJavaScriptObject(jsObj);
     }
 
     public Slider(String title) {
@@ -208,7 +239,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Optional CSS style for the thumb for a horizontally oriented slider. <P> Will have the suffix "down" added when the
      * mouse is down on the thumb, and "Disabled" added when the slider is disabled.
      *
-     * @param hThumbStyle hThumbStyle Default value is null
+     * @param hThumbStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setHThumbStyle(String hThumbStyle)  throws IllegalStateException {
@@ -220,7 +251,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * mouse is down on the thumb, and "Disabled" added when the slider is disabled.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getHThumbStyle()  {
         return getAttributeAsString("hThumbStyle");
@@ -230,7 +261,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Optional CSS style for the track for a horizontally oriented slider. <P> Will have the suffix "Disabled" added when the
      * slider is disabled.
      *
-     * @param hTrackStyle hTrackStyle Default value is null
+     * @param hTrackStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setHTrackStyle(String hTrackStyle)  throws IllegalStateException {
@@ -242,7 +273,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * slider is disabled.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getHTrackStyle()  {
         return getAttributeAsString("hTrackStyle");
@@ -370,7 +401,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getMaxValueLabel maxValueLabel} property of the slider
      *
-     * @param maxValueLabel new label text. Default value is null
+     * @param maxValueLabel new label text. See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.widgets.Slider#setShowRange
      * @see com.smartgwt.client.widgets.Slider#setMaxValue
      */
@@ -383,7 +414,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * displayed.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.Slider#getShowRange
      * @see com.smartgwt.client.widgets.Slider#getMaxValue
      */
@@ -423,7 +454,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * The text displayed in the label for the minimum value of the slider. If left as null, then slider.minValue will be
      * displayed.
      *
-     * @param minValueLabel minValueLabel Default value is null
+     * @param minValueLabel . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.widgets.Slider#setShowRange
      * @see com.smartgwt.client.widgets.Slider#setMinValue
      */
@@ -436,7 +467,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * displayed.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.Slider#getShowRange
      * @see com.smartgwt.client.widgets.Slider#getMinValue
      */
@@ -639,7 +670,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getThumbSrc thumbSrc} property of the slider
      *
-     * @param thumbSrc new thumbSrc. Default value is "thumb.gif"
+     * @param thumbSrc new thumbSrc. See {@link com.smartgwt.client.docs.String String}. Default value is "thumb.gif"
      */
     public void setThumbSrc(String thumbSrc) {
         setAttribute("thumbSrc", thumbSrc, true);
@@ -656,7 +687,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * <li><code>v{baseName}_Disabled.{extension}</code>:  appearance when the slider is disabled. </ul>
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getThumbSrc()  {
         return getAttributeAsString("thumbSrc");
@@ -712,7 +743,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getTitle title} of the slider
      *
-     * @param title new title for the slider. Default value is "Set Value"
+     * @param title new title for the slider. See {@link com.smartgwt.client.docs.String String}. Default value is "Set Value"
      * @see com.smartgwt.client.widgets.Slider#setShowTitle
      */
     public void setTitle(String title) {
@@ -723,7 +754,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Optional display title for the slider.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.Slider#getShowTitle
      */
     public String getTitle()  {
@@ -800,7 +831,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackSrc trackSrc} property of the slider
      *
-     * @param trackSrc new trackSrc. Default value is "track.gif"
+     * @param trackSrc new trackSrc. See {@link com.smartgwt.client.docs.String String}. Default value is "track.gif"
      * @see com.smartgwt.client.widgets.Slider#setTrackImageType
      */
     public void setTrackSrc(String trackSrc) {
@@ -827,7 +858,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      *   that is disabled. </ul>
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.Slider#getTrackImageType
      */
     public String getTrackSrc()  {
@@ -916,7 +947,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Optional CSS style for the thumb for a vertically oriented slider.  See {@link
      * com.smartgwt.client.widgets.Slider#getHThumbStyle hThumbStyle} for state suffixes.
      *
-     * @param vThumbStyle vThumbStyle Default value is null
+     * @param vThumbStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setVThumbStyle(String vThumbStyle)  throws IllegalStateException {
@@ -928,7 +959,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * com.smartgwt.client.widgets.Slider#getHThumbStyle hThumbStyle} for state suffixes.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getVThumbStyle()  {
         return getAttributeAsString("vThumbStyle");
@@ -938,7 +969,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Optional CSS style for the track for a vertically oriented slider. <P> Will have the suffix "Disabled" added when the
      * slider is disabled.
      *
-     * @param vTrackStyle vTrackStyle Default value is null
+     * @param vTrackStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setVTrackStyle(String vTrackStyle)  throws IllegalStateException {
@@ -950,7 +981,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * slider is disabled.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getVTrackStyle()  {
         return getAttributeAsString("vTrackStyle");
@@ -974,24 +1005,21 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     private native void setupValueChangedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var valueChanged = $entry(function(){
+            var param = {"value" : arguments[0]};
+
+                var event = @com.smartgwt.client.widgets.events.ValueChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({valueChanged:$entry(function(){
-                        var param = {"value" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.events.ValueChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({valueChanged:  valueChanged              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.valueChanged = $entry(function(){
-                   var param = {"value" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.events.ValueChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.valueChanged =  valueChanged             ;
         }
    }-*/;
-            
+
     /**
      * Call this method in your {@link com.smartgwt.client.widgets.Slider#addValueChangedHandler Slider.valueChanged} handler
      * to determine whether the value change is due to an ongoing drag interaction (true) or due to a thumb-release, mouse
@@ -1032,8 +1060,185 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         
     // ***********************************************************        
 
+    public LogicalStructureObject setLogicalStructure(SliderLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.animateThumb = getAttributeAsString("animateThumb");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.animateThumb:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateThumbInit = getAttributeAsString("animateThumbInit");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.animateThumbInit:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateThumbTime = getAttributeAsString("animateThumbTime");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.animateThumbTime:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canFocus = getAttributeAsString("canFocus");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.canFocus:" + t.getMessage() + "\n";
+        }
+        try {
+            s.flipValues = getAttributeAsString("flipValues");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.flipValues:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hThumbStyle = getAttributeAsString("hThumbStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.hThumbStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hTrackStyle = getAttributeAsString("hTrackStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.hTrackStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.labelHeight = getAttributeAsString("labelHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.labelHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.labelSpacing = getAttributeAsString("labelSpacing");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.labelSpacing:" + t.getMessage() + "\n";
+        }
+        try {
+            s.labelWidth = getAttributeAsString("labelWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.labelWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.length = getAttributeAsString("length");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.length:" + t.getMessage() + "\n";
+        }
+        try {
+            s.maxValue = getAttributeAsString("maxValue");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.maxValue:" + t.getMessage() + "\n";
+        }
+        try {
+            s.maxValueLabel = getAttributeAsString("maxValueLabel");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.maxValueLabel:" + t.getMessage() + "\n";
+        }
+        try {
+            s.minValue = getAttributeAsString("minValue");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.minValue:" + t.getMessage() + "\n";
+        }
+        try {
+            s.minValueLabel = getAttributeAsString("minValueLabel");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.minValueLabel:" + t.getMessage() + "\n";
+        }
+        try {
+            s.numValues = getAttributeAsString("numValues");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.numValues:" + t.getMessage() + "\n";
+        }
+        try {
+            s.roundPrecision = getAttributeAsString("roundPrecision");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.roundPrecision:" + t.getMessage() + "\n";
+        }
+        try {
+            s.roundValues = getAttributeAsString("roundValues");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.roundValues:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showRange = getAttributeAsString("showRange");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.showRange:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showTitle = getAttributeAsString("showTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.showTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showValue = getAttributeAsString("showValue");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.showValue:" + t.getMessage() + "\n";
+        }
+        try {
+            s.stepPercent = getAttributeAsString("stepPercent");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.stepPercent:" + t.getMessage() + "\n";
+        }
+        try {
+            s.thumbSrc = getAttributeAsString("thumbSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.thumbSrc:" + t.getMessage() + "\n";
+        }
+        try {
+            s.thumbThickWidth = getAttributeAsString("thumbThickWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.thumbThickWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.thumbThinWidth = getAttributeAsString("thumbThinWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.thumbThinWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.title = getAttributeAsString("title");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.title:" + t.getMessage() + "\n";
+        }
+        try {
+            s.trackCapSize = getAttributeAsString("trackCapSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.trackCapSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.trackImageType = getAttributeAsString("trackImageType");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.trackImageType:" + t.getMessage() + "\n";
+        }
+        try {
+            s.trackSrc = getAttributeAsString("trackSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.trackSrc:" + t.getMessage() + "\n";
+        }
+        try {
+            s.trackWidth = getAttributeAsString("trackWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.trackWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.value = getAttributeAsString("value");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.value:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vertical = getAttributeAsString("vertical");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.vertical:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vThumbStyle = getAttributeAsString("vThumbStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.vThumbStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vTrackStyle = getAttributeAsString("vTrackStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.vTrackStyle:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        SliderLogicalStructure s = new SliderLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-
 

@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Function to produce a summary value based on field values within a record. Example usage is record-level summaries in 
  * {@link com.smartgwt.client.types.ListGridFieldType "summary" type ListGrid fields}. <P> SummaryFunctions may be
@@ -47,7 +48,6 @@ public enum RecordSummaryFunctionType implements ValueEnum {
      * Iterates through each field, picking up the numeric field values from the record and multiplying them together.
      */
     MULTIPLIER("multiplier");
-
     private String value;
 
     RecordSummaryFunctionType(String value) {
@@ -58,3 +58,4 @@ public enum RecordSummaryFunctionType implements ValueEnum {
         return this.value;
     }
 }
+        

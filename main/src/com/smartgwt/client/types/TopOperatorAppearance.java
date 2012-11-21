@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Interface to use for showing and editing the {@link com.smartgwt.client.widgets.form.FilterBuilder#getTopOperator
  * top-level operator}  of a FilterBuilder.
@@ -41,7 +42,6 @@ public enum TopOperatorAppearance implements ValueEnum {
      * called to update it
      */
     NONE("none");
-
     private String value;
 
     TopOperatorAppearance(String value) {
@@ -52,3 +52,4 @@ public enum TopOperatorAppearance implements ValueEnum {
         return this.value;
     }
 }
+        

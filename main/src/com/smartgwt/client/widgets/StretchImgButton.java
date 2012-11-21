@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A StretchImg that behaves like a button, going through up/down/over state transitions in response to user events. 
@@ -65,22 +85,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class StretchImgButton extends StretchImg  implements com.smartgwt.client.widgets.events.HasIconClickHandlers {
 
-    public static StretchImgButton getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (StretchImgButton) obj;
-        } else {
-            return new StretchImgButton(jsObj);
+    public native static StretchImgButton getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("StretchImgButton",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.StretchImgButton::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public StretchImgButton(){
         scClassName = "StretchImgButton";
     }
 
     public StretchImgButton(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "StretchImgButton";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -183,7 +214,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style.
      *
-     * @param baseStyle new base style. Default value is "stretchImgButton"
+     * @param baseStyle new base style. See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "stretchImgButton"
      */
     public void setBaseStyle(String baseStyle) {
         setAttribute("baseStyle", baseStyle, true);
@@ -201,7 +232,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * component, the style "buttonSelectedOver" will be used.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getBaseStyle()  {
         return getAttributeAsString("baseStyle");
@@ -262,7 +293,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Change the icon being shown next to the title text.
      *
-     * @param icon URL of new icon. Default value is null
+     * @param icon URL of new icon. See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is null
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setIcon(String icon) {
@@ -274,7 +305,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * imgDir of this component.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public String getIcon()  {
@@ -284,7 +315,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     /**
      * If this button is showing an icon should it be right or left aligned?
      *
-     * @param iconAlign iconAlign Default value is null
+     * @param iconAlign . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
@@ -296,7 +327,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * If this button is showing an icon should it be right or left aligned?
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public String getIconAlign()  {
@@ -332,7 +363,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Changes the orientation of the icon relative to the text of the button.
      *
-     * @param iconOrientation The new orientation of the icon relative to the text of the button.. Default value is "left"
+     * @param iconOrientation The new orientation of the icon relative to the text of the button.. See {@link com.smartgwt.client.docs.String String}. Default value is "left"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
@@ -345,7 +376,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * <code>"left"</code> and <code>"right"</code>.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public String getIconOrientation()  {
@@ -540,7 +571,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * setter for {@link com.smartgwt.client.widgets.StretchImgButton#getLabelSkinImgDir labelSkinImgDir}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param labelSkinImgDir new skin img dir to apply to the label holding title text for   this widget.. Default value is null
+     * @param labelSkinImgDir new skin img dir to apply to the label holding title text for   this widget.. See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setLabelSkinImgDir(String labelSkinImgDir) {
         setAttribute("labelSkinImgDir", labelSkinImgDir, true);
@@ -552,7 +583,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * use of the skin img dir set here
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getLabelSkinImgDir()  {
         return getAttributeAsString("labelSkinImgDir");
@@ -599,7 +630,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * String identifier for this canvas's mutually exclusive selection group.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param radioGroup radioGroup Default value is null
+     * @param radioGroup . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
     public void setRadioGroup(String radioGroup) {
@@ -610,7 +641,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * String identifier for this canvas's mutually exclusive selection group.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
     public String getRadioGroup()  {
@@ -882,7 +913,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * the mouse hovering over it might have the URL: <code>"button_Selected_Down_stretch.gif"</code>. <P> Media should be
      * present for each possible state of the _start, _end and _stretch images.
      *
-     * @param src src Default value is "button.gif"
+     * @param src . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "button.gif"
      */
     public void setSrc(String src) {
         setAttribute("src", src, true);
@@ -903,7 +934,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * present for each possible state of the _start, _end and _stretch images.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getSrc()  {
         return getAttributeAsString("src");
@@ -954,7 +985,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the title.
      *
-     * @param title new title. Default value is varies
+     * @param title new title. See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is varies
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public void setTitle(String title) {
@@ -965,7 +996,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * The text title to display in this button.
      *
      *
-     * @return Return the title - text/HTML drawn inside the component. <p> Default is to simply return this.title.
+     * @return Return the title - text/HTML drawn inside the component. <p> Default is to simply return this.title.. See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public String getTitle()  {
@@ -983,7 +1014,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.StretchImgButton#getTitleStyle titleStyle}, which is applied to the title text.
      *
-     * @param titleStyle new title style. Default value is null
+     * @param titleStyle new title style. See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is null
      */
     public void setTitleStyle(String titleStyle) {
         setAttribute("titleStyle", titleStyle, true);
@@ -998,7 +1029,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * not specify a background color as this would block out the media that appears behind the title.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getTitleStyle()  {
         return getAttributeAsString("titleStyle");
@@ -1070,7 +1101,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * This property contains the default 'action' for the Button to fire when activated.
      */
@@ -1078,7 +1109,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.action();
     }-*/;
-            
+
     /**
      * Add this widget to the specified mutually exclusive selection group with the ID passed in. Selecting this widget will
      * then deselect any other StatefulCanvases with the same radioGroup ID. StatefulCanvases can belong to only one
@@ -1089,7 +1120,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addToRadioGroup(groupID);
     }-*/;
-            
+
     /**
      * Select this object.
      */
@@ -1115,28 +1146,31 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     private native void setupIconClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var iconClick = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.IconClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({iconClick:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.IconClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({iconClick: 
+                function () {
+                    var param = {};
+                    return iconClick(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.iconClick = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.IconClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.iconClick = 
+                function () {
+                    var param = {};
+                    return iconClick(param) == true;
+                }
+            ;
         }
    }-*/;
-            
+
     /**
      * Find out if this object is selected
      *
@@ -1152,7 +1186,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Remove this widget from the specified mutually exclusive selection group with the ID passed in. No-op's if this widget
      * is not a member of the groupID passed in. If no groupID is passed in, defaults to removing from whatever radioGroup this
@@ -1175,7 +1209,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeFromRadioGroup(groupID);
     }-*/;
-            
+
     /**
      * Select this object.
      */
@@ -1206,8 +1240,200 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         
     // ***********************************************************        
 
+    public LogicalStructureObject setLogicalStructure(StretchImgButtonLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.actionType = getAttributeAsString("actionType");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.actionType:" + t.getMessage() + "\n";
+        }
+        try {
+            s.align = getAttributeAsString("align");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.align:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoFit = getAttributeAsString("autoFit");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.autoFit:" + t.getMessage() + "\n";
+        }
+        try {
+            s.baseStyle = getAttributeAsString("baseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.baseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.capSize = getAttributeAsString("capSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.capSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hiliteAccessKey = getAttributeAsString("hiliteAccessKey");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.hiliteAccessKey:" + t.getMessage() + "\n";
+        }
+        try {
+            s.icon = getAttributeAsString("icon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.icon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconAlign = getAttributeAsString("iconAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.iconAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconHeight = getAttributeAsString("iconHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.iconHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconOrientation = getAttributeAsString("iconOrientation");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.iconOrientation:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconSize = getAttributeAsString("iconSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.iconSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconSpacing = getAttributeAsString("iconSpacing");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.iconSpacing:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconWidth = getAttributeAsString("iconWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.iconWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.labelBreadthPad = getAttributeAsString("labelBreadthPad");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.labelBreadthPad:" + t.getMessage() + "\n";
+        }
+        try {
+            s.labelHPad = getAttributeAsString("labelHPad");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.labelHPad:" + t.getMessage() + "\n";
+        }
+        try {
+            s.labelLengthPad = getAttributeAsString("labelLengthPad");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.labelLengthPad:" + t.getMessage() + "\n";
+        }
+        try {
+            s.labelSkinImgDir = getAttributeAsString("labelSkinImgDir");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.labelSkinImgDir:" + t.getMessage() + "\n";
+        }
+        try {
+            s.labelVPad = getAttributeAsString("labelVPad");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.labelVPad:" + t.getMessage() + "\n";
+        }
+        try {
+            s.radioGroup = getAttributeAsString("radioGroup");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.radioGroup:" + t.getMessage() + "\n";
+        }
+        try {
+            s.selected = getAttributeAsString("selected");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.selected:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDisabled = getAttributeAsString("showDisabled");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.showDisabled:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDisabledIcon = getAttributeAsString("showDisabledIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.showDisabledIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDown = getAttributeAsString("showDown");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.showDown:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDownIcon = getAttributeAsString("showDownIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.showDownIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showFocused = getAttributeAsString("showFocused");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.showFocused:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showFocusedIcon = getAttributeAsString("showFocusedIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.showFocusedIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showRollOver = getAttributeAsString("showRollOver");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.showRollOver:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showRollOverIcon = getAttributeAsString("showRollOverIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.showRollOverIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showSelectedIcon = getAttributeAsString("showSelectedIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.showSelectedIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showTitle = getAttributeAsString("showTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.showTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.src = getAttributeAsString("src");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.src:" + t.getMessage() + "\n";
+        }
+        try {
+            s.state = getAttributeAsString("state");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.state:" + t.getMessage() + "\n";
+        }
+        try {
+            s.title = getAttributeAsString("title");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.title:" + t.getMessage() + "\n";
+        }
+        try {
+            s.titleStyle = getAttributeAsString("titleStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.titleStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.valign = getAttributeAsString("valign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.valign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vertical = getAttributeAsString("vertical");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.vertical:" + t.getMessage() + "\n";
+        }
+        try {
+            s.wrap = getAttributeAsString("wrap");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImgButton.wrap:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        StretchImgButtonLogicalStructure s = new StretchImgButtonLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-
 

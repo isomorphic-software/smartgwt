@@ -1,4 +1,4 @@
-
+	    
 package com.smartgwt.client.docs;
 
 /**
@@ -10,6 +10,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#getOpacity
  * @see com.smartgwt.client.widgets.Canvas#getContextMenu
  * @see com.smartgwt.client.widgets.Canvas#getMenuConstructor
+ * @see com.smartgwt.client.widgets.drawing.DrawItem#getContextMenu
  * @see com.smartgwt.client.types.Cursor
  */
 public interface Cues {

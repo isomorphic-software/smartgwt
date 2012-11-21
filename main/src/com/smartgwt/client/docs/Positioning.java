@@ -1,8 +1,14 @@
-
+	    
 package com.smartgwt.client.docs;
 
 /**
  * Horizontal and vertical location on the page
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getRect
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getPageRect
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getLeft
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getTop
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getPageLeft
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getPageTop
  * @see com.smartgwt.client.widgets.Canvas#setSnapTo
  * @see com.smartgwt.client.widgets.Canvas#getSnapTo
  * @see com.smartgwt.client.widgets.Canvas#setSnapEdge
@@ -34,17 +40,11 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#getVSnapOrigin
  * @see com.smartgwt.client.widgets.Canvas#getHSnapOrigin
  * @see com.smartgwt.client.widgets.Canvas#setOverflow
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getDrawnRowHeight
  * @see com.smartgwt.client.widgets.drawing.DrawItem#getPageLeft
  * @see com.smartgwt.client.widgets.drawing.DrawItem#getPageTop
- * @see com.smartgwt.client.widgets.form.fields.FormItem#getRect
- * @see com.smartgwt.client.widgets.form.fields.FormItem#getPageRect
- * @see com.smartgwt.client.widgets.form.fields.FormItem#getLeft
- * @see com.smartgwt.client.widgets.form.fields.FormItem#getTop
- * @see com.smartgwt.client.widgets.form.fields.FormItem#getPageLeft
- * @see com.smartgwt.client.widgets.form.fields.FormItem#getPageTop
  * @see com.smartgwt.client.widgets.Button#setAlign
  * @see com.smartgwt.client.widgets.Button#setVAlign
- * @see com.smartgwt.client.widgets.grid.ListGrid#getDrawnRowHeight
  * @see com.smartgwt.client.widgets.tab.ImgTab#getAlign
  * @see com.smartgwt.client.widgets.Canvas#getHtmlElement
  * @see com.smartgwt.client.widgets.Canvas#getHtmlPosition

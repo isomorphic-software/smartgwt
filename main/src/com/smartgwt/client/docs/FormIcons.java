@@ -1,4 +1,4 @@
-
+	    
 package com.smartgwt.client.docs;
 
 /**
@@ -8,6 +8,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.events.IconClickEvent
  * @see com.smartgwt.client.widgets.form.fields.events.IconKeyPressEvent
  * @see com.smartgwt.client.widgets.form.fields.FormItemIcon
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getDisableIconsOnReadOnly
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getIcons
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getDefaultIconSrc
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getShowOverIcons
@@ -22,10 +23,12 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#getShowFocused
  * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#getShowFocusedWithItem
  * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#getNeverDisable
+ * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#getDisableOnReadOnly
  * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#getTabIndex
  * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#getWidth
  * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#getHeight
  * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#getPrompt
+ * @see com.smartgwt.client.widgets.form.fields.LinkItem#getDisableIconsOnReadOnly
  * @see com.smartgwt.client.widgets.form.fields.TextAreaItem#getIconVAlign
  */
 public interface FormIcons {

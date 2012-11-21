@@ -45,15 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A Task is an abstract superclass for {@link com.smartgwt.client.util.workflow.Process} and for all Task types that can
@@ -71,17 +94,18 @@ public class Task extends ProcessElement {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
+    }
+
+
     public Task(){
         scClassName = "Task";
     }
 
     public Task(JavaScriptObject jsObj){
-        super(jsObj);
-    }
-
-    public Task(String ID) {
-        setID(ID);
         scClassName = "Task";
+        setJavaScriptObject(jsObj);
     }
 
     public native JavaScriptObject create()/*-{
@@ -95,7 +119,7 @@ public class Task extends ProcessElement {
      * Field in the {@link com.smartgwt.client.util.workflow.Process#getState process state} which is provided as input data to
      * this task.   See {@link com.smartgwt.client.docs.TaskIO}.
      *
-     * @param inputField inputField Default value is null
+     * @param inputField . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setInputField(String inputField)  throws IllegalStateException {
@@ -107,7 +131,7 @@ public class Task extends ProcessElement {
      * this task.   See {@link com.smartgwt.client.docs.TaskIO}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getInputField()  {
         return getAttributeAsString("inputField");
@@ -117,7 +141,7 @@ public class Task extends ProcessElement {
      * Field in the {@link com.smartgwt.client.util.workflow.Process#getState process state} which this task writes outputs to.
      * See {@link com.smartgwt.client.docs.TaskIO}.
      *
-     * @param outputField outputField Default value is null
+     * @param outputField . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setOutputField(String outputField)  throws IllegalStateException {
@@ -129,7 +153,7 @@ public class Task extends ProcessElement {
      * See {@link com.smartgwt.client.docs.TaskIO}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getOutputField()  {
         return getAttributeAsString("outputField");

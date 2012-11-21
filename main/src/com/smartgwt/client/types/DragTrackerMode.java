@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * When records are being dragged from within a ListGrid, what sort of drag-tracker should be displayed?
  */
@@ -38,7 +39,6 @@ public enum DragTrackerMode implements ValueEnum {
      * Display the entire record being dragged
      */
     RECORD("record");
-
     private String value;
 
     DragTrackerMode(String value) {
@@ -49,3 +49,4 @@ public enum DragTrackerMode implements ValueEnum {
         return this.value;
     }
 }
+        

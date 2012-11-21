@@ -45,32 +45,73 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
- * An atomic type such as a string or number, that is generally stored, displayed and manipulated as a single value. <P>
- * SimpleTypes can be created at any time, and subsequently referred to as a  {@link
- * com.smartgwt.client.data.DataSourceField#getType field type} in {@link com.smartgwt.client.data.DataSource DataSources}
- * and {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents}.  This allows you to define {@link
- * com.smartgwt.client.data.SimpleType#getValidators validation}, {@link
- * com.smartgwt.client.data.SimpleType#normalDisplayFormatter formatting} and {@link
- * com.smartgwt.client.data.SimpleType#getEditorType editing} behaviors for a type to be reused across all {@link
- * com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents}. <P> Note that the term "simpleType" is used in the
- * same sense as in <a href='XML Schema' onclick="window.open('XML Schema');return
- * false;">http://www.w3.org/TR/xmlschema-0/</a>, and {@link com.smartgwt.client.data.XMLTools#loadXMLSchema
- * XMLTools.loadXMLSchema} will create new SimpleType definitions. <P> An <a
- * href="http://www.smartclient.com/smartgwt/showcase/#form_validation_custom_types" target="examples">example</a> is here.
+ * An atomic type such as a string or number, that is generally stored, displayed and
+ *  manipulated as a single value.
+ *  <P>
+ *  SimpleTypes can be created at any time, and subsequently referred to as a 
+ * {@link com.smartgwt.client.data.DataSourceField#getType field type} in {@link com.smartgwt.client.data.DataSource
+ * DataSources} and
+ *  {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents}.  This allows you to define
+ * {@link com.smartgwt.client.data.SimpleType#getValidators validation}, {@link
+ * com.smartgwt.client.data.SimpleType#normalDisplayFormatter formatting}
+ *  and {@link com.smartgwt.client.data.SimpleType#getEditorType editing} behaviors for a type to be reused across all
+ *  {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents}.
+ *  <P>
+ *  The SimpleType class also allows data to be stored in some opaque format but treated as
+ *  simple atomic values as far as Smart GWT components are concerned by implementing
+ * {@link com.smartgwt.client.data.SimpleType#getAtomicValue SimpleType.getAtomicValue} and {@link
+ * com.smartgwt.client.data.SimpleType#updateAtomicValue SimpleType.updateAtomicValue} methods.
+ *  For example, if some record has a field value set to a javascript object with the
+ *  following properties:
+ *  <pre>
+ *  { stringValue:"A String", length: 9 }
+ *  </pre>
+ *  this value could be treated as a simple string by defining a SimpleType with 
+ *  {@link com.smartgwt.client.data.SimpleType#getInheritsFrom inheritsFrom} set to <code>"text"</code> and a custom 
+ *  <code>getAtomicValue()</code> method that simply extracted the <i>"stringValue"</i>
+ *  attribute from the data object. DataBoundComponents would then display
+ *  the string value, and use it for sorting and other standard databinding features.
+ *  <P>
+ *  Note that the term "simpleType" is used in the same sense as in
+ *  <a href='XML Schema' onclick="window.open('XML Schema');return false;">http://www.w3.org/TR/xmlschema-0/</a>, and
+ *  {@link com.smartgwt.client.data.XMLTools#loadXMLSchema XMLTools.loadXMLSchema} will create new SimpleType definitions.
+ *  <P>
+ * An <a href="http://www.smartclient.com/smartgwt/showcase/#form_validation_custom_types" target="examples">example</a> is
+ * here.
  */
 public class SimpleType extends BaseClass {
 
@@ -84,8 +125,14 @@ public class SimpleType extends BaseClass {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
+    }
+
+
     public SimpleType(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "SimpleType";
+        setJavaScriptObject(jsObj);
     }
 
     public native JavaScriptObject create()/*-{
@@ -99,7 +146,7 @@ public class SimpleType extends BaseClass {
      * Name of another SimpleType from which this type should inherit. <P> Validators, if any, will be combined.  All other
      * SimpleType properties default to the inherited type's value.
      *
-     * @param inheritsFrom inheritsFrom Default value is null
+     * @param inheritsFrom . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_validation_custom_types" target="examples">Custom Types Example</a>
      */
@@ -112,7 +159,7 @@ public class SimpleType extends BaseClass {
      * SimpleType properties default to the inherited type's value.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_validation_custom_types" target="examples">Custom Types Example</a>
      */
     public String getInheritsFrom()  {
@@ -120,9 +167,9 @@ public class SimpleType extends BaseClass {
     }
 
     /**
-     * Name of the type, used to refer to the type from {@link com.smartgwt.client.data.DataSourceField#getName field.name}.
+     * Name of the type, used to refer to the type from {@link com.smartgwt.client.data.DataSourceField#getType field.type}.
      *
-     * @param name name Default value is null
+     * @param name . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setName(String name)  throws IllegalStateException {
@@ -130,10 +177,10 @@ public class SimpleType extends BaseClass {
     }
 
     /**
-     * Name of the type, used to refer to the type from {@link com.smartgwt.client.data.DataSourceField#getName field.name}.
+     * Name of the type, used to refer to the type from {@link com.smartgwt.client.data.DataSourceField#getType field.type}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getName()  {
         return getAttributeAsString("name");
@@ -142,12 +189,12 @@ public class SimpleType extends BaseClass {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-            
+
     /**
      * Retrieve a simpleType definition by type name
      * @param typeName the <code>name</code> of the simpleType to return
      *
-     * @return ssimple type object
+     * @return simple type object
      */
     public static native SimpleType getType(String typeName) /*-{
         var ret = $wnd.isc.SimpleType.getType(typeName);
@@ -162,6 +209,16 @@ public class SimpleType extends BaseClass {
     // ***********************************************************        
 
 
+
+    /**
+     * Create a new simple type.
+     *
+     * @param name the name of the simple type
+     * @param inheritsFrom the type it inherits from
+     */
+    public SimpleType() {
+        scClassName = "SimpleType";
+    }
 
     /**
      * Create a new simple type.
@@ -376,7 +433,64 @@ public class SimpleType extends BaseClass {
             return $wnd.SmartGWT.convertToPrimitiveType(val);
         }));
     }-*/;
-    
+
+    public static abstract class SimpleTypeValueExtractor {
+        /**
+         * Method to extract an atomic value (such as a string or number) from some arbitrary live data value.
+         * This method will be called for every field value of the specified type in order to convert from the raw
+         * data value to an atomic type to be used for standard DataBinding features such as sorting and editing.
+         * @param value Raw data value to convert. Typically this would be a field value for some record.
+         * @return Atomic value. This should match the underlying atomic type specified by the {@link #inheritsFrom} attribute.
+         */
+        public abstract Object getAtomicValue(Object value);
+    }
+
+    /**
+     * Specify an extractor to extract an atomic value (such as a string or number) from some arbitrary live data value.
+     * If defined this method will be called for every field value of the specified type in order to convert from the raw
+     * data value to an atomic type to be used for standard DataBinding features such as sorting and editing.
+     * @param extractor the extractor
+     */
+    public native Object setSimpleTypeValueExtractor(SimpleTypeValueExtractor extractor) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::isCreated()() ? this.@com.smartgwt.client.core.BaseClass::getJsObj()() : this.@com.smartgwt.client.core.BaseClass::getConfig()();
+        self.getAtomicValue = $debox($entry(function(value) {
+            var valueJ = $wnd.SmartGWT.convertToJavaObject(value);
+            var val = extractor.@com.smartgwt.client.data.SimpleType.SimpleTypeValueExtractor::getAtomicValue(Ljava/lang/Object;)(valueJ);
+            return $wnd.SmartGWT.convertToPrimitiveType(val);
+        }));
+    }-*/;
+
+
+    public static abstract class SimpleTypeValueUpdater {
+        /**
+         * Method to update a live data value with an edited atomic value (such as a string or number).
+         * This method will be called when the user edits data in a field of this type, allowing the developer to convert
+         * from the atomic type to a raw data value for storage.
+         * @param atomicValue (any) New atomic value. This should match the underlying atomic type
+         * specified by the {@link #inheritsFrom} attribute.
+         * @param currentValue Existing data value to be updated.
+         * @return (any) Updated data value.
+         */
+        public abstract Object updateAtomicValue(Object atomicValue, Object currentValue);
+    }
+
+    /**
+     * Specify an updater to update a live data value with an edited atomic value (such as a string or number).
+     * If defined this updater's updateAtomicValue method will be called when the user edits data in a field of this type,
+     * allowing the developer to convert from the atomic type to a raw data value for storage.
+     * @param extractor the updater
+     */
+    public native Object setSimpleTypeValueUpdater(SimpleTypeValueUpdater updater) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::isCreated()() ? this.@com.smartgwt.client.core.BaseClass::getJsObj()() : this.@com.smartgwt.client.core.BaseClass::getConfig()();
+        self.updateAtomicValue = $debox($entry(function(atomicValue, currentValue) {
+            var atomicValueJ = $wnd.SmartGWT.convertToJavaObject(atomicValue);
+            var currentValueJ = $wnd.SmartGWT.convertToJavaObject(currentValue);
+            var val = updater.@com.smartgwt.client.data.SimpleType.SimpleTypeValueUpdater::updateAtomicValue(Ljava/lang/Object;Ljava/lang/Object;)(atomicValueJ,currentValueJ);
+            var returnVal = $wnd.SmartGWT.convertToPrimitiveType(val);
+            return returnVal;
+        }));
+    }-*/;
+
     private static DataClass toDataClass(JavaScriptObject jsObj) {
         Object ref = JSOHelper.getAttributeAsObject((JavaScriptObject) jsObj, SC.REF);
         return ref == null ? new DataClass(jsObj) : (RefDataClass) ref;

@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Every node in the tree is represented by a TreeNode object which is an object literal with a set of properties that
@@ -68,8 +88,12 @@ import com.google.gwt.event.shared.HasHandlers;
 public class TreeNode extends ListGridRecord {
 
     public static TreeNode getOrCreateRef(JavaScriptObject jsObj) {
+    
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+ 
         if(obj != null && obj instanceof TreeNode) {
             obj.setJsObj(jsObj);
             return (TreeNode) obj;
@@ -78,12 +102,18 @@ public class TreeNode extends ListGridRecord {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public TreeNode(){
         
     }
 
     public TreeNode(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     // ********************* Properties / Attributes ***********************
@@ -179,7 +209,7 @@ public class TreeNode extends ListGridRecord {
      * change the name of this property by setting  {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty
      * customIconProperty}.
      *
-     * @param icon icon Default value is null
+     * @param icon . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is null
      */
     public void setIcon(String icon) {
         setAttribute("icon", icon);
@@ -200,7 +230,7 @@ public class TreeNode extends ListGridRecord {
      * customIconProperty}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getIcon()  {
         return getAttributeAsString("icon");
@@ -220,7 +250,7 @@ public class TreeNode extends ListGridRecord {
      * Tree.getTitle}) if {@link com.smartgwt.client.widgets.tree.TreeNode#getTitle title} is not specified. <p> Note: the name
      * of this property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty}.
      *
-     * @param name name Default value is null, but see below
+     * @param name . See {@link com.smartgwt.client.docs.String String}. Default value is null, but see below
      * @see com.smartgwt.client.widgets.tree.Tree#setNameProperty
      * @see com.smartgwt.client.widgets.tree.Tree#setPathDelim
      * @see com.smartgwt.client.widgets.tree.Tree#getPath
@@ -245,7 +275,7 @@ public class TreeNode extends ListGridRecord {
      * of this property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.tree.Tree#getNameProperty
      * @see com.smartgwt.client.widgets.tree.Tree#getPathDelim
      * @see com.smartgwt.client.widgets.tree.Tree#getPath
@@ -331,7 +361,7 @@ public class TreeNode extends ListGridRecord {
      * description in {@link com.smartgwt.client.widgets.tree.Tree#getTitle Tree.getTitle} for full details. <p> Note: the name
      * of this property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty titleProperty}.
      *
-     * @param title title Default value is null
+     * @param title . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.widgets.tree.Tree#setTitleProperty
      * @see com.smartgwt.client.widgets.tree.Tree#getTitle
      */
@@ -346,7 +376,7 @@ public class TreeNode extends ListGridRecord {
      * of this property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty titleProperty}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.tree.Tree#getTitleProperty
      * @see com.smartgwt.client.widgets.tree.Tree#getTitle
      */

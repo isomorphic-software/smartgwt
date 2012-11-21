@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Different styles of determining intersection: with mouse or entire rect of target
  */
@@ -28,7 +29,6 @@ public enum DragIntersectStyle implements ValueEnum {
      * Look for drop targets by intersection of the entire rect of the drag target with the droppable target.
      */
     RECT("rect");
-
     private String value;
 
     DragIntersectStyle(String value) {
@@ -39,3 +39,4 @@ public enum DragIntersectStyle implements ValueEnum {
         return this.value;
     }
 }
+        

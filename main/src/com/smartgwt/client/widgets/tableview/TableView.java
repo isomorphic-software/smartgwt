@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Shows a listing of records with one or more fields from each record, with built-in support for navigation and editing of
@@ -67,22 +87,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class TableView extends ListGrid  implements com.smartgwt.client.widgets.tableview.events.HasImageClickHandlers, com.smartgwt.client.widgets.tableview.events.HasRecordNavigationClickHandlers {
 
-    public static TableView getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (TableView) obj;
-        } else {
-            return new TableView(jsObj);
+    public native static TableView getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("TableView",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.tableview.TableView::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public TableView(){
         scClassName = "TableView";
     }
 
     public TableView(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "TableView";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -97,7 +128,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
     /**
      * Field to display as part of individual record in "summary" {@link com.smartgwt.client.types.RecordLayout}s.
      *
-     * @param dataField dataField Default value is "data"
+     * @param dataField . See {@link com.smartgwt.client.docs.String String}. Default value is "data"
      */
     public void setDataField(String dataField) {
         setAttribute("dataField", dataField, true);
@@ -107,7 +138,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
      * Field to display as part of individual record in "summary" {@link com.smartgwt.client.types.RecordLayout}s.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getDataField()  {
         return getAttributeAsString("dataField");
@@ -117,7 +148,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
      * Field to display as part of individual record in all {@link com.smartgwt.client.types.RecordLayout}s  except
      * "titleOnly".
      *
-     * @param descriptionField descriptionField Default value is "description"
+     * @param descriptionField . See {@link com.smartgwt.client.docs.String String}. Default value is "description"
      */
     public void setDescriptionField(String descriptionField) {
         setAttribute("descriptionField", descriptionField, true);
@@ -128,7 +159,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
      * "titleOnly".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getDescriptionField()  {
         return getAttributeAsString("descriptionField");
@@ -139,7 +170,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
      * <code>record[tableView.iconField]</code> to the URL of the desired icon to display. Only applies if {@link
      * com.smartgwt.client.widgets.tableview.TableView#getShowIconField showIconField} is <code>true</code>.
      *
-     * @param iconField iconField Default value is "icon"
+     * @param iconField . See {@link com.smartgwt.client.docs.String String}. Default value is "icon"
      */
     public void setIconField(String iconField) {
         setAttribute("iconField", iconField, true);
@@ -151,7 +182,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.tableview.TableView#getShowIconField showIconField} is <code>true</code>.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getIconField()  {
         return getAttributeAsString("iconField");
@@ -160,7 +191,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
     /**
      * Field to display as part of individual record in "summary" {@link com.smartgwt.client.types.RecordLayout}s.
      *
-     * @param infoField infoField Default value is "info"
+     * @param infoField . See {@link com.smartgwt.client.docs.String String}. Default value is "info"
      * @see com.smartgwt.client.types.RecordLayout
      */
     public void setInfoField(String infoField) {
@@ -171,7 +202,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
      * Field to display as part of individual record in "summary" {@link com.smartgwt.client.types.RecordLayout}s.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.types.RecordLayout
      */
     public String getInfoField()  {
@@ -182,7 +213,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
      * The navigation icon shown next to records when {@link com.smartgwt.client.widgets.tableview.TableView#getShowNavigation
      * showNavigation} is true and {@link com.smartgwt.client.types.NavigationMode} is set to "navIconOny".
      *
-     * @param navIcon navIcon Default value is "[SKINIMG]/iOS/listArrow_button.png"
+     * @param navIcon . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKINIMG]/iOS/listArrow_button.png"
      */
     public void setNavIcon(String navIcon) {
         setAttribute("navIcon", navIcon, true);
@@ -193,7 +224,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
      * showNavigation} is true and {@link com.smartgwt.client.types.NavigationMode} is set to "navIconOny".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getNavIcon()  {
         return getAttributeAsString("navIcon");
@@ -221,7 +252,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
     /**
      * Default style for data field.
      *
-     * @param recordDataStyle recordDataStyle Default value is "recordData"
+     * @param recordDataStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "recordData"
      */
     public void setRecordDataStyle(String recordDataStyle) {
         setAttribute("recordDataStyle", recordDataStyle, true);
@@ -231,7 +262,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
      * Default style for data field.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getRecordDataStyle()  {
         return getAttributeAsString("recordDataStyle");
@@ -240,7 +271,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
     /**
      * Default style for description.
      *
-     * @param recordDescriptionStyle recordDescriptionStyle Default value is "recordDescription"
+     * @param recordDescriptionStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "recordDescription"
      */
     public void setRecordDescriptionStyle(String recordDescriptionStyle) {
         setAttribute("recordDescriptionStyle", recordDescriptionStyle, true);
@@ -250,7 +281,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
      * Default style for description.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getRecordDescriptionStyle()  {
         return getAttributeAsString("recordDescriptionStyle");
@@ -259,7 +290,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
     /**
      * Default style for info field.
      *
-     * @param recordInfoStyle recordInfoStyle Default value is "recordInfo"
+     * @param recordInfoStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "recordInfo"
      */
     public void setRecordInfoStyle(String recordInfoStyle) {
         setAttribute("recordInfoStyle", recordInfoStyle, true);
@@ -269,7 +300,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
      * Default style for info field.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getRecordInfoStyle()  {
         return getAttributeAsString("recordInfoStyle");
@@ -305,7 +336,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
      * defined on the record a navigation icon is shown if {@link
      * com.smartgwt.client.widgets.tableview.TableView#getShowNavigation showNavigation} is <code>true</code>.
      *
-     * @param recordNavigationProperty recordNavigationProperty Default value is "_navigate"
+     * @param recordNavigationProperty . See {@link com.smartgwt.client.docs.String String}. Default value is "_navigate"
      */
     public void setRecordNavigationProperty(String recordNavigationProperty) {
         setAttribute("recordNavigationProperty", recordNavigationProperty, true);
@@ -317,7 +348,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.tableview.TableView#getShowNavigation showNavigation} is <code>true</code>.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getRecordNavigationProperty()  {
         return getAttributeAsString("recordNavigationProperty");
@@ -326,7 +357,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
     /**
      * Default style for title.
      *
-     * @param recordTitleStyle recordTitleStyle Default value is "recordTitle"
+     * @param recordTitleStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "recordTitle"
      */
     public void setRecordTitleStyle(String recordTitleStyle) {
         setAttribute("recordTitleStyle", recordTitleStyle, true);
@@ -336,7 +367,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
      * Default style for title.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getRecordTitleStyle()  {
         return getAttributeAsString("recordTitleStyle");
@@ -406,7 +437,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
     /**
      * Field to display for an individual record as the main title.
      *
-     * @param titleField titleField Default value is "title"
+     * @param titleField . See {@link com.smartgwt.client.docs.String String}. Default value is "title"
      */
     public void setTitleField(String titleField) {
         setAttribute("titleField", titleField, true);
@@ -416,7 +447,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
      * Field to display for an individual record as the main title.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getTitleField()  {
         return getAttributeAsString("titleField");
@@ -426,7 +457,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
      * The navigation icon shown next to records when {@link com.smartgwt.client.widgets.tableview.TableView#getShowNavigation
      * showNavigation} is true and {@link com.smartgwt.client.types.NavigationMode} is set to "wholeRecord".
      *
-     * @param wholeRecordNavIcon wholeRecordNavIcon Default value is "[SKINIMG]/iOS/listArrow.png"
+     * @param wholeRecordNavIcon . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKINIMG]/iOS/listArrow.png"
      */
     public void setWholeRecordNavIcon(String wholeRecordNavIcon) {
         setAttribute("wholeRecordNavIcon", wholeRecordNavIcon, true);
@@ -437,7 +468,7 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
      * showNavigation} is true and {@link com.smartgwt.client.types.NavigationMode} is set to "wholeRecord".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getWholeRecordNavIcon()  {
         return getAttributeAsString("wholeRecordNavIcon");
@@ -461,21 +492,18 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
     private native void setupImageClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var imageClick = $entry(function(){
+            var param = {"record" : arguments[0]};
+
+                var event = @com.smartgwt.client.widgets.tableview.events.ImageClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({imageClick:$entry(function(){
-                        var param = {"record" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.tableview.events.ImageClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({imageClick:  imageClick              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.imageClick = $entry(function(){
-                   var param = {"record" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.tableview.events.ImageClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.imageClick =  imageClick             ;
         }
    }-*/;
     /**
@@ -495,21 +523,18 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
     private native void setupRecordNavigationClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var recordNavigationClick = $entry(function(){
+            var param = {"record" : arguments[0]};
+
+                var event = @com.smartgwt.client.widgets.tableview.events.RecordNavigationClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({recordNavigationClick:$entry(function(){
-                        var param = {"record" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.tableview.events.RecordNavigationClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({recordNavigationClick:  recordNavigationClick              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.recordNavigationClick = $entry(function(){
-                   var param = {"record" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.tableview.events.RecordNavigationClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.recordNavigationClick =  recordNavigationClick             ;
         }
    }-*/;
 
@@ -554,7 +579,100 @@ public class TableView extends ListGrid  implements com.smartgwt.client.widgets.
 
 
 
+    public LogicalStructureObject setLogicalStructure(TableViewLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.dataField = getAttributeAsString("dataField");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TableView.dataField:" + t.getMessage() + "\n";
+        }
+        try {
+            s.descriptionField = getAttributeAsString("descriptionField");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TableView.descriptionField:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconField = getAttributeAsString("iconField");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TableView.iconField:" + t.getMessage() + "\n";
+        }
+        try {
+            s.infoField = getAttributeAsString("infoField");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TableView.infoField:" + t.getMessage() + "\n";
+        }
+        try {
+            s.navIcon = getAttributeAsString("navIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TableView.navIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.navigationMode = getAttributeAsString("navigationMode");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TableView.navigationMode:" + t.getMessage() + "\n";
+        }
+        try {
+            s.recordDataStyle = getAttributeAsString("recordDataStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TableView.recordDataStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.recordDescriptionStyle = getAttributeAsString("recordDescriptionStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TableView.recordDescriptionStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.recordInfoStyle = getAttributeAsString("recordInfoStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TableView.recordInfoStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.recordLayout = getAttributeAsString("recordLayout");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TableView.recordLayout:" + t.getMessage() + "\n";
+        }
+        try {
+            s.recordNavigationProperty = getAttributeAsString("recordNavigationProperty");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TableView.recordNavigationProperty:" + t.getMessage() + "\n";
+        }
+        try {
+            s.recordTitleStyle = getAttributeAsString("recordTitleStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TableView.recordTitleStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showIconField = getAttributeAsString("showIconField");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TableView.showIconField:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showNavigation = getAttributeAsString("showNavigation");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TableView.showNavigation:" + t.getMessage() + "\n";
+        }
+        try {
+            s.tableMode = getAttributeAsString("tableMode");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TableView.tableMode:" + t.getMessage() + "\n";
+        }
+        try {
+            s.titleField = getAttributeAsString("titleField");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TableView.titleField:" + t.getMessage() + "\n";
+        }
+        try {
+            s.wholeRecordNavIcon = getAttributeAsString("wholeRecordNavIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TableView.wholeRecordNavIcon:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        TableViewLogicalStructure s = new TableViewLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

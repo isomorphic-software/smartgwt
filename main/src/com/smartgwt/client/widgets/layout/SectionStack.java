@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A container that manages a list of sections of widgets, each with a header.  Sometimes called an "Accordion". <P>
@@ -65,22 +85,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class SectionStack extends VLayout  implements com.smartgwt.client.widgets.layout.events.HasSectionHeaderClickHandlers {
 
-    public static SectionStack getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (SectionStack) obj;
-        } else {
-            return new SectionStack(jsObj);
+    public native static SectionStack getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("SectionStack",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.layout.SectionStack::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public SectionStack(){
         scClassName = "SectionStack";
     }
 
     public SectionStack(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "SectionStack";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -111,6 +142,62 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      */
     public Boolean getAnimateSections()  {
         return getAttributeAsBoolean("animateSections");
+    }
+
+    /**
+     * In {@link com.smartgwt.client.widgets.layout.SectionStack#getVisibilityMode visibilityMode} "mutex", whether to allow
+     * the last remaining expanded section to be collapsed.  If false, collapsing the last open section will open the next one
+     * (wrapping around at the end).
+     *
+     * @param canCollapseAll canCollapseAll Default value is true
+     */
+    public void setCanCollapseAll(Boolean canCollapseAll) {
+        setAttribute("canCollapseAll", canCollapseAll, true);
+    }
+
+    /**
+     * In {@link com.smartgwt.client.widgets.layout.SectionStack#getVisibilityMode visibilityMode} "mutex", whether to allow
+     * the last remaining expanded section to be collapsed.  If false, collapsing the last open section will open the next one
+     * (wrapping around at the end).
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanCollapseAll()  {
+        return getAttributeAsBoolean("canCollapseAll");
+    }
+
+    /**
+     * SectionStacks provide the same default implementation of drag and drop interactions as {@link
+     * com.smartgwt.client.widgets.layout.Layout#getCanDropComponents Layouts}, except that members are added as items into the
+     * section over which they're dropped. <P> If you want to completely suppress the builtin drag and drop logic, but still
+     * receive drag and drop events for your own custom implementation, set {@link
+     * com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop} to <code>true</code> and
+     * <code>canDropComponents</code> to <code>false</code> on your SectionStack.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canDropComponents canDropComponents Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     */
+    public void setCanDropComponents(Boolean canDropComponents)  throws IllegalStateException {
+        setAttribute("canDropComponents", canDropComponents, false);
+    }
+
+    /**
+     * SectionStacks provide the same default implementation of drag and drop interactions as {@link
+     * com.smartgwt.client.widgets.layout.Layout#getCanDropComponents Layouts}, except that members are added as items into the
+     * section over which they're dropped. <P> If you want to completely suppress the builtin drag and drop logic, but still
+     * receive drag and drop events for your own custom implementation, set {@link
+     * com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop} to <code>true</code> and
+     * <code>canDropComponents</code> to <code>false</code> on your SectionStack.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     */
+    public Boolean getCanDropComponents()  {
+        return getAttributeAsBoolean("canDropComponents");
     }
 
     /**
@@ -395,7 +482,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      * with this API - see the {@link com.smartgwt.client.docs.Skinning Skinning Guide} for details.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param sectionHeaderClass sectionHeaderClass Default value is "SectionHeader"
+     * @param sectionHeaderClass . See {@link com.smartgwt.client.docs.Classname Classname}. Default value is "SectionHeader"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setSectionHeaderClass(String sectionHeaderClass)  throws IllegalStateException {
@@ -410,7 +497,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      * with this API - see the {@link com.smartgwt.client.docs.Skinning Skinning Guide} for details.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.Classname Classname}
      */
     public String getSectionHeaderClass()  {
         return getAttributeAsString("sectionHeaderClass");
@@ -440,7 +527,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     /**
      * Default CSS style for the SectionStack as a whole.
      *
-     * @param styleName styleName Default value is "sectionStack"
+     * @param styleName . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "sectionStack"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setStyleName(String styleName)  throws IllegalStateException {
@@ -451,7 +538,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      * Default CSS style for the SectionStack as a whole.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getStyleName()  {
         return getAttributeAsString("styleName");
@@ -505,7 +592,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Returns the position of the specified section in the SectionStack.  The numbering is zero-based.
      * @param sectionName name of a section for which you want to obtain the position.
@@ -517,7 +604,48 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getSectionNumber(sectionName);
     }-*/;
-            
+    /**
+     * Add a SectionHeaderClick handler.
+     * <p>
+     * Notification method fired when the user clicks on a section header. Returning false will cancel the default behavior
+     * (expanding / collapsing the section)
+     *
+     * @param handler the SectionHeaderClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addSectionHeaderClickHandler(com.smartgwt.client.widgets.layout.events.SectionHeaderClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.layout.events.SectionHeaderClickEvent.getType()) == 0) setupSectionHeaderClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.layout.events.SectionHeaderClickEvent.getType());
+    }
+
+    private native void setupSectionHeaderClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        var onSectionHeaderClick = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.layout.events.SectionHeaderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onSectionHeaderClick: 
+                function () {
+                    var param = {"section" : arguments[0]};
+                    return onSectionHeaderClick(param) == true;
+                }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onSectionHeaderClick = 
+                function () {
+                    var param = {"section" : arguments[0]};
+                    return onSectionHeaderClick(param) == true;
+                }
+            ;
+        }
+   }-*/;
+
     /**
      * Search for a section that contains passed item.
      * @param item item to show
@@ -534,7 +662,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
         }
         return retVal;
     }-*/;
-            
+
     /**
      * Method intended to be called by the sectionHeader when it is clicked on.
      * @param sectionHeader the sectionHeader clicked on
@@ -902,42 +1030,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
         return objects;
     }
 
-    /**
-     * Add a onSectionHeaderClick handler.
-     * <p>
-     * Notification method fired when the user clicks on a section header.&#010 Returning false will cancel the default behavior (expanding / collapsing the section)&#010
-     *
-     * @param handler the onSectionHeaderClick handler
-     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addSectionHeaderClickHandler(com.smartgwt.client.widgets.layout.events.SectionHeaderClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.layout.events.SectionHeaderClickEvent.getType()) == 0) setupSectionHeaderClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.layout.events.SectionHeaderClickEvent.getType());
-    }
-    private native void setupSectionHeaderClickEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({onSectionHeaderClick:$debox($entry(function(){
-                    var param = {"section" : arguments[0]};
-                    var event = @com.smartgwt.client.widgets.layout.events.SectionHeaderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                    return !ret;
-                }))
-            });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.onSectionHeaderClick = $debox($entry(function(){
-                var param = {"section" : arguments[0]};
-                var event = @com.smartgwt.client.widgets.layout.events.SectionHeaderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                return !ret;
-            }));
-        }
-    }-*/;
+   
     /**
      * Set arbitrary properties for a particular section in this SectionStack. Properties will be applied to the sectionHeader
      * for the section. <P> Note that where APIs exist to explicitly manipulate section properties these should be used in
@@ -973,7 +1066,110 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
          self.setSectionProperties(section, props);
      }-*/;
 
+    public LogicalStructureObject setLogicalStructure(SectionStackLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.animateSections = getAttributeAsString("animateSections");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.animateSections:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canCollapseAll = getAttributeAsString("canCollapseAll");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.canCollapseAll:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canDropComponents = getAttributeAsString("canDropComponents");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.canDropComponents:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canReorderSections = getAttributeAsString("canReorderSections");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.canReorderSections:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canResizeSections = getAttributeAsString("canResizeSections");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.canResizeSections:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canTabToHeaders = getAttributeAsString("canTabToHeaders");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.canTabToHeaders:" + t.getMessage() + "\n";
+        }
+        try {
+            s.headerHeight = getAttributeAsString("headerHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.headerHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.itemEndIndent = getAttributeAsString("itemEndIndent");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.itemEndIndent:" + t.getMessage() + "\n";
+        }
+        try {
+            s.itemIndent = getAttributeAsString("itemIndent");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.itemIndent:" + t.getMessage() + "\n";
+        }
+        try {
+            s.itemStartIndent = getAttributeAsString("itemStartIndent");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.itemStartIndent:" + t.getMessage() + "\n";
+        }
+        try {
+            s.locateSectionsBy = getAttributeAsString("locateSectionsBy");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.locateSectionsBy:" + t.getMessage() + "\n";
+        }
+        try {
+            s.locateSectionsType = getAttributeAsString("locateSectionsType");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.locateSectionsType:" + t.getMessage() + "\n";
+        }
+        try {
+            s.overflow = getAttributeAsString("overflow");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.overflow:" + t.getMessage() + "\n";
+        }
+        try {
+            s.scrollSectionIntoView = getAttributeAsString("scrollSectionIntoView");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.scrollSectionIntoView:" + t.getMessage() + "\n";
+        }
+        try {
+            s.sectionHeaderClass = getAttributeAsString("sectionHeaderClass");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.sectionHeaderClass:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showExpandControls = getAttributeAsString("showExpandControls");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.showExpandControls:" + t.getMessage() + "\n";
+        }
+        try {
+            s.styleName = getAttributeAsString("styleName");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.styleName:" + t.getMessage() + "\n";
+        }
+        try {
+            s.useGlobalSectionIDs = getAttributeAsString("useGlobalSectionIDs");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.useGlobalSectionIDs:" + t.getMessage() + "\n";
+        }
+        try {
+            s.visibilityMode = getAttributeAsString("visibilityMode");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.visibilityMode:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        SectionStackLogicalStructure s = new SectionStackLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

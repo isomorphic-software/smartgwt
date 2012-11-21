@@ -1,4 +1,4 @@
-
+	    
 package com.smartgwt.client.docs;
 
 /**
@@ -40,8 +40,8 @@ package com.smartgwt.client.docs;
  *  available, depending on your server of choice.  Microsoft's IIS has built-in caching
  *  capability, please check the reference manual for details.  If you're using Apache, you can
  * use <a href='http://httpd.apache.org/docs/2.0/mod/mod_expires.html'
- * onclick="window.open('http://httpd.apache.org/docs/2.0/mod/mod_expires.html');return false;">mod_expires</a>.  Some
- * servlet
+ * onclick="window.open('http://httpd.apache.org/docs/2.0/mod/mod_expires.html');return
+ * false;">mod_expires</a>.  Some servlet
  *  containers also natively support the setting of caching headers.
  *  <p>
  *  The Smart GWT Java back-end supports setting caching headers via the FileDownload service

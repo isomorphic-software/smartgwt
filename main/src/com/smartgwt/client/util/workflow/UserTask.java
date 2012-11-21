@@ -45,15 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A task that involves showing a user interface to the end user allowing the user to view and input data and press a
@@ -66,12 +89,12 @@ import com.google.gwt.event.shared.HasHandlers;
  * com.smartgwt.client.util.workflow.UserTask#getSetValues setValues} <li> Waits for notification of completion or
  * cancellation.  The UserTask is notified of      completion if a {@link
  * com.smartgwt.client.widgets.form.fields.SubmitItem} is pressed in either the <code>targetForm</code> or      any form
- * that is a member of the <code>targetVM</code>.  Likewise a {@link com.smartgwt.client.widgets.form.fields.CancelItem}   
- * triggers cancellation.  Direct calls to {@link com.smartgwt.client.widgets.form.DynamicForm#cancelEditing
- * DynamicForm.cancelEditing} or      {@link com.smartgwt.client.widgets.form.DynamicForm#completeEditing
- * DynamicForm.completeEditing} achieve the same result. <li> if cancellation occurs, the process continues to the {@link
- * com.smartgwt.client.util.workflow.UserTask#getCancelElement cancelElement} <li> if completion occurs, values are
- * retrieved from the form or valuesManager and applied      to the process state </ul>
+ * that is a member of the <code>targetVM</code>.  Likewise a CancelItem      triggers cancellation.  Direct calls to
+ * {@link com.smartgwt.client.widgets.form.DynamicForm#cancelEditing DynamicForm.cancelEditing} or      {@link
+ * com.smartgwt.client.widgets.form.DynamicForm#completeEditing DynamicForm.completeEditing} achieve the same result. <li>
+ * if cancellation occurs, the process continues to the {@link com.smartgwt.client.util.workflow.UserTask#getCancelElement
+ * cancelElement} <li> if completion occurs, values are retrieved from the form or valuesManager and applied      to the
+ * process state </ul>
  */
 public class UserTask extends Task {
 
@@ -85,17 +108,18 @@ public class UserTask extends Task {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
+    }
+
+
     public UserTask(){
         scClassName = "UserTask";
     }
 
     public UserTask(JavaScriptObject jsObj){
-        super(jsObj);
-    }
-
-    public UserTask(String ID) {
-        setID(ID);
         scClassName = "UserTask";
+        setJavaScriptObject(jsObj);
     }
 
     public native JavaScriptObject create()/*-{
@@ -110,7 +134,7 @@ public class UserTask extends Task {
      * com.smartgwt.client.util.workflow.UserTask#getTargetForm targetForm} or {@link
      * com.smartgwt.client.util.workflow.UserTask#getTargetVM targetVM} had <code>cancelEditing()</code> called on it.
      *
-     * @param cancelElement cancelElement Default value is null
+     * @param cancelElement . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setCancelElement(String cancelElement)  throws IllegalStateException {
@@ -123,10 +147,79 @@ public class UserTask extends Task {
      * com.smartgwt.client.util.workflow.UserTask#getTargetVM targetVM} had <code>cancelEditing()</code> called on it.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getCancelElement()  {
         return getAttributeAsString("cancelElement");
+    }
+
+    /**
+     * An inline definition of the form. Could be used to encode form directly in process xml.
+     *
+     * @param inlineView inlineView Default value is null
+     */
+    public void setInlineView(Canvas inlineView) {
+        setAttribute("inlineView", inlineView == null ? null : inlineView.getOrCreateJsObj(), true);
+    }
+
+    /**
+     * An inline definition of the form. Could be used to encode form directly in process xml.
+     *
+     *
+     * @return Canvas
+     */
+    public Canvas getInlineView()  {
+        return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("inlineView"));
+    }
+
+    /**
+     * Previous workflow {@link com.smartgwt.client.util.workflow.Process#getSequences sequence} or {@link
+     * com.smartgwt.client.util.workflow.Process#getElements element} that is helpful for wizards. This element will be
+     * executed if {@link com.smartgwt.client.util.workflow.UserTask#goToPrevious UserTask.goToPrevious} method of userTask
+     * will be invoked. You can get userTask for attached form by using  +link{DynamicForm userTask, userTask} property.
+     *
+     * @param previousElement . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setPreviousElement(String previousElement)  throws IllegalStateException {
+        setAttribute("previousElement", previousElement, false);
+    }
+
+    /**
+     * Previous workflow {@link com.smartgwt.client.util.workflow.Process#getSequences sequence} or {@link
+     * com.smartgwt.client.util.workflow.Process#getElements element} that is helpful for wizards. This element will be
+     * executed if {@link com.smartgwt.client.util.workflow.UserTask#goToPrevious UserTask.goToPrevious} method of userTask
+     * will be invoked. You can get userTask for attached form by using  +link{DynamicForm userTask, userTask} property.
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     */
+    public String getPreviousElement()  {
+        return getAttributeAsString("previousElement");
+    }
+
+    /**
+     * If saveToServer is set then associated form will perform the normal  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#submit DynamicForm.submit} actions when called (typically from a {@link
+     * com.smartgwt.client.widgets.form.fields.SubmitItem}). By default the form submit action is bypassed.
+     *
+     * @param saveToServer saveToServer Default value is false
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setSaveToServer(Boolean saveToServer)  throws IllegalStateException {
+        setAttribute("saveToServer", saveToServer, false);
+    }
+
+    /**
+     * If saveToServer is set then associated form will perform the normal  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#submit DynamicForm.submit} actions when called (typically from a {@link
+     * com.smartgwt.client.widgets.form.fields.SubmitItem}). By default the form submit action is bypassed.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSaveToServer()  {
+        return getAttributeAsBoolean("saveToServer");
     }
 
     /**
@@ -153,8 +246,28 @@ public class UserTask extends Task {
         return DynamicForm.getOrCreateRef(getAttributeAsJavaScriptObject("targetForm"));
     }
 
+    /**
+     * If wizard is set then associated form will be hidden after user goes to next or prev step of current workflow.
+     *
+     * @param wizard wizard Default value is false
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setWizard(Boolean wizard)  throws IllegalStateException {
+        setAttribute("wizard", wizard, false);
+    }
+
+    /**
+     * If wizard is set then associated form will be hidden after user goes to next or prev step of current workflow.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getWizard()  {
+        return getAttributeAsBoolean("wizard");
+    }
+
     // ********************* Methods ***********************
-            
+
     /**
      * Revert any changes made in a form and finish this userTask execution.  {@link
      * com.smartgwt.client.util.workflow.UserTask#getCancelElement cancelElement} will be proceed as the next element of
@@ -164,13 +277,22 @@ public class UserTask extends Task {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.cancelEditing();
     }-*/;
-            
+
     /**
      * Finish editing and store edited values in {@link com.smartgwt.client.util.workflow.Process#getState process state}.
      */
     public native void completeEditing() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.completeEditing();
+    }-*/;
+
+    /**
+     * Set {@link com.smartgwt.client.util.workflow.UserTask#getPreviousElement previousElement} as next element of workflow.
+     * This method could be used to  create wizard-like UI behavior.
+     */
+    public native void goToPrevious() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.goToPrevious();
     }-*/;
 
     // ********************* Static Methods ***********************
@@ -278,6 +400,7 @@ public class UserTask extends Task {
 
 
 }
+
 
 
 

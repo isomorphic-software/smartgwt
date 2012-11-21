@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * An operator is used as part of a {@link com.smartgwt.client.data.Criterion} when specifying {@link
  * com.smartgwt.client.data.AdvancedCriteria}. <P> This list of operators indicates the set of operators built into Smart
@@ -132,13 +133,21 @@ public enum OperatorId implements ValueEnum {
      */
     NOT_IN_SET("notInSet"),
     /**
-     * matches another field (specify fieldName as criterion.value)
+     * matches another field (match case, specify fieldName as criterion.value)
      */
     EQUALS_FIELD("equalsField"),
     /**
-     * does not match another field (specify fieldName as criterion.value)
+     * does not match another field (match case, specify fieldName as criterion.value)
      */
     NOT_EQUAL_FIELD("notEqualField"),
+    /**
+     * matches another field (case insensitive, specify fieldName as criterion.value)
+     */
+    IEQUALS_FIELD("iEqualsField"),
+    /**
+     * does not match another field (case insensitive, specify fieldName as criterion.value)
+     */
+    INOT_EQUAL_FIELD("iNotEqualField"),
     /**
      * Greater than another field (specify fieldName as criterion.value)
      */
@@ -168,6 +177,42 @@ public enum OperatorId implements ValueEnum {
      */
     ENDS_WITH_FIELD("endsWithField"),
     /**
+     * Contains as sub-string (case insensitive) another field value (specify fieldName as criterion.value)
+     */
+    ICONTAINS_FIELD("iContainsField"),
+    /**
+     * Starts with (case insensitive) another field value (specify fieldName as criterion.value)
+     */
+    ISTARTS_WITH_FIELD("iStartsWithField"),
+    /**
+     * Ends with (case insensitive) another field value (specify fieldName as criterion.value)
+     */
+    IENDS_WITH_FIELD("iEndsWithField"),
+    /**
+     * Does not contain as sub-string (match case) another field value (specify fieldName as criterion.value)
+     */
+    NOT_CONTAINS_FIELD("notContainsField"),
+    /**
+     * Does not start with (match case) another field value (specify fieldName as criterion.value)
+     */
+    NOT_STARTS_WITH_FIELD("notStartsWithField"),
+    /**
+     * Does not end with (match case) another field value (specify fieldName as criterion.value)
+     */
+    NOT_ENDS_WITH_FIELD("notEndsWithField"),
+    /**
+     * Does not contain as sub-string (case insensitive) another field value (specify fieldName as criterion.value)
+     */
+    INOT_CONTAINS_FIELD("iNotContainsField"),
+    /**
+     * Does not start with (case insensitive) another field value (specify fieldName as criterion.value)
+     */
+    INOT_STARTS_WITH_FIELD("iNotStartsWithField"),
+    /**
+     * Does not end with (case insensitive) another field value (specify fieldName as criterion.value)
+     */
+    INOT_ENDS_WITH_FIELD("iNotEndsWithField"),
+    /**
      * all subcriteria (criterion.criteria) are true
      */
     AND("and"),
@@ -187,7 +232,6 @@ public enum OperatorId implements ValueEnum {
      * shortcut for "greaterOrEqual" + "lessOrEqual" + "and". Specify criterion.start and criterion.end
      */
     BETWEEN_INCLUSIVE("betweenInclusive");
-
     private String value;
 
     OperatorId(String value) {
@@ -198,3 +242,4 @@ public enum OperatorId implements ValueEnum {
         return this.value;
     }
 }
+        

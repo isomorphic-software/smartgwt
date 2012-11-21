@@ -1,4 +1,4 @@
-
+	    
 package com.smartgwt.client.docs;
 
 /**
@@ -10,7 +10,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.drawing.DrawItem#getLineCap
  * @see com.smartgwt.client.widgets.drawing.DrawRect#getLineCap
  * @see com.smartgwt.client.widgets.drawing.DrawCurve#getLineCap
- * @see com.smartgwt.client.widgets.drawing.DrawTriangle#getLineCap
+ * @see com.smartgwt.client.widgets.drawing.DrawPolygon#getLineCap
  * @see com.smartgwt.client.types.LinePattern
  * @see com.smartgwt.client.types.LineCap
  */

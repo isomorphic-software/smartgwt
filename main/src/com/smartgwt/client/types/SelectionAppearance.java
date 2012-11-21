@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * How data selection should be presented to the user.
  */
@@ -31,7 +32,6 @@ public enum SelectionAppearance implements ValueEnum {
      * select rows.  See {@link com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField ListGrid.getCheckboxField}.
      */
     CHECKBOX("checkbox");
-
     private String value;
 
     SelectionAppearance(String value) {
@@ -42,3 +42,4 @@ public enum SelectionAppearance implements ValueEnum {
         return this.value;
     }
 }
+        

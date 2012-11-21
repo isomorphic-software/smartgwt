@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Class for editable multi-line text areas (uses HTML <code>&lt;TEXTAREA&gt;</code> object)
@@ -64,8 +84,15 @@ import com.google.gwt.event.shared.HasHandlers;
 public class TextAreaItem extends FormItem {
 
     public static TextAreaItem getOrCreateRef(JavaScriptObject jsObj) {
+    
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+		if(obj != null && JSOHelper.getAttribute(jsObj,"__ref")==null) {
+            return com.smartgwt.client.util.ObjectFactory.createFormItem("TextAreaItem",jsObj);
+
+        } else 
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (TextAreaItem) obj;
@@ -74,12 +101,18 @@ public class TextAreaItem extends FormItem {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public TextAreaItem(){
         setAttribute("editorType", "TextAreaItem");
     }
 
     public TextAreaItem(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     public TextAreaItem(String name) {
@@ -267,7 +300,7 @@ public class TextAreaItem extends FormItem {
      * Base CSS class to apply to this item's input element. NOTE: See the {@link CompoundFormItem_skinning} discussion for
      * special skinning considerations.
      *
-     * @param textBoxStyle textBoxStyle Default value is "textItem"
+     * @param textBoxStyle . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}. Default value is "textItem"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextBoxStyle(String textBoxStyle) {
@@ -279,7 +312,7 @@ public class TextAreaItem extends FormItem {
      * special skinning considerations.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTextBoxStyle()  {
@@ -308,7 +341,7 @@ public class TextAreaItem extends FormItem {
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * If this item currently has focus, clear the current selection. leaving focus in the item. Has no effect if the item is
      * undrawn or unfocused. Only applies to text-based items.
@@ -324,11 +357,11 @@ public class TextAreaItem extends FormItem {
      * @param start By default the text insertion cursor will be moved to the end of the   current value - pass in this parameter to move to
      * the start instead
      */
-    public native void deselectValue(boolean start) /*-{
+    public native void deselectValue(Boolean start) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.deselectValue(start);
+        self.deselectValue(start == null ? null : start.@java.lang.Boolean::booleanValue()());
     }-*/;
-            
+
     /**
      * Returns the raw text value typed into this form field, which can differ from  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} in various cases - for example: <ul>
@@ -346,7 +379,7 @@ public class TextAreaItem extends FormItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.getEnteredValue();
     }-*/;
-            
+
     /**
      * Put focus in this item and select the entire value. Only applies to text based items
      */
@@ -354,7 +387,7 @@ public class TextAreaItem extends FormItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.selectValue();
     }-*/;
-            
+
     /**
      * Puts focus into this form item and selects characters between the given indices. Only applies to drawn text based items.
      * @param start selection starting character index

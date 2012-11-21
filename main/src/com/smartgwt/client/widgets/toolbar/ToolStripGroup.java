@@ -45,40 +45,71 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A widget that groups other controls for use in {@link com.smartgwt.client.widgets.toolbar.ToolStrip tool-strips}.
  */
 public class ToolStripGroup extends VLayout {
 
-    public static ToolStripGroup getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (ToolStripGroup) obj;
-        } else {
-            return new ToolStripGroup(jsObj);
+    public native static ToolStripGroup getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("ToolStripGroup",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.toolbar.ToolStripGroup::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public ToolStripGroup(){
         scClassName = "ToolStripGroup";
     }
 
     public ToolStripGroup(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "ToolStripGroup";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -91,10 +122,32 @@ public class ToolStripGroup extends VLayout {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * By default, ToolStripGroups are assigned a minimum width that allows the entire title  to be visible.  To prevent this
+     * bahavior and have group-titles cut off when they're  wider than the buttons they contain, set this attribute to false
+     *
+     * @param autoSizeToTitle autoSizeToTitle Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setAutoSizeToTitle(Boolean autoSizeToTitle)  throws IllegalStateException {
+        setAttribute("autoSizeToTitle", autoSizeToTitle, false);
+    }
+
+    /**
+     * By default, ToolStripGroups are assigned a minimum width that allows the entire title  to be visible.  To prevent this
+     * bahavior and have group-titles cut off when they're  wider than the buttons they contain, set this attribute to false
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAutoSizeToTitle()  {
+        return getAttributeAsBoolean("autoSizeToTitle");
+    }
+
+    /**
      * Smart GWT class for the body.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param bodyConstructor bodyConstructor Default value is "HLayout"
+     * @param bodyConstructor . See {@link com.smartgwt.client.docs.String String}. Default value is "HLayout"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setBodyConstructor(String bodyConstructor)  throws IllegalStateException {
@@ -105,7 +158,7 @@ public class ToolStripGroup extends VLayout {
      * Smart GWT class for the body.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getBodyConstructor()  {
         return getAttributeAsString("bodyConstructor");
@@ -115,7 +168,7 @@ public class ToolStripGroup extends VLayout {
      * Smart GWT class for the title label.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param labelConstructor labelConstructor Default value is "Label"
+     * @param labelConstructor . See {@link com.smartgwt.client.docs.String String}. Default value is "Label"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setLabelConstructor(String labelConstructor)  throws IllegalStateException {
@@ -126,7 +179,7 @@ public class ToolStripGroup extends VLayout {
      * Smart GWT class for the title label.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getLabelConstructor()  {
         return getAttributeAsString("labelConstructor");
@@ -154,7 +207,7 @@ public class ToolStripGroup extends VLayout {
     /**
      * The height of rows in each column.
      *
-     * @param rowHeight rowHeight Default value is 20
+     * @param rowHeight rowHeight Default value is 26
      */
     public void setRowHeight(int rowHeight) {
         setAttribute("rowHeight", rowHeight, true);
@@ -173,7 +226,7 @@ public class ToolStripGroup extends VLayout {
     /**
      * CSS class applied to this ToolStripGroup.
      *
-     * @param styleName styleName Default value is "toolStripGroup"
+     * @param styleName . See {@link com.smartgwt.client.docs.CSSClassName CSSClassName}. Default value is "toolStripGroup"
      */
     public void setStyleName(String styleName) {
         setAttribute("styleName", styleName, true);
@@ -183,7 +236,7 @@ public class ToolStripGroup extends VLayout {
      * CSS class applied to this ToolStripGroup.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSClassName CSSClassName}
      */
     public String getStyleName()  {
         return getAttributeAsString("styleName");
@@ -263,7 +316,7 @@ public class ToolStripGroup extends VLayout {
     /**
      * CSS class applied to this ToolStripGroup.
      *
-     * @param titleStyle titleStyle Default value is "toolStripGroupTitle"
+     * @param titleStyle . See {@link com.smartgwt.client.docs.CSSClassName CSSClassName}. Default value is "toolStripGroupTitle"
      */
     public void setTitleStyle(String titleStyle) {
         setAttribute("titleStyle", titleStyle, true);
@@ -273,14 +326,14 @@ public class ToolStripGroup extends VLayout {
      * CSS class applied to this ToolStripGroup.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSClassName CSSClassName}
      */
     public String getTitleStyle()  {
         return getAttributeAsString("titleStyle");
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Adds a control to this toolStripGroup, creating a new column if necessary, according to the control's rowSpan attribute
      * and the group's {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getNumRows numRows} attribute.
@@ -297,11 +350,11 @@ public class ToolStripGroup extends VLayout {
      * @param control a widget to add to this group
      * @param index optional insertion index for this control
      */
-    public native void addControl(Canvas control, int index) /*-{
+    public native void addControl(Canvas control, Integer index) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.addControl(control.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), index);
+        self.addControl(control.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), index == null ? null : index.@java.lang.Integer::intValue()());
     }-*/;
-            
+
     /**
      * Removes a control from this toolStripGroup, destroying an existing column if this is the last widget in that column.
      * @param control a widget to remove from this group
@@ -310,7 +363,7 @@ public class ToolStripGroup extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeControl(control.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-            
+
     /**
      * Return the column widget that contains the passed control.
      * @param control the control to find in this group
@@ -319,7 +372,7 @@ public class ToolStripGroup extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setControlColumn(control.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-            
+
     /**
      * This method forcibly shows or hides this group's title after initial draw.
      * @param showTitle should be show the title be shown or hidden?
@@ -328,7 +381,7 @@ public class ToolStripGroup extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setShowTitle(showTitle);
     }-*/;
-            
+
     /**
      * Sets the header-text for this group.
      * @param title The new title for this group
@@ -395,7 +448,70 @@ public class ToolStripGroup extends VLayout {
         self.addControls(controlsJS);
     }-*/;
 
+    public LogicalStructureObject setLogicalStructure(ToolStripGroupLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.autoSizeToTitle = getAttributeAsString("autoSizeToTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStripGroup.autoSizeToTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.bodyConstructor = getAttributeAsString("bodyConstructor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStripGroup.bodyConstructor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.controls = getAttributeAsStringArray("controls");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStripGroup.controlsArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.labelConstructor = getAttributeAsString("labelConstructor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStripGroup.labelConstructor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.numRows = getAttributeAsString("numRows");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStripGroup.numRows:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rowHeight = getAttributeAsString("rowHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStripGroup.rowHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.styleName = getAttributeAsString("styleName");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStripGroup.styleName:" + t.getMessage() + "\n";
+        }
+        try {
+            s.titleAlign = getAttributeAsString("titleAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStripGroup.titleAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.titleHeight = getAttributeAsString("titleHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStripGroup.titleHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.titleOrientation = getAttributeAsString("titleOrientation");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStripGroup.titleOrientation:" + t.getMessage() + "\n";
+        }
+        try {
+            s.titleStyle = getAttributeAsString("titleStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStripGroup.titleStyle:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        ToolStripGroupLogicalStructure s = new ToolStripGroupLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

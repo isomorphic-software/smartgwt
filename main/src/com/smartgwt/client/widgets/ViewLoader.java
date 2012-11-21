@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * The ViewLoader component can be used to load new Smart GWT-based user interfaces into a running application. <P>
@@ -80,22 +100,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class ViewLoader extends Label {
 
-    public static ViewLoader getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (ViewLoader) obj;
-        } else {
-            return new ViewLoader(jsObj);
+    public native static ViewLoader getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("ViewLoader",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.ViewLoader::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public ViewLoader(){
         scClassName = "ViewLoader";
     }
 
     public ViewLoader(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "ViewLoader";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -134,7 +165,7 @@ public class ViewLoader extends Label {
     /**
      * Selects the HTTP method that will be used when fetching content.  Valid values are "POST" and "GET".
      *
-     * @param httpMethod httpMethod Default value is "GET"
+     * @param httpMethod . See {@link com.smartgwt.client.docs.String String}. Default value is "GET"
      */
     public void setHttpMethod(String httpMethod) {
         setAttribute("httpMethod", httpMethod, true);
@@ -144,7 +175,7 @@ public class ViewLoader extends Label {
      * Selects the HTTP method that will be used when fetching content.  Valid values are "POST" and "GET".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getHttpMethod()  {
         return getAttributeAsString("httpMethod");
@@ -154,7 +185,7 @@ public class ViewLoader extends Label {
      * Message to show while the view is loading. Use <code>"\${loadingImage}"</code> to include {@link
      * com.smartgwt.client.widgets.Canvas#loadingImageSrc a loading image}.
      *
-     * @param loadingMessage loadingMessage Default value is "Loading View...&amp;nbsp;\${loadingImage}"
+     * @param loadingMessage . See {@link com.smartgwt.client.docs.String String}. Default value is "Loading View...&amp;nbsp;\${loadingImage}"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setLoadingMessage(String loadingMessage)  throws IllegalStateException {
@@ -166,7 +197,7 @@ public class ViewLoader extends Label {
      * com.smartgwt.client.widgets.Canvas#loadingImageSrc a loading image}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getLoadingMessage()  {
         return getAttributeAsString("loadingMessage");
@@ -178,7 +209,7 @@ public class ViewLoader extends Label {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Change the URL this component loads a view from.  Triggers a fetch from the new URL. <P> Can also be called with no arguments to reload the view from the existing {@link com.smartgwt.client.widgets.ViewLoader#getViewURL viewURL}.
      *
-     * @param viewURL URL to retrieve view from. Default value is null
+     * @param viewURL URL to retrieve view from. See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * 
      */
@@ -190,7 +221,7 @@ public class ViewLoader extends Label {
      * URL to load components from.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * 
      */
     public String getViewURL()  {
@@ -198,7 +229,7 @@ public class ViewLoader extends Label {
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Retrieve the current view.  May be null if the view has not yet been loaded, or has been explicitly set to null.
      *
@@ -214,7 +245,7 @@ public class ViewLoader extends Label {
         }
         return retVal;
     }-*/;
-            
+
     /**
      * StringMethod fired when the view has been loaded.  Has no default implementation.  May be observed or overridden to fire
      * custom logic when loading completes.
@@ -247,8 +278,35 @@ public class ViewLoader extends Label {
         
     // ***********************************************************        
 
+    public LogicalStructureObject setLogicalStructure(ViewLoaderLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.allowCaching = getAttributeAsString("allowCaching");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ViewLoader.allowCaching:" + t.getMessage() + "\n";
+        }
+        try {
+            s.httpMethod = getAttributeAsString("httpMethod");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ViewLoader.httpMethod:" + t.getMessage() + "\n";
+        }
+        try {
+            s.loadingMessage = getAttributeAsString("loadingMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ViewLoader.loadingMessage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.viewURL = getAttributeAsString("viewURL");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ViewLoader.viewURL:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        ViewLoaderLogicalStructure s = new ViewLoaderLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-
 

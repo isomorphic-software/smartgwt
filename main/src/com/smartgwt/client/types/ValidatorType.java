@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Used to name a validator or reference a standard, built-in {@link com.smartgwt.client.widgets.form.validator.Validator}
  * - see list below. <p> To make use of a standard validator type for a field in a DataSource, or  DynamicForm instance,
@@ -203,7 +204,6 @@ public enum ValidatorType implements ValueEnum {
      * Validators of this type have  requiresServer  set to <code>true</code> and do not run on the client.
      */
     SERVERCUSTOM("serverCustom");
-
     private String value;
 
     ValidatorType(String value) {
@@ -214,3 +214,4 @@ public enum ValidatorType implements ValueEnum {
         return this.value;
     }
 }
+        

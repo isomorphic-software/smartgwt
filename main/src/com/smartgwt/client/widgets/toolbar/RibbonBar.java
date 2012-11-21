@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A {@link com.smartgwt.client.widgets.toolbar.ToolStrip ToolStrip-based} class for showing  {@link
@@ -64,22 +84,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class RibbonBar extends ToolStrip {
 
-    public static RibbonBar getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (RibbonBar) obj;
-        } else {
-            return new RibbonBar(jsObj);
+    public native static RibbonBar getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("RibbonBar",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.toolbar.RibbonBar::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public RibbonBar(){
         scClassName = "RibbonBar";
     }
 
     public RibbonBar(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "RibbonBar";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -92,7 +123,7 @@ public class RibbonBar extends ToolStrip {
     // ********************* Properties / Attributes ***********************
 
     // ********************* Methods ***********************
-            
+
     /**
      * Add a new group to this RibbonBar. You can either create your group externally and pass  it in, or you can pass a
      * properties block from which to automatically construct it.
@@ -109,9 +140,9 @@ public class RibbonBar extends ToolStrip {
      * @param group the new group to add to this ribbon
      * @param position the index at which to insert the new group
      */
-    public native void addGroup(RibbonGroup group, int position) /*-{
+    public native void addGroup(RibbonGroup group, Integer position) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.addGroup(group.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), position);
+        self.addGroup(group.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), position == null ? null : position.@java.lang.Integer::intValue()());
     }-*/;
 
     // ********************* Static Methods ***********************
@@ -136,9 +167,15 @@ public class RibbonBar extends ToolStrip {
         
     // ***********************************************************        
 
+    public LogicalStructureObject setLogicalStructure(RibbonBarLogicalStructure s) {
+        super.setLogicalStructure(s);
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        RibbonBarLogicalStructure s = new RibbonBarLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-
-
 

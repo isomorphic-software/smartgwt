@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Base class for creating toolstrips like those found in browsers and office applications: a mixed set of controls
@@ -74,22 +94,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class ToolStrip extends Layout {
 
-    public static ToolStrip getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (ToolStrip) obj;
-        } else {
-            return new ToolStrip(jsObj);
+    public native static ToolStrip getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("ToolStrip",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.toolbar.ToolStrip::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public ToolStrip(){
         scClassName = "ToolStrip";
     }
 
     public ToolStrip(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "ToolStrip";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -152,7 +183,7 @@ public class ToolStrip extends Layout {
     /**
      * Customized resizeBar with typical appearance for a ToolStrip.
      *
-     * @param resizeBarClass resizeBarClass Default value is "ToolStripResizer"
+     * @param resizeBarClass . See {@link com.smartgwt.client.docs.String String}. Default value is "ToolStripResizer"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setResizeBarClass(String resizeBarClass)  throws IllegalStateException {
@@ -163,7 +194,7 @@ public class ToolStrip extends Layout {
      * Customized resizeBar with typical appearance for a ToolStrip.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getResizeBarClass()  {
         return getAttributeAsString("resizeBarClass");
@@ -194,7 +225,7 @@ public class ToolStrip extends Layout {
      * Class to create when the string "separator" appears in {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getMembers
      * members}.
      *
-     * @param separatorClass separatorClass Default value is "ToolStripSeparator"
+     * @param separatorClass . See {@link com.smartgwt.client.docs.String String}. Default value is "ToolStripSeparator"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setSeparatorClass(String separatorClass)  throws IllegalStateException {
@@ -206,7 +237,7 @@ public class ToolStrip extends Layout {
      * members}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSeparatorClass()  {
         return getAttributeAsString("separatorClass");
@@ -287,7 +318,7 @@ public class ToolStrip extends Layout {
      * styleName after this widget has been initialized, you should simply call {@link
      * com.smartgwt.client.widgets.Canvas#setStyleName setStyleName()} rather than updating this  property.
      *
-     * @param verticalStyleName verticalStyleName Default value is null
+     * @param verticalStyleName . See {@link com.smartgwt.client.docs.CSSClassName CSSClassName}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -303,7 +334,7 @@ public class ToolStrip extends Layout {
      * com.smartgwt.client.widgets.Canvas#setStyleName setStyleName()} rather than updating this  property.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSClassName CSSClassName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getVerticalStyleName()  {
@@ -484,7 +515,60 @@ public class ToolStrip extends Layout {
         addMember(new ToolStripResizer());
     }
 
+    public LogicalStructureObject setLogicalStructure(ToolStripLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.groupTitleAlign = getAttributeAsString("groupTitleAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStrip.groupTitleAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.groupTitleOrientation = getAttributeAsString("groupTitleOrientation");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStrip.groupTitleOrientation:" + t.getMessage() + "\n";
+        }
+        try {
+            s.resizeBarClass = getAttributeAsString("resizeBarClass");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStrip.resizeBarClass:" + t.getMessage() + "\n";
+        }
+        try {
+            s.resizeBarSize = getAttributeAsString("resizeBarSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStrip.resizeBarSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.separatorClass = getAttributeAsString("separatorClass");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStrip.separatorClass:" + t.getMessage() + "\n";
+        }
+        try {
+            s.separatorSize = getAttributeAsString("separatorSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStrip.separatorSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showGroupTitle = getAttributeAsString("showGroupTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStrip.showGroupTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vertical = getAttributeAsString("vertical");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStrip.vertical:" + t.getMessage() + "\n";
+        }
+        try {
+            s.verticalStyleName = getAttributeAsString("verticalStyleName");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStrip.verticalStyleName:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        ToolStripLogicalStructure s = new ToolStripLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

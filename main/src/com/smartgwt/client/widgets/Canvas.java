@@ -45,40 +45,71 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Canvas is the base abstraction for cross-browser DHTML drawing.  All DHTML widgets inherit from the Canvas class.
  */
-public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.events.HasDropHandlers, com.smartgwt.client.widgets.events.HasResizedHandlers, com.smartgwt.client.widgets.events.HasClickHandlers, com.smartgwt.client.widgets.events.HasDoubleClickHandlers, com.smartgwt.client.widgets.events.HasDragMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStartHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStopHandlers, com.smartgwt.client.widgets.events.HasDragResizeMoveHandlers, com.smartgwt.client.widgets.events.HasDragResizeStartHandlers, com.smartgwt.client.widgets.events.HasDragResizeStopHandlers, com.smartgwt.client.widgets.events.HasDragStartHandlers, com.smartgwt.client.widgets.events.HasDragStopHandlers, com.smartgwt.client.widgets.events.HasDropMoveHandlers, com.smartgwt.client.widgets.events.HasDropOutHandlers, com.smartgwt.client.widgets.events.HasDropOverHandlers, com.smartgwt.client.widgets.events.HasMouseDownHandlers, com.smartgwt.client.widgets.events.HasMouseUpHandlers, com.smartgwt.client.widgets.events.HasMouseMoveHandlers, com.smartgwt.client.widgets.events.HasMouseOutHandlers, com.smartgwt.client.widgets.events.HasMouseOverHandlers, com.smartgwt.client.widgets.events.HasMouseStillDownHandlers, com.smartgwt.client.widgets.events.HasMouseWheelHandlers, com.smartgwt.client.widgets.events.HasKeyPressHandlers, com.smartgwt.client.widgets.events.HasKeyDownHandlers, com.smartgwt.client.widgets.events.HasRightMouseDownHandlers, com.smartgwt.client.widgets.events.HasHoverHandlers, com.smartgwt.client.widgets.events.HasHoverHiddenHandlers, com.smartgwt.client.widgets.events.HasScrolledHandlers, com.smartgwt.client.widgets.events.HasMovedHandlers, com.smartgwt.client.widgets.events.HasParentMovedHandlers, com.smartgwt.client.widgets.events.HasFocusChangedHandlers, com.smartgwt.client.widgets.events.HasShowContextMenuHandlers, com.smartgwt.client.widgets.events.HasVisibilityChangedHandlers {
+public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.events.HasResizedHandlers, com.smartgwt.client.widgets.events.HasClickHandlers, com.smartgwt.client.widgets.events.HasDoubleClickHandlers, com.smartgwt.client.widgets.events.HasDragMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStartHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStopHandlers, com.smartgwt.client.widgets.events.HasDragResizeMoveHandlers, com.smartgwt.client.widgets.events.HasDragResizeStartHandlers, com.smartgwt.client.widgets.events.HasDragResizeStopHandlers, com.smartgwt.client.widgets.events.HasDragStartHandlers, com.smartgwt.client.widgets.events.HasDragStopHandlers, com.smartgwt.client.widgets.events.HasDropMoveHandlers, com.smartgwt.client.widgets.events.HasDropOutHandlers, com.smartgwt.client.widgets.events.HasDropOverHandlers, com.smartgwt.client.widgets.events.HasMouseDownHandlers, com.smartgwt.client.widgets.events.HasMouseUpHandlers, com.smartgwt.client.widgets.events.HasMouseMoveHandlers, com.smartgwt.client.widgets.events.HasMouseOutHandlers, com.smartgwt.client.widgets.events.HasMouseOverHandlers, com.smartgwt.client.widgets.events.HasMouseStillDownHandlers, com.smartgwt.client.widgets.events.HasMouseWheelHandlers, com.smartgwt.client.widgets.events.HasKeyPressHandlers, com.smartgwt.client.widgets.events.HasKeyDownHandlers, com.smartgwt.client.widgets.events.HasRightMouseDownHandlers, com.smartgwt.client.widgets.events.HasHoverHandlers, com.smartgwt.client.widgets.events.HasHoverHiddenHandlers, com.smartgwt.client.widgets.events.HasScrolledHandlers, com.smartgwt.client.widgets.events.HasMovedHandlers, com.smartgwt.client.widgets.events.HasParentMovedHandlers, com.smartgwt.client.widgets.events.HasFocusChangedHandlers, com.smartgwt.client.widgets.events.HasShowContextMenuHandlers, com.smartgwt.client.widgets.events.HasVisibilityChangedHandlers, com.smartgwt.client.widgets.events.HasDropHandlers {
 
-    public static Canvas getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (Canvas) obj;
-        } else {
-            return new Canvas(jsObj);
+    public native static Canvas getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("Canvas",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public Canvas(){
         scClassName = "Canvas";
     }
 
     public Canvas(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "Canvas";
+        setJavaScriptObject(jsObj);
     }
 
     public Canvas(String id) {
@@ -104,7 +135,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Set the accessKey for this canvas. <P> The accessKey can be set to any alphanumeric character (symbols not supported) Having set an accessKey, the canvas will be given focus when the user hits  Alt+[accessKey], or in Mozilla Firefox 2.0 and above, Shift+Alt+[accessKey].
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param accessKey Character to use as an accessKey for this widget.  Case Insensitive.. Default value is null
+     * @param accessKey Character to use as an accessKey for this widget.  Case Insensitive.. See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
     public void setAccessKey(String accessKey) {
@@ -117,7 +148,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * question.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
     public String getAccessKey()  {
@@ -451,7 +482,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * appImgDir}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param appImgDir appImgDir Default value is ""
+     * @param appImgDir . See {@link com.smartgwt.client.docs.String String}. Default value is ""
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public void setAppImgDir(String appImgDir) {
@@ -463,7 +494,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * appImgDir}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public String getAppImgDir()  {
@@ -473,7 +504,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * ARIA role of this component.  Usually does not need to be manually set - see accessibility.
      *
-     * @param ariaRole ariaRole Default value is null
+     * @param ariaRole . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setAriaRole(String ariaRole)  throws IllegalStateException {
@@ -484,7 +515,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * ARIA role of this component.  Usually does not need to be manually set - see accessibility.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getAriaRole()  {
         return getAttributeAsString("ariaRole");
@@ -611,7 +642,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the background color of this widget to newColor.
      *
-     * @param backgroundColor new color to set the widget's background to. Default value is null
+     * @param backgroundColor new color to set the widget's background to. See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setBackgroundColor(String backgroundColor) {
@@ -623,7 +654,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * an RGB value (e.g. #22AAFF) or a named color (e.g. red) from a list of browser supported color names.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getBackgroundColor()  {
@@ -636,7 +667,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the background to an image file given by newImage. This URL should be given as a          string relative to the image directory for the page (./images by default).
      *
-     * @param backgroundImage new URL (local to Page image directory) for background image. Default value is null
+     * @param backgroundImage new URL (local to Page image directory) for background image. See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setBackgroundImage(String backgroundImage) {
@@ -647,7 +678,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * URL for a background image for this widget (corresponding to the CSS "background-image" attribute).
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getBackgroundImage()  {
@@ -659,7 +690,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * background-position attribute. If unset,      no background-position attribute is specified if a background image is    
      *  specified.
      *
-     * @param backgroundPosition backgroundPosition Default value is null
+     * @param backgroundPosition . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -673,7 +704,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *  specified.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getBackgroundPosition()  {
@@ -681,27 +712,35 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * Specifies how the background image should be tiled if this widget      is larger than the image. It corresponds to the
-     * CSS background-repeat attribute.      See BkgndRepeat type for details.
+     * Specifies how the background image should be tiled if this widget is larger than the image. It corresponds to the CSS
+     * <code>background-repeat</code> attribute.   <p> The default of null means no <code>background-repeat</code> CSS will be
+     * written out.  See {@link com.smartgwt.client.types.BackgroundRepeat} type for details on other settings. <p> NOTE: this
+     * setting directly sets the CSS property <code>background-repeat</code> but does not attempt to work around various known
+     * bugs with this setting, or lack of support in IE6.  If you need to apply CSS-based workarounds for browser limitations
+     * with this setting, it's best to do so via setting {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}.
      *
-     * @param backgroundRepeat backgroundRepeat Default value is Canvas.REPEAT
+     * @param backgroundRepeat backgroundRepeat Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setBackgroundRepeat(BkgndRepeat backgroundRepeat)  throws IllegalStateException {
+    public void setBackgroundRepeat(BackgroundRepeat backgroundRepeat)  throws IllegalStateException {
         setAttribute("backgroundRepeat", backgroundRepeat == null ? null : backgroundRepeat.getValue(), false);
     }
 
     /**
-     * Specifies how the background image should be tiled if this widget      is larger than the image. It corresponds to the
-     * CSS background-repeat attribute.      See BkgndRepeat type for details.
+     * Specifies how the background image should be tiled if this widget is larger than the image. It corresponds to the CSS
+     * <code>background-repeat</code> attribute.   <p> The default of null means no <code>background-repeat</code> CSS will be
+     * written out.  See {@link com.smartgwt.client.types.BackgroundRepeat} type for details on other settings. <p> NOTE: this
+     * setting directly sets the CSS property <code>background-repeat</code> but does not attempt to work around various known
+     * bugs with this setting, or lack of support in IE6.  If you need to apply CSS-based workarounds for browser limitations
+     * with this setting, it's best to do so via setting {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}.
      *
      *
-     * @return BkgndRepeat
+     * @return BackgroundRepeat
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public BkgndRepeat getBackgroundRepeat()  {
-        return EnumUtil.getEnum(BkgndRepeat.values(), getAttribute("backgroundRepeat"));
+    public BackgroundRepeat getBackgroundRepeat()  {
+        return EnumUtil.getEnum(BackgroundRepeat.values(), getAttribute("backgroundRepeat"));
     }
 
     /**
@@ -712,7 +751,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the CSS border of this component, as a CSS string including border-width, border-style, and/or color (eg "2px solid blue"). <P> This property applies the same border to all four sides of this component.  Different per-side borders can be set in a CSS style and applied via {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}.
      *
-     * @param border new border to set to (eg: "2px solid black"). Default value is null
+     * @param border new border to set to (eg: "2px solid black"). See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setBorder(String border) {
@@ -725,7 +764,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * be set in a CSS style and applied via {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getBorder()  {
@@ -834,7 +873,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
     /**
      * If this Canvas is canAcceptDrop:true, when the user drags a droppable widget over      an edge of the widget, should we
-     * scroll to show the rest of the widget's content?      Returned from canvas.shouldDragScroll().
+     * scroll to show the rest of the widget's content?      Returned from canvas.shouldDragScroll() if there are scrollbars.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canDragScroll canDragScroll Default value is true
@@ -846,7 +885,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
     /**
      * If this Canvas is canAcceptDrop:true, when the user drags a droppable widget over      an edge of the widget, should we
-     * scroll to show the rest of the widget's content?      Returned from canvas.shouldDragScroll().
+     * scroll to show the rest of the widget's content?      Returned from canvas.shouldDragScroll() if there are scrollbars.
      *
      *
      * @return Boolean
@@ -1061,7 +1100,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Changes the contents of a widget to newContents, an HTML string. <P> When {@link com.smartgwt.client.widgets.Canvas#getDynamicContents dynamicContents} is set, <code>setContents()</code> can also be called with no arguments to cause contents to be re-evaluated.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param contents an HTML string to be set as the contents of this widget. Default value is "&nbsp;"
+     * @param contents an HTML string to be set as the contents of this widget. See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is "&nbsp;"
      * @see com.smartgwt.client.widgets.Canvas#setDynamicContents
      */
     public void setContents(String contents) {
@@ -1072,7 +1111,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * The contents of a canvas or label widget. Any HTML string is acceptable.
      *
      *
-     * @return Returns the contents of a Canvas. The contents are an HTML string.
+     * @return Returns the contents of a Canvas. The contents are an HTML string.. See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.widgets.Canvas#getDynamicContents
      */
     public String getContents()  {
@@ -1264,7 +1303,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Setter for the {@link com.smartgwt.client.widgets.Canvas#getDataPath dataPath} attribute. This method may be called directly at runtime to set the dataPath on a component, and will also be re-run automatically whenever a canvas' parentElement changes due to a call to addChild(). This method handles automatically binding the component to the appropriate valuesManager if necessary.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param dataPath new dataPath. Default value is null
+     * @param dataPath new dataPath. See {@link com.smartgwt.client.docs.DataPath DataPath}. Default value is null
      */
     public void setDataPath(String dataPath) {
         setAttribute("dataPath", dataPath, true);
@@ -1387,7 +1426,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *  <code>component.valuesManager</code>).
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.DataPath DataPath}
      */
     public String getDataPath()  {
         return getAttributeAsString("dataPath");
@@ -1722,7 +1761,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * with the dropTypes of droppable widgets as detailed      in the dropTypes property.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param dragType dragType Default value is null
+     * @param dragType . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#setDropTypes
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
@@ -1735,7 +1774,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * with the dropTypes of droppable widgets as detailed      in the dropTypes property.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.Canvas#getDropTypes
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
@@ -1863,7 +1902,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Background color for the EdgedCanvas created to decorate this component.  This can be used to provide an underlying
      * "tint" color for translucent edge media
      *
-     * @param edgeBackgroundColor edgeBackgroundColor Default value is null
+     * @param edgeBackgroundColor . See {@link com.smartgwt.client.docs.Color Color}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setEdgeBackgroundColor(String edgeBackgroundColor)  throws IllegalStateException {
@@ -1875,7 +1914,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * "tint" color for translucent edge media
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.Color Color}
      */
     public String getEdgeBackgroundColor()  {
         return getAttributeAsString("edgeBackgroundColor");
@@ -1885,7 +1924,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Background color for the center section only.  Can be used as a surrogate background color for the decorated Canvas, if
      * the Canvas is set to partially overlap the edges and hence can't show a background color itself without occluding media.
      *
-     * @param edgeCenterBackgroundColor edgeCenterBackgroundColor Default value is null
+     * @param edgeCenterBackgroundColor . See {@link com.smartgwt.client.docs.Color Color}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setEdgeCenterBackgroundColor(String edgeCenterBackgroundColor)  throws IllegalStateException {
@@ -1897,7 +1936,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * the Canvas is set to partially overlap the edges and hence can't show a background color itself without occluding media.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.Color Color}
      */
     public String getEdgeCenterBackgroundColor()  {
         return getAttributeAsString("edgeCenterBackgroundColor");
@@ -1908,7 +1947,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * extension.  For example, with the default base name of "edge.gif", the top-left corner image will be "edge_TL.gif". <P>
      * The full list of extensions is: "_TL", "_TR", "_BL", "_BR", "_T", "_L", "_B", "_R", "_center".
      *
-     * @param edgeImage edgeImage Default value is "[SKIN]edge.gif"
+     * @param edgeImage . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]edge.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_edges" target="examples">Edges Example</a>
      */
@@ -1922,7 +1961,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * The full list of extensions is: "_TL", "_TR", "_BL", "_BR", "_T", "_L", "_B", "_R", "_center".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_edges" target="examples">Edges Example</a>
      */
     public String getEdgeImage()  {
@@ -2219,7 +2258,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * If <code>this.showHover</code> is true, this property can be used to specify the css style to apply to the hover canvas.
      *
-     * @param hoverStyle hoverStyle Default value is null
+     * @param hoverStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#setShowHover
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_hovers" target="examples">Hovers / Tooltips Example</a>
      */
@@ -2231,7 +2270,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * If <code>this.showHover</code> is true, this property can be used to specify the css style to apply to the hover canvas.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.widgets.Canvas#getShowHover
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_hovers" target="examples">Hovers / Tooltips Example</a>
      */
@@ -2335,6 +2374,108 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      */
     public DrawPosition getHtmlPosition()  {
         return EnumUtil.getEnum(DrawPosition.values(), getAttribute("htmlPosition"));
+    }
+
+    /**
+     * Constrains drag-resizing and drag-repositioning of this canvas to either the rect of its parent (if set to true) or an
+     * arbitrary rect based its parent (if set to a [Left,Top,Width,Height] rect array).  In the latter mode you may use
+     * negative offsets for left/top and a width/height greater than the visible or scroll width of the parent to allow
+     * positioning beyond the confines of the parent. <p> If this canvas has no parent, constrains dragging to within the
+     * browser window. <p> Affects target and outline dragAppearance, not tracker. <p> Note: keepInParentRect affects only user
+     * drag interactions, not programmatic moves. <p> <u>Example use cases:</u><br> <code>keepInParentRect: true</code> -
+     * confine to parent<br> <code>keepInParentRect: [0, 0, 500, 500]</code> - confine to top left 500x500 region within
+     * parent<br> <code>keepInParentRect: [0, 0, 10000, 10000]</code> - in combination with  oveflow: "auto", confine to
+     * parent, but allow moving off the right and bottom of the parent to force scrolling (and hence enlarge the scrollWidth of
+     * the parent).
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param keepInParentRect keepInParentRect Default value is null
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_create" target="examples">Drag create Example</a>
+     */
+    public void setKeepInParentRect(Boolean keepInParentRect) {
+        setAttribute("keepInParentRect", keepInParentRect, true);
+    }
+
+    /**
+     * Constrains drag-resizing and drag-repositioning of this canvas to either the rect of its parent (if set to true) or an
+     * arbitrary rect based its parent (if set to a [Left,Top,Width,Height] rect array).  In the latter mode you may use
+     * negative offsets for left/top and a width/height greater than the visible or scroll width of the parent to allow
+     * positioning beyond the confines of the parent. <p> If this canvas has no parent, constrains dragging to within the
+     * browser window. <p> Affects target and outline dragAppearance, not tracker. <p> Note: keepInParentRect affects only user
+     * drag interactions, not programmatic moves. <p> <u>Example use cases:</u><br> <code>keepInParentRect: true</code> -
+     * confine to parent<br> <code>keepInParentRect: [0, 0, 500, 500]</code> - confine to top left 500x500 region within
+     * parent<br> <code>keepInParentRect: [0, 0, 10000, 10000]</code> - in combination with  oveflow: "auto", confine to
+     * parent, but allow moving off the right and bottom of the parent to force scrolling (and hence enlarge the scrollWidth of
+     * the parent).
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_create" target="examples">Drag create Example</a>
+     */
+    public Boolean getKeepInParentRect()  {
+        return getAttributeAsBoolean("keepInParentRect");
+    }
+
+    /**
+     * Constrains drag-resizing and drag-repositioning of this canvas to either the rect of its parent (if set to true) or an
+     * arbitrary rect based its parent (if set to a [Left,Top,Width,Height] rect array).  In the latter mode you may use
+     * negative offsets for left/top and a width/height greater than the visible or scroll width of the parent to allow
+     * positioning beyond the confines of the parent. <p> If this canvas has no parent, constrains dragging to within the
+     * browser window. <p> Affects target and outline dragAppearance, not tracker. <p> Note: keepInParentRect affects only user
+     * drag interactions, not programmatic moves. <p> <u>Example use cases:</u><br> <code>keepInParentRect: true</code> -
+     * confine to parent<br> <code>keepInParentRect: [0, 0, 500, 500]</code> - confine to top left 500x500 region within
+     * parent<br> <code>keepInParentRect: [0, 0, 10000, 10000]</code> - in combination with  oveflow: "auto", confine to
+     * parent, but allow moving off the right and bottom of the parent to force scrolling (and hence enlarge the scrollWidth of
+     * the parent).
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param keepInParentRect keepInParentRect Default value is null
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_create" target="examples">Drag create Example</a>
+     */
+    public void setKeepInParentRect(Integer... keepInParentRect) {
+        setAttribute("keepInParentRect", keepInParentRect, true);
+    }
+
+    /**
+     * When this Canvas is included as a member in a Layout, layoutAlign controls alignment on the breadth axis of the layout. 
+     * Default is "left" for a VLayout, "top" for an HLayout.
+     *
+     * @param layoutAlign layoutAlign Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.LayoutMember LayoutMember overview and related methods
+     * 
+     */
+    public void setLayoutAlign(Alignment layoutAlign)  throws IllegalStateException {
+        setAttribute("layoutAlign", layoutAlign == null ? null : layoutAlign.getValue(), false);
+    }
+
+    /**
+     * When this Canvas is included as a member in a Layout, layoutAlign controls alignment on the breadth axis of the layout. 
+     * Default is "left" for a VLayout, "top" for an HLayout.
+     *
+     *
+     * @return Alignment
+     * @see com.smartgwt.client.docs.LayoutMember LayoutMember overview and related methods
+     * 
+     */
+    public Alignment getLayoutAlign()  {
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("layoutAlign"));
+    }
+
+    /**
+     * When this Canvas is included as a member in a Layout, layoutAlign controls alignment on the breadth axis of the layout. 
+     * Default is "left" for a VLayout, "top" for an HLayout.
+     *
+     * @param layoutAlign layoutAlign Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.LayoutMember LayoutMember overview and related methods
+     * 
+     */
+    public void setLayoutAlign(VerticalAlignment layoutAlign)  throws IllegalStateException {
+        setAttribute("layoutAlign", layoutAlign == null ? null : layoutAlign.getValue(), false);
     }
 
     /**
@@ -2447,6 +2588,21 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         return getAttributeAsInt("margin");
     }
 
+
+    /**
+     * This Canvas's "master" (the Canvas to which it was added as a peer), if any.
+     *
+     * <b>Note :</b> This method should be called only after the widget has been rendered.
+     *
+     * @return Canvas
+     * @throws IllegalStateException if widget has not yet been rendered.
+     * @see com.smartgwt.client.docs.Containment Containment overview and related methods
+     */
+    public Canvas getMasterElement() throws IllegalStateException {
+        errorIfNotCreated("masterElement");
+        return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("masterElement"));
+    }
+
     /**
      * If {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} is specified, should this canvas initially be
      * drawn at the same dimensions as the htmlElement?<br> Note: setting this property will not force the canvas to resize if
@@ -2518,7 +2674,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * Default class used to construct menus created by this component, including context menus.
      *
-     * @param menuConstructor menuConstructor Default value is "Menu"
+     * @param menuConstructor . See {@link com.smartgwt.client.docs.SCClassName SCClassName}. Default value is "Menu"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.events.ShowContextMenuEvent
      * @see com.smartgwt.client.docs.Cues Cues overview and related methods
@@ -2531,7 +2687,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Default class used to construct menus created by this component, including context menus.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCClassName SCClassName}
      * @see com.smartgwt.client.widgets.events.ShowContextMenuEvent
      * @see com.smartgwt.client.docs.Cues Cues overview and related methods
      */
@@ -2650,10 +2806,15 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * Renders the widget to be partly transparent. A widget's opacity property may      be set to any number between 0
      * (transparent) to 100 (opaque).  Null means don't specify opacity directly, 100 is fully opaque.  Note that heavy use of
-     * opacity may slow down your browser.  See canvas.setOpacity() for details.
+     * opacity may have a performance impact on some older      browsers.      <P>      In older versions of Internet Explorer
+     * (Pre IE9 / HTML5), opacity is achieved      through proprietary filters. If       {@link
+     * com.smartgwt.client.widgets.Canvas#neverUseFilters filters have been disabled} within this application      developers
+     * must set {@link com.smartgwt.client.widgets.Canvas#getUseOpacityFilter useOpacityFilter} to true for specific components
+     * on which opacity support is required.      <P>      Also note that opacity is incompatible       with {@link
+     * com.smartgwt.client.widgets.Canvas#getUseBackMask backMasks}.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
-     * Sets the opacity for the widget to the newOpacity value. This newOpacity          value must be within the range of 0 (transparent) to 100 (opaque). <br>          In Internet Explorer, any other filter effects will be wiped out.
+     * Sets the opacity for the widget to the newOpacity value. This newOpacity value must be within the range of 0 (transparent) to 100 (opaque). Null means don't specify opacity directly. Note that heavy use of opacity may have a performance impact on some older browsers. <P> In older versions of Internet Explorer (Pre IE9 / HTML5), opacity is achieved through proprietary filters. If  {@link com.smartgwt.client.widgets.Canvas#neverUseFilters filters have been disabled} within this application developers must set {@link com.smartgwt.client.widgets.Canvas#getUseOpacityFilter useOpacityFilter} to true for specific components on which opacity support is required. <P> Also note that opacity is incompatible  with {@link com.smartgwt.client.widgets.Canvas#getUseBackMask backMasks}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param opacity new opacity level. Default value is null
@@ -2666,7 +2827,12 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * Renders the widget to be partly transparent. A widget's opacity property may      be set to any number between 0
      * (transparent) to 100 (opaque).  Null means don't specify opacity directly, 100 is fully opaque.  Note that heavy use of
-     * opacity may slow down your browser.  See canvas.setOpacity() for details.
+     * opacity may have a performance impact on some older      browsers.      <P>      In older versions of Internet Explorer
+     * (Pre IE9 / HTML5), opacity is achieved      through proprietary filters. If       {@link
+     * com.smartgwt.client.widgets.Canvas#neverUseFilters filters have been disabled} within this application      developers
+     * must set {@link com.smartgwt.client.widgets.Canvas#getUseOpacityFilter useOpacityFilter} to true for specific components
+     * on which opacity support is required.      <P>      Also note that opacity is incompatible       with {@link
+     * com.smartgwt.client.widgets.Canvas#getUseBackMask backMasks}.
      *
      *
      * @return Integer
@@ -2741,6 +2907,33 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
+     * Array of all Canvii that are peers of this Canvas. <P> Use {@link com.smartgwt.client.widgets.Canvas#addPeer
+     * Canvas.addPeer} and {@link com.smartgwt.client.widgets.Canvas#removePeer Canvas.removePeer} to add and remove peers
+     * after a Canvas has been created/drawn.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param peers peers Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Containment Containment overview and related methods
+     */
+    public void setPeers(Canvas... peers)  throws IllegalStateException {
+        setAttribute("peers", peers, false);
+    }
+
+    /**
+     * Array of all Canvii that are peers of this Canvas. <P> Use {@link com.smartgwt.client.widgets.Canvas#addPeer
+     * Canvas.addPeer} and {@link com.smartgwt.client.widgets.Canvas#removePeer Canvas.removePeer} to add and remove peers
+     * after a Canvas has been created/drawn.
+     *
+     *
+     * @return Canvas
+     * @see com.smartgwt.client.docs.Containment Containment overview and related methods
+     */
+    public Canvas[] getPeers()  {
+        return Canvas.convertToCanvasArray(getAttributeAsJavaScriptObject("peers"));
+    }
+
+    /**
      * Governs the model to be used when sizing canvases with percentage width or height, or  positioning widgets with a
      * specified {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo}. <P> Only affects widgets with a a specified
      * {@link com.smartgwt.client.widgets.Canvas#getPercentSource percentSource}, or  widgets that have {@link
@@ -2773,6 +2966,41 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      */
     public PercentBoxModel getPercentBox()  {
         return EnumUtil.getEnum(PercentBoxModel.values(), getAttribute("percentBox"));
+    }
+
+    /**
+     * If this canvas has its size specified as a percentage, this property allows the user to explicitly designate another
+     * canvas upon which sizing will be based. <P> If unset percentage sizing is based on<br> - the {@link
+     * com.smartgwt.client.widgets.Canvas#getMasterElement masterElement} if there is one and   {@link
+     * com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} is set,<br>  - otherwise on the amount of space available in this
+     * widget's parentElement, if this is   a child of some other widget<br> - otherwise the page size.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Setter method for the {@link com.smartgwt.client.widgets.Canvas#getPercentSource percentSource} attribute.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param percentSource eterNew percent source (if omitted existing                                      percentSource will just be cleared).. Default value is null
+     * @see com.smartgwt.client.widgets.Canvas#setPercentBox
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public void setPercentSource(Canvas percentSource) {
+        setAttribute("percentSource", percentSource == null ? null : percentSource.getOrCreateJsObj(), true);
+    }
+
+    /**
+     * If this canvas has its size specified as a percentage, this property allows the user to explicitly designate another
+     * canvas upon which sizing will be based. <P> If unset percentage sizing is based on<br> - the {@link
+     * com.smartgwt.client.widgets.Canvas#getMasterElement masterElement} if there is one and   {@link
+     * com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} is set,<br>  - otherwise on the amount of space available in this
+     * widget's parentElement, if this is   a child of some other widget<br> - otherwise the page size.
+     *
+     *
+     * @return Canvas
+     * @see com.smartgwt.client.widgets.Canvas#getPercentBox
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public Canvas getPercentSource()  {
+        return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("percentSource"));
     }
 
     /**
@@ -2870,9 +3098,45 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
+     * Should this canvas print its children absolutely positioned when generating  {@link
+     * com.smartgwt.client.widgets.Canvas#getPrintHTML printable HTML}. <P> By default explicitly specified absolute
+     * positioning and sizing is ignored when generating print HTML. This is done intentionally: there is no way for the
+     * framework to predict how explicit sizes will translate to a the printed page and if HTML for printing includes  the same
+     * absolute positioning and sizing as is displayed within an application it is very common to encounter undesirable
+     * effects, such as seeing tables get broken over several pages horizontally when there is enough room to print them on a
+     * single page of paper. <P> In some cases, however, a developer may wish to have explicit sizing and positioning respected
+     * within the print-view. Setting this attribute to <code>true</code> will cause this to occur.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param printChildrenAbsolutelyPositioned printChildrenAbsolutelyPositioned Default value is false
+     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
+     */
+    public void setPrintChildrenAbsolutelyPositioned(Boolean printChildrenAbsolutelyPositioned) {
+        setAttribute("printChildrenAbsolutelyPositioned", printChildrenAbsolutelyPositioned, true);
+    }
+
+    /**
+     * Should this canvas print its children absolutely positioned when generating  {@link
+     * com.smartgwt.client.widgets.Canvas#getPrintHTML printable HTML}. <P> By default explicitly specified absolute
+     * positioning and sizing is ignored when generating print HTML. This is done intentionally: there is no way for the
+     * framework to predict how explicit sizes will translate to a the printed page and if HTML for printing includes  the same
+     * absolute positioning and sizing as is displayed within an application it is very common to encounter undesirable
+     * effects, such as seeing tables get broken over several pages horizontally when there is enough room to print them on a
+     * single page of paper. <P> In some cases, however, a developer may wish to have explicit sizing and positioning respected
+     * within the print-view. Setting this attribute to <code>true</code> will cause this to occur.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
+     */
+    public Boolean getPrintChildrenAbsolutelyPositioned()  {
+        return getAttributeAsBoolean("printChildrenAbsolutelyPositioned");
+    }
+
+    /**
      * Prompt displayed in hover canvas if {@link com.smartgwt.client.widgets.Canvas#getShowHover showHover} is true.
      *
-     * @param prompt prompt Default value is null
+     * @param prompt . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is null
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_hovers" target="examples">Hovers / Tooltips Example</a>
      */
     public void setPrompt(String prompt) {
@@ -2883,7 +3147,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Prompt displayed in hover canvas if {@link com.smartgwt.client.widgets.Canvas#getShowHover showHover} is true.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_hovers" target="examples">Hovers / Tooltips Example</a>
      */
     public String getPrompt()  {
@@ -2927,7 +3191,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * with a normal resize bar, to fill all space after a user resizes, the member on the <b>right</b> should have flexible
      * size.  With resizeBarTarget:"next", the member on the <b>left</b> should have flexible size.
      *
-     * @param resizeBarTarget resizeBarTarget Default value is null
+     * @param resizeBarTarget . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.Canvas#setShowResizeBar
      * @see com.smartgwt.client.docs.LayoutMember LayoutMember overview and related methods
@@ -2948,12 +3212,43 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * size.  With resizeBarTarget:"next", the member on the <b>left</b> should have flexible size.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.Canvas#getShowResizeBar
      * @see com.smartgwt.client.docs.LayoutMember LayoutMember overview and related methods
      */
     public String getResizeBarTarget()  {
         return getAttributeAsString("resizeBarTarget");
+    }
+
+    /**
+     * When drag resizing is enabled via {@link com.smartgwt.client.widgets.Canvas#getCanDragResize canDragResize}, restricts
+     * resizes to only certain edges or corners. <P> The default of null indicates the widget can be resized from any corner or
+     * edge (if <code>canDragResize</code> is true). <P> To restrict resizing to only certain corners, set
+     * <code>resizeFrom</code> to an Array of {@link com.smartgwt.client.types.EdgeName}s.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param resizeFrom resizeFrom Default value is null
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_resize" target="examples">Drag resize Example</a>
+     */
+    public void setResizeFrom(EdgeName... resizeFrom) {
+        setAttribute("resizeFrom", resizeFrom, true);
+    }
+
+    /**
+     * When drag resizing is enabled via {@link com.smartgwt.client.widgets.Canvas#getCanDragResize canDragResize}, restricts
+     * resizes to only certain edges or corners. <P> The default of null indicates the widget can be resized from any corner or
+     * edge (if <code>canDragResize</code> is true). <P> To restrict resizing to only certain corners, set
+     * <code>resizeFrom</code> to an Array of {@link com.smartgwt.client.types.EdgeName}s.
+     *
+     *
+     * @return EdgeName
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_resize" target="examples">Drag resize Example</a>
+     */
+    public EdgeName[] getResizeFrom()  {
+        final String[] strings = getAttributeAsStringArray("resizeFrom");
+        return EnumUtil.getEnums(EdgeName.values(), strings, strings == null ? null : new EdgeName[strings.length]);
     }
 
     /**
@@ -3012,7 +3307,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * depth in the URL, so the final image name for the center given a baseName of "ds.png" would be just "ds_center.png".
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param shadowImage shadowImage Default value is "[SKIN]ds.png"
+     * @param shadowImage . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]ds.png"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setShadowImage(String shadowImage)  throws IllegalStateException {
@@ -3028,10 +3323,62 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * depth in the URL, so the final image name for the center given a baseName of "ds.png" would be just "ds_center.png".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getShadowImage()  {
         return getAttributeAsString("shadowImage");
+    }
+
+    /**
+     * Offset of the shadow.  Defaults to half of <code>shadowDepth</code> if unset. <P> Because of the blurred edges, a shadow
+     * is larger than the originating component by 2xsoftness.  An <code>shadowOffset</code> of 0 means that the shadow will
+     * extend around the originating component equally in all directions.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param shadowOffset shadowOffset Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_shadows" target="examples">Shadows Example</a>
+     */
+    public void setShadowOffset(Integer shadowOffset) {
+        setAttribute("shadowOffset", shadowOffset, true);
+    }
+
+    /**
+     * Offset of the shadow.  Defaults to half of <code>shadowDepth</code> if unset. <P> Because of the blurred edges, a shadow
+     * is larger than the originating component by 2xsoftness.  An <code>shadowOffset</code> of 0 means that the shadow will
+     * extend around the originating component equally in all directions.
+     *
+     *
+     * @return Integer
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_shadows" target="examples">Shadows Example</a>
+     */
+    public Integer getShadowOffset()  {
+        return getAttributeAsInt("shadowOffset");
+    }
+
+    /**
+     * Softness, or degree of blurring, of the shadow. <P> A shadow with <code>softness:x</code> is 2x pixels larger in each
+     * direction than the element throwing the shadow, and the media for each edge should be x pixels wide/tall. <P> Defaults
+     * to <code>shadowDepth</code> if unset.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param shadowSoftness shadowSoftness Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_shadows" target="examples">Shadows Example</a>
+     */
+    public void setShadowSoftness(Integer shadowSoftness) {
+        setAttribute("shadowSoftness", shadowSoftness, true);
+    }
+
+    /**
+     * Softness, or degree of blurring, of the shadow. <P> A shadow with <code>softness:x</code> is 2x pixels larger in each
+     * direction than the element throwing the shadow, and the media for each edge should be x pixels wide/tall. <P> Defaults
+     * to <code>shadowDepth</code> if unset.
+     *
+     *
+     * @return Integer
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_shadows" target="examples">Shadows Example</a>
+     */
+    public Integer getShadowSoftness()  {
+        return getAttributeAsInt("shadowSoftness");
     }
 
     /**
@@ -3302,7 +3649,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * com.smartgwt.client.util.Page#getSkinDir skinDir}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param skinImgDir skinImgDir Default value is "images/"
+     * @param skinImgDir . See {@link com.smartgwt.client.docs.String String}. Default value is "images/"
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public void setSkinImgDir(String skinImgDir) {
@@ -3314,7 +3661,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * com.smartgwt.client.util.Page#getSkinDir skinDir}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public String getSkinImgDir()  {
@@ -3324,7 +3671,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * Describes which axes to apply snap-to-grid to. Valid values are Canvas.HORIZONTAL, Canvas.VERTICAL and Canvas.BOTH
      *
-     * @param snapAxis snapAxis Default value is Canvas.BOTH
+     * @param snapAxis . See {@link com.smartgwt.client.docs.String String}. Default value is Canvas.BOTH
      * @see com.smartgwt.client.widgets.Canvas#setSnapToGrid
      * @see com.smartgwt.client.widgets.Canvas#setSnapResizeToGrid
      * @see com.smartgwt.client.widgets.Canvas#setChildrenSnapToGrid
@@ -3339,7 +3686,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Describes which axes to apply snap-to-grid to. Valid values are Canvas.HORIZONTAL, Canvas.VERTICAL and Canvas.BOTH
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.Canvas#getSnapToGrid
      * @see com.smartgwt.client.widgets.Canvas#getSnapResizeToGrid
      * @see com.smartgwt.client.widgets.Canvas#getChildrenSnapToGrid
@@ -3359,7 +3706,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the snapEdge property of this canvas, and handle repositioning.
      *
-     * @param snapEdge new snapEdge value. Default value is null
+     * @param snapEdge new snapEdge value. See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#setSnapTo
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
@@ -3374,7 +3721,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * parent.
      *
      *
-     * @return Return the snapEdge value of this object
+     * @return Return the snapEdge value of this object. See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.Canvas#getSnapTo
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
@@ -3387,7 +3734,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Canvas.AFTER to snap to the nearest gridpoint to the right; and set it to Canvas.NEAREST to snap to the nearest
      * gridpoint in either direction.
      *
-     * @param snapHDirection snapHDirection Default value is Canvas.AFTER
+     * @param snapHDirection . See {@link com.smartgwt.client.docs.String String}. Default value is Canvas.AFTER
      * @see com.smartgwt.client.widgets.Canvas#setSnapToGrid
      * @see com.smartgwt.client.widgets.Canvas#setSnapResizeToGrid
      * @see com.smartgwt.client.widgets.Canvas#setChildrenSnapToGrid
@@ -3404,7 +3751,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * gridpoint in either direction.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.Canvas#getSnapToGrid
      * @see com.smartgwt.client.widgets.Canvas#getSnapResizeToGrid
      * @see com.smartgwt.client.widgets.Canvas#getChildrenSnapToGrid
@@ -3580,7 +3927,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the snapTo property of this canvas, and handle repositioning.
      *
-     * @param snapTo new snapTo value. Default value is null
+     * @param snapTo new snapTo value. See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#setSnapEdge
      * @see com.smartgwt.client.widgets.Canvas#setPercentBox
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
@@ -3606,7 +3953,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * exact snapTo alignment.
      *
      *
-     * @return Return the snapTo value of this object
+     * @return Return the snapTo value of this object. See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.Canvas#getSnapEdge
      * @see com.smartgwt.client.widgets.Canvas#getPercentBox
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
@@ -3643,7 +3990,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Canvas.AFTER to snap to the nearest gridpoint below; and set it to Canvas.NEAREST to snap to the nearest gridpoint in
      * either direction.
      *
-     * @param snapVDirection snapVDirection Default value is Canvas.AFTER
+     * @param snapVDirection . See {@link com.smartgwt.client.docs.String String}. Default value is Canvas.AFTER
      * @see com.smartgwt.client.widgets.Canvas#setSnapToGrid
      * @see com.smartgwt.client.widgets.Canvas#setSnapResizeToGrid
      * @see com.smartgwt.client.widgets.Canvas#setChildrenSnapToGrid
@@ -3660,7 +4007,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * either direction.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.Canvas#getSnapToGrid
      * @see com.smartgwt.client.widgets.Canvas#getSnapResizeToGrid
      * @see com.smartgwt.client.widgets.Canvas#getChildrenSnapToGrid
@@ -3706,7 +4053,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the CSS class for this widget
      *
-     * @param styleName new CSS style name. Default value is "normal"
+     * @param styleName new CSS style name. See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "normal"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_css" target="examples">CSS styles Example</a>
      */
@@ -3718,7 +4065,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * The CSS class applied to this widget as a whole.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_css" target="examples">CSS styles Example</a>
      */
@@ -3761,6 +4108,51 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         return getAttributeAsInt("tabIndex");
     }
 
+
+    /**
+     * The top-most Canvas (i.e., not a child of any other Canvas), if any, in this widget's containment hierarchy.
+     *
+     * <b>Note :</b> This method should be called only after the widget has been rendered.
+     *
+     * @return Canvas
+     * @throws IllegalStateException if widget has not yet been rendered.
+     * @see com.smartgwt.client.docs.Containment Containment overview and related methods
+     */
+    public Canvas getTopElement() throws IllegalStateException {
+        errorIfNotCreated("topElement");
+        return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("topElement"));
+    }
+
+    /**
+     * In earlier versions of Internet Explorer (pre IE9), a native limitation exists  whereby if HTML elements are 
+     * overlapping on the page, certain elements can appear to "burn through" elements in the same position with a higher
+     * z-index. Specific cases in which this have been observed include Applets, &lt;IFRAME&gt; elements, and for older
+     * versions of IE, native &lt;SELECT&gt; items. <P> The backMask is a workaround for this issue. If
+     * <code>useBackMask</code> is set to <code>true</code>, the component will render an empty &lt;IFRAME&gt; element behind
+     * the canvas, which prevents this effect in all known cases. <P> Has no effect in other browsers.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param useBackMask useBackMask Default value is false
+     */
+    public void setUseBackMask(Boolean useBackMask) {
+        setAttribute("useBackMask", useBackMask, true);
+    }
+
+    /**
+     * In earlier versions of Internet Explorer (pre IE9), a native limitation exists  whereby if HTML elements are 
+     * overlapping on the page, certain elements can appear to "burn through" elements in the same position with a higher
+     * z-index. Specific cases in which this have been observed include Applets, &lt;IFRAME&gt; elements, and for older
+     * versions of IE, native &lt;SELECT&gt; items. <P> The backMask is a workaround for this issue. If
+     * <code>useBackMask</code> is set to <code>true</code>, the component will render an empty &lt;IFRAME&gt; element behind
+     * the canvas, which prevents this effect in all known cases. <P> Has no effect in other browsers.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getUseBackMask()  {
+        return getAttributeAsBoolean("useBackMask");
+    }
+
     /**
      * Configures where the Opacity filter is used for IE6-8. <P> With the default of null, opacity filters are used unless
      * {@link com.smartgwt.client.widgets.Canvas#neverUseFilters neverUseFilters} has been set.  When set explicitly to true,
@@ -3796,12 +4188,11 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * fields of a single object to be displayed or edited across multiple UI components. Given a single values object, a
      * valuesManager will handle determining the appropriate field values for its member components and displaying them / 
      * responding to edits if the components support this. <P> Data may be derived simply from the specified fieldNames within
-     * the member components, or for complex nested data structures can be specified by both component and field-level {@link
-     * com.smartgwt.client.widgets.Canvas#getDataPath dataPath}. <P> Note that components may be automatically bound to an
-     * existing valuesManager attached to a  parent component if dataPath is specified. See {@link
-     * com.smartgwt.client.widgets.Canvas#getDataPath dataPath} for more information. Also note that if a databound component
-     * has a specified dataSource and dataPath but no specified valuesManager object one will be automatically generated as
-     * part of the databinding process
+     * the member components, or for complex nested data structures can be specified by both component and field-level
+     * DataPath. <P> Note that components may be automatically bound to an existing valuesManager attached to a  parent
+     * component if dataPath is specified. See {@link com.smartgwt.client.widgets.Canvas#getDataPath dataPath} for more
+     * information. Also note that if a databound component has a specified dataSource and dataPath but no specified
+     * valuesManager object one will be automatically generated as part of the databinding process
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for the {@link com.smartgwt.client.widgets.Canvas#getValuesManager valuesManager} attribute. This method may be called directly at  runtime to set the ValuesManager for a component; it has the same effect as calling  {@link com.smartgwt.client.widgets.form.ValuesManager#addMember ValuesManager.addMember}, passing in this DataBoundComponent.
@@ -3820,12 +4211,11 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * fields of a single object to be displayed or edited across multiple UI components. Given a single values object, a
      * valuesManager will handle determining the appropriate field values for its member components and displaying them / 
      * responding to edits if the components support this. <P> Data may be derived simply from the specified fieldNames within
-     * the member components, or for complex nested data structures can be specified by both component and field-level {@link
-     * com.smartgwt.client.widgets.Canvas#getDataPath dataPath}. <P> Note that components may be automatically bound to an
-     * existing valuesManager attached to a  parent component if dataPath is specified. See {@link
-     * com.smartgwt.client.widgets.Canvas#getDataPath dataPath} for more information. Also note that if a databound component
-     * has a specified dataSource and dataPath but no specified valuesManager object one will be automatically generated as
-     * part of the databinding process
+     * the member components, or for complex nested data structures can be specified by both component and field-level
+     * DataPath. <P> Note that components may be automatically bound to an existing valuesManager attached to a  parent
+     * component if dataPath is specified. See {@link com.smartgwt.client.widgets.Canvas#getDataPath dataPath} for more
+     * information. Also note that if a databound component has a specified dataSource and dataPath but no specified
+     * valuesManager object one will be automatically generated as part of the databinding process
      *
      *
      * @return ValuesManager
@@ -3861,7 +4251,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Adds newChild as a child of this widget, set up a named object reference (i.e., this[name]) to the new widget if name
      * argument is provided, and draw the child if this widget has been drawn already. <P> If newChild has a parent it will be
@@ -3895,9 +4285,9 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return the new child, or null if it couldn't be added
      * @see com.smartgwt.client.docs.Containment Containment overview and related methods
      */
-    public native Canvas addChild(Canvas newChild, String name, boolean autoDraw) /*-{
+    public native Canvas addChild(Canvas newChild, String name, Boolean autoDraw) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.addChild(newChild.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), name, autoDraw);
+        var ret = self.addChild(newChild.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), name, autoDraw == null ? null : autoDraw.@java.lang.Boolean::booleanValue()());
         if(ret == null || ret === undefined) return null;
         var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
         if(retVal == null) {
@@ -3905,12 +4295,12 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         }
         return retVal;
     }-*/;
-            
+
     /**
-     * Adds newPeer as a peer of this widget (also making it a child of this widget's parent, if      any), set up a named
-     * object reference (i.e., this[name]) to the new widget if name is      provided, and draw the peer if this widget has
-     * been drawn already.<br>      The widget to be added as a peer will be removed from its old master and/or parent, if any,
-     *      and it will be added as a child to the parent of this canvas (if any)
+     * Adds newPeer as a peer of this widget (also making it a child of this widget's parent, if any), set up a named object
+     * reference (i.e., this[name]) to the new widget if name is provided, and draw the peer if this widget has been drawn
+     * already.<br> <P> The widget to be added as a peer will be removed from its old master and/or parent, if any, and it will
+     * be added as a child to the parent of this canvas (if any)
      * @param newPeer new peer widget to add
      *
      * @return the new peer, or null if it couldn't be added
@@ -3928,22 +4318,21 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }-*/;
 
     /**
-     * Adds newPeer as a peer of this widget (also making it a child of this widget's parent, if      any), set up a named
-     * object reference (i.e., this[name]) to the new widget if name is      provided, and draw the peer if this widget has
-     * been drawn already.<br>      The widget to be added as a peer will be removed from its old master and/or parent, if any,
-     *      and it will be added as a child to the parent of this canvas (if any)
+     * Adds newPeer as a peer of this widget (also making it a child of this widget's parent, if any), set up a named object
+     * reference (i.e., this[name]) to the new widget if name is provided, and draw the peer if this widget has been drawn
+     * already.<br> <P> The widget to be added as a peer will be removed from its old master and/or parent, if any, and it will
+     * be added as a child to the parent of this canvas (if any)
      * @param newPeer new peer widget to add
      * @param name name to assign to peer (eg: this[peer] == child)
-     * @param autoDraw if true, peer will not automatically be drawn (only                                  for advanced use)
-     * @param preDraw if true, when draw is called on the master widget, the peer                                  will be drawn before the
-     * master
+     * @param autoDraw if true, peer will not automatically be drawn (only                             for advanced use)
+     * @param preDraw if true, when draw is called on the master widget, the peer                            will be drawn before the master
      *
      * @return the new peer, or null if it couldn't be added
      * @see com.smartgwt.client.docs.Containment Containment overview and related methods
      */
-    public native Canvas addPeer(Canvas newPeer, String name, boolean autoDraw, boolean preDraw) /*-{
+    public native Canvas addPeer(Canvas newPeer, String name, Boolean autoDraw, Boolean preDraw) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.addPeer(newPeer.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), name, autoDraw, preDraw);
+        var ret = self.addPeer(newPeer.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), name, autoDraw == null ? null : autoDraw.@java.lang.Boolean::booleanValue()(), preDraw == null ? null : preDraw.@java.lang.Boolean::booleanValue()());
         if(ret == null || ret === undefined) return null;
         var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
         if(retVal == null) {
@@ -3951,7 +4340,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         }
         return retVal;
     }-*/;
-            
+
     /**
      * This method tells a component to adjust for size changes made to content by external code. <P> This is for very advanced
      * use in which the contents of a Canvas are being directly updated by Ajax techniques, which is required for integration
@@ -3968,7 +4357,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.adjustForContent(immediate);
     }-*/;
-            
+
     /**
      * If this canvas has keyboard focus, blur it. After this method, the canvas will no longer appear focused and will stop
      * receiving keyboard events.
@@ -3977,7 +4366,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.blur();
     }-*/;
-            
+
     /**
      * Puts this widget at the top of the stacking order, so it appears in front of all other widgets in the same parent.
      */
@@ -3985,7 +4374,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.bringToFront();
     }-*/;
-            
+
     /**
      * Remove all visual representation of a Canvas, including all child or member Canvases, or managed top-level components
      * such as the ListGrid drop location indicator. <P> This is more expensive than hide(), because in order to become visible
@@ -4017,28 +4406,31 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var click = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({click:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({click: 
+                function () {
+                    var param = {};
+                    return click(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.click = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.click = 
+                function () {
+                    var param = {};
+                    return click(param) == true;
+                }
+            ;
         }
    }-*/;
-            
+
     /**
      * Determines whether a clickmask is showing
      */
@@ -4057,7 +4449,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.clickMaskUp(ID);
     }-*/;
-            
+
     /**
      * Returns true if element is a descendant of this widget (i.e., exists below this widget in      the containment
      * hierarchy); and false otherwise.
@@ -4086,16 +4478,16 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return true if specified element is a descendant of this canvas; false otherwise
      * @see com.smartgwt.client.docs.Containment Containment overview and related methods
      */
-    public native Boolean contains(Canvas canvas, boolean testSelf) /*-{
+    public native Boolean contains(Canvas canvas, Boolean testSelf) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.contains(canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), testSelf);
+        var retVal =self.contains(canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), testSelf == null ? null : testSelf.@java.lang.Boolean::booleanValue()());
         if(retVal == null || retVal === undefined) {
             return null;
         } else {
                 return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Return true if the last event's mouse coordinates are within the bounds of this component.  NOTE: Z-ordering is not
      * considered for the purposes of this test.  If the coordinate you're  testing is occluded by other component, but the X,Y
@@ -4113,7 +4505,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Returns true if the keyboard focus is in this Canvas or any child of this Canvas.
      *
@@ -4129,7 +4521,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Return whether or not this object contains the specified global (x,y) coordinates. <P> Will return false if any
      * parentElement does not contain the specified point, (EG: you're hovering over an element's absolute location, but it is
@@ -4162,16 +4554,32 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return true if this object contains the specified point; false otherwise
      * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
-    public native Boolean containsPoint(int x, int y, boolean withinViewport) /*-{
+    public native Boolean containsPoint(int x, int y, Boolean withinViewport) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.containsPoint(x, y, withinViewport);
+        var retVal =self.containsPoint(x, y, withinViewport == null ? null : withinViewport.@java.lang.Boolean::booleanValue()());
         if(retVal == null || retVal === undefined) {
             return null;
         } else {
                 return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
+    /**
+     * Remove this canvas from its parent if it has one.
+     */
+    public native void deparent() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.deparent();
+    }-*/;
+
+    /**
+     * Make this Canvas no longer a peer of its master
+     */
+    public native void depeer() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.depeer();
+    }-*/;
+
     /**
      * Disables this widget and any children and peers of this widget.
      */
@@ -4196,25 +4604,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupDoubleClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var doubleClick = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.DoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({doubleClick:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.DoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({doubleClick: 
+                function () {
+                    var param = {};
+                    return doubleClick(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.doubleClick = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.DoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.doubleClick = 
+                function () {
+                    var param = {};
+                    return doubleClick(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -4233,25 +4644,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupDragMoveEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var dragMove = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.DragMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragMove:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.DragMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({dragMove: 
+                function () {
+                    var param = {};
+                    return dragMove(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragMove = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.DragMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.dragMove = 
+                function () {
+                    var param = {};
+                    return dragMove(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -4273,25 +4687,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupDragRepositionMoveEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var dragRepositionMove = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.DragRepositionMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragRepositionMove:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.DragRepositionMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({dragRepositionMove: 
+                function () {
+                    var param = {};
+                    return dragRepositionMove(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragRepositionMove = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.DragRepositionMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.dragRepositionMove = 
+                function () {
+                    var param = {};
+                    return dragRepositionMove(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -4311,25 +4728,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupDragRepositionStartEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var dragRepositionStart = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.DragRepositionStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragRepositionStart:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.DragRepositionStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({dragRepositionStart: 
+                function () {
+                    var param = {};
+                    return dragRepositionStart(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragRepositionStart = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.DragRepositionStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.dragRepositionStart = 
+                function () {
+                    var param = {};
+                    return dragRepositionStart(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -4352,25 +4772,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupDragRepositionStopEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var dragRepositionStop = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.DragRepositionStopEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragRepositionStop:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.DragRepositionStopEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({dragRepositionStop: 
+                function () {
+                    var param = {};
+                    return dragRepositionStop(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragRepositionStop = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.DragRepositionStopEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.dragRepositionStop = 
+                function () {
+                    var param = {};
+                    return dragRepositionStop(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -4392,25 +4815,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupDragResizeMoveEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var dragResizeMove = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.DragResizeMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragResizeMove:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.DragResizeMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({dragResizeMove: 
+                function () {
+                    var param = {};
+                    return dragResizeMove(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragResizeMove = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.DragResizeMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.dragResizeMove = 
+                function () {
+                    var param = {};
+                    return dragResizeMove(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -4430,25 +4856,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupDragResizeStartEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var dragResizeStart = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.DragResizeStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragResizeStart:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.DragResizeStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({dragResizeStart: 
+                function () {
+                    var param = {};
+                    return dragResizeStart(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragResizeStart = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.DragResizeStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.dragResizeStart = 
+                function () {
+                    var param = {};
+                    return dragResizeStart(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -4471,25 +4900,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupDragResizeStopEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var dragResizeStop = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.DragResizeStopEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragResizeStop:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.DragResizeStopEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({dragResizeStop: 
+                function () {
+                    var param = {};
+                    return dragResizeStop(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragResizeStop = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.DragResizeStopEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.dragResizeStop = 
+                function () {
+                    var param = {};
+                    return dragResizeStop(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -4511,25 +4943,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupDragStartEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var dragStart = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.DragStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragStart:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.DragStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({dragStart: 
+                function () {
+                    var param = {};
+                    return dragStart(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragStart = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.DragStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.dragStart = 
+                function () {
+                    var param = {};
+                    return dragStart(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -4549,25 +4984,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupDragStopEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var dragStop = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.DragStopEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragStop:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.DragStopEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({dragStop: 
+                function () {
+                    var param = {};
+                    return dragStop(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragStop = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.DragStopEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.dragStop = 
+                function () {
+                    var param = {};
+                    return dragStop(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -4587,25 +5025,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupDropMoveEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var dropMove = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.DropMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dropMove:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.DropMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({dropMove: 
+                function () {
+                    var param = {};
+                    return dropMove(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dropMove = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.DropMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.dropMove = 
+                function () {
+                    var param = {};
+                    return dropMove(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -4625,25 +5066,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupDropOutEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var dropOut = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.DropOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dropOut:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.DropOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({dropOut: 
+                function () {
+                    var param = {};
+                    return dropOut(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dropOut = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.DropOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.dropOut = 
+                function () {
+                    var param = {};
+                    return dropOut(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -4663,28 +5107,31 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupDropOverEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var dropOver = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.DropOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dropOver:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.DropOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({dropOver: 
+                function () {
+                    var param = {};
+                    return dropOver(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dropOver = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.DropOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.dropOver = 
+                function () {
+                    var param = {};
+                    return dropOver(param) == true;
+                }
+            ;
         }
    }-*/;
-            
+
     /**
      * Enables this widget and any children / peers of this widget.
      */
@@ -4692,7 +5139,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.enable();
     }-*/;
-            
+
     /**
      * If this canvas can accept focus, give it keyboard focus. After this method, the canvas will appear focused and will
      * receive keyboard events.
@@ -4717,24 +5164,21 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupFocusChangedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var focusChanged = $entry(function(){
+            var param = {"hasFocus" : arguments[0]};
+
+                var event = @com.smartgwt.client.widgets.events.FocusChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({focusChanged:$entry(function(){
-                        var param = {"hasFocus" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.events.FocusChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({focusChanged:  focusChanged              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.focusChanged = $entry(function(){
-                   var param = {"hasFocus" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.events.FocusChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.focusChanged =  focusChanged             ;
         }
    }-*/;
-            
+
     /**
      * Return the bottom coordinate of this object as rendered, relative to its enclosing context, in pixels.
      *
@@ -4745,10 +5189,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getBottom();
     }-*/;
-            
+
     /**
-     * Returns a fully qualified String for this canvas. This is calculated by combining the canvas' specified {@link
-     * com.smartgwt.client.widgets.Canvas#getDataPath dataPath} with the <code>dataPath</code> of any parent  canvases up to
+     * Returns a fully qualified DataPath for this canvas. This is calculated by combining the canvas' specified {@link
+     * com.smartgwt.client.widgets.Canvas#getDataPath DataPath} with the <code>dataPath</code> of any parent  canvases up to
      * whichever canvas has a specified {@link com.smartgwt.client.widgets.Canvas#getValuesManager valuesManager} specified to
      * actually manage values from this component.
      *
@@ -4758,18 +5202,21 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getFullDataPath();
     }-*/;
-            
+
     /**
      * If <code>this.showHover</code> is true, when the user holds the mouse over this Canvas for long enough to trigger a
      * hover event, a hover canvas is shown by default. This method returns the contents of that hover canvas. Default
      * implementation returns <code>this.prompt</code> - override for custom hover HTML. Note that returning <code>null</code>
      * or an empty string will suppress the hover canvas altogether.
+     *
+     * @return the string to show in the hover
+     * @see com.smartgwt.client.widgets.Canvas#getShowHover
      */
-    public native void getHoverHTML() /*-{
+    public native String getHoverHTML() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.getHoverHTML();
+        return self.getHoverHTML();
     }-*/;
-            
+
     /**
      * Get an offset to be used when calculating snap positioning. Returns 0 by default.
      *
@@ -4794,7 +5241,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getHSnapOrigin(snapChild.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-            
+
     /**
      * Override this method to provide a custom snap-to grid.  Note that you do not need to do this if your grid is regular
      * (ie, grid points are every x pixels); regular grids should be  defined using {@link
@@ -4826,7 +5273,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getHSnapPosition(coordinate, direction);
     }-*/;
-            
+
     /**
      * Returns the amount of space available for interior content (or relatively positioned child widget(s)) without
      * introducing clipping, scrolling or overflow.<br> This is the space within the viewport of the widget (not including
@@ -4842,7 +5289,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getInnerContentHeight();
     }-*/;
-            
+
     /**
      * Returns the amount of space available for interior content (or relatively positioned child  widget(s)) without
      * introducing clipping, scrolling or overflow.<br>  This is the space within the viewport of the widget (not including
@@ -4858,7 +5305,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getInnerContentWidth();
     }-*/;
-            
+
     /**
      * Returns the amount of space available for (an) absolutely positioned child widget(s) or  absolutely positioned HTML
      * content, without introducing clipping, scrolling or overflow. <P> This is the space within the viewport of the widget
@@ -4874,7 +5321,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getInnerHeight();
     }-*/;
-            
+
     /**
      * Returns the amount of space available for absolutely positioned child widget(s) or  absolutely positioned HTML content,
      * without introducing clipping, scrolling or overflow. <P> This is the space within the viewport of the widget (including
@@ -4890,7 +5337,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getInnerWidth();
     }-*/;
-            
+
     /**
      * Return the X-coordinate of the last event relative to the left edge of the content of this Canvas.<br><br>  NOTE: To get
      * a coordinate relative to the <b>viewport</b> of this Canvas, subtract  this.getScrollLeft()
@@ -4902,7 +5349,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getOffsetX();
     }-*/;
-            
+
     /**
      * Return the Y-coordinate of the last event, relative to the top edge of the content of this Canvas.<br><br>  NOTE: To get
      * a coordinate relative to the <b>viewport</b> of this Canvas, subtract  this.getScrollTop()
@@ -4914,7 +5361,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getOffsetY();
     }-*/;
-            
+
     /**
      * Return the page-relative bottom coordinate of this object, in pixels.
      *
@@ -4925,7 +5372,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getPageBottom();
     }-*/;
-            
+
     /**
      * Returns the page-relative left coordinate of the widget on the page, in pixels.
      *
@@ -4936,7 +5383,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getPageLeft();
     }-*/;
-            
+
     /**
      * Return the page-relative right coordinate of this object, in pixels.
      *
@@ -4947,7 +5394,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getPageRight();
     }-*/;
-            
+
     /**
      * Returns the page-relative top coordinate of the widget on the page, in pixels
      *
@@ -4958,7 +5405,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getPageTop();
     }-*/;
-            
+
     /**
      * Return the right coordinate of this object as rendered, relative to its enclosing context, in pixels.
      *
@@ -4969,7 +5416,18 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getRight();
     }-*/;
-            
+
+    /**
+     * Returns the scrollTop required to scroll vertically to the end of this widget's content.
+     *
+     * @return scroll bottom coordinate
+     * @see com.smartgwt.client.docs.Scrolling Scrolling overview and related methods
+     */
+    public native int getScrollBottom() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getScrollBottom();
+    }-*/;
+
     /**
      * Returns the scrollable height of the widget's contents, including children, ignoring          clipping.
      *
@@ -4980,7 +5438,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getScrollHeight();
     }-*/;
-            
+
     /**
      * Get the number of pixels this Canvas is scrolled from its left edge.
      *
@@ -4991,7 +5449,18 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getScrollLeft();
     }-*/;
-            
+
+    /**
+     * Returns the scrollLeft required to scroll horizontally to the end of this widget's content.
+     *
+     * @return scroll bottom coordinate
+     * @see com.smartgwt.client.docs.Scrolling Scrolling overview and related methods
+     */
+    public native int getScrollRight() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getScrollRight();
+    }-*/;
+
     /**
      * Get the number of pixels this Canvas is scrolled from its top edge.
      *
@@ -5002,7 +5471,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getScrollTop();
     }-*/;
-            
+
     /**
      * Returns the scrollable width of the widget's contents, including children, ignoring clipping.
      *
@@ -5013,7 +5482,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getScrollWidth();
     }-*/;
-            
+
     /**
      * Returns the height of the viewport onto the scrollable content.
      *
@@ -5024,7 +5493,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getViewportHeight();
     }-*/;
-            
+
     /**
      * Returns the width of the viewport onto the scrollable content.
      *
@@ -5035,7 +5504,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getViewportWidth();
     }-*/;
-            
+
     /**
      * Return the visible height of the Canvas.
      *
@@ -5046,7 +5515,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getVisibleHeight();
     }-*/;
-            
+
     /**
      * Return the visible width of the Canvas.
      *
@@ -5057,7 +5526,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getVisibleWidth();
     }-*/;
-            
+
     /**
      * Get an offset to be used when calculating snap positioning. Returns 0 by default.
      *
@@ -5082,7 +5551,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getVSnapOrigin(snapChild.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-            
+
     /**
      * Override this method to provide a custom snap-to grid.  Note that you do not need to do this if your grid is regular
      * (ie, grid points are every x pixels) - regular grids should be  defined using {@link
@@ -5114,7 +5583,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getVSnapPosition(coordinate, direction);
     }-*/;
-            
+
     /**
      * Handler fired on a delay when the user hovers the mouse over this hover-target. Default implementation will fire
      * <code>this.hover()</code> (if defined), and handle  showing the hover canvas if <code>this.showHover</code> is true.
@@ -5123,7 +5592,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.handleHover();
     }-*/;
-            
+
     /**
      * Sets the widget's CSS visibility attribute to "hidden".
      */
@@ -5131,7 +5600,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.hide();
     }-*/;
-            
+
     /**
      * Hides the click mask associated with this canvas.
      */
@@ -5150,7 +5619,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.hideClickMask(ID);
     }-*/;
-            
+
     /**
      * The default implementation of this method hides the contextMenu currently being shown for this component (which occurs
      * when the mouse button that toggles the context menu is released). Override if you want some other behavior.
@@ -5177,25 +5646,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupHoverEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var hover = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.HoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({hover:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.HoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({hover: 
+                function () {
+                    var param = {};
+                    return hover(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.hover = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.HoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.hover = 
+                function () {
+                    var param = {};
+                    return hover(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -5216,24 +5688,21 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupHoverHiddenEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var hoverHidden = $entry(function(){
+            var param = {};
+
+                var event = @com.smartgwt.client.widgets.events.HoverHiddenEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({hoverHidden:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.HoverHiddenEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({hoverHidden:  hoverHidden              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.hoverHidden = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.HoverHiddenEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.hoverHidden =  hoverHidden             ;
         }
    }-*/;
-            
+
     /**
      * Returns true if the rectangles of this widget and the specified widget overlap.
      * @param other other canvas to test for intersection
@@ -5250,7 +5719,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Returns whether a canvas is waiting to be redrawn. Will return true if  {@link
      * com.smartgwt.client.widgets.Canvas#markForRedraw Canvas.markForRedraw} has been called, but this canvas has not yet been
@@ -5268,7 +5737,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Is this canvas disabled? Note that the disabled state is inherited - this method will return true if this widget, or any
      * of its ancestors are marked disabled.
@@ -5285,7 +5754,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Returns the boolean true, if the widget has been completely drawn, and false otherwise.
      *
@@ -5320,25 +5789,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupKeyDownEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var keyDown = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.KeyDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({keyDown:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.KeyDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({keyDown: 
+                function () {
+                    var param = {};
+                    return keyDown(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.keyDown = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.KeyDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.keyDown = 
+                function () {
+                    var param = {};
+                    return keyDown(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -5360,28 +5832,31 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupKeyPressEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var keyPress = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.KeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({keyPress:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.KeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({keyPress: 
+                function () {
+                    var param = {};
+                    return keyPress(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.keyPress = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.KeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.keyPress = 
+                function () {
+                    var param = {};
+                    return keyPress(param) == true;
+                }
+            ;
         }
    }-*/;
-            
+
     /**
      * Executed when a key is released on a focusable widget ({@link com.smartgwt.client.widgets.Canvas#getCanFocus canFocus}:
      * true).  <P> Use {@link com.smartgwt.client.util.EventHandler#getKey EventHandler.getKey} to find out the String of the
@@ -5400,7 +5875,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * <code>layoutChildren()</code> is where a Canvas should implement a sizing policy for it's Canvas children.  Since
      * <code>layoutChildren</code> calls parentResized() on its children, {@link
@@ -5423,7 +5898,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.layoutChildren(reason);
     }-*/;
-            
+
     /**
      * Generates the HTML for a standard link element
      * @param href URL for the link to point to
@@ -5446,11 +5921,11 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @return HTML for the link
      */
-    public native String linkHTML(String href, String text, String target, String ID, int tabIndex, String accessKey) /*-{
+    public native String linkHTML(String href, String text, String target, String ID, Integer tabIndex, String accessKey) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.linkHTML(href, text, target, ID, tabIndex, accessKey);
+        return self.linkHTML(href, text, target, ID, tabIndex == null ? null : tabIndex.@java.lang.Integer::intValue()(), accessKey);
     }-*/;
-            
+
     /**
      * {@link com.smartgwt.client.widgets.Canvas#destroy destroy()} this canvas on a timeout. This method should be used
      * instead of calling <code>canvas.destroy()</code> directly unless there's a reason a the canvas needs to be destroyed
@@ -5462,7 +5937,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.markForDestroy();
     }-*/;
-            
+
     /**
      * Marks the widget as "dirty" so that it will be added to a queue for redraw. Redraw of dirty components is handled by a
      * looping timer and will after a very short delay (typically less than 100ms). In most cases it is recommended that
@@ -5504,25 +5979,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupMouseDownEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var mouseDown = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.MouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseDown:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.MouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({mouseDown: 
+                function () {
+                    var param = {};
+                    return mouseDown(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseDown = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.MouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.mouseDown = 
+                function () {
+                    var param = {};
+                    return mouseDown(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -5541,25 +6019,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupMouseMoveEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var mouseMove = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.MouseMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseMove:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.MouseMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({mouseMove: 
+                function () {
+                    var param = {};
+                    return mouseMove(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseMove = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.MouseMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.mouseMove = 
+                function () {
+                    var param = {};
+                    return mouseMove(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -5578,25 +6059,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupMouseOutEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var mouseOut = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.MouseOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseOut:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.MouseOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({mouseOut: 
+                function () {
+                    var param = {};
+                    return mouseOut(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseOut = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.MouseOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.mouseOut = 
+                function () {
+                    var param = {};
+                    return mouseOut(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -5615,25 +6099,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupMouseOverEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var mouseOver = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.MouseOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseOver:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.MouseOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({mouseOver: 
+                function () {
+                    var param = {};
+                    return mouseOver(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseOver = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.MouseOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.mouseOver = 
+                function () {
+                    var param = {};
+                    return mouseOver(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -5658,25 +6145,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupMouseStillDownEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var mouseStillDown = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.MouseStillDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseStillDown:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.MouseStillDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({mouseStillDown: 
+                function () {
+                    var param = {};
+                    return mouseStillDown(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseStillDown = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.MouseStillDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.mouseStillDown = 
+                function () {
+                    var param = {};
+                    return mouseStillDown(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -5695,25 +6185,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupMouseUpEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var mouseUp = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.MouseUpEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseUp:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.MouseUpEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({mouseUp: 
+                function () {
+                    var param = {};
+                    return mouseUp(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseUp = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.MouseUpEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.mouseUp = 
+                function () {
+                    var param = {};
+                    return mouseUp(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -5732,28 +6225,31 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupMouseWheelEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var mouseWheel = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.MouseWheelEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseWheel:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.MouseWheelEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({mouseWheel: 
+                function () {
+                    var param = {};
+                    return mouseWheel(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseWheel = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.MouseWheelEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.mouseWheel = 
+                function () {
+                    var param = {};
+                    return mouseWheel(param) == true;
+                }
+            ;
         }
    }-*/;
-            
+
     /**
      * Puts this widget just above the specified widget in the stacking order, so it appears in front of the specified widget
      * if both widgets have the same parent.
@@ -5763,7 +6259,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.moveAbove(canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-            
+
     /**
      * Puts this widget just below the specified widget in the stacking order, so it appears behind the specified widget if
      * both widgets have the same parent.
@@ -5773,7 +6269,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.moveBelow(canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-            
+
     /**
      * Moves the widget deltaX pixels to the right and deltaY pixels down. Pass negative          numbers to move up and/or to
      * the left.
@@ -5811,21 +6307,59 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupMovedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var moved = $entry(function(){
+            var param = {"deltaX" : arguments[0], "deltaY" : arguments[1]};
+
+                var event = @com.smartgwt.client.widgets.events.MovedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({moved:$entry(function(){
-                        var param = {"deltaX" : arguments[0], "deltaY" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.events.MovedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
+            obj.addProperties({moved:  moved              });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.moved =  moved             ;
+        }
+   }-*/;
+    /**
+     * Add a drop handler.
+     * <p>
+     * Notification method fired when the user drops another canvas onto this one. Returning <code>false</code> from this
+     * method will prevent any default drop behavior from occurring
+     *
+     * @param handler the drop handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDropHandler(com.smartgwt.client.widgets.events.DropHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.DropEvent.getType()) == 0) setupDropEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.DropEvent.getType());
+    }
+
+    private native void setupDropEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        var onDrop = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.DropEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onDrop: 
+                function () {
+                    var param = {};
+                    return onDrop(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.moved = $entry(function(){
-                   var param = {"deltaX" : arguments[0], "deltaY" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.events.MovedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.onDrop = 
+                function () {
+                    var param = {};
+                    return onDrop(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -5844,24 +6378,21 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupParentMovedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var parentMoved = $entry(function(){
+            var param = {"parent" : arguments[0], "deltaX" : arguments[1], "deltaY" : arguments[2]};
+
+                var event = @com.smartgwt.client.widgets.events.ParentMovedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({parentMoved:$entry(function(){
-                        var param = {"parent" : arguments[0], "deltaX" : arguments[1], "deltaY" : arguments[2]};
-                        var event = @com.smartgwt.client.widgets.events.ParentMovedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({parentMoved:  parentMoved              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.parentMoved = $entry(function(){
-                   var param = {"parent" : arguments[0], "deltaX" : arguments[1], "deltaY" : arguments[2]};
-                   var event = @com.smartgwt.client.widgets.events.ParentMovedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.parentMoved =  parentMoved             ;
         }
    }-*/;
-            
+
     /**
      * Redraws the widget immediately with its current property values.   Generally, if you want a Canvas to redraw, call
      * markForRedraw() - this will cause the Canvas to be redrawn when current processing ends, so that a series of
@@ -5885,6 +6416,48 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.redraw(reason);
     }-*/;
+
+    /**
+     * Remove a child from this parent.
+     * @param child Child canvas to remove from this parent.
+     */
+    public native void removeChild(Canvas child) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.removeChild(child.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+
+    /**
+     * Remove a child from this parent.
+     * @param child Child canvas to remove from this parent.
+     * @param name If the child canvas was assigned a name when added via addChild(), it                        should be passed in here to
+     * ensure no reference is kept to the child
+     * @see com.smartgwt.client.docs.Containment Containment overview and related methods
+     */
+    public native void removeChild(Canvas child, String name) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.removeChild(child.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), name);
+    }-*/;
+
+    /**
+     * Remove a peer from this Canvas
+     * @param peer Peer to be removed from this canvas
+     */
+    public native void removePeer(Canvas peer) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.removePeer(peer.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+
+    /**
+     * Remove a peer from this Canvas
+     * @param peer Peer to be removed from this canvas
+     * @param name If this peer was assigned a name when added via addPeer(), it should                        be passed in here to ensure
+     * no reference is kept to the peer
+     * @see com.smartgwt.client.docs.Containment Containment overview and related methods
+     */
+    public native void removePeer(Canvas peer, String name) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.removePeer(peer.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), name);
+    }-*/;
     /**
      * Add a resized handler.
      * <p>
@@ -5906,21 +6479,18 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupResizedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var resized = $entry(function(){
+            var param = {};
+
+                var event = @com.smartgwt.client.widgets.events.ResizedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({resized:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.ResizedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({resized:  resized              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.resized = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.ResizedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.resized =  resized             ;
         }
    }-*/;
     /**
@@ -5939,28 +6509,31 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupRightMouseDownEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var rightMouseDown = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.RightMouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({rightMouseDown:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.RightMouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({rightMouseDown: 
+                function () {
+                    var param = {};
+                    return rightMouseDown(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.rightMouseDown = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.RightMouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.rightMouseDown = 
+                function () {
+                    var param = {};
+                    return rightMouseDown(param) == true;
+                }
+            ;
         }
    }-*/;
-            
+
     /**
      * Scroll this widget by some pixel increment in either (or both) direction(s).
      * @param dX Number of pixels to scroll horizontally
@@ -5987,24 +6560,21 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupScrolledEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var scrolled = $entry(function(){
+            var param = {};
+
+                var event = @com.smartgwt.client.widgets.events.ScrolledEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({scrolled:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.ScrolledEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({scrolled:  scrolled              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.scrolled = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.ScrolledEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.scrolled =  scrolled             ;
         }
    }-*/;
-            
+
     /**
      * Scrolls the content of the widget so that the origin (top-left corner) of the content is left pixels to the left and top
      * pixels above the widget's top-left corner (but still clipped by the widget's dimensions). <p> This is guaranteed to be
@@ -6025,11 +6595,11 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param top the top coordinate
      * @see com.smartgwt.client.docs.Scrolling Scrolling overview and related methods
      */
-    public native void scrollTo(int left, int top) /*-{
+    public native void scrollTo(Integer left, Integer top) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.scrollTo(left, top);
+        self.scrollTo(left == null ? null : left.@java.lang.Integer::intValue()(), top == null ? null : top.@java.lang.Integer::intValue()());
     }-*/;
-            
+
     /**
      * Vertically scrolls the content of the widget to the end of its content
      */
@@ -6037,7 +6607,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.scrollToBottom();
     }-*/;
-            
+
     /**
      * Horizontally scrolls the content of the widget to 0
      */
@@ -6045,7 +6615,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.scrollToLeft();
     }-*/;
-            
+
     /**
      * Horizontally scrolls the content of the widget to the end of its content
      */
@@ -6053,7 +6623,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.scrollToRight();
     }-*/;
-            
+
     /**
      * Vertically scrolls the content of the widget to 0
      */
@@ -6061,7 +6631,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.scrollToTop();
     }-*/;
-            
+
     /**
      * Puts this widget at the bottom of the stacking order, so it appears behind all other widgets in the same parent.
      */
@@ -6069,7 +6639,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.sendToBack();
     }-*/;
-            
+
     /**
      * Resizes the widget vertically to position its bottom edge at the specified coordinate. <P> NOTE: if you're setting
      * multiple coordinates, use setRect(), moveTo() or resizeTo() instead
@@ -6079,7 +6649,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setBottom(bottom);
     }-*/;
-            
+
     /**
      * Set the URL of an image element by name. <p> The image element must have been created from HTML generated by calling
      * <code>canvas.imgHTML()</code> on this particular Canvas.
@@ -6103,7 +6673,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setImage(identifier, URL, imgDir);
     }-*/;
-            
+
     /**
      * Set the page-relative left coordinate of this widget.
      * @param left new left coordinate in pixels
@@ -6112,7 +6682,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setPageLeft(left);
     }-*/;
-            
+
     /**
      * Set the page-relative top coordinate of this widget.
      * @param top new top coordinate in pixels
@@ -6121,7 +6691,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setPageTop(top);
     }-*/;
-            
+
     /**
      * Resizes the widget horizontally to position its right side at the specified coordinate. <P> NOTE: if you're setting
      * multiple coordinates, use setRect(), moveTo() or resizeTo() instead
@@ -6131,16 +6701,16 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setRight(right);
     }-*/;
-            
+
     /**
      * If this widget is showing scrollbars, and a user drags close to the edge of the viewport, should we scroll the viewport
-     * in the appropriate direction? Returns this.canDragScroll by default.
+     * in the appropriate direction? Returns this.canDragScroll if there are scrollbars, else false.
      */
     public native void shouldDragScroll() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.shouldDragScroll();
     }-*/;
-            
+
     /**
      * Sets this widget's visibility to "inherit", so that it becomes visible if all it's parents are visible or it has no
      * parents. <P> If the widget has not yet been drawn (and doesn't have a parent or master), this method calls the draw
@@ -6172,28 +6742,31 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupShowContextMenuEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var showContextMenu = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.events.ShowContextMenuEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({showContextMenu:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.ShowContextMenuEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({showContextMenu: 
+                function () {
+                    var param = {};
+                    return showContextMenu(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.showContextMenu = $debox($entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.ShowContextMenuEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.showContextMenu = 
+                function () {
+                    var param = {};
+                    return showContextMenu(param) == true;
+                }
+            ;
         }
    }-*/;
-            
+
     /**
      * Show this widget next to another widget.
      * @param otherWidget Canvas to show next to
@@ -6212,7 +6785,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.showNextTo(otherWidget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), side);
     }-*/;
-            
+
     /**
      * Recursively show the canvas and all it's parents so the canvas will be visible. <P> If the widget has not yet been
      * drawn, this method calls the draw method as well.
@@ -6221,7 +6794,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.showRecursively();
     }-*/;
-            
+
     /**
      * If this canvas is currently showing a hover (see {@link com.smartgwt.client.widgets.Canvas#handleHover
      * Canvas.handleHover}), this method can be called to update the contents of the hover. Has no effect if the hover canvas
@@ -6271,42 +6844,53 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     private native void setupVisibilityChangedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var visibilityChanged = $entry(function(){
+            var param = {"isVisible" : arguments[0]};
+
+                var event = @com.smartgwt.client.widgets.events.VisibilityChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({visibilityChanged:$entry(function(){
-                        var param = {"isVisible" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.events.VisibilityChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({visibilityChanged:  visibilityChanged              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.visibilityChanged = $entry(function(){
-                   var param = {"isVisible" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.events.VisibilityChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.visibilityChanged =  visibilityChanged             ;
         }
    }-*/;
 
     // ********************* Static Methods ***********************
-            
+
     /**
-     * Retrieve a Canvas by it's global {@link com.smartgwt.client.widgets.Canvas#getID ID}.
-     * @param ID global ID of the Canvas
+     * Check if an event is within an "edge" of this canvas.
      *
-     * @return the Canvas, or null if not found
+     * @return edge where the mouse is positioned, or null if not within a legal edge                    (including being in the
+     * center)
+     * @see com.smartgwt.client.widgets.Canvas#getResizeFrom
      */
-    public static native Canvas getById(String ID) /*-{
-        var ret = $wnd.isc.Canvas.getById(ID);
+    public static native EdgeName getEventEdge() /*-{
+        var ret = $wnd.isc.Canvas.getEventEdge();
         if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
+        var enumValues = @com.smartgwt.client.types.EdgeName::values()();
+        return @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(enumValues, ret);
     }-*/;
-            
+
+    /**
+     * Check if an event is within an "edge" of this canvas.
+     * @param edgeMask Array of legal edges.  Default is all the edges that                                       allow resizing (see {@link
+     * com.smartgwt.client.widgets.Canvas#getResizeFrom resizeFrom})
+     *
+     * @return edge where the mouse is positioned, or null if not within a legal edge                    (including being in the
+     * center)
+     * @see com.smartgwt.client.widgets.Canvas#getResizeFrom
+     */
+    public static native EdgeName getEventEdge(EdgeName[] edgeMask) /*-{
+        var ret = $wnd.isc.Canvas.getEventEdge(edgeMask);
+        if(ret == null || ret === undefined) return null;
+        var enumValues = @com.smartgwt.client.types.EdgeName::values()();
+        return @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(enumValues, ret);
+    }-*/;
+
     /**
      * Changes the system-wide {@link com.smartgwt.client.widgets.Canvas#allowExternalFilters allowExternalFilters} setting.
      * @param allExternalFilters new setting
@@ -6314,7 +6898,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public static native void setAllowExternalFilters(boolean allExternalFilters) /*-{
         $wnd.isc.Canvas.setAllowExternalFilters(allExternalFilters);
     }-*/;
-            
+
     /**
      * Changes the system-wide {@link com.smartgwt.client.widgets.Canvas#neverUseFilters neverUseFilters} setting.
      * @param neverUseFilters new setting
@@ -6344,6 +6928,67 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     // ***********************************************************        
 
 
+
+    /**
+     * Retrieve a Canvas by it's global {@link com.smartgwt.client.widgets.Canvas#getID ID}.
+     * @param ID global ID of the Canvas
+     *
+     * @return the Canvas, or null if not found
+     */
+    public static Canvas getById(String ID) {
+        
+        Canvas canvas = getByIdJS(ID);
+        
+        if(canvas!=null && canvas.getAttribute("__ref")==null){
+            JavaScriptObject canvasJSO = canvas.getJsObj();
+            return com.smartgwt.client.util.ObjectFactory.createCanvas(canvas.getClassName(),canvasJSO);
+        } else {
+            return (Canvas) canvas;
+        }
+    }
+
+    @Override
+    public String getAttribute(String attribute) {
+        return super.getAttribute(attribute);
+    }
+    
+    /**
+     * Returns an array of object references to all ancestors of this widget in the containment hierarchy, starting with the
+     * direct parent and ending with the top element.
+     *
+     * @return array of parents, closest first; empty array if no parents
+     * @see com.smartgwt.client.docs.Containment Containment overview and related methods
+     */
+    public native Canvas[] getParentElements() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return @com.smartgwt.client.widgets.Canvas::convertToCanvasArray(Lcom/google/gwt/core/client/JavaScriptObject;)(self.getParentElements());
+    }-*/;
+    
+    /**
+     * Returns the javascript class name.
+     * @return
+     */
+    public native String getClassName()/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getClassName();
+    }-*/;
+    
+    /**
+     * Retrieve a Canvas by it's global {@link com.smartgwt.client.widgets.Canvas#getID ID}.
+     * @param ID global ID of the Canvas
+     *
+     * @return the Canvas, or null if not found
+     */
+    private static native Canvas getByIdJS(String ID) /*-{
+        var ret = $wnd.isc.Canvas.getById(ID);
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+    
 	protected native void onInit () /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -6843,53 +7488,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var hoverComponent = (self.__getHoverComponent == null) ? null : self.__getHoverComponent();
         return hoverComponent == null ? null : hoverComponent.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
     }-*/;
-    
-    
-
-    /**
-     * Offset of the shadow.  Defaults to half of <code>shadowDepth</code> if unset. <P> Because of the blurred edges, a
-     * shadow is larger than the originating component by 2xsoftness.  An <code>shadowOffset</code> of 0 means that the
-     * shadow will extend around the originating component equally in all directions. <p><b>Note : </b> This is an
-     * advanced setting</p>
-     *
-     * @param shadowOffset shadowOffset Default value is null
-     */
-    public void setShadowOffset(Integer shadowOffset) {
-        setAttribute("shadowOffset", shadowOffset, true);
-    }
-
-    /**
-     * Offset of the shadow.  Defaults to half of <code>shadowDepth</code> if unset. <P> Because of the blurred edges, a
-     * shadow is larger than the originating component by 2xsoftness.  An <code>shadowOffset</code> of 0 means that the
-     * shadow will extend around the originating component equally in all directions.
-     *
-     * @return Integer
-     */
-    public Integer getShadowOffset() {
-        return getAttributeAsInt("shadowOffset");
-    }
-
-    /**
-     * Softness, or degree of blurring, of the shadow. <P> A shadow with <code>softness:x</code> is 2x pixels larger in
-     * each direction than the element throwing the shadow, and the media for each edge should be x pixels wide/tall.
-     * <P> Defaults to <code>shadowDepth</code> if unset. <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param shadowSoftness shadowSoftness Default value is null
-     */
-    public void setShadowSoftness(Integer shadowSoftness) {
-        setAttribute("shadowSoftness", shadowSoftness, true);
-    }
-
-    /**
-     * Softness, or degree of blurring, of the shadow. <P> A shadow with <code>softness:x</code> is 2x pixels larger in
-     * each direction than the element throwing the shadow, and the media for each edge should be x pixels wide/tall.
-     * <P> Defaults to <code>shadowDepth</code> if unset.
-     *
-     * @return Integer
-     */
-    public Integer getShadowSoftness() {
-        return getAttributeAsInt("shadowSoftness");
-    }
 
     /**
      * Set the groupTitle.
@@ -6932,10 +7530,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         setAttribute("smoothFade", smoothFade, false);
     }
 
-    public void setKeepInParentRect(Boolean keepInParentRect) {
-        setAttribute("keepInParentRect", keepInParentRect, true);
-    }
-
 
     public void setKeepInParentRect(Rectangle rectangle) {
         setAttribute("keepInParentRect", rectangle.getAsJSArray(), true);
@@ -6964,32 +7558,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * E.g. setting this property to a value of ["R","TR","BR"] would restrict resizing to the right edge, top-right corner and bottom-right corner only
      *
      * @param resizeFrom resizeFrom values
+     * @deprecated use {@link #setResizeFrom(EdgeName)} instead.
      */    
     public void setResizeFrom(String... resizeFrom) {
         setAttribute("resizeFrom", resizeFrom, true);
-    }
-
-
-    /**
-     * When this Canvas is included as a member in a Layout, layoutAlign controls alignment on the&#010 breadth axis of
-     * the layout.  Default is "left" for a VLayout, "top" for an HLayout.
-     *
-     * @param layoutAlign layoutAlign Default valaue is null
-     * @throws IllegalStateException this property cannot be changed after the component has been rendered
-     */
-    public void setLayoutAlign(Alignment layoutAlign) throws IllegalStateException {
-        setAttribute("layoutAlign", layoutAlign.getValue(), false);
-    }
-
-    /**
-     * When this Canvas is included as a member in a Layout, layoutAlign controls alignment on the&#010 breadth axis of
-     * the layout.  Default is "left" for a VLayout, "top" for an HLayout.
-     *
-     * @param layoutAlign layoutAlign Default valaue is null
-     * @throws IllegalStateException this property cannot be changed after the component has been rendered
-     */
-    public void setLayoutAlign(VerticalAlignment layoutAlign) throws IllegalStateException {
-        setAttribute("layoutAlign", layoutAlign.getValue(), false);
     }
 
     /**
@@ -7001,6 +7573,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      */
     public void setDropTypes(String... dropTypes) {
         setAttribute("dropTypes", dropTypes, true);
+    }
+    
+    public String[] getDropTypes() {
+        return JSOHelper.getAttributeAsStringArray(getOrCreateJsObj(), "dropTypes");
     }
 
 /*
@@ -7667,24 +8243,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
          return $wnd.isc.Canvas.imgHTML(src, width, height);
      }-*/;
 
-
-    /**
-     * Returns the scrollTop required to scroll vertically to the end of this widget's content.
-     */
-    public native int getScrollBottom() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            return self.getScrollBottom();
-        }-*/;
-
-    /**
-     * Returns the scrollLeft required to scroll horizontally to the end of this widget's content.
-     */
-    public native int getScrollRight() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            return self.getScrollRight();
-        }-*/;
-
-
     /**
      * Show a PrintWindow containing a printable view of the component passed in containing print HTML.
      *
@@ -7886,6 +8444,29 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
+     * Adds newChild as a child of this widget, set up a named object reference (i.e., this[name]) to the new widget if name
+     * argument is provided, and draw the child if this widget has been drawn already. <P> If newChild has a parent it will be
+     * removed from it. If it has a master, it will be detached from it if the master is a child of a different parent. If
+     * newChild has peers, they'll be added to this widget as children as well.
+     * @param newChild new child canvas to add
+     * @param name name to assign to child (eg: this[name] == child)
+     * @param autoDraw if false, child will not automatically be drawn (only for advanced use)
+     *
+     * @return the new child, or null if it couldn't be added
+     * @see com.smartgwt.client.docs.Containment Containment overview and related methods
+     */
+    public native Canvas addChild(Canvas newChild, String name, boolean autoDraw) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.addChild(newChild.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), name, autoDraw);
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+    
+    /**
      * Array of all Canvii that are immediate children of this Canvas. <p><b>Note : </b> This is an advanced
      * setting</p>
      *
@@ -7914,43 +8495,29 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         if (nativeArray == null) {
             return new Canvas[]{};
         }
+        
         JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-        Canvas[] objects = new Canvas[componentsj.length];
+        Canvas[]           objects     = new Canvas[componentsj.length];
+        
         for (int i = 0; i < componentsj.length; i++) {
+        
             JavaScriptObject componentJS = componentsj[i];
-            Canvas obj = (Canvas) BaseWidget.getRef(componentJS);
+            Canvas           obj         = (Canvas) BaseWidget.getRef(componentJS);
+            
             if (obj == null) {
                 obj = new Canvas(componentJS);
+
             }
+
+            if(obj.getAttribute("__ref")==null){
+                obj = com.smartgwt.client.util.ObjectFactory.createCanvas(obj.getClassName(),componentJS);
+            }
+
             objects[i] = obj;
         }
+
         return objects;
     }
-
-    /**
-     * Remove a child from its parent if it has one.
-     *
-     * @param child Child canvas to remove from this parent.
-     */
-    public native void removeChild(Canvas child) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var childJS= child.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.removeChild(childJS);
-    }-*/;
-
-/**
- * Remove a child from its parent if it has one.
- *
- * @param child Child canvas to remove from this parent.
- * @param name  If the child canvas was assigned a name, it should be passed in here                          to
- *              ensure this[name] is cleared
- */
-    public native void removeChild(Canvas child, String name) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var childJS= child.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.removeChild(childJS, name);
-    }-*/;
-
 
     public int getOffsetHeight() {
         return getVisibleHeight();
@@ -8025,44 +8592,771 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         }
     }-*/;
 
-    /**
-     * Add a onDrop handler.
-     * <p>
-     * Notification method fired when the user drops another canvas onto this one.
-     * 
-     * @param handler the onDrop handler
-     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addDropHandler(com.smartgwt.client.widgets.events.DropHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.DropEvent.getType()) == 0) setupDropEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.DropEvent.getType());
-    }
-    private native void setupDropEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({onDrop:$debox($entry(function(){
-                    var param = {};
-                    var event = @com.smartgwt.client.widgets.events.DropEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                    return !ret;
-                }))
-            });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.onDrop = $debox($entry(function(){
-                var param = {};
-                var event = @com.smartgwt.client.widgets.events.DropEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                return !ret;
-            }));
+
+    public LogicalStructureObject setLogicalStructure(CanvasLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.accessKey = getAttributeAsString("accessKey");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.accessKey:" + t.getMessage() + "\n";
         }
-    }-*/;
-
+        try {
+            s.animateAcceleration = getAttributeAsString("animateAcceleration");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.animateAcceleration:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateFadeTime = getAttributeAsString("animateFadeTime");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.animateFadeTime:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateHideAcceleration = getAttributeAsString("animateHideAcceleration");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.animateHideAcceleration:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateHideTime = getAttributeAsString("animateHideTime");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.animateHideTime:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateMoveAcceleration = getAttributeAsString("animateMoveAcceleration");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.animateMoveAcceleration:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateMoveTime = getAttributeAsString("animateMoveTime");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.animateMoveTime:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateRectAcceleration = getAttributeAsString("animateRectAcceleration");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.animateRectAcceleration:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateRectTime = getAttributeAsString("animateRectTime");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.animateRectTime:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateResizeAcceleration = getAttributeAsString("animateResizeAcceleration");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.animateResizeAcceleration:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateResizeTime = getAttributeAsString("animateResizeTime");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.animateResizeTime:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateScrollAcceleration = getAttributeAsString("animateScrollAcceleration");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.animateScrollAcceleration:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateScrollTime = getAttributeAsString("animateScrollTime");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.animateScrollTime:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateShowAcceleration = getAttributeAsString("animateShowAcceleration");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.animateShowAcceleration:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateShowTime = getAttributeAsString("animateShowTime");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.animateShowTime:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateTime = getAttributeAsString("animateTime");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.animateTime:" + t.getMessage() + "\n";
+        }
+        try {
+            s.appImgDir = getAttributeAsString("appImgDir");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.appImgDir:" + t.getMessage() + "\n";
+        }
+        try {
+            s.ariaRole = getAttributeAsString("ariaRole");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.ariaRole:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoDraw = getAttributeAsString("autoDraw");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.autoDraw:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoShowParent = getAttributeAsString("autoShowParent");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.autoShowParent:" + t.getMessage() + "\n";
+        }
+        try {
+            s.backgroundColor = getAttributeAsString("backgroundColor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.backgroundColor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.backgroundImage = getAttributeAsString("backgroundImage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.backgroundImage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.backgroundPosition = getAttributeAsString("backgroundPosition");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.backgroundPosition:" + t.getMessage() + "\n";
+        }
+        try {
+            s.backgroundRepeat = getAttributeAsString("backgroundRepeat");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.backgroundRepeat:" + t.getMessage() + "\n";
+        }
+        try {
+            s.border = getAttributeAsString("border");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.border:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canAcceptDrop = getAttributeAsString("canAcceptDrop");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.canAcceptDrop:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canDrag = getAttributeAsString("canDrag");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.canDrag:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canDragReposition = getAttributeAsString("canDragReposition");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.canDragReposition:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canDragResize = getAttributeAsString("canDragResize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.canDragResize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canDragScroll = getAttributeAsString("canDragScroll");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.canDragScroll:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canDrop = getAttributeAsString("canDrop");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.canDrop:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canDropBefore = getAttributeAsString("canDropBefore");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.canDropBefore:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canFocus = getAttributeAsString("canFocus");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.canFocus:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canHover = getAttributeAsString("canHover");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.canHover:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canSelectText = getAttributeAsString("canSelectText");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.canSelectText:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canvasItem = getCanvasItem();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.canvasItem:" + t.getMessage() + "\n";
+        }
+        try {
+            s.children = getChildren();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.childrenArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.childrenSnapResizeToGrid = getAttributeAsString("childrenSnapResizeToGrid");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.childrenSnapResizeToGrid:" + t.getMessage() + "\n";
+        }
+        try {
+            s.childrenSnapToGrid = getAttributeAsString("childrenSnapToGrid");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.childrenSnapToGrid:" + t.getMessage() + "\n";
+        }
+        try {
+            s.contents = getAttributeAsString("contents");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.contents:" + t.getMessage() + "\n";
+        }
+        try {
+            s.contextMenu = getContextMenu();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.contextMenu:" + t.getMessage() + "\n";
+        }
+        try {
+            s.cursor = getAttributeAsString("cursor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.cursor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataPath = getAttributeAsString("dataPath");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.dataPath:" + t.getMessage() + "\n";
+        }
+        try {
+            s.defaultHeight = getAttributeAsString("defaultHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.defaultHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.defaultWidth = getAttributeAsString("defaultWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.defaultWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.destroyed = getAttributeAsString("destroyed");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.destroyed:" + t.getMessage() + "\n";
+        }
+        try {
+            s.destroying = getAttributeAsString("destroying");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.destroying:" + t.getMessage() + "\n";
+        }
+        try {
+            s.disabled = getAttributeAsString("disabled");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.disabled:" + t.getMessage() + "\n";
+        }
+        try {
+            s.disabledCursor = getAttributeAsString("disabledCursor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.disabledCursor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.doubleClickDelay = getAttributeAsString("doubleClickDelay");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.doubleClickDelay:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dragAppearance = getAttributeAsString("dragAppearance");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.dragAppearance:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dragIntersectStyle = getAttributeAsString("dragIntersectStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.dragIntersectStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dragOpacity = getAttributeAsString("dragOpacity");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.dragOpacity:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dragRepositionAppearance = getAttributeAsString("dragRepositionAppearance");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.dragRepositionAppearance:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dragRepositionCursor = getAttributeAsString("dragRepositionCursor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.dragRepositionCursor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dragResizeAppearance = getAttributeAsString("dragResizeAppearance");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.dragResizeAppearance:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dragScrollDelay = getAttributeAsString("dragScrollDelay");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.dragScrollDelay:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dragStartDistance = getAttributeAsString("dragStartDistance");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.dragStartDistance:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dragTargetAsCanvas = getDragTarget();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.dragTargetAsCanvas:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dragTargetAsString = getAttributeAsString("dragTarget");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.dragTargetAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dragType = getAttributeAsString("dragType");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.dragType:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dropTypesAsString = getAttributeAsString("dropTypes");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.dropTypesAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dynamicContents = getAttributeAsString("dynamicContents");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.dynamicContents:" + t.getMessage() + "\n";
+        }
+        try {
+            s.edgeBackgroundColor = getAttributeAsString("edgeBackgroundColor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.edgeBackgroundColor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.edgeCenterBackgroundColor = getAttributeAsString("edgeCenterBackgroundColor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.edgeCenterBackgroundColor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.edgeImage = getAttributeAsString("edgeImage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.edgeImage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.edgeMarginSize = getAttributeAsString("edgeMarginSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.edgeMarginSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.edgeOffset = getAttributeAsString("edgeOffset");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.edgeOffset:" + t.getMessage() + "\n";
+        }
+        try {
+            s.edgeOpacity = getAttributeAsString("edgeOpacity");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.edgeOpacity:" + t.getMessage() + "\n";
+        }
+        try {
+            s.edgeShowCenter = getAttributeAsString("edgeShowCenter");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.edgeShowCenter:" + t.getMessage() + "\n";
+        }
+        try {
+            s.edgeSize = getAttributeAsString("edgeSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.edgeSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.extraSpace = getAttributeAsString("extraSpace");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.extraSpace:" + t.getMessage() + "\n";
+        }
+        try {
+            s.heightAsString = getAttributeAsString("height");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.heightAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hoverAlign = getAttributeAsString("hoverAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.hoverAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hoverAutoDestroy = getAttributeAsString("hoverAutoDestroy");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.hoverAutoDestroy:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hoverDelay = getAttributeAsString("hoverDelay");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.hoverDelay:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hoverHeight = getAttributeAsString("hoverHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.hoverHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hoverMoveWithMouse = getAttributeAsString("hoverMoveWithMouse");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.hoverMoveWithMouse:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hoverOpacity = getAttributeAsString("hoverOpacity");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.hoverOpacity:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hoverStyle = getAttributeAsString("hoverStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.hoverStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hoverVAlign = getAttributeAsString("hoverVAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.hoverVAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hoverWidth = getAttributeAsString("hoverWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.hoverWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hoverWrap = getAttributeAsString("hoverWrap");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.hoverWrap:" + t.getMessage() + "\n";
+        }
+        try {
+            s.htmlPosition = getAttributeAsString("htmlPosition");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.htmlPosition:" + t.getMessage() + "\n";
+        }
+        try {
+            s.ID = getAttributeAsString("ID");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.ID:" + t.getMessage() + "\n";
+        }
+        try {
+            s.keepInParentRectAsString = getAttributeAsString("keepInParentRect");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.keepInParentRectAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.layoutAlignAsString = getAttributeAsString("layoutAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.layoutAlignAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.leftAsString = getAttributeAsString("left");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.leftAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.locateChildrenBy = getAttributeAsString("locateChildrenBy");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.locateChildrenBy:" + t.getMessage() + "\n";
+        }
+        try {
+            s.locateChildrenType = getAttributeAsString("locateChildrenType");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.locateChildrenType:" + t.getMessage() + "\n";
+        }
+        try {
+            s.locatePeersBy = getAttributeAsString("locatePeersBy");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.locatePeersBy:" + t.getMessage() + "\n";
+        }
+        try {
+            s.locatePeersType = getAttributeAsString("locatePeersType");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.locatePeersType:" + t.getMessage() + "\n";
+        }
+        try {
+            s.margin = getAttributeAsString("margin");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.margin:" + t.getMessage() + "\n";
+        }
+        try {
+            s.masterElement = getMasterElement();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.masterElement:" + t.getMessage() + "\n";
+        }
+        try {
+            s.matchElement = getAttributeAsString("matchElement");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.matchElement:" + t.getMessage() + "\n";
+        }
+        try {
+            s.maxHeight = getAttributeAsString("maxHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.maxHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.maxWidth = getAttributeAsString("maxWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.maxWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.menuConstructor = getAttributeAsString("menuConstructor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.menuConstructor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.minHeight = getAttributeAsString("minHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.minHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.minWidth = getAttributeAsString("minWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.minWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.mouseStillDownDelay = getAttributeAsString("mouseStillDownDelay");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.mouseStillDownDelay:" + t.getMessage() + "\n";
+        }
+        try {
+            s.mouseStillDownInitialDelay = getAttributeAsString("mouseStillDownInitialDelay");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.mouseStillDownInitialDelay:" + t.getMessage() + "\n";
+        }
+        try {
+            s.noDoubleClicks = getAttributeAsString("noDoubleClicks");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.noDoubleClicks:" + t.getMessage() + "\n";
+        }
+        try {
+            s.opacity = getAttributeAsString("opacity");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.opacity:" + t.getMessage() + "\n";
+        }
+        try {
+            s.overflow = getAttributeAsString("overflow");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.overflow:" + t.getMessage() + "\n";
+        }
+        try {
+            s.padding = getAttributeAsString("padding");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.padding:" + t.getMessage() + "\n";
+        }
+        try {
+            s.parentElement = getParentElement();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.parentElement:" + t.getMessage() + "\n";
+        }
+        try {
+            s.peers = getPeers();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.peersArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.percentBox = getAttributeAsString("percentBox");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.percentBox:" + t.getMessage() + "\n";
+        }
+        try {
+            s.percentSource = getPercentSource();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.percentSource:" + t.getMessage() + "\n";
+        }
+        try {
+            s.position = getAttributeAsString("position");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.position:" + t.getMessage() + "\n";
+        }
+        try {
+            s.printChildrenAbsolutelyPositioned = getAttributeAsString("printChildrenAbsolutelyPositioned");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.printChildrenAbsolutelyPositioned:" + t.getMessage() + "\n";
+        }
+        try {
+            s.prompt = getAttributeAsString("prompt");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.prompt:" + t.getMessage() + "\n";
+        }
+        try {
+            s.redrawOnResize = getAttributeAsString("redrawOnResize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.redrawOnResize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.resizeBarTarget = getAttributeAsString("resizeBarTarget");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.resizeBarTarget:" + t.getMessage() + "\n";
+        }
+        try {
+            s.resizeFrom = getAttributeAsStringArray("resizeFrom");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.resizeFromArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.scrollbarSize = getAttributeAsString("scrollbarSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.scrollbarSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.shadowDepth = getAttributeAsString("shadowDepth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.shadowDepth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.shadowImage = getAttributeAsString("shadowImage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.shadowImage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.shadowOffset = getAttributeAsString("shadowOffset");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.shadowOffset:" + t.getMessage() + "\n";
+        }
+        try {
+            s.shadowSoftness = getAttributeAsString("shadowSoftness");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.shadowSoftness:" + t.getMessage() + "\n";
+        }
+        try {
+            s.shouldPrint = getAttributeAsString("shouldPrint");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.shouldPrint:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showCustomScrollbars = getAttributeAsString("showCustomScrollbars");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.showCustomScrollbars:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDragShadow = getAttributeAsString("showDragShadow");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.showDragShadow:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showEdges = getAttributeAsString("showEdges");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.showEdges:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showHover = getAttributeAsString("showHover");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.showHover:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showHoverComponents = getAttributeAsString("showHoverComponents");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.showHoverComponents:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showResizeBar = getAttributeAsString("showResizeBar");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.showResizeBar:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showShadow = getAttributeAsString("showShadow");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.showShadow:" + t.getMessage() + "\n";
+        }
+        try {
+            s.skinImgDir = getAttributeAsString("skinImgDir");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.skinImgDir:" + t.getMessage() + "\n";
+        }
+        try {
+            s.snapAxis = getAttributeAsString("snapAxis");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.snapAxis:" + t.getMessage() + "\n";
+        }
+        try {
+            s.snapEdge = getAttributeAsString("snapEdge");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.snapEdge:" + t.getMessage() + "\n";
+        }
+        try {
+            s.snapHDirection = getAttributeAsString("snapHDirection");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.snapHDirection:" + t.getMessage() + "\n";
+        }
+        try {
+            s.snapHGap = getAttributeAsString("snapHGap");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.snapHGap:" + t.getMessage() + "\n";
+        }
+        try {
+            s.snapOffsetLeft = getAttributeAsString("snapOffsetLeft");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.snapOffsetLeft:" + t.getMessage() + "\n";
+        }
+        try {
+            s.snapOffsetTop = getAttributeAsString("snapOffsetTop");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.snapOffsetTop:" + t.getMessage() + "\n";
+        }
+        try {
+            s.snapOnDrop = getAttributeAsString("snapOnDrop");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.snapOnDrop:" + t.getMessage() + "\n";
+        }
+        try {
+            s.snapResizeToGrid = getAttributeAsString("snapResizeToGrid");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.snapResizeToGrid:" + t.getMessage() + "\n";
+        }
+        try {
+            s.snapTo = getAttributeAsString("snapTo");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.snapTo:" + t.getMessage() + "\n";
+        }
+        try {
+            s.snapToGrid = getAttributeAsString("snapToGrid");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.snapToGrid:" + t.getMessage() + "\n";
+        }
+        try {
+            s.snapVDirection = getAttributeAsString("snapVDirection");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.snapVDirection:" + t.getMessage() + "\n";
+        }
+        try {
+            s.snapVGap = getAttributeAsString("snapVGap");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.snapVGap:" + t.getMessage() + "\n";
+        }
+        try {
+            s.styleName = getAttributeAsString("styleName");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.styleName:" + t.getMessage() + "\n";
+        }
+        try {
+            s.tabIndex = getAttributeAsString("tabIndex");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.tabIndex:" + t.getMessage() + "\n";
+        }
+        try {
+            s.topAsString = getAttributeAsString("top");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.topAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.topElement = getTopElement();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.topElement:" + t.getMessage() + "\n";
+        }
+        try {
+            s.useBackMask = getAttributeAsString("useBackMask");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.useBackMask:" + t.getMessage() + "\n";
+        }
+        try {
+            s.useOpacityFilter = getAttributeAsString("useOpacityFilter");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.useOpacityFilter:" + t.getMessage() + "\n";
+        }
+        try {
+            s.valuesManager = getValuesManager();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.valuesManager:" + t.getMessage() + "\n";
+        }
+        try {
+            s.visibility = getAttributeAsString("visibility");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.visibility:" + t.getMessage() + "\n";
+        }
+        try {
+            s.widthAsString = getAttributeAsString("width");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.widthAsString:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        CanvasLogicalStructure s = new CanvasLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

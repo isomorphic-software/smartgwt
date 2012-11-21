@@ -45,40 +45,71 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A subclass of {@link com.smartgwt.client.widgets.IconButton} that shows a menuIcon by default and implements showMenu().
  */
 public class IconMenuButton extends IconButton {
 
-    public static IconMenuButton getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (IconMenuButton) obj;
-        } else {
-            return new IconMenuButton(jsObj);
+    public native static IconMenuButton getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("IconMenuButton",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.menu.IconMenuButton::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public IconMenuButton(){
         scClassName = "IconMenuButton";
     }
 
     public IconMenuButton(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "IconMenuButton";
+        setJavaScriptObject(jsObj);
     }
 
     public IconMenuButton(String title) {
@@ -129,7 +160,7 @@ public class IconMenuButton extends IconButton {
      * animation), "fade", "slide" and "wipe". If unspecified falls through to <code>menu.showAnimationEffect</code>
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param menuAnimationEffect menuAnimationEffect Default value is null
+     * @param menuAnimationEffect . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setMenuAnimationEffect(String menuAnimationEffect) {
         setAttribute("menuAnimationEffect", menuAnimationEffect, true);
@@ -140,14 +171,14 @@ public class IconMenuButton extends IconButton {
      * animation), "fade", "slide" and "wipe". If unspecified falls through to <code>menu.showAnimationEffect</code>
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMenuAnimationEffect()  {
         return getAttributeAsString("menuAnimationEffect");
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Shows this button's {@link com.smartgwt.client.widgets.menu.IconMenuButton#getMenu menu}.  Called automatically when a
      * user clicks the  {@link com.smartgwt.client.widgets.menu.IconMenuButton#getMenuIconSrc menuIcon}.
@@ -179,7 +210,25 @@ public class IconMenuButton extends IconButton {
         
     // ***********************************************************        
 
+    public LogicalStructureObject setLogicalStructure(IconMenuButtonLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.menu = getMenu();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "IconMenuButton.menu:" + t.getMessage() + "\n";
+        }
+        try {
+            s.menuAnimationEffect = getAttributeAsString("menuAnimationEffect");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "IconMenuButton.menuAnimationEffect:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        IconMenuButtonLogicalStructure s = new IconMenuButtonLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

@@ -1,4 +1,4 @@
-
+	    
 package com.smartgwt.client.docs;
 
 /**
@@ -11,7 +11,8 @@ package com.smartgwt.client.docs;
  *  <P>
  *  If you are building a new application from scratch and/or you are trying to 
  *  modernize the presentation layer of an existing application, most of Spring MVC is
- *  inapplicable in the {@link com.smartgwt.client.docs.SmartArchitecture Smart GWT architecture}.  Specifically,
+ * inapplicable in the {@link com.smartgwt.client.docs.SmartArchitecture Smart GWT architecture}. 
+ * Specifically,
  *  Smart GWT renders <b>all</b> HTML on the client, and the server is responsible only for
  *  retrieving data and enforcing business rules.  This means that Spring's ModelAndView and all
  *  functionality related to retrieving and rendering Views is unnecessary in Smart GWT.
@@ -23,17 +24,20 @@ package com.smartgwt.client.docs;
  *  <P>
  *  <b>Existing Spring Application</b>
  *  <P>
- *  As discussed under the general {@link com.smartgwt.client.docs.ClientServerIntegration server integration}
+ * As discussed under the general {@link com.smartgwt.client.docs.ClientServerIntegration server
+ * integration}
  *  topic, integrating Smart GWT into your application involves finding a way to provide data
- *  that fulfills the {@link com.smartgwt.client.data.DSRequest DataSource requests} sent by Smart GWT components.
+ * that fulfills the {@link com.smartgwt.client.data.DSRequest DataSource requests} sent by Smart
+ * GWT components.
  *  <P>
  *  There are 2 approaches for integrating Smart GWT into an existing Spring application:
  *  <ul>
  *  <li> <b>call Spring beans via Smart GWT DMI</b> <span
  *  style="color:red">[Recommended]</span>: use Smart GWT Direct Method Invocation
- *  (DMI) to map {@link com.smartgwt.client.data.DSRequest DataSource requests} to beans managed by Spring, via
- * {@link com.smartgwt.client.docs.serverds.ServerObject#lookupStyle lookupStyle}:"spring".   Return data to the browser by
- * either simply
+ * (DMI) to map {@link com.smartgwt.client.data.DSRequest DataSource requests} to beans managed by
+ * Spring, via
+ * {@link com.smartgwt.client.docs.serverds.ServerObject#lookupStyle lookupStyle}:"spring".  
+ * Return data to the browser by either simply
  *  returning it from your method, or via creating a DSResponse and calling DSResponse.setData()
  *  (server-side method). 
  *  <P>
@@ -41,17 +45,19 @@ package com.smartgwt.client.docs;
  *  as EJB or Hibernate-managed beans, can be directly returned to Smart GWT as the result of
  *  a DMI method, without the need to create an intervening
  * <a href='http://en.wikipedia.org/wiki/Data_transfer_object'
- * onclick="window.open('http://en.wikipedia.org/wiki/Data_transfer_object');return false;">Data Transfer Object</a> to
- * express
+ * onclick="window.open('http://en.wikipedia.org/wiki/Data_transfer_object');return false;">Data
+ * Transfer Object</a> to express
  *  which fields should be delivered to the browser - instead, only the fields declared on the
  *  DataSource are returned to the browser (see
- *  {@link com.smartgwt.client.data.DataSource#getDropExtraFields dropExtraFields}.  In this integration scenario, the
+ * {@link com.smartgwt.client.data.DataSource#getDropExtraFields dropExtraFields}.  In this
+ * integration scenario, the
  *  majority of the features of the Smart GWT Server framework still apply - see this
  *  {@link com.smartgwt.client.docs.FeaturesCustomPersistence overview}.
  *  <P>
  *  <li> <b>configure Spring to return XML or JSON responses</b>: create variants
  *  on existing Spring workflows that use a different type of View in order to output XML or
- *  JSON data instead of complete HTML pages.  The Smart GWT {@link com.smartgwt.client.data.RestDataSource} provides a
+ * JSON data instead of complete HTML pages.  The Smart GWT {@link
+ * com.smartgwt.client.data.RestDataSource} provides a
  *  standard "REST" XML or JSON-based protocol you can implement, or you can adapt generic
  *  {@link com.smartgwt.client.data.DataSource DataSources} to existing formats.
  *  <P>

@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * An HStack-based widget that allows a user to input a single criterion based on one field and one operator. <P> Note that
@@ -67,22 +87,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class FilterClause extends HStack {
 
-    public static FilterClause getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (FilterClause) obj;
-        } else {
-            return new FilterClause(jsObj);
+    public native static FilterClause getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("FilterClause",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.form.FilterClause::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public FilterClause(){
         scClassName = "FilterClause";
     }
 
     public FilterClause(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "FilterClause";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -122,7 +153,7 @@ public class FilterClause extends HStack {
     /**
      * The title for the {@link com.smartgwt.client.widgets.form.FilterBuilder#getFieldPicker field-picker} select-item.
      *
-     * @param fieldPickerTitle fieldPickerTitle Default value is "Field Name"
+     * @param fieldPickerTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "Field Name"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setFieldPickerTitle(String fieldPickerTitle)  throws IllegalStateException {
@@ -133,7 +164,7 @@ public class FilterClause extends HStack {
      * The title for the {@link com.smartgwt.client.widgets.form.FilterBuilder#getFieldPicker field-picker} select-item.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getFieldPickerTitle()  {
         return getAttributeAsString("fieldPickerTitle");
@@ -142,7 +173,7 @@ public class FilterClause extends HStack {
     /**
      * The hover prompt text for the remove button.
      *
-     * @param removeButtonPrompt removeButtonPrompt Default value is "Remove"
+     * @param removeButtonPrompt . See {@link com.smartgwt.client.docs.String String}. Default value is "Remove"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setRemoveButtonPrompt(String removeButtonPrompt)  throws IllegalStateException {
@@ -153,7 +184,7 @@ public class FilterClause extends HStack {
      * The hover prompt text for the remove button.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getRemoveButtonPrompt()  {
         return getAttributeAsString("removeButtonPrompt");
@@ -230,7 +261,7 @@ public class FilterClause extends HStack {
     /**
      * The title for the value-item.
      *
-     * @param valueItemTitle valueItemTitle Default value is "Value"
+     * @param valueItemTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "Value"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setValueItemTitle(String valueItemTitle)  throws IllegalStateException {
@@ -241,14 +272,14 @@ public class FilterClause extends HStack {
      * The title for the value-item.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getValueItemTitle()  {
         return getAttributeAsString("valueItemTitle");
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Returns the {@link com.smartgwt.client.widgets.form.FilterBuilder filterBuilder} containing this clause, or null if this
      * filterClause is not embedded in a filterBuilder.
@@ -257,7 +288,7 @@ public class FilterClause extends HStack {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.getFilterBuilder();
     }-*/;
-            
+
     /**
      * Remove this clause by destroy()ing it.
      */
@@ -265,7 +296,7 @@ public class FilterClause extends HStack {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.remove();
     }-*/;
-            
+
     /**
      * Validate this clause.
      *
@@ -303,7 +334,50 @@ public class FilterClause extends HStack {
         
     // ***********************************************************        
 
+    public LogicalStructureObject setLogicalStructure(FilterClauseLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.criterion = getCriterion();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterClause.criterion:" + t.getMessage() + "\n";
+        }
+        try {
+            s.fieldPickerTitle = getAttributeAsString("fieldPickerTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterClause.fieldPickerTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.removeButtonPrompt = getAttributeAsString("removeButtonPrompt");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterClause.removeButtonPrompt:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showFieldTitles = getAttributeAsString("showFieldTitles");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterClause.showFieldTitles:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showRemoveButton = getAttributeAsString("showRemoveButton");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterClause.showRemoveButton:" + t.getMessage() + "\n";
+        }
+        try {
+            s.validateOnChange = getAttributeAsString("validateOnChange");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterClause.validateOnChange:" + t.getMessage() + "\n";
+        }
+        try {
+            s.valueItemTitle = getAttributeAsString("valueItemTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterClause.valueItemTitle:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        FilterClauseLogicalStructure s = new FilterClauseLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

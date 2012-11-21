@@ -18,7 +18,9 @@ package com.smartgwt.client.types;
 
 /**
  * String designating a standard time format for displaying the times associated with  dates strings.
+ * @deprecated Use {@link com.smartgwt.client.util.DateDisplayFormatter} instead
  */
+@Deprecated
 public enum TimeDisplayFormat implements ValueEnum {
     /**
      * String will display with seconds and am/pm indicator:<code>[H]H:MM:SS am|pm</code>. <br> Example: <code>3:25:15
@@ -57,7 +59,6 @@ public enum TimeDisplayFormat implements ValueEnum {
      * Examples: <code>15:25</code>, <code>03:16</code>
      */
     TOSHORTPADDED24HOURTIME("toShortPadded24HourTime");
-
     private String value;
 
     TimeDisplayFormat(String value) {
@@ -68,3 +69,4 @@ public enum TimeDisplayFormat implements ValueEnum {
         return this.value;
     }
 }
+

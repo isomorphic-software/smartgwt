@@ -1,13 +1,74 @@
-
+	    
 package com.smartgwt.client.docs;
 
 /**
  * <h3>Component XML</h3>
- * As covered in the <i>QuickStart Guide</i> Chapter 4, <i>Coding</i>, Smart GWT 
- *  components can be created in either XML or JavaScript format.  This section covers some of
- *  the details of using the XML format, called "Smart GWT component XML".
+ * 
+ *  
+ *  Component XML is an XML format for declaring Smart GWT components and screen definitions.
+ *  Available with Smart GWT Pro and above, Component XML is the same format used by Visual
+ *  Builder to save screens.  
  *  <P>
- *  <b>Referring to previously created components</b>
+ *  By allowing you to keep layout information and property settings in an XML format, Component
+ *  XML enables non-developers to build and maintain portions of your application, either by
+ *  editing screens within Visual Builder or by directly editing the XML itself.
+ *  <P>
+ *  Unlike the similar GWT "UIBinder" technology, Component XML does not require a compilation
+ *  step.  XML screen definitions can be generated on the fly, modified at runtime, stored in a
+ *  database, and in all other ways treated as a dynamic resource.  See the section "Dynamic
+ *  Component XML" for details.
+ *  <P>
+ *  <h3>Basic Usage</h3>
+ *  <P>
+ *  To create a Smart GWT component in XML code, you create a tag with the component's class
+ *  name. You can set that component's properties either as tag attributes:
+ *  <pre>
+ *    &lt;Button title="Click me" width="200" /&gt;
+ *  </pre>
+ *  or in nested tags:
+ *  <pre>
+ *    &lt;Button&gt; 
+ *      &lt;title&gt;Click me&lt;/title&gt;
+ *      &lt;width&gt;200&lt;/width&gt;
+ *    &lt;/Button&gt; 
+ *  </pre>
+ *  <P>
+ *  To set a property that is an Array of simple types (like int, or String), repeat tags like
+ *  so (for {@link com.smartgwt.client.widgets.form.DynamicForm#getColWidths colWidths}):
+ *  <P>
+ *  <pre>
+ *  &lt;DynamicForm&gt;
+ *      &lt;numCols&gt;2&lt;/numCols&gt;
+ *      &lt;colWidths&gt;250&lt;/colWidths&gt;
+ *      &lt;colWidths&gt;*&lt;/colWidths&gt;
+ *  &lt;/DynamicForm&gt;
+ *  </pre>
+ *  To set a property that takes an Array of complex objects, use the property name as a
+ *  container tag, then create further nested tags for the objects in the array, like so (for
+ *  {@link com.smartgwt.client.widgets.grid.ListGrid#getFields fields}):
+ *  <P>
+ *  <pre>
+ *  &lt;ListGrid&gt;
+ *      &lt;fields&gt;
+ *          &lt;ListGridField name="accountName" ... /&gt;
+ *          &lt;ListGridField name="accountType" ... /&gt;
+ *      &lt;/fields&gt;
+ *  &lt;/ListGrid&gt;
+ *  </pre>
+ *  <P>
+ *  This same approach works for creating nested layouts, such as placing a ListGrid in a
+ *  VLayout:
+ *  <P> 
+ *  <pre>
+ *  &lt;VLayout&gt;
+ *      &lt;members&gt;
+ *          &lt;ListGrid .. /&gt;
+ *      &lt;/members&gt;
+ *  &lt;VLayout&gt;
+ *  </pre>
+ *  <P>
+ *  
+ *  <b>Referring to previously defined components</b>
  *  <P>
  *  To refer to another component by ID in XML, use &lt;Canvas ref=/&gt;.  For example:
  *  <pre>
@@ -21,141 +82,169 @@ package com.smartgwt.client.docs;
  *  &lt;/VLayout&gt;
  *  </pre>
  *  <P>
- *  <b>JavaScript expressions</b>
+ *  <h3>Loading screens stored in Component XML</h3>
  *  <P>
- *  To embed a JavaScript expression into component XML, use the &lt;JS&gt; tag.  For example:
+ *  Save your Component XML as a file called <i>screenName</i>.ui.xml under
+ *  <i>webroot</i>/shared/ui/.  Placing your .ui.xml file in this directory makes it visible to
+ *  the system; the location of this directory can be configured in server.properties by setting
+ *  the <i>project.ui</i> property.  <i>screenName</i> can be any valid identifier (no spaces,
+ *  dashes or periods - underscores OK).
+ *  <P>
+ *  If you have multiple top-level tags (eg, your code is similar to the example above under
+ *  "Referring to previousy defined components") use &lt;isomorphicXML&gt; as a top-level
+ *  container tag - this has no impact on processing and is just an idiom to make your file valid
+ *  XML, since XML does not allow multiple top-level tags in a document.
+ *  <P>
+ *  Component XML screens are then loaded using the ScreenLoaderServlet.  The default SDK comes
+ *  with this servlet already registered at 
+ *  
+ *  <i>projectBase</i>/sc/screenLoader.  If you've modified web.xml
+ *  or only included some of the default servlets, you may need to add it now - see the 
+ *  
+ *  {@link com.smartgwt.client.docs.SgwtEESetup Installation Instructions}.
+ *  <P>
+ *  To create an application that consists of <i>just</i> the imported mockup, just add a
+ *  &lt;script src&gt; tag pointing to the ScreenLoader servlet and referring to the
+ *  <i>screenName</i> you used when you saved your file.  
+ *  
+ *  
+ *  For example, add the following to your bootstrap .html file:
  *  <pre>
- *  &lt;VLayout&gt;
- *      &lt;width&gt;&lt;JS&gt;isc.Page.getWidth() - 20&lt;/JS&gt;&lt;/width&gt;
- *  &lt;/VLayout&gt;
+ *     &lt;script src="sc/screenLoader?screenName=<i>screenName</i>"&gt;&lt;/script&gt;
  *  </pre>
- *  Note that, like all component XML properties, the <code>width</code> property can be
- *  specified either as an XML attribute or as a subelement.  Expressing it as a subelement, as
- *  shown above, allows the &lt;JS&gt; tag to be used.
+ *  
+ *  If you want to load screens dynamically, or if you want to load more than one screen, use
+ * {@link com.smartgwt.client.rpc.RPCManager#loadScreen RPCManager.loadScreen}.  See the section
+ * on "Multiple screens and global IDs"
+ *  below.
  *  <P>
- *  <b>Embedding Methods</b>
+ *  
  *  <P>
- * For {@link com.smartgwt.client.docs.StringMethods StringMethods} such as {@link
- * com.smartgwt.client.widgets.grid.ListGrid#addRecordClickHandler ListGrid.recordClick},
- *  JavaScript code can be used as an ordinary element value:
+ *  <h3>Event Handlers &amp; Scripting loaded components</h3>
+ *  <P>
+ *  You can retrieve the components in your loaded screen in order to add event handlers to
+ *  them, call APIs on them, place them into layouts you programmatically create, and in general
+ * add dynamic behavior.  Retrieve the components via the {@link
+ * com.smartgwt.client.widgets.Canvas#getGetByID getByID} API
+ *  (note, when working with multiple screens, be sure to see the upcoming section about managing
+ *  global IDs).
+ *  <P>
+ *  You can then add event handlers normally.  For example, say there is a ListGrid with ID
+ *  "mainGrid" and a DynamicForm with ID "editForm" in the same screen, and you want to populate
+ *  the form with whatever record is clicked on in the grid:
+ *  <P>
+ *  
+ *  
  *  <pre>
- *  &lt;ListGrid&gt;
- *      &lt;recordClick&gt;if (record.age > 65) doSomething()&lt;/recordClick&gt;
- *  &lt;/ListGrid&gt;
+ *    ListGrid grid = (ListGrid)Canvas.getByID("mainGrid");
+ *    final DynamicForm form = (DynamicForm)Canvas.getByID("editForm");
+ *    grid.addRecordClickHandler(new RecordClickHandler() {
+ *        public void onRecordClick(RecordClickEvent event) {
+ *            form.editRecord(event.getRecord());  
+ *        }
+ *    });
  *  </pre>
- *  To embed an actual function definition, use the &lt;JS&gt; tag described above.  For
- *  example:
- *  <pre>
- *  &lt;ListGrid&gt;
- *      &lt;recordClick&gt;&lt;JS&gt;function (viewer, record, recordNum, field) {
- *           if (record.age > 65) doSomething();
- *      }&lt;/JS&gt;&lt;/recordClick&gt;
- *  &lt;/ListGrid&gt;
- *  </pre>
- *  Unfortunately, characters commonly used in JavaScript code, such as ampersand (&amp;), are
- *  not legal inside XML element or attribute values.  For example, the expression "record !=
- *  null && record.age > 65" must be written as shown below, or it is not considered valid XML:
+ *  
  *  <P>
+ *  You can also add a loaded screen to an existing layout container.  For example, perhaps you've
+ * already written parts of the application via normal coding techniques, and now you want to take
+ *  a screen defined in Component XML and place it in a particular Layout you've already created
+ * ("existingLayout" below) - just use {@link com.smartgwt.client.widgets.layout.Layout#addMember
+ * Layout.addMember} as usual:
+ *  
  *  <pre>
- *  &lt;ListGrid&gt;
- *      &lt;recordClick&gt;
- *          if (record.status != null &amp;amp;&amp;amp; record.age > 65) doSomething()
- *      &lt;/recordClick&gt;
- *  &lt;/ListGrid&gt;
+ *     existingLayout.addMember(Canvas.getById("<i>componentId</i>"));
  *  </pre>
- *  An alternative, for larger blocks of code, is to use the XML standard "CDATA" (character
- *  data) processing directive, which allows ampersand and other characters to be used without
- *  special notation:
+ *  
+ *  
+ *  <P>
+ *  <h3>Multiple screens and global IDs</h3>
+ *  <P>
+ *  A Component XML screen created in Visual Builder or via the
+ * {@link com.smartgwt.client.docs.BalsamiqImport Balsamiq importer} will assign global IDs to all
+ * components
+ *  generated from your mockup so that you can retrieve them by ID to add event handlers and
+ *  call APIs.   However if you build an application out of multiple screens built at different
+ *  times, these IDs can collide, which will cause components to overwrite each other as they
+ *  each try to use the same ID.
+ *  <P>
+ * To solve this, the {@link com.smartgwt.client.rpc.RPCManager#loadScreen RPCManager.loadScreen}
+ * API will <i>ignore</i> global IDs on loaded
+ *  components, assigning them sequential generated IDs instead (which will never collide).  Only 
+ * the list of specific global IDs you pass to <code>loadScreen()</code> will be allowed to become
+ *  global.
+ *  <P>
+ *  Therefore when building an application out of multiple screens, the best approach is:
+ *  <ul>
+ *  <li> always use RPCManager.loadScreen() to load screens; don't use the &lt;script src&gt;
+ *  approach as it cannot suppress global IDs
+ *  <li> assign meaningful IDs to the components where you will attach event handlers or call
+ *  APIs.  Be sure to use search and replace when you do this as the ID may appear multiple places
+ *  in the file
+ *  <li> when using <code>loadScreen()</code>, pass the list of IDs of components that you will
+ *  need to access programmatically
+ *  </ul>
+ *  <P>
+ *  <h3>Dynamic Component XML</h3>
+ *  <P>
+ *  There are two additional ways to load Component XML screens - you can create a .jsp that
+ *  uses the JSP tags that come with the SDK:
  *  <pre>
- *  &lt;ListGrid&gt;
- *      &lt;recordClick&gt;&lt;![CDATA[
- *          if (record.status != null && record.age > 65) doSomething()
- *      ]]&gt;&lt;/recordClick&gt;
- *  &lt;/ListGrid&gt;
+ *     &lt;%@ taglib uri="/WEB-INF/iscTaglib.xml" prefix="isomorphic" %&gt;
+ *     &lt;isomorphic:XML&gt;
+ *        ... Component XML ...
+ *     &lt;/isomorphic:XML&gt;
  *  </pre>
  *  <P>
- *  Overall, embedding code in XML can be awkward.  Isomorphic generally recommends that
- *  significant chunks of JavaScript code, such as non-trivial custom components, be moved to
- *  separate, purely JavaScript files, while code embedded in component XML is limited to simple
- *  expressions and short functions.
+ *  Or you can use the server-side API com.isomorphic.XML.toJS():
+ *  <pre>
+ *      XML.toJS("&lt;isomorphicXML xmlns:xsi=\"nativeType\"&gt;" +
+ *                   componentXMLCode +                                 
+ *                   "&lt;/isomorphicXML&gt;");
+ *  </pre>
+ *  The JSP code above and the programmatic call to XML.toJS() both return a JavaScript code,
+ * which is the response that {@link com.smartgwt.client.rpc.RPCManager#loadScreen
+ * RPCManager.loadScreen} expects.  The
+ *  <code>XML.toJS()</code> API can be easily combined with 
+ * {@link com.smartgwt.client.docs.StandaloneDataSourceUsage direct use of the server-side
+ * DataSource API} to build
+ *  a version of the ScreenLoaderServlet that can retrieve Component XML from a database
+ *  or any Java API.
  *  <P>
- *  <b>Troubleshooting</b>
+ *  For static Component XML screens (cannot be changed at runtime), you can optionally run the
+ *  XML.toJS() process as a build step to save a small amount of runtime overhead in XML to JS
+ * translation.  Use {@link com.smartgwt.client.rpc.RPCManager#loadScreen RPCManager.loadScreen}
+ * to load the resulting JavaScript by
+ * overriding the {@link com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL} to point to
+ * the generated JavaScript file.
+ *  Note that the overhead is minor enough that this is not worth doing unless you have a very
+ *  large deployment and a very large number of static Component XML files.
+ *  <P>
+ *  <h3>Troubleshooting</h3>
  *  <P>
  *  XML parsing errors, which happen when XML is not well-formed and would be rejected by any
  *  standard XML parser, are reported in the server-side log, and, when possible, also in the
  *  client-side log within the "Results" tab of the Developer Console.
  *  <P>
- *  Other issues with component XML can result from incorrect use of Smart GWT component XML
- *  tags.  For example, you may specify a property and it may appear to have no effect even
- *  though it clearly works in other, JavaScript-based examples.  If you get this symptom, you
- *  can troubleshoot by looking at the JavaScript code Smart GWT generates from component XML.
+ * If you are loading a screen via the {@link com.smartgwt.client.rpc.RPCManager#loadScreen
+ * RPCManager.loadScreen} API, you can see the
+ *  response from the server in the RPC tab of the Developer Console - this will show you issues
+ *  such as a misplaced ScreenLoaderServlet (HTTP response code will be 404 - Not Found) or
+ *  responses that contain server exception details instead of the expected JavaScript response.
  *  <P>
- *  Smart GWT always translates Smart GWT component XML to JavaScript format before
- *  execution.  This is done automatically by the &lt;isomorphic:XML&gt; tag for XML embedded in
- *  a .jsp file, and you can "View Source" with your browser to see the generated XML.  You can
- *  also use the "Eval XML" section in the "Results" tab of the Developer Console to see
- *  the generated JavaScript ("Show JS" button) and to dynamically execute component XML ("Eval
- *  XML" button).  These facilities will help you troubleshoot issues with incorrectly specified
- *  XML.
+ *  
  *  <P>
- *  <b>Custom Properties</b>
+ *  You can also use the "Eval XML" section in the "Results" tab of the Developer Console to
+ *  interactively experiment with Component XML ("Eval XML" button) and as a means of seeing the
+ *  generated JavaScript ("Show JS" button).
  *  <P>
- *  If you specify a custom property on a component in XML, for example:
- *  <pre>
- *  &lt;Canvas myProperty="false"/&gt;
- *  </pre>
- *  The value of the property will be a JavaScript String.  In the above example, it would be
- *  the string "false", which is considered a boolean true value in the JavaScript language.
- *  If you want a different JavaScript type, you can force a property to be interpreted as a
- *  given type by using the "xsi:type" attribute:
- *  <pre>
- *  &lt;Canvas&gt;
- *      &lt;myProperty xsi:type="xsd:boolean"&gt;false&lt;/myProperty&gt;
- *  &lt;/Canvas&gt;
- *  </pre>
- *  The same notation works when you want to declare that an entire subobject has a given type.
- *  For example, this would cause the custom property "myListGrid" to have a live
- * {@link com.smartgwt.client.widgets.grid.ListGrid} instance as it's value.  All of the properties on the
- * &lt;myListGrid&gt; tag
- *  will be correctly interpreted as ListGrid properties and have the correct types.
- *  <pre>
- *  &lt;Canvas&gt;
- *      &lt;myListGrid xsi:type="ListGrid" width="500" height="600"/&gt;
- *  &lt;/Canvas&gt;
- *  </pre>
- *  If you do not want an actual live ListGrid, but rather a JavaScript Object containing
- *  properties for later construction of a ListGrid, use the <code>propertiesOnly</code>
- *  attribute.  For example, this code would cause the property "listGridProperties" to be a
- *  JavaScript Object with properties "width" and "height", whose values would be JavaScript
- *  Numbers.
- *  <pre>
- *  &lt;Canvas&gt;
- *      &lt;listGridProperties xsi:type="ListGrid" propertiesOnly="true" 
- *                           width="500" height="600"/&gt;
- *  &lt;/Canvas&gt;
- *  </pre>
- *  For your reference: "xsi" stands for "XML Schema Instance"; this notation derives from XML
- *  Schema standards for explicitly specifying type inline.
+ *  <h3>Localization / Internationalization</h3>
  *  <P>
- *  <B>Custom Components</B>
+ *  Component XML files support embedding references to messages loaded from ResourceBundles via
+ *  the same JSTL-like &lt;fmt&gt; syntax as is used for DataSource .ds.xml files.  See
+ *  {@link com.smartgwt.client.docs.DataSourceLocalization DataSource localization for details}.
  *  <P>
- *  If you use  defineClass() to define a new component class
- *  "MyListGrid" which is a subclass of the built-in component ListGrid, you can create it in
- *  XML as shown below:
- *  <pre>
- *  &lt;ListGrid constructor="MyListGrid" width="500"/&gt;
- *  </pre>
- *  By using the &lt;ListGrid&gt; tag you advertise that properties should be interpreted 
- *  as <code>ListGrid</code> properties.  By specifying <code>constructor</code>
- *  you tell Smart GWT what class to  create().
- *  <P>
- *  <b>Component Schema</b>
- *  <P>
- *  Instead of using the <code>constructor</code> and <code>xsi:type</code> attributes for
- *  custom components and custom properties, you can create a {@link com.smartgwt.client.docs.ComponentSchema} that
- *  describes the custom component.  Declaring a component schema allows you to use your
- *  component just like the built-in Smart GWT components, and also allows your component to
- *  be used within {@link com.smartgwt.client.docs.VisualBuilder}.
+ * 
  */
 public interface ComponentXML {
 }
