@@ -104,8 +104,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }
 
     public BaseWidget() {
-        String id = SC.generateID(getClass().getName());
-        setID(id);
+        /*empty*/
     }
 
     protected BaseWidget(JavaScriptObject jsObj) {
@@ -345,7 +344,20 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
 
 
     public String getID() {
+        if (id == null) {
+            // Generate an ID because one was requested by the callee.
+            setID(SC.generateID(getClass().getName()));
+        }
+        assert id != null;
         return id;
+    }
+
+    private void internalSetID(String id) {
+        if (this.id != null) {
+            IDManager.unregisterID(this.id);
+        }
+        IDManager.registerID(id, true);
+        this.id = id;
     }
 
     public void setID(String id) {
@@ -366,9 +378,9 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }
 
     public native boolean isCreated()/*-{
-        var id = this.@com.smartgwt.client.widgets.BaseWidget::getID()();
-        var obj = $wnd.window[id];
-        return id != null && obj != null && obj !== undefined && $wnd.isc.isA.Canvas(obj) === true;
+        var id = this.@com.smartgwt.client.widgets.BaseWidget::id;
+        var obj;
+        return id != null && (obj = $wnd.window[id]) != null && obj !== undefined && $wnd.isc.isA.Canvas(obj) === true;
     }-*/;
 
     protected Boolean isDrawn() {
@@ -381,8 +393,8 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }-*/;
 
     public native JavaScriptObject getJsObj()/*-{
-        var id = this.@com.smartgwt.client.widgets.BaseWidget::getID()();
-        if($wnd.window[id] != null && $wnd.window[id]!== undefined) {
+        var id = this.@com.smartgwt.client.widgets.BaseWidget::id;
+        if (id != null && $wnd.window[id] != null && $wnd.window[id] !== undefined) {
             return $wnd.window[id];
         } else {
             return null;
@@ -401,7 +413,9 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
 
     protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-        return $wnd.isc.Canvas.create(config);
+        var widget = $wnd.isc.Canvas.create(config);
+        this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Ljava/lang/String;)(widget.getID());
+        return widget;
     }-*/;
 
     public String getAttribute(String attribute) {
@@ -948,7 +962,8 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
                 return true;
             } else {
                 BaseWidget other = (BaseWidget) obj;
-                if (other.getID().equals(getID())) {
+                if (other.id == null || id == null) return false;
+                if (other.id.equals(id)) {
                     return true;
                 }
             }
@@ -959,7 +974,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }
 
     public int hashCode() {
-        return getID().hashCode();
+        return (id == null ? 0 : id.hashCode());
     }
 
     public NativeObject nativeObject;

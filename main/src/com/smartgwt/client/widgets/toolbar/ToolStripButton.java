@@ -70,6 +70,7 @@ public class ToolStripButton extends StretchImgButton {
     protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         var widget = $wnd.isc.ToolStripButton.create(config);
+        this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Ljava/lang/String;)(widget.getID());
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;
