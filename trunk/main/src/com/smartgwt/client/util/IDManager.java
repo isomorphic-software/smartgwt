@@ -16,6 +16,9 @@ public class IDManager {
     // assigned to live JS objects in the global scope by maintaining a hashSet of assigned IDs
     private static HashSet<String> assignedIDs = new HashSet<String>();
     public static void isValidID(String id) {
+        isValidID(id, false);
+    }
+    public static void isValidID(String id, boolean skipUniqueJSIdentifierCheck) {
         assert id.matches("[a-zA-Z_$][0-9a-zA-Z_$]*") : "Invalid ID : " + id+ ". Valid ID's must meet the following pattern [a-zA-Z_$][0-9a-zA-Z_$]*";
         
         if (assignedIDs.contains(id)) {
@@ -25,7 +28,7 @@ public class IDManager {
         // If it's an existing JS object it's likely another SmartClient component created outside of Java, but
         // it could be a native JS keyword ("window", "parent" etc) or something else defined in JS scope.
         // The method will provide more detail in a logged warning.
-        checkUniqueJavascriptIdentifier(id);
+        if (!skipUniqueJSIdentifierCheck) checkUniqueJavascriptIdentifier(id);
     }
     private static native void checkUniqueJavascriptIdentifier(String id) /*-{
         if ($wnd[id] != null) {
@@ -34,7 +37,10 @@ public class IDManager {
     }-*/;
     
     public static void registerID(String id) {
-        isValidID(id);
+        registerID(id, false);
+    }
+    public static void registerID(String id, boolean skipUniqueJSIdentifierCheck) {
+        isValidID(id, skipUniqueJSIdentifierCheck);
         assignedIDs.add(id);
     }
     public static void unregisterID(String id) {
