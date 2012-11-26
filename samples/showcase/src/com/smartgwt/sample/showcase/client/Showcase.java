@@ -153,6 +153,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         sideNavLayout.setShowResizeBar(true);
 
         sideNav = new SideNavTree();
+        sideNav.setID("isc_SideNavTree_0");
         sideNav.addLeafClickHandler(new LeafClickHandler() {
             public void onLeafClick(LeafClickEvent event) {
                 TreeNode node = event.getLeaf();
