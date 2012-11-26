@@ -199,6 +199,19 @@ public class I18nUtil {
             if(selectorFormat != null && selectorFormat != 'null') $wnd.isc.DateItem.changeDefaults("selectorFormat", selectorFormat);
         }
 
+        if($wnd.isc.TimeItem) {
+            $wnd.isc.TimeItem.addProperties({hourItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::timeItem_hourItemTitle()()});
+            $wnd.isc.TimeItem.addProperties({hourItemPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::timeItem_hourItemPrompt()()});
+            $wnd.isc.TimeItem.addProperties({minuteItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::timeItem_minuteItemTitle()()});
+            $wnd.isc.TimeItem.addProperties({minuteItemPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::timeItem_minuteItemPrompt()()});
+            $wnd.isc.TimeItem.addProperties({secondItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::timeItem_secondItemTitle()()});
+            $wnd.isc.TimeItem.addProperties({secondItemPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::timeItem_secondItemPrompt()()});
+            $wnd.isc.TimeItem.addProperties({millisecondItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::timeItem_millisecondItemTitle()()});
+            $wnd.isc.TimeItem.addProperties({millisecondItemPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::timeItem_millisecondItemPrompt()()});
+            $wnd.isc.TimeItem.addProperties({ampmItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::timeItem_ampmItemTitle()()});
+            $wnd.isc.TimeItem.addProperties({ampmItemPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::timeItem_ampmItemPrompt()()});
+        }
+
         if($wnd.isc.ColorItem) {
             $wnd.isc.ColorItem.addProperties({pickerIconPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorItem_pickerIconPrompt()()});
         }
