@@ -345,7 +345,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
 
     public String getID() {
         if (id == null) {
-            // Generate an ID because one was requested by the callee.
+            // Generate an ID because one was requested by the caller.
             setID(SC.generateID(getClass().getName()));
         }
         assert id != null;
