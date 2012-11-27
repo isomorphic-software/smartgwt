@@ -136,10 +136,14 @@ public class GridToExcelSample extends ShowcasePanel
             this.setIsModal(true);
             this.addItem(form);
 
-            DataSource dataSource = countryList.getDataSource();
             Record[] records = countryList.getSelectedRecords();
-            String text = dataSource.recordsAsText(records, settings);
+            for (int i = 0; i < records.length; i++) {
+                int index = countryList.getRecordIndex((ListGridRecord)records[i]);
+                if (index >= 0) records[i] = countryList.getEditedRecord(index);
+            }
 
+            DataSource dataSource = countryList.getDataSource();
+            String text = dataSource.recordsAsText(records, settings);
             this.textArea.setValue(text);
             this.textArea.selectValue();
         }
