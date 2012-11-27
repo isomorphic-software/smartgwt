@@ -25,7 +25,9 @@ package com.smartgwt.client.docs;
  * &nbsp;&nbsp;&nbsp;&nbsp;activation - if you plan to use the Mail messaging feature and you are using a JDK &lt;
  * 1.6<br><br> &nbsp;&nbsp;&nbsp;&nbsp;poi - if you plan to export datasets in Microsoft Excel 97 (xls)   or 2007 (xlsx)
  * formats.  Additionally, if you plan to export data in Excel 2007 (xlsx)  format, you will need the following
- * libraries:<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;poi-ooxml, poi-ooxml-schemas, xbean, jsr173_1.0_api </li> <p>
+ * libraries:<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;poi-ooxml, poi-ooxml-schemas, xbean, jsr173_1.0_api <br>
+ * &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_jpa and it's dependencies - if you plan to use BatchDS Generator even if you are
+ * not using JPA, although the generated DataSources will not require JPA at runtime if you are not using JPA.</li> <p>
  * <li><b>isomorphic_web_services</b>: Web services examples only.  Contains code backing the Smart GWTOperations.wsdl
  * example.  Do not deploy in production.<br> &nbsp;&nbsp;<u>Requires</u>:<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br> &nbsp;&nbsp;&nbsp;&nbsp;axis<br> &nbsp;&nbsp;&nbsp;&nbsp;axis-schema<br>
@@ -61,8 +63,12 @@ package com.smartgwt.client.docs;
  * &nbsp;&nbsp;&nbsp;&nbsp;cglib<br> &nbsp;&nbsp;&nbsp;&nbsp;antlr<br> &nbsp;&nbsp;<u>Optionally Requires</u>:<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;hsqldb - not required for linking, but needed for Hibernate to actually connect to databases of
  * this type, and hsqldb is what's used in the SDK examples. Note that for production use you will need a JDBC driver for
- * your database type.<br> </li> <li><b>isomorphic_sql</b>: The Smart GWT SQLDataSource.<br>
- * &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br> 
+ * your database type.<br> </li> <li><b>isomorphic_jpa</b>: Contains support for JPA DataSources as described here: {@link
+ * com.smartgwt.client.docs.JpaIntegration}.<br> &nbsp;&nbsp;<u>Requires</u>:<br>
+ * &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br>
+ * &nbsp;&nbsp;&nbsp;&nbsp;Hibernate and its dependences or any other JPA persistence provider<br> </li>
+ * <li><b>isomorphic_sql</b>: The Smart GWT SQLDataSource.<br>
+ * &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;commons-dbcp<br>  &nbsp;&nbsp;&nbsp;&nbsp;hsqldb<br>  </li> <li><b>isomorphic_js_parser</b>: A
  * parser capable of reading a JSON byte stream and creating an in-memory Java object structure to match.  Used by any
  * mechanism that relies on JSON-style configuration.  Examples include FileAssembly definitions in JSON format, any use of
