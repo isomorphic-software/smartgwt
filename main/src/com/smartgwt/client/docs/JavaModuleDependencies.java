@@ -51,7 +51,9 @@ package com.smartgwt.client.docs;
  * you will need the following libraries:<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;poi-ooxml,
  * poi-ooxml-schemas, xbean, jsr173_1.0_api<br><br> &nbsp;&nbsp;&nbsp;&nbsp;PDF Export -
  * Additional .jars are required if PDF Export is to be used. These .jars are:<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;core-render, iText-2.0.8, jtidy-r938 </li> <p>
+ * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;core-render, iText-2.0.8, jtidy-r938 <br>
+ * &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_jpa and it's dependencies - if you plan to use BatchDS Generator even if you are
+ * not using JPA, although the generated DataSources will not require JPA at runtime if you are not using JPA.</li> <p>
  * <li><b>isomorphic_web_services</b>: Web services examples only.  Contains code backing the
  * Smart GWTOperations.wsdl example.  Do not deploy in production.<br>
  * &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br>
@@ -96,6 +98,10 @@ package com.smartgwt.client.docs;
  * &nbsp;&nbsp;&nbsp;&nbsp;hsqldb - not required for linking, but needed for Hibernate to actually
  * connect to databases of this type, and hsqldb is what's used in the SDK examples. Note that for
  * production use you will need a JDBC driver for your database type.<br> </li>
+ * <li><b>isomorphic_jpa</b>: Contains support for JPA DataSources as described here: {@link
+ * com.smartgwt.client.docs.JpaIntegration}.<br> &nbsp;&nbsp;<u>Requires</u>:<br>
+ * &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br>
+ * &nbsp;&nbsp;&nbsp;&nbsp;Hibernate and its dependences or any other JPA persistence provider<br> </li>
  * <li><b>isomorphic_sql</b>: The Smart GWT SQLDataSource.<br> &nbsp;&nbsp;<u>Requires</u>:<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br>  &nbsp;&nbsp;&nbsp;&nbsp;commons-dbcp<br> 
  * &nbsp;&nbsp;&nbsp;&nbsp;hsqldb<br>  </li> <li><b>isomorphic_js_parser</b>: A parser capable of
