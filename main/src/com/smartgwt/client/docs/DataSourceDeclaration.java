@@ -1,33 +1,33 @@
-
+	    
 package com.smartgwt.client.docs;
 
 /**
  * <h3>Creating DataSources</h3>
- * DataSources can be specified in XML format, in which case the ISC server is used to load the
- *  DataSource in a JSP file, or DataSources can be directly created on the client via
- *  JavaScript.
+ * DataSources can be specified in XML format, in which case the Smart GWT server is used to
+ *  load the DataSource, or DataSources can be programmatically created on the client.
  *  <P>
- *  Whether a DataSource is specified in XML or JS, identical requests will ultimately be
- *  submitted to the server, so the server integration pattern is the same.  However,
- *  DataSources created in XML can be loaded and used by the Smart GWT Server,
- *  enabling many features including synchronized client-server validation, request bundling, 
- *  file upload, and optional automatic SQL/Hibernate connectivity (see the
+ *  Whether a DataSource is loaded via the Smart GWT server or programmatically created
+ *  client-side, identical requests will ultimately be submitted to the server.  However,
+ *  DataSources defined in XML are loaded and used by the Smart GWT Server, enabling many
+ *  features including synchronized client-server validation, request bundling, file upload, and
+ *  optional automatic SQL/JPA/Hibernate connectivity (see the 
  *  {@link com.smartgwt.client.docs.IscServer Server Summary} for details).
  *  <P>
- *  DataSources created on the client use the same style of creation as DataBound components:
+ *  
+ *  
+ *  DataSources can be programmatically created on the client like so:
  *  <pre>
- *     isc.DataSource.create({
- *         ID:"supplyItem",
- *         fields:[
- *             {name:"itemName", ... }
- *             ...
- *         ]
- *     });
+ *     DataSource ds = new DataSource();
+ *     ds.setID("supplyItem");
+ *     DataSourceTextField nameField = new DataSourceTextField("itemName", "Name");
+ *     // create other fields
+ *     ds.setFields(nameField, ...);
  *  </pre>
+ *  
  *  Reference for all properties that can be set for DataSources, their fields and validators is
  *  given in the {@link com.smartgwt.client.data.DataSource} class reference.
  *  <P>
- *  XML DataSources use a direct analogue of this format:
+ *  DataSources defined in XML declare fields, validators and other settings using XML tags:
  *  <pre>
  *      &lt;DataSource ID="supplyItem"&gt;
  *          &lt;fields&gt;
@@ -40,7 +40,18 @@ package com.smartgwt.client.docs;
  *          &lt;/fields&gt;
  *      &lt;/DataSource&gt;
  *  </pre>
- *  XML DataSources are loaded via a special JSP tag supported by the Smart GWT Server:
+ *  DataSources defined in XML are loaded by using the <code>DataSourceLoader</code>
+ *  servlet provided by the Smart GWT Server.  This can be done as an ordinary HTML
+ *  &lt;script&gt; tag as you application first loads:
+ *  <pre>
+ * &lt;SCRIPT
+ * SRC=isomorphic/DataSourceLoader?dataSource=supplyItem,employees,worldDS&lt;/SCRIPT&gt;
+ *  </pre>
+ * .. or can be done on the fly via {@link com.smartgwt.client.data.DataSource#load
+ * DataSource.load}.
+ *  <P>
+ *  Alternatively, in JSP environments, XML DataSources can be loaded via a special JSP tag
+ *  supported by the Smart GWT Server:
  *  <pre>
  *      &lt;%&#64; taglib uri="/WEB-INF/iscTaglib.xml" prefix="isomorphic" %&gt;
  *      ...
@@ -48,20 +59,16 @@ package com.smartgwt.client.docs;
  *      &lt;isomorphic:loadDS ID="supplyItem"/&gt;
  *      &lt;/SCRIPT&gt;
  *  </pre>
- *  Alternatively, XML DataSources can be loaded by targeting a special servlet provided by 
- *  the Smart GWT Server.  This servlet yields exactly the same Javascript as the equivalent
- *  <code>&lt;isomorphic:loadDS/&gt;</code>, so the two methods are interchangeable.  The
- *  servlet-based method is ideal in environments where JSP tags cannot be used (SmartGWT is 
- *  one such environment).  Example usage:
- *  <pre>
- *      &lt;SCRIPT SRC=isomorphic/DataSourceLoader?dataSource=supplyItem,employees,worldDS&lt;/SCRIPT&gt;
- *  </pre>
+ *  <P>
  *  When loading an XML DataSource, by default, the ISC Server will look for a file named
  *  <code>&lt;dataSourceId&gt;.ds.xml</code> in the <code>/shared/ds</code> subdirectory under
  *  webroot.  The location of this directory can be changed, or individual DataSources can be
  *  placed in arbitrary locations.  For more information, see
  *  <code>[webroot]/WEB-INF/classes/server.properties</code>.
- *  <p>
+ *  <P>
+ *  XML DataSources can also be generated on the fly in case the entire DataSource or portions
+ *  of it are based on dynamic data.  See the server API
+ *  com.isomorphic.DataSource.addDynamicDSGenerator().
  */
 public interface DataSourceDeclaration {
 }

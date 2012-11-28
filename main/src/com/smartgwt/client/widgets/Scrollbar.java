@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * The Scrollbar widget implements cross-platform, image-based scrollbars that control the scrolling of content in other
@@ -68,22 +88,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class Scrollbar extends StretchImg {
 
-    public static Scrollbar getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (Scrollbar) obj;
-        } else {
-            return new Scrollbar(jsObj);
+    public native static Scrollbar getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("Scrollbar",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.Scrollbar::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public Scrollbar(){
         scClassName = "Scrollbar";
     }
 
     public Scrollbar(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "Scrollbar";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -207,7 +238,7 @@ public class Scrollbar extends StretchImg {
     /**
      * URL for the corner image, a singular image that appears in the corner when both h and v scrollbars are showing.
      *
-     * @param cornerSrc cornerSrc Default value is "[SKIN]corner.gif"
+     * @param cornerSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]corner.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
@@ -219,7 +250,7 @@ public class Scrollbar extends StretchImg {
      * URL for the corner image, a singular image that appears in the corner when both h and v scrollbars are showing.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public String getCornerSrc()  {
@@ -258,7 +289,7 @@ public class Scrollbar extends StretchImg {
      * clicked on to scroll quickly. <P> For a 5-segment track ({@link com.smartgwt.client.widgets.Scrollbar#getShowTrackEnds
      * showTrackEnds}:true), the suffixes are "_start", "_track_start", "_track", "_track_end" and "_end".
      *
-     * @param hSrc hSrc Default value is "[SKIN]hscroll.gif"
+     * @param hSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]hscroll.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
@@ -276,7 +307,7 @@ public class Scrollbar extends StretchImg {
      * showTrackEnds}:true), the suffixes are "_start", "_track_start", "_track", "_track_end" and "_end".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public String getHSrc()  {
@@ -340,7 +371,7 @@ public class Scrollbar extends StretchImg {
      * overall skin directory}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param skinImgDir skinImgDir Default value is "images/Scrollbar/"
+     * @param skinImgDir . See {@link com.smartgwt.client.docs.String String}. Default value is "images/Scrollbar/"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
@@ -353,7 +384,7 @@ public class Scrollbar extends StretchImg {
      * overall skin directory}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public String getSkinImgDir()  {
@@ -496,7 +527,7 @@ public class Scrollbar extends StretchImg {
      * Base URL for the images used for the vertical scrollbar track and end buttons.  See {@link
      * com.smartgwt.client.widgets.Scrollbar#getHSrc hSrc} for usage.
      *
-     * @param vSrc vSrc Default value is "[SKIN]vscroll.gif"
+     * @param vSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]vscroll.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
@@ -509,7 +540,7 @@ public class Scrollbar extends StretchImg {
      * com.smartgwt.client.widgets.Scrollbar#getHSrc hSrc} for usage.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public String getVSrc()  {
@@ -560,8 +591,105 @@ public class Scrollbar extends StretchImg {
         }
     }-*/;
 
+    public LogicalStructureObject setLogicalStructure(ScrollbarLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.allowThumbDownState = getAttributeAsString("allowThumbDownState");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Scrollbar.allowThumbDownState:" + t.getMessage() + "\n";
+        }
+        try {
+            s.allowThumbOverState = getAttributeAsString("allowThumbOverState");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Scrollbar.allowThumbOverState:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoEnable = getAttributeAsString("autoEnable");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Scrollbar.autoEnable:" + t.getMessage() + "\n";
+        }
+        try {
+            s.btnSize = getAttributeAsString("btnSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Scrollbar.btnSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.cornerSize = getAttributeAsString("cornerSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Scrollbar.cornerSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.cornerSrc = getAttributeAsString("cornerSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Scrollbar.cornerSrc:" + t.getMessage() + "\n";
+        }
+        try {
+            s.endThumbOverlap = getAttributeAsString("endThumbOverlap");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Scrollbar.endThumbOverlap:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hSrc = getAttributeAsString("hSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Scrollbar.hSrc:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showCorner = getAttributeAsString("showCorner");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Scrollbar.showCorner:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showTrackEnds = getAttributeAsString("showTrackEnds");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Scrollbar.showTrackEnds:" + t.getMessage() + "\n";
+        }
+        try {
+            s.skinImgDir = getAttributeAsString("skinImgDir");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Scrollbar.skinImgDir:" + t.getMessage() + "\n";
+        }
+        try {
+            s.startThumbOverlap = getAttributeAsString("startThumbOverlap");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Scrollbar.startThumbOverlap:" + t.getMessage() + "\n";
+        }
+        try {
+            s.thumbInset = getAttributeAsString("thumbInset");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Scrollbar.thumbInset:" + t.getMessage() + "\n";
+        }
+        try {
+            s.thumbMinSize = getAttributeAsString("thumbMinSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Scrollbar.thumbMinSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.thumbOverlap = getAttributeAsString("thumbOverlap");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Scrollbar.thumbOverlap:" + t.getMessage() + "\n";
+        }
+        try {
+            s.trackEndHeight = getAttributeAsString("trackEndHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Scrollbar.trackEndHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.trackEndWidth = getAttributeAsString("trackEndWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Scrollbar.trackEndWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vSrc = getAttributeAsString("vSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Scrollbar.vSrc:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        ScrollbarLogicalStructure s = new ScrollbarLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-
 

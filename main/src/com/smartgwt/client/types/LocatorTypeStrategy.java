@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * When attempting to identify a component from within a list of possible candidates as described {@link
  * com.smartgwt.client.types.LocatorStrategy here}, if we are unable to find a unique match by name or title, we will use
@@ -44,7 +45,6 @@ public enum LocatorTypeStrategy implements ValueEnum {
      * Don't attempt to compare type in any way
      */
     NONE("none");
-
     private String value;
 
     LocatorTypeStrategy(String value) {
@@ -55,3 +55,4 @@ public enum LocatorTypeStrategy implements ValueEnum {
         return this.value;
     }
 }
+        

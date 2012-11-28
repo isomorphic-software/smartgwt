@@ -18,6 +18,11 @@ package com.smartgwt.client.widgets.grid.events;
 import com.google.gwt.event.shared.EventHandler;
 
 public interface RecordExpandHandler extends EventHandler {
-
+    /**
+     * Handler fired when a record is expanded in a grid with <code>canExpandRecords</code> set to  true. Allows the expansion
+     * to be cancelled.
+     *
+     * @param event the event
+     */
     void onRecordExpand(com.smartgwt.client.widgets.grid.events.RecordExpandEvent event);
 }

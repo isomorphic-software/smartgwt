@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Enum used within the {@link com.smartgwt.client.widgets.form.FilterBuilder} class to indicate the role of a particular 
  * value-field form item within a filter clause.
@@ -41,7 +42,6 @@ public enum ValueItemType implements ValueEnum {
      * <code>"valueRange"</code>.
      */
     END("end");
-
     private String value;
 
     ValueItemType(String value) {
@@ -52,3 +52,4 @@ public enum ValueItemType implements ValueEnum {
         return this.value;
     }
 }
+        

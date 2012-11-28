@@ -6,7 +6,7 @@
 	<!-- "build" is the default when subprojects are directly targetted -->
 	<property name="target" value="build" />
 
-	<target name="dist" depends="main, doc, samples, qa" description="Run the distributions">
+	<target name="dist" depends="main, doc, samples" description="Run the distributions">
 		<gwt.ant dir="distro-source" />
 	</target>
 
@@ -16,11 +16,9 @@
 
     <target name="main"  description="Run SmartGWT">
 		<gwt.ant dir="main" />
-    </target>
+	</target>
 
-    <target name="qa" depends="main" description="Compile support code for SmartClient QA tests">
-        <gwt.ant dir="qa" />
-    </target>
+    
 
 	<target name="samples" depends="main" description="Build samples">
 		<gwt.ant dir="samples" />
@@ -71,7 +69,11 @@
         <mkdir dir="${smartgwt.tools.lib}/sc/${SC_VER}"/>
         
 		<replace dir="${SC_HOME}/smartclientSDK/isomorphic/skins" includes="**/load_skin.js" token="showShadow:true" value="showShadow:false"/>
-
+		
+        <replace file="${SC_HOME}/smartclientSDK/isomorphic/system/development/ISC_DeveloperConsole.js/"
+                 token="../../system/reference/skin/images/"
+                 value="../../system/helpers/skin/images/"/>
+		
         <zip destfile="${smartgwt.tools.lib}/sc/${SC_VER}/smartclient.jar">
             <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/modules" includes="*.js"
                         prefix="com/smartclient/debug/public/sc/modules-debug">
@@ -100,7 +102,7 @@
 
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/reference"
                         includes="skin/images/server_client_exchange.png"
-                        prefix="com/smartclient/public/sc/system/reference"/>
+                        prefix="com/smartclient/public/sc/system/helpers"/>
 
             <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/schema" includes="*.xml"
                         prefix="com/smartclient/public/sc/schema"/>

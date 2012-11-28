@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Facet definition object made use of by the CubeGrid class.
@@ -64,8 +84,12 @@ import com.google.gwt.event.shared.HasHandlers;
 public class Facet extends RefDataClass {
 
     public static Facet getOrCreateRef(JavaScriptObject jsObj) {
+    
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+ 
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (Facet) obj;
@@ -74,12 +98,18 @@ public class Facet extends RefDataClass {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public Facet(){
         
     }
 
     public Facet(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     public Facet(String id) {
@@ -123,7 +153,7 @@ public class Facet extends RefDataClass {
     /**
      * CSS line style to apply as a border after this facet, eg "1px dashed blue"
      *
-     * @param borderAfter borderAfter Default value is null
+     * @param borderAfter . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setBorderAfter(String borderAfter) {
         setAttribute("borderAfter", borderAfter);
@@ -133,7 +163,7 @@ public class Facet extends RefDataClass {
      * CSS line style to apply as a border after this facet, eg "1px dashed blue"
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getBorderAfter()  {
         return getAttributeAsString("borderAfter");
@@ -142,7 +172,7 @@ public class Facet extends RefDataClass {
     /**
      * CSS line style to apply as a border before this facet, eg "1px dashed blue"
      *
-     * @param borderBefore borderBefore Default value is null
+     * @param borderBefore . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setBorderBefore(String borderBefore) {
         setAttribute("borderBefore", borderBefore);
@@ -152,7 +182,7 @@ public class Facet extends RefDataClass {
      * CSS line style to apply as a border before this facet, eg "1px dashed blue"
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getBorderBefore()  {
         return getAttributeAsString("borderBefore");
@@ -299,7 +329,7 @@ public class Facet extends RefDataClass {
     /**
      * facetValueId of the rollup facetValue for this facet
      *
-     * @param rollupValue rollupValue Default value is cubeGrid.rollupValue
+     * @param rollupValue . See {@link com.smartgwt.client.docs.String String}. Default value is cubeGrid.rollupValue
      */
     public void setRollupValue(String rollupValue) {
         setAttribute("rollupValue", rollupValue);
@@ -309,7 +339,7 @@ public class Facet extends RefDataClass {
      * facetValueId of the rollup facetValue for this facet
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getRollupValue()  {
         return getAttributeAsString("rollupValue");
@@ -358,7 +388,7 @@ public class Facet extends RefDataClass {
     /**
      * Title for facet summary.
      *
-     * @param summaryTitle summaryTitle Default value is cubeGrid.summaryTitle
+     * @param summaryTitle . See {@link com.smartgwt.client.docs.String String}. Default value is cubeGrid.summaryTitle
      */
     public void setSummaryTitle(String summaryTitle) {
         setAttribute("summaryTitle", summaryTitle);
@@ -368,7 +398,7 @@ public class Facet extends RefDataClass {
      * Title for facet summary.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSummaryTitle()  {
         return getAttributeAsString("summaryTitle");
@@ -377,7 +407,7 @@ public class Facet extends RefDataClass {
     /**
      * Value for facet summary.
      *
-     * @param summaryValue summaryValue Default value is cubeGrid.summaryValue
+     * @param summaryValue . See {@link com.smartgwt.client.docs.String String}. Default value is cubeGrid.summaryValue
      */
     public void setSummaryValue(String summaryValue) {
         setAttribute("summaryValue", summaryValue);
@@ -387,7 +417,7 @@ public class Facet extends RefDataClass {
      * Value for facet summary.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSummaryValue()  {
         return getAttributeAsString("summaryValue");
@@ -417,7 +447,7 @@ public class Facet extends RefDataClass {
     /**
      * User-visible title of this facet.  Shown on the facet label in the CubeGrid.
      *
-     * @param title title Default value is null
+     * @param title . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setTitle(String title) {
         setAttribute("title", title);
@@ -427,7 +457,7 @@ public class Facet extends RefDataClass {
      * User-visible title of this facet.  Shown on the facet label in the CubeGrid.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getTitle()  {
         return getAttributeAsString("title");

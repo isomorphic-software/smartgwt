@@ -236,7 +236,7 @@ public class DateUtil {
      * applied when formatting datetimes.
      * {@link #setAdjustForDST(boolean)} may be used to disable this adjustment.
      *
-     * @param offset offset from UTC. This should be a string in the format <code>+/-HH:MM</code> for example <code>"-08:00"</code>
+     * @param offset offset from UTC. This should be a string in the format <code>+/-HH:MM</code> for example <code>"-08:00"
      */
     public static native void setDefaultDisplayTimezone(String offset) /*-{
         $wnd.isc.Time.setDefaultDisplayTimezone(offset);
@@ -450,14 +450,14 @@ public class DateUtil {
      *  @param year
      *  @param month
      *  @param date
-     *  @return Date representing a logical date. 
+     *  @return LogicalDate representing a logical date. 
      */
-    public static native Date createLogicalDate(int year, int month, int date) /*-{
+    public static native LogicalDate createLogicalDate(int year, int month, int date) /*-{
         var jsDate = $wnd.Date.createLogicalDate(year, month, date);
         if (jsDate == null) return null;
-        return @com.smartgwt.client.util.JSOHelper::toDate(D)(jsDate.getTime());
+        return @com.smartgwt.client.util.LogicalDate::new(D)(jsDate.getTime());
     }-*/;
-    
+
     /**
      * Create a new Date object to represent a logical time value (rather than a specific datetime
      * value), typically for display in a +link{DataSourceField.type,time type field}. The generated
@@ -471,14 +471,13 @@ public class DateUtil {
      * @param minute (0-59)
      * @param second (0-59)
      * @param millisecond (0-999)
-     * @return new Date representing the time in question
+     * @return new LogicalTime representing the time in question
      */
-    public static native Date createLogicalTime(int hour, int minute, int second, int millisecond) /*-{
+    public static native LogicalTime createLogicalTime(int hour, int minute, int second, int millisecond) /*-{
         var jsDate = $wnd.Date.createLogicalTime(hour, minute, second, millisecond);
         if (jsDate == null) return null;
-        return @com.smartgwt.client.util.JSOHelper::toDate(D)(jsDate.getTime());
+        return @com.smartgwt.client.util.LogicalTime::new(D)(jsDate.getTime());
     }-*/;
-    
 
     // Wrappers for the standard Date format / parser functions applied to the Date class in SC.
     // Note that GWT has date parsing and formatting functions via Java util classes - just exposing these
@@ -765,13 +764,15 @@ public class DateUtil {
      * For further background on date, time and datetime types, storage and transmission, see
      * {@link com.smartgwt.client.docs.DateFormatAndStorage, this overview}.
      */
-    public static native Date getLogicalDateOnly (Date date) /*-{
-        var jsDate = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date);        
-        var jsLogicalDate = $wnd.Date.getLogicalDateOnly(jsDate);
-        if (jsLogicalDate == null) return null;
-        return @com.smartgwt.client.util.JSOHelper::toDate(D)(jsLogicalDate.getTime());
+    public static native LogicalDate getLogicalDateOnly(Date date) /*-{
+        var jsD = $wnd.isc.Date.getLogicalDateOnly(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date));
+        if (jsD == null || jsD === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.LogicalDate::new(D)(jsD.getTime());
+        }
     }-*/;
-    
+
     /**
      * Get a logical time - a value appropriate for a DataSourceField of type "time" - from a
      * datetime value (a value from a DataSourceField of type "datetime").
@@ -786,14 +787,15 @@ public class DateUtil {
      * For further background on date, time and datetime types, storage and transmission, see the
      * {@link com.smartgwt.client.docs.DateFormatAndStorage, this overview}.
      */
-    public static native Date getLogicalTimeOnly (Date date) /*-{
-        var jsDate = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date);
-        var jsLogicalTime = $wnd.Date.getLogicalTimeOnly(jsDate);
-        if (jsLogicalTime == null) return null;
-        return @com.smartgwt.client.util.JSOHelper::toDate(D)(jsLogicalTime.getTime());
-        
+    public static native LogicalTime getLogicalTimeOnly(Date date) /*-{
+        var jsD = $wnd.isc.Date.getLogicalTimeOnly(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date));
+        if (jsD == null || jsD === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.LogicalTime::new(D)(jsD.getTime());
+        }
     }-*/;
-    
+
     /**
      * Combine a logical date (a value appropriate for a DataSourceField of type "date") with a
      * logical time (a value appropriate for a DataSourceField of type "time") into a datetime
@@ -810,14 +812,13 @@ public class DateUtil {
      * @param time
      * @return
      */
-    public static native Date combineLogicalDateAndTime (Date date, Date time) /*-{
+    public static native Date combineLogicalDateAndTime(Date date, Date time) /*-{
         var jsDate = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date);
         var jsTime = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(time);
 
         var jsDatetime = $wnd.Date.combineLogicalDateAndTime(jsDate, jsTime);
         if (jsDatetime == null) return null;
         return @com.smartgwt.client.util.JSOHelper::toDate(D)(jsDatetime.getTime());
-        
     }-*/;
 
 

@@ -1,4 +1,4 @@
-
+	    
 package com.smartgwt.client.docs;
 
 /**
@@ -15,6 +15,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.docs.serverds.Mail#subject
  * @see com.smartgwt.client.docs.serverds.Mail#multiple
  * @see com.smartgwt.client.docs.serverds.Mail#messageData
+ * @see com.smartgwt.client.docs.serverds.Mail#contentType
+ * @see com.smartgwt.client.docs.serverds.Mail#encoding
  */
 public interface Mail {
 }

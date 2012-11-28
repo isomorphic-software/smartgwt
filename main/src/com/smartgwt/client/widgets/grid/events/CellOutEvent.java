@@ -45,16 +45,19 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class CellOutEvent extends GridRowColEvent<CellOutHandler>  implements Cancellable {
@@ -93,7 +96,6 @@ public class CellOutEvent extends GridRowColEvent<CellOutHandler>  implements Ca
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(CellOutHandler handler) {
         handler.onCellOut(this);
@@ -111,7 +113,6 @@ public class CellOutEvent extends GridRowColEvent<CellOutHandler>  implements Ca
     public CellOutEvent(JavaScriptObject jsObj) {
         super(jsObj);
     }
-
 
     /**
      * Calling this method cancels the event

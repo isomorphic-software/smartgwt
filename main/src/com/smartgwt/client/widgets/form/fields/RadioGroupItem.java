@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * FormItem that shows a set of mutually exclusive options as a group of radio buttons.
@@ -68,12 +88,18 @@ public class RadioGroupItem extends FormItem {
         return new RadioGroupItem(jsObj);
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public RadioGroupItem(){
         setAttribute("editorType", "RadioGroupItem");
     }
 
     public RadioGroupItem(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     public RadioGroupItem(String name) {
@@ -92,7 +118,7 @@ public class RadioGroupItem extends FormItem {
     /**
      * Base CSS class applied to the text for items within this radiogroup.
      *
-     * @param textBoxStyle textBoxStyle Default value is "labelAnchor"
+     * @param textBoxStyle . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}. Default value is "labelAnchor"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextBoxStyle(String textBoxStyle) {
@@ -103,7 +129,7 @@ public class RadioGroupItem extends FormItem {
      * Base CSS class applied to the text for items within this radiogroup.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTextBoxStyle()  {
@@ -188,7 +214,7 @@ public class RadioGroupItem extends FormItem {
             // pre-init, update the disabledValues object.
             var stringVal = value + "";
             if (self.disabledValues == null) {
-                self.disabledValues = new $wnd.Array();
+                self.disabledValues = $wnd.Array.create();
             }
             if (self.disabledValues.contains(stringVal)) {
                 if (!disabled) self.disabledValues.remove(stringVal);
@@ -198,6 +224,23 @@ public class RadioGroupItem extends FormItem {
         }
         
     }-*/;
+    
+   /**
+    * The FormItemHoverFormatter should return the HTML to display in a hover canvas when the 
+    * user holds the mousepointer over a particular value in this item.
+    * Return null to suppress the hover canvas altogether.
+    *
+    * @param hoverFormatter the hover formatter
+    */
+    public native void setValueHoverFormatter(FormItemHoverFormatter hoverFormatter) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.valueHoverHTML = $debox($entry(function(item, form) {
+            var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(form);
+            var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
+            return hoverFormatter.@com.smartgwt.client.widgets.form.FormItemHoverFormatter::getHoverHTML(Lcom/smartgwt/client/widgets/form/fields/FormItem;Lcom/smartgwt/client/widgets/form/DynamicForm;)(itemJ, formJ);
+        }));
+    }-*/;
+
 
 }
 

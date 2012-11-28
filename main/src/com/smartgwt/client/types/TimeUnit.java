@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,10 +17,9 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
- * An enum of time-units available for use with the {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem}
+ * An enum of time-units available for use with the {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem} and 
+ * {@link com.smartgwt.client.widgets.calendar.Calendar} widgets.
  */
 public enum TimeUnit implements ValueEnum {
     /**
@@ -56,7 +58,6 @@ public enum TimeUnit implements ValueEnum {
      * a year time-unit
      */
     YEAR("year");
-
     private String value;
 
     TimeUnit(String value) {
@@ -67,3 +68,4 @@ public enum TimeUnit implements ValueEnum {
         return this.value;
     }
 }
+        

@@ -1,0 +1,84 @@
+package com.smartgwt.logicalstructure.widgets;
+import com.smartgwt.client.core.*;
+import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.i18n.*;
+import com.smartgwt.client.event.*;
+import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
+import com.smartgwt.client.types.*;
+import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.fields.*;
+import com.smartgwt.client.widgets.*;
+import com.smartgwt.client.widgets.calendar.*;
+import com.smartgwt.client.widgets.chart.*;
+import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
+import com.smartgwt.client.widgets.form.*;
+import com.smartgwt.client.widgets.form.fields.*;
+import com.smartgwt.client.widgets.form.validator.*;
+import com.smartgwt.client.widgets.grid.*;
+import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.plugins.*;
+import com.smartgwt.client.widgets.tab.*;
+import com.smartgwt.client.widgets.tableview.*;
+import com.smartgwt.client.widgets.tile.*;
+import com.smartgwt.client.widgets.toolbar.*;
+import com.smartgwt.client.widgets.tree.*;
+import com.smartgwt.client.widgets.viewer.*;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+
+public class SliderLogicalStructure extends CanvasLogicalStructure {
+    public String animateThumb;
+    public String animateThumbInit;
+    public String animateThumbTime;
+    public String canFocus;
+    public String flipValues;
+    public String hThumbStyle;
+    public String hTrackStyle;
+    public String labelHeight;
+    public String labelSpacing;
+    public String labelWidth;
+    public String length;
+    public String maxValue;
+    public String maxValueLabel;
+    public String minValue;
+    public String minValueLabel;
+    public String numValues;
+    public String roundPrecision;
+    public String roundValues;
+    public String showRange;
+    public String showTitle;
+    public String showValue;
+    public String stepPercent;
+    public String thumbSrc;
+    public String thumbThickWidth;
+    public String thumbThinWidth;
+    public String title;
+    public String trackCapSize;
+    public String trackImageType;
+    public String trackSrc;
+    public String trackWidth;
+    public String value;
+    public String vertical;
+    public String vThumbStyle;
+    public String vTrackStyle;
+}
+
+
+
+

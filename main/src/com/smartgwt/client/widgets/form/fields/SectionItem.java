@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Header item for a collapsible section in a {@link com.smartgwt.client.widgets.form.DynamicForm}.  Each
@@ -69,8 +89,12 @@ import com.google.gwt.event.shared.HasHandlers;
 public class SectionItem extends CanvasItem {
 
     public static SectionItem getOrCreateRef(JavaScriptObject jsObj) {
+    
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+ 
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (SectionItem) obj;
@@ -79,12 +103,18 @@ public class SectionItem extends CanvasItem {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public SectionItem(){
         setAttribute("editorType", "SectionItem");
     }
 
     public SectionItem(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     public SectionItem(String name) {
@@ -175,7 +205,7 @@ public class SectionItem extends CanvasItem {
      * advanced developers can use the following information to create custom header classes.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param sectionHeaderClass sectionHeaderClass Default value is "SectionHeader"
+     * @param sectionHeaderClass . See {@link com.smartgwt.client.docs.Classname Classname}. Default value is "SectionHeader"
      */
     public void setSectionHeaderClass(String sectionHeaderClass) {
         setAttribute("sectionHeaderClass", sectionHeaderClass);
@@ -187,14 +217,14 @@ public class SectionItem extends CanvasItem {
      * advanced developers can use the following information to create custom header classes.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.Classname Classname}
      */
     public String getSectionHeaderClass()  {
         return getAttributeAsString("sectionHeaderClass");
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Collapse a sectionItem, and hide all the items within the section (not including the header).
      */
@@ -202,7 +232,7 @@ public class SectionItem extends CanvasItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.collapseSection();
     }-*/;
-            
+
     /**
      * Expands a section, showing all the items contained within the section.
      */
@@ -210,7 +240,7 @@ public class SectionItem extends CanvasItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.expandSection();
     }-*/;
-            
+
     /**
      * Returns a boolean indicating whether this SectionItem is expanded.
      *

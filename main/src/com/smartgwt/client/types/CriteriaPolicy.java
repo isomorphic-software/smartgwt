@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  */
 public enum CriteriaPolicy implements ValueEnum {
@@ -28,7 +29,6 @@ public enum CriteriaPolicy implements ValueEnum {
      * com.smartgwt.client.data.ResultSet#compareCriteria ResultSet.compareCriteria}.
      */
     DROPONSHORTENING("dropOnShortening");
-
     private String value;
 
     CriteriaPolicy(String value) {
@@ -39,3 +39,4 @@ public enum CriteriaPolicy implements ValueEnum {
         return this.value;
     }
 }
+        

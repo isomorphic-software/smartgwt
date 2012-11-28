@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A Button subclass that displays an icon, title and optional menuIcon and is capable of  horizontal and vertical
@@ -64,22 +84,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class IconButton extends Button {
 
-    public static IconButton getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (IconButton) obj;
-        } else {
-            return new IconButton(jsObj);
+    public native static IconButton getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("IconButton",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.IconButton::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public IconButton(){
         scClassName = "IconButton";
     }
 
     public IconButton(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "IconButton";
+        setJavaScriptObject(jsObj);
     }
 
     public IconButton(String title) {
@@ -97,9 +128,32 @@ public class IconButton extends Button {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * Horizontal alignment of this button's content.  If unset,  {@link com.smartgwt.client.widgets.IconButton#getOrientation
+     * vertical buttons} are center-aligned and horizontal buttons left-aligned by default.
+     *
+     * @param align align Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setAlign(Alignment align) {
+        setAttribute("align", align == null ? null : align.getValue(), true);
+    }
+
+    /**
+     * Horizontal alignment of this button's content.  If unset,  {@link com.smartgwt.client.widgets.IconButton#getOrientation
+     * vertical buttons} are center-aligned and horizontal buttons left-aligned by default.
+     *
+     *
+     * @return Alignment
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Alignment getAlign()  {
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
+    }
+
+    /**
      * Default CSS class.
      *
-     * @param baseStyle baseStyle Default value is "iconButton"
+     * @param baseStyle . See {@link com.smartgwt.client.docs.CSSClassName CSSClassName}. Default value is "iconButton"
      */
     public void setBaseStyle(String baseStyle) {
         setAttribute("baseStyle", baseStyle, true);
@@ -109,7 +163,7 @@ public class IconButton extends Button {
      * Default CSS class.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSClassName CSSClassName}
      */
     public String getBaseStyle()  {
         return getAttributeAsString("baseStyle");
@@ -121,7 +175,10 @@ public class IconButton extends Button {
      * com.smartgwt.client.widgets.IconButton#getLargeIconSize largeIconSize} unless a {@link
      * com.smartgwt.client.widgets.IconButton#getLargeIcon largeIcon} is specified.
      *
-     * @param icon icon Default value is null
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Sets a new Icon for this button after initialization.
+     *
+     * @param icon . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is null
      */
     public void setIcon(String icon) {
         setAttribute("icon", icon, true);
@@ -134,7 +191,7 @@ public class IconButton extends Button {
      * com.smartgwt.client.widgets.IconButton#getLargeIcon largeIcon} is specified.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getIcon()  {
         return getAttributeAsString("icon");
@@ -164,7 +221,10 @@ public class IconButton extends Button {
      * specified, the {@link com.smartgwt.client.widgets.IconButton#getIcon normal icon} will be stretched to  the {@link
      * com.smartgwt.client.widgets.IconButton#getLargeIconSize largeIconSize}.
      *
-     * @param largeIcon largeIcon Default value is null
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Sets a new Large-Icon for vertical buttons after initialization - synonymous with  {@link com.smartgwt.client.widgets.IconButton#setIcon setIcon} for normal horizontal buttons.
+     *
+     * @param largeIcon . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is null
      */
     public void setLargeIcon(String largeIcon) {
         setAttribute("largeIcon", largeIcon, true);
@@ -176,7 +236,7 @@ public class IconButton extends Button {
      * com.smartgwt.client.widgets.IconButton#getLargeIconSize largeIconSize}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getLargeIcon()  {
         return getAttributeAsString("largeIcon");
@@ -206,7 +266,7 @@ public class IconButton extends Button {
     /**
      * Image that shows a {@link com.smartgwt.client.widgets.menu.Menu menu} when clicked.
      *
-     * @param menuIconSrc menuIconSrc Default value is "[SKINIMG]/Menu/submenu_down.png"
+     * @param menuIconSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKINIMG]/Menu/submenu_down.png"
      */
     public void setMenuIconSrc(String menuIconSrc) {
         setAttribute("menuIconSrc", menuIconSrc, true);
@@ -216,7 +276,7 @@ public class IconButton extends Button {
      * Image that shows a {@link com.smartgwt.client.widgets.menu.Menu menu} when clicked.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getMenuIconSrc()  {
         return getAttributeAsString("menuIconSrc");
@@ -226,7 +286,7 @@ public class IconButton extends Button {
      * The orientation of this IconButton.  The default value, "horizontal", renders icon, title and potentially menuIcon from
      * left to right: "vertical" does the same from top to bottom.
      *
-     * @param orientation orientation Default value is "horizontal"
+     * @param orientation . See {@link com.smartgwt.client.docs.String String}. Default value is "horizontal"
      */
     public void setOrientation(String orientation) {
         setAttribute("orientation", orientation, true);
@@ -237,10 +297,69 @@ public class IconButton extends Button {
      * left to right: "vertical" does the same from top to bottom.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getOrientation()  {
         return getAttributeAsString("orientation");
+    }
+
+    /**
+     * When used in a {@link com.smartgwt.client.widgets.toolbar.RibbonBar}, the number of rows this button should consume.
+     *
+     * @param rowSpan rowSpan Default value is 1
+     */
+    public void setRowSpan(int rowSpan) {
+        setAttribute("rowSpan", rowSpan, true);
+    }
+
+    /**
+     * When used in a {@link com.smartgwt.client.widgets.toolbar.RibbonBar}, the number of rows this button should consume.
+     *
+     *
+     * @return int
+     */
+    public int getRowSpan()  {
+        return getAttributeAsInt("rowSpan");
+    }
+
+    /**
+     * Whether to show the title-text for this IconButton.  If set to false, title-text is omitted altogether and just the icon
+     * is displayed.
+     *
+     * @param showButtonTitle showButtonTitle Default value is true
+     */
+    public void setShowButtonTitle(Boolean showButtonTitle) {
+        setAttribute("showButtonTitle", showButtonTitle, true);
+    }
+
+    /**
+     * Whether to show the title-text for this IconButton.  If set to false, title-text is omitted altogether and just the icon
+     * is displayed.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowButtonTitle()  {
+        return getAttributeAsBoolean("showButtonTitle");
+    }
+
+    /**
+     * Whether to show an Icon in this IconButton.  Set to false to render a text-only button.
+     *
+     * @param showIcon showIcon Default value is null
+     */
+    public void setShowIcon(Boolean showIcon) {
+        setAttribute("showIcon", showIcon, true);
+    }
+
+    /**
+     * Whether to show an Icon in this IconButton.  Set to false to render a text-only button.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowIcon()  {
+        return getAttributeAsBoolean("showIcon");
     }
 
     /**
@@ -283,14 +402,66 @@ public class IconButton extends Button {
         return getAttributeAsBoolean("showMenuIconOver");
     }
 
-    // ********************* Methods ***********************
-            
     /**
-     * Notification method fired when a user clicks on the menuIcon on this IconButton.
+     * showTitle is not applicable to this class - use {@link com.smartgwt.client.widgets.IconButton#getShowButtonTitle
+     * showButtonTitle} instead.
+     *
+     * @param showTitle showTitle Default value is null
      */
-    public native void menuIconClick() /*-{
+    public void setShowTitle(Boolean showTitle) {
+        setAttribute("showTitle", showTitle, true);
+    }
+
+    /**
+     * showTitle is not applicable to this class - use {@link com.smartgwt.client.widgets.IconButton#getShowButtonTitle
+     * showButtonTitle} instead.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowTitle()  {
+        return getAttributeAsBoolean("showTitle");
+    }
+
+    /**
+     * Vertical alignment of this button's content.  If unset,  {@link com.smartgwt.client.widgets.IconButton#getOrientation
+     * vertical buttons} are top-aligned and horizontal buttons center-aligned by default.
+     *
+     * @param valign valign Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setValign(VerticalAlignment valign) {
+        setAttribute("valign", valign == null ? null : valign.getValue(), true);
+    }
+
+    /**
+     * Vertical alignment of this button's content.  If unset,  {@link com.smartgwt.client.widgets.IconButton#getOrientation
+     * vertical buttons} are top-aligned and horizontal buttons center-aligned by default.
+     *
+     *
+     * @return VerticalAlignment
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public VerticalAlignment getValign()  {
+        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("valign"));
+    }
+
+    // ********************* Methods ***********************
+
+    /**
+     * Notification method fired when a user clicks on the menuIcon on this IconButton.  Return  false to suppress the standard
+     * click handling code.
+     *
+     * @return return false to cancel event-bubbling
+     */
+    public native Boolean menuIconClick() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.menuIconClick();
+        var retVal =self.menuIconClick();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
     }-*/;
 
     // ********************* Static Methods ***********************
@@ -315,7 +486,90 @@ public class IconButton extends Button {
         
     // ***********************************************************        
 
+    public LogicalStructureObject setLogicalStructure(IconButtonLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.align = getAttributeAsString("align");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "IconButton.align:" + t.getMessage() + "\n";
+        }
+        try {
+            s.baseStyle = getAttributeAsString("baseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "IconButton.baseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.icon = getAttributeAsString("icon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "IconButton.icon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconSize = getAttributeAsString("iconSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "IconButton.iconSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.largeIcon = getAttributeAsString("largeIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "IconButton.largeIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.largeIconSize = getAttributeAsString("largeIconSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "IconButton.largeIconSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.menuIconSrc = getAttributeAsString("menuIconSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "IconButton.menuIconSrc:" + t.getMessage() + "\n";
+        }
+        try {
+            s.orientation = getAttributeAsString("orientation");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "IconButton.orientation:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rowSpan = getAttributeAsString("rowSpan");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "IconButton.rowSpan:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showButtonTitle = getAttributeAsString("showButtonTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "IconButton.showButtonTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showIcon = getAttributeAsString("showIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "IconButton.showIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showMenuIcon = getAttributeAsString("showMenuIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "IconButton.showMenuIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showMenuIconOver = getAttributeAsString("showMenuIconOver");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "IconButton.showMenuIconOver:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showTitle = getAttributeAsString("showTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "IconButton.showTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.valign = getAttributeAsString("valign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "IconButton.valign:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        IconButtonLogicalStructure s = new IconButtonLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

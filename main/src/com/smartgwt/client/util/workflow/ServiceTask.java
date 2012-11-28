@@ -45,15 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A ServiceTask is an element of a {@link com.smartgwt.client.util.workflow.Process} which calls a DataSource operation, 
@@ -68,7 +91,13 @@ import com.google.gwt.event.shared.HasHandlers;
  * portions of the input data and use it as part of the criteria or values. <P> As a special case, if the
  * <code>inputField</code> is an atomic value (just a String or Number rather than a Record) and operationType is "fetch",
  * it will be assumed to be value for the primary key field of the target DataSource if {@link
- * com.smartgwt.client.util.workflow.ServiceTask#getCriteria criteria} is not explicitly specified
+ * com.smartgwt.client.util.workflow.ServiceTask#getCriteria criteria} is not explicitly specified <P> OutputData and
+ * outputFieldList work as filters. You should determine which properties should be fetched into the process state. If you
+ * want to load all data without defining every property manually you can pass a name started with '$' and fetched record
+ * or records will be  placed as a record or an array of records by the name without this specific symbol. <P> For example
+ * if you specify 'id' and 'name' in outputFieldList, only these properties will be fetched in the process state. If you
+ * pass '$record' in outputField a whole record will be  stored in process state under the 'record' key. Also you can use
+ * javascript syntax there. For example '$record.item[0]'.
  */
 public class ServiceTask extends Task {
 
@@ -82,17 +111,18 @@ public class ServiceTask extends Task {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
+    }
+
+
     public ServiceTask(){
         scClassName = "ServiceTask";
     }
 
     public ServiceTask(JavaScriptObject jsObj){
-        super(jsObj);
-    }
-
-    public ServiceTask(String ID) {
-        setID(ID);
         scClassName = "ServiceTask";
+        setJavaScriptObject(jsObj);
     }
 
     public native JavaScriptObject create()/*-{
@@ -201,7 +231,7 @@ public class ServiceTask extends Task {
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setOperationType(DSOperationType operationType)  throws IllegalStateException {
-        setAttribute("operationType", operationType.getValue(), false);
+        setAttribute("operationType", operationType == null ? null : operationType.getValue(), false);
     }
 
     /**

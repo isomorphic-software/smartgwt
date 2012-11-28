@@ -45,40 +45,71 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * SectionHeader class based on an HLayout with {@link com.smartgwt.client.widgets.StretchImg} background.
  */
 public class ImgSectionHeader extends HLayout {
 
-    public static ImgSectionHeader getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (ImgSectionHeader) obj;
-        } else {
-            return new ImgSectionHeader(jsObj);
+    public native static ImgSectionHeader getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("ImgSectionHeader",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.layout.ImgSectionHeader::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public ImgSectionHeader(){
         scClassName = "ImgSectionHeader";
     }
 
     public ImgSectionHeader(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "ImgSectionHeader";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -91,7 +122,7 @@ public class ImgSectionHeader extends HLayout {
     // ********************* Properties / Attributes ***********************
 
     // ********************* Methods ***********************
-            
+
     /**
      * For a SectionHeader embedded in a SectionStack, this method will return  a pointer to the {@link
      * com.smartgwt.client.widgets.layout.SectionStack} in which this section header is embedded.
@@ -154,7 +185,15 @@ public class ImgSectionHeader extends HLayout {
 	    return @com.smartgwt.client.widgets.layout.SectionStackSection::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(section);
     }-*/;
 
+    public LogicalStructureObject setLogicalStructure(ImgSectionHeaderLogicalStructure s) {
+        super.setLogicalStructure(s);
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        ImgSectionHeaderLogicalStructure s = new ImgSectionHeaderLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

@@ -36,16 +36,5 @@ include them yourself in your host html file as follows :
 
   	<source path='client'/>
   	<source path='logicalstructure'/>
-
-	<generate-with class="com.smartgwt.rebind.MetaBeanFactoryGenerator">
-        <when-type-assignable class="com.smartgwt.client.bean.BeanFactory.MetaFactory" />
-    </generate-with>
-
-	<generate-with class="com.smartgwt.rebind.BeanValueTypeFactoryGenerator">
-        <when-type-assignable class="com.smartgwt.client.bean.BeanValueType.MetaFactory" />
-    </generate-with>
-
-	<generate-with class="com.smartgwt.rebind.CanvasMetaBeanFactoryGenerator">
-        <when-type-assignable class="com.smartgwt.client.bean.BeanFactory.CanvasMetaFactory" />
-    </generate-with>
+  	
 </module>

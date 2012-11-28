@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * The RestDataSource implements the 4 core DataSource operations using a simple protocol of
@@ -113,6 +133,22 @@ import com.google.gwt.event.shared.HasHandlers;
  *  servlet that is part of Smart GWT Server.  However, as noted above, this approach is not 
  *  recommended; if you are using Isomorphic technology both client- and server-side, it makes
  *  more sense to use the proprietary wire format.
+ *  <P>
+ *  <b>RestDataSource and binary data</b>
+ *  <P>
+ *  Binary data in a response provided to a RestDataSource must be delivered as valid XML or
+ *  JSON Strings.  Once delivered to the browser as Strings, there is no way to trigger the
+ *  browser's "Save As" dialog to download the data, and in most cases no way to trigger other
+ *  helper applications that might be launched to handle binary data (such as Excel or a PDF
+ *  viewer).  Hence for binary it usually makes sense to make a direct request via
+ *  RPCManager.sendRequest() with downloadResult:true, separate from RestDataSource.
+ *  <P>
+ *  If you are using the Smart GWT Server included in Pro, Power end Enterprise to handle your
+ *  REST requests server-side, there is transparent support for conversion between Java 
+ *  <code>InputStream</code>s representing binary data, and Strings containing that binary 
+ *  data encoded using the <a href=http://en.wikipedia.org/wiki/Base64>Base64 algorithm</a>.
+ *  Thus, on the server, the binary data is in its raw binary form, with transparent conversion
+ *  to or from Base64 for messages to or from the REST client.
  *  <P>
  *  <span style="font-weight:bold;font-size:16px;">Examples</span>
  *  <p>
@@ -196,7 +232,7 @@ import com.google.gwt.event.shared.HasHandlers;
  *  <b>JSON formatted responses:</b>
  *  <P>
  *  JSON format responses are expected to contain the same data / meta-data as XMLresponses,
- *  encapsulated a simple object with a <code>"response"</code> attribute.<br>
+ *  encapsulated in a simple object with a <code>"response"</code> attribute.<br>
  *  The response to a "fetch" request would therefore have this format:<br>
  *  <pre>
  *  {    
@@ -380,8 +416,8 @@ import com.google.gwt.event.shared.HasHandlers;
  *  <code>&nbsp;&nbsp;&lt;dateTimeField&gt;2007-04-22T11:07:13&lt;/dateTimeField&gt;</code>
  *  <P>
  *  And the equivalent in JSON:<br>
- *  <code>&nbsp;&nbsp;dateField: "2007-04-22"<br>
- *  <code>&nbsp;&nbsp;timeField: "11:07:13"<br>
+ *  <code>&nbsp;&nbsp;dateField: "2007-04-22"</code><br>
+ *  <code>&nbsp;&nbsp;timeField: "11:07:13"</code><br>
  *  <code>&nbsp;&nbsp;dateTimeField: "2007-04-22T11:07:13"</code>
  *  <P>
  *  Both RestDataSource on the client-side and the RESTHandler servlet on the server side 
@@ -401,7 +437,8 @@ import com.google.gwt.event.shared.HasHandlers;
  *  network traffic and allowing the server to treat multiple requests as a single transaction,
  *  if the server is able to do so (in Power Edition and above, the Smart GWT Server
  *  transparently supports grouping multiple REST requests in a queue into a single database
- *  transaction when using one of the built-in DataSource types).
+ *  transaction when using one of the built-in DataSource types).  Note that you can disable 
+ *  queuing support with the {@link com.smartgwt.client.data.RestDataSource#getDisableQueuing disableQueuing} flag.
  *  <P>
  *  If you want to use queuing with RestDataSource, you must use the "postMessage" dataProtocol
  *  with either XML or JSON dataFormat.  Message format is similar to the non-queued examples 
@@ -464,11 +501,11 @@ import com.google.gwt.event.shared.HasHandlers;
  *  the same order as the original requests.  Again, the message format is very similar to the 
  *  unqueued REST format, it just has an outer container construct.  Note also that the 
  *  individual DSResponses in a queued response have an extra property, 
- *  <code>queueStatus</code>.  This allows each individual response to determine whether the 
- *  queue as a whole succeeded.  For example, if the first update succeeded but the second 
- *  failed validation, the first response would have a <code>status</code> of 0, but a 
- *  <code>queueStatus</code> of -1, while the second response would have both properties set
- *  to -1.
+ *  {@link com.smartgwt.client.data.DSResponse#getQueueStatus <code>queueStatus</code>}.  This allows each individual
+ *  response to determine whether the queue as a whole succeeded.  For example, if the first
+ *  update succeeded but the second failed validation, the first response would have a
+ *  <code>status</code> of 0, but a <code>queueStatus</code> of -1, while the second response
+ *  would have both properties set to -1.
  *  <P>
  *  The update queue example given above would expect a response like this (in XML):
  *  <pre>
@@ -557,7 +594,7 @@ import com.google.gwt.event.shared.HasHandlers;
  *  <P>
  * Tree data is typically displayed using a dataBound {@link com.smartgwt.client.widgets.tree.TreeGrid} component.
  * TreeGrids
- *  automatically create a ResultTree data object, which requests data directly
+ *  automatically create a {@link com.smartgwt.client.widgets.tree.ResultTree} data object, which requests data directly
  *  from the DataSource.  ResultTrees load data on demand, only requesting currently visible 
  *  (open) nodes from the server. This is handled by including a specified value for the parent 
  *  id field in the request criteria.<br>
@@ -608,12 +645,18 @@ public class RestDataSource extends DataSource {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
+    }
+
+
     public RestDataSource(){
         scClassName = "RestDataSource";
     }
 
     public RestDataSource(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "RestDataSource";
+        setJavaScriptObject(jsObj);
     }
 
     public native JavaScriptObject create()/*-{
@@ -626,7 +669,7 @@ public class RestDataSource extends DataSource {
     /**
      * Custom dataURL for add type operations
      *
-     * @param addDataURL addDataURL Default value is null
+     * @param addDataURL . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setAddDataURL(String addDataURL)  throws IllegalStateException {
@@ -637,10 +680,32 @@ public class RestDataSource extends DataSource {
      * Custom dataURL for add type operations
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getAddDataURL()  {
         return getAttributeAsString("addDataURL");
+    }
+
+    /**
+     * Expected format for server responses. RestDataSources handle <code>"json"</code> and <code>"xml"</code> format responses
+     * by default. See class overview documentation for  examples of responses in each format.
+     *
+     * @param dataFormat dataFormat Default value is "xml"
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setDataFormat(DSDataFormat dataFormat)  throws IllegalStateException {
+        setAttribute("dataFormat", dataFormat == null ? null : dataFormat.getValue(), false);
+    }
+
+    /**
+     * Expected format for server responses. RestDataSources handle <code>"json"</code> and <code>"xml"</code> format responses
+     * by default. See class overview documentation for  examples of responses in each format.
+     *
+     *
+     * @return DSDataFormat
+     */
+    public DSDataFormat getDataFormat()  {
+        return EnumUtil.getEnum(DSDataFormat.values(), getAttribute("dataFormat"));
     }
 
     /**
@@ -650,7 +715,7 @@ public class RestDataSource extends DataSource {
      * com.smartgwt.client.data.RestDataSource#getUpdateDataURL updateDataURL}</li> <li>{@link
      * com.smartgwt.client.data.RestDataSource#getRemoveDataURL removeDataURL}</li> </ul>
      *
-     * @param dataURL dataURL Default value is null
+     * @param dataURL . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setDataURL(String dataURL)  throws IllegalStateException {
@@ -665,16 +730,35 @@ public class RestDataSource extends DataSource {
      * com.smartgwt.client.data.RestDataSource#getRemoveDataURL removeDataURL}</li> </ul>
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getDataURL()  {
         return getAttributeAsString("dataURL");
     }
 
     /**
+     * If set, disables {@link com.smartgwt.client.rpc.RPCManager#startQueue request queuing} for this RestDataSource.
+     *
+     * @param disableQueuing disableQueuing Default value is false
+     */
+    public void setDisableQueuing(Boolean disableQueuing) {
+        setAttribute("disableQueuing", disableQueuing, true);
+    }
+
+    /**
+     * If set, disables {@link com.smartgwt.client.rpc.RPCManager#startQueue request queuing} for this RestDataSource.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getDisableQueuing()  {
+        return getAttributeAsBoolean("disableQueuing");
+    }
+
+    /**
      * Custom dataURL for fetch type operations
      *
-     * @param fetchDataURL fetchDataURL Default value is null
+     * @param fetchDataURL . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setFetchDataURL(String fetchDataURL)  throws IllegalStateException {
@@ -685,10 +769,47 @@ public class RestDataSource extends DataSource {
      * Custom dataURL for fetch type operations
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getFetchDataURL()  {
         return getAttributeAsString("fetchDataURL");
+    }
+
+    /**
+     * Allows you to specify an arbitrary prefix string to apply to all json format responses  sent from the server to this
+     * application.  The client will expect to find this prefix  on any JSON response received for this DataSource, and will
+     * strip it off before evaluating the response text. <p> The default prefix is
+     * "&lt;SCRIPT&gt;//'\"]]>>isc_JSONResponseStart>>". <p> The inclusion of such a prefix ensures your code is not directly
+     * executable outside of  your application, as a preventative measure against  <a
+     * href=http://www.google.com/search?q=javascript+hijacking>javascript hijacking</a>. <p> You can switch off JSON wrapping
+     * altogether by setting both this and {@link com.smartgwt.client.data.RestDataSource#getJsonSuffix jsonSuffix} to empty
+     * strings.   <p> If you are using Smart GWT Server's RESTHandler servlet, see the server-side Javadocs for details of how
+     * to change the way JSON wrapping works on the server side.
+     *
+     * @param jsonPrefix . See {@link com.smartgwt.client.docs.String String}. Default value is See below
+     * @see com.smartgwt.client.data.RestDataSource#setJsonSuffix
+     */
+    public void setJsonPrefix(String jsonPrefix) {
+        setAttribute("jsonPrefix", jsonPrefix, true);
+    }
+
+    /**
+     * Allows you to specify an arbitrary prefix string to apply to all json format responses  sent from the server to this
+     * application.  The client will expect to find this prefix  on any JSON response received for this DataSource, and will
+     * strip it off before evaluating the response text. <p> The default prefix is
+     * "&lt;SCRIPT&gt;//'\"]]>>isc_JSONResponseStart>>". <p> The inclusion of such a prefix ensures your code is not directly
+     * executable outside of  your application, as a preventative measure against  <a
+     * href=http://www.google.com/search?q=javascript+hijacking>javascript hijacking</a>. <p> You can switch off JSON wrapping
+     * altogether by setting both this and {@link com.smartgwt.client.data.RestDataSource#getJsonSuffix jsonSuffix} to empty
+     * strings.   <p> If you are using Smart GWT Server's RESTHandler servlet, see the server-side Javadocs for details of how
+     * to change the way JSON wrapping works on the server side.
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     * @see com.smartgwt.client.data.RestDataSource#getJsonSuffix
+     */
+    public String getJsonPrefix()  {
+        return getAttributeAsString("jsonPrefix");
     }
 
     /**
@@ -705,7 +826,7 @@ public class RestDataSource extends DataSource {
      *  }
      *  </pre>
      *
-     * @param jsonRecordXPath jsonRecordXPath Default value is "/response/data"
+     * @param jsonRecordXPath . See {@link com.smartgwt.client.docs.String String}. Default value is "/response/data"
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setJsonRecordXPath(String jsonRecordXPath)  throws IllegalStateException {
@@ -727,10 +848,35 @@ public class RestDataSource extends DataSource {
      *  </pre>
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getJsonRecordXPath()  {
         return getAttributeAsString("jsonRecordXPath");
+    }
+
+    /**
+     * Allows you to specify an arbitrary suffix string to apply to all json format responses  sent from the server to this
+     * application.  The client will expect to find this suffix  on any JSON response received for this DataSource, and will
+     * strip it off before evaluating the response text. <p> The default suffix is "//isc_JSONResponseEnd".
+     *
+     * @param jsonSuffix . See {@link com.smartgwt.client.docs.String String}. Default value is See below
+     * @see com.smartgwt.client.data.RestDataSource#setJsonPrefix
+     */
+    public void setJsonSuffix(String jsonSuffix) {
+        setAttribute("jsonSuffix", jsonSuffix, true);
+    }
+
+    /**
+     * Allows you to specify an arbitrary suffix string to apply to all json format responses  sent from the server to this
+     * application.  The client will expect to find this suffix  on any JSON response received for this DataSource, and will
+     * strip it off before evaluating the response text. <p> The default suffix is "//isc_JSONResponseEnd".
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     * @see com.smartgwt.client.data.RestDataSource#getJsonPrefix
+     */
+    public String getJsonSuffix()  {
+        return getAttributeAsString("jsonSuffix");
     }
 
     /**
@@ -738,7 +884,7 @@ public class RestDataSource extends DataSource {
      * specify the prefix to apply to 'meta data' properties when assembling parameters to send to the  server.  Applies to
      * operations where OperationBinding.dataProtocol is set to  <code>"getParams"</code> or <code>"postParams"</code> only.
      *
-     * @param metaDataPrefix metaDataPrefix Default value is "_"
+     * @param metaDataPrefix . See {@link com.smartgwt.client.docs.String String}. Default value is "_"
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setMetaDataPrefix(String metaDataPrefix)  throws IllegalStateException {
@@ -751,7 +897,7 @@ public class RestDataSource extends DataSource {
      * operations where OperationBinding.dataProtocol is set to  <code>"getParams"</code> or <code>"postParams"</code> only.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMetaDataPrefix()  {
         return getAttributeAsString("metaDataPrefix");
@@ -789,7 +935,7 @@ public class RestDataSource extends DataSource {
      * the {@link com.smartgwt.client.data.RestDataSource#getDataFormat dataFormat} setting. <P> Note that you can also apply
      * record xpath binding via {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}.
      *
-     * @param recordXPath recordXPath Default value is null
+     * @param recordXPath . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setRecordXPath(String recordXPath) {
         setAttribute("recordXPath", recordXPath, true);
@@ -802,7 +948,7 @@ public class RestDataSource extends DataSource {
      * record xpath binding via {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getRecordXPath()  {
         return getAttributeAsString("recordXPath");
@@ -811,7 +957,7 @@ public class RestDataSource extends DataSource {
     /**
      * Custom dataURL for remove type operations
      *
-     * @param removeDataURL removeDataURL Default value is null
+     * @param removeDataURL . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setRemoveDataURL(String removeDataURL)  throws IllegalStateException {
@@ -822,7 +968,7 @@ public class RestDataSource extends DataSource {
      * Custom dataURL for remove type operations
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getRemoveDataURL()  {
         return getAttributeAsString("removeDataURL");
@@ -855,7 +1001,7 @@ public class RestDataSource extends DataSource {
     /**
      * Custom dataURL for update type operations
      *
-     * @param updateDataURL updateDataURL Default value is null
+     * @param updateDataURL . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setUpdateDataURL(String updateDataURL)  throws IllegalStateException {
@@ -866,10 +1012,42 @@ public class RestDataSource extends DataSource {
      * Custom dataURL for update type operations
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getUpdateDataURL()  {
         return getAttributeAsString("updateDataURL");
+    }
+
+    /**
+     * When {@link com.smartgwt.client.data.RestDataSource#getDataFormat dataFormat} is "xml", <code>xmlNamespaces</code>
+     * configures the set of namespace prefixes that are added to the document element of the XML message sent to the server. 
+     * Format is the same as {@link com.smartgwt.client.data.DataSource#getXmlNamespaces xmlNamespaces}. <P> By default, the
+     * "xsi" prefix is bound to "http://www.w3.org/2001/XMLSchema-instance" in order to allow explicit null values in Records
+     * to be sent for {@link com.smartgwt.client.data.DataSourceField#getNillable fields declared nillable}.  Set to null to
+     * avoid any prefixes being added.
+     *
+     * @param xmlNamespaces xmlNamespaces Default value is See below
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.data.DataSourceField#setNillable
+     */
+    public void setXmlNamespaces(XmlNamespaces xmlNamespaces)  throws IllegalStateException {
+        setAttribute("xmlNamespaces", xmlNamespaces.getJsObj(), false);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.data.RestDataSource#getDataFormat dataFormat} is "xml", <code>xmlNamespaces</code>
+     * configures the set of namespace prefixes that are added to the document element of the XML message sent to the server. 
+     * Format is the same as {@link com.smartgwt.client.data.DataSource#getXmlNamespaces xmlNamespaces}. <P> By default, the
+     * "xsi" prefix is bound to "http://www.w3.org/2001/XMLSchema-instance" in order to allow explicit null values in Records
+     * to be sent for {@link com.smartgwt.client.data.DataSourceField#getNillable fields declared nillable}.  Set to null to
+     * avoid any prefixes being added.
+     *
+     *
+     * @return XmlNamespaces
+     * @see com.smartgwt.client.data.DataSourceField#getNillable
+     */
+    public XmlNamespaces getXmlNamespaces()  {
+        return new XmlNamespaces(getAttributeAsJavaScriptObject("xmlNamespaces"));
     }
 
     /**
@@ -892,7 +1070,7 @@ public class RestDataSource extends DataSource {
      *  &lt;/response&gt;
      *  </pre>
      *
-     * @param xmlRecordXPath xmlRecordXPath Default value is "/response/data/*"
+     * @param xmlRecordXPath . See {@link com.smartgwt.client.docs.String String}. Default value is "/response/data/*"
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setXmlRecordXPath(String xmlRecordXPath)  throws IllegalStateException {
@@ -920,7 +1098,7 @@ public class RestDataSource extends DataSource {
      *  </pre>
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getXmlRecordXPath()  {
         return getAttributeAsString("xmlRecordXPath");

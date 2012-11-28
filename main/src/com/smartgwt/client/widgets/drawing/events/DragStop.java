@@ -51,11 +51,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class DragStop extends AbstractSmartEvent<DragStopHandler>  {
@@ -93,7 +95,6 @@ public class DragStop extends AbstractSmartEvent<DragStopHandler>  {
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(DragStopHandler handler) {
         handler.onDragStop(this);
@@ -111,7 +112,6 @@ public class DragStop extends AbstractSmartEvent<DragStopHandler>  {
     public DragStop(JavaScriptObject jsObj) {
         super(jsObj);
     }
-
 
 
     /**

@@ -45,40 +45,71 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Simple SectionHeader class based on a Label with an icon, skinnable via CSS.
  */
 public class SectionHeader extends Label {
 
-    public static SectionHeader getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (SectionHeader) obj;
-        } else {
-            return new SectionHeader(jsObj);
+    public native static SectionHeader getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("SectionHeader",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.layout.SectionHeader::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public SectionHeader(){
         scClassName = "SectionHeader";
     }
 
     public SectionHeader(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "SectionHeader";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -94,7 +125,7 @@ public class SectionHeader extends Label {
      * CSS class for the section header.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param baseStyle baseStyle Default value is "sectionHeader"
+     * @param baseStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "sectionHeader"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setBaseStyle(String baseStyle)  throws IllegalStateException {
@@ -105,7 +136,7 @@ public class SectionHeader extends Label {
      * CSS class for the section header.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getBaseStyle()  {
         return getAttributeAsString("baseStyle");
@@ -117,7 +148,7 @@ public class SectionHeader extends Label {
      * {@link com.smartgwt.client.widgets.layout.SectionStackSection#getCanCollapse canCollapse} is false.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param icon icon Default value is "[SKIN]SectionHeader/opener.gif"
+     * @param icon . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]SectionHeader/opener.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setIcon(String icon)  throws IllegalStateException {
@@ -130,14 +161,14 @@ public class SectionHeader extends Label {
      * {@link com.smartgwt.client.widgets.layout.SectionStackSection#getCanCollapse canCollapse} is false.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getIcon()  {
         return getAttributeAsString("icon");
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * For a SectionHeader embedded in a SectionStack, this method will return  a pointer to the {@link
      * com.smartgwt.client.widgets.layout.SectionStack} in which this section header is embedded.
@@ -201,9 +232,25 @@ public class SectionHeader extends Label {
         return @com.smartgwt.client.widgets.layout.SectionStackSection::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(section);
     }-*/;
 
+    public LogicalStructureObject setLogicalStructure(SectionHeaderLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.baseStyle = getAttributeAsString("baseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionHeader.baseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.icon = getAttributeAsString("icon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionHeader.icon:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        SectionHeaderLogicalStructure s = new SectionHeaderLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-
-
 

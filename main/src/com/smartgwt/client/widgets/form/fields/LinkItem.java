@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A FormItem that displays an HTML URL. In read-only mode (canEdit:false) the URL is shown as a link; in editable mode the
@@ -70,8 +90,12 @@ import com.google.gwt.event.shared.HasHandlers;
 public class LinkItem extends StaticTextItem {
 
     public static LinkItem getOrCreateRef(JavaScriptObject jsObj) {
+    
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+ 
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (LinkItem) obj;
@@ -80,12 +104,18 @@ public class LinkItem extends StaticTextItem {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public LinkItem(){
         setAttribute("editorType", "LinkItem");
     }
 
     public LinkItem(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     public LinkItem(String name) {
@@ -96,13 +126,38 @@ public class LinkItem extends StaticTextItem {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit canEdit} is set to false, should {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getIcons icons} be disabled by default? <P> This may also be specified
+     * at the icon level. See {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getDisableOnReadOnly
+     * disableOnReadOnly}.
+     *
+     * @param disableIconsOnReadOnly disableIconsOnReadOnly Default value is false
+     */
+    public void setDisableIconsOnReadOnly(Boolean disableIconsOnReadOnly) {
+        setAttribute("disableIconsOnReadOnly", disableIconsOnReadOnly);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit canEdit} is set to false, should {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getIcons icons} be disabled by default? <P> This may also be specified
+     * at the icon level. See {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getDisableOnReadOnly
+     * disableOnReadOnly}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getDisableIconsOnReadOnly()  {
+        return getAttributeAsBoolean("disableIconsOnReadOnly");
+    }
+
+    /**
      * Optional title text to display for this item's link. If unspecified the value of the item will be the title text as well
      * as the target of the link.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Method to set the linkTitle for this item
      *
-     * @param linkTitle new linkTitle for this item. Default value is null
+     * @param linkTitle new linkTitle for this item. See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setLinkTitle(String linkTitle) {
         setAttribute("linkTitle", linkTitle);
@@ -113,7 +168,7 @@ public class LinkItem extends StaticTextItem {
      * as the target of the link.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getLinkTitle()  {
         return getAttributeAsString("linkTitle");
@@ -126,7 +181,7 @@ public class LinkItem extends StaticTextItem {
      * catch and consume mouse-clicks that would result in the link being followed.  Instead, the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#addClickHandler FormItem.click} event is fired.
      *
-     * @param target target Default value is "_blank"
+     * @param target . See {@link com.smartgwt.client.docs.String String}. Default value is "_blank"
      */
     public void setTarget(String target) {
         setAttribute("target", target);
@@ -140,7 +195,7 @@ public class LinkItem extends StaticTextItem {
      * com.smartgwt.client.widgets.form.fields.FormItem#addClickHandler FormItem.click} event is fired.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getTarget()  {
         return getAttributeAsString("target");

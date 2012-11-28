@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Container for DrawLine, DrawOval, DrawPath, and other DrawItem-based components. These components provide consistent
@@ -73,22 +93,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class DrawPane extends Canvas {
 
-    public static DrawPane getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (DrawPane) obj;
-        } else {
-            return new DrawPane(jsObj);
+    public native static DrawPane getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("DrawPane",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.drawing.DrawPane::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public DrawPane(){
         scClassName = "DrawPane";
     }
 
     public DrawPane(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "DrawPane";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -99,6 +130,27 @@ public class DrawPane extends Canvas {
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * In order to enable dragging of drawItems, this property must be set to true, in addition to {@link
+     * com.smartgwt.client.widgets.drawing.DrawItem#getCanDrag canDrag}.
+     *
+     * @param canDrag canDrag Default value is false
+     */
+    public void setCanDrag(Boolean canDrag) {
+        setAttribute("canDrag", canDrag, true);
+    }
+
+    /**
+     * In order to enable dragging of drawItems, this property must be set to true, in addition to {@link
+     * com.smartgwt.client.widgets.drawing.DrawItem#getCanDrag canDrag}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanDrag()  {
+        return getAttributeAsBoolean("canDrag");
+    }
 
     /**
      * Array of DrawItems to initially display in this DrawPane.
@@ -159,7 +211,7 @@ public class DrawPane extends Canvas {
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Add a drawItem to this drawPane (if necessary removing it from any other drawPanes)
      * @param item drawItem to add
@@ -169,40 +221,46 @@ public class DrawPane extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addDrawItem(item.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()(), autoDraw);
     }-*/;
-            
+
     /**
      * Creates a linear gradient which can be used within any DrawItem  Any DrawItems fillGradient can reference this gradient
      * by the given name.
      * @param id the name of the linear gradient
      * @param linearGradient the linear gradient
+     *
+     * @return id
      */
-    public native void createLinearGradient(String id, LinearGradient linearGradient) /*-{
+    public native String createLinearGradient(String id, LinearGradient linearGradient) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.createLinearGradient(id, linearGradient.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return self.createLinearGradient(id, linearGradient.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-            
+
     /**
      * Creates a radial gradient which can be used within any DrawItem  Any DrawItems fillGradient can reference this gradient
      * by the given name.
      * @param id the name of the radial gradient
      * @param radialGradient the radial gradient
+     *
+     * @return id
      */
-    public native void createRadialGradient(String id, RadialGradient radialGradient) /*-{
+    public native String createRadialGradient(String id, RadialGradient radialGradient) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.createRadialGradient(id, radialGradient.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return self.createRadialGradient(id, radialGradient.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-            
+
     /**
      * Creates a simple linear gradient which can be used within any DrawItem  Any DrawItems fillGradient can reference this
      * gradient by the given name.
      * @param id the name of the linear gradient
      * @param simple 
+     *
+     * @return id
      */
-    public native void createSimpleGradient(String id, SimpleGradient simple) /*-{
+    public native String createSimpleGradient(String id, SimpleGradient simple) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.createSimpleGradient(id, simple.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return self.createSimpleGradient(id, simple.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-            
+
     /**
      * Permanently {@link com.smartgwt.client.widgets.drawing.DrawItem#destroy destroy} all DrawItems currently associated with
      * this DrawPane, leaving the DrawPane itself intact
@@ -211,18 +269,29 @@ public class DrawPane extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.destroyItems();
     }-*/;
-            
+
     /**
      * Call {@link com.smartgwt.client.widgets.drawing.DrawItem#erase DrawItem.erase} on all DrawItems currently associated
      * with the DrawPane.   <P> The DrawItems will continue to exist, and you can call draw() on them to make them appear
      * again, or {@link com.smartgwt.client.widgets.drawing.DrawItem#destroy destroy} to get rid of them permanetly.  Use
-     * {@link com.smartgwt.client.widgets.drawing.DrawPane#getDestroyAll destroyAll} to permanently get rid of all DrawItems.
+     * {@link com.smartgwt.client.widgets.drawing.DrawPane#destroyItems DrawPane.destroyItems} to permanently get rid of all
+     * DrawItems.
      */
     public native void erase() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.erase();
     }-*/;
-            
+
+    /**
+     * Converts this DrawPane to the source of an <code>&lt;svg&gt;</code> element equivalent to the current drawing.
+     *
+     * @return the source of an <code>&lt;svg&gt;</code> element.
+     */
+    public native String getSvgString() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getSvgString();
+    }-*/;
+
     /**
      * Zoom this drawPane to the specified magnification, maintaining the current viewport position
      * @param zoom Desired zoom level as a float where <code>1.0</code> is equivalent to 100%  magnification.
@@ -254,7 +323,35 @@ public class DrawPane extends Canvas {
         
     // ***********************************************************        
 
+    public LogicalStructureObject setLogicalStructure(DrawPaneLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.canDrag = getAttributeAsString("canDrag");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DrawPane.canDrag:" + t.getMessage() + "\n";
+        }
+        try {
+            s.drawItems = getDrawItems();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DrawPane.drawItemsArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rotation = getAttributeAsString("rotation");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DrawPane.rotation:" + t.getMessage() + "\n";
+        }
+        try {
+            s.zoomLevel = getAttributeAsString("zoomLevel");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DrawPane.zoomLevel:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        DrawPaneLogicalStructure s = new DrawPaneLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

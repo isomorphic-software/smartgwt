@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * What to do when a user hits enter while editing a cell
  */
@@ -36,7 +37,6 @@ public enum EnterKeyEditAction implements ValueEnum {
      * edit the first editable cell in next editable record
      */
     NEXTROWSTART("nextRowStart");
-
     private String value;
 
     EnterKeyEditAction(String value) {
@@ -47,3 +47,4 @@ public enum EnterKeyEditAction implements ValueEnum {
         return this.value;
     }
 }
+        

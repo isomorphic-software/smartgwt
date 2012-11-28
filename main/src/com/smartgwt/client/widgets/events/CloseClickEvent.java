@@ -45,19 +45,23 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-public class CloseClickEvent extends BrowserEvent<CloseClickHandler>  {
+public class CloseClickEvent extends BrowserEvent<CloseClickHandler>  implements Cancellable {
+    private boolean cancel = false;
 
     /**
      * Handler type.
@@ -92,7 +96,6 @@ public class CloseClickEvent extends BrowserEvent<CloseClickHandler>  {
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(CloseClickHandler handler) {
         handler.onCloseClick(this);
@@ -111,7 +114,19 @@ public class CloseClickEvent extends BrowserEvent<CloseClickHandler>  {
         super(jsObj);
     }
 
+    /**
+     * Call this method to cancel closing the window
+     */
+    public void cancel() {
+        cancel = true;
+    }
 
+    /**
+     * @return true if cancelled
+     */
+    public boolean isCancelled() {
+        return cancel;
+    }
 
 
 }

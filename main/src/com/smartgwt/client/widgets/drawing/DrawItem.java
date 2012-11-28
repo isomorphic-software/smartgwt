@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Base class for graphical elements drawn in a DrawPane.  All properties and methods documented here are available on all
@@ -65,7 +85,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * com.smartgwt.client.widgets.drawing.DrawLine}. <P> See {@link com.smartgwt.client.widgets.drawing.DrawPane} for the
  * different approaches to create DrawItems.
  */
-public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.drawing.events.HasClickHandlers, com.smartgwt.client.widgets.drawing.events.HasMouseDownHandlers, com.smartgwt.client.widgets.drawing.events.HasMouseUpHandlers, com.smartgwt.client.widgets.drawing.events.HasMouseMoveHandlers, com.smartgwt.client.widgets.drawing.events.HasMouseOutHandlers, com.smartgwt.client.widgets.drawing.events.HasMouseOverHandlers {
+public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.drawing.events.HasClickHandlers, com.smartgwt.client.widgets.drawing.events.HasDragMoveHandlers, com.smartgwt.client.widgets.drawing.events.HasDragStartHandlers, com.smartgwt.client.widgets.drawing.events.HasDragStopHandlers, com.smartgwt.client.widgets.drawing.events.HasMouseDownHandlers, com.smartgwt.client.widgets.drawing.events.HasMouseUpHandlers, com.smartgwt.client.widgets.drawing.events.HasMouseMoveHandlers, com.smartgwt.client.widgets.drawing.events.HasMouseOutHandlers, com.smartgwt.client.widgets.drawing.events.HasMouseOverHandlers, com.smartgwt.client.widgets.drawing.events.HasShowContextMenuHandlers, com.smartgwt.client.widgets.drawing.events.HasMovedHandlers, com.smartgwt.client.widgets.drawing.events.HasResizedHandlers {
 
     public static DrawItem getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -77,12 +97,18 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
+    }
+
+
     public DrawItem(){
         scClassName = "DrawItem";
     }
 
     public DrawItem(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "DrawItem";
+        setJavaScriptObject(jsObj);
     }
 
     public native JavaScriptObject create()/*-{
@@ -91,6 +117,61 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
         return $wnd.isc[scClassName].create(config);
     }-*/;
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * Is this drawItem draggable? Note that dragging must be enabled for the dragPane  in which this item is rendered via
+     * {@link com.smartgwt.client.widgets.drawing.DrawPane#getCanDrag canDrag} for this to have an effect.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canDrag canDrag Default value is false
+     */
+    public void setCanDrag(Boolean canDrag) {
+        setAttribute("canDrag", canDrag, true);
+    }
+
+    /**
+     * Is this drawItem draggable? Note that dragging must be enabled for the dragPane  in which this item is rendered via
+     * {@link com.smartgwt.client.widgets.drawing.DrawPane#getCanDrag canDrag} for this to have an effect.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanDrag()  {
+        return getAttributeAsBoolean("canDrag");
+    }
+
+    /**
+     * Context menu to show for this object, an instance of the Menu widget. <P> Note: if {@link
+     * com.smartgwt.client.widgets.Canvas#destroy Canvas.destroy} is called on a canvas, any specified context menu is not
+     * automatically destroyed as well. This is in contrast to {@link com.smartgwt.client.widgets.menu.MenuButton}s which
+     * automatically destroy their specified {@link com.smartgwt.client.widgets.menu.MenuButton#getMenu menu} by default. The
+     * behavior is intentional as context menus are commonly reused across components.
+     *
+     * @param contextMenu contextMenu Default value is null
+     * @see com.smartgwt.client.widgets.events.ShowContextMenuEvent
+     * @see com.smartgwt.client.docs.Cues Cues overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_contextmenu" target="examples">Context menus Example</a>
+     */
+    public void setContextMenu(Menu contextMenu) {
+        setAttribute("contextMenu", contextMenu == null ? null : contextMenu.getOrCreateJsObj(), true);
+    }
+
+    /**
+     * Context menu to show for this object, an instance of the Menu widget. <P> Note: if {@link
+     * com.smartgwt.client.widgets.Canvas#destroy Canvas.destroy} is called on a canvas, any specified context menu is not
+     * automatically destroyed as well. This is in contrast to {@link com.smartgwt.client.widgets.menu.MenuButton}s which
+     * automatically destroy their specified {@link com.smartgwt.client.widgets.menu.MenuButton#getMenu menu} by default. The
+     * behavior is intentional as context menus are commonly reused across components.
+     *
+     *
+     * @return Menu
+     * @see com.smartgwt.client.widgets.events.ShowContextMenuEvent
+     * @see com.smartgwt.client.docs.Cues Cues overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_contextmenu" target="examples">Context menus Example</a>
+     */
+    public Menu getContextMenu()  {
+        return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("contextMenu"));
+    }
 
 
     /**
@@ -145,9 +226,7 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
     }
 
     /**
-     * {@link com.smartgwt.client.widgets.drawing.DrawGroup} this drawItem is a member of. <P> Coordinates for a drawItem that
-     * has a drawGroup are relative to that drawGroup. DrawItems that are part of a drawGroup with translate, scale and rotate
-     * with their DrawGroup.
+     * {@link com.smartgwt.client.widgets.drawing.DrawGroup} this drawItem is a member of.
      *
      * @param drawGroup drawGroup Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -157,9 +236,7 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
     }
 
     /**
-     * {@link com.smartgwt.client.widgets.drawing.DrawGroup} this drawItem is a member of. <P> Coordinates for a drawItem that
-     * has a drawGroup are relative to that drawGroup. DrawItems that are part of a drawGroup with translate, scale and rotate
-     * with their DrawGroup.
+     * {@link com.smartgwt.client.widgets.drawing.DrawGroup} this drawItem is a member of.
      *
      *
      * @return DrawGroup
@@ -218,7 +295,7 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Update fillColor for this drawItem.
      *
-     * @param fillColor new fillColor to use.  Pass null for transparent.. Default value is null
+     * @param fillColor new fillColor to use.  Pass null for transparent.. See {@link com.smartgwt.client.docs.CSSColor CSSColor}. Default value is null
      */
     public void setFillColor(String fillColor) {
         setAttribute("fillColor", fillColor, true);
@@ -228,7 +305,7 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
      * Fill color to use for shapes.  The default of 'null' is transparent.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSColor CSSColor}
      */
     public String getFillColor()  {
         return getAttributeAsString("fillColor");
@@ -278,7 +355,8 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
      * @return KnobType
      */
     public KnobType[] getKnobs()  {
-        return (KnobType[]) EnumUtil.getEnums(KnobType.values(), getAttributeAsStringArray("knobs"));
+        final String[] strings = getAttributeAsStringArray("knobs");
+        return EnumUtil.getEnums(KnobType.values(), strings, strings == null ? null : new KnobType[strings.length]);
     }
 
     /**
@@ -311,7 +389,7 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Update lineColor for this drawItem.
      *
-     * @param lineColor new line color.  Pass null for transparent.. Default value is "#808080"
+     * @param lineColor new line color.  Pass null for transparent.. See {@link com.smartgwt.client.docs.CSSColor CSSColor}. Default value is "#808080"
      */
     public void setLineColor(String lineColor) {
         setAttribute("lineColor", lineColor, true);
@@ -321,7 +399,7 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
      * Line color
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSColor CSSColor}
      */
     public String getLineColor()  {
         return getAttributeAsString("lineColor");
@@ -409,7 +487,7 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
      *   <code>"C"</code> positioned over the center of the drawItem
      *  </pre>
      *
-     * @param moveKnobPoint moveKnobPoint Default value is "TL"
+     * @param moveKnobPoint . See {@link com.smartgwt.client.docs.String String}. Default value is "TL"
      */
     public void setMoveKnobPoint(String moveKnobPoint) {
         setAttribute("moveKnobPoint", moveKnobPoint, true);
@@ -432,30 +510,30 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
      *  </pre>
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMoveKnobPoint()  {
         return getAttributeAsString("moveKnobPoint");
     }
 
     /**
-     * rotation in degrees.
+     * Rotation in degrees.
      *
-     * @param rotate rotate Default value is 0.0
+     * @param rotation rotation Default value is 0.0
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setRotate(float rotate)  throws IllegalStateException {
-        setAttribute("rotate", rotate, false);
+    public void setRotation(float rotation)  throws IllegalStateException {
+        setAttribute("rotation", rotation, false);
     }
 
     /**
-     * rotation in degrees.
+     * Rotation in degrees.
      *
      *
      * @return float
      */
-    public float getRotate()  {
-        return getAttributeAsFloat("rotate");
+    public float getRotation()  {
+        return getAttributeAsFloat("rotation");
     }
 
     /**
@@ -519,28 +597,45 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
     private native void setupClickEvent() /*-{
         var obj = null;
         var selfJ = this;
-            if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
-                obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-                obj.addProperties({click:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.drawing.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
-                });
-            } else {
-                obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
-                obj.click = $debox($entry(function(){
+        var click = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.drawing.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            obj.addProperties({click: 
+                function () {
                     var param = {};
-                    var event = @com.smartgwt.client.widgets.drawing.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                    return !ret;
-                }));
-            }
+                    return click(param) == true;
+                }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+            obj.click = 
+                function () {
+                    var param = {};
+                    return click(param) == true;
+                }
+            ;
+        }
    }-*/;
-            
+
+    /**
+     * returns the angle in degrees between any two points
+     * @param px1 
+     * @param py1 
+     * @param px2 
+     * @param py2 
+     *
+     * @return 
+     */
+    public native float computeAngle(int px1, int py1, int px2, int py2) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        return self.computeAngle(px1, py1, px2, py2);
+    }-*/;
+
     /**
      * Permanently destroys this DrawItem, similar to {@link com.smartgwt.client.widgets.Canvas#destroy Canvas.destroy}.
      */
@@ -548,58 +643,7 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.destroy();
     }-*/;
-            
-    /**
-     * Executed every time the mouse moves while dragging this canvas.
-     *
-     * @return false to cancel drag interaction.
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_pan" target="examples">Drag pan Example</a>
-     */
-    public native Boolean dragMove() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var retVal =self.dragMove();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * Executed when dragging first starts. Your widget can use this opportunity to set things up for the drag, such as setting
-     * the drag tracker. Returning false from this event handler will cancel the drag action entirely. <p> A drag action is
-     * considered to be begin when the mouse has moved {@link com.smartgwt.client.widgets.Canvas#getDragStartDistance
-     * dragStartDistance} with the left mouse down.
-     *
-     * @return false to cancel drag action.
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_pan" target="examples">Drag pan Example</a>
-     */
-    public native Boolean dragStart() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var retVal =self.dragStart();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * Executed when the mouse button is released at the end of the drag. Your widget can use this opportunity to fire code
-     * based on the last location of the drag or reset any visual state that was sent.
-     *
-     * @return false to cancel drag interaction.
-     */
-    public native Boolean dragStop() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var retVal =self.dragStop();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
+
     /**
      * Draw this item into it's current {@link com.smartgwt.client.widgets.drawing.DrawPane}.
      */
@@ -607,15 +651,17 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.draw();
     }-*/;
-            
+
     /**
-     * Erase this drawItem's visual representation and remove it from it's DrawGroup (if any) and DrawPane.
+     * Erase this drawItem's visual representation and remove it from it's DrawGroup (if any) and DrawPane. <P> To re-draw the
+     * item within the DrawPane, call {@link com.smartgwt.client.widgets.drawing.DrawItem#draw DrawItem.draw} again, or use
+     * {@link com.smartgwt.client.widgets.drawing.DrawPane#addDrawItem DrawPane.addDrawItem} to move to another DrawGroup.
      */
     public native void erase() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.erase();
     }-*/;
-            
+
     /**
      * Returns the page-relative left coordinate of the widget on the page, in pixels.
      *
@@ -626,7 +672,7 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         return self.getPageLeft();
     }-*/;
-            
+
     /**
      * Returns the page-relative top coordinate of the widget on the page, in pixels
      *
@@ -637,7 +683,17 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         return self.getPageTop();
     }-*/;
-            
+
+    /**
+     * Generates a string containing the SVG source of this DrawItem. <p><b>NOTE:</b> The generated SVG source assumes that the
+     * default namespace is <code>http://www.w3.org/2000/svg</code> and that namespace prefix <code>xlink</code> refers to
+     * namespace name <code>http://www.w3.org/1999/xlink</code>.
+     */
+    public native void getSvgString() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.getSvgString();
+    }-*/;
+
     /**
      * Hide this drawItem.
      */
@@ -645,7 +701,7 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.hide();
     }-*/;
-            
+
     /**
      * returns true if point is in getBoundingBox()
      * @param x 
@@ -662,7 +718,7 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * returns true if point is in path
      * @param x 
@@ -695,26 +751,29 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
     private native void setupMouseDownEvent() /*-{
         var obj = null;
         var selfJ = this;
-            if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
-                obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-                obj.addProperties({mouseDown:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.drawing.events.MouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
-                });
-            } else {
-                obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
-                obj.mouseDown = $debox($entry(function(){
+        var mouseDown = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.drawing.events.MouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            obj.addProperties({mouseDown: 
+                function () {
                     var param = {};
-                    var event = @com.smartgwt.client.widgets.drawing.events.MouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                    return !ret;
-                }));
-            }
+                    return mouseDown(param) == true;
+                }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+            obj.mouseDown = 
+                function () {
+                    var param = {};
+                    return mouseDown(param) == true;
+                }
+            ;
+        }
    }-*/;
     /**
      * Add a mouseMove handler.
@@ -732,26 +791,29 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
     private native void setupMouseMoveEvent() /*-{
         var obj = null;
         var selfJ = this;
-            if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
-                obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-                obj.addProperties({mouseMove:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.drawing.events.MouseMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
-                });
-            } else {
-                obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
-                obj.mouseMove = $debox($entry(function(){
+        var mouseMove = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.drawing.events.MouseMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            obj.addProperties({mouseMove: 
+                function () {
                     var param = {};
-                    var event = @com.smartgwt.client.widgets.drawing.events.MouseMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                    return !ret;
-                }));
-            }
+                    return mouseMove(param) == true;
+                }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+            obj.mouseMove = 
+                function () {
+                    var param = {};
+                    return mouseMove(param) == true;
+                }
+            ;
+        }
    }-*/;
     /**
      * Add a mouseOut handler.
@@ -769,26 +831,29 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
     private native void setupMouseOutEvent() /*-{
         var obj = null;
         var selfJ = this;
-            if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
-                obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-                obj.addProperties({mouseOut:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.drawing.events.MouseOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
-                });
-            } else {
-                obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
-                obj.mouseOut = $debox($entry(function(){
+        var mouseOut = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.drawing.events.MouseOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            obj.addProperties({mouseOut: 
+                function () {
                     var param = {};
-                    var event = @com.smartgwt.client.widgets.drawing.events.MouseOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                    return !ret;
-                }));
-            }
+                    return mouseOut(param) == true;
+                }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+            obj.mouseOut = 
+                function () {
+                    var param = {};
+                    return mouseOut(param) == true;
+                }
+            ;
+        }
    }-*/;
     /**
      * Add a mouseOver handler.
@@ -806,26 +871,29 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
     private native void setupMouseOverEvent() /*-{
         var obj = null;
         var selfJ = this;
-            if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
-                obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-                obj.addProperties({mouseOver:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.drawing.events.MouseOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
-                });
-            } else {
-                obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
-                obj.mouseOver = $debox($entry(function(){
+        var mouseOver = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.drawing.events.MouseOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            obj.addProperties({mouseOver: 
+                function () {
                     var param = {};
-                    var event = @com.smartgwt.client.widgets.drawing.events.MouseOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                    return !ret;
-                }));
-            }
+                    return mouseOver(param) == true;
+                }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+            obj.mouseOver = 
+                function () {
+                    var param = {};
+                    return mouseOver(param) == true;
+                }
+            ;
+        }
    }-*/;
     /**
      * Add a mouseUp handler.
@@ -843,28 +911,31 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
     private native void setupMouseUpEvent() /*-{
         var obj = null;
         var selfJ = this;
-            if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
-                obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-                obj.addProperties({mouseUp:$debox($entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.drawing.events.MouseUpEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
-                });
-            } else {
-                obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
-                obj.mouseUp = $debox($entry(function(){
+        var mouseUp = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.drawing.events.MouseUpEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            obj.addProperties({mouseUp: 
+                function () {
                     var param = {};
-                    var event = @com.smartgwt.client.widgets.drawing.events.MouseUpEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                    return !ret;
-                }));
-            }
+                    return mouseUp(param) == true;
+                }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+            obj.mouseUp = 
+                function () {
+                    var param = {};
+                    return mouseUp(param) == true;
+                }
+            ;
+        }
    }-*/;
-            
+
     /**
      * Move the shape by the specified deltas for the left and top coordinate.
      * @param dX change to left coordinate in pixels
@@ -874,7 +945,153 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.moveBy(dX, dY);
     }-*/;
-            
+    /**
+     * Add a moved handler.
+     * <p>
+     * Notification method fired when this component is explicitly moved. Note that a component's position on the screen may
+     * also changed due to an ancestor being moved. The {@link com.smartgwt.client.widgets.drawing.DrawItem#getParentMoved
+     * parentMoved} method provides a notification entry point to catch that case as well.
+     *
+     * @param handler the moved handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addMovedHandler(com.smartgwt.client.widgets.drawing.events.MovedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.drawing.events.MovedEvent.getType()) == 0) setupMovedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.drawing.events.MovedEvent.getType());
+    }
+
+    private native void setupMovedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        var moved = $entry(function(){
+            var param = {"deltaX" : arguments[0], "deltaY" : arguments[1]};
+                var event = @com.smartgwt.client.widgets.drawing.events.MovedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            obj.addProperties({moved:  moved              });
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+            obj.moved =  moved             ;
+        }
+   }-*/;
+    /**
+     * Add a dragMove handler.
+     * <p>
+     * If {@link com.smartgwt.client.widgets.drawing.DrawItem#getCanDrag canDrag} is true and {@link
+     * com.smartgwt.client.widgets.drawing.DrawPane#getCanDrag canDrag} is true, this notification method will be fired when
+     * the user drags the drawItem
+     *
+     * @param handler the dragMove handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDragMoveHandler(com.smartgwt.client.widgets.drawing.events.DragMoveHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.drawing.events.DragMove.getType()) == 0) setupDragMoveEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.drawing.events.DragMove.getType());
+    }
+
+    private native void setupDragMoveEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        var onDragMove = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.drawing.events.DragMove::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            obj.addProperties({onDragMove: 
+                function () {
+                    var param = {"x" : arguments[0], "y" : arguments[1]};
+                    return onDragMove(param) == true;
+                }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+            obj.onDragMove = 
+                function () {
+                    var param = {"x" : arguments[0], "y" : arguments[1]};
+                    return onDragMove(param) == true;
+                }
+            ;
+        }
+   }-*/;
+    /**
+     * Add a dragStart handler.
+     * <p>
+     * If {@link com.smartgwt.client.widgets.drawing.DrawItem#getCanDrag canDrag} is true and {@link
+     * com.smartgwt.client.widgets.drawing.DrawPane#getCanDrag canDrag} is true, this notification method will be fired when
+     * the user starts to drag the drawItem
+     *
+     * @param handler the dragStart handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDragStartHandler(com.smartgwt.client.widgets.drawing.events.DragStartHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.drawing.events.DragStart.getType()) == 0) setupDragStartEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.drawing.events.DragStart.getType());
+    }
+
+    private native void setupDragStartEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        var onDragStart = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.drawing.events.DragStart::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            obj.addProperties({onDragStart: 
+                function () {
+                    var param = {"x" : arguments[0], "y" : arguments[1]};
+                    return onDragStart(param) == true;
+                }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+            obj.onDragStart = 
+                function () {
+                    var param = {"x" : arguments[0], "y" : arguments[1]};
+                    return onDragStart(param) == true;
+                }
+            ;
+        }
+   }-*/;
+    /**
+     * Add a dragStop handler.
+     * <p>
+     * If {@link com.smartgwt.client.widgets.drawing.DrawItem#getCanDrag canDrag} is true and {@link
+     * com.smartgwt.client.widgets.drawing.DrawPane#getCanDrag canDrag} is true, this notification method will be fired when
+     * the user completes a drag on the drawItem
+     *
+     * @param handler the dragStop handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDragStopHandler(com.smartgwt.client.widgets.drawing.events.DragStopHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.drawing.events.DragStop.getType()) == 0) setupDragStopEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.drawing.events.DragStop.getType());
+    }
+
+    private native void setupDragStopEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        var onDragStop = $entry(function(){
+            var param = {"x" : arguments[0], "y" : arguments[1]};
+                var event = @com.smartgwt.client.widgets.drawing.events.DragStop::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            obj.addProperties({onDragStop:  onDragStop              });
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+            obj.onDragStop =  onDragStop             ;
+        }
+   }-*/;
+
     /**
      * Resize the shape by the specified deltas for the left and top coordinate.
      * @param dX change to left coordinate in pixels
@@ -884,7 +1101,46 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.resizeBy(dX, dY);
     }-*/;
-            
+    /**
+     * Add a resized handler.
+     * <p>
+     * Observable method called whenever a DrawItem changes size.
+     *
+     * @param handler the resized handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addResizedHandler(com.smartgwt.client.widgets.drawing.events.ResizedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.drawing.events.ResizedEvent.getType()) == 0) setupResizedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.drawing.events.ResizedEvent.getType());
+    }
+
+    private native void setupResizedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        var resized = $entry(function(){
+            var param = {};
+                var event = @com.smartgwt.client.widgets.drawing.events.ResizedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            obj.addProperties({resized:  resized              });
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+            obj.resized =  resized             ;
+        }
+   }-*/;
+
+    /**
+     * Resize to the specified size
+     * @param width new width
+     * @param height new height
+     */
+    public native void resizeTo(int width, int height) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.resizeTo(width, height);
+    }-*/;
+
     /**
      * Rotate the shape by the relative rotation in degrees
      * @param degrees number of degrees to rotate from current orientation.
@@ -893,7 +1149,7 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.rotateBy(degrees);
     }-*/;
-            
+
     /**
      * Rotate the shape by the absolute rotation in degrees
      * @param degrees number of degrees to rotate
@@ -902,7 +1158,7 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.rotateTo(degrees);
     }-*/;
-            
+
     /**
      * Scale the shape by the x, y multipliers
      * @param x scale in the x direction
@@ -912,7 +1168,7 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.scaleBy(x, y);
     }-*/;
-            
+
     /**
      * Scale the shape by the x, y multipliers
      * @param x scale in the x direction
@@ -922,7 +1178,7 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.scaleTo(x, y);
     }-*/;
-            
+
     /**
      * Make this drawItem visible.
      */
@@ -930,6 +1186,52 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.show();
     }-*/;
+    /**
+     * Add a showContextMenu handler.
+     * <p>
+     * Executed when the right mouse button is clicked.  The default implementation of this method auto-creates a {@link
+     * com.smartgwt.client.widgets.menu.Menu} from the {@link com.smartgwt.client.widgets.Canvas#getContextMenu contextMenu}
+     * property on this component and then calls {@link com.smartgwt.client.widgets.menu.Menu#showContextMenu
+     * Menu.showContextMenu} on it to show it. <p> If you want to show a standard context menu, you can simply define your Menu
+     * and set it as the contextMenu property on your component - you do not need to override this method. <p> If you want to
+     * do some other processing before showing a menu or do something else entirely, then you should override this method. 
+     * Note that the return value from this method controls whether or not the native browser context menu is shown.
+     *
+     * @param handler the showContextMenu handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addShowContextMenuHandler(com.smartgwt.client.widgets.drawing.events.ShowContextMenuHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.drawing.events.ShowContextMenuEvent.getType()) == 0) setupShowContextMenuEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.drawing.events.ShowContextMenuEvent.getType());
+    }
+
+    private native void setupShowContextMenuEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        var showContextMenu = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.drawing.events.ShowContextMenuEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            obj.addProperties({showContextMenu: 
+                function () {
+                    var param = {};
+                    return showContextMenu(param) == true;
+                }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+            obj.showContextMenu = 
+                function () {
+                    var param = {};
+                    return showContextMenu(param) == true;
+                }
+            ;
+        }
+   }-*/;
 
     // ********************* Static Methods ***********************
         
@@ -987,23 +1289,6 @@ public class DrawItem extends BaseClass  implements com.smartgwt.client.widgets.
             }
         }
     }
-
-    protected native String[] getAttributeAsStringArray(String property)/*-{
-        var ret;
-        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
-            var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-            ret = widget.getProperty(property);
-        } else {
-            var config = this.@com.smartgwt.client.core.BaseClass::config;
-            if(config[property] != undefined) {
-                ret = config[property];
-            } else {
-               var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
-               ret = $wnd.isc[scClassName].getInstanceProperty(property);
-            }
-        }
-        return ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-    }-*/;
 
     protected native int[] getAttributeAsIntArray(String property)/*-{
         var ret;

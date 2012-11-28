@@ -45,16 +45,19 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class EditorExitEvent extends AbstractSmartEvent<EditorExitHandler>  implements Cancellable {
@@ -93,7 +96,6 @@ public class EditorExitEvent extends AbstractSmartEvent<EditorExitHandler>  impl
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(EditorExitHandler handler) {
         handler.onEditorExit(this);
@@ -111,7 +113,6 @@ public class EditorExitEvent extends AbstractSmartEvent<EditorExitHandler>  impl
     public EditorExitEvent(JavaScriptObject jsObj) {
         super(jsObj);
     }
-
 
     /**
      * Calling this method will cancel the default behavior                      (for example saving the row) and
@@ -135,7 +136,8 @@ public class EditorExitEvent extends AbstractSmartEvent<EditorExitHandler>  impl
      */
     public  native EditCompletionEvent getEditCompletionEvent() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.editCompletionEvent;
+            var enumValues = @com.smartgwt.client.types.EditCompletionEvent::values()();
+            return @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(enumValues, jsObj.editCompletionEvent);
     }-*/;
 
     /**

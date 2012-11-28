@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * The StretchImg widget class implements a widget type that displays a list of multiple images  that make up a single
@@ -64,22 +84,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class StretchImg extends StatefulCanvas {
 
-    public static StretchImg getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (StretchImg) obj;
-        } else {
-            return new StretchImg(jsObj);
+    public native static StretchImg getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("StretchImg",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.StretchImg::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public StretchImg(){
         scClassName = "StretchImg";
     }
 
     public StretchImg(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "StretchImg";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -116,7 +147,7 @@ public class StretchImg extends StatefulCanvas {
      * Suffix used the 'grip' image if {@link com.smartgwt.client.widgets.StretchImg#getShowGrip showGrip} is true.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param gripImgSuffix gripImgSuffix Default value is "grip"
+     * @param gripImgSuffix . See {@link com.smartgwt.client.docs.String String}. Default value is "grip"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setGripImgSuffix(String gripImgSuffix)  throws IllegalStateException {
@@ -127,7 +158,7 @@ public class StretchImg extends StatefulCanvas {
      * Suffix used the 'grip' image if {@link com.smartgwt.client.widgets.StretchImg#getShowGrip showGrip} is true.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getGripImgSuffix()  {
         return getAttributeAsString("gripImgSuffix");
@@ -137,7 +168,7 @@ public class StretchImg extends StatefulCanvas {
      * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is false and  {@link
      * com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
      *
-     * @param hSrc hSrc Default value is null
+     * @param hSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is null
      * @see com.smartgwt.client.widgets.StretchImg#setSrc
      * @see com.smartgwt.client.widgets.StretchImg#setVSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -151,13 +182,42 @@ public class StretchImg extends StatefulCanvas {
      * com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.widgets.StretchImg#getSrc
      * @see com.smartgwt.client.widgets.StretchImg#getVSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getHSrc()  {
         return getAttributeAsString("hSrc");
+    }
+
+    /**
+     * Should the {@link com.smartgwt.client.widgets.StretchImg#getItems items} for this stretchImg display left-to-right even
+     * if this page is displaying {@link com.smartgwt.client.util.Page#isRTL right to left text}? <P> Only has an effect if
+     * this stretchImg is horizontal. <P> Having this property set to true is usually desirable - for the common pattern of
+     * media consisting of fixed size "end caps" and a stretchable center, it allows the same media to be used for LTR and RTL
+     * pages. <P> If set to false, items will be displayed in RTL order for RTL pages.
+     *
+     * @param ignoreRTL ignoreRTL Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setIgnoreRTL(Boolean ignoreRTL) {
+        setAttribute("ignoreRTL", ignoreRTL, true);
+    }
+
+    /**
+     * Should the {@link com.smartgwt.client.widgets.StretchImg#getItems items} for this stretchImg display left-to-right even
+     * if this page is displaying {@link com.smartgwt.client.util.Page#isRTL right to left text}? <P> Only has an effect if
+     * this stretchImg is horizontal. <P> Having this property set to true is usually desirable - for the common pattern of
+     * media consisting of fixed size "end caps" and a stretchable center, it allows the same media to be used for LTR and RTL
+     * pages. <P> If set to false, items will be displayed in RTL order for RTL pages.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Boolean getIgnoreRTL()  {
+        return getAttributeAsBoolean("ignoreRTL");
     }
 
     /**
@@ -189,7 +249,7 @@ public class StretchImg extends StatefulCanvas {
      * array}. This base style will have standard stateful suffixes appended to indicate the state of this component (as
      * described in  {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle}).
      *
-     * @param itemBaseStyle itemBaseStyle Default value is null
+     * @param itemBaseStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is null
      */
     public void setItemBaseStyle(String itemBaseStyle) {
         setAttribute("itemBaseStyle", itemBaseStyle, true);
@@ -202,7 +262,7 @@ public class StretchImg extends StatefulCanvas {
      * described in  {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle}).
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getItemBaseStyle()  {
         return getAttributeAsString("itemBaseStyle");
@@ -313,7 +373,7 @@ public class StretchImg extends StatefulCanvas {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Changes the base {@link com.smartgwt.client.widgets.StretchImg#getSrc src} for this stretchImg, redrawing if necessary.
      *
-     * @param src new URL for the image. Default value is null
+     * @param src new URL for the image. See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is null
      * @see com.smartgwt.client.widgets.StretchImg#setHSrc
      * @see com.smartgwt.client.widgets.StretchImg#setVSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -330,7 +390,7 @@ public class StretchImg extends StatefulCanvas {
      * "button_Over_stretch.png".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.widgets.StretchImg#getHSrc
      * @see com.smartgwt.client.widgets.StretchImg#getVSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -366,7 +426,7 @@ public class StretchImg extends StatefulCanvas {
      * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is true and  {@link
      * com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
      *
-     * @param vSrc vSrc Default value is null
+     * @param vSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is null
      * @see com.smartgwt.client.widgets.StretchImg#setSrc
      * @see com.smartgwt.client.widgets.StretchImg#setVSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -380,7 +440,7 @@ public class StretchImg extends StatefulCanvas {
      * com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.widgets.StretchImg#getSrc
      * @see com.smartgwt.client.widgets.StretchImg#getVSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -390,7 +450,7 @@ public class StretchImg extends StatefulCanvas {
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Set the specified image's state to newState and update the displayed image given by whichPart, or set the state for all
      * images to newState and update the displayed images if whichPart is not provided.
@@ -435,7 +495,80 @@ public class StretchImg extends StatefulCanvas {
         
     // ***********************************************************        
 
+    public LogicalStructureObject setLogicalStructure(StretchImgLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.capSize = getAttributeAsString("capSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImg.capSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.gripImgSuffix = getAttributeAsString("gripImgSuffix");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImg.gripImgSuffix:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hSrc = getAttributeAsString("hSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImg.hSrc:" + t.getMessage() + "\n";
+        }
+        try {
+            s.ignoreRTL = getAttributeAsString("ignoreRTL");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImg.ignoreRTL:" + t.getMessage() + "\n";
+        }
+        try {
+            s.imageType = getAttributeAsString("imageType");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImg.imageType:" + t.getMessage() + "\n";
+        }
+        try {
+            s.itemBaseStyle = getAttributeAsString("itemBaseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImg.itemBaseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDownGrip = getAttributeAsString("showDownGrip");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImg.showDownGrip:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showGrip = getAttributeAsString("showGrip");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImg.showGrip:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showRollOverGrip = getAttributeAsString("showRollOverGrip");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImg.showRollOverGrip:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showTitle = getAttributeAsString("showTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImg.showTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.src = getAttributeAsString("src");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImg.src:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vertical = getAttributeAsString("vertical");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImg.vertical:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vSrc = getAttributeAsString("vSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StretchImg.vSrc:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        StretchImgLogicalStructure s = new StretchImgLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

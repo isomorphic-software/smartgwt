@@ -16,261 +16,527 @@
 
 package com.smartgwt.rebind;
 
-import com.smartgwt.rebind.BeanMethod;
+import com.google.gwt.core.ext.TreeLogger;
+import com.google.gwt.core.ext.UnableToCompleteException;
 import com.google.gwt.core.ext.typeinfo.JClassType;
-import com.google.gwt.core.ext.typeinfo.JType;
+import com.google.gwt.core.ext.typeinfo.JMethod;
 import com.google.gwt.core.ext.typeinfo.JPrimitiveType;
-import com.google.gwt.core.ext.typeinfo.TypeOracle;
+import com.google.gwt.core.ext.typeinfo.JType;
+import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.rebind.SourceWriter;
 
-import com.smartgwt.rebind.BeanClass;
+import java.util.*;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Iterator;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
+/**
+ * Class that captures a bean property name and accessor metadata.
+ */
+public class BeanProperty implements Comparable {
+    private JMethod setter;
+    private JMethod getter;
+    private String name;
+    public static TreeLogger logger;
 
-public class BeanProperty { 
-    private final String name;
-    private final String nameWithoutOverload;
-    private final LinkedList<BeanMethod> getters;
-    private final LinkedList<BeanMethod> setters;
-    private final BeanClass beanClass;
+    private static Set<String> excludedProperties = new HashSet<String>();
 
-    private final static Pattern checkOverloadedName = Pattern.compile("^(.*)As[A-Z].*$");
-   
-    public BeanProperty (String name, BeanClass beanClass) {
-        this.name = name;
-        this.beanClass = beanClass;
-            
-        Matcher matcher = checkOverloadedName.matcher(name);
-        if (matcher.matches()) {
-            nameWithoutOverload = matcher.group(1);
-        } else {
-            nameWithoutOverload = name;
-        }
-
-        getters = new LinkedList<BeanMethod>();
-        setters = new LinkedList<BeanMethod>();
+    static {
+        excludedProperties.add("ID");
     }
 
-    public String getName () {
+    public BeanProperty(String capitalizedName, JMethod getter, JMethod setter) {
+        this.name = recapitalize(capitalizedName);
+        this.getter = getter;
+        this.setter = setter;
+    }
+
+    public String getName() {
         return name;
     }
 
-    public String getNameWithBeanClass () {
-        return beanClass.getSimpleBeanClassName() + "." + name;
+    public JMethod getGetter() {
+        return getter;
     }
 
-    public String getNameWithoutOverload () {
-        return nameWithoutOverload;
+    public JMethod getSetter() {
+        return setter;
     }
 
-    // Checks whether this might be a "get...As..." property (e.g.
-    // getWidthAsString), without looking for the main property.
-    public boolean getMaybeOverloadedGetter () {
-        // An overloaded getter property would have one getter and no setters,
-        // since the convention would be to write the overloaded setter on the
-        // main property, not the "As..." property.
-        if (getters.size() != 1 || setters.size() != 0) return false;
-
-        // An overloaded getter would have a different overloaded name.
-        // Note that we can use object identity here.
-        if (name == nameWithoutOverload) return false;
-
-        // In principle, the As... part should be a reference to the return
-        // type of the getter (e.g. AsString). But that won't necessarily be
-        // true, so we don't check it.
-        return true;
+    public JType getValueType() {
+        return getter.getReturnType();
     }
 
-    public BeanMethod firstGetter () {
-        if (getters.size() == 0) {
-            return null;
-        } else {
-            return getters.get(0);
+    public JClassType getEnclosingType() {
+        return getter.getEnclosingType();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BeanProperty that = (BeanProperty) o;
+        return name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+
+    public int compareTo(Object o) {
+        if (o instanceof BeanProperty) {
+            return this.name.compareTo(((BeanProperty) o).getName());
         }
+        return -1;
     }
 
-    public void addMethod (BeanMethod method) {
-        if (method == null) {
-            return;
-        } else if (method.isGetter()) {
-            addGetter(method);
-        } else if (method.isSetter()) {
-            addSetter(method);
-        }
+    private static String recapitalize(String capitalized) {
+        StringBuffer buffer = new StringBuffer(capitalized);
+        char first = buffer.charAt(0);
+        char recap = Character.isUpperCase(first) ? Character.toLowerCase(first) : Character.toUpperCase(first);
+        buffer.setCharAt(0, Character.toLowerCase(recap));
+        return buffer.toString();
     }
 
-    public void addGetter (BeanMethod method) {
-        if (method == null || !method.isGetter()) return;
-
-        // If there is already a getter with the same type, we reject the
-        // new getter, unless the current one is an "is..." and the new one
-        // is a "get..." (e.g.  isEnabled vs. getEnabled). In those cases,
-        // the "get" version generally reflects the property of this
-        // particular object, whereas the "is" version reflects more
-        // dynamic factors, such as the containment hierarchy.
-        //
-        // With that exception, we prefer current getters with the same
-        // type to new ones. Thus, as we merge methods from superclasses,
-        // we will prefer the subclass method unless the superclass method
-        // has a different type. (Which would only occur, for getters, in
-        // the "get...As..." case.)
-        //
-        // We use the genericType so that boolean and Boolean will be
-        // equal (etc.)
-        BeanMethod existingGetter = getterForGenericType(method.getGenericType());
-        if (existingGetter != null) {
-            if (existingGetter.getPrefix().equals("is")) {
-                // If the existingGetter is an "is..." then remove it
-                // and fall through to add the new one.
-                getters.remove(existingGetter);
-                beanClass.removeMethod(existingGetter);
+    private static boolean isSupportedType(JMethod getter) {
+        JType type = getter.getReturnType();
+        if (!getter.isAbstract() && !getter.isStatic()) {
+            if (type.getSimpleSourceName().equals("String")) {
+                return true;
+            } else if (type.getSimpleSourceName().equals("int")) {
+                return true;
+            } else if (type.getSimpleSourceName().equals("byte")) {
+                return true;
+            } else if (type.getSimpleSourceName().equals("short")) {
+                return true;
+            } else if (type.getSimpleSourceName().equals("long")) {
+                return true;
+            } else if (type.getSimpleSourceName().equals("float")) {
+                return true;
+            } else if (type.getSimpleSourceName().equals("double")) {
+                return true;
+            } else if (type.getSimpleSourceName().equals("boolean")) {
+                return true;
+            } else if (type.getSimpleSourceName().equals("char")) {
+                return true;
+            } else if (type.getSimpleSourceName().equals("Integer")) {
+                return true;
+            } else if (type.getQualifiedSourceName().equals("java.math.BigInteger")) {
+                return true;
+            } else if (type.getSimpleSourceName().equals("Byte")) {
+                return true;
+            } else if (type.getSimpleSourceName().equals("Short")) {
+                return true;
+            } else if (type.getSimpleSourceName().equals("Long")) {
+                return true;
+            } else if (type.getSimpleSourceName().equals("Float")) {
+                return true;
+            } else if (type.getSimpleSourceName().equals("Double")) {
+                return true;
+            } else if (type.getQualifiedSourceName().equals("java.math.BigDecimal")) {
+                return true;
+            } else if (type.getSimpleSourceName().equals("Boolean")) {
+                return true;
+            } else if (type.getSimpleSourceName().equals("Character")) {
+                return true;
+            } else if (type.getSimpleSourceName().equals("Date")) {
+                return true;
+            } else if (type.isEnum() != null) {
+                return true;
             } else {
-                // Otherwise, we prefer the existing getter, so we
-                // return and don't add the new one.
-                return;
+                BeanProperty.logger.log(TreeLogger.INFO, "Unhandled type'" + type.getQualifiedSourceName(), new Exception());
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public JType getType() {
+        return getter.getReturnType();
+    }
+
+    /**
+     * Methods that returns all the BeanProperty values for a given class.
+     *
+     * @param logger the logger
+     * @param cls    the class
+     * @return a set of BeanProperty values of the class
+     */
+    public static Set<BeanProperty> getProperties(TreeLogger logger, JClassType cls) {
+        BeanProperty.logger = logger;
+
+        Set<BeanProperty> properties = new TreeSet<BeanProperty>();
+        List<JMethod> methodsList = new ArrayList<JMethod>();
+        methodsList.addAll(Arrays.asList(cls.getMethods()));
+        JClassType langObject = cls.getOracle().getJavaLangObject();
+        JClassType clazz = cls;
+        while (true) {
+            clazz = clazz.getSuperclass();
+            if (clazz == null || clazz.equals(langObject) || clazz.getQualifiedSourceName().equals(Widget.class.getName()))
+                break;
+            JMethod[] clsMethods = clazz.getMethods();
+            methodsList.addAll(Arrays.asList(clsMethods));
+        }
+
+        for (JMethod getter : methodsList) {
+            String getterName = getter.getName();
+            if ((getterName.startsWith("get") || getterName.startsWith("is")) &&
+                    getter.getParameters().length == 0 && getter.isPublic() &&
+                    !getter.isAbstract() &&
+                    !getter.isStatic() && isSupportedType(getter)) {
+                JType type = getter.getReturnType();
+
+                String capitalizedName = null;
+                if (getterName.startsWith("is")) {
+                    if (type.getSimpleSourceName().equals("boolean") || type.getSimpleSourceName().equals("Boolean")) {
+                        capitalizedName = getterName.substring(2);
+                    } else {
+                        continue;
+                    }
+                } else {
+                    capitalizedName = getterName.substring(3);
+                }
+                if (excludedProperties.contains(capitalizedName.toUpperCase())) {
+                    continue;
+                }
+
+                String setterName = "set" + capitalizedName;
+                JMethod setter = findMethod(cls, setterName, type);
+                if (setter != null && setter.getReturnType().equals(JPrimitiveType.VOID)
+                        && setter.isPublic() &&
+                        !setter.isAbstract() &&
+                        !setter.isStatic()) {
+                    properties.add(new BeanProperty(capitalizedName, getter, setter));
+                }
             }
         }
-
-        // Actually add the getter, both here and in the global list for the BeanClass
-        getters.addLast(method);
-        beanClass.addMethod(method);
+        return properties;
     }
 
-    public void addSetter (BeanMethod method) {
-        if (method == null || !method.isSetter()) return;
 
-        // For setters, we always prefer existing setters if the signature type is the same.
-        BeanMethod existingSetter = setterForGenericType(method.getGenericType());
-        if (existingSetter == null) {
-            setters.addLast(method);
-            beanClass.addMethod(method);
+    public static JMethod findMethod(JClassType cls, String setterName, JType type) {
+        JClassType langObject = cls.getOracle().getJavaLangObject();
+        while (true) {
+            JMethod setter = cls.findMethod(setterName, new JType[]{type});
+            if (setter != null) {
+                return setter;
+            } else {
+                JClassType superClass = cls.getSuperclass();
+                if (superClass == null || superClass.equals(langObject)) {
+                    return null;
+                } else {
+                    cls = superClass;
+                }
+            }
         }
     }
 
-    // Finds the getter with the specified signature type (where the signature
-    // type equates boolean and Boolean etc.
-    public BeanMethod getterForGenericType (JType type) {
-        for (BeanMethod getter : getters) {
-            if (getter.getGenericType() == type) return getter;
-        }
-        return null;
-    }
-
-    // Finds the setter with the specified signature type (where the signature
-    // type equates boolean and Boolean etc.
-    public BeanMethod setterForGenericType (JType type) {
-        for (BeanMethod setter : setters) {
-            if (setter.getGenericType() == type) return setter;
-        }
-        return null;
-    }
-
-    // Copy methods from another property into this property.  Note that
-    // addMethod will check for duplicate types and reject duplicates. Thus,
-    // methods already on the property will be preferred to methods merged from
-    // elsewhere (superclasses or alternate types).
-    public void mergeProperty (BeanProperty otherProperty) {
-        for (BeanMethod method : otherProperty.getters) {
-            addMethod(method);
-        }
-
-        for (BeanMethod method : otherProperty.setters) {
-            addMethod(method);
-        }
-    }
-
-    public void writeConstructor (SourceWriter source, boolean addComma) {
-        if (getters.size() == 0 && setters.size() == 0) {
-            source.println("// Skipping because there are no getters and no setters: " + getName());
-            return;
-        }
-
-        if (
-            getters.size() == 1 && 
-            setters.size() == 1 && 
-            setters.get(0).getValueType() == getters.get(0).getValueType()
-        ) {
-            writeSingleConstructor(source, "BeanProperty1Getter1Setter", getters.get(0), setters.get(0), addComma);
-        } else if (getters.size() == 1 && setters.size() == 0) {
-            writeSingleConstructor(source, "BeanProperty1Getter", getters.get(0), null, addComma);
-        } else if (setters.size() == 1 && getters.size() == 0) {
-            writeSingleConstructor(source, "BeanProperty1Setter", null, setters.get(0), addComma);
-        } else {
-            writeMultipleConstructor(source, addComma);
-        }
-    }
-
-    private int getMethodIndex (BeanMethod method) {
-        return beanClass.indexOfMethod(method);
-    }
-
-    // This is called when there is at most one getter and one setter, and they
-    // have the same type.  Thus, it will be the usual case.
-    public void writeSingleConstructor (SourceWriter source, String propertyType, BeanMethod getter, BeanMethod setter, boolean addComma) {
-        final String beanClassName = beanClass.getSimpleBeanClassName();
- 
-        source.println("new " + propertyType + "<" + beanClassName + "> (\"" + getName() + "\",");
+    public void writeAttributeGetter(List getterPrefixes, SourceWriter source) throws UnableToCompleteException {
+        String dotProperty = getDotProperty(getterPrefixes);
+        source.println("if (attr.equals(\""
+                + dotProperty
+                + "\")) {");
         source.indent();
-        
-        if (getter != null && setter != null) {
-            getter.writeNew(source, beanClassName, getMethodIndex(getter), getMethodIndex(setter), false);
-        } else if (getter != null) {
-            getter.writeNew(source, beanClassName, getMethodIndex(getter), null, false);
-        } else if (setter != null) {
-            setter.writeNew(source, beanClassName, null, getMethodIndex(setter), false);
+
+        if (getterPrefixes.size() > 0) {
+            String nullCheck = getNotNullCheck(getterPrefixes);
+            source.println("if(" + nullCheck + ") {");
+            source.println("return " + convertToString(getType(), getGetterProperty(getterPrefixes)) + ";");
+            source.println("} else {");
+            source.println("return null;");
+            source.println("}");
+        } else {
+            source.println("return " + convertToString(getType(), getGetterProperty(getterPrefixes)) + ";");
         }
 
         source.outdent();
-        source.println(")" + (addComma ? "," : ""));
+        source.print("} else ");
     }
 
-    public void writeMultipleConstructor (SourceWriter source, boolean addComma) {
-        final String beanClassName = beanClass.getSimpleBeanClassName();
-        
-        source.println("new BeanPropertyMultiple<" + beanClassName + "> (\"" + getName() + "\",");
-        source.indent();
+    private String getDotProperty(List getterPrefixes) {
+        String getterName = getter.getName();
+        String capitalized = getterName.startsWith("get") ? getterName.substring(3) : getterName.substring(2);
+        String property = recapitalize(capitalized);
 
-        if (getters.size() == 0) {
-            source.println("null, // no getters");
-        } else {
-            source.println("new BeanMethod[] {");
-            source.indent();
+        String prefixProperty = "";
 
-            Iterator<BeanMethod> iterator = getters.iterator();
-            while (iterator.hasNext()) {
-                BeanMethod getter = iterator.next();
-                getter.writeNew(source, beanClassName, getMethodIndex(getter), null, iterator.hasNext());
-            }
-            
-            source.outdent();
-            source.println("},");
+        for (int i = getterPrefixes.size() - 1; i >= 0; i--) {
+            JMethod jMethod = (JMethod) getterPrefixes.get(i);
+            String gName = jMethod.getName();
+            String prop = gName.startsWith("get") ? gName.substring(3) : gName.substring(2);
+            prefixProperty = recapitalize(prop) + "." + prefixProperty;
         }
+        return prefixProperty + property;
+    }
 
-        if (setters.size() == 0) {
-            source.println("null // no setters");
+    private String getGetterProperty(List getterPrefixes) {
+        String getterProperty = getter.getName();
+        String prefixProperty = "";
+        for (int i = getterPrefixes.size() - 1; i >= 0; i--) {
+            JMethod jMethod = (JMethod) getterPrefixes.get(i);
+            prefixProperty = jMethod.getName() + "()." + prefixProperty;
+        }
+        return prefixProperty + getterProperty + "()";
+    }
+
+    private String getSetterProperty(List getterPrefixes) {
+        String getterProperty = setter.getName();
+        String prefixProperty = "";
+        for (int i = getterPrefixes.size() - 1; i >= 0; i--) {
+            JMethod jMethod = (JMethod) getterPrefixes.get(i);
+            prefixProperty = jMethod.getName() + "()." + prefixProperty;
+        }
+        return prefixProperty + getterProperty;
+    }
+
+    private static String convertToString(JType type, String value) throws UnableToCompleteException {
+        if (type.getSimpleSourceName().equals("String")) {
+            return value;
+        } else if (type.getSimpleSourceName().equals("int")) {
+            return "Integer.toString(" + value + ")";
+        } else if (type.getSimpleSourceName().equals("byte")) {
+            return "Byte.toString(" + value + ")";
+        } else if (type.getSimpleSourceName().equals("short")) {
+            return "Short.toString(" + value + ")";
+        } else if (type.getSimpleSourceName().equals("long")) {
+            return "Long.toString(" + value + ")";
+        } else if (type.getSimpleSourceName().equals("float")) {
+            return "Float.toString(" + value + ")";
+        } else if (type.getSimpleSourceName().equals("double")) {
+            return "Double.toString(" + value + ")";
+        } else if (type.getSimpleSourceName().equals("boolean")) {
+            return "Boolean.toString(" + value + ")";
+        } else if (type.getSimpleSourceName().equals("char")) {
+            return "Character.toString(" + value + ")";
+        } else if (type.getSimpleSourceName().equals("Integer")) {
+            return value + " == null ? null : " + value + ".toString()";
+        } else if (type.getQualifiedSourceName().equals("java.math.BigInteger")) {
+            return value + " == null ? null : " + "Integer.toString(" + value + ".intValue())";
+        } else if (type.getSimpleSourceName().equals("Byte")) {
+            return value + " == null ? null : " + value + ".toString()";
+        } else if (type.getSimpleSourceName().equals("Short")) {
+            return value + " == null ? null : " + value + ".toString()";
+        } else if (type.getSimpleSourceName().equals("Long")) {
+            return value + " == null ? null : " + value + ".toString()";
+        } else if (type.getSimpleSourceName().equals("Float")) {
+            return value + " == null ? null : " + value + ".toString()";
+        } else if (type.getSimpleSourceName().equals("Double")) {
+            return value + " == null ? null : " + value + ".toString()";
+        } else if (type.getQualifiedSourceName().equals("java.math.BigDecimal")) {
+            return value + " == null ? null : " + "Double.toString(" + value + ".doubleValue())";
+        } else if (type.getSimpleSourceName().equals("Boolean")) {
+            return value + " == null ? null : " + value + ".toString()";
+        } else if (type.getSimpleSourceName().equals("Character")) {
+            return value + " == null ? null : " + value + ".toString()";
+        } else if (type.getSimpleSourceName().equals("Date")) {
+            return value + " == null ? null : " + "null";// "dateFormat.format(" + value + ")";
+        } else if (type.isEnum() != null) {
+            return value + " == null ? null : " + value + ".getValue()";
         } else {
-            source.println("new BeanMethod[] {");
-            source.indent();
-            
-            Iterator<BeanMethod> iterator = setters.iterator();
-            while (iterator.hasNext()) {
-                BeanMethod setter = iterator.next();
-                setter.writeNew(source, beanClassName, null, getMethodIndex(setter), iterator.hasNext());
+            BeanProperty.logger.log(TreeLogger.ERROR, "Unhandled type'" + type.getQualifiedSourceName() + "' for value " + value, new Exception());
+            return value + " == null ? null : " + value + ".toString().toString()";
+            //throw new UnableToCompleteException();
+        }
+    }
+
+    public void writeAttributeSetter(List getterPrefixes, SourceWriter source) throws UnableToCompleteException {
+        String dotProperty = getDotProperty(getterPrefixes);
+        source.println("if (attr.equals(\""
+                + dotProperty
+                + "\")) {");
+        source.indent();
+        if (getterPrefixes.size() > 0) {
+            String nullCheck = getNotNullCheck(getterPrefixes);
+            source.println("if(" + nullCheck + ") {");
+            source.println(getSetterProperty(getterPrefixes) + "(" + convertFromString(getType(), "value") + ");");
+            source.println("} else {");
+            source.println(" throw new NullPointerException(\"Nested property " + dotProperty + " cannot be set as it references a null object\");");
+            source.println("}");
+        } else {
+            source.println(getSetterProperty(getterPrefixes) + "(" + convertFromString(getType(), "value") + ");");
+        }
+        source.outdent();
+        source.print("} else ");
+    }
+
+    private String getNotNullCheck(List getterPrefixes) {
+        List notNullList = getNotNullCriteriaList(new ArrayList(getterPrefixes), new ArrayList());
+        String criteria = null;
+        for (int i = 0; i < notNullList.size(); i++) {
+            List getters = (List) notNullList.get(i);
+            String subCriteria = null;
+            for (int j = 0; j < getters.size(); j++) {
+                JMethod getter = (JMethod) getters.get(j);
+                if (subCriteria == null) {
+                    subCriteria = getter.getName() + "()";
+                } else {
+                    subCriteria = subCriteria + "." + getter.getName() + "()";
+                }
             }
-            
+            subCriteria = subCriteria + " != null";
+            criteria = (criteria == null) ? subCriteria : (criteria + " && " + subCriteria);
+        }
+        return criteria;
+    }
+
+    private List getNotNullCriteriaList(List getterPrefixes, List prefixList) {
+        if (getterPrefixes.size() == 0) {
+            return prefixList;
+        } else {
+            JMethod getter = (JMethod) getterPrefixes.remove(0);
+            if (prefixList.size() > 0) {
+                List prevList = (List) prefixList.get(prefixList.size() - 1);
+                ArrayList list = new ArrayList(prevList);
+                list.add(getter);
+                prefixList.add(list);
+            } else {
+                ArrayList list = new ArrayList();
+                list.add(getter);
+                prefixList.add(list);
+            }
+            return getNotNullCriteriaList(getterPrefixes, prefixList);
+        }
+    }
+
+    private static String convertFromString(JType type, String value) throws UnableToCompleteException {
+        if (type.getSimpleSourceName().equals("String")) {
+            return value;
+        } else if (type.getSimpleSourceName().equals("int")) {
+            return "(" + value + "== null || value.equals(\"\")) ? 0 : Integer.parseInt(" + value + ")";
+        } else if (type.getSimpleSourceName().equals("byte")) {
+            return "(" + value + "== null || value.equals(\"\")) ? 0 : Byte.parseByte(" + value + ")";
+        } else if (type.getSimpleSourceName().equals("short")) {
+            return "(" + value + "== null || value.equals(\"\")) ? 0 : Short.parseShort(" + value + ")";
+        } else if (type.getSimpleSourceName().equals("long")) {
+            return "(" + value + "== null || value.equals(\"\")) ? 0 : Long.parseLong(" + value + ")";
+        } else if (type.getSimpleSourceName().equals("float")) {
+            return "(" + value + "== null || value.equals(\"\")) ? 0 : Float.parseFloat(" + value + ")";
+        } else if (type.getSimpleSourceName().equals("double")) {
+            return "(" + value + "== null || value.equals(\"\")) ? 0 : Double.parseDouble(" + value + ")";
+        } else if (type.getSimpleSourceName().equals("boolean")) {
+            return "((" + value + " != null) && " + value + ".equalsIgnoreCase(\"true\"))";
+        } else if (type.getSimpleSourceName().equals("char")) {
+            return "(" + value + "== null || value.equals(\"\")) ? 0 : " + value + ".charAt(0)";
+        } else if (type.getSimpleSourceName().equals("Integer")) {
+            return value + " ==null || " + value + ".equals(\"\") ? null: new Integer(Integer.parseInt(" + value + "))";
+        } else if (type.getQualifiedSourceName().equals("java.math.BigInteger")) {
+            return value + " ==null || " + value + ".equals(\"\") ? null: new java.math.BigInteger(" + value + ")";
+        } else if (type.getSimpleSourceName().equals("Byte")) {
+            return value + " ==null || " + value + ".equals(\"\") ? null: new Byte(Byte.parseByte(" + value + "))";
+        } else if (type.getSimpleSourceName().equals("Short")) {
+            return value + " ==null || " + value + ".equals(\"\") ? null: new Short(Short.parseShort(" + value + "))";
+        } else if (type.getSimpleSourceName().equals("Long")) {
+            return value + " ==null || " + value + ".equals(\"\") ? null: new Long(Long.parseLong(" + value + "))";
+        } else if (type.getSimpleSourceName().equals("Float")) {
+            return value + " ==null || " + value + ".equals(\"\") ? null: new Float(Float.parseFloat(" + value + "))";
+        } else if (type.getSimpleSourceName().equals("Double")) {
+            return value + " ==null || " + value + ".equals(\"\") ? null: new Double(Double.parseDouble(" + value + "))";
+        } else if (type.getQualifiedSourceName().equals("java.math.BigDecimal")) {
+            return value + " ==null || " + value + ".equals(\"\") ? null: new java.math.BigDecimal(Double.parseDouble(" + value + "))";
+        } else if (type.getSimpleSourceName().equals("Boolean")) {
+            return value + " ==null || " + value + ".equals(\"\") ? null: new Boolean(((" + value + " != null) && " + value + ".equalsIgnoreCase(\"true\")))";
+        } else if (type.getSimpleSourceName().equals("Character")) {
+            return value + " ==null || " + value + ".equals(\"\") ? null: new Character(" + value + ".charAt(0))";
+        } else if (type.getSimpleSourceName().equals("Date")) {
+            return value + " ==null || " + value + ".equals(\"\") ? null: new java.util.Date(" + value + ")";
+        } else if (type.isEnum() != null) {
+            return value + " ==null || " + value + ".equals(\"\") ? null: com.smartgwt.client.util.EnumUtil.getEnum(" + type.getQualifiedSourceName() + ".values(), " + value + ")";
+        } else {
+            BeanProperty.logger.log(TreeLogger.ERROR, "Unhandled type'" + type.getQualifiedSourceName() + "' for value " + value, new Exception());
+            throw new UnableToCompleteException();
+        }
+    }
+
+    private static String getFeildDef(JType type, String property) throws UnableToCompleteException {
+        String sourceName = type.getSimpleSourceName();
+        String qualifiedSourceName = type.getQualifiedSourceName();
+
+        if (sourceName.equals("String") || sourceName.equals("char") || sourceName.equals("Character") /*|| type.isEnum() != null*/) {
+            return "new Property(\"" + property + "\", " + qualifiedSourceName + ".class)";
+        } else if (sourceName.equals("int") || sourceName.equals("byte") || sourceName.equals("long") || sourceName.equals("short") ||
+                sourceName.equals("Integer") || sourceName.equals("Byte") || sourceName.equals("Long") || sourceName.equals("Short")) {
+            return "new Property(\"" + property + "\", " + qualifiedSourceName + ".class)";
+        } else if (sourceName.equals("float") || sourceName.equals("Float") || sourceName.equals("double") || sourceName.equals("Double")) {
+            return "new Property(\"" + property + "\", " + qualifiedSourceName + ".class)";
+        } else if (sourceName.equals("boolean") || sourceName.equals("Boolean")) {
+            return "new Property(\"" + property + "\", " + qualifiedSourceName + ".class)";
+        } else if (sourceName.equals("Date")) {
+            return "new Property(\"" + property + "\", " + qualifiedSourceName + ".class)";
+        } else if (type.isEnum() != null) {
+            return "new Property(\"" + property + "\", " + qualifiedSourceName + ".class)";
+        } else {
+            BeanProperty.logger.log(TreeLogger.ERROR, "Unhandled type'" + type.getQualifiedSourceName() + "' for property " + property, new Exception());
+            throw new UnableToCompleteException();
+        }
+    }
+
+    public void writeFieldDef(ArrayList getterPrefixes, SourceWriter source) throws UnableToCompleteException {
+        String dotProperty = getDotProperty(getterPrefixes);
+        source.println(getFeildDef(getType(), dotProperty));
+    }
+
+    public void writeAccessor(SourceWriter source) {
+        source.println(getter.getReadableDeclaration() + " {");
+        source.indent();
+        source.println("return bean." + getter.getName() + "();");
+        source.outdent();
+        source.println("}");
+
+        if (setter != null) {
+            source.println();
+
+            source.println(setter.getReadableDeclaration() + " {");
+            source.indent();
+            source.println("bean." + setter.getName() + "(" + setter.getParameters()[0].getName() + ");");
             source.outdent();
             source.println("}");
         }
+    }
 
+    public static void writeAttributeGetters(SourceWriter source, Set<BeanProperty> properties) throws UnableToCompleteException {
+        writeAttributeGetters(new ArrayList(), source, properties);
+        source.println("{");
+        source.indent();
+        source.println("throw new IllegalArgumentException(\"Invalid attribute \" + attr);");
         source.outdent();
-        source.println(")" + (addComma ? "," : ""));
+        source.println("}");
+    }
+
+    public static void writeAttributeGetters(List getterPrefixes, SourceWriter source, Set<BeanProperty> properties) throws UnableToCompleteException {
+        for (BeanProperty beanProperty : properties) {
+            beanProperty.writeAttributeGetter(getterPrefixes, source);
+        }
+    }
+
+    public static void writeAttributeSetters(SourceWriter source, Set<BeanProperty> properties) throws UnableToCompleteException {
+        writeAttributeSetters(new ArrayList(), source, properties);
+        source.println("{");
+        source.println("String msg = \"Invalid or read-only attribute \" + attr + \" with value \" + value;");
+        source.println("GWT.log(msg, new Exception());");
+        source.println("}");
+    }
+
+    public static void writeAttributeSetters(List getterPrefixes, SourceWriter source, Set<BeanProperty> properties) throws UnableToCompleteException {
+        for (BeanProperty beanProperty : properties) {
+            if (beanProperty.getSetter() != null) {
+                beanProperty.writeAttributeSetter(getterPrefixes, source);
+            }
+        }
+    }
+
+    public static void writeRecordDefs(SourceWriter source, Set<BeanProperty> properties) throws UnableToCompleteException {
+        writeRecordDefs(new ArrayList(), source, properties);
+    }
+
+    private static void writeRecordDefs(ArrayList getterPrefixes, SourceWriter source, Set<BeanProperty> properties) throws UnableToCompleteException {
+        int i = 0;
+        for (BeanProperty beanProperty : properties) {
+            source.indent();
+            beanProperty.writeFieldDef(getterPrefixes, source);
+            if (i != properties.size() - 1) {
+                source.print(",");
+            }
+            source.outdent();
+            i++;
+        }
     }
 }

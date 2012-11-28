@@ -18,9 +18,9 @@ package com.smartgwt.client.types;
 
 /**
  * String designating a standard time formatter for displaying the times associated with &#010 dates strings.
- * @deprecated Use {@link com.TimeDisplayFormat2.client.types.TimeDisplayFormat} instead
+ * @deprecated Use {@link com.smartgwt.client.util.DateDisplayFormatter} instead
  */
-
+@Deprecated
 public enum TimeFormatter implements ValueEnum {
     /**
      * String will display with seconds and am/pm indicator:<code>[H]H:MM:SS am|pm</code>. <br>&#010  Example:

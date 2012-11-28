@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Smart GWT abstraction for Applets.  This class provides Java&lt;-&gt;Smart GWT  interoperability.  When embedding
@@ -80,22 +100,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class Applet extends BrowserPlugin {
 
-    public static Applet getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (Applet) obj;
-        } else {
-            return new Applet(jsObj);
+    public native static Applet getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("Applet",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.plugins.Applet::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public Applet(){
         scClassName = "Applet";
     }
 
     public Applet(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "Applet";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -111,7 +142,7 @@ public class Applet extends BrowserPlugin {
      * This text is displayed if the browser understands the tag used for the applet html element,  but can't run the applet
      * for some reason.
      *
-     * @param alt alt Default value is null
+     * @param alt . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.plugins.Applet#setAltHTML
      * @see com.smartgwt.client.widgets.plugins.Applet#setUseTag
@@ -125,7 +156,7 @@ public class Applet extends BrowserPlugin {
      * for some reason.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.plugins.Applet#getAltHTML
      * @see com.smartgwt.client.widgets.plugins.Applet#getUseTag
      */
@@ -136,7 +167,7 @@ public class Applet extends BrowserPlugin {
     /**
      * This text is displayed if the browser does not understand the tag used for the applet html  element.
      *
-     * @param altHTML altHTML Default value is null
+     * @param altHTML . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.plugins.Applet#setAlt
      * @see com.smartgwt.client.widgets.plugins.Applet#setUseTag
@@ -149,7 +180,7 @@ public class Applet extends BrowserPlugin {
      * This text is displayed if the browser does not understand the tag used for the applet html  element.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.plugins.Applet#getAlt
      * @see com.smartgwt.client.widgets.plugins.Applet#getUseTag
      */
@@ -160,7 +191,7 @@ public class Applet extends BrowserPlugin {
     /**
      * URL to the applet JAR or ZIP archive.
      *
-     * @param archive archive Default value is null
+     * @param archive . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.plugins.Applet#setCode
      * @see com.smartgwt.client.widgets.plugins.Applet#setCodeBase
@@ -173,7 +204,7 @@ public class Applet extends BrowserPlugin {
      * URL to the applet JAR or ZIP archive.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.plugins.Applet#getCode
      * @see com.smartgwt.client.widgets.plugins.Applet#getCodeBase
      */
@@ -191,7 +222,7 @@ public class Applet extends BrowserPlugin {
      * onclick="window.open('http://java.sun.com/j2se/1.4.2/docs/guide/plugin/developer_guide/using_tags.html#in-ie');return
      * false;">http://java.sun.com/j2se/1.4.2/docs/guide/plugin/developer_guide/using_tags.html#in-ie</a>
      *
-     * @param classID classID Default value is see below
+     * @param classID . See {@link com.smartgwt.client.docs.String String}. Default value is see below
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.plugins.Applet#setObjectCodeBase
      */
@@ -210,7 +241,7 @@ public class Applet extends BrowserPlugin {
      * false;">http://java.sun.com/j2se/1.4.2/docs/guide/plugin/developer_guide/using_tags.html#in-ie</a>
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.plugins.Applet#getObjectCodeBase
      */
     public String getClassID()  {
@@ -220,7 +251,7 @@ public class Applet extends BrowserPlugin {
     /**
      * A URL that points to the class of the applet.
      *
-     * @param code code Default value is null
+     * @param code . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.plugins.Applet#setCodeBase
      * @see com.smartgwt.client.widgets.plugins.Applet#setArchive
@@ -233,7 +264,7 @@ public class Applet extends BrowserPlugin {
      * A URL that points to the class of the applet.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.plugins.Applet#getCodeBase
      * @see com.smartgwt.client.widgets.plugins.Applet#getArchive
      */
@@ -244,7 +275,7 @@ public class Applet extends BrowserPlugin {
     /**
      * The base URL of the applet if the {@link com.smartgwt.client.widgets.plugins.Applet#getCode code} attribute is relative
      *
-     * @param codeBase codeBase Default value is null
+     * @param codeBase . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.plugins.Applet#setCode
      * @see com.smartgwt.client.widgets.plugins.Applet#setArchive
@@ -257,7 +288,7 @@ public class Applet extends BrowserPlugin {
      * The base URL of the applet if the {@link com.smartgwt.client.widgets.plugins.Applet#getCode code} attribute is relative
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.plugins.Applet#getCode
      * @see com.smartgwt.client.widgets.plugins.Applet#getArchive
      */
@@ -314,7 +345,7 @@ public class Applet extends BrowserPlugin {
      * general you don't need to set this.  If you have a handle to  your ISC Applet object you can simply call {@link
      * com.smartgwt.client.widgets.plugins.Applet#getPluginHandle Applet.getPluginHandle} to get a  handle to the element.
      *
-     * @param name name Default value is null
+     * @param name . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.plugins.Applet#getPluginHandle
      */
@@ -328,7 +359,7 @@ public class Applet extends BrowserPlugin {
      * com.smartgwt.client.widgets.plugins.Applet#getPluginHandle Applet.getPluginHandle} to get a  handle to the element.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.plugins.Applet#getPluginHandle
      */
     public String getName()  {
@@ -345,7 +376,7 @@ public class Applet extends BrowserPlugin {
      * onclick="window.open('http://java.sun.com/j2se/1.4.2/docs/guide/plugin/developer_guide/using_tags.html#in-ie');return
      * false;">http://java.sun.com/j2se/1.4.2/docs/guide/plugin/developer_guide/using_tags.html#in-ie</a>
      *
-     * @param objectCodeBase objectCodeBase Default value is see below
+     * @param objectCodeBase . See {@link com.smartgwt.client.docs.String String}. Default value is see below
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.plugins.Applet#setClassID
      */
@@ -364,7 +395,7 @@ public class Applet extends BrowserPlugin {
      * false;">http://java.sun.com/j2se/1.4.2/docs/guide/plugin/developer_guide/using_tags.html#in-ie</a>
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.plugins.Applet#getClassID
      */
     public String getObjectCodeBase()  {
@@ -399,7 +430,7 @@ public class Applet extends BrowserPlugin {
      * A URL that points to the class of this applet.  This is the same as the 'code' attribute.  Note that if you specify both
      * the src and the code attributes, the src attribute will be  ignored in favor of the code attribute.
      *
-     * @param src src Default value is null
+     * @param src . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setSrc(String src)  throws IllegalStateException {
@@ -411,7 +442,7 @@ public class Applet extends BrowserPlugin {
      * the src and the code attributes, the src attribute will be  ignored in favor of the code attribute.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSrc()  {
         return getAttributeAsString("src");
@@ -424,7 +455,7 @@ public class Applet extends BrowserPlugin {
      * false;">http://java.sun.com/j2se/1.4.2/docs/guide/plugin/developer_guide/using_tags.html</a> for a  discussion of
      * different tags.
      *
-     * @param useTag useTag Default value is "applet"
+     * @param useTag . See {@link com.smartgwt.client.docs.String String}. Default value is "applet"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setUseTag(String useTag)  throws IllegalStateException {
@@ -439,20 +470,42 @@ public class Applet extends BrowserPlugin {
      * different tags.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getUseTag()  {
         return getAttributeAsString("useTag");
     }
 
     // ********************* Methods ***********************
-            
+
     /**
-     * Returns a handle to the applet DOM element (valid only after the component has been drawn).
+     * 
+     *
+     * @return Returns a handle to the applet DOM element (valid only after the component has been drawn).
      */
-    public native void getPluginHandle() /*-{
+    public native com.google.gwt.dom.client.Element getPluginHandle() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.getPluginHandle();
+        return self.getPluginHandle();
+    }-*/;
+
+    /**
+     * 
+     *
+     * @return ID used for the &lt;applet&gt; or &lt;object&gt; DOM element generated by this component.
+     */
+    public native String getPluginID() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getPluginID();
+    }-*/;
+
+    /**
+     * Sets the ID to be used for the &lt;applet&gt; or &lt;object&gt; DOM element generated by this  component.  Can only be
+     * set before draw.
+     * @param pluginID 
+     */
+    public native void setPluginID(String pluginID) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setPluginID(pluginID);
     }-*/;
 
     // ********************* Static Methods ***********************
@@ -507,8 +560,85 @@ public class Applet extends BrowserPlugin {
 
 
 
+    public LogicalStructureObject setLogicalStructure(AppletLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.alt = getAttributeAsString("alt");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Applet.alt:" + t.getMessage() + "\n";
+        }
+        try {
+            s.altHTML = getAttributeAsString("altHTML");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Applet.altHTML:" + t.getMessage() + "\n";
+        }
+        try {
+            s.archive = getAttributeAsString("archive");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Applet.archive:" + t.getMessage() + "\n";
+        }
+        try {
+            s.classID = getAttributeAsString("classID");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Applet.classID:" + t.getMessage() + "\n";
+        }
+        try {
+            s.code = getAttributeAsString("code");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Applet.code:" + t.getMessage() + "\n";
+        }
+        try {
+            s.codeBase = getAttributeAsString("codeBase");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Applet.codeBase:" + t.getMessage() + "\n";
+        }
+        try {
+            s.extraHTML = getAttributeAsString("extraHTML");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Applet.extraHTML:" + t.getMessage() + "\n";
+        }
+        try {
+            s.mayScript = getAttributeAsString("mayScript");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Applet.mayScript:" + t.getMessage() + "\n";
+        }
+        try {
+            s.name = getAttributeAsString("name");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Applet.name:" + t.getMessage() + "\n";
+        }
+        try {
+            s.objectCodeBase = getAttributeAsString("objectCodeBase");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Applet.objectCodeBase:" + t.getMessage() + "\n";
+        }
+        try {
+            s.params = getAttributeAsString("params");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Applet.params:" + t.getMessage() + "\n";
+        }
+        try {
+            s.scriptable = getAttributeAsString("scriptable");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Applet.scriptable:" + t.getMessage() + "\n";
+        }
+        try {
+            s.src = getAttributeAsString("src");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Applet.src:" + t.getMessage() + "\n";
+        }
+        try {
+            s.useTag = getAttributeAsString("useTag");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Applet.useTag:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        AppletLogicalStructure s = new AppletLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-
 

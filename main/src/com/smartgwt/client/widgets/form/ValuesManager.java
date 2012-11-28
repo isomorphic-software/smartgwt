@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * The ValuesManager manages data from multiple member forms. <P> If a single logical form needs to be separated into
@@ -78,7 +98,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * However, when using a ValuesManager these extra values are only allowed on the ValuesManager itself. Member forms will
  * not track values for which they do not have FormItems.
  */
-public class ValuesManager extends BaseClass  implements com.smartgwt.client.widgets.form.events.HasSubmitValuesHandlers, com.smartgwt.client.widgets.form.events.HasHiddenValidationErrorsHandlers {
+public class ValuesManager extends BaseClass  implements com.smartgwt.client.widgets.form.events.HasHiddenValidationErrorsHandlers {
 
     public static ValuesManager getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -90,12 +110,18 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
+    }
+
+
     public ValuesManager(){
         scClassName = "ValuesManager";
     }
 
     public ValuesManager(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "ValuesManager";
+        setJavaScriptObject(jsObj);
     }
 
     public native JavaScriptObject create()/*-{
@@ -189,7 +215,14 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData} is called. Valid options are
      * <code>"add"</code> or <code>"update"</code>. <P> If a {@link com.smartgwt.client.data.DSRequest} configuration object is
      * passed in containing an explicit operationType this will be returned. Otherwise {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned.
+     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned. This attribute is
+     * automatically set via calls to data binding methods such as {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editNewRecord DynamicForm.editNewRecord}, or it may be set explicitly. <P>
+     * If no explicit saveOperationType is specified for this form, the system will  look at the current values for the form.
+     * If the form has no value for the {@link com.smartgwt.client.data.DataSource#getPrimaryKeyField primaryKey field}, or
+     * that field is editable and has been modified we assume an add operation, otherwise an update. If the form is a member of
+     * a {@link com.smartgwt.client.widgets.form.ValuesManager}, the primary key field value will be derived from the
+     * valuesManager's values object.
      */
     public DSOperationType getSaveOperationType()  {
         return EnumUtil.getEnum(DSOperationType.values(), getAttribute("saveOperationType"));
@@ -204,8 +237,8 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      * default by specifying  willHandleError on the DSRequest. In this case the callback passed in  will be fired even if the
      * server returns an error status code. <P> If <code>suppressValidationErrorCallback</code> is set to true, if a save
      * attempt returns a <i>validation</i> error code, the user-specified callback will not be fired <i>even if
-     * willHandleError:true</code> was specified on the dsRequest - though for other error codes, the callback would be fired
-     * if willHandle error is specified on the request. Note that this is the historical behavior for <var
+     * <code>willHandleError:true</code> was specified on the dsRequest</i>  - though for other error codes, the callback would
+     * be fired if willHandle error is  specified on the request. Note that this is the historical behavior for <var
      * class=smartclient>Smart GWT builds 8.0 and earlier</var> <var class=smartgwt>SmartGWT builds 4.0 and earlier</var>
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -224,8 +257,8 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      * default by specifying  willHandleError on the DSRequest. In this case the callback passed in  will be fired even if the
      * server returns an error status code. <P> If <code>suppressValidationErrorCallback</code> is set to true, if a save
      * attempt returns a <i>validation</i> error code, the user-specified callback will not be fired <i>even if
-     * willHandleError:true</code> was specified on the dsRequest - though for other error codes, the callback would be fired
-     * if willHandle error is specified on the request. Note that this is the historical behavior for <var
+     * <code>willHandleError:true</code> was specified on the dsRequest</i>  - though for other error codes, the callback would
+     * be fired if willHandle error is  specified on the request. Note that this is the historical behavior for <var
      * class=smartclient>Smart GWT builds 8.0 and earlier</var> <var class=smartgwt>SmartGWT builds 4.0 and earlier</var>
      *
      *
@@ -236,7 +269,27 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
     }
 
     // ********************* Methods ***********************
-            
+
+    /**
+     * Add a new member to this valuesManager.  Any {@link com.smartgwt.client.widgets.Canvas} can be a member of a
+     * valuesManager, even components like {@link com.smartgwt.client.widgets.layout.Layout} or {@link
+     * com.smartgwt.client.widgets.tab.TabSet} that do not actually have any values to manage.  When "valueless" components
+     * like these bind to a ValuesManager, it is in order to provide their own child components with a shared valuesManager so
+     * that complex data can be displayed and edited - see  {@link com.smartgwt.client.widgets.DataBoundComponent#getDataPath
+     * dataPath} for more details. <p> For components like {@link com.smartgwt.client.widgets.form.DynamicForm} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid}, which do have  a set of values to manage, the component's values will
+     * subsequently be available through this valuesManager. <p> Note on pre-existent values when the member component is a
+     * {@link com.smartgwt.client.widgets.form.DynamicForm}:<br> If the valuesManager has a value specified for some field, for
+     * which the member form has an item, this value will be applied to the member form.  This is true whether the item has a
+     * value or not.<br> However if the member form has a value for some field, and the ValuesManager does not have a specified
+     * value for the same field, we allow the valuesManager to pick up the  value from the member form.
+     * @param member component (or ID of component) to add to                                           this valuesManager as a member.
+     */
+    public native void addMember(DynamicForm member) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.addMember(member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+
     /**
      * 
      *  This method exists for clean integration with existing server frameworks that have a 'cancel'
@@ -277,9 +330,9 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      */
     public native void cancel(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.cancel(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+        self.cancel(requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-            
+
     /**
      * Clears all errors from member forms.
      * @param showErrors If true, clear any visible error messages.
@@ -288,7 +341,7 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.clearErrors(showErrors);
     }-*/;
-            
+
     /**
      * Clear all validation errors associated with some field in this form
      * @param fieldName field for which errors should be cleared
@@ -299,7 +352,7 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.clearFieldErrors(fieldName, show);
     }-*/;
-            
+
     /**
      * Clear the value for some field.
      * @param fieldName Which field to set the value for
@@ -308,7 +361,7 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.clearValue(fieldName);
     }-*/;
-            
+
     /**
      * Clear out all the values managed by this values manager.
      */
@@ -316,7 +369,7 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.clearValues();
     }-*/;
-            
+
     /**
      * Given a fieldName or dataPath, this method will find the member responsible for interacting with that field's value. If
      * no form is found, returns null.
@@ -334,7 +387,52 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         }
         return retVal;
     }-*/;
-            
+    /**
+     * Add a hiddenValidationErrors handler.
+     * <p>
+     * Method to display validation error messages for a valuesManager when there is not currently visible form item displaying
+     * the errors. This will be called when validation fails for<br> - a field in a hidden or undrawn member form<br> - a
+     * hidden field in a visible member form<br> - for databound ValuesManagers, a datasource field with specified validators,
+     * but not   associated item in any member.<br> Implement this to provide custom validation error handling for these
+     * fields.<br> By default hidden validation errors will be logged as warnings in the developerConsole. Call {@link com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent#cancel()} from within {@link HiddenValidationErrorsHandler#onHiddenValidationErrors} from
+     * this method to suppress that behavior.
+     *
+     * @param handler the hiddenValidationErrors handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addHiddenValidationErrorsHandler(com.smartgwt.client.widgets.form.events.HiddenValidationErrorsHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent.getType()) == 0) setupHiddenValidationErrorsEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent.getType());
+    }
+
+    private native void setupHiddenValidationErrorsEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        var handleHiddenValidationErrors = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            obj.addProperties({handleHiddenValidationErrors: 
+                function () {
+                    var param = {"errors" : arguments[0]};
+                    return handleHiddenValidationErrors(param) == true;
+                }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+            obj.handleHiddenValidationErrors = 
+                function () {
+                    var param = {"errors" : arguments[0]};
+                    return handleHiddenValidationErrors(param) == true;
+                }
+            ;
+        }
+   }-*/;
+
     /**
      * Are there any errors associated with any fields in this valuesManager?
      *
@@ -350,7 +448,7 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Are there any errors associated with a field in this valuesManager?
      * @param fieldName field to check for errors
@@ -367,7 +465,7 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Returns true if {@link com.smartgwt.client.widgets.form.ValuesManager#getSaveOperationType saveOperationType} is
      * currently "add".  See {@link com.smartgwt.client.widgets.form.ValuesManager#getSaveOperationType saveOperationType}.
@@ -383,7 +481,28 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
+    /**
+     * Remove a member form from this valuesManager, so its values are no longer managed  by this instance.  This does not
+     * clear the values associated with the form from the valuesManager - they  will still be available via
+     * <code>valuesManager.getValues()</code>, but will not be  updated as the form is manipulated.
+     * @param member form (or ID of form) to remove from this valuesManager
+     */
+    public native void removeMember(DynamicForm member) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.removeMember(member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+
+    /**
+     * Remove multiple member forms from this valuesManager.
+     * @param members array of forms to remove
+     */
+    public native void removeMembers(DynamicForm[] members) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        members = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(members);
+        self.removeMembers(members);
+    }-*/;
+
     /**
      * Same as {@link com.smartgwt.client.widgets.form.DynamicForm#reset DynamicForm.reset}.
      */
@@ -391,29 +510,29 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.resetValues();
     }-*/;
-            
+
     /**
      * Method to explicitly show the latest set of validation errors present on this  ValuesManager.<br> Will redraw all member
      * forms to display (or clear) currently visible errors, and fire {@link
-     * com.smartgwt.client.widgets.form.ValuesManager#handleHiddenValidationErrors ValuesManager.handleHiddenValidationErrors}
-     * to allow custom handling of hidden errors.
+     * com.smartgwt.client.widgets.form.ValuesManager#addHandleHiddenValidationErrorsHandler
+     * ValuesManager.handleHiddenValidationErrors} to allow custom handling of hidden errors.
      */
     public native void showErrors() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.showErrors();
     }-*/;
-            
+
     /**
      * Method to explicitly show the latest set of validation errors present on some field  within this ValuesManager.<br> If
      * the field in question is present as a visible item in a member form, the form item will be redrawn to display the error
-     * message(s). Otherwise {@link com.smartgwt.client.widgets.form.ValuesManager#handleHiddenValidationErrors
+     * message(s). Otherwise {@link com.smartgwt.client.widgets.form.ValuesManager#addHandleHiddenValidationErrorsHandler
      * ValuesManager.handleHiddenValidationErrors} will be fired to allow  custom handling of hidden errors.
      */
     public native void showFieldErrors() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.showFieldErrors();
     }-*/;
-            
+
     /**
      * Update all of this ValuesManager's members to reflect the current values held by the   ValuesManager.  It is not
      * normally necesary to manually synchronize members, but you   will need to do so if you switch off {@link
@@ -423,14 +542,15 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.synchronizeMembers();
     }-*/;
-            
+
     /**
      * Validate the current set of values for this values manager against validators defined in the member forms. For databound
      * valuesManagers, also perform validation against any validators defined on datasource fields. <P> Note that if validation
      * errors occur for a value that is not shown in any member forms, those errors will cause a warning and {@link
-     * com.smartgwt.client.widgets.form.ValuesManager#handleHiddenValidationErrors ValuesManager.handleHiddenValidationErrors}
-     * will be called.  This can occur if:<br> - A datasource field has no corresponding item in any member form<br> - The item
-     * in question is hidden<br> - The member form containing the item is hidden.
+     * com.smartgwt.client.widgets.form.ValuesManager#addHandleHiddenValidationErrorsHandler
+     * ValuesManager.handleHiddenValidationErrors} will be called.  This can occur if:<br> - A datasource field has no
+     * corresponding item in any member form<br> - The item in question is hidden<br> - The member form containing the item is
+     * hidden.
      *
      * @return true if all validation passed
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_splitting" target="examples">Splitting Example</a>
@@ -444,7 +564,7 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Compares the current set of values with the values stored by the call to the {@link
      * com.smartgwt.client.widgets.form.DynamicForm#rememberValues DynamicForm.rememberValues} method. 
@@ -735,36 +855,6 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
     }-*/;
 
     /**
-     * Add a new member form to this valuesManager. This form's values will subsequently be available through this
-     * valuesManager.  <br> Note on pre-existant values: If the valuesManager has a value specified for some field, for
-     * which the member form has an item, this value will be applied to the member form.  This is true whether the item
-     * has a value or not.<br> However if the member form has a value for some field, and the ValuesManager does not
-     * have a specified value for the same field, we allow the valuesManager to pick up the  value from the member
-     * form.
-     *
-     * @param member form (or ID of form) to add to                                           this valuesManager as a
-     *               member.
-     */
-    public native void addMember(DynamicForm member) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var memberJS = member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.addMember(memberJS);
-    }-*/;
-
-    /**
-     * Remove a member form from this valuesManager, so its values are no longer managed by this instance. This does not
-     * clear the values associated with the form from the valuesManager - they will still be available via
-     * valuesManager.getValues(), but will not be updated as the form is manipulated.
-     *
-     * @param member form to remove from this valuesManager
-     */
-    public native void removeMember(DynamicForm member) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var memberJS = member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.removeMember(memberJS);
-    }-*/;
-
-    /**
      * Returns an array of members in this ValuesManager.
      *
      * @return the members
@@ -772,7 +862,7 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
     public DynamicForm[] getMembers() {
         return convertToDynamicFormArray(getAttributeAsJavaScriptObject("members"));
     }
-
+    
     private static DynamicForm[] convertToDynamicFormArray(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
             return new DynamicForm[]{};
@@ -1157,12 +1247,13 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         if (fieldJS == null) return null;
         return @com.smartgwt.client.widgets.form.fields.FormItemFactory::getFormItem(Lcom/google/gwt/core/client/JavaScriptObject;)(fieldJS);
     }-*/;
-
     /**
      * Add a submitValues handler.
      * <p>
      * Triggered when a {@link #submit()} is called on this valuesManager (or any form included in this valuesManager).
      *
+     
+     
      * @param handler the submitValues handler
      * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
      */
@@ -1189,48 +1280,6 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
                    var event = @com.smartgwt.client.widgets.form.events.SubmitValuesEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                });
-        }
-   }-*/;
-
-    /**
-     * Add a hiddenValidationErrors handler.
-     * <p>
-     * Method to display validation error messages for fields that are not currently visible  in this form.<br> This will be
-     * called when validation fails for<br> - a hidden field in this form<br> - if this form is databound, a datasource field
-     * with specified validators, for which we   have no specified form item.<br> Implement this to provide custom validation
-     * error handling for these fields.<br> By default hidden validation errors will be logged as warnings in the
-     * developerConsole. Return false from this method to suppress that behavior.
-     *
-     * @param handler the hiddenValidationErrors handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addHiddenValidationErrorsHandler(com.smartgwt.client.widgets.form.events.HiddenValidationErrorsHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent.getType()) == 0) setupHiddenValidationErrorsEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent.getType());
-    }
-
-    private native void setupHiddenValidationErrorsEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
-            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-            obj.addProperties({handleHiddenValidationErrors:$debox($entry(function(){
-                        var param = {"errors" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
-             });
-        } else {
-            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
-            obj.handleHiddenValidationErrors = $debox($entry(function(){
-                   var param = {"errors" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
         }
    }-*/;
 

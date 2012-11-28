@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Settings for whether multiple sections can be in the expanded state simultaneously.
  */
@@ -28,7 +29,6 @@ public enum VisibilityMode implements ValueEnum {
      * Multiple sections can be expanded at the same time, and will share space.
      */
     MULTIPLE("multiple");
-
     private String value;
 
     VisibilityMode(String value) {
@@ -39,3 +39,4 @@ public enum VisibilityMode implements ValueEnum {
         return this.value;
     }
 }
+        

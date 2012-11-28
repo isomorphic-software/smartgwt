@@ -1,16 +1,20 @@
-
+	    
 package com.smartgwt.client.docs;
 
 /**
  * <h3>Debugging</h3>
  * <h4>Built-in Diagnostics</h4>
  *  <P>
- *  The Smart GWT Developer Console is a suite of development tools implemented in Smart GWT itself. 
- *  The Console runs in its own browser window, parallel to your running application, so it is always 
+ * The Smart GWT Developer Console is a suite of development tools implemented in Smart GWT
+ * itself. 
+ * The Console runs in its own browser window, parallel to your running application, so it is
+ * always 
  *  available in every browser, and in every deployment environment.
  *  <P>
- *  The Developer Console can be opened by calling <code>isc.showConsole()</code> on any page in which 
- *  Smart GWT has been loaded. You can create a bookmark in your browser to quickly show the Console on 
+ * The Developer Console can be opened by calling <code>isc.showConsole()</code> on any page in
+ * which 
+ * Smart GWT has been loaded. You can create a bookmark in your browser to quickly show the
+ * Console on 
  *  any Smart GWT application, without any changes to the application code:
  *  <P>
  *  1. Create a new bookmark in your browser.<BR>
@@ -19,13 +23,16 @@ package com.smartgwt.client.docs;
  *  4. Consider adding this to the Bookmarks Toolbar. This allows one-click access to the Console 
  *  from any Smart GWT application.
  *  <P>
- *  Note: For most browsers you can evaluate javascript directly from the browser URL bar by entering 
- *  <code>javascript:<i>string to evaluate</i></code> directly in the URL bar, so setting up a bookmark 
- *  is not strictly necessary. For Firefox 6 and above, this feature has been disallowed, but the bookmark 
+ * Note: For most browsers you can evaluate javascript directly from the browser URL bar by
+ * entering 
+ * <code>javascript:<i>string to evaluate</i></code> directly in the URL bar, so setting up a
+ * bookmark 
+ * is not strictly necessary. For Firefox 6 and above, this feature has been disallowed, but the
+ * bookmark 
  *  approach will still work. Alternatively developers could use 
  * <a href='http://blog.mozilla.com/devtools/2011/08/15/introducing-scratchpad/'
- * onclick="window.open('http://blog.mozilla.com/devtools/2011/08/15/introducing-scratchpad/');return false;">Firefox
- * Scratchpad</a> 
+ * onclick="window.open('http://blog.mozilla.com/devtools/2011/08/15/introducing-scratchpad/');return
+ * false;">Firefox Scratchpad</a> 
  *  to launch the console.
  *  <P>
  *  Basic information on the features of the Developer Console can be found in the QuickStart
@@ -59,10 +66,13 @@ package com.smartgwt.client.docs;
  *  <P>
  *  <h4>Debugging JavaScript Errors</h4>
  *  <P>
- *  Javascript errors will typically be reported in the Developer Console. Wherever possible a stack 
+ * Javascript errors will typically be reported in the Developer Console. Wherever possible a
+ * stack 
  *  trace will be included which can help determine the cause of the error.
- *  In addition to this, recent versions of the Firefox browser (versions 6.0 and above) ship with some 
- *  useful development tools including the Error Console for reporting errors. We also recommend Console2 
+ * In addition to this, recent versions of the Firefox browser (versions 6.0 and above) ship with
+ * some 
+ * useful development tools including the Error Console for reporting errors. We also recommend
+ * Console2 
  *  and Firebug for debugging in Firefox.
  *  <P>
  *  In Internet Explorer, when JS errors occur, Smart GWT is able to report full stack traces
@@ -81,10 +91,10 @@ package com.smartgwt.client.docs;
  *  property values.  
  *  <P>
  *  Many, many Smart GWT APIs can be usefully called while troubleshooting, eg, 
- * {@link com.smartgwt.client.widgets.grid.ListGrid#getData data} is a {@link com.smartgwt.client.data.ResultSet} when a
- * grid is DataBound and 
- * {@link com.smartgwt.client.data.ResultSet#get ResultSet.get} can be called to inspect the current values on records.  In
- * addition,
+ * {@link com.smartgwt.client.widgets.grid.ListGrid#getData data} is a {@link
+ * com.smartgwt.client.data.ResultSet} when a grid is DataBound and 
+ * {@link com.smartgwt.client.data.ResultSet#get ResultSet.get} can be called to inspect the
+ * current values on records.  In addition,
  *  new application code can be tried out, for example, you might repeatedly instantiate a new
  *  component, trying variants on the properties you could give it.
  *  <P>
@@ -100,7 +110,8 @@ package com.smartgwt.client.docs;
  *  It's a good idea to dump the values of local variables in any method that is crashing or
  *  behaving unexpectedly.
  *  <P>
- *  Note the use of {@link com.smartgwt.client.util.isc#logWarn logWarn()} above: in typical debugging sessions,
+ * Note the use of {@link com.smartgwt.client.util.isc#logWarn logWarn()} above: in typical
+ * debugging sessions,
  *  it's best
  *  to simply use <code>logWarn</code> method to output diagnostics to ensure your message will
  *  not be suppressed by log priority settings.
@@ -114,10 +125,12 @@ package com.smartgwt.client.docs;
  *  <P>
  *  If you believe you've discovered a bug in Smart GWT or you are having trouble using
  * Smart GWT APIs, you can report it at <a href='http://forums.smartclient.com/'
- * onclick="window.open('http://forums.smartclient.com/');return false;">http://forums.smartclient.com/</a>, or, if
+ * onclick="window.open('http://forums.smartclient.com/');return
+ * false;">http://forums.smartclient.com/</a>, or, if
  *  you have Enterprise Support, at the 
- * <a href='http://support.isomorphic.com/' onclick="window.open('http://support.isomorphic.com/');return false;">Customer
- * Support Extranet</a>.
+ * <a href='http://support.isomorphic.com/'
+ * onclick="window.open('http://support.isomorphic.com/');return false;">Customer Support
+ * Extranet</a>.
  *  <P>
  *  <b>How quickly your issue is resolved is entirely up to you</b>.  If you follow the steps
  *  below and submit an appropriate issue report, you will generally receive a rapid solution
@@ -127,10 +140,12 @@ package com.smartgwt.client.docs;
  *  <P>
  *  Before reporting an issue, ensure that you:
  *  <ul>
- *  <li> Have read the ${isc.DocUtils.linkForDocNode('QuickStartGuide', 'QuickStart Guide')} cover to
+ * <li> Have read the ${isc.DocUtils.linkForDocNode('QuickStartGuide', 'QuickStart Guide')} cover
+ * to
  *  cover.  Later chapters cover more advanced topics and provide links to further examples and
  *  reference.
- *  <li> Have searched the ${isc.DocUtils.linkForDocNode('FeatureExplorer', 'Feature Explorer')} for examples that show
+ * <li> Have searched the ${isc.DocUtils.linkForDocNode('FeatureExplorer', 'Feature Explorer')}
+ * for examples that show
  *  what you are trying to do
  *  <li> Have searched this reference, trying multiple searches using different, common and
  *  related terms for what you are trying to do (eg for search, try "search", "filter",
@@ -152,7 +167,8 @@ package com.smartgwt.client.docs;
  *  IE), as covered under "Debugging JavaScript Errors" above
  *  <li> Results of calling <code>echo()</code> on local variables or other application
  *  state you think is relevant (see "Inspecting Application State" above)
- *  <li> What server platform and {@link com.smartgwt.client.docs.ClientServerIntegration databinding approach} you
+ * <li> What server platform and {@link com.smartgwt.client.docs.ClientServerIntegration
+ * databinding approach} you
  *  are using, if applicable
  *  <li> contents of the Smart GWT Developer Console "Log messages" area, with appropriate
  *  diagnostic categories set the DEBUG or INFO level (see "Built-in Diagnostics" above)
@@ -181,11 +197,12 @@ package com.smartgwt.client.docs;
  *  There are two approaches to test case preparation:
  *  <ol>
  *  <li> Add code to an existing Smart GWT example until you can reproduce the problem
- *  <li> Remove code from your application until it minimally shows the problem and runs standalone
+ * <li> Remove code from your application until it minimally shows the problem and runs standalone
  *  </ol>
  *  <P>
  *  For approach #1, find the nearest match to your use case in the
- *  ${isc.DocUtils.linkForDocNode('FeatureExplorer')} examples or in the other examples accessible from the Examples
+ * ${isc.DocUtils.linkForDocNode('FeatureExplorer')} examples or in the other examples accessible
+ * from the Examples
  *  folder of the SDK, then try to minimally modify that example to demonstrate your issue.
  *  Feature Explorer examples are a particularly good starting point because you can simply copy
  *  the code from the Feature Explorer to the Eval JS area of the Developer Console and begin
@@ -210,9 +227,11 @@ package com.smartgwt.client.docs;
  *  <li> switch any DataSources to one of the sample DataSources from the SDK (eg "supplyItem")
  *  if your issue can still be reproduced in this case.
  *  <li> create a small sample dataset in JavaScript directly in the .html file, and use a
- *  {@link com.smartgwt.client.data.DataSource#getClientOnly clientOnly DataSource} with that dataset.
+ * {@link com.smartgwt.client.data.DataSource#getClientOnly clientOnly DataSource} with that
+ * dataset.
  *  <li> capture server responses verbatim by setting the RPCManager log category to DEBUG, save
- *  the responses as flat files, and set {@link com.smartgwt.client.data.DataSource#getDataURL dataURL} to point at them.
+ * the responses as flat files, and set {@link com.smartgwt.client.data.DataSource#getDataURL
+ * dataURL} to point at them.
  *  <li> for RPCs, instead of calling the RPCManager, directly call your own callback function,
  *  passing a spoofed RPCResponse that includes just the fields your code depends upon
  *  </ul>
@@ -223,8 +242,9 @@ package com.smartgwt.client.docs;
  * covered above, and submit it to the <a href='http://forums.smartclient.com/'
  * onclick="window.open('http://forums.smartclient.com/');return false;">forums</a>,
  *  or, if you have Enterprise Support, at the
- * <a href='http://support.isomorphic.com/' onclick="window.open('http://support.isomorphic.com/');return false;">Customer
- * Support Extranet</a>.
+ * <a href='http://support.isomorphic.com/'
+ * onclick="window.open('http://support.isomorphic.com/');return false;">Customer Support
+ * Extranet</a>.
  *  <P>
  *  <h4>Adding your own diagnostic categories</h4>
  *  <P>
@@ -269,8 +289,8 @@ package com.smartgwt.client.docs;
  *      });
  *  </pre>
  *  The special value "this" is not always set to a Smart GWT component, for example, in some
- * kinds of callbacks (eg {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData fetchData()}).  When in doubt, use
- * these
+ * kinds of callbacks (eg {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData
+ * fetchData()}).  When in doubt, use these
  *  methods via the Log class as <code>isc.Log.logWarn()</code>.
  *  <P>
  *  <b>Logging performance</b>

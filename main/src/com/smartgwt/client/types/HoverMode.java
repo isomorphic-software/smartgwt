@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanHover canHover} and  {@link
  * com.smartgwt.client.widgets.grid.ListGrid#getShowHoverComponents showHoverComponents} are both true, HoverMode dictates
@@ -46,7 +47,6 @@ public enum HoverMode implements ValueEnum {
      * related-records.
      */
     DETAIL_RELATED("detailRelated");
-
     private String value;
 
     HoverMode(String value) {
@@ -57,3 +57,4 @@ public enum HoverMode implements ValueEnum {
         return this.value;
     }
 }
+        

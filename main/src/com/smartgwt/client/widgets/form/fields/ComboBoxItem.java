@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * The Combobox is a text input field which can show a list of options via a drop-down PickList. <p> The set of options
@@ -75,12 +95,18 @@ import com.google.gwt.event.shared.HasHandlers;
  * selection in the pickList (if there is one) to be chosen when the user tabs out of the field, allowing a user to type a
  * few characters and hit tab to auto-complete to the first matched option. <code>completeOnTab</code> is automatically set
  * to true if {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues addUnknownValues} is  false.
+ * <P> ComboBoxItem does not provide built-in support for multiple selection.  For a Combobox that does provide such a
+ * multiple-select feature use {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem}.
  */
 public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.client.widgets.form.fields.events.HasDataArrivedHandlers {
 
     public static ComboBoxItem getOrCreateRef(JavaScriptObject jsObj) {
+    
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+ 
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (ComboBoxItem) obj;
@@ -89,12 +115,18 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public ComboBoxItem(){
         setAttribute("editorType", "ComboBoxItem");
     }
 
     public ComboBoxItem(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     public ComboBoxItem(String name) {
@@ -163,6 +195,31 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      */
     public Boolean getAddUnknownValues()  {
         return getAttributeAsBoolean("addUnknownValues");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues addUnknownValues} is
+     * <code>false</code>, this property  determines whether the user can clear the comboBoxItem value, or whether they are
+     * constrained to choosing one of the available options (in which case clearing the text box will simply revert to the last
+     * picked value when the user leaves the field).
+     *
+     * @param allowEmptyValue allowEmptyValue Default value is true
+     */
+    public void setAllowEmptyValue(Boolean allowEmptyValue) {
+        setAttribute("allowEmptyValue", allowEmptyValue);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues addUnknownValues} is
+     * <code>false</code>, this property  determines whether the user can clear the comboBoxItem value, or whether they are
+     * constrained to choosing one of the available options (in which case clearing the text box will simply revert to the last
+     * picked value when the user leaves the field).
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAllowEmptyValue()  {
+        return getAttributeAsBoolean("allowEmptyValue");
     }
 
     /**
@@ -292,7 +349,7 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      * to be used as a server based {@link valueMap}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param displayField displayField Default value is null
+     * @param displayField . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setDisplayField(String displayField) {
         setAttribute("displayField", displayField);
@@ -315,7 +372,7 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      * to be used as a server based {@link valueMap}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getDisplayField()  {
         return getAttributeAsString("displayField");
@@ -378,7 +435,7 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getSetPickListFilterCriteriaFunction
      * setPickListFilterCriteriaFunction} may be specified.
      *
-     * @param filterFields filterFields Default value is null
+     * @param filterFields . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setFilterFields(String... filterFields) {
         setAttribute("filterFields", filterFields);
@@ -406,7 +463,7 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      * setPickListFilterCriteriaFunction} may be specified.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String[] getFilterFields()  {
         return getAttributeAsStringArray("filterFields");
@@ -460,8 +517,8 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      * When a comboBoxItem is used to generate search criteria in a SearchForm this property governs whether, if the user
      * explicitly chose an option from the pickList, we explicitly generate criteria that will search for an exact match
      * against the chosen value. <P> In order to achieve this, when this property is set to true, this item will generate
-     * {@link com.smartgwt.client.data.AdvancedCriteria} in its {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getCriterion ComboBoxItem.getCriterion} method. <P> See {@link
+     * {@link com.smartgwt.client.data.AdvancedCriteria} in  the default <code>FormItemCriterionGetter</code>'s
+     * <code>getCriterion()</code> method. <P> See {@link
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem#shouldGenerateExactMatchCriteria
      * ComboBoxItem.shouldGenerateExactMatchCriteria} for behavior when this flag is unset.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -476,8 +533,8 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      * When a comboBoxItem is used to generate search criteria in a SearchForm this property governs whether, if the user
      * explicitly chose an option from the pickList, we explicitly generate criteria that will search for an exact match
      * against the chosen value. <P> In order to achieve this, when this property is set to true, this item will generate
-     * {@link com.smartgwt.client.data.AdvancedCriteria} in its {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getCriterion ComboBoxItem.getCriterion} method. <P> See {@link
+     * {@link com.smartgwt.client.data.AdvancedCriteria} in  the default <code>FormItemCriterionGetter</code>'s
+     * <code>getCriterion()</code> method. <P> See {@link
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem#shouldGenerateExactMatchCriteria
      * ComboBoxItem.shouldGenerateExactMatchCriteria} for behavior when this flag is unset.
      *
@@ -488,17 +545,112 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
         return getAttributeAsBoolean("generateExactMatchCriteria");
     }
 
+    /**
+     * Not applicable to a ComboBoxItem.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param mask . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     */
+    public void setMask(String mask) {
+        setAttribute("mask", mask);
+    }
 
+    /**
+     * Not applicable to a ComboBoxItem.
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     */
+    public String getMask()  {
+        return getAttributeAsString("mask");
+    }
 
+    /**
+     * Not applicable to a ComboBoxItem.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param maskOverwriteMode maskOverwriteMode Default value is null
+     */
+    public void setMaskOverwriteMode(Boolean maskOverwriteMode) {
+        setAttribute("maskOverwriteMode", maskOverwriteMode);
+    }
 
+    /**
+     * Not applicable to a ComboBoxItem.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getMaskOverwriteMode()  {
+        return getAttributeAsBoolean("maskOverwriteMode");
+    }
 
+    /**
+     * Not applicable to a ComboBoxItem.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param maskPadChar . See {@link com.smartgwt.client.docs.String String}. Default value is " "
+     */
+    public void setMaskPadChar(String maskPadChar) {
+        setAttribute("maskPadChar", maskPadChar);
+    }
+
+    /**
+     * Not applicable to a ComboBoxItem.
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     */
+    public String getMaskPadChar()  {
+        return getAttributeAsString("maskPadChar");
+    }
+
+    /**
+     * Not applicable to a ComboBoxItem.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param maskPromptChar . See {@link com.smartgwt.client.docs.String String}. Default value is "_"
+     */
+    public void setMaskPromptChar(String maskPromptChar) {
+        setAttribute("maskPromptChar", maskPromptChar);
+    }
+
+    /**
+     * Not applicable to a ComboBoxItem.
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     */
+    public String getMaskPromptChar()  {
+        return getAttributeAsString("maskPromptChar");
+    }
+
+    /**
+     * Not applicable to a ComboBoxItem.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param maskSaveLiterals maskSaveLiterals Default value is null
+     */
+    public void setMaskSaveLiterals(Boolean maskSaveLiterals) {
+        setAttribute("maskSaveLiterals", maskSaveLiterals);
+    }
+
+    /**
+     * Not applicable to a ComboBoxItem.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getMaskSaveLiterals()  {
+        return getAttributeAsBoolean("maskSaveLiterals");
+    }
 
     /**
      * If this item has a specified <code>optionDataSource</code>, this attribute may be set to specify an explicit {@link
      * com.smartgwt.client.data.DSRequest#getOperationId operationId} when performing a fetch against the option dataSource to
      * pick up display value mapping.
      *
-     * @param optionOperationId optionOperationId Default value is null
+     * @param optionOperationId . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setOptionOperationId(String optionOperationId) {
         setAttribute("optionOperationId", optionOperationId);
@@ -510,7 +662,7 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      * pick up display value mapping.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getOptionOperationId()  {
         return getAttributeAsString("optionOperationId");
@@ -529,7 +681,7 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      * in which case the standard text box style is always applied. Has no effect if {@link
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues addUnknownValues} is true.
      *
-     * @param pendingTextBoxStyle pendingTextBoxStyle Default value is null
+     * @param pendingTextBoxStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is null
      */
     public void setPendingTextBoxStyle(String pendingTextBoxStyle) {
         setAttribute("pendingTextBoxStyle", pendingTextBoxStyle);
@@ -549,7 +701,7 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues addUnknownValues} is true.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getPendingTextBoxStyle()  {
         return getAttributeAsString("pendingTextBoxStyle");
@@ -578,7 +730,7 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      * Src for the picker icon.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param pickerIconSrc pickerIconSrc Default value is "[SKIN]/DynamicForm/ComboBoxItem_PickButton_icon.gif"
+     * @param pickerIconSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]/DynamicForm/ComboBoxItem_PickButton_icon.gif"
      */
     public void setPickerIconSrc(String pickerIconSrc) {
         setAttribute("pickerIconSrc", pickerIconSrc);
@@ -588,10 +740,32 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      * Src for the picker icon.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getPickerIconSrc()  {
         return getAttributeAsString("pickerIconSrc");
+    }
+
+    /**
+     * If this item has a databound pickList (for example  optionDataSource is set), this property can be used to provide
+     * static filter criteria when retrieving the data for the pickList.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param pickListCriteria pickListCriteria Default value is null
+     */
+    public void setPickListCriteria(Criteria pickListCriteria) {
+        setAttribute("pickListCriteria", pickListCriteria.getJsObj());
+    }
+
+    /**
+     * If this item has a databound pickList (for example  optionDataSource is set), this property can be used to provide
+     * static filter criteria when retrieving the data for the pickList.
+     *
+     *
+     * @return Criteria
+     */
+    public Criteria getPickListCriteria()  {
+        return new Criteria(getAttributeAsJavaScriptObject("pickListCriteria"));
     }
 
     /**
@@ -619,6 +793,33 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      */
     public Boolean getProgressiveLoading()  {
         return getAttributeAsBoolean("progressiveLoading");
+    }
+
+    /**
+     * ComboBox items will submit their containing form on enter keypress  if {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter saveOnEnter} is true. Setting this property to
+     * <code>false</code> will disable this behavior. <P> Note that if the drop down list of options (pickList) is visible an
+     * <code>Enter</code> keypress is used to select a value from the available set of options and will not automatically cause
+     * form submission.
+     *
+     * @param saveOnEnter saveOnEnter Default value is true
+     */
+    public void setSaveOnEnter(Boolean saveOnEnter) {
+        setAttribute("saveOnEnter", saveOnEnter);
+    }
+
+    /**
+     * ComboBox items will submit their containing form on enter keypress  if {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter saveOnEnter} is true. Setting this property to
+     * <code>false</code> will disable this behavior. <P> Note that if the drop down list of options (pickList) is visible an
+     * <code>Enter</code> keypress is used to select a value from the available set of options and will not automatically cause
+     * form submission.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSaveOnEnter()  {
+        return getAttributeAsBoolean("saveOnEnter");
     }
 
     /**
@@ -738,6 +939,46 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
     }
 
     /**
+     * Specifies the field by which this item should be initially sorted.  Can be set to  either a {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getName field name} or the index of the field in the fields  Array. Note
+     * that if <code>sortField</code> is initially specified as a number, it will be converted to a string (field name) after
+     * the item is initialized.
+     *
+     * @param sortField . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sort_sort" target="examples">Sort Example</a>
+     */
+    public void setSortField(String sortField) {
+        setAttribute("sortField", sortField);
+    }
+
+    /**
+     * Specifies the field by which this item should be initially sorted.  Can be set to  either a {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getName field name} or the index of the field in the fields  Array. Note
+     * that if <code>sortField</code> is initially specified as a number, it will be converted to a string (field name) after
+     * the item is initialized.
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sort_sort" target="examples">Sort Example</a>
+     */
+    public String getSortField()  {
+        return getAttributeAsString("sortField");
+    }
+
+    /**
+     * Specifies the field by which this item should be initially sorted.  Can be set to  either a {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getName field name} or the index of the field in the fields  Array. Note
+     * that if <code>sortField</code> is initially specified as a number, it will be converted to a string (field name) after
+     * the item is initialized.
+     *
+     * @param sortField sortField Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sort_sort" target="examples">Sort Example</a>
+     */
+    public void setSortField(Integer sortField) {
+        setAttribute("sortField", sortField);
+    }
+
+    /**
      * When applying filter criteria to pickList data, what type of matching to use. <P> For a databound pickList ({@link
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getOptionDataSource optionDataSource} set),
      * <code>textMatchStyle</code> is sent to the server as {@link com.smartgwt.client.data.DSRequest#getTextMatchStyle
@@ -771,7 +1012,7 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      * field to use as the underlying data value in records from the  optionDataSource.<br> If unset, assumed to be the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
      *
-     * @param valueField valueField Default value is null
+     * @param valueField . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setValueField(String valueField) {
         setAttribute("valueField", valueField);
@@ -785,23 +1026,13 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      * com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getValueField()  {
         return getAttributeAsString("valueField");
     }
 
     // ********************* Methods ***********************
-            
-    /**
-     * This method is overridden in comboBoxItem. When addUnknownValues is true,  comboBoxItems allow the user to edit
-     * substring match type criteria applied to the display field (if one is specified). <P> The user can also edit criteria
-     * attempting to match exactly against the item's field name.
-     */
-    public native void canEditCriterion() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.canEditCriterion();
-    }-*/;
     /**
      * Add a dataArrived handler.
      * <p>
@@ -818,15 +1049,16 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
 
     private native void setupDataArrivedEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.dataArrived = $entry(function(){
-                var param = {"startRow" : arguments[0], "endRow" : arguments[1], "data" : arguments[2]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var dataArrived = $entry(function(){
+            var param = {"startRow" : arguments[0], "endRow" : arguments[1], "data" : arguments[2]};
+            var event = @com.smartgwt.client.widgets.form.fields.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
+        obj.dataArrived =  dataArrived         ;
    }-*/;
-            
+
     /**
      * Expression evaluated to determine the {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDefaultValue
      * defaultValue} when no value is  provided for this item. To default to the first option use {@link
@@ -836,31 +1068,7 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.defaultDynamicValue();
     }-*/;
-            
-    /**
-     * Returns criterion derived from the current value of this item. <P> If {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues addUnknownValues} is true for this item, we
-     * implement the following behavior.<br> If the user explicitly selected an item from the pickList, we treat this as an
-     * attempt to explicitly match the data value. In this case returned criteria will match the selected (data) value against
-     * this item's fieldName.<br> If the user typed a value into the text field, we treat this as an attempt to do a substring
-     * type filter. In this case returned criteria will match the entered text value against the displayField for this item if
-     * one is specified. <P> If {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues
-     * addUnknownValues} is false we always match the chosen data value against the item's  fieldName. <P> Note that {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#shouldGenerateExactMatchCriteria
-     * ComboBoxItem.shouldGenerateExactMatchCriteria} will be called in the case when a value was explicitly picked from the
-     * set of options. If that method returns true, we will return AdvancedCriteria with an operator specified to ensure an
-     * exact match occurs.
-     *
-     * @return criterion object based on this fields current edited value(s).
-     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
-     */
-    public native Criterion getCriterion() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var ret = self.getCriterion();
-        if(ret == null || ret === undefined) return null;
-        return @com.smartgwt.client.data.Criterion::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-    }-*/;
-            
+
     /**
      * Returns the <code>displayField</code> for this item. This will typically be specified explicitly via the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} attribute. However, if  that property is
@@ -874,7 +1082,7 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.getDisplayFieldName();
     }-*/;
-            
+
     /**
      * Returns the raw text value typed into this form field, which can differ from  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} in various cases - for example: <ul>
@@ -892,7 +1100,7 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.getEnteredValue();
     }-*/;
-            
+
     /**
      * Getter method to retrieve the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} for this
      * item. If unset, default behavior will return the {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name}
@@ -905,7 +1113,7 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.getValueFieldName();
     }-*/;
-            
+
     /**
      * Will this item return advancedCriteria if {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria
      * DynamicForm.getValuesAsCriteria} is  called on this item's form? Overridden for ComboBoxItem to return true if {@link
@@ -929,24 +1137,15 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
-    /**
-     * Overridden to support editing criterion against the display field or value field when {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues addUnknownValues} is true.
-     */
-    public native void setCriterion() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.setCriterion();
-    }-*/;
-            
+
     /**
      * When a comboBoxItem is used to generate search criteria in a SearchForm,  if the user explicitly chose an option from
-     * the pickList, should the criterion generated by {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getCriterion
-     * ComboBoxItem.getCriterion} enforce a search for an exact match against the chosen value? <P> In order to achieve this,
-     * when this property is set to true, this item will generate {@link com.smartgwt.client.data.AdvancedCriteria} in its
-     * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getCriterion ComboBoxItem.getCriterion} method. <P> Default
-     * implementation will return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getGenerateExactMatchCriteria
-     * generateExactMatchCriteria} if specified, otherwise true if the DataSource for this item  {@link
+     * the pickList, should the criterion generated by  the <code>FormItemCriterionGetter</code>'s <code>getCriterion()</code>
+     * method enforce a search for an exact match against the chosen value? <P> In order to achieve this, when this property is
+     * set to true, this item will generate {@link com.smartgwt.client.data.AdvancedCriteria} in  the default
+     * <code>FormItemCriterionGetter</code>'s <code>getCriterion()</code> method. <P> Default implementation will return {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getGenerateExactMatchCriteria generateExactMatchCriteria} if
+     * specified, otherwise true if the DataSource for this item  {@link
      * com.smartgwt.client.data.DataSource#supportsAdvancedCriteria supports advanced criteria}, false if it does not.
      *
      * @return should getCriterion() generate exact-match search criteria when   a value was explicitly chosen from this item's set of
@@ -996,27 +1195,16 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
     
     /**
      * Returns filter criteria for options displayed for this item.
-     * <br>
-     * The criteria returned by this method are used to decide which options should appear in the drop-down PickList shown by this ComboBox.
-     * <br>
-     * While the user is typing in a value, this method will return the typed-in value as part of the criteria, so that only matching values are shown. Matching is determined by the textMatchStyle.
-     * <br>
-     * If the user explicitly shows the down-down pickList, via either clicking on the drop down icon or use the Ctrl+Arrow Down key combo, the typed in value is ignored for filtering.
-     * <br>
-     * If included in the criteria, the typed in value will be included as a value for the displayField (or for the valueField if this.displayField is unspecified).
-     * <br>
-     * Static criteria, specified via pickListCriteria, will always be included.
-     * <br>
-     * If you are implementing your own criteria via an override to this method the read-only property filterWithValue can be read to determine whether the
-     * ComboBox would ordinarily ignore the typed-in value for filtering. Note that in addition to cases where the user explicitly shows the pickList, filterWithValue
-     * will also be true during a call to ComboBoxItem.fetchData() on a databound comboBox.
-     * <br>
-     * <b>Note : this is an override point - if overridden this method will be called by the live form item during filtering.
+     * <P>
+     * See {@link com.smartgwt.client.docs.ComboBoxFiltering} for details on how pickList filter criteria
+     * are calculated by default for a comboBoxItem.
+     * <P>
+     * Note : this is an override point - if overridden this method will be called by the live form item during filtering.
      * However it is recommended that developers use
      * {@link #setPickListFilterCriteriaFunction(FormItemCriteriaFunction)} to build custom criteria instead of overriding this method directly. This ensures that
      * the custom filter criteria generating code will be called even if the form item was automatically generated based on a template 
-     * passed to {@link com.smartgwt.client.widgets.grid.ListGridField#setEditorType}.</b>
-     *
+     * passed to {@link com.smartgwt.client.widgets.grid.ListGridField#setEditorType}.
+     * 
      * @return criteria to be used for databound or local filtering
      */
     protected native Criteria getPickListFilterCriteria() /*-{
@@ -1237,29 +1425,6 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
         return getAttributeAsString("valueIconField");
     }
 
-    /**
-     * If this item has a databound pick-list (for example {@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource
-     * optionDataSource} is set) this property can be used to provide static filter criteria when retrieving the data
-     * for the pickList. <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param pickListCriteria pickListCriteria Default value is null
-     */
-    public void setPickListCriteria(Criteria pickListCriteria) {
-        setAttribute("pickListCriteria", pickListCriteria == null ? null : pickListCriteria.getJsObj());
-    }
-
-    /**
-     * If this item has a databound pick-list (for example {@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource
-     * optionDataSource} is set) this property can be used to provide static filter criteria when retrieving the data
-     * for the pickList.
-     *
-     * @return Criteria
-     */
-    public Criteria getPickListCriteria() {
-        return new Criteria(getAttributeAsJavaScriptObject("pickListCriteria"));
-    }
-
-
     public void setPickListCriteria(DSRequest optionFilterContext) {
         setAttribute("optionFilterContext", optionFilterContext);
     }
@@ -1270,46 +1435,6 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
 
     public Integer getFetchDelay() {
         return getAttributeAsInt("fetchDelay");
-    }
-
-    /**
-     * Specifies the field by which this item should be initially sorted.  Can be set to  either a {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getName 'field name'} or the index of the field in the fields  Array.
-     * Note that if <code>sortField</code> is initally specified as a number, it will be converted to a string (field name)
-     * after the item is initialized. <P> To programmatically change sort field or direction after initialization, call
-     * ${isc.DocUtils.linkForRef('sort')}.
-     *
-     * @param sortField sortField Default value is null
-     */
-    public void setSortField(String sortField) {
-        setAttribute("sortField", sortField);
-    }
-
-    /**
-     * Specifies the field by which this item should be initially sorted.  Can be set to  either a {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getName 'field name'} or the index of the field in the fields  Array.
-     * Note that if <code>sortField</code> is initally specified as a number, it will be converted to a string (field name)
-     * after the item is initialized. <P> To programmatically change sort field or direction after initialization, call
-     * ${isc.DocUtils.linkForRef('sort')}.
-     *
-     *
-     * @return String
-     */
-    public String getSortField()  {
-        return getAttributeAsString("sortField");
-    }
-
-    /**
-     * Specifies the field by which this item should be initially sorted.  Can be set to  either a {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getName 'field name'} or the index of the field in the fields  Array.
-     * Note that if <code>sortField</code> is initally specified as a number, it will be converted to a string (field name)
-     * after the item is initialized. <P> To programmatically change sort field or direction after initialization, call
-     * ${isc.DocUtils.linkForRef('sort')}.
-     *
-     * @param sortField sortField Default value is null
-     */
-    public void setSortField(Integer sortField) {
-        setAttribute("sortField", sortField);
     }
 
     /**
@@ -1473,20 +1598,9 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
 
     /**
      * Set up a method to return filter criteria for options displayed for this item.
-     * <br>
-     * The criteria returned by this method are used to decide which options should appear in the 
-     * drop-down PickList shown by this ComboBox.
-     * <br>
-     * Static criteria, specified via pickListCriteria, will always be included in addition to criteria 
-     * returned by this method.
-     * <br>
-     * If you are implementing your own criteria via this API, use {@link #getFilterWithValue()} to
-     * determine whether the ComboBox would ordinarily ignore the typed-in value for filtering (IE whether the filter
-     * was initialized by the user typing a partial value, or by them clicking the icon to request a complete pickList).
-     * 
-     * Note that in addition to cases where the user explicitly shows the pickList, filterWithValue
-     * will also be false during a call to ComboBoxItem.fetchData() on a databound comboBox.
-     *
+     * <P>
+     * See {@link com.smartgwt.client.docs.ComboBoxFiltering} for details on how pickListCriteria are
+     * calcualted by default for a ComboBoxItem.
      */
     public native void setPickListFilterCriteriaFunction(FormItemCriteriaFunction filterCriteriaFunction) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
@@ -1530,6 +1644,78 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
             ret = self.value;
         }
         return ret == null || ret === undefined ? null : ret.toString();
+    }-*/;
+
+    /**
+     * The default <code>canEditCriterion()</code> predicate is overridden in comboBoxItem. When addUnknownValues is true,
+     * comboBoxItems allow the user to edit substring match type criteria applied to the display field (if one is specified).
+     * <P> The user can also edit criteria attempting to match exactly against the item's field name.
+     * @param predicate the predicate to determine the form items that can edit the criterion in question
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setCanEditCriterionPredicate FormItem.setCanEditCriterionPredicate
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
+     */
+    public void setCanEditCriterionPredicate(FormItemCanEditCriterionPredicate predicate) {
+        super.setCanEditCriterionPredicate(predicate);
+    }
+
+    /**
+     * The default <code>getCriterion()</code> implementation returns criterion derived from the current value of this item.
+     * <P> If {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues addUnknownValues} is true for
+     * this item, we implement the following behavior.<br> If the user explicitly selected an item from the pickList, we treat
+     * this as an attempt to explicitly match the data value. In this case returned criteria will match the selected (data) value
+     * against this item's fieldName.<br> If the user typed a value into the text field, we treat this as an attempt to do a substring
+     * type filter. In this case returned criteria will match the entered text value against the displayField for this item if
+     * one is specified. <P> If {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues
+     * addUnknownValues} is false we always match the chosen data value against the item's  fieldName. <P> Note that {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#shouldGenerateExactMatchCriteria
+     * ComboBoxItem.shouldGenerateExactMatchCriteria} will be called in the case when a value was explicitly picked from the
+     * set of options. If that method returns true, we will return AdvancedCriteria with an operator specified to ensure an
+     * exact match occurs.
+     * @param getter provides a method to get a criterion object based on this field's current edited value(s).
+     *
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setCriterionGetter
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
+     */
+    public void setCriterionGetter(FormItemCriterionGetter getter) {
+        super.setCriterionGetter(getter);
+    }
+
+    /**
+     * The default <code>setCriterion()</code> implementation is overridden to support editing criterion against the display field
+     * or value field when {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues addUnknownValues} is true.
+     * @param setter provides a method to update this field with the edited criterion
+     */
+    public void setCriterionSetter(FormItemCriterionSetter setter) {
+        super.setCriterionSetter(setter);
+    }
+
+   /**
+     * This method sorts the pickList on one or more fields, creating the underlying JS object
+     * if needed. Pass in an array of SortSpecifiers to have the grid's data sorted by the fields in each
+     * specifier.property and in the directions specified.  The grid can be sorted by any combination
+     * of fields, including fields specified in the fields array, whether visible or hidden, and 
+     * {@link com.smartgwt.client.data.DataSource#getFields 'unused fields from the underlying dataSource'},
+     * if there is one.  If multiple fields are sorted, those that are visible show a directional icon and a small 
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getSortNumeralStyle 'sort-numeral'} indicating that 
+     * field's index in the sort configuration. 
+     * <P>
+     * See {@link com.smartgwt.client.widgets.grid.ListGrid#addSort} 
+     * and {@link com.smartgwt.client.widgets.grid.ListGrid#alterSort} 
+     * APIs for information on making changes to the current sort configuration.
+     * @param sortSpecifiers Array of SortSpecifier objects
+     */
+    public native void setSort(SortSpecifier[] sortSpecifiers) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()(),
+            specifiers = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(sortSpecifiers);
+        if (self != null && self.pickList != null) self.pickList.setSort(specifiers);
+        else {
+            var configJS = this.@com.smartgwt.client.core.DataClass::getAttributeAsJavaScriptObject(Ljava/lang/String;)("pickListProperties");
+            if (configJS == null) {
+                configJS = {};
+                this.@com.smartgwt.client.core.DataClass::setAttribute(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("pickListProperties", configJS);
+            }
+            configJS.initialSort = specifiers;
+        }
     }-*/;
 
 }

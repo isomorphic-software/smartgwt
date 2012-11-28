@@ -1,10 +1,13 @@
+package com.smartgwt.client.types;
+
+
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -13,13 +16,10 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
-
-package com.smartgwt.client.types;
-
+ 
 /**
  * What event / user interaction type caused cell editing to complete.
  */
-
 public enum EditCompletionEvent implements ValueEnum {
     /**
      * User clicked outside editor during edit.
@@ -30,39 +30,37 @@ public enum EditCompletionEvent implements ValueEnum {
      */
     CLICK("click"),
     /**
-     * User started editing another row by double  clicking
+     * User started editing another row by double clicking
      */
     DOUBLE_CLICK("doubleClick"),
-
     /**
-     * Enter pressed
+     * Enter pressed.
      */
-    ENTER("enter"),
-
+    ENTER_KEYPRESS("enter"),
     /**
      * User pressed Escape.
      */
-    ESCAPE("escape"),
+    ESCAPE_KEYPRESS("escape"),
     /**
      * Up arrow key pressed.
      */
-    ARROW_UP("arrow_up"),
+    UP_ARROW_KEYPRESS("arrow_up"),
     /**
      * down arrow key.
      */
-    ARROW_DOWN("arrow_down"),
+    DOWN_ARROW_KEYPRESS("arrow_down"),
     /**
      * User pressed Tab.
      */
-    TAB("tab"),
+    TAB_KEYPRESS("tab"),
     /**
      * User pressed Shift+Tab.
      */
-    SHIFT_TAB("shift_tab"),
+    SHIFT_TAB_KEYPRESS("shift_tab"),
     /**
      * Edit moved to a different field (same row)
      */
-    FIELD_CHANGE("field_change"),
+    EDIT_FIELD_CHANGE("field_change"),
     /**
      * Edit completed via explicit function call
      */
@@ -77,4 +75,4 @@ public enum EditCompletionEvent implements ValueEnum {
         return this.value;
     }
 }
-
+        

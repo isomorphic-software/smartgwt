@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Method to use for displaying the exported data.
  */
@@ -28,7 +29,6 @@ public enum ExportDisplay implements ValueEnum {
      * Show the data in a new browser window
      */
     WINDOW("window");
-
     private String value;
 
     ExportDisplay(String value) {
@@ -39,3 +39,4 @@ public enum ExportDisplay implements ValueEnum {
         return this.value;
     }
 }
+        

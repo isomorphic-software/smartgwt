@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * DrawItem subclass to render rectangle shapes, optionally with rounded corners.
@@ -73,12 +93,18 @@ public class DrawRect extends DrawItem {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
+    }
+
+
     public DrawRect(){
         scClassName = "DrawRect";
     }
 
     public DrawRect(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "DrawRect";
+        setJavaScriptObject(jsObj);
     }
 
     public native JavaScriptObject create()/*-{
@@ -95,10 +121,9 @@ public class DrawRect extends DrawItem {
      * Set the height of the drawRect
      *
      * @param height new height. Default value is 100
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setHeight(int height)  throws IllegalStateException {
-        setAttribute("height", height, false);
+    public void setHeight(int height) {
+        setAttribute("height", height, true);
     }
 
     /**
@@ -112,7 +137,7 @@ public class DrawRect extends DrawItem {
     }
 
     /**
-     * Left coordinate in pixels relative to the DrawPane, or owning DrawGroup.
+     * Left coordinate in pixels relative to the DrawPane.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the left coordinate of the drawRect
@@ -124,7 +149,7 @@ public class DrawRect extends DrawItem {
     }
 
     /**
-     * Left coordinate in pixels relative to the DrawPane, or owning DrawGroup.
+     * Left coordinate in pixels relative to the DrawPane.
      *
      *
      * @return int
@@ -178,7 +203,7 @@ public class DrawRect extends DrawItem {
     }
 
     /**
-     * Top coordinate in pixels relative to the DrawPane, or owning DrawGroup.
+     * Top coordinate in pixels relative to the DrawPane.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the top coordinate of the drawRect
@@ -190,7 +215,7 @@ public class DrawRect extends DrawItem {
     }
 
     /**
-     * Top coordinate in pixels relative to the DrawPane, or owning DrawGroup.
+     * Top coordinate in pixels relative to the DrawPane.
      *
      *
      * @return int
@@ -206,10 +231,9 @@ public class DrawRect extends DrawItem {
      * Set the width of the drawRect
      *
      * @param width new width. Default value is 100
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setWidth(int width)  throws IllegalStateException {
-        setAttribute("width", width, false);
+    public void setWidth(int width) {
+        setAttribute("width", width, true);
     }
 
     /**
@@ -223,7 +247,7 @@ public class DrawRect extends DrawItem {
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Move the drawRect by the specified delta
      * @param dX number of pixels to move horizontally
@@ -233,7 +257,7 @@ public class DrawRect extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.moveBy(dX, dY);
     }-*/;
-            
+
     /**
      * Move the drawRect to the specified position
      * @param left new left coordinate
@@ -243,7 +267,7 @@ public class DrawRect extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.moveTo(left, top);
     }-*/;
-            
+
     /**
      * Resize by the specified delta
      * @param dX number of pixels to resize by horizontally
@@ -253,7 +277,7 @@ public class DrawRect extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.resizeBy(dX, dY);
     }-*/;
-            
+
     /**
      * Resize to the specified size
      * @param width new width
@@ -263,7 +287,7 @@ public class DrawRect extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.resizeTo(width, height);
     }-*/;
-            
+
     /**
      * Move the drawRect such that it is centered over the specified coordinates.
      * @param left left coordinate for new center position
@@ -273,7 +297,7 @@ public class DrawRect extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.setCenter(left, top);
     }-*/;
-            
+
     /**
      * Move and resize the drawRect to match the specified coordinates and size.
      * @param left new left coordinate

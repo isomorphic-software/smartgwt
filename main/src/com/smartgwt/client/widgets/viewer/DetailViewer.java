@@ -13,7 +13,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
-
+ 
 package com.smartgwt.client.widgets.viewer;
 
 
@@ -45,39 +45,71 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
+import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Displays one or more records "horizontally" with one property per line.
  */
 public class DetailViewer extends Canvas  implements DataBoundComponent {
 
-    public static DetailViewer getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (DetailViewer) obj;
-        } else {
-            return new DetailViewer(jsObj);
+    public native static DetailViewer getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("DetailViewer",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.viewer.DetailViewer::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public DetailViewer(){
         scClassName = "DetailViewer";
     }
 
     public DetailViewer(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "DetailViewer";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -92,7 +124,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     /**
      * A string (HTML acceptable) that will be written to a page to separate blocks.
      *
-     * @param blockSeparator blockSeparator Default value is "<br><br>"
+     * @param blockSeparator . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is "<br><br>"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setBlockSeparator(String blockSeparator) {
@@ -103,7 +135,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * A string (HTML acceptable) that will be written to a page to separate blocks.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getBlockSeparator()  {
@@ -113,7 +145,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     /**
      * CSS style for each block (one record's worth of data).
      *
-     * @param blockStyle blockStyle Default value is "detailBlock"
+     * @param blockStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "detailBlock"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setBlockStyle(String blockStyle) {
@@ -124,7 +156,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * CSS style for each block (one record's worth of data).
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getBlockStyle()  {
@@ -134,7 +166,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     /**
      * CSS style for a normal value
      *
-     * @param cellStyle cellStyle Default value is "detail"
+     * @param cellStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "detail"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setCellStyle(String cellStyle) {
@@ -147,7 +179,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      *
      * @return Return the CSS class for a cell. Default implementation calls {@link
      * com.smartgwt.client.widgets.viewer.DetailViewerField#getCellStyle getCellStyle()} on the field if defined, otherwise
-     * returns {@link com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle this.cellStyle}
+     * returns {@link com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle this.cellStyle}. See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getCellStyle()  {
@@ -214,7 +246,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     /**
      * Display format to use for fields specified as type 'datetime'.  Default is to use the system-wide default long
-     * ("normal") date time format, configured via  setNormalDatetimeDisplayFormat.  Specify any valid {@link
+     * ("normal") date time format, configured via  Date.setNormalDatetimeDisplayFormat.  Specify any valid {@link
      * com.smartgwt.client.types.DateDisplayFormat} to change the display format for datetimes used by this  viewer.  <P> May
      * also be specified at the field level via {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getDateFormatter
      * dateFormatter}
@@ -229,7 +261,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     /**
      * Display format to use for fields specified as type 'datetime'.  Default is to use the system-wide default long
-     * ("normal") date time format, configured via  setNormalDatetimeDisplayFormat.  Specify any valid {@link
+     * ("normal") date time format, configured via  Date.setNormalDatetimeDisplayFormat.  Specify any valid {@link
      * com.smartgwt.client.types.DateDisplayFormat} to change the display format for datetimes used by this  viewer.  <P> May
      * also be specified at the field level via {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getDateFormatter
      * dateFormatter}
@@ -247,7 +279,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * Text to show for an empty cell
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param emptyCellValue emptyCellValue Default value is "&nbsp;"
+     * @param emptyCellValue . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is "&nbsp;"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setEmptyCellValue(String emptyCellValue) {
@@ -258,7 +290,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * Text to show for an empty cell
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getEmptyCellValue()  {
@@ -268,7 +300,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     /**
      * The string to display in the body of a detailViewer with no records.
      *
-     * @param emptyMessage emptyMessage Default value is "No items to display."
+     * @param emptyMessage . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is "No items to display."
      */
     public void setEmptyMessage(String emptyMessage) {
         setAttribute("emptyMessage", emptyMessage, true);
@@ -278,7 +310,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * The string to display in the body of a detailViewer with no records.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      */
     public String getEmptyMessage()  {
         return getAttributeAsString("emptyMessage");
@@ -288,7 +320,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * CSS style to display this message in
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param emptyMessageStyle emptyMessageStyle Default value is "normal"
+     * @param emptyMessageStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "normal"
      */
     public void setEmptyMessageStyle(String emptyMessageStyle) {
         setAttribute("emptyMessageStyle", emptyMessageStyle, true);
@@ -298,7 +330,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * CSS style to display this message in
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getEmptyMessageStyle()  {
         return getAttributeAsString("emptyMessageStyle");
@@ -308,7 +340,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * Name of the field in the DetailViewerRecord which specifies the data property for that record.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param fieldIdProperty fieldIdProperty Default value is "name"
+     * @param fieldIdProperty . See {@link com.smartgwt.client.docs.String String}. Default value is "name"
      */
     public void setFieldIdProperty(String fieldIdProperty) {
         setAttribute("fieldIdProperty", fieldIdProperty, true);
@@ -318,7 +350,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * Name of the field in the DetailViewerRecord which specifies the data property for that record.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getFieldIdProperty()  {
         return getAttributeAsString("fieldIdProperty");
@@ -327,7 +359,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     /**
      * CSS style for a header
      *
-     * @param headerStyle headerStyle Default value is "detailHeader"
+     * @param headerStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "detailHeader"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setHeaderStyle(String headerStyle) {
@@ -338,7 +370,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * CSS style for a header
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getHeaderStyle()  {
@@ -442,16 +474,16 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     /**
      * Specifies a list of icons that can be used in {@link com.smartgwt.client.widgets.DataBoundComponent#editHilites
-     * hilites}. <P> <code>hiliteIcons</code> should be specified as an Array of String. When present, the hilite editing
+     * hilites}. <P> <code>hiliteIcons</code> should be specified as an Array of SCImgURL. When present, the hilite editing
      * interface shown when {@link com.smartgwt.client.widgets.DataBoundComponent#editHilites DataBoundComponent.editHilites}
      * is called  will offer the user a drop down for picking one of these icons when defining either a  simple or advanced
      * hilite rule. <P> If the user picks an icon, the created hiliting rule will have {@link
      * com.smartgwt.client.data.Hilite#getIcon icon} set to  the chosen icon.  {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getHiliteIconPosition hiliteIconPosition} controls where the icon will
+     * com.smartgwt.client.widgets.DataBoundComponent#getHiliteIconPosition hiliteIconPosition} controls where the icon will 
      * appear for that field -- the default is that it appears in front of the normal cell content. This can also be overriden
      * at the field level.
      *
-     * @param hiliteIcons hiliteIcons Default value is ["[SKINIMG]/Dialog/notify.png", "[SKINIMG]/Dialog/warn.png", "[SKINIMG]/actions/approve.png"]
+     * @param hiliteIcons . See {@link com.smartgwt.client.docs.String String}. Default value is ["[SKINIMG]/Dialog/notify.png", "[SKINIMG]/Dialog/warn.png", "[SKINIMG]/actions/approve.png"]
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
@@ -461,17 +493,17 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     /**
      * Specifies a list of icons that can be used in {@link com.smartgwt.client.widgets.DataBoundComponent#editHilites
-     * hilites}. <P> <code>hiliteIcons</code> should be specified as an Array of String. When present, the hilite editing
+     * hilites}. <P> <code>hiliteIcons</code> should be specified as an Array of SCImgURL. When present, the hilite editing
      * interface shown when {@link com.smartgwt.client.widgets.DataBoundComponent#editHilites DataBoundComponent.editHilites}
      * is called  will offer the user a drop down for picking one of these icons when defining either a  simple or advanced
      * hilite rule. <P> If the user picks an icon, the created hiliting rule will have {@link
      * com.smartgwt.client.data.Hilite#getIcon icon} set to  the chosen icon.  {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getHiliteIconPosition hiliteIconPosition} controls where the icon will
+     * com.smartgwt.client.widgets.DataBoundComponent#getHiliteIconPosition hiliteIconPosition} controls where the icon will 
      * appear for that field -- the default is that it appears in front of the normal cell content. This can also be overriden
      * at the field level.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
     public String[] getHiliteIcons()  {
@@ -543,7 +575,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     /**
      * text to put before a label
      *
-     * @param labelPrefix labelPrefix Default value is ""
+     * @param labelPrefix . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is ""
      */
     public void setLabelPrefix(String labelPrefix) {
         setAttribute("labelPrefix", labelPrefix, true);
@@ -553,7 +585,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * text to put before a label
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      */
     public String getLabelPrefix()  {
         return getAttributeAsString("labelPrefix");
@@ -562,7 +594,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     /**
      * CSS style for a normal detail label
      *
-     * @param labelStyle labelStyle Default value is "detailLabel"
+     * @param labelStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "detailLabel"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setLabelStyle(String labelStyle) {
@@ -573,7 +605,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * CSS style for a normal detail label
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getLabelStyle()  {
@@ -583,7 +615,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     /**
      * text to put after a label
      *
-     * @param labelSuffix labelSuffix Default value is ":"
+     * @param labelSuffix . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is ":"
      */
     public void setLabelSuffix(String labelSuffix) {
         setAttribute("labelSuffix", labelSuffix, true);
@@ -593,17 +625,46 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * text to put after a label
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      */
     public String getLabelSuffix()  {
         return getAttributeAsString("labelSuffix");
     }
 
     /**
+     * Property name on a record that will hold the link text for that record. <p> This property is configurable to avoid
+     * possible collision with data values in the record. <p> Use {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getLinkTextProperty linkTextProperty} if you have more than one
+     * link field and the fields' records do not use the same property to store the linkText.
+     *
+     * @param linkTextProperty . See {@link com.smartgwt.client.docs.String String}. Default value is "linkText"
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setLinkText
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setLinkTextProperty
+     */
+    public void setLinkTextProperty(String linkTextProperty) {
+        setAttribute("linkTextProperty", linkTextProperty, true);
+    }
+
+    /**
+     * Property name on a record that will hold the link text for that record. <p> This property is configurable to avoid
+     * possible collision with data values in the record. <p> Use {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getLinkTextProperty linkTextProperty} if you have more than one
+     * link field and the fields' records do not use the same property to store the linkText.
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getLinkText
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getLinkTextProperty
+     */
+    public String getLinkTextProperty()  {
+        return getAttributeAsString("linkTextProperty");
+    }
+
+    /**
      * The string to display in the body of a detailViewer which is loading records. Use <code>"\${loadingImage}"</code> to
      * include {@link com.smartgwt.client.widgets.Canvas#loadingImageSrc a loading image}.
      *
-     * @param loadingMessage loadingMessage Default value is "&amp;nbsp;\${loadingImage}"
+     * @param loadingMessage . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is "&amp;nbsp;\${loadingImage}"
      */
     public void setLoadingMessage(String loadingMessage) {
         setAttribute("loadingMessage", loadingMessage, true);
@@ -614,7 +675,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * include {@link com.smartgwt.client.widgets.Canvas#loadingImageSrc a loading image}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      */
     public String getLoadingMessage()  {
         return getAttributeAsString("loadingMessage");
@@ -624,7 +685,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * CSS style to use for the {@link com.smartgwt.client.widgets.viewer.DetailViewer#getLoadingMessage loadingMessage}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param loadingMessageStyle loadingMessageStyle Default value is "normal"
+     * @param loadingMessageStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "normal"
      */
     public void setLoadingMessageStyle(String loadingMessageStyle) {
         setAttribute("loadingMessageStyle", loadingMessageStyle, true);
@@ -634,7 +695,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * CSS style to use for the {@link com.smartgwt.client.widgets.viewer.DetailViewer#getLoadingMessage loadingMessage}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getLoadingMessageStyle()  {
         return getAttributeAsString("loadingMessageStyle");
@@ -645,7 +706,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle cellStyle} will be used for printing as well as normal
      * presentation.
      *
-     * @param printCellStyle printCellStyle Default value is null
+     * @param printCellStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is null
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
     public void setPrintCellStyle(String printCellStyle) {
@@ -658,7 +719,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * presentation.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
     public String getPrintCellStyle()  {
@@ -670,7 +731,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * com.smartgwt.client.widgets.viewer.DetailViewer#getHeaderStyle headerStyle} will be used for printing as well as normal
      * presentation.
      *
-     * @param printHeaderStyle printHeaderStyle Default value is null
+     * @param printHeaderStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is null
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
     public void setPrintHeaderStyle(String printHeaderStyle) {
@@ -683,7 +744,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * presentation.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
     public String getPrintHeaderStyle()  {
@@ -695,7 +756,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * com.smartgwt.client.widgets.viewer.DetailViewer#getLabelStyle labelStyle} will be used for printing as well as normal
      * presentation.
      *
-     * @param printLabelStyle printLabelStyle Default value is null
+     * @param printLabelStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is null
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
     public void setPrintLabelStyle(String printLabelStyle) {
@@ -708,7 +769,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * presentation.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
     public String getPrintLabelStyle()  {
@@ -747,7 +808,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     /**
      * CSS style for a separator
      *
-     * @param separatorStyle separatorStyle Default value is "detail"
+     * @param separatorStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "detail"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setSeparatorStyle(String separatorStyle) {
@@ -758,7 +819,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * CSS style for a separator
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSeparatorStyle()  {
@@ -767,7 +828,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     /**
      * Whether to show fields marked <code>detail:true</code> when a DataBoundComponent is  given a DataSource but no
-     * <code>component.fields</code>. <p> The <code>detail</code> property is used on DataSource fields to mark fields that
+     * <code>component.fields</code>. <p> The <code>detail</code> property is used on DataSource fields to mark fields that 
      * shouldn't appear by default in a view that tries to show many records in a small space.
      *
      * @param showDetailFields showDetailFields Default value is true
@@ -780,7 +841,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     /**
      * Whether to show fields marked <code>detail:true</code> when a DataBoundComponent is  given a DataSource but no
-     * <code>component.fields</code>. <p> The <code>detail</code> property is used on DataSource fields to mark fields that
+     * <code>component.fields</code>. <p> The <code>detail</code> property is used on DataSource fields to mark fields that 
      * shouldn't appear by default in a view that tries to show many records in a small space.
      *
      *
@@ -840,7 +901,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     /**
      * CSS style for the component as a whole.
      *
-     * @param styleName styleName Default value is "detailViewer"
+     * @param styleName . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "detailViewer"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setStyleName(String styleName) {
@@ -851,7 +912,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * CSS style for the component as a whole.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getStyleName()  {
@@ -946,7 +1007,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * properties of this class. Can also be used for skinning / styling purposes.
      * <P>
      * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
-     * underlying class (including those automatically generated in JavaScript).
+     * underlying class (including those automatically generated in JavaScript). 
      * This method should not be used to apply standard EventHandlers or override methods for
      * a class - use a custom subclass instead.
      *
@@ -957,11 +1018,11 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     	delete properties.ID;
         $wnd.isc.DetailViewer.addProperties(properties);
     }-*/;
+        
+    // ***********************************************************        
 
-    // ***********************************************************
 
-
-
+	
     /**
      * An array of records, specifying data. Note that DetailViewers do not observe changes to the data array (in other
      * words they will not automatically re-draw when the data provided via this property is altered)
@@ -978,7 +1039,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * that accepts component specific records.
      *
      * @param data array of Record objects.
-     * @see #setData(DetailViewerRecord[])
+     * @see #setData(DetailViewerRecord[])   
      */
     public void setData(Record[] data) {
         setAttribute("data", data, true);
@@ -1045,6 +1106,38 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         self.viewSelectedData(selectionComponentID);
     }-*/;
 
+    /**
+     * Bind to a DataSource.
+     * <P>
+     * Binding to a DataSource means that the component will use the DataSource to provide default data for 
+     * its fields.
+     * <P>
+     * When binding to a new DataSource, if the component has any existing "fields" or has a dataset, 
+     * these will be discarded by default, since it is assumed the new DataSource may represent a completely 
+     * unrelated set of objects. If the old "fields" are still relevant, pass them to setDataSource(). 
+     * @param dataSource
+     * @param fields
+     */
+    public void setDataSource(DataSource dataSource, DetailViewerField... fields) {
+        if (!isCreated()) {
+            setFields(fields);
+            setDataSource(dataSource);
+        } else {
+            JavaScriptObject jsFields = null;
+            if (fields != null) {
+                jsFields = JSOHelper.createJavaScriptArray();
+                for (int i = 0; i < fields.length; i++) {
+                    JSOHelper.setArrayValue(jsFields, i, fields[i].getJsObj());
+                }
+            }
+            setDataSourceJS(dataSource.getOrCreateJsObj(), jsFields);
+        }
+    }
+    private native void setDataSourceJS(JavaScriptObject dataSource, JavaScriptObject fields) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setDataSource(dataSource, fields);
+    }-*/;
+
 
 
     // ********************* DataBoundComponent Properties / Attributes ***********************
@@ -1052,7 +1145,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     public void setDataPageSize(int dataPageSize) {
         setAttribute("dataPageSize", dataPageSize, true);
     }
-
+    
     public int getDataPageSize() {
         return getAttributeAsInt("dataPageSize");
     }
@@ -1197,7 +1290,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     /**
      * Set the current hilites based on a hiliteState String previously returned from getHilitesState.
-     *
+     *  
      * @param hiliteState hilites state encoded as a String
      */
     public native void setHiliteState(String hiliteState)  /*-{
@@ -1311,7 +1404,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     // ********************* Methods ***********************
 
-
+    
     public native void selectRecord(Record record)/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
@@ -1594,68 +1687,21 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         return new RecordList(dataJS);
     }
 
-    /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
-     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
-     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
-     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
-     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
-     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
-     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
-     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
-     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
-     */
     public native void exportData() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportData();
     }-*/;
 
-    /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
-     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
-     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
-     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
-     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
-     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
-     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
-     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
-     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
-     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
-     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
-     */
     public native void exportData(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-
-   /**
-    * Exports this component's data with client-side formatters applied, so is suitable for
-    * direct display to users.  This feature requires the SmartClient server, but does not
-    * rely on any server-side DataSources.
-    * <P>To export unformatted data from this component's dataSource, see
-    * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
-    * which does not include client-side formatters,
-    * but relies on both the SmartClient server and server-side DataSources.
-    * @see com.smartgwt.client.data.DataSource#exportClientData
-    */
+    
     public native void exportClientData() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportClientData();
     }-*/;
 
-   /**
-    * Exports this component's data with client-side formatters applied, so is suitable for
-    * direct display to users.  This feature requires the SmartClient server, but does not
-    * rely on any server-side DataSources.
-    * <P>To export unformatted data from this component's dataSource, see
-    * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
-    * which does not include client-side formatters,
-    * but relies on both the SmartClient server and server-side DataSources.
-    * @param requestProperties Request properties for the export
-    * @see com.smartgwt.client.data.DataSource#exportClientData
-    */
     public native void exportClientData(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportClientData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
@@ -1694,9 +1740,9 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
             }));
         }
     }-*/;
-
+    
     /**
-     * Add a {@link com.smartgwt.client.widgets.DropCompleteHandler}.  See that class's documentation for a definition of "drop complete",
+     * Add a {@link com.smartgwt.client.widgets.DropCompleteHandler}.  See that class's documentation for a definition of "drop complete", 
      * and how it differs from "drag complete" ({@link com.smartgwt.client.widgets.DragCompleteHandler}).
      *
      * @param handler the DropCompleteHandler
@@ -1727,9 +1773,9 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
             }));
         }
     }-*/;
-
+    
     /**
-     * Add a {@link com.smartgwt.client.widgets.DragCompleteHandler}.  See that class's documentation for a definition of "drag complete",
+     * Add a {@link com.smartgwt.client.widgets.DragCompleteHandler}.  See that class's documentation for a definition of "drag complete", 
      * and how it differs from "drop complete" ({@link com.smartgwt.client.widgets.DropCompleteHandler}).
      *
      * @param handler the DropCompleteHandler
@@ -1759,7 +1805,195 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         }
     }-*/;
 
+    public LogicalStructureObject setLogicalStructure(DetailViewerLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.blockSeparator = getAttributeAsString("blockSeparator");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.blockSeparator:" + t.getMessage() + "\n";
+        }
+        try {
+            s.blockStyle = getAttributeAsString("blockStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.blockStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.cellStyle = getAttributeAsString("cellStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.cellStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataFetchMode = getAttributeAsString("dataFetchMode");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.dataFetchMode:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dateFormatter = getAttributeAsString("dateFormatter");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.dateFormatter:" + t.getMessage() + "\n";
+        }
+        try {
+            s.datetimeFormatter = getAttributeAsString("datetimeFormatter");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.datetimeFormatter:" + t.getMessage() + "\n";
+        }
+        try {
+            s.emptyCellValue = getAttributeAsString("emptyCellValue");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.emptyCellValue:" + t.getMessage() + "\n";
+        }
+        try {
+            s.emptyMessage = getAttributeAsString("emptyMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.emptyMessage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.emptyMessageStyle = getAttributeAsString("emptyMessageStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.emptyMessageStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.fieldIdProperty = getAttributeAsString("fieldIdProperty");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.fieldIdProperty:" + t.getMessage() + "\n";
+        }
+        try {
+            s.headerStyle = getAttributeAsString("headerStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.headerStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hiliteIconHeight = getAttributeAsString("hiliteIconHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.hiliteIconHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hiliteIconLeftPadding = getAttributeAsString("hiliteIconLeftPadding");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.hiliteIconLeftPadding:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hiliteIconPosition = getAttributeAsString("hiliteIconPosition");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.hiliteIconPosition:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hiliteIconRightPadding = getAttributeAsString("hiliteIconRightPadding");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.hiliteIconRightPadding:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hiliteIcons = getAttributeAsStringArray("hiliteIcons");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.hiliteIconsArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hiliteIconSize = getAttributeAsString("hiliteIconSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.hiliteIconSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hiliteIconWidth = getAttributeAsString("hiliteIconWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.hiliteIconWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.labelPrefix = getAttributeAsString("labelPrefix");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.labelPrefix:" + t.getMessage() + "\n";
+        }
+        try {
+            s.labelStyle = getAttributeAsString("labelStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.labelStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.labelSuffix = getAttributeAsString("labelSuffix");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.labelSuffix:" + t.getMessage() + "\n";
+        }
+        try {
+            s.linkTextProperty = getAttributeAsString("linkTextProperty");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.linkTextProperty:" + t.getMessage() + "\n";
+        }
+        try {
+            s.loadingMessage = getAttributeAsString("loadingMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.loadingMessage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.loadingMessageStyle = getAttributeAsString("loadingMessageStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.loadingMessageStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.printCellStyle = getAttributeAsString("printCellStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.printCellStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.printHeaderStyle = getAttributeAsString("printHeaderStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.printHeaderStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.printLabelStyle = getAttributeAsString("printLabelStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.printLabelStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.recordsPerBlock = getAttributeAsString("recordsPerBlock");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.recordsPerBlock:" + t.getMessage() + "\n";
+        }
+        try {
+            s.separatorStyle = getAttributeAsString("separatorStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.separatorStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDetailFields = getAttributeAsString("showDetailFields");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.showDetailFields:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showEmptyField = getAttributeAsString("showEmptyField");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.showEmptyField:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showEmptyMessage = getAttributeAsString("showEmptyMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.showEmptyMessage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.styleName = getAttributeAsString("styleName");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.styleName:" + t.getMessage() + "\n";
+        }
+        try {
+            s.timeFormatter = getAttributeAsString("timeFormatter");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.timeFormatter:" + t.getMessage() + "\n";
+        }
+        try {
+            s.wrapLabel = getAttributeAsString("wrapLabel");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.wrapLabel:" + t.getMessage() + "\n";
+        }
+        try {
+            s.wrapValues = getAttributeAsString("wrapValues");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.wrapValues:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        DetailViewerLogicalStructure s = new DetailViewerLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

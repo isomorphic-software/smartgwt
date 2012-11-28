@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Use the HTMLFlow component to display HTML content that should expand to its natural size without scrolling.   <p> HTML
@@ -69,22 +89,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.events.HasContentLoadedHandlers {
 
-    public static HTMLFlow getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (HTMLFlow) obj;
-        } else {
-            return new HTMLFlow(jsObj);
+    public native static HTMLFlow getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("HTMLFlow",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.HTMLFlow::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public HTMLFlow(){
         scClassName = "HTMLFlow";
     }
 
     public HTMLFlow(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "HTMLFlow";
+        setJavaScriptObject(jsObj);
     }
 
     public HTMLFlow(String contents) {
@@ -150,7 +181,10 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     /**
      * The contents of a canvas or label widget. Any HTML string is acceptable.
      *
-     * @param contents contents Default value is "&nbsp;"
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Changes the contents of a widget to newContents, an HTML string.
+     *
+     * @param contents an HTML string to be set as the contents of this widget. See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is "&nbsp;"
      * @see com.smartgwt.client.widgets.HTMLFlow#setDynamicContents
      */
     public void setContents(String contents) {
@@ -161,7 +195,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      * The contents of a canvas or label widget. Any HTML string is acceptable.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.widgets.HTMLFlow#getDynamicContents
      */
     public String getContents()  {
@@ -176,7 +210,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Change the URL this component loads content from.  Triggers a fetch for content from the new URL. <p> Can also be called with no arguments to reload content from the existing {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL}. <P> This feature relies on the XMLHttpRequest object which can be disabled by end-users in some supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
      *
-     * @param contentsURL URL to retrieve contents from. Default value is null
+     * @param contentsURL URL to retrieve contents from. See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setContentsURL(String contentsURL) {
         setAttribute("contentsURL", contentsURL, true);
@@ -188,7 +222,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      * browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getContentsURL()  {
         return getAttributeAsString("contentsURL");
@@ -313,11 +347,13 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     /**
      * If <code>evalScriptBlocks</code> is true, HTMLFlow will pre-process the loaded HTML in order to mimic how the HTML would
      * execute if it were loaded as an independent page or loaded via an IFRAME.   <P> This feature is intended to assist with
-     * migrating existing applications to Smart GWT. <P> Note that, if evalScriptBlocks is false, &lt;SCRIPT&gt; blocks will
-     * still be detected and disabled to avoid the inconsistent results across different browsers. <P> Only applies when
-     * contentsType is <b>not</b> "page".
+     * migrating existing applications to Smart GWT. <P> <code>evalScriptBlocks</code> is enabled by default when loading
+     * remote content (via {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL}) and disabled by default for
+     * content supplied via {@link com.smartgwt.client.widgets.HTMLFlow#setContents HTMLFlow.setContents}. <P> Note that, if
+     * evalScriptBlocks is false, &lt;SCRIPT&gt; blocks will still be detected and disabled to avoid the inconsistent results
+     * across different browsers. <P> Only applies when contentsType is <b>not</b> "page".
      *
-     * @param evalScriptBlocks evalScriptBlocks Default value is true
+     * @param evalScriptBlocks evalScriptBlocks Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setEvalScriptBlocks(Boolean evalScriptBlocks)  throws IllegalStateException {
@@ -327,9 +363,11 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     /**
      * If <code>evalScriptBlocks</code> is true, HTMLFlow will pre-process the loaded HTML in order to mimic how the HTML would
      * execute if it were loaded as an independent page or loaded via an IFRAME.   <P> This feature is intended to assist with
-     * migrating existing applications to Smart GWT. <P> Note that, if evalScriptBlocks is false, &lt;SCRIPT&gt; blocks will
-     * still be detected and disabled to avoid the inconsistent results across different browsers. <P> Only applies when
-     * contentsType is <b>not</b> "page".
+     * migrating existing applications to Smart GWT. <P> <code>evalScriptBlocks</code> is enabled by default when loading
+     * remote content (via {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL}) and disabled by default for
+     * content supplied via {@link com.smartgwt.client.widgets.HTMLFlow#setContents HTMLFlow.setContents}. <P> Note that, if
+     * evalScriptBlocks is false, &lt;SCRIPT&gt; blocks will still be detected and disabled to avoid the inconsistent results
+     * across different browsers. <P> Only applies when contentsType is <b>not</b> "page".
      *
      *
      * @return Boolean
@@ -365,7 +403,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      * property instead.<br> Note: the <code>loadingMessage</code> is never displayed when loading complete web pages  rather
      * than HTML fragments (see {@link com.smartgwt.client.widgets.HTMLFlow#getContentsType contentsType}).
      *
-     * @param loadingMessage loadingMessage Default value is "&amp;nbsp;\${loadingImage}"
+     * @param loadingMessage . See {@link com.smartgwt.client.docs.String String}. Default value is "&amp;nbsp;\${loadingImage}"
      */
     public void setLoadingMessage(String loadingMessage) {
         setAttribute("loadingMessage", loadingMessage, true);
@@ -380,7 +418,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      * than HTML fragments (see {@link com.smartgwt.client.widgets.HTMLFlow#getContentsType contentsType}).
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getLoadingMessage()  {
         return getAttributeAsString("loadingMessage");
@@ -405,33 +443,38 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     private native void setupContentLoadedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var contentLoaded = $entry(function(){
+            var param = {};
+
+                var event = @com.smartgwt.client.widgets.events.ContentLoadedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({contentLoaded:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.ContentLoadedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({contentLoaded:  contentLoaded              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.contentLoaded = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.ContentLoadedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.contentLoaded =  contentLoaded             ;
         }
    }-*/;
-            
+
     /**
      * Returns true if this htmlFlow is currently loading content from the server.<br> Note: Does not apply to htmlFlows with
      * {@link com.smartgwt.client.widgets.HTMLFlow#getContentsType contentsType} set to  <code>"page"</code>
+     *
+     * @return whether content is currently being loaded
+     * @see com.smartgwt.client.widgets.events.ContentLoadedEvent
      */
-    public native void loadingContent() /*-{
+    public native Boolean loadingContent() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.loadingContent();
+        var retVal =self.loadingContent();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
     }-*/;
-            
+
     /**
      * Override to modify the loaded HTML before it is rendered.
      * @param html the html as loaded from the server return (HTML) html to be rendered
@@ -470,7 +513,9 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      * complete page.  Set to "page" to load HTML as a standalone page, via an IFRAME.   <P>
      * <code>contentsType:"page"</code> should only be used for controlled HTML content, and only when such content
      * cannot be delivered as an HTML fragment instead (the default).  To dynamically load Smart GWT components, use
-     * {@link com.smartgwt.client.widgets.ViewLoader}, <b>never</b> this mechanism (click here for why). <P> Loading
+     * {@link com.smartgwt.client.widgets.ViewLoader}, <b>never</b> this mechanism 
+     * (click {@link com.smartgwt.client.docs.NoFrames here} for why). <P> 
+     * Loading HTML content as a fragment is less resource intensive and avoids visual artifacts such as translucent media
      * HTML content as a fragment is less resource intensive and avoids visual artifacts such as translucent media
      * becoming opaque or disappearing when placed over an IFRAME.   <P> Loading third-party, uncontrolled content could
      * lead to the surrounding page disappearing if a user clicks on an HTML link with <code>target=_top</code>. <P>
@@ -491,8 +536,9 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      * complete page.  Set to "page" to load HTML as a standalone page, via an IFRAME.   <P>
      * <code>contentsType:"page"</code> should only be used for controlled HTML content, and only when such content
      * cannot be delivered as an HTML fragment instead (the default).  To dynamically load Smart GWT components, use
-     * {@link com.smartgwt.client.widgets.ViewLoader}, <b>never</b> this mechanism (click here for why). <P> Loading
-     * HTML content as a fragment is less resource intensive and avoids visual artifacts such as translucent media
+     * {@link com.smartgwt.client.widgets.ViewLoader}, <b>never</b> this mechanism 
+     * (click {@link com.smartgwt.client.docs.NoFrames here} for why). <P> 
+     * Loading HTML content as a fragment is less resource intensive and avoids visual artifacts such as translucent media
      * becoming opaque or disappearing when placed over an IFRAME.   <P> Loading third-party, uncontrolled content could
      * lead to the surrounding page disappearing if a user clicks on an HTML link with <code>target=_top</code>. <P>
      * With <code>contentsType:"page"</code>, {@link com.smartgwt.client.widgets.HTMLFlow#getLoadingMessage
@@ -514,7 +560,65 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
         setAttribute("contentsURLParams", contentsURLParams, true);
     }
 
+    public LogicalStructureObject setLogicalStructure(HTMLFlowLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.allowCaching = getAttributeAsString("allowCaching");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "HTMLFlow.allowCaching:" + t.getMessage() + "\n";
+        }
+        try {
+            s.captureSCComponents = getAttributeAsString("captureSCComponents");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "HTMLFlow.captureSCComponents:" + t.getMessage() + "\n";
+        }
+        try {
+            s.contents = getAttributeAsString("contents");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "HTMLFlow.contents:" + t.getMessage() + "\n";
+        }
+        try {
+            s.contentsType = getAttributeAsString("contentsType");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "HTMLFlow.contentsType:" + t.getMessage() + "\n";
+        }
+        try {
+            s.contentsURL = getAttributeAsString("contentsURL");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "HTMLFlow.contentsURL:" + t.getMessage() + "\n";
+        }
+        try {
+            s.contentsURLParams = getAttributeAsString("contentsURLParams");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "HTMLFlow.contentsURLParams:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dynamicContents = getAttributeAsString("dynamicContents");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "HTMLFlow.dynamicContents:" + t.getMessage() + "\n";
+        }
+        try {
+            s.evalScriptBlocks = getAttributeAsString("evalScriptBlocks");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "HTMLFlow.evalScriptBlocks:" + t.getMessage() + "\n";
+        }
+        try {
+            s.httpMethod = getAttributeAsString("httpMethod");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "HTMLFlow.httpMethod:" + t.getMessage() + "\n";
+        }
+        try {
+            s.loadingMessage = getAttributeAsString("loadingMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "HTMLFlow.loadingMessage:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        HTMLFlowLogicalStructure s = new HTMLFlowLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

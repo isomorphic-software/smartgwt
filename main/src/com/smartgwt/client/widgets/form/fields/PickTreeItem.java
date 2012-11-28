@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * FormItem that allows picking a value from a hierarchical data model.
@@ -64,8 +84,12 @@ import com.google.gwt.event.shared.HasHandlers;
 public class PickTreeItem extends CanvasItem {
 
     public static PickTreeItem getOrCreateRef(JavaScriptObject jsObj) {
+    
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+ 
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (PickTreeItem) obj;
@@ -74,12 +98,18 @@ public class PickTreeItem extends CanvasItem {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public PickTreeItem(){
         setAttribute("editorType", "PickTreeItem");
     }
 
     public PickTreeItem(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     public PickTreeItem(String name) {
@@ -101,7 +131,7 @@ public class PickTreeItem extends CanvasItem {
      *
      * @param canSelectParentItems canSelectParentItems Default value is null
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_editing_category" target="examples">Editing Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_editing" target="examples">Editing Example</a>
      */
     public void setCanSelectParentItems(Boolean canSelectParentItems) {
         setAttribute("canSelectParentItems", canSelectParentItems);
@@ -114,7 +144,7 @@ public class PickTreeItem extends CanvasItem {
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_editing_category" target="examples">Editing Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_editing" target="examples">Editing Example</a>
      */
     public Boolean getCanSelectParentItems()  {
         return getAttributeAsBoolean("canSelectParentItems");
@@ -130,7 +160,7 @@ public class PickTreeItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.fields.PickTreeItem#getValueField valueField} matches this item's value, and displaying
      * the  <code>displayField</code> value from that record.<br>
      *
-     * @param displayField displayField Default value is null
+     * @param displayField . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setDisplayField(String displayField) {
         setAttribute("displayField", displayField);
@@ -147,10 +177,38 @@ public class PickTreeItem extends CanvasItem {
      * the  <code>displayField</code> value from that record.<br>
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getDisplayField()  {
         return getAttributeAsString("displayField");
+    }
+
+    /**
+     * Text to display when this form item has a null or undefined value. <P> If the formItem has a databound pickList, and its
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} or {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} (if the former isn't set) has an undefined
+     * emptyCellValue field, that field will automatically be set using the emptyDisplayValue property.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Setter for {@link com.smartgwt.client.widgets.form.fields.PickTreeItem#getEmptyDisplayValue emptyDisplayValue}.
+     *
+     * @param emptyDisplayValue . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     */
+    public void setEmptyDisplayValue(String emptyDisplayValue) {
+        setAttribute("emptyDisplayValue", emptyDisplayValue);
+    }
+
+    /**
+     * Text to display when this form item has a null or undefined value. <P> If the formItem has a databound pickList, and its
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} or {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} (if the former isn't set) has an undefined
+     * emptyCellValue field, that field will automatically be set using the emptyDisplayValue property.
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     */
+    public String getEmptyDisplayValue()  {
+        return getAttributeAsString("emptyDisplayValue");
     }
 
     /**
@@ -158,7 +216,7 @@ public class PickTreeItem extends CanvasItem {
      * tree.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param emptyMenuMessage emptyMenuMessage Default value is "No items to display"
+     * @param emptyMenuMessage . See {@link com.smartgwt.client.docs.String String}. Default value is "No items to display"
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_category" target="examples">Tree Example</a>
      */
     public void setEmptyMenuMessage(String emptyMenuMessage) {
@@ -170,7 +228,7 @@ public class PickTreeItem extends CanvasItem {
      * tree.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_category" target="examples">Tree Example</a>
      */
     public String getEmptyMenuMessage()  {
@@ -253,7 +311,7 @@ public class PickTreeItem extends CanvasItem {
     /**
      * Which field in the tree-data should be returned as this item's value? If unspecified, the path will be used
      *
-     * @param valueField valueField Default value is null
+     * @param valueField . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_category" target="examples">Tree Example</a>
      */
     public void setValueField(String valueField) {
@@ -264,7 +322,7 @@ public class PickTreeItem extends CanvasItem {
      * Which field in the tree-data should be returned as this item's value? If unspecified, the path will be used
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_category" target="examples">Tree Example</a>
      */
     public String getValueField()  {
@@ -272,7 +330,7 @@ public class PickTreeItem extends CanvasItem {
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Only applies to databound items (see {@link com.smartgwt.client.widgets.form.fields.PickTreeItem#getOptionDataSource
      * optionDataSource}).<br> Performs a fetch type operation on this item's DataSource to retrieve/refresh the tree of data

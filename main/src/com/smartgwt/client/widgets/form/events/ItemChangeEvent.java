@@ -45,16 +45,19 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class ItemChangeEvent extends BrowserEvent<ItemChangeHandler>  implements Cancellable {
@@ -93,7 +96,6 @@ public class ItemChangeEvent extends BrowserEvent<ItemChangeHandler>  implements
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(ItemChangeHandler handler) {
         handler.onItemChange(this);
@@ -111,7 +113,6 @@ public class ItemChangeEvent extends BrowserEvent<ItemChangeHandler>  implements
     public ItemChangeEvent(JavaScriptObject jsObj) {
         super(jsObj);
     }
-
 
     /**
      * Call this method to cancel the change

@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * {@link com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol} affects how the data in the DSRequest
  * ({@link com.smartgwt.client.data.DSRequest#getData data})
@@ -77,7 +78,6 @@ public enum DSProtocol implements ValueEnum {
      * com.smartgwt.client.data.DataSource#processResponse DataSource.processResponse} to handle the results of this action.
      */
     CLIENTCUSTOM("clientCustom");
-
     private String value;
 
     DSProtocol(String value) {
@@ -88,3 +88,4 @@ public enum DSProtocol implements ValueEnum {
         return this.value;
     }
 }
+        

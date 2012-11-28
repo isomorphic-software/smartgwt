@@ -13,7 +13,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
-
+ 
 package com.smartgwt.client.widgets.grid;
 
 
@@ -45,21 +45,42 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
+import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * The Smart GWT system supports hierarchical data (also referred to as tree data due to its "branching" organization)
- * with: <ul>   <li> the {@link com.smartgwt.client.widgets.tree.Tree} class, which manipulates hierarchical data sets
+ * with: <ul>   <li> the {@link com.smartgwt.client.widgets.tree.Tree} class, which manipulates hierarchical data sets  
  * <li> the TreeGrid widget class, which extends the ListGrid class to visually        present tree data in an
  * expandable/collapsible format.   <li> the ColumnTree widget class, which visually        presents tree data in a
  * so-called         "<a href=http://en.wikipedia.org/wiki/Miller_Columns>Miller Column</a>" format. </ul> For information
@@ -72,22 +93,33 @@ import com.google.gwt.event.shared.*;
  */
 public class ColumnTree extends Layout  implements DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasNodeSelectedHandlers {
 
-    public static ColumnTree getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (ColumnTree) obj;
-        } else {
-            return new ColumnTree(jsObj);
+    public native static ColumnTree getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("ColumnTree",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.grid.ColumnTree::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public ColumnTree(){
         scClassName = "ColumnTree";
     }
 
     public ColumnTree(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "ColumnTree";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -100,37 +132,11 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     // ********************* Properties / Attributes ***********************
 
     /**
-     * If {@link com.smartgwt.client.widgets.grid.ColumnTree#getAutoFetchData autoFetchData} is <code>true</code>, this
-     * attribute allows the developer to specify a textMatchStyle for the initial {@link
-     * com.smartgwt.client.widgets.grid.ColumnTree#fetchData ColumnTree.fetchData} call.
-     *
-     * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
-     */
-    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle == null ? null : autoFetchTextMatchStyle.getValue(), false);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.grid.ColumnTree#getAutoFetchData autoFetchData} is <code>true</code>, this
-     * attribute allows the developer to specify a textMatchStyle for the initial {@link
-     * com.smartgwt.client.widgets.grid.ColumnTree#fetchData ColumnTree.fetchData} call.
-     *
-     *
-     * @return TextMatchStyle
-     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
-     */
-    public TextMatchStyle getAutoFetchTextMatchStyle()  {
-        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
-    }
-
-    /**
      * When using {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowMultipleColumns single-column mode}, this i18n
      * property dictates the title for the {@link com.smartgwt.client.widgets.grid.ColumnTree#getBackButton button} docked to
      * the top left  which allows navigation back through the column tree.
      *
-     * @param backButtonTitle backButtonTitle Default value is "Back"
+     * @param backButtonTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "Back"
      */
     public void setBackButtonTitle(String backButtonTitle) {
         setAttribute("backButtonTitle", backButtonTitle, true);
@@ -142,7 +148,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * the top left  which allows navigation back through the column tree.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getBackButtonTitle()  {
         return getAttributeAsString("backButtonTitle");
@@ -153,7 +159,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * closed folders. If {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowOpenIcons showOpenIcons} is set to
      * <code>false</code> this suffix will also be appended to open folders' icons.
      *
-     * @param closedIconSuffix closedIconSuffix Default value is "closed"
+     * @param closedIconSuffix . See {@link com.smartgwt.client.docs.String String}. Default value is "closed"
      */
     public void setClosedIconSuffix(String closedIconSuffix) {
         setAttribute("closedIconSuffix", closedIconSuffix, true);
@@ -165,7 +171,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * <code>false</code> this suffix will also be appended to open folders' icons.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getClosedIconSuffix()  {
         return getAttributeAsString("closedIconSuffix");
@@ -176,7 +182,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * default node.showOpenIcon} property.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param customIconOpenProperty customIconOpenProperty Default value is "showOpenIcon"
+     * @param customIconOpenProperty . See {@link com.smartgwt.client.docs.String String}. Default value is "showOpenIcon"
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCustomIconProperty
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setShowCustomIconOpen
      */
@@ -189,7 +195,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * default node.showOpenIcon} property.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconOpen
      */
@@ -207,7 +213,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon}.  Also note that for custom folder icons, the
      * {@link com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix} will never be appended.
      *
-     * @param customIconProperty customIconProperty Default value is "icon"
+     * @param customIconProperty . See {@link com.smartgwt.client.docs.String String}. Default value is "icon"
      */
     public void setCustomIconProperty(String customIconProperty) {
         setAttribute("customIconProperty", customIconProperty, true);
@@ -224,7 +230,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * {@link com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix} will never be appended.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getCustomIconProperty()  {
         return getAttributeAsString("customIconProperty");
@@ -292,7 +298,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * heading for the first column leave this attribute at its  default value of " ". If you set it to null or the empty
      * string, Smart GWT will fall back to displaying the field's name in the heading.
      *
-     * @param firstColumnTitle firstColumnTitle Default value is " "
+     * @param firstColumnTitle . See {@link com.smartgwt.client.docs.String String}. Default value is " "
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setFirstColumnTitle(String firstColumnTitle)  throws IllegalStateException {
@@ -307,7 +313,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * string, Smart GWT will fall back to displaying the field's name in the heading.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getFirstColumnTitle()  {
         return getAttributeAsString("firstColumnTitle");
@@ -319,7 +325,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix} appended to  indicate state changes if
      * appropriate - see documentation on  {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowOpenIcons showOpenIcons}
      *
-     * @param folderIcon folderIcon Default value is "[SKIN]folder.gif"
+     * @param folderIcon . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]folder.gif"
      */
     public void setFolderIcon(String folderIcon) {
         setAttribute("folderIcon", folderIcon, true);
@@ -332,7 +338,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * appropriate - see documentation on  {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowOpenIcons showOpenIcons}
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getFolderIcon()  {
         return getAttributeAsString("folderIcon");
@@ -366,7 +372,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * The filename of the default icon for all leaf nodes in this grid. To specify a  custom image for an individual node, set
      * the {@link com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconProperty customIconProperty} directly on the node.
      *
-     * @param nodeIcon nodeIcon Default value is "[SKIN]file.gif"
+     * @param nodeIcon . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]file.gif"
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_miller_columns" target="examples">Miller Columns Example</a>
      */
     public void setNodeIcon(String nodeIcon) {
@@ -378,7 +384,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * the {@link com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconProperty customIconProperty} directly on the node.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_miller_columns" target="examples">Miller Columns Example</a>
      */
     public String getNodeIcon()  {
@@ -390,7 +396,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * appended to the {@link com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon} for open folders in this
      * grid.
      *
-     * @param openIconSuffix openIconSuffix Default value is "open"
+     * @param openIconSuffix . See {@link com.smartgwt.client.docs.String String}. Default value is "open"
      */
     public void setOpenIconSuffix(String openIconSuffix) {
         setAttribute("openIconSuffix", openIconSuffix, true);
@@ -402,7 +408,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * grid.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getOpenIconSuffix()  {
         return getAttributeAsString("openIconSuffix");
@@ -412,7 +418,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * Should folder nodes showing custom icons (set via the {@link
      * com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconProperty customIconProperty}), show open state images when the
      * folder is opened. If true, the {@link com.smartgwt.client.widgets.grid.ColumnTree#getOpenIconSuffix openIconSuffix} will
-     * be appended to the image URL (so <code>"customFolder.gif"</code> might be replaced with
+     * be appended to the image URL (so <code>"customFolder.gif"</code> might be replaced with 
      * <code>"customFolder_open.gif"</code>).<br> <b>Note</b> that the {@link
      * com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix} is never appended to custom folder
      * icons.<br> Can be overridden at the node level via the default property {@link
@@ -430,7 +436,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * Should folder nodes showing custom icons (set via the {@link
      * com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconProperty customIconProperty}), show open state images when the
      * folder is opened. If true, the {@link com.smartgwt.client.widgets.grid.ColumnTree#getOpenIconSuffix openIconSuffix} will
-     * be appended to the image URL (so <code>"customFolder.gif"</code> might be replaced with
+     * be appended to the image URL (so <code>"customFolder.gif"</code> might be replaced with 
      * <code>"customFolder_open.gif"</code>).<br> <b>Note</b> that the {@link
      * com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix} is never appended to custom folder
      * icons.<br> Can be overridden at the node level via the default property {@link
@@ -446,7 +452,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
 
     /**
      * Whether to show fields marked <code>detail:true</code> when a DataBoundComponent is  given a DataSource but no
-     * <code>component.fields</code>. <p> The <code>detail</code> property is used on DataSource fields to mark fields that
+     * <code>component.fields</code>. <p> The <code>detail</code> property is used on DataSource fields to mark fields that 
      * shouldn't appear by default in a view that tries to show many records in a small space.
      *
      * @param showDetailFields showDetailFields Default value is true
@@ -459,7 +465,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
 
     /**
      * Whether to show fields marked <code>detail:true</code> when a DataBoundComponent is  given a DataSource but no
-     * <code>component.fields</code>. <p> The <code>detail</code> property is used on DataSource fields to mark fields that
+     * <code>component.fields</code>. <p> The <code>detail</code> property is used on DataSource fields to mark fields that 
      * shouldn't appear by default in a view that tries to show many records in a small space.
      *
      *
@@ -629,9 +635,9 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      *
      * @return node at the specified index
      */
-    public native TreeNode getRecord(int index, int colNum) /*-{
+    public native TreeNode getRecord(int index, Integer colNum) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.getRecord(index, colNum);
+        var ret = self.getRecord(index, colNum == null ? null : colNum.@java.lang.Integer::intValue()());
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.widgets.tree.TreeNode::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
@@ -681,7 +687,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * properties of this class. Can also be used for skinning / styling purposes.
      * <P>
      * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
-     * underlying class (including those automatically generated in JavaScript).
+     * underlying class (including those automatically generated in JavaScript). 
      * This method should not be used to apply standard EventHandlers or override methods for
      * a class - use a custom subclass instead.
      *
@@ -692,31 +698,31 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     	delete properties.ID;
         $wnd.isc.ColumnTree.addProperties(properties);
     }-*/;
+        
+    // ***********************************************************        
 
-    // ***********************************************************
 
-
-
+	
 
 	protected void onInit () {
 		super.onInit();
 		onInit_ColumnTree();
 	}
     protected native void onInit_ColumnTree() /*-{
-
+	
 	    var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
 	    self.getColumnProperties = $debox($entry(function(node, colNum) {
 				var jObj = this.__ref;
 	        var nodeJ = @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(node);
-
+	        
 	        var propertiesJ = jObj.@com.smartgwt.client.widgets.grid.ColumnTree::getCustomColumnProperties(Lcom/smartgwt/client/widgets/tree/TreeNode;I)(nodeJ,colNum);
 	        var properties = propertiesJ == null ? null : propertiesJ.@com.smartgwt.client.widgets.grid.ListGrid::getConfig()();
 	        if (properties != null) delete properties.ID;
 	        return properties;
 	    }));
 	}-*/;
-
-
+	    
+    
     public void setFields(ListGridField... fields) {
         setAttribute("fields", fields, true);
     }
@@ -963,7 +969,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
             }));
         }
     }-*/;
-
+    
 
     /**
      * Standard set of properties to apply to each generated {@link com.smartgwt.client.widgets.grid.ColumnTree#getColumn
@@ -992,19 +998,51 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     public ListGrid getColumnProperties()  {
         return ListGrid.getOrCreateRef(getAttributeAsJavaScriptObject("columnProperties"));
     }
-
+    
     /**
      * Additional properties to apply to the ListGrid that will show the indicated column.
      * Returns null by default. This method can be overridden to allow, for example, different
      * styling, icons or row heights per column.
      * @param node parent node for the nodes to be shown in the column
-     * @param colNum index of the column
-     * @return "template" listgrid with dynamically determined attributes to apply to the generated
+     * @param colNum index of the column 
+     * @return "template" listgrid with dynamically determined attributes to apply to the generated 
      *    column.
      */
     public ListGrid getCustomColumnProperties(TreeNode node, int colNum) {
     	return null;
     }
+
+    /**
+     * Bind to a DataSource.
+     * <P>
+     * Binding to a DataSource means that the component will use the DataSource to provide default data for 
+     * its fields.
+     * <P>
+     * When binding to a new DataSource, if the component has any existing "fields" or has a dataset, 
+     * these will be discarded by default, since it is assumed the new DataSource may represent a completely 
+     * unrelated set of objects. If the old "fields" are still relevant, pass them to setDataSource(). 
+     * @param dataSource
+     * @param fields
+     */
+    public void setDataSource(DataSource dataSource, ListGridField... fields) {
+        if (!isCreated()) {
+            setFields(fields);
+            setDataSource(dataSource);
+        } else {
+            JavaScriptObject jsFields = null;
+            if (fields != null) {
+                jsFields = JSOHelper.createJavaScriptArray();
+                for (int i = 0; i < fields.length; i++) {
+                    JSOHelper.setArrayValue(jsFields, i, fields[i].getJsObj());
+                }
+            }
+            setDataSourceJS(dataSource.getOrCreateJsObj(), jsFields);
+        }
+    }
+    private native void setDataSourceJS(JavaScriptObject dataSource, JavaScriptObject fields) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setDataSource(dataSource, fields);
+    }-*/;
 
 
 
@@ -1013,7 +1051,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     public void setDataPageSize(int dataPageSize) {
         setAttribute("dataPageSize", dataPageSize, true);
     }
-
+    
     public int getDataPageSize() {
         return getAttributeAsInt("dataPageSize");
     }
@@ -1158,7 +1196,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
 
     /**
      * Set the current hilites based on a hiliteState String previously returned from getHilitesState.
-     *
+     *  
      * @param hiliteState hilites state encoded as a String
      */
     public native void setHiliteState(String hiliteState)  /*-{
@@ -1272,7 +1310,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
 
     // ********************* Methods ***********************
 
-
+    
     public native void selectRecord(Record record)/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
@@ -1442,6 +1480,14 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
         return getAttributeAsBoolean("autoFetchData");
     }
 
+    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle) throws IllegalStateException {
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
+    }
+
+    public TextMatchStyle getAutoFetchTextMatchStyle() {
+        return TextMatchStyle.valueOf(getAttributeAsString("autoFetchTextMatchStyle"));
+    }
+
     public void setAutoFetchAsFilter(Boolean autoFetchAsFilter) throws IllegalStateException {
         setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
     }
@@ -1547,68 +1593,21 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
         return new RecordList(dataJS);
     }
 
-    /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
-     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
-     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
-     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
-     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
-     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
-     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
-     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
-     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
-     */
     public native void exportData() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportData();
     }-*/;
 
-    /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
-     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
-     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
-     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
-     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
-     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
-     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
-     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
-     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
-     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
-     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
-     */
     public native void exportData(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-
-   /**
-    * Exports this component's data with client-side formatters applied, so is suitable for
-    * direct display to users.  This feature requires the SmartClient server, but does not
-    * rely on any server-side DataSources.
-    * <P>To export unformatted data from this component's dataSource, see
-    * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
-    * which does not include client-side formatters,
-    * but relies on both the SmartClient server and server-side DataSources.
-    * @see com.smartgwt.client.data.DataSource#exportClientData
-    */
+    
     public native void exportClientData() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportClientData();
     }-*/;
 
-   /**
-    * Exports this component's data with client-side formatters applied, so is suitable for
-    * direct display to users.  This feature requires the SmartClient server, but does not
-    * rely on any server-side DataSources.
-    * <P>To export unformatted data from this component's dataSource, see
-    * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
-    * which does not include client-side formatters,
-    * but relies on both the SmartClient server and server-side DataSources.
-    * @param requestProperties Request properties for the export
-    * @see com.smartgwt.client.data.DataSource#exportClientData
-    */
     public native void exportClientData(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportClientData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
@@ -1647,9 +1646,9 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
             }));
         }
     }-*/;
-
+    
     /**
-     * Add a {@link com.smartgwt.client.widgets.DropCompleteHandler}.  See that class's documentation for a definition of "drop complete",
+     * Add a {@link com.smartgwt.client.widgets.DropCompleteHandler}.  See that class's documentation for a definition of "drop complete", 
      * and how it differs from "drag complete" ({@link com.smartgwt.client.widgets.DragCompleteHandler}).
      *
      * @param handler the DropCompleteHandler
@@ -1680,9 +1679,9 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
             }));
         }
     }-*/;
-
+    
     /**
-     * Add a {@link com.smartgwt.client.widgets.DragCompleteHandler}.  See that class's documentation for a definition of "drag complete",
+     * Add a {@link com.smartgwt.client.widgets.DragCompleteHandler}.  See that class's documentation for a definition of "drag complete", 
      * and how it differs from "drop complete" ({@link com.smartgwt.client.widgets.DropCompleteHandler}).
      *
      * @param handler the DropCompleteHandler
@@ -1711,8 +1710,116 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
             }));
         }
     }-*/;
+
+    public LogicalStructureObject setLogicalStructure(ColumnTreeLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.backButtonTitle = getAttributeAsString("backButtonTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColumnTree.backButtonTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.closedIconSuffix = getAttributeAsString("closedIconSuffix");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColumnTree.closedIconSuffix:" + t.getMessage() + "\n";
+        }
+        try {
+            s.columnProperties = getAttributeAsString("columnProperties");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColumnTree.columnProperties:" + t.getMessage() + "\n";
+        }
+        try {
+            s.customIconOpenProperty = getAttributeAsString("customIconOpenProperty");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColumnTree.customIconOpenProperty:" + t.getMessage() + "\n";
+        }
+        try {
+            s.customIconProperty = getAttributeAsString("customIconProperty");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColumnTree.customIconProperty:" + t.getMessage() + "\n";
+        }
+        try {
+            s.data = getData();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColumnTree.data:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataFetchMode = getAttributeAsString("dataFetchMode");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColumnTree.dataFetchMode:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataSourceAsDataSource = getDataSource();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColumnTree.dataSourceAsDataSource:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataSourceAsString = getAttributeAsString("dataSource");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColumnTree.dataSourceAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.firstColumnTitle = getAttributeAsString("firstColumnTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColumnTree.firstColumnTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.folderIcon = getAttributeAsString("folderIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColumnTree.folderIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.loadDataOnDemand = getAttributeAsString("loadDataOnDemand");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColumnTree.loadDataOnDemand:" + t.getMessage() + "\n";
+        }
+        try {
+            s.nodeIcon = getAttributeAsString("nodeIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColumnTree.nodeIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.openIconSuffix = getAttributeAsString("openIconSuffix");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColumnTree.openIconSuffix:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showCustomIconOpen = getAttributeAsString("showCustomIconOpen");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColumnTree.showCustomIconOpen:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDetailFields = getAttributeAsString("showDetailFields");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColumnTree.showDetailFields:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showHeaders = getAttributeAsString("showHeaders");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColumnTree.showHeaders:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showMultipleColumns = getAttributeAsString("showMultipleColumns");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColumnTree.showMultipleColumns:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showNodeCount = getAttributeAsString("showNodeCount");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColumnTree.showNodeCount:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showOpenIcons = getAttributeAsString("showOpenIcons");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColumnTree.showOpenIcons:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        ColumnTreeLogicalStructure s = new ColumnTreeLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-
 

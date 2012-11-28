@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * When  relative dates are specified in a date range, typically in a RelativeDateItem or DateRangeItem, in order to make
  * the range inclusive or exclusive, it is useful to be able  to specify whether we're referring to the start or end of the
@@ -30,7 +31,6 @@ public enum RelativeDateRangePosition implements ValueEnum {
      * Indicates this relative date should be treated as the end of the specified logical date.
      */
     END("end");
-
     private String value;
 
     RelativeDateRangePosition(String value) {
@@ -41,3 +41,4 @@ public enum RelativeDateRangePosition implements ValueEnum {
         return this.value;
     }
 }
+        

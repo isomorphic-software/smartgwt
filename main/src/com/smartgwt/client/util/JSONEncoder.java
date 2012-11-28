@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Class for encoding objects as JSON strings.
@@ -68,12 +88,18 @@ public class JSONEncoder extends DataClass {
         return new JSONEncoder(jsObj);
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public JSONEncoder(){
         this(createJSONEncoder());
     }
 
     public JSONEncoder(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     // ********************* Properties / Attributes ***********************
@@ -82,7 +108,7 @@ public class JSONEncoder extends DataClass {
      * The string marker used to represent circular references.  See {@link
      * com.smartgwt.client.util.JSONEncoder#getCircularReferenceMode circularReferenceMode}.
      *
-     * @param circularReferenceMarker circularReferenceMarker Default value is "$$BACKREF$$"
+     * @param circularReferenceMarker . See {@link com.smartgwt.client.docs.String String}. Default value is "$$BACKREF$$"
      */
     public void setCircularReferenceMarker(String circularReferenceMarker) {
         setAttribute("circularReferenceMarker", circularReferenceMarker);
@@ -93,7 +119,7 @@ public class JSONEncoder extends DataClass {
      * com.smartgwt.client.util.JSONEncoder#getCircularReferenceMode circularReferenceMode}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getCircularReferenceMarker()  {
         return getAttributeAsString("circularReferenceMarker");
@@ -209,7 +235,7 @@ public class JSONEncoder extends DataClass {
     }
 
     /**
-     * If true, don't show isc internal properties when encoding and object.
+     * If true, don't show Smart GWT internal properties when encoding and object.
      *
      * @param skipInternalProperties skipInternalProperties Default value is false
      */
@@ -218,7 +244,7 @@ public class JSONEncoder extends DataClass {
     }
 
     /**
-     * If true, don't show isc internal properties when encoding and object.
+     * If true, don't show Smart GWT internal properties when encoding and object.
      *
      *
      * @return Boolean
@@ -271,7 +297,7 @@ public class JSONEncoder extends DataClass {
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Encode a JavaScript Date value. <P> By default, follows the {@link com.smartgwt.client.util.JSONEncoder#getDateFormat
      * dateFormat} setting.  Override to do custom encoding.
@@ -297,8 +323,24 @@ public class JSONEncoder extends DataClass {
     
     /**
      * Serialize an object as a JSON string.
-     * @param object object to serialize
+     * <P>
+     * Because GWT does not support Java reflection, JSON encoding cannot
+     * discover the properties of an arbitrary Java POJO.  The following 
+     * objects are supported:
+     * <ul>
+     * <li> any primitive type (String, Date, Number, Boolean)
+     * <li> any Map or Collection in any level of nesting
+     * <li> DataClass (Record's superclass) and RecordList
+     * <li> any widget (see +link{JSONEncoder.serializeInstances})
+     * <li> JavaScriptObject
+     * <li> an Array containing any of the above
+     * </ul>
+     * <P>
+     * Note that using the String produced by this API with {@link com.smartgwt.client.util.JSON#decode JSON.decode} <b>will not
+     * successfully preserve dates</b>. Use {@link com.smartgwt.client.util.JSONEncoder#setDateFormat JSONEncoder.setDateFormat} "dateConstructor" to have
+     * dates round-trip properly.
      *
+     * @param object object to serialize
      * @return object encoded as a JSON String
      */
     public native String encode(Object object) /*-{
@@ -306,6 +348,28 @@ public class JSONEncoder extends DataClass {
         return self.encode(object);
     }-*/;
     
+    /**
+     * Serialize an object as a JSON string.
+     * <P>
+     * Because GWT does not support Java reflection, JSON encoding cannot
+     * discover the properties of an arbitrary Java POJO.  The following 
+     * objects are supported:
+     * <ul>
+     * <li> any primitive type (String, Date, Number, Boolean)
+     * <li> any Map or Collection in any level of nesting
+     * <li> DataClass (Record's superclass) and RecordList
+     * <li> any widget (see +link{JSONEncoder.serializeInstances})
+     * <li> JavaScriptObject
+     * <li> an Array containing any of the above
+     * </ul>
+     * <P>
+     * Note that using the String produced by this API with {@link com.smartgwt.client.util.JSON#decode JSON.decode} <b>will not
+     * successfully preserve dates</b>. Use {@link com.smartgwt.client.util.JSONEncoder#setDateFormat JSONEncoder.setDateFormat} "dateConstructor" to have
+     * dates round-trip properly.
+     *
+     * @param object object to serialize
+     * @return object encoded as a JSON String
+     */
     public native String encode(DataClass object) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var jsObj = object.@com.smartgwt.client.core.DataClass::getJsObj()();
@@ -313,12 +377,46 @@ public class JSONEncoder extends DataClass {
     
     }-*/;
     
+    /**
+     * Serialize an object as a JSON string.
+     * <P>
+     * Because GWT does not support Java reflection, JSON encoding cannot
+     * discover the properties of an arbitrary Java POJO.  The following 
+     * objects are supported:
+     * <ul>
+     * <li> any primitive type (String, Date, Number, Boolean)
+     * <li> any Map or Collection in any level of nesting
+     * <li> DataClass (Record's superclass) and RecordList
+     * <li> any widget (see +link{JSONEncoder.serializeInstances})
+     * <li> JavaScriptObject
+     * <li> an Array containing any of the above
+     * </ul>
+     * <P>
+     * Note that using the String produced by this API with {@link com.smartgwt.client.util.JSON#decode JSON.decode} <b>will not
+     * successfully preserve dates</b>. Use {@link com.smartgwt.client.util.JSONEncoder#setDateFormat JSONEncoder.setDateFormat} "dateConstructor" to have
+     * dates round-trip properly.
+     *
+     * @param object object to serialize
+     * @return object encoded as a JSON String
+     */
     public native String encode (BaseClass object) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var jsObj = object.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         return self.encode(jsObj);
     }-*/;
 
+    /**
+     * Convert the passed string as Javascript
+     *
+     * @param stringToJs the string to convert
+     * @return the JavaScriptObject upon evaluation
+     */
+    public static native JavaScriptObject decode(String stringToJs) /*-{
+		if(!($wnd.isc.startsWith(stringToJs, '(') && $wnd.isc.endsWith(stringToJs, ')'))) {
+            stringToJs = '(' + stringToJs + ')';
+        }
+        return $wnd.isc.Class.evaluate(stringToJs);
+	}-*/;
 
 
 }

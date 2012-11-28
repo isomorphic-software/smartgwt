@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A component that has a set of possible states, and which presents itself differently according to which state it is in. 
@@ -64,22 +84,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class StatefulCanvas extends Canvas {
 
-    public static StatefulCanvas getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (StatefulCanvas) obj;
-        } else {
-            return new StatefulCanvas(jsObj);
+    public native static StatefulCanvas getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("StatefulCanvas",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.StatefulCanvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public StatefulCanvas(){
         scClassName = "StatefulCanvas";
     }
 
     public StatefulCanvas(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "StatefulCanvas";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -182,7 +213,7 @@ public class StatefulCanvas extends Canvas {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style.
      *
-     * @param baseStyle new base style. Default value is null
+     * @param baseStyle new base style. See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is null
      */
     public void setBaseStyle(String baseStyle) {
         setAttribute("baseStyle", baseStyle, true);
@@ -200,7 +231,7 @@ public class StatefulCanvas extends Canvas {
      * component, the style "buttonSelectedOver" will be used.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getBaseStyle()  {
         return getAttributeAsString("baseStyle");
@@ -213,7 +244,7 @@ public class StatefulCanvas extends Canvas {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Change the icon being shown next to the title text.
      *
-     * @param icon URL of new icon. Default value is null
+     * @param icon URL of new icon. See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is null
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setIcon(String icon) {
@@ -225,7 +256,7 @@ public class StatefulCanvas extends Canvas {
      * imgDir of this component.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public String getIcon()  {
@@ -261,7 +292,7 @@ public class StatefulCanvas extends Canvas {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Changes the orientation of the icon relative to the text of the button.
      *
-     * @param iconOrientation The new orientation of the icon relative to the text of the button.. Default value is "left"
+     * @param iconOrientation The new orientation of the icon relative to the text of the button.. See {@link com.smartgwt.client.docs.String String}. Default value is "left"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
@@ -274,7 +305,7 @@ public class StatefulCanvas extends Canvas {
      * <code>"left"</code> and <code>"right"</code>.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public String getIconOrientation()  {
@@ -331,7 +362,7 @@ public class StatefulCanvas extends Canvas {
      * Constructor class name for this widgets {@link com.smartgwt.client.widgets.StatefulCanvas#getOverCanvas overCanvas}
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param overCanvasConstructor overCanvasConstructor Default value is "Canvas"
+     * @param overCanvasConstructor . See {@link com.smartgwt.client.docs.String String}. Default value is "Canvas"
      */
     public void setOverCanvasConstructor(String overCanvasConstructor) {
         setAttribute("overCanvasConstructor", overCanvasConstructor, true);
@@ -341,7 +372,7 @@ public class StatefulCanvas extends Canvas {
      * Constructor class name for this widgets {@link com.smartgwt.client.widgets.StatefulCanvas#getOverCanvas overCanvas}
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getOverCanvasConstructor()  {
         return getAttributeAsString("overCanvasConstructor");
@@ -351,7 +382,7 @@ public class StatefulCanvas extends Canvas {
      * String identifier for this canvas's mutually exclusive selection group.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param radioGroup radioGroup Default value is null
+     * @param radioGroup . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
     public void setRadioGroup(String radioGroup) {
@@ -362,7 +393,7 @@ public class StatefulCanvas extends Canvas {
      * String identifier for this canvas's mutually exclusive selection group.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
     public String getRadioGroup()  {
@@ -711,7 +742,7 @@ public class StatefulCanvas extends Canvas {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the title.
      *
-     * @param title new title. Default value is varies
+     * @param title new title. See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is varies
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public void setTitle(String title) {
@@ -722,7 +753,7 @@ public class StatefulCanvas extends Canvas {
      * The text title to display in this button.
      *
      *
-     * @return Return the title - text/HTML drawn inside the component. <p> Default is to simply return this.title.
+     * @return Return the title - text/HTML drawn inside the component. <p> Default is to simply return this.title.. See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public String getTitle()  {
@@ -751,7 +782,7 @@ public class StatefulCanvas extends Canvas {
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Add this widget to the specified mutually exclusive selection group with the ID passed in. Selecting this widget will
      * then deselect any other StatefulCanvases with the same radioGroup ID. StatefulCanvases can belong to only one
@@ -762,7 +793,7 @@ public class StatefulCanvas extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addToRadioGroup(groupID);
     }-*/;
-            
+
     /**
      * Deselect this object.
      */
@@ -770,7 +801,7 @@ public class StatefulCanvas extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.deselect();
     }-*/;
-            
+
     /**
      * Returns the suffix that will be appended to the {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle
      * baseStyle}   as the component changes state and/or is selected. <P> When the component changes state (eg becomes
@@ -789,7 +820,7 @@ public class StatefulCanvas extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getStateSuffix();
     }-*/;
-            
+
     /**
      * Find out if this object is selected
      *
@@ -805,7 +836,7 @@ public class StatefulCanvas extends Canvas {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
      * Remove this widget from the specified mutually exclusive selection group with the ID passed in. No-op's if this widget
      * is not a member of the groupID passed in. If no groupID is passed in, defaults to removing from whatever radioGroup this
@@ -828,7 +859,7 @@ public class StatefulCanvas extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeFromRadioGroup(groupID);
     }-*/;
-            
+
     /**
      * Select this object.
      */
@@ -864,8 +895,150 @@ public class StatefulCanvas extends Canvas {
         setAttribute("titleStyle", titleStyle, true);
     }
 
+    public LogicalStructureObject setLogicalStructure(StatefulCanvasLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.actionType = getAttributeAsString("actionType");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.actionType:" + t.getMessage() + "\n";
+        }
+        try {
+            s.align = getAttributeAsString("align");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.align:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoFit = getAttributeAsString("autoFit");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.autoFit:" + t.getMessage() + "\n";
+        }
+        try {
+            s.baseStyle = getAttributeAsString("baseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.baseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.icon = getAttributeAsString("icon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.icon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconHeight = getAttributeAsString("iconHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.iconHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconOrientation = getAttributeAsString("iconOrientation");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.iconOrientation:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconSize = getAttributeAsString("iconSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.iconSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconWidth = getAttributeAsString("iconWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.iconWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.overCanvasConstructor = getAttributeAsString("overCanvasConstructor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.overCanvasConstructor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.radioGroup = getAttributeAsString("radioGroup");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.radioGroup:" + t.getMessage() + "\n";
+        }
+        try {
+            s.redrawOnStateChange = getAttributeAsString("redrawOnStateChange");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.redrawOnStateChange:" + t.getMessage() + "\n";
+        }
+        try {
+            s.selected = getAttributeAsString("selected");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.selected:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDisabled = getAttributeAsString("showDisabled");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.showDisabled:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDisabledIcon = getAttributeAsString("showDisabledIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.showDisabledIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDown = getAttributeAsString("showDown");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.showDown:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDownIcon = getAttributeAsString("showDownIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.showDownIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showFocused = getAttributeAsString("showFocused");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.showFocused:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showFocusedAsOver = getAttributeAsString("showFocusedAsOver");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.showFocusedAsOver:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showFocusedIcon = getAttributeAsString("showFocusedIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.showFocusedIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showOverCanvas = getAttributeAsString("showOverCanvas");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.showOverCanvas:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showRollOver = getAttributeAsString("showRollOver");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.showRollOver:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showRollOverIcon = getAttributeAsString("showRollOverIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.showRollOverIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showSelectedIcon = getAttributeAsString("showSelectedIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.showSelectedIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.state = getAttributeAsString("state");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.state:" + t.getMessage() + "\n";
+        }
+        try {
+            s.title = getAttributeAsString("title");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.title:" + t.getMessage() + "\n";
+        }
+        try {
+            s.valign = getAttributeAsString("valign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.valign:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        StatefulCanvasLogicalStructure s = new StatefulCanvasLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-
 

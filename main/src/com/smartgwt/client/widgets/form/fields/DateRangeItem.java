@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Allows a user to select an absolute or relative range of dates via two {@link
@@ -64,7 +84,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * com.smartgwt.client.widgets.form.fields.DateRangeItem#getAllowRelativeDates allowRelativeDates} is true) or two {@link
  * com.smartgwt.client.widgets.form.fields.DateRangeItem#getDateItems DateItems}. <P> DateRangeItem is just a convenience
  * relative to using two {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem} or {@link
- * com.smartgwt.client.widgets.form.fields.DateItem} controls in a form, using {@link
+ * com.smartgwt.client.widgets.form.fields.DateItem} controls in a form, then using {@link
  * com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator} and {@link
  * com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaField criteriaField} to cause them to produce a date range. 
  * If you need more control over layout, validation, event handling or any other aspect of appearance or behavior, stop
@@ -73,8 +93,12 @@ import com.google.gwt.event.shared.HasHandlers;
 public class DateRangeItem extends CanvasItem {
 
     public static DateRangeItem getOrCreateRef(JavaScriptObject jsObj) {
+    
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+ 
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (DateRangeItem) obj;
@@ -83,12 +107,18 @@ public class DateRangeItem extends CanvasItem {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public DateRangeItem(){
         setAttribute("editorType", "DateRangeItem");
     }
 
     public DateRangeItem(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     public DateRangeItem(String name) {
@@ -128,19 +158,19 @@ public class DateRangeItem extends CanvasItem {
     }
 
     /**
-     * The title for the "from" part of the range.
+     * The title for the {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getFromField from} part of the range.
      *
-     * @param fromTitle fromTitle Default value is "From"
+     * @param fromTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "From"
      */
     public void setFromTitle(String fromTitle) {
         setAttribute("fromTitle", fromTitle);
     }
 
     /**
-     * The title for the "from" part of the range.
+     * The title for the {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getFromField from} part of the range.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getFromTitle()  {
         return getAttributeAsString("fromTitle");
@@ -174,7 +204,7 @@ public class DateRangeItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.fields.TextItem}, this property  allows you to specify the {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} applied to the item.
      *
-     * @param inputFormat inputFormat Default value is null
+     * @param inputFormat . See {@link com.smartgwt.client.docs.DateInputFormat DateInputFormat}. Default value is null
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setDateFormatter
      */
     public void setInputFormat(String inputFormat) {
@@ -187,11 +217,32 @@ public class DateRangeItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} applied to the item.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.DateInputFormat DateInputFormat}
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter
      */
     public String getInputFormat()  {
         return getAttributeAsString("inputFormat");
+    }
+
+    /**
+     * Error message to display if the user enters a date range where the "To" field value is earlier than the "From" field
+     * value.
+     *
+     * @param invalidRangeErrorMessage . See {@link com.smartgwt.client.docs.String String}. Default value is '"To" field value cannot be earlier than "From" field value.'
+     */
+    public void setInvalidRangeErrorMessage(String invalidRangeErrorMessage) {
+        setAttribute("invalidRangeErrorMessage", invalidRangeErrorMessage);
+    }
+
+    /**
+     * Error message to display if the user enters a date range where the "To" field value is earlier than the "From" field
+     * value.
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     */
+    public String getInvalidRangeErrorMessage()  {
+        return getAttributeAsString("invalidRangeErrorMessage");
     }
 
     /**
@@ -218,48 +269,97 @@ public class DateRangeItem extends CanvasItem {
     }
 
     /**
-     * The title for the "to" part of the range.
+     * Initial value for the "to" date.
      *
-     * @param toTitle toTitle Default value is "To"
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Sets the {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getToDate toDate} for this DateRangeItem.
+     *
+     * @param toDate the date at which this item should end it's range. Default value is today
+     */
+    public void setToDate(java.util.Date toDate) {
+        setAttribute("toDate", toDate);
+    }
+
+    /**
+     * Initial value for the "to" date.
+     *
+     *
+     * @return java.util.Date
+     */
+    public java.util.Date getToDate()  {
+        return getAttributeAsDate("toDate");
+    }
+
+    /**
+     * Initial value for the "to" date.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Sets the {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getToDate toDate} for this DateRangeItem.
+     *
+     * @param toDate the date at which this item should end it's range. See {@link com.smartgwt.client.docs.RelativeDateString RelativeDateString}. Default value is today
+     */
+    public void setToDate(String toDate) {
+        setAttribute("toDate", toDate);
+    }
+
+    /**
+     * Initial value for the "to" date.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Sets the {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getToDate toDate} for this DateRangeItem.
+     *
+     * @param toDate the date at which this item should end it's range. Default value is today
+     */
+    public void setToDate(TimeUnit toDate) {
+        setAttribute("toDate", toDate == null ? null : toDate.getValue());
+    }
+
+    /**
+     * The title for the {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getToField to} part of the range.
+     *
+     * @param toTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "To"
      */
     public void setToTitle(String toTitle) {
         setAttribute("toTitle", toTitle);
     }
 
     /**
-     * The title for the "to" part of the range.
+     * The title for the {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getToField to} part of the range.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getToTitle()  {
         return getAttributeAsString("toTitle");
     }
 
-    // ********************* Methods ***********************
-            
     /**
-     * Returns true if the specified criterion contains: <ul><li>A single "lessOrEqual" or "greaterOrEqual" criterion on this
-     * field</li>     <li>An "and" type criterion containing a "lessOrEqual" and a "greaterOrEqual" criterion on         this
-     * field</li>     <li>A single "equals" criterion.  Internally, this will be converted into a range         by constructing
-     * an "and" type criterion containing both a "lessOrEqual" and          a "greaterOrEqual" criterion on this field.  Note
-     * that subsequent calls to          {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getCriterion
-     * getCriterion()} will return this more complex          criterion.</li> </ul>
-     * @param criterion criterion to test
+     * If this attribute is set to <code>true</code> when {@link
+     * com.smartgwt.client.widgets.form.fields.DateRangeItem#getGetCriteria getCriteria} is called, the item will validate the
+     * <i>"to"</i> and <i>"from"</i> fields and return null if either field fails validation. See {@link
+     * com.smartgwt.client.widgets.form.fields.DateRangeItem#validateRange DateRangeItem.validateRange}
      *
-     * @return returns true if this criterion can be edited by this item
-     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
+     * @param validateCriteria validateCriteria Default value is false
      */
-    public native Boolean canEditCriterion(Criterion criterion) /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var retVal =self.canEditCriterion(criterion.@com.smartgwt.client.core.DataClass::getJsObj()());
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
+    public void setValidateCriteria(Boolean validateCriteria) {
+        setAttribute("validateCriteria", validateCriteria);
+    }
+
+    /**
+     * If this attribute is set to <code>true</code> when {@link
+     * com.smartgwt.client.widgets.form.fields.DateRangeItem#getGetCriteria getCriteria} is called, the item will validate the
+     * <i>"to"</i> and <i>"from"</i> fields and return null if either field fails validation. See {@link
+     * com.smartgwt.client.widgets.form.fields.DateRangeItem#validateRange DateRangeItem.validateRange}
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getValidateCriteria()  {
+        return getAttributeAsBoolean("validateCriteria");
+    }
+
+    // ********************* Methods ***********************
+
     /**
      * Overridden to return true: dateRangeItems always generate AdvancedCriteria.
      *
@@ -275,19 +375,20 @@ public class DateRangeItem extends CanvasItem {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
+
     /**
-     * Applies the specified criterion to this item for editing. Applies any specified "greaterOrEqual" operator criterion or
-     * sub-criterion to our {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getFromField fromField} and any
-     * specified "lessOrEqual" operator criterion or sub-criterion to our {@link
-     * com.smartgwt.client.widgets.form.fields.DateRangeItem#getToField toField}. <P> Note that a single "equals" criterion can
-     * also be passed.  See  {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#canEditCriterion canEditCriterion()}
-     * for more detail.
-     * @param criterion criterion to edit
+     * Validate both <i>"to"</i> and <i>"from"</i> date-fields.
+     *
+     * @return false if either <i>to</i> or <i>from</i>   field contains an invalid date value.
      */
-    public native void setCriterion(Criterion criterion) /*-{
+    public native Boolean validateRange() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.setCriterion(criterion.@com.smartgwt.client.core.DataClass::getJsObj()());
+        var retVal =self.validateRange();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
     }-*/;
 
     // ********************* Static Methods ***********************
@@ -317,31 +418,6 @@ public class DateRangeItem extends CanvasItem {
         } else {
             DateRange dateRange = getValue();
             return dateRange == null ? null : dateRange.getStartDate();
-        }
-    }
-
-    /**
-     * Initial value for the "to" date.
-     * Sets the {@link DateRangeItem#getToDate toDate} for this DateRangeItem.
-     *
-     * @param toDate the date at which this item should end it's range. Default value is today
-     */
-    public void setToDate(java.util.Date toDate) {
-        setAttribute("toDate", toDate);
-    }
-
-    /**
-     * Initial value for the "to" date.
-     *
-     *
-     * @return java.util.Date
-     */
-    public java.util.Date getToDate()  {
-        if(!isCreated()) {
-            return getAttributeAsDate("toDate");
-        } else {
-            DateRange dateRange = getValue();
-            return dateRange == null ? null : dateRange.getEndDate();
         }
     }
 
@@ -410,6 +486,37 @@ public class DateRangeItem extends CanvasItem {
             self.defaultValue = valueJS;
         }
     }-*/;
+
+    /**
+     * The default <code>canEditCriterion()</code> predicate returns true if the specified criterion contains:
+     * <ul><li>A single "lessOrEqual" or "greaterOrEqual" criterion on this
+     * field</li>     <li>An "and" type criterion containing a "lessOrEqual" and a "greaterOrEqual" criterion         on this
+     * field</li>     <li>A single "equals" criterion.  Internally, this will be converted into a range         by constructing
+     * an "and" type criterion containing both a "lessOrEqual" and          a "greaterOrEqual" criterion on this field.  Note
+     * that subsequent calls to the {@link com.smartgwt.client.widget.form.fields.DateRangeItem#setCriterionGetter FormItemCriterionGetter}'s
+     * {@link com.smartgwt.client.widgets.form.FormItemCriterionGetter#getCriterion
+     * getCriterion()} method will return this more complex          criterion.</li> </ul>
+     * @param predicate the predicate to determine the form items that can edit the criterion in question
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setCanEditCriterionPredicate FormItem.setCanEditCriterionPredicate
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
+     */
+    public void setCanEditCriterionPredicate(FormItemCanEditCriterionPredicate predicate) {
+        super.setCanEditCriterionPredicate(predicate);
+    }
+
+    /**
+     * The default <code>setCriterion()</code> implementation applies the specified criterion to this item for editing.
+     * Applies any specified  "greaterOrEqual" operator criterion or
+     * sub-criterion to our {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getFromField fromField} and any
+     * specified "lessOrEqual" operator criterion or sub-criterion to our {@link
+     * com.smartgwt.client.widgets.form.fields.DateRangeItem#getToField toField}. <P> Note that a single "equals" criterion can
+     * also be passed.  See  {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#setCanEditCriterionPredicate setCanEditCriterionPredicate()}
+     * for more detail.
+     * @param setter provides a method to update this field with the edited criterion
+     */
+    public void setCriterionSetter(FormItemCriterionSetter setter) {
+        super.setCriterionSetter(setter);
+    }
 
 }
 

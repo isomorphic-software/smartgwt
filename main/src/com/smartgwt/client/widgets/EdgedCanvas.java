@@ -45,40 +45,71 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * EdgedCanvas acts as a decorative, image-based frame around another single Canvas.
  */
 public class EdgedCanvas extends Canvas {
 
-    public static EdgedCanvas getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (EdgedCanvas) obj;
-        } else {
-            return new EdgedCanvas(jsObj);
+    public native static EdgedCanvas getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("EdgedCanvas",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.EdgedCanvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public EdgedCanvas(){
         scClassName = "EdgedCanvas";
     }
 
     public EdgedCanvas(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "EdgedCanvas";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -121,7 +152,7 @@ public class EdgedCanvas extends Canvas {
      * Background color for the center section only.  Can be used as a surrogate background color for the decorated Canvas, if
      * the Canvas is set to partially overlap the edges and hence can't show a background color itself without occluding media.
      *
-     * @param centerBackgroundColor centerBackgroundColor Default value is null
+     * @param centerBackgroundColor . See {@link com.smartgwt.client.docs.CSSColor CSSColor}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setCenterBackgroundColor(String centerBackgroundColor)  throws IllegalStateException {
@@ -133,7 +164,7 @@ public class EdgedCanvas extends Canvas {
      * the Canvas is set to partially overlap the edges and hence can't show a background color itself without occluding media.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSColor CSSColor}
      */
     public String getCenterBackgroundColor()  {
         return getAttributeAsString("centerBackgroundColor");
@@ -163,7 +194,7 @@ public class EdgedCanvas extends Canvas {
      * CSS color (WITHOUT "#") for the edges.  If specified, will be used as part of image names.  Example:
      * "edge_88FF88_TL.gif".
      *
-     * @param edgeColor edgeColor Default value is null
+     * @param edgeColor . See {@link com.smartgwt.client.docs.CSSColor CSSColor}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setEdgeColor(String edgeColor)  throws IllegalStateException {
@@ -175,7 +206,7 @@ public class EdgedCanvas extends Canvas {
      * "edge_88FF88_TL.gif".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSColor CSSColor}
      */
     public String getEdgeColor()  {
         return getAttributeAsString("edgeColor");
@@ -186,7 +217,7 @@ public class EdgedCanvas extends Canvas {
      * extension.  For example, with the default base name of "edge.gif", the top-left corner image will be "edge_TL.gif". <P>
      * The full list of extensions is: "_TL", "_TR", "_BL", "_BR", "_T", "_L", "_B", "_R", "_center".
      *
-     * @param edgeImage edgeImage Default value is "[SKIN]/rounded/frame/FFFFFF/6.png"
+     * @param edgeImage . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]/rounded/frame/FFFFFF/6.png"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setEdgeImage(String edgeImage)  throws IllegalStateException {
@@ -199,7 +230,7 @@ public class EdgedCanvas extends Canvas {
      * The full list of extensions is: "_TL", "_TR", "_BL", "_BR", "_T", "_L", "_B", "_R", "_center".
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getEdgeImage()  {
         return getAttributeAsString("edgeImage");
@@ -342,7 +373,7 @@ public class EdgedCanvas extends Canvas {
      * sides and center). To apply separate styles for each part, use {@link
      * com.smartgwt.client.widgets.EdgedCanvas#getAddEdgeStyleSuffix addEdgeStyleSuffix}.
      *
-     * @param edgeStyleName edgeStyleName Default value is null
+     * @param edgeStyleName . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is null
      */
     public void setEdgeStyleName(String edgeStyleName) {
         setAttribute("edgeStyleName", edgeStyleName, true);
@@ -354,7 +385,7 @@ public class EdgedCanvas extends Canvas {
      * com.smartgwt.client.widgets.EdgedCanvas#getAddEdgeStyleSuffix addEdgeStyleSuffix}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getEdgeStyleName()  {
         return getAttributeAsString("edgeStyleName");
@@ -403,7 +434,7 @@ public class EdgedCanvas extends Canvas {
     /**
      * Standard skin directory for edge images (sides and corners).
      *
-     * @param skinImgDir skinImgDir Default value is "images/edges/"
+     * @param skinImgDir . See {@link com.smartgwt.client.docs.String String}. Default value is "images/edges/"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
@@ -414,7 +445,7 @@ public class EdgedCanvas extends Canvas {
      * Standard skin directory for edge images (sides and corners).
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSkinImgDir()  {
         return getAttributeAsString("skinImgDir");
@@ -454,8 +485,90 @@ public class EdgedCanvas extends Canvas {
         @com.smartgwt.client.util.FileLoader::cacheEdgeImages(Ljava/lang/String;Ljava/lang/String;)(skinImgDir,edgeEdgeImage);
     }-*/;
 
+    public LogicalStructureObject setLogicalStructure(EdgedCanvasLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.addEdgeStyleSuffix = getAttributeAsString("addEdgeStyleSuffix");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "EdgedCanvas.addEdgeStyleSuffix:" + t.getMessage() + "\n";
+        }
+        try {
+            s.centerBackgroundColor = getAttributeAsString("centerBackgroundColor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "EdgedCanvas.centerBackgroundColor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.edgeBottom = getAttributeAsString("edgeBottom");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "EdgedCanvas.edgeBottom:" + t.getMessage() + "\n";
+        }
+        try {
+            s.edgeColor = getAttributeAsString("edgeColor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "EdgedCanvas.edgeColor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.edgeImage = getAttributeAsString("edgeImage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "EdgedCanvas.edgeImage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.edgeLeft = getAttributeAsString("edgeLeft");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "EdgedCanvas.edgeLeft:" + t.getMessage() + "\n";
+        }
+        try {
+            s.edgeOffsetBottom = getAttributeAsString("edgeOffsetBottom");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "EdgedCanvas.edgeOffsetBottom:" + t.getMessage() + "\n";
+        }
+        try {
+            s.edgeOffsetLeft = getAttributeAsString("edgeOffsetLeft");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "EdgedCanvas.edgeOffsetLeft:" + t.getMessage() + "\n";
+        }
+        try {
+            s.edgeOffsetRight = getAttributeAsString("edgeOffsetRight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "EdgedCanvas.edgeOffsetRight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.edgeOffsetTop = getAttributeAsString("edgeOffsetTop");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "EdgedCanvas.edgeOffsetTop:" + t.getMessage() + "\n";
+        }
+        try {
+            s.edgeRight = getAttributeAsString("edgeRight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "EdgedCanvas.edgeRight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.edgeStyleName = getAttributeAsString("edgeStyleName");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "EdgedCanvas.edgeStyleName:" + t.getMessage() + "\n";
+        }
+        try {
+            s.edgeTop = getAttributeAsString("edgeTop");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "EdgedCanvas.edgeTop:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showCenter = getAttributeAsString("showCenter");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "EdgedCanvas.showCenter:" + t.getMessage() + "\n";
+        }
+        try {
+            s.skinImgDir = getAttributeAsString("skinImgDir");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "EdgedCanvas.skinImgDir:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        EdgedCanvasLogicalStructure s = new EdgedCanvasLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-
 

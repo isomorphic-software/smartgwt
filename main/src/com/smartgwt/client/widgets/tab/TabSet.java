@@ -45,42 +45,73 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * The TabSet class allows components on several panes to share the same space. The tabs at  the top can be selected by the
  * user to show each pane.  <P> Tabs are configured via the <code>tabs</code> property, each of which has a
  * <code>pane</code> property which will be displayed in the main pane when that tab is selected.
  */
-public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.events.HasCloseClickHandlers, com.smartgwt.client.widgets.tab.events.HasTabContextMenuHandlers, com.smartgwt.client.widgets.tab.events.HasTabSelectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabDeselectedHandlers {
+public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.events.HasCloseClickHandlers, com.smartgwt.client.widgets.tab.events.HasTabTitleChangedHandlers, com.smartgwt.client.widgets.tab.events.HasTabIconClickHandlers, com.smartgwt.client.widgets.tab.events.HasTabContextMenuHandlers, com.smartgwt.client.widgets.tab.events.HasTabSelectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabDeselectedHandlers {
 
-    public static TabSet getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (TabSet) obj;
-        } else {
-            return new TabSet(jsObj);
+    public native static TabSet getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("TabSet",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.tab.TabSet::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public TabSet(){
         scClassName = "TabSet";
     }
 
     public TabSet(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "TabSet";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -192,7 +223,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * Default src for the close icon for tabs to display if {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs
      * canCloseTabs} is true.
      *
-     * @param closeTabIcon closeTabIcon Default value is [SKIN]/TabSet/close.png
+     * @param closeTabIcon . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is [SKIN]/TabSet/close.png
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setCloseTabIcon(String closeTabIcon)  throws IllegalStateException {
@@ -204,7 +235,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * canCloseTabs} is true.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getCloseTabIcon()  {
         return getAttributeAsString("closeTabIcon");
@@ -230,6 +261,25 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      */
     public int getCloseTabIconSize()  {
         return getAttributeAsInt("closeTabIconSize");
+    }
+
+    /**
+     * If set, is passed as "width" to all tabs. Setting width:1 will result in tabs that are only as wide as their titles
+     *
+     * @param defaultTabWidth defaultTabWidth Default value is null
+     */
+    public void setDefaultTabWidth(Integer defaultTabWidth) {
+        setAttribute("defaultTabWidth", defaultTabWidth, true);
+    }
+
+    /**
+     * If set, is passed as "width" to all tabs. Setting width:1 will result in tabs that are only as wide as their titles
+     *
+     *
+     * @return Integer
+     */
+    public Integer getDefaultTabWidth()  {
+        return getAttributeAsInt("defaultTabWidth");
     }
 
     /**
@@ -267,7 +317,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * index.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param locateTabsBy locateTabsBy Default value is null
+     * @param locateTabsBy . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setLocateTabsBy(String locateTabsBy) {
         setAttribute("locateTabsBy", locateTabsBy, true);
@@ -282,7 +332,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * index.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getLocateTabsBy()  {
         return getAttributeAsString("locateTabsBy");
@@ -316,7 +366,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowMoreTab showMoreTab} is enabled this property determines the
      * image to display on the "More" tab button.
      *
-     * @param moreTabImage moreTabImage Default value is "[SKINIMG]/iOS/more.png"
+     * @param moreTabImage . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKINIMG]/iOS/more.png"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setMoreTabImage(String moreTabImage)  throws IllegalStateException {
@@ -328,7 +378,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * image to display on the "More" tab button.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getMoreTabImage()  {
         return getAttributeAsString("moreTabImage");
@@ -342,7 +392,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setMoreTabPaneDefaults(Canvas moreTabPaneDefaults)  throws IllegalStateException {
-        setAttribute("moreTabPaneDefaults", moreTabPaneDefaults == null ? null : moreTabPaneDefaults.getOrCreateJsObj(), false);
+        setAttribute("moreTabPaneDefaults", moreTabPaneDefaults == null ? null : moreTabPaneDefaults.getConfig(), false);
     }
 
     /**
@@ -363,7 +413,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setMoreTabPaneProperties(Canvas moreTabPaneProperties)  throws IllegalStateException {
-        setAttribute("moreTabPaneProperties", moreTabPaneProperties == null ? null : moreTabPaneProperties.getOrCreateJsObj(), false);
+        setAttribute("moreTabPaneProperties", moreTabPaneProperties == null ? null : moreTabPaneProperties.getConfig(), false);
     }
 
     /**
@@ -399,7 +449,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     /**
      * Title for the "More" tab.
      *
-     * @param moreTabTitle moreTabTitle Default value is "More"
+     * @param moreTabTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "More"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setMoreTabTitle(String moreTabTitle)  throws IllegalStateException {
@@ -410,7 +460,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * Title for the "More" tab.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMoreTabTitle()  {
         return getAttributeAsString("moreTabTitle");
@@ -419,7 +469,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     /**
      * CSS style used for the paneContainer.
      *
-     * @param paneContainerClassName paneContainerClassName Default value is null
+     * @param paneContainerClassName . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is null
      */
     public void setPaneContainerClassName(String paneContainerClassName) {
         setAttribute("paneContainerClassName", paneContainerClassName, true);
@@ -429,7 +479,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * CSS style used for the paneContainer.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getPaneContainerClassName()  {
         return getAttributeAsString("paneContainerClassName");
@@ -463,7 +513,8 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     }
 
     /**
-     * Space to leave around the panes in our paneContainer
+     * Space to leave around the panes in our paneContainer <P> Note that this property may be specified on a per-tab basis via
+     * {@link com.smartgwt.client.widgets.tab.Tab#getPaneMargin paneMargin}.
      *
      * @param paneMargin paneMargin Default value is 0
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -473,7 +524,8 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     }
 
     /**
-     * Space to leave around the panes in our paneContainer
+     * Space to leave around the panes in our paneContainer <P> Note that this property may be specified on a per-tab basis via
+     * {@link com.smartgwt.client.widgets.tab.Tab#getPaneMargin paneMargin}.
      *
      *
      * @return int
@@ -492,7 +544,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * URL will have a suffix of <code>"Down"</code> appended when the user holds the mouse down over the button, and
      * <code>"Disabled"</code> if the tabset as a whole is  disabled.
      *
-     * @param pickerButtonHSrc pickerButtonHSrc Default value is "[SKIN]hpicker.gif"
+     * @param pickerButtonHSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]hpicker.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tab.TabSet#setSymmetricPickerButton
      */
@@ -511,7 +563,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * <code>"Disabled"</code> if the tabset as a whole is  disabled.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.widgets.tab.TabSet#getSymmetricPickerButton
      */
     public String getPickerButtonHSrc()  {
@@ -554,7 +606,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * <code>"Down"</code> or <code>"Disabled"</code> will be     appended.</li> <li>The {@link
      * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} for this tabSet will be appended.</li> </ul>
      *
-     * @param pickerButtonSrc pickerButtonSrc Default value is "[SKIN]/picker.gif"
+     * @param pickerButtonSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]/picker.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tab.TabSet#setSymmetricPickerButton
      */
@@ -573,7 +625,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} for this tabSet will be appended.</li> </ul>
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.widgets.tab.TabSet#getSymmetricPickerButton
      */
     public String getPickerButtonSrc()  {
@@ -590,7 +642,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * URL will have a suffix of <code>"Down"</code> appended when the user holds the mouse down over the button, and
      * <code>"Disabled"</code> if the tabset as a whole is  disabled.
      *
-     * @param pickerButtonVSrc pickerButtonVSrc Default value is "[SKIN]vpicker.gif"
+     * @param pickerButtonVSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]vpicker.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tab.TabSet#setSymmetricPickerButton
      */
@@ -609,7 +661,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * <code>"Disabled"</code> if the tabset as a whole is  disabled.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.widgets.tab.TabSet#getSymmetricPickerButton
      */
     public String getPickerButtonVSrc()  {
@@ -659,7 +711,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * scroller button sizes,  determined by {@link com.smartgwt.client.widgets.tab.TabSet#getTabBarThickness tabBarThickness}
      * and {@link com.smartgwt.client.widgets.tab.TabSet#getScrollerButtonSize scrollerButtonSize}.
      *
-     * @param scrollerHSrc scrollerHSrc Default value is "[SKIN]hscroll.gif"
+     * @param scrollerHSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]hscroll.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tab.TabSet#setSymmetricScroller
      */
@@ -685,7 +737,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * and {@link com.smartgwt.client.widgets.tab.TabSet#getScrollerButtonSize scrollerButtonSize}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.widgets.tab.TabSet#getSymmetricScroller
      */
     public String getScrollerHSrc()  {
@@ -710,7 +762,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * the scroller button sizes,  determined by {@link com.smartgwt.client.widgets.tab.TabSet#getTabBarThickness
      * tabBarThickness} and {@link com.smartgwt.client.widgets.tab.TabSet#getScrollerButtonSize scrollerButtonSize}.
      *
-     * @param scrollerSrc scrollerSrc Default value is "[SKIN]/scroll.gif"
+     * @param scrollerSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]/scroll.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tab.TabSet#setSymmetricScroller
      */
@@ -737,7 +789,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * tabBarThickness} and {@link com.smartgwt.client.widgets.tab.TabSet#getScrollerButtonSize scrollerButtonSize}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.widgets.tab.TabSet#getSymmetricScroller
      */
     public String getScrollerSrc()  {
@@ -761,7 +813,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * scroller button sizes,  determined by {@link com.smartgwt.client.widgets.tab.TabSet#getTabBarThickness tabBarThickness}
      * and {@link com.smartgwt.client.widgets.tab.TabSet#getScrollerButtonSize scrollerButtonSize}.
      *
-     * @param scrollerVSrc scrollerVSrc Default value is "[SKIN]vscroll.gif"
+     * @param scrollerVSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]vscroll.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tab.TabSet#setSymmetricScroller
      */
@@ -787,7 +839,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * and {@link com.smartgwt.client.widgets.tab.TabSet#getScrollerButtonSize scrollerButtonSize}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.widgets.tab.TabSet#getSymmetricScroller
      */
     public String getScrollerVSrc()  {
@@ -910,7 +962,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * the tabs.<br>  This property will be suffixed with the side on which the tab-bar will appear, followed  by with the
      * tab's state (selected, over, etc), resolving to a className like   "tabButtonTopOver"
      *
-     * @param simpleTabBaseStyle simpleTabBaseStyle Default value is "tabButton"
+     * @param simpleTabBaseStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "tabButton"
      */
     public void setSimpleTabBaseStyle(String simpleTabBaseStyle) {
         setAttribute("simpleTabBaseStyle", simpleTabBaseStyle, true);
@@ -922,7 +974,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * tab's state (selected, over, etc), resolving to a className like   "tabButtonTopOver"
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getSimpleTabBaseStyle()  {
         return getAttributeAsString("simpleTabBaseStyle");
@@ -932,7 +984,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * Default directory for skin images (those defined by the class), relative to the Page-wide {@link
      * com.smartgwt.client.util.Page#getSkinDir skinDir}.
      *
-     * @param skinImgDir skinImgDir Default value is "images/TabSet/"
+     * @param skinImgDir . See {@link com.smartgwt.client.docs.String String}. Default value is "images/TabSet/"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
@@ -945,7 +997,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * com.smartgwt.client.util.Page#getSkinDir skinDir}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public String getSkinImgDir()  {
@@ -1048,8 +1100,9 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
 
     /**
      * Alignment of the tabBar. <P> If the position of the tabBar is "top" or "bottom", then alignment must be "left" or
-     * "right" and defaults to "left". <P> If the position of the tabBar is "left" or "right", then the alignment must be "top"
-     * or "bottom" and defaults to "top".
+     * "right" and defaults to "left", or "right" if the browser is in  {@link com.smartgwt.client.util.Page#isRTL RTL mode}.
+     * <P> If the position of the tabBar is "left" or "right", then the alignment must be "top" or "bottom" and defaults to
+     * "top".
      *
      * @param tabBarAlign tabBarAlign Default value is see below
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -1061,8 +1114,9 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
 
     /**
      * Alignment of the tabBar. <P> If the position of the tabBar is "top" or "bottom", then alignment must be "left" or
-     * "right" and defaults to "left". <P> If the position of the tabBar is "left" or "right", then the alignment must be "top"
-     * or "bottom" and defaults to "top".
+     * "right" and defaults to "left", or "right" if the browser is in  {@link com.smartgwt.client.util.Page#isRTL RTL mode}.
+     * <P> If the position of the tabBar is "left" or "right", then the alignment must be "top" or "bottom" and defaults to
+     * "top".
      *
      *
      * @return Side
@@ -1256,7 +1310,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * If the user is currently editing a tab title (see {@link com.smartgwt.client.widgets.tab.TabSet#getCanEditTabTitles
      * canEditTabTitles}), dismiss the editor and discard the edit value entered by the user.
@@ -1265,7 +1319,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.cancelTabTitleEditing();
     }-*/;
-            
+
     /**
      * Returns the index of the currently selected tab object.
      *
@@ -1275,7 +1329,51 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getSelectedTabNumber();
     }-*/;
-            
+    /**
+     * Add a closeClick handler.
+     * <p>
+     * When {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs} is set, this notification method fired
+     * when the user clicks  the "close" icon for a tab. Call {@link com.smartgwt.client.widgets.tab.events.TabCloseClickEvent#cancel()} from within {@link CloseClickHandler#onCloseClick} to cancel default behavior of removing the tab from the
+     * TabSet
+     *
+     * @param handler the closeClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addCloseClickHandler(com.smartgwt.client.widgets.tab.events.CloseClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabCloseClickEvent.getType()) == 0) setupCloseClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tab.events.TabCloseClickEvent.getType());
+    }
+
+    private native void setupCloseClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        var onCloseClick = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.tab.events.TabCloseClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onCloseClick: 
+                function () {
+                    var param = {"tab" : arguments[0]};
+                    param.tab = this.getTabObject(arguments[0]);
+                    return onCloseClick(param) == true;
+                }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onCloseClick = 
+                function () {
+                    var param = {"tab" : arguments[0]};
+                    param.tab = this.getTabObject(arguments[0]);
+                    return onCloseClick(param) == true;
+                }
+            ;
+        }
+   }-*/;
+
     /**
      * If the user is currently editing a tab title (see {@link com.smartgwt.client.widgets.tab.TabSet#getCanEditTabTitles
      * canEditTabTitles}), save the edited tab title and hide the editor.
@@ -1284,7 +1382,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.saveTabTitle();
     }-*/;
-            
+
     /**
      * If there is not enough space to display all the tabs in this tabSet, this method will  scroll the previous tab (that
      * first tab that is clipped at the beginning of the tab-bar)  into view.
@@ -1293,7 +1391,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.scrollBack();
     }-*/;
-            
+
     /**
      * If there is not enough space to display all the tabs in this tabSet, this method will  scroll the next tab (that first
      * tab that is clipped at the end of the tab-bar) into view.
@@ -1318,25 +1416,28 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     private native void setupTabContextMenuEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var showTabContextMenu = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.tab.events.TabContextMenuEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({showTabContextMenu:$debox($entry(function(){
-                        var param = {"tabSet" : arguments[0], "tab" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.tab.events.TabContextMenuEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({showTabContextMenu: 
+                function () {
+                    var param = {"tabSet" : arguments[0], "tab" : arguments[1]};
+                    return showTabContextMenu(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.showTabContextMenu = $debox($entry(function(){
-                   var param = {"tabSet" : arguments[0], "tab" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.tab.events.TabContextMenuEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.showTabContextMenu = 
+                function () {
+                    var param = {"tabSet" : arguments[0], "tab" : arguments[1]};
+                    return showTabContextMenu(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -1355,28 +1456,31 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     private native void setupTabDeselectedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var tabDeselected = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.tab.events.TabDeselectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({tabDeselected:$debox($entry(function(){
-                        var param = {"tabNum" : arguments[0], "tabPane" : arguments[1], "ID" : arguments[2], "tab" : arguments[3], "newTab" : arguments[4]};
-                        var event = @com.smartgwt.client.widgets.tab.events.TabDeselectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({tabDeselected: 
+                function () {
+                    var param = {"tabNum" : arguments[0], "tabPane" : arguments[1], "ID" : arguments[2], "tab" : arguments[3], "newTab" : arguments[4]};
+                    return tabDeselected(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.tabDeselected = $debox($entry(function(){
-                   var param = {"tabNum" : arguments[0], "tabPane" : arguments[1], "ID" : arguments[2], "tab" : arguments[3], "newTab" : arguments[4]};
-                   var event = @com.smartgwt.client.widgets.tab.events.TabDeselectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.tabDeselected = 
+                function () {
+                    var param = {"tabNum" : arguments[0], "tabPane" : arguments[1], "ID" : arguments[2], "tab" : arguments[3], "newTab" : arguments[4]};
+                    return tabDeselected(param) == true;
+                }
+            ;
         }
    }-*/;
-            
+
     /**
      * Search for a tab that contains a pane.
      * @param pane pane to show
@@ -1393,6 +1497,40 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         }
         return retVal;
     }-*/;
+    /**
+     * Add a tabIconClick handler.
+     * <p>
+     * Method fired when the user clicks the icon for a tab, as specified via {@link
+     * com.smartgwt.client.widgets.tab.Tab#getIcon icon}. <P> Default behavior will fire <code>icon.click()</code> if
+     * specified, with two parameters <code>tab</code> (a pointer to the tab object and <code>tabSet</code> a pointer to the
+     * tabSet instance.
+     *
+     * @param handler the tabIconClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addTabIconClickHandler(com.smartgwt.client.widgets.tab.events.TabIconClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabClickEvent.getType()) == 0) setupTabIconClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tab.events.TabClickEvent.getType());
+    }
+
+    private native void setupTabIconClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        var tabIconClick = $entry(function(){
+            var param = {"tab" : arguments[0]};
+            param.tab = this.getTabObject(arguments[0]);
+
+                var event = @com.smartgwt.client.widgets.tab.events.TabClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({tabIconClick:  tabIconClick              });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.tabIconClick =  tabIconClick             ;
+        }
+   }-*/;
     /**
      * Add a tabSelected handler.
      * <p>
@@ -1411,21 +1549,63 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     private native void setupTabSelectedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var tabSelected = $entry(function(){
+            var param = {"tabNum" : arguments[0], "tabPane" : arguments[1], "ID" : arguments[2], "tab" : arguments[3], "name" : arguments[4]};
+
+                var event = @com.smartgwt.client.widgets.tab.events.TabSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({tabSelected:$entry(function(){
-                        var param = {"tabNum" : arguments[0], "tabPane" : arguments[1], "ID" : arguments[2], "tab" : arguments[3]};
-                        var event = @com.smartgwt.client.widgets.tab.events.TabSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
+            obj.addProperties({tabSelected:  tabSelected              });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.tabSelected =  tabSelected             ;
+        }
+   }-*/;
+    /**
+     * Add a tabTitleChanged handler.
+     * <p>
+     * This notification method fired when the user changes the title of a tab in this TabSet. This can happen either through
+     * user interaction with the UI if  {@link com.smartgwt.client.widgets.tab.TabSet#getCanEditTabTitles canEditTabTitles} is
+     * set, or programmatically if application  code calls {@link com.smartgwt.client.widgets.tab.TabSet#editTabTitle
+     * editTabTitle}.<p> Call {@link com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent#cancel()} from within {@link TabTitleChangedHandler#onTabTitleChanged} from this method to cancel the change.
+     *
+     * @param handler the tabTitleChanged handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addTabTitleChangedHandler(com.smartgwt.client.widgets.tab.events.TabTitleChangedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent.getType()) == 0) setupTabTitleChangedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent.getType());
+    }
+
+    private native void setupTabTitleChangedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        var titleChanged = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({titleChanged: 
+                function () {
+                    var param = {"newTitle" : arguments[0], "oldTitle" : arguments[1], "tab" : arguments[2]};
+                    param.tab = this.getTabObject(arguments[2]);
+                    return titleChanged(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.tabSelected = $entry(function(){
-                   var param = {"tabNum" : arguments[0], "tabPane" : arguments[1], "ID" : arguments[2], "tab" : arguments[3]};
-                   var event = @com.smartgwt.client.widgets.tab.events.TabSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.titleChanged = 
+                function () {
+                    var param = {"newTitle" : arguments[0], "oldTitle" : arguments[1], "tab" : arguments[2]};
+                    param.tab = this.getTabObject(arguments[2]);
+                    return titleChanged(param) == true;
+                }
+            ;
         }
    }-*/;
 
@@ -1988,6 +2168,17 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         setAttribute("tabBarControls", tabBarControls, false);
     }
 
+    /**
+     * This attribute allows developers to specify custom properties for this tabset's {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTabBar tabBar}
+     *
+     * @param tabBarProperties tabBarProperties Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTabBarProperties(TabBar tabBarProperties)  throws IllegalStateException {
+         setAttribute("tabBarProperties", tabBarProperties == null ? null : tabBarProperties.getConfig(), false);
+    }
+
 
     /**
      * Apply a new {@link com.smartgwt.client.widgets.tab.Tab#getPane pane} to an existing tab in this tabSet
@@ -2008,137 +2199,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setTabPane(tabID, pane == null ? null : pane.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-
-    /**
-     * Add a onCloseClick handler.
-     * <p>
-     * When {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs} is set, this notification method fired when the user clicks &#010 the "close" icon for a tab.&#010 Return false to cancel default behavior of removing the tab from the TabSet&#010
-     *
-     * @param handler the onCloseClick handler
-     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addCloseClickHandler(com.smartgwt.client.widgets.tab.events.CloseClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabCloseClickEvent.getType()) == 0) setupCloseClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.tab.events.TabCloseClickEvent.getType());
-    }
-
-    private native void setupCloseClickEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({onCloseClick:$debox($entry(function(){
-                    var liveTab = arguments[0];
-                    var tabObj = this.getTabObject(liveTab);
-                    var param = {"tab" : tabObj};
-
-                    var event = @com.smartgwt.client.widgets.tab.events.TabCloseClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                    return !ret;
-                }))
-            });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.onCloseClick = $debox($entry(function(){
-                var liveTab = arguments[0];
-                var tabObj = this.getTabObject(liveTab);
-                var param = {"tab" : tabObj};
-
-                var event = @com.smartgwt.client.widgets.tab.events.TabCloseClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                return !ret;
-            }));
-        }
-    }-*/;
-    /**
-     * Add a tabTitleChanged handler.
-     * <p>
-     * This notification method fired when the user changes the title of a tab in this TabSet. This can happen either through
-     * user interaction with the UI if  {@link com.smartgwt.client.widgets.tab.TabSet#getCanEditTabTitles canEditTabTitles} is
-     * set, or programmatically if application  code calls {@link com.smartgwt.client.widgets.tab.TabSet#editTabTitle
-     * editTabTitle}.<p> Return false from this method to cancel the change.
-     *
-     * @param handler the tabTitleChanged handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addTabTitleChangedHandler(com.smartgwt.client.widgets.tab.events.TabTitleChangedHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent.getType()) == 0) setupTabTitleChangedEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent.getType());
-    }
-
-    private native void setupTabTitleChangedEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({titleChanged:$debox($entry(function(){
-                        var liveTab = arguments[2];
-                        var tabObj = this.getTabObject(liveTab);
-                        var param = {"newTitle" : arguments[0], "oldTitle" : arguments[1], "tab" : tabObj};
-                        var event = @com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.titleChanged = $debox($entry(function(){
-                    var liveTab = arguments[2];
-                    var tabObj = this.getTabObject(liveTab);
-                    var param = {"newTitle" : arguments[0], "oldTitle" : arguments[1], "tab" : tabObj};
-                   var event = @com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
-        }
-   }-*/;
-    
-    /**
-     * Add a tabIconClick handler.
-     * <p>
-     * Method fired when the user clicks the icon for a tab, as specified via {@link
-     * com.smartgwt.client.widgets.tab.Tab#getIcon icon}. <P> Default behavior will fire <code>icon.click()</code> if
-     * specified, with two parameters <code>tab</code> (a pointer to the tab object and <code>tabSet</code> a pointer to the
-     * tabSet instance.
-     *
-     * @param handler the tabIconClick handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addTabIconClickHandler(com.smartgwt.client.widgets.tab.events.TabIconClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabClickEvent.getType()) == 0) setupTabIconClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.tab.events.TabClickEvent.getType());
-    }
-
-    private native void setupTabIconClickEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({tabIconClick:$entry(function(){
-                        var liveTab = arguments[0];
-                        var tabObj = this.getTabObject(liveTab);
-                        var param = {"tab" : tabObj};
-                        var event = @com.smartgwt.client.widgets.tab.events.TabClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.tabIconClick = $entry(function(){
-                   var liveTab = arguments[0];
-                   var tabObj = this.getTabObject(liveTab);
-                   var param = {"tab" : tabObj};
-                
-                   var event = @com.smartgwt.client.widgets.tab.events.TabClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
-        }
-   }-*/;
-
+        
     /**
      * Preload primary tab skin images.
      */
@@ -2150,7 +2211,255 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         }
     }-*/;
 
+    public LogicalStructureObject setLogicalStructure(TabSetLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.animateTabScrolling = getAttributeAsString("animateTabScrolling");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.animateTabScrolling:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canCloseTabs = getAttributeAsString("canCloseTabs");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.canCloseTabs:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canEditTabTitles = getAttributeAsString("canEditTabTitles");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.canEditTabTitles:" + t.getMessage() + "\n";
+        }
+        try {
+            s.closeTabIcon = getAttributeAsString("closeTabIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.closeTabIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.closeTabIconSize = getAttributeAsString("closeTabIconSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.closeTabIconSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.defaultTabWidth = getAttributeAsString("defaultTabWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.defaultTabWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.destroyPanes = getAttributeAsString("destroyPanes");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.destroyPanes:" + t.getMessage() + "\n";
+        }
+        try {
+            s.locateTabsBy = getAttributeAsString("locateTabsBy");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.locateTabsBy:" + t.getMessage() + "\n";
+        }
+        try {
+            s.moreTabCount = getAttributeAsString("moreTabCount");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.moreTabCount:" + t.getMessage() + "\n";
+        }
+        try {
+            s.moreTabImage = getAttributeAsString("moreTabImage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.moreTabImage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.moreTabPaneDefaults = getAttributeAsString("moreTabPaneDefaults");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.moreTabPaneDefaults:" + t.getMessage() + "\n";
+        }
+        try {
+            s.moreTabPaneProperties = getAttributeAsString("moreTabPaneProperties");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.moreTabPaneProperties:" + t.getMessage() + "\n";
+        }
+        try {
+            s.moreTabProperties = getAttributeAsString("moreTabProperties");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.moreTabProperties:" + t.getMessage() + "\n";
+        }
+        try {
+            s.moreTabTitle = getAttributeAsString("moreTabTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.moreTabTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.paneContainerClassName = getAttributeAsString("paneContainerClassName");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.paneContainerClassName:" + t.getMessage() + "\n";
+        }
+        try {
+            s.paneContainerOverflow = getAttributeAsString("paneContainerOverflow");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.paneContainerOverflow:" + t.getMessage() + "\n";
+        }
+        try {
+            s.paneMargin = getAttributeAsString("paneMargin");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.paneMargin:" + t.getMessage() + "\n";
+        }
+        try {
+            s.pickerButtonHSrc = getAttributeAsString("pickerButtonHSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.pickerButtonHSrc:" + t.getMessage() + "\n";
+        }
+        try {
+            s.pickerButtonSize = getAttributeAsString("pickerButtonSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.pickerButtonSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.pickerButtonSrc = getAttributeAsString("pickerButtonSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.pickerButtonSrc:" + t.getMessage() + "\n";
+        }
+        try {
+            s.pickerButtonVSrc = getAttributeAsString("pickerButtonVSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.pickerButtonVSrc:" + t.getMessage() + "\n";
+        }
+        try {
+            s.scrollerButtonSize = getAttributeAsString("scrollerButtonSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.scrollerButtonSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.scrollerHSrc = getAttributeAsString("scrollerHSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.scrollerHSrc:" + t.getMessage() + "\n";
+        }
+        try {
+            s.scrollerSrc = getAttributeAsString("scrollerSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.scrollerSrc:" + t.getMessage() + "\n";
+        }
+        try {
+            s.scrollerVSrc = getAttributeAsString("scrollerVSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.scrollerVSrc:" + t.getMessage() + "\n";
+        }
+        try {
+            s.selectedTab = getAttributeAsString("selectedTab");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.selectedTab:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showMoreTab = getAttributeAsString("showMoreTab");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.showMoreTab:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showPaneContainerEdges = getAttributeAsString("showPaneContainerEdges");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.showPaneContainerEdges:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showPartialEdges = getAttributeAsString("showPartialEdges");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.showPartialEdges:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showTabPicker = getAttributeAsString("showTabPicker");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.showTabPicker:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showTabScroller = getAttributeAsString("showTabScroller");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.showTabScroller:" + t.getMessage() + "\n";
+        }
+        try {
+            s.simpleTabBaseStyle = getAttributeAsString("simpleTabBaseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.simpleTabBaseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.skinImgDir = getAttributeAsString("skinImgDir");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.skinImgDir:" + t.getMessage() + "\n";
+        }
+        try {
+            s.symmetricEdges = getAttributeAsString("symmetricEdges");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.symmetricEdges:" + t.getMessage() + "\n";
+        }
+        try {
+            s.symmetricPickerButton = getAttributeAsString("symmetricPickerButton");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.symmetricPickerButton:" + t.getMessage() + "\n";
+        }
+        try {
+            s.symmetricScroller = getAttributeAsString("symmetricScroller");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.symmetricScroller:" + t.getMessage() + "\n";
+        }
+        try {
+            s.tabBarAlign = getAttributeAsString("tabBarAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.tabBarAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.tabBarControls = getAttributeAsString("tabBarControls");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.tabBarControls:" + t.getMessage() + "\n";
+        }
+        try {
+            s.tabBarPosition = getAttributeAsString("tabBarPosition");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.tabBarPosition:" + t.getMessage() + "\n";
+        }
+        try {
+            s.tabBarProperties = getAttributeAsString("tabBarProperties");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.tabBarProperties:" + t.getMessage() + "\n";
+        }
+        try {
+            s.tabBarThickness = getAttributeAsString("tabBarThickness");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.tabBarThickness:" + t.getMessage() + "\n";
+        }
+        try {
+            s.tabs = getTabs();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.tabsArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.titleEditEvent = getAttributeAsString("titleEditEvent");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.titleEditEvent:" + t.getMessage() + "\n";
+        }
+        try {
+            s.titleEditorLeftOffset = getAttributeAsString("titleEditorLeftOffset");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.titleEditorLeftOffset:" + t.getMessage() + "\n";
+        }
+        try {
+            s.titleEditorProperties = getAttributeAsString("titleEditorProperties");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.titleEditorProperties:" + t.getMessage() + "\n";
+        }
+        try {
+            s.titleEditorRightOffset = getAttributeAsString("titleEditorRightOffset");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.titleEditorRightOffset:" + t.getMessage() + "\n";
+        }
+        try {
+            s.titleEditorTopOffset = getAttributeAsString("titleEditorTopOffset");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.titleEditorTopOffset:" + t.getMessage() + "\n";
+        }
+        try {
+            s.useSimpleTabs = getAttributeAsString("useSimpleTabs");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TabSet.useSimpleTabs:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        TabSetLogicalStructure s = new TabSetLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

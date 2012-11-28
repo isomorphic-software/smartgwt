@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * An object literal with a particular set of properties used to configure the display of and interaction with the rows of
@@ -69,12 +89,18 @@ public class DetailViewerField extends DataClass {
         return new DetailViewerField(jsObj);
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public DetailViewerField(){
         
     }
 
     public DetailViewerField(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     public DetailViewerField(String name) {
@@ -138,7 +164,7 @@ public class DetailViewerField extends DataClass {
      * If specified, cells in this field will be rendered using this css className rather than {@link
      * com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle cellStyle}
      *
-     * @param cellStyle cellStyle Default value is null
+     * @param cellStyle . See {@link com.smartgwt.client.docs.CSSClassName CSSClassName}. Default value is null
      */
     public void setCellStyle(String cellStyle) {
         setAttribute("cellStyle", cellStyle);
@@ -151,7 +177,7 @@ public class DetailViewerField extends DataClass {
      *
      * @return Optional method to return the CSS class for cells in this field. If specified, this method will be called from {@link
      * com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle DetailViewer.getCellStyle}, and should return a css class
-     * name.
+     * name.. See {@link com.smartgwt.client.docs.CSSClassName CSSClassName}
      */
     public String getCellStyle()  {
         return getAttributeAsString("cellStyle");
@@ -161,7 +187,7 @@ public class DetailViewerField extends DataClass {
      * dataPath property allows this field to display detail from nested data structures
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param dataPath dataPath Default value is null
+     * @param dataPath . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setDataPath(String dataPath) {
         setAttribute("dataPath", dataPath);
@@ -171,7 +197,7 @@ public class DetailViewerField extends DataClass {
      * dataPath property allows this field to display detail from nested data structures
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getDataPath()  {
         return getAttributeAsString("dataPath");
@@ -220,6 +246,83 @@ public class DetailViewerField extends DataClass {
      */
     public DateDisplayFormat getDateFormatter()  {
         return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
+    }
+
+    /**
+     * Applies only to fields of type "float" and enforces a minimum number of digits shown after the decimal point. <P> For
+     * example, a field value of 343.1, 343.104 and 343.09872677 would all be shown as 343.10 if decimalPad is 2. <P> The
+     * original unpadded value is always shown when the value is edited.
+     *
+     * @param decimalPad decimalPad Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setDecimalPad(Integer decimalPad) {
+        setAttribute("decimalPad", decimalPad);
+    }
+
+    /**
+     * Applies only to fields of type "float" and enforces a minimum number of digits shown after the decimal point. <P> For
+     * example, a field value of 343.1, 343.104 and 343.09872677 would all be shown as 343.10 if decimalPad is 2. <P> The
+     * original unpadded value is always shown when the value is edited.
+     *
+     *
+     * @return Integer
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Integer getDecimalPad()  {
+        return getAttributeAsInt("decimalPad");
+    }
+
+    /**
+     * Applies only to fields of type "float" and affects how many significant digits are shown. <P> For example, with
+     * decimalPrecision 3, if the field value is 343.672677, 343.673 is shown. <P> If the value is 125.2, 125.2 is shown -
+     * decimalPrecision will not cause extra zeros to be added.  Use {@link
+     * com.smartgwt.client.data.DataSourceField#getDecimalPad decimalPad} for this. <P> A number if always shown with its
+     * original precision when edited.
+     *
+     * @param decimalPrecision decimalPrecision Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setDecimalPrecision(Integer decimalPrecision) {
+        setAttribute("decimalPrecision", decimalPrecision);
+    }
+
+    /**
+     * Applies only to fields of type "float" and affects how many significant digits are shown. <P> For example, with
+     * decimalPrecision 3, if the field value is 343.672677, 343.673 is shown. <P> If the value is 125.2, 125.2 is shown -
+     * decimalPrecision will not cause extra zeros to be added.  Use {@link
+     * com.smartgwt.client.data.DataSourceField#getDecimalPad decimalPad} for this. <P> A number if always shown with its
+     * original precision when edited.
+     *
+     *
+     * @return Integer
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Integer getDecimalPrecision()  {
+        return getAttributeAsInt("decimalPrecision");
+    }
+
+    /**
+     * If <code>displayField</code> is defined for the field then the DetailViewer will display the <code>displayField</code>
+     * attribute of records instead of the attribute given by the {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getName name} of the field.
+     *
+     * @param displayField . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     */
+    public void setDisplayField(String displayField) {
+        setAttribute("displayField", displayField);
+    }
+
+    /**
+     * If <code>displayField</code> is defined for the field then the DetailViewer will display the <code>displayField</code>
+     * attribute of records instead of the attribute given by the {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getName name} of the field.
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     */
+    public String getDisplayField()  {
+        return getAttributeAsString("displayField");
     }
 
     /**
@@ -491,7 +594,7 @@ public class DetailViewerField extends DataClass {
      * URL will be relative to this string<br>
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param imageURLPrefix imageURLPrefix Default value is null
+     * @param imageURLPrefix . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public void setImageURLPrefix(String imageURLPrefix) {
@@ -503,7 +606,7 @@ public class DetailViewerField extends DataClass {
      * URL will be relative to this string<br>
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public String getImageURLPrefix()  {
@@ -540,9 +643,146 @@ public class DetailViewerField extends DataClass {
     }
 
     /**
-     * Name property used to identify the field, and determines which attribute from records will be displayed in this field.
+     * Indicates this field's values come from another, related DataSource.   The individual field will inherit settings such
+     * as {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getType field.type} and {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getTitle field.title} from the related DataSource just like fields
+     * from the primary DataSource.
      *
-     * @param name name Default value is null
+     * @param includeFrom . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     */
+    public void setIncludeFrom(String includeFrom) {
+        setAttribute("includeFrom", includeFrom);
+    }
+
+    /**
+     * Indicates this field's values come from another, related DataSource.   The individual field will inherit settings such
+     * as {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getType field.type} and {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getTitle field.title} from the related DataSource just like fields
+     * from the primary DataSource.
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     */
+    public String getIncludeFrom()  {
+        return getAttributeAsString("includeFrom");
+    }
+
+    /**
+     * The HTML to display for values of this field if the field type is set to "link".  <P> This property sets linkText that
+     * will be the same for all records.  You can set linkText on a per-record basis via {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerRecord#getLinkText linkText}.
+     *
+     * @param linkText . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setType
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerRecord#setLinkText
+     * @see com.smartgwt.client.widgets.viewer.DetailViewer#setLinkTextProperty
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setLinkTextProperty
+     */
+    public void setLinkText(String linkText) {
+        setAttribute("linkText", linkText);
+    }
+
+    /**
+     * The HTML to display for values of this field if the field type is set to "link".  <P> This property sets linkText that
+     * will be the same for all records.  You can set linkText on a per-record basis via {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerRecord#getLinkText linkText}.
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getType
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerRecord#getLinkText
+     * @see com.smartgwt.client.widgets.viewer.DetailViewer#getLinkTextProperty
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getLinkTextProperty
+     */
+    public String getLinkText()  {
+        return getAttributeAsString("linkText");
+    }
+
+    /**
+     * Name of the property in a DetailViewerRecord that holds the HTML to display for values of this field if the field type
+     * is set to "link".
+     *
+     * @param linkTextProperty . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setType
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerRecord#setLinkText
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setLinkText
+     * @see com.smartgwt.client.widgets.viewer.DetailViewer#setLinkTextProperty
+     */
+    public void setLinkTextProperty(String linkTextProperty) {
+        setAttribute("linkTextProperty", linkTextProperty);
+    }
+
+    /**
+     * Name of the property in a DetailViewerRecord that holds the HTML to display for values of this field if the field type
+     * is set to "link".
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getType
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerRecord#getLinkText
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getLinkText
+     * @see com.smartgwt.client.widgets.viewer.DetailViewer#getLinkTextProperty
+     */
+    public String getLinkTextProperty()  {
+        return getAttributeAsString("linkTextProperty");
+    }
+
+    /**
+     * If this field has type set to <code>"link"</code>, setting this property will apply a standard prefix to the link URL
+     * when displaying values of this field.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param linkURLPrefix . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setType
+     */
+    public void setLinkURLPrefix(String linkURLPrefix) {
+        setAttribute("linkURLPrefix", linkURLPrefix);
+    }
+
+    /**
+     * If this field has type set to <code>"link"</code>, setting this property will apply a standard prefix to the link URL
+     * when displaying values of this field.
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getType
+     */
+    public String getLinkURLPrefix()  {
+        return getAttributeAsString("linkURLPrefix");
+    }
+
+    /**
+     * If this field has type set to <code>"link"</code>, setting this property will apply a standard suffix to the link URL
+     * when displaying values of this field.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param linkURLSuffix . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setType
+     */
+    public void setLinkURLSuffix(String linkURLSuffix) {
+        setAttribute("linkURLSuffix", linkURLSuffix);
+    }
+
+    /**
+     * If this field has type set to <code>"link"</code>, setting this property will apply a standard suffix to the link URL
+     * when displaying values of this field.
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getType
+     */
+    public String getLinkURLSuffix()  {
+        return getAttributeAsString("linkURLSuffix");
+    }
+
+    /**
+     * Name property used to identify the field, and determines which attribute from records will be displayed in this field.
+     * <P> Must be unique within the DetailViewer as well as a valid JavaScript identifier, as specified by ECMA-262 Section
+     * 7.6 (the  StringUtil.isValidID() function can be used to test whether a name is a valid JavaScript identifier). <P> The
+     * attribute of the records to display in this field may also be set by {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getDisplayField displayField}.
+     *
+     * @param name . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setName(String name) {
         setAttribute("name", name);
@@ -550,9 +790,13 @@ public class DetailViewerField extends DataClass {
 
     /**
      * Name property used to identify the field, and determines which attribute from records will be displayed in this field.
+     * <P> Must be unique within the DetailViewer as well as a valid JavaScript identifier, as specified by ECMA-262 Section
+     * 7.6 (the  StringUtil.isValidID() function can be used to test whether a name is a valid JavaScript identifier). <P> The
+     * attribute of the records to display in this field may also be set by {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getDisplayField displayField}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getName()  {
         return getAttributeAsString("name");
@@ -562,7 +806,7 @@ public class DetailViewerField extends DataClass {
      * If specified, when generating print HTML for this detailViewer,  cells in this field will be rendered using this css
      * className rather than {@link com.smartgwt.client.widgets.viewer.DetailViewer#getPrintCellStyle printCellStyle}
      *
-     * @param printCellStyle printCellStyle Default value is null
+     * @param printCellStyle . See {@link com.smartgwt.client.docs.CSSClassName CSSClassName}. Default value is null
      */
     public void setPrintCellStyle(String printCellStyle) {
         setAttribute("printCellStyle", printCellStyle);
@@ -573,7 +817,7 @@ public class DetailViewerField extends DataClass {
      * className rather than {@link com.smartgwt.client.widgets.viewer.DetailViewer#getPrintCellStyle printCellStyle}
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSClassName CSSClassName}
      */
     public String getPrintCellStyle()  {
         return getAttributeAsString("printCellStyle");
@@ -598,6 +842,31 @@ public class DetailViewerField extends DataClass {
      */
     public Boolean getShowFileInline()  {
         return getAttributeAsBoolean("showFileInline");
+    }
+
+    /**
+     * By default, clicking a link rendered by this item opens it in a new browser window.  You  can alter this behavior by
+     * setting this property.  The value of this property will be  passed as the value to the <code>target</code> attribute of
+     * the anchor tag used to render  the link.  <code>target</code> is applicable only if the field type is set to "link".
+     *
+     * @param target . See {@link com.smartgwt.client.docs.String String}. Default value is "_blank"
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setType
+     */
+    public void setTarget(String target) {
+        setAttribute("target", target);
+    }
+
+    /**
+     * By default, clicking a link rendered by this item opens it in a new browser window.  You  can alter this behavior by
+     * setting this property.  The value of this property will be  passed as the value to the <code>target</code> attribute of
+     * the anchor tag used to render  the link.  <code>target</code> is applicable only if the field type is set to "link".
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getType
+     */
+    public String getTarget()  {
+        return getAttributeAsString("target");
     }
 
     /**
@@ -637,7 +906,7 @@ public class DetailViewerField extends DataClass {
      * looking up the value of {@link com.smartgwt.client.widgets.viewer.DetailViewer#getFieldIdProperty fieldIdProperty} on
      * this field.  So, by default, the title of a field is the value of its "name" property.
      *
-     * @param title title Default value is null
+     * @param title . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is null
      * @see com.smartgwt.client.widgets.viewer.DetailViewer#setFieldIdProperty
      */
     public void setTitle(String title) {
@@ -650,7 +919,7 @@ public class DetailViewerField extends DataClass {
      * this field.  So, by default, the title of a field is the value of its "name" property.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.widgets.viewer.DetailViewer#getFieldIdProperty
      */
     public String getTitle()  {
@@ -659,7 +928,7 @@ public class DetailViewerField extends DataClass {
 
     /**
      * Specifies the type of this DetailViewerField.  By default (value is <code>null</code>) the field shows a field title on
-     * the left and the field value on the right.  There are two special values for this attribute: <ul> <li>"header" - If you
+     * the left and the field value on the right.  There are four special values for this attribute: <ul> <li>"header" - If you
      * specify type "header", the field spans both the field name and field value columns and contains text defined in the
      * {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getValue value} attribute with the style specified by {@link
      * com.smartgwt.client.widgets.viewer.DetailViewer#getHeaderStyle headerStyle}.  You can use this field type as a titled
@@ -671,9 +940,16 @@ public class DetailViewerField extends DataClass {
      * absolute. The size of the image is controlled by {@link
      * com.smartgwt.client.widgets.viewer.DetailViewerField#getImageSize imageSize}, {@link
      * com.smartgwt.client.widgets.viewer.DetailViewerField#getImageWidth imageWidth}, {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewerField#getImageHeight imageHeight} </ul>
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getImageHeight imageHeight} <li><p>"link" For viewing, a clickable
+     * html link (using an HTML anchor tag: &lt;A&gt;) is rendered in the field.  The target URL is the value of the field,
+     * which is also the default display value.  You can override the display value by setting {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerRecord#getLinkText linkText} or {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getLinkText linkText}.</p> <p> Clicking the link opens the URL in a
+     * new window by default.  To change this behavior, you can set <code>field.target</code>, which works identically to the
+     * "target" attribute on an HTML anchor (&lt;A&gt;) tag.  See {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getTarget target} for more information.</p></li> </ul>
      *
-     * @param type type Default value is null
+     * @param type . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setType(String type) {
         setAttribute("type", type);
@@ -681,7 +957,7 @@ public class DetailViewerField extends DataClass {
 
     /**
      * Specifies the type of this DetailViewerField.  By default (value is <code>null</code>) the field shows a field title on
-     * the left and the field value on the right.  There are two special values for this attribute: <ul> <li>"header" - If you
+     * the left and the field value on the right.  There are four special values for this attribute: <ul> <li>"header" - If you
      * specify type "header", the field spans both the field name and field value columns and contains text defined in the
      * {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getValue value} attribute with the style specified by {@link
      * com.smartgwt.client.widgets.viewer.DetailViewer#getHeaderStyle headerStyle}.  You can use this field type as a titled
@@ -693,10 +969,17 @@ public class DetailViewerField extends DataClass {
      * absolute. The size of the image is controlled by {@link
      * com.smartgwt.client.widgets.viewer.DetailViewerField#getImageSize imageSize}, {@link
      * com.smartgwt.client.widgets.viewer.DetailViewerField#getImageWidth imageWidth}, {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewerField#getImageHeight imageHeight} </ul>
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getImageHeight imageHeight} <li><p>"link" For viewing, a clickable
+     * html link (using an HTML anchor tag: &lt;A&gt;) is rendered in the field.  The target URL is the value of the field,
+     * which is also the default display value.  You can override the display value by setting {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerRecord#getLinkText linkText} or {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getLinkText linkText}.</p> <p> Clicking the link opens the URL in a
+     * new window by default.  To change this behavior, you can set <code>field.target</code>, which works identically to the
+     * "target" attribute on an HTML anchor (&lt;A&gt;) tag.  See {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getTarget target} for more information.</p></li> </ul>
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getType()  {
         return getAttributeAsString("type");
@@ -706,7 +989,7 @@ public class DetailViewerField extends DataClass {
      * When a field specifies its {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getType type} to be "header", the
      * value of this attribute specifies the header text.
      *
-     * @param value value Default value is "undefined"
+     * @param value . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is "undefined"
      */
     public void setValue(String value) {
         setAttribute("value", value);
@@ -717,7 +1000,7 @@ public class DetailViewerField extends DataClass {
      * value of this attribute specifies the header text.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      */
     public String getValue()  {
         return getAttributeAsString("value");

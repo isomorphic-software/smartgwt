@@ -1,8 +1,9 @@
-
+	    
 package com.smartgwt.client.docs;
 
 /**
- * The properties in this group all deal with setting and styling a modal prompt during an RPC call to the server.
+ * The properties in this group all deal with setting and styling a modal prompt during an RPC
+ * call to the server.
  * @see com.smartgwt.client.rpc.RPCRequest#useCursorTracker
  * @see com.smartgwt.client.rpc.RPCManager#defaultPrompt
  * @see com.smartgwt.client.rpc.RPCManager#promptStyle

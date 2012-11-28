@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  */
 public enum SortDirection implements ValueEnum {
@@ -27,7 +28,6 @@ public enum SortDirection implements ValueEnum {
      * Sort in descending order (eg: Z-A, larger items earlier in the list)
      */
     DESCENDING("descending");
-
     private String value;
 
     SortDirection(String value) {
@@ -38,3 +38,4 @@ public enum SortDirection implements ValueEnum {
         return this.value;
     }
 }
+        

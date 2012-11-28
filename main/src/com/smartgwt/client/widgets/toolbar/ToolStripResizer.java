@@ -45,40 +45,71 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Simple subclass of ImgSplitbar with appearance appropriate for a ToolStrip resizer.
  */
 public class ToolStripResizer extends ImgSplitbar {
 
-    public static ToolStripResizer getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (ToolStripResizer) obj;
-        } else {
-            return new ToolStripResizer(jsObj);
+    public native static ToolStripResizer getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("ToolStripResizer",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.toolbar.ToolStripResizer::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public ToolStripResizer(){
         scClassName = "ToolStripResizer";
     }
 
     public ToolStripResizer(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "ToolStripResizer";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -93,7 +124,7 @@ public class ToolStripResizer extends ImgSplitbar {
     /**
      * Image for horizontal resizer for a vertical Toolstrip
      *
-     * @param hSrc hSrc Default value is "[SKIN]hresizer.png"
+     * @param hSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]hresizer.png"
      */
     public void setHSrc(String hSrc) {
         setAttribute("hSrc", hSrc, true);
@@ -103,7 +134,7 @@ public class ToolStripResizer extends ImgSplitbar {
      * Image for horizontal resizer for a vertical Toolstrip
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getHSrc()  {
         return getAttributeAsString("hSrc");
@@ -112,7 +143,7 @@ public class ToolStripResizer extends ImgSplitbar {
     /**
      * Path to resizer image.
      *
-     * @param skinImgDir skinImgDir Default value is "images/ToolStrip/"
+     * @param skinImgDir . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "images/ToolStrip/"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
@@ -123,7 +154,7 @@ public class ToolStripResizer extends ImgSplitbar {
      * Path to resizer image.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getSkinImgDir()  {
         return getAttributeAsString("skinImgDir");
@@ -132,7 +163,7 @@ public class ToolStripResizer extends ImgSplitbar {
     /**
      * Image for resizer
      *
-     * @param vSrc vSrc Default value is "[SKIN]resizer.png"
+     * @param vSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]resizer.png"
      */
     public void setVSrc(String vSrc) {
         setAttribute("vSrc", vSrc, true);
@@ -142,7 +173,7 @@ public class ToolStripResizer extends ImgSplitbar {
      * Image for resizer
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getVSrc()  {
         return getAttributeAsString("vSrc");
@@ -172,7 +203,30 @@ public class ToolStripResizer extends ImgSplitbar {
         
     // ***********************************************************        
 
+    public LogicalStructureObject setLogicalStructure(ToolStripResizerLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.hSrc = getAttributeAsString("hSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStripResizer.hSrc:" + t.getMessage() + "\n";
+        }
+        try {
+            s.skinImgDir = getAttributeAsString("skinImgDir");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStripResizer.skinImgDir:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vSrc = getAttributeAsString("vSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStripResizer.vSrc:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        ToolStripResizerLogicalStructure s = new ToolStripResizerLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

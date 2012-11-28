@@ -1,29 +1,33 @@
-
+	    
 package com.smartgwt.client.docs;
 
 /**
  * <h3>Custom Querying Overview</h3>
  * <b>This feature, called "SQL Templating", is available with Power or better licenses
- *  only.</b> See <a href="http://smartclient.com/product">smartclient.com/product</a> for details.
+ * only.</b> See <a href="http://smartclient.com/product">smartclient.com/product</a> for details.
  *  <p>
  *  The Smart GWT server provides a number of ways to let you customize the SQL or Hibernate
  *  query it generates to fetch data from or update your database.  You can provide full 
- *  custom queries in either {@link com.smartgwt.client.docs.serverds.OperationBinding#customSQL SQL} or 
- * {@link com.smartgwt.client.docs.serverds.OperationBinding#customHQL HQL}, or you can replace individual parts of the
- * query 
- *  ({@link com.smartgwt.client.docs.serverds.OperationBinding#whereClause the WHERE clause}, for example) while letting
+ * custom queries in either {@link com.smartgwt.client.docs.serverds.OperationBinding#customSQL
+ * SQL} or 
+ * {@link com.smartgwt.client.docs.serverds.OperationBinding#customHQL HQL}, or you can replace
+ * individual parts of the query 
+ * ({@link com.smartgwt.client.docs.serverds.OperationBinding#whereClause the WHERE clause}, for
+ * example) while letting
  *  Smart GWT generate the rest. 
  *  <P>
  *  Full custom queries specified via &lt;customSQL&gt; provide complete flexibility, but 
  *  they cannot be used for automatic data paging; if you use a full custom query, all data
  *  returned by the query will be delivered to the client, which may be inefficient.
  *  To retain automatic data paging, implement your customizations by replacing just specific
- *  clauses of the query, via {@link com.smartgwt.client.docs.serverds.OperationBinding#whereClause &lt;whereClause&gt;}, 
- * {@link com.smartgwt.client.docs.serverds.OperationBinding#selectClause &lt;selectClause&gt;}, and the other
- * clause-by-clause
+ * clauses of the query, via {@link com.smartgwt.client.docs.serverds.OperationBinding#whereClause
+ * &lt;whereClause&gt;}, 
+ * {@link com.smartgwt.client.docs.serverds.OperationBinding#selectClause &lt;selectClause&gt;},
+ * and the other clause-by-clause
  *  replacement features.
  *  <p>
- *  Query customization is done per {@link com.smartgwt.client.data.OperationBinding}, so you can create multiple
+ * Query customization is done per {@link com.smartgwt.client.data.OperationBinding}, so you can
+ * create multiple
  *  customized queries per DataSource or even for the same 
  *  {@link com.smartgwt.client.data.OperationBinding#getOperationType operation type}.
  * 
@@ -81,27 +85,30 @@ package com.smartgwt.client.docs;
  *  <h4>Excluding fields from SQL Generation</h4>
  *  In some cases you pass a value to the server which is intended to be used by custom Java
  *  logic and should not cause SQL to be generated.  To prevent all SQL from being generated for
- *  a particular field, set {@link com.smartgwt.client.data.DataSourceField#getCustomSQL customSQL="true"} on that field.  
+ * a particular field, set {@link com.smartgwt.client.data.DataSourceField#getCustomSQL
+ * customSQL="true"} on that field.  
  *  <P>
  *  Any field for which SQL will ever be generated must be declared in a DataSource.  It's
  *  common to have a field which is only used in one or two operationBindings - in this case,
- * set customSQL="true" on the field, and use {@link com.smartgwt.client.docs.serverds.OperationBinding#customFields
- * customFields} to cause
+ * set customSQL="true" on the field, and use {@link
+ * com.smartgwt.client.docs.serverds.OperationBinding#customFields customFields} to cause
  *  specific operationBindings to generate SQL for the field, while all others ignore it.
  *  <P>
  *  In other cases you want to hand-write SQL for a particular field for a specific
- * operationBinding.  You can set {@link com.smartgwt.client.docs.serverds.OperationBinding#excludeCriteriaFields
- * excludeCriteriaFields} to 
+ * operationBinding.  You can set {@link
+ * com.smartgwt.client.docs.serverds.OperationBinding#excludeCriteriaFields excludeCriteriaFields}
+ * to 
  *  exclude fields from SQL generation for the whereClause of a specific operationBinding.
  * 
  *  <h4>Field-level SQL Customization</h4>
  *  An individual field can configured with custom expressions to be used in different SQL
- * statements for all operationBindings - see {@link com.smartgwt.client.data.DataSourceField#getCustomSQL customSQL} for
- * an overview.
+ * statements for all operationBindings - see {@link
+ * com.smartgwt.client.data.DataSourceField#getCustomSQL customSQL} for an overview.
  *  
  *  <h4>Using AdvancedCriteria</h4>
  *  The above examples involving $criteria assume that the submitted criteria are simple
- *  Criteria and not {@link com.smartgwt.client.data.AdvancedCriteria}, a more sophisticated criteria format in which
+ * Criteria and not {@link com.smartgwt.client.data.AdvancedCriteria}, a more sophisticated
+ * criteria format in which
  *  different search operators can be specified per field and criteria can be nested.  
  *  <P>
  *  The special variable $advancedCriteria provides simplified access to the AdvancedCriteria
@@ -113,17 +120,19 @@ package com.smartgwt.client.docs;
  *  <ul>
  *  <li> make a simple Criteria object representing the fieldName and value name you need to have
  *  available in the SQL template
- * <li> use {@link com.smartgwt.client.data.DataSource#combineCriteria DataSource.combineCriteria} to add your additional
- * criteria to an existing
+ * <li> use {@link com.smartgwt.client.data.DataSource#combineCriteria DataSource.combineCriteria}
+ * to add your additional criteria to an existing
  *  AdvancedCriteria, wherever this is convenient
- * <li> list the fieldName in {@link com.smartgwt.client.docs.serverds.OperationBinding#customCriteriaFields
- * customCriteriaFields} to prevent the
+ * <li> list the fieldName in {@link
+ * com.smartgwt.client.docs.serverds.OperationBinding#customCriteriaFields customCriteriaFields}
+ * to prevent the
  *  default SQL for this field from being generated
  *  <li> use $advancedCriteria in your customized SQL to access the value
  *  </ul>
  *  Java API dsRequest.getCriteriaValue() is equivalent to accessing $advancedCriteria in a SQL
  *  Template.  Also note, if a given fieldName appears more than once in AdvancedCriteria,
- *  $advancedCriteria.<i>fieldName</i> will return the value for the first {@link com.smartgwt.client.data.Criterion} that
+ * $advancedCriteria.<i>fieldName</i> will return the value for the first {@link
+ * com.smartgwt.client.data.Criterion} that
  *  uses the fieldName, as found by depth-first search.
  *  <p>
  *  NOTE: $advancedCriteria falls back to simple criteria values if the current criteria object 
@@ -133,8 +142,8 @@ package com.smartgwt.client.docs;
  * 
  *  <h4>Stored procedures</h4>
  *  It is possible to include templated calls to SQL stored procedures in a
- * {@link com.smartgwt.client.docs.serverds.OperationBinding#customSQL customSQL} clause, for the ultimate in flexibility. 
- * For 
+ * {@link com.smartgwt.client.docs.serverds.OperationBinding#customSQL customSQL} clause, for the
+ * ultimate in flexibility.  For 
  *  example, the deletion of an order might require a number of actions: deletion of the order
  *  record itself, messages sent to other systems (data warehousing, maybe, or a central accounts
  *  system running on a mainframe), an event log written, and so on.  You could write a stored 
@@ -152,8 +161,8 @@ package com.smartgwt.client.docs;
  *  can be embedded directly into your template code to achieve this. For example the following
  *  <code>whereClause</code> would produce different output depending on whether the 
  *  request criteria included a value for the field <code><i>someField</i></code>:<p>
- * <code>&lt;whereClause&gt;$defaultWhereClause #if ($criteria.someField) AND someDatabaseField = $criteria.someField
- * #end&lt/whereClause&gt;</code>
+ * <code>&lt;whereClause&gt;$defaultWhereClause #if ($criteria.someField) AND someDatabaseField =
+ * $criteria.someField #end&lt/whereClause&gt;</code>
  *  <p>
  *  If <code><i>criteria.someField</i></code> was not present in the request, the generated
  *  SQL statement would simply use the default where clause -- otherwise
@@ -165,7 +174,8 @@ package com.smartgwt.client.docs;
  *  Custom queries are protected from <a href=http://en.wikipedia.org/wiki/SQL_injection>
  *  SQL injection attacks</a>, because anything coming from the client is quoted and escaped 
  *  in accordance with the syntax of the underlying database before use (though see the warning
- *  about using <code>$rawValue</code> in the article on {@link com.smartgwt.client.docs.VelocitySupport}).
+ * about using <code>$rawValue</code> in the article on {@link
+ * com.smartgwt.client.docs.VelocitySupport}).
  *  So, in a typical SQL injection attack an attacker might enter his User ID as <br>
  *  &nbsp;&nbsp;<code>123' OR '1' = '1</code><p>
  *  in the hope that this will generate a query
@@ -174,7 +184,7 @@ package com.smartgwt.client.docs;
  *  which would of course return every row.  With Smart GWT custom queries, this does not happen; 
  *  the client-provided string is escaped, and the resultant clause would look like this: <br>
  *  &nbsp;&nbsp;<code>WHERE userID = '123'' OR ''1'' = ''1'</code><p>
- *  This clause only returns those records where the userID column contains the literal value that 
+ * This clause only returns those records where the userID column contains the literal value that 
  *  the user typed: <br>
  *  &nbsp;&nbsp;<code>123' OR '1' = '1</code>
  *  <p>
@@ -182,7 +192,8 @@ package com.smartgwt.client.docs;
  *  query is specified on the server.  For example you could add a custom where clause, as shown
  *  in the above section on default clauses, to ensure that certain records are never seen by
  *  the client.  For instance: <p>
- *  <code>&lt;whereClause&gt;($defaultWhereClause) AND confidential = '0'&lt;/whereClause&gt;</code>.
+ * <code>&lt;whereClause&gt;($defaultWhereClause) AND confidential =
+ * '0'&lt;/whereClause&gt;</code>.
  *  <p>
  *  <h4>Column case-sensitivity issues</h4>
  *  Different database products have different rules concerning case-sensitivity in column 
@@ -195,8 +206,8 @@ package com.smartgwt.client.docs;
  *  <li>Oracle, HSQLDB and DB2 default to upper-case column names.  Therefore, this query will
  *  fail if the column is actually called "orderNumber"; it will only work if the underlying
  *  column name is "ORDERNUMBER"</li>
- *  <li>PostgreSQL defaults to lower-case column names, so this query will fail unless the 
- *  underlying column name is actually "ordernumber"</li>
+ *  <li>PostgreSQL and Informix default to lower-case column names, so this query will fail 
+ *  unless the underlying column name is actually "ordernumber"</li>
  *  </ul>
  *  Note that these differences only apply in a practical sense if the underlying database 
  *  table was created with quoted column names.  If you create your tables without quoting 
@@ -222,8 +233,8 @@ package com.smartgwt.client.docs;
  *  name.<p>
  *  As an example of how to use <b>$fields</b> and <b>$qfields</b>, consider a DataSource with
  *  a field called "itemID", bound to a column also called "itemID", and a tableName property 
- * of "orderItem".  Here are three ways to write a {@link com.smartgwt.client.docs.serverds.OperationBinding#selectClause
- * selectClause} 
+ * of "orderItem".  Here are three ways to write a {@link
+ * com.smartgwt.client.docs.serverds.OperationBinding#selectClause selectClause} 
  *  for a custom SQL query that returns that field:<ul>
  *  <li><code>orderItem."itemID"</code>
  *  <li><code>orderItem.$fields.itemID</code>
@@ -235,7 +246,8 @@ package com.smartgwt.client.docs;
  *  <p>
  *  The usages via <b>$fields</b> and <b>$qfields</b> <em>are</em> portable.  The second line, 
  *  when targeting Oracle, will be translated to <code>orderItem."itemID"</code>; when targeting
- *  MySQL, it will be translated to <code>orderItem.itemID</code>, or <code>orderItem.`itemID`</code>
+ * MySQL, it will be translated to <code>orderItem.itemID</code>, or
+ * <code>orderItem.`itemID`</code>
  *  if column quoting is enabled for that database (it generally isn't required, since MySQL 
  *  preserves case by default).
  * @see com.smartgwt.client.docs.serverds.OperationBinding#selectClause

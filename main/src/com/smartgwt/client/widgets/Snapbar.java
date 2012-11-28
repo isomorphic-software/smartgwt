@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Subclass of the {@link com.smartgwt.client.widgets.Splitbar} class that uses the <code>grip</code> functionality to show
@@ -66,22 +86,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class Snapbar extends Splitbar {
 
-    public static Snapbar getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (Snapbar) obj;
-        } else {
-            return new Snapbar(jsObj);
+    public native static Snapbar getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("Snapbar",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.Snapbar::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public Snapbar(){
         scClassName = "Snapbar";
     }
 
     public Snapbar(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "Snapbar";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -98,7 +129,7 @@ public class Snapbar extends Splitbar {
      * grip media for this widget.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param gripImgSuffix gripImgSuffix Default value is "snap"
+     * @param gripImgSuffix . See {@link com.smartgwt.client.docs.String String}. Default value is "snap"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setGripImgSuffix(String gripImgSuffix)  throws IllegalStateException {
@@ -110,7 +141,7 @@ public class Snapbar extends Splitbar {
      * grip media for this widget.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getGripImgSuffix()  {
         return getAttributeAsString("gripImgSuffix");
@@ -270,7 +301,50 @@ public class Snapbar extends Splitbar {
         
     // ***********************************************************        
 
+    public LogicalStructureObject setLogicalStructure(SnapbarLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.gripImgSuffix = getAttributeAsString("gripImgSuffix");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Snapbar.gripImgSuffix:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showClosedGrip = getAttributeAsString("showClosedGrip");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Snapbar.showClosedGrip:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDown = getAttributeAsString("showDown");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Snapbar.showDown:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDownGrip = getAttributeAsString("showDownGrip");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Snapbar.showDownGrip:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showGrip = getAttributeAsString("showGrip");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Snapbar.showGrip:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showRollOver = getAttributeAsString("showRollOver");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Snapbar.showRollOver:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showRollOverGrip = getAttributeAsString("showRollOverGrip");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Snapbar.showRollOverGrip:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        SnapbarLogicalStructure s = new SnapbarLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

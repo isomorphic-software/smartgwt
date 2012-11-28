@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Tabs are specified as objects, not class instances.  For example, when
@@ -83,8 +103,12 @@ import com.google.gwt.event.shared.HasHandlers;
 public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.tab.events.HasTabDeselectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabSelectedHandlers {
 
     public static Tab getOrCreateRef(JavaScriptObject jsObj) {
+    
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+ 
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (Tab) obj;
@@ -93,12 +117,18 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
     public Tab(){
         setID(com.smartgwt.client.util.SC.generateID(getClass().getName()));
     }
 
     public Tab(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
     public Tab(String title) {
@@ -173,7 +203,7 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      * com.smartgwt.client.widgets.tab.Tab#getCanClose canClose} and {@link
      * com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}.
      *
-     * @param closeIcon closeIcon Default value is null
+     * @param closeIcon . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is null
      */
     public void setCloseIcon(String closeIcon) {
         setAttribute("closeIcon", closeIcon);
@@ -185,7 +215,7 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      * com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getCloseIcon()  {
         return getAttributeAsString("closeIcon");
@@ -278,11 +308,65 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
     }
 
     /**
+     * Optional name for the tab, which can later be used to reference the tab. APIs requiring a reference to a tab will accept
+     * the tab's name [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab TabSet.selectTab}, {@link
+     * com.smartgwt.client.widgets.tab.TabSet#updateTab TabSet.updateTab}, {@link
+     * com.smartgwt.client.widgets.tab.TabSet#removeTab TabSet.removeTab}].<br> This name will also be passed to the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler TabSet.tabSelected} and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler TabSet.tabDeselected} handler functions, if specified.
+     * <p> This identifier is requred to be locally unique to the TabSet and cannot be used to get a global reference to the
+     * Tab.  If you want a global reference, set {@link com.smartgwt.client.widgets.tab.Tab#getID ID} instead.
+     *
+     * @param name . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     */
+    public void setName(String name) {
+        setAttribute("name", name);
+    }
+
+    /**
+     * Optional name for the tab, which can later be used to reference the tab. APIs requiring a reference to a tab will accept
+     * the tab's name [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab TabSet.selectTab}, {@link
+     * com.smartgwt.client.widgets.tab.TabSet#updateTab TabSet.updateTab}, {@link
+     * com.smartgwt.client.widgets.tab.TabSet#removeTab TabSet.removeTab}].<br> This name will also be passed to the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler TabSet.tabSelected} and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler TabSet.tabDeselected} handler functions, if specified.
+     * <p> This identifier is requred to be locally unique to the TabSet and cannot be used to get a global reference to the
+     * Tab.  If you want a global reference, set {@link com.smartgwt.client.widgets.tab.Tab#getID ID} instead.
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     */
+    public String getName()  {
+        return getAttributeAsString("name");
+    }
+
+    /**
+     * Space to leave around the pane within this Tab. If specified, this property takes precedence over {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getPaneMargin paneMargin}
+     *
+     * @param paneMargin paneMargin Default value is null
+     */
+    public void setPaneMargin(Integer paneMargin) {
+        setAttribute("paneMargin", paneMargin);
+    }
+
+    /**
+     * Space to leave around the pane within this Tab. If specified, this property takes precedence over {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getPaneMargin paneMargin}
+     *
+     *
+     * @return Integer
+     */
+    public Integer getPaneMargin()  {
+        return getAttributeAsInt("paneMargin");
+    }
+
+    /**
      * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true for this TabSet, if set this
      * property will determine the title of the picker menu item for this tab. If unset, {@link
      * com.smartgwt.client.widgets.tab.Tab#getTitle title} will be used instead
      *
-     * @param pickerTitle pickerTitle Default value is null
+     * @param pickerTitle . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.widgets.tab.TabSet#setShowTabPicker
      * @see com.smartgwt.client.widgets.tab.Tab#setTitle
      */
@@ -296,7 +380,7 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      * com.smartgwt.client.widgets.tab.Tab#getTitle title} will be used instead
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker
      * @see com.smartgwt.client.widgets.tab.Tab#getTitle
      */
@@ -307,7 +391,7 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
     /**
      * Specifies the prompt to be displayed when the mouse hovers over the tab.
      *
-     * @param prompt prompt Default value is null
+     * @param prompt . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setPrompt(String prompt) {
         setAttribute("prompt", prompt);
@@ -317,7 +401,7 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      * Specifies the prompt to be displayed when the mouse hovers over the tab.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getPrompt()  {
         return getAttributeAsString("prompt");
@@ -364,15 +448,20 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
 
     private native void setupTabDeselectedEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.tabDeselected = $debox($entry(function(){
-                var param = {"tabSet" : arguments[0], "tabNum" : arguments[1], "tabPane" : arguments[2], "ID" : arguments[3], "tab" : arguments[4], "newTab" : arguments[5]};
-                var event = @com.smartgwt.client.widgets.tab.events.TabDeselectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var tabDeselected = $debox($entry(function(param){
+            var event = @com.smartgwt.client.widgets.tab.events.TabDeselectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
             }));
+        obj.tabDeselected = 
+            function () {
+                var param = {"tabSet" : arguments[0], "tabNum" : arguments[1], "tabPane" : arguments[2], "ID" : arguments[3], "tab" : arguments[4], "newTab" : arguments[5], "name" : arguments[6]};
+                return tabDeselected(param) == true;
+            }
+        ;
    }-*/;
     /**
      * Add a tabSelected handler.
@@ -391,13 +480,14 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
 
     private native void setupTabSelectedEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.tabSelected = $entry(function(){
-                var param = {"tabSet" : arguments[0], "tabNum" : arguments[1], "tabPane" : arguments[2], "ID" : arguments[3], "tab" : arguments[4]};
-                var event = @com.smartgwt.client.widgets.tab.events.TabSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var tabSelected = $entry(function(){
+            var param = {"tabSet" : arguments[0], "tabNum" : arguments[1], "tabPane" : arguments[2], "ID" : arguments[3], "tab" : arguments[4], "name" : arguments[5]};
+            var event = @com.smartgwt.client.widgets.tab.events.TabSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
+        obj.tabSelected =  tabSelected         ;
    }-*/;
 
     // ********************* Static Methods ***********************

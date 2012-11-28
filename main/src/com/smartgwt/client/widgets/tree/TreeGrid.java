@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * The Smart GWT system supports hierarchical data (also referred to as tree data due to its "branching" organization)
@@ -77,17 +97,27 @@ import com.google.gwt.event.shared.HasHandlers;
  * those methods in a TreeGrid, those types will be {@link com.smartgwt.client.widgets.tree.TreeGridField} and {@link
  * com.smartgwt.client.widgets.tree.TreeNode}, respectively.
  */
-public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.tree.events.HasFolderDropHandlers, com.smartgwt.client.widgets.tree.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderOpenedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderClosedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderClickHandlers, com.smartgwt.client.widgets.tree.events.HasLeafClickHandlers, com.smartgwt.client.widgets.tree.events.HasNodeClickHandlers, com.smartgwt.client.widgets.tree.events.HasFolderContextClickHandlers, com.smartgwt.client.widgets.tree.events.HasLeafContextClickHandlers, com.smartgwt.client.widgets.tree.events.HasNodeContextClickHandlers {
+public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.tree.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderOpenedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderClosedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderClickHandlers, com.smartgwt.client.widgets.tree.events.HasLeafClickHandlers, com.smartgwt.client.widgets.tree.events.HasNodeClickHandlers, com.smartgwt.client.widgets.tree.events.HasFolderContextClickHandlers, com.smartgwt.client.widgets.tree.events.HasLeafContextClickHandlers, com.smartgwt.client.widgets.tree.events.HasNodeContextClickHandlers, com.smartgwt.client.widgets.tree.events.HasFolderDropHandlers {
 
-    public static TreeGrid getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (TreeGrid) obj;
-        } else {
-            return new TreeGrid(jsObj);
+    public native static TreeGrid getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("TreeGrid",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.tree.TreeGrid::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public TreeGrid(){
         setAnimateFolderSpeed(3000);setAlternateRecordStyles(false);
@@ -95,7 +125,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     public TreeGrid(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "TreeGrid";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -403,7 +434,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     /**
      * Message displayed when user attempts to drop a node into a child of itself.
      *
-     * @param cantDragIntoChildMessage cantDragIntoChildMessage Default value is "You can't drag an item into one of it's children."
+     * @param cantDragIntoChildMessage . See {@link com.smartgwt.client.docs.String String}. Default value is "You can't drag an item into one of it's children."
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCanDragRecordsOut
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCanAcceptDroppedRecords
@@ -417,7 +448,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * Message displayed when user attempts to drop a node into a child of itself.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanDragRecordsOut
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanAcceptDroppedRecords
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords
@@ -429,7 +460,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     /**
      * Message displayed when user attempts to drop a dragged node onto itself.
      *
-     * @param cantDragIntoSelfMessage cantDragIntoSelfMessage Default value is "You can't drag an item into itself."
+     * @param cantDragIntoSelfMessage . See {@link com.smartgwt.client.docs.String String}. Default value is "You can't drag an item into itself."
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCanDragRecordsOut
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCanAcceptDroppedRecords
@@ -443,7 +474,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * Message displayed when user attempts to drop a dragged node onto itself.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanDragRecordsOut
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanAcceptDroppedRecords
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords
@@ -477,7 +508,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * closed folders. If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons} is set to
      * <code>false</code> this suffix will also be appended to open folders' icons.
      *
-     * @param closedIconSuffix closedIconSuffix Default value is "closed"
+     * @param closedIconSuffix . See {@link com.smartgwt.client.docs.String String}. Default value is "closed"
      */
     public void setClosedIconSuffix(String closedIconSuffix) {
         setAttribute("closedIconSuffix", closedIconSuffix, true);
@@ -489,7 +520,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * <code>false</code> this suffix will also be appended to open folders' icons.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getClosedIconSuffix()  {
         return getAttributeAsString("closedIconSuffix");
@@ -540,7 +571,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * have a connector line leading to both the previous sibling (or parent) and the  next sibling. </ul> (Note '[_rtl]' means
      * that "_rtl" will be attached if isRTL() is true for this widget).
      *
-     * @param connectorImage connectorImage Default value is "[SKIN]connector.gif"
+     * @param connectorImage . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]connector.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setConnectorImage(String connectorImage)  throws IllegalStateException {
@@ -593,10 +624,54 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * that "_rtl" will be attached if isRTL() is true for this widget).
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getConnectorImage()  {
         return getAttributeAsString("connectorImage");
+    }
+
+    /**
+     * If no fields are specified, create a single field with  {@link
+     * com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField} set to <code>true</code> to show the tree. <P>
+     * This automatically generated field will display values derived by calling {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getNodeTitle TreeGrid.getNodeTitle}, and have the column title set to the
+     * specified {@link com.smartgwt.client.widgets.tree.TreeGrid#getTreeFieldTitle treeFieldTitle}. <P> Has no effect if
+     * fields are explicitly specified. <P> This is a convenience setting to allow a TreeGrid to be created without specifying
+     * a field list.  If fields are specified, refer to the documentation on property {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getAutoAssignTreeField autoAssignTreeField} for a way to automatically have
+     * one of the fields be use as the tree field if no fields have {@link
+     * com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField} set. <P> For databound treeGrids, if there is no
+     * explicit fields array specified, developers who wish to pick up all fields from the DataSource definition rather than
+     * displaying this single automatically generated tree field may  either set this property to false, or set {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getUseAllDataSourceFields useAllDataSourceFields} to <code>true</code>.
+     *
+     * @param createDefaultTreeField createDefaultTreeField Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCreateDefaultTreeField(Boolean createDefaultTreeField)  throws IllegalStateException {
+        setAttribute("createDefaultTreeField", createDefaultTreeField, false);
+    }
+
+    /**
+     * If no fields are specified, create a single field with  {@link
+     * com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField} set to <code>true</code> to show the tree. <P>
+     * This automatically generated field will display values derived by calling {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getNodeTitle TreeGrid.getNodeTitle}, and have the column title set to the
+     * specified {@link com.smartgwt.client.widgets.tree.TreeGrid#getTreeFieldTitle treeFieldTitle}. <P> Has no effect if
+     * fields are explicitly specified. <P> This is a convenience setting to allow a TreeGrid to be created without specifying
+     * a field list.  If fields are specified, refer to the documentation on property {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getAutoAssignTreeField autoAssignTreeField} for a way to automatically have
+     * one of the fields be use as the tree field if no fields have {@link
+     * com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField} set. <P> For databound treeGrids, if there is no
+     * explicit fields array specified, developers who wish to pick up all fields from the DataSource definition rather than
+     * displaying this single automatically generated tree field may  either set this property to false, or set {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getUseAllDataSourceFields useAllDataSourceFields} to <code>true</code>.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCreateDefaultTreeField()  {
+        return getAttributeAsBoolean("createDefaultTreeField");
     }
 
     /**
@@ -604,7 +679,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * default node.showDropIcon} property.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param customIconDropProperty customIconDropProperty Default value is "showDropIcon"
+     * @param customIconDropProperty . See {@link com.smartgwt.client.docs.String String}. Default value is "showDropIcon"
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCustomIconProperty
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setShowCustomIconDrop
      */
@@ -617,7 +692,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * default node.showDropIcon} property.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconDrop
      */
@@ -630,7 +705,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * default node.showOpenIcon} property.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param customIconOpenProperty customIconOpenProperty Default value is "showOpenIcon"
+     * @param customIconOpenProperty . See {@link com.smartgwt.client.docs.String String}. Default value is "showOpenIcon"
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCustomIconProperty
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setShowCustomIconOpen
      */
@@ -643,7 +718,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * default node.showOpenIcon} property.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconOpen
      */
@@ -655,7 +730,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getIcon default
      * node.icon} property.
      *
-     * @param customIconProperty customIconProperty Default value is "icon"
+     * @param customIconProperty . See {@link com.smartgwt.client.docs.String String}. Default value is "icon"
      */
     public void setCustomIconProperty(String customIconProperty) {
         setAttribute("customIconProperty", customIconProperty, true);
@@ -666,38 +741,10 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * node.icon} property.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getCustomIconProperty()  {
         return getAttributeAsString("customIconProperty");
-    }
-
-    /**
-     * A {@link com.smartgwt.client.widgets.tree.Tree} object containing of nested {@link
-     * com.smartgwt.client.widgets.tree.TreeNode}s to  display as rows in this TreeGrid.   The <code>data</code> property will
-     * typically not be explicitly specified for  databound TreeGrids, where the data is returned from the server via databound
-     * component methods such as <code>fetchData()</code>
-     *
-     * <br><br>If this method is called after the component has been drawn/initialized:
-     * Set the {@link com.smartgwt.client.widgets.tree.Tree} object this TreeGrid will view and manipulate.
-     *
-     * @param data Tree to show. Default value is null
-     */
-    public void setData(Tree data) {
-        setAttribute("data", data == null ? null : data.getOrCreateJsObj(), true);
-    }
-
-    /**
-     * A {@link com.smartgwt.client.widgets.tree.Tree} object containing of nested {@link
-     * com.smartgwt.client.widgets.tree.TreeNode}s to  display as rows in this TreeGrid.   The <code>data</code> property will
-     * typically not be explicitly specified for  databound TreeGrids, where the data is returned from the server via databound
-     * component methods such as <code>fetchData()</code>
-     *
-     *
-     * @return Tree
-     */
-    public Tree getData()  {
-        return Tree.getOrCreateRef(getAttributeAsJavaScriptObject("data"));
     }
 
     /**
@@ -762,7 +809,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * appended to the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} when the user drop-hovers
      * over some folder.
      *
-     * @param dropIconSuffix dropIconSuffix Default value is "drop"
+     * @param dropIconSuffix . See {@link com.smartgwt.client.docs.String String}. Default value is "drop"
      */
     public void setDropIconSuffix(String dropIconSuffix) {
         setAttribute("dropIconSuffix", dropIconSuffix, true);
@@ -774,7 +821,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * over some folder.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getDropIconSuffix()  {
         return getAttributeAsString("dropIconSuffix");
@@ -814,7 +861,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * appropriate -  see documentation on  {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons}
      * and {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons}.
      *
-     * @param folderIcon folderIcon Default value is "[SKIN]folder.gif"
+     * @param folderIcon . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]folder.gif"
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public void setFolderIcon(String folderIcon) {
@@ -830,7 +877,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * and {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons}.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public String getFolderIcon()  {
@@ -913,9 +960,9 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * automatically enabled so that all filtering behavior shifts to the client-side and full criteria are no longer sent to
      * the server.  Instead, server fetches will always load all nodes, or with {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#getLoadDataOnDemand loadDataOnDemand}:true, will always load all nodes under a
-     * given parent.  This means that the server does not need to implement special tree filtering logic. <P> Optionally, 
-     * serverFilterFields can be set to a list of field names that will be sent to the server whenever they are present in the
-     * criteria.
+     * given parent.  This means that the server does not need to implement special tree filtering logic. <P> Optionally,
+     * {@link com.smartgwt.client.widgets.tree.ResultTree#getServerFilterFields serverFilterFields} can be set to a list of
+     * field names that will be sent to the server whenever they are present in the criteria.
      *
      * @param keepParentsOnFilter keepParentsOnFilter Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -931,9 +978,9 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * automatically enabled so that all filtering behavior shifts to the client-side and full criteria are no longer sent to
      * the server.  Instead, server fetches will always load all nodes, or with {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#getLoadDataOnDemand loadDataOnDemand}:true, will always load all nodes under a
-     * given parent.  This means that the server does not need to implement special tree filtering logic. <P> Optionally, 
-     * serverFilterFields can be set to a list of field names that will be sent to the server whenever they are present in the
-     * criteria.
+     * given parent.  This means that the server does not need to implement special tree filtering logic. <P> Optionally,
+     * {@link com.smartgwt.client.widgets.tree.ResultTree#getServerFilterFields serverFilterFields} can be set to a list of
+     * field names that will be sent to the server whenever they are present in the criteria.
      *
      *
      * @return Boolean
@@ -943,12 +990,44 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}:"checkbox"  is set on
+     * the treegrid, and a node can't be selected, should a gap be left where the checkbox icon would normally appear, in order
+     * to make the node's icon and title line up with the content for other nodes in the same parent? <p> Has no effect if
+     * {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDisabledSelectionCheckbox showDisabledSelectionCheckbox} is
+     * <code>true</code>
+     *
+     * @param leaveSelectionCheckboxGap leaveSelectionCheckboxGap Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setRecordCanSelectProperty
+     */
+    public void setLeaveSelectionCheckboxGap(Boolean leaveSelectionCheckboxGap)  throws IllegalStateException {
+        setAttribute("leaveSelectionCheckboxGap", leaveSelectionCheckboxGap, false);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}:"checkbox"  is set on
+     * the treegrid, and a node can't be selected, should a gap be left where the checkbox icon would normally appear, in order
+     * to make the node's icon and title line up with the content for other nodes in the same parent? <p> Has no effect if
+     * {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDisabledSelectionCheckbox showDisabledSelectionCheckbox} is
+     * <code>true</code>
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getRecordCanSelectProperty
+     */
+    public Boolean getLeaveSelectionCheckboxGap()  {
+        return getAttributeAsBoolean("leaveSelectionCheckboxGap");
+    }
+
+    /**
      * For databound treeGrid instances, should the entire tree of data be loaded on initial  fetch, or should folders load
      * their children as they are opened. <P> If unset, calling {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData
      * TreeGrid.fetchData} will default it to true, otherwise, if a ResultTree is passed to {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#setData TreeGrid.setData}, the  loadDataOnDemand setting is respected. <P>
-     * Note that when using <code>loadDataOnDemand</code>, every node returned by the server is assumed be a folder which may
-     * load further children.  See  defaultIsFolder for how to control this behavior.
+     * com.smartgwt.client.widgets.tree.TreeGrid#setData TreeGrid.setData}, the {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#getLoadDataOnDemand loadDataOnDemand} setting is respected. <P> Note that
+     * when using <code>loadDataOnDemand</code>, every node returned by the server is assumed be a folder which may load
+     * further children.  See {@link com.smartgwt.client.widgets.tree.ResultTree#getDefaultIsFolder defaultIsFolder} for how to
+     * control this behavior.
      *
      * @param loadDataOnDemand loadDataOnDemand Default value is null
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setDataFetchMode
@@ -963,9 +1042,11 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * For databound treeGrid instances, should the entire tree of data be loaded on initial  fetch, or should folders load
      * their children as they are opened. <P> If unset, calling {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData
      * TreeGrid.fetchData} will default it to true, otherwise, if a ResultTree is passed to {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#setData TreeGrid.setData}, the  loadDataOnDemand setting is respected. <P>
-     * Note that when using <code>loadDataOnDemand</code>, every node returned by the server is assumed be a folder which may
-     * load further children.  See  defaultIsFolder for how to control this behavior.
+     * com.smartgwt.client.widgets.tree.TreeGrid#setData TreeGrid.setData}, the {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#getLoadDataOnDemand loadDataOnDemand} setting is respected. <P> Note that
+     * when using <code>loadDataOnDemand</code>, every node returned by the server is assumed be a folder which may load
+     * further children.  See {@link com.smartgwt.client.widgets.tree.ResultTree#getDefaultIsFolder defaultIsFolder} for how to
+     * control this behavior.
      *
      *
      * @return Boolean
@@ -981,7 +1062,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * The filename of the icon displayed use as the default drag tracker when for multiple files and/or folders are being
      * dragged.
      *
-     * @param manyItemsImage manyItemsImage Default value is "[SKIN]folder_file.gif"
+     * @param manyItemsImage . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]folder_file.gif"
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public void setManyItemsImage(String manyItemsImage) {
@@ -993,7 +1074,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * dragged.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public String getManyItemsImage()  {
@@ -1007,7 +1088,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the icon for a particular treenode to a specified URL
      *
-     * @param nodeIcon tree node. Default value is "[SKIN]file.gif"
+     * @param nodeIcon tree node. See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]file.gif"
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public void setNodeIcon(String nodeIcon) {
@@ -1019,7 +1100,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty} directly on the node.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public String getNodeIcon()  {
@@ -1031,7 +1112,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * load that node's children, while we are offline and  there is no offline cache of that data.  The message will be
      * presented to the user in  in a pop-up dialog box.
      *
-     * @param offlineNodeMessage offlineNodeMessage Default value is "This data not available while offline"
+     * @param offlineNodeMessage . See {@link com.smartgwt.client.docs.String String}. Default value is "This data not available while offline"
      */
     public void setOfflineNodeMessage(String offlineNodeMessage) {
         setAttribute("offlineNodeMessage", offlineNodeMessage, true);
@@ -1043,7 +1124,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * presented to the user in  in a pop-up dialog box.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getOfflineNodeMessage()  {
         return getAttributeAsString("offlineNodeMessage");
@@ -1085,7 +1166,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * <code>{baseName}_closed.{extension}</code> will be displayed next to closed folders, or if this page is in RTL mode,
      * <code>{baseName}_opened_rtl.{extension}</code> and <code>{baseName}_closed_rtl.{extension}</code> will be used.
      *
-     * @param openerImage openerImage Default value is "[SKIN]opener.gif"
+     * @param openerImage . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]opener.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setOpenerImage(String openerImage)  throws IllegalStateException {
@@ -1102,7 +1183,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * <code>{baseName}_opened_rtl.{extension}</code> and <code>{baseName}_closed_rtl.{extension}</code> will be used.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getOpenerImage()  {
         return getAttributeAsString("openerImage");
@@ -1113,7 +1194,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * appended to the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for open folders in this
      * grid.
      *
-     * @param openIconSuffix openIconSuffix Default value is "open"
+     * @param openIconSuffix . See {@link com.smartgwt.client.docs.String String}. Default value is "open"
      */
     public void setOpenIconSuffix(String openIconSuffix) {
         setAttribute("openIconSuffix", openIconSuffix, true);
@@ -1125,7 +1206,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * grid.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getOpenIconSuffix()  {
         return getAttributeAsString("openIconSuffix");
@@ -1134,7 +1215,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     /**
      * Message displayed when user attempts to drag a node into a parent that already contains a child of the same name.
      *
-     * @param parentAlreadyContainsChildMessage parentAlreadyContainsChildMessage Default value is "This item already contains a child item with that name."
+     * @param parentAlreadyContainsChildMessage . See {@link com.smartgwt.client.docs.String String}. Default value is "This item already contains a child item with that name."
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCanDragRecordsOut
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCanAcceptDroppedRecords
@@ -1148,7 +1229,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * Message displayed when user attempts to drag a node into a parent that already contains a child of the same name.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanDragRecordsOut
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanAcceptDroppedRecords
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords
@@ -1164,7 +1245,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * has been created, this property will be set to true on the selected records.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param selectionProperty selectionProperty Default value is null
+     * @param selectionProperty . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -1179,7 +1260,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * has been created, this property will be set to true on the selected records.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSelectionProperty()  {
@@ -1222,7 +1303,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * When {@link com.smartgwt.client.widgets.tree.TreeGrid#getKeepParentsOnFilter keepParentsOnFilter} is enabled, this
      * property lists field names that will be sent to the server if they are present in criteria.
      *
-     * @param serverFilterFields serverFilterFields Default value is null
+     * @param serverFilterFields . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setServerFilterFields(String... serverFilterFields)  throws IllegalStateException {
@@ -1234,7 +1315,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * property lists field names that will be sent to the server if they are present in criteria.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String[] getServerFilterFields()  {
         return getAttributeAsStringArray("serverFilterFields");
@@ -1340,9 +1421,10 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * Should tree nodes show a disabled checkbox instead of a blank space  when {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}:"checkbox"  is set on the
-     * treegrid, and a node can't be selected?
+     * Should tree nodes show a disabled checkbox  {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance
+     * selectionAppearance}:"checkbox"  is set on the treegrid, and a node can't be selected?  <P> If set to <code>false</code>
+     * the treeGrid will use  {@link com.smartgwt.client.widgets.tree.TreeGrid#getLeaveSelectionCheckboxGap
+     * leaveSelectionCheckboxGap} to determine whether to leave a blank space where the checkbox would normally appear.
      *
      * @param showDisabledSelectionCheckbox showDisabledSelectionCheckbox Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -1353,9 +1435,10 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * Should tree nodes show a disabled checkbox instead of a blank space  when {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}:"checkbox"  is set on the
-     * treegrid, and a node can't be selected?
+     * Should tree nodes show a disabled checkbox  {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance
+     * selectionAppearance}:"checkbox"  is set on the treegrid, and a node can't be selected?  <P> If set to <code>false</code>
+     * the treeGrid will use  {@link com.smartgwt.client.widgets.tree.TreeGrid#getLeaveSelectionCheckboxGap
+     * leaveSelectionCheckboxGap} to determine whether to leave a blank space where the checkbox would normally appear.
      *
      *
      * @return Boolean
@@ -1551,7 +1634,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     /**
      * Visible title for the tree column (field).
      *
-     * @param treeFieldTitle treeFieldTitle Default value is "Name"
+     * @param treeFieldTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "Name"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setTreeFieldTitle(String treeFieldTitle)  throws IllegalStateException {
@@ -1562,14 +1645,51 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * Visible title for the tree column (field).
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getTreeFieldTitle()  {
         return getAttributeAsString("treeFieldTitle");
     }
 
+    /**
+     * If true, the set of fields given by the "default binding" (see  {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getFields fields}) is used, with any fields specified in
+     * <code>component.fields</code> acting as overrides that can suppress or modify the display of individual fields, without
+     * having to list the entire set of fields that should be shown. <P> If <code>component.fields</code> contains fields that
+     * are not found in the DataSource, they will be shown after the most recently referred to DataSource field.  If the new
+     * fields appear first, they will be shown first. <P> <a
+     * href="http://www.smartclient.com/smartgwt/showcase/#form_validation_customized_binding" target="examples">This
+     * example</a> shows a mixture of component fields and DataSource fields, and how they interact for validation.
+     *
+     * @param useAllDataSourceFields useAllDataSourceFields Default value is null
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_validation_customized_binding" target="examples">Customized Binding Example</a>
+     */
+    public void setUseAllDataSourceFields(Boolean useAllDataSourceFields) {
+        setAttribute("useAllDataSourceFields", useAllDataSourceFields, true);
+    }
+
+    /**
+     * If true, the set of fields given by the "default binding" (see  {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getFields fields}) is used, with any fields specified in
+     * <code>component.fields</code> acting as overrides that can suppress or modify the display of individual fields, without
+     * having to list the entire set of fields that should be shown. <P> If <code>component.fields</code> contains fields that
+     * are not found in the DataSource, they will be shown after the most recently referred to DataSource field.  If the new
+     * fields appear first, they will be shown first. <P> <a
+     * href="http://www.smartclient.com/smartgwt/showcase/#form_validation_customized_binding" target="examples">This
+     * example</a> shows a mixture of component fields and DataSource fields, and how they interact for validation.
+     *
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_validation_customized_binding" target="examples">Customized Binding Example</a>
+     */
+    public Boolean getUseAllDataSourceFields()  {
+        return getAttributeAsBoolean("useAllDataSourceFields");
+    }
+
     // ********************* Methods ***********************
-            
+
     /**
      * Overridden to disallow editing of the {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} field of this
      * grid's data tree. Also disallows editing of the auto-generated tree field, which displays the result of {@link
@@ -1590,9 +1710,10 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * Add a dataArrived handler.
      * <p>
      * Notification method fired whenever this TreeGrid receives new data nodes from the  dataSource. Only applies to databound
-     * TreeGrids where {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} is a  ResultTree - either explicitly
-     * created and applied via {@link com.smartgwt.client.widgets.tree.TreeGrid#setData TreeGrid.setData} or automatically
-     * generated via a {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData fetchData()} call.
+     * TreeGrids where {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} is a  {@link
+     * com.smartgwt.client.widgets.tree.ResultTree} - either explicitly created and applied via {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#setData TreeGrid.setData} or automatically generated via a {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#fetchData fetchData()} call.
      *
      * @param handler the dataArrived handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -1605,21 +1726,18 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     private native void setupDataArrivedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var dataArrived = $entry(function(){
+            var param = {"parentNode" : arguments[0]};
+
+                var event = @com.smartgwt.client.widgets.tree.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dataArrived:$entry(function(){
-                        var param = {"parentNode" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.tree.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({dataArrived:  dataArrived              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dataArrived = $entry(function(){
-                   var param = {"parentNode" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.tree.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.dataArrived =  dataArrived             ;
         }
    }-*/;
     /**
@@ -1638,21 +1756,18 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     private native void setupFolderClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var folderClick = $entry(function(){
+            var param = {"viewer" : arguments[0], "folder" : arguments[1], "recordNum" : arguments[2]};
+
+                var event = @com.smartgwt.client.widgets.tree.events.FolderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({folderClick:$entry(function(){
-                        var param = {"viewer" : arguments[0], "folder" : arguments[1], "recordNum" : arguments[2]};
-                        var event = @com.smartgwt.client.widgets.tree.events.FolderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({folderClick:  folderClick              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.folderClick = $entry(function(){
-                   var param = {"viewer" : arguments[0], "folder" : arguments[1], "recordNum" : arguments[2]};
-                   var event = @com.smartgwt.client.widgets.tree.events.FolderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.folderClick =  folderClick             ;
         }
    }-*/;
     /**
@@ -1673,25 +1788,28 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     private native void setupFolderClosedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var folderClosed = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.tree.events.FolderClosedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({folderClosed:$debox($entry(function(){
-                        var param = {"node" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.tree.events.FolderClosedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({folderClosed: 
+                function () {
+                    var param = {"node" : arguments[0]};
+                    return folderClosed(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.folderClosed = $debox($entry(function(){
-                   var param = {"node" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.tree.events.FolderClosedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.folderClosed = 
+                function () {
+                    var param = {"node" : arguments[0]};
+                    return folderClosed(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -1710,25 +1828,28 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     private native void setupFolderContextClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var folderContextClick = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.tree.events.FolderContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({folderContextClick:$debox($entry(function(){
-                        var param = {"viewer" : arguments[0], "folder" : arguments[1], "recordNum" : arguments[2]};
-                        var event = @com.smartgwt.client.widgets.tree.events.FolderContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({folderContextClick: 
+                function () {
+                    var param = {"viewer" : arguments[0], "folder" : arguments[1], "recordNum" : arguments[2]};
+                    return folderContextClick(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.folderContextClick = $debox($entry(function(){
-                   var param = {"viewer" : arguments[0], "folder" : arguments[1], "recordNum" : arguments[2]};
-                   var event = @com.smartgwt.client.widgets.tree.events.FolderContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.folderContextClick = 
+                function () {
+                    var param = {"viewer" : arguments[0], "folder" : arguments[1], "recordNum" : arguments[2]};
+                    return folderContextClick(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -1749,28 +1870,31 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     private native void setupFolderOpenedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var folderOpened = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.tree.events.FolderOpenedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({folderOpened:$debox($entry(function(){
-                        var param = {"node" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.tree.events.FolderOpenedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({folderOpened: 
+                function () {
+                    var param = {"node" : arguments[0]};
+                    return folderOpened(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.folderOpened = $debox($entry(function(){
-                   var param = {"node" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.tree.events.FolderOpenedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.folderOpened = 
+                function () {
+                    var param = {"node" : arguments[0]};
+                    return folderOpened(param) == true;
+                }
+            ;
         }
    }-*/;
-            
+
     /**
      * Returns the row number of the most recent mouse event.
      *
@@ -1787,24 +1911,11 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      * @return row number, or -2 if beyond last drawn row
      */
-    public native int getEventRow(int y) /*-{
+    public native int getEventRow(Integer y) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getEventRow(y);
+        return self.getEventRow(y == null ? null : y.@java.lang.Integer::intValue()());
     }-*/;
-            
-    /**
-     * Get an additional icon to show between the open icon and folder/node icon for a particular  node. <P> NOTE: If {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} is <code>"checkbox"</code>, this
-     * method will NOT be called. Extra icons cannot be shown for that appearance.
-     * @param node tree node in question
-     *
-     * @return URL for the extra icon (null if none required)
-     */
-    public native String getExtraIcon(TreeNode node) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getExtraIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()());
-    }-*/;
-            
+
     /**
      * Get the appropriate open/close opener icon for a node. Returns null if {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#getShowOpener showOpener} is set to false.
@@ -1816,11 +1927,11 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getOpenIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-            
+
     /**
-     * Returns a snapshot of the current open state of this grid's data as a String object.<br> This object can be passed to
-     * {@link com.smartgwt.client.widgets.tree.TreeGrid#setOpenState TreeGrid.setOpenState} to open the same set of folders
-     * within the treeGrid's data (assuming the nodes are still present in the data).
+     * Returns a snapshot of the current open state of this grid's data as a TreeGridOpenState object.<br> This object can be
+     * passed to {@link com.smartgwt.client.widgets.tree.TreeGrid#setOpenState TreeGrid.setOpenState} to open the same set of
+     * folders within the treeGrid's data (assuming the nodes are still present in the data).
      *
      * @return current open state for the grid.
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setOpenState
@@ -1829,11 +1940,11 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getOpenState();
     }-*/;
-            
+
     /**
-     * Returns a snapshot of the current selection within this treeGrid as  a String object.<br> This object can be passed to
-     * {@link com.smartgwt.client.widgets.tree.TreeGrid#setSelectedPaths TreeGrid.setSelectedPaths} to reset this grid's
-     * selection the current state (assuming the same data is present in the grid).<br>
+     * Returns a snapshot of the current selection within this treeGrid as  a ListGridSelectedState object.<br> This object can
+     * be passed to {@link com.smartgwt.client.widgets.tree.TreeGrid#setSelectedPaths TreeGrid.setSelectedPaths} to reset this
+     * grid's selection the current state (assuming the same data is present in the grid).<br>
      *
      * @return current state of this grid's selection
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setSelectedPaths
@@ -1841,6 +1952,39 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     public native String getSelectedPaths() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getSelectedPaths();
+    }-*/;
+
+    /**
+     * Returns true if the last event occurred over {@link com.smartgwt.client.widgets.tree.TreeGrid#getExtraIcon extra icon}
+     * for the current node. <P> Returns false if the event did not occur over an extraIcon, or if no extraIcon is showing for
+     * the node in question.
+     *
+     * @return true if the user clicked the extra icon
+     */
+    public native Boolean isOverExtraIcon() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.isOverExtraIcon();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Returns true if the last event occurred over the indented area or over the open / close icon of a folder node in this
+     * TreeGrid. Returns false if the event did not occur over a folder node.
+     *
+     * @return true if the user clicked the open icon
+     */
+    public native Boolean isOverOpenArea() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.isOverOpenArea();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
     }-*/;
     /**
      * Add a leafClick handler.
@@ -1858,21 +2002,18 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     private native void setupLeafClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var leafClick = $entry(function(){
+            var param = {"viewer" : arguments[0], "leaf" : arguments[1], "recordNum" : arguments[2]};
+
+                var event = @com.smartgwt.client.widgets.tree.events.LeafClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({leafClick:$entry(function(){
-                        var param = {"viewer" : arguments[0], "leaf" : arguments[1], "recordNum" : arguments[2]};
-                        var event = @com.smartgwt.client.widgets.tree.events.LeafClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({leafClick:  leafClick              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.leafClick = $entry(function(){
-                   var param = {"viewer" : arguments[0], "leaf" : arguments[1], "recordNum" : arguments[2]};
-                   var event = @com.smartgwt.client.widgets.tree.events.LeafClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.leafClick =  leafClick             ;
         }
    }-*/;
     /**
@@ -1891,25 +2032,28 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     private native void setupLeafContextClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var leafContextClick = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.tree.events.LeafContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({leafContextClick:$debox($entry(function(){
-                        var param = {"viewer" : arguments[0], "leaf" : arguments[1], "recordNum" : arguments[2]};
-                        var event = @com.smartgwt.client.widgets.tree.events.LeafContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({leafContextClick: 
+                function () {
+                    var param = {"viewer" : arguments[0], "leaf" : arguments[1], "recordNum" : arguments[2]};
+                    return leafContextClick(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.leafContextClick = $debox($entry(function(){
-                   var param = {"viewer" : arguments[0], "leaf" : arguments[1], "recordNum" : arguments[2]};
-                   var event = @com.smartgwt.client.widgets.tree.events.LeafContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.leafContextClick = 
+                function () {
+                    var param = {"viewer" : arguments[0], "leaf" : arguments[1], "recordNum" : arguments[2]};
+                    return leafContextClick(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -1930,21 +2074,18 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     private native void setupNodeClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var nodeClick = $entry(function(){
+            var param = {"viewer" : arguments[0], "node" : arguments[1], "recordNum" : arguments[2]};
+
+                var event = @com.smartgwt.client.widgets.tree.events.NodeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({nodeClick:$entry(function(){
-                        var param = {"viewer" : arguments[0], "node" : arguments[1], "recordNum" : arguments[2]};
-                        var event = @com.smartgwt.client.widgets.tree.events.NodeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({nodeClick:  nodeClick              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.nodeClick = $entry(function(){
-                   var param = {"viewer" : arguments[0], "node" : arguments[1], "recordNum" : arguments[2]};
-                   var event = @com.smartgwt.client.widgets.tree.events.NodeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.nodeClick =  nodeClick             ;
         }
    }-*/;
     /**
@@ -1966,28 +2107,73 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     private native void setupNodeContextClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var nodeContextClick = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.tree.events.NodeContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({nodeContextClick:$debox($entry(function(){
-                        var param = {"viewer" : arguments[0], "node" : arguments[1], "recordNum" : arguments[2]};
-                        var event = @com.smartgwt.client.widgets.tree.events.NodeContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({nodeContextClick: 
+                function () {
+                    var param = {"viewer" : arguments[0], "node" : arguments[1], "recordNum" : arguments[2]};
+                    return nodeContextClick(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.nodeContextClick = $debox($entry(function(){
-                   var param = {"viewer" : arguments[0], "node" : arguments[1], "recordNum" : arguments[2]};
-                   var event = @com.smartgwt.client.widgets.tree.events.NodeContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.nodeContextClick = 
+                function () {
+                    var param = {"viewer" : arguments[0], "node" : arguments[1], "recordNum" : arguments[2]};
+                    return nodeContextClick(param) == true;
+                }
+            ;
         }
    }-*/;
-            
+    /**
+     * Add a folderDrop handler.
+     * <p>
+     * Notification method fired when treeNode(s) are dropped into a folder of this TreeGrid. This method fires before the
+     * standard {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop TreeGrid.folderDrop} processing occurs and
+     * returning false will suppress that default behavior.
+     *
+     * @param handler the folderDrop handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addFolderDropHandler(com.smartgwt.client.widgets.tree.events.FolderDropHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tree.events.FolderDropEvent.getType()) == 0) setupFolderDropEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tree.events.FolderDropEvent.getType());
+    }
+
+    private native void setupFolderDropEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        var onFolderDrop = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.tree.events.FolderDropEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onFolderDrop: 
+                function () {
+                    var param = {"nodes" : arguments[0], "folder" : arguments[1], "index" : arguments[2], "sourceWidget" : arguments[3]};
+                    return onFolderDrop(param) == true;
+                }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onFolderDrop = 
+                function () {
+                    var param = {"nodes" : arguments[0], "folder" : arguments[1], "index" : arguments[2], "sourceWidget" : arguments[3]};
+                    return onFolderDrop(param) == true;
+                }
+            ;
+        }
+   }-*/;
+
     /**
      * Handle a doubleClick on a tree node - override of ListGrid stringMethod of same name.  If the node is a folder, this
      * implementation calls {@link com.smartgwt.client.widgets.tree.TreeGrid#toggleFolder TreeGrid.toggleFolder} on it.  If the
@@ -1997,28 +2183,29 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.recordDoubleClick();
     }-*/;
-            
+
     /**
-     * Reset this set of open folders within this grid's data to match the  String object passed in.<br> Used to restore
-     * previous state retrieved from the grid by a call to  {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenState
-     * TreeGrid.getOpenState}.
+     * Reset this set of open folders within this grid's data to match the  TreeGridOpenState object passed in.<br> Used to
+     * restore previous state retrieved from the grid by a call to  {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getOpenState TreeGrid.getOpenState}.
      * @param openState Object describing the desired set of open folders.
      */
     public native void setOpenState(String openState) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setOpenState(openState);
     }-*/;
-            
+
     /**
-     * Reset this grid's selection to match the String object passed in.<br> Used to restore previous state retrieved from the
-     * grid by a call to  {@link com.smartgwt.client.widgets.tree.TreeGrid#getSelectedPaths TreeGrid.getSelectedPaths}.
+     * Reset this grid's selection to match the ListGridSelectedState object passed in.<br> Used to restore previous state
+     * retrieved from the grid by a call to  {@link com.smartgwt.client.widgets.tree.TreeGrid#getSelectedPaths
+     * TreeGrid.getSelectedPaths}.
      * @param selectedPaths Object describing the desired selection state of                                              the grid
      */
     public native void setSelectedPaths(String selectedPaths) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setSelectedPaths(selectedPaths);
     }-*/;
-            
+
     /**
      * Opens the folder specified by node if it's closed, and closes it if it's open.          TreeGrid will redraw if there's
      * a change in the folder's open/closed state.
@@ -2075,7 +2262,32 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
             var nodeJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(node);
             return jObj.@com.smartgwt.client.widgets.tree.TreeGrid::getIcon(Lcom/smartgwt/client/data/Record;Z)(nodeJ, defaultState);
         }));
-        
+
+        self._getExtraIcon = self.getExtraIcon;
+        self.getExtraIcon = $debox($entry(function(node) {
+            if ($wnd.isc.isA.Number(node)) node = this.data.get(node);
+            var jObj = this.__ref;
+            var nodeJ = @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(node);
+            return jObj.@com.smartgwt.client.widgets.tree.TreeGrid::getExtraIcon(Lcom/smartgwt/client/widgets/tree/TreeNode;)(nodeJ);
+        }));
+    }-*/;
+
+    /**
+     * This inherited {@link com.smartgwt.client.widgets.grid.ListGrid#startEditingNew ListGrid API} is not supported by the
+     * TreeGrid since adding a new tree node arbitrarily at the end of the tree is usually not useful. Instead, to add a new
+     * tree node and begin editing it, use either of these two strategies: <ol> <li> add a new node to the client-side Tree
+     * model via {@link com.smartgwt.client.widgets.tree.Tree#add Tree.add}, then use {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getStartEditing startEditing} to begin editing this node.  Note that if using
+     * a DataSource, when the node is saved, an "update" operation will be used since adding a node directly to the client-side
+     * {@link com.smartgwt.client.widgets.tree.ResultTree} effectively means a new node has been added server side. <li> use
+     * {@link com.smartgwt.client.data.DataSource#addData DataSource.addData} to immediately save a new node.  Automatic cache
+     * sync by the {@link com.smartgwt.client.widgets.tree.ResultTree} will cause the node to be integrated into the tree.
+     * When the callback to addData() fires, locate the new node by matching primary key and call {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getStartEditing startEditing} to begin editing it. </ol>
+     */
+    public native void startEditingNew() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.startEditingNew();
     }-*/;
 
     /**
@@ -2119,6 +2331,25 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         return self.setNodeIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()(), icon);
     }-*/;
 
+
+    /**
+     * Get an additional icon to show between the open icon and folder/node icon for a particular  node. <P> NOTE: If {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} is <code>"checkbox"</code>, this
+     * method will NOT be called. Extra icons cannot be shown for that appearance.
+     * <p>
+     * <b>Note</b>: This is an override point
+     * @param node tree node in question
+     *
+     * @return URL for the extra icon (null if none required). See {@link com.smartgwt.client.docs.TreeNode TreeNode}
+     */
+    public native String getExtraIcon(TreeNode node) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self._getExtraIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+
+
+
     /**
      * When the user is dragging a droppable element over this grid, this method returns the folder&#010 which would contain the item if dropped. This is the current drop node if the user is hovering&#010 over a folder, or the node's parent if the user is hovering over a leaf.&#010
      *
@@ -2145,6 +2376,40 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
+     * A {@link com.smartgwt.client.widgets.tree.Tree} object containing of nested {@link
+     * com.smartgwt.client.widgets.tree.TreeNode}s to  display as rows in this TreeGrid.   The <code>data</code> property will
+     * typically not be explicitly specified for  databound TreeGrids, where the data is returned from the server via databound
+     * component methods such as <code>fetchData()</code>
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Set the {@link com.smartgwt.client.widgets.tree.Tree} object this TreeGrid will view and manipulate.
+     *
+     * @param data Tree to show. Default value is null
+     */
+    public void setData(Tree data) {
+        setAttribute("data", data == null ? null : data.getOrCreateJsObj(), true);
+    }
+
+    /**
+     * A {@link com.smartgwt.client.widgets.tree.Tree} object containing of nested {@link
+     * com.smartgwt.client.widgets.tree.TreeNode}s to  display as rows in this TreeGrid.   The <code>data</code> property will
+     * typically not be explicitly specified for  databound TreeGrids, where the data is returned from the server via databound
+     * component methods such as <code>fetchData()</code>
+     *
+     *
+     * @return Tree
+     */
+    public Tree getData()  {
+        JavaScriptObject jso = getAttributeAsJavaScriptObject("data");
+
+        if("ResultTree".equals(JSOHelper.getClassName(jso))) {
+            return ResultTree.getOrCreateRef(jso);
+        }
+
+        return Tree.getOrCreateRef(jso);
+    }
+
+    /**
      * Synonmy for {#link #getData)
      *
      * @return the underlying tree
@@ -2152,7 +2417,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     public Tree getTree() {
         return getData();
     }
-    
+
     /**
      * For databound TreeGrids, this attribute can be used to customize the ResultTree object created for this treegrid when data is fetched
      *
@@ -2188,7 +2453,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
             return tree.getData();
         }
     }
-    
+
     /**
      * You can specify the initial set of data for a databound TreeGrid using this property. The value of this attribute
      * should be a list of <code>parentId</code> linked ${isc.DocUtils.linkForRef('object:TreeNode')}s in a format
@@ -2482,80 +2747,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }-*/;
 
     /**
-     * Add a handler that fires when data is dropped on a folder of this TreeGrid.
-     * <P>
-     * The default behavior is as follows:
-     * <P>
-     * If the nodes originate in this tree and the {@link TreeGrid#getDragDataAction} is "none"
-     * or "move", then the nodes are simply reordered in this TreeGrid.  Otherwise (if the
-     * dragDataAction is "copy" or "none"), this method transfers the dragged nodes to this
-     * TreeGrid as though transferSelectedData() were called on the component from which nodes
-     * were dragged.
-     * <P>
-     * In either case, the new row(s) appear in the target folder and index (both available on
-     * FolderDropEvent).
-     * <P>
-     * For dataBound treeGrids, DSRequests will be initiated to update remote datasets.  For
-     * nodes moved within the tree, an "update" operation will be submitted to update the
-     * {@link Tree#getParentIdField parentIdField} field of the moved node(s). 
-     * For nodes added to a tree, "add" DataSource requests will be submitted with the dropped
-     * node(s) as dsRequest.data.  For all drops onto databound treeGrids from other databound 
-     * components, the {@link com.smartgwt.client.widgets.DataBoundComponent#addDropValues dropValues} 
-     * will be added as new attributes of all TreeNodes created from the dropped data.
-     * <P>
-     * As a special case, if the <code>sourceWidget</code> is also databound, and a 
-     * {@link com.smartgwt.client.data.DataSourceField#setForeignKey foreignKey} relationship
-     * is declared from the <code>sourceWidget</code>'s DataSource to this TreeGrid's
-     * DataSource, the interaction will be treated as a "drag recategorization" use case such
-     * as files being placed in folders, employees being assigned to teams, etc.  "update"
-     * DSRequests will be submitted that change the foreignKey field in the dropped records to
-     * point to the tree folder that was the target of the drop.  In this case no change will
-     * be made to the Tree data as such, only to the dropped records. 
-     * <P>
-     * For multi-node drops, Queuing is automatically used to combine all DSRequests into a
-     * single HTTP Request (see QuickStart Guide, Server Framework chapter).  This allows the
-     * server to store all changes caused by the drop as a single transaction (and this is
-     * automatically done when using the built-in server DataSources with Power Edition and
-     * above).
-     * <P>
-     * If these default persistence behaviors are undesirable, user FolderDropEvent.cancel() to
-     * cancel them, and implement your own behavior.
-     *
-     * @param handler the onFolderDrop handler
-     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addFolderDropHandler(com.smartgwt.client.widgets.tree.events.FolderDropHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.tree.events.FolderDropEvent.getType()) == 0) setupFolderDropEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.tree.events.FolderDropEvent.getType());
-    }
-    private native void setupFolderDropEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({onFolderDrop:$debox($entry(function(){
-                    var param = {"nodes" : arguments[0], "folder" : arguments[1], "index" : arguments[2], "sourceWidget" : arguments[3]};
-                    var event = @com.smartgwt.client.widgets.tree.events.FolderDropEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                    return !ret;
-                }))
-            });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.onFolderDrop = $debox($entry(function(){
-                var param = {"nodes" : arguments[0], "folder" : arguments[1], "index" : arguments[2], "sourceWidget" : arguments[3]};
-                var event = @com.smartgwt.client.widgets.tree.events.FolderDropEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                return !ret;
-            }));
-        }
-    }-*/;
-    
-
-
-    /**
      * This method overrides {@link com.smartgwt.client.widgets.grid.ListGrid#willAcceptDrop} and works as follows: <br><br>
      * First, {@link com.smartgwt.client.widgets.grid.ListGrid#willAcceptDrop} (the superclass definition) is consulted.  If it
      * returns false, then this method returns false immediately.<br> This handles the following cases:<br> - reordering of
@@ -2575,7 +2766,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     public Boolean willAcceptDrop() {
     	return super.willAcceptDrop();
     }
-    
+
     /**
      * This ListGrid suporclass event does not fire on a TreeGrid, use {@link #addFolderDropHandler(com.smartgwt.client.widgets.tree.events.FolderDropHandler)} instead.
      *
@@ -2585,10 +2776,303 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * @throws UnsupportedOperationException
      */
     public HandlerRegistration addRecordDropHandler(com.smartgwt.client.widgets.grid.events.RecordDropHandler handler) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("This event inherited from ListGrid does not fire for a TreeGrid. Use TreeGrid.addFolgerDropHandler instead");
+        throw new UnsupportedOperationException("This event inherited from ListGrid does not fire for a TreeGrid. Use TreeGrid.addFolderDropHandler instead.");
     }
 
+    public LogicalStructureObject setLogicalStructure(TreeGridLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.animateFolderEffect = getAttributeAsString("animateFolderEffect");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.animateFolderEffect:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateFolderMaxRows = getAttributeAsString("animateFolderMaxRows");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.animateFolderMaxRows:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateFolders = getAttributeAsString("animateFolders");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.animateFolders:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateFolderSpeed = getAttributeAsString("animateFolderSpeed");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.animateFolderSpeed:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateFolderTime = getAttributeAsString("animateFolderTime");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.animateFolderTime:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoFetchTextMatchStyle = getAttributeAsString("autoFetchTextMatchStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.autoFetchTextMatchStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canAcceptDroppedRecords = getAttributeAsString("canAcceptDroppedRecords");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.canAcceptDroppedRecords:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canDragRecordsOut = getAttributeAsString("canDragRecordsOut");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.canDragRecordsOut:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canDropOnLeaves = getAttributeAsString("canDropOnLeaves");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.canDropOnLeaves:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canReorderRecords = getAttributeAsString("canReorderRecords");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.canReorderRecords:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canReparentNodes = getAttributeAsString("canReparentNodes");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.canReparentNodes:" + t.getMessage() + "\n";
+        }
+        try {
+            s.cantDragIntoChildMessage = getAttributeAsString("cantDragIntoChildMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.cantDragIntoChildMessage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.cantDragIntoSelfMessage = getAttributeAsString("cantDragIntoSelfMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.cantDragIntoSelfMessage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.cascadeSelection = getAttributeAsString("cascadeSelection");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.cascadeSelection:" + t.getMessage() + "\n";
+        }
+        try {
+            s.closedIconSuffix = getAttributeAsString("closedIconSuffix");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.closedIconSuffix:" + t.getMessage() + "\n";
+        }
+        try {
+            s.connectorImage = getAttributeAsString("connectorImage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.connectorImage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.createDefaultTreeField = getAttributeAsString("createDefaultTreeField");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.createDefaultTreeField:" + t.getMessage() + "\n";
+        }
+        try {
+            s.customIconDropProperty = getAttributeAsString("customIconDropProperty");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.customIconDropProperty:" + t.getMessage() + "\n";
+        }
+        try {
+            s.customIconOpenProperty = getAttributeAsString("customIconOpenProperty");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.customIconOpenProperty:" + t.getMessage() + "\n";
+        }
+        try {
+            s.customIconProperty = getAttributeAsString("customIconProperty");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.customIconProperty:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataFetchMode = getAttributeAsString("dataFetchMode");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.dataFetchMode:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataSourceAsDataSource = getDataSource();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.dataSourceAsDataSource:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataSourceAsString = getAttributeAsString("dataSource");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.dataSourceAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.displayNodeType = getAttributeAsString("displayNodeType");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.displayNodeType:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dropIconSuffix = getAttributeAsString("dropIconSuffix");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.dropIconSuffix:" + t.getMessage() + "\n";
+        }
+        try {
+            s.extraIconGap = getAttributeAsString("extraIconGap");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.extraIconGap:" + t.getMessage() + "\n";
+        }
+        try {
+            s.folderIcon = getAttributeAsString("folderIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.folderIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconSize = getAttributeAsString("iconSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.iconSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.indentRecordComponents = getAttributeAsString("indentRecordComponents");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.indentRecordComponents:" + t.getMessage() + "\n";
+        }
+        try {
+            s.indentSize = getAttributeAsString("indentSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.indentSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.keepParentsOnFilter = getAttributeAsString("keepParentsOnFilter");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.keepParentsOnFilter:" + t.getMessage() + "\n";
+        }
+        try {
+            s.leaveSelectionCheckboxGap = getAttributeAsString("leaveSelectionCheckboxGap");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.leaveSelectionCheckboxGap:" + t.getMessage() + "\n";
+        }
+        try {
+            s.loadDataOnDemand = getAttributeAsString("loadDataOnDemand");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.loadDataOnDemand:" + t.getMessage() + "\n";
+        }
+        try {
+            s.manyItemsImage = getAttributeAsString("manyItemsImage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.manyItemsImage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.nodeIcon = getAttributeAsString("nodeIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.nodeIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.offlineNodeMessage = getAttributeAsString("offlineNodeMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.offlineNodeMessage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.openerIconSize = getAttributeAsString("openerIconSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.openerIconSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.openerImage = getAttributeAsString("openerImage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.openerImage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.openIconSuffix = getAttributeAsString("openIconSuffix");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.openIconSuffix:" + t.getMessage() + "\n";
+        }
+        try {
+            s.parentAlreadyContainsChildMessage = getAttributeAsString("parentAlreadyContainsChildMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.parentAlreadyContainsChildMessage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.selectionProperty = getAttributeAsString("selectionProperty");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.selectionProperty:" + t.getMessage() + "\n";
+        }
+        try {
+            s.separateFolders = getAttributeAsString("separateFolders");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.separateFolders:" + t.getMessage() + "\n";
+        }
+        try {
+            s.serverFilterFields = getAttributeAsStringArray("serverFilterFields");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.serverFilterFieldsArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showConnectors = getAttributeAsString("showConnectors");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.showConnectors:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showCustomIconDrop = getAttributeAsString("showCustomIconDrop");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.showCustomIconDrop:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showCustomIconOpen = getAttributeAsString("showCustomIconOpen");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.showCustomIconOpen:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDisabledSelectionCheckbox = getAttributeAsString("showDisabledSelectionCheckbox");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.showDisabledSelectionCheckbox:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDropIcons = getAttributeAsString("showDropIcons");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.showDropIcons:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showFullConnectors = getAttributeAsString("showFullConnectors");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.showFullConnectors:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showOpener = getAttributeAsString("showOpener");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.showOpener:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showOpenIcons = getAttributeAsString("showOpenIcons");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.showOpenIcons:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showPartialSelection = getAttributeAsString("showPartialSelection");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.showPartialSelection:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showRoot = getAttributeAsString("showRoot");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.showRoot:" + t.getMessage() + "\n";
+        }
+        try {
+            s.sortFoldersBeforeLeaves = getAttributeAsString("sortFoldersBeforeLeaves");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.sortFoldersBeforeLeaves:" + t.getMessage() + "\n";
+        }
+        try {
+            s.treeFieldTitle = getAttributeAsString("treeFieldTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.treeFieldTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.treeRootValue = getAttributeAsString("treeRootValue");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.treeRootValue:" + t.getMessage() + "\n";
+        }
+        try {
+            s.useAllDataSourceFields = getAttributeAsString("useAllDataSourceFields");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.useAllDataSourceFields:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        TreeGridLogicalStructure s = new TreeGridLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * The Menu widget class implements interactive menu widgets, with optional icons, submenus, and shortcut keys. <p> A Menu
@@ -73,22 +93,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.events.HasItemClickHandlers {
 
-    public static Menu getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (Menu) obj;
-        } else {
-            return new Menu(jsObj);
+    public native static Menu getOrCreateRef(JavaScriptObject jsObj) /*-{
+
+    	if(jsObj == null) return null;
+    	
+    	var instance = jsObj["__ref"];
+    	
+    	if(instance==undefined) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("Menu",jsObj);
+        } else if(instance != null) {
+            return instance;
+        //} else {
+        //    return @com.smartgwt.client.widgets.menu.Menu::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
 
     public Menu(){
         setAlternateRecordStyles(false);scClassName = "Menu";
     }
 
     public Menu(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "Menu";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
@@ -188,7 +219,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     /**
      * CSS style for a normal cell
      *
-     * @param baseStyle baseStyle Default value is "menu"
+     * @param baseStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "menu"
      */
     public void setBaseStyle(String baseStyle) {
         setAttribute("baseStyle", baseStyle, true);
@@ -198,7 +229,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      * CSS style for a normal cell
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getBaseStyle()  {
         return getAttributeAsString("baseStyle");
@@ -272,6 +303,30 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     /**
+     * Optional DataSource to fetch menuItems and submenus from, instead of using {@link
+     * com.smartgwt.client.widgets.menu.Menu#getData data}/menu.items. <P> The provided DataSource must be set up for
+     * hierarchical fetching - see the {@link com.smartgwt.client.docs.TreeDataBinding Tree Data Binding overview}.
+     *
+     * @param dataSource dataSource Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setDataSource(DataSource dataSource)  throws IllegalStateException {
+        setAttribute("dataSource", dataSource == null ? null : dataSource.getOrCreateJsObj(), false);
+    }
+
+    /**
+     * Optional DataSource to fetch menuItems and submenus from, instead of using {@link
+     * com.smartgwt.client.widgets.menu.Menu#getData data}/menu.items. <P> The provided DataSource must be set up for
+     * hierarchical fetching - see the {@link com.smartgwt.client.docs.TreeDataBinding Tree Data Binding overview}.
+     *
+     *
+     * @return DataSource
+     */
+    public DataSource getDataSource()  {
+        return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("dataSource"));
+    }
+
+    /**
      * The default menu width.
      *
      * @param defaultWidth defaultWidth Default value is 150
@@ -296,7 +351,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      * Message to show when a menu is shown with no items.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param emptyMessage emptyMessage Default value is "[Empty menu]"
+     * @param emptyMessage . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is "[Empty menu]"
      */
     public void setEmptyMessage(String emptyMessage) {
         setAttribute("emptyMessage", emptyMessage, true);
@@ -306,15 +361,16 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      * Message to show when a menu is shown with no items.
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      */
     public String getEmptyMessage()  {
         return getAttributeAsString("emptyMessage");
     }
 
     /**
-     * If false, submenus will not be fetched for this menu. This can be set on a per-item basis via {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#getFetchSubmenus fetchSubmenus}.
+     * When using a Tree or hierarchical DataSource as the menu's data, submenus are automatically generated from child nodes. 
+     * <code>fetchSubmenus</code>  can be set to false to disable this for the whole menu, or can be set false on a per-item
+     * basis via {@link com.smartgwt.client.widgets.menu.MenuItem#getFetchSubmenus fetchSubmenus}.
      *
      * @param fetchSubmenus fetchSubmenus Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -324,8 +380,9 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     /**
-     * If false, submenus will not be fetched for this menu. This can be set on a per-item basis via {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#getFetchSubmenus fetchSubmenus}.
+     * When using a Tree or hierarchical DataSource as the menu's data, submenus are automatically generated from child nodes. 
+     * <code>fetchSubmenus</code>  can be set to false to disable this for the whole menu, or can be set false on a per-item
+     * basis via {@link com.smartgwt.client.widgets.menu.MenuItem#getFetchSubmenus fetchSubmenus}.
      *
      *
      * @return Boolean
@@ -405,7 +462,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      * content as it grows. Can be overridden by passing the 'animationEffect' parameter to 'menu.show()'
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param showAnimationEffect showAnimationEffect Default value is null
+     * @param showAnimationEffect . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setShowAnimationEffect(String showAnimationEffect) {
         setAttribute("showAnimationEffect", showAnimationEffect, true);
@@ -418,7 +475,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      * content as it grows. Can be overridden by passing the 'animationEffect' parameter to 'menu.show()'
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getShowAnimationEffect()  {
         return getAttributeAsString("showAnimationEffect");
@@ -492,19 +549,45 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     /**
-     * Should submenus show up on our left or right. Can validly be set to <code>"left"</code>  or <code>"right"</code>
+     * When using a Tree or hierarchical DataSource as the menu's data, optional subclass of Menu that should be used when
+     * generating submenus.
      *
-     * @param submenuDirection submenuDirection Default value is "right"
+     * @param submenuConstructor . See {@link com.smartgwt.client.docs.SCClassName SCClassName}. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setSubmenuConstructor(String submenuConstructor)  throws IllegalStateException {
+        setAttribute("submenuConstructor", submenuConstructor, false);
+    }
+
+    /**
+     * When using a Tree or hierarchical DataSource as the menu's data, optional subclass of Menu that should be used when
+     * generating submenus.
+     *
+     *
+     * @return . See {@link com.smartgwt.client.docs.SCClassName SCClassName}
+     */
+    public String getSubmenuConstructor()  {
+        return getAttributeAsString("submenuConstructor");
+    }
+
+    /**
+     * Should submenus show up on our left or right. Can validly be set to <code>"left"</code> or <code>"right"</code>. If
+     * unset, submenus show up on the right by default in Left-to-right text mode, or on the left in Right-to-left text mode
+     * (see {@link com.smartgwt.client.util.Page#isRTL Page.isRTL}).
+     *
+     * @param submenuDirection . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setSubmenuDirection(String submenuDirection) {
         setAttribute("submenuDirection", submenuDirection, true);
     }
 
     /**
-     * Should submenus show up on our left or right. Can validly be set to <code>"left"</code>  or <code>"right"</code>
+     * Should submenus show up on our left or right. Can validly be set to <code>"left"</code> or <code>"right"</code>. If
+     * unset, submenus show up on the right by default in Left-to-right text mode, or on the left in Right-to-left text mode
+     * (see {@link com.smartgwt.client.util.Page#isRTL Page.isRTL}).
      *
      *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSubmenuDirection()  {
         return getAttributeAsString("submenuDirection");
@@ -561,7 +644,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     // ********************* Methods ***********************
-            
+
     /**
      * Get a particular MenuItem by index. <P> If passed a MenuItem, returns it.
      * @param item index of the MenuItem
@@ -578,7 +661,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         }
         return retVal;
     }-*/;
-            
+
     /**
      * Hide the context menu - alias for hide()
      */
@@ -603,28 +686,31 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     private native void setupItemClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var itemClick = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.menu.events.ItemClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({itemClick:$debox($entry(function(){
-                        var param = {"item" : arguments[0], "colNum" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.menu.events.ItemClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({itemClick: 
+                function () {
+                    var param = {"item" : arguments[0], "colNum" : arguments[1]};
+                    return itemClick(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.itemClick = $debox($entry(function(){
-                   var param = {"item" : arguments[0], "colNum" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.menu.events.ItemClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.itemClick = 
+                function () {
+                    var param = {"item" : arguments[0], "colNum" : arguments[1]};
+                    return itemClick(param) == true;
+                }
+            ;
         }
    }-*/;
-            
+
     /**
      * Show this menu as a context menu, that is, immediately adjacent to the current mouse position.
      *
@@ -642,7 +728,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }-*/;
 
     // ********************* Static Methods ***********************
-            
+
     /**
      * Hide all menus that are currently open. This method is useful to hide the current set of menus including submenus, and
      * dismiss the menu's clickMask.
@@ -734,7 +820,13 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      * @return the menu items
      */
     public MenuItem[] getItems() {
-        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        JavaScriptObject dataJS;
+        if (!this.isCreated()) {
+            dataJS = getAttributeAsJavaScriptObject("items");
+        } else {
+            dataJS = getAttributeAsJavaScriptObject("data");
+        }
+        if (dataJS == null) return null;
         MenuItem[] data = convertToMenuItemArray(dataJS);
         return data;
     }
@@ -1080,8 +1172,140 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         }
     }-*/;
 
+    public LogicalStructureObject setLogicalStructure(MenuLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.alternateRecordStyles = getAttributeAsString("alternateRecordStyles");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.alternateRecordStyles:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoDismiss = getAttributeAsString("autoDismiss");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.autoDismiss:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoDismissOnBlur = getAttributeAsString("autoDismissOnBlur");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.autoDismissOnBlur:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoDraw = getAttributeAsString("autoDraw");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.autoDraw:" + t.getMessage() + "\n";
+        }
+        try {
+            s.baseStyle = getAttributeAsString("baseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.baseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canSelectParentItems = getAttributeAsString("canSelectParentItems");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.canSelectParentItems:" + t.getMessage() + "\n";
+        }
+        try {
+            s.cascadeAutoDismiss = getAttributeAsString("cascadeAutoDismiss");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.cascadeAutoDismiss:" + t.getMessage() + "\n";
+        }
+        try {
+            s.cellHeight = getAttributeAsString("cellHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.cellHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataSource = getDataSource();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.dataSource:" + t.getMessage() + "\n";
+        }
+        try {
+            s.defaultWidth = getAttributeAsString("defaultWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.defaultWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.emptyMessage = getAttributeAsString("emptyMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.emptyMessage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.fetchSubmenus = getAttributeAsString("fetchSubmenus");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.fetchSubmenus:" + t.getMessage() + "\n";
+        }
+        try {
+            s.fieldsAsStringArrayArray = getAttributeAsStringArray("fields");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.fieldsAsStringArrayArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconHeight = getAttributeAsString("iconHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.iconHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconWidth = getAttributeAsString("iconWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.iconWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.items = getItems();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.itemsArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.menuButtonWidth = getAttributeAsString("menuButtonWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.menuButtonWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showAnimationEffect = getAttributeAsString("showAnimationEffect");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.showAnimationEffect:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showIcons = getAttributeAsString("showIcons");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.showIcons:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showKeys = getAttributeAsString("showKeys");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.showKeys:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showSubmenus = getAttributeAsString("showSubmenus");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.showSubmenus:" + t.getMessage() + "\n";
+        }
+        try {
+            s.submenuConstructor = getAttributeAsString("submenuConstructor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.submenuConstructor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.submenuDirection = getAttributeAsString("submenuDirection");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.submenuDirection:" + t.getMessage() + "\n";
+        }
+        try {
+            s.target = getTarget();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.target:" + t.getMessage() + "\n";
+        }
+        try {
+            s.useKeys = getAttributeAsString("useKeys");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.useKeys:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+    
+    public LogicalStructureObject getLogicalStructure() {
+        MenuLogicalStructure s = new MenuLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-
 

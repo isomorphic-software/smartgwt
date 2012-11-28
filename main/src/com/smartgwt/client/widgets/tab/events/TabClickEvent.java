@@ -44,16 +44,20 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class TabClickEvent extends BrowserEvent<TabIconClickHandler>  {
@@ -91,7 +95,6 @@ public class TabClickEvent extends BrowserEvent<TabIconClickHandler>  {
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(TabIconClickHandler handler) {
         handler.onTabIconClick(this);
@@ -109,7 +112,6 @@ public class TabClickEvent extends BrowserEvent<TabIconClickHandler>  {
     public TabClickEvent(JavaScriptObject jsObj) {
         super(jsObj);
     }
-
 
 
     /**
