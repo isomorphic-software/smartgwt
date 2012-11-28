@@ -409,7 +409,7 @@ public class I18nUtil {
         var normalDatetimeFormat = messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_normalDatetimeFormat()();
         if (normalDatetimeFormat != null) $wnd.isc.Date.setNormalDatetimeDisplayFormat(normalDatetimeFormat);
         var inputFormat = messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_inputFormat()();
-        if (inputFormat != null) $wnd.isc.Date.setInputFormat(inputFormat);
+        if (inputFormat) $wnd.isc.Date.setInputFormat(inputFormat);
 
         $wnd.isc.addProperties($wnd.Date, {shortDayNames: [
             messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_1()(),
