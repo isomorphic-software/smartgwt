@@ -1,0 +1,4 @@
+<module>
+    <inherits name="com.smartgwt.DrawingNoScript"/>
+    <script src="sc/modules-debug/ISC_Drawing.js"/>
+</module>
