@@ -2678,6 +2678,24 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String relativeDateItem_monthsFromNowTitle();
 
   /**
+   * Translated "N quarters ago".
+   * 
+   * @return translated "N quarters ago"
+   */
+  @DefaultMessage("N quarters ago")
+  @Key("relativeDateItem_quartersAgoTitle")
+  String relativeDateItem_quartersAgoTitle();
+
+  /**
+   * Translated "N quarters from now".
+   * 
+   * @return translated "N quarters from now"
+   */
+  @DefaultMessage("N quarters from now")
+  @Key("relativeDateItem_quartersFromNowTitle")
+  String relativeDateItem_quartersFromNowTitle();
+
+  /**
    * Translated "Show Date Chooser".
    * 
    * @return translated "Show Date Chooser"
