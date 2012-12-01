@@ -453,6 +453,7 @@ public class I18nUtil {
             $wnd.isc.RelativeDateItem.addProperties({daysAgoTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_daysAgoTitle()()});
             $wnd.isc.RelativeDateItem.addProperties({weeksAgoTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_weeksAgoTitle()()});
             $wnd.isc.RelativeDateItem.addProperties({monthsAgoTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_monthsAgoTitle()()});
+            $wnd.isc.RelativeDateItem.addProperties({quartersAgoTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_quartersAgoTitle()()});
             $wnd.isc.RelativeDateItem.addProperties({yearsAgoTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_yearsAgoTitle()()});
             $wnd.isc.RelativeDateItem.addProperties({millisecondsFromNowTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_millisecondsFromNowTitle()()});
             $wnd.isc.RelativeDateItem.addProperties({secondsFromNowTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_secondsFromNowTitle()()});
@@ -461,6 +462,7 @@ public class I18nUtil {
             $wnd.isc.RelativeDateItem.addProperties({daysFromNowTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_daysFromNowTitle()()});
             $wnd.isc.RelativeDateItem.addProperties({weeksFromNowTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_weeksFromNowTitle()()});
             $wnd.isc.RelativeDateItem.addProperties({monthsFromNowTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_monthsFromNowTitle()()});
+            $wnd.isc.RelativeDateItem.addProperties({quartersFromNowTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_quartersFromNowTitle()()});
             $wnd.isc.RelativeDateItem.addProperties({yearsFromNowTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_yearsFromNowTitle()()});
             $wnd.isc.RelativeDateItem.addProperties({pickerIconPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_pickerIconPrompt()()});
             $wnd.isc.RelativeDateItem.addProperties({presetOptions: {"$today" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_today()(), "$yesterday" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_yesterday()(), "$tomorrow" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_tomorrow()(), "$weekAgo" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_minus_1w()(), "$weekFromNow" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_plus_1w()(), "$monthFromNow" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_plus_1m()()}});
