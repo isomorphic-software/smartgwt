@@ -11,8 +11,7 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.grid.events.*;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
-import com.smartgwt.sample.showcase.client.data.CountryRecord;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class CellClicksSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Click, double-click, or right-click any value in the grid.";
@@ -55,7 +54,7 @@ public class CellClicksSample extends ShowcasePanel {
         ListGridField continentField = new ListGridField("continent", "Continent");
         countryGrid.setFields(countryCodeField, nameField, capitalField, continentField);
 
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
         canvas.addChild(countryGrid);
 
         final Label label = new Label("click a value in the grid");
@@ -81,13 +80,13 @@ public class CellClicksSample extends ShowcasePanel {
 
         countryGrid.addCellDoubleClickHandler(new CellDoubleClickHandler() {
             public void onCellDoubleClick(CellDoubleClickEvent event) {
-                sayCellEvent(countryGrid, "Double-clicked", (CountryRecord) event.getRecord(), event.getColNum());
+                sayCellEvent(countryGrid, "Double-clicked", event.getRecord(), event.getColNum());
             }
         });
 
         countryGrid.addCellContextClickHandler(new CellContextClickHandler() {
             public void onCellContextClick(CellContextClickEvent event) {
-                sayCellEvent(countryGrid, "Context-clicked", (CountryRecord) event.getRecord(), event.getColNum());
+                sayCellEvent(countryGrid, "Context-clicked", event.getRecord(), event.getColNum());
                 event.cancel();
             }
         });
@@ -95,13 +94,13 @@ public class CellClicksSample extends ShowcasePanel {
         return canvas;
     }
 
-    private static void sayCellEvent(ListGrid countryGrid, String eventText, CountryRecord record, int colNum) {
+    private static void sayCellEvent(ListGrid countryGrid, String eventText, ListGridRecord record, int colNum) {
         ListGridField field = countryGrid.getField(colNum);
         String title = field.getTitle();
         String fieldName = countryGrid.getFieldName(colNum);
         SC.say(eventText + " <b>" +
-                title + ":" + record.getFieldValue(fieldName) +
-                "</b> (Country:" + record.getCountryName() + ")");
+                title + ":" + record.getAttribute(fieldName) +
+                "</b> (Country:" + record.getAttribute("countryName") + ")");
     }
 
     public String getIntro() {

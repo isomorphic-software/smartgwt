@@ -10,7 +10,7 @@ import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class RolloverSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Move the mouse over rows in the grid to see rollover highlights. Click the buttons to enable or disable this behavior.";
@@ -53,7 +53,7 @@ public class RolloverSample extends ShowcasePanel {
         ListGridField continentField = new ListGridField("continent", "Continent");
         countryGrid.setFields(countryCodeField, nameField, capitalField, continentField);
         countryGrid.setCanResizeFields(true);
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
         canvas.addChild(countryGrid);
 
         IButton rolloverOff = new IButton("Rollover Off");

@@ -11,7 +11,7 @@ import com.smartgwt.client.widgets.grid.events.SelectionChangedHandler;
 import com.smartgwt.client.widgets.grid.events.SelectionEvent;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class CheckboxSelectSample extends ShowcasePanel {
     private static final String DESCRIPTION = "By setting selectionAppearance to SelectionAppearance.CHECKBOX, the ListGrid can use checkboxes to indicate the selected state of records. " +
@@ -65,7 +65,7 @@ public class CheckboxSelectSample extends ShowcasePanel {
         ListGridField continentField = new ListGridField("continent", "Capital");
         countryGrid.setFields(countryCodeField, nameField, capitalField, continentField);
 
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
         countryGrid.addSelectionChangedHandler(new SelectionChangedHandler() {
             public void onSelectionChanged(SelectionEvent event) {
                 selectedCountriesGrid.setData(countryGrid.getSelection());

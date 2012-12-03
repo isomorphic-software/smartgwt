@@ -6,13 +6,13 @@ import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.grid.events.*;
 import com.smartgwt.client.widgets.viewer.DetailViewer;
 import com.smartgwt.client.widgets.viewer.DetailViewerField;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
-import com.smartgwt.sample.showcase.client.data.CountryRecord;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class RecordClicksSample extends ShowcasePanel {
     private static final String DESCRIPTION = "<p>Click to select a single row in the grid. Shift-click to select a continuous range of rows.</p><p>Ctrl-click " +
@@ -56,7 +56,7 @@ public class RecordClicksSample extends ShowcasePanel {
         ListGridField continentField = new ListGridField("continent", "Continent");
         countryGrid.setFields(countryCodeField, nameField, capitalField, continentField);
 
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
         canvas.addChild(countryGrid);
 
 
@@ -79,15 +79,15 @@ public class RecordClicksSample extends ShowcasePanel {
 
         countryGrid.addRecordDoubleClickHandler(new RecordDoubleClickHandler() {
             public void onRecordDoubleClick(RecordDoubleClickEvent event) {
-                CountryRecord record = (CountryRecord) event.getRecord();
-                SC.say("Double-clicked country: <b>" + record.getCountryName() + "</b>");
+                ListGridRecord record = (ListGridRecord)event.getRecord();
+                SC.say("Double-clicked country: <b>" + record.getAttribute("countryName") + "</b>");
             }
         });
 
         countryGrid.addRowContextClickHandler(new RowContextClickHandler() {
             public void onRowContextClick(RowContextClickEvent event) {
-                CountryRecord record = (CountryRecord) event.getRecord();
-                SC.say("Context-clicked country: <b>" + record.getCountryName() + "</b>");
+                ListGridRecord record = (ListGridRecord)event.getRecord();
+                SC.say("Context-clicked country: <b>" + record.getAttribute("countryName") + "</b>");
                 //prevent default browser context menu
                 event.cancel();
             }

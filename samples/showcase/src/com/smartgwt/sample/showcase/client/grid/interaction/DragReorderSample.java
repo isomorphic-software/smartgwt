@@ -7,7 +7,7 @@ import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class DragReorderSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Drag and drop to change the order of countries in this list.";
@@ -48,7 +48,7 @@ public class DragReorderSample extends ShowcasePanel {
         ListGridField capitalField = new ListGridField("capital", "Capital");
 
         countryGrid.setFields(countryCodeField, nameField, capitalField);
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
 
         return countryGrid;
     }
