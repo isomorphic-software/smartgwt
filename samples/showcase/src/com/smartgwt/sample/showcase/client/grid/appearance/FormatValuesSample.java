@@ -11,7 +11,7 @@ import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 import java.util.Date;
 
@@ -91,7 +91,7 @@ public class FormatValuesSample extends ShowcasePanel {
 
         countryGrid.setFields(countryCodeField, nameField, nationHoodField, areaField);
         countryGrid.setCanResizeFields(true);
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
 
         return countryGrid;
     }
