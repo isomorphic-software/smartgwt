@@ -7,7 +7,7 @@ import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class GridDataTypesLinkImageSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Click on the book images in the \"Info\" column to" +
@@ -52,7 +52,7 @@ public class GridDataTypesLinkImageSample extends ShowcasePanel {
         articleField.setLinkText(Canvas.imgHTML("[SKINIMG]actions/help.png", 16, 16, "info", "align=center", null));
 
         countryGrid.setFields(new ListGridField[] {countryCodeField, nameField, articleField});
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
         canvas.addChild(countryGrid);
 
         return canvas;

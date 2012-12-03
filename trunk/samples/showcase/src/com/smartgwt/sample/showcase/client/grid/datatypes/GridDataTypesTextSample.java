@@ -6,7 +6,7 @@ import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class GridDataTypesTextSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Click on column headers to sort, or data values to" +
@@ -46,7 +46,7 @@ public class GridDataTypesTextSample extends ShowcasePanel {
         ListGridField capitalField = new ListGridField("capital", "Capital");
         ListGridField continentField = new ListGridField("continent", "Continent");
         countryGrid.setFields(new ListGridField[] {nameField, capitalField, continentField});
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
         canvas.addChild(countryGrid);
 
         return canvas;

@@ -9,7 +9,7 @@ import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class GridDataTypesLongTextSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Click on data values to edit. \"Government\" is a" +
@@ -58,7 +58,7 @@ public class GridDataTypesLongTextSample extends ShowcasePanel {
         governmentField.setEditorType(textAreaItem);
 
         countryGrid.setFields(countryCodeField, nameField, governmentField);
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
         canvas.addChild(countryGrid);
 
         return canvas;

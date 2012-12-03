@@ -7,7 +7,7 @@ import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class GridDataTypesImageSample extends ShowcasePanel {
     private static final String DESCRIPTION = "\"Flag\" is an image field.";
@@ -46,7 +46,7 @@ public class GridDataTypesImageSample extends ShowcasePanel {
         countryCodeField.setImageURLSuffix(".png");
         ListGridField nameField = new ListGridField("countryName", "Country");
         countryGrid.setFields(new ListGridField[] {countryCodeField, nameField});
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
         canvas.addChild(countryGrid);
 
         return canvas;
