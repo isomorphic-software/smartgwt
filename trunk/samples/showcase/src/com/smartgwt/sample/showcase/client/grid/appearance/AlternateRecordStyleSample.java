@@ -12,7 +12,7 @@ import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class AlternateRecordStyleSample extends ShowcasePanel {
     private static final String DESCRIPTION = "This sample illustrates alternate record styles to create ledger effect for easier reading. To disable alternate " +
@@ -57,7 +57,7 @@ public class AlternateRecordStyleSample extends ShowcasePanel {
         ListGridField continentField = new ListGridField("continent", "Continent");
         countryGrid.setFields(countryCodeField, nameField, capitalField, continentField);
         countryGrid.setCanResizeFields(true);
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
         layout.addMember(countryGrid);
 
         DynamicForm form = new DynamicForm();

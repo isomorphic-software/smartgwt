@@ -7,7 +7,7 @@ import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class CellStylesSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Mouse over the rows and click-drag to select rows, to see the effects of different base styles on these two grids.";
@@ -69,7 +69,7 @@ public class CellStylesSample extends ShowcasePanel {
             ListGridField continentField = new ListGridField("continent", "Continent");
             setFields(countryCodeField, nameField, capitalField, continentField);
 
-            setData(CountryData.getRecords());
+            setData(CountrySampleData.getRecords());
         }
     }
 

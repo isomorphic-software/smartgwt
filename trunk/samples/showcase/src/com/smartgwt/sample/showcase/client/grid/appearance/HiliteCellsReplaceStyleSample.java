@@ -10,8 +10,7 @@ import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
-import com.smartgwt.sample.showcase.client.data.CountryRecord;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 
 public class HiliteCellsReplaceStyleSample extends ShowcasePanel {
@@ -43,10 +42,9 @@ public class HiliteCellsReplaceStyleSample extends ShowcasePanel {
             @Override
             protected String getBaseStyle(ListGridRecord record, int rowNum, int colNum) {
                 if (getFieldName(colNum).equals("population")) {
-                    CountryRecord countryRecord = (CountryRecord) record;
-                    if (countryRecord.getPopulation() > 1000000000) {
+                    if (record.getAttributeAsInt("population") > 1000000000) {
                         return "myHighGridCell";
-                    } else if (countryRecord.getPopulation() < 50000000) {
+                    } else if (record.getAttributeAsInt("population") < 50000000) {
                         return "myLowGridCell";
                     } else {
                         return super.getBaseStyle(record, rowNum, colNum);
@@ -85,7 +83,7 @@ public class HiliteCellsReplaceStyleSample extends ShowcasePanel {
 
         countryGrid.setFields(countryCodeField, nameField, capitalField, populationField);
         countryGrid.setCanResizeFields(true);
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
 
         return countryGrid;
     }

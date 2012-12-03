@@ -11,7 +11,7 @@ import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class EmptyGridSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Click the buttons to add or remove all data in the grid.";
@@ -62,7 +62,7 @@ public class EmptyGridSample extends ShowcasePanel {
         setDataButton.setLeft(0);
         setDataButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                countryGrid.setData(CountryData.getRecords());
+                countryGrid.setData(CountrySampleData.getRecords());
             }
         });
         canvas.addChild(setDataButton);

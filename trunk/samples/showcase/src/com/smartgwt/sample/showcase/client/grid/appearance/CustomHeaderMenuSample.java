@@ -11,7 +11,7 @@ import com.smartgwt.client.widgets.menu.events.ClickHandler;
 import com.smartgwt.client.widgets.menu.events.MenuItemClickEvent;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class CustomHeaderMenuSample extends ShowcasePanel {
     private static final String DESCRIPTION = "This example illustrates how you can customize header context menus.";
@@ -72,7 +72,7 @@ public class CustomHeaderMenuSample extends ShowcasePanel {
         ListGridField continentField = new ListGridField("continent", "Continent");
         countryGrid.setFields(countryCodeField, nameField, capitalField, continentField);
         countryGrid.setCanResizeFields(true);
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
 
         return countryGrid;
     }
@@ -100,7 +100,7 @@ public class CustomHeaderMenuSample extends ShowcasePanel {
             ListGridField continentField = new ListGridField("continent", "Continent");
             setFields(countryCodeField, nameField, capitalField, continentField);
 
-            setData(CountryData.getRecords());
+            setData(CountrySampleData.getRecords());
         }
     }
 
