@@ -10,8 +10,7 @@ import com.smartgwt.client.widgets.grid.events.EditorExitEvent;
 import com.smartgwt.client.widgets.grid.events.EditorExitHandler;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
-import com.smartgwt.sample.showcase.client.data.CountryRecord;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class GridDataTypesCalculatedSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Click on column headers to sort, or data values to" +
@@ -97,8 +96,7 @@ final ListGridField populationField = new ListGridField("population", "Populatio
         gdpPerCapitaField.setType(ListGridFieldType.FLOAT);
         gdpPerCapitaField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                CountryRecord countryRecord = (CountryRecord) record;
-                long gdpPerCapita = Math.round((countryRecord.getGdp() * 1000000000) / countryRecord.getPopulation());
+                long gdpPerCapita = Math.round((record.getAttributeAsDouble("gdp") * 1000000000) / record.getAttributeAsInt("population"));
 
                 NumberFormat nf = NumberFormat.getFormat("0,000");
                 return "$" + nf.format(gdpPerCapita);
@@ -107,8 +105,7 @@ final ListGridField populationField = new ListGridField("population", "Populatio
 
         gdpPerCapitaField.setSortNormalizer(new SortNormalizer() {
             public Object normalize(ListGridRecord record, String fieldName) {
-                CountryRecord countryRecord = (CountryRecord) record;
-                return countryRecord.getGdp() / countryRecord.getPopulation();
+                return record.getAttributeAsDouble("gdp") / record.getAttributeAsInt("population");
             }
         });
 
@@ -123,7 +120,7 @@ final ListGridField populationField = new ListGridField("population", "Populatio
         });
 
         countryGrid.setFields(countryCodeField, nameField, populationField, gdpField, gdpPerCapitaField);
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
         canvas.addChild(countryGrid);
 
         return canvas;
