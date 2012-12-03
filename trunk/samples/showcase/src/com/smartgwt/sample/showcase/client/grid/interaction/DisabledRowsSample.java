@@ -4,11 +4,11 @@ import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
-import com.smartgwt.sample.showcase.client.data.CountryRecord;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class DisabledRowsSample extends ShowcasePanel {
     private static final String DESCRIPTION = "All \"Europe\" country records in this grid are disabled. Mouse over or drag the enabled rows, or click on any values in this grid. Notice the dragging behaviour above and below the disabled rows.";
@@ -33,9 +33,9 @@ public class DisabledRowsSample extends ShowcasePanel {
 
     public Canvas getViewPanel() {
 
-        CountryRecord[] records = CountryData.getNewRecords();
-        for (CountryRecord record : records) {
-            if (record.getContinent().equals("Europe")) {
+        ListGridRecord[] records = CountrySampleData.getRecords();
+        for (ListGridRecord record : records) {
+            if (record.getAttributeAsString("continent").equals("Europe")) {
                 record.setEnabled(false);
             }
         }

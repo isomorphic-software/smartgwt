@@ -10,7 +10,7 @@ import com.smartgwt.client.widgets.grid.events.SelectionChangedHandler;
 import com.smartgwt.client.widgets.grid.events.SelectionEvent;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class SingleSelectSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Click to select any single row in the grid.";
@@ -62,7 +62,7 @@ public class SingleSelectSample extends ShowcasePanel {
         ListGridField continentField = new ListGridField("continent", "Continent");
         countryGrid.setFields(countryCodeField, nameField, capitalField, continentField);
 
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
         countryGrid.addSelectionChangedHandler(new SelectionChangedHandler() {
             public void onSelectionChanged(SelectionEvent event) {
                 selectedCountriesGrid.setData(countryGrid.getSelection());

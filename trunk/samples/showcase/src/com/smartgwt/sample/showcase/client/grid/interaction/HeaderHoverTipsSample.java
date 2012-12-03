@@ -7,7 +7,7 @@ import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class HeaderHoverTipsSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Move the mouse over a column header and pause (hover) for a longer description of that column.";
@@ -56,7 +56,7 @@ public class HeaderHoverTipsSample extends ShowcasePanel {
 
         countryGrid.setFields(countryCodeField, nameField, capitalField, nationHoodField);
         countryGrid.setCanResizeFields(true);
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
 
         return countryGrid;
     }

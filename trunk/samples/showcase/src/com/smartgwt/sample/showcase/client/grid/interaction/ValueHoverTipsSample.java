@@ -13,8 +13,7 @@ import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
-import com.smartgwt.sample.showcase.client.data.CountryRecord;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class ValueHoverTipsSample extends ShowcasePanel {
 
@@ -70,15 +69,14 @@ public class ValueHoverTipsSample extends ShowcasePanel {
         governmentField.setShowHover(true);
         governmentField.setHoverCustomizer(new HoverCustomizer() {
             public String hoverHTML(Object value, ListGridRecord record, int rowNum, int colNum) {
-                CountryRecord countryRecord = (CountryRecord) record;
-                int governmentDesc = countryRecord.getGovernmentDesc();
+                int governmentDesc = record.getAttributeAsInt("government_desc");
                 return governmentDescription[governmentDesc];
             }
         });
 
         countryGrid.setFields(countryCodeField, nameField, governmentField);
         countryGrid.setCanResizeFields(true);
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
         canvas.addChild(countryGrid);
 
         IButton everyCell = new IButton("Show Hover on every cell");

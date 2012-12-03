@@ -29,7 +29,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
 
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class CellSelectionSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Grids support cell-level selection.  Click " + 
@@ -92,7 +92,7 @@ public class CellSelectionSample extends ShowcasePanel {
         ListGridField continentField = new ListGridField("continent", "Continent");
         countryGrid.setFields(countryCodeField, nameField, capitalField, continentField);
 
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
 
         countryGrid.addCellSelectionChangedHandler(new CellSelectionChangedHandler() {
             public void onCellSelectionChanged(CellSelectionChangedEvent event) {
