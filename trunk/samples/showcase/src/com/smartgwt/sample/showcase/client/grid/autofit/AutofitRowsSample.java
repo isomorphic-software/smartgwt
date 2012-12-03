@@ -9,10 +9,11 @@ import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
-import com.smartgwt.sample.showcase.client.data.CountryRecord;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
+import com.smartgwt.client.data.Record;
 
 public class AutofitRowsSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Click the buttons to show different numbers of records. The grid resizes to fit all rows without scrolling.";
@@ -60,12 +61,12 @@ public class AutofitRowsSample extends ShowcasePanel {
 
         canvas.addChild(countryGrid);
 
-        final CountryRecord[] records = CountryData.getRecords();
+        final ListGridRecord[] records = CountrySampleData.getRecords();
 
-        final CountryRecord[] records5 = new CountryRecord[5];
+        final ListGridRecord[] records5 = new ListGridRecord[5];
         System.arraycopy(records, 0, records5, 0, 5);
 
-        final CountryRecord[] records10 = new CountryRecord[10];
+        final ListGridRecord[] records10 = new ListGridRecord[10];
         System.arraycopy(records, 0, records10, 0, 10);
 
         IButton show5Button = new IButton("Show 5");

@@ -11,7 +11,7 @@ import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class GridSortSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Click on any column header to sort by that column. To reverse the sort direction, click on the same " +
@@ -79,7 +79,7 @@ public class GridSortSample extends ShowcasePanel {
         });
 
         countryGrid.setFields(countryCodeField, nameField, populationField, areaField);
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
 
         // initial sort on Population, high-to-low
         countryGrid.setSortField(2);

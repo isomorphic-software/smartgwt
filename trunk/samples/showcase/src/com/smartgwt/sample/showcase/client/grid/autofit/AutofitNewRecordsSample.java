@@ -9,10 +9,10 @@ import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryRecord;
 
 public class AutofitNewRecordsSample extends ShowcasePanel {
 
@@ -37,12 +37,20 @@ public class AutofitNewRecordsSample extends ShowcasePanel {
         }
     }
 
+    public ListGridRecord createRecord(String countryCode, String countryName, int population) {
+        ListGridRecord record = new ListGridRecord();
+    	record.setAttribute("countryCode", countryCode);
+    	record.setAttribute("countryName", countryName);
+    	record.setAttribute("population", population);
+        return record;
+    }
+
     public Canvas getViewPanel() {
 
-        CountryRecord[] data = new CountryRecord[]{
-                new CountryRecord("US", "United States", 298444215),
-                new CountryRecord("CH", "China", 1313973713),
-                new CountryRecord("JA", "Japan", 127463611)
+        ListGridRecord[] data = new ListGridRecord[]{
+                createRecord("US", "United States", 298444215),
+                createRecord("CH", "China", 1313973713),
+                createRecord("JA", "Japan", 127463611)
         };
 
         final ListGrid countryGrid = new ListGrid();

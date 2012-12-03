@@ -11,7 +11,7 @@ import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class DisableSortSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Sorting is disabled on the \"Flag\" column. Click on any other column header to sort on the corresponding column.";
@@ -79,7 +79,7 @@ public class DisableSortSample extends ShowcasePanel {
         });
 
         countryGrid.setFields(countryCodeField, nameField, populationField, areaField);
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
 
         // initial sort on Population, high-to-low
         countryGrid.setSortField(2);

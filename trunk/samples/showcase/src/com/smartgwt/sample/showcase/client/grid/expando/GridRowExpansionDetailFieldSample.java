@@ -8,7 +8,7 @@ import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class GridRowExpansionDetailFieldSample extends ShowcasePanel {
     private static final String DESCRIPTION =
@@ -54,7 +54,7 @@ public class GridRowExpansionDetailFieldSample extends ShowcasePanel {
         ListGridField continentField = new ListGridField("continent", "Continent");
         listGrid.setFields(nameField, capitalField, continentField);
 
-        listGrid.setData(CountryData.getRecords());
+        listGrid.setData(CountrySampleData.getRecords());
 
         return listGrid;
     }
