@@ -14,7 +14,7 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class GridCellWidgetsSample extends ShowcasePanel {
     private static final String DESCRIPTION = "<p>This example illustrates embedding arbitrary widgets in ListGrid cells. Notice how reordering the column with widgets " +
@@ -126,7 +126,7 @@ public class GridCellWidgetsSample extends ShowcasePanel {
 
         countryGrid.setFields(countryCodeField, nameField, capitalField, continentField, buttonField, iconField);
         countryGrid.setCanResizeFields(true);
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
 
         return countryGrid;
     }

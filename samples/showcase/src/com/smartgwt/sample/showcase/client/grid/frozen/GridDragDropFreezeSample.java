@@ -6,10 +6,10 @@ import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
-import com.smartgwt.sample.showcase.client.data.CountryRecord;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 
 public class GridDragDropFreezeSample extends ShowcasePanel {
@@ -36,12 +36,12 @@ public class GridDragDropFreezeSample extends ShowcasePanel {
 
     public Canvas getViewPanel() {
 
-        CountryRecord[] countryRecords = CountryData.getNewRecords();
-        CountryRecord[] countryData1 = new CountryRecord[7];
-        CountryRecord[] countryData2 = new CountryRecord[8];
+        ListGridRecord[] countryRecords = CountrySampleData.getRecords();
+        ListGridRecord[] countryData1 = new ListGridRecord[7];
+        ListGridRecord[] countryData2 = new ListGridRecord[8];
 
         for (int i = 0; i < countryRecords.length; i++) {
-            CountryRecord countryRecord = countryRecords[i];
+        	ListGridRecord countryRecord = countryRecords[i];
             if (i < 7) {
                 countryData1[i] = countryRecord;
             } else {

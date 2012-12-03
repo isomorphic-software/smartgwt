@@ -8,8 +8,7 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.*;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
-import com.smartgwt.sample.showcase.client.data.CountryRecord;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class SortDataTypesSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Click on any column header to sort by that column. The \"Nationhood\", \"Area\", and \"GDP (per capita)\" " +
@@ -73,8 +72,7 @@ public class SortDataTypesSample extends ShowcasePanel {
         gdpPerCapitaField.setAlign(Alignment.RIGHT);
         gdpPerCapitaField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                CountryRecord countryRecord = (CountryRecord) record;
-                long gdpPerCapita = Math.round((countryRecord.getGdp() * 1000000000) / countryRecord.getPopulation());
+                long gdpPerCapita = Math.round((record.getAttributeAsDouble("gdp") * 1000000000) / record.getAttributeAsInt("population"));
 
                 NumberFormat nf = NumberFormat.getFormat("0,000");
                 return "$" + nf.format(gdpPerCapita);
@@ -83,13 +81,12 @@ public class SortDataTypesSample extends ShowcasePanel {
 
         gdpPerCapitaField.setSortNormalizer(new SortNormalizer() {
             public Object normalize(ListGridRecord record, String fieldName) {
-                CountryRecord countryRecord = (CountryRecord) record;
-                return countryRecord.getGdp() / countryRecord.getPopulation();
+                return record.getAttributeAsDouble("gdp") / record.getAttributeAsInt("population");
             }
         });
 
         countryGrid.setFields(countryCodeField, nameField, independenceField, areaField, gdpPerCapitaField);
-        countryGrid.setData(CountryData.getRecords());
+        countryGrid.setData(CountrySampleData.getRecords());
 
         // initial sort on Area, high-to-low
         countryGrid.setSortField(3);
