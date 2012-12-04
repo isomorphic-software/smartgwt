@@ -18,7 +18,8 @@ package com.smartgwt.client.data;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.core.DataClass;
-import com.smartgwt.client.types.ValueEnum;
+import com.smartgwt.client.types.RelativeDateRangePosition;
+import com.smartgwt.client.util.EnumUtil;
 import com.smartgwt.client.util.JSOHelper;
 
 /**
@@ -33,6 +34,7 @@ import com.smartgwt.client.util.JSOHelper;
  * @see com.smartgwt.client.data.DateRange#setRelativeEndDate(RelativeDate)
  */
 public class RelativeDate extends DataClass {
+    private RelativeDateRangePosition rangePosition;
     private String value;
 
     /**
@@ -201,20 +203,30 @@ public class RelativeDate extends DataClass {
         this.value = value;
     }
 
+    public RelativeDate(RelativeDateRangePosition rangePosition, String value) {
+        this(value);
+        this.rangePosition = rangePosition;
+    }
+
     public RelativeDate(JavaScriptObject jsObj) {
         super(jsObj);
+        rangePosition = EnumUtil.getEnum(RelativeDateRangePosition.values(), JSOHelper.getAttribute(jsObj, "rangePosition"));
         value = JSOHelper.getAttribute(jsObj, "value");
+    }
+
+    public final RelativeDateRangePosition getRangePosition() {
+        return rangePosition;
     }
 
     /**
      * @return the string representation of the relative date
      * @see #RelativeDate(String)
      */
-    public String getValue() {
+    public final String getValue() {
         return value;
     }
 
-    private native String mapRelativeDateShortcut(String relativeDateString)/*-{
+    private static native String mapRelativeDateShortcut(String relativeDateString)/*-{
         return $wnd.isc.DateUtil.mapRelativeDateShortcut(relativeDateString);
     }-*/;
 
@@ -222,6 +234,9 @@ public class RelativeDate extends DataClass {
     public JavaScriptObject getJsObj() {
         JavaScriptObject jsObj = JavaScriptObject.createObject();
         JSOHelper.setAttribute(jsObj, "_constructor", "RelativeDate");
+        if (rangePosition != null) {
+            JSOHelper.setAttribute(jsObj, "rangePosition", rangePosition.getValue());
+        }
         JSOHelper.setAttribute(jsObj, "value", mapRelativeDateShortcut(value));
         return jsObj;
     }
