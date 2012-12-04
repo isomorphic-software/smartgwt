@@ -226,8 +226,8 @@ public class RelativeDate extends DataClass {
         return value;
     }
 
-    private static native String mapRelativeDateShortcut(String relativeDateString)/*-{
-        return $wnd.isc.DateUtil.mapRelativeDateShortcut(relativeDateString);
+    private static native String mapRelativeDateShortcut(String relativeDateString, String rangePosition)/*-{
+        return $wnd.isc.DateUtil.mapRelativeDateShortcut(relativeDateString, rangePosition);
     }-*/;
 
     @Override
@@ -237,7 +237,7 @@ public class RelativeDate extends DataClass {
         if (rangePosition != null) {
             JSOHelper.setAttribute(jsObj, "rangePosition", rangePosition.getValue());
         }
-        JSOHelper.setAttribute(jsObj, "value", mapRelativeDateShortcut(value));
+        JSOHelper.setAttribute(jsObj, "value", mapRelativeDateShortcut(value, rangePosition == null ? null : rangePosition.getValue()));
         return jsObj;
     }
 }
