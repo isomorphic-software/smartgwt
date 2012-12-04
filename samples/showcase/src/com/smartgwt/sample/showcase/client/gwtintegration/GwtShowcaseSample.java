@@ -11,7 +11,7 @@ import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class GwtShowcaseSample extends ShowcasePanel {
 
@@ -124,7 +124,7 @@ public class GwtShowcaseSample extends ShowcasePanel {
             ListGridField continentField = new ListGridField("continent", "Continent");
             setFields(countryCodeField, nameField, capitalField, continentField);
 
-            setData(CountryData.getRecords());
+            setData(CountrySampleData.getRecords());
         }
     }
 

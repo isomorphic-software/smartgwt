@@ -22,6 +22,7 @@ import java.util.Map;
 import com.google.gwt.user.client.Window;
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.RecordList;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Button;
 import com.smartgwt.client.widgets.Canvas;
@@ -52,7 +53,7 @@ import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class ListGridItemSample extends ShowcasePanel {
     private static final String DESCRIPTION =
@@ -192,7 +193,7 @@ public class ListGridItemSample extends ShowcasePanel {
         TextItem nameField = new TextItem("Name");
         
         ListGridItem countryField = new ListGridItem("countryName");
-        countryField.setGridData(CountryData.getRecords());
+        countryField.setGridData(CountrySampleData.getRecords());
         countryField.setGridFields(new ListGridField("countryName"), 
                                    new ListGridField("capital"));
         

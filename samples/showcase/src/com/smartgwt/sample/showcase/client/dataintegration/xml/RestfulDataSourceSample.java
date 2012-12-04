@@ -14,6 +14,7 @@ import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
@@ -21,7 +22,6 @@ import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryRecord;
 
 public class RestfulDataSourceSample extends ShowcasePanel {
 
@@ -47,6 +47,15 @@ public class RestfulDataSourceSample extends ShowcasePanel {
         public String getDescription() {
             return DESCRIPTION;
         }
+    }
+
+    public ListGridRecord createRecord(String countryCode, String countryName, String capital, String continent) {
+        ListGridRecord record = new ListGridRecord();
+    	record.setAttribute("continent", continent);
+    	record.setAttribute("countryName", countryName);
+    	record.setAttribute("countryCode", countryCode);
+    	record.setAttribute("capital", capital);
+        return record;
     }
 
     public Canvas getViewPanel() {
@@ -119,7 +128,7 @@ public class RestfulDataSourceSample extends ShowcasePanel {
         addButton.setWidth(150);
         addButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                countryGrid.addData(new CountryRecord("A1", "New Value", "New Value", "New Value"));
+                countryGrid.addData(createRecord("A1", "New Value", "New Value", "New Value"));
                 addButton.disable();
             }
         });
@@ -129,7 +138,7 @@ public class RestfulDataSourceSample extends ShowcasePanel {
         updateButton.setWidth(150);
         updateButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                countryGrid.updateData(new CountryRecord("US", "Edited Value", "Edited Value", "Edited Value"));
+                countryGrid.updateData(createRecord("US", "Edited Value", "Edited Value", "Edited Value"));
                 updateButton.disable();
             }
         });
@@ -139,8 +148,8 @@ public class RestfulDataSourceSample extends ShowcasePanel {
         removeButton.setWidth(150);
         removeButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                CountryRecord record = new CountryRecord();
-                record.setCountryCode("UK");
+                ListGridRecord record = new ListGridRecord();
+                record.setAttribute("countryCode", "UK");
                 countryGrid.removeData(record);
                 removeButton.disable();
             }
