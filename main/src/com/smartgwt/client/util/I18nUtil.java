@@ -177,8 +177,8 @@ public class I18nUtil {
             $wnd.isc.DateChooser.addProperties({todayButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateChooser_todayButtonTitle()()});
             $wnd.isc.DateChooser.addProperties({cancelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateChooser_cancelButtonTitle()()});
             $wnd.isc.DateChooser.addProperties({firstDayOfWeek:Number(messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateChooser_firstDayOfWeek()())});
-            $wnd.isc.DateChooser.addProperties({fiscalYearFieldTitle:Number(messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateChooser_fiscalYearFieldTitle()())});
-            $wnd.isc.DateChooser.addProperties({weekFieldTitle:Number(messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateChooser_weekFieldTitle()())});
+            $wnd.isc.DateChooser.addProperties({fiscalYearFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateChooser_fiscalYearFieldTitle()()});
+            $wnd.isc.DateChooser.addProperties({weekFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateChooser_weekFieldTitle()()});
         }
 
         if($wnd.isc.DynamicForm) {
