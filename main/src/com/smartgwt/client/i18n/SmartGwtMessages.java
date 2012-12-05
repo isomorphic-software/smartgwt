@@ -466,6 +466,24 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dateChooser_todayButtonTitle();
 
   /**
+   * Translated "Year".
+   * 
+   * @return translated "Year"
+   */
+  @DefaultMessage("Year")
+  @Key("dateChooser_fiscalYearFieldTitle")
+  String dateChooser_fiscalYearFieldTitle();
+  
+  /**
+   * Translated "Wk".
+   * 
+   * @return translated "Wk"
+   */
+  @DefaultMessage("Wk")
+  @Key("dateChooser_weekFieldTitle")
+  String dateChooser_weekFieldTitle();
+
+  /**
    * Translated "Choose a day".
    * 
    * @return translated "Choose a day"
