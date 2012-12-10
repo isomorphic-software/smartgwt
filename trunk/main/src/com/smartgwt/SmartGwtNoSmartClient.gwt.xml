@@ -21,6 +21,7 @@ This module is useful if you already have the SmartClient resources available in
   	<set-configuration-property name="document.compatMode" value="BackCompat"/>
 
   	<source path='client'/>
+  	<super-source path='deprecated'/>
   	<source path='logicalstructure'/>
 
 	<generate-with class="com.smartgwt.rebind.MetaBeanFactoryGenerator">

@@ -35,6 +35,7 @@ include them yourself in your host html file as follows :
   	<set-configuration-property name="document.compatMode" value="BackCompat"/>
 
   	<source path='client'/>
+  	<super-source path='deprecated'/>
   	<source path='logicalstructure'/>
 
 	<generate-with class="com.smartgwt.rebind.MetaBeanFactoryGenerator">

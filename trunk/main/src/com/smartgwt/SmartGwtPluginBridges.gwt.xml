@@ -29,6 +29,7 @@ THIS MODULE HAS BEEN DEPRECATED. USE the com.smartgwt.PluginBridgesWidgets modul
     <entry-point class='com.smartgwt.client.PluginBridges_DeprecatedEntryPoint'/>
     
   	<source path='client'/>
+  	<super-source path='deprecated'/>
   	<source path='logicalstructure'/>
   	
 </module>
