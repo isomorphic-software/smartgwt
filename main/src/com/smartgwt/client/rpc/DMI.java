@@ -17,23 +17,9 @@ public class DMI {
 	 * @param callback Callback to execute when the DMI call completes
 	 * @param arguments array of arguments to pass to the server side method
 	 */
-	public native static void call(String appID, String className, String methodName, RPCCallback callback, Object[] arguments) /*-{
-		var jscallback = $entry(function (rpcResponse, data, rpcRequest) {
-			    var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcResponse);
-                var requestJ = @com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcRequest);
-                if(callback != null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(responseJ, data, requestJ);
-            });
-        var jsParams = arguments == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;Z)(arguments, true);
-
-        $wnd.isc.DMI.call({
-        	appID:appID,
-        	className:className,
-        	methodName:methodName,
-        	arguments:jsParams,
-        	callback:jscallback
-        });
-
-	}-*/;
+    public static void call(String appID, String className, String methodName, RPCCallback callback, Object[] arguments) {
+        call(appID, className, methodName, callback, arguments, null);
+    }
 
     /**
      * Static method to call a server-side DMI method exposed via a
@@ -50,6 +36,13 @@ public class DMI {
      */
     public native static void call(String appID, String className, String methodName,
             RPCCallback callback, Object[] arguments, RPCRequest requestParams) /*-{
+
+        var licenseType = @com.smartgwt.client.util.SC::getLicenseType()();
+        if ("LGPL" == licenseType) {
+            var errorMessage = "The DMI class requires Smart GWT Pro or above.";
+            @com.smartgwt.client.util.SC::logWarn(Ljava/lang/String;)(errorMessage);
+            throw @java.lang.UnsupportedOperationException::new(Ljava/lang/String;)(errorMessage);
+        }
 
         var jscallback = $entry(function (rpcResponse, data, rpcRequest) {
                 var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcResponse);
