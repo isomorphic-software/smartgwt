@@ -16,14 +16,18 @@
 
 package com.smartgwt.client.util;
 
-import java.util.HashSet;
-
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.smartgwt.client.widgets.Dialog;
+import com.google.gwt.user.client.Window;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.Dialog;
 
 public class SC {
     public static final String REF = "__ref";
+
+    public static native String getLicenseType() /*-{
+        return $wnd.isc.licenseType;
+    }-*/;
 
     public static native String generateID() /*-{        
         return $wnd.isc.ClassFactory.getNextGlobalID();
@@ -47,6 +51,53 @@ public class SC {
     public static native void showConsole()/*-{
         $wnd.isc.showConsole();
     }-*/;
+
+    /**
+     * Opens the DataSource admin console in a separate window.
+     *
+     * <p><em><b>Requires Smart GWT Pro or better.</b></em>
+     */
+    public static void openDataSourceConsole() {
+        if ("LGPL".equals(getLicenseType())) {
+            final String errorMessage = "The DataSource admin console feature requires Smart GWT Pro or better.";
+            logWarn(errorMessage);
+            throw new UnsupportedOperationException();
+        }
+        Window.open(GWT.getModuleBaseURL() + "tools/adminConsole.jsp", "ds_blank", null);
+    }
+
+    /**
+     * Opens the SmartClient Visual Builder in a separate window. Note that the Visual Builder is capable of generating
+     * DataSources as well, however unlike the DataSource Generator Wizard, it cannot generate DataSources in batches.
+     *
+     * <p><em><b>Requires Smart GWT Pro or better.</b></em>
+     */
+    public static void openVisualBuilder() {
+        if ("LGPL".equals(getLicenseType())) {
+            final String errorMessage = "The VisualBuilder feature requires Smart GWT Pro or better.";
+            logWarn(errorMessage);
+            throw new UnsupportedOperationException();
+        }
+        Window.open(GWT.getModuleBaseURL() + "tools/visualBuilder/index.jsp", "vb_blank", null);
+    }
+
+    /**
+     * Opens the DataSource Generator Wizard in a separate window.
+     *
+     * <p><em><b>Requires Smart GWT Enterprise or Eval.</b></em>
+     */
+    public static void openDataSourceGenerator() {
+        final String licenseType = getLicenseType();
+        if (!"Enterprise".equals(licenseType) &&
+            !"Eval".equals(licenseType) &&
+            !("$" + "{" + "licenseType}").equals(licenseType))
+        {
+            final String errorMessage = "The DataSource Generator Wizard feature requires Smart GWT Enterprise or Eval.";
+            logWarn(errorMessage);
+            throw new UnsupportedOperationException();
+        }
+        Window.open(GWT.getModuleBaseURL() + "tools/dsGenerator.jsp", "ds_wizard_blank", null);
+    }
 
     /**
      * Gets the name of this underlying SmartClient class as a string.
