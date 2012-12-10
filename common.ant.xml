@@ -139,7 +139,7 @@
 	</presetdef>
 
 	<presetdef name="gwt.javac">
-		<javac srcdir="src" destdir="${javac.out}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="${javac.source}" nowarn="${javac.nowarn}" encoding="${javac.encoding}" target="1.5"/>
+		<javac srcdir="src" excludes="com/smartgwt/deprecated/**" destdir="${javac.out}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="${javac.source}" nowarn="${javac.nowarn}" encoding="${javac.encoding}" target="1.5"/>
 	</presetdef>
 
 	<presetdef name="gwt.jar">
