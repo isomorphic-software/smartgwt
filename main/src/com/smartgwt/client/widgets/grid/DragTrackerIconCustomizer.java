@@ -3,7 +3,7 @@ package com.smartgwt.client.widgets.grid;
 import com.smartgwt.client.data.Record;
 
 /**
- * Hover customizer object for returning custom HTML to display in a hover prompt for ListGrid cells
+ * Hover customizer object for returning a different icon when a user has selected record(s) and is dragging them.
  */
 public abstract class DragTrackerIconCustomizer {
     
@@ -22,13 +22,9 @@ public abstract class DragTrackerIconCustomizer {
     }
     
     /**
-     * hoverHTML() should be implemented and return the string of HTML to display when the user hovers
-     * over ListGrid cells
-     * @param value
-     * @param record
-     * @param rowNum
-     * @param colNum
+     * 
+     * @param records being dragged.
      * @return HTML to display
      */
-    public abstract String setDragTrackerIcon(Record[] records);
+    public abstract String getDragTrackerIcon(Record[] records);
 }
