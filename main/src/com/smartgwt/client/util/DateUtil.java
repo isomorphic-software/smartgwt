@@ -122,7 +122,7 @@ public class DateUtil {
      * suitable for passing to $wnd.isc.Date.prototype.setNormalDisplayFormat(), setShortDisplayFormat(), or
      * setShortDatetimeDisplayFormat().
      */
-    private static final native JavaScriptObject convertDateDisplayFormatterToJS(DateDisplayFormatter formatter) /*-{
+    private static final native Object convertDateDisplayFormatterToJS(DateDisplayFormatter formatter) /*-{
         var functionName = @com.smartgwt.client.util.DateUtil.NativeDateDisplayFormatter::nativeNameOf(Lcom/smartgwt/client/util/DateDisplayFormatter;)(formatter);
         return functionName || function () {
                 var date = this;
@@ -214,7 +214,7 @@ public class DateUtil {
      * the string name of that function.  The return value is suitable for passing to
      * $wnd.isc.Time.setShortDisplayFormat() or setNormalDisplayFormat().
      */
-    private static final native JavaScriptObject convertTimeDisplayFormatterToJS(DateDisplayFormatter formatter) /*-{
+    private static final native Object convertTimeDisplayFormatterToJS(DateDisplayFormatter formatter) /*-{
         var functionName = @com.smartgwt.client.util.DateUtil.NativeTimeDisplayFormatter::nativeNameOf(Lcom/smartgwt/client/util/DateDisplayFormatter;)(formatter);
         return functionName || function () {
                 var date = this;
