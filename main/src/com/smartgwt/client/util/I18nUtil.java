@@ -276,8 +276,8 @@ public class I18nUtil {
             $wnd.isc.ListGrid.addProperties({autoFitFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_autoFitFieldText()()});
             $wnd.isc.ListGrid.addProperties({autoFitAllText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_autoFitAllText()()});
             $wnd.isc.ListGrid.addProperties({fieldVisibilitySubmenuTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_fieldVisibilitySubmenuTitle()()});
-            $wnd.isc.ListGrid.addProperties({freezeFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_freezeFieldText()() + ' ${viewer.getSummaryTitle(field)}'});
-            $wnd.isc.ListGrid.addProperties({unfreezeFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_unfreezeFieldText()() + ' ${viewer.getSummaryTitle(field)}'});
+            $wnd.isc.ListGrid.addProperties({freezeFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_freezeFieldText()() + ' ${title}'});
+            $wnd.isc.ListGrid.addProperties({unfreezeFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_unfreezeFieldText()() + ' ${title}'});
             $wnd.isc.ListGrid.addProperties({groupByText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_groupByText()() + ' ${title}'});
             $wnd.isc.ListGrid.addProperties({ungroupText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_ungroupText()()});
         }
