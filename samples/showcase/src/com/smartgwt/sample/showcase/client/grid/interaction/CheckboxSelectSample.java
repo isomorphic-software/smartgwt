@@ -7,8 +7,8 @@ import com.smartgwt.client.types.SelectionStyle;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
-import com.smartgwt.client.widgets.grid.events.SelectionChangedHandler;
-import com.smartgwt.client.widgets.grid.events.SelectionEvent;
+import com.smartgwt.client.widgets.grid.events.SelectionUpdatedHandler;
+import com.smartgwt.client.widgets.grid.events.SelectionUpdatedEvent;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CountryData;
@@ -66,8 +66,8 @@ public class CheckboxSelectSample extends ShowcasePanel {
         countryGrid.setFields(countryCodeField, nameField, capitalField, continentField);
 
         countryGrid.setData(CountryData.getRecords());
-        countryGrid.addSelectionChangedHandler(new SelectionChangedHandler() {
-            public void onSelectionChanged(SelectionEvent event) {
+        countryGrid.addSelectionUpdatedHandler(new SelectionUpdatedHandler() {
+            public void onSelectionUpdated(SelectionUpdatedEvent event) {
                 selectedCountriesGrid.setData(countryGrid.getSelection());
             }
         });
