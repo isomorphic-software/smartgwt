@@ -1,3 +1,18 @@
+/*
+ * Smart GWT (GWT for SmartClient)
+ * Copyright 2008 and beyond, Isomorphic Software, Inc.
+ *
+ * Smart GWT is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License version 3
+ * as published by the Free Software Foundation.  Smart GWT is also
+ * available under typical commercial license terms - see
+ * http://smartclient.com/license
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ */
+
 package com.smartgwt.client.rpc;
 
 /**
@@ -50,7 +65,7 @@ public class DMI {
                 if(callback != null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(responseJ, data, requestJ);
             });
         var jsParams = arguments == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;Z)(arguments, true);
-        var jsRequestParams = requestParams == null ? null : requestParams.@com.smartgwt.client.rpc.RPCRequest::getJsObj();
+        var jsRequestParams = requestParams == null ? null : requestParams.@com.smartgwt.client.rpc.RPCRequest::getJsObj()();
 
         $wnd.isc.DMI.call({
             appID: appID,
