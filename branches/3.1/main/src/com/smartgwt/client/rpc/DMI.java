@@ -57,7 +57,7 @@ public class DMI {
                 if(callback != null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(responseJ, data, requestJ);
             });
         var jsParams = arguments == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;Z)(arguments, true);
-        var jsRequestParams = requestParams == null ? null : requestParams.@com.smartgwt.client.rpc.RPCRequest::getJsObj();
+        var jsRequestParams = requestParams == null ? null : requestParams.@com.smartgwt.client.rpc.RPCRequest::getJsObj()();
 
         $wnd.isc.DMI.call({
             appID: appID,
