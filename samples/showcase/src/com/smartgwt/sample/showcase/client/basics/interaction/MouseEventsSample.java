@@ -52,9 +52,9 @@ public class MouseEventsSample extends ShowcasePanel {
         label.setTop(40);
         label.addMouseWheelHandler(new MouseWheelHandler() {
             public void onMouseWheel(MouseWheelEvent event) {
-                int wheelDelta = EventHandler.getWheelDelta();
+                float wheelDelta = EventHandler.getWheelDelta();
 
-                int newSize = label.getWidth() + wheelDelta * label.getZoomMultiplier();
+                int newSize = (int)(label.getWidth() + wheelDelta * label.getZoomMultiplier());
                 if (newSize < label.getMinSize()) {
                     newSize = label.getMinSize();
                 } else if (newSize > label.getMaxSize()) {
