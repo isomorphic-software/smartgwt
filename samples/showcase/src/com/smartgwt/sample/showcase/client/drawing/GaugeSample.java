@@ -2,6 +2,7 @@ package com.smartgwt.sample.showcase.client.drawing;
 
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.drawing.Gauge;
+import com.smartgwt.client.widgets.drawing.GaugeSector;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.ButtonItem;
 import com.smartgwt.client.widgets.form.fields.CheckboxItem;
@@ -77,15 +78,14 @@ public class GaugeSample extends ShowcasePanel {
         gauge.setNumMajorTicks(11);
         gauge.setNumMinorTicks(101);
         gauge.setValue(45);
-        gauge.addSector(10);
-        gauge.addSector(30);
-        gauge.addSector(60);
-        gauge.addSector(90);
-        gauge.setSectorFillColor(0, "#FF0000");
-        gauge.setSectorFillColor(1, "#FF6600");
-        gauge.setSectorFillColor(2, "#FFFF00");
-        gauge.setSectorFillColor(3, "#99CC00");
-        gauge.setSectorFillColor(4, "#00FF00");
+
+        gauge.setSectors(new GaugeSector[]{
+            new GaugeSector(10, "#FF0000"),
+            new GaugeSector(30, "#FF6600"),
+            new GaugeSector(60, "#FFFF00"),
+            new GaugeSector(90, "#99CC00"),
+            new GaugeSector(100, "#00FF00")
+        });
 
         configForm = new DynamicForm();
         configForm.setNumCols(3);
