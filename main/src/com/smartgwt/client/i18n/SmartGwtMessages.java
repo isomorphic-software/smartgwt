@@ -3040,11 +3040,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String validator_mustBeLongerThan();
 
   /**
-   * Translated "Must be less than $max characters".
+   * Translated "Must be no more than $max characters".
    * 
-   * @return translated "Must be less than $max characters"
+   * @return translated "Must be no more than $max characters"
    */
-  @DefaultMessage("Must be less than $max characters")
+  @DefaultMessage("Must be no more than $max characters")
   @Key("validator_mustBeShorterThan")
   String validator_mustBeShorterThan();
 
