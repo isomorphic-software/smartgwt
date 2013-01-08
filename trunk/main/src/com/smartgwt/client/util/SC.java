@@ -115,7 +115,7 @@ public class SC {
      * @return true if firebug is enabled
      */
     public static native boolean hasFirebug() /*-{
-		 return $wnd.isc.Browser.isMoz && window.console != null && window.console.trace != null;
+        return ($wnd.isc.Browser.isMoz && $wnd.console != null && ($wnd.console.firebug != null || $wnd.console.exception != null));
     }-*/;
 
     public static native boolean isIE()/*-{
