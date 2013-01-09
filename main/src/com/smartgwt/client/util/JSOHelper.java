@@ -125,6 +125,10 @@ public class JSOHelper {
         setAttribute(elem, attr, JSOHelper.convertToJavaScriptArray(values));
     }
 
+    public static void setAttribute(JavaScriptObject elem, String attr, float[] values) {
+        setAttribute(elem, attr, JSOHelper.convertToJavaScriptArray(values));
+    }
+
     public static void setAttribute(JavaScriptObject elem, String attr, double[] values) {
         setAttribute(elem, attr, JSOHelper.convertToJavaScriptArray(values));
     }
@@ -1025,10 +1029,12 @@ public class JSOHelper {
                 setAttribute(valueJS, key, convertToJavaScriptArray((Object[]) value));
             } else if (value instanceof int[]) {
                 setAttribute(valueJS, key, convertToJavaScriptArray((int[]) value));
+            } else if (value instanceof float[]) {
+                setAttribute(valueJS, key, convertToJavaScriptArray((float[]) value));
             } else if (value instanceof double[]) {
                 setAttribute(valueJS, key, convertToJavaScriptArray((double[]) value));
             } else if (value instanceof long[]) {
-                setAttribute(valueJS, key, convertToJavaScriptArray((double[]) value));
+                setAttribute(valueJS, key, convertToJavaScriptArray((long[]) value));
             } else if (value instanceof Map) {
             	JavaScriptObject innerMapJS = convertMapToJavascriptObject((Map) value);
             	setAttribute(valueJS, key, innerMapJS);
