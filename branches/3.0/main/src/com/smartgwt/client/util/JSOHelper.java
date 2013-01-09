@@ -117,6 +117,10 @@ public class JSOHelper {
         setAttribute(elem, attr, JSOHelper.convertToJavaScriptArray(values));
     }
 
+    public static void setAttribute(JavaScriptObject elem, String attr, float[] values) {
+        setAttribute(elem, attr, JSOHelper.convertToJavaScriptArray(values));
+    }
+
     public static void setAttribute(JavaScriptObject elem, String attr, double[] values) {
         setAttribute(elem, attr, JSOHelper.convertToJavaScriptArray(values));
     }
@@ -434,6 +438,15 @@ public class JSOHelper {
     }-*/;
 
     public static JavaScriptObject convertToJavaScriptArray(int[] array) {
+        if(array == null) return null;
+        JavaScriptObject jsArray = createJavaScriptArray();
+        for (int i = 0; i < array.length; i++) {
+            JSOHelper.setArrayValue(jsArray, i, array[i]);
+        }
+        return jsArray;
+    }
+
+    public static JavaScriptObject convertToJavaScriptArray(float[] array) {
         if(array == null) return null;
         JavaScriptObject jsArray = createJavaScriptArray();
         for (int i = 0; i < array.length; i++) {
