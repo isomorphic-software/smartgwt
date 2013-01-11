@@ -40,4 +40,8 @@ and manually add the script includes in your host html file.
 	<generate-with class="com.smartgwt.rebind.CanvasMetaBeanFactoryGenerator">
         <when-type-assignable class="com.smartgwt.client.bean.BeanFactory.CanvasMetaFactory" />
     </generate-with>
+    
+    <generate-with class="com.smartgwt.rebind.FormItemMetaBeanFactoryGenerator">
+        <when-type-assignable class="com.smartgwt.client.bean.BeanFactory.FormItemMetaFactory" />
+    </generate-with>
 </module>

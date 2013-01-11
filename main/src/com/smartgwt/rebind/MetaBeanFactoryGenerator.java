@@ -28,6 +28,7 @@ import com.google.gwt.user.rebind.SourceWriter;
 
 import com.smartgwt.client.bean.BeanFactory;
 import com.smartgwt.client.widgets.BaseWidget;
+import com.smartgwt.client.core.DataClass;
 import com.smartgwt.rebind.BeanClass;
 
 import java.io.PrintWriter;
@@ -73,6 +74,7 @@ public class MetaBeanFactoryGenerator extends Generator {
 
             JClassType beanFactoryType = typeOracle.findType(BeanFactory.class.getCanonicalName()).isClass();
             JClassType baseWidgetType = typeOracle.findType(BaseWidget.class.getCanonicalName()).isClass();
+            JClassType dataClassType = typeOracle.findType(DataClass.class.getCanonicalName()).isClass();
 
             // Iterate over the methods defined on the interface
             for (JMethod method : metaFactoryType.getMethods()) {
@@ -99,8 +101,11 @@ public class MetaBeanFactoryGenerator extends Generator {
                 }
 
                 JClassType beanClassType = typeArgs[0];
-                if (!baseWidgetType.isAssignableFrom(beanClassType)) {
-                    logger.log(Type.ERROR, typeName + "::" + method.getName() + ": for now, factories can only be created for Canvas and subclasses.");
+                if (
+                    !baseWidgetType.isAssignableFrom(beanClassType) &&
+                    !dataClassType.isAssignableFrom(beanClassType)
+                ) {
+                    logger.log(Type.ERROR, typeName + "::" + method.getName() + ": for now, factories can only be created for Canvas or DataClass and subclasses.");
                     throw new UnableToCompleteException();
                 }
 

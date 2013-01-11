@@ -280,7 +280,7 @@ public class BeanValueType {
     }
 
     public String getQualifiedTypeName () {
-        return valueType.getParameterizedQualifiedSourceName();
+        return valueType.getQualifiedSourceName();
     }
 
     public String getSimpleFactoryName () {
