@@ -135,7 +135,7 @@ public class SimpleTypeTest extends TestRunner {
                     SimpleType type = new SimpleType();
                     boolean exceptionThrown = false;
                     try {
-                        type.setEditorType(CustomCanvas.class);
+                        type.setEditorType(CustomCanvas.class.getName());
                     }
                     catch (IllegalArgumentException ex) {
                         exceptionThrown = true;
