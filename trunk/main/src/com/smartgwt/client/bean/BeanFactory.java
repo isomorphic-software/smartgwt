@@ -37,9 +37,10 @@ import java.util.Set;
 //
 // Here is a road-map to the mechanics of the whole bean-factory mechanism.
 //
-// The BeanFactory class is the main class. There is one subclass, and one
-// instance, for each BeanClass (which, for now, must be a subclass of
-// Canvas). So, each subclass is a singleton.
+// The BeanFactory class is the main class. There are subclasses for several
+// of the core SmartGWT classes, starting with BaseWidgetBeanFactory. There is 
+// then one subclass, and one instance, for each BeanClass (which, for now,
+// must be a subclass of Canvas). So, each subclass for a BeanClass is a singleton.
 //
 // The main interface is meant to be the static methods on BeanFactory, but
 // you can cache a BeanFactory instance and call the instance methods as well
@@ -150,39 +151,33 @@ import java.util.Set;
  * Utility class for creating objects and setting properties at run-time via
  * reflection-like mechanisms.
  *
- * <p>Subclasses must be generated for each Class you want to use. To trigger
- * the generation of subclasses, see {@link BeanFactory.MetaFactory} and {@link
- * BeanFactory.CanvasMetaFactory}.
+ * <p>Subclasses must be generated for each {@link Class} you want to use. To trigger
+ * the generation of subclasses, see the documentation on
+ * {@link com.smartgwt.client.docs.Reflection registering classes for reflection}.
  *
  * <p>Once the appropriate subclass has been created, you can use the class via
  * the static methods.
  *
  * <p>For the moment, this class only works with subclasses of {@link
- * BaseWidget}.
+ * BaseWidget} or {@link FormItem}.
  */
-public abstract class BeanFactory<BeanClass extends BaseWidget> {
-    // Extending BeanClass from BaseWidget allows us to call getOrCreateJsObj
-    // directly, without needing to generate a method. It is also helpful in
-    // the getJavaScriptProperty and setJavascriptProperty methods below. If
-    // factories are required for other classes, we could either generate
-    // additional methods, or create a common interface for each of the
-    // eligible classes to implement. Or, we could implement subclasses of
-    // BeanFactory for each eligible class, and have the generator pick the
-    // correct subclass.
-
+public abstract class BeanFactory<BeanClass> {
     // --------------------
     // Generator Interfaces
     // --------------------
 
     /**
-    * An interface which you can extend in order to create bean factories.
+    * An interface which you can extend in order to register classes
+    * with the <code>BeanFactory</code> reflection mechanism.
     *
     * <p>In order to use a {@link BeanFactory} for a class, you need to
-    * generate a subclass for each class. You can use {@link
-    * BeanFactory.CanvasMetaFactory} to scan the class path and generate a
-    * <code>BeanFactory</code> for each {@link Canvas} subclass. However, if
-    * you know that you need a <code>BeanFactory</code> only for some classes,
-    * then you can use <code>BeanFactory.MetaFactory</code> instead.
+    * register it by generating a <code>BeanFactory</code> subclass for the
+    * class. You can use {@link BeanFactory.CanvasMetaFactory} to scan the
+    * class path and register every {@link Canvas} subclass (including your
+    * custom subclasses), or use {@link BeanFactory.FormItemMetaFactory} to
+    * regiser every {@link FormItem} subclass. However, if you know that you
+    * only need to register some classes for reflection, then you can use
+    * <code>BeanFactory.MetaFactory</code> instead.
     *
     * <p>Usage is most easily explained with an example. First, you define an
     * interface. (Note that it can be an inner interface.)
@@ -190,7 +185,7 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
     * <blockquote><pre>
     * public interface MyMetaFactory extends BeanFactory.MetaFactory {
     *     BeanFactory&lt;ListGrid&gt; getListGridFactory();
-    *     BeanFactory&lt;TileGrid&gt; findMeTheTileGridBeanFactory();
+    *     BeanFactory&lt;TileGrid&gt; getTileGridBeanFactory();
     * }</pre></blockquote>
     *
     * ... and then you trigger the generation process:
@@ -216,7 +211,7 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
     * 
     * <blockquote><pre>
     * MyMetaFactory metaFactory = GWT.create(MyMetaFactory.class);
-    * BeanFactory&lt;TileGrid&gt; myTileGridFactory = myMetaFactory.findMeTheTileGridBeanFactory();</pre></blockquote>
+    * BeanFactory&lt;TileGrid&gt; myTileGridFactory = myMetaFactory.getTileGridBeanFactory();</pre></blockquote>
     *
     * <p>However, you don't have to do that ... you can ignore the results of <code>GWT.create()</code>
     * and just use the <code>BeanFactory</code> static API:
@@ -228,8 +223,8 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
     *
     * ... except that "TileGrid" would probably be a variable!
     *
-    * <p>You can also use the generated classes in Component XML, by specifying
-    * the fully-qualified class name as the constructor for objects.
+    * <p>You can also use the generated classes in {@link com.smartgwt.client.docs.ComponentXML}, 
+    * by specifying the fully-qualified class name as the constructor for objects.
     *
     * <p>Note that the call to <code>GWT.create()</code> must occur at run-time before
     * the factories are used. However, you can modularize by creating some factories
@@ -263,7 +258,8 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
 
     /**
     * Interface used to trigger the generation and registration of reflection
-    * metadata for Canvas and all its subclasses found in the classpath.
+    * metadata for {@link com.smartgwt.client.widgets.Canvas} and all 
+    * its subclasses found in the classpath (including your custom subclasses).
     *
     * <p>Usage is to simply call <code>GWT.create(BeanFactory.CanvasMetaFactory.class);</code>
     * Note that the return value is not useful -- you would then simply use
@@ -280,7 +276,7 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
     * canvas.draw();</pre></blockquote>
     *
     * <p>Furthermore, the className can also be used as a Constructor in
-    * Component XML. 
+    * {@link com.smartgwt.client.docs.ComponentXML Component XML}. 
     *
     * <p>Alternatively if only specific <code>Canvas</code> types need to be
     * instantiated and configured dynamically, you can generate specific
@@ -294,6 +290,43 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
     * set or retrieved at run-time.
     */
     public static interface CanvasMetaFactory {
+
+    }
+
+    /**
+    * Interface used to trigger the generation and registration of reflection
+    * metadata for {@link com.smartgwt.client.widgets.form.fields.FormItem} and
+    * all its subclasses found in the classpath (including your custom subclasses).
+    *
+    * <p>Usage is to simply call <code>GWT.create(BeanFactory.FormItemMetaFactory.class);</code>
+    * Note that the return value is not useful -- you would then simply use
+    * the {@link BeanFactory} API, like so:
+    *
+    * <blockquote><pre>
+    * GWT.create(BeanFactory.FormItemMetaFactory.class);
+    *
+    * String className = "com.smartgwt.client.widgets.form.fields.TextItem"; 
+    * Object canvas = BeanFactory.newInstance(className);
+    *
+    * BeanFactory.setProperty(canvas, "title", "Hello World");
+    * BeanFactory.setProperty(canvas, "tooltip", "My tooltip");
+    * </pre></blockquote>
+    *
+    * <p>Furthermore, the className can also be used as a Constructor in
+    * {@link com.smartgwt.client.docs.ComponentXML Component XML}. 
+    *
+    * <p>Alternatively if only specific <code>FormItem</code> types need to be
+    * instantiated and configured dynamically, you can generate specific
+    * factories by using the {@link BeanFactory.MetaFactory} interface instead.
+    * 
+    * <p>If there are only a limited number of types which require dynamic
+    * configuration, it will save code size to use the
+    * <code>BeanFactory.MetaFactory</code> interface for those types. Once the
+    * metadata is generated, GWT's opportunities to prune dead code are more
+    * limited for those classes, since it cannot know what properties will be
+    * set or retrieved at run-time.
+    */
+    public static interface FormItemMetaFactory {
 
     }
 
@@ -404,15 +437,15 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
     }-*/;
 
     private native static JavaScriptObject exportSetPropertyFn () /*-{
-        return $entry(@com.smartgwt.client.bean.BeanFactory::setProperty(Lcom/smartgwt/client/widgets/BaseWidget;Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;));
+        return $entry(@com.smartgwt.client.bean.BeanFactory::setProperty(Ljava/lang/Object;Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;));
     }-*/;
 
     private native static JavaScriptObject exportGetPropertyFn () /*-{
-        return $entry(@com.smartgwt.client.bean.BeanFactory::getPropertyAsJavaScriptObject(Lcom/smartgwt/client/widgets/BaseWidget;Ljava/lang/String;));
+        return $entry(@com.smartgwt.client.bean.BeanFactory::getPropertyAsJavaScriptObject(Ljava/lang/Object;Ljava/lang/String;));
     }-*/;
 
     private native static JavaScriptObject exportGetPropertyAsStringFn () /*-{
-        return $entry(@com.smartgwt.client.bean.BeanFactory::getPropertyAsString(Lcom/smartgwt/client/widgets/BaseWidget;Ljava/lang/String;));
+        return $entry(@com.smartgwt.client.bean.BeanFactory::getPropertyAsString(Ljava/lang/Object;Ljava/lang/String;));
     }-*/;
 
     private native static JavaScriptObject exportGetAttributesFn () /*-{
@@ -420,7 +453,7 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
     }-*/;
 
     private native static JavaScriptObject exportGetOrCreateJsObjFn () /*-{
-        return $entry(@com.smartgwt.client.bean.BeanFactory::getOrCreateJsObj(Lcom/smartgwt/client/widgets/BaseWidget;));
+        return $entry(@com.smartgwt.client.bean.BeanFactory::getOrCreateJsObj(Ljava/lang/Object;));
     }-*/;
 
     // -----------------
@@ -488,7 +521,7 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
      * @throws IllegalStateException If no factory has been generated for the bean's class
      * @throws IllegalArgumentException If there is no appropriate setter for the value
      */
-    public static void setProperty (BaseWidget bean, String property, Object value) {
+    public static void setProperty (Object bean, String property, Object value) {
         // Note that we can't use the parameterized BeanClass type in the static method
         if (bean != null) {
             BeanFactory<?> factory = BeanFactory.getFactory(bean.getClass());
@@ -512,7 +545,7 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
      * @throws IllegalStateException If no factory has been generated for the bean's class
      * @throws IllegalArgumentException If there is no appropriate setter for the value
      */
-    public static void setProperty (BaseWidget bean, String property, JavaScriptObject value) {
+    public static void setProperty (Object bean, String property, JavaScriptObject value) {
         // Note that we can't use the parameterized BeanClass type in the static method
         try {
             // This does a generic conversion to a Java value ... the property
@@ -534,7 +567,7 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
      * @param property The name of the property
      * @throws IllegalStateException If no factory has been generated for the bean's class
      */
-    public static Object getProperty (BaseWidget bean, String property) {
+    public static Object getProperty (Object bean, String property) {
         // Note that we can't use the parameterized BeanClass type in the static method
         if (bean == null) return null;
 
@@ -558,7 +591,7 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
      * @param property The name of the property
      * @throws IllegalStateException If no factory has been generated for the bean's class
      */
-    public static Object getPropertyAsString (BaseWidget bean, String property) {
+    public static Object getPropertyAsString (Object bean, String property) {
         // Note that we can't use the parameterized BeanClass type in the static method
         if (bean == null)  return null;
 
@@ -571,7 +604,7 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
     }
 
     // For export to SmartClient
-    public static JavaScriptObject getPropertyAsJavaScriptObject (BaseWidget bean, String property) {
+    public static JavaScriptObject getPropertyAsJavaScriptObject (Object bean, String property) {
         try {
             final Object value = getProperty(bean, property);
             return BeanValueType.convertToJavaScriptObject(value);
@@ -628,7 +661,7 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
         }
     }
 
-    public static JavaScriptObject getOrCreateJsObj (BaseWidget bean) {
+    public static JavaScriptObject getOrCreateJsObj (Object bean) {
         // Note that we can't use the parameterized BeanClass type in the static method
         if (bean == null) return null;
             
@@ -776,7 +809,7 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
 
     // Sets a property of the bean to a value
     @SuppressWarnings("unchecked")
-    public void doSetProperty (BaseWidget bean, String propertyName, Object value) {
+    public void doSetProperty (Object bean, String propertyName, Object value) {
         // Note that we don't want to use the parameterized BeanClass type
         // here, because we'd like to be able to call this from the static
         // method.
@@ -787,7 +820,7 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
             if (superclassFactory == null) {
                 // If there is no superclassFactory, then set the property on
                 // the underlying Javascript object directly.
-                setJavascriptProperty(bean, propertyName, value);
+                setJavascriptProperty((BeanClass) bean, propertyName, value);
             } else {
                 // If we have a superclass, let it try
                 superclassFactory.doSetProperty(bean, propertyName, value);
@@ -799,24 +832,9 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
         }
     }
 
-    // Sets a property on the underlying Javascript property directly. Note
-    // that this doesn't check for whether post-create setting of the property
-    // is allowed, since we only call this in circumstances where we don't know
-    // anything about the property.  But we would know the property if it is
-    // documented, so parsing metadata from the documentation won't help. Note
-    // that we can't call bean.setAttribute directly, because it is protected
-    // in BaseWidget.
-    private void setJavascriptProperty (BaseWidget bean, String propertyName, Object value) {
-        if (bean.isCreated()) {
-            // BaseWidget.setProperty doesn't do any dynamic conversion, so we
-            // do that here first.
-            bean.setProperty(propertyName, BeanValueType.convertToJavaScriptObject(value));
-        } else {
-            // Note that setAttribute by itself does less conversion than we'd
-            // like, so we do some extra conversion first.
-            JSOHelper.setAttribute(bean.getConfig(), propertyName, BeanValueType.convertToJavaScriptObject(value));
-        }
-    }
+    // Sets a property on the underlying Javascript property directly. This is done
+    // differently depending on the BeanClass, so we put it in a subclass.
+    protected abstract void setJavascriptProperty (BeanClass bean, String propertyName, Object value);
 
     public String[] getAttributes () {
         // We lazily create a cache for the return value. Note that this
@@ -844,7 +862,7 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
     }
 
     @SuppressWarnings("unchecked")
-    public Object doGetProperty (BaseWidget bean, String propertyName) {
+    public Object doGetProperty (Object bean, String propertyName) {
         // Note that we don't want to use the parameterized BeanClass type
         // here, because we'd like to be able to call this from the static
         // method.
@@ -854,7 +872,7 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
             if (superclassFactory == null) {
                 // If there is no superclassFactory, then try to get the
                 // property from the Javascript side.
-                return getJavascriptProperty(bean, propertyName);
+                return getJavascriptProperty((BeanClass) bean, propertyName);
             } else {
                 // Otherwise, let the superclass try
                 return superclassFactory.doGetProperty(bean, propertyName);
@@ -867,7 +885,7 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
     }
 
     @SuppressWarnings("unchecked")
-    public String doGetPropertyAsString (BaseWidget bean, String propertyName) {
+    public String doGetPropertyAsString (Object bean, String propertyName) {
         // Note that we don't want to use the parameterized BeanClass type
         // here, because we'd like to be able to call this from the static
         // method.
@@ -877,7 +895,7 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
             if (superclassFactory == null) {
                 // If there is no superclassFactory, then try to get the
                 // property from the Javascript side.
-                return getJavascriptProperty(bean, propertyName).toString();
+                return getJavascriptProperty((BeanClass) bean, propertyName).toString();
             } else {
                 // Otherwise, let the superclass try
                 return superclassFactory.doGetPropertyAsString(bean, propertyName);
@@ -889,34 +907,11 @@ public abstract class BeanFactory<BeanClass extends BaseWidget> {
         }
     }
 
-    private Object getJavascriptProperty (BaseWidget bean, String propertyName) {
+    private Object getJavascriptProperty (BeanClass bean, String propertyName) {
         return BeanValueType.convertToJava(getAttributeAsJavaScriptObject(bean, propertyName));
     }
 
-    // Copied from BaseWidget because it is not public there
-    private native JavaScriptObject getAttributeAsJavaScriptObject(BaseWidget bean, String property)/*-{
-        var ret;
-        if (bean.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            var widget = bean.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            ret = widget.getProperty(property);
-        } else {
-            var config = bean.@com.smartgwt.client.widgets.BaseWidget::config;
-            if (config[property] != undefined) {
-                ret = config[property];
-            } else {
-               var scClassName = bean.@com.smartgwt.client.widgets.BaseWidget::scClassName;
-               ret = $wnd.isc[scClassName].getInstanceProperty(property);
-            }
-        }
-        return ret === undefined ? null : ret;
-    }-*/;
+    protected abstract JavaScriptObject getAttributeAsJavaScriptObject(BeanClass bean, String property);
 
-    public JavaScriptObject doGetOrCreateJsObj (BaseWidget bean) {
-        // Note that we don't want to use the parameterized BeanClass type in
-        // the signature, because we'd like to be able to call this from the
-        // static method. But since we're currently limiting the scope of
-        // BeanClass to BaseWidget subclasses, we can call getOrCreateJsObj
-        // directly.
-        return bean.getOrCreateJsObj();
-    }
+    public abstract JavaScriptObject doGetOrCreateJsObj (Object bean);
 }

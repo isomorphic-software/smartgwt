@@ -33,6 +33,9 @@ import com.smartgwt.rebind.BeanProperty;
 import com.smartgwt.rebind.BeanMethod;
 import com.smartgwt.rebind.BeanValueType;
 import com.smartgwt.client.widgets.BaseWidget;
+import com.smartgwt.client.core.DataClass;
+import com.smartgwt.client.bean.BeanFactoryForBaseWidget;
+import com.smartgwt.client.bean.BeanFactoryForDataClass;
 
 import java.util.Set;
 import java.util.List;
@@ -57,6 +60,7 @@ public class BeanClass {
     private JClassType beanClassType;
     private TypeOracle typeOracle;
     private BeanClass superclass;
+    private JClassType factoryClass;
     private SourceWriter source;
 
     private Map<String, BeanProperty> properties;
@@ -69,7 +73,16 @@ public class BeanClass {
     private static final Set<String> excludedPropertyNames = new HashSet<String> (
         Arrays.asList(
             "logicalStructure",
-            "orCreateJsObj"
+            "orCreateJsObj",
+            // containerWidget causes problems in FormItem because there is a
+            // getter but no setter, and the process for creating FormItems
+            // sometimes calls the setter. By excluding it here, we fall
+            // through to setting a JavaScript attribute, which is what we
+            // want. The alternative would be to *generally* fall through
+            // to setting a JavaScript attribute in situations where there
+            // is a getter but no setter. Or, doing so in particular cases
+            // that we would identify somehow.
+            "containerWidget"
         )
     );
 
@@ -77,10 +90,19 @@ public class BeanClass {
         this.beanClassType = beanClassType;
         this.typeOracle = typeOracle;
 
-        // We'll look for superclasses up to BaseWidget, and make sure that we
+        final JClassType baseWidgetType = typeOracle.findType(BaseWidget.class.getCanonicalName());
+        final JClassType dataClassType = typeOracle.findType(DataClass.class.getCanonicalName());
+        
+        if (beanClassType.isAssignableTo(baseWidgetType)) {
+            this.factoryClass = typeOracle.findType(BeanFactoryForBaseWidget.class.getCanonicalName());
+        } else if (beanClassType.isAssignableTo(dataClassType)) {
+            this.factoryClass = typeOracle.findType(BeanFactoryForDataClass.class.getCanonicalName());
+        }
+
+        // We'll look for superclasses up to BaseWidget or DataClass, and make sure that we
         // generate factories for them as well. That way, we can keep track of
         // just our own properties.
-        if (beanClassType != typeOracle.findType(BaseWidget.class.getCanonicalName())) {
+        if (beanClassType != baseWidgetType && beanClassType != dataClassType) {
             JClassType beanSuperclassType = this.beanClassType.getSuperclass();
             if (beanSuperclassType != null) {
                 this.superclass = new BeanClass(beanSuperclassType, typeOracle);
@@ -212,6 +234,8 @@ public class BeanClass {
         // We use class literals so that we fail early if the class isn't found
         composer.addImport("com.smartgwt.client.bean.types.*");
         composer.addImport(com.smartgwt.client.bean.BeanFactory.class.getCanonicalName());
+        composer.addImport(com.smartgwt.client.bean.BeanFactoryForBaseWidget.class.getCanonicalName());
+        composer.addImport(com.smartgwt.client.bean.BeanFactoryForDataClass.class.getCanonicalName());
         composer.addImport(com.google.gwt.core.client.JavaScriptObject.class.getCanonicalName());
         composer.addImport(com.google.gwt.core.client.JsArray.class.getCanonicalName());
         composer.addImport(com.google.gwt.core.client.UnsafeNativeLong.class.getCanonicalName());
@@ -227,7 +251,7 @@ public class BeanClass {
         
         // We inherit from just one class -- we will have a reference to an object for the
         // superclass, rather than it being our superclass.
-        composer.setSuperclass("BeanFactory<" + beanClassType.getSimpleSourceName() + ">");
+        composer.setSuperclass(factoryClass.getSimpleSourceName() +  "<" + beanClassType.getSimpleSourceName() + ">");
 
         PrintWriter printWriter = context.tryCreate(logger, packageName, factoryName);
         if (printWriter != null) {        
