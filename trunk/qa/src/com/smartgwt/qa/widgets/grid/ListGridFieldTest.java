@@ -123,7 +123,7 @@ public class ListGridFieldTest extends TestRunner {
                     ListGridField field = new ListGridField("name", "Name");
                     boolean exceptionThrown = false;
                     try {
-                        field.setEditorType(CustomCanvas.class);
+                        field.setEditorType(CustomCanvas.class.getName());
                     }
                     catch (IllegalArgumentException ex) {
                         exceptionThrown = true;
