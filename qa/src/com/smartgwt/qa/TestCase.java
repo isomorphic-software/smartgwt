@@ -135,4 +135,12 @@ public abstract class TestCase {
     public void assertWithin (double object, double expected, double tolerance, String reason) {
         assertTrue(Math.abs(object - expected) < tolerance, reason + " (expected " + echo(expected) + ": got " + echo(object) + ")");
     }
+
+    public void assertGreaterThan (int object, int expected, String reason) {
+        assertTrue(object > expected, reason + " (expected greater than " + echo(expected) + ": got " + echo(object) + ")");
+    }
+    
+    public void assertLessThan (int object, int expected, String reason) {
+        assertTrue(object < expected, reason + " (expected less than " + echo(expected) + ": got " + echo(object) + ")");
+    }
 }
