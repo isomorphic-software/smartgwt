@@ -27,6 +27,7 @@ import com.smartgwt.qa.reflection.widgets.MyVLayout;
 import com.smartgwt.qa.reflection.widgets.CustomCanvas;
 import com.smartgwt.qa.reflection.widgets.MySplitbar;
 import com.smartgwt.qa.reflection.widgets.MySectionHeader;
+import com.smartgwt.qa.reflection.widgets.CustomTextItem;
 
 import com.smartgwt.qa.TestRunner;
 
@@ -54,6 +55,7 @@ public class QAEntryPoint implements EntryPoint {
         BeanFactory<MySplitbar> getMySplitbarFactory ();
         BeanFactory<MySectionHeader> getMySetionHeaderFactory ();
         BeanFactory<Canvas> getCanvasFactory();
+        BeanFactory<CustomTextItem> getCustomTextItemFactory ();
     }
 
     public void onModuleLoad() {
@@ -62,6 +64,10 @@ public class QAEntryPoint implements EntryPoint {
     
         // Or create all canvas factories
         // GWT.create(BeanFactory.CanvasMetaFactory.class);
+        
+        // Or, all FormItems ... note, this will break some tests
+        // that expect some FormItems to be unregistered
+        // GWT.create(BeanFactory.FormItemMetaFactory.class);
 
         // We export the SmartGWT tests so that we call call individual tests
         // from the Javascript side. That way, we can compile all the tests in,

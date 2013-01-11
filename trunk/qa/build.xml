@@ -81,7 +81,7 @@
       <arg value="-gen" /><arg value="generated/qa" />
       
       <!-- These can be helpful to uncomment for debugging. -->
-      <arg value="-style" /><arg value="PRETTY" />
+      <!-- <arg value="-style" /><arg value="PRETTY" /> -->
       <!-- <arg value="-draftCompile" /> -->
       <arg value="-strict" />
       
