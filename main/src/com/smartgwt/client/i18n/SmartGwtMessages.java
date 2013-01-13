@@ -1724,6 +1724,60 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String hiliteRule_removeButtonPrompt();
 
   /**
+   * Translated "Add Advanced Rule".
+   * 
+   * @return translated "Add Advanced Rule"
+   */
+  @DefaultMessage("Add Advanced Rule")
+  @Key("hiliteEditor_addAdvancedRuleButtonTitle")
+  String hiliteEditor_addAdvancedRuleButtonTitle();
+
+  /**
+   * Translated "Save".
+   * 
+   * @return translated "Save"
+   */
+  @DefaultMessage("Save")
+  @Key("hiliteEditor_saveButtonTitle")
+  String hiliteEditor_saveButtonTitle();
+
+  /**
+   * Translated "Cancel".
+   * 
+   * @return translated "Cancel"
+   */
+  @DefaultMessage("Cancel")
+  @Key("hiliteEditor_cancelButtonTitle")
+  String hiliteEditor_cancelButtonTitle();
+
+  /**
+   * Translated "Save".
+   * 
+   * @return translated "Save"
+   */
+  @DefaultMessage("Save")
+  @Key("advancedHiliteEditor_saveButtonTitle")
+  String advancedHiliteEditor_saveButtonTitle();
+
+  /**
+   * Translated "Cancel".
+   * 
+   * @return translated "Cancel"
+   */
+  @DefaultMessage("Cancel")
+  @Key("advancedHiliteEditor_cancelButtonTitle")
+  String advancedHiliteEditor_cancelButtonTitle();
+
+  /**
+   * Translated "Enter at least one rule, a color or icon, and a target field, or press &#39;Cancel&#39; to abandon changes.".
+   * 
+   * @return translated "Enter at least one rule, a color or icon, and a target field, or press &#39;Cancel&#39; to abandon changes."
+   */
+  @DefaultMessage("Enter at least one rule, a color or icon, and a target field, or press &#39;Cancel&#39; to abandon changes.")
+  @Key("advancedHiliteEditor_invalidHilitePrompt")
+  String advancedHiliteEditor_invalidHilitePrompt();
+
+  /**
    * Translated "Show Menu".
    * 
    * @return translated "Show Menu"
