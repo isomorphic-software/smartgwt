@@ -395,7 +395,15 @@ public class I18nUtil {
         if($wnd.isc.HiliteRule) {
             $wnd.isc.HiliteRule.addProperties({removeButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteRule_removeButtonPrompt()()});
         }
+        if($wnd.isc.HiliteEditor) {
+            $wnd.isc.HiliteEditor.addProperties({addAdvancedRuleButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteEditor_addAdvancedRuleButtonTitle()()});
+            $wnd.isc.HiliteEditor.addProperties({saveButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteEditor_saveButtonTitle()()});
+            $wnd.isc.HiliteEditor.addProperties({cancelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteEditor_cancelButtonTitle()()});
+        }
         if($wnd.isc.AdvancedHiliteEditor) {
+            $wnd.isc.AdvancedHiliteEditor.addProperties({saveButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::advancedHiliteEditor_saveButtonTitle()()});
+            $wnd.isc.AdvancedHiliteEditor.addProperties({cancelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::advancedHiliteEditor_cancelButtonTitle()()});
+            $wnd.isc.AdvancedHiliteEditor.addProperties({invalidHilitePrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::advancedHiliteEditor_invalidHilitePrompt()()});
             $wnd.isc.AdvancedHiliteEditor.addProperties({invalidCriteriaPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::advancedHiliteEditor_invalidCriteriaPrompt()()});
         }
         
