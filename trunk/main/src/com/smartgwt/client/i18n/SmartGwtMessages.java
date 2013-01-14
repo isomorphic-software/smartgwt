@@ -1724,6 +1724,35 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String hiliteRule_removeButtonPrompt();
 
   /**
+   * Translated "Color".
+   * 
+   * @return translated "Color"
+   */
+  @DefaultMessage("Color")
+  @Key("hiliteRule_colorFieldTitle")
+  String hiliteRule_colorFieldTitle();
+  
+
+  /**
+   * Translated "Text".
+   * 
+   * @return translated "Text"
+   */
+  @DefaultMessage("Text")
+  @Key("hiliteRule_foregroundColorTitle")
+  String hiliteRule_foregroundColorTitle();
+  
+
+  /**
+   * Translated "Background".
+   * 
+   * @return translated "Background"
+   */
+  @DefaultMessage("Background")
+  @Key("hiliteRule_backgroundColorTitle")
+  String hiliteRule_backgroundColorTitle();
+  
+  /**
    * Translated "Add Advanced Rule".
    * 
    * @return translated "Add Advanced Rule"
@@ -1749,6 +1778,24 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Cancel")
   @Key("hiliteEditor_cancelButtonTitle")
   String hiliteEditor_cancelButtonTitle();
+
+  /**
+   * Translated "Available Fields".
+   * 
+   * @return translated "Available Fields"
+   */
+  @DefaultMessage("Available Fields")
+  @Key("hiliteEditor_availableFieldsColumnTitle")
+  String hiliteEditor_availableFieldsColumnTitle();
+
+  /**
+   * Translated "Advanced Hilite Editor".
+   * 
+   * @return translated "Advanced Hilite Editor"
+   */
+  @DefaultMessage("Advanced Hilite Editor")
+  @Key("advancedHiliteEditor_title")
+  String advancedHiliteEditor_title();
 
   /**
    * Translated "Save".
@@ -1777,6 +1824,33 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("advancedHiliteEditor_invalidHilitePrompt")
   String advancedHiliteEditor_invalidHilitePrompt();
 
+  /**
+   * Translated "Filter".
+   * 
+   * @return translated "Filter"
+   */
+  @DefaultMessage("Filter")
+  @Key("advancedHiliteEditor_filterGroupTitle")
+  String advancedHiliteEditor_filterGroupTitle();
+  
+  /**
+   * Translated "Appearance".
+   * 
+   * @return translated "Appearance"
+   */
+  @DefaultMessage("Appearance")
+  @Key("advancedHiliteEditor_appearanceGroupTitle")
+  String advancedHiliteEditor_appearanceGroupTitle();
+  
+  /**
+   * Translated "Target Field(s)".
+   * 
+   * @return translated "Target Field(s)"
+   */
+  @DefaultMessage("Target Field(s)")
+  @Key("advancedHiliteEditor_targetFieldsItemTitle")
+  String advancedHiliteEditor_targetFieldsItemTitle();
+  
   /**
    * Translated "Show Menu".
    * 
