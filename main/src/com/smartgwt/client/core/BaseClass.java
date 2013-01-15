@@ -118,7 +118,7 @@ public abstract class BaseClass {
     public JavaScriptObject getOrCreateJsObj() {
         if (!isCreated()) {
             JavaScriptObject jsObj = create();
-            JSOHelper.setAttribute(jsObj, SC.REF, this);
+            JSOHelper.setObjectAttribute(jsObj, SC.REF, this);
             onInit();
             return jsObj;
         } else {
