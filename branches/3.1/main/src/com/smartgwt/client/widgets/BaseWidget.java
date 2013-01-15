@@ -384,7 +384,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     public JavaScriptObject getOrCreateJsObj() {
         if (!isCreated()) {
             JavaScriptObject jsObj = create();
-            JSOHelper.setAttribute(jsObj, SC.REF, this);
+            JSOHelper.setObjectAttribute(jsObj, SC.REF, this);
             return jsObj;
         } else {
             return getJsObj();
