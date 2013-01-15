@@ -2122,6 +2122,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String menuButton_title();
 
   /**
+   * Translated "Choose a value".
+   * 
+   * @return translated "Choose a value"
+   */
+  @DefaultMessage("Choose a value")
+  @Key("treeMenuButton_unselectedTitle")
+  String treeMenuButton_unselectedTitle();
+
+  /**
    * Translated "Since".
    * 
    * @return translated "Since"

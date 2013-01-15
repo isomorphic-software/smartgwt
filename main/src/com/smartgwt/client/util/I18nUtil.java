@@ -342,6 +342,10 @@ public class I18nUtil {
             $wnd.isc.MenuButton.addProperties({title: messages.@com.smartgwt.client.i18n.SmartGwtMessages::menuButton_title()()});
         }
 
+        if($wnd.isc.TreeMenuButton) { 
+            $wnd.isc.TreeMenuButton.addProperties({unselectedTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::treeMenuButton_unselectedTitle()()});
+        }
+
         if($wnd.isc.Calendar) {
             $wnd.isc.Calendar.addProperties({invalidDateMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_invalidDateMessage()()});
             $wnd.isc.Calendar.addProperties({addEventButtonHoverText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_addEventButtonHoverText()()});
