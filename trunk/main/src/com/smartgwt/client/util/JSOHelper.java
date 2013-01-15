@@ -203,6 +203,10 @@ public class JSOHelper {
                 assert false : value.getClass() + " should not be an array class.";
                 setObjectAttribute(elem, attr, value);
             }
+        } else if (value instanceof List) {
+            setAttribute(elem, attr, convertToJavaScriptArray(((List<?>)value).toArray(), true));
+        } else if (value instanceof Map) {
+            setAttribute(elem, attr, convertMapToJavascriptObject((Map<?, ?>) value));
         } else {
             setObjectAttribute(elem, attr, value);
         }
