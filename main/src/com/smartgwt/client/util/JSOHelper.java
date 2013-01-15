@@ -164,9 +164,9 @@ public class JSOHelper {
         setAttribute(elem, attr, JSOHelper.convertToJavaScriptArray(values));
     }
 
-    public static native void setAttribute(JavaScriptObject elem, String attr, Object value) /*-{
-        elem[attr] = value;
-    }-*/;
+    public static void setAttribute(JavaScriptObject elem, String attr, Object value) {
+        setObjectAttribute(elem, attr, value);
+    }
 
     public static native void setAttribute(JavaScriptObject elem, String attr, JavaScriptObject value) /*-{
 	    elem[attr] = value;
