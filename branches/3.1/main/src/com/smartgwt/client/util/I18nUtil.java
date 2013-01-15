@@ -329,6 +329,10 @@ public class I18nUtil {
             $wnd.isc.MenuButton.addProperties({title: messages.@com.smartgwt.client.i18n.SmartGwtMessages::menuButton_title()()});
         }
 
+        if($wnd.isc.TreeMenuButton) { 
+            $wnd.isc.TreeMenuButton.addProperties({unselectedTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::treeMenuButton_unselectedTitle()()});
+        }
+
         if($wnd.isc.Calendar) {
             $wnd.isc.Calendar.addProperties({invalidDateMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_invalidDateMessage()()});
             $wnd.isc.Calendar.addProperties({addEventButtonHoverText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_addEventButtonHoverText()()});
@@ -381,8 +385,24 @@ public class I18nUtil {
         }
         if($wnd.isc.HiliteRule) {
             $wnd.isc.HiliteRule.addProperties({removeButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteRule_removeButtonPrompt()()});
+            $wnd.isc.HiliteRule.addProperties({colorFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteRule_colorFieldTitle()()});
+            $wnd.isc.HiliteRule.addProperties({foregroundColorTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteRule_foregroundColorTitle()()});
+            $wnd.isc.HiliteRule.addProperties({backgroundColorTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteRule_backgroundColorTitle()()});
+        }
+        if($wnd.isc.HiliteEditor) {
+            $wnd.isc.HiliteEditor.addProperties({addAdvancedRuleButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteEditor_addAdvancedRuleButtonTitle()()});
+            $wnd.isc.HiliteEditor.addProperties({saveButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteEditor_saveButtonTitle()()});
+            $wnd.isc.HiliteEditor.addProperties({cancelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteEditor_cancelButtonTitle()()});
+            $wnd.isc.HiliteEditor.addProperties({availableFieldsColumnTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteEditor_availableFieldsColumnTitle()()});
         }
         if($wnd.isc.AdvancedHiliteEditor) {
+            $wnd.isc.AdvancedHiliteEditor.addProperties({title: messages.@com.smartgwt.client.i18n.SmartGwtMessages::advancedHiliteEditor_title()()});
+            $wnd.isc.AdvancedHiliteEditor.addProperties({saveButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::advancedHiliteEditor_saveButtonTitle()()});
+            $wnd.isc.AdvancedHiliteEditor.addProperties({cancelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::advancedHiliteEditor_cancelButtonTitle()()});
+            $wnd.isc.AdvancedHiliteEditor.addProperties({invalidHilitePrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::advancedHiliteEditor_invalidHilitePrompt()()});
+            $wnd.isc.AdvancedHiliteEditor.addProperties({filterGroupTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::advancedHiliteEditor_filterGroupTitle()()});
+            $wnd.isc.AdvancedHiliteEditor.addProperties({appearanceGroupTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::advancedHiliteEditor_appearanceGroupTitle()()});
+            $wnd.isc.AdvancedHiliteEditor.addProperties({targetFieldsItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::advancedHiliteEditor_targetFieldsItemTitle()()});
             $wnd.isc.AdvancedHiliteEditor.addProperties({invalidCriteriaPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::advancedHiliteEditor_invalidCriteriaPrompt()()});
         }
         

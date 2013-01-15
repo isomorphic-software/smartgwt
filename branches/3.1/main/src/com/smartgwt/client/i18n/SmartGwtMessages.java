@@ -1634,6 +1634,134 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String hiliteRule_removeButtonPrompt();
 
   /**
+   * Translated "Color".
+   * 
+   * @return translated "Color"
+   */
+  @DefaultMessage("Color")
+  @Key("hiliteRule_colorFieldTitle")
+  String hiliteRule_colorFieldTitle();
+  
+
+  /**
+   * Translated "Text".
+   * 
+   * @return translated "Text"
+   */
+  @DefaultMessage("Text")
+  @Key("hiliteRule_foregroundColorTitle")
+  String hiliteRule_foregroundColorTitle();
+  
+
+  /**
+   * Translated "Background".
+   * 
+   * @return translated "Background"
+   */
+  @DefaultMessage("Background")
+  @Key("hiliteRule_backgroundColorTitle")
+  String hiliteRule_backgroundColorTitle();
+  
+  /**
+   * Translated "Add Advanced Rule".
+   * 
+   * @return translated "Add Advanced Rule"
+   */
+  @DefaultMessage("Add Advanced Rule")
+  @Key("hiliteEditor_addAdvancedRuleButtonTitle")
+  String hiliteEditor_addAdvancedRuleButtonTitle();
+
+  /**
+   * Translated "Save".
+   * 
+   * @return translated "Save"
+   */
+  @DefaultMessage("Save")
+  @Key("hiliteEditor_saveButtonTitle")
+  String hiliteEditor_saveButtonTitle();
+
+  /**
+   * Translated "Cancel".
+   * 
+   * @return translated "Cancel"
+   */
+  @DefaultMessage("Cancel")
+  @Key("hiliteEditor_cancelButtonTitle")
+  String hiliteEditor_cancelButtonTitle();
+
+  /**
+   * Translated "Available Fields".
+   * 
+   * @return translated "Available Fields"
+   */
+  @DefaultMessage("Available Fields")
+  @Key("hiliteEditor_availableFieldsColumnTitle")
+  String hiliteEditor_availableFieldsColumnTitle();
+
+  /**
+   * Translated "Advanced Hilite Editor".
+   * 
+   * @return translated "Advanced Hilite Editor"
+   */
+  @DefaultMessage("Advanced Hilite Editor")
+  @Key("advancedHiliteEditor_title")
+  String advancedHiliteEditor_title();
+
+  /**
+   * Translated "Save".
+   * 
+   * @return translated "Save"
+   */
+  @DefaultMessage("Save")
+  @Key("advancedHiliteEditor_saveButtonTitle")
+  String advancedHiliteEditor_saveButtonTitle();
+
+  /**
+   * Translated "Cancel".
+   * 
+   * @return translated "Cancel"
+   */
+  @DefaultMessage("Cancel")
+  @Key("advancedHiliteEditor_cancelButtonTitle")
+  String advancedHiliteEditor_cancelButtonTitle();
+
+  /**
+   * Translated "Enter at least one rule, a color or icon, and a target field, or press &#39;Cancel&#39; to abandon changes.".
+   * 
+   * @return translated "Enter at least one rule, a color or icon, and a target field, or press &#39;Cancel&#39; to abandon changes."
+   */
+  @DefaultMessage("Enter at least one rule, a color or icon, and a target field, or press &#39;Cancel&#39; to abandon changes.")
+  @Key("advancedHiliteEditor_invalidHilitePrompt")
+  String advancedHiliteEditor_invalidHilitePrompt();
+
+  /**
+   * Translated "Filter".
+   * 
+   * @return translated "Filter"
+   */
+  @DefaultMessage("Filter")
+  @Key("advancedHiliteEditor_filterGroupTitle")
+  String advancedHiliteEditor_filterGroupTitle();
+  
+  /**
+   * Translated "Appearance".
+   * 
+   * @return translated "Appearance"
+   */
+  @DefaultMessage("Appearance")
+  @Key("advancedHiliteEditor_appearanceGroupTitle")
+  String advancedHiliteEditor_appearanceGroupTitle();
+  
+  /**
+   * Translated "Target Field(s)".
+   * 
+   * @return translated "Target Field(s)"
+   */
+  @DefaultMessage("Target Field(s)")
+  @Key("advancedHiliteEditor_targetFieldsItemTitle")
+  String advancedHiliteEditor_targetFieldsItemTitle();
+  
+  /**
    * Translated "Show Menu".
    * 
    * @return translated "Show Menu"
@@ -1902,6 +2030,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Show Menu")
   @Key("menuButton_title")
   String menuButton_title();
+
+  /**
+   * Translated "Choose a value".
+   * 
+   * @return translated "Choose a value"
+   */
+  @DefaultMessage("Choose a value")
+  @Key("treeMenuButton_unselectedTitle")
+  String treeMenuButton_unselectedTitle();
 
   /**
    * Translated "Since".
