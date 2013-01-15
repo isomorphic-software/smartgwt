@@ -206,7 +206,7 @@ public class JSOHelper {
         } else if (value instanceof List) {
             setAttribute(elem, attr, convertToJavaScriptArray(((List<?>)value).toArray(), true));
         } else if (value instanceof Map) {
-            setAttribute(elem, attr, convertMapToJavascriptObject((Map<?, ?>) value));
+            setAttribute(elem, attr, convertMapToJavascriptObject((Map<?, ?>) value, true));
         } else {
             setObjectAttribute(elem, attr, value);
         }
@@ -827,8 +827,10 @@ public class JSOHelper {
                     assert false : val.getClass() + " should not be an array class.";
                     setArrayValue(jsArray, i, (JavaScriptObject) null);
                 }
+            } else if (val instanceof List) {
+                setArrayValue(jsArray, i, JSOHelper.convertToJavaScriptArray(((List<?>)val).toArray(), strict));
             } else if (val instanceof Map) {
-                JSOHelper.setArrayValue(jsArray, i, convertMapToJavascriptObject((Map)val));
+                setArrayValue(jsArray, i, convertMapToJavascriptObject((Map)val, strict));
             } else {
                 if (strict) {
                     assert val != null;
@@ -1067,7 +1069,11 @@ public class JSOHelper {
         setAttribute(jsObj, attr, valueJS);
     }
 
-    public static JavaScriptObject convertMapToJavascriptObject(Map valueMap) {    	
+    public static JavaScriptObject convertMapToJavascriptObject(Map valueMap) {
+        return convertMapToJavascriptObject(valueMap, false);
+    }
+
+    public static JavaScriptObject convertMapToJavascriptObject(Map valueMap, boolean strict) {
         if(valueMap == null) return null;
         JavaScriptObject valueJS = JSOHelper.createObject();
         for (Iterator iterator = valueMap.keySet().iterator(); iterator.hasNext();) {
@@ -1096,11 +1102,21 @@ public class JSOHelper {
                 setNullAttribute(valueJS, key);
             } else if(value instanceof String[]) {
                 setAttribute(valueJS, key, convertToJavaScriptArray((String[]) value));
+            } else if (value instanceof Object[]) {
+                setAttribute(valueJS, key, convertToJavaScriptArray((Object[]) value, strict));
+            } else if (value instanceof int[]) {
+                setAttribute(valueJS, key, convertToJavaScriptArray((int[]) value));
+            } else if (value instanceof float[]) {
+                setAttribute(valueJS, key, convertToJavaScriptArray((float[]) value));
+            } else if (value instanceof double[]) {
+                setAttribute(valueJS, key, convertToJavaScriptArray((double[]) value));
+            } else if (value instanceof long[]) {
+                setAttribute(valueJS, key, convertToJavaScriptArray((long[]) value));
             } else if (value instanceof Map) {
-            	JavaScriptObject innerMapJS = convertMapToJavascriptObject((Map) value); 
+            	JavaScriptObject innerMapJS = convertMapToJavascriptObject((Map) value, strict);
             	setAttribute(valueJS, key, innerMapJS);
             } else if (value instanceof List){
-                setAttribute(valueJS, key, JSOHelper.convertToJavaScriptArray(((List)value).toArray()));
+                setAttribute(valueJS, key, JSOHelper.convertToJavaScriptArray(((List)value).toArray(), strict));
             } else {
                 throw new IllegalArgumentException("Unsupported type for attribute " + key + " : " + value);
             }
