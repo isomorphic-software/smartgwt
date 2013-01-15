@@ -170,27 +170,7 @@ public class DataClass extends JsObject {
      * @param value the attribute value.
      */
     public void setAttribute(String property, Object value) {
-        if (value instanceof String || value == null) {
-            setAttribute(property, (String) value);
-        } else if (value instanceof Integer) {
-            setAttribute(property, ((Integer) value).intValue());
-        } else if (value instanceof Float) {
-            setAttribute(property, ((Float) value).floatValue());
-        } else if (value instanceof Double) {
-            setAttribute(property, ((Double) value).doubleValue());
-        } else if (value instanceof Long) {
-            setAttribute(property, ((Long) value).longValue());
-        } else if (value instanceof Boolean) {
-            setAttribute(property, ((Boolean) value).booleanValue());
-        } else if (value instanceof Date) {
-            setAttribute(property, (Date) value);
-        } else if (value instanceof JavaScriptObject) {
-            setAttribute(property, ((JavaScriptObject) value));
-        } else if (value instanceof Map) {
-            setAttribute(property, JSOHelper.convertMapToJavascriptObject((Map) value));
-        } else  {
-            JSOHelper.setAttribute(jsObj, property, value);
-        }
+        JSOHelper.setAttribute(jsObj, property, value);
     }
 
     public void setAttribute(String property, Double value) {

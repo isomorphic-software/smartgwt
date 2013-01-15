@@ -31,6 +31,7 @@ import com.smartgwt.client.core.DataClass;
 import com.smartgwt.client.core.Function;
 import com.smartgwt.client.core.RefDataClass;
 import com.smartgwt.client.data.Record;
+import com.smartgwt.client.data.RelativeDate;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.widgets.BaseWidget;
 
@@ -68,8 +69,8 @@ public class JSOHelper {
     }
     
     public static native String getAttribute(JavaScriptObject elem, String attr) /*-{
-	    var ret = elem[attr];
-	    return (ret === undefined || ret == null) ? null : String(ret);
+        var ret = elem[attr];
+        return (ret == null ? null : $wnd.String(ret));
     }-*/;
 
     public static native void setAttribute(JavaScriptObject elem, String attr, String value) /*-{
@@ -77,8 +78,8 @@ public class JSOHelper {
     }-*/;
 
     public static native JavaScriptObject getAttributeAsJavaScriptObject(JavaScriptObject elem, String attr) /*-{
-	    var ret = elem[attr];
-	    return (ret === undefined) ? null : ret;
+        var ret = elem[attr];
+        return (ret == null ? null : ret);
     }-*/;
 
     public static native JavaScriptObject[] getAttributeAsJavaScriptObjectArray(JavaScriptObject elem, String attr) /*-{        
@@ -165,7 +166,50 @@ public class JSOHelper {
     }
 
     public static void setAttribute(JavaScriptObject elem, String attr, Object value) {
-        setObjectAttribute(elem, attr, value);
+        if (value == null) {
+            setNullAttribute(elem, attr);
+        } else if (value instanceof CharSequence || value instanceof Character) {
+            setAttribute(elem, attr, value.toString());
+        } else if (value instanceof Number) {
+            setAttribute(elem, attr, (Number)value);
+        } else if (value instanceof Boolean) {
+            setAttribute(elem, attr, ((Boolean)value).booleanValue());
+        } else if (value instanceof Date) {
+            setAttribute(elem, attr, (Date)value);
+        } else if (value instanceof RelativeDate) {
+            setAttribute(elem, attr, ((RelativeDate)value).getValue());
+        } else if (value instanceof ValueEnum) {
+            setAttribute(elem, attr, ((ValueEnum)value).getValue());
+        } else if (value.getClass().isArray()) {
+            if (value instanceof Object[]) {
+                setAttribute(elem, attr, convertToJavaScriptArray((Object[])value, true));
+            } else if (value instanceof int[]) {
+                setAttribute(elem, attr, convertToJavaScriptArray((int[])value));
+            } else if (value instanceof double[]) {
+                setAttribute(elem, attr, convertToJavaScriptArray((double[])value));
+            } else if (value instanceof float[]) {
+                setAttribute(elem, attr, convertToJavaScriptArray((float[])value));
+            } else if (value instanceof boolean[]) {
+                setAttribute(elem, attr, convertToJavaScriptArray((boolean[])value));
+            } else if (value instanceof char[]) {
+                setAttribute(elem, attr, convertToJavaScriptArray((char[])value));
+            } else if (value instanceof byte[]) {
+                setAttribute(elem, attr, convertToJavaScriptArray((byte[])value));
+            } else if (value instanceof short[]) {
+                setAttribute(elem, attr, convertToJavaScriptArray((short[])value));
+            } else if (value instanceof long[]) {
+                setAttribute(elem, attr, convertToJavaScriptArray((long[])value));
+            } else {
+                assert false : value.getClass() + " should not be an array class.";
+                setObjectAttribute(elem, attr, value);
+            }
+        } else if (value instanceof List) {
+            setAttribute(elem, attr, convertToJavaScriptArray(((List<?>)value).toArray(), true));
+        } else if (value instanceof Map) {
+            setAttribute(elem, attr, convertMapToJavascriptObject((Map<?, ?>) value));
+        } else {
+            setObjectAttribute(elem, attr, value);
+        }
     }
 
     public static native void setAttribute(JavaScriptObject elem, String attr, JavaScriptObject value) /*-{
@@ -176,15 +220,12 @@ public class JSOHelper {
 	    elem[attr] = value;
     }-*/;
 
-    public static void setAttribute(JavaScriptObject elem, String attr, long value) {
-        setAttribute(elem, attr, new Double(value).doubleValue());
-    }
-
-    public static void setAttribute(JavaScriptObject elem, String attr, Integer value) {
+    public static void setAttribute(JavaScriptObject elem, String attr, Number value) {
         if (value == null) {
             setNullAttribute(elem, attr);
         } else {
-            setAttribute(elem, attr, value.intValue());
+            if (value instanceof Long) setAttribute(elem, attr, (Long)value);
+            else setAttribute(elem, attr, value.doubleValue());
         }
     }
 
@@ -192,23 +233,12 @@ public class JSOHelper {
         if (value == null) {
             setNullAttribute(elem, attr);
         } else {
-            setAttribute(elem, attr, value.longValue());
-        }
-    }
-
-    public static void setAttribute(JavaScriptObject elem, String attr, Double value) {
-        if (value == null) {
-            setNullAttribute(elem, attr);
-        } else {
-            setAttribute(elem, attr, value.doubleValue());
-        }
-    }
-
-    public static void setAttribute(JavaScriptObject elem, String attr, Float value) {
-        if (value == null) {
-            setNullAttribute(elem, attr);
-        } else {
-            setAttribute(elem, attr, value.floatValue());
+            final long l = value.longValue();
+            final double d = (double)l;
+            if (Math.abs(l) > 9007199254740992L) {
+                SC.logWarn("The long value " + Long.toString(l) + " cannot be exactly represented in JavaScript. It will be truncated to: " + Long.toString((long)d));
+            }
+            setAttribute(elem, attr, d);
         }
     }
 
@@ -237,13 +267,8 @@ public class JSOHelper {
 	    elem[attr] = value;
     }-*/;
 
-    public static native void setAttribute(JavaScriptObject elem, String attr, float value) /*-{
-	    elem[attr] = value;
-    }-*/;
-
-
     public static native void setAttribute(JavaScriptObject elem, String attr, double value) /*-{
-	    elem[attr] = value;
+        elem[attr] = value;
     }-*/;
 
     public static native void setAttribute(JavaScriptObject elem, String attr, Function handler) /*-{
@@ -267,8 +292,8 @@ public class JSOHelper {
     }-*/;
 
     public static native Integer getAttributeAsInt(JavaScriptObject elem, String attr) /*-{
-	    var ret = elem[attr];
-	    return (ret === undefined || ret == null) ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
+        var ret = elem[attr];
+        return (ret == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret));
     }-*/;
 
     public static native Double getAttributeAsDouble(JavaScriptObject elem, String attr) /*-{
@@ -302,8 +327,8 @@ public class JSOHelper {
     }-*/;
 
     public static native Float getAttributeAsFloat(JavaScriptObject elem, String attr) /*-{
-	    var ret = elem[attr];
-	    return (ret === undefined || ret == null) ? null : @com.smartgwt.client.util.JSOHelper::toFloat(F)(ret);
+        var ret = elem[attr];
+        return (ret == null ? null : @com.smartgwt.client.util.JSOHelper::toFloat(F)(ret));
     }-*/;
 
     public static int[] getAttributeAsIntArray(JavaScriptObject elem, String attr) {
@@ -486,6 +511,42 @@ public class JSOHelper {
     public static native JavaScriptObject createObject() /*-{
         return new Object;
     }-*/;
+
+    public static JavaScriptObject convertToJavaScriptArray(boolean[] array) {
+        if (array == null) return null;
+        final JavaScriptObject jsArray = createJavaScriptArray();
+        for (int i = 0; i < array.length; ++i) {
+            JSOHelper.setArrayValue(jsArray, i, array[i]);
+        }
+        return jsArray;
+    }
+
+    public static JavaScriptObject convertToJavaScriptArray(char[] array) {
+        if (array == null) return null;
+        final JavaScriptObject jsArray = createJavaScriptArray();
+        for (int i = 0; i < array.length; ++i) {
+            JSOHelper.setArrayValue(jsArray, i, Character.toString(array[i]));
+        }
+        return jsArray;
+    }
+
+    public static JavaScriptObject convertToJavaScriptArray(byte[] array) {
+        if (array == null) return null;
+        final JavaScriptObject jsArray = createJavaScriptArray();
+        for (int i = 0; i < array.length; ++i) {
+            JSOHelper.setArrayValue(jsArray, i, array[i]);
+        }
+        return jsArray;
+    }
+
+    public static JavaScriptObject convertToJavaScriptArray(short[] array) {
+        if (array == null) return null;
+        final JavaScriptObject jsArray = createJavaScriptArray();
+        for (int i = 0; i < array.length; ++i) {
+            JSOHelper.setArrayValue(jsArray, i, array[i]);
+        }
+        return jsArray;
+    }
 
     public static JavaScriptObject convertToJavaScriptArray(int[] array) {
         if(array == null) return null;
@@ -718,17 +779,12 @@ public class JSOHelper {
             Object val = array[i];
 
             if (val == null) {
-                JSOHelper.setArrayValue(jsArray, i, val);
-            } else if (val instanceof String) {
-                JSOHelper.setArrayValue(jsArray, i, (String) val);
-            } else if (val instanceof Integer) {
-                JSOHelper.setArrayValue(jsArray, i, ((Integer) val).intValue());
-            } else if (val instanceof Float) {
-                JSOHelper.setArrayValue(jsArray, i, ((Float) val).floatValue());
-            } else if (val instanceof Double) {
-                JSOHelper.setArrayValue(jsArray, i, ((Double) val).doubleValue());
-            } else if (val instanceof Long) {
-                JSOHelper.setArrayValue(jsArray, i, ((Long) val).doubleValue());
+                setArrayValue(jsArray, i, (JavaScriptObject) val);
+            } else if (val instanceof CharSequence || val instanceof Character) {
+                setArrayValue(jsArray, i, val.toString());
+            } else if (val instanceof Number) {
+                if (val instanceof Long) setArrayValue(jsArray, i, ((Long) val).longValue());
+                else setArrayValue(jsArray, i, ((Number) val).doubleValue());
             } else if (val instanceof Boolean) {
                 JSOHelper.setArrayValue(jsArray, i, ((Boolean) val).booleanValue());
             } else if (val instanceof Date) {
@@ -736,7 +792,7 @@ public class JSOHelper {
             } else if (val instanceof ValueEnum) {
                 JSOHelper.setArrayValue(jsArray, i, ((ValueEnum) val).getValue());
             } else if (val instanceof JavaScriptObject) {
-                JSOHelper.setArrayValue(jsArray, i, ((JavaScriptObject) val));
+                JSOHelper.setArrayValue(jsArray, i, (JavaScriptObject) val);
             } /*else if (val instanceof JsObject) {
                 JSOHelper.setArrayValue(jsArray, i, ((JsObject) val).getJsObj());
             } */
@@ -748,8 +804,29 @@ public class JSOHelper {
                 JSOHelper.setArrayValue(jsArray, i, ((BaseWidget) val).getOrCreateJsObj());
             } else if (val instanceof Record) {
                 JSOHelper.setArrayValue(jsArray, i, ((Record) val).getJsObj());
-            } else if (val instanceof Object[]) {
-                JSOHelper.setArrayValue(jsArray, i, convertToJavaScriptArray((Object[]) val));
+            } else if (val.getClass().isArray()) {
+                if (val instanceof Object[]) {
+                    setArrayValue(jsArray, i, convertToJavaScriptArray((Object[])val, strict));
+                } else if (val instanceof int[]) {
+                    setArrayValue(jsArray, i, convertToJavaScriptArray((int[])val));
+                } else if (val instanceof double[]) {
+                    setArrayValue(jsArray, i, convertToJavaScriptArray((double[])val));
+                } else if (val instanceof float[]) {
+                    setArrayValue(jsArray, i, convertToJavaScriptArray((float[])val));
+                } else if (val instanceof boolean[]) {
+                    setArrayValue(jsArray, i, convertToJavaScriptArray((boolean[])val));
+                } else if (val instanceof char[]) {
+                    setArrayValue(jsArray, i, convertToJavaScriptArray((char[])val));
+                } else if (val instanceof byte[]) {
+                    setArrayValue(jsArray, i, convertToJavaScriptArray((byte[])val));
+                } else if (val instanceof short[]) {
+                    setArrayValue(jsArray, i, convertToJavaScriptArray((short[])val));
+                } else if (val instanceof long[]) {
+                    setArrayValue(jsArray, i, convertToJavaScriptArray((long[])val));
+                } else {
+                    assert false : val.getClass() + " should not be an array class.";
+                    setArrayValue(jsArray, i, (JavaScriptObject) null);
+                }
             } else if (val instanceof Map) {
                 JSOHelper.setArrayValue(jsArray, i, convertMapToJavascriptObject((Map)val));
             } else {
@@ -761,7 +838,6 @@ public class JSOHelper {
             } 
         }
         return jsArray;
-
     }
 
 
@@ -817,10 +893,10 @@ public class JSOHelper {
     }
     
     public static native JavaScriptObject createJavaScriptArray() /*-{
-        //Important : constructing an from JSNI array using [] or new Array() results in a
+        //Important : constructing an array from JSNI using [] or new Array() results in a
         //corrupted array object in the final javascript. The array ends up having the correct elements
-        //but the test (myarr instaneof Array) fails because the jsni created array constructor is different.
-        //Need to construct array within the scope of the applications iframe by using new $wnd.Array
+        //but the test (myarr instanceof Array) fails because the JSNI-created array constructor is different.
+        //Need to construct array within the scope of the application's IFRAME by using `new $wnd.Array'.
         return $wnd.Array.create();
     }-*/;
 
@@ -837,21 +913,20 @@ public class JSOHelper {
     }-*/;
 
     public static void setArrayValue(JavaScriptObject array, int index, long value) {
-        Double doubleValue = new Double(value);
-        setArrayValue(array, index, doubleValue.doubleValue());
+        final double d = (double)value;
+        if (Math.abs(value) > 9007199254740992L) {
+            SC.logWarn("The long value " + Long.toString(value) + " cannot be exactly represented in JavaScript. It will be truncated to: " + Long.toString((long)d));
+        }
+        setArrayValue(array, index, d);
     }
-
-    public static native void setArrayValue(JavaScriptObject array, int index, int value) /*-{
-        array[index] = value;
-    }-*/;
-
-    public static native void setArrayValue(JavaScriptObject array, int index, float value) /*-{
-        array[index] = value;
-    }-*/;
 
     public static native void setArrayValue(JavaScriptObject array, int index, boolean value) /*-{
         array[index] = value;
     }-*/;
+
+    public static void setArrayValue(JavaScriptObject array, int index, char value) {
+        setArrayValue(array, index, Character.toString(value));
+    }
 
     public static native void setArrayValue(JavaScriptObject array, int index, JavaScriptObject value) /*-{
         array[index] = value;
@@ -863,17 +938,17 @@ public class JSOHelper {
 
     public static native String getArrayValue(JavaScriptObject array, int index) /*-{
         var result = array[index];
-        return (result == null || result === undefined) ? null : result;
+        return (result == null ? null : $wnd.String(result));
     }-*/;
 
     public static native JavaScriptObject getJSOArrayValue(JavaScriptObject array, int index) /*-{
         var result = array[index];
-        return (result == null || result === undefined) ? null : result;
+        return (result == null ? null : result);
     }-*/;
 
     public static native Object getObjectArrayValue(JavaScriptObject array, int index) /*-{
         var result = array[index];
-        return (result == null || result === undefined) ? null : result;
+        return (result == null ? null : result);
     }-*/;
 
     public static native int getIntArrayValue(JavaScriptObject array, int index) /*-{
@@ -882,12 +957,12 @@ public class JSOHelper {
 
     public static native Integer getIntegerArrayValue(JavaScriptObject array, int index) /*-{
         var ret = array[index];
-        return (ret === undefined || ret == null) ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
+        return (ret == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret));
     }-*/;
 
     public static native Float getFloatArrayValue(JavaScriptObject array, int index) /*-{
         var ret = array[index];
-        return (ret === undefined || ret == null) ? null : @com.smartgwt.client.util.JSOHelper::toFloat(F)(ret);
+        return (ret == null ? null : @com.smartgwt.client.util.JSOHelper::toFloat(F)(ret));
     }-*/;
 
     public static native Date getDateArrayValue(JavaScriptObject array, int i) /*-{
