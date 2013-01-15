@@ -97,21 +97,7 @@ public class Criteria extends DataClass {
             String field = (String) i.next();
             Object value = otherMap.get(field);
 
-            if (value instanceof Integer) {
-                addCriteria(field, (Integer) value);
-            } else if (value instanceof Float) {
-                addCriteria(field, (Float) value);
-            } else if (value instanceof String) {
-                addCriteria(field, (String) value);
-            } else if (value instanceof Date) {
-                addCriteria(field, (Date) value);
-            } else if (value instanceof Boolean) {
-                addCriteria(field, (Boolean) value);
-            } else if (value instanceof Long) {
-                addCriteria(field, (Long) value);
-            } else {
-                JSOHelper.setAttribute(jsObj, field, value);
-            }
+            JSOHelper.setAttribute(jsObj, field, value);
         }
     }
 
