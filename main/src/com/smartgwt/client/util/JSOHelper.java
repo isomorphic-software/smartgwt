@@ -70,11 +70,16 @@ public class JSOHelper {
     
     public static native String getAttribute(JavaScriptObject elem, String attr) /*-{
         var ret = elem[attr];
-        return (ret == null ? null : $wnd.String(ret));
+        return (ret == null ? null : String(ret));
     }-*/;
 
     public static native void setAttribute(JavaScriptObject elem, String attr, String value) /*-{
-	    elem[attr] = value;
+        // When setting a string attribute, make sure to convert the value to a normal, non-wrapped
+        // string object as opposed to a String object (i.e. typeof is "string", not "object").
+        // This is needed because an equality comparison of two String objects can fail even
+        // though they represent the same string. For example, `new String("test") == new String("test")'
+        // is `false'.
+        elem[attr] = (value == null ? null : $wnd.String(value));
     }-*/;
 
     public static native JavaScriptObject getAttributeAsJavaScriptObject(JavaScriptObject elem, String attr) /*-{
@@ -907,7 +912,7 @@ public class JSOHelper {
     }
 
     public static native void setArrayValue(JavaScriptObject array, int index, String value) /*-{
-        array[index] = value;
+        array[index] = (value == null ? null : $wnd.String(value));
     }-*/;
 
     public static native void setArrayValue(JavaScriptObject array, int index, double value) /*-{
@@ -940,7 +945,7 @@ public class JSOHelper {
 
     public static native String getArrayValue(JavaScriptObject array, int index) /*-{
         var result = array[index];
-        return (result == null ? null : $wnd.String(result));
+        return (result == null ? null : String(result));
     }-*/;
 
     public static native JavaScriptObject getJSOArrayValue(JavaScriptObject array, int index) /*-{
