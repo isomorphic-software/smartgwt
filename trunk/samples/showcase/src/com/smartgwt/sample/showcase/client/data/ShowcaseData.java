@@ -322,7 +322,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Cell Selection", "grid-interaction-cellselection-new", "new-category", null, new CellSelectionSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grouping Modes", "grid-grouping-modes-new", "new-category", null, new GridGroupingModesSample.Factory(), true, idSuffix),
                     
-                    new ExplorerTreeNode("Excel-style Copy and Paste", "grid-copy-paste-category-new", "new-category", "pieces/16/cube_blue.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Excel-style Copy &amp; Paste", "grid-copy-paste-category-new", "new-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Grid to Excel", "grid-to-excel-category-new", "grid-copy-paste-category-new", null, new GridToExcelSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid to Grid", "grid-to-grid-category-new", "grid-copy-paste-category-new", null, new GridToGridSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Excel to Grid", "excel-to-grid-category-new", "grid-copy-paste-category-new", null, new ExcelToGridSample.Factory(), true, idSuffix),
@@ -342,7 +342,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Styled ComboBox", "styled-combobox-category", "combobox-category", null, new ComboBoxStyledSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Dependent Selects (Local)", "dep-selectects-combobox-category", "combobox-category", null, new FormDependentSelectsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Databound Dependent Selects", "dep-selectects-db-combobox-category", "combobox-category", null, new FormDataboundDependentSelectsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Local and Databound ComboBox", "local-db-combobox-combobox-category", "combobox-category", null, new LocalAndDataboundComboBoxSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Local &amp; Databound ComboBox", "local-db-combobox-combobox-category", "combobox-category", null, new LocalAndDataboundComboBoxSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Dropdown Grid", "dropdown-grid-combobox-category", "combobox-category", null, new DropdownListGridSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Format Dropdown", "format-dropdown", "combobox-category", null, new FormatDropDownSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Multi-Field Search", "combobox-multifield-search", "combobox-category", null, new MultiFieldSearchSample.Factory(), true, idSuffix),
@@ -453,11 +453,14 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Related Records", "grid-hover-related-records", "grid-hover-category", null, new GridHoverRelatedRecordsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Custom Component", "grid-hover-custom", "grid-hover-category", null, new GridCustomHoverSample.Factory(), true, idSuffix),
 
-                    new ExplorerTreeNode("Grouping", "grid-grouping-category", "grid-category", "silk/chart_organisation.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Grouping &amp; Summaries", "grid-grouping-category", "grid-category", "silk/chart_organisation.png", null, true, idSuffix),
                     new ExplorerTreeNode("Dynamic Grouping", "grid-grouping-dynamic", "grid-grouping-category", null, new GridDynamicGroupingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grouped Editing", "grid-grouping-editing", "grid-grouping-category", null, new GroupedEditingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Custom Grouping", "grid-grouping-custom", "grid-grouping-category", null, new GridCustomGroupingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grouping Modes", "grid-grouping-modes", "grid-grouping-category", null, new GridGroupingModesSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Grid Summaries", "grid-summaries", "grid-grouping-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Grid Header Summaries", "grid-header-summaries", "grid-grouping-category", "crystal/16/apps/tooloptions.png", new GridSummariesInHeaderSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Multiline Summaries", "grid-ml-summaries", "grid-grouping-category", "crystal/16/apps/tooloptions.png", new GridMultiLineSummariesSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Hiliting", "grid-hiliting-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("User Defined", "grid-hiliting-user-defined", "grid-hiliting-category", null, new GridUserDefinedHilitingSample.Factory(), true, idSuffix),
@@ -505,7 +508,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Remove", "remove-grid-form-category", "grid-form-category", "pieces/16/cube_blue.png", new GridRecordRemoveSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Pattern Reuse", "pattern-reuse-grid-form-category", "grid-form-category", "silk/database_table.png", new PatternReuseSample.Factory(), true, idSuffix),
 
-                    new ExplorerTreeNode("Copy and Paste", "grid-copy-paste-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Copy &amp; Paste", "grid-copy-paste-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Grid to Excel", "grid-to-excel-category", "grid-copy-paste-category", null, new GridToExcelSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid to Grid", "grid-to-grid-category", "grid-copy-paste-category", null, new GridToGridSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Excel to Grid", "excel-to-grid-category", "grid-copy-paste-category", null, new ExcelToGridSample.Factory(), true, idSuffix),
@@ -514,9 +517,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Live Grid", "live-grid", "grid-category", null, new LiveGridFetchSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Dependent Selects (Grid)", "dependent-selects-grid", "grid-category", null, new GridDependentSelectsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Databound Dragging", "grid-db-dragging", "grid-category", "silk/database_link.png", new GridDataBoundDragDropSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Grid Summaries", "grid-summaries", "grid-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Grid Header Summaries", "grid-header-summaries", "grid-category", "crystal/16/apps/tooloptions.png", new GridSummariesInHeaderSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Multiline Summaries", "grid-ml-summaries", "grid-category", "crystal/16/apps/tooloptions.png", new GridMultiLineSummariesSample.Factory(), true, idSuffix),
+
                     new ExplorerTreeNode("Printing", "grid-print-grid", "grid-category", "silk/printer.png", new PrintingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid Cell Widgets", "grid-cell-widgets", "grid-category", null, new GridCellWidgetsSample.Factory(), true, idSuffix),
 
@@ -564,7 +565,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Data View / Tiling", "tiling-category", "root", "crystal/16/actions/view_icon.png", null, true, idSuffix),
                     new ExplorerTreeNode("Basic", "tiling-basic", "tiling-category", null, new BasicTilingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Load on Demand", "tiling-load-on-demand", "tiling-category", null, new LoadOnDemandTilingSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Filter and Sort", "tiling-filter-sort", "tiling-category", null, new FilterSortTilingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Filter &amp; Sort", "tiling-filter-sort", "tiling-category", null, new FilterSortTilingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Tile Editing", "tiling-editing", "tiling-category", null, new TileEditingSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Forms", "form-category", "root", "silk/vcard_edit.png", null, true, idSuffix),
@@ -743,8 +744,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Drawing", "drawing", "root", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Shape Gallery", "shape-gallery", "drawing", null, new ShapeGallerySample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Rotation", "rotation", "drawing", null, new RotationSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Zoom and Pan", "zoom-and-pan", "drawing", null, new ZoomAndPanSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Lines and Arrowheads", "lines-and-arrowheads", "drawing", null, new LinesAndArrowheadsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Zoom &amp; Pan", "zoom-and-pan", "drawing", null, new ZoomAndPanSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Lines &amp; Arrowheads", "lines-and-arrowheads", "drawing", null, new LinesAndArrowheadsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Mouse Events", "mouse-events", "drawing", null, new DrawingMouseEventsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Gradients", "gradients", "drawing", null, null, true, idSuffix),
                     new ExplorerTreeNode("Simple Gradient", "simple-gradient", "gradients", null, new SimpleGradientSample.Factory(), true, idSuffix),
