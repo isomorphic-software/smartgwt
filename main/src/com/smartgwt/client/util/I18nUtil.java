@@ -39,6 +39,7 @@ public class I18nUtil {
      * @param messages the SmartGWT messages
      */
     public static native void initMessages(SmartGwtMessages messages) /*-{
+//>localeGenerator -- SC locale parser will process whatever's after this tag
         
         if($wnd.isc.Dialog) {
             $wnd.isc.Dialog.addClassProperties({OK_BUTTON_TITLE: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dialog_OkButtonTitle()()});
@@ -420,30 +421,6 @@ public class I18nUtil {
         var inputFormat = messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_inputFormat()();
         if (inputFormat) $wnd.isc.Date.setInputFormat(inputFormat);
 
-        $wnd.isc.addProperties($wnd.Date, {shortDayNames: [
-            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_1()(),
-            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_2()(),
-            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_3()(),
-            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_4()(),
-            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_5()(),
-            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_6()(),
-            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_7()()]
-        });
-
-        $wnd.isc.addProperties($wnd.Date, {shortMonthNames: [
-            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_1()(),
-            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_2()(),
-            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_3()(),
-            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_4()(),
-            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_5()(),
-            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_6()(),
-            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_7()(),
-            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_8()(),
-            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_9()(),
-            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_10()(),
-            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_11()(),
-            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_12()()]
-        });
         if($wnd.isc.DateRangeItem) {
             $wnd.isc.DateRangeItem.addProperties({fromTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateRangeItem_fromTitle()()});
             $wnd.isc.DateRangeItem.addProperties({toTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateRangeItem_toTitle()()});
@@ -482,6 +459,32 @@ public class I18nUtil {
         if($wnd.isc.IMenuButton) {
             $wnd.isc.IMenuButton.addProperties({title: messages.@com.smartgwt.client.i18n.SmartGwtMessages::iMenuButton_title()()});   
         }
+//<localeGenerator -- SC locale parser will process whatever's before this tag
+
+        $wnd.isc.addProperties($wnd.Date, {shortDayNames: [
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_1()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_2()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_3()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_4()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_5()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_6()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_7()()]
+        });
+
+        $wnd.isc.addProperties($wnd.Date, {shortMonthNames: [
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_1()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_2()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_3()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_4()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_5()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_6()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_7()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_8()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_9()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_10()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_11()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_12()()]
+        });
         @com.smartgwt.client.util.I18nUtil::initialized = true;
     }-*/;
 }
