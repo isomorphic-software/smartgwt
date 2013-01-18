@@ -280,6 +280,7 @@ public class I18nUtil {
         $wnd.isc.Canvas.addProperties({duplicateDragMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_duplicateDragMessage()()});
         $wnd.isc.Canvas.addProperties({unknownErrorMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_unknownErrorMessage()()});
         $wnd.isc.Canvas.addProperties({offlineMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_offlineMessage()()});
+        $wnd.isc.Canvas.addProperties({editHilitesDialogTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_editHilitesDialogTitle()()});
 
         if($wnd.isc.TreeGrid) {
             $wnd.isc.TreeGrid.addProperties({parentAlreadyContainsChildMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::treeGrid_parentAlreadyContainsChildMessage()()});
@@ -387,6 +388,7 @@ public class I18nUtil {
         if($wnd.isc.HiliteRule) {
             $wnd.isc.HiliteRule.addProperties({removeButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteRule_removeButtonPrompt()()});
             $wnd.isc.HiliteRule.addProperties({colorFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteRule_colorFieldTitle()()});
+            $wnd.isc.HiliteRule.addProperties({iconFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteRule_iconFieldTitle()()});
             $wnd.isc.HiliteRule.addProperties({foregroundColorTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteRule_foregroundColorTitle()()});
             $wnd.isc.HiliteRule.addProperties({backgroundColorTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteRule_backgroundColorTitle()()});
         }
