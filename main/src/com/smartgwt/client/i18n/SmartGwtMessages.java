@@ -439,6 +439,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dataBoundComponent_unknownErrorMessage();
 
   /**
+   * Translated "Edit Hilites".
+   * 
+   * @return translated "Edit Hilites"
+   */
+  @DefaultMessage("Edit Hilites")
+  @Key("dataBoundComponent_editHilitesDialogTitle")
+  String dataBoundComponent_editHilitesDialogTitle();
+
+  /**
    * Translated "Cancel".
    * 
    * @return translated "Cancel"
@@ -1642,6 +1651,14 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("hiliteRule_colorFieldTitle")
   String hiliteRule_colorFieldTitle();
   
+  /**
+   * Translated "Icon".
+   * 
+   * @return translated "Icon"
+   */
+  @DefaultMessage("Icon")
+  @Key("hiliteRule_iconFieldTitle")
+  String hiliteRule_iconFieldTitle();
 
   /**
    * Translated "Text".
