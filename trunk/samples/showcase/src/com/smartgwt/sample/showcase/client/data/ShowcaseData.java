@@ -92,6 +92,17 @@ import com.smartgwt.sample.showcase.client.effects.looknfeel.CssStylesSample;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.EdgesSample;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.ShadowsSample;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.TranslucencySample;
+import com.smartgwt.sample.showcase.client.portalLayout.AddRemoveColumnsSample;
+import com.smartgwt.sample.showcase.client.portalLayout.PortletAnimationSample;
+import com.smartgwt.sample.showcase.client.portalLayout.RearrangeSample;
+import com.smartgwt.sample.showcase.client.portalLayout.portletContents.DragComponentsSample;
+import com.smartgwt.sample.showcase.client.portalLayout.portletContents.WindowContentsSample;
+import com.smartgwt.sample.showcase.client.portalLayout.sizing.ColumnHeightSample;
+import com.smartgwt.sample.showcase.client.portalLayout.sizing.ColumnWidthSample;
+import com.smartgwt.sample.showcase.client.portalLayout.sizing.OverflowSample;
+import com.smartgwt.sample.showcase.client.portalLayout.sizing.PortletHeightSample;
+import com.smartgwt.sample.showcase.client.portalLayout.sizing.PortletResizeSample;
+import com.smartgwt.sample.showcase.client.portalLayout.sizing.PortletWidthSample;
 import com.smartgwt.sample.showcase.client.forms.CustomPickerSample;
 import com.smartgwt.sample.showcase.client.forms.FormDataBindingSample;
 import com.smartgwt.sample.showcase.client.forms.FormFocusFirstSample;
@@ -620,7 +631,6 @@ public class ShowcaseData {
                     new ExplorerTreeNode("User Sizing", "layout-user-sizing", "layout-category", null, new UserSizingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Border Layout", "layout-border", "layout-category", null, new FreeSpaceSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Center Align", "layout-center-align", "layout-category", null, new CenterAlignSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portal", "layout-portal", "layout-category", "silk/application_view_tile.png", new SimplePortalSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Portal(manual)", "layout-portal-manual", "layout-category", "silk/application_view_tile.png", new SimplePortalManualSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Windows", "layout-windows-category", "root", "silk/application_cascade.png", null, true, idSuffix),
                     new ExplorerTreeNode("Auto Size", "layout-windows-autosize", "layout-windows-category", null, new WindowAutoSizeSample.Factory(), true, idSuffix),
@@ -647,6 +657,21 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Add & Remove", "layout-sections-add-remove", "layout-sections-category", null, new SectionsAddRemoveSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Show & Hide", "layout-sections-show-hide", "layout-sections-category", null, new SectionsShowHideSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag Reorder", "layout-sections-drag-reorder", "layout-sections-category", null, new SectionsReorderSample.Factory(), true, idSuffix),
+
+                    new ExplorerTreeNode("Portal Layout", "portal-layout-category", "root", "silk/application_view_tile.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Repositioning", "repositioning-portal-layout", "portal-layout-category", null, new RearrangeSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Adding and removing columns", "add-remove-columns-portal-layout", "portal-layout-category", null, new AddRemoveColumnsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Portlet Contents", "portlet-contents-portal-layout", "portal-layout-category", "silk/application_view_tile.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Window contents", "window-contents-portal-layout", "portlet-contents-portal-layout", null, new WindowContentsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Dragging components", "drag-components-portal-layout", "portlet-contents-portal-layout", null, new DragComponentsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Sizing", "sizing-portal-layout", "portal-layout-category", "silk/application_view_tile.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Column height", "column-height-portal-layout", "sizing-portal-layout", null, new ColumnHeightSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Column width", "column-width-portal-layout", "sizing-portal-layout", null, new ColumnWidthSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Portlet height", "portlet-height-portal-layout", "sizing-portal-layout", null, new PortletHeightSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Portlet width", "portlet-width-portal-layout", "sizing-portal-layout", null, new PortletWidthSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Portlet resizing", "portlet-resizing-portal-layout", "sizing-portal-layout", null, new PortletResizeSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Overflowing width", "overflowing-width-portal-layout", "sizing-portal-layout", null, new OverflowSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Portlet Animation", "portlet-animation-portal-layout", "portal-layout-category", null, new PortletAnimationSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Buttons", "buttons-category", "root", "silk/brick.png", null, true, idSuffix),
                     new ExplorerTreeNode("Appearance", "buttons-category-appearance", "buttons-category", null, new ButtonAppearanceSample.Factory(), true, idSuffix),
