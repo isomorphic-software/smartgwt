@@ -54,6 +54,7 @@ public class TileView extends VLayout {
     private CheckboxItem windowsCB;
     private CheckboxItem tabsCB;
     private CheckboxItem accordionCB;
+    private CheckboxItem portalLayoutCB;
     private CheckboxItem buttonsCB;
     private CheckboxItem menusCB;
     private CheckboxItem toolStripCB;
@@ -190,6 +191,7 @@ public class TileView extends VLayout {
         windowsCB = new CheckboxItem("windowsCB", "Windows");
         tabsCB = new CheckboxItem("tabsCB", "Tabs");
         accordionCB = new CheckboxItem("accordionCB", "Accordion / Sections");
+        portalLayoutCB = new CheckboxItem("portalLayoutCB", "Portal Layout");
         buttonsCB = new CheckboxItem("buttonsCB", "Buttons");
         menusCB = new CheckboxItem("menusCB", "Menus");
         toolStripCB = new CheckboxItem("toolStripCB", "ToolStrip");
@@ -209,7 +211,7 @@ public class TileView extends VLayout {
 
         filterForm.setFields(searchItem, numSamplesItem, ascendingItem, disabledModeCB, 
             featuredCB, newSamplesCB, comboBoxCB, gridsCB, treeCB, calendarCB, tilesCB,
-            formsCB, layoutCB, windowsCB, tabsCB, accordionCB, buttonsCB, menusCB,
+            formsCB, layoutCB, windowsCB, tabsCB, accordionCB, portalLayoutCB, buttonsCB, menusCB,
             toolStripCB, otherControlsCB, dataIntegrationCB, dragDropCB, basicsCB, drawingCB,
             effectsCB);
 
@@ -244,6 +246,7 @@ public class TileView extends VLayout {
         if (windowsCB.getValueAsBoolean()) categories.add("layout_windows_category");
         if (tabsCB.getValueAsBoolean()) categories.add("layout_tabs_category");
         if (accordionCB.getValueAsBoolean()) categories.add("layout_sections_category");
+        if (portalLayoutCB.getValueAsBoolean()) categories.add("layout_portal_category");
         if (buttonsCB.getValueAsBoolean()) categories.add("buttons_category");
         if (menusCB.getValueAsBoolean()) categories.add("menus_category");
         if (toolStripCB.getValueAsBoolean()) categories.add("toolstrip_category");
