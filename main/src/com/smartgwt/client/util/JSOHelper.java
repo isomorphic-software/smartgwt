@@ -75,11 +75,16 @@ public class JSOHelper {
 
     public static native void setAttribute(JavaScriptObject elem, String attr, String value) /*-{
         // When setting a string attribute, make sure to convert the value to a normal, non-wrapped
-        // string object as opposed to a String object (i.e. typeof is "string", not "object").
+        // string as opposed to a String object (i.e. typeof is "string", not "object").
         // This is needed because an equality comparison of two String objects can fail even
         // though they represent the same string. For example, `new String("test") == new String("test")'
         // is `false'.
-        elem[attr] = (value == null ? null : $wnd.String(value));
+        //
+        // Also, both $wnd.String() and String() called as functions on a value return the same thing,
+        // a native browser string that is the result of calling the internal ToString() conversion function
+        // (Sections 15.5.1.1 and 9.8, ECMA-262). Use String() because it is the fastest:
+        // http://jsperf.com/cross-frame-tostring/2
+        elem[attr] = (value == null ? null : String(value));
     }-*/;
 
     public static native JavaScriptObject getAttributeAsJavaScriptObject(JavaScriptObject elem, String attr) /*-{
@@ -912,7 +917,8 @@ public class JSOHelper {
     }
 
     public static native void setArrayValue(JavaScriptObject array, int index, String value) /*-{
-        array[index] = (value == null ? null : $wnd.String(value));
+        // See the comments in setAttribute(JavaScriptObject, String, String).
+        array[index] = (value == null ? null : String(value));
     }-*/;
 
     public static native void setArrayValue(JavaScriptObject array, int index, double value) /*-{
