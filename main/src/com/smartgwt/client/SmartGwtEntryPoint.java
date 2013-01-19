@@ -18,10 +18,7 @@ package com.smartgwt.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Window;
-import com.smartgwt.client.rpc.RPCManager;
-import com.smartgwt.client.types.PromptStyle;
 import com.smartgwt.client.util.I18nUtil;
 import com.smartgwt.client.util.LogUtil;
 
@@ -153,8 +150,8 @@ public class SmartGwtEntryPoint implements EntryPoint {
             $wnd.isc.Canvas.validateFieldNames = true;
         }
 
-        $wnd.SmartGWT.convertToJavaType = function(obj) {
-                if(obj == null || obj === undefined) return null;
+        $wnd.SmartGWT.convertToJavaType = $entry(function(obj) {
+                if(obj == null) return null;
                 var objType = typeof obj;
                 if(objType == 'string') {
                     return obj;
@@ -175,7 +172,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
                 } else if(objType == 'boolean') {
                     return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(obj);
                 } else if($wnd.isc.isA.Date(obj)) {
-                    return @com.smartgwt.client.util.JSOHelper::toDate(D)(obj.getTime());
+                    return @com.smartgwt.client.util.JSOHelper::convertToJavaDate(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
                 } else if (obj._constructor && obj._constructor == 'DateRange') {
                     return @com.smartgwt.client.widgets.form.fields.DateRangeItem::convertToDateRange(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
                 } else if(@com.smartgwt.client.util.JSOHelper::isJSO(Ljava/lang/Object;)(obj)) {
@@ -186,9 +183,9 @@ public class SmartGwtEntryPoint implements EntryPoint {
                     //handle case where object may be a GWT created class instance
                     return obj;
                 }
-        };
+        });
 
-        $wnd.SmartGWT.convertToJavaObject = function (object, listAsArray) {
+        $wnd.SmartGWT.convertToJavaObject = $entry(function (object, listAsArray) {
     		if (object == null) return null;
 
 	    	if (!$wnd.isc.isA.Object(object)) {
@@ -196,7 +193,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    		return $wnd.SmartGWT.convertToJavaType(object);
 	    	} else if ($wnd.isc.isA.Date(object)) {
 
-	    		return @com.smartgwt.client.util.JSOHelper::toDate(D)(object.getTime());
+                return @com.smartgwt.client.util.JSOHelper::convertToJavaDate(Lcom/google/gwt/core/client/JavaScriptObject;)(object);
 	    	} else if ($wnd.isc.isAn.Array(object)) {
 
 	    		var convertedArray = [];
@@ -242,11 +239,11 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    	 	}
 	    	 	return javaMap;
 	    	 }
-        };
-          
+        });
+
         // Given a GWT Java Object such as a java.lang.Integer, convert to the primitive type (an int) 
         // so we can manipulate the value directly in JavaScript
-        $wnd.SmartGWT.convertToPrimitiveType = function (object) {
+        $wnd.SmartGWT.convertToPrimitiveType = $entry(function (object) {
             if (object == null) return null;
 
             //With the exception of java.lang.String, touching any property on a GWT object ref like java.lang.Long or other GWT java class within JSNI causes
@@ -273,8 +270,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
             }
 
             return object;
-        };
-        
+        });
 
         if ($wnd.isc.RPCManager.__fireReplyCallback == null) {
             $wnd.isc.RPCManager.__fireReplyCallback = $wnd.isc.RPCManager.fireReplyCallback;
