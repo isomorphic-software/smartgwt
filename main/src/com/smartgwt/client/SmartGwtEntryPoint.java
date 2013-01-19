@@ -212,11 +212,8 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    			return javaList;
 	    		}
 	    	 } else {
-	    	    // to-string SmartClient canvas instances. We don't want to attempt to serialize them to Maps
-	    	    // If a developer wants to actually create a live Java Canvas instance from the JS equivalent they
-	    	    // should call new Canvas(JavaScriptObject canvas); instead of trying to use this code-path.
 	    	    if ($wnd.isc.isA.Canvas(object)) {
-	    	        return "" + object;
+                    return @com.smartgwt.client.widgets.Canvas::getById(Ljava/lang/String;)(object.getID());
 	    	    }
 	    	 	// convert to a map
 	    	 	var javaMap = @java.util.LinkedHashMap::new()();
@@ -232,9 +229,10 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    	 		if(!$wnd.isc.isA.String(fieldName)){
 	    	 			continue;
 	    	 		}
-	    	 		
+
+                    var val = object[fieldName];
                     //if the field name is '__ref', the the value is already a GWT java object reference
-	    	 		var convertedVal = fieldName == '__ref' ? object[fieldName] : $wnd.SmartGWT.convertToJavaObject(object[fieldName]);
+                    var convertedVal = (fieldName == '__ref' || this.isNativeJavaObject(val) ? val : $wnd.SmartGWT.convertToJavaObject(val));
  					@com.smartgwt.client.util.JSOHelper::doAddToMap(Ljava/util/Map;Ljava/lang/String;Ljava/lang/Object;)(javaMap, fieldName, convertedVal);
 	    	 	}
 	    	 	return javaMap;
