@@ -320,20 +320,8 @@ public class JSOHelper {
     }-*/;
 
     public static native Date getAttributeAsDate(JavaScriptObject elem, String attr) /*-{
-        var jsD = elem[attr];
-        if (jsD == null || jsD === undefined) {
-            return null;
-        } else {
-            var ret;
-            if (jsD.logicalDate) {
-                ret = @com.smartgwt.client.util.LogicalDate::new(D)(jsD.getTime());
-            } else if (jsD.logicalTime) {
-                ret = @com.smartgwt.client.util.LogicalTime::new(D)(jsD.getTime());
-            } else {
-                ret = @com.smartgwt.client.util.JSOHelper::toDate(D)(jsD.getTime());
-            }
-            return ret;
-        }
+        var val = elem[attr];
+        return @com.smartgwt.client.util.JSOHelper::convertToJavaDate(Lcom/google/gwt/core/client/JavaScriptObject;)(val);
     }-*/;
 
     public static native Float getAttributeAsFloat(JavaScriptObject elem, String attr) /*-{
@@ -700,6 +688,17 @@ public class JSOHelper {
         }
     }
 
+    public static native Date convertToJavaDate(JavaScriptObject val) /*-{
+        if (!$wnd.isc.isA.Date(val)) return null;
+        if (val.logicalDate) {
+            return @com.smartgwt.client.util.LogicalDate::new(D)(val.getTime());
+        } else if (val.logicalTime) {
+            return @com.smartgwt.client.util.LogicalTime::new(D)(val.getTime());
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toDate(D)(val.getTime());
+        }
+    }-*/;
+
     //explicitly cast Object to String to workaround GWT hosted mode but in certain browsers when originating string is obtained
     //by calling object.toString(). http://code.google.com/p/google-web-toolkit/issues/detail?id=4301
     public static String convertToString(Object obj) {
@@ -875,6 +874,17 @@ public class JSOHelper {
         return date.getTime();
     }
 
+    /**
+     * Converts a time to a Java {@link java.util.Date} object.
+     * 
+     * <p>Note: If needing to convert a JavaScript object, it is preferable to use
+     * {@link #convertToJavaDate(JavaScriptObject)} instead because that function is able to
+     * convert to {@link com.smartgwt.client.util.LogicalDate} and {@link com.smartgwt.client.util.LogicalTime}
+     * instances as needed.
+     * 
+     * @param millis number of milliseconds since January 1, 1970, 00:00:00 GMT.
+     * @return a new {@link java.util.Date} representing the given time.
+     */
     public static Date toDate(double millis) {
         return new Date((long) millis);
     }
@@ -983,15 +993,7 @@ public class JSOHelper {
     public static native Date getDateArrayValue(JavaScriptObject array, int i) /*-{
         if (array == null || !$wnd.isc.isAn.Array(array)) return null;
         var val = array[i];
-        if (!$wnd.isc.isA.Date(val)) return null;
-        if (val.logicalDate) {
-            val = @com.smartgwt.client.util.LogicalDate::new(D)(val.getTime());
-        } else if (val.logicalTime) {
-            val = @com.smartgwt.client.util.LogicalTime::new(D)(val.getTime());
-        } else {
-            val = @com.smartgwt.client.util.JSOHelper::toDate(D)(val.getTime());
-        }
-        return val;
+        return @com.smartgwt.client.util.JSOHelper::convertToJavaDate(Lcom/google/gwt/core/client/JavaScriptObject;)(val);
     }-*/;
 
 
