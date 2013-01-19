@@ -199,6 +199,7 @@ import com.smartgwt.sample.showcase.client.grid.grouping.GridCustomGroupingSampl
 import com.smartgwt.sample.showcase.client.grid.grouping.GridDynamicGroupingSample;
 import com.smartgwt.sample.showcase.client.grid.grouping.GroupedEditingSample;
 import com.smartgwt.sample.showcase.client.grid.grouping.GridGroupingModesSample;
+import com.smartgwt.sample.showcase.client.grid.grouping.MultiGroupingSample;
 import com.smartgwt.sample.showcase.client.grid.hiliting.GridDataDrivenHilitingSample;
 import com.smartgwt.sample.showcase.client.grid.hiliting.GridFormulaHilitingSample;
 import com.smartgwt.sample.showcase.client.grid.hiliting.GridPredefinedHilitingSample;
@@ -468,6 +469,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Dynamic Grouping", "grid-grouping-dynamic", "grid-grouping-category", null, new GridDynamicGroupingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grouped Editing", "grid-grouping-editing", "grid-grouping-category", null, new GroupedEditingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Custom Grouping", "grid-grouping-custom", "grid-grouping-category", null, new GridCustomGroupingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Multi Grouping", "grid-grouping-multi", "grid-grouping-category", null, new MultiGroupingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grouping Modes", "grid-grouping-modes", "grid-grouping-category", null, new GridGroupingModesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid Summaries", "grid-summaries", "grid-grouping-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid Header Summaries", "grid-header-summaries", "grid-grouping-category", "crystal/16/apps/tooloptions.png", new GridSummariesInHeaderSample.Factory(), true, idSuffix),
