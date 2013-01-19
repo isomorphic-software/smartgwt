@@ -842,11 +842,13 @@ public class JSOHelper {
             } else if (val instanceof Map) {
                 setArrayValue(jsArray, i, convertMapToJavascriptObject((Map)val, strict));
             } else {
+                assert val != null;
+                assert !(val instanceof JavaScriptObject);
                 if (strict) {
-                    assert val != null;
-                    assert ! (val instanceof JavaScriptObject);
                     throw new UnsupportedOperationException("Can not convert element " + i + " of the array to a JavaScriptObject.  Instances of class `" + (val.getClass().getName()) + "' can not automatically be converted.  Please see the SmartClient documentation of RPCRequest.data for a table of Java types that can be converted automatically.");
-                } else JSOHelper.setArrayValue(jsArray, i, ((Object) val));
+                } else {
+                    setArrayValue(jsArray, i, val);
+                }
             }
         }
         return jsArray;
@@ -1133,7 +1135,12 @@ public class JSOHelper {
             } else if (value instanceof List){
                 setAttribute(valueJS, key, JSOHelper.convertToJavaScriptArray(((List)value).toArray(), strict));
             } else {
-                throw new IllegalArgumentException("Unsupported type for attribute " + key + " : " + value);
+                assert value != null;
+                if (strict) {
+                    throw new UnsupportedOperationException("Unsupported type for attribute " + key + " : " + value + ".  Instances of class `" + (value.getClass().getName()) + "' can not automatically be converted.  Please see the SmartClient documentation of RPCRequest.data for a table of Java types that can be converted automatically.");
+                } else {
+                    setObjectAttribute(valueJS, key, value);
+                }
             }
         }
         return valueJS;
