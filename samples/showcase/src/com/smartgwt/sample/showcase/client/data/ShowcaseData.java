@@ -162,6 +162,7 @@ import com.smartgwt.sample.showcase.client.grid.autofit.AutofitValuesSample;
 import com.smartgwt.sample.showcase.client.grid.autofit.FreeSpaceSample;
 import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingDataSourceFieldsSample;
 import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingInlineDataSample;
+import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingLocalDataSourceSample;
 import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingJSONDataSourceSample;
 import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingListGridFieldsSample;
 import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingMergedFieldsSample;
@@ -500,7 +501,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Merged Fields", "grid-databinding-merged-fields", "grid-databinding-category", null, new GridDataBindingMergedFieldsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Inline Data", "grid-databinding-inline-data", "grid-databinding-category", null, new GridDataBindingInlineDataSample.Factory(), true, idSuffix),
                     //new ExplorerTreeNode("Local Data", "grid-databinding-local-data", "grid-databinding-category", null, null, false, idSuffix),
-                    //new ExplorerTreeNode("Local DataSource", "grid-databinding-local-datasource", "grid-databinding-category", null, null, false, idSuffix),
+                    new ExplorerTreeNode("Local DataSource", "grid-databinding-local-datasource", "grid-databinding-category", null, 
+                    new GridDataBindingLocalDataSourceSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("JSON DataSource", "grid-databinding-json-datasource", "grid-databinding-category", null, new GridDataBindingJSONDataSourceSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("XML DataSource", "grid-databinding-xml-datasource", "grid-databinding-category", null, new GridDataBindingXMLDataSourceSample.Factory(), true, idSuffix),
 
