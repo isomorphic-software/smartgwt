@@ -186,7 +186,8 @@ public class SmartGwtEntryPoint implements EntryPoint {
         });
 
         $wnd.SmartGWT.convertToJavaObject = $entry(function (object, listAsArray) {
-    		if (object == null) return null;
+            if (object == null) return null;
+            var refProperty = @com.smartgwt.client.util.SC::REF;
 
 	    	if (!$wnd.isc.isA.Object(object)) {
 
@@ -211,7 +212,10 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    			}
 	    			return javaList;
 	    		}
-	    	 } else {
+            } else {
+                if (object[refProperty] != null) {
+                    return object[refProperty];
+                }
 	    	    if ($wnd.isc.isA.Canvas(object)) {
                     return @com.smartgwt.client.widgets.Canvas::getById(Ljava/lang/String;)(object.getID());
 	    	    }
@@ -232,7 +236,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
 
                     var val = object[fieldName];
                     //if the field name is '__ref', the the value is already a GWT java object reference
-                    var convertedVal = (fieldName == '__ref' || this.isNativeJavaObject(val) ? val : $wnd.SmartGWT.convertToJavaObject(val));
+                    var convertedVal = (fieldName == refProperty || this.isNativeJavaObject(val) ? val : $wnd.SmartGWT.convertToJavaObject(val));
  					@com.smartgwt.client.util.JSOHelper::doAddToMap(Ljava/util/Map;Ljava/lang/String;Ljava/lang/Object;)(javaMap, fieldName, convertedVal);
 	    	 	}
 	    	 	return javaMap;
