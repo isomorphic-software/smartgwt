@@ -178,7 +178,7 @@ public class JSOHelper {
     public static void setAttribute(JavaScriptObject elem, String attr, Object value) {
         if (value == null) {
             setNullAttribute(elem, attr);
-        } else if (value instanceof CharSequence || value instanceof Character) {
+        } else if (value instanceof String || value instanceof Character) {
             setAttribute(elem, attr, value.toString());
         } else if (value instanceof Number) {
             setAttribute(elem, attr, (Number)value);
@@ -789,7 +789,7 @@ public class JSOHelper {
 
             if (val == null) {
                 setArrayValue(jsArray, i, (JavaScriptObject) val);
-            } else if (val instanceof CharSequence || val instanceof Character) {
+            } else if (val instanceof String || val instanceof Character) {
                 setArrayValue(jsArray, i, val.toString());
             } else if (val instanceof Number) {
                 if (val instanceof Long) setArrayValue(jsArray, i, ((Long) val).longValue());
