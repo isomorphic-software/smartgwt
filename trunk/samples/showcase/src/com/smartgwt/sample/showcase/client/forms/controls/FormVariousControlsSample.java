@@ -168,7 +168,10 @@ public class FormVariousControlsSample extends ShowcasePanel {
         dateItem2.setUseTextField(true);
         dateItem2.setHint("<nobr>Direct date input</nobr>");
 
-        TimeItem timeItem = new TimeItem("timeItem", "Time");
+        TimeItem timeItem1 = new TimeItem("timeItem", "Time");
+        TimeItem timeItem2 = new TimeItem("timeItem", "Time");
+        timeItem2.setHint("Picklist based time input");
+        timeItem2.setUseTextField(false);
 
         DateRangeItem dateRangeItem = new DateRangeItem("dri", "Date Range");
         dateRangeItem.setAllowRelativeDates(true);
@@ -180,7 +183,8 @@ public class FormVariousControlsSample extends ShowcasePanel {
         MiniDateRangeItem miniDateRangeItem = new MiniDateRangeItem("mdri", "Mini Date Range");
         RelativeDateItem relativeDateItem = new RelativeDateItem("rdi", "Relative Date");
 
-        dateForm.setItems(dateItem, dateItem2, timeItem, dateRangeItem, miniDateRangeItem, relativeDateItem);
+        dateForm.setItems(dateItem, dateItem2, timeItem1, timeItem2,
+                          dateRangeItem, miniDateRangeItem, relativeDateItem);
         layout.addMember(dateForm);
 
         return layout;
