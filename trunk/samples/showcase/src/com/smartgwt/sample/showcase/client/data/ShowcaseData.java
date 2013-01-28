@@ -150,6 +150,7 @@ import com.smartgwt.sample.showcase.client.grid.appearance.GridPreferencesSample
 import com.smartgwt.sample.showcase.client.grid.appearance.GridTopHeaderSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.HiliteCellsAddStyleSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.HiliteCellsReplaceStyleSample;
+import com.smartgwt.sample.showcase.client.grid.appearance.FieldPickerSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.MultilineSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.RollOverControlsSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.RowNumberingSample;
@@ -376,6 +377,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Style Cells (add style)", "grid-appearance-hilite-add", "grid-appearance-category", null, new HiliteCellsAddStyleSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Style Cells (replace style)", "grid-appearance-hilite-replace", "grid-appearance-category", null, new HiliteCellsReplaceStyleSample.Factory(), true, idSuffix),
                     //new ExplorerTreeNode("Rounded Selection", "grid-appearance-rounded-selection", "grid-appearance-category", null, null, false, idSuffix),
+                    new ExplorerTreeNode("Field Picker", "grid-appearance-field-picker", "grid-appearance-category", null, new FieldPickerSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Animated Selection", "grid-appearance-animated-selection", "grid-appearance-category", null, new AnimatedSelectionSample.Factory(), true, idSuffix),
                     //new ExplorerTreeNode("RollOver Reticle Effect", "grid-appearance-reticle-selection", "grid-appearance-category", null, null, false, idSuffix),
                     new ExplorerTreeNode("RollOver Controls", "grid-appearance-rollover-controls", "grid-appearance-category", null, new RollOverControlsSample.Factory(), true, idSuffix),
