@@ -603,7 +603,7 @@ public class JSOHelper {
      *   type.
      */
     public native static Object convertToJava(JavaScriptObject object, boolean listAsArray) /*-{
-    	return $wnd.SmartGWT.convertToJavaObject(object, listAsArray, true);
+    	return $wnd.SmartGWT.convertToJavaObject(object, listAsArray);
     }-*/;
 
     public static Object convertToJava(JavaScriptObject object) {
