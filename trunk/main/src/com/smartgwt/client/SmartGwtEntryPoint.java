@@ -219,6 +219,25 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    	    if ($wnd.isc.isA.Canvas(object)) {
                     return @com.smartgwt.client.widgets.Canvas::getById(Ljava/lang/String;)(object.getID());
 	    	    }
+
+                if ($wnd.isc.isA.String(object.name) && $wnd.isc.isA.DynamicForm(object.form)) {
+                    var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(object.form);
+                    return formJ.@com.smartgwt.client.widgets.form.DynamicForm::getField(Ljava/lang/String;)(object.name);
+                }
+
+                if ($wnd.isc.isA.String(object._constructor)) {
+                    var objectConstructor = object._constructor;
+                    if (objectConstructor == "RelativeDate") {
+                        return (object[refProperty] = @com.smartgwt.client.data.RelativeDate::new(Lcom/google/gwt/core/client/JavaScriptObject;)(object));
+                    } else if (objectConstructor == "AdvancedCriteria") {
+                        return (object[refProperty] = @com.smartgwt.client.data.AdvancedCriteria::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(object));
+                    }
+                }
+
+                if ($wnd.isc.isAn.Instance(object) && object.getClassName != null) {
+                    return (object[refProperty] = @com.smartgwt.client.util.ObjectFactory::createInstance(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)(object.getClassName(), object));
+                }
+
 	    	 	// convert to a map
 	    	 	var javaMap = @java.util.LinkedHashMap::new()();
 	    	 	// If it's a tree node, clean it up before converting otherwise we may end up serializing out
