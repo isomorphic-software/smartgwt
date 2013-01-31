@@ -185,7 +185,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
                 }
         });
 
-        $wnd.SmartGWT.convertToJavaObject = $entry(function (object, listAsArray) {
+        $wnd.SmartGWT.convertToJavaObject = $entry(function (object, listAsArray, forceMap) {
             if (object == null) return null;
             var refProperty = @com.smartgwt.client.util.SC::REF;
 
@@ -199,7 +199,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
 
 	    		var convertedArray = [];
 	    		for (var i = 0; i < object.length; i++) {
-	    			convertedArray[i] =  $wnd.SmartGWT.convertToJavaObject(object[i]);
+	    			convertedArray[i] =  $wnd.SmartGWT.convertToJavaObject(object[i], false, false);
 	    		}
 	    		// now we've converted all our members and we need to return a Java array or List
 	    		if (listAsArray) {
@@ -213,29 +213,37 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    			return javaList;
 	    		}
             } else {
-                if (object[refProperty] != null) {
-                    return object[refProperty];
-                }
-	    	    if ($wnd.isc.isA.Canvas(object)) {
-                    return @com.smartgwt.client.widgets.Canvas::getById(Ljava/lang/String;)(object.getID());
-	    	    }
-
-                if ($wnd.isc.isA.String(object.name) && $wnd.isc.isA.DynamicForm(object.form)) {
-                    var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(object.form);
-                    return formJ.@com.smartgwt.client.widgets.form.DynamicForm::getField(Ljava/lang/String;)(object.name);
-                }
-
-                if ($wnd.isc.isA.String(object._constructor)) {
-                    var objectConstructor = object._constructor;
-                    if (objectConstructor == "RelativeDate") {
-                        return (object[refProperty] = @com.smartgwt.client.data.RelativeDate::new(Lcom/google/gwt/core/client/JavaScriptObject;)(object));
-                    } else if (objectConstructor == "AdvancedCriteria") {
-                        return (object[refProperty] = @com.smartgwt.client.data.AdvancedCriteria::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(object));
+                if (forceMap !== true) {
+                    if (object[refProperty] != null) {
+                        return object[refProperty];
                     }
-                }
+                    if ($wnd.isc.isA.Canvas(object)) {
+                        return @com.smartgwt.client.widgets.Canvas::getById(Ljava/lang/String;)(object.getID());
+                    }
 
-                if ($wnd.isc.isAn.Instance(object) && object.getClassName != null) {
-                    return (object[refProperty] = @com.smartgwt.client.util.ObjectFactory::createInstance(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)(object.getClassName(), object));
+                    if ($wnd.isc.isA.String(object.name) && $wnd.isc.isA.DynamicForm(object.form)) {
+                        var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(object.form);
+                        return formJ.@com.smartgwt.client.widgets.form.DynamicForm::getField(Ljava/lang/String;)(object.name);
+                    }
+
+                    if ($wnd.isc.isA.String(object._constructor)) {
+                        var objectConstructor = object._constructor;
+                        if (objectConstructor == "RelativeDate") {
+                            return (object[refProperty] = @com.smartgwt.client.data.RelativeDate::new(Lcom/google/gwt/core/client/JavaScriptObject;)(object));
+                        } else if (objectConstructor == "AdvancedCriteria") {
+                            return (object[refProperty] = @com.smartgwt.client.data.AdvancedCriteria::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(object));
+                        }
+                    }
+
+                    if ($wnd.isc.isAn.Instance(object) && object.getClassName != null) {
+                        return (object[refProperty] = @com.smartgwt.client.util.ObjectFactory::createInstance(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)(object.getClassName(), object));
+                    }
+                } else {
+                    if (object[refProperty] != null) {
+                        if (@com.smartgwt.client.util.JSOHelper::isJavaMap(Ljava/lang/Object;)(object[refProperty])) {
+                            return object[refProperty];
+                        }
+                    }
                 }
 
 	    	 	// convert to a map
@@ -255,7 +263,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
 
                     var val = object[fieldName];
                     //if the field name is '__ref', the the value is already a GWT java object reference
-                    var convertedVal = (fieldName == refProperty || this.isNativeJavaObject(val) ? val : $wnd.SmartGWT.convertToJavaObject(val));
+                    var convertedVal = (fieldName == refProperty || this.isNativeJavaObject(val) ? val : $wnd.SmartGWT.convertToJavaObject(val, false, false));
  					@com.smartgwt.client.util.JSOHelper::doAddToMap(Ljava/util/Map;Ljava/lang/String;Ljava/lang/Object;)(javaMap, fieldName, convertedVal);
 	    	 	}
 	    	 	return javaMap;
