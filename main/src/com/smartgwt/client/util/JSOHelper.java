@@ -586,6 +586,10 @@ public class JSOHelper {
     	 map.put(key, value);
     }
 
+    private native static Object convertToJava(JavaScriptObject object, boolean listAsArray, boolean forceMap) /*-{
+        return $wnd.SmartGWT.convertToJavaObject(object, listAsArray, forceMap);
+    }-*/;
+
     /**
      * Convert a JavaScriptObject to the appropriate type of JavaObject.
      * Simple JavaScript objects (key:value pairs) will be converted to Map instances.
@@ -602,14 +606,14 @@ public class JSOHelper {
      * @return converted Java object. May be a Map, a List or an Object[] depending on the underlying JS
      *   type.
      */
-    public native static Object convertToJava(JavaScriptObject object, boolean listAsArray) /*-{
-    	return $wnd.SmartGWT.convertToJavaObject(object, listAsArray);
-    }-*/;
-    
-    public static Object convertToJava(JavaScriptObject object) {
-    	return convertToJava(object, false);
+    public static Object convertToJava(JavaScriptObject object, boolean listAsArray) {
+        return convertToJava(object, listAsArray, false);
     }
-    
+
+    public static Object convertToJava(JavaScriptObject object) {
+        return convertToJava(object, false);
+    }
+
     /**
      * Convert a Javascript object containing key:value pairs to a Map.
      * @param jsObj the javascript object
@@ -618,7 +622,7 @@ public class JSOHelper {
      * @throws IllegalArgumentException if unable to convert the passed JavaScript object to a map
      */
     public static Map convertToMap(JavaScriptObject jsObj, boolean listAsArray) {
-    	Object javaObj = convertToJava(jsObj, listAsArray);
+    	Object javaObj = convertToJava(jsObj, listAsArray, true);
         if (javaObj == null) {
             return (Map) null;
         } else if (javaObj instanceof Map) {
@@ -763,6 +767,10 @@ public class JSOHelper {
      */
     public static boolean isJavaBoolean(Object obj) {
         return obj instanceof Boolean;
+    }
+
+    public static boolean isJavaMap(Object obj) {
+        return obj instanceof Map;
     }
 
     public static <O extends JavaScriptObject> JsArray<O> convertToJsArray(O[] array) {
