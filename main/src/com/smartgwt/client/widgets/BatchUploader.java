@@ -7,7 +7,7 @@ import com.smartgwt.client.widgets.form.fields.FormItem;
 /**
  * Handles the upload, validation, review and saving of a dataset expressed in CSV or other upload formats.
  * 
- * <p><em><b>Requires Smart GWT Enterprise or Eval.</b></em>
+ * <p><em><b>Requires Smart GWT Enterprise, Power or Eval.</b></em>
  * 
  * <p>By default, a <code>BatchUploader</code> consists of a single {@link com.smartgwt.client.widgets.form.fields.FileItem}
  * form field. This form field will upload a file using the special "batchUpload" built-in DataSource.
