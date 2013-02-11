@@ -307,7 +307,13 @@ public class BeanValueType {
     public String getFactoryPackage () {
         if (componentValueType == null) {
             if (valueType instanceof JClassType) {
-                return ((JClassType) valueType).getPackage().getName();
+                String factoryPackage = ((JClassType) valueType).getPackage().getName();
+                // Avoid putting things in the "java" namespace
+                if (factoryPackage.startsWith("java")) {
+                    return "com.smartgwt.client.bean.types." + factoryPackage;
+                } else {
+                    return factoryPackage;
+                }
             } else {
                 throw new IllegalStateException("No package for valueType");
             }
