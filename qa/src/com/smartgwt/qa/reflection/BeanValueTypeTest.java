@@ -36,24 +36,8 @@ import java.util.Date;
 
 // Tests general capabilities of BeanValueType
 public class BeanValueTypeTest extends TestRunner {
-    public static interface MyValueTypeFactory extends BeanValueType.MetaFactory {
-        BeanValueType<Map> getMapValueType();
-    }
-    
     public BeanValueTypeTest () {
         super(
-            new TestCase("using value type in java. namespace") { 
-                public void doTest () {
-                    GWT.create(BeanValueTypeTest.MyValueTypeFactory.class);
-
-                    HashMap hash = new HashMap();
-
-                    assertTrue(BeanValueType.isAssignableFrom(Map.class, hash), "a HashMap should be assignable to Map");
-                    assertFalse(BeanValueType.isAssignableFrom(Map.class, 7), "an int should not be assignable to Map");
-                    setResult();
-                }
-            },
-
             new TestCase("isAssignableFrom(Class, Object) with generated subclass") {
                 public void doTest () {
                     HashMap map = new HashMap();
@@ -303,7 +287,6 @@ public class BeanValueTypeTest extends TestRunner {
                     };
                 }-*/;
 
-                @SuppressWarnings("unchecked")
                 public void doTest () {
                     Object result = BeanValueType.convertToJava(jsPOJO());
 
