@@ -214,6 +214,11 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    		}
             } else {
                 if (forceMap !== true) {
+                    // Check for a POJO.
+                    if (!@com.smartgwt.client.util.JSOHelper::isJSO(Ljava/lang/Object;)(object)) {
+                        return object;
+                    }
+
                     if (object[refProperty] != null) {
                         return object[refProperty];
                     }
