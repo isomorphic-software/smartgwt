@@ -1705,7 +1705,7 @@ public class ComboBoxItem extends TextItem  implements PickList, com.smartgwt.cl
      * @param sortSpecifiers Array of SortSpecifier objects
      */
     public native void setSort(SortSpecifier[] sortSpecifiers) /*-{
-         var self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()(),
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()(),
             specifiers = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(sortSpecifiers);
         if (self != null && self.pickList != null) self.pickList.setSort(specifiers);
         else {

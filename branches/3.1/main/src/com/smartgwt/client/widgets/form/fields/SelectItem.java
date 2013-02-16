@@ -1688,7 +1688,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * @param sortSpecifiers Array of SortSpecifier objects
      */
     public native void setPickListSort(SortSpecifier[] sortSpecifiers) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()(),
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()(),
             specifiers = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(sortSpecifiers);
         if (self != null && self.pickList != null) self.pickList.setSort(specifiers);
         else {
