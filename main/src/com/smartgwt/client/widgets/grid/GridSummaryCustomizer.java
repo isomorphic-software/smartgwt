@@ -1,7 +1,5 @@
 package com.smartgwt.client.widgets.grid;
 
-import com.smartgwt.client.widgets.grid.GroupNode;
-import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
@@ -15,7 +13,7 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
 public abstract class GridSummaryCustomizer {
 	
 	/**
-	 * If this grid is grouped, and +link{listGrid.showGroupSummary} is true, this
+	 * If this grid is grouped, and ListGrid.showGroupSummary is true, this
 	 * method will be passed a third parameter - an array of group-level summaries.
 	 * 
 	 * @param recordsrecords, records for which a summary is being generated.
@@ -31,5 +29,5 @@ public abstract class GridSummaryCustomizer {
 	 * 	        results - in this case each result will show up in a separate row in the
 	 *          ListGrid.summaryRow grid.
 	 */
-    public abstract Object[] getGroupSummary(ListGridRecord[] records, ListGridField field, GroupSummary groupSummary);
+    public abstract Object[] getGroupSummary(ListGridRecord[] records, ListGridField field, GroupSummary[] groupSummary);
 }

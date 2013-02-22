@@ -59,7 +59,6 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-import com.smartgwt.logicalstructure.core.*;
 
 /**
  * Group Summary.
