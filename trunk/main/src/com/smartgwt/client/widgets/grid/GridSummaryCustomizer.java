@@ -29,5 +29,5 @@ public abstract class GridSummaryCustomizer {
 	 * 	        results - in this case each result will show up in a separate row in the
 	 *          ListGrid.summaryRow grid.
 	 */
-    public abstract Object[] getGroupSummary(ListGridRecord[] records, ListGridField field, GroupSummary[] groupSummary);
+    public abstract Object[] getGridSummary(ListGridRecord[] records, ListGridField field, GroupSummary[] groupSummary);
 }
