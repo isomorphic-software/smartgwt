@@ -67,7 +67,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     private HandlerManager manager;
 
     public void fireEvent(GwtEvent<?> event) {
-        if (manager != null) {
+        if (manager != null && id != null) {
             manager.fireEvent(event);
         }
     }
