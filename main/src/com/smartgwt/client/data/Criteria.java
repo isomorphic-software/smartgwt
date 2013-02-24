@@ -20,6 +20,8 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.core.DataClass;
 import com.smartgwt.client.core.RefDataClass;
 import com.smartgwt.client.util.JSOHelper;
+import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridField;
 
 import java.util.Date;
 import java.util.Map;
@@ -48,6 +50,16 @@ public class Criteria extends DataClass {
     public Criteria(JavaScriptObject jsObj) {
         super(jsObj);
     }
+
+    public native static Criteria getOrCreateRef(JavaScriptObject jsObj) /*-{
+        if (jsObj == null) return null;
+        var instance = jsObj["__ref"];
+        if (instance == null) {
+            return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
+        } else {
+            return instance;
+        }
+    }-*/;
     
     public void addCriteria(String field, String value) {
         JSOHelper.setAttribute(jsObj, field, value);
