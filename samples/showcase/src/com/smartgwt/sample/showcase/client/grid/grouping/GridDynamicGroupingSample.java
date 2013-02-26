@@ -51,7 +51,6 @@ public class GridDynamicGroupingSample extends ShowcasePanel {
         countryGrid.setShowAllRecords(true);
         countryGrid.setCellHeight(22);
 
-        countryGrid.setID("countryList");
         countryGrid.setGroupStartOpen(GroupStartOpen.ALL);
         countryGrid.setGroupByField("continent");
         countryGrid.setDataSource(dataSource);

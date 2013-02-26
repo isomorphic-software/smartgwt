@@ -40,7 +40,6 @@ public class GridGroupingModesSample extends ShowcasePanel {
     	final ListGrid countryGrid = new ListGrid();  
         countryGrid.setWidth(500);  
         countryGrid.setHeight(425);  
-        countryGrid.setID("countryList");
         countryGrid.setAlternateRecordStyles(true);
         countryGrid.setCellHeight(22);
         countryGrid.setDataSource(countryDS);
