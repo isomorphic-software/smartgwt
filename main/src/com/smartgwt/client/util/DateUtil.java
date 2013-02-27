@@ -941,7 +941,7 @@ public class DateUtil {
     public static native Integer[] getWeekendDays() /*-{
         var ret = $wnd.isc.Date.getWeekendDays();
         if(ret == null || ret === undefined) return null;
-        return @com.smartgwt.client.util.ConvertTo::arrayOfInteger(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        return @com.smartgwt.client.util.JSOHelper::convertToJavaInterArray(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
 	/**
