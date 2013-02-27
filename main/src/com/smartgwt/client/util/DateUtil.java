@@ -930,4 +930,29 @@ public class DateUtil {
         $wnd.isc.Date.setShowChooserWeekPickers(showWeekPickers);
     }-*/;
 
-    }
+    /**
+     * Return an array of days that are considered "weekend" days. Values will be the integers returned by the JavaScript
+     * built-in Date.getDay(), eg, 0 is Sunday and 6 is Saturday. Override {@link com.smartgwt.client.util.Date#weekendDays
+     * weekendDays} to accommodate different workweeks such as Saudi Arabia (Saturday -> Wednesday) or  Israel (Sunday ->
+     * Thursday).
+     *
+     * @return array of weekend days
+     */
+    public static native Integer[] getWeekendDays() /*-{
+        var ret = $wnd.isc.Date.getWeekendDays();
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.util.ConvertTo::arrayOfInteger(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Sets the days that are considered {@link com.smartgwt.client.util.Date#weekendDays weekend days}.  The parameter  should
+     * be array of the integers returned by the JavaScript built-in Date.getDay(), eg, 0 is  Sunday and 6 is Saturday. 
+     * Override to accommodate different workweeks such as Saudi Arabia  (Saturday -> Wednesday) or Israel (Sunday ->
+     * Thursday).
+     * @param weekendDays the array of day-numbers to assign as weekend days
+     */
+    public static native void setWeekendDays(Integer[] weekendDays) /*-{
+        $wnd.isc.Date.setWeekendDays(weekendDays);
+    }-*/;
+
+}
