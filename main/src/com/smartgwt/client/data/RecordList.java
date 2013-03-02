@@ -24,6 +24,7 @@ import com.smartgwt.client.util.JSOHelper;
 
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -53,6 +54,10 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
      */
     public RecordList(Record[] data) {
         addList(data);
+    }
+
+    public RecordList(List<? extends Record> data) {
+        this(data == null ? null : data.toArray(new Record[data.size()]));
     }
 
     public RecordList(JavaScriptObject jsObj){
