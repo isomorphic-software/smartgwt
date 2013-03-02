@@ -1,5 +1,7 @@
 package com.smartgwt.sample.showcase.client.forms;
 
+import java.util.List;
+
 import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.data.Criteria;
 import com.smartgwt.client.data.DSCallback;
@@ -90,7 +92,7 @@ public class NestedEditorSample extends ShowcasePanel {
                     grid.setSortDirection(SortDirection.ASCENDING);
                     
                     // The form item's data is set to a list of records
-                    RecordList value = (RecordList) item.getValue();
+                    RecordList value = item.getValueAsRecordList();
                     if (value != null) grid.setData(value);
                     
                     grid.setCanEdit(true);
