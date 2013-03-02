@@ -769,6 +769,10 @@ public class JSOHelper {
         return obj instanceof Boolean;
     }
 
+    public static boolean isJavaList(Object obj) {
+        return obj instanceof List;
+    }
+
     public static boolean isJavaMap(Object obj) {
         return obj instanceof Map;
     }
