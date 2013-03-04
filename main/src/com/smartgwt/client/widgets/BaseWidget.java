@@ -974,7 +974,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }
 
     public int hashCode() {
-        return (id == null ? 0 : id.hashCode());
+        return getID().hashCode();
     }
 
     public NativeObject nativeObject;
