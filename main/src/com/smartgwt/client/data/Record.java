@@ -56,6 +56,10 @@ import com.google.gwt.core.client.JavaScriptObject;
  */
 public class Record extends RefDataClass {
 
+    public static boolean isARecord(Object obj) {
+        return obj instanceof Record;
+    }
+
     /**
      * Creates a shallow copy of <code>record</code> containing its attributes for properties
      * named in <code>properties</code>.
