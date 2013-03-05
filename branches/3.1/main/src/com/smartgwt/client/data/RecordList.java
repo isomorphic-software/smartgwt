@@ -33,6 +33,10 @@ import java.util.Map;
  */
 public class RecordList extends BaseClass implements com.smartgwt.client.data.events.HasDataChangedHandlers {
 
+    public static boolean isARecordList(Object obj) {
+        return obj instanceof RecordList;
+    }
+
     protected JavaScriptObject jsObj;
 
     public static RecordList getOrCreateRef(JavaScriptObject jsObj) {
@@ -92,7 +96,7 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
     public native Record get(int pos) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var recordJS = self.get(pos);
-        return recordJS == null || recordJS === undefined ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(recordJS);
+        return recordJS == null ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(recordJS);
     }-*/;
 
     /**
