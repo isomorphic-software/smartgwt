@@ -104,8 +104,8 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }
 
     public BaseWidget() {        
-        String id = SC.generateID(getClass().getName());
-        setID(id);
+        internalSetID(SC.generateID(getClass().getName()));
+        setAttribute("_autoAssignedID", true, false);
     }
 
     protected BaseWidget(JavaScriptObject jsObj) {
@@ -340,13 +340,18 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         return id;
     }
 
-    public void setID(String id) {
+    private void internalSetID(String id) {
         if (this.id != null) {
             IDManager.unregisterID(this.id);
         }
         IDManager.registerID(id);
         setAttribute("ID", id, false);
         this.id = id;
+    }
+
+    public void setID(String id) {
+        internalSetID(id);
+        setAttribute("_autoAssignedID", false, false);
     }
 
     public JavaScriptObject getConfig() {

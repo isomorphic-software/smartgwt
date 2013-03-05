@@ -40,8 +40,8 @@ public abstract class BaseClass {
     protected String scClassName;
 
     public BaseClass() {
-        String id = SC.generateID(getClass().getName());
-        setID(id);
+        internalSetID(SC.generateID(getClass().getName()));
+        setAttribute("_autoAssignedID", true, false);
     }
 
     protected BaseClass(JavaScriptObject jsObj) {
@@ -58,15 +58,18 @@ public abstract class BaseClass {
         return id;
     }
 
-    public void setID(String id) {
-        
+    private void internalSetID(String id) {
         if (this.id != null) {
             IDManager.unregisterID(this.id);
         }
-        
         IDManager.registerID(id);
         setAttribute("ID", id, false);
         this.id = id;
+    }
+
+    public void setID(String id) {
+        internalSetID(id);
+        setAttribute("_autoAssignedID", false, false);
     }
 
     /**
