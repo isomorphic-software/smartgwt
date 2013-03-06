@@ -235,9 +235,9 @@ public class SmartGwtEntryPoint implements EntryPoint {
                         var objectConstructor = object._constructor;
                         if (objectConstructor == "RelativeDate") {
                             return (object[refProperty] = @com.smartgwt.client.data.RelativeDate::new(Lcom/google/gwt/core/client/JavaScriptObject;)(object));
-                        } else if (objectConstructor == "AdvancedCriteria") {
-                            return (object[refProperty] = @com.smartgwt.client.data.AdvancedCriteria::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(object));
                         }
+                        // Don't convert `AdvancedCriteria' here; we want this API to return
+                        // a `Map' for the advanced criteria JSO.
                     }
 
                     if ($wnd.isc.isAn.Instance(object) && object.getClassName != null) {
