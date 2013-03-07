@@ -69,6 +69,7 @@ public class GridDateRangeFilterSample extends ShowcasePanel {
         form.setWidth(500);
         form.setHeight(22);
         form.setTitleOrientation(TitleOrientation.TOP);
+        form.setDataSource(WorldXmlDS.getInstance());
 
         final DateRangeItem rangeItem = new DateRangeItem("independence");
         rangeItem.setWidth("*");
