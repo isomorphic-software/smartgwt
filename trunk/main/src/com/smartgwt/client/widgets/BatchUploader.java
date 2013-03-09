@@ -93,7 +93,7 @@ public class BatchUploader extends Canvas {
         }
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         var widget = $wnd.isc.BatchUploader.create(config);
-        this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Ljava/lang/String;)(widget.getID());
+        this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Ljava/lang/String;Z)(widget.getID(), true);
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;
