@@ -529,11 +529,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dateItem_pickerIconPrompt();
 
   /**
-   * Translated "null".
+   * Translated "MDY".
    * 
-   * @return translated "null"
+   * @return translated "MDY"
    */
-  @DefaultMessage("null")
+  @DefaultMessage("MDY")
   @Key("dateItem_selectorFormat")
   String dateItem_selectorFormat();
 
@@ -747,7 +747,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   // Use an empty string for the default value so that I18nUtil.initMessages() will not set
   // the Date.inputFormat to something inconsistent with the short date format, which many
   // locales do specify.
-  @DefaultMessage("")
+  @DefaultMessage("MDY")
   @Key("date_inputFormat")
   String date_inputFormat();
 
