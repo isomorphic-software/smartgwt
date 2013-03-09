@@ -346,27 +346,25 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     public String getID() {
         if (id == null) {
             // Generate an ID because one was requested by the caller.
-            setID(SC.generateID(getClass().getName()));
+            internalSetID(SC.generateID(getClass().getName()), false);
+            setAttribute("_autoAssignedID", true, false);
         }
         assert id != null;
         return id;
     }
 
-    private void internalSetID(String id) {
+    private void internalSetID(String id, boolean skipUniqueJSIdentifierCheck) {
         if (this.id != null) {
             IDManager.unregisterID(this.id);
         }
-        IDManager.registerID(id, true);
+        IDManager.registerID(id, skipUniqueJSIdentifierCheck);
+        if (!skipUniqueJSIdentifierCheck) setAttribute("ID", id, false);
         this.id = id;
     }
 
     public void setID(String id) {
-        if (this.id != null) {
-            IDManager.unregisterID(this.id);
-        }
-        IDManager.registerID(id);
-        setAttribute("ID", id, false);
-        this.id = id;
+        internalSetID(id, false);
+        setAttribute("_autoAssignedID", false, false);
     }
 
     public JavaScriptObject getConfig() {
@@ -414,7 +412,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         var widget = $wnd.isc.Canvas.create(config);
-        this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Ljava/lang/String;)(widget.getID());
+        this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Ljava/lang/String;Z)(widget.getID(), true);
         return widget;
     }-*/;
 
