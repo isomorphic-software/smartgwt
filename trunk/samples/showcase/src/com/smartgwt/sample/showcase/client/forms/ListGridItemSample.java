@@ -59,14 +59,14 @@ public class ListGridItemSample extends ShowcasePanel {
     private static final String DESCRIPTION =
         "<p>A special type of form control called a CanvasItem allows any kind of " +
         "SmartClient widget to participate in form layout and values management.</p>" +
-        "<p>Drag resize the form &mdash; notice how the embedded ListGrid fills the available " +
+        "<p>Drag resize the form (blue bordered area) &mdash; notice how the embedded ListGrid fills the available " +
         "space.</p>" +
         "<p>The embedded ListGrid starts out showing the initial value provided to the form " +
         "(\"Germany\"). Click the button titled \"Set Value: France\" to provide a new " +
         "value to the form, causing the CanvasItem to display this value.</p>" +
         "<p>Click on any country in the list &mdash; the form picks up the value and fires " +
         "standard change events, causing new values to be displayed in a Label.</p>" +
-        "<p>This CanvasItem provides functionality similar to an HTML &lt;select&gt;, " +
+        "<p>This CanvasItem provides functionality similar to an HTML &lt;select multiple&gt;, " +
         "however, because it's based on a ListGrid, any ListGrid behavior could be added: " +
         "data paging, drag and drop, hovers, inline search, inline editing, grouping, etc.</p>";
         
@@ -194,8 +194,8 @@ public class ListGridItemSample extends ShowcasePanel {
         
         ListGridItem countryField = new ListGridItem("countryName");
         countryField.setGridData(CountrySampleData.getRecords());
-        countryField.setGridFields(new ListGridField("countryName"), 
-                                   new ListGridField("capital"));
+        countryField.setGridFields(new ListGridField("countryName", "Country"), 
+                                   new ListGridField("capital", "Capital"));
         
         TextItem emailField = new TextItem("Email");
         
