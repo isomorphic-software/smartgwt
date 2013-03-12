@@ -48,37 +48,22 @@ public class IFramesSample extends ShowcasePanel {
         hStack.setLayoutMargin(10);
         hStack.setMembersMargin(10);
 
-        IButton yahooButton = new IButton("Yahoo");
-        yahooButton.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                htmlPane.setContentsURL("http://www.yahoo.com/");
-            }
-        });
-        hStack.addMember(yahooButton);
-
-        IButton googleButton = new IButton("Google");
-        googleButton.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                htmlPane.setContentsURL("http://www.google.com/");
-            }
-        });
-        hStack.addMember(googleButton);
-
-        IButton wikipediaButton = new IButton("Wikipedia");
+        IButton wikipediaButton = new IButton("Wikipedia: Ajax");
         wikipediaButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                htmlPane.setContentsURL("http://www.wikipedia.org/");
+                htmlPane.setContentsURL("http://en.wikipedia.org/wiki/Ajax_%28mythology%29");
             }
         });
         hStack.addMember(wikipediaButton);
 
-        IButton baiduButton = new IButton("Baidu");
-        baiduButton.addClickHandler(new ClickHandler() {
+        IButton ciaButton = new IButton("CIA World Factbook: USA");
+        ciaButton.setWidth(150);
+        ciaButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                htmlPane.setContentsURL("http://www.baidu.com/");
+                htmlPane.setContentsURL("https://www.cia.gov/library/publications/the-world-factbook/geos/us.html");
             }
         });
-        hStack.addMember(baiduButton);
+        hStack.addMember(ciaButton);
 
         layout.addMember(hStack);
         layout.addMember(htmlPane);
