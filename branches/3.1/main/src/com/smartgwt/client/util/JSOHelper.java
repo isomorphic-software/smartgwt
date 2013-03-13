@@ -67,7 +67,30 @@ public class JSOHelper {
     public static boolean isJSO(Object object) {
         return object instanceof JavaScriptObject;
     }
-    
+
+    public static double doubleValue(Number num) {
+        if (num == null) return Double.NaN;
+        if (num instanceof Float) {
+            // When a `float' is cast to a `double', the significand is zero-extended. This can
+            // lead to the unexpected scenario where Double.toString((double)f) != Float.toString(f).
+            // For example, Double.toString(Float.valueOf(0.15f).doubleValue()) is the string
+            // "0.15000000596046448". This is because the significand of (double)f is
+            // 0b0011001100110011001101000000000000000000000000000000, but the significand of
+            // Double.parseDouble("0.15") is:
+            // 0b0011001100110011001100110011001100110011001100110011
+            return Double.parseDouble(num.toString());
+        } else if (num instanceof Long) {
+            long l = num.longValue();
+            final double d = (double)l;
+            if (Math.abs(l) > 9007199254740992L) {
+                SC.logWarn("The long value " + Long.toString(l) + " cannot be exactly represented in JavaScript. It will be truncated to: " + Long.toString((long)d));
+            }
+            return d;
+        } else {
+            return num.doubleValue();
+        }
+    }
+
     public static native String getAttribute(JavaScriptObject elem, String attr) /*-{
         var ret = elem[attr];
         return (ret == null ? null : String(ret));
@@ -234,8 +257,7 @@ public class JSOHelper {
         if (value == null) {
             setNullAttribute(elem, attr);
         } else {
-            if (value instanceof Long) setAttribute(elem, attr, (Long)value);
-            else setAttribute(elem, attr, value.doubleValue());
+            setAttribute(elem, attr, doubleValue(value));
         }
     }
 
@@ -805,7 +827,7 @@ public class JSOHelper {
                 setArrayValue(jsArray, i, val.toString());
             } else if (val instanceof Number) {
                 if (val instanceof Long) setArrayValue(jsArray, i, ((Long) val).longValue());
-                else setArrayValue(jsArray, i, ((Number) val).doubleValue());
+                else setArrayValue(jsArray, i, doubleValue((Number) val));
             } else if (val instanceof Boolean) {
                 JSOHelper.setArrayValue(jsArray, i, ((Boolean) val).booleanValue());
             } else if (val instanceof Date) {
@@ -1120,7 +1142,7 @@ public class JSOHelper {
             } else if (value instanceof Date) {
                 setAttribute(valueJS, key, ((Date) value));
             } else if (value instanceof Number) {
-                setAttribute(valueJS, key, ((Number) value).doubleValue());
+                setAttribute(valueJS, key, doubleValue((Number) value));
             } else if (value instanceof String) {
                 setAttribute(valueJS, key, ((String) value));
             } else if (value instanceof Boolean) {
