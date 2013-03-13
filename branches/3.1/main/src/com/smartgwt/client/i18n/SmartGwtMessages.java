@@ -142,6 +142,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String calendar_weekViewTitle();
 
   /**
+   * Translated "Week".
+   * 
+   * @return translated "Week"
+   */
+  @DefaultMessage("Week")
+  @Key("calendar_weekPrefix")
+  String calendar_weekPrefix();
+
+  /**
    * Translated "Click to select a new color".
    * 
    * @return translated "Click to select a new color"
