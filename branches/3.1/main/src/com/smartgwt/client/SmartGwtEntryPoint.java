@@ -276,8 +276,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
 
             var objType = typeof object;
             if (objType == 'function' || objType == 'object') {
-                if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(object)) return object.@java.lang.Integer::intValue()();
-                if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(object)) return object.@java.lang.Number::floatValue()();
+                if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(object)) return object.@java.lang.Number::doubleValue()();
                 if(@com.smartgwt.client.util.JSOHelper::isJavaBoolean(Ljava/lang/Object;)(object)) return object.@java.lang.Boolean::booleanValue()();
                 if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(object)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(object);
                 //in certain browser versions, GWT hosted mode returns 'typeof obj' as object even for strings that originated from a object.toString() call in GWT java
