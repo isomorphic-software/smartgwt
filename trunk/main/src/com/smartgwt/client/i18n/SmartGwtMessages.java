@@ -141,6 +141,16 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("calendar_weekViewTitle")
   String calendar_weekViewTitle();
 
+
+  /**
+   * Translated "Week".
+   * 
+   * @return translated "Week"
+   */
+  @DefaultMessage("Week")
+  @Key("calendar_weekPrefix")
+  String calendar_weekPrefix();
+
   /**
    * Translated "Click to select a new color".
    * 
@@ -689,6 +699,42 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("To")
   @Key("dateRangeItem_toTitle")
   String dateRangeItem_toTitle();
+
+  /**
+   * Translated "$".
+   * 
+   * @return translated "$"
+   */
+  @DefaultMessage("$")
+  @Key("numberUtil_currencySymbol")
+  String numberUtil_currencySymbol();
+
+  /**
+   * Translated ",".
+   * 
+   * @return translated ","
+   */
+  @DefaultMessage(",")
+  @Key("numberUtil_groupingSymbol")
+  String numberUtil_groupingSymbol();
+  
+  /**
+   * Translated ".".
+   * 
+   * @return translated "."
+   */
+  @DefaultMessage(".")
+  @Key("numberUtil_decimalSymbol")
+  String numberUtil_decimalSymbol();
+  
+  /**
+   * Translated "-".
+   * 
+   * @return translated "-"
+   */
+  @DefaultMessage("-")
+  @Key("numberUtil_negativeSymbol")
+  String numberUtil_negativeSymbol();
 
   /**
    * Translated "/".
