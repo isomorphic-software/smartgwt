@@ -176,7 +176,7 @@ public class I18nUtil {
         if($wnd.isc.DateChooser) {
             $wnd.isc.DateChooser.addProperties({todayButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateChooser_todayButtonTitle()()});
             $wnd.isc.DateChooser.addProperties({cancelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateChooser_cancelButtonTitle()()});
-            $wnd.isc.DateChooser.addProperties({firstDayOfWeek:Number(messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateChooser_firstDayOfWeek()())});
+            $wnd.isc.DateChooser.addProperties({firstDayOfWeek: Number(messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateChooser_firstDayOfWeek()())});
             $wnd.isc.DateChooser.addProperties({fiscalYearFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateChooser_fiscalYearFieldTitle()()});
             $wnd.isc.DateChooser.addProperties({weekFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateChooser_weekFieldTitle()()});
         }
@@ -361,8 +361,9 @@ public class I18nUtil {
             $wnd.isc.Calendar.addProperties({saveButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_saveButtonTitle()()});
             $wnd.isc.Calendar.addProperties({timelineViewTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_timelineViewTitle()()});
             $wnd.isc.Calendar.addProperties({weekViewTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_weekViewTitle()()});
+            $wnd.isc.Calendar.addProperties({weekPrefix: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_weekPrefix()()});
         }
-
+        
         if($wnd.isc.FilterBuilder) {
             $wnd.isc.FilterBuilder.addProperties({addButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_addButtonPrompt()()});
             $wnd.isc.FilterBuilder.addProperties({rangeSeparator: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_rangeSeparator()()});
@@ -473,6 +474,14 @@ public class I18nUtil {
         if($wnd.isc.IMenuButton) {
             $wnd.isc.IMenuButton.addProperties({title: messages.@com.smartgwt.client.i18n.SmartGwtMessages::iMenuButton_title()()});   
         }
+
+        if ($wnd.isc.NumberUtil) {
+            $wnd.isc.NumberUtil.addClassProperties({ currencySymbol: messages.@com.smartgwt.client.i18n.SmartGwtMessages::numberUtil_currencySymbol()() });
+            $wnd.isc.NumberUtil.addClassProperties({ groupingSymbol: messages.@com.smartgwt.client.i18n.SmartGwtMessages::numberUtil_groupingSymbol()() });
+            $wnd.isc.NumberUtil.addClassProperties({ decimalSymbol: messages.@com.smartgwt.client.i18n.SmartGwtMessages::numberUtil_decimalSymbol()() });
+            $wnd.isc.NumberUtil.addClassProperties({ negativeSymbol: messages.@com.smartgwt.client.i18n.SmartGwtMessages::numberUtil_negativeSymbol()() });
+        }
+
 //<localeGenerator -- SC locale parser will process whatever's inside these tags
 
         $wnd.isc.addProperties($wnd.Date, {shortDayNames: [
@@ -499,6 +508,14 @@ public class I18nUtil {
             messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_11()(),
             messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortMonthNames_12()()]
         });
+
+        if (!normalDateFormat && !normalDatetimeFormat && 
+                !shortDateFormat && !shortDatetimeFormat &&
+                !inputFormat)
+        {
+            // no formats were supplied - this should never happen, but autoDetect if it does
+            @com.smartgwt.client.util.DateUtil::autoDetectFormats()();
+        }
 
         @com.smartgwt.client.util.I18nUtil::initialized = true;
     }-*/;
