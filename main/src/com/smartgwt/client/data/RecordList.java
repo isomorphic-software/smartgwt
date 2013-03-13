@@ -832,7 +832,7 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
     }-*/;
 
     private static double normalizedValue(Number number) {
-        return number.doubleValue();
+        return JSOHelper.doubleValue(number);
     }
 
     /**
