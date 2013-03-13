@@ -895,7 +895,8 @@ public abstract class BeanFactory<BeanClass> {
             if (superclassFactory == null) {
                 // If there is no superclassFactory, then try to get the
                 // property from the Javascript side.
-                return getJavascriptProperty((BeanClass) bean, propertyName).toString();
+                Object jsProperty = getJavascriptProperty((BeanClass) bean, propertyName);
+                return jsProperty == null ? null : jsProperty.toString();
             } else {
                 // Otherwise, let the superclass try
                 return superclassFactory.doGetPropertyAsString(bean, propertyName);
