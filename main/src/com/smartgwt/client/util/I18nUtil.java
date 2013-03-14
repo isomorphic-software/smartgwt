@@ -273,6 +273,7 @@ public class I18nUtil {
             $wnd.isc.ListGrid.addProperties({clearAllSortingText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_clearAllSortingText()()});
             $wnd.isc.ListGrid.addProperties({clearFilterText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_clearFilterText()()});
             $wnd.isc.ListGrid.addProperties({configureSortText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_configureSortText()()});
+            $wnd.isc.ListGrid.addProperties({configureGroupingText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_configureGroupingText()()});
             $wnd.isc.ListGrid.addProperties({autoFitFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_autoFitFieldText()()});
             $wnd.isc.ListGrid.addProperties({autoFitAllText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_autoFitAllText()()});
             $wnd.isc.ListGrid.addProperties({fieldVisibilitySubmenuTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_fieldVisibilitySubmenuTitle()()});
@@ -398,6 +399,23 @@ public class I18nUtil {
             $wnd.isc.MultiSortDialog.addProperties({levelUpButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_levelUpPrompt()()});
             $wnd.isc.MultiSortDialog.addProperties({levelDownButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_levelDownPrompt()()});
         }
+        
+        if($wnd.isc.MultiGroupDialog) {
+            $wnd.isc.MultiGroupPanel.addProperties({addLevelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiGroupDialog_addLevelButtonTitle()()});
+            $wnd.isc.MultiGroupPanel.addProperties({deleteLevelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiGroupDialog_deleteLevelButtonTitle()()});
+            $wnd.isc.MultiGroupPanel.addProperties({copyLevelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiGroupDialog_copyLevelButtonTitle()()});
+            $wnd.isc.MultiGroupPanel.addProperties({invalidListPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiGroupDialog_invalidListPrompt()()).replace('$title', '${title}')});
+            $wnd.isc.MultiGroupPanel.addProperties({propertyFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiGroupDialog_propertyFieldTitle()()});
+            $wnd.isc.MultiGroupPanel.addProperties({firstGroupLevelTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiGroupDialog_firstGroupLevelTitle()()});
+            $wnd.isc.MultiGroupPanel.addProperties({otherGroupLevelTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiGroupDialog_otherGroupLevelTitle()()});  
+
+            $wnd.isc.MultiGroupDialog.addProperties({title: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiGroupDialog_title()()});
+            $wnd.isc.MultiGroupDialog.addProperties({applyButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiGroupDialog_applyButtonTitle()()});
+            $wnd.isc.MultiGroupDialog.addProperties({cancelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiGroupDialog_cancelButtonTitle()()});
+            $wnd.isc.MultiGroupDialog.addProperties({levelUpButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiGroupDialog_levelUpPrompt()()});
+            $wnd.isc.MultiGroupDialog.addProperties({levelDownButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiGroupDialog_levelDownPrompt()()});
+        }
+
         if($wnd.isc.HiliteRule) {
             $wnd.isc.HiliteRule.addProperties({removeButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteRule_removeButtonPrompt()()});
             $wnd.isc.HiliteRule.addProperties({colorFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteRule_colorFieldTitle()()});
