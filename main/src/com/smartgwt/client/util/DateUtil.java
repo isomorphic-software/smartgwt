@@ -955,4 +955,24 @@ public class DateUtil {
         $wnd.isc.Date.setWeekendDays(weekendDays);
     }-*/;
 
+    /**
+     * Sets the number of the day that should be considered the first day of the week in 
+     * calendar views and date calculations.  The passed value should be an integer between
+     * 0 (Sunday) and 6 (Saturday).
+     * @param firstDayOfWeek the number of the day to use as the first day of the week
+     */
+    public static native void setFirstDayOfWeek(Integer firstDayOfWeek) /*-{
+        $wnd.isc.Date.setFirstDayOfWeek(firstDayOfWeek);
+    }-*/;
+
+    /**
+     * Gets the number of the day that should be considered the first day of the week in 
+     * calendar views and date calculations.  The return value should be an integer between
+     * 0 (Sunday) and 6 (Saturday).
+     * @return the number of the day being used as the first day of the week
+     */
+    public static native Integer getFirstDayOfWeek() /*-{
+        return $wnd.isc.Date.getFirstDayOfWeek();
+    }-*/;
+
 }
