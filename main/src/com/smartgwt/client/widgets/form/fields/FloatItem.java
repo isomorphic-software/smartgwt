@@ -49,6 +49,7 @@ public class FloatItem extends TextItem {
         } else {
             ret = self.value;
         }
+        if(ret==null) return null;
         return @com.smartgwt.client.util.JSOHelper::toFloat(F)(ret);
     }-*/;
 }
