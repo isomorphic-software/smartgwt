@@ -2364,6 +2364,24 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String multiGroupDialog_title();
 
   /**
+   * Translated "Group by".
+   * 
+   * @return translated "Group by"
+   */
+  @DefaultMessage("Group by")
+  @Key("multiGroupDialog_firstGroupLevelTitle")
+  String multiGroupDialog_firstGroupLevelTitle();
+
+  /**
+   * Translated "Then by".
+   * 
+   * @return translated "Then by"
+   */
+  @DefaultMessage("Then by")
+  @Key("multiGroupDialog_otherGroupLevelTitle")
+  String multiGroupDialog_otherGroupLevelTitle();
+  
+  /**
    * Translated "Match All".
    * 
    * @return translated "Match All"
