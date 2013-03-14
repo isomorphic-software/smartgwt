@@ -50,6 +50,7 @@ public class IntegerItem extends TextItem {
         } else {
             ret = self.value;
         }
+        if(ret==null) return null;
         return @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
     }-*/;
 }
