@@ -1851,13 +1851,22 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String listGrid_clearSortFieldText();
 
   /**
-   * Translated "Configure Sort".
+   * Translated "Configure Sort...".
    * 
-   * @return translated "Configure Sort"
+   * @return translated "Configure Sort..."
    */
-  @DefaultMessage("Configure Sort")
+  @DefaultMessage("Configure Sort...")
   @Key("listGrid_configureSortText")
   String listGrid_configureSortText();
+
+  /**
+   * Translated "Configure Grouping...".
+   * 
+   * @return translated "Configure Grouping..."
+   */
+  @DefaultMessage("Configure Grouping...")
+  @Key("listGrid_configureGroupingText")
+  String listGrid_configureGroupingText();
 
   /**
    * Translated "This action will discard all unsaved edited values for this list.".
@@ -2254,6 +2263,105 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Sort")
   @Key("multiSortDialog_title")
   String multiSortDialog_title();
+
+  /**
+   * Translated "Add Level".
+   * 
+   * @return translated "Add Level"
+   */
+  @DefaultMessage("Add Level")
+  @Key("multiGroupDialog_addLevelButtonTitle")
+  String multiGroupDialog_addLevelButtonTitle();
+
+  /**
+   * Translated "Apply".
+   * 
+   * @return translated "Apply"
+   */
+  @DefaultMessage("Apply")
+  @Key("multiGroupDialog_applyButtonTitle")
+  String multiGroupDialog_applyButtonTitle();
+
+  /**
+   * Translated "Cancel".
+   * 
+   * @return translated "Cancel"
+   */
+  @DefaultMessage("Cancel")
+  @Key("multiGroupDialog_cancelButtonTitle")
+  String multiGroupDialog_cancelButtonTitle();
+
+  /**
+   * Translated "Copy Level".
+   * 
+   * @return translated "Copy Level"
+   */
+  @DefaultMessage("Copy Level")
+  @Key("multiGroupDialog_copyLevelButtonTitle")
+  String multiGroupDialog_copyLevelButtonTitle();
+
+  /**
+   * Translated "Delete Level".
+   * 
+   * @return translated "Delete Level"
+   */
+  @DefaultMessage("Delete Level")
+  @Key("multiGroupDialog_deleteLevelButtonTitle")
+  String multiGroupDialog_deleteLevelButtonTitle();
+
+  /**
+   * Translated "Grouping".
+   * 
+   * @return translated "Grouping"
+   */
+  @DefaultMessage("Grouping")
+  @Key("multiGroupDialog_groupingFieldTitle")
+  String multiGroupDialog_groupingFieldTitle();
+
+  /**
+   * Translated "Columns may only be used once: &#39;$title&#39; is used multiple times.".
+   * 
+   * @return translated "Columns may only be used once: &#39;$title&#39; is used multiple times."
+   */
+  @DefaultMessage("Columns may only be used once: &#39;$title&#39; is used multiple times.")
+  @Key("multiGroupDialog_invalidListPrompt")
+  String multiGroupDialog_invalidListPrompt();
+
+  /**
+   * Translated "Move Level Down".
+   * 
+   * @return translated "Move Level Down"
+   */
+  @DefaultMessage("Move Level Down")
+  @Key("multiGroupDialog_levelDownPrompt")
+  String multiGroupDialog_levelDownPrompt();
+
+  /**
+   * Translated "Move Level Up".
+   * 
+   * @return translated "Move Level Up"
+   */
+  @DefaultMessage("Move Level Up")
+  @Key("multiGroupDialog_levelUpPrompt")
+  String multiGroupDialog_levelUpPrompt();
+
+  /**
+   * Translated "Column".
+   * 
+   * @return translated "Column"
+   */
+  @DefaultMessage("Column")
+  @Key("multiGroupDialog_propertyFieldTitle")
+  String multiGroupDialog_propertyFieldTitle();
+
+  /**
+   * Translated "Group".
+   * 
+   * @return translated "Group"
+   */
+  @DefaultMessage("Group")
+  @Key("multiGroupDialog_title")
+  String multiGroupDialog_title();
 
   /**
    * Translated "Match All".
