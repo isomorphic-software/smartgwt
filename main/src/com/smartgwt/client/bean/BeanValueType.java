@@ -418,11 +418,7 @@ public abstract class BeanValueType<ValueType> {
                         return @com.smartgwt.client.util.JSOHelper::toLong(D)(obj);
                     }
                 } else {
-                    if (obj <= @java.lang.Float::MAX_VALUE && obj >= -@java.lang.Float::MAX_VALUE) {
-                        return @com.smartgwt.client.util.JSOHelper::toFloat(F)(obj);
-                    } else {
-                        return @com.smartgwt.client.util.JSOHelper::toDouble(D)(obj);
-                    }
+                    return @com.smartgwt.client.util.JSOHelper::toDouble(D)(obj);
                 }
                 break;
 
