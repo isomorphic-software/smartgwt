@@ -163,11 +163,11 @@ public class SmartGwtEntryPoint implements EntryPoint {
                           return @com.smartgwt.client.util.JSOHelper::toLong(D)(obj);
                         }
                     } else {
-                        if(obj <= @java.lang.Float::MAX_VALUE) {
-                            return @com.smartgwt.client.util.JSOHelper::toFloat(F)(obj);
-                        } else {
-                            return @com.smartgwt.client.util.JSOHelper::toDouble(D)(obj);
-                        }
+                        // Convert non-integral JS numbers to Java `Double's to prevent a loss
+                        // of precision in dev mode and other issues where certain numbers can
+                        // be printed with extra spurious precision.
+                        // See the comment in JSOHelper.doubleValue().
+                        return @com.smartgwt.client.util.JSOHelper::toDouble(D)(obj);
                     }
                 } else if(objType == 'boolean') {
                     return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(obj);
