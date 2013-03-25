@@ -1373,11 +1373,6 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("filterBuilder_topOperator")
   String filterBuilder_topOperator();
 
-filterBuilder_topOperatorTitle=Clause Operator
-FilterBuilder_inlineAndTitle=and
-FilterBuilder_inlineOrTitle=or
-FilterBuilder_inlineAndNotTitle=and not
-
   /**
    * Translated "Operator".
    * 
