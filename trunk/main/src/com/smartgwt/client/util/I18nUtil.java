@@ -440,9 +440,19 @@ public class I18nUtil {
             $wnd.isc.FilterBuilder.addProperties({matchNoneTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_matchNoneTitle()()});
             $wnd.isc.FilterBuilder.addProperties({matchAnyTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_matchAnyTitle()()});
             $wnd.isc.FilterBuilder.addProperties({subClauseButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_subClauseButtonTitle()()});
+
+            $wnd.isc.FilterBuilder.addProperties({operatorPickerTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_operatorPickerTitle()()});
+            $wnd.isc.FilterBuilder.addProperties({fieldPickerTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_fieldPickerTitle()()});
+            $wnd.isc.FilterBuilder.addProperties({radioOperatorTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_radioOperatorTitle()()});
+            $wnd.isc.FilterBuilder.addProperties({topOperatorTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_topOperatorTitle()()});
+            $wnd.isc.FilterBuilder.addProperties({inlineAndTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::FilterBuilder_inlineAndTitle()()});
+            $wnd.isc.FilterBuilder.addProperties({inlineOrTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::FilterBuilder_inlineOrTitle()()});
+            $wnd.isc.FilterBuilder.addProperties({inlineAndNotTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::FilterBuilder_inlineAndNotTitle()()});
         }
         if($wnd.isc.FilterClause) {
             $wnd.isc.FilterClause.addProperties({removeButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterClause_removeButtonPrompt()()});
+            $wnd.isc.FilterClause.addProperties({fieldPickerTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterClause_fieldPickerTitle()()});
+            $wnd.isc.FilterClause.addProperties({valueItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterClause_valueItemTitle()()});
         }
 
         if($wnd.isc.MultiSortDialog) {
