@@ -1373,6 +1373,74 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("filterBuilder_topOperator")
   String filterBuilder_topOperator();
 
+filterBuilder_topOperatorTitle=Clause Operator
+FilterBuilder_inlineAndTitle=and
+FilterBuilder_inlineOrTitle=or
+FilterBuilder_inlineAndNotTitle=and not
+
+  /**
+   * Translated "Operator".
+   * 
+   * @return translated "Operator"
+   */
+  @DefaultMessage("Operator")
+  @Key("filterBuilder_operatorPickerTitle")
+  String filterBuilder_operatorPickerTitle();
+  
+  /**
+   * Translated "Field Name".
+   * 
+   * @return translated "Field Name"
+   */
+  @DefaultMessage("Field Name")
+  @Key("filterBuilder_fieldPickerTitle")
+  String filterBuilder_fieldPickerTitle();
+  
+  /**
+   * Translated "Overall Operator".
+   * 
+   * @return translated "Overall Operator"
+   */
+  @DefaultMessage("Overall Operator")
+  @Key("filterBuilder_radioOperatorTitle")
+  String filterBuilder_radioOperatorTitle();
+  
+  /**
+   * Translated "Clause Operator".
+   * 
+   * @return translated "Clause Operator"
+   */
+  @DefaultMessage("Clause Operator")
+  @Key("filterBuilder_topOperatorTitle")
+  String filterBuilder_topOperatorTitle();
+  
+  /**
+   * Translated "and".
+   * 
+   * @return translated "and"
+   */
+  @DefaultMessage("and")
+  @Key("FilterBuilder_inlineAndTitle")
+  String FilterBuilder_inlineAndTitle();
+
+  /**
+   * Translated "or".
+   * 
+   * @return translated "or"
+   */
+  @DefaultMessage("or")
+  @Key("FilterBuilder_inlineOrTitle")
+  String FilterBuilder_inlineOrTitle();
+
+  /**
+   * Translated "and not".
+   * 
+   * @return translated "and not"
+   */
+  @DefaultMessage("and not")
+  @Key("FilterBuilder_inlineAndNotTitle")
+  String FilterBuilder_inlineAndNotTitle();
+  
   /**
    * Translated "Remove".
    * 
@@ -1382,6 +1450,24 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("filterClause_removeButtonPrompt")
   String filterClause_removeButtonPrompt();
 
+  /**
+   * Translated "Field Name".
+   * 
+   * @return translated "Field Name"
+   */
+  @DefaultMessage("Field Name")
+  @Key("filterClause_fieldPickerTitle")
+  String filterClause_fieldPickerTitle();
+
+  /**
+   * Translated "Value".
+   * 
+   * @return translated "Value"
+   */
+  @DefaultMessage("Value")
+  @Key("filterClause_valueItemTitle")
+  String filterClause_valueItemTitle();
+  
   /**
    * Translated "null".
    * 
