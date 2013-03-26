@@ -416,8 +416,19 @@ public class SC {
      * @param message the message
      */
     public static void warn(String message) {
-        warn(message, null);
+        warn(message, (BooleanCallback) null);
     }
+
+    /**
+     * Show a modal dialog with a message, icon, and "OK" button.
+     * <p>
+     *
+     * @param title the title of the dialog
+     * @param message the message
+     */
+    public static native void warn(String title, String message) /*-{
+        $wnd.isc.warn(message, {title:title});
+    }-*/;
 
     /**
      * Show a modal dialog with a message, icon, and "OK" button.
