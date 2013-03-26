@@ -371,6 +371,17 @@ public class SC {
     /**
      * Show a modal dialog with a message, icon, and "OK" button.
      * <p>
+     *
+     * @param title the title of the dialog
+     * @param message the message
+     */
+    public static native void warn(String title, String message) /*-{
+        $wnd.isc.warn(message, {title:title});
+    }-*/;
+    
+    /**
+     * Show a modal dialog with a message, icon, and "OK" button.
+     * <p>
      * The callback will receive boolean true for an OK button click, or null if the Dialog is dismissed via the close button.
      *
      * @param message the message
