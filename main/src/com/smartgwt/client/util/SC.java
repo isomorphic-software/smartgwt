@@ -365,7 +365,7 @@ public class SC {
      * @param message the message
      */
     public static void warn(String message) {
-        warn(message, null);
+        warn(message, (BooleanCallback)null);
     }
 
     /**
