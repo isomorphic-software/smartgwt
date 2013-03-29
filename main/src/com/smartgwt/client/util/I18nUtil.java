@@ -333,13 +333,13 @@ public class I18nUtil {
         }
 
         if($wnd.isc.FacetChart) {
-            $wnd.isc.DataSource.addClassProperties({regressionLinesContextMenuItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::facetChart_regressionLinesContextMenuItemTitle()()});
-            $wnd.isc.DataSource.addClassProperties({hideRegressionLinesContextMenuItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::facetChart_hideRegressionLinesContextMenuItemTitle()()});
-            $wnd.isc.DataSource.addClassProperties({linearRegressionLinesContextMenuItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::facetChart_linearRegressionLinesContextMenuItemTitle()()});
-            $wnd.isc.DataSource.addClassProperties({polynomialRegressionLinesContextMenuItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::facetChart_polynomialRegressionLinesContextMenuItemTitle()()});
-            $wnd.isc.DataSource.addClassProperties({polynomialDegreeRegressionLinesContextMenuItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::facetChart_polynomialDegreeRegressionLinesContextMenuItemTitle()()});
-            $wnd.isc.DataSource.addClassProperties({polynomialDegreePrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::facetChart_polynomialDegreePrompt()()});
-            $wnd.isc.DataSource.addClassProperties({invalidPolynomialDegreeMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::facetChart_invalidPolynomialDegreeMessage()()});
+            $wnd.isc.FacetChart.addClassProperties({regressionLinesContextMenuItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::facetChart_regressionLinesContextMenuItemTitle()()});
+            $wnd.isc.FacetChart.addClassProperties({hideRegressionLinesContextMenuItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::facetChart_hideRegressionLinesContextMenuItemTitle()()});
+            $wnd.isc.FacetChart.addClassProperties({linearRegressionLinesContextMenuItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::facetChart_linearRegressionLinesContextMenuItemTitle()()});
+            $wnd.isc.FacetChart.addClassProperties({polynomialRegressionLinesContextMenuItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::facetChart_polynomialRegressionLinesContextMenuItemTitle()()});
+            $wnd.isc.FacetChart.addClassProperties({polynomialDegreeRegressionLinesContextMenuItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::facetChart_polynomialDegreeRegressionLinesContextMenuItemTitle()()});
+            $wnd.isc.FacetChart.addClassProperties({polynomialDegreePrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::facetChart_polynomialDegreePrompt()()});
+            $wnd.isc.FacetChart.addClassProperties({invalidPolynomialDegreeMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::facetChart_invalidPolynomialDegreeMessage()()});
         }
         
         if($wnd.isc.TreeGrid) {
