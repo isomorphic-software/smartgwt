@@ -36,7 +36,8 @@ import java.util.Date;
 //
 // 1. We need to do conversion from JavaScriptObjects supplied from the
 // SmartClient side to Java-oriented objects. The routines in JSOHelper are
-// close to what we need, but require some adaptation.
+// close to what we need, but require some adaptation. (Note that this is now
+// mostly implemented in BeanFactory -- see the comments there).
 //
 // 2. We need to do conversion from Java-oriented objects to JavaScriptObjects
 // to supply back to SmartClient, or to set on config blocks. Again, the
@@ -234,7 +235,7 @@ public abstract class BeanValueType<ValueType> {
      * <p>This is not automatic in order to allow for more dead-code elimination
      * if not being used. 
      *
-     * <p>If you need <code>BeanValueTypes</code> other types, you can register
+     * <p>If you need <code>BeanValueTypes</code> for other types, you can register
      * them via the {@link BeanValueType.MetaFactory} interface.
      */
     public static void registerBasicValueTypes () {
@@ -358,21 +359,18 @@ public abstract class BeanValueType<ValueType> {
      * @param scClassName The SmartClient class name (e.g. "ListGrid")
      */
     public static native boolean isA (JavaScriptObject value, String scClassName) /*-{
+        if (!value) return false;
+        if (!scClassName) return false;
+
         // Make sure the relevant isA function exists ...
         if ($wnd.isc.isA[scClassName]) {
-            return $wnd.isc.isA[scClassName](value);
+            // Explicitly return true or false to avoid type problems
+            return $wnd.isc.isA[scClassName](value) ? true : false;
         } else {
             return false;
         }
     }-*/;
 
-    // Note that JSOHelper.convertToJava has some relevant code, but it doesn't
-    // quite do what we want in some respects. In particular, it converts
-    // Canvas instances to strings, which is not what we want -- we leave any
-    // SmartClient instances as JavaScriptObjects and wrap them in the
-    // BeanValueType later (if possible).  Also, if we get a config block with
-    // a _constructor, we construct the object and make it a JavaScriptObject
-    // (rather than turning it into a Map).
     
     /**
      * Performs basic conversion from a JavaScriptObject to an equivalent Java
@@ -391,138 +389,17 @@ public abstract class BeanValueType<ValueType> {
      * opportunities for conversion that are specific to the desired type. In
      * other words, this is a <i>generic</i> conversion function.
      *
-     * @param object A javascript value, possibly passed via JSNI
+     * @param object A javascript value
      * @return A generic conversion to an <code>Object</code> (which may still be
      *         a <code>JavaScriptObject</code>).
      */
     public static native Object convertToJava (JavaScriptObject obj) /*-{
-        if (obj == null) return null;
+        // This is actually defined in the SGWTModule exported by BeanFactory,
+        // because we need to be able to call it from there without hitting the
+        // development-mode JSNI glue code first -- see the comments there.
 
-        // Use typeof to check for primitive types. This is similar to what
-        // convertToJavaType does, but just picks out the primitive types
-        // and uses isA to discriminate among others.
-        switch (typeof obj) { 
-            case 'undefined':
-                return null;
-                break;
-
-            case 'string':
-                return obj;
-                break;
-            
-            case 'number':
-                if (obj.toString().indexOf('.') == -1) {
-                    if (obj <= @java.lang.Integer::MAX_VALUE && obj >= @java.lang.Integer::MIN_VALUE) {
-                        return @com.smartgwt.client.util.JSOHelper::toInteger(I)(obj);
-                    } else {
-                        return @com.smartgwt.client.util.JSOHelper::toLong(D)(obj);
-                    }
-                } else {
-                    return @com.smartgwt.client.util.JSOHelper::toDouble(D)(obj);
-                }
-                break;
-
-            case 'boolean':
-                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(obj);
-                break;
-
-            default:
-                // If it's not a primitive type, then check various isA
-                // possibilities
-                if ($wnd.isc.isA.Date(obj)) {
-                    return @com.smartgwt.client.util.JSOHelper::toDate(D)(obj.getTime());
-                }
-                
-                if ($wnd.isc.isAn.Array(obj)) {
-                    var convertedArray = [];
-                    
-                    // First, convert each member of the array, by calling
-                    // ourselves recursively
-                    for (var i = 0; i < obj.length; i++) {
-                        convertedArray[i] = @com.smartgwt.client.bean.BeanValueType::convertToJava(Lcom/google/gwt/core/client/JavaScriptObject;)(obj[i]);
-                    }
-
-                    // Now we've converted all our members and we need to
-                    // return a Java array
-                    return @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(convertedArray);
-                } 
-                
-                // If it's a SmartClient instance, then check for the __ref,
-                // and return the SmartGWT object if it exists. Otherwise, just
-                // return the SmartClient instance itself -- the specific
-                // BeanValueType may be able to do further conversion.
-                if ($wnd.isc.isAn.Instance(obj)) {
-                    if (obj[$wnd.isc.gwtRef]) { 
-                        return obj[$wnd.isc.gwtRef];
-                    } else {
-                        return obj;
-                    }
-                }
-                
-                if ($wnd.isc.isAn.Object(obj)) {
-                    // If it's a String object, use the primitive instead
-                    if (obj instanceof String) return obj.toString();
-
-                    // And check for Number or Boolean and call recursively
-                    if (obj instanceof Number || obj instanceof Boolean) {
-                       return @com.smartgwt.client.bean.BeanValueType::convertToJava(Lcom/google/gwt/core/client/JavaScriptObject;)(obj.valueOf());
-                    }
-                
-                    if (obj._constructor && obj._constructor == 'DateRange') {
-                        return @com.smartgwt.client.widgets.form.fields.DateRangeItem::convertToDateRange(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
-                    }
-                    
-                    // If it's a config block with a _constructor, then
-                    // construct the SmartClient object and return it as a
-                    // JavaScriptObject. This is adapted from
-                    // Canvas.createCanvas (which isn't a class method, so we
-                    // can't call it from here). 
-                    //
-                    // Note that we only are supporting a config block here --
-                    // we're not dealing with autochildren or ID's specified as
-                    // strings (since, at this level, we don't know that that
-                    // is what is meant -- we would convert JavaScript strings
-                    // to Java strings).  In principle, we could convert from
-                    // strings to Canvas via autochildren or ID's later on in
-                    // BeanValueTypes that take Canvii).
-                    //
-                    // An alternative would be to modify various methods (like
-                    // Layout.setMembers) so that they will take config blocks
-                    // (as the SmartClient equivalents do). However, this is
-                    // simpler for now. 
-                    if (obj._constructor) {
-                        var cons = obj._constructor;
-                        delete obj._constructor;
-                        return $wnd.isc.ClassFactory.newInstance(cons, obj);
-                    }
-
-                    // If nothing else, convert the POJO to a Map
-                    var javaMap = @java.util.LinkedHashMap::new()();
-
-                    // If it's a tree node, clean it up before converting
-                    // otherwise we may end up serializing out all parents and
-                    // children!
-                    if (obj._isc_tree != null || obj.$42c != null) {
-                        obj = $wnd.isc.Tree.getCleanNodeData(obj);
-                    }
-                    
-                    for (var fieldName in obj) {
-                        // This shouldn't really happen, but ...
-                        if (!$wnd.isc.isA.String(fieldName)) continue;
-
-                        // If the field name is '__ref', the the value is
-                        // already a GWT java object reference
-                        var convertedVal = fieldName == $wnd.isc.gwtRef ? obj[fieldName] : @com.smartgwt.client.bean.BeanValueType::convertToJava(Lcom/google/gwt/core/client/JavaScriptObject;)(obj[fieldName]);
-                        @com.smartgwt.client.util.JSOHelper::doAddToMap(Ljava/util/Map;Ljava/lang/String;Ljava/lang/Object;)(javaMap, fieldName, convertedVal);
-                    }
-
-                    return javaMap;
-                }
-        }
-        
-        // If we haven't returned anything yet, then we really don't know how
-        // to convert the JavaScriptObject ... we may as well just return it.
-        return obj;
+        var sgwtModule = @com.smartgwt.client.bean.BeanFactory::getSGWTModule()();
+        return sgwtModule.convertToJava(obj);
     }-*/;
     
     /**
@@ -606,27 +483,45 @@ public abstract class BeanValueType<ValueType> {
     }
 
     /**
-     * Converts the value to a JavaScriptObject.
+     * Converts the value to a JavaScriptObject, and wraps it in a JavaScript array.
+     * The wrapping avoids problems with declaring a return type for generic
+     * Javascript values. The array is always a JavaScriptObject. If the
+     * converted value were returned directly, then in development mode it
+     * could be auto-converted back to a {@link java.lang.String}, or a
+     * primitive numeric type, causing type errors no matter how the return
+     * value is declared here.
      * 
      * @param value Value to convert
-     * @return A JavaScriptObject suitable for JSNI
+     * @return A JavaScriptObject wrapped in a Javascript array
      */
-    public static JavaScriptObject convertToJavaScriptObject (Object value) {
-        // The most suitable general routine we have for this is
-        // JSOHelper.convertToJavaScriptArray, even though we're not actually
-        // dealing with an array.
-        //
-        // The alternative would be to get the BeanValueType subclass and have
-        // it handle it. However, JSOHelper.convertToJavaScriptArray appears to
-        // do everything we could need.
-        final JavaScriptObject jsArray = JSOHelper.convertToJavaScriptArray(new Object[] {value});
-        return convertToPrimitiveType(JSOHelper.arrayGetObject(jsArray, 0)); 
+    public static JavaScriptObject wrapInJavascriptArray (Object value) {
+        return JSOHelper.convertToJavaScriptArray(new Object[] {value}, true);
     }
 
-    public static native JavaScriptObject convertToPrimitiveType (Object value) /*-{
-        return $wnd.SmartGWT.convertToPrimitiveType(value);
-    }-*/;
+    /**
+     * Converts the value to a JavaScriptObject.
+     * Note that not all values will convert to JavaScriptObject, becuase
+     * the JSNI glue code will auto-convert them back. This returns
+     * values only when they really do convert to JavaScriptObject (so,
+     * not strings, or numbers).
+     *
+     * @param value Value to convert
+     * @return A JavaScriptObject
+     */
+    public native static JavaScriptObject convertToJavaScriptObject (Object value) /*-{
+        // Convert the value and wrap it in a jsArray
+        var jsArray = @com.smartgwt.client.bean.BeanValueType::wrapInJavascriptArray(Ljava/lang/Object;)(value);
 
+        // We need to make sure that it can actually be returned as a JavaScriptObject
+        var jsValue = jsArray[0];
+
+        if ($wnd.isc.isAn.Object(jsValue)) {
+            return jsValue;
+        } else {
+            return null;
+        }
+    }-*/;
+ 
     // ---------------------------
     // Instance Fields and Methods
     // ---------------------------

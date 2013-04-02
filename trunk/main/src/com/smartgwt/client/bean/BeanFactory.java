@@ -37,10 +37,11 @@ import java.util.Set;
 //
 // Here is a road-map to the mechanics of the whole bean-factory mechanism.
 //
-// The BeanFactory class is the main class. There are subclasses for several
-// of the core SmartGWT classes, starting with BaseWidgetBeanFactory. There is 
-// then one subclass, and one instance, for each BeanClass (which, for now,
-// must be a subclass of Canvas). So, each subclass for a BeanClass is a singleton.
+// The BeanFactory class is the main class. There are subclasses for several of
+// the core SmartGWT classes, starting with BeanFactoryForBaseWidget and
+// BeanFactoryForDataClass. There is then one subclass, and one instance, for
+// each BeanClass (which, for now, must be a subclass of BaseWidget or
+// DataClass). So, each subclass for a BeanClass is a singleton.
 //
 // The main interface is meant to be the static methods on BeanFactory, but
 // you can cache a BeanFactory instance and call the instance methods as well
@@ -333,7 +334,244 @@ public abstract class BeanFactory<BeanClass> {
     // ------------------------------------------
     // Static housekeeping properties and methods
     // ------------------------------------------
-    
+   
+    // The sgwtModule is a JavaScriptOject which we create and register with
+    // SmartClient to provide functions that need to be handled on a per-module
+    // basis. For each relevant SmartClient object that we tag with a __ref
+    // property -- holding the GWT wrapper -- we also provide a __module
+    // property that indicates which set of module functions can handle that
+    // __ref.
+    private static JavaScriptObject sgwtModule = exportSGWTModule();
+
+    private static native JavaScriptObject exportSGWTModule () /*-{
+        var module = {
+            newInstance : $entry(@com.smartgwt.client.bean.BeanFactory::newInstance(Ljava/lang/String;)),
+
+            setProperty : $entry(function (obj, propName, value) {
+                // We need to pre-convert the value to a Java object, so that
+                // it can be a java.lang.Object when it reaches the JSNI glue code
+                var javaValue = this.convertToJava(value);
+
+                // Then set the property
+                @com.smartgwt.client.bean.BeanFactory::setProperty(Ljava/lang/Object;Ljava/lang/String;Ljava/lang/Object;)(obj, propName, javaValue);
+            }),
+            
+            getProperty : $debox($entry(function (obj, propName) {
+                // Get the Java property
+                var javaValue = @com.smartgwt.client.bean.BeanFactory::getProperty(Ljava/lang/Object;Ljava/lang/String;)(obj, propName);
+
+                // Convert it to a JavaScript value
+                var jsArray = @com.smartgwt.client.bean.BeanValueType::wrapInJavascriptArray(Ljava/lang/Object;)(javaValue);
+
+                // Dereference the wrapped array
+                return jsArray[0];
+            })),
+
+            getPropertyAsString : $debox($entry(@com.smartgwt.client.bean.BeanFactory::getPropertyAsString(Ljava/lang/Object;Ljava/lang/String;))),
+
+            getAttributes : $entry(function (className) {
+                // Get the Java attributes, which will be a String[]
+                var javaValue = @com.smartgwt.client.bean.BeanFactory::getAttributes(Ljava/lang/String;)(className);
+
+                // Convert it to a JavaScript value
+                var jsArray = @com.smartgwt.client.bean.BeanValueType::wrapInJavascriptArray(Ljava/lang/Object;)(javaValue);
+
+                // Dereference the wrapped array
+                return jsArray[0];
+            }),
+            
+            getOrCreateJsObj : $entry(@com.smartgwt.client.bean.BeanFactory::getOrCreateJsObj(Ljava/lang/Object;)),
+
+            getSGWTFactory : $entry(function (object) {
+                var beanFactory = @com.smartgwt.client.bean.BeanFactory::getFactory(Ljava/lang/Object;)(object);
+                if (beanFactory) {
+                    return beanFactory.@com.smartgwt.client.bean.BeanFactory::sgwtFactory;
+                } else {
+                    return null;
+                }
+            }),
+
+            // Performs basic conversion from a JavaScript type to an
+            // equivalent Java value, without taking into account any
+            // particularly desired Java types. This method may return a
+            // JavaScriptObject -- either the value itself, or possibly a new
+            // JavaScriptObject constructed from a config block.  
+            //
+            // JSOHelper.convertToJava has some relevant code, but it
+            // doesn't quite do what we want in some respects. In particular,
+            // it converts Canvas instances to strings, which is not what we
+            // want -- we leave any SmartClient instances as JavaScriptObjects
+            // and wrap them in a BeanValueType later (if possible). Also,
+            // if we get a config block with a _constructor, we construct the
+            // object and make it a JavaScriptObject (rather than turning it
+            // into a Map).
+            //
+            // Note that we need to define this function on the Javascript side,
+            // because in development mode it's necessary to do the conversion
+            // before we hit GWT's JSNI <-> Java glue code. Otherwise, we have no
+            // way of properly declaring parameter types on the Java side. If
+            // we use JavaScriptObject as the parameter type, the glue code 
+            // auto-converts strings to java.lang.String, which isn't castable to
+            // JavaScriptObject. If we use Object, then the glue code doesn't
+            // auto-convert primitive numbers, so we would need to take care of that
+            // to avoid errors. None of that would be a problem if we had multiple
+            // signatures for each parameter type ... but to have just one signature
+            // we need to convert to Java objects before we hit the glue code. 
+
+            convertToJava : function (obj) {
+                if (obj == null) return null;
+                
+                // If we're passed a real Java Object, just return it.
+                if ($wnd.SmartGWT.isNativeJavaObject(obj)) return obj;
+
+                // Use typeof to check for primitive types. This is similar to
+                // what JSOHelper.convertToJavaType does, but just picks out
+                // the primitive types and uses isA to discriminate among
+                // others.
+                switch (typeof obj) { 
+                    case 'undefined':
+                        return null;
+                        break;
+
+                    case 'string':
+                        return obj;
+                        break;
+                    
+                    case 'number':
+                        if (obj.toString().indexOf('.') == -1) {
+                            if (obj <= @java.lang.Integer::MAX_VALUE && obj >= @java.lang.Integer::MIN_VALUE) {
+                                return @com.smartgwt.client.util.JSOHelper::toInteger(I)(obj);
+                            } else {
+                                return @com.smartgwt.client.util.JSOHelper::toLong(D)(obj);
+                            }
+                        } else {
+                            // Convert all non-integral numbers to Double,
+                            // rather than Float, in order to avoid loss of
+                            // precision in development mode.
+                            return @com.smartgwt.client.util.JSOHelper::toDouble(D)(obj);
+                        }
+                        break;
+
+                    case 'boolean':
+                        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(obj);
+                        break;
+
+                    default:
+                        // If it's not a primitive type, then check various isA
+                        // possibilities
+                        if ($wnd.isc.isA.Date(obj)) {
+                            return @com.smartgwt.client.util.JSOHelper::toDate(D)(obj.getTime());
+                        }
+                        
+                        if ($wnd.isc.isAn.Array(obj)) {
+                            var convertedArray = $wnd.Array.create();
+                            
+                            // First, convert each member of the array, by calling
+                            // ourselves recursively
+                            for (var i = 0; i < obj.length; i++) {
+                                convertedArray[i] = this.convertToJava(obj[i]);
+                            }
+
+                            // Now we've converted all our members and we need to
+                            // return a Java array
+                            return @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(convertedArray);
+                        } 
+                        
+                        // If it's a SmartClient instance, then check for the __ref,
+                        // and return the SmartGWT object if it exists. Otherwise, just
+                        // return the SmartClient instance itself -- the specific
+                        // BeanValueType may be able to do further conversion.
+                        if ($wnd.isc.isAn.Instance(obj)) {
+                            if (obj[$wnd.isc.gwtRef]) { 
+                                return obj[$wnd.isc.gwtRef];
+                            } else {
+                                return obj;
+                            }
+                        }
+                        
+                        if ($wnd.isc.isAn.Object(obj)) {
+                            // If it's a String object, use the primitive instead
+                            if (obj instanceof String) return obj.toString();
+
+                            // And check for Number or Boolean and call recursively
+                            if (obj instanceof Number || obj instanceof Boolean) {
+                                return this.convertToJava(obj.valueOf());
+                            }
+                        
+                            // If it has a __ref, then just return that.
+                            if (obj[$wnd.isc.gwtRef]) { 
+                                return obj[$wnd.isc.gwtRef];
+                            }
+
+                            if (obj._constructor == 'DateRange') {
+                                return @com.smartgwt.client.widgets.form.fields.DateRangeItem::convertToDateRange(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
+                            }
+                            
+                            // If it's a config block with a _constructor, then
+                            // construct the SmartClient object and return it as a
+                            // JavaScriptObject. This is adapted from
+                            // Canvas.createCanvas (which isn't a class method, so we
+                            // can't call it from here). 
+                            //
+                            // Note that we only are supporting a config block here --
+                            // we're not dealing with autochildren or ID's specified as
+                            // strings (since, at this level, we don't know that that
+                            // is what is meant -- we would convert JavaScript strings
+                            // to Java strings). In principle, we could convert from
+                            // strings to Canvas via autochildren or ID's later on in
+                            // BeanValueTypes that take Canvii).
+                            //
+                            // An alternative would be to modify various methods (like
+                            // Layout.setMembers) so that they will take config blocks
+                            // (as the SmartClient equivalents do). However, this is
+                            // simpler for now. 
+                            if (obj._constructor && $wnd.isc[obj._constructor]) {
+                                var cons = obj._constructor;
+                                delete obj._constructor;
+                                return $wnd.isc.ClassFactory.newInstance(cons, obj);
+                            }
+
+                            // If nothing else, convert the POJO to a Map
+                            var javaMap = @java.util.LinkedHashMap::new()();
+
+                            // If it's a tree node, clean it up before converting
+                            // otherwise we may end up serializing out all parents and
+                            // children!
+                            if (obj._isc_tree != null || obj.$42c != null) {
+                                obj = $wnd.isc.Tree.getCleanNodeData(obj);
+                            }
+                            
+                            for (var fieldName in obj) {
+                                // This shouldn't really happen, but ...
+                                if (!$wnd.isc.isA.String(fieldName)) continue;
+
+                                // If the field name is '__ref', the the value
+                                // is already a GWT java object reference.
+                                // Otherwise, we convert it by calling
+                                // ourselves recursively.
+                                var convertedVal = fieldName == $wnd.isc.gwtRef ? obj[fieldName] : this.convertToJava(obj[fieldName]);
+                                
+                                // And add it to the map
+                                @com.smartgwt.client.util.JSOHelper::doAddToMap(Ljava/util/Map;Ljava/lang/String;Ljava/lang/Object;)(javaMap, fieldName, convertedVal);
+                            }
+
+                            return javaMap;
+                        }
+                }
+                
+                // If we haven't returned anything yet, then we really don't know how
+                // to convert the JavaScriptObject ... we may as well just return it.
+                return obj;
+            }
+        };
+
+        return module;
+    }-*/;
+
+    public static JavaScriptObject getSGWTModule () {
+        return sgwtModule;
+    }
+
     // The factories, hashed by the fully-qualified class name of the base class.
     private static Map<String, BeanFactory<?>> factoriesByName = new HashMap<String, BeanFactory<?>>();
  
@@ -369,14 +607,16 @@ public abstract class BeanFactory<BeanClass> {
         return factoriesByClass.get(klass);
     }
 
+    public static BeanFactory<?> getFactory (Object object) {
+        // Overloading is based on compile-time types, so do some dynamic dispatch
+        if (object instanceof Class) return getFactory((Class) object);
+        if (object instanceof String) return getFactory((String) object);
+
+        return getFactory(object.getClass());
+    }
+
     // Registers a factory for a base class.
     protected static void registerFactory (BeanFactory<?> factory) {
-        // If this is the first factory, then register this module
-        // with SGWTFactory on the SmartClient side.
-        if (factoriesByClass.isEmpty()) {
-            registerWithSGWTFactory();
-        }
-
         // Bail out if a factory has already been registered for the class name
         final String beanClassName = factory.getBeanClassName();
         if (factoriesByName.containsKey(beanClassName)) {
@@ -388,74 +628,6 @@ public abstract class BeanFactory<BeanClass> {
         factoriesByClass.put(factory.getBeanClass(), factory);
     }
     
-    // This one is for exporting at the SGWTFactory class level. SGWTFactory
-    // can use it to figure out which factory, among possibly multiple modules,
-    // can handle an object.
-    private native static void registerWithSGWTFactory () /*-{
-        $wnd.isc.SGWTFactory.registerGetSGWTFactoryFunction(
-            $entry(@com.smartgwt.client.bean.BeanFactory::getSGWTFactory(Ljava/lang/Class;))
-        );
-    }-*/;
-
-    // Looks up the SGWTFactory for a class object. This is called from SGWTFactory
-    // on the SmartClient side in order to get the factory for an existing object.
-    protected static JavaScriptObject getSGWTFactory (Class<?> klass) {
-        // Note that we do this at the class level, rather than the object level,
-        // because the relevant object could belong to a different module, and
-        // might have a different obfuscation for getClass. We can deal with the
-        // different obfuscation possibilities on the SGWTFactory side, since
-        // the possibilities are stable (getClass$ or gC). (In principle, it could
-        // be done in JSNI here also).
-        BeanFactory<?> factory = getFactory(klass);
-        if (factory == null) {
-            return null;
-        } else {
-            return factory.sgwtFactory;
-        }
-    }
-
-    // -----------------------------------------
-    // Static functions to export to SGWTFactory
-    // -----------------------------------------
-    
-    // We construct these once because SmartGWT's $entry will create a new
-    // function, so we may as well cache that, rather than creating one for
-    // each factory. We have to actually export this function for each factory, 
-    // because not all factories will necessarily come from this SmartGWT module.
-    // But, at least this way we can export the same function to each factory,
-    // rather than creating one each time.
-
-    private static JavaScriptObject exportableNewInstanceFn = exportNewInstanceFn();
-    private static JavaScriptObject exportableSetPropertyFn = exportSetPropertyFn();
-    private static JavaScriptObject exportableGetPropertyFn = exportGetPropertyFn();
-    private static JavaScriptObject exportableGetPropertyAsStringFn = exportGetPropertyAsStringFn();
-    private static JavaScriptObject exportableGetAttributesFn = exportGetAttributesFn();
-    private static JavaScriptObject exportableGetOrCreateJsObjFn = exportGetOrCreateJsObjFn();
-
-    private native static JavaScriptObject exportNewInstanceFn () /*-{
-        return $entry(@com.smartgwt.client.bean.BeanFactory::newInstance(Ljava/lang/String;));
-    }-*/;
-
-    private native static JavaScriptObject exportSetPropertyFn () /*-{
-        return $entry(@com.smartgwt.client.bean.BeanFactory::setProperty(Ljava/lang/Object;Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;));
-    }-*/;
-
-    private native static JavaScriptObject exportGetPropertyFn () /*-{
-        return $entry(@com.smartgwt.client.bean.BeanFactory::getPropertyAsJavaScriptObject(Ljava/lang/Object;Ljava/lang/String;));
-    }-*/;
-
-    private native static JavaScriptObject exportGetPropertyAsStringFn () /*-{
-        return $entry(@com.smartgwt.client.bean.BeanFactory::getPropertyAsString(Ljava/lang/Object;Ljava/lang/String;));
-    }-*/;
-
-    private native static JavaScriptObject exportGetAttributesFn () /*-{
-        return $entry(@com.smartgwt.client.bean.BeanFactory::getAttributesAsJavaScriptObject(Ljava/lang/String;));
-    }-*/;
-
-    private native static JavaScriptObject exportGetOrCreateJsObjFn () /*-{
-        return $entry(@com.smartgwt.client.bean.BeanFactory::getOrCreateJsObj(Ljava/lang/Object;));
-    }-*/;
-
     // -----------------
     // Static Public API
     // -----------------
@@ -522,7 +694,16 @@ public abstract class BeanFactory<BeanClass> {
      * @throws IllegalArgumentException If there is no appropriate setter for the value
      */
     public static void setProperty (Object bean, String property, Object value) {
-        // Note that we can't use the parameterized BeanClass type in the static method
+        // Note that we can't use the parameterized BeanClass type in the
+        // static method.
+        //
+        // Also, we used to have a separate implementation for
+        // JavaScriptObject values, but it turns out that doesn't work well in
+        // hosted mode, since in hosted mode some JavaScript objects get
+        // auto-converted to Java objects (e.g. strings) by the glue code, and
+        // are thus not castable to JavaScriptObject. So, we now pre-convert
+        // the value to a Java object on the JavaScript side, before we hit
+        // the glue code.
         if (bean != null) {
             BeanFactory<?> factory = BeanFactory.getFactory(bean.getClass());
             if (factory == null) {
@@ -535,31 +716,6 @@ public abstract class BeanFactory<BeanClass> {
         }
     }
    
-    /**
-     * Sets a property of a bean to a JavaScriptObject value, converting the
-     * JavaScriptObject to a Java equivalent.
-     *
-     * @param bean The object whose property is to be set
-     * @param property The name of the property
-     * @param value The value to set
-     * @throws IllegalStateException If no factory has been generated for the bean's class
-     * @throws IllegalArgumentException If there is no appropriate setter for the value
-     */
-    public static void setProperty (Object bean, String property, JavaScriptObject value) {
-        // Note that we can't use the parameterized BeanClass type in the static method
-        try {
-            // This does a generic conversion to a Java value ... the property
-            // may do further conversion, depending on the types it can handle
-            setProperty(bean, property, BeanValueType.convertToJava(value));
-        }
-       
-        // This is exported to SmartClient, so make sure exceptions are logged before we return
-        catch (RuntimeException ex) {
-            SC.logWarn(ex.getMessage());
-            throw ex;
-        }
-    }
-
     /**
      * Gets a property of a bean.
      *
@@ -575,6 +731,8 @@ public abstract class BeanFactory<BeanClass> {
         if (factory == null) {
             throw noFactoryException(bean.getClass());
         } else {
+            // Need a different name for the instance method, since the signature
+            // is the same.
             return factory.doGetProperty(bean, property);
         }
     }
@@ -585,13 +743,13 @@ public abstract class BeanFactory<BeanClass> {
      * In simple cases, this will be equivalent to getProperty().toString().
      * However, if there are multiple getters available, it will prefer getters
      * that actually return strings (e.g. getWidthAsString() would be preferred
-     * for "width").
+     * to getWidth().toString()).
      *
      * @param bean The object whose property to get
      * @param property The name of the property
      * @throws IllegalStateException If no factory has been generated for the bean's class
      */
-    public static Object getPropertyAsString (Object bean, String property) {
+    public static String getPropertyAsString (Object bean, String property) {
         // Note that we can't use the parameterized BeanClass type in the static method
         if (bean == null)  return null;
 
@@ -599,21 +757,9 @@ public abstract class BeanFactory<BeanClass> {
         if (factory == null) {
             throw noFactoryException(bean.getClass());
         } else {
+            // Need a different name for the instance method, since the signature
+            // is the same.
             return factory.doGetPropertyAsString(bean, property);
-        }
-    }
-
-    // For export to SmartClient
-    public static JavaScriptObject getPropertyAsJavaScriptObject (Object bean, String property) {
-        try {
-            final Object value = getProperty(bean, property);
-            return BeanValueType.convertToJavaScriptObject(value);
-        }
-        
-        // This is exported to SmartClient, so make sure we log any exceptions before returning
-        catch (RuntimeException ex) {
-            SC.logWarn(ex.getMessage());
-            throw ex;
         }
     }
 
@@ -647,20 +793,6 @@ public abstract class BeanFactory<BeanClass> {
         }
     }
 
-    // For export to SmartClient
-    protected static JavaScriptObject getAttributesAsJavaScriptObject (String beanClassName) {
-        try {
-            final String[] attributes = getAttributes(beanClassName);
-            return BeanValueType.convertToJavaScriptObject(attributes);
-        }
-
-        // This is exported to SmartClient, so make sure exceptions are logged before we return
-        catch (RuntimeException ex) {
-            SC.logWarn(ex.getMessage());
-            throw ex;
-        }
-    }
-
     public static JavaScriptObject getOrCreateJsObj (Object bean) {
         // Note that we can't use the parameterized BeanClass type in the static method
         if (bean == null) return null;
@@ -669,6 +801,8 @@ public abstract class BeanFactory<BeanClass> {
         if (factory == null) {
             throw noFactoryException(bean.getClass());
         } else {
+            // Need a different name for the instance method, since the signature
+            // is the same.
             return factory.doGetOrCreateJsObj(bean);
         }
     }
@@ -692,9 +826,10 @@ public abstract class BeanFactory<BeanClass> {
 
     /**
      * The constructor is protected because you should not create BeanFactory
-     * instances directly. Instead, use {@link BeanFactory.MetaFactory} or
-     * {@link BeanFactory.CanvasMetaFactory} to create bean factories, and then
-     * use the static methods on BeanFactory.
+     * instances directly. Instead, use {@link BeanFactory.MetaFactory},
+     * {@link BeanFactory.CanvasMetaFactory} or {@link BeanFactory.FormItemMetaFactory}
+     * to create bean factories, and then use the static methods on
+     * BeanFactory.
      *
      * @see BeanFactory.MetaFactory
      * @see BeanFactory.CanvasMetaFactory
@@ -771,25 +906,21 @@ public abstract class BeanFactory<BeanClass> {
     // getMethods().
     protected abstract BeanProperty<BeanClass>[] getProperties (JsArray<JavaScriptObject> methods);
 
-    // Creates the SmartClient SGWTFactory, passing in the callback functions.
-    // At the moment, the functions are actually the same for every factory,
-    // so in principle one could store them at a "module" level rather than
-    // in each SGWTFactory. However, it is just the reference that is redundant ...
-    // we're not creating multiple copies of the function.
+    // Creates the SmartClient SGWTFactory. The callback functions are actually the same
+    // for every SGWTFactory, and defined in the SGWTModule, so we just pass the reference
+    // to the module.
     private native JavaScriptObject createSGWTFactory () /*-{
         return $wnd.isc.SGWTFactory.create({
             beanClassName: this.@com.smartgwt.client.bean.BeanFactory::getBeanClassName()(),
-            newInstanceFn: @com.smartgwt.client.bean.BeanFactory::exportableNewInstanceFn,
-            setPropertyFn: @com.smartgwt.client.bean.BeanFactory::exportableSetPropertyFn,
-            getPropertyFn: @com.smartgwt.client.bean.BeanFactory::exportableGetPropertyFn,
-            getPropertyAsStringFn: @com.smartgwt.client.bean.BeanFactory::exportableGetPropertyAsStringFn,
-            getAttributesFn: @com.smartgwt.client.bean.BeanFactory::exportableGetAttributesFn,
-            getOrCreateJsObjFn: @com.smartgwt.client.bean.BeanFactory::exportableGetOrCreateJsObjFn
+            sgwtModule: @com.smartgwt.client.bean.BeanFactory::getSGWTModule()()
         });
     }-*/;
 
-    // Calls the SGWTFactory function which registers the class name in the isc[] space, so that
-    // idioms like isc[className].create will work.
+    // Calls the SGWTFactory function which registers the class name in the
+    // isc[] space, so that idioms like isc[className].create will work. The
+    // generated code will call this if the factory has been explicitly created
+    // (i.e. not just as a superclass of something which was explicitly
+    // created.)
     public native void registerClassNameWithSGWTFactory () /*-{
         this.@com.smartgwt.client.bean.BeanFactory::sgwtFactory.registerClassName();
     }-*/;
@@ -831,10 +962,6 @@ public abstract class BeanFactory<BeanClass> {
             property.setProperty((BeanClass) bean, value);
         }
     }
-
-    // Sets a property on the underlying Javascript property directly. This is done
-    // differently depending on the BeanClass, so we put it in a subclass.
-    protected abstract void setJavascriptProperty (BeanClass bean, String propertyName, Object value);
 
     public String[] getAttributes () {
         // We lazily create a cache for the return value. Note that this
@@ -908,11 +1035,15 @@ public abstract class BeanFactory<BeanClass> {
         }
     }
 
-    private Object getJavascriptProperty (BeanClass bean, String propertyName) {
-        return BeanValueType.convertToJava(getAttributeAsJavaScriptObject(bean, propertyName));
-    }
+    // These are abstract because their implementation differs depending on the
+    // BeanClass.
+    
+    // Sets a property on the underlying Javascript property directly. 
+    protected abstract void setJavascriptProperty (BeanClass bean, String propertyName, Object value);
 
-    protected abstract JavaScriptObject getAttributeAsJavaScriptObject(BeanClass bean, String property);
-
+    // Gets a property from the underlying JavaScript object
+    protected abstract Object getJavascriptProperty (BeanClass bean, String propertyName);
+    
+    // Gets the uncerlying JavaScriptObject.
     public abstract JavaScriptObject doGetOrCreateJsObj (Object bean);
 }

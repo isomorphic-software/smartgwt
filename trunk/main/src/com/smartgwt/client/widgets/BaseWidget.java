@@ -24,6 +24,7 @@ import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.smartgwt.client.bean.BeanFactory;
 import com.smartgwt.client.core.BaseClass;
 import com.smartgwt.client.core.DataClass;
 import com.smartgwt.client.core.Function;
@@ -403,6 +404,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         if (!isCreated()) {
             JavaScriptObject jsObj = create();
             JSOHelper.setObjectAttribute(jsObj, SC.REF, this);
+            JSOHelper.setAttribute(jsObj, SC.MODULE, BeanFactory.getSGWTModule());
             return jsObj;
         } else {
             return getJsObj();
