@@ -37,40 +37,50 @@ public abstract class BeanFactoryForBaseWidget<BeanClass extends BaseWidget>
     // Note that this doesn't check for whether post-create setting of the
     // property is allowed, since we only call this in circumstances where we don't
     // know anything about the property.  But we would know the property if it is
-    // documented, so parsing metadata from the documentation won't help. Note that
-    // we can't call bean.setAttribute directly, because it is protected
-    // in BaseWidget.
+    // documented, so parsing metadata from the documentation won't help. 
+    @Override
     protected void setJavascriptProperty (BeanClass bean, String propertyName, Object value) {
         if (bean.isCreated()) {
-            // BaseWidget.setProperty doesn't do any dynamic conversion, so we
-            // do that here first.
-            bean.setProperty(propertyName, BeanValueType.convertToJavaScriptObject(value));
+            setNativeProperty(bean, propertyName, value);
         } else {
-            // Note that setAttribute by itself does less conversion than we'd
-            // like, so we do some extra conversion first.
-            JSOHelper.setAttribute(bean.getConfig(), propertyName, BeanValueType.convertToJavaScriptObject(value));
+            setNativeAttribute(bean.getConfig(), propertyName, value);
         }
     }
+
+    protected native void setNativeProperty (BeanClass bean, String propertyName, Object value) /*-{
+        var widget = bean.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        var wrappedValue = @com.smartgwt.client.bean.BeanValueType::wrapInJavascriptArray(Ljava/lang/Object;)(value);
+        widget.setProperty(propertyName, wrappedValue[0]);
+    }-*/;
+
+    protected native void setNativeAttribute (JavaScriptObject config, String propertyName, Object value) /*-{
+        var wrappedValue = @com.smartgwt.client.bean.BeanValueType::wrapInJavascriptArray(Ljava/lang/Object;)(value);
+        config[propertyName] = wrappedValue[0];
+    }-*/;
     
-    // Copied from BaseWidget because it is not public there
-    protected native JavaScriptObject getAttributeAsJavaScriptObject(BeanClass bean, String property)/*-{
-        var ret;
+    @Override
+    protected native Object getJavascriptProperty (BeanClass bean, String property)/*-{
+        var prop;
+
         if (bean.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             var widget = bean.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            ret = widget.getProperty(property);
+            prop = widget.getProperty(property);
         } else {
             var config = bean.@com.smartgwt.client.widgets.BaseWidget::config;
             if (config[property] != undefined) {
-                ret = config[property];
+                prop = config[property];
             } else {
-               var scClassName = bean.@com.smartgwt.client.widgets.BaseWidget::scClassName;
-               ret = $wnd.isc[scClassName].getInstanceProperty(property);
+                var scClassName = bean.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+                prop = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
-        return ret === undefined ? null : ret;
+        
+        var sgwtModule = @com.smartgwt.client.bean.BeanFactory::getSGWTModule()();
+        return sgwtModule.convertToJava(prop);
     }-*/;
 
     @SuppressWarnings("unchecked")
+    @Override
     public JavaScriptObject doGetOrCreateJsObj (Object bean) {
         // The cast should be fine, as we'll only get here if we've picked
         // the right factory.

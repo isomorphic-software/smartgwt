@@ -35,15 +35,23 @@ import java.util.Set;
 public abstract class BeanFactoryForDataClass<BeanClass extends DataClass>
                 extends BeanFactory<BeanClass> {
 
-    protected void setJavascriptProperty (BeanClass bean, String propertyName, Object value) {
-        bean.setAttribute(propertyName, BeanValueType.convertToJavaScriptObject(value));
-    }
+    @Override
+    protected native void setJavascriptProperty (BeanClass bean, String propertyName, Object value) /*-{
+        var jsObj = bean.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var wrappedValue = @com.smartgwt.client.bean.BeanValueType::wrapInJavascriptArray(Ljava/lang/Object;)(value);
+        jsObj[propertyName] = wrappedValue[0];
+    }-*/;
     
-    protected JavaScriptObject getAttributeAsJavaScriptObject (BeanClass bean, String property) {
-        return bean.getAttributeAsJavaScriptObject(property);
-    }
+    @Override
+    protected native Object getJavascriptProperty (BeanClass bean, String property) /*-{
+        var jsObj = bean.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var prop = jsObj[property];
+        var sgwtModule = @com.smartgwt.client.bean.BeanFactory::getSGWTModule()();
+        return sgwtModule.convertToJava(prop);
+    }-*/;
 
     @SuppressWarnings("unchecked")
+    @Override
     public JavaScriptObject doGetOrCreateJsObj (Object bean) {
         // The cast should be fine, as we'll only get here if we've picked
         // the right factory.

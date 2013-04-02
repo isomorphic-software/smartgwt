@@ -23,12 +23,14 @@ import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.SC;
+import com.smartgwt.client.bean.BeanFactory;
 
 
 public class RefDataClass extends DataClass {
 
     public RefDataClass() {
         setAttribute(SC.REF, (Object) this);
+        setAttribute(SC.MODULE, BeanFactory.getSGWTModule());
     }
 
     public RefDataClass(JavaScriptObject jsObj) {
