@@ -167,7 +167,7 @@ public class DragListCopySample extends ShowcasePanel {
                     int idx = myList2.getRecordIndex(selectedRecord);
                     if(idx < numRecords - 1) {
                         rs.removeAt(idx);
-                        rs.addAt(selectedRecord, rs.getLength() -1);
+                        rs.addAt(selectedRecord, rs.getLength());
                     }
                 }
             }
