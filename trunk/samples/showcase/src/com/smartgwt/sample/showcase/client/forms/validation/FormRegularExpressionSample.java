@@ -14,8 +14,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class FormRegularExpressionSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Enter a bad email address (eg just \"mike\") and press \"Validate\" " + 
-    "to receive a validation error. The regular expression validator allows simple custom field types, with " + 
-    "automatic enforcement on client on server."; 
+    "to receive a validation error. The regular expression validator allows simple custom field types.";
 
     public static class Factory implements PanelFactory {
         private String id;
