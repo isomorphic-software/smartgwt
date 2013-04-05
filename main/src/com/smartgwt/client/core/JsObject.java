@@ -17,12 +17,6 @@
 package com.smartgwt.client.core;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.Window;
-import com.smartgwt.client.rpc.RPCManager;
-import com.smartgwt.client.types.PromptStyle;
-import com.smartgwt.client.util.LogUtil;
-import com.smartgwt.client.util.I18nUtil;
 
 public class JsObject {
     
@@ -45,6 +39,19 @@ public class JsObject {
 
     public void setJsObj(JavaScriptObject jsObj) {
         this.jsObj = jsObj;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof JsObject)) return false;
+        final JsObject other = (JsObject)obj;
+        if (jsObj == null) return false;
+        return jsObj.equals(other.jsObj);
+    }
+
+    @Override
+    public int hashCode() {
+        return (jsObj == null ? 0 : jsObj.hashCode());
     }
 
     /**
