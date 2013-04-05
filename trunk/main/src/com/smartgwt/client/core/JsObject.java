@@ -45,7 +45,7 @@ public class JsObject {
     public boolean equals(Object obj) {
         if (!(obj instanceof JsObject)) return false;
         final JsObject other = (JsObject)obj;
-        if (jsObj == null) return false;
+        if (jsObj == null) return this == other;
         return jsObj.equals(other.jsObj);
     }
 
