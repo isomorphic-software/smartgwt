@@ -1,17 +1,16 @@
 package com.smartgwt.sample.showcase.client;
 
-import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.viewer.DetailViewer;
-import com.smartgwt.client.widgets.tab.Tab;
-import com.smartgwt.client.widgets.tab.TabSet;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.GWT.UncaughtExceptionHandler;
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.event.shared.UmbrellaException;
 
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.SC;
-
-import com.google.gwt.core.client.JavaScriptObject;
-
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.GWT.UncaughtExceptionHandler;
+import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.tab.Tab;
+import com.smartgwt.client.widgets.tab.TabSet;
+import com.smartgwt.client.widgets.viewer.DetailViewer;
 
 public class SampleResultsManager implements UncaughtExceptionHandler {
 
@@ -24,7 +23,7 @@ public class SampleResultsManager implements UncaughtExceptionHandler {
 
     // results to be presented
     private String description;
-    private StringBuffer details;
+    private DetailsReport report;
 
     // current sample test state
     private int pendingRPCs;
@@ -42,7 +41,7 @@ public class SampleResultsManager implements UncaughtExceptionHandler {
     // manage sample created by factory, hang results off canvas 'parent'
     private SampleResultsManager(PanelFactory factory, Canvas parent) {
         description = factory.getDescription();
-        details = new StringBuffer("");
+        report = new DetailsReport();
         this.parent = parent;
         attachExceptionHandler();
         attachErrorHandler();
@@ -67,11 +66,16 @@ public class SampleResultsManager implements UncaughtExceptionHandler {
         viewer.setTop(50);
     }
 
+    private native boolean isSystemDone() /*-{
+        var autoTest = $wnd.isc.AutoTest;
+        return autoTest ? autoTest.isSystemDone(true) : true;
+    }-*/;
+
     private boolean isWidgetInStableState() {
-        if (details.length() > 0) {
+        if (!report.isEmpty() || panel == null) {
             return true;
         }
-        return panel == null || (panel.isDrawn() && !panel.isDirty());
+        return panel.isDrawn() && !panel.isDirty() && isSystemDone();
     }
 
     // track pending RPCs
@@ -84,17 +88,26 @@ public class SampleResultsManager implements UncaughtExceptionHandler {
 
     // collect reported errors
     private  void reportError(String error) {
-        details.append(error + "\n");
+        report.addDetails(error + "\n");
+    }
+
+    private void reportException(Throwable t) {
+        String details = t.toString();
+        StackTraceElement[] trace = t.getStackTrace();
+        for (int i = 0; i < Math.min(trace.length, DETAILS_STACK_DEPTH); i++ ) {
+            details += "\n" + trace[i];
+        }
+        reportError(details);
     }
 
     public void onUncaughtException(Throwable t) {
-        String report = t.toString();
-        StackTraceElement[] trace = t.getStackTrace();
-        for (int i = 0; i < Math.min(trace.length, DETAILS_STACK_DEPTH); i++ ) {
-            report += "\n" + trace[i];
+        if (t instanceof UmbrellaException) {
+            UmbrellaException uncaught = (UmbrellaException) t;
+            Throwable[] exceptions = uncaught.getCauses().toArray(new Throwable[0]);
+            for (int i = 0; i < exceptions.length; i++) reportException(exceptions[i]);
+        } else {
+            reportException(t);
         }
-        // space replacement improves formatting
-        reportError(report.replaceAll(" ", "^"));
     }
     
     // if original stability check already completed,
@@ -204,7 +217,7 @@ public class SampleResultsManager implements UncaughtExceptionHandler {
 
     private native DetailViewer createDetailViewerForTestResults() /*-{
         var text = this.@com.smartgwt.sample.showcase.client.SampleResultsManager::description;
-        var errors = this.@com.smartgwt.sample.showcase.client.SampleResultsManager::details.toString();
+        var errors = this.@com.smartgwt.sample.showcase.client.SampleResultsManager::report.toString();
         var results = { result : errors.length > 0 ? "failure" : "success",
                           description : text,
                           detail : errors };
