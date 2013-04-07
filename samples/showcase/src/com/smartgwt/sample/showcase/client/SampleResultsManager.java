@@ -46,11 +46,13 @@ public class SampleResultsManager implements UncaughtExceptionHandler {
         attachExceptionHandler();
         attachErrorHandler();
         attachRPCHandlers();
+        attachJavaScriptHooks();
         requestCallback();
     }
     
     // uninstaller handles and display DetailViewer
     private void completeResultsCollection() {
+        detachJavaScriptHooks();
         detachRPCHandlers();
         detachErrorHandler();
         detachExceptionHandler();
@@ -134,6 +136,7 @@ public class SampleResultsManager implements UncaughtExceptionHandler {
 
     private void destroy() {
         if (!allComplete) {
+            detachJavaScriptHooks();
             detachRPCHandlers();
             detachErrorHandler();
             detachExceptionHandler();
@@ -146,11 +149,11 @@ public class SampleResultsManager implements UncaughtExceptionHandler {
 
      private native void requestCallback() /*-{
         var wrapper = this;
-        var callback = function() {
+        var callback = $entry(function() {
             if (!wrapper.@com.smartgwt.sample.showcase.client.SampleResultsManager::allComplete) {
-                $entry(wrapper.@com.smartgwt.sample.showcase.client.SampleResultsManager::checkForCompletion()());
+                wrapper.@com.smartgwt.sample.showcase.client.SampleResultsManager::checkForCompletion()();
             }
-        }
+        });
         var parent = this.@com.smartgwt.sample.showcase.client.SampleResultsManager::parent;
         var object = parent.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
         object.fireOnPause("checkForCompletion", callback);
@@ -168,11 +171,11 @@ public class SampleResultsManager implements UncaughtExceptionHandler {
     private native void attachErrorHandler() /*-{
         var wrapper = this;
         this.@com.smartgwt.sample.showcase.client.SampleResultsManager::oldErrorHandler = $wnd.onerror;
-        $wnd.onerror = function(msg, url, line) {
+        $wnd.onerror = $entry(function(msg, url, line) {
             var error = "Javascript Exception at " + url + ", line " + line + ": " + msg;
-            $entry(wrapper.@com.smartgwt.sample.showcase.client.SampleResultsManager::reportError(Ljava/lang/String;)(error));
+            wrapper.@com.smartgwt.sample.showcase.client.SampleResultsManager::reportError(Ljava/lang/String;)(error);
             return true;
-        }
+        });
     }-*/;
 
     private native void detachErrorHandler() /*-{
@@ -191,20 +194,20 @@ public class SampleResultsManager implements UncaughtExceptionHandler {
         this.@com.smartgwt.sample.showcase.client.SampleResultsManager::oldTransactionComplete = rpc.transactionComplete;
 
         var wrapper = this;
-        rpc.reportError = function (error) {
-            $entry(wrapper.@com.smartgwt.sample.showcase.client.SampleResultsManager::reportError(Ljava/lang/String;)(error));
-        }
-        rpc.transformRequest = function (rpcRequest) {
-            $entry(wrapper.@com.smartgwt.sample.showcase.client.SampleResultsManager::incrementRPCs()());
+        rpc.reportError = $entry(function (error) {
+            wrapper.@com.smartgwt.sample.showcase.client.SampleResultsManager::reportError(Ljava/lang/String;)(error);
+        });
+        rpc.transformRequest = $entry(function (rpcRequest) {
+            wrapper.@com.smartgwt.sample.showcase.client.SampleResultsManager::incrementRPCs()();
             return rpcRequest.data;
-        }
-        rpc.transformResponse = function (rpcResponse, rpcRequest, data) {
-            $entry(wrapper.@com.smartgwt.sample.showcase.client.SampleResultsManager::decrementRPCs()());
+        });
+        rpc.transformResponse = $entry(function (rpcResponse, rpcRequest, data) {
+            wrapper.@com.smartgwt.sample.showcase.client.SampleResultsManager::decrementRPCs()();
             return rpcResponse;
-        }
-        rpc.transactionComplete = function () {
-            $entry(wrapper.@com.smartgwt.sample.showcase.client.SampleResultsManager::completeRPCs()());
-        }
+        });
+        rpc.transactionComplete = $entry(function () {
+            wrapper.@com.smartgwt.sample.showcase.client.SampleResultsManager::completeRPCs()();
+        });
     }-*/;
 
     private native void detachRPCHandlers() /*-{
@@ -216,17 +219,29 @@ public class SampleResultsManager implements UncaughtExceptionHandler {
     }-*/;
 
     private native DetailViewer createDetailViewerForTestResults() /*-{
-        var text = this.@com.smartgwt.sample.showcase.client.SampleResultsManager::description;
-        var errors = this.@com.smartgwt.sample.showcase.client.SampleResultsManager::report.toString();
+        var text = this.@com.smartgwt.sample.showcase.client.SampleResultsManager::description,
+            report = this.@com.smartgwt.sample.showcase.client.SampleResultsManager::report,
+            errors = report.@com.smartgwt.sample.showcase.client.DetailsReport::toString()();
         var results = { result : errors.length > 0 ? "failure" : "success",
-                          description : text,
-                          detail : errors };
-        var parent = this.@com.smartgwt.sample.showcase.client.SampleResultsManager::parent;
-        var parentJsObj = parent.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
-        var viewerJsObj = $wnd.isc.AutoTest.createDetailViewerForTestResults(parentJsObj, results);
-        var viewer = @com.smartgwt.client.widgets.viewer.DetailViewer::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(viewerJsObj);
+                        description : text,
+                        detail : errors };
+        var parent = this.@com.smartgwt.sample.showcase.client.SampleResultsManager::parent,
+            parentJsObj = parent.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()(),
+            viewerJsObj = $wnd.isc.AutoTest.createDetailViewerForTestResults(parentJsObj, results),
+            viewer = @com.smartgwt.client.widgets.viewer.DetailViewer::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(viewerJsObj);
         viewer.@com.smartgwt.client.widgets.viewer.DetailViewer::doInit()();
         return viewer;
+    }-*/;
+
+    private native void attachJavaScriptHooks() /*-{
+        var report = this.@com.smartgwt.sample.showcase.client.SampleResultsManager::report;
+        $wnd.isc_Showcase_1_0.getDetailsReport = $entry(function () {
+            return report.@com.smartgwt.sample.showcase.client.DetailsReport::toString()();
+        })
+    }-*/;
+
+    private native void detachJavaScriptHooks() /*-{
+        delete $wnd.isc_Showcase_1_0.getDetailsReport;
     }-*/;
 
     // singleton paradigm for SampleResultsManager
@@ -240,12 +255,12 @@ public class SampleResultsManager implements UncaughtExceptionHandler {
     }
 
     private static native void destroySingletonAndInstallDestroyEntryPoint() /*-{
-        var destroyFunction = function () {
+        var destroyFunction = $entry(function () {
             var singleton = @com.smartgwt.sample.showcase.client.SampleResultsManager::singleton;
             if (singleton) {
-                $entry(singleton.@com.smartgwt.sample.showcase.client.SampleResultsManager::destroy()());
+                singleton.@com.smartgwt.sample.showcase.client.SampleResultsManager::destroy()();
             }
-        }
+        });
         if ($wnd.isc_Showcase_1_0.destroySampleResultsManager == null) {
             $wnd.isc_Showcase_1_0.destroySampleResultsManager = destroyFunction;
         }
