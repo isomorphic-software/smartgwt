@@ -261,7 +261,13 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             @com.smartgwt.client.util.IDManager::unregisterID(Ljava/lang/String;)(id);
         }
         this.@com.smartgwt.client.widgets.Canvas::onDestroy()();
+        this.@com.smartgwt.client.widgets.BaseWidget::clearID()();
     }-*/;
+
+    private void clearID() {
+        id = null;
+    	JSOHelper.setNullAttribute(config, "ID");
+    }
 
 
     public void doOnRender(Function function) {
@@ -391,6 +397,10 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
 
     public JavaScriptObject getOrCreateJsObj() {
         if (!isCreated()) {
+            if (id == null) {
+                internalSetID(SC.generateID(getClass().getName()));
+                setAttribute("_autoAssignedID", true, false);
+            }
             JavaScriptObject jsObj = create();
             JSOHelper.setObjectAttribute(jsObj, SC.REF, this);
             return jsObj;
