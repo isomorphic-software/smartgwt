@@ -9,7 +9,7 @@ public class ShowcaseConfiguration  {
     private ShowcaseConfiguration() {
         String value;
         value = com.google.gwt.user.client.Window.Location.getParameter("autotest");
-        openForTesting = null != value ? value.equals("true") : false;
+        openForTesting = null != value ? value.equals("showcase") : false;
         value = com.google.gwt.user.client.Window.Location.getParameter("autotest_report_limit");
         maxDetailsLength = null != value ? Integer.parseInt(value) : 0;
     }
