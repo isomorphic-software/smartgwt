@@ -296,7 +296,7 @@ public class I18nUtil {
             $wnd.isc.ListGrid.addProperties({groupByText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_groupByText()() + ' ${title}'});
             $wnd.isc.ListGrid.addProperties({ungroupText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_ungroupText()()});
             
-            $wnd.isc.ListGrid.addProperties({asynchGroupingPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_asynchGroupingPrompt()()});
+            $wnd.isc.ListGrid.addProperties({asynchGroupingPrompt: '${loadingImage}&nbsp;' + messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_asynchGroupingPrompt()()});
             $wnd.isc.ListGrid.addProperties({hiliteReplaceValueFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_hiliteReplaceValueFieldTitle()()});
             $wnd.isc.ListGrid.addProperties({filterButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_filterButtonPrompt()()});
             $wnd.isc.ListGrid.addProperties({loadingMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_loadingMessage()()});
