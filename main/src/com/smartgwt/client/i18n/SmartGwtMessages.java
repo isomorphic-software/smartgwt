@@ -2419,11 +2419,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String listGrid_ungroupText();
 
   /**
-   * Translated "${loadingImage}&nbsp;Grouping data...".
+   * Translated "Grouping data...".
    * 
-   * @return translated "${loadingImage}&nbsp;Grouping data..."
+   * @return translated "Grouping data..."
    */
-  @DefaultMessage("${loadingImage}&nbsp;Grouping data...")
+  @DefaultMessage("Grouping data...")
   @Key("listGrid_asynchGroupingPrompt")
   String listGrid_asynchGroupingPrompt();
 
