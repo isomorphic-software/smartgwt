@@ -240,6 +240,10 @@ public class I18nUtil {
             $wnd.isc.MultiComboBoxItem.addProperties({defaultHint: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiComboBoxItem_defaultHint()()});
         }
 
+        if($wnd.isc.MultiFilePicker) {
+            $wnd.isc.MultiFilePicker.addProperties({emptyMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiFilePicker_emptyMessage()()});
+        }
+
         if($wnd.isc.RichTextEditor) {
             $wnd.isc.RichTextEditor.changeDefaults("boldSelectionDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_boldSelectionPrompt()()});
             $wnd.isc.RichTextEditor.changeDefaults("italicSelectionDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_italicSelectionPrompt()()});

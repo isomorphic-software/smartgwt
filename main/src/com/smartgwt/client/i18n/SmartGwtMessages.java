@@ -2149,6 +2149,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String advancedHiliteEditor_targetFieldsItemTitle();
   
   /**
+   * Translated "Click icon to add...".
+   * 
+   * @return translated "Click icon to add..."
+   */
+  @DefaultMessage("Click icon to add...")
+  @Key("multiFilePicker_emptyMessage")
+  String multiFilePicker_emptyMessage();
+
+  /**
    * Translated "Show Menu".
    * 
    * @return translated "Show Menu"
