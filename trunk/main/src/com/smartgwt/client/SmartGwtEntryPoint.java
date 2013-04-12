@@ -123,12 +123,13 @@ public class SmartGwtEntryPoint implements EntryPoint {
             $wnd.isc.isA.String = function (object) {
                 if (object == null) return false;
                 if ($wnd.SmartGWT.isNativeJavaObject(object)) return false;
-                if (object.Class != null && object.Class == this._$String) return true;
+                if (object.Class != null && object.Class == 'String') return true;
                 return typeof object == "string";
             };
             $wnd.isc.isA.Number = function (object) {
                 if (object == null) return false;
                 if ($wnd.SmartGWT.isNativeJavaObject(object)) return false;
+                if (object.Class != null && object.Class == 'Number') return true;
                 return typeof object === 'number' && isFinite(object);
             };
             $wnd.isc.isA.Boolean = function (object) {
