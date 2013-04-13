@@ -1499,19 +1499,6 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("fieldPickerField_decimalPadTitle")
   String fieldPickerField_decimalPadTitle();
 
-fieldPickerField_availableTitleTitle=Add Custom Fields
-fieldPickerField_currentTitleTitle=Name
-fieldPickerField_sampleValueTitle=Sample Value
-fieldPicker_hilitesText=Highlights...
-fieldPicker_availableFieldsTitle=Available Fields
-fieldPicker_currentFieldsTitle=Visible Fields
-fieldPicker_confirmText=Must save pending changes to proceed. OK?
-fieldPicker_removeText=You are about to remove the field. Are you sure?
-fieldPicker_instructions=Drag and drop or use arrows to move fields.  Drag reorder to change field order.
-fieldPicker_saveAndExitButtonTitle=Save
-fieldPicker_cancelButtonTitle=Cancel
-fieldPickerWindow_title=Field Picker
-
   /**
    * Translated "Header Text Alignment".
    * 
