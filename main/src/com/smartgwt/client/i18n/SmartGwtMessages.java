@@ -1464,6 +1464,191 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String filterClause_valueItemTitle();
   
   /**
+   * Translated "Is Frozen".
+   * 
+   * @return translated "Is Frozen"
+   */
+  @DefaultMessage("Is Frozen")
+  @Key("fieldPickerField_frozenTitle")
+  String fieldPickerField_frozenTitle();
+
+  /**
+   * Translated "Precision".
+   * 
+   * @return translated "Precision"
+   */
+  @DefaultMessage("Precision")
+  @Key("fieldPickerField_precisionTitle")
+  String fieldPickerField_precisionTitle();
+
+  /**
+   * Translated "Decimal Precision".
+   * 
+   * @return translated "Decimal Precision"
+   */
+  @DefaultMessage("Decimal Precision")
+  @Key("fieldPickerField_decimalPrecisionTitle")
+  String fieldPickerField_decimalPrecisionTitle();
+
+  /**
+   * Translated "Decimal Pad".
+   * 
+   * @return translated "Decimal Pad"
+   */
+  @DefaultMessage("Decimal Pad")
+  @Key("fieldPickerField_decimalPadTitle")
+  String fieldPickerField_decimalPadTitle();
+
+fieldPickerField_availableTitleTitle=Add Custom Fields
+fieldPickerField_currentTitleTitle=Name
+fieldPickerField_sampleValueTitle=Sample Value
+fieldPicker_hilitesText=Highlights...
+fieldPicker_availableFieldsTitle=Available Fields
+fieldPicker_currentFieldsTitle=Visible Fields
+fieldPicker_confirmText=Must save pending changes to proceed. OK?
+fieldPicker_removeText=You are about to remove the field. Are you sure?
+fieldPicker_instructions=Drag and drop or use arrows to move fields.  Drag reorder to change field order.
+fieldPicker_saveAndExitButtonTitle=Save
+fieldPicker_cancelButtonTitle=Cancel
+fieldPickerWindow_title=Field Picker
+
+  /**
+   * Translated "Header Text Alignment".
+   * 
+   * @return translated "Header Text Alignment"
+   */
+  @DefaultMessage("Header Text Alignment")
+  @Key("fieldPickerField_alignTitle")
+  String fieldPickerField_alignTitle();
+
+  /**
+   * Translated "Data Alignment".
+   * 
+   * @return translated "Data Alignment"
+   */
+  @DefaultMessage("Data Alignment")
+  @Key("fieldPickerField_cellAlignTitle")  
+  String fieldPickerField_cellAlignTitle();
+
+  /**
+   * Translated "Add Custom Fields".
+   * 
+   * @return translated "Add Custom Fields"
+   */
+  @DefaultMessage("Add Custom Fields")
+  @Key("fieldPickerField_addCustomFieldsButtonTitle")
+  String fieldPickerField_addCustomFieldsButtonTitle();
+
+  /**
+   * Translated "Add Custom Fields".
+   * 
+   * @return translated "Add Custom Fields"
+   */
+  @DefaultMessage("Add Custom Fields")
+  @Key("fieldPickerField_availableTitleTitle")
+  String fieldPickerField_availableTitleTitle();
+
+  /**
+   * Translated "Name".
+   * 
+   * @return translated "Name"
+   */
+  @DefaultMessage("Name")
+  @Key("fieldPickerField_currentTitleTitle")
+  String fieldPickerField_currentTitleTitle();
+  
+  /**
+   * Translated "Sample Value".
+   * 
+   * @return translated "Sample Value"
+   */
+  @DefaultMessage("Sample Value")
+  @Key("fieldPickerField_sampleValueTitle")
+  String fieldPickerField_sampleValueTitle();
+  
+  /**
+   * Translated "Highlights...".
+   * 
+   * @return translated "Highlights..."
+   */
+  @DefaultMessage("Highlights...")
+  @Key("fieldPicker_hilitesText")
+  String fieldPicker_hilitesText();
+
+  /**
+   * Translated "Available Fields".
+   * 
+   * @return translated "Available Fields"
+   */
+  @DefaultMessage("Available Fields")
+  @Key("fieldPicker_availableFieldsTitle")
+  String fieldPicker_availableFieldsTitle();
+
+  /**
+   * Translated "Visible Fields".
+   * 
+   * @return translated "Visible Fields"
+   */
+  @DefaultMessage("Visible Fields")
+  @Key("fieldPicker_currentFieldsTitle")
+  String fieldPicker_currentFieldsTitle();
+
+  /**
+   * Translated "Must save pending changes to proceed. OK?".
+   * 
+   * @return translated "Must save pending changes to proceed. OK?"
+   */
+  @DefaultMessage("Must save pending changes to proceed. OK?")
+  @Key("fieldPicker_confirmText")
+  String fieldPicker_confirmText();
+
+  /**
+   * Translated "You are about to remove the field. Are you sure?".
+   * 
+   * @return translated "You are about to remove the field. Are you sure?"
+   */
+  @DefaultMessage("You are about to remove the field. Are you sure?")
+  @Key("fieldPicker_removeText")
+  String fieldPicker_removeText();
+
+  /**
+   * Translated "Drag and drop or use arrows to move fields.  Drag reorder to change field order.".
+   * 
+   * @return translated "Drag and drop or use arrows to move fields.  Drag reorder to change field order."
+   */
+  @DefaultMessage("Drag and drop or use arrows to move fields.  Drag reorder to change field order.")
+  @Key("fieldPicker_instructions")
+  String fieldPicker_instructions();
+
+  /**
+   * Translated "Save".
+   * 
+   * @return translated "Save"
+   */
+  @DefaultMessage("Save")
+  @Key("fieldPicker_saveAndExitButtonTitle")
+  String fieldPicker_saveAndExitButtonTitle();
+
+  /**
+   * Translated "Cancel".
+   * 
+   * @return translated "Cancel"
+   */
+  @DefaultMessage("Cancel")
+  @Key("fieldPicker_cancelButtonTitle")
+  String fieldPicker_cancelButtonTitle();
+
+  /**
+   * Translated "Field Picker".
+   * 
+   * @return translated "Field Picker"
+   */
+  @DefaultMessage("Field Picker")
+  @Key("fieldPickerWindow_title")
+  String fieldPickerWindow_title();
+
+
+  /**
    * Translated "null".
    * 
    * @return translated "null"
