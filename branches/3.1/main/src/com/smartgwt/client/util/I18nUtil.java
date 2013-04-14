@@ -220,6 +220,31 @@ public class I18nUtil {
             $wnd.isc.ColorItem.addProperties({pickerIconPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorItem_pickerIconPrompt()()});
         }
 
+        if($wnd.isc.ColorPicker) {
+            $wnd.isc.ColorPicker.addProperties({basicColorLabel: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_basicColorLabel()()});
+            $wnd.isc.ColorPicker.addProperties({blueFieldPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_blueFieldPrompt()()});
+            $wnd.isc.ColorPicker.addProperties({blueFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_blueFieldTitle()()});
+            $wnd.isc.ColorPicker.addProperties({cancelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_cancelButtonTitle()()});
+            $wnd.isc.ColorPicker.addProperties({greenFieldPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_greenFieldPrompt()()});
+            $wnd.isc.ColorPicker.addProperties({greenFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_greenFieldTitle()()});
+            $wnd.isc.ColorPicker.addProperties({htmlFieldPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_htmlFieldPrompt()()});
+            $wnd.isc.ColorPicker.addProperties({htmlFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_htmlFieldTitle()()});
+            $wnd.isc.ColorPicker.addProperties({hueFieldPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_hueFieldPrompt()()});
+            $wnd.isc.ColorPicker.addProperties({hueFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_hueFieldTitle()()});
+            $wnd.isc.ColorPicker.addProperties({lessButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_lessButtonTitle()()});
+            $wnd.isc.ColorPicker.addProperties({lumFieldPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_lumFieldPrompt()()});
+            $wnd.isc.ColorPicker.addProperties({lumFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_lumFieldTitle()()});
+            $wnd.isc.ColorPicker.addProperties({moreButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_moreButtonTitle()()});
+            $wnd.isc.ColorPicker.addProperties({okButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_okButtonTitle()()});
+            $wnd.isc.ColorPicker.addProperties({opacitySliderLabel: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_opacitySliderLabel()()});
+            $wnd.isc.ColorPicker.addProperties({redFieldPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_redFieldPrompt()()});
+            $wnd.isc.ColorPicker.addProperties({redFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_redFieldTitle()()});
+            $wnd.isc.ColorPicker.addProperties({satFieldPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_satFieldPrompt()()});
+            $wnd.isc.ColorPicker.addProperties({satFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_satFieldTitle()()});
+            $wnd.isc.ColorPicker.addProperties({selectTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_selectTitle()()});
+            $wnd.isc.ColorPicker.addProperties({selectedColorLabel: messages.@com.smartgwt.client.i18n.SmartGwtMessages::colorPicker_selectedColorLabel()()});
+        }
+
         if($wnd.isc.MultiComboBoxItem) {
             $wnd.isc.MultiComboBoxItem.addProperties({defaultHint: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiComboBoxItem_defaultHint()()});
         }
