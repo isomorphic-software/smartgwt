@@ -1527,20 +1527,20 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String fieldPickerField_addCustomFieldsButtonTitle();
 
   /**
-   * Translated "Add Custom Fields".
-   * 
-   * @return translated "Add Custom Fields"
-   */
-  @DefaultMessage("Add Custom Fields")
-  @Key("fieldPickerField_availableTitleTitle")
-  String fieldPickerField_availableTitleTitle();
-
-  /**
    * Translated "Name".
    * 
    * @return translated "Name"
    */
   @DefaultMessage("Name")
+  @Key("fieldPickerField_availableTitleTitle")
+  String fieldPickerField_availableTitleTitle();
+
+  /**
+   * Translated "Field Title".
+   * 
+   * @return translated "Field Title"
+   */
+  @DefaultMessage("Field Title")
   @Key("fieldPickerField_currentTitleTitle")
   String fieldPickerField_currentTitleTitle();
   
