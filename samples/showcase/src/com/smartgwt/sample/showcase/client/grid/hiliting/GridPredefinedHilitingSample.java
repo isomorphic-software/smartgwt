@@ -57,20 +57,15 @@ public class GridPredefinedHilitingSample extends ShowcasePanel {
             new Hilite() {{
                 setFieldNames("area");
                 setCriteria(new Criterion("area", OperatorId.GREATER_THAN, 5000000));
-                setTextColor("#FF0000");
                 setCssText("color:#FF0000");
-                setId("0");
             }},
             new Hilite() {{
                 setFieldNames("area", "gdp");
-                setTextColor("#FFFFFF");
-                setBackgroundColor("#639966");
                 setCriteria(new AdvancedCriteria(OperatorId.AND, new Criterion[] {
                                 new Criterion("gdp", OperatorId.GREATER_THAN, 1000000),
                                 new Criterion("area", OperatorId.LESS_THAN, 500000)}));
                 setCssText("color:#3333FF;background-color:#CDEB8B;");
                 setHtmlAfter("&nbsp;" + Canvas.imgHTML("[SKIN]/actions/back.png"));
-                setId("1");
             }}
     };
 
