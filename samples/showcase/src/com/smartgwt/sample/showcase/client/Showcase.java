@@ -5,6 +5,7 @@ import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.HistoryListener;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.smartgwt.client.Version;
 import com.smartgwt.client.core.KeyIdentifier;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.TabBarControls;
@@ -171,6 +172,14 @@ public class Showcase implements EntryPoint, HistoryListener {
         }
 
         sideNavLayout.addMember(sideNav);
+        
+        ToolStrip toolStripVersion = new ToolStrip();
+        Label version = new Label("Version: "+Version.getVersion()+"  (built "+Version.getBuildDate()+")");
+        version.setWidth100();
+        version.setPadding(5);
+        toolStripVersion.addMember(version);
+        sideNavLayout.addMember(toolStripVersion);
+        
         hLayout.addMember(sideNavLayout);
 
         mainTabSet = new TabSet();
