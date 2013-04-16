@@ -491,10 +491,10 @@ public abstract class BeanFactory<BeanClass> {
                         
                         if ($wnd.isc.isAn.Object(obj)) {
                             // If it's a String object, use the primitive instead
-                            if (obj instanceof String) return obj.toString();
+                            if (obj instanceof $wnd.String) return obj.toString();
 
                             // And check for Number or Boolean and call recursively
-                            if (obj instanceof Number || obj instanceof Boolean) {
+                            if (obj instanceof $wnd.Number || obj instanceof $wnd.Boolean) {
                                 return this.convertToJava(obj.valueOf());
                             }
                         
