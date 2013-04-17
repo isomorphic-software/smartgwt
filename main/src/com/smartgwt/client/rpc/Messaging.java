@@ -5,7 +5,7 @@ import com.smartgwt.client.util.SC;
 
 /**
  * The Messaging class provides APIs to make use of SmartGWT Real-Time Messaging module, an
- * optional module available with SmartGWT Enterprise Edition which allows browser based web applications to
+ * optional module available with SmartGWT Power or Enterprise Edition which allows browser based web applications to
  * publish and subscribe to HTTP Messaging channels, allowing the application to receive (and send) messages
  * delivered via server push for "real-time" updates from the server without polling.
  * <P>
