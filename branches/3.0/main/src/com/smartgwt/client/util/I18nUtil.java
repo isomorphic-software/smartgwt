@@ -396,12 +396,15 @@ public class I18nUtil {
         }
         
         var shortDateFormat = messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDateFormat()();
-        if (shortDateFormat != null) $wnd.Date.setShortDisplayFormat(shortDateFormat);
+        if (shortDateFormat != null) $wnd.isc.Date.setShortDisplayFormat(shortDateFormat);
         var shortDatetimeFormat = messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDatetimeFormat()();
-        if (shortDatetimeFormat != null) $wnd.Date.setShortDatetimeDisplayFormat(shortDatetimeFormat);
+        if (shortDatetimeFormat != null) $wnd.isc.Date.setShortDatetimeDisplayFormat(shortDatetimeFormat);
         var dateSeparator = messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_dateSeparator()();
-        if (dateSeparator != null) $wnd.Date.setDefaultDateSeparator(dateSeparator);
+        if (dateSeparator != null) $wnd.isc.Date.setDefaultDateSeparator(dateSeparator);
         
+        var inputFormat = messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_inputFormat()();
+        if (inputFormat != null) $wnd.isc.Date.setInputFormat(inputFormat);
+
         if($wnd.isc.DateRangeItem) {
             $wnd.isc.DateRangeItem.addProperties({fromTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateRangeItem_fromTitle()()});
             $wnd.isc.DateRangeItem.addProperties({toTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateRangeItem_toTitle()()});
