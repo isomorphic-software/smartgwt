@@ -502,11 +502,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dateItem_pickerIconPrompt();
 
   /**
-   * Translated "null".
+   * Translated "MDY".
    * 
-   * @return translated "null"
+   * @return translated "MDY"
    */
-  @DefaultMessage("null")
+  @DefaultMessage("MDY")
   @Key("dateItem_selectorFormat")
   String dateItem_selectorFormat();
 
