@@ -211,7 +211,7 @@ public class I18nUtil {
             $wnd.isc.DateItem.changeDefaults("monthSelectorDefaults", {prompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateItem_monthSelectorPrompt()()});
             $wnd.isc.DateItem.changeDefaults("yearSelectorDefaults", {prompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateItem_yearSelectorPrompt()()});
             var selectorFormat = messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateItem_selectorFormat()();
-            if(selectorFormat != null && selectorFormat != 'null') $wnd.isc.DateItem.changeDefaults("selectorFormat", selectorFormat);
+            if(selectorFormat != null && selectorFormat != 'null') $wnd.isc.DateItem.addProperties({selectorFormat: selectorFormat});
         }
 
         if($wnd.isc.ColorItem) {
