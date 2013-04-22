@@ -3392,6 +3392,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("operators_iNotEndsWithFieldTitle")
   String operators_iNotEndsWithFieldTitle();
 
+  /**
+   * Translated "[Empty menu]".
+   * 
+   * @return translated "[Empty menu]"
+   */
+  @DefaultMessage("[Empty menu]")
+  @Key("menu_emptyMessage")
+  String menu_emptyMessage();
+
   
   /**
    * Translated "No Items To Show".
