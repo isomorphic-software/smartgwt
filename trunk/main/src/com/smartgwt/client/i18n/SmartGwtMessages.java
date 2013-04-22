@@ -3573,6 +3573,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("No Items To Show")
   @Key("pickListMenu_emptyMessage")
   String pickListMenu_emptyMessage();
+  
+  /**
+   * Translated "[Empty menu]".
+   * 
+   * @return translated "[Empty menu]"
+   */
+  @DefaultMessage("[Empty menu]")
+  @Key("menu_emptyMessage")
+  String menu_emptyMessage();
 
   /**
    * Translated "No items to display".
