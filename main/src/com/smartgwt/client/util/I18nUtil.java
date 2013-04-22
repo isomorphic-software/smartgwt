@@ -622,6 +622,9 @@ public class I18nUtil {
         if($wnd.isc.PickListMenu) {
             $wnd.isc.PickListMenu.addProperties({emptyMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::pickListMenu_emptyMessage()()});
         }
+        if($wnd.isc.Menu) {
+            $wnd.isc.Menu.addProperties({emptyMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::menu_emptyMessage()()});
+        }
         if($wnd.isc.IMenuButton) {
             $wnd.isc.IMenuButton.addProperties({title: messages.@com.smartgwt.client.i18n.SmartGwtMessages::iMenuButton_title()()});   
         }
