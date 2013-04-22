@@ -601,6 +601,22 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String date_shortDatetimeFormat();
 
   /**
+   * Translated "MDY".
+   * 
+   * @return translated "MDY"
+   */
+  // NOTE: Return an empty string because locales do not normally override this. Thus, for
+  // any locale that does not specify a date_inputFormat value (e.g. ru_RU), this default
+  // value is inherited.
+  //
+  // Use an empty string for the default value so that I18nUtil.initMessages() will not set
+  // the Date.inputFormat to something inconsistent with the short date format, which many
+  // locales do specify.
+  @DefaultMessage("MDY")
+  @Key("date_inputFormat")
+  String date_inputFormat();
+
+  /**
    * Translated "Sun".
    * 
    * @return translated "Sun"
