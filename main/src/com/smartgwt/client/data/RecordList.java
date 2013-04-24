@@ -512,6 +512,68 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
     }-*/;
 
     /**
+     * Filters all objects according to the AdvancedCriteria passed
+     *
+     * @param adCriteria AdvancedCriteria to use to filter results
+     *
+     * @return all matching Objects or null if none found
+     */
+    public native Record[] findAll(AdvancedCriteria adCriteria) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var recordsJS = self.findAll(adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return recordsJS == null || recordsJS === undefined ? null : @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(recordsJS);
+    }-*/;
+
+    /**
+     * Filters all objects according to the AdvancedCriteria passed and returns the first matching object or null if not found
+     *
+     * @param adCriteria AdvancedCriteria to use to filter results
+     *
+     * @return first matching object or null if not found
+     */
+    public native Record find(AdvancedCriteria adCriteria) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var recordJS = self.find(adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return recordJS == null || recordJS === undefined ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(recordJS);
+    }-*/;
+
+    /**
+     * Finds the index of the first Record that matches with the AdvacendCriteria passed.
+     * @param adCriteria AdvancedCriteria to use to filter results
+     *
+     * @return index of the first matching Record or -1 if not found
+     */
+    public native int findIndex(AdvancedCriteria adCriteria) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        return self.findIndex(adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+    /**
+     * Like {@link RecordList#findIndex}, but considering the startIndex and endIndex parameters.
+     * @param startIndex first index to consider
+     * @param adCriteria AdvancedCriteria to use to filter results
+     * @param endIndex last index to consider
+     * 
+     * @return index of the first matching Record or -1 if not found
+     */
+    public native int findNextIndex(int startIndex, AdvancedCriteria adCriteria, int endIndex) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        return self.findNextIndex(startIndex, adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()(), null, endIndex);
+    }-*/;
+
+    /**
+     * Like {@link RecordList#findIndex}, but considering the startIndex parameter.
+     * @param startIndex first index to consider
+     * @param adCriteria AdvancedCriteria to use to filter results
+     * 
+     * @return index of the first matching Record or -1 if not found
+     */
+    public native int findNextIndex(int startIndex, AdvancedCriteria adCriteria) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        return self.findNextIndex(startIndex, adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+    
+    /**
      * Return if this list contains the specified object.
      * @param record item to look for
      *
