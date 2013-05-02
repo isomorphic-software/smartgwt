@@ -17,7 +17,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 public class TabsTitleChangeSample extends ShowcasePanel {
     private static final String DESCRIPTION = "<p>Titles can be changed on the fly. Type in your name to see the \"Preferences\"" +
            " tab change its title to include your name.</p><p>Note that the tab automatically sizes" +
-           " to accomodate the longer title - automatic sizing also happens at initialization.</p>";
+           " to accommodate the longer title - automatic sizing also happens at initialization.</p>";
 
     public static class Factory implements PanelFactory {
         private String id;
