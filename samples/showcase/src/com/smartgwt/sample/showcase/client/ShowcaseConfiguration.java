@@ -1,6 +1,5 @@
 package com.smartgwt.sample.showcase.client;
 
-
 public class ShowcaseConfiguration  {
 
     private final int maxDetailsLength;
