@@ -10,7 +10,7 @@ import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class ButtonAutoFitSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "Buttons can automatically size to accomodate the title and icon, and resize" +
+    private static final String DESCRIPTION = "Buttons can automatically size to accommodate the title and icon, and resize" +
            " automatically when the title is changed, notifying components around them that they" +
            " have changed size.";
 
