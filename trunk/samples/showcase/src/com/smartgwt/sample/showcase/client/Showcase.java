@@ -86,7 +86,8 @@ public class Showcase implements EntryPoint, HistoryListener {
         sgwtHomeButton.setShowDown(false);
         sgwtHomeButton.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
             public void onClick(ClickEvent event) {
-                com.google.gwt.user.client.Window.open("http://code.google.com/p/smartgwt/", "sgwt", null);
+                com.google.gwt.user.client.Window.open("http://code.google.com/p/smartgwt/",
+                                                       "sgwt", null);
             }
         });
         topBar.addMember(sgwtHomeButton);
