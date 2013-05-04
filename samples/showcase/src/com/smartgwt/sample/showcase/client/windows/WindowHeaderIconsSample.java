@@ -108,8 +108,8 @@ public class WindowHeaderIconsSample extends ShowcasePanel {
         window3.setTitle("Title");
         window3.setWidth(200);
         window3.setHeight(150);
-        window3.setHeaderControls(HeaderControls.HEADER_LABEL, doubleArrowDown, doubleArrowLeft, doubleArrowRight, doubleArrowUp,
-                favourite, find);
+        window3.setHeaderControls(HeaderControls.HEADER_LABEL, doubleArrowDown, doubleArrowLeft,
+                                  doubleArrowRight, doubleArrowUp, favourite, find);
         tileLayout.addTile(window3);
 
         Window window4 = new Window();
