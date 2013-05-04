@@ -230,8 +230,8 @@ public class GaugeSample extends ShowcasePanel {
         ColorPickerItem[] sectorFillColorConfigItems = new ColorPickerItem[numSectors];
         for (int i = 0; i < numSectors; ++i) {
             final ColorPickerItem colorPickerItem;
-            sectorFillColorConfigItems[i] = colorPickerItem = new ColorPickerItem("colorpick_sector" + (i + 1) + "Color", "Sector " + (i + 1));
-
+            sectorFillColorConfigItems[i] = colorPickerItem = 
+                new ColorPickerItem("colorpick_sector" + (i + 1) + "Color", "Sector " + (i + 1));
             final int sectorIndex = i;
             colorPickerItem.addChangedHandler(new ChangedHandler() {
                 @Override
