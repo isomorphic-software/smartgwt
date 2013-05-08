@@ -1608,11 +1608,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String fieldPicker_instructions();
 
   /**
-   * Translated "Save".
+   * Translated "Apply".
    * 
-   * @return translated "Save"
+   * @return translated "Apply"
    */
-  @DefaultMessage("Save")
+  @DefaultMessage("Apply")
   @Key("fieldPicker_saveAndExitButtonTitle")
   String fieldPicker_saveAndExitButtonTitle();
 
