@@ -17,8 +17,11 @@ Various SmartGWT tutorials and resources from the web.
 
   * [http://jellebeuselinck.wordpress.com/2009/03/05/setting-up-smartgwt/ http://jellebeuselinck.wordpress.com/2009/03/05/setting-up-smartgwt/] Setting up SmartGWT
 
-* SmartGWT with PHP and Eclipse
-  * [http://donga-spirit.blogspot.com/2009/08/setup-smartgwt-and-eclipse-with.html http://donga-spirit.blogspot.com/2009/08/setup-smartgwt-and-eclipse-with.html] SmartGWT with PHP and Debugging with Eclipse
+* SmartGWT with PHP
+  * server integration with RestDataSource, including full CRUD, AdvancedCriteria and transactions support [http://wiki.smartclient.com/display/Main/Integrating+with+PHP]
+
+ 
+  * Eclipse setup for PHP [http://donga-spirit.blogspot.com/2009/08/setup-smartgwt-and-eclipse-with.html http://donga-spirit.blogspot.com/2009/08/setup-smartgwt-and-eclipse-with.html] SmartGWT with PHP and Debugging with Eclipse
 
 *SmartGWT with Netbeans*
 
