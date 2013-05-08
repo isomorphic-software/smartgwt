@@ -17,7 +17,7 @@ Various SmartGWT tutorials and resources from the web.
 
   * [http://jellebeuselinck.wordpress.com/2009/03/05/setting-up-smartgwt/ http://jellebeuselinck.wordpress.com/2009/03/05/setting-up-smartgwt/] Setting up SmartGWT
 
-* SmartGWT with PHP
+*SmartGWT with PHP*
   * server integration with RestDataSource, including full CRUD, AdvancedCriteria and transactions support [http://wiki.smartclient.com/display/Main/Integrating+with+PHP]
 
  
