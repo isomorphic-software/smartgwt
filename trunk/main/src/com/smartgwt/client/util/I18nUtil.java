@@ -355,6 +355,7 @@ public class I18nUtil {
 
         if($wnd.isc.DataSource) {
             $wnd.isc.DataSource.addClassProperties({offlineMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataSource_offlineMessage()()});
+            $wnd.isc.DataSource.addClassProperties({maxFileSizeExceededMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataSource_maxFileSizeExceededMessage()()).replace('$uploadedFileName', '${uploadedFileName}').replace('$uploadedFileSize', '${uploadedFileSize}').replace('$maxFileSize', '${maxFileSize}')});
         }
 
         if($wnd.isc.DetailViewer) {
