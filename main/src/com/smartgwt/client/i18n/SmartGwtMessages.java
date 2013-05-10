@@ -485,6 +485,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dataSource_offlineMessage();
 
   /**
+   * Translated "Size of &#39;$uploadedFileName&#39; ($uploadedFileSize) exceeded maximum allowed file size of $maxFileSize".
+   * 
+   * @return translated "Size of &#39;$uploadedFileName&#39; ($uploadedFileSize) exceeded maximum allowed file size of $maxFileSize"
+   */
+  @DefaultMessage("Size of &#39;$uploadedFileName&#39; ($uploadedFileSize) exceeded maximum allowed file size of $maxFileSize")
+  @Key("dataSource_maxFileSizeExceededMessage")
+  String dataSource_maxFileSizeExceededMessage();
+
+  /**
    * Translated "Configure Fields...".
    * 
    * @return translated "Configure Fields..."
@@ -1843,11 +1852,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String formulaBuilder_saveAddAnotherButtonTitle();
   
   /**
-   * Translated "Another field already has the title &#39;${fieldTitle}&#39;.  Continue anyway?".
+   * Translated "Another field already has the title &#39;$fieldTitle&#39;.  Continue anyway?".
    * 
-   * @return translated "Another field already has the title &#39;${fieldTitle}&#39;.  Continue anyway?"
+   * @return translated "Another field already has the title &#39;$fieldTitle&#39;.  Continue anyway?"
    */
-  @DefaultMessage("Another field already has the title &#39;${fieldTitle}&#39;.  Continue anyway?")
+  @DefaultMessage("Another field already has the title &#39;$fieldTitle&#39;.  Continue anyway?")
   @Key("formulaBuilder_warnDuplicateTitlesMessage")
   String formulaBuilder_warnDuplicateTitlesMessage();
 
