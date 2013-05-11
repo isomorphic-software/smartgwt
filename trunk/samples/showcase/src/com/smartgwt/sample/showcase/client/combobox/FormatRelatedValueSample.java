@@ -8,6 +8,7 @@ import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.FormItemValueFormatter;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
+import com.smartgwt.client.widgets.form.fields.ComboBoxItem;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
@@ -17,7 +18,9 @@ import com.smartgwt.sample.showcase.client.data.EmployeeXmlDS;
 public class FormatRelatedValueSample extends ShowcasePanel {
 
     private static final String DESCRIPTION = "The SelectItem displays multiple fields in a ListGrid. "+
-    	"You can scroll to dynamically load more records. This pattern works with any DataSource.";
+    	"You can scroll to dynamically load more records. This pattern works with any DataSource. " + 
+        "When a value formatter is installed on a ComboBoxItem, setFormatOnBlur(true) causes the " + 
+        "formatting to be applied only when the item does not have focus - formatting is removed when the item receives focus.";
 
     public static class Factory implements PanelFactory {
         private String id;
@@ -59,7 +62,24 @@ public class FormatRelatedValueSample extends ShowcasePanel {
         		return r.getAttribute("Name") + " (" + r.getAttribute("Email") + ")";
         	}
         });
-        form.setItems(item);
+        
+        ComboBoxItem otherItem = new ComboBoxItem();
+        otherItem.setTitle("Employee");
+        otherItem.setOptionDataSource(ds);
+        otherItem.setValueField("EmployeeId");
+        otherItem.setDisplayField("Name");
+        otherItem.setPickListFields(new ListGridField("Name"), new ListGridField("Email"));
+        otherItem.setWidth(250);
+        otherItem.setPickListWidth(350);
+        otherItem.setFormatOnBlur(true);
+        otherItem.setValueFormatter(new FormItemValueFormatter() {
+        	public String formatValue(Object value, Record record, DynamicForm form, FormItem item) {
+        		ListGridRecord r = item.getSelectedRecord();
+        		if (r == null) return value.toString();
+        		return r.getAttribute("Name") + " (" + r.getAttribute("Email") + ")";
+        	}
+        });
+        form.setItems(item, otherItem);
 
         return form;
     }
