@@ -575,6 +575,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dateChooser_cancelButtonTitle();
 
   /**
+   * Translated "Apply".
+   * 
+   * @return translated "Apply"
+   */
+  @DefaultMessage("Apply")
+  @Key("dateChooser_applyButtonTitle")
+  String dateChooser_applyButtonTitle();
+
+  /**
    * Translated "0".
    * 
    * @return translated "0"
