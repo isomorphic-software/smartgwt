@@ -75,7 +75,7 @@ public class FormatRelatedValueSample extends ShowcasePanel {
         otherItem.setValueFormatter(new FormItemValueFormatter() {
         	public String formatValue(Object value, Record record, DynamicForm form, FormItem item) {
         		ListGridRecord r = item.getSelectedRecord();
-        		if (r == null) return ""
+        		if (r == null) return "";
         		return r.getAttribute("Name") + " (" + r.getAttribute("Email") + ")";
         	}
         });
