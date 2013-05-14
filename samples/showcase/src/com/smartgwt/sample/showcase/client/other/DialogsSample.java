@@ -2,7 +2,9 @@ package com.smartgwt.sample.showcase.client.other;
 
 import com.smartgwt.client.util.BooleanCallback;
 import com.smartgwt.client.util.SC;
+import com.smartgwt.client.util.ValueCallback;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.Dialog;
 import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.events.ClickEvent;
@@ -12,7 +14,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class DialogsSample extends ShowcasePanel {
 
-    private static final String DESCRIPTION = "Click \"Confirm\" and \"Ask\" to show two of the pre-built, skinnable Smart GWT Dialogs for common interactions.";
+    private static final String DESCRIPTION = "Click \"Confirm\" or \"Ask\" to show two of the pre-built, skinnable Smart GWT Dialogs for common interactions. Click \"Ask for Value\" to show a dialog for entering a single value.";
 
     public static class Factory implements PanelFactory {
         private String id;
@@ -70,10 +72,30 @@ public class DialogsSample extends ShowcasePanel {
             }
         });
 
+        IButton buttonAskForValue = new IButton("Ask for Value");
+        buttonAskForValue.setLeft(300);
+        buttonAskForValue.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                final Dialog dialogProperties = new Dialog();
+                dialogProperties.setWidth(300);
+                SC.askforValue("Question", "What is your name?", "", new ValueCallback() {
+                    @Override
+                    public void execute(String value) {
+                        if (value != null) {
+                            labelAnswer.setContents(value);
+                        } else {
+                            labelAnswer.setContents("Cancel");
+                        }
+                    }
+                }, dialogProperties);
+            }
+        });
+
         Canvas main = new Canvas();
         main.addChild(labelAnswer);
         main.addChild(buttonConfirm);
         main.addChild(buttonAsk);
+        main.addChild(buttonAskForValue);
 
         return main;
     }
