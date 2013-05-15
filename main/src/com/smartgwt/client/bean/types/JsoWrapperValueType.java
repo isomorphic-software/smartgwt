@@ -20,6 +20,8 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.bean.BeanValueType;
 import com.smartgwt.client.bean.BeanValueType.Convertability;
 import com.smartgwt.client.bean.types.OtherValueType;
+import com.smartgwt.client.util.SC;
+import com.smartgwt.client.util.JSOHelper;
 import java.util.Map;
 
 // This class deals with ValueTypes which wrap an underlying JavaScriptObject
@@ -95,6 +97,14 @@ public abstract class JsoWrapperValueType<ValueType> extends BeanValueType<Value
             return (ValueType) value;
         } else if (value instanceof JavaScriptObject) {
             if (canWrapJavaScriptObject((JavaScriptObject) value)) {
+                Object existingRef = JSOHelper.getAttributeAsObject((JavaScriptObject) value, SC.REF);
+                if (existingRef != null) {
+                    // If there is an existing __ref, we check whether it is assignable to
+                    // our ValueType ... if so, we just return it ... otherwise, we fall
+                    // through to creating a new ValueType instance.
+                    if (isAssignableFrom(existingRef)) return (ValueType) existingRef;
+                }
+
                 return newInstance((JavaScriptObject) value);
             } else {
                 throw new IllegalArgumentException("Could not wrap JavaScriptObject");
