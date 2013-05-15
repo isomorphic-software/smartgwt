@@ -37,6 +37,8 @@ import com.smartgwt.rebind.BeanMethod;
 
 import com.smartgwt.client.bean.types.*;
 import com.smartgwt.client.widgets.BaseWidget;
+import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.types.ValueEnum;
 
 import java.lang.reflect.Method;
@@ -65,6 +67,9 @@ public class BeanValueType {
     
     // The constructor which takes a JavaScriptObject, if any
     private JConstructor jsObjConstructor; 
+
+    // Whether there is a setJavaScriptObject(jsObj) function
+    private boolean hasSetJavaScriptObject;
 
     // The default getScClassName for objects of the type
     private String scClassName;
@@ -103,28 +108,6 @@ public class BeanValueType {
             jsObjConstructor = classType.findConstructor(new JType[] {
                 findType(com.google.gwt.core.client.JavaScriptObject.class)
             });
-
-            if (jsObjConstructor != null) {
-                // We'd like to figure out the default scClassName, so that we
-                // can check whether the jsObject passed to the constructor is
-                // the correct type (or a subclass). Unfortunately, we can
-                // only do that easily by constructing the object. But that
-                // won't work in Java at compile-time (which is where we're
-                // executing) ... believe me, I tried!  And it's undesirable at
-                // run-time, because you don't really want to construct and
-                // abandon a bunch of objects at run-time for this purpose,
-                // given possible side-effects etc. (though it's possible that
-                // the side-effects would be manageable).
-                //
-                // So, for the moment, we'll just fill in something manually
-                // that isn't entirely accurate. We could flesh this out, or
-                // modify the way scClassName is handled so that there is a
-                // static default that can be accessed at run-time without
-                // constructing objects.
-                if (classType.isAssignableTo(findType(BaseWidget.class))) {
-                    scClassName = "Canvas";
-                }
-            }
         }
 
         initializeBeanValueType();
@@ -251,6 +234,16 @@ public class BeanValueType {
                 beanValueType = findType(DateValueType.class);
             } else if (classType.isAssignableTo(findType(JavaScriptObject.class))) {
                 beanValueType = findType(JsoValueType.class);
+            } else if (classType.isAssignableTo(findType(DataSource.class))) {
+                beanValueType = findType(DataSourceBaseValueType.class);
+                // Need to generate, in order to get newInstance(JavaScriptObject object)
+                requiresGeneration = true;
+                hasSetJavaScriptObject = true;
+            } else if (classType.isAssignableTo(findType(Canvas.class))) {
+                beanValueType = findType(CanvasBaseValueType.class);
+                // Need to generate, in order to get newInstance(JavaScriptObject object)
+                requiresGeneration = true;
+                hasSetJavaScriptObject = true;
             } else if (jsObjConstructor != null) {    
                 beanValueType = findType(JsoWrapperValueType.class);
                 // Need to generate, in order to get newInstance(JavaScriptObject object)
@@ -442,6 +435,14 @@ public class BeanValueType {
                 source.println("\n@Override public " + getSimpleTypeName() + " newInstance (JavaScriptObject jsObject) {");
                 source.indent();
                 source.println("return new " + getSimpleTypeName() + "(jsObject);");
+                source.outdent();
+                source.println("}");
+            } else if (hasSetJavaScriptObject) {
+                source.println("\n@Override public " + getSimpleTypeName() + " newInstance (JavaScriptObject jsObject) {");
+                source.indent();
+                source.println(getSimpleTypeName() + " value = new " + getSimpleTypeName() + "();");
+                source.println("value.setJavaScriptObject(jsObject);");
+                source.println("return value;");
                 source.outdent();
                 source.println("}");
             }
