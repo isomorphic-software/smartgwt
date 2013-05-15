@@ -262,12 +262,21 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
      * <b>Note</b>: This is an override point
      */
     public native void destroy() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var id = self.ID;
-        self.__destroy();
-        @com.smartgwt.client.util.IDManager::unregisterID(Ljava/lang/String;)(id);
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+	    var id = self == null ? this.@com.smartgwt.client.widgets.BaseWidget::getID()() : self.ID;
+	    if (self != null) self.__destroy();
+        if (id != null) {
+            @com.smartgwt.client.util.IDManager::unregisterID(Ljava/lang/String;)(id);
+        }
         this.@com.smartgwt.client.widgets.Canvas::onDestroy()();
+        this.@com.smartgwt.client.widgets.BaseWidget::clearID()();
+
     }-*/;
+
+    private void clearID() {
+        id = null;
+    	JSOHelper.setNullAttribute(config, "ID");
+    }
 
     public void doOnRender(Function function) {
         onRenderFn = function;
