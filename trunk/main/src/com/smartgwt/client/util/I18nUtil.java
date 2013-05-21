@@ -38,7 +38,7 @@ public class I18nUtil {
             $wnd.isc.builtinTypes.localeInt.normalDisplayFormatter = 
             $wnd.isc.builtinTypes.localeInt.shortDisplayFormatter = function (value, field) {
                 var valueJ = $wnd.SmartGWT.convertToJavaType(value);
-                var formattedValueJ = @com.smartgwt.client.data.SimpleType::formatLocaleInt(Ljava/lang/Object;)(valueJ);
+                var formattedValueJ = @com.smartgwt.client.util.I18nUtil::formatLocaleInt(Ljava/lang/Object;)(valueJ);
                 return $wnd.SmartGWT.convertToPrimitiveType(formattedValueJ);
             };
             
@@ -46,13 +46,13 @@ public class I18nUtil {
             $wnd.isc.builtinTypes.localeFloat.shortDisplayFormatter = function (value, field) {
                 var valueJ = $wnd.SmartGWT.convertToJavaType(value);
                 var precisionJ = $wnd.SmartGWT.convertToJavaType(field.precision);
-                var formattedValueJ = @com.smartgwt.client.data.SimpleType::formatLocaleFloat(Ljava/lang/Object;Ljava/lang/Object;)(valueJ,precisionJ);
+                var formattedValueJ = @com.smartgwt.client.util.I18nUtil::formatLocaleFloat(Ljava/lang/Object;Ljava/lang/Object;)(valueJ,precisionJ);
                 return $wnd.SmartGWT.convertToPrimitiveType(formattedValueJ);
             };
             $wnd.isc.builtinTypes.localeCurrency.normalDisplayFormatter = 
             $wnd.isc.builtinTypes.localeCurrency.shortDisplayFormatter = function (value, field) {
                 var valueJ = $wnd.SmartGWT.convertToJavaType(value);
-                var formattedValueJ = @com.smartgwt.client.data.SimpleType::formatLocaleCurrency(Ljava/lang/Object;)(valueJ);
+                var formattedValueJ = @com.smartgwt.client.util.I18nUtil::formatLocaleCurrency(Ljava/lang/Object;)(valueJ);
                 return $wnd.SmartGWT.convertToPrimitiveType(formattedValueJ);
             };
         }
@@ -60,7 +60,7 @@ public class I18nUtil {
             $wnd.isc.NumberUtil.parseInt = 
             $wnd.isc.NumberUtil.parseFloat = function (string) {
                 var valueJ = $wnd.SmartGWT.convertToJavaType(string);
-                var formattedValueJ = @com.smartgwt.client.data.SimpleType::parseNum(Ljava/lang/String;)(valueJ);
+                var formattedValueJ = @com.smartgwt.client.util.I18nUtil::parseNum(Ljava/lang/String;)(valueJ);
                 return $wnd.SmartGWT.convertToPrimitiveType(formattedValueJ);
             };
         }
