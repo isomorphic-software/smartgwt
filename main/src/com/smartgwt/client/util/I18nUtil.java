@@ -30,6 +30,59 @@ public class I18nUtil {
         if(!initialized) {
             SmartGwtMessages messages = GWT.create(SmartGwtMessages.class);
             initMessages(messages);
+            initBuildinTypes();
+        }
+    }
+    private static native void initBuildinTypes() /*-{
+        if($wnd.isc.builtinTypes) {
+            $wnd.isc.builtinTypes.localeInt.normalDisplayFormatter = 
+            $wnd.isc.builtinTypes.localeInt.shortDisplayFormatter = function (value, field) {
+                var valueJ = $wnd.SmartGWT.convertToJavaType(value);
+                var formattedValueJ = @com.smartgwt.client.data.SimpleType::formatLocaleInt(Ljava/lang/Object;)(valueJ);
+                return $wnd.SmartGWT.convertToPrimitiveType(formattedValueJ);
+            };
+            
+            $wnd.isc.builtinTypes.localeFloat.normalDisplayFormatter = 
+            $wnd.isc.builtinTypes.localeFloat.shortDisplayFormatter = function (value, field) {
+                var valueJ = $wnd.SmartGWT.convertToJavaType(value);
+                var precisionJ = $wnd.SmartGWT.convertToJavaType(field.precision);
+                var formattedValueJ = @com.smartgwt.client.data.SimpleType::formatLocaleFloat(Ljava/lang/Object;Ljava/lang/Object;)(valueJ,precisionJ);
+                return $wnd.SmartGWT.convertToPrimitiveType(formattedValueJ);
+            };
+            $wnd.isc.builtinTypes.localeCurrency.normalDisplayFormatter = 
+            $wnd.isc.builtinTypes.localeCurrency.shortDisplayFormatter = function (value, field) {
+                var valueJ = $wnd.SmartGWT.convertToJavaType(value);
+                var formattedValueJ = @com.smartgwt.client.data.SimpleType::formatLocaleCurrency(Ljava/lang/Object;)(valueJ);
+                return $wnd.SmartGWT.convertToPrimitiveType(formattedValueJ);
+            };
+        }
+        if($wnd.isc.NumberUtil) {
+            $wnd.isc.NumberUtil.parseInt = 
+            $wnd.isc.NumberUtil.parseFloat = function (string) {
+                var valueJ = $wnd.SmartGWT.convertToJavaType(string);
+                var formattedValueJ = @com.smartgwt.client.data.SimpleType::parseNum(Ljava/lang/String;)(valueJ);
+                return $wnd.SmartGWT.convertToPrimitiveType(formattedValueJ);
+            };
+        }
+    }-*/;
+    
+    public static String formatLocaleInt(Object value) {
+        return com.google.gwt.i18n.client.NumberFormat.getDecimalFormat().format((Number)value);
+    }
+    
+    public static String formatLocaleFloat(Object value, Object precision) {
+        return com.google.gwt.i18n.client.NumberFormat.getDecimalFormat().format((Number)value);
+    }
+    
+    public static String formatLocaleCurrency(Object value) {
+        return com.google.gwt.i18n.client.NumberFormat.getCurrencyFormat().format((Number)value);
+    }
+    
+    public static double parseNum(String string) {
+        try {
+            return com.google.gwt.i18n.client.NumberFormat.getCurrencyFormat().parse(string);   
+        } catch (Exception ex) {
+            return com.google.gwt.i18n.client.NumberFormat.getDecimalFormat().parse(string);
         }
     }
 
