@@ -1,5 +1,10 @@
 package com.smartgwt.client.util;
 
+/**
+ * 
+ * @deprecated see {@link com.smartgwt.client.docs.LocalizedNumberFormatting Localized Number Formatting}
+ * for details.
+ */
 public class Format {
 
     public static native String toUSString(double value) /*-{
