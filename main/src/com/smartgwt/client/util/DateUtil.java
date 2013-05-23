@@ -905,7 +905,7 @@ public class DateUtil {
      *
      * @return
      */
-    public static native Integer getFiscalWeek(Date date, FiscalCalendar fiscalCalendar) /*-{
+    public static native int getFiscalWeek(Date date, FiscalCalendar fiscalCalendar) /*-{
         var jsDate = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date);
         var jsCalendar = null;
         if (fiscalCalendar != null) {
