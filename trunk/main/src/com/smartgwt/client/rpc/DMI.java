@@ -25,6 +25,9 @@ public class DMI {
 	/**
 	 * Static method to call a server-side DMI method exposed via a
 	 * {@link com.smartgwt.client.docs.ApplicationDeclaration} file.
+	 * Each argument passed into this method will be serialized to JSON, then converted back into Java
+	 * on the server, and passed to the server side method, The translation follows the same rules
+	 * described in {@link com.smartgwt.client.rpc.RPCRequest#setData(com.google.gwt.core.client.JavaScriptObject)}.
 	 *
 	 * @param appID Name of the {@link com.smartgwt.client.docs.ApplicationDeclaration} (.app.xml) file to look in
 	 * @param className className (or ID) of the server object on which the method will be invoked
@@ -39,7 +42,10 @@ public class DMI {
     /**
      * Static method to call a server-side DMI method exposed via a
      * {@link com.smartgwt.client.docs.ApplicationDeclaration} file.
-     *
+	 * Each argument passed into this method will be serialized to JSON, then converted back into Java
+	 * on the server, and passed to the server side method, The translation follows the same rules
+	 * described in {@link com.smartgwt.client.rpc.RPCRequest#setData(com.google.gwt.core.client.JavaScriptObject)}.
+	 * 
      * @param appID Name of the {@link com.smartgwt.client.docs.ApplicationDeclaration} (.app.xml) file to look in
      * @param className className (or ID) of the server object on which the method will be invoked
      * @param methodName The name of the method to call on the serverObject
