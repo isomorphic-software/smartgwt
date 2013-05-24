@@ -658,7 +658,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }-*/;
 
     private void error(String attribute, String value) throws IllegalStateException {
-        error("Cannot change configuration property '" + attribute + "' to " + value + " after the component has been created.");
+        error("Cannot change configuration property '" + attribute + "' to " + value + " now that component " + id + " has been created.");
     }
 
     protected void errorIfNotCreated(String property) throws IllegalStateException {
