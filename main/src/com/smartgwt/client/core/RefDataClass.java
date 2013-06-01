@@ -21,6 +21,7 @@ import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.smartgwt.client.util.IDManager;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.SC;
 
@@ -55,5 +56,48 @@ public class RefDataClass extends DataClass {
             }
         }
     }
+
+    // IDManager support
+
+    protected String id;
+
+    protected void internalSetID(String id, boolean autoAssigned, boolean addIDToRegistry) {
+        if (this.id != null) {
+            IDManager.unregisterID(this, this.id);
+        }
+        if (addIDToRegistry) IDManager.registerID(this, id);
+        this.id = id;
+        setAttribute("ID",                        id);
+        setAttribute("_autoAssignedID", autoAssigned);
+    }
+
+	/**
+	 * Destroy this object.
+	 */
+    public native void destroy()/*-{
+		var self = this.@com.smartgwt.client.core.RefDataClass::getJsObj()();
+		if (self != null && self.__destroy) self.__destroy();
+		var id = this.@com.smartgwt.client.core.RefDataClass::id
+		if (id != null) {
+            this.@com.smartgwt.client.core.RefDataClass::clearID()();
+        }
+    }-*/;
+
+    private void clearID() {
+        IDManager.unregisterID(this, this.id);
+        this.id = null;
+        setAttribute("ID", (String) null);
+    }
+
+    protected final native void doInit()/*-{
+        var self = this.@com.smartgwt.client.core.RefDataClass::getJsObj()();
+        if (self) {
+            self.__destroy = self.destroy;
+            self.destroy = function() {
+                var jObj = this.__ref;
+                jObj.@com.smartgwt.client.core.RefDataClass::destroy()();
+            };
+        };
+    }-*/;
     
 }
