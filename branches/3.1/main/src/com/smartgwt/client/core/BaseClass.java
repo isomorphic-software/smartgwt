@@ -40,8 +40,7 @@ public abstract class BaseClass {
     protected String scClassName;
 
     public BaseClass() {
-        internalSetID(SC.generateID(getClass().getName()));
-        setAttribute("_autoAssignedID", true, false);
+        internalSetID(SC.generateID(getClass().getName()), true);
     }
 
     protected BaseClass(JavaScriptObject jsObj) {
@@ -58,18 +57,18 @@ public abstract class BaseClass {
         return id;
     }
 
-    private void internalSetID(String id) {
+    protected void internalSetID(String id, boolean autoAssigned) {
         if (this.id != null) {
-            IDManager.unregisterID(this.id);
+            IDManager.unregisterID(this, this.id);
         }
-        IDManager.registerID(id);
-        setAttribute("ID", id, false);
+        IDManager.registerID(this, id);
         this.id = id;
+        setAttribute("ID",                        id, false);
+        setAttribute("_autoAssignedID", autoAssigned, false);
     }
 
     public void setID(String id) {
-        internalSetID(id);
-        setAttribute("_autoAssignedID", false, false);
+        internalSetID(id, false);
     }
 
     /**
@@ -112,7 +111,11 @@ public abstract class BaseClass {
 
     public JavaScriptObject getOrCreateJsObj() {
         if (!isCreated()) {
+            if (id == null) {
+                internalSetID(SC.generateID(getClass().getName()), true);
+            }
             JavaScriptObject jsObj = create();
+            this.doInit();
             JSOHelper.setObjectAttribute(jsObj, SC.REF, this);
             onInit();            
             return jsObj;
@@ -128,14 +131,20 @@ public abstract class BaseClass {
 	/**
 	 * Destroy this object.
 	 */
-    public native void destroy()/*-{
+    public native void destroy() /*-{
 		var self = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-		var ID = this.@com.smartgwt.client.core.BaseClass::getID()();
-		if (self != null && self.destroy) self.destroy();
-		if (ID != null) {
-		    @com.smartgwt.client.util.IDManager::unregisterID(Ljava/lang/String;)(ID);
-		}
-	}-*/;	
+		if (self != null && self.__destroy) self.__destroy();
+		var id = this.@com.smartgwt.client.core.BaseClass::getID()();
+		if (id != null) {
+            this.@com.smartgwt.client.core.BaseClass::clearID()();
+        }
+    }-*/;
+
+    private void clearID() {
+        IDManager.unregisterID(this, this.id);
+        this.id = null;
+    	JSOHelper.setNullAttribute(config, "ID");
+    } 
 
     protected void error(String attribute, String value, boolean allowPostCreate) throws IllegalStateException {
         if (allowPostCreate) {
@@ -160,10 +169,19 @@ public abstract class BaseClass {
 
     protected abstract JavaScriptObject create();
 
+    protected final native void doInit()/*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+        if (self) {
+            self.__destroy = self.destroy;
+            self.destroy = function() {
+                var jObj = this.__ref;
+                jObj.@com.smartgwt.client.core.BaseClass::destroy()();
+            };
+        };
+    }-*/;
+
     protected void onInit() {}
 
-
- 
     public String getAttribute(String attribute) {
         return getAttributeAsString(attribute);
     }

@@ -104,8 +104,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }
 
     public BaseWidget() {        
-        internalSetID(SC.generateID(getClass().getName()));
-        setAttribute("_autoAssignedID", true, false);
+        internalSetID(SC.generateID(getClass().getName()), true);
     }
 
     protected BaseWidget(JavaScriptObject jsObj) {
@@ -255,20 +254,19 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
      */
     public native void destroy() /*-{
 	    var self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-	    var id = self == null ? this.@com.smartgwt.client.widgets.BaseWidget::getID()() : self.ID;
 	    if (self != null) self.__destroy();
+	    var id = this.@com.smartgwt.client.widgets.BaseWidget::getID()();
         if (id != null) {
-            @com.smartgwt.client.util.IDManager::unregisterID(Ljava/lang/String;)(id);
+            this.@com.smartgwt.client.widgets.BaseWidget::clearID()();
+            this.@com.smartgwt.client.widgets.Canvas::onDestroy()();
         }
-        this.@com.smartgwt.client.widgets.Canvas::onDestroy()();
-        this.@com.smartgwt.client.widgets.BaseWidget::clearID()();
     }-*/;
 
     private void clearID() {
-        id = null;
+        IDManager.unregisterID(this, this.id);
+        this.id = null;
     	JSOHelper.setNullAttribute(config, "ID");
     }
-
 
     public void doOnRender(Function function) {
         onRenderFn = function;
@@ -349,18 +347,18 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         return id;
     }
 
-    private void internalSetID(String id) {
+    private void internalSetID(String id, boolean autoAssigned) {
         if (this.id != null) {
-            IDManager.unregisterID(this.id);
+            IDManager.unregisterID(this, this.id);
         }
-        IDManager.registerID(id);
-        setAttribute("ID", id, false);
+        IDManager.registerID(this, id);
         this.id = id;
+        setAttribute(             "ID",           id, false);
+        setAttribute("_autoAssignedID", autoAssigned, false);
     }
 
     public void setID(String id) {
-        internalSetID(id);
-        setAttribute("_autoAssignedID", false, false);
+        internalSetID(id, false);
     }
 
     public JavaScriptObject getConfig() {
@@ -398,8 +396,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     public JavaScriptObject getOrCreateJsObj() {
         if (!isCreated()) {
             if (id == null) {
-                internalSetID(SC.generateID(getClass().getName()));
-                setAttribute("_autoAssignedID", true, false);
+                internalSetID(SC.generateID(getClass().getName()), true);
             }
             JavaScriptObject jsObj = create();
             JSOHelper.setObjectAttribute(jsObj, SC.REF, this);
