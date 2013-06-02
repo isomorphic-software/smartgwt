@@ -65,7 +65,7 @@ public class RefDataClass extends DataClass {
         if (this.id != null) {
             IDManager.unregisterID(this, this.id);
         }
-        if (addIDToRegistry) IDManager.registerID(this, id);
+        if (addIDToRegistry) IDManager.registerID(this, id, false);
         this.id = id;
         setAttribute("ID",                        id);
         setAttribute("_autoAssignedID", autoAssigned);
@@ -74,30 +74,10 @@ public class RefDataClass extends DataClass {
 	/**
 	 * Destroy this object.
 	 */
-    public native void destroy()/*-{
-		var self = this.@com.smartgwt.client.core.RefDataClass::getJsObj()();
-		if (self != null && self.__destroy) self.__destroy();
-		var id = this.@com.smartgwt.client.core.RefDataClass::id
-		if (id != null) {
-            this.@com.smartgwt.client.core.RefDataClass::clearID()();
-        }
-    }-*/;
-
     private void clearID() {
         IDManager.unregisterID(this, this.id);
         this.id = null;
         setAttribute("ID", (String) null);
     }
 
-    protected final native void doInit()/*-{
-        var self = this.@com.smartgwt.client.core.RefDataClass::getJsObj()();
-        if (self) {
-            self.__destroy = self.destroy;
-            self.destroy = function() {
-                var jObj = this.__ref;
-                jObj.@com.smartgwt.client.core.RefDataClass::destroy()();
-            };
-        };
-    }-*/;
-    
 }
