@@ -25,7 +25,7 @@ public class IDManager {
 
     private static HashMap<String, Object> assignedIDs = new HashMap<String, Object>();
 
-    private static void validateID(String id) {
+    private static void validateID(String id, boolean skipUniqueJSIdentifierCheck) {
         assert id.matches("[a-zA-Z_$][0-9a-zA-Z_$]*") : "Invalid ID : " + id + 
             ". Valid ID's must meet the following pattern [a-zA-Z_$][0-9a-zA-Z_$]*";
 
@@ -40,9 +40,10 @@ public class IDManager {
             // classes implement a common interface, but probably not worth it yet.
             if      (value instanceof BaseWidget)     ((BaseWidget) value).destroy();
             else if (value instanceof BaseClass)       ((BaseClass) value).destroy();
-            else if (value instanceof RefDataClass) ((RefDataClass) value).destroy();
             assignedIDs.remove(id);
         }
+
+        if (skipUniqueJSIdentifierCheck) return;
 
         String collision = checkUniqueJavascriptIdentifier(id);
         if (collision != null) {
@@ -71,8 +72,10 @@ public class IDManager {
         }
     }-*/;
     
-    public static void registerID(Object object, String id) {
-        validateID(id); 
+    public static void registerID(Object object, String id, 
+                                  boolean skipUniqueJSIdentifierCheck) 
+    {
+        validateID(id, skipUniqueJSIdentifierCheck); 
         assignedIDs.put(id, object);
     }
 

@@ -44,8 +44,7 @@ public abstract class BaseClass {
     }
 
     protected BaseClass(JavaScriptObject jsObj) {
-        String nativeID = JSOHelper.getAttribute(jsObj, "ID");
-        this.id = nativeID;
+        internalSetID(jsObj);
     }
 
     /**
@@ -57,11 +56,30 @@ public abstract class BaseClass {
         return id;
     }
 
+    // Some BaseClass descendants don't want to register IDs globally, so
+    // create an override point here to control that.  For safety, we always
+    // want to unregister; it's OK if the object wasn't registered.
+    protected void registerID(String id, boolean skipUniqueJSIdentifierCheck) {
+        IDManager.registerID(this, id, skipUniqueJSIdentifierCheck);
+    }
+
+    protected void internalSetID(JavaScriptObject jsObj) {
+        if (this.id != null) {
+            IDManager.unregisterID(this, this.id);
+        }
+        String  id   = JSOHelper.getAttribute         (jsObj,              "ID");
+        boolean auto = JSOHelper.getAttributeAsBoolean(jsObj, "_autoAssignedID");
+        registerID(id, true);
+        this.id = id;
+        JSOHelper.setAttribute(config,              "ID",   id);
+        JSOHelper.setAttribute(config, "_autoAssignedID", auto);
+    }
+
     protected void internalSetID(String id, boolean autoAssigned) {
         if (this.id != null) {
             IDManager.unregisterID(this, this.id);
         }
-        IDManager.registerID(this, id);
+        registerID(id, false);
         this.id = id;
         setAttribute("ID",                        id, false);
         setAttribute("_autoAssignedID", autoAssigned, false);
@@ -114,10 +132,9 @@ public abstract class BaseClass {
             if (id == null) {
                 internalSetID(SC.generateID(getClass().getName()), true);
             }
+            JSOHelper.setObjectAttribute(config, SC.REF, this);
             JavaScriptObject jsObj = create();
-            this.doInit();
-            JSOHelper.setObjectAttribute(jsObj, SC.REF, this);
-            onInit();            
+            doInit();
             return jsObj;
         } else {
             return getJsObj();            
@@ -178,6 +195,7 @@ public abstract class BaseClass {
                 jObj.@com.smartgwt.client.core.BaseClass::destroy()();
             };
         };
+        this.@com.smartgwt.client.core.BaseClass::onInit()();
     }-*/;
 
     protected void onInit() {}
