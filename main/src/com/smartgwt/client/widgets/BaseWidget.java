@@ -254,7 +254,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
      */
     public native void destroy() /*-{
 	    var self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-	    if (self != null) self.__destroy();
+		if (self != null && self.__destroy) self.__destroy();
 	    var id = this.@com.smartgwt.client.widgets.BaseWidget::getID()();
         if (id != null) {
             this.@com.smartgwt.client.widgets.BaseWidget::clearID()();
