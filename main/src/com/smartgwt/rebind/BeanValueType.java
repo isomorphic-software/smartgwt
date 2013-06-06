@@ -17,6 +17,7 @@
 package com.smartgwt.rebind;
 
 import com.google.gwt.core.ext.typeinfo.JType;
+import com.google.gwt.core.ext.typeinfo.JMethod;
 import com.google.gwt.core.ext.typeinfo.JClassType;
 import com.google.gwt.core.ext.typeinfo.JPrimitiveType;
 import com.google.gwt.core.ext.typeinfo.JArrayType;
@@ -68,8 +69,14 @@ public class BeanValueType {
     // The constructor which takes a JavaScriptObject, if any
     private JConstructor jsObjConstructor; 
 
+    // Whether the class is declared abstract
+    private boolean isAbstract;
+
     // Whether there is a setJavaScriptObject(jsObj) function
     private boolean hasSetJavaScriptObject;
+
+    // Whether there is a static getOrCreateRef(jsObj) function
+    private boolean hasGetOrCreateRef; 
 
     // The default getScClassName for objects of the type
     private String scClassName;
@@ -108,6 +115,13 @@ public class BeanValueType {
             jsObjConstructor = classType.findConstructor(new JType[] {
                 findType(com.google.gwt.core.client.JavaScriptObject.class)
             });
+
+            isAbstract = classType.isAbstract();
+
+            JMethod getRef = classType.findMethod("getOrCreateRef", new JType[] {
+                findType(com.google.gwt.core.client.JavaScriptObject.class)
+            });
+            hasGetOrCreateRef = getRef != null && getRef.isStatic();
         }
 
         initializeBeanValueType();
@@ -431,20 +445,41 @@ public class BeanValueType {
                 source.println("}");
             }
 
-            if (jsObjConstructor != null) {
-                source.println("\n@Override public " + getSimpleTypeName() + " newInstance (JavaScriptObject jsObject) {");
-                source.indent();
-                source.println("return new " + getSimpleTypeName() + "(jsObject);");
-                source.outdent();
-                source.println("}");
-            } else if (hasSetJavaScriptObject) {
-                source.println("\n@Override public " + getSimpleTypeName() + " newInstance (JavaScriptObject jsObject) {");
-                source.indent();
-                source.println(getSimpleTypeName() + " value = new " + getSimpleTypeName() + "();");
-                source.println("value.setJavaScriptObject(jsObject);");
-                source.println("return value;");
-                source.outdent();
-                source.println("}");
+            // Try to write a newInstance function that takes a JavaScriptObject
+            if (isAbstract) {
+                // If the type is abstract, our only hope is if it has a static getOrCreateRef method
+                if (hasGetOrCreateRef) {
+                    source.println("\n@Override public " + getSimpleTypeName() + " newInstance (JavaScriptObject jsObject) {");
+                    source.indent();
+                    source.println("return " + getSimpleTypeName() + ".getOrCreateRef(jsObject);");
+                    source.outdent();
+                    source.println("}");
+                }
+            } else {
+                if (jsObjConstructor != null) {
+                    // If it has the right kind of constructor, then use that
+                    source.println("\n@Override public " + getSimpleTypeName() + " newInstance (JavaScriptObject jsObject) {");
+                    source.indent();
+                    source.println("return new " + getSimpleTypeName() + "(jsObject);");
+                    source.outdent();
+                    source.println("}");
+                } else if (hasSetJavaScriptObject) {
+                    // Custom subclasses likely won't have the constructor, but may have a a setJavaScriptObject method
+                    source.println("\n@Override public " + getSimpleTypeName() + " newInstance (JavaScriptObject jsObject) {");
+                    source.indent();
+                    source.println(getSimpleTypeName() + " value = new " + getSimpleTypeName() + "();");
+                    source.println("value.setJavaScriptObject(jsObject);");
+                    source.println("return value;");
+                    source.outdent();
+                    source.println("}");
+                } else if (hasGetOrCreateRef) {
+                    // And may as well fall back to getOrCreateRef if it exists
+                    source.println("\n@Override public " + getSimpleTypeName() + " newInstance (JavaScriptObject jsObject) {");
+                    source.indent();
+                    source.println("return " + getSimpleTypeName() + ".getOrCreateRef(jsObject);");
+                    source.outdent();
+                    source.println("}");
+                }
             }
 
             source.commit(logger);
