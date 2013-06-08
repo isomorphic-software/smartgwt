@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
@@ -31,7 +32,9 @@ import com.smartgwt.client.core.DataClass;
 import com.smartgwt.client.core.Function;
 import com.smartgwt.client.core.RefDataClass;
 import com.smartgwt.client.data.Record;
+import com.smartgwt.client.data.RecordList;
 import com.smartgwt.client.data.RelativeDate;
+import com.smartgwt.client.data.ResultSet;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.widgets.BaseWidget;
 
@@ -236,8 +239,15 @@ public class JSOHelper {
                 assert false : value.getClass() + " should not be an array class.";
                 setObjectAttribute(elem, attr, value);
             }
+            
         } else if (value instanceof List) {
             setAttribute(elem, attr, convertToJavaScriptArray(((List<?>)value).toArray(), true));
+        } else if (value instanceof Iterator) {
+        	List listVal = new ArrayList();
+        	while (((Iterator) value).hasNext()) listVal.add(((Iterator) value).next());
+            setAttribute(elem, attr, convertToJavaScriptArray(((List<?>)listVal).toArray(), true));
+        } else if (value instanceof Set) {
+        	setAttribute(elem, attr, JSOHelper.convertToJavaScriptArray(((Set<?>)value).toArray()));
         } else if (value instanceof Map) {
             setAttribute(elem, attr, convertMapToJavascriptObject((Map<?, ?>) value, true));
         } else {
@@ -836,6 +846,13 @@ public class JSOHelper {
                 JSOHelper.setArrayValue(jsArray, i, ((ValueEnum) val).getValue());
             } else if (val instanceof JavaScriptObject) {
                 JSOHelper.setArrayValue(jsArray, i, (JavaScriptObject) val);
+            } else if (val instanceof RecordList) {
+            	if (val instanceof ResultSet) {
+            		val = ((ResultSet)val).getAllCachedRows();
+            	} 
+        		val = ((RecordList) val).getRange(0,  ((RecordList) val).getLength());
+        		setArrayValue(jsArray, i, convertToJavaScriptArray((Record[])val, strict));
+            	
             } /*else if (val instanceof JsObject) {
                 JSOHelper.setArrayValue(jsArray, i, ((JsObject) val).getJsObj());
             } */
@@ -872,13 +889,23 @@ public class JSOHelper {
                 }
             } else if (val instanceof List) {
                 setArrayValue(jsArray, i, JSOHelper.convertToJavaScriptArray(((List<?>)val).toArray(), strict));
+            } else if (val instanceof Iterator) {
+            	List listVal = new ArrayList();
+            	while (((Iterator) val).hasNext()) listVal.add(((Iterator) val).next());
+            	
+            	setArrayValue(jsArray, i, JSOHelper.convertToJavaScriptArray(((List<?>)listVal).toArray(), strict));
+            } else if (val instanceof Set) {
+                setArrayValue(jsArray, i, JSOHelper.convertToJavaScriptArray(((Set<?>)val).toArray(), strict));
             } else if (val instanceof Map) {
                 setArrayValue(jsArray, i, convertMapToJavascriptObject((Map)val, strict));
             } else {
                 assert val != null;
                 assert !(val instanceof JavaScriptObject);
                 if (strict) {
-                    throw new UnsupportedOperationException("Can not convert element " + i + " of the array to a JavaScriptObject.  Instances of class `" + (val.getClass().getName()) + "' can not automatically be converted.  Please see the SmartClient documentation of RPCRequest.data for a table of Java types that can be converted automatically.");
+                    throw new UnsupportedOperationException("Can not convert element " + i +
+                    		" of the array to a JavaScriptObject.  Instances of class `" + (val.getClass().getName()) +
+                    		"' can not automatically be converted.  Please see the SmartClient documentation of " +
+                    		"RPCRequest.data for a table of Java types that can be converted automatically.");
                 } else {
                     setArrayValue(jsArray, i, val);
                 }
