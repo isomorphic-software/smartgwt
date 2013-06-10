@@ -26,7 +26,7 @@
     
 	<property name="smartgwt.previous_version" value="3.1" />
 
-    <condition property="smartgwt.tools.check" value="${env.SMARTGWT_TOOLS}" else="${smartgwt.root}/../tools">
+    <condition property="smartgwt.tools.check" value="${env.SMARTGWT_TOOLS}" else="${smartgwt.root}/../../tools">
 		<isset property="env.SMARTGWT_TOOLS" />
 	</condition>
     <property name="smartclient.version" value="${SC_VER}" />
