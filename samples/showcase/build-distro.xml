@@ -61,6 +61,8 @@
       <!-- add jvmarg -Xss16M or similar if you see a StackOverflowError -->
       <jvmarg value="-Xmx600M"/>
       <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+      <!-- <arg value="-style"   /><arg value="PRETTY"/> -->
+      <!-- <arg value="-optimize"/><arg value="0"     /> -->
       <arg value="com.smartgwt.sample.showcase.Showcase"/>
     </java>
   </target>
