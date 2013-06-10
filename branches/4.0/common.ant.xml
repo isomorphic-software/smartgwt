@@ -16,11 +16,11 @@
 	<!-- Global Properties -->
 	<property environment="env" />
     <property name="SC_HOME" value="${env.SC_HOME}"/>
-    <condition property="SC_VER" value="${env.SC_VER}" else="trunk">
+    <condition property="SC_VER" value="${env.SC_VER}" else="9.0-4.0">
 		<isset property="${env.SC_VER}" />
     </condition>
 	
-    <condition property="smartgwt.version" value="${env.SMARTGWT_VERSION}" else="4.0d">
+    <condition property="smartgwt.version" value="${env.SMARTGWT_VERSION}" else="4.0p">
 		<isset property="env.SMARTGWT_VERSION" />
     </condition>
     
