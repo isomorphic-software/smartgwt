@@ -79,6 +79,42 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String calendar_eventNameFieldTitle();
 
   /**
+   * Translated "Description".
+   * 
+   * @return translated "Description"
+   */
+  @DefaultMessage("Description")
+  @Key("calendar_eventDescriptionFieldTitle")
+  String calendar_eventDescriptionFieldTitle();
+
+  /**
+   * Translated "From".
+   * 
+   * @return translated "From"
+   */
+  @DefaultMessage("From")
+  @Key("calendar_eventStartDateFieldTitle")
+  String calendar_eventStartDateFieldTitle();
+
+  /**
+   * Translated "To".
+   * 
+   * @return translated "To"
+   */
+  @DefaultMessage("To")
+  @Key("calendar_eventEndDateFieldTitle")
+  String calendar_eventEndDateFieldTitle();
+
+  /**
+   * Translated "Lane".
+   * 
+   * @return translated "Lane"
+   */
+  @DefaultMessage("Lane")
+  @Key("calendar_eventLaneFieldTitle")
+  String calendar_eventLaneFieldTitle();
+
+  /**
    * Translated "From must be before To".
    * 
    * @return translated "From must be before To"
