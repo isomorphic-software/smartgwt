@@ -433,6 +433,10 @@ public class I18nUtil {
             $wnd.isc.Calendar.addProperties({dayViewTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_dayViewTitle()()});
             $wnd.isc.Calendar.addProperties({detailsButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_detailsButtonTitle()()});
             $wnd.isc.Calendar.addProperties({eventNameFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_eventNameFieldTitle()()});
+            $wnd.isc.Calendar.addProperties({eventDescriptionFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_eventDescriptionFieldTitle()()});
+            $wnd.isc.Calendar.addProperties({eventStartDateFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_eventStartDateFieldTitle()()});
+            $wnd.isc.Calendar.addProperties({eventEndDateFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_eventEndDateFieldTitle()()});
+            $wnd.isc.Calendar.addProperties({eventLaneFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_eventLaneFieldTitle()()});
             $wnd.isc.Calendar.addProperties({monthViewTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_monthViewTitle()()});
             $wnd.isc.Calendar.addProperties({nextButtonHoverText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_nextButtonHoverText()()});
             $wnd.isc.Calendar.addProperties({previousButtonHoverText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_previousButtonHoverText()()});
