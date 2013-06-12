@@ -69,7 +69,7 @@ public abstract class BaseClass {
         }
         String  id   = JSOHelper.getAttribute         (jsObj,              "ID");
         boolean auto = JSOHelper.getAttributeAsBoolean(jsObj, "_autoAssignedID");
-        registerID(id, true);
+        if (id != null) registerID(id, true);
         this.id = id;
         JSOHelper.setAttribute(config,              "ID",   id);
         JSOHelper.setAttribute(config, "_autoAssignedID", auto);
