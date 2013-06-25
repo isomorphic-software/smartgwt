@@ -246,7 +246,7 @@ public class TileView extends VLayout {
         if (windowsCB.getValueAsBoolean()) categories.add("layout_windows_category");
         if (tabsCB.getValueAsBoolean()) categories.add("layout_tabs_category");
         if (accordionCB.getValueAsBoolean()) categories.add("layout_sections_category");
-        if (portalLayoutCB.getValueAsBoolean()) categories.add("layout_portal_category");
+        if (portalLayoutCB.getValueAsBoolean()) categories.add("portal_layout_category");
         if (buttonsCB.getValueAsBoolean()) categories.add("buttons_category");
         if (menusCB.getValueAsBoolean()) categories.add("menus_category");
         if (toolStripCB.getValueAsBoolean()) categories.add("toolstrip_category");
