@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Form encoding types - these translate to Form ENCTYPE parameters.
  */
@@ -28,7 +29,6 @@ public enum Encoding implements ValueEnum {
      * form encoding for forms with INPUT file elements, that is, forms that upload files ("multipart/form-data")
      */
     MULTIPART("multipart");
-
     private String value;
 
     Encoding(String value) {

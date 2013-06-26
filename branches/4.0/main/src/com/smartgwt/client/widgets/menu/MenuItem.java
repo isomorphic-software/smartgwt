@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.menu;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Menu items are specified are object literals, not class instances.  For example, when
@@ -83,8 +103,12 @@ import com.google.gwt.event.shared.HasHandlers;
 public class MenuItem extends ListGridRecord  implements com.smartgwt.client.widgets.menu.events.HasClickHandlers {
 
     public static MenuItem getOrCreateRef(JavaScriptObject jsObj) {
+
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (MenuItem) obj;
@@ -93,12 +117,20 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
+
     public MenuItem(){
         
     }
 
     public MenuItem(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
+        
     }
 
     public MenuItem(String title) {
@@ -119,7 +151,9 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
         
     }
 
+
     // ********************* Properties / Attributes ***********************
+
 
     /**
      * A MenuItem that has a submenu normally cannot be selected, instead clicking or hitting Enter while keyboard focus is on
@@ -135,12 +169,12 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * A MenuItem that has a submenu normally cannot be selected, instead clicking or hitting Enter while keyboard focus is on
      * the item shows the submenu.  Setting canSelectParent:true allows a menu item with a submenu to be selected directly.
      *
-     *
      * @return Boolean
      */
     public Boolean getCanSelectParent()  {
         return getAttributeAsBoolean("canSelectParent");
     }
+
 
     /**
      * If true, this item displays a standard checkmark image to the left of its title.  You can set the checkmark image URL by
@@ -148,7 +182,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#checkIf MenuItem.checkIf} instead.
      *
      * @param checked checked Default value is null
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_category" target="examples">Appearance Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
      */
     public void setChecked(Boolean checked) {
         setAttribute("checked", checked);
@@ -159,13 +193,42 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * setting {@link com.smartgwt.client.widgets.menu.Menu#getCheckmarkImage checkmarkImage}. <p> If you need to set this
      * state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#checkIf MenuItem.checkIf} instead.
      *
-     *
      * @return Boolean
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_category" target="examples">Appearance Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
      */
     public Boolean getChecked()  {
         return getAttributeAsBoolean("checked");
     }
+
+
+    /**
+     * The filename for this item's custom icon when the item is disabled. If both this property and {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} are both specified, only the icon specified by this
+     * property will be displayed. The path to the loaded skin directory and the skinImgDir are prepended to this filename to
+     * form the full URL. <p> If you need to set this state dynamically, use {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#dynamicIcon MenuItem.dynamicIcon} instead.
+     *
+     * @param disabledIcon . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
+     */
+    public void setDisabledIcon(String disabledIcon) {
+        setAttribute("disabledIcon", disabledIcon);
+    }
+
+    /**
+     * The filename for this item's custom icon when the item is disabled. If both this property and {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} are both specified, only the icon specified by this
+     * property will be displayed. The path to the loaded skin directory and the skinImgDir are prepended to this filename to
+     * form the full URL. <p> If you need to set this state dynamically, use {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#dynamicIcon MenuItem.dynamicIcon} instead.
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
+     */
+    public String getDisabledIcon()  {
+        return getAttributeAsString("disabledIcon");
+    }
+
 
     /**
      * Affects the visual style and interactivity of the menu item.  If set to <code>false</code>, the menu item will not
@@ -183,12 +246,12 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * respond to mouse rollovers or clicks. <p> If you need to set this state dynamically, use {@link
      * com.smartgwt.client.widgets.menu.MenuItem#enableIf MenuItem.enableIf} instead.
      *
-     *
      * @return Boolean
      */
     public Boolean getEnabled()  {
         return getAttributeAsBoolean("enabled");
     }
+
 
     /**
      * If false, no submenus will be fetched for this MenuItem. This can be set globally via {@link
@@ -204,41 +267,43 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * If false, no submenus will be fetched for this MenuItem. This can be set globally via {@link
      * com.smartgwt.client.widgets.menu.Menu#getFetchSubmenus fetchSubmenus}.
      *
-     *
      * @return Boolean
      */
     public Boolean getFetchSubmenus()  {
         return getAttributeAsBoolean("fetchSubmenus");
     }
 
+
     /**
-     * The base filename for this item's custom icon. If both this property and {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} are both specified, only icon specified by this property
-     * will be displayed. The path to the loaded skin directory and the skinImgDir are prepended to this filename to form the
-     * full URL. <p> If you need to set this state dynamically, use {@link
+     * The filename for this item's custom icon. If both this property and {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} are both specified, only the icon specified by this
+     * property will be displayed. The path to the loaded skin directory and the skinImgDir are prepended to this filename to
+     * form the full URL. If this item is disabled, and {@link com.smartgwt.client.widgets.menu.MenuItem#getDisabledIcon
+     * disabledIcon} is set, then that icon will be used instead. <p> If you need to set this state dynamically, use {@link
      * com.smartgwt.client.widgets.menu.MenuItem#dynamicIcon MenuItem.dynamicIcon} instead.
      *
-     * @param icon icon Default value is null
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_category" target="examples">Appearance Example</a>
+     * @param icon . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
      */
     public void setIcon(String icon) {
         setAttribute("icon", icon);
     }
 
     /**
-     * The base filename for this item's custom icon. If both this property and {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} are both specified, only icon specified by this property
-     * will be displayed. The path to the loaded skin directory and the skinImgDir are prepended to this filename to form the
-     * full URL. <p> If you need to set this state dynamically, use {@link
+     * The filename for this item's custom icon. If both this property and {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} are both specified, only the icon specified by this
+     * property will be displayed. The path to the loaded skin directory and the skinImgDir are prepended to this filename to
+     * form the full URL. If this item is disabled, and {@link com.smartgwt.client.widgets.menu.MenuItem#getDisabledIcon
+     * disabledIcon} is set, then that icon will be used instead. <p> If you need to set this state dynamically, use {@link
      * com.smartgwt.client.widgets.menu.MenuItem#dynamicIcon MenuItem.dynamicIcon} instead.
      *
-     *
-     * @return String
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_category" target="examples">Appearance Example</a>
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
      */
     public String getIcon()  {
         return getAttributeAsString("icon");
     }
+
 
     /**
      * The height applied to this item's icon.  The default of <code>16</code> can be changed for all MenuItems by overriding
@@ -254,12 +319,12 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * The height applied to this item's icon.  The default of <code>16</code> can be changed for all MenuItems by overriding
      * {@link com.smartgwt.client.widgets.menu.Menu#getIconHeight iconHeight}.
      *
-     *
      * @return int
      */
     public int getIconHeight()  {
         return getAttributeAsInt("iconHeight");
     }
+
 
     /**
      * The width applied to this item's icon.  The default of <code>16</code> can be changed for all MenuItems by overriding
@@ -275,12 +340,12 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * The width applied to this item's icon.  The default of <code>16</code> can be changed for all MenuItems by overriding
      * {@link com.smartgwt.client.widgets.menu.Menu#getIconWidth iconWidth}.
      *
-     *
      * @return int
      */
     public int getIconWidth()  {
         return getAttributeAsInt("iconWidth");
     }
+
 
     /**
      * When set to <code>true</code>, this menu item shows a horizontal separator instead of the {@link
@@ -288,7 +353,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * item, since the separator will not respond to mouse events.
      *
      * @param isSeparator isSeparator Default value is false
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_category" target="examples">Appearance Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
      */
     public void setIsSeparator(Boolean isSeparator) {
         setAttribute("isSeparator", isSeparator);
@@ -299,20 +364,21 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * com.smartgwt.client.widgets.menu.MenuItem#getTitle title} text.  Typically specified as the only property of a menu
      * item, since the separator will not respond to mouse events.
      *
-     *
      * @return Boolean
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_category" target="examples">Appearance Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
      */
     public Boolean getIsSeparator()  {
         return getAttributeAsBoolean("isSeparator");
     }
 
+
+
     /**
      * A string to display in the shortcut-key column for this item. If not specified, the first KeyName value in {@link
      * com.smartgwt.client.widgets.menu.MenuItem#getKeys keys} will be used by default.
      *
-     * @param keyTitle keyTitle Default value is see below
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_category" target="examples">Appearance Example</a>
+     * @param keyTitle . See {@link com.smartgwt.client.docs.String String}. Default value is see below
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
      */
     public void setKeyTitle(String keyTitle) {
         setAttribute("keyTitle", keyTitle);
@@ -322,19 +388,19 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * A string to display in the shortcut-key column for this item. If not specified, the first KeyName value in {@link
      * com.smartgwt.client.widgets.menu.MenuItem#getKeys keys} will be used by default.
      *
-     *
-     * @return String
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_category" target="examples">Appearance Example</a>
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
      */
     public String getKeyTitle()  {
         return getAttributeAsString("keyTitle");
     }
 
+
     /**
      * A reference to another menu, to display as a submenu when the mouse cursor hovers over this menu item.
      *
      * @param submenu submenu Default value is null
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_submenus" target="examples">Sub Menus Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
      */
     public void setSubmenu(Menu submenu) {
         setAttribute("submenu", submenu == null ? null : submenu.getOrCreateJsObj());
@@ -343,18 +409,18 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     /**
      * A reference to another menu, to display as a submenu when the mouse cursor hovers over this menu item.
      *
-     *
      * @return Menu
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_submenus" target="examples">Sub Menus Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
      */
     public Menu getSubmenu()  {
         return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("submenu"));
     }
 
+
     /**
      * The text displayed for the menu item
      *
-     * @param title title Default value is null
+     * @param title . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setTitle(String title) {
         setAttribute("title", title);
@@ -363,41 +429,19 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     /**
      * The text displayed for the menu item
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getTitle()  {
         return getAttributeAsString("title");
     }
 
     // ********************* Methods ***********************
-            
-    /**
-     * Contains the condition that will check or uncheck the current menuItem. The handler must be specified as a function or
-     * string of script.  Return false to uncheck the menuItem or true to check it <p> If you don't need to set this state
-     * dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} instead. <p> May be defined as a
-     * {@link com.smartgwt.client.docs.StringMethods stringMethod}. <p>
-     * @param target {@link com.smartgwt.client.widgets.menu.Menu#getTarget target} attribute for the top level menu.
-     * @param menu {@link com.smartgwt.client.widgets.menu.Menu menu} contains the reference to the menu that contains the current item
-     * @param item contains the reference to the current item
-     *
-     * @return Return true to show a checkmark by this menu item
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_dynamic" target="examples">Dynamic Items Example</a>
-     */
-    public native Boolean checkIf(Canvas target, Menu menu, MenuItem item) /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var retVal =self.checkIf(target.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), menu.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), item.@com.smartgwt.client.core.DataClass::getJsObj()());
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
     /**
      * Add a click handler.
      * <p>
      * Executed when this menu item is clicked by the user. The click handler must be specified as a function or string of
-     * script.  Call {@link com.smartgwt.client.widgets.menu.events.MenuItemClickEvent#cancel()} from within {@link ClickHandler#onClick} to suppress the {@link com.smartgwt.client.widgets.menu.Menu#addItemClickHandler Menu.itemClick}
+     * script.  Call {@link com.smartgwt.client.widgets.menu.events.MenuItemClickEvent#cancel()} from within {@link
+     * ClickHandler#onClick} to suppress the {@link com.smartgwt.client.widgets.menu.Menu#addItemClickHandler Menu.itemClick}
      * handler if specified.
      *
      * @param handler the click handler
@@ -410,40 +454,20 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
 
     private native void setupClickEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.click = $entry(function(){
-                var param = {"target" : arguments[0], "item" : arguments[1], "menu" : arguments[2], "colNum" : arguments[3]};
-                var event = @com.smartgwt.client.widgets.menu.events.MenuItemClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var click = $entry(function(){
+            var param = {"target" : arguments[0], "item" : arguments[1], "menu" : arguments[2], "colNum" : arguments[3]};
+            var event = @com.smartgwt.client.widgets.menu.events.MenuItemClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
+        obj.click =  click 
+        ;
    }-*/;
-            
-    /**
-     * Contains the condition that will enable or disable the current menuItem. The handler must be specified as a function or
-     * string of script.  Return false to disable the menuItem or true to enable it <p> If you don't need to set this state
-     * dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#getEnabled enabled} instead. <p> May be defined as a
-     * {@link com.smartgwt.client.docs.StringMethods stringMethod}. <p>
-     * @param target {@link com.smartgwt.client.widgets.menu.Menu#getTarget target} attribute for the top level menu.
-     * @param menu {@link com.smartgwt.client.widgets.menu.Menu menu} contains the reference to the menu that contains the current item
-     * @param item contains the reference to the current item
-     *
-     * @return Return true to show a checkmark by this menu item
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_dynamic" target="examples">Dynamic Items Example</a>
-     */
-    public native Boolean enableIf(Canvas target, Menu menu, MenuItem item) /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var retVal =self.enableIf(target.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), menu.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), item.@com.smartgwt.client.core.DataClass::getJsObj()());
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
     /**
@@ -545,7 +569,6 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     }-*/;
 
 }
-
 
 
 

@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.drawing.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasMouseOutHandlers extends HasHandlers {
     /**
      * Executed when the mouse leaves this widget.  No default implementation.
@@ -29,3 +28,4 @@ public interface HasMouseOutHandlers extends HasHandlers {
      */
     HandlerRegistration addMouseOutHandler(MouseOutHandler handler);
 }
+

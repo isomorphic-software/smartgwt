@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.drawing.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasClickHandlers extends HasHandlers {
     /**
      * Executed when the left mouse is clicked (pressed and then released) on this widget.  No default implementation.
@@ -29,3 +28,4 @@ public interface HasClickHandlers extends HasHandlers {
      */
     HandlerRegistration addClickHandler(ClickHandler handler);
 }
+

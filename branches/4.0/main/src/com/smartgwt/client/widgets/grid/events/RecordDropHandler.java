@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -15,9 +15,15 @@
  */
  
 package com.smartgwt.client.widgets.grid.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface RecordDropHandler extends EventHandler {
-
+    /**
+     * Handler fired when the user drops a record onto this listGrid before any other processing of the drop occurs. Return
+     * false to suppress the default record drop handling.
+     *
+     * @param event the event
+     */
     void onRecordDrop(com.smartgwt.client.widgets.grid.events.RecordDropEvent event);
 }

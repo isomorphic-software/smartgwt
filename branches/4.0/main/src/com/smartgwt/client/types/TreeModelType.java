@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  */
 public enum TreeModelType implements ValueEnum {
@@ -40,7 +41,6 @@ public enum TreeModelType implements ValueEnum {
      * com.smartgwt.client.widgets.tree.Tree#getChildrenProperty childrenProperty}).
      */
     CHILDREN("children");
-
     private String value;
 
     TreeModelType(String value) {

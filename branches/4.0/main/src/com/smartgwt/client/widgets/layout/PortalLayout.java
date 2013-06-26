@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.layout;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A PortalLayout is a special subclass of Layout designed to display {@link com.smartgwt.client.widgets.layout.Portlet}
@@ -66,22 +86,54 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class PortalLayout extends Layout {
 
-    public static PortalLayout getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (PortalLayout) obj;
+    public native static PortalLayout getOrCreateRef(JavaScriptObject jsObj) /*-{
+        if (jsObj == null) return null;
+        var instance = jsObj["__ref"];
+        if (instance == null) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("PortalLayout",jsObj);
         } else {
-            return new PortalLayout(jsObj);
+            return instance;
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        $wnd.isc["PortalLayout"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.Canvas::getConfig()());
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        $wnd.isc["PortalLayout"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getJsObj()());
+    }-*/;
 
     public PortalLayout(){
         scClassName = "PortalLayout";
     }
 
     public PortalLayout(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "PortalLayout";
+        setJavaScriptObject(jsObj);
+        
     }
 
     public PortalLayout(int numColumns) {
@@ -93,10 +145,13 @@ public class PortalLayout extends Layout {
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
         var widget = $wnd.isc[scClassName].create(config);
+        this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Ljava/lang/String;Z)(widget.getID(), true);
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;
+
     // ********************* Properties / Attributes ***********************
+
 
     /**
      * Are columns in this PortalLayout drag-resizeable? <p> Note that the <u>displayed</u> width of a column will
@@ -129,7 +184,6 @@ public class PortalLayout extends Layout {
      * This setting affects the <u>intrinsic</u> width of a column -- that is, the width it will try to return to when not
      * necessary to stretch or shrink to accomodate Portlet widths.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanStretchColumnWidths
      * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanShrinkColumnWidths
@@ -139,6 +193,7 @@ public class PortalLayout extends Layout {
     public Boolean getCanResizeColumns()  {
         return getAttributeAsBoolean("canResizeColumns");
     }
+
 
     /**
      * Should the height and width of {@link com.smartgwt.client.widgets.layout.Portlet Portlets} be drag-resizable? <p> Note
@@ -185,7 +240,6 @@ public class PortalLayout extends Layout {
      * The net effect is that (by default) PortalLayouts behave like layouts when Portlet sizes do not cause overflow, but
      * behave more like stacks when overflow occurs.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanResizeColumns
      * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanStretchColumnWidths
@@ -197,6 +251,31 @@ public class PortalLayout extends Layout {
     public Boolean getCanResizePortlets()  {
         return getAttributeAsBoolean("canResizePortlets");
     }
+
+
+    /**
+     * Should vertical drag-resize of portlets within columns be allowed?
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Set whether vertical drag-resize of portlets within columns is allowed, and update any drawn columns to reflect this.
+     *
+     * @param canResizeRows Whether drag-resize of portlets within columns is allowed. Default value is false
+     * @deprecated Use {@link com.smartgwt.client.widgets.layout.PortalLayout#getCanResizePortlets canResizePortlets} instead.
+     */
+    public void setCanResizeRows(Boolean canResizeRows) {
+        setAttribute("canResizeRows", canResizeRows, true);
+    }
+
+    /**
+     * Should vertical drag-resize of portlets within columns be allowed?
+     *
+     * @return Boolean
+     * @deprecated Use {@link com.smartgwt.client.widgets.layout.PortalLayout#getCanResizePortlets canResizePortlets} instead.
+     */
+    public Boolean getCanResizeRows()  {
+        return getAttributeAsBoolean("canResizeRows");
+    }
+
 
     /**
      * Controls whether the PortalLayout will shrink column widths to avoid overflowing the PortalLayout  horizontally. If the
@@ -222,7 +301,6 @@ public class PortalLayout extends Layout {
      * accommodate its {@link com.smartgwt.client.widgets.layout.Portlet Portlets}. If so, the column may shrink to avoid
      * having to scroll the PortalLayout.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanStretchColumnWidths
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
@@ -231,6 +309,7 @@ public class PortalLayout extends Layout {
     public Boolean getCanShrinkColumnWidths()  {
         return getAttributeAsBoolean("canShrinkColumnWidths");
     }
+
 
     /**
      * Controls whether the PortalLayout will stretch column widths, if needed to accommodate the width of {@link
@@ -264,7 +343,6 @@ public class PortalLayout extends Layout {
      * shrink to avoid overflow on the PortalLayout as a whole. <p> If <code>canStretchColumnWidths</code> is turned off, then
      * individual rows will scroll horizontally in order to accommodate Portlets that are wider than their column width allows.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanShrinkColumnWidths
      * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanResizePortlets
@@ -276,13 +354,37 @@ public class PortalLayout extends Layout {
         return getAttributeAsBoolean("canStretchColumnWidths");
     }
 
+
+    /**
+     * <b>Note :</b> This API is non-functional (always returns null) and exists only to make
+     * you aware that this MultiAutoChild exists.  See {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}
+     * for details.
+     * <p>
+     * Automatically generated vertical {@link com.smartgwt.client.widgets.layout.Layout} used to create columns of {@link
+     * com.smartgwt.client.widgets.layout.Portlet Portlets} via  createAutoChild(). Since this is an AutoChild, you can use 
+     * columnDefaults and columnProperties to customize the columns. <p> The column includes a menu, if {@link
+     * com.smartgwt.client.widgets.layout.PortalLayout#getShowColumnMenus showColumnMenus} is true, and a {@link
+     * com.smartgwt.client.widgets.layout.PortalLayout#getRowLayout rowLayout} which actually contains the {@link
+     * com.smartgwt.client.widgets.layout.PortalLayout#getRow rows}. Therefore, if you want to style the columns as a whole,
+     * use columnDefaults or columnProperties, but if you want to style the layout that contains the rows, use
+     * rowLayoutDefaults or rowLayoutProperties.
+     *
+     * @return null
+     * @see com.smartgwt.client.widgets.layout.PortalLayout#getRowLayout
+     * @see com.smartgwt.client.widgets.layout.PortalLayout#getRow
+     */
+    public Layout getColumn()  {
+        return null;
+    }
+
+
     /**
      * Border to show around columns in this PortalLayout
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the columnBorder for to the specified value and updates any drawn columns to reflect this.
      *
-     * @param columnBorder New border to show around columns. Default value is "1px solid gray"
+     * @param columnBorder New border to show around columns. See {@link com.smartgwt.client.docs.String String}. Default value is "1px solid gray"
      */
     public void setColumnBorder(String columnBorder) {
         setAttribute("columnBorder", columnBorder, true);
@@ -291,12 +393,12 @@ public class PortalLayout extends Layout {
     /**
      * Border to show around columns in this PortalLayout
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getColumnBorder()  {
         return getAttributeAsString("columnBorder");
     }
+
 
     /**
      * Controls the {@link com.smartgwt.client.widgets.Canvas#getOverflow overflow} setting for each column. If set to "auto"
@@ -328,7 +430,6 @@ public class PortalLayout extends Layout {
      * com.smartgwt.client.widgets.layout.PortalLayout#getOverflow overflow} -- by default, the PortalLayout as a whole will
      * scroll when necessary.
      *
-     *
      * @return Overflow
      * @see com.smartgwt.client.types.Overflow
      * @see com.smartgwt.client.widgets.Canvas#getOverflow
@@ -338,6 +439,37 @@ public class PortalLayout extends Layout {
     public Overflow getColumnOverflow()  {
         return EnumUtil.getEnum(Overflow.values(), getAttribute("columnOverflow"));
     }
+
+
+    /**
+     * <code>dropTypes</code> is set to <code>["PortalColumn"]</code> in order to allow the dragging of columns within the
+     * <code>PortalLayout</code>.  To control <code>dropTypes</code> when {@link com.smartgwt.client.widgets.layout.Portlet
+     * Portlets} or other components are dragged into the <code>PortalLayout</code>, use {@link
+     * com.smartgwt.client.widgets.layout.PortalLayout#getPortletDropTypes portletDropTypes} instead.
+     *
+     * @param dropTypes . See {@link com.smartgwt.client.docs.String String}. Default value is ["PortalColumn"]
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.layout.PortalLayout#setPortletDropTypes
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     */
+    public void setDropTypes(String... dropTypes)  throws IllegalStateException {
+        setAttribute("dropTypes", dropTypes, false);
+    }
+
+    /**
+     * <code>dropTypes</code> is set to <code>["PortalColumn"]</code> in order to allow the dragging of columns within the
+     * <code>PortalLayout</code>.  To control <code>dropTypes</code> when {@link com.smartgwt.client.widgets.layout.Portlet
+     * Portlets} or other components are dragged into the <code>PortalLayout</code>, use {@link
+     * com.smartgwt.client.widgets.layout.PortalLayout#getPortletDropTypes portletDropTypes} instead.
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     * @see com.smartgwt.client.widgets.layout.PortalLayout#getPortletDropTypes
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     */
+    public String[] getDropTypes()  {
+        return com.smartgwt.client.util.ConvertTo.arrayOfString(getAttributeAsJavaScriptObject("dropTypes"));
+    }
+
 
     /**
      * Initial number of columns to show in this PortalLayout. Note that after initialization columns should be added / removed
@@ -361,13 +493,13 @@ public class PortalLayout extends Layout {
      * initialize the {@link com.smartgwt.client.widgets.layout.PortalLayout#getPortlets portlets} attribute, since the
      * portlets attribute will imply how many columns to create.
      *
-     *
      * @return Returns the current number of columns displayed in this PortalLayout.
      * @see com.smartgwt.client.widgets.layout.PortalLayout#getPortlets
      */
     public int getNumColumns()  {
         return getAttributeAsInt("numColumns");
     }
+
 
     /**
      * Controls how the PortalLayout reacts when column widths or {@link com.smartgwt.client.widgets.layout.Portlet} widths
@@ -398,7 +530,6 @@ public class PortalLayout extends Layout {
      * com.smartgwt.client.widgets.layout.PortalLayout#getColumnOverflow columnOverflow}. By default, each column will scroll
      * individually -- you can change columnOverflow to "auto" to scroll the whole PortalLayout instead.
      *
-     *
      * @return Overflow
      * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanResizePortlets
      * @see com.smartgwt.client.widgets.layout.PortalLayout#getColumnOverflow
@@ -409,6 +540,9 @@ public class PortalLayout extends Layout {
     public Overflow getOverflow()  {
         return EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
     }
+
+
+
 
     /**
      * Controls whether the last {@link com.smartgwt.client.widgets.layout.Portlet} in a column will be stretched to fill the
@@ -426,7 +560,6 @@ public class PortalLayout extends Layout {
      * Controls whether the last {@link com.smartgwt.client.widgets.layout.Portlet} in a column will be stretched to fill the
      * column's height, or left at its specified height.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      * 
@@ -434,6 +567,7 @@ public class PortalLayout extends Layout {
     public Boolean getPreventColumnUnderflow()  {
         return getAttributeAsBoolean("preventColumnUnderflow");
     }
+
 
     /**
      * Controls whether the last {@link com.smartgwt.client.widgets.layout.Portlet} in a row will be stretched to fill the
@@ -454,7 +588,6 @@ public class PortalLayout extends Layout {
      * Controls whether the last {@link com.smartgwt.client.widgets.layout.Portlet} in a row will be stretched to fill the
      * row's width, or left at its specified width.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      * 
@@ -462,6 +595,7 @@ public class PortalLayout extends Layout {
     public Boolean getPreventRowUnderflow()  {
         return getAttributeAsBoolean("preventRowUnderflow");
     }
+
 
     /**
      * Controls whether the last column will be stretched to fill the PortalLayout's width, or left at its specified width.
@@ -480,7 +614,6 @@ public class PortalLayout extends Layout {
     /**
      * Controls whether the last column will be stretched to fill the PortalLayout's width, or left at its specified width.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      * 
@@ -488,6 +621,51 @@ public class PortalLayout extends Layout {
     public Boolean getPreventUnderflow()  {
         return getAttributeAsBoolean("preventUnderflow");
     }
+
+
+    /**
+     * <b>Note :</b> This API is non-functional (always returns null) and exists only to make
+     * you aware that this MultiAutoChild exists.  See {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}
+     * for details.
+     * <p>
+     * Automatically generated horizontal {@link com.smartgwt.client.widgets.layout.Layout} used to create rows of {@link
+     * com.smartgwt.client.widgets.layout.Portlet Portlets} via  createAutoChild(). Since this is an AutoChild, you can use 
+     * rowDefaults and rowProperties to customize the rows. <p> Rows are created inside {@link
+     * com.smartgwt.client.widgets.layout.PortalLayout#getRowLayout rowLayouts}, which in turn are inside {@link
+     * com.smartgwt.client.widgets.layout.PortalLayout#getColumn columns}.
+     *
+     * @return null
+     * @see com.smartgwt.client.widgets.layout.PortalLayout#getColumn
+     * @see com.smartgwt.client.widgets.layout.PortalLayout#getRowLayout
+     */
+    public Layout getRow()  {
+        return null;
+    }
+
+
+    /**
+     * <b>Note :</b> This API is non-functional (always returns null) and exists only to make
+     * you aware that this MultiAutoChild exists.  See {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}
+     * for details.
+     * <p>
+     * Automatically generated vertical {@link com.smartgwt.client.widgets.layout.Layout} used to create columns of {@link
+     * com.smartgwt.client.widgets.layout.Portlet Portlets} via  createAutoChild(). Since this is an AutoChild, you can use 
+     * rowLayoutDefaults and rowLayoutProperties to customize the layout used to contain the rows. <p> The rowLayout is the
+     * actual container for {@link com.smartgwt.client.widgets.layout.PortalLayout#getRow rows} of {@link
+     * com.smartgwt.client.widgets.layout.Portlet Portlets}. See {@link
+     * com.smartgwt.client.widgets.layout.PortalLayout#getColumn column} for the column as a whole, which may include a menu as
+     * well (depending on {@link com.smartgwt.client.widgets.layout.PortalLayout#getShowColumnMenus showColumnMenus}). If you
+     * want to style the columns as a whole, use columnDefaults or columnProperties, but if you want to style the layout that
+     * actually contains the rows, use rowLayoutDefaults or rowLayoutProperties.
+     *
+     * @return null
+     * @see com.smartgwt.client.widgets.layout.PortalLayout#getRowLayout
+     * @see com.smartgwt.client.widgets.layout.PortalLayout#getRow
+     */
+    public Layout getRowLayout()  {
+        return null;
+    }
+
 
     /**
      * Should a menu be shown within each column with options to add / remove columns?
@@ -505,13 +683,13 @@ public class PortalLayout extends Layout {
     /**
      * Should a menu be shown within each column with options to add / remove columns?
      *
-     *
      * @return Boolean
      * 
      */
     public Boolean getShowColumnMenus()  {
         return getAttributeAsBoolean("showColumnMenus");
     }
+
 
     /**
      * When {@link com.smartgwt.client.widgets.layout.PortalLayout#getCanStretchColumnWidths stretching column widths}, should
@@ -538,7 +716,6 @@ public class PortalLayout extends Layout {
      * implies turning off {@link com.smartgwt.client.widgets.layout.PortalLayout#getCanShrinkColumnWidths
      * canShrinkColumnWidths}.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanStretchColumnWidths
      * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanShrinkColumnWidths
@@ -549,8 +726,7 @@ public class PortalLayout extends Layout {
     }
 
     // ********************* Methods ***********************
-            
-    /**
+	/**
      * Adds a new portal column to this layout at the specified position
      * @param index target position for the new column
      */
@@ -558,8 +734,7 @@ public class PortalLayout extends Layout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addColumn(index);
     }-*/;
-            
-    /**
+	/**
      * Gets the width of a column in the PortalLayout.
      * @param colNumber Which column's width to get
      *
@@ -568,10 +743,10 @@ public class PortalLayout extends Layout {
      */
     public native int getColumnWidth(int colNumber) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getColumnWidth(colNumber);
+        var ret = self.getColumnWidth(colNumber);
+        return ret;
     }-*/;
-            
-    /**
+	/**
      * Removes the specified column from this layout. All portlets displayed within this column will be destroyed when the
      * column is removed.
      * @param index column number to remove
@@ -580,8 +755,7 @@ public class PortalLayout extends Layout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeColumn(index);
     }-*/;
-            
-    /**
+	/**
      * Removes a {@link com.smartgwt.client.widgets.layout.Portlet} which is currently rendered in this PortalLayout. Portlet
      * will not be destroyed by default - if this is desired the calling code should do this explicitly.
      * @param portlet portlet to remove
@@ -590,16 +764,17 @@ public class PortalLayout extends Layout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removePortlet(portlet.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-            
-    /**
+	/**
      * Sets {@link com.smartgwt.client.widgets.layout.PortalLayout#getPreventColumnUnderflow preventColumnUnderflow} and
      * reflows the layout to implement it.
      * @param preventColumnUnderflow Whether to stretch the last {@link com.smartgwt.client.widgets.layout.PortalLayout#getPorlet Porlet} in a column to 
      * fill the column's height.
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     * 
      */
     public native void setColumnPreventUnderflow(boolean preventColumnUnderflow) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setColumnPreventUnderflow(preventColumnUnderflow);
+        self.setColumnPreventUnderflow(preventColumnUnderflow == null ? false : preventColumnUnderflow);
     }-*/;
 
     // ********************* Static Methods ***********************
@@ -610,7 +785,7 @@ public class PortalLayout extends Layout {
      * properties of this class. Can also be used for skinning / styling purposes.
      * <P>
      * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
-     * underlying class (including those automatically generated in JavaScript). 
+     * underlying class (including those automatically generated in JavaScript).
      * This method should not be used to apply standard EventHandlers or override methods for
      * a class - use a custom subclass instead.
      *
@@ -621,8 +796,8 @@ public class PortalLayout extends Layout {
     	delete properties.ID;
         $wnd.isc.PortalLayout.addProperties(properties);
     }-*/;
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
 
@@ -630,27 +805,102 @@ public class PortalLayout extends Layout {
         super.onInit();
         onInit_PortalLayout();
     }
-    
+
     protected native void onInit_PortalLayout () /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        
-        self.__getDropPortlet = self.getDropPortlet;
-        self.getDropPortlet = $entry(function(dragTarget, rowNum, colNum, dropPosition) {
-            var jObj = this.__ref;
-            
-            if (jObj == null) return this.__getDropPortlet(dragTarget, rowNum,colNum,dropPosition);
-            
-            var dragTargetJ = @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(dragTarget);
-            var rowNumJ = @java.lang.Integer::new(I)(rowNum);
-            var colNumJ = @java.lang.Integer::new(I)(colNum);
-            var dropPositionJ = dropPosition == null ? null : @java.lang.Integer::new(I)(dropPosition);
-            var jPortlet = jObj.@com.smartgwt.client.widgets.layout.PortalLayout::getDropPortlet(Lcom/smartgwt/client/widgets/Canvas;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)(dragTargetJ,rowNumJ,colNumJ,dropPositionJ);
-            return jPortlet.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
 
+        self.__willAcceptPortletDrop = self.willAcceptPortletDrop;
+        self.willAcceptPortletDrop = $entry(function(dragTarget, colNum, rowNum, dropPosition) {
+            var jObj = this.__ref;
+            if (jObj == null) return this.__willAcceptPortletDrop(dragTarget, colNum, rowNum, dropPosition);
+
+            var dragTargetJ = dragTarget == null ? null : @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(dragTarget);
+            var colNumJ = @java.lang.Integer::new(I)(colNum);
+            var rowNumJ = @java.lang.Integer::new(I)(rowNum);
+            var dropPositionJ = dropPosition == null ? null : @java.lang.Integer::new(I)(dropPosition);
+
+            var retVal = jObj.@com.smartgwt.client.widgets.layout.PortalLayout::willAcceptPortletDrop(Lcom/smartgwt/client/widgets/Canvas;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)(dragTargetJ,colNumJ,rowNumJ,dropPositionJ);
+            return retVal.@java.lang.Boolean::booleanValue()();
         });
-        
+
+        self.__getDropPortlet = self.getDropPortlet;
+        self.getDropPortlet = $entry(function(dragTarget, colNum, rowNum, dropPosition) {
+            var jObj = this.__ref;
+
+            if (jObj == null) return this.__getDropPortlet(dragTarget, rowNum,colNum,dropPosition);
+
+            var dragTargetJ = @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(dragTarget);
+            var colNumJ = @java.lang.Integer::new(I)(colNum);
+            var rowNumJ = @java.lang.Integer::new(I)(rowNum);
+            var dropPositionJ = dropPosition == null ? null : @java.lang.Integer::new(I)(dropPosition);
+            var jPortlet = jObj.@com.smartgwt.client.widgets.layout.PortalLayout::getDropPortlet(Lcom/smartgwt/client/widgets/Canvas;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)(dragTargetJ,colNumJ,rowNumJ,dropPositionJ);
+            return jPortlet.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
+        });
+
     }-*/;
-    
+
+    /** <p>Returns true if the dragged {@link com.smartgwt.client.widgets.layout.Portlet}, or other component, can be dropped onto
+     * this <code>PortalLayout</code> (other components would be auto-wrapped in a <code>Portlet</code>).</p>
+     *
+     * <p>The default implementation acts like {@link com.smartgwt.client.widgets.Canvas#willAcceptDrop}, except applying
+     * {@link com.smartgwt.client.widgets.layout.PortalLayout#getPortletDropTypes portletDropTypes} rather than
+     * {@link com.smartgwt.client.widgets.layout.PortalLayout#getDropTypes dropTypes}.
+     * You can subclass to apply other (or additional) criteria</p>
+     *
+     * <p><b>Note: This is an override point</b></p>
+     *
+     * @param dragTarget The {@link com.smartgwt.client.widgets.layout.Portlet}, or other component, being dragged
+     * @param colNum indicates which column the portlet would be dropped on.
+     * @param rowNum indicates the row number being dropped on.
+     * @param dropPosition Drop position within an existing row. If the dropPosition is null, then that means that a new row will be created.
+     * @return	true if the {@link com.smartgwt.client.widgets.layout.Portlet} or other component being dragged can be dropped on this PortalLayout, false otherwise
+     */
+    public native Boolean willAcceptPortletDrop(Canvas dragTarget, Integer colNum, Integer rowNum, Integer dropPosition) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var dragTargetJS = dragTarget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var colNumJS = colNum.@java.lang.Integer::intValue()();
+        var rowNumJS = rowNum.@java.lang.Integer::intValue()();
+        var dropPositionJS = dropPosition == null ? null : dropPosition.@java.lang.Integer::intValue()();
+
+        var retVal = self.__willAcceptPortletDrop(dragTargetJS, colNumJS, rowNumJS, dropPositionJS);
+        if (retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * <p>The {@link com.smartgwt.client.widgets.Canvas#getDropTypes dropTypes} to be applied when dropping
+     * {@link com.smartgwt.client.widgets.layout.Portlet Portlets} on this <code>PortalLayout</code>, or when
+     * dropping other components to be auto-wrapped in a {@link com.smartgwt.client.widgets.layout.Portlet}.
+     * If you set this, then you will need to set an equivalent {@link com.smartgwt.client.widgets.Canvas#getDropTypes dropType} on
+     * anything to be dragged into this <code>PortalLayout</code> (including <code>Portlets</code>).</p>
+     *
+     * <p>As a convenience, <code>Portlet.dragType</code> defaults to <code>"Portlet"</code>. Thus, if you want
+     * to allow <code>Portlets</code> to be dropped on this <code>PortalLayout</code>, but disable
+     * auto-wrapping of other components, you can set <code>portletDropTypes</code> to
+     * <code>["Portlet"]</code>.</p>
+     *
+     * <p>If you want to allow some <code>Portlets</code> to be dropped on this <code>PortalLayout</code> but
+     * not others, then set a custom <code>dragType</code> for the <code>Portlets</code>, and
+     * set <code>portletDropTypes</code> to match.</p>
+     *
+     * <p>For more control over what can be dropped, you can also implement
+     * {@link com.smartgwt.client.widgets.layout.PortalLayout#willAcceptPortletDrop willAcceptPortletDrop()}.
+     *
+     * <p><b>Note:</b> This is an advanced setting</p>
+     *
+     * @param portletDropTypes dropTypes to be applied when dropping Portlets, or other components, on this PortalLayout
+     */
+    public void setPortletDropTypes(String... portletDropTypes) {
+        setAttribute("portletDropTypes", portletDropTypes, true);
+    }
+
+    public String[] getPortletDropTypes() {
+        return JSOHelper.getAttributeAsStringArray(getOrCreateJsObj(), "portletDropTypes");
+    }
+
     /**
      * This method is called when the user drops components into the rows or columns of this PortalLayout. <P> Overriding this
      * method allows you to modify drop behaviour when creating or reordering portlets via drag & drop. You can return the
@@ -658,7 +908,7 @@ public class PortalLayout extends Layout {
      * dropped (as for {@link com.smartgwt.client.widgets.layout.Layout#getDropComponent Layout.getDropComponent}).
      * <P>
      * <b>Note: this is an override point.</b>
-     * 
+     *
      * @param dragTarget the component being dragged
      * @param colNum indicates which column the portlet is being dropped on.
      * @param rowNum indicates the row number being dropped on.
@@ -669,8 +919,11 @@ public class PortalLayout extends Layout {
     public native Canvas getDropPortlet(Canvas dragTarget, Integer colNum, Integer rowNum, Integer dropPosition) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var dragTargetJS = dragTarget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        
-        var ret = self.__getDropPortlet(dragTargetJS, colNum, rowNum, dropPosition);
+        var colNumJS = colNum.@java.lang.Integer::intValue()();
+        var rowNumJS = rowNum.@java.lang.Integer::intValue()();
+        var dropPositionJS = dropPosition == null ? null : dropPosition.@java.lang.Integer::intValue()();
+
+        var ret = self.__getDropPortlet(dragTargetJS, colNumJS, rowNumJS, dropPositionJS);
         if(ret == null || ret === undefined) return null;
         var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
         if(retVal == null) {
@@ -697,12 +950,12 @@ public class PortalLayout extends Layout {
      * @see com.smartgwt.client.widgets.layout.PortalLayout#getPortletArray
      * @see com.smartgwt.client.widgets.layout.PortalLayout#addPortlet
      * @see com.smartgwt.client.widgets.layout.PortalLayout#setNumColumns
-     * 
+     *
      */
     public void setPortlets(Portlet... portlets)  throws IllegalStateException {
         setAttribute("portlets", portlets, false);
     }
-    
+
     /**
      * Returns a flat array of all the {@link com.smartgwt.client.widgets.layout.Portlet Portlets} in this PortalLayout.
      *
@@ -711,35 +964,14 @@ public class PortalLayout extends Layout {
     public native Portlet[] getPortlets() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var portletsJS = self.getPortlets();
-        return @com.smartgwt.client.widgets.layout.PortalLayout::convertToPortletArray(Lcom/google/gwt/core/client/JavaScriptObject;)(portletsJS);
+        return @com.smartgwt.client.util.ConvertTo::arrayOfPortlet(Lcom/google/gwt/core/client/JavaScriptObject;)(portletsJS);
     }-*/;
 
-    private static Portlet[] convertToPortletArray(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new Portlet[]{};
-        }
-        if (JSOHelper.isArray(nativeArray)) {
-            JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-            Portlet[] objects = new Portlet[componentsj.length];
-            for (int i = 0; i < componentsj.length; i++) {
-                JavaScriptObject componentJS = componentsj[i];
-                Portlet obj = (Portlet) Canvas.getRef(componentJS);
-                if (obj == null) obj = new Portlet(componentJS);
-                objects[i] = obj;
-            }
-            return objects;
-        } else {
-            Portlet[] ret = new Portlet[1];
-            ret[0] = Portlet.getOrCreateRef(nativeArray);
-            return ret;
-        }
-    }
-
     /**
-     * Returns a multi-level array of the {@link com.smartgwt.client.widgets.layout.Portlet Portlets} in this PortalLayout, 
+     * Returns a multi-level array of the {@link com.smartgwt.client.widgets.layout.Portlet Portlets} in this PortalLayout,
      * where the first level corresponds to columns, the second to rows, and the third to Portlets within rows.
      *
-     * @return portlets 
+     * @return portlets
      */
     public native Portlet[][][] getPortletArray() /*-{
     	var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -753,7 +985,7 @@ public class PortalLayout extends Layout {
 	    }
 
 	    Portlet[][][] objects;
-	    
+
         JavaScriptObject[] columnsj = JSOHelper.toArray(columns);
     	objects = new Portlet[columnsj.length][][];
         for (int p = 0; p < columnsj.length; p++) {
@@ -813,7 +1045,7 @@ public class PortalLayout extends Layout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addPortlet(portlet.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), colNum, rowNum, rowOffset);
     }-*/;
-    
+
     /**
      * Sets the width of a column in the PortalLayout.
      * @param colNumber Which column's width to set.
@@ -835,7 +1067,96 @@ public class PortalLayout extends Layout {
     }-*/;
 
 
+
+    public LogicalStructureObject setLogicalStructure(PortalLayoutLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.canResizeColumns = getAttributeAsString("canResizeColumns");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PortalLayout.canResizeColumns:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canResizePortlets = getAttributeAsString("canResizePortlets");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PortalLayout.canResizePortlets:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canResizeRows = getAttributeAsString("canResizeRows");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PortalLayout.canResizeRows:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canShrinkColumnWidths = getAttributeAsString("canShrinkColumnWidths");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PortalLayout.canShrinkColumnWidths:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canStretchColumnWidths = getAttributeAsString("canStretchColumnWidths");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PortalLayout.canStretchColumnWidths:" + t.getMessage() + "\n";
+        }
+        try {
+            s.columnBorder = getAttributeAsString("columnBorder");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PortalLayout.columnBorder:" + t.getMessage() + "\n";
+        }
+        try {
+            s.columnOverflow = getAttributeAsString("columnOverflow");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PortalLayout.columnOverflow:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dropTypes = getAttributeAsStringArray("dropTypes");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PortalLayout.dropTypesArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.numColumns = getAttributeAsString("numColumns");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PortalLayout.numColumns:" + t.getMessage() + "\n";
+        }
+        try {
+            s.overflow = getAttributeAsString("overflow");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PortalLayout.overflow:" + t.getMessage() + "\n";
+        }
+        try {
+            s.portletDropTypes = getAttributeAsStringArray("portletDropTypes");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PortalLayout.portletDropTypesArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.preventColumnUnderflow = getAttributeAsString("preventColumnUnderflow");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PortalLayout.preventColumnUnderflow:" + t.getMessage() + "\n";
+        }
+        try {
+            s.preventRowUnderflow = getAttributeAsString("preventRowUnderflow");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PortalLayout.preventRowUnderflow:" + t.getMessage() + "\n";
+        }
+        try {
+            s.preventUnderflow = getAttributeAsString("preventUnderflow");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PortalLayout.preventUnderflow:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showColumnMenus = getAttributeAsString("showColumnMenus");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PortalLayout.showColumnMenus:" + t.getMessage() + "\n";
+        }
+        try {
+            s.stretchColumnWidthsProportionally = getAttributeAsString("stretchColumnWidthsProportionally");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PortalLayout.stretchColumnWidthsProportionally:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+
+    public LogicalStructureObject getLogicalStructure() {
+        PortalLayoutLogicalStructure s = new PortalLayoutLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

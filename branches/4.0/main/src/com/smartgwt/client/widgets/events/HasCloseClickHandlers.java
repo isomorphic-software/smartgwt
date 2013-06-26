@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasCloseClickHandlers extends HasHandlers {
     /**
      * Handles a click on the close button of this window. The default implementation hides the window and returns false to
@@ -30,3 +29,4 @@ public interface HasCloseClickHandlers extends HasHandlers {
      */
     HandlerRegistration addCloseClickHandler(CloseClickHandler handler);
 }
+

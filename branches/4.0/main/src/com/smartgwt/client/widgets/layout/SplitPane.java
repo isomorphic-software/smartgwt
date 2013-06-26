@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.layout;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A device- and orientation-sensitive layout that implements the common pattern of rendering  two panes side-by-side on
@@ -73,32 +93,67 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class SplitPane extends VLayout {
 
-    public static SplitPane getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (SplitPane) obj;
+    public native static SplitPane getOrCreateRef(JavaScriptObject jsObj) /*-{
+        if (jsObj == null) return null;
+        var instance = jsObj["__ref"];
+        if (instance == null) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("SplitPane",jsObj);
         } else {
-            return new SplitPane(jsObj);
+            return instance;
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        $wnd.isc["SplitPane"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.Canvas::getConfig()());
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        $wnd.isc["SplitPane"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getJsObj()());
+    }-*/;
 
     public SplitPane(){
         scClassName = "SplitPane";
     }
 
     public SplitPane(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "SplitPane";
+        setJavaScriptObject(jsObj);
+        
     }
 
     protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
         var widget = $wnd.isc[scClassName].create(config);
+        this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Ljava/lang/String;Z)(widget.getID(), true);
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;
+
     // ********************* Properties / Attributes ***********************
+
 
     /**
      * Navigation control that appears only when the navigation pane is not showing (showing detail pane on handset, or
@@ -118,12 +173,12 @@ public class SplitPane extends VLayout {
      * Navigation control that appears only when the navigation pane is not showing (showing detail pane on handset, or
      * portrait mode on tablet).
      *
-     *
      * @return Canvas
      */
     public Canvas getDetailNavigationControl()  {
         return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("detailNavigationControl"));
     }
+
 
     /**
      * The right-hand of the two panes managed by this widget, used for viewing details.
@@ -140,12 +195,12 @@ public class SplitPane extends VLayout {
     /**
      * The right-hand of the two panes managed by this widget, used for viewing details.
      *
-     *
      * @return Canvas
      */
     public Canvas getDetailPane()  {
         return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("detailPane"));
     }
+
 
     /**
      * Tool buttons to display in the detail {@link com.smartgwt.client.widgets.layout.SplitPane#getDetailToolStrip
@@ -164,12 +219,26 @@ public class SplitPane extends VLayout {
      * Tool buttons to display in the detail {@link com.smartgwt.client.widgets.layout.SplitPane#getDetailToolStrip
      * detailToolStrip}.
      *
-     *
      * @return Canvas
      */
     public Canvas[] getDetailToolButtons()  {
-        return Canvas.convertToCanvasArray(getAttributeAsJavaScriptObject("detailToolButtons"));
+        return com.smartgwt.client.util.ConvertTo.arrayOfCanvas(getAttributeAsJavaScriptObject("detailToolButtons"));
     }
+
+
+    /**
+     * Toolstrip servicing the {@link com.smartgwt.client.widgets.layout.SplitPane#getDetailPane detailPane}.
+     * <p>
+     * For an overview of how to use and configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return NavigationBar
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public NavigationBar getDetailToolStrip() throws IllegalStateException {
+        errorIfNotCreated("detailToolStrip");
+        return NavigationBar.getOrCreateRef(getAttributeAsJavaScriptObject("detailToolStrip"));
+    }
+
 
     /**
      * An optional list pane displayed in the left-hand of the panes or in a popup according to the pane layout.
@@ -186,12 +255,12 @@ public class SplitPane extends VLayout {
     /**
      * An optional list pane displayed in the left-hand of the panes or in a popup according to the pane layout.
      *
-     *
      * @return Canvas
      */
     public Canvas getListPane()  {
         return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("listPane"));
     }
+
 
     /**
      * The AutoChild {@link com.smartgwt.client.widgets.layout.NavigationBar navigationBar} managed by this widget.
@@ -206,12 +275,12 @@ public class SplitPane extends VLayout {
     /**
      * The AutoChild {@link com.smartgwt.client.widgets.layout.NavigationBar navigationBar} managed by this widget.
      *
-     *
      * @return NavigationBar
      */
     public NavigationBar getNavigationBar()  {
         return NavigationBar.getOrCreateRef(getAttributeAsJavaScriptObject("navigationBar"));
     }
+
 
     /**
      * The left-hand of the two panes managed by this widget, used for navigation.
@@ -228,7 +297,6 @@ public class SplitPane extends VLayout {
     /**
      * The left-hand of the two panes managed by this widget, used for navigation.
      *
-     *
      * @return Canvas
      */
     public Canvas getNavigationPane()  {
@@ -236,8 +304,7 @@ public class SplitPane extends VLayout {
     }
 
     // ********************* Methods ***********************
-            
-    /**
+	/**
      * Sets the title for the Detail Pane.
      * @param title new title for the detail pane
      */
@@ -245,17 +312,15 @@ public class SplitPane extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setDetailTitle(title);
     }-*/;
-            
-    /**
+	/**
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getLeftButtonIcon LeftButtonIcon}.
-     * @param newIcon new icon for Left button
+     * @param newIcon new icon for Left button. See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public native void setLeftButtonIcon(String newIcon) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setLeftButtonIcon(newIcon);
     }-*/;
-            
-    /**
+	/**
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getLeftButtonTitle leftButtonTitle}.  Note that this
      * is normally automatically set to the navigationPaneTitle or listPaneTitle as appropriate.
      * @param newTitle new title for left button
@@ -264,8 +329,7 @@ public class SplitPane extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setLeftButtonTitle(newTitle);
     }-*/;
-            
-    /**
+	/**
      * Sets the title for the List Pane.
      * @param title new title for the list pane
      */
@@ -273,8 +337,7 @@ public class SplitPane extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setListTitle(title);
     }-*/;
-            
-    /**
+	/**
      * Sets the title for the Navigation Pane.
      * @param title new title for the navigation pane
      */
@@ -282,17 +345,15 @@ public class SplitPane extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setNavigationTitle(title);
     }-*/;
-            
-    /**
+	/**
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getRightButtonIcon rightButtonIcon}.
-     * @param newIcon new icon for right button
+     * @param newIcon new icon for right button. See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public native void setRightButtonIcon(String newIcon) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setRightButtonIcon(newIcon);
     }-*/;
-            
-    /**
+	/**
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getRightButtonTitle rightButtonTitle}
      * @param newTitle new title for right button
      */
@@ -300,8 +361,7 @@ public class SplitPane extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setRightButtonTitle(newTitle);
     }-*/;
-            
-    /**
+	/**
      * Show or hide the {@link com.smartgwt.client.widgets.layout.NavigationBar#getLeftButton leftButton}.  Note that the
      * default behavior is to automatically create and show a "back button" as the left button that allows transitioning back
      * to the navigationPane (tablet and handset mode) or the listPane (handset mode).
@@ -309,35 +369,31 @@ public class SplitPane extends VLayout {
      */
     public native void setShowLeftButton(boolean visible) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setShowLeftButton(visible);
+        self.setShowLeftButton(visible == null ? false : visible);
     }-*/;
-            
-    /**
+	/**
      * Show or hide the {@link com.smartgwt.client.widgets.layout.NavigationBar#getRightButton rightButton}.
      * @param visible if true, the button will be shown, otherwise hidden.
      */
     public native void setShowRightButton(boolean visible) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setShowRightButton(visible);
+        self.setShowRightButton(visible == null ? false : visible);
     }-*/;
-            
-    /**
+	/**
      * Causes a transition to the Detail Pane
      */
     public native void showDetailPane() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.showDetailPane();
     }-*/;
-            
-    /**
+	/**
      * Causes a transition to the List Pane
      */
     public native void showListPane() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.showListPane();
     }-*/;
-            
-    /**
+	/**
      * Causes a transition to the Navigation Pane
      */
     public native void showNavigationPane() /*-{
@@ -353,7 +409,7 @@ public class SplitPane extends VLayout {
      * properties of this class. Can also be used for skinning / styling purposes.
      * <P>
      * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
-     * underlying class (including those automatically generated in JavaScript). 
+     * underlying class (including those automatically generated in JavaScript).
      * This method should not be used to apply standard EventHandlers or override methods for
      * a class - use a custom subclass instead.
      *
@@ -364,8 +420,8 @@ public class SplitPane extends VLayout {
     	delete properties.ID;
         $wnd.isc.SplitPane.addProperties(properties);
     }-*/;
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
 	
@@ -389,7 +445,45 @@ public class SplitPane extends VLayout {
 	}-*/;
 
 
+    public LogicalStructureObject setLogicalStructure(SplitPaneLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.detailNavigationControl = getDetailNavigationControl();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SplitPane.detailNavigationControl:" + t.getMessage() + "\n";
+        }
+        try {
+            s.detailPane = getDetailPane();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SplitPane.detailPane:" + t.getMessage() + "\n";
+        }
+        try {
+            s.detailToolButtons = getDetailToolButtons();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SplitPane.detailToolButtonsArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.listPane = getListPane();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SplitPane.listPane:" + t.getMessage() + "\n";
+        }
+        try {
+            s.navigationBar = getNavigationBar();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SplitPane.navigationBar:" + t.getMessage() + "\n";
+        }
+        try {
+            s.navigationPane = getNavigationPane();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SplitPane.navigationPane:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+
+    public LogicalStructureObject getLogicalStructure() {
+        SplitPaneLogicalStructure s = new SplitPaneLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

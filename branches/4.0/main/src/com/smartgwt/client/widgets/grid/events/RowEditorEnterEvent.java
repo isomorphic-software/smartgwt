@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +46,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class RowEditorEnterEvent extends BrowserEvent<RowEditorEnterHandler>  {
 
     /**
@@ -92,7 +97,6 @@ public class RowEditorEnterEvent extends BrowserEvent<RowEditorEnterHandler>  {
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(RowEditorEnterHandler handler) {
         handler.onRowEditorEnter(this);
@@ -111,33 +115,34 @@ public class RowEditorEnterEvent extends BrowserEvent<RowEditorEnterHandler>  {
         super(jsObj);
     }
 
-
-
-    /**
-     * record for the cell being edited
-     *
-     * @return record for the cell being edited
-     */
-    public  native Record getRecord() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
-    }-*/;
-
-    /**
+	/**
      * row number for the cell
      *
      * @return row number for the cell
      */
-    public  native int getRowNum() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.rowNum;
+    public native int getRowNum() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.rowNum;
+        return ret;
     }-*/;
-
 
     public  native JavaScriptObject getEditValues() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
         return jsObj.editValues;
     }-*/;
+
+	/**
+     * record for the cell being edited
+     *
+     * @return record for the cell being edited
+     */
+    public native Record getRecord() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.record;
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
 
 
 }

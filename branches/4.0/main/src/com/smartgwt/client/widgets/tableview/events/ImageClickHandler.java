@@ -15,6 +15,7 @@
  */
  
 package com.smartgwt.client.widgets.tableview.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface ImageClickHandler extends EventHandler {

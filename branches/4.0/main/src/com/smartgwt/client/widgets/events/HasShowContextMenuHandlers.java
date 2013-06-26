@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasShowContextMenuHandlers extends HasHandlers {
     /**
      * Executed when the right mouse button is clicked.  The default implementation of this method auto-creates a {@link
@@ -35,3 +34,4 @@ public interface HasShowContextMenuHandlers extends HasHandlers {
      */
     HandlerRegistration addShowContextMenuHandler(ShowContextMenuHandler handler);
 }
+

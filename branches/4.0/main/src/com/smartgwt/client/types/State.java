@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Constants for the standard states for a StatefulCanvas.
  */
@@ -36,7 +37,6 @@ public enum State implements ValueEnum {
      * disabled
      */
     STATE_DISABLED("Disabled");
-
     private String value;
 
     State(String value) {

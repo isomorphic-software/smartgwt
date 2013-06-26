@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Used to name a validator or reference a standard, built-in {@link com.smartgwt.client.widgets.form.validator.Validator}
  * - see list below. <p> To make use of a standard validator type for a field in a DataSource, or  DynamicForm instance,
@@ -170,8 +171,11 @@ public enum ValidatorType implements ValueEnum {
      */
     READONLY("readOnly"),
     /**
-     * Returns true if the value for this field is unique across the whole DataSource. <p> Validators of this type have 
-     * requiresServer  set to <code>true</code> and do not run on the client. <p>See <a
+     * Returns true if the value for this field is unique. The uniqueness check is performed across the whole DataSource unless
+     * you specify property <code>validator.criteriaFields</code> as a  comma-separated string of field names; in that case,
+     * the uniqueness check is done in the  context of those extra criteria, allowing you to check, for example, whether an
+     * employee  number is unique for the department and location found on the record being validated.  <p> Validators of this
+     * type have  requiresServer  set to <code>true</code> and do not run on the client. <p>See <a
      * href="http://www.smartclient.com/smartgwtee/showcase/#uniqueCheckValidation"
      * target="examples">uniqueCheckValidation</a>.
      */
@@ -203,7 +207,6 @@ public enum ValidatorType implements ValueEnum {
      * Validators of this type have  requiresServer  set to <code>true</code> and do not run on the client.
      */
     SERVERCUSTOM("serverCustom");
-
     private String value;
 
     ValidatorType(String value) {

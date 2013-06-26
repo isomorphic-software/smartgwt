@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.tile.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasRecordClickHandlers extends HasHandlers {
     /**
      * Executed when the tileGrid receives a 'click' event on a tile. The default implementation does nothing -- override to
@@ -33,3 +32,4 @@ public interface HasRecordClickHandlers extends HasHandlers {
      */
     HandlerRegistration addRecordClickHandler(RecordClickHandler handler);
 }
+

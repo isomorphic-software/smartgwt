@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -33,7 +34,9 @@ import com.smartgwt.client.widgets.tile.*;
 import com.smartgwt.client.widgets.tile.events.*;
 import com.smartgwt.client.widgets.grid.*;
 import com.smartgwt.client.widgets.grid.events.*;
+import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
@@ -42,19 +45,23 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
-import com.smartgwt.client.util.JSOHelper;
-import com.smartgwt.client.util.EnumUtil;
+import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class RecordCollapseEvent extends BrowserEvent<RecordCollapseHandler>  implements Cancellable {
     private boolean cancel = false;
 
@@ -91,7 +98,6 @@ public class RecordCollapseEvent extends BrowserEvent<RecordCollapseHandler>  im
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(RecordCollapseHandler handler) {
         handler.onRecordCollapse(this);
@@ -110,7 +116,6 @@ public class RecordCollapseEvent extends BrowserEvent<RecordCollapseHandler>  im
         super(jsObj);
     }
 
-
     /**
      * Call this method to cancel record collapse
      */
@@ -124,16 +129,16 @@ public class RecordCollapseEvent extends BrowserEvent<RecordCollapseHandler>  im
     public boolean isCancelled() {
         return cancel;
     }
-
-    /**
+	/**
      * record being collapsed
      *
      * @return record being collapsed
      */
-    public  native Record getRecord() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
+    public native ListGridRecord getRecord() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.record;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
 
 }

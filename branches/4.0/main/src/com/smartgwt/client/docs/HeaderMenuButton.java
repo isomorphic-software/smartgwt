@@ -5,6 +5,7 @@ package com.smartgwt.client.docs;
  * The following APIs are all related to HeaderMenuButton.
  * @see com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderMenuButton
  * @see com.smartgwt.client.widgets.grid.ListGrid#getLeaveHeaderMenuButtonSpace
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getLeaveHeaderMenuButtonSpace
  * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderMenuButtonConstructor
  * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderMenuButton
  * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderMenuButtonIcon

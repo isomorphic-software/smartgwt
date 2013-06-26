@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * What do we do with data that's been dropped into another list?
  */
@@ -32,7 +33,6 @@ public enum DragDataAction implements ValueEnum {
      * Remove the data from this list so it can be moved into the other list.
      */
     MOVE("move");
-
     private String value;
 
     DragDataAction(String value) {

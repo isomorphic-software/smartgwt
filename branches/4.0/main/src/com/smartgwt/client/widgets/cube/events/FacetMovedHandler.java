@@ -15,6 +15,7 @@
  */
  
 package com.smartgwt.client.widgets.cube.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface FacetMovedHandler extends EventHandler {

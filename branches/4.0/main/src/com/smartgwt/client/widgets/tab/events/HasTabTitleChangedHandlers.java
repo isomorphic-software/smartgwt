@@ -19,16 +19,16 @@ package com.smartgwt.client.widgets.tab.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasTabTitleChangedHandlers extends HasHandlers {
     /**
      * This notification method fired when the user changes the title of a tab in this TabSet. This can happen either through
      * user interaction with the UI if  {@link com.smartgwt.client.widgets.tab.TabSet#getCanEditTabTitles canEditTabTitles} is
      * set, or programmatically if application  code calls {@link com.smartgwt.client.widgets.tab.TabSet#editTabTitle
-     * editTabTitle}.<p> Return false from this method to cancel the change.
+     * editTabTitle}.<p> Call {@link com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent#cancel()} from within {@link TabTitleChangedHandler#onTabTitleChanged} from this method to cancel the change.
      *
      * @param handler the tabTitleChanged handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addTabTitleChangedHandler(TabTitleChangedHandler handler);
 }
+

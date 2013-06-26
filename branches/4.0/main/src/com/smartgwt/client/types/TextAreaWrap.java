@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  */
 public enum TextAreaWrap implements ValueEnum {
@@ -32,7 +33,6 @@ public enum TextAreaWrap implements ValueEnum {
      * when the entered text reaches the edge of the text area, insert a line break
      */
     HARD("hard");
-
     private String value;
 
     TextAreaWrap(String value) {

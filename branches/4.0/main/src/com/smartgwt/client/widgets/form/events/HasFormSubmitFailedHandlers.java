@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.form.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasFormSubmitFailedHandlers extends HasHandlers {
     /**
      * Method called when an attempt to {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm natively submit} a form
@@ -32,3 +31,4 @@ public interface HasFormSubmitFailedHandlers extends HasHandlers {
      */
     HandlerRegistration addFormSubmitFailedHandler(FormSubmitFailedHandler handler);
 }
+

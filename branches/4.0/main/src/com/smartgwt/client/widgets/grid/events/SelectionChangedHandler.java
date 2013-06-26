@@ -15,6 +15,7 @@
  */
  
 package com.smartgwt.client.widgets.grid.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface SelectionChangedHandler extends EventHandler {
@@ -23,7 +24,12 @@ public interface SelectionChangedHandler extends EventHandler {
      * is modified - so when a user clicks inside a grid this method will typically fire twice (once for the old record being
      * deselected, and once for the new record being selected). <P> NOTE: For updating other components based on selections or
      * triggering selection-oriented events within an application, see the {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#selectionUpdated selectionUpdated} event which is likely more suitable.
+     * com.smartgwt.client.widgets.DataBoundComponent#selectionUpdated selectionUpdated()} event which is likely more suitable.
+     * Calls to {@link com.smartgwt.client.widgets.grid.ListGrid#getSelection getSelection()} from within this event may not
+     * return a valid set of selected records if the event has been triggered by a call to {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#selectAllRecords selectAllRecords()} or {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#deselectAllRecords deselectAllRecords()} - in this case use the {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#selectionUpdated selectionUpdated()} event instead.
      *
      * @param event the event
      */

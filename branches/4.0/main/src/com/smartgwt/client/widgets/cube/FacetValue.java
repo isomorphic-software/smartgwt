@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.cube;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Facet value definition object made use of by the CubeGrid class (contained by facets)
@@ -64,8 +84,12 @@ import com.google.gwt.event.shared.HasHandlers;
 public class FacetValue extends RefDataClass {
 
     public static FacetValue getOrCreateRef(JavaScriptObject jsObj) {
+
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (FacetValue) obj;
@@ -74,12 +98,20 @@ public class FacetValue extends RefDataClass {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
+
     public FacetValue(){
         
     }
 
     public FacetValue(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
+        setAttribute(com.smartgwt.client.util.SC.REF, (Object) this);
     }
 
     public FacetValue(String id) {
@@ -100,7 +132,9 @@ public class FacetValue extends RefDataClass {
         
     }
 
+
     // ********************* Properties / Attributes ***********************
+
 
     /**
      * Default alignment for facet label title and cells for this facetValue. Can be overridden by setting titleAlign or
@@ -116,17 +150,17 @@ public class FacetValue extends RefDataClass {
      * Default alignment for facet label title and cells for this facetValue. Can be overridden by setting titleAlign or
      * cellAlign on the facetValue.
      *
-     *
      * @return Alignment
      */
     public Alignment getAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
     }
 
+
     /**
      * CSS line style to apply as a border after this facetValue.
      *
-     * @param borderAfter borderAfter Default value is null
+     * @param borderAfter . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setBorderAfter(String borderAfter) {
         setAttribute("borderAfter", borderAfter);
@@ -135,17 +169,17 @@ public class FacetValue extends RefDataClass {
     /**
      * CSS line style to apply as a border after this facetValue.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getBorderAfter()  {
         return getAttributeAsString("borderAfter");
     }
 
+
     /**
      * CSS line style to apply as a border before this facetValue.
      *
-     * @param borderBefore borderBefore Default value is null
+     * @param borderBefore . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setBorderBefore(String borderBefore) {
         setAttribute("borderBefore", borderBefore);
@@ -154,12 +188,12 @@ public class FacetValue extends RefDataClass {
     /**
      * CSS line style to apply as a border before this facetValue.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getBorderBefore()  {
         return getAttributeAsString("borderBefore");
     }
+
 
     /**
      * For individual parent facetValues within a hierarchical facet, this flag controls whether an expand/collapse control
@@ -175,12 +209,12 @@ public class FacetValue extends RefDataClass {
      * For individual parent facetValues within a hierarchical facet, this flag controls whether an expand/collapse control
      * will be shown.
      *
-     *
      * @return Boolean
      */
     public Boolean getCanCollapse()  {
         return getAttributeAsBoolean("canCollapse");
     }
+
 
     /**
      * Whether cells for this facetValue can be edited.  Defaults to cubeGrid.canEdit
@@ -194,12 +228,12 @@ public class FacetValue extends RefDataClass {
     /**
      * Whether cells for this facetValue can be edited.  Defaults to cubeGrid.canEdit
      *
-     *
      * @return Boolean
      */
     public Boolean getCanEdit()  {
         return getAttributeAsBoolean("canEdit");
     }
+
 
     /**
      * Default alignment of cells (in the body) for this facetValue.
@@ -213,12 +247,12 @@ public class FacetValue extends RefDataClass {
     /**
      * Default alignment of cells (in the body) for this facetValue.
      *
-     *
      * @return Alignment
      */
     public Alignment getCellAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("cellAlign"));
     }
+
 
     /**
      * For tree facets, initial collapse state for this node.  Defaults to facet.collapsed.
@@ -232,12 +266,13 @@ public class FacetValue extends RefDataClass {
     /**
      * For tree facets, initial collapse state for this node.  Defaults to facet.collapsed.
      *
-     *
      * @return Boolean
      */
     public Boolean getCollapsed()  {
         return getAttributeAsBoolean("collapsed");
     }
+
+
 
     /**
      * Used to determine which facetValue is to be shown when the facet is minimized. <P> See {@link
@@ -253,19 +288,19 @@ public class FacetValue extends RefDataClass {
      * Used to determine which facetValue is to be shown when the facet is minimized. <P> See {@link
      * com.smartgwt.client.widgets.cube.CubeGrid#getCanMinimizeFacets canMinimizeFacets}.
      *
-     *
      * @return Boolean
      */
     public Boolean getIsMinimizeValue()  {
         return getAttributeAsBoolean("isMinimizeValue");
     }
 
+
     /**
      * For tree facets ({@link com.smartgwt.client.widgets.cube.Facet#getIsTree facet.isTree}), id of this facetValue's parent
      * facetValue.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param parentId parentId Default value is null
+     * @param parentId . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setParentId(String parentId) {
         setAttribute("parentId", parentId);
@@ -275,12 +310,12 @@ public class FacetValue extends RefDataClass {
      * For tree facets ({@link com.smartgwt.client.widgets.cube.Facet#getIsTree facet.isTree}), id of this facetValue's parent
      * facetValue.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getParentId()  {
         return getAttributeAsString("parentId");
     }
+
 
     /**
      * Selection boundary determining what facets / facetValues can be selected together by drag selection / shift+click
@@ -296,17 +331,17 @@ public class FacetValue extends RefDataClass {
      * Selection boundary determining what facets / facetValues can be selected together by drag selection / shift+click
      * selection.
      *
-     *
      * @return SelectionBoundary
      */
     public SelectionBoundary getSelectionBoundary()  {
         return EnumUtil.getEnum(SelectionBoundary.values(), getAttribute("selectionBoundary"));
     }
 
+
     /**
      * User-visible title of this facetValue.  Shown on the field header.
      *
-     * @param title title Default value is null
+     * @param title . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setTitle(String title) {
         setAttribute("title", title);
@@ -315,18 +350,18 @@ public class FacetValue extends RefDataClass {
     /**
      * User-visible title of this facetValue.  Shown on the field header.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getTitle()  {
         return getAttributeAsString("title");
     }
 
+
     /**
      * Hilite style to apply to the title for this facetValue.  See {@link com.smartgwt.client.widgets.cube.CubeGrid#getHilites
      * hilites}.
      *
-     * @param titleHilite titleHilite Default value is null
+     * @param titleHilite . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setTitleHilite(String titleHilite) {
         setAttribute("titleHilite", titleHilite);
@@ -336,12 +371,12 @@ public class FacetValue extends RefDataClass {
      * Hilite style to apply to the title for this facetValue.  See {@link com.smartgwt.client.widgets.cube.CubeGrid#getHilites
      * hilites}.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getTitleHilite()  {
         return getAttributeAsString("titleHilite");
     }
+
 
     /**
      * Width of the cube grid facetValue in pixels.
@@ -355,7 +390,6 @@ public class FacetValue extends RefDataClass {
     /**
      * Width of the cube grid facetValue in pixels.
      *
-     *
      * @return int
      */
     public int getWidth()  {
@@ -365,8 +399,8 @@ public class FacetValue extends RefDataClass {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
     /**
@@ -377,7 +411,7 @@ public class FacetValue extends RefDataClass {
     public void setId(Integer id) {
         setAttribute("id", id);
     }
-    
+
     /**
      * id of this facetValue.  Any string or number.
      *
@@ -386,7 +420,7 @@ public class FacetValue extends RefDataClass {
     public void setId(String id) {
         setAttribute("id", id);
     }
-    
+
     /**
      * id of this facetValue.  Any string or number.
      *
@@ -395,7 +429,7 @@ public class FacetValue extends RefDataClass {
     public Object getId() {
         return getAttributeAsObject("id");
     }
-    
+
     /**
      * id of this facetValue.  Any string or number.
      *
@@ -404,7 +438,7 @@ public class FacetValue extends RefDataClass {
     public String getIdAsString() {
         return getAttributeAsString("id");
     }
-    
+
     /**
      * id of this facetValue.  Any string or number.
      *
@@ -414,23 +448,6 @@ public class FacetValue extends RefDataClass {
         return getAttributeAsInt("id");
     }
 
-    
-	public static FacetValue[] convertToFacetValueArray (JavaScriptObject nativeArray) {
-		if (nativeArray == null) {
-			return new FacetValue[] {};
-		}
-		JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-		FacetValue[] objects = new FacetValue[componentsj.length];
-		for (int i = 0; i < componentsj.length; i++) {
-			JavaScriptObject componentJS = componentsj[i];
-			FacetValue obj = (FacetValue) RefDataClass.getRef(componentJS);
-			if (obj == null) obj = new FacetValue(componentJS);
-			objects[i] = obj;
-		}
-		return objects;
-	}
-
 }
-
 
 

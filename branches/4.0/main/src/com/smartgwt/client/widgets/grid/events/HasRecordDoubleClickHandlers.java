@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.grid.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasRecordDoubleClickHandlers extends HasHandlers {
     /**
      * Executed when the listGrid receives a 'doubleClick' event on an enabled, non-separator record. The default
@@ -37,3 +36,4 @@ public interface HasRecordDoubleClickHandlers extends HasHandlers {
      */
     HandlerRegistration addRecordDoubleClickHandler(RecordDoubleClickHandler handler);
 }
+

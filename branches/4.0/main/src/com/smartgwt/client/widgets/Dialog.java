@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,56 +45,133 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Dialogs are a specialized version of {@link com.smartgwt.client.widgets.Window} used for small windows that contain just
- * a text message or a text mesage with some standard buttons. <P> Many typical modal dialogs such as alerts and
- * confirmations are built into the system with convenience APIs - see  say,  warn and  askForValue. <P> Dialogs can be
- * modal or non-modal according to {@link com.smartgwt.client.widgets.Window#getIsModal isModal}. <P> NOTE: If you are
- * building a dialog that will involve more than just buttons and a message, consider starting from the {@link
- * com.smartgwt.client.widgets.Window} class instead, where arbitrary components can be added to the body area via {@link
- * com.smartgwt.client.widgets.Window#addItem Window.addItem}.
+ * a text
+ *  message or a text mesage with some standard buttons.
+ *  <P>
+ *  Many typical modal dialogs such as alerts and confirmations are built into the system with convenience
+ *  APIs - see  say,  warn and  askForValue.
+ *  <P>
+ *  Dialogs can be modal or non-modal according to {@link com.smartgwt.client.widgets.Window#getIsModal isModal}.
+ *  <P>
+ *  NOTE: If you are building a dialog that will involve more than just buttons and a message, consider
+ * starting from the {@link com.smartgwt.client.widgets.Window} class instead, where arbitrary components can be added to
+ * the body
+ *  area via {@link com.smartgwt.client.widgets.Window#addItem Window.addItem}.
+ *  This is an example of creating a custom dialog:
+ *  
+ *  
+ *  <pre>
+ *  final Dialog dialog = new Dialog();
+ *  dialog.setMessage("Please choose whether to proceed");
+ *  dialog.setIcon("[SKIN]ask.png");
+ *  dialog.setButtons(new Button("OK"), new Button("Cancel"));
+ *  dialog.addButtonClickHandler(new ButtonClickHandler() {
+ *      public void onButtonClick(ButtonClickEvent event) {
+ *          dialog.hide();
+ *      }
+ *  });
+ *  dialog.draw();
+ *  </pre>
+ * 
  */
 public class Dialog extends Window  implements com.smartgwt.client.widgets.events.HasButtonClickHandlers {
 
-    public static Dialog getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (Dialog) obj;
+    public native static Dialog getOrCreateRef(JavaScriptObject jsObj) /*-{
+        if (jsObj == null) return null;
+        var instance = jsObj["__ref"];
+        if (instance == null) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("Dialog",jsObj);
         } else {
-            return new Dialog(jsObj);
+            return instance;
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        $wnd.isc["Dialog"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.Canvas::getConfig()());
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        $wnd.isc["Dialog"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getJsObj()());
+    }-*/;
 
     public Dialog(){
         scClassName = "Dialog";
     }
 
     public Dialog(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "Dialog";
+        setJavaScriptObject(jsObj);
+        
     }
 
     protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
         var widget = $wnd.isc[scClassName].create(config);
+        this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Ljava/lang/String;Z)(widget.getID(), true);
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;
+
     // ********************* Properties / Attributes ***********************
+
 
     /**
      * If a toolbar is showing, automatically place keyboard focus in the first button.
@@ -110,13 +187,14 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
     /**
      * If a toolbar is showing, automatically place keyboard focus in the first button.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getAutoFocus()  {
         return getAttributeAsBoolean("autoFocus");
     }
+
+
 
     /**
      * 
@@ -132,7 +210,6 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
     /**
      * 
      *
-     *
      * @return int
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -140,10 +217,11 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
         return getAttributeAsInt("defaultWidth");
     }
 
+
     /**
      * Icon to show in this dialog - see {@link com.smartgwt.client.widgets.Dialog#getMessage message}.
      *
-     * @param icon icon Default value is null
+     * @param icon . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setIcon(String icon)  throws IllegalStateException {
@@ -153,12 +231,12 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
     /**
      * Icon to show in this dialog - see {@link com.smartgwt.client.widgets.Dialog#getMessage message}.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getIcon()  {
         return getAttributeAsString("icon");
     }
+
 
     /**
      * Size of the icon to show in this dialog.
@@ -173,12 +251,12 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
     /**
      * Size of the icon to show in this dialog.
      *
-     *
      * @return int
      */
     public int getIconSize()  {
         return getAttributeAsInt("iconSize");
     }
+
 
     /**
      * Message to show in this dialog. <P> If a message is set the primary purpose of the dialog will be assumed to be to show
@@ -194,7 +272,7 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
      * com.smartgwt.client.widgets.Canvas#loadingImageSrc loadingImageSrc}). <P> The message will be styled with the {@link
      * com.smartgwt.client.widgets.Dialog#getMessageStyle messageStyle}.
      *
-     * @param message message Default value is null
+     * @param message . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setMessage(String message)  throws IllegalStateException {
@@ -215,26 +293,74 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
      * com.smartgwt.client.widgets.Canvas#loadingImageSrc loadingImageSrc}). <P> The message will be styled with the {@link
      * com.smartgwt.client.widgets.Dialog#getMessageStyle messageStyle}.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      */
     public String getMessage()  {
         return getAttributeAsString("message");
     }
 
+
     /**
-     * Whether to show a toolbar of buttons at the bottom of the Dialog.
+     * AutoChild that shows {@link com.smartgwt.client.widgets.Dialog#getIcon icon}.
+     * <p>
+     * For an overview of how to use and configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
      *
-     * @param showToolbar showToolbar Default value is false
+     * @return Img
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public Img getMessageIcon() throws IllegalStateException {
+        errorIfNotCreated("messageIcon");
+        return Img.getOrCreateRef(getAttributeAsJavaScriptObject("messageIcon"));
+    }
+
+
+    /**
+     * AutoChild that shows {@link com.smartgwt.client.widgets.Dialog#getMessage message}.
+     * <p>
+     * For an overview of how to use and configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return Label
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public Label getMessageLabel() throws IllegalStateException {
+        errorIfNotCreated("messageLabel");
+        return Label.getOrCreateRef(getAttributeAsJavaScriptObject("messageLabel"));
+    }
+
+
+    /**
+     * AutoChild that combines {@link com.smartgwt.client.widgets.Dialog#getMessage message} and {@link
+     * com.smartgwt.client.widgets.Dialog#getIcon icon}.
+     * <p>
+     * For an overview of how to use and configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return Layout
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public Layout getMessageStack() throws IllegalStateException {
+        errorIfNotCreated("messageStack");
+        return Layout.getOrCreateRef(getAttributeAsJavaScriptObject("messageStack"));
+    }
+
+
+
+    /**
+     * Whether to show a toolbar of buttons at the bottom of the Dialog. Default of null will cause the value to be resolved
+     * automatically to true or false when the Dialog is first drawn according as {@link
+     * com.smartgwt.client.widgets.Dialog#getToolbarButtons toolbarButtons} contains buttons or not.
+     *
+     * @param showToolbar showToolbar Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowToolbar(Boolean showToolbar) {
-        setAttribute("showToolbar", showToolbar, true);
+    public void setShowToolbar(Boolean showToolbar)  throws IllegalStateException {
+        setAttribute("showToolbar", showToolbar, false);
     }
 
     /**
-     * Whether to show a toolbar of buttons at the bottom of the Dialog.
-     *
+     * Whether to show a toolbar of buttons at the bottom of the Dialog. Default of null will cause the value to be resolved
+     * automatically to true or false when the Dialog is first drawn according as {@link
+     * com.smartgwt.client.widgets.Dialog#getToolbarButtons toolbarButtons} contains buttons or not.
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -243,10 +369,11 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
         return getAttributeAsBoolean("showToolbar");
     }
 
+
     /**
      * Style of the Dialog background
      *
-     * @param styleName styleName Default value is "dialogBackground"
+     * @param styleName . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "dialogBackground"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setStyleName(String styleName) {
@@ -256,24 +383,29 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
     /**
      * Style of the Dialog background
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getStyleName()  {
         return getAttributeAsString("styleName");
     }
 
-    // ********************* Methods ***********************
-            
+
     /**
-     * Handle a click on the 'apply' button of this Dialog.   Default implementation is to call <code>saveData()</code>, but
-     * NOT close the Dialog.
+     * AutoChild of type Toolbar used to create the {@link com.smartgwt.client.widgets.Dialog#getToolbarButons toolbarButons}.
+     * <p>
+     * For an overview of how to use and configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return Toolbar
+     * @throws IllegalStateException if this widget has not yet been rendered.
      */
-    public native void applyClick() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.applyClick();
-    }-*/;
+    public Toolbar getToolbar() throws IllegalStateException {
+        errorIfNotCreated("toolbar");
+        return Toolbar.getOrCreateRef(getAttributeAsJavaScriptObject("toolbar"));
+    }
+
+
+    // ********************* Methods ***********************
     /**
      * Add a buttonClick handler.
      * <p>
@@ -290,76 +422,38 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
     private native void setupButtonClickEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var buttonClick = $entry(function(){
+            var param = {"button" : arguments[0], "index" : arguments[1]};
+
+                var event = @com.smartgwt.client.widgets.events.ButtonClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({buttonClick:$entry(function(){
-                        var param = {"button" : arguments[0], "index" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.events.ButtonClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({buttonClick:  buttonClick              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.buttonClick = $entry(function(){
-                   var param = {"button" : arguments[0], "index" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.events.ButtonClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.buttonClick =  buttonClick             ;
         }
    }-*/;
-            
-    /**
+	/**
      * Handle a click on the 'cancel' button of this Dialog. Default implementation is to return null and hide the Dialog.
      * Override to do something else.
+     * @see com.smartgwt.client.types.DialogButtons
      */
     public native void cancelClick() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.cancelClick();
     }-*/;
-            
-    /**
-     * Handles a click on the close button of this window. The default implementation hides the window and returns false to
-     * cancel bubbling.  Override this method if you want other actions to be taken.
-     */
-    public native void closeClick() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.closeClick();
-    }-*/;
-            
-    /**
-     * Handle a click on the 'no' button of this Dialog. Default implementation is to return <code>false</code>. Override to do
-     * something else.
-     */
-    public native void noClick() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.noClick();
-    }-*/;
-            
-    /**
-     * Handle a click on the 'ok' button of this Dialog. Default implementation is to call <code>saveData()</code>, hide the
-     * Dialog, then return <code>true</code>.   Override to do something else.
-     */
-    public native void okClick() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.okClick();
-    }-*/;
-            
-    /**
-     * Method to save this Dialog's data. Called from <code>okClick()</code>,  <code>applyClick()</code>. No default
+	/**
+     * Method to save this Dialog's data. Called from <code>okClick()</code>, <code>applyClick()</code>. No default
      * implementation - override to perform some action if required.
+     * @see com.smartgwt.client.widgets.Dialog#okClick
+     * @see com.smartgwt.client.widgets.Dialog#applyClick
      */
     public native void saveData() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.saveData();
-    }-*/;
-            
-    /**
-     * Handle a click on the 'yes' button of this Dialog. Default implementation is to return <code>true</code>. Override to do
-     * something else
-     */
-    public native void yesClick() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.yesClick();
     }-*/;
 
     // ********************* Static Methods ***********************
@@ -370,7 +464,7 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
      * properties of this class. Can also be used for skinning / styling purposes.
      * <P>
      * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
-     * underlying class (including those automatically generated in JavaScript). 
+     * underlying class (including those automatically generated in JavaScript).
      * This method should not be used to apply standard EventHandlers or override methods for
      * a class - use a custom subclass instead.
      *
@@ -381,8 +475,8 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
     	delete properties.ID;
         $wnd.isc.Dialog.addProperties(properties);
     }-*/;
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
 
@@ -480,8 +574,55 @@ public class Dialog extends Window  implements com.smartgwt.client.widgets.event
         return $wnd.isc.Dialog[name];
     }-*/;
 
+    public LogicalStructureObject setLogicalStructure(DialogLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.autoFocus = getAttributeAsString("autoFocus");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Dialog.autoFocus:" + t.getMessage() + "\n";
+        }
+        try {
+            s.defaultWidth = getAttributeAsString("defaultWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Dialog.defaultWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.icon = getAttributeAsString("icon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Dialog.icon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconSize = getAttributeAsString("iconSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Dialog.iconSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.message = getAttributeAsString("message");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Dialog.message:" + t.getMessage() + "\n";
+        }
+        try {
+            s.messageStyle = getAttributeAsString("messageStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Dialog.messageStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showToolbar = getAttributeAsString("showToolbar");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Dialog.showToolbar:" + t.getMessage() + "\n";
+        }
+        try {
+            s.styleName = getAttributeAsString("styleName");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Dialog.styleName:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+
+    public LogicalStructureObject getLogicalStructure() {
+        DialogLogicalStructure s = new DialogLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-
 

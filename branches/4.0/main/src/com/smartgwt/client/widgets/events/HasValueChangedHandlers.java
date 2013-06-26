@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasValueChangedHandlers extends HasHandlers {
     /**
      * This method is called when the slider value changes. This occurs when the setValue method is called, or when the slider
@@ -30,3 +29,4 @@ public interface HasValueChangedHandlers extends HasHandlers {
      */
     HandlerRegistration addValueChangedHandler(ValueChangedHandler handler);
 }
+

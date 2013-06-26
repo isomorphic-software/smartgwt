@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasIconClickHandlers extends HasHandlers {
     /**
      * StringMethod.      Default action to fire when the user clicks on a form item icon. May be overridden      by setting
@@ -30,3 +29,4 @@ public interface HasIconClickHandlers extends HasHandlers {
      */
     HandlerRegistration addIconClickHandler(IconClickHandler handler);
 }
+

@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasMouseStillDownHandlers extends HasHandlers {
     /**
      * Executed repeatedly (every {@link com.smartgwt.client.widgets.Canvas#getMouseStillDownDelay mouseStillDownDelay} by
@@ -35,3 +34,4 @@ public interface HasMouseStillDownHandlers extends HasHandlers {
      */
     HandlerRegistration addMouseStillDownHandler(MouseStillDownHandler handler);
 }
+

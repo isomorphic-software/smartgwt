@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.drawing;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * X/Y position in pixels, specified as an Array with two members, for example: [30, 50]
@@ -68,12 +88,20 @@ public class Point extends RefDataClass {
         return new Point(jsObj);
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
+
     public Point(){
         
     }
 
     public Point(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
+        
     }
 
     public Point(int x, int y) {
@@ -82,20 +110,23 @@ public class Point extends RefDataClass {
         
     }
 
+
     // ********************* Properties / Attributes ***********************
+
+
 
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
 
-    public JavaScriptObject getAsJSArray() {         
-        return JSOHelper.convertToJavaScriptArray(new int[]{getX(),getY()});     
-    } 
-    
+    public JavaScriptObject getAsJSArray() {
+        return JSOHelper.convertToJavaScriptArray(new int[]{getX(),getY()});
+    }
+
     /*
      * Overriding this method so that it returns an array of int values instead of an
      *  object with 2 values, x and y.
@@ -142,23 +173,7 @@ public class Point extends RefDataClass {
         return getAttributeAsInt("y");
     }
 
-    public static Point[] convertToPointArray(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new Point[]{};
-        }
-        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-        Point[] objects = new Point[componentsj.length];
-        for (int i = 0; i < componentsj.length; i++) {
-            JavaScriptObject componentJS = componentsj[i];
-            Point obj = (Point) RefDataClass.getRef(componentJS);
-            if (obj == null) obj = new Point(componentJS);
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
 }
-
 
 
 

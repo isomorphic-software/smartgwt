@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +46,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class DrawAreaChangedEvent extends BrowserEvent<DrawAreaChangedHandler>  {
 
     /**
@@ -92,7 +97,6 @@ public class DrawAreaChangedEvent extends BrowserEvent<DrawAreaChangedHandler>  
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(DrawAreaChangedHandler handler) {
         handler.onDrawAreaChanged(this);
@@ -111,47 +115,45 @@ public class DrawAreaChangedEvent extends BrowserEvent<DrawAreaChangedHandler>  
         super(jsObj);
     }
 
-
-
-    /**
+	/**
      * the startRow from before the drawArea changed
      *
      * @return the startRow from before the drawArea changed
      */
-    public  native int getOldStartRow() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.oldStartRow;
+    public native int getOldStartRow() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.oldStartRow;
+        return ret;
     }-*/;
-
-    /**
+	/**
      * the endRow from before the drawArea changed
      *
      * @return the endRow from before the drawArea changed
      */
-    public  native int getOldEndRow() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.oldEndRow;
+    public native int getOldEndRow() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.oldEndRow;
+        return ret;
     }-*/;
-
-    /**
+	/**
      * the startCol from before the drawArea changed
      *
      * @return the startCol from before the drawArea changed
      */
-    public  native int getOldStartCol() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.oldStartCol;
+    public native int getOldStartCol() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.oldStartCol;
+        return ret;
     }-*/;
-
-    /**
+	/**
      * the endCol from before the drawArea changed
      *
      * @return the endCol from before the drawArea changed
      */
-    public  native int getOldEndCol() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.oldEndCol;
+    public native int getOldEndCol() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.oldEndCol;
+        return ret;
     }-*/;
-
 
 }

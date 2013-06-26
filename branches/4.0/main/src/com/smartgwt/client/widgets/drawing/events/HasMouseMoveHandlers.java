@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.drawing.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasMouseMoveHandlers extends HasHandlers {
     /**
      * Executed when the mouse moves within this widget.  No default implementation.
@@ -29,3 +28,4 @@ public interface HasMouseMoveHandlers extends HasHandlers {
      */
     HandlerRegistration addMouseMoveHandler(MouseMoveHandler handler);
 }
+

@@ -19,11 +19,10 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDragRepositionStopHandlers extends HasHandlers {
     /**
      * Executed when the mouse button is released at the end of the drag. Your widget can use this opportunity to fire custom
-     * code based upon where the mouse button was released, etc.  <p> Returning true from this handler will cause the {@link
+     * code based upon where the mouse button was released, etc. <p> Returning true from this handler will cause the {@link
      * com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} (or outline if {@link
      * com.smartgwt.client.widgets.Canvas#getDragAppearance dragAppearance} is set to "outline") to be left in its current
      * location. Returning false from this handler will cause it to snap back to its original location.
@@ -33,3 +32,4 @@ public interface HasDragRepositionStopHandlers extends HasHandlers {
      */
     HandlerRegistration addDragRepositionStopHandler(DragRepositionStopHandler handler);
 }
+

@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.toolbar;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Base class for creating toolstrips like those found in browsers and office applications: a mixed set of controls
@@ -74,32 +94,86 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class ToolStrip extends Layout {
 
-    public static ToolStrip getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (ToolStrip) obj;
+    public native static ToolStrip getOrCreateRef(JavaScriptObject jsObj) /*-{
+        if (jsObj == null) return null;
+        var instance = jsObj["__ref"];
+        if (instance == null) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("ToolStrip",jsObj);
         } else {
-            return new ToolStrip(jsObj);
+            return instance;
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        $wnd.isc["ToolStrip"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.Canvas::getConfig()());
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        $wnd.isc["ToolStrip"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getJsObj()());
+    }-*/;
 
     public ToolStrip(){
         scClassName = "ToolStrip";
     }
 
     public ToolStrip(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "ToolStrip";
+        setJavaScriptObject(jsObj);
+        
     }
 
     protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
         var widget = $wnd.isc[scClassName].create(config);
+        this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Ljava/lang/String;Z)(widget.getID(), true);
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;
+
     // ********************* Properties / Attributes ***********************
+
+
+    /**
+     * <b>Note :</b> This API is non-functional (always returns null) and exists only to make
+     * you aware that this MultiAutoChild exists.  See {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}
+     * for details.
+     * <p>
+     * DynamicForm instance created by {@link com.smartgwt.client.widgets.toolbar.ToolStrip#addFormItem ToolStrip.addFormItem}
+     * to contain form items for display in this toolStrip. Each time addFormItem() is run, a new formWrapper autoChild will be
+     * created, picking up properties according to the standard AutoChild pattern.
+     *
+     * @return null
+     */
+    public DynamicForm getFormWrapper()  {
+        return null;
+    }
+
+
+
+
 
     /**
      * If set, this attribute affects the alignment of the titles in  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup
@@ -118,12 +192,12 @@ public class ToolStrip extends Layout {
      * ToolStripGroups}.  You can override this at the  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitleAlign
      * individual ToolStripGroup} level.
      *
-     *
      * @return Alignment
      */
     public Alignment getGroupTitleAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("groupTitleAlign"));
     }
+
 
     /**
      * If set, this attribute affects the orientation of the titles in  {@link
@@ -142,17 +216,19 @@ public class ToolStrip extends Layout {
      * com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroups}.  You can override this at the  {@link
      * com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitleAlign individual ToolStripGroup} level.
      *
-     *
      * @return VerticalAlignment
      */
     public VerticalAlignment getGroupTitleOrientation()  {
         return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("groupTitleOrientation"));
     }
 
+
+
+
     /**
      * Customized resizeBar with typical appearance for a ToolStrip.
      *
-     * @param resizeBarClass resizeBarClass Default value is "ToolStripResizer"
+     * @param resizeBarClass . See {@link com.smartgwt.client.docs.String String}. Default value is "ToolStripResizer"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setResizeBarClass(String resizeBarClass)  throws IllegalStateException {
@@ -162,12 +238,12 @@ public class ToolStrip extends Layout {
     /**
      * Customized resizeBar with typical appearance for a ToolStrip.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getResizeBarClass()  {
         return getAttributeAsString("resizeBarClass");
     }
+
 
     /**
      * Thickness of the resizeBars in pixels.
@@ -183,18 +259,18 @@ public class ToolStrip extends Layout {
     /**
      * Thickness of the resizeBars in pixels.
      *
-     *
      * @return int
      */
     public int getResizeBarSize()  {
         return getAttributeAsInt("resizeBarSize");
     }
 
+
     /**
      * Class to create when the string "separator" appears in {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getMembers
      * members}.
      *
-     * @param separatorClass separatorClass Default value is "ToolStripSeparator"
+     * @param separatorClass . See {@link com.smartgwt.client.docs.String String}. Default value is "ToolStripSeparator"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setSeparatorClass(String separatorClass)  throws IllegalStateException {
@@ -205,12 +281,12 @@ public class ToolStrip extends Layout {
      * Class to create when the string "separator" appears in {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getMembers
      * members}.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSeparatorClass()  {
         return getAttributeAsString("separatorClass");
     }
+
 
     /**
      * Separator thickness in pixels
@@ -225,12 +301,12 @@ public class ToolStrip extends Layout {
     /**
      * Separator thickness in pixels
      *
-     *
      * @return int
      */
     public int getSeparatorSize()  {
         return getAttributeAsInt("separatorSize");
     }
+
 
     /**
      * If set, this attribute affects whether {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroups} in
@@ -249,12 +325,12 @@ public class ToolStrip extends Layout {
      * this ToolStrip show their header control.  You can override this at the  {@link
      * com.smartgwt.client.widgets.toolbar.ToolStripGroup#getShowTitle individual ToolStripGroup} level.
      *
-     *
      * @return Boolean
      */
     public Boolean getShowGroupTitle()  {
         return getAttributeAsBoolean("showGroupTitle");
     }
+
 
     /**
      * Indicates whether the components are drawn horizontally from left to right (false), or vertically from top to bottom
@@ -272,13 +348,13 @@ public class ToolStrip extends Layout {
      * Indicates whether the components are drawn horizontally from left to right (false), or vertically from top to bottom
      * (true).
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getVertical()  {
         return getAttributeAsBoolean("vertical");
     }
+
 
     /**
      * Default stylename to use if {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getVertical this.vertical} is true. If
@@ -287,7 +363,7 @@ public class ToolStrip extends Layout {
      * styleName after this widget has been initialized, you should simply call {@link
      * com.smartgwt.client.widgets.Canvas#setStyleName setStyleName()} rather than updating this  property.
      *
-     * @param verticalStyleName verticalStyleName Default value is null
+     * @param verticalStyleName . See {@link com.smartgwt.client.docs.CSSClassName CSSClassName}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -302,8 +378,7 @@ public class ToolStrip extends Layout {
      * styleName after this widget has been initialized, you should simply call {@link
      * com.smartgwt.client.widgets.Canvas#setStyleName setStyleName()} rather than updating this  property.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSClassName CSSClassName}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getVerticalStyleName()  {
@@ -320,7 +395,7 @@ public class ToolStrip extends Layout {
      * properties of this class. Can also be used for skinning / styling purposes.
      * <P>
      * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
-     * underlying class (including those automatically generated in JavaScript). 
+     * underlying class (including those automatically generated in JavaScript).
      * This method should not be used to apply standard EventHandlers or override methods for
      * a class - use a custom subclass instead.
      *
@@ -331,8 +406,8 @@ public class ToolStrip extends Layout {
     	delete properties.ID;
         $wnd.isc.ToolStrip.addProperties(properties);
     }-*/;
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
     /**
@@ -452,11 +527,12 @@ public class ToolStrip extends Layout {
      * @param toolStripSpacer the toolstip spacer.
      */
     public void addSpacer(ToolStripSpacer toolStripSpacer) {
-        Canvas canvas = new Canvas();
-        canvas.setWidth(1);
-        canvas.setHeight(1);
-        canvas.setBorder("none");
-        canvas.setExtraSpace(toolStripSpacer.getSpace());
+        LayoutSpacer canvas = new LayoutSpacer();
+        if (this.getVertical()) {
+        	canvas.setHeight(toolStripSpacer.getSpace());
+        } else {
+        	canvas.setWidth(toolStripSpacer.getSpace());
+        }
         addMember(canvas);
     }
 
@@ -484,7 +560,60 @@ public class ToolStrip extends Layout {
         addMember(new ToolStripResizer());
     }
 
+    public LogicalStructureObject setLogicalStructure(ToolStripLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.groupTitleAlign = getAttributeAsString("groupTitleAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStrip.groupTitleAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.groupTitleOrientation = getAttributeAsString("groupTitleOrientation");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStrip.groupTitleOrientation:" + t.getMessage() + "\n";
+        }
+        try {
+            s.resizeBarClass = getAttributeAsString("resizeBarClass");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStrip.resizeBarClass:" + t.getMessage() + "\n";
+        }
+        try {
+            s.resizeBarSize = getAttributeAsString("resizeBarSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStrip.resizeBarSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.separatorClass = getAttributeAsString("separatorClass");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStrip.separatorClass:" + t.getMessage() + "\n";
+        }
+        try {
+            s.separatorSize = getAttributeAsString("separatorSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStrip.separatorSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showGroupTitle = getAttributeAsString("showGroupTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStrip.showGroupTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vertical = getAttributeAsString("vertical");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStrip.vertical:" + t.getMessage() + "\n";
+        }
+        try {
+            s.verticalStyleName = getAttributeAsString("verticalStyleName");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStrip.verticalStyleName:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+
+    public LogicalStructureObject getLogicalStructure() {
+        ToolStripLogicalStructure s = new ToolStripLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

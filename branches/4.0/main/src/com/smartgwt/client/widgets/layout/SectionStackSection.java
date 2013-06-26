@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.layout;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,28 +45,57 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
- * Section descriptor used by a SectionStack to describe a section of items which are shown or hidden together, and their
- * associated header.
+ * Section descriptor used by a SectionStack to describe a section of items which are shown or hidden together along with
+ * their associated header.  <P> A section header (see {@link
+ * com.smartgwt.client.widgets.layout.SectionStack#getSectionHeaderClass sectionHeaderClass}) is created from this
+ * descriptor when the SectionStack is drawn. Any changes after creation  must be made to the section header: {@link
+ * com.smartgwt.client.widgets.layout.SectionStack#getSectionHeader SectionStack.getSectionHeader}. <P> Additional
+ * SectionHeader properties set on the SectionStackSection not explicitly documented such as "iconAlign" or "prompt" is
+ * supported - use <code>setAttribute()</code>.
  */
 public class SectionStackSection extends RefDataClass {
 
     public static SectionStackSection getOrCreateRef(JavaScriptObject jsObj) {
+
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (SectionStackSection) obj;
@@ -75,22 +104,36 @@ public class SectionStackSection extends RefDataClass {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
+
     public SectionStackSection(){
-        setID(com.smartgwt.client.util.SC.generateID("SectionStackSection"));
-				
+        
+                    setAttribute("ID", SC.generateID("SectionStackSection"));
+                    setAttribute("_autoAssignedID", true);
+                
     }
 
     public SectionStackSection(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
+        
     }
 
     public SectionStackSection(String title) {
         setTitle(title);
-        setID(com.smartgwt.client.util.SC.generateID("SectionStackSection"));
-				
+        
+                    setAttribute("ID", SC.generateID("SectionStackSection"));
+                    setAttribute("_autoAssignedID", true);
+                
     }
 
+
     // ********************* Properties / Attributes ***********************
+
 
     /**
      * This attribute controls whether or not the expand/collapse UI control is shown on the header of this section.  Any
@@ -103,6 +146,7 @@ public class SectionStackSection extends RefDataClass {
         setAttribute("canCollapse", canCollapse);
     }
 
+
     /**
      * When explicitly set to false, disallows drop before this member in the Layout.
      *
@@ -113,6 +157,7 @@ public class SectionStackSection extends RefDataClass {
     public void setCanDropBefore(Boolean canDropBefore) {
         setAttribute("canDropBefore", canDropBefore);
     }
+
 
     /**
      * If set to false, then this sectionHeader will not be able to be dragged to perform a drag reorder, if {@link
@@ -125,6 +170,7 @@ public class SectionStackSection extends RefDataClass {
     public void setCanReorder(Boolean canReorder) {
         setAttribute("canReorder", canReorder);
     }
+
 
     /**
      * If true, the header for this Section will be included in the page's tab order for accessibility. May also be set at the
@@ -144,49 +190,62 @@ public class SectionStackSection extends RefDataClass {
      * com.smartgwt.client.widgets.layout.SectionStack#getCanTabToHeaders canTabToHeaders}. <P> See {@link
      * com.smartgwt.client.docs.Accessibility}.
      *
-     *
      * @return Boolean
      */
     public Boolean getCanTabToHeader()  {
         return getAttributeAsBoolean("canTabToHeader");
     }
 
+
     /**
-     * Optional ID for the section. If {@link com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs
-     * useGlobalSectionIDs} is true, this property will be applied to the generated SectionStackHeader widget as a standard
-     * widget ID, meaning it should be unique within a page. <P> <b>Backcompat Note</b>: Section stack sections may be uniquely
-     * identified within a stack via the {@link com.smartgwt.client.widgets.layout.SectionStackSection#getName name} attribute
-     * (introduced in Jan 2010). Prior to this, the section ID attribute was used in this way (and would not be applied to the
-     * section header  as a widget ID). For backwards compatibility this is still supported: If  <code>section.name</code> is
-     * unspecified for a section but <code>section.ID</code> is set, the ID will be used as a default name attribute for the
-     * section. For backwards compatibility we also disable the standard behavior of having the <code>section.ID</code> being
-     * applied to the generated section header (thereby avoiding the page-level uniqueness requirement) by defaulting  {@link
-     * com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs useGlobalSectionIDs} to false.
+     * If the title for this section header is too large for the available space, should the title be clipped? <p> This feature
+     * is supported only in browsers that support the CSS UI text-overflow property (IE6+, Firefox 7+, Safari, Chrome, Opera
+     * 9+).
      *
-     * @param ID ID Default value is null
+     * @param clipTitle clipTitle Default value is true
      */
-    public void setID(String ID) {
-        setAttribute("ID", ID);
+    public void setClipTitle(Boolean clipTitle) {
+        setAttribute("clipTitle", clipTitle);
     }
 
     /**
-     * Optional ID for the section. If {@link com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs
-     * useGlobalSectionIDs} is true, this property will be applied to the generated SectionStackHeader widget as a standard
-     * widget ID, meaning it should be unique within a page. <P> <b>Backcompat Note</b>: Section stack sections may be uniquely
-     * identified within a stack via the {@link com.smartgwt.client.widgets.layout.SectionStackSection#getName name} attribute
-     * (introduced in Jan 2010). Prior to this, the section ID attribute was used in this way (and would not be applied to the
-     * section header  as a widget ID). For backwards compatibility this is still supported: If  <code>section.name</code> is
-     * unspecified for a section but <code>section.ID</code> is set, the ID will be used as a default name attribute for the
-     * section. For backwards compatibility we also disable the standard behavior of having the <code>section.ID</code> being
-     * applied to the generated section header (thereby avoiding the page-level uniqueness requirement) by defaulting  {@link
-     * com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs useGlobalSectionIDs} to false.
+     * If the title for this section header is too large for the available space, should the title be clipped? <p> This feature
+     * is supported only in browsers that support the CSS UI text-overflow property (IE6+, Firefox 7+, Safari, Chrome, Opera
+     * 9+).
      *
-     *
-     * @return String
+     * @return Boolean
      */
-    public String getID()  {
-        return getAttributeAsString("ID");
+    public Boolean getClipTitle()  {
+        return getAttributeAsBoolean("clipTitle");
     }
+
+
+
+
+    /**
+     * Base filename of the icon that represents open and closed states. The default settings also change the icon for disabled
+     * sections, so a total of four images are required (opened, closed, Disabled_opened, Disabled_closed). <P> Not shown if
+     * {@link com.smartgwt.client.widgets.layout.SectionStackSection#getCanCollapse canCollapse} is false.
+     *
+     * @param icon . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]SectionHeader/opener.gif"
+     */
+    public void setIcon(String icon) {
+        setAttribute("icon", icon);
+    }
+
+    /**
+     * Base filename of the icon that represents open and closed states. The default settings also change the icon for disabled
+     * sections, so a total of four images are required (opened, closed, Disabled_opened, Disabled_closed). <P> Not shown if
+     * {@link com.smartgwt.client.widgets.layout.SectionStackSection#getCanCollapse canCollapse} is false.
+     *
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
+     */
+    public String getIcon()  {
+        return getAttributeAsString("icon");
+    }
+
+
+
 
     /**
      * Identifier for the section.  This can be used later in calls to {@link com.smartgwt.client.widgets.layout.SectionStack}
@@ -196,7 +255,7 @@ public class SectionStackSection extends RefDataClass {
      * which may be used as a valid JavaScript identifier (should start with a letter and not contain space or special
      * characters such as "*").
      *
-     * @param name name Default value is null
+     * @param name . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setName(String name) {
         setAttribute("name", name);
@@ -210,12 +269,12 @@ public class SectionStackSection extends RefDataClass {
      * which may be used as a valid JavaScript identifier (should start with a letter and not contain space or special
      * characters such as "*").
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getName()  {
         return getAttributeAsString("name");
     }
+
 
     /**
      * If set to false, then the items in this section will not be resized by sectionHeader repositioning.  You may also set
@@ -228,6 +287,26 @@ public class SectionStackSection extends RefDataClass {
         setAttribute("resizeable", resizeable);
     }
 
+
+    /**
+     * If true and the title is clipped, then a hover containing the full title of this section header is enabled.
+     *
+     * @param showClippedTitleOnHover showClippedTitleOnHover Default value is true
+     */
+    public void setShowClippedTitleOnHover(Boolean showClippedTitleOnHover) {
+        setAttribute("showClippedTitleOnHover", showClippedTitleOnHover);
+    }
+
+    /**
+     * If true and the title is clipped, then a hover containing the full title of this section header is enabled.
+     *
+     * @return Boolean
+     */
+    public Boolean getShowClippedTitleOnHover()  {
+        return getAttributeAsBoolean("showClippedTitleOnHover");
+    }
+
+
     /**
      * If true, a header will be shown for this section.  If false, no header will be shown.
      *
@@ -237,11 +316,12 @@ public class SectionStackSection extends RefDataClass {
         setAttribute("showHeader", showHeader);
     }
 
+
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
 
@@ -331,7 +411,7 @@ public class SectionStackSection extends RefDataClass {
         if(!jsObj.items) {
             jsObj.items = @com.smartgwt.client.util.JSOHelper::createJavaScriptArray()();
         }
-        return @com.smartgwt.client.widgets.Canvas::convertToCanvasArray(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.items);
+        return @com.smartgwt.client.util.ConvertTo::arrayOfCanvas(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.items);
     }-*/;
 
     public void addItem(Canvas item) {
@@ -348,21 +428,21 @@ public class SectionStackSection extends RefDataClass {
     }-*/;
 
     /**
-     *  Custom controls to be shown on top of this section header. 
+     *  Custom controls to be shown on top of this section header.
      * @param controls
      */
     public void setControls(Canvas... controls) {
         setAttribute("controls", controls);
     }
-    
+
     public native Canvas[] getControls () /*-{
         var jsObj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         if (jsObj.controls == null) return null;
-        return @com.smartgwt.client.widgets.Canvas::convertToCanvasArray(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.controls);
+        return @com.smartgwt.client.util.ConvertTo::arrayOfCanvas(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.controls);
     }-*/;
 
     /**
-     * Once a SectionStackSection has been applied to a SectionStack, this method may be used to return  a pointer to the 
+     * Once a SectionStackSection has been applied to a SectionStack, this method may be used to return  a pointer to the
      * SectionStack in which this section header is embedded.
      *
      * @return the SectionStack in which this section is embedded
@@ -371,24 +451,116 @@ public class SectionStackSection extends RefDataClass {
     public SectionStack getSectionStack() {
     	return stack;
     }
-    
+
     /**
-     * Once a SectionStackSection has been applied to a SectionStack, this method may be used to return  a pointer to the 
+     * Once a SectionStackSection has been applied to a SectionStack, this method may be used to return  a pointer to the
      * SectionHeader for this section
      * @return the SectionHeader for the section
      */
     public native SectionHeader getSectionHeader () /*-{
     	var jsObj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
     	if (jsObj == null) return null;
-    	
+
     	var sectionHeader = jsObj.getSectionHeader != null ? jsObj.getSectionHeader() : null;
 	    if (sectionHeader == null) return null;
-	    
+
 	    return @com.smartgwt.client.widgets.layout.SectionHeader::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(sectionHeader);
     }-*/;
 
-}
+    /**
+     * Optional ID for the section. If {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs
+     * useGlobalSectionIDs} is true, this property will be applied to the generated
+     * SectionStackHeader widget as a standard widget ID, meaning it should be unique within a
+     * page. <P> <b>Backcompat Note</b>: Section stack sections may be uniquely identified
+     * within a stack via the {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getName name} attribute
+     * (introduced in Jan 2010). Prior to this, the section ID attribute was used in this way
+     * (and would not be applied to the section header as a widget ID). For backwards
+     * compatibility this is still supported: If <code>section.name</code> is unspecified for a
+     * section but <code>section.ID</code> is set, the ID will be used as a default name
+     * attribute for the section. For backwards compatibility we also disable the standard
+     * behavior of having the <code>section.ID</code> being applied to the generated section
+     * header (thereby avoiding the page-level uniqueness requirement) by defaulting {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs
+     * useGlobalSectionIDs} to false.
+     *
+     *
+     * @return String
+     */
+    public String getID()  {
+        return getAttributeAsString("ID");
+    }
 
+    /**
+     * Optional ID for the section. If {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs
+     * useGlobalSectionIDs} is true, this property will be applied to the generated
+     * SectionStackHeader widget as a standard widget ID, meaning it should be unique within a
+     * page. <P> <b>Backcompat Note</b>: Section stack sections may be uniquely identified
+     * within a stack via the {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getName name} attribute
+     * (introduced in Jan 2010). Prior to this, the section ID attribute was used in this way
+     * (and would not be applied to the section header as a widget ID). For backwards
+     * compatibility this is still supported: If <code>section.name</code> is unspecified for a
+     * section but <code>section.ID</code> is set, the ID will be used as a default name
+     * attribute for the section. For backwards compatibility we also disable the standard
+     * behavior of having the <code>section.ID</code> being applied to the generated section
+     * header (thereby avoiding the page-level uniqueness requirement) by defaulting {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs
+     * useGlobalSectionIDs} to false.
+     *
+     * @param ID ID Default value is null
+     */
+    public void setID(String ID) {
+        setAttribute("ID", ID);
+        setAttribute("_autoAssignedID", false);
+    }
+    
+
+    /**
+     * Specify the ariaRole for this SectionStackSection. This role will be applied to the 
+     * SectionHeader for the section.
+     * See {@link com.smartgwt.client.docs.Accessibility}
+     * @param ariaRole
+     */
+    public void setAriaRole(String ariaRole) {
+    	setAttribute("ariaRole", ariaRole);
+    }
+    
+    /**
+     * Specify an ariaState for this SectionStackSection. This state will be applied to the 
+     * SectionHeader for the section.
+     * See {@link com.smartgwt.client.docs.Accessibility}
+     * @param stateName
+     * @param stateValue
+     */
+    public void setAriaState(String stateName, Object stateValue) {
+    	JavaScriptObject ariaState = this.getAttributeAsJavaScriptObject("ariaState");
+    	if (ariaState == null) ariaState = JSOHelper.createObject();
+    	JSOHelper.setAttribute(ariaState,  stateName,  stateValue);
+    	this.setAttribute("ariaState",  ariaState);
+    }
+
+    /**
+     * Provide a custom implementation of {@link com.smartgwt.client.widgets.layout.SectionHeader#titleHoverHTML(java.lang.String)}.
+     */
+    public native void setTitleHoverFormatter(TitleHoverFormatter formatter) /*-{
+        // If `formatter' is null, we would normally get the "titleHoverHTML" instance property
+        // (for the default titleHoverHTML() implementation), but here we do not know whether
+        // the section header class is/will be SectionHeader, ImgSectionHeader, or possibly something
+        // else. So, set `self.titleHoverHTML' if `formatter' is not null; otherwise, delete whatever's
+        // there.
+        var self = this.@com.smartgwt.client.widgets.layout.SectionStackSection::getJsObj()();
+        if (formatter == null) delete self.titleHoverHTML;
+        else {
+            self.titleHoverHTML = $entry(function (defaultHTML) {
+                return formatter.@com.smartgwt.client.widgets.TitleHoverFormatter::getHoverHTML(Ljava/lang/String;)(defaultHTML);
+            });
+        }
+    }-*/;
+
+}
 
 
 

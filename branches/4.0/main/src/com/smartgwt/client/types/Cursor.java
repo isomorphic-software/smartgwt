@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * You can use whatever cursors are valid for your deployment platforms, but keep in mind that visual representation may
  * vary by browser and OS.
@@ -103,7 +104,6 @@ public enum Cursor implements ValueEnum {
      * Use the "not-allowed" cursor.
      */
     NOT_ALLOWED("not-allowed");
-
     private String value;
 
     Cursor(String value) {

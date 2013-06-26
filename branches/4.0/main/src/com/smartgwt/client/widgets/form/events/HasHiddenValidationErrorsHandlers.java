@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.form.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasHiddenValidationErrorsHandlers extends HasHandlers {
     /**
      * Method to display validation error messages for fields that are not currently visible  in this form.<br> This will be
@@ -33,3 +32,4 @@ public interface HasHiddenValidationErrorsHandlers extends HasHandlers {
      */
     HandlerRegistration addHiddenValidationErrorsHandler(HiddenValidationErrorsHandler handler);
 }
+

@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +46,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class NodeContextClickEvent extends BrowserEvent<NodeContextClickHandler>  implements Cancellable {
     private boolean cancel = false;
 
@@ -93,7 +98,6 @@ public class NodeContextClickEvent extends BrowserEvent<NodeContextClickHandler>
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(NodeContextClickHandler handler) {
         handler.onNodeContextClick(this);
@@ -112,7 +116,6 @@ public class NodeContextClickEvent extends BrowserEvent<NodeContextClickHandler>
         super(jsObj);
     }
 
-
     /**
      * Calling this method cancels the event
      */
@@ -126,36 +129,37 @@ public class NodeContextClickEvent extends BrowserEvent<NodeContextClickHandler>
     public boolean isCancelled() {
         return cancel;
     }
-
-    /**
+	/**
      * The TreeGrid on which the contextclick occurred.
      *
      * @return The TreeGrid on which the contextclick occurred.
      */
-    public  native TreeGrid getViewer() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.tree.TreeGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.viewer);
+    public native TreeGrid getViewer() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.viewer;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.tree.TreeGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
-    /**
+	/**
      * The node (record) on which the contextclick occurred.
      *
      * @return The node (record) on which the contextclick occurred.
      */
-    public  native TreeNode getNode() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.node);
+    public native TreeNode getNode() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.node;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
-    /**
+	/**
      * Index of the row where the contextclick occurred.
      *
      * @return Index of the row where the contextclick occurred.
      */
-    public  native int getRecordNum() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.recordNum;
+    public native int getRecordNum() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.recordNum;
+        return ret;
     }-*/;
-
 
 }

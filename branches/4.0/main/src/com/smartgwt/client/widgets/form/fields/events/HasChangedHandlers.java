@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasChangedHandlers extends HasHandlers {
     /**
      * Called when a FormItem's value has been changed as the result of user interaction.  This method fires after the newly
@@ -30,3 +29,4 @@ public interface HasChangedHandlers extends HasHandlers {
      */
     HandlerRegistration addChangedHandler(ChangedHandler handler);
 }
+

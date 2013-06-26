@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.tab;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,50 +45,105 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Specialized StretchImgButton used by TabSet/TabBar for tabs
  */
 public class ImgTab extends StretchImgButton {
 
-    public static ImgTab getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (ImgTab) obj;
+    public native static ImgTab getOrCreateRef(JavaScriptObject jsObj) /*-{
+        if (jsObj == null) return null;
+        var instance = jsObj["__ref"];
+        if (instance == null) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("ImgTab",jsObj);
         } else {
-            return new ImgTab(jsObj);
+            return instance;
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        $wnd.isc["ImgTab"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.Canvas::getConfig()());
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        $wnd.isc["ImgTab"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getJsObj()());
+    }-*/;
 
     public ImgTab(){
         scClassName = "ImgTab";
     }
 
     public ImgTab(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "ImgTab";
+        setJavaScriptObject(jsObj);
+        
     }
 
     protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
         var widget = $wnd.isc[scClassName].create(config);
+        this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Ljava/lang/String;Z)(widget.getID(), true);
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;
+
     // ********************* Properties / Attributes ***********************
+
 
     /**
      * Alignment of title text
@@ -103,7 +158,6 @@ public class ImgTab extends StretchImgButton {
     /**
      * Alignment of title text
      *
-     *
      * @return Alignment
      * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
@@ -111,10 +165,11 @@ public class ImgTab extends StretchImgButton {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
     }
 
+
     /**
      * 
      *
-     * @param baseStyle baseStyle Default value is "tab"
+     * @param baseStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "tab"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setBaseStyle(String baseStyle)  throws IllegalStateException {
@@ -124,12 +179,12 @@ public class ImgTab extends StretchImgButton {
     /**
      * 
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getBaseStyle()  {
         return getAttributeAsString("baseStyle");
     }
+
 
     /**
      * How big are the end pieces by default
@@ -144,7 +199,6 @@ public class ImgTab extends StretchImgButton {
     /**
      * How big are the end pieces by default
      *
-     *
      * @return int
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -152,10 +206,11 @@ public class ImgTab extends StretchImgButton {
         return getAttributeAsInt("capSize");
     }
 
+
     /**
      * Base path for images shown within this ImgTab's label. This will be used for icons (such as the close icon) by default.
      *
-     * @param labelSkinImgDir labelSkinImgDir Default value is "images/"
+     * @param labelSkinImgDir . See {@link com.smartgwt.client.docs.String String}. Default value is "images/"
      */
     public void setLabelSkinImgDir(String labelSkinImgDir) {
         setAttribute("labelSkinImgDir", labelSkinImgDir, true);
@@ -164,12 +219,13 @@ public class ImgTab extends StretchImgButton {
     /**
      * Base path for images shown within this ImgTab's label. This will be used for icons (such as the close icon) by default.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getLabelSkinImgDir()  {
         return getAttributeAsString("labelSkinImgDir");
     }
+
+
 
     /**
      * Should we visibly change state when the tab receives keyboard focus?
@@ -183,12 +239,12 @@ public class ImgTab extends StretchImgButton {
     /**
      * Should we visibly change state when the tab receives keyboard focus?
      *
-     *
      * @return Boolean
      */
     public Boolean getShowFocused()  {
         return getAttributeAsBoolean("showFocused");
     }
+
 
     /**
      * Should we visibly change state when the mouse goes over this tab
@@ -202,19 +258,19 @@ public class ImgTab extends StretchImgButton {
     /**
      * Should we visibly change state when the mouse goes over this tab
      *
-     *
      * @return Boolean
      */
     public Boolean getShowRollOver()  {
         return getAttributeAsBoolean("showRollOver");
     }
 
+
     /**
      * Base path for the images.   <B>Note</B> that when used within a TabSet, the {@link
      * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} is appended as an additional path segment,
      * yielding "images/Tab/top/" et al.
      *
-     * @param skinImgDir skinImgDir Default value is "images/Tab/"
+     * @param skinImgDir . See {@link com.smartgwt.client.docs.String String}. Default value is "images/Tab/"
      */
     public void setSkinImgDir(String skinImgDir) {
         setAttribute("skinImgDir", skinImgDir, true);
@@ -225,17 +281,17 @@ public class ImgTab extends StretchImgButton {
      * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} is appended as an additional path segment,
      * yielding "images/Tab/top/" et al.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSkinImgDir()  {
         return getAttributeAsString("skinImgDir");
     }
 
+
     /**
      * Base URL for tab images
      *
-     * @param src src Default value is "tab.gif"
+     * @param src . See {@link com.smartgwt.client.docs.String String}. Default value is "tab.gif"
      */
     public void setSrc(String src) {
         setAttribute("src", src, true);
@@ -244,19 +300,19 @@ public class ImgTab extends StretchImgButton {
     /**
      * Base URL for tab images
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSrc()  {
         return getAttributeAsString("src");
     }
+
 
     /**
      * Like {@link com.smartgwt.client.widgets.StretchImgButton#getTitleStyle titleStyle}, can set to provide a separate style
      * for the title text. <P> If set and the ImgTab is {@link com.smartgwt.client.widgets.StretchImgButton#getVertical
      * vertical}, a "v" will be automatically prepended to the style name (hence "tabTitle" -> "vtabTitle").
      *
-     * @param titleStyle titleStyle Default value is null
+     * @param titleStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setTitleStyle(String titleStyle)  throws IllegalStateException {
@@ -268,8 +324,7 @@ public class ImgTab extends StretchImgButton {
      * for the title text. <P> If set and the ImgTab is {@link com.smartgwt.client.widgets.StretchImgButton#getVertical
      * vertical}, a "v" will be automatically prepended to the style name (hence "tabTitle" -> "vtabTitle").
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getTitleStyle()  {
         return getAttributeAsString("titleStyle");
@@ -285,7 +340,7 @@ public class ImgTab extends StretchImgButton {
      * properties of this class. Can also be used for skinning / styling purposes.
      * <P>
      * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
-     * underlying class (including those automatically generated in JavaScript). 
+     * underlying class (including those automatically generated in JavaScript).
      * This method should not be used to apply standard EventHandlers or override methods for
      * a class - use a custom subclass instead.
      *
@@ -296,10 +351,63 @@ public class ImgTab extends StretchImgButton {
     	delete properties.ID;
         $wnd.isc.ImgTab.addProperties(properties);
     }-*/;
-        
-    // ***********************************************************        
 
+    // ***********************************************************
+
+    public LogicalStructureObject setLogicalStructure(ImgTabLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.align = getAttributeAsString("align");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgTab.align:" + t.getMessage() + "\n";
+        }
+        try {
+            s.baseStyle = getAttributeAsString("baseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgTab.baseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.capSize = getAttributeAsString("capSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgTab.capSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.labelSkinImgDir = getAttributeAsString("labelSkinImgDir");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgTab.labelSkinImgDir:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showFocused = getAttributeAsString("showFocused");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgTab.showFocused:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showRollOver = getAttributeAsString("showRollOver");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgTab.showRollOver:" + t.getMessage() + "\n";
+        }
+        try {
+            s.skinImgDir = getAttributeAsString("skinImgDir");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgTab.skinImgDir:" + t.getMessage() + "\n";
+        }
+        try {
+            s.src = getAttributeAsString("src");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgTab.src:" + t.getMessage() + "\n";
+        }
+        try {
+            s.titleStyle = getAttributeAsString("titleStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgTab.titleStyle:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+
+    public LogicalStructureObject getLogicalStructure() {
+        ImgTabLogicalStructure s = new ImgTabLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

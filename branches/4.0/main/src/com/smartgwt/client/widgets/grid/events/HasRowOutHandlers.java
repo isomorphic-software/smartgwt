@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.grid.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasRowOutHandlers extends HasHandlers {
     /**
      * Called when the mouse pointer leaves a row
@@ -29,3 +28,4 @@ public interface HasRowOutHandlers extends HasHandlers {
      */
     HandlerRegistration addRowOutHandler(RowOutHandler handler);
 }
+

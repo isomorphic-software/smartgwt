@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Orientation of titles relative to the FormItem being labeled.  Can be set a the DynamicForm level as a default, or on
  * individual items.
@@ -24,7 +25,6 @@ public enum TitleOrientation implements ValueEnum {
     LEFT("left"),
     TOP("top"),
     RIGHT("right");
-
     private String value;
 
     TitleOrientation(String value) {

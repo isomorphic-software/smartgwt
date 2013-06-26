@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.calendar.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasEventRemovedHandlers extends HasHandlers {
     /**
      * Notification fired whenever a user removes an event <P> In a calendar with a DataSource, eventRemoved() fires
@@ -30,3 +29,4 @@ public interface HasEventRemovedHandlers extends HasHandlers {
      */
     HandlerRegistration addEventRemovedHandler(EventRemovedHandler handler);
 }
+

@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.cube.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasFacetRemovedHandlers extends HasHandlers {
     /**
      * Notification fired when a facet is removed.
@@ -29,3 +28,4 @@ public interface HasFacetRemovedHandlers extends HasHandlers {
      */
     HandlerRegistration addFacetRemovedHandler(FacetRemovedHandler handler);
 }
+

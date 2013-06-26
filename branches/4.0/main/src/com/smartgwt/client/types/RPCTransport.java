@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Smart GWT supports multiple RPC transports for maximum compatibility and feature richness. All of transports use HTTP as
  * the underlying protocol, but use different mechanisms for sending the HTTP request and processing the response.  The
@@ -46,7 +47,6 @@ public enum RPCTransport implements ValueEnum {
      * Cannot be used to target cross-domain URLs directly.
      */
     HIDDENFRAME("hiddenFrame");
-
     private String value;
 
     RPCTransport(String value) {

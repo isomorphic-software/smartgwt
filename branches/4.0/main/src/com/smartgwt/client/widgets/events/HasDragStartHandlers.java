@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDragStartHandlers extends HasHandlers {
     /**
      * Executed when dragging first starts. Your widget can use this opportunity to set things up for the drag, such as setting
@@ -32,3 +31,4 @@ public interface HasDragStartHandlers extends HasHandlers {
      */
     HandlerRegistration addDragStartHandler(DragStartHandler handler);
 }
+

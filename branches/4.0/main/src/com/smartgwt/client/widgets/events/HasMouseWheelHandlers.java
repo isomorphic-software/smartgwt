@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasMouseWheelHandlers extends HasHandlers {
     /**
      * Executed when the mouse wheel is actuated.
@@ -29,3 +28,4 @@ public interface HasMouseWheelHandlers extends HasHandlers {
      */
     HandlerRegistration addMouseWheelHandler(MouseWheelHandler handler);
 }
+

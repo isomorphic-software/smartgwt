@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.grid.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasCellHoverHandlers extends HasHandlers {
     /**
      * Called when the mouse hovers over a cell if this.canHover is true.   Returning false will suppress the hover text from
@@ -30,3 +29,4 @@ public interface HasCellHoverHandlers extends HasHandlers {
      */
     HandlerRegistration addCellHoverHandler(CellHoverHandler handler);
 }
+

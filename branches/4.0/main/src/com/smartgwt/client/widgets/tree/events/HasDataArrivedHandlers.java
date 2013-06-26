@@ -19,16 +19,17 @@ package com.smartgwt.client.widgets.tree.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDataArrivedHandlers extends HasHandlers {
     /**
      * Notification method fired whenever this TreeGrid receives new data nodes from the  dataSource. Only applies to databound
-     * TreeGrids where {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} is a  ResultTree - either explicitly
-     * created and applied via {@link com.smartgwt.client.widgets.tree.TreeGrid#setData TreeGrid.setData} or automatically
-     * generated via a {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData fetchData()} call.
+     * TreeGrids where {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} is a  {@link
+     * com.smartgwt.client.widgets.tree.ResultTree} - either explicitly created and applied via {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#setData TreeGrid.setData} or automatically generated via a {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#fetchData fetchData()} call.
      *
      * @param handler the dataArrived handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addDataArrivedHandler(DataArrivedHandler handler);
 }
+

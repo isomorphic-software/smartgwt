@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * String designating a standard time format for displaying the times associated with  dates strings.
  */
@@ -57,7 +58,6 @@ public enum TimeDisplayFormat implements ValueEnum {
      * Examples: <code>15:25</code>, <code>03:16</code>
      */
     TOSHORTPADDED24HOURTIME("toShortPadded24HourTime");
-
     private String value;
 
     TimeDisplayFormat(String value) {

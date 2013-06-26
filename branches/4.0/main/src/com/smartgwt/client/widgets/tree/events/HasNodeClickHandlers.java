@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.tree.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasNodeClickHandlers extends HasHandlers {
     /**
      * This method is called when a leaf or folder record is clicked on.  Note that if you set up a callback for
@@ -31,3 +30,4 @@ public interface HasNodeClickHandlers extends HasHandlers {
      */
     HandlerRegistration addNodeClickHandler(NodeClickHandler handler);
 }
+

@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.tree;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * An object literal with a particular set of properties used to configure the display of and interaction with the columns
@@ -78,12 +98,20 @@ public class TreeGridField extends ListGridField {
         return new TreeGridField(jsObj);
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
+
     public TreeGridField(){
         
     }
 
     public TreeGridField(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
+        
     }
 
     public TreeGridField(String name) {
@@ -106,7 +134,9 @@ public class TreeGridField extends ListGridField {
         
     }
 
+
     // ********************* Properties / Attributes ***********************
+
 
     /**
      * Dictates whether the data in this field be exported.  Explicitly set this  to false to prevent exporting.  Has no effect
@@ -124,21 +154,22 @@ public class TreeGridField extends ListGridField {
      * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport dataSourceField} is explicitly set to  
      * canExport: false.
      *
-     *
      * @return Boolean
      */
     public Boolean getCanExport()  {
         return getAttributeAsBoolean("canExport");
     }
 
+
     /**
      * The field containing <code>treeField: true</code> will display the {@link com.smartgwt.client.widgets.tree.Tree}.  If no
      * field specifies this property, if a field named after the {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty
      * titleProperty} of the Tree is present in {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields fields}, that field
      * will show the tree.  Note that when using a DataSource, you typically define the title field via {@link
-     * com.smartgwt.client.data.DataSource#getTitleField titleField} and the generated ResultTree automatically uses this
-     * field. If none of the above rules apply, the first field in {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields
-     * fields} is assigned to display the {@link com.smartgwt.client.widgets.tree.Tree}.
+     * com.smartgwt.client.data.DataSource#getTitleField titleField} and the generated {@link
+     * com.smartgwt.client.widgets.tree.ResultTree} automatically uses this field. If none of the above rules apply, the first
+     * field in {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields fields} is assigned to display the {@link
+     * com.smartgwt.client.widgets.tree.Tree}.
      *
      * @param treeField treeField Default value is see below
      */
@@ -151,10 +182,10 @@ public class TreeGridField extends ListGridField {
      * field specifies this property, if a field named after the {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty
      * titleProperty} of the Tree is present in {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields fields}, that field
      * will show the tree.  Note that when using a DataSource, you typically define the title field via {@link
-     * com.smartgwt.client.data.DataSource#getTitleField titleField} and the generated ResultTree automatically uses this
-     * field. If none of the above rules apply, the first field in {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields
-     * fields} is assigned to display the {@link com.smartgwt.client.widgets.tree.Tree}.
-     *
+     * com.smartgwt.client.data.DataSource#getTitleField titleField} and the generated {@link
+     * com.smartgwt.client.widgets.tree.ResultTree} automatically uses this field. If none of the above rules apply, the first
+     * field in {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields fields} is assigned to display the {@link
+     * com.smartgwt.client.widgets.tree.Tree}.
      *
      * @return Boolean
      */
@@ -165,10 +196,9 @@ public class TreeGridField extends ListGridField {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 }
-
 
 

@@ -15,6 +15,7 @@
  */
  
 package com.smartgwt.client.widgets.menu.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface ClickHandler extends EventHandler {

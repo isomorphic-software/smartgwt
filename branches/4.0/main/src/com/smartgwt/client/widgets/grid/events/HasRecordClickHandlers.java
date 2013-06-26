@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.grid.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasRecordClickHandlers extends HasHandlers {
     /**
      * Executed when this field is clicked on.  Note that if {@link
@@ -32,3 +31,4 @@ public interface HasRecordClickHandlers extends HasHandlers {
      */
     HandlerRegistration addRecordClickHandler(RecordClickHandler handler);
 }
+

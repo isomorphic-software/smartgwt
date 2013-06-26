@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.grid.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasFilterEditorSubmitHandlers extends HasHandlers {
     /**
      * Optional notification  fired when the  user performs a filter by modifying the filter editor criteria. Will be fired on
@@ -30,3 +29,4 @@ public interface HasFilterEditorSubmitHandlers extends HasHandlers {
      */
     HandlerRegistration addFilterEditorSubmitHandler(FilterEditorSubmitHandler handler);
 }
+

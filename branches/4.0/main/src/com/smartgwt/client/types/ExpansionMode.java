@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is true, ExpansionMode
  * dictates the type of UI to be displayed in the expanded portion of the row. <P> There are a number of builtin
@@ -43,7 +44,7 @@ public enum ExpansionMode implements ValueEnum {
      * Show a {@link com.smartgwt.client.widgets.form.DynamicForm} to edit those fields from the record which are not already
      * present in the grid. If the record is collapsed with unsaved changes and {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getExpansionEditorShowSaveDialog expansionEditorShowSaveDialog} is not set,
-     * Edits will be saved automatically, or stored as  editValues if  {@link
+     * Edits will be saved automatically, or stored as {@link com.smartgwt.client.docs.Editing editValues} if  {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits} is false. Otherwise, a confirmation dialog is
      * displayed. Can optionally show a  {@link com.smartgwt.client.widgets.grid.ListGrid#getShowExpansionEditorSaveButton save
      * button} and {@link com.smartgwt.client.widgets.grid.ListGrid#getExpansionEditorCollapseOnSave auto-collapse} when save
@@ -57,7 +58,6 @@ public enum ExpansionMode implements ValueEnum {
      * related-records.
      */
     DETAIL_RELATED("detailRelated");
-
     private String value;
 
     ExpansionMode(String value) {

@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.grid.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasBodyKeyPressHandlers extends HasHandlers {
     /**
      * Handle a keyPress event on the body.   <P> Default implementation handles navigating between records with arrow keys,
@@ -30,3 +29,4 @@ public interface HasBodyKeyPressHandlers extends HasHandlers {
      */
     HandlerRegistration addBodyKeyPressHandler(BodyKeyPressHandler handler);
 }
+

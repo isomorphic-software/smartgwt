@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.tile.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasRecordContextClickHandlers extends HasHandlers {
     /**
      * Executed when the tileGrid receives a context-click (right mouse button) event on a tile. The default implementation
@@ -34,3 +33,4 @@ public interface HasRecordContextClickHandlers extends HasHandlers {
      */
     HandlerRegistration addRecordContextClickHandler(RecordContextClickHandler handler);
 }
+

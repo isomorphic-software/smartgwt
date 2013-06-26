@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasFormItemClickHandlers extends HasHandlers {
     /**
      * StringMethod action to fire when this icon is clicked      If unset the form item's <code>iconClick</code> method will
@@ -30,3 +29,4 @@ public interface HasFormItemClickHandlers extends HasHandlers {
      */
     HandlerRegistration addFormItemClickHandler(FormItemClickHandler handler);
 }
+

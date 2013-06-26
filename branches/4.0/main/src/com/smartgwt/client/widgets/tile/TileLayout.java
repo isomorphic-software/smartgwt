@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.tile;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,50 +45,105 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Lays out a series of components, calls "tiles", in a grid with multiple tiles per row.
  */
 public class TileLayout extends Canvas {
 
-    public static TileLayout getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (TileLayout) obj;
+    public native static TileLayout getOrCreateRef(JavaScriptObject jsObj) /*-{
+        if (jsObj == null) return null;
+        var instance = jsObj["__ref"];
+        if (instance == null) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("TileLayout",jsObj);
         } else {
-            return new TileLayout(jsObj);
+            return instance;
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        $wnd.isc["TileLayout"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.Canvas::getConfig()());
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        $wnd.isc["TileLayout"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getJsObj()());
+    }-*/;
 
     public TileLayout(){
         scClassName = "TileLayout";
     }
 
     public TileLayout(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "TileLayout";
+        setJavaScriptObject(jsObj);
+        
     }
 
     protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
         var widget = $wnd.isc[scClassName].create(config);
+        this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Ljava/lang/String;Z)(widget.getID(), true);
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;
+
     // ********************* Properties / Attributes ***********************
+
 
     /**
      * If set, tiles animate to their new positions when a tile is added, removed, or reordered via drag and drop.
@@ -104,13 +159,13 @@ public class TileLayout extends Canvas {
     /**
      * If set, tiles animate to their new positions when a tile is added, removed, or reordered via drag and drop.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getAnimateTileChange()  {
         return getAttributeAsBoolean("animateTileChange");
     }
+
 
     /**
      * When {@link com.smartgwt.client.types.LayoutPolicy} is "flow", should we automatically start a new line when there's not
@@ -129,12 +184,12 @@ public class TileLayout extends Canvas {
      * enough room to fit the next tile on the same line? <P> If set to false, a new line will only be started if a tile
      * specifies tile.startLine or tile.endLine.
      *
-     *
      * @return Boolean
      */
     public Boolean getAutoWrapLines()  {
         return getAttributeAsBoolean("autoWrapLines");
     }
+
 
     /**
      * Indicates what to do with data dragged into another DataBoundComponent. See          DragDataAction type for details.
@@ -150,7 +205,6 @@ public class TileLayout extends Canvas {
     /**
      * Indicates what to do with data dragged into another DataBoundComponent. See          DragDataAction type for details.
      *
-     *
      * @return DragDataAction
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_drag_move" target="examples">Drag move Example</a>
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_drag_copy" target="examples">Drag copy Example</a>
@@ -158,6 +212,21 @@ public class TileLayout extends Canvas {
     public DragDataAction getDragDataAction()  {
         return EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
     }
+
+
+    /**
+     * Canvas used to display a drop indicator when a another canvas is dragged over this widget.
+     * <p>
+     * For an overview of how to use and configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return Canvas
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public Canvas getDragLine() throws IllegalStateException {
+        errorIfNotCreated("dragLine");
+        return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("dragLine"));
+    }
+
 
     /**
      * With {@link com.smartgwt.client.types.LayoutPolicy}:"fit", should margins be expanded so that tiles fill the available
@@ -178,12 +247,12 @@ public class TileLayout extends Canvas {
      * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
      *
-     *
      * @return Boolean
      */
     public Boolean getExpandMargins()  {
         return getAttributeAsBoolean("expandMargins");
     }
+
 
     /**
      * A margin left around the outside of all tiles.
@@ -191,19 +260,20 @@ public class TileLayout extends Canvas {
      * @param layoutMargin layoutMargin Default value is 5
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLayoutMargin(int layoutMargin)  throws IllegalStateException {
+    public void setLayoutMargin(Integer layoutMargin)  throws IllegalStateException {
         setAttribute("layoutMargin", layoutMargin, false);
     }
 
     /**
      * A margin left around the outside of all tiles.
      *
-     *
-     * @return int
+     * @return Integer
      */
-    public int getLayoutMargin()  {
+    public Integer getLayoutMargin()  {
         return getAttributeAsInt("layoutMargin");
     }
+
+
 
     /**
      * Direction of tiling.  See also {@link com.smartgwt.client.types.TileLayoutPolicy}.
@@ -218,12 +288,12 @@ public class TileLayout extends Canvas {
     /**
      * Direction of tiling.  See also {@link com.smartgwt.client.types.TileLayoutPolicy}.
      *
-     *
      * @return Orientation
      */
     public Orientation getOrientation()  {
         return EnumUtil.getEnum(Orientation.values(), getAttribute("orientation"));
     }
+
 
     /**
      * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on TileLayouts, for example, an overflow:auto
@@ -243,13 +313,13 @@ public class TileLayout extends Canvas {
      * TileLayout will scroll if members exceed its specified size, whereas an overflow:visible TileLayout will grow to
      * accommodate members.
      *
-     *
      * @return Overflow
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public Overflow getOverflow()  {
         return EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
     }
+
 
     /**
      * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding this.padding} or in the
@@ -274,12 +344,12 @@ public class TileLayout extends Canvas {
      * <P> Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes
      * precedence over this value.
      *
-     *
      * @return Boolean
      */
     public Boolean getPaddingAsLayoutMargin()  {
         return getAttributeAsBoolean("paddingAsLayoutMargin");
     }
+
 
     /**
      * Height of each tile in pixels.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize}. If {@link
@@ -306,13 +376,13 @@ public class TileLayout extends Canvas {
      * {@link com.smartgwt.client.types.Orientation} is "vertical", and tileHeight is not set, tileHeight will be computed
      * automatically based on {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine}.
      *
-     *
      * @return Integer
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public Integer getTileHeight()  {
         return getAttributeAsInt("tileHeight");
     }
+
 
     /**
      * Horizontal margin in between tiles.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileMargin tileMargin}.
@@ -330,12 +400,12 @@ public class TileLayout extends Canvas {
     /**
      * Horizontal margin in between tiles.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileMargin tileMargin}.
      *
-     *
      * @return Integer
      */
     public Integer getTileHMargin()  {
         return getAttributeAsInt("tileHMargin");
     }
+
 
     /**
      * Margin in between tiles.  Can be set on a per-axis basis with {@link
@@ -357,12 +427,13 @@ public class TileLayout extends Canvas {
      * com.smartgwt.client.widgets.tile.TileLayout#getTileHMargin tileHMargin} and {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileVMargin tileVMargin}.
      *
-     *
      * @return int
      */
     public int getTileMargin()  {
         return getAttributeAsInt("tileMargin");
     }
+
+
 
     /**
      * Size of each tile in pixels.  Depending on the {@link com.smartgwt.client.types.LayoutPolicy}, <code>tileSize</code> may
@@ -387,7 +458,6 @@ public class TileLayout extends Canvas {
      * via {@link com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight} and {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth}.
      *
-     *
      * @return int
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
@@ -395,17 +465,20 @@ public class TileLayout extends Canvas {
         return getAttributeAsInt("tileSize");
     }
 
+
     /**
      * Number of tiles to show in each line.  Auto-derived from {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize
      * tileSize} for some layout modes.  See {@link com.smartgwt.client.types.TileLayoutPolicy}. This can also affect {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
      *
-     * @param tilesPerLine tilesPerLine Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * sets the number of tiles per line
+     *
+     * @param tilesPerLine New {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine} value. Default value is null
      */
-    public void setTilesPerLine(Integer tilesPerLine)  throws IllegalStateException {
-        setAttribute("tilesPerLine", tilesPerLine, false);
+    public void setTilesPerLine(Integer tilesPerLine) {
+        setAttribute("tilesPerLine", tilesPerLine, true);
     }
 
     /**
@@ -414,12 +487,12 @@ public class TileLayout extends Canvas {
      * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
      *
-     *
      * @return Integer
      */
     public Integer getTilesPerLine()  {
         return getAttributeAsInt("tilesPerLine");
     }
+
 
     /**
      * Vertical margin in between tiles.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileMargin tileMargin}.
@@ -437,12 +510,12 @@ public class TileLayout extends Canvas {
     /**
      * Vertical margin in between tiles.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileMargin tileMargin}.
      *
-     *
      * @return Integer
      */
     public Integer getTileVMargin()  {
         return getAttributeAsInt("tileVMargin");
     }
+
 
     /**
      * Width of each tile in pixels.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize}. If {@link
@@ -469,7 +542,6 @@ public class TileLayout extends Canvas {
      * com.smartgwt.client.types.Orientation} is "horizontal", and tileWidth is not set, tileWidth will be computed
      * automatically based on {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine}.
      *
-     *
      * @return Integer
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
@@ -478,8 +550,7 @@ public class TileLayout extends Canvas {
     }
 
     // ********************* Methods ***********************
-            
-    /**
+	/**
      * Add a tile to the layout, dynamically.
      * @param tile new tile to add
      */
@@ -487,18 +558,16 @@ public class TileLayout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addTile(tile.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-
-    /**
+	/**
      * Add a tile to the layout, dynamically.
      * @param tile new tile to add
      * @param index position where the tile should be added.  Defaults to adding the tile at the end.
      */
-    public native void addTile(Canvas tile, int index) /*-{
+    public native void addTile(Canvas tile, Integer index) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.addTile(tile.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), index);
+        self.addTile(tile.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), index == null ? null : index.@java.lang.Integer::intValue()());
     }-*/;
-            
-    /**
+	/**
      * Retrieve a tile by index.   <P> The TileLayout consistently uses this method to access tiles, in order to allow
      * subclasses to create tiles on demand.
      * @param index index of the tile
@@ -508,12 +577,8 @@ public class TileLayout extends Canvas {
     public native Canvas getTile(int index) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getTile(index);
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
     // ********************* Static Methods ***********************
@@ -524,7 +589,7 @@ public class TileLayout extends Canvas {
      * properties of this class. Can also be used for skinning / styling purposes.
      * <P>
      * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
-     * underlying class (including those automatically generated in JavaScript). 
+     * underlying class (including those automatically generated in JavaScript).
      * This method should not be used to apply standard EventHandlers or override methods for
      * a class - use a custom subclass instead.
      *
@@ -535,8 +600,8 @@ public class TileLayout extends Canvas {
     	delete properties.ID;
         $wnd.isc.TileLayout.addProperties(properties);
     }-*/;
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
     /**
@@ -601,7 +666,95 @@ public class TileLayout extends Canvas {
         self.layoutTiles();
     }-*/;
 
+    public LogicalStructureObject setLogicalStructure(TileLayoutLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.animateTileChange = getAttributeAsString("animateTileChange");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileLayout.animateTileChange:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoWrapLines = getAttributeAsString("autoWrapLines");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileLayout.autoWrapLines:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dragDataAction = getAttributeAsString("dragDataAction");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileLayout.dragDataAction:" + t.getMessage() + "\n";
+        }
+        try {
+            s.expandMargins = getAttributeAsString("expandMargins");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileLayout.expandMargins:" + t.getMessage() + "\n";
+        }
+        try {
+            s.layoutMargin = getAttributeAsString("layoutMargin");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileLayout.layoutMargin:" + t.getMessage() + "\n";
+        }
+        try {
+            s.layoutPolicy = getAttributeAsString("layoutPolicy");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileLayout.layoutPolicy:" + t.getMessage() + "\n";
+        }
+        try {
+            s.orientation = getAttributeAsString("orientation");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileLayout.orientation:" + t.getMessage() + "\n";
+        }
+        try {
+            s.overflow = getAttributeAsString("overflow");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileLayout.overflow:" + t.getMessage() + "\n";
+        }
+        try {
+            s.paddingAsLayoutMargin = getAttributeAsString("paddingAsLayoutMargin");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileLayout.paddingAsLayoutMargin:" + t.getMessage() + "\n";
+        }
+        try {
+            s.tileHeight = getAttributeAsString("tileHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileLayout.tileHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.tileHMargin = getAttributeAsString("tileHMargin");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileLayout.tileHMargin:" + t.getMessage() + "\n";
+        }
+        try {
+            s.tileMargin = getAttributeAsString("tileMargin");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileLayout.tileMargin:" + t.getMessage() + "\n";
+        }
+        try {
+            s.tileSize = getAttributeAsString("tileSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileLayout.tileSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.tilesPerLine = getAttributeAsString("tilesPerLine");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileLayout.tilesPerLine:" + t.getMessage() + "\n";
+        }
+        try {
+            s.tileVMargin = getAttributeAsString("tileVMargin");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileLayout.tileVMargin:" + t.getMessage() + "\n";
+        }
+        try {
+            s.tileWidth = getAttributeAsString("tileWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileLayout.tileWidth:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+
+    public LogicalStructureObject getLogicalStructure() {
+        TileLayoutLogicalStructure s = new TileLayoutLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

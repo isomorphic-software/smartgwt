@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * An event that triggers title editing in a TabSet.
  */
@@ -28,7 +29,6 @@ public enum TabTitleEditEvent implements ValueEnum {
      * Start editing when the user double-clicks a tab title
      */
     DOUBLECLICK("doubleClick");
-
     private String value;
 
     TabTitleEditEvent(String value) {

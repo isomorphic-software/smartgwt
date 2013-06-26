@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * The types listed below are built-in types that {@link com.smartgwt.client.widgets.DataBoundComponent databound
  * components} understand and treat specially (using type-specific form controls, validators, formatters, sorting logic,
@@ -50,9 +51,9 @@ public enum FieldType implements ValueEnum {
     FLOAT("float"),
     /**
      * A logical date, with no time value (such as a holiday or birthday). Represented on the client as a JavaScript
-     * <code>Date</code> object with all time fields set to zero in browser local time. Transmitted in UTC/GMT by default. See
-     * {@link com.smartgwt.client.docs.DateFormatAndStorage} for more information on date display and serialization formats.
-     * See also Date for Smart GWT extensions to the <code>Date</code> object.
+     * <code>Date</code> object where time values are ignored. See {@link com.smartgwt.client.docs.DateFormatAndStorage} for
+     * more information on date display and serialization formats. See also {@link com.smartgwt.client.util.Date} for Smart GWT
+     * extensions to the <code>Date</code> object.
      */
     DATE("date"),
     /**
@@ -62,7 +63,8 @@ public enum FieldType implements ValueEnum {
     TIME("time"),
     /**
      * A date and time, accurate to the second. Represented on the client as a JavaScript <code>Date</code> object. See also
-     * {@link com.smartgwt.client.docs.DateFormatAndStorage} and Date for Smart GWT extensions to the <code>Date</code> object.
+     * {@link com.smartgwt.client.docs.DateFormatAndStorage} and {@link com.smartgwt.client.util.Date} for Smart GWT extensions
+     * to the <code>Date</code> object.
      */
     DATETIME("datetime"),
     /**
@@ -98,13 +100,15 @@ public enum FieldType implements ValueEnum {
      * the value of the <code>name</code> attribute of this field. These fields are marked as {@link
      * com.smartgwt.client.data.DataSourceField#getHidden hidden}<code>:true</code> to suppress their rendering by default. You
      * can show one or more of these fields by specifying the field with a <code>hidden:false</code> override in the fields
-     * array of the databound component. <i>Stream / view file support for non-SQL DataSources: a non-SQL DataSource should
-     * provide an  instance of the Java type InputStream as a field value in DSResponse.data in order to allow  Smart GWT to
-     * download the file.</i>
+     * array of the databound component. <i>Stream / view file support for custom DataSources</i>: a custom DataSource or DMI 
+     * must implement the "viewFile" and "downloadFile" operationTypes and return a single Record with a byte[] as the field
+     * value for the binary field. For more detail see the overview of {@link com.smartgwt.client.docs.BinaryFields Binary
+     * Fields}.
      */
     BINARY("binary"),
     /**
-     * Binary data comprising an image.
+     * Binary data comprising an image. Causes {@link com.smartgwt.client.widgets.form.fields.ViewFileItem} to be used when the
+     * field is displayed in a form, allowing the image to optionally be displayed inline.
      */
     IMAGEFILE("imageFile"),
     /**
@@ -113,6 +117,10 @@ public enum FieldType implements ValueEnum {
      * of the standard validation or formatting logic to be inherited from the standard built-in types.
      */
     ANY("any"),
+    /**
+     * Synonymous with "any".
+     */
+    CUSTOM("custom"),
     /**
      * Fields of this type are automatically populated by the Smart GWT Server with the current authenticated userId as part of
      * "add" and "update"  operations. By default, fields of this type are hidden and not editable; the server ignores any
@@ -140,20 +148,31 @@ public enum FieldType implements ValueEnum {
      */
     CREATORTIMESTAMP("creatorTimestamp"),
     /**
-     * A password field type.
+     * Same as "text", but causes {@link com.smartgwt.client.widgets.form.fields.PasswordItem} to be used by default for
+     * editing (hides typed-in value).
      */
     PASSWORD("password"),
     /**
-     * A custom SimpleType field type.
-     */
-    CUSTOM("custom"),
-    /**
      * A special field type specifically for use with Unicode data in conjunction with the Microsoft SQL Server database. Field
-     * type "ntext" implies the  use of {@link com.smartgwt.client.docs.serverds.DataSourceField#sqlStorageStrategy
+     * type "ntext" implies the  use of {@link com.smartgwt.client.data.DataSourceField#getSqlStorageStrategy
      * sqlStorageStrategy} "ntext"; other than that, this type is identical to "text"
      */
-    NTEXT("ntext");
-
+    NTEXT("ntext"),
+    /**
+     * An integer number with locale-based formatting, e.g. <code>12,345,678</code>. See {@link
+     * com.smartgwt.client.docs.LocalizedNumberFormatting Localized Number Formatting} for more info.
+     */
+    LOCALEINT("localeInt"),
+    /**
+     * A float number with locale-based formatting, e.g. <code>12,345.67</code>. See {@link
+     * com.smartgwt.client.docs.LocalizedNumberFormatting Localized Number Formatting} for more info.
+     */
+    LOCALEFLOAT("localeFloat"),
+    /**
+     * A float number with locale-based formatting and using currency symbol, e.g. <code>$12,345.67</code>. See {@link
+     * com.smartgwt.client.docs.LocalizedNumberFormatting Localized Number Formatting} for more info.
+     */
+    LOCALECURRENCY("localeCurrency");
     private String value;
 
     FieldType(String value) {

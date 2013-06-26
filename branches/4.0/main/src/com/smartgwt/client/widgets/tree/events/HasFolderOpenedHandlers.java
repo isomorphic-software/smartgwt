@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.tree.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasFolderOpenedHandlers extends HasHandlers {
     /**
      * This method is called when a folder is opened either via the user manipulating the expand/collapse control in the UI or
@@ -31,3 +30,4 @@ public interface HasFolderOpenedHandlers extends HasHandlers {
      */
     HandlerRegistration addFolderOpenedHandler(FolderOpenedHandler handler);
 }
+
