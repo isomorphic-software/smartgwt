@@ -17,13 +17,13 @@
 package com.smartgwt.client.data;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Request sent to the server to initiate a  {@link com.smartgwt.client.docs.DataSourceOperations DataSource operation}. 
@@ -71,15 +91,134 @@ public class DSRequest extends RPCRequest {
         return new DSRequest(jsObj);
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
+
     public DSRequest(){
         
     }
 
     public DSRequest(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
+        
     }
 
+    public DSRequest(DSOperationType operationType) {
+        setOperationType(operationType);
+        
+    }
+
+    public DSRequest(DSOperationType operationType, String operationId) {
+        setOperationType(operationType);
+		setOperationId(operationId);
+        
+    }
+
+    public DSRequest(DSOperationType operationType, Record data) {
+        setOperationType(operationType);
+		setData(data);
+        
+    }
+
+    public DSRequest(DSOperationType operationType, String operationId, Record data) {
+        setOperationType(operationType);
+		setOperationId(operationId);
+		setData(data);
+        
+    }
+
+    public DSRequest(DSOperationType operationType, JavaScriptObject data) {
+        setOperationType(operationType);
+		setData(data);
+        
+    }
+
+    public DSRequest(DSOperationType operationType, String operationId, JavaScriptObject data) {
+        setOperationType(operationType);
+		setOperationId(operationId);
+		setData(data);
+        
+    }
+
+
     // ********************* Properties / Attributes ***********************
+
+
+    /**
+     * For fetch, add or update operation, an optional comma separated list of fields to fetch from another,
+     *  related DataSource.
+     *  <P>
+     *  Fields should be specified in the format 
+     *  <code>"localFieldName!relatedDataSourceID.relatedDataSourceFieldName"</code>.
+     *  where <code><i>relatedDataSourceID</i></code> is the ID of the related dataSource, and
+     *  <code><i>relatedDataSourceFieldName</i></code> is the field for which you want to
+     *  fetch related values. The returned field values will be stored on 
+     *  the data returned to the client under the specified <code><i>localFieldName</i></code>.
+     * Note that this will be applied in addition to any specified {@link com.smartgwt.client.data.DSRequest#getOutputs
+     * outputs}.
+     *  <P>
+     * Note that as with {@link com.smartgwt.client.docs.serverds.DataSourceField#includeFrom includeFrom}, the related
+     * dataSource must be
+     *  linked to the primary datasource via a foreignKey relationship.
+     *  <P>
+     *  Note additionalOutputs sent in request from the browser can be completely disabled in 
+     *  server.properties by setting <code>datasource.allowClientAdditionalOutputs</code>:
+     *  <pre>
+     *      datasource.allowClientAdditionalOutputs: false
+     *  </pre>
+     * In this case {@link com.smartgwt.client.data.DSRequest#getAdditionalOutputs additionalOutputs} sent from the browser
+     * will be cleared before 
+     *  executing request. Note that programatically configured additionalOutputs are always allowed, but 
+     *  you can't modify them from within a DMI method, so the only way to execute a request 
+     *  with additionalOutputs that differ from what was sent by the client is to create a new DSRequest
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param additionalOutputs . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     */
+    public void setAdditionalOutputs(String additionalOutputs) {
+        setAttribute("additionalOutputs", additionalOutputs);
+    }
+
+    /**
+     * For fetch, add or update operation, an optional comma separated list of fields to fetch from another,
+     *  related DataSource.
+     *  <P>
+     *  Fields should be specified in the format 
+     *  <code>"localFieldName!relatedDataSourceID.relatedDataSourceFieldName"</code>.
+     *  where <code><i>relatedDataSourceID</i></code> is the ID of the related dataSource, and
+     *  <code><i>relatedDataSourceFieldName</i></code> is the field for which you want to
+     *  fetch related values. The returned field values will be stored on 
+     *  the data returned to the client under the specified <code><i>localFieldName</i></code>.
+     * Note that this will be applied in addition to any specified {@link com.smartgwt.client.data.DSRequest#getOutputs
+     * outputs}.
+     *  <P>
+     * Note that as with {@link com.smartgwt.client.docs.serverds.DataSourceField#includeFrom includeFrom}, the related
+     * dataSource must be
+     *  linked to the primary datasource via a foreignKey relationship.
+     *  <P>
+     *  Note additionalOutputs sent in request from the browser can be completely disabled in 
+     *  server.properties by setting <code>datasource.allowClientAdditionalOutputs</code>:
+     *  <pre>
+     *      datasource.allowClientAdditionalOutputs: false
+     *  </pre>
+     * In this case {@link com.smartgwt.client.data.DSRequest#getAdditionalOutputs additionalOutputs} sent from the browser
+     * will be cleared before 
+     *  executing request. Note that programatically configured additionalOutputs are always allowed, but 
+     *  you can't modify them from within a DMI method, so the only way to execute a request 
+     *  with additionalOutputs that differ from what was sent by the client is to create a new DSRequest
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     */
+    public String getAdditionalOutputs()  {
+        return getAttributeAsString("additionalOutputs");
+    }
+
+
+
 
     /**
      * For requests submitted by a {@link com.smartgwt.client.widgets.DataBoundComponent}, the {@link
@@ -88,9 +227,12 @@ public class DSRequest extends RPCRequest {
      * com.smartgwt.client.widgets.form.DynamicForm#saveData form.saveData()}.  It will not be present for a direct call to a
      * DataSource method such as {@link com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData}. <P> Note this is
      * the component's <b>String</b> ID - you can retrieve the component itself via {@link
-     * com.smartgwt.client.widgets.Canvas#getById Canvas.getById}.
+     * com.smartgwt.client.widgets.Canvas#getById Canvas.getById}. <P> This property should be used for debugging purposes only
+     * - do not use it to trigger differences in server-side behavior, instead, use {@link
+     * com.smartgwt.client.data.DSRequest#getOperationId operationId} because only <code>operationId</code> is considered when
+     * assessing {@link com.smartgwt.client.docs.DsRequestEquivalence request equivalence}.
      *
-     * @param componentId componentId Default value is null
+     * @param componentId . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setComponentId(String componentId) {
         setAttribute("componentId", componentId);
@@ -103,21 +245,25 @@ public class DSRequest extends RPCRequest {
      * com.smartgwt.client.widgets.form.DynamicForm#saveData form.saveData()}.  It will not be present for a direct call to a
      * DataSource method such as {@link com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData}. <P> Note this is
      * the component's <b>String</b> ID - you can retrieve the component itself via {@link
-     * com.smartgwt.client.widgets.Canvas#getById Canvas.getById}.
+     * com.smartgwt.client.widgets.Canvas#getById Canvas.getById}. <P> This property should be used for debugging purposes only
+     * - do not use it to trigger differences in server-side behavior, instead, use {@link
+     * com.smartgwt.client.data.DSRequest#getOperationId operationId} because only <code>operationId</code> is considered when
+     * assessing {@link com.smartgwt.client.docs.DsRequestEquivalence request equivalence}.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getComponentId()  {
         return getAttributeAsString("componentId");
     }
+
+
 
     /**
      * DataSource this DSRequest will act on. <P> This property is generally automatically populated, for example when calling
      * {@link com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData} the dataSource property is set to the target
      * DataSource.
      *
-     * @param dataSource dataSource Default value is null
+     * @param dataSource . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setDataSource(String dataSource) {
         setAttribute("dataSource", dataSource);
@@ -128,12 +274,12 @@ public class DSRequest extends RPCRequest {
      * {@link com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData} the dataSource property is set to the target
      * DataSource.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getDataSource()  {
         return getAttributeAsString("dataSource");
     }
+
 
     /**
      * End row of requested results, used only with fetch operations. <p> Note that startRow and endRow are zero-based,
@@ -151,12 +297,12 @@ public class DSRequest extends RPCRequest {
      * inclusive at the beginning and exclusive at the end (like substring), so startRow: 0, endRow: 1 is a request for the
      * first record.
      *
-     *
      * @return Integer
      */
     public Integer getEndRow()  {
         return getAttributeAsInt("endRow");
     }
+
 
     /**
      * The format in which the data should be exported.  See {@link com.smartgwt.client.types.ExportFormat} for more 
@@ -172,12 +318,12 @@ public class DSRequest extends RPCRequest {
      * The format in which the data should be exported.  See {@link com.smartgwt.client.types.ExportFormat} for more 
      * information.
      *
-     *
      * @return ExportFormat
      */
     public ExportFormat getExportAs()  {
         return EnumUtil.getEnum(ExportFormat.values(), getAttribute("exportAs"));
     }
+
 
     /**
      * Only applies to request properties passed to {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData
@@ -193,12 +339,12 @@ public class DSRequest extends RPCRequest {
      * Only applies to request properties passed to {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData
      * DataBoundComponent.exportClientData}. If specified this property contains an arbitrary set of data to be exported.
      *
-     *
      * @return Record
      */
     public Record[] getExportData()  {
-        return Record.convertToRecordArray(getAttributeAsJavaScriptObject("exportData"));
+        return com.smartgwt.client.util.ConvertTo.arrayOfRecord(getAttributeAsJavaScriptObject("exportData"));
     }
+
 
     /**
      * Only applicable when exporting to native spreadsheet formats <code>XLS</code> and  <code>OOXML</code>. <p> If set, we
@@ -224,17 +370,17 @@ public class DSRequest extends RPCRequest {
      * component, the dataSourceField or the current system default, in that  order).  This may result in the spreadsheet cell
      * having a different format to the value  that the user sees in the <code>DataBoundComponent</code> we are exporting from.
      *
-     *
      * @return Boolean
      */
     public Boolean getExportDatesAsFormattedString()  {
         return getAttributeAsBoolean("exportDatesAsFormattedString");
     }
 
+
     /**
      * The character to use as a field-separator in CSV exports.  The default delimiter is comma.
      *
-     * @param exportDelimiter exportDelimiter Default value is ","
+     * @param exportDelimiter . See {@link com.smartgwt.client.docs.String String}. Default value is ","
      */
     public void setExportDelimiter(String exportDelimiter) {
         setAttribute("exportDelimiter", exportDelimiter);
@@ -243,12 +389,12 @@ public class DSRequest extends RPCRequest {
     /**
      * The character to use as a field-separator in CSV exports.  The default delimiter is comma.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getExportDelimiter()  {
         return getAttributeAsString("exportDelimiter");
     }
+
 
     /**
      * Specifies whether the exported data will be downloaded as an attachment or displayed in a  new browser window. See
@@ -264,12 +410,13 @@ public class DSRequest extends RPCRequest {
      * Specifies whether the exported data will be downloaded as an attachment or displayed in a  new browser window. See
      * {@link com.smartgwt.client.types.ExportDisplay} for more information.
      *
-     *
      * @return ExportDisplay
      */
     public ExportDisplay getExportDisplay()  {
         return EnumUtil.getEnum(ExportDisplay.values(), getAttribute("exportDisplay"));
     }
+
+
 
     /**
      * The name of the file to save the exported data into.  If  {@link
@@ -277,7 +424,7 @@ public class DSRequest extends RPCRequest {
      * server creates on its filesystem.  If {@link com.smartgwt.client.data.DSRequest#getExportToClient exportToClient} is
      * set, this is the filename that will appear to the browser.
      *
-     * @param exportFilename exportFilename Default value is null
+     * @param exportFilename . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.data.DSRequest#setExportPath
      */
     public void setExportFilename(String exportFilename) {
@@ -290,18 +437,18 @@ public class DSRequest extends RPCRequest {
      * server creates on its filesystem.  If {@link com.smartgwt.client.data.DSRequest#getExportToClient exportToClient} is
      * set, this is the filename that will appear to the browser.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.data.DSRequest#getExportPath
      */
     public String getExportFilename()  {
         return getAttributeAsString("exportFilename");
     }
 
+
     /**
      * Optional text to appear at the end of the file.
      *
-     * @param exportFooter exportFooter Default value is null
+     * @param exportFooter . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setExportFooter(String exportFooter) {
         setAttribute("exportFooter", exportFooter);
@@ -310,17 +457,17 @@ public class DSRequest extends RPCRequest {
     /**
      * Optional text to appear at the end of the file.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getExportFooter()  {
         return getAttributeAsString("exportFooter");
     }
 
+
     /**
      * Optional text to appear at the beginning of the file.
      *
-     * @param exportHeader exportHeader Default value is null
+     * @param exportHeader . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setExportHeader(String exportHeader) {
         setAttribute("exportHeader", exportHeader);
@@ -329,12 +476,91 @@ public class DSRequest extends RPCRequest {
     /**
      * Optional text to appear at the beginning of the file.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getExportHeader()  {
         return getAttributeAsString("exportHeader");
     }
+
+
+    /**
+     * This property allows omitting column names from CSV and Excel exports (no effect on JSON or XML exports).
+     *
+     * @param exportHeaderless exportHeaderless Default value is false
+     */
+    public void setExportHeaderless(Boolean exportHeaderless) {
+        setAttribute("exportHeaderless", exportHeaderless);
+    }
+
+    /**
+     * This property allows omitting column names from CSV and Excel exports (no effect on JSON or XML exports).
+     *
+     * @return Boolean
+     */
+    public Boolean getExportHeaderless()  {
+        return getAttributeAsBoolean("exportHeaderless");
+    }
+
+
+    /**
+     * The image format in which the SVG graphic should be exported.
+     *
+     * @param exportImageFormat exportImageFormat Default value is "png"
+     */
+    public void setExportImageFormat(ExportImageFormat exportImageFormat) {
+        setAttribute("exportImageFormat", exportImageFormat == null ? null : exportImageFormat.getValue());
+    }
+
+    /**
+     * The image format in which the SVG graphic should be exported.
+     *
+     * @return ExportImageFormat
+     */
+    public ExportImageFormat getExportImageFormat()  {
+        return EnumUtil.getEnum(ExportImageFormat.values(), getAttribute("exportImageFormat"));
+    }
+
+
+    /**
+     * If exporting in {@link com.smartgwt.client.types.ExportImageFormat JPEG format}, the output JPEG quality level. This is
+     * a number from 0 to 1, with 1 representing the best quality and 0 representing the least quality but smallest file size.
+     *
+     * @param exportImageQuality exportImageQuality Default value is null
+     */
+    public void setExportImageQuality(Float exportImageQuality) {
+        setAttribute("exportImageQuality", exportImageQuality);
+    }
+
+    /**
+     * If exporting in {@link com.smartgwt.client.types.ExportImageFormat JPEG format}, the output JPEG quality level. This is
+     * a number from 0 to 1, with 1 representing the best quality and 0 representing the least quality but smallest file size.
+     *
+     * @return Float
+     */
+    public Float getExportImageQuality()  {
+        return getAttributeAsFloat("exportImageQuality");
+    }
+
+    /**
+     * If exporting in {@link com.smartgwt.client.types.ExportImageFormat JPEG format}, the output JPEG quality level. This is
+     * a number from 0 to 1, with 1 representing the best quality and 0 representing the least quality but smallest file size.
+     *
+     * @param exportImageQuality exportImageQuality Default value is null
+     */
+    public void setExportImageQuality(Double exportImageQuality) {
+        setAttribute("exportImageQuality", exportImageQuality);
+    }
+
+    /**
+     * If exporting in {@link com.smartgwt.client.types.ExportImageFormat JPEG format}, the output JPEG quality level. This is
+     * a number from 0 to 1, with 1 representing the best quality and 0 representing the least quality but smallest file size.
+     *
+     * @return Double
+     */
+    public Double getExportImageQualityAsDouble()  {
+        return getAttributeAsDouble("exportImageQuality");
+    }
+
 
     /**
      * If {@link com.smartgwt.client.data.DSRequest#getExportToFilesystem exportToFilesystem} is set, optionally specifies a 
@@ -347,7 +573,7 @@ public class DSRequest extends RPCRequest {
      * <code>exportFilename</code> directly in the default export location. <p> This property is only applicable when {@link
      * com.smartgwt.client.data.DSRequest#getExportToFilesystem exportToFilesystem} is set.
      *
-     * @param exportPath exportPath Default value is null
+     * @param exportPath . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.data.DSRequest#setExportFilename
      */
     public void setExportPath(String exportPath) {
@@ -365,13 +591,13 @@ public class DSRequest extends RPCRequest {
      * <code>exportFilename</code> directly in the default export location. <p> This property is only applicable when {@link
      * com.smartgwt.client.data.DSRequest#getExportToFilesystem exportToFilesystem} is set.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.data.DSRequest#getExportFilename
      */
     public String getExportPath()  {
         return getAttributeAsString("exportPath");
     }
+
 
     /**
      * When set, causes the results of the DSRequest to be exported to a file, whose name 
@@ -491,17 +717,79 @@ public class DSRequest extends RPCRequest {
      *      10101,"Record 10101"
      *  </pre>
      *
-     *
      * @return Boolean
      */
     public Boolean getExportResults()  {
         return getAttributeAsBoolean("exportResults");
     }
 
+
+    /**
+     * When you erxport a {@link com.smartgwt.client.widgets.grid.ListGrid} that has {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderSpans headerSpans}, should headerSpans also be exported.  See {@link
+     * com.smartgwt.client.data.DSRequest#getExportSpanTitleSeparator exportSpanTitleSeparator} for details of of what it means
+     * to export headerSpans to different export targets.
+     *
+     * @param exportShowHeaderSpanTitles exportShowHeaderSpanTitles Default value is true
+     */
+    public void setExportShowHeaderSpanTitles(Boolean exportShowHeaderSpanTitles) {
+        setAttribute("exportShowHeaderSpanTitles", exportShowHeaderSpanTitles);
+    }
+
+    /**
+     * When you erxport a {@link com.smartgwt.client.widgets.grid.ListGrid} that has {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderSpans headerSpans}, should headerSpans also be exported.  See {@link
+     * com.smartgwt.client.data.DSRequest#getExportSpanTitleSeparator exportSpanTitleSeparator} for details of of what it means
+     * to export headerSpans to different export targets.
+     *
+     * @return Boolean
+     */
+    public Boolean getExportShowHeaderSpanTitles()  {
+        return getAttributeAsBoolean("exportShowHeaderSpanTitles");
+    }
+
+
+    /**
+     * When you export a {@link com.smartgwt.client.widgets.grid.ListGrid} that has {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderSpans headerSpans} defined and {@link
+     * com.smartgwt.client.data.DSRequest#getExportShowHeaderSpanTitles exportShowHeaderSpanTitles} is true, the behavior is
+     * dependent on the export type.  Direct exports to Excel formats (both XLS and OOXML) place the  headerSpans in merged
+     * cells in the spreadsheet, giving the same visual effect as the  original ListGrid.  This is not possible with exports to
+     * CSV format; instead, we alter the  exported headers so that they contain the titles of the ancestor headerSpan(s). <p>
+     * For example, if you had a field titled "Population" inside a headerSpan titled "National", nested inside another
+     * headerSpan titled "Demographics", that would result in the exported field being titled "Demographics - National -
+     * Population". <p> The <code>exportSpanTitleSeparator</code> property allows you to override the separator  string used
+     * when constructing these amalgamated headers.
+     *
+     * @param exportSpanTitleSeparator . See {@link com.smartgwt.client.docs.String String}. Default value is " - "
+     */
+    public void setExportSpanTitleSeparator(String exportSpanTitleSeparator) {
+        setAttribute("exportSpanTitleSeparator", exportSpanTitleSeparator);
+    }
+
+    /**
+     * When you export a {@link com.smartgwt.client.widgets.grid.ListGrid} that has {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderSpans headerSpans} defined and {@link
+     * com.smartgwt.client.data.DSRequest#getExportShowHeaderSpanTitles exportShowHeaderSpanTitles} is true, the behavior is
+     * dependent on the export type.  Direct exports to Excel formats (both XLS and OOXML) place the  headerSpans in merged
+     * cells in the spreadsheet, giving the same visual effect as the  original ListGrid.  This is not possible with exports to
+     * CSV format; instead, we alter the  exported headers so that they contain the titles of the ancestor headerSpan(s). <p>
+     * For example, if you had a field titled "Population" inside a headerSpan titled "National", nested inside another
+     * headerSpan titled "Demographics", that would result in the exported field being titled "Demographics - National -
+     * Population". <p> The <code>exportSpanTitleSeparator</code> property allows you to override the separator  string used
+     * when constructing these amalgamated headers.
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     */
+    public String getExportSpanTitleSeparator()  {
+        return getAttributeAsString("exportSpanTitleSeparator");
+    }
+
+
     /**
      * The character with which to replace spaces in field-titles when exporting to XML.
      *
-     * @param exportTitleSeparatorChar exportTitleSeparatorChar Default value is null
+     * @param exportTitleSeparatorChar . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setExportTitleSeparatorChar(String exportTitleSeparatorChar) {
         setAttribute("exportTitleSeparatorChar", exportTitleSeparatorChar);
@@ -510,12 +798,12 @@ public class DSRequest extends RPCRequest {
     /**
      * The character with which to replace spaces in field-titles when exporting to XML.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getExportTitleSeparatorChar()  {
         return getAttributeAsString("exportTitleSeparatorChar");
     }
+
 
     /**
      * If set, Smart GWT Server will export data back to the client, either as a file download  or as content in a new browser
@@ -539,20 +827,23 @@ public class DSRequest extends RPCRequest {
      * a file on the server filesystem, and downloaded to the client.  If you specify  <em>neither</em> property, the export
      * no-ops.
      *
-     *
      * @return Boolean
      */
     public Boolean getExportToClient()  {
         return getAttributeAsBoolean("exportToClient");
     }
 
+
     /**
      * If set, Smart GWT Server will export data to a file on the <b>server</b> filesystem.  The file we export to is
      * determined by the {@link com.smartgwt.client.data.DSRequest#getExportFilename exportFilename} and  {@link
      * com.smartgwt.client.data.DSRequest#getExportPath exportPath}. <p> Note that it is perfectly valid to specify both this
      * property and  {@link com.smartgwt.client.data.DSRequest#getExportToClient exportToClient}; in this case the data is both
-     * exported to a file on the server filesystem, and downloaded to the client.  If you specify  <em>neither</em> property,
-     * the export no-ops.
+     * exported to a file on the server filesystem <em>and</em> downloaded to the client.  If you specify  <em>neither</em>
+     * property, the export no-ops. <p> It is possible to redirect the filesystem export to make use of an
+     * <code>OutputStream</code> you provide.  You use this when you want to make some use of the export document other than 
+     * writing it to a disk file - for example, attaching it to an email or writing it to a  database table.  See the
+     * server-side Javadocs for <code>DSRequest.setExportTo()</code>.
      *
      * @param exportToFilesystem exportToFilesystem Default value is false
      */
@@ -565,15 +856,18 @@ public class DSRequest extends RPCRequest {
      * determined by the {@link com.smartgwt.client.data.DSRequest#getExportFilename exportFilename} and  {@link
      * com.smartgwt.client.data.DSRequest#getExportPath exportPath}. <p> Note that it is perfectly valid to specify both this
      * property and  {@link com.smartgwt.client.data.DSRequest#getExportToClient exportToClient}; in this case the data is both
-     * exported to a file on the server filesystem, and downloaded to the client.  If you specify  <em>neither</em> property,
-     * the export no-ops.
-     *
+     * exported to a file on the server filesystem <em>and</em> downloaded to the client.  If you specify  <em>neither</em>
+     * property, the export no-ops. <p> It is possible to redirect the filesystem export to make use of an
+     * <code>OutputStream</code> you provide.  You use this when you want to make some use of the export document other than 
+     * writing it to a disk file - for example, attaching it to an email or writing it to a  database table.  See the
+     * server-side Javadocs for <code>DSRequest.setExportTo()</code>.
      *
      * @return Boolean
      */
     public Boolean getExportToFilesystem()  {
         return getAttributeAsBoolean("exportToFilesystem");
     }
+
 
     /**
      * Only applies to request properties passed to {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData
@@ -597,17 +891,73 @@ public class DSRequest extends RPCRequest {
      * com.smartgwt.client.widgets.grid.ListGridField#getValueField valueField}.  If you set this  property, we export both 
      * the underlying value and the displayField value.
      *
-     *
      * @return Boolean
      */
     public Boolean getExportValueFields()  {
         return getAttributeAsBoolean("exportValueFields");
     }
 
+
+
+    /**
+     * Specifies should related updates have to be generated. If not set (or set to <code>null</code>) then related updates
+     * will be generated only for "add" and "update" operations. This property has to be explicitly set to <code>true</code> to
+     * generate related updates for "remove" operation.<p/> This functionality loads related objects from database thus
+     * affecting operation performance. For "add" and "update" operations related objects are loaded anyway and performance
+     * impact is minimal. Simple "remove" operation does not need to load related objects. Depending on database structure
+     * performance impact can be significant if this property is set to <code>true</code>.
+     *
+     * @param generateRelatedUpdates generateRelatedUpdates Default value is null
+     */
+    public void setGenerateRelatedUpdates(Boolean generateRelatedUpdates) {
+        setAttribute("generateRelatedUpdates", generateRelatedUpdates);
+    }
+
+    /**
+     * Specifies should related updates have to be generated. If not set (or set to <code>null</code>) then related updates
+     * will be generated only for "add" and "update" operations. This property has to be explicitly set to <code>true</code> to
+     * generate related updates for "remove" operation.<p/> This functionality loads related objects from database thus
+     * affecting operation performance. For "add" and "update" operations related objects are loaded anyway and performance
+     * impact is minimal. Simple "remove" operation does not need to load related objects. Depending on database structure
+     * performance impact can be significant if this property is set to <code>true</code>.
+     *
+     * @return Boolean
+     */
+    public Boolean getGenerateRelatedUpdates()  {
+        return getAttributeAsBoolean("generateRelatedUpdates");
+    }
+
+
+    /**
+     * For <code>fetch</code> operation group by fields can be set. In this case only fields that appear in this
+     * <code>Array</code> and in <code>dsRequest.fieldFunctions</code> attribute will be fetched.<br> Holds <code>Array</code>
+     * with field names to fetch.
+     *
+     * @param groupBy . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     * @see com.smartgwt.client.data.DSRequest#setFieldFunctions
+     */
+    public void setGroupBy(String... groupBy) {
+        setAttribute("groupBy", groupBy);
+    }
+
+    /**
+     * For <code>fetch</code> operation group by fields can be set. In this case only fields that appear in this
+     * <code>Array</code> and in <code>dsRequest.fieldFunctions</code> attribute will be fetched.<br> Holds <code>Array</code>
+     * with field names to fetch.
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     * @see com.smartgwt.client.data.DSRequest#getFieldFunctions
+     */
+    public String[] getGroupBy()  {
+        return com.smartgwt.client.util.ConvertTo.arrayOfString(getAttributeAsJavaScriptObject("groupBy"));
+    }
+
+
+
     /**
      * The style of line-breaks to use in the exported output.  See LineBreakStyle for more information.
      *
-     * @param lineBreakStyle lineBreakStyle Default value is null
+     * @param lineBreakStyle . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setLineBreakStyle(String lineBreakStyle) {
         setAttribute("lineBreakStyle", lineBreakStyle);
@@ -616,12 +966,12 @@ public class DSRequest extends RPCRequest {
     /**
      * The style of line-breaks to use in the exported output.  See LineBreakStyle for more information.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getLineBreakStyle()  {
         return getAttributeAsString("lineBreakStyle");
     }
+
 
     /**
      * For an <code>update</code> or <code>remove</code> operation, the original values from the record that is being updated
@@ -651,12 +1001,12 @@ public class DSRequest extends RPCRequest {
      * <code>dsResponse.status</code> code that the client application detects, offering the user a choice of proceeding with
      * the operation, discarding edits, or reconciling new and old values in a special interface.
      *
-     *
      * @return Record
      */
     public Record getOldValues()  {
         return Record.getOrCreateRef(getAttributeAsJavaScriptObject("oldValues"));
     }
+
 
     /**
      * When a {@link com.smartgwt.client.widgets.DataBoundComponent} sends a DSRequest, the <code>dsRequest.operationId</code>
@@ -684,7 +1034,7 @@ public class DSRequest extends RPCRequest {
      * terms of whether two DSRequests are considered equivalent for caching and synchronization purposes - see {@link
      * com.smartgwt.client.docs.DsRequestEquivalence}.
      *
-     * @param operationId operationId Default value is null
+     * @param operationId . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.docs.Operations Operations overview and related methods
      */
     public void setOperationId(String operationId) {
@@ -717,13 +1067,13 @@ public class DSRequest extends RPCRequest {
      * terms of whether two DSRequests are considered equivalent for caching and synchronization purposes - see {@link
      * com.smartgwt.client.docs.DsRequestEquivalence}.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Operations Operations overview and related methods
      */
     public String getOperationId()  {
         return getAttributeAsString("operationId");
     }
+
 
     /**
      * Type of operation being performed: "fetch", "add", "remove", "update" or "custom". <P> This property is generally
@@ -743,12 +1093,73 @@ public class DSRequest extends RPCRequest {
      * operationType is automatically set to "fetch".  Note that "custom" operations are never generated automatically, they
      * are always fired by your code.
      *
-     *
      * @return DSOperationType
      */
     public DSOperationType getOperationType()  {
         return EnumUtil.getEnum(DSOperationType.values(), getAttribute("operationType"));
     }
+
+
+    /**
+     * The list of fields to return in the response, specified as a comma-separated string (eg, <code>"foo, bar, baz"</code>). 
+     * You can use this property to indicate to the server that  you are only interested in a subset of the fields that would
+     * normally be returned. <p> Note that you cannot use this property to request a <em>superset</em> of the fields that would
+     * normally be returned, because that would be a security hole.  It is possible to  configure individual {@link
+     * com.smartgwt.client.data.OperationBinding}s to return extra fields, but this must be done in the server's {@link
+     * com.smartgwt.client.data.DataSource} descriptor; it cannot be altered on the fly from the client side.
+     *
+     * @param outputs . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     * @see com.smartgwt.client.docs.serverds.OperationBinding#outputs
+     * @see com.smartgwt.client.data.DSRequest#setAdditionalOutputs
+     */
+    public void setOutputs(String outputs) {
+        setAttribute("outputs", outputs);
+    }
+
+    /**
+     * The list of fields to return in the response, specified as a comma-separated string (eg, <code>"foo, bar, baz"</code>). 
+     * You can use this property to indicate to the server that  you are only interested in a subset of the fields that would
+     * normally be returned. <p> Note that you cannot use this property to request a <em>superset</em> of the fields that would
+     * normally be returned, because that would be a security hole.  It is possible to  configure individual {@link
+     * com.smartgwt.client.data.OperationBinding}s to return extra fields, but this must be done in the server's {@link
+     * com.smartgwt.client.data.DataSource} descriptor; it cannot be altered on the fly from the client side.
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     * @see com.smartgwt.client.docs.serverds.OperationBinding#outputs
+     * @see com.smartgwt.client.data.DSRequest#getAdditionalOutputs
+     */
+    public String getOutputs()  {
+        return getAttributeAsString("outputs");
+    }
+
+
+
+    /**
+     * Indicates that a validation request is being made for a record that will ultimately be  saved with an "add" request, as
+     * opposed to an "update" request.  This context is necessary for some validators because the nature of the validation
+     * depends on whether we are adding or updating a record.  The system sets this flag when processing interim validations,
+     * such as those fired when {@link com.smartgwt.client.widgets.form.DynamicForm#getValidateOnChange validateOnChange} is in
+     * force.
+     *
+     * @param pendingAdd pendingAdd Default value is null
+     */
+    public void setPendingAdd(Boolean pendingAdd) {
+        setAttribute("pendingAdd", pendingAdd);
+    }
+
+    /**
+     * Indicates that a validation request is being made for a record that will ultimately be  saved with an "add" request, as
+     * opposed to an "update" request.  This context is necessary for some validators because the nature of the validation
+     * depends on whether we are adding or updating a record.  The system sets this flag when processing interim validations,
+     * such as those fired when {@link com.smartgwt.client.widgets.form.DynamicForm#getValidateOnChange validateOnChange} is in
+     * force.
+     *
+     * @return Boolean
+     */
+    public Boolean getPendingAdd()  {
+        return getAttributeAsBoolean("pendingAdd");
+    }
+
 
     /**
      * Sets {@link com.smartgwt.client.data.DataSource#getProgressiveLoading progressive loading mode} for this specific
@@ -769,7 +1180,6 @@ public class DSRequest extends RPCRequest {
      * request, overriding the OperationBinding- and DataSource-level settings.  Note that this  setting applies only to fetch
      * requests - it has no effect if specified on any other kind  of request.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.data.DataSource#getProgressiveLoading
      * @see com.smartgwt.client.docs.serverds.OperationBinding#progressiveLoading
@@ -784,12 +1194,15 @@ public class DSRequest extends RPCRequest {
      * Automatically generated unique ID for this request. This ID will be required by developers  making use of the {@link
      * com.smartgwt.client.types.DSProtocol "clientCustom" dataProtocol}.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getRequestId()  {
         return getAttributeAsString("requestId");
     }
+
+
+
+
 
     /**
      * Starting row of requested results, used only with fetch operations.  If unset, 0 is assumed. <p> Note that startRow and
@@ -807,12 +1220,12 @@ public class DSRequest extends RPCRequest {
      * endRow are zero-based, inclusive at the beginning and exclusive at the end (like substring), so startRow: 0, endRow: 1
      * is a request for the first record.
      *
-     *
      * @return Integer
      */
     public Integer getStartRow()  {
         return getAttributeAsInt("startRow");
     }
+
 
     /**
      * If true, results will be streamed on the server, rather than all records being read into  server memory at once; this
@@ -826,7 +1239,7 @@ public class DSRequest extends RPCRequest {
      * property is ignored by other DataSource types. <p> See also the server-side documentation for <code>DSResponse</code>, 
      * <code>SQLDataSource</code> and <code>StreamingResponseIterator</code>.
      *
-     * @param streamResults streamResults Default value is false
+     * @param streamResults . See {@link com.smartgwt.client.docs.String String}. Default value is false
      */
     public void setStreamResults(String streamResults) {
         setAttribute("streamResults", streamResults);
@@ -844,12 +1257,12 @@ public class DSRequest extends RPCRequest {
      * property is ignored by other DataSource types. <p> See also the server-side documentation for <code>DSResponse</code>, 
      * <code>SQLDataSource</code> and <code>StreamingResponseIterator</code>.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getStreamResults()  {
         return getAttributeAsString("streamResults");
     }
+
 
     /**
      * For "fetch" operations, how search criteria should be interpreted for text fields: either "exact" for exact match,
@@ -869,12 +1282,12 @@ public class DSRequest extends RPCRequest {
      * is respected by the built-in SQLDataSource.  Your custom DataSource implementation can interpret the search criteria
      * passed into "fetch" operations in arbitrary ways; you can safely ignore this flag and use others of your own devising.
      *
-     *
      * @return TextMatchStyle
      */
     public TextMatchStyle getTextMatchStyle()  {
         return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("textMatchStyle"));
     }
+
 
     /**
      * When <code>useFlatFields</code> is set for a request to be sent to a WSDL web service, when
@@ -1012,12 +1425,12 @@ public class DSRequest extends RPCRequest {
      *  depth first search.  "wins" means only the first field will be populated in the generated
      *  XML message.
      *
-     *
      * @return Boolean
      */
     public Boolean getUseFlatFields()  {
         return getAttributeAsBoolean("useFlatFields");
     }
+
 
     /**
      * Cause the {@link com.smartgwt.client.data.DSRequest#getUseFlatFields useFlatFields} XML serialization behavior to be
@@ -1035,12 +1448,37 @@ public class DSRequest extends RPCRequest {
      * used for <b>all</b> soap headers in the request.  See also {@link com.smartgwt.client.data.DSRequest#getHeaderData
      * headerData}.
      *
-     *
      * @return Boolean
      */
     public Boolean getUseFlatHeaderFields()  {
         return getAttributeAsBoolean("useFlatHeaderFields");
     }
+
+
+    /**
+     * Should the HTTP response to this request be formatted using the strict JSON subset of the javascript language? If set to
+     * true, responses returned by the server should match the format described <a href='http://www.json.org/js.html'
+     * onclick="window.open('http://www.json.org/js.html');return false;">here</a>. <P> Only applies to requests sent a server
+     * with {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} set to "json" or "iscServer".
+     *
+     * @param useStrictJSON useStrictJSON Default value is null
+     */
+    public void setUseStrictJSON(Boolean useStrictJSON) {
+        setAttribute("useStrictJSON", useStrictJSON);
+    }
+
+    /**
+     * Should the HTTP response to this request be formatted using the strict JSON subset of the javascript language? If set to
+     * true, responses returned by the server should match the format described <a href='http://www.json.org/js.html'
+     * onclick="window.open('http://www.json.org/js.html');return false;">here</a>. <P> Only applies to requests sent a server
+     * with {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} set to "json" or "iscServer".
+     *
+     * @return Boolean
+     */
+    public Boolean getUseStrictJSON()  {
+        return getAttributeAsBoolean("useStrictJSON");
+    }
+
 
     /**
      * Mode of validation for entered data.
@@ -1054,7 +1492,6 @@ public class DSRequest extends RPCRequest {
     /**
      * Mode of validation for entered data.
      *
-     *
      * @return ValidationMode
      */
     public ValidationMode getValidationMode()  {
@@ -1064,11 +1501,17 @@ public class DSRequest extends RPCRequest {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
-    
+    public DSRequest(DSOperationType operationType, Criteria criteria) {
+        this(operationType, criteria.getJsObj());
+    }
+    public DSRequest(DSOperationType operationType, String operationId, Criteria criteria) {
+        this(operationType, operationId, criteria.getJsObj());
+    }
+
     /**
      * Set a custom attribute value on the DSRequest as an Object. Note that this method converts the Java primitive Object types, Dates and Maps to the underyling
      * JavaScriptObject value. All other object types are set as Object type attributes and users are expected to call {@link #getAttributeAsObject(String)}
@@ -1118,7 +1561,7 @@ public class DSRequest extends RPCRequest {
      * <p>
      * SOAP headers typically contain request metadata such as a session id for authentication, and so dsRequest.headerData is typically populated by DataSource.transformRequest(), or, for data that applies to every request sent to the server,
      * by WebService.getHeaderData().
-     * 
+     *
      * @param headerData the header data
      */
     public void setHeaderData(Map headerData) {
@@ -1178,10 +1621,34 @@ public class DSRequest extends RPCRequest {
         if(sortBy == null || sortBy === undefined) return null;
         //Unlike ListGrid.getSortBy(), DSRequest always stores sortBy as a String or an array of Strings, and not the SortSpecifier object / array.
         if($wnd.isc.isA.Array(sortBy)) {
-            sortBy = sortBy.join(",")
+            sortBy = sortBy.join(",");
         }
         return @com.smartgwt.client.data.SortSpecifier::convertToArray(Ljava/lang/String;)(sortBy);
     }-*/;
+
+    /**
+     * For <code>fetch</code> operation aggregation functions can be set. In this case only fields that appear in this <code>Map</code> and
+     * fields set via <code>dsRequest.setGroupBy(...)</code> method will be fetched.
+     *
+     * @param fieldFunctions <code>Map</code> with field names as keys and aggregation functions as values.
+     *
+     * @see DSRequest2#setGroupBy(java.lang.String[]) DSRequest.setGroupBy(String[])
+     */
+    public void setFieldFunctions(Map fieldFunctions) {
+        setAttribute("fieldFunctions", fieldFunctions);
+    }
+
+
+    /**
+     * For <code>fetch</code> operation aggregation functions used. To get rest fields used in select use <code>dsRequest.getGroupBy()</code> method.
+     *
+     * @return <code>Map</code> with field names as keys and aggregation functions as values.
+     *
+     * @see DSRequest2#getGroupBy() DSRequest.getGroupBy()
+     */
+    public Map getFieldFunctions() {
+        return getAttributeAsMap("fieldFunctions");
+    }
 
     /**
      * For an <code>update</code> or <code>remove</code> operation, the original values from the record that is being updated
@@ -1232,27 +1699,51 @@ public class DSRequest extends RPCRequest {
             throw new IllegalStateException("This method should only be called during FETCH operations");
         }
     }
-    
-    public static DSRequest[] convertToDSRequestArray(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new DSRequest[]{};
-        }
-        if (JSOHelper.isArray(nativeArray)) {
-            JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-            DSRequest[] objects = new DSRequest[componentsj.length];
-            for (int i = 0; i < componentsj.length; i++) {
-                JavaScriptObject componentJS = componentsj[i];
-                objects[i] = DSRequest.getOrCreateRef(componentJS);
-            }
-            return objects;
-        } else {
-            DSRequest[] ret = new DSRequest[1];
-            ret[0] = DSRequest.getOrCreateRef(nativeArray);
-            return ret;
+
+    /**
+     * Set the skin to use. For example: Enterprise
+     *
+     * @param skinName the name of the selected skin.
+     */
+    public void setSkinName(String skinName) {
+        setAttribute("skinName", skinName);
+    }
+
+    /**
+     * For advanced use in integrating trees that {@link com.smartgwt.client.widgets.tree.TreeGrid#loadDataOnDemand load data on demand}
+     * with web services, <code>parentNode</code> is automatically set in "fetch" DSRequests issued by a databound TreeGrid that is loading
+     * children for that <code>parentNode</code>.
+     * <P>
+     * This is sometimes needed if a web service requires that additional properties beyond the ID of the parentNode must be
+     * passed in order to accomplished level-by-level loading.
+     * A custom implementation of {@link com.smartgwt.client.data.DataSource#transformRequest} can access dsRequest.parentNode and
+     * add any such properties to {@link com.smartgwt.client.data.DSRequest#getData}.
+     * <P>
+     * <code>parentNode</code> will also be automatically set by a TreeGrid performing databound reparenting of nodes, as implemented
+     * by {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}.
+     * <P>
+     * This property can only be read. There is no meaning to setting this property yourself.
+     *
+     * @return parentNode like a TreeNode
+     */
+    public TreeNode getParentNode() {
+        JavaScriptObject jsNode = getAttributeAsJavaScriptObject("parentNode");
+        if (jsNode == null) return null;
+        return new TreeNode(jsNode);
+    }
+
+    /**
+     * This method applies to "fetch" requests only; for update or delete operations pass a Record to
+     * setData() which contains primaryKey values as Record attributes.
+     *
+     * @param criteria the criteria to store.
+     */
+    public void setCriteria(Criteria criteria) {
+        if (criteria != null) {
+            setAttribute("data", criteria.getJsObj());
         }
     }
 
 }
-
 
 

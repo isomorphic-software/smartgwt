@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.grid.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasRowMouseUpHandlers extends HasHandlers {
     /**
      * Called when a row receives a mouseup event.
@@ -29,3 +28,4 @@ public interface HasRowMouseUpHandlers extends HasHandlers {
      */
     HandlerRegistration addRowMouseUpHandler(RowMouseUpHandler handler);
 }
+

@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +46,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class HeaderDoubleClickEvent extends BrowserEvent<HeaderDoubleClickHandler>  {
 
     /**
@@ -92,7 +97,6 @@ public class HeaderDoubleClickEvent extends BrowserEvent<HeaderDoubleClickHandle
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(HeaderDoubleClickHandler handler) {
         handler.onHeaderDoubleClick(this);
@@ -111,17 +115,15 @@ public class HeaderDoubleClickEvent extends BrowserEvent<HeaderDoubleClickHandle
         super(jsObj);
     }
 
-
-
-    /**
+	/**
      * field number for the header that was clicked
      *
      * @return field number for the header that was clicked
      */
-    public  native int getFieldNum() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.fieldNum;
+    public native int getFieldNum() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.fieldNum;
+        return ret;
     }-*/;
-
 
 }

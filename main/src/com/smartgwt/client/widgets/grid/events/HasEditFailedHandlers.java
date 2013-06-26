@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.grid.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasEditFailedHandlers extends HasHandlers {
     /**
      * Called when an attempt to save inline edits fails, due to a validation error or other server error. <P> The default
@@ -33,3 +32,4 @@ public interface HasEditFailedHandlers extends HasHandlers {
      */
     HandlerRegistration addEditFailedHandler(EditFailedHandler handler);
 }
+

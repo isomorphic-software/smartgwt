@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasParentMovedHandlers extends HasHandlers {
     /**
      * Notification method fire when an ancestor of this component's position changes.
@@ -29,3 +28,4 @@ public interface HasParentMovedHandlers extends HasHandlers {
      */
     HandlerRegistration addParentMovedHandler(ParentMovedHandler handler);
 }
+

@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * <code>ControlNames</code> are strings used to specify which UI controls should appear  in the editor toolbar.<br>
  */
@@ -64,7 +65,6 @@ public enum ControlName implements ValueEnum {
      * A color picker allowing the user to set the text background color
      */
     BACKGROUNDCOLOR("backgroundColor");
-
     private String value;
 
     ControlName(String value) {

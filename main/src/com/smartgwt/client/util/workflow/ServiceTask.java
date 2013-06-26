@@ -17,13 +17,13 @@
 package com.smartgwt.client.util.workflow;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,15 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A ServiceTask is an element of a {@link com.smartgwt.client.util.workflow.Process} which calls a DataSource operation, 
@@ -68,7 +91,13 @@ import com.google.gwt.event.shared.HasHandlers;
  * portions of the input data and use it as part of the criteria or values. <P> As a special case, if the
  * <code>inputField</code> is an atomic value (just a String or Number rather than a Record) and operationType is "fetch",
  * it will be assumed to be value for the primary key field of the target DataSource if {@link
- * com.smartgwt.client.util.workflow.ServiceTask#getCriteria criteria} is not explicitly specified
+ * com.smartgwt.client.util.workflow.ServiceTask#getCriteria criteria} is not explicitly specified <P> OutputData and
+ * outputFieldList work as filters. You should determine which properties should be fetched into the process state. If you
+ * want to load all data without defining every property manually you can pass a name started with '$' and fetched record
+ * or records will be  placed as a record or an array of records by the name without this specific symbol. <P> For example
+ * if you specify 'id' and 'name' in outputFieldList, only these properties will be fetched in the process state. If you
+ * pass '$record' in outputField a whole record will be  stored in process state under the 'record' key. Also you can use
+ * javascript syntax there. For example '$record.item[0]'.
  */
 public class ServiceTask extends Task {
 
@@ -82,17 +111,20 @@ public class ServiceTask extends Task {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
+    }
+
+
+
     public ServiceTask(){
         scClassName = "ServiceTask";
     }
 
     public ServiceTask(JavaScriptObject jsObj){
-        super(jsObj);
-    }
-
-    public ServiceTask(String ID) {
-        setID(ID);
         scClassName = "ServiceTask";
+        setJavaScriptObject(jsObj);
+        
     }
 
     public native JavaScriptObject create()/*-{
@@ -100,7 +132,9 @@ public class ServiceTask extends Task {
         var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
         return $wnd.isc[scClassName].create(config);
     }-*/;
+
     // ********************* Properties / Attributes ***********************
+
 
     /**
      * Criteria (including AdvancedCriteria) to use for a "fetch" operation. <P> Data values in this criteria prefixed with "$"
@@ -132,13 +166,14 @@ public class ServiceTask extends Task {
      * other than "fetch".  Update or delete operations should place the primary key to update in {@link
      * com.smartgwt.client.util.workflow.ServiceTask#getValues values}.
      *
-     *
      * @return Criteria
      * @see com.smartgwt.client.docs.TaskIO TaskIO overview and related methods
      */
     public Criteria getCriteria()  {
         return new Criteria(getAttributeAsJavaScriptObject("criteria"));
     }
+
+
 
     /**
      * Criteria to be submitted as part of the DSRequest, regardless of inputs to the task. Will be combined with the data from
@@ -159,12 +194,12 @@ public class ServiceTask extends Task {
      * com.smartgwt.client.util.workflow.ServiceTask#getCriteria criteria} if specified, via {@link
      * com.smartgwt.client.data.DataSource#combineCriteria DataSource.combineCriteria}.
      *
-     *
      * @return Criteria
      */
     public Criteria getFixedCriteria()  {
         return new Criteria(getAttributeAsJavaScriptObject("fixedCriteria"));
     }
+
 
     /**
      * Values to be submitted as part of the DSRequest, regardless of inputs to the task. Will  be combined with the data from
@@ -187,12 +222,12 @@ public class ServiceTask extends Task {
      * <code>fixedValues</code> overwriting values provided by the <code>inputField</code>, but explicitly specified {@link
      * com.smartgwt.client.util.workflow.ServiceTask#getValues values} overriding <code>fixedValues</code>.
      *
-     *
      * @return Record
      */
     public Record getFixedValues()  {
         return Record.getOrCreateRef(getAttributeAsJavaScriptObject("fixedValues"));
     }
+
 
     /**
      * Type of operation to invoke
@@ -201,18 +236,18 @@ public class ServiceTask extends Task {
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setOperationType(DSOperationType operationType)  throws IllegalStateException {
-        setAttribute("operationType", operationType.getValue(), false);
+        setAttribute("operationType", operationType == null ? null : operationType.getValue(), false);
     }
 
     /**
      * Type of operation to invoke
-     *
      *
      * @return DSOperationType
      */
     public DSOperationType getOperationType()  {
         return EnumUtil.getEnum(DSOperationType.values(), getAttribute("operationType"));
     }
+
 
     /**
      * Values to be submitted for "update", "add" and "remove" operations. <P> Similar to {@link
@@ -233,7 +268,6 @@ public class ServiceTask extends Task {
      * com.smartgwt.client.docs.TaskInputExpression}.  Use {@link com.smartgwt.client.util.workflow.ServiceTask#getFixedValues
      * fixedValues} for any values that start with "$" but should be treated as a literal.
      *
-     *
      * @return Record
      */
     public Record getValues()  {
@@ -243,8 +277,8 @@ public class ServiceTask extends Task {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
 
@@ -273,11 +307,13 @@ public class ServiceTask extends Task {
      * @param dataSource dataSource Default value is null
      */
     public void setDataSource(DataSource dataSource) {
-        setAttribute("dataSource", dataSource == null ? null : dataSource.getOrCreateJsObj(), false);
+    	if(dataSource==null) {
+    		throw new IllegalArgumentException("Invalid call to setDataSource() passing null.  If you're having trouble with loading DataSources, please see the following FAQ: http://forums.smartclient.com/showthread.php?t=8159#aDSLoad");
+    	}
+        setAttribute("dataSource", dataSource.getOrCreateJsObj(), false);
     }
 
 
 }
-
 
 

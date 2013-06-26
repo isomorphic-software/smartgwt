@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.calendar.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasBackgroundMouseDownHandlers extends HasHandlers {
     /**
      * Callback fired when the mouse button is depressed over a background-cell, ie, one  without an event.  Call {@link com.smartgwt.client.widgets.calendar.events.BackgroundMouseDownEvent#cancel()} from within {@link BackgroundMouseDownHandler#onBackgroundMouseDown} to
@@ -30,3 +29,4 @@ public interface HasBackgroundMouseDownHandlers extends HasHandlers {
      */
     HandlerRegistration addBackgroundMouseDownHandler(BackgroundMouseDownHandler handler);
 }
+

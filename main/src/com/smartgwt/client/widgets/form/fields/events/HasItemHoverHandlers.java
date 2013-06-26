@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasItemHoverHandlers extends HasHandlers {
     /**
      * Optional stringMethod to fire when the user hovers over this item. Call {@link com.smartgwt.client.widgets.form.fields.events.ItemHoverEvent#cancel()} from within {@link ItemHoverHandler#onItemHover} to suppress default behavior of showing
@@ -31,3 +30,4 @@ public interface HasItemHoverHandlers extends HasHandlers {
      */
     HandlerRegistration addItemHoverHandler(ItemHoverHandler handler);
 }
+

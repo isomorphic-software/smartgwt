@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * How should field width be determined when {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidth
  * autoFitWidth} is true?
@@ -33,7 +34,6 @@ public enum AutoFitWidthApproach implements ValueEnum {
      * Size field to fit either the field title or the data values in the field (whichever requires more space).
      */
     BOTH("both");
-
     private String value;
 
     AutoFitWidthApproach(String value) {

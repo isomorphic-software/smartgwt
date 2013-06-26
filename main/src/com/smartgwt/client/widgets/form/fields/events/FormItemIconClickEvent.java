@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +46,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class FormItemIconClickEvent extends AbstractSmartEvent<FormItemClickHandler>  {
 
     /**
@@ -92,7 +97,6 @@ public class FormItemIconClickEvent extends AbstractSmartEvent<FormItemClickHand
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(FormItemClickHandler handler) {
         handler.onFormItemClick(this);
@@ -111,37 +115,38 @@ public class FormItemIconClickEvent extends AbstractSmartEvent<FormItemClickHand
         super(jsObj);
     }
 
-
-
-    /**
+	/**
      * The Dynamic Form to which this icon's item belongs.
      *
      * @return The Dynamic Form to which this icon's item belongs.
      */
-    public  native DynamicForm getForm() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.form);
+    public native DynamicForm getForm() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.form;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
-    /**
+	/**
      * The Form Item containing this icon
      *
      * @return The Form Item containing this icon
      */
-    public  native FormItem getItem() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
+    public native FormItem getItem() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.item;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
-    /**
+	/**
      * A pointer to the form item icon clicked
      *
      * @return A pointer to the form item icon clicked
      */
-    public  native FormItemIcon getIcon() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.form.fields.FormItemIcon::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.icon);
+    public native FormItemIcon getIcon() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.icon;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.form.fields.FormItemIcon::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
 
 }

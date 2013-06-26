@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.tab.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasTabContextMenuHandlers extends HasHandlers {
     /**
      * Notification fired when the user right-clicks on a tab. Event may be cancelled by returning false
@@ -29,3 +28,4 @@ public interface HasTabContextMenuHandlers extends HasHandlers {
      */
     HandlerRegistration addTabContextMenuHandler(TabContextMenuHandler handler);
 }
+

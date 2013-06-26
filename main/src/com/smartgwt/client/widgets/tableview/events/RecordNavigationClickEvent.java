@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +46,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class RecordNavigationClickEvent extends BrowserEvent<RecordNavigationClickHandler>  {
 
     /**
@@ -92,7 +97,6 @@ public class RecordNavigationClickEvent extends BrowserEvent<RecordNavigationCli
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(RecordNavigationClickHandler handler) {
         handler.onRecordNavigationClick(this);
@@ -111,17 +115,16 @@ public class RecordNavigationClickEvent extends BrowserEvent<RecordNavigationCli
         super(jsObj);
     }
 
-
-
-    /**
+	/**
      * record clicked
      *
      * @return record clicked
      */
-    public  native Record getRecord() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
+    public native ListGridRecord getRecord() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.record;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
 
 }

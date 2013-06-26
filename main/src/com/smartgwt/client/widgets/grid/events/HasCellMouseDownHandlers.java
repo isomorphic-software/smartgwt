@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.grid.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasCellMouseDownHandlers extends HasHandlers {
     /**
      * Called when a cell receives a mousedown event.
@@ -29,3 +28,4 @@ public interface HasCellMouseDownHandlers extends HasHandlers {
      */
     HandlerRegistration addCellMouseDownHandler(CellMouseDownHandler handler);
 }
+

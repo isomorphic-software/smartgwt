@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Indicates the kind of value expected in a {@link com.smartgwt.client.data.Criterion} that uses this operator.
  */
@@ -52,7 +53,6 @@ public enum OperatorValueType implements ValueEnum {
      * value for the criterion.
      */
     CUSTOM("custom");
-
     private String value;
 
     OperatorValueType(String value) {

@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,15 +17,12 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * One of the four basic operations that can be performed on DataSource data: "fetch", "add", "update", "remove". 
  * Elsewhere called CRUD operations, where CRUD stands for "create", "retrieve", "update", "delete", which correspond to
  * "add", "fetch", "update" and "remove" in Smart GWT terminology.  See {@link
- * com.smartgwt.client.docs.DataSourceOperations} for a full description. <p> There is also a fifth operation, "custom". 
- * This is any operation that is not one of the  four CRUD operations.  You can use operations of this type in
- * circumstances where you  might otherwise have used a plain RPC.
+ * com.smartgwt.client.docs.DataSourceOperations} for a full description. <p> There are also additional, non-CRUD
+ * operations explained below. </ul>
  */
 public enum DSOperationType implements ValueEnum {
     /**
@@ -42,14 +42,32 @@ public enum DSOperationType implements ValueEnum {
      */
     REMOVE("remove"),
     /**
-     * Run server-side validation for "add" or "update" without actually performing the operation
+     * perform some arbitrary custom logic that is not a CRUD operation. Format of the inputs and outputs is unconstrained, and
+     * the operation will be ignored for cache sync purposes by {@link com.smartgwt.client.data.ResultSet}s. See  {@link
+     * com.smartgwt.client.data.DataSource#performCustomOperation DataSource.performCustomOperation}.
+     */
+    CUSTOM("custom"),
+    /**
+     * Run server-side validation for "add" or "update" without actually adding or updating anything. See {@link
+     * com.smartgwt.client.data.DataSource#validateData DataSource.validateData}.
      */
     VALIDATE("validate"),
     /**
-     * Perform some arbitrary custom logic that is not a CRUD operation
+     * Retrieve a file stored in a binary field in a DataSource record, and allow the browser to choose whether to view it
+     * directly or prompt the user to save. See {@link com.smartgwt.client.docs.BinaryFields}.
      */
-    CUSTOM("custom");
-
+    VIEWFILE("viewFile"),
+    /**
+     * Like "viewFile", but the HTTP header Content-Disposition is used to suggest that the browser show a save dialog. See
+     * {@link com.smartgwt.client.docs.BinaryFields}.
+     */
+    DOWNLOADFILE("downloadFile"),
+    /**
+     * Upload formatted client data and export it to Excel, XML and other formats. Used automatically by  {@link
+     * com.smartgwt.client.data.DataSource#exportClientData exportClientData()}  and cannot be used directly. Usable only with
+     * the Smart GWT server framework.
+     */
+    CLIENTEXPORT("clientExport");
     private String value;
 
     DSOperationType(String value) {

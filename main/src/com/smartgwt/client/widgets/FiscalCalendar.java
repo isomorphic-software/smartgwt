@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -60,6 +60,23 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * An object representing the start date for fiscal years in the current locale. <P> A fiscal year spans a configurable
@@ -68,18 +85,18 @@ import com.google.gwt.event.shared.HasHandlers;
  * {@link com.smartgwt.client.widgets.FiscalYear} objects to the {@link
  * com.smartgwt.client.widgets.FiscalCalendar#getFiscalYears fiscal years array}. If none are provided, or if there is no
  * entry for the given year, one is manufactured based on the default {@link
- * com.smartgwt.client.widgets.FiscalCalendar#getDefaultMonth month}  and {@link
+ * com.smartgwt.client.widgets.FiscalCalendar#getDefaultMonth month} and {@link
  * com.smartgwt.client.widgets.FiscalCalendar#getDefaultDate date}.
  */
 public class FiscalCalendar extends RefDataClass {
 
     public static FiscalCalendar getOrCreateRef(JavaScriptObject jsObj) {
-    
+
         if(jsObj == null) return null;
 
         RefDataClass obj = RefDataClass.getRef(jsObj);
 
- 
+
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (FiscalCalendar) obj;
@@ -93,12 +110,15 @@ public class FiscalCalendar extends RefDataClass {
     }
 
 
+
     public FiscalCalendar(){
         
     }
 
     public FiscalCalendar(JavaScriptObject jsObj){
+        
         setJavaScriptObject(jsObj);
+        
     }
 
     public FiscalCalendar(int defaultMonth, int defaultDate) {
@@ -107,12 +127,14 @@ public class FiscalCalendar extends RefDataClass {
         
     }
 
+
     // ********************* Properties / Attributes ***********************
+
 
     /**
      * The default one-based day-number in the {@link com.smartgwt.client.widgets.FiscalCalendar#getDefaultMonth specified
      * month} to use for calculating fiscal dates when no {@link com.smartgwt.client.widgets.FiscalCalendar#getFiscalYears
-     * fiscal years}  are provided. This value together with {@link com.smartgwt.client.widgets.FiscalCalendar#getDefaultMonth
+     * fiscal years} are provided. This value together with {@link com.smartgwt.client.widgets.FiscalCalendar#getDefaultMonth
      * defaultMonth} will be used as the start date for the fiscal years where no explicitly specified fiscalYear configuration
      * is present. <br> See also {@link com.smartgwt.client.widgets.FiscalCalendar#getDefaultYearMode defaultYearMode}.
      *
@@ -125,10 +147,9 @@ public class FiscalCalendar extends RefDataClass {
     /**
      * The default one-based day-number in the {@link com.smartgwt.client.widgets.FiscalCalendar#getDefaultMonth specified
      * month} to use for calculating fiscal dates when no {@link com.smartgwt.client.widgets.FiscalCalendar#getFiscalYears
-     * fiscal years}  are provided. This value together with {@link com.smartgwt.client.widgets.FiscalCalendar#getDefaultMonth
+     * fiscal years} are provided. This value together with {@link com.smartgwt.client.widgets.FiscalCalendar#getDefaultMonth
      * defaultMonth} will be used as the start date for the fiscal years where no explicitly specified fiscalYear configuration
      * is present. <br> See also {@link com.smartgwt.client.widgets.FiscalCalendar#getDefaultYearMode defaultYearMode}.
-     *
      *
      * @return Integer
      */
@@ -136,8 +157,9 @@ public class FiscalCalendar extends RefDataClass {
         return getAttributeAsInt("defaultDate");
     }
 
+
     /**
-     * The default zero-based month-number to use for calculating fiscal dates when no  {@link
+     * The default zero-based month-number to use for calculating fiscal dates when no {@link
      * com.smartgwt.client.widgets.FiscalCalendar#getFiscalYears fiscal years} are provided. This value together with {@link
      * com.smartgwt.client.widgets.FiscalCalendar#getDefaultDate defaultDate} will be used as the start date for the fiscal
      * years where no explicitly specified fiscalYear configuration is present. <br> See also {@link
@@ -150,12 +172,11 @@ public class FiscalCalendar extends RefDataClass {
     }
 
     /**
-     * The default zero-based month-number to use for calculating fiscal dates when no  {@link
+     * The default zero-based month-number to use for calculating fiscal dates when no {@link
      * com.smartgwt.client.widgets.FiscalCalendar#getFiscalYears fiscal years} are provided. This value together with {@link
      * com.smartgwt.client.widgets.FiscalCalendar#getDefaultDate defaultDate} will be used as the start date for the fiscal
      * years where no explicitly specified fiscalYear configuration is present. <br> See also {@link
      * com.smartgwt.client.widgets.FiscalCalendar#getDefaultYearMode defaultYearMode}.
-     *
      *
      * @return Integer
      */
@@ -163,12 +184,13 @@ public class FiscalCalendar extends RefDataClass {
         return getAttributeAsInt("defaultMonth");
     }
 
+
     /**
      * This attribute controls how the displayed fiscalYear value should be calculated for dates falling within a period not
      * explicitly listed in the +lik{fiscalCalendar.fiscalYears,fiscal years array}. <P> The {@link
      * com.smartgwt.client.widgets.FiscalCalendar#getDefaultMonth defaultMonth} and {@link
      * com.smartgwt.client.widgets.FiscalCalendar#getDefaultDate defaultDate} will be used to calculate the start of the fiscal
-     * year period. The defaultYearMode  determines whether the reported fiscalYear for this period matches the year in which
+     * year period. The defaultYearMode determines whether the reported fiscalYear for this period matches the year in which
      * the period starts or the year in which it ends (so whether a fiscal year spanning dates within both 2020 and 2021 is
      * reported as fiscalYear 2020 or 2021).
      *
@@ -183,10 +205,9 @@ public class FiscalCalendar extends RefDataClass {
      * explicitly listed in the +lik{fiscalCalendar.fiscalYears,fiscal years array}. <P> The {@link
      * com.smartgwt.client.widgets.FiscalCalendar#getDefaultMonth defaultMonth} and {@link
      * com.smartgwt.client.widgets.FiscalCalendar#getDefaultDate defaultDate} will be used to calculate the start of the fiscal
-     * year period. The defaultYearMode  determines whether the reported fiscalYear for this period matches the year in which
+     * year period. The defaultYearMode determines whether the reported fiscalYear for this period matches the year in which
      * the period starts or the year in which it ends (so whether a fiscal year spanning dates within both 2020 and 2021 is
      * reported as fiscalYear 2020 or 2021).
-     *
      *
      * @return FiscalYearMode
      */
@@ -194,8 +215,9 @@ public class FiscalCalendar extends RefDataClass {
         return EnumUtil.getEnum(FiscalYearMode.values(), getAttribute("defaultYearMode"));
     }
 
+
     /**
-     * An array of {@link com.smartgwt.client.widgets.FiscalYear FiscalYear objects} which each represent the start date of a 
+     * An array of {@link com.smartgwt.client.widgets.FiscalYear FiscalYear objects} which each represent the start date of a
      * single fiscal year.
      *
      * @param fiscalYears fiscalYears Default value is null
@@ -205,23 +227,21 @@ public class FiscalCalendar extends RefDataClass {
     }
 
     /**
-     * An array of {@link com.smartgwt.client.widgets.FiscalYear FiscalYear objects} which each represent the start date of a 
+     * An array of {@link com.smartgwt.client.widgets.FiscalYear FiscalYear objects} which each represent the start date of a
      * single fiscal year.
-     *
      *
      * @return FiscalYear
      */
     public FiscalYear[] getFiscalYears()  {
-        return FiscalYear.convertToFiscalYearArray(getAttributeAsJavaScriptObject("fiscalYears"));
+        return com.smartgwt.client.util.ConvertTo.arrayOfFiscalYear(getAttributeAsJavaScriptObject("fiscalYears"));
     }
 
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 }
-
 
 

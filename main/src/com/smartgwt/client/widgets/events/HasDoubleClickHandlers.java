@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDoubleClickHandlers extends HasHandlers {
     /**
      * Executed when the left mouse button is clicked twice in rapid succession (within {@link
@@ -30,3 +29,4 @@ public interface HasDoubleClickHandlers extends HasHandlers {
      */
     HandlerRegistration addDoubleClickHandler(DoubleClickHandler handler);
 }
+

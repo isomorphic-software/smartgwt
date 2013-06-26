@@ -3,6 +3,10 @@ package com.smartgwt.client.docs;
 
 /**
  * The following APIs are all related to ViewState.
+ * @see com.smartgwt.client.widgets.tree.ResultTree#getOpenState
+ * @see com.smartgwt.client.widgets.tree.ResultTree#setOpenState
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getViewState
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#setViewState
  * @see com.smartgwt.client.widgets.grid.ListGrid#getFieldState
  * @see com.smartgwt.client.widgets.grid.ListGrid#setFieldState
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectedState
@@ -10,6 +14,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSortState
  * @see com.smartgwt.client.widgets.grid.ListGrid#setSortState
  * @see com.smartgwt.client.widgets.grid.ListGrid#getViewState
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupState
+ * @see com.smartgwt.client.widgets.grid.ListGrid#setGroupState
  * @see com.smartgwt.client.widgets.grid.ListGrid#setViewState
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getOpenState
  * @see com.smartgwt.client.widgets.tree.TreeGrid#setOpenState

@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.grid.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasRowOverHandlers extends HasHandlers {
     /**
      * Called when the mouse pointer enters a row
@@ -29,3 +28,4 @@ public interface HasRowOverHandlers extends HasHandlers {
      */
     HandlerRegistration addRowOverHandler(RowOverHandler handler);
 }
+

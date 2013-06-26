@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.layout;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,56 +45,112 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Custom subclass of Window configured to be embedded within a PortalLayout.
  */
 public class Portlet extends Window {
 
-    public static Portlet getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (Portlet) obj;
+    public native static Portlet getOrCreateRef(JavaScriptObject jsObj) /*-{
+        if (jsObj == null) return null;
+        var instance = jsObj["__ref"];
+        if (instance == null) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("Portlet",jsObj);
         } else {
-            return new Portlet(jsObj);
+            return instance;
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        $wnd.isc["Portlet"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.Canvas::getConfig()());
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        $wnd.isc["Portlet"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getJsObj()());
+    }-*/;
 
     public Portlet(){
         scClassName = "Portlet";
     }
 
     public Portlet(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "Portlet";
+        setJavaScriptObject(jsObj);
+        
     }
 
     protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
         var widget = $wnd.isc[scClassName].create(config);
+        this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Ljava/lang/String;Z)(widget.getID(), true);
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;
+
     // ********************* Properties / Attributes ***********************
+
+
 
     /**
      * Confirmation message to show the user when closing portlets if {@link
      * com.smartgwt.client.widgets.layout.Portlet#getShowCloseConfirmationMessage showCloseConfirmationMessage} is true.
      *
-     * @param closeConfirmationMessage closeConfirmationMessage Default value is "Close portlet?"
+     * @param closeConfirmationMessage . See {@link com.smartgwt.client.docs.String String}. Default value is "Close portlet?"
      */
     public void setCloseConfirmationMessage(String closeConfirmationMessage) {
         setAttribute("closeConfirmationMessage", closeConfirmationMessage, true);
@@ -104,12 +160,12 @@ public class Portlet extends Window {
      * Confirmation message to show the user when closing portlets if {@link
      * com.smartgwt.client.widgets.layout.Portlet#getShowCloseConfirmationMessage showCloseConfirmationMessage} is true.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getCloseConfirmationMessage()  {
         return getAttributeAsString("closeConfirmationMessage");
     }
+
 
     /**
      * Whether to call {@link com.smartgwt.client.widgets.Canvas#destroy destroy()} when closing the Portlet.
@@ -123,12 +179,14 @@ public class Portlet extends Window {
     /**
      * Whether to call {@link com.smartgwt.client.widgets.Canvas#destroy destroy()} when closing the Portlet.
      *
-     *
      * @return Boolean
      */
     public Boolean getDestroyOnClose()  {
         return getAttributeAsBoolean("destroyOnClose");
     }
+
+
+
 
     /**
      * Specifies a minimum height for the Portlet. The height of rows within a {@link
@@ -147,13 +205,13 @@ public class Portlet extends Window {
      * com.smartgwt.client.widgets.layout.Portlet#getPortaLayout PortaLayout} will be adjusted to take into account the
      * minHeight of all the Portlets in that row.
      *
-     *
      * @return int
      * @see com.smartgwt.client.widgets.Canvas#getMinHeight
      */
     public int getMinHeight()  {
         return getAttributeAsInt("minHeight");
     }
+
 
     /**
      * Specifies a minimum width for the Portlet.
@@ -168,13 +226,14 @@ public class Portlet extends Window {
     /**
      * Specifies a minimum width for the Portlet.
      *
-     *
      * @return int
      * @see com.smartgwt.client.widgets.Canvas#getMinWidth
      */
     public int getMinWidth()  {
         return getAttributeAsInt("minWidth");
     }
+
+
 
     /**
      * If true, {@link com.smartgwt.client.widgets.layout.Portlet#getCloseConfirmationMessage closeConfirmationMessage} will be
@@ -190,7 +249,6 @@ public class Portlet extends Window {
      * If true, {@link com.smartgwt.client.widgets.layout.Portlet#getCloseConfirmationMessage closeConfirmationMessage} will be
      * displayed before portlets are closed
      *
-     *
      * @return Boolean
      */
     public Boolean getShowCloseConfirmationMessage()  {
@@ -198,8 +256,7 @@ public class Portlet extends Window {
     }
 
     // ********************* Methods ***********************
-            
-    /**
+	/**
      * closeClick overridden to show {@link com.smartgwt.client.widgets.layout.Portlet#getCloseConfirmationMessage
      * closeConfirmationMessage} to the user before removing the portlet from the PortalLayout via {@link
      * com.smartgwt.client.widgets.layout.PortalLayout#removePortlet PortalLayout.removePortlet}
@@ -217,7 +274,7 @@ public class Portlet extends Window {
      * properties of this class. Can also be used for skinning / styling purposes.
      * <P>
      * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
-     * underlying class (including those automatically generated in JavaScript). 
+     * underlying class (including those automatically generated in JavaScript).
      * This method should not be used to apply standard EventHandlers or override methods for
      * a class - use a custom subclass instead.
      *
@@ -228,8 +285,8 @@ public class Portlet extends Window {
     	delete properties.ID;
         $wnd.isc.Portlet.addProperties(properties);
     }-*/;
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
     /**
@@ -350,7 +407,50 @@ public class Portlet extends Window {
         return getAttributeAsString("height");
     }
 
+    public LogicalStructureObject setLogicalStructure(PortletLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.closeConfirmationMessage = getAttributeAsString("closeConfirmationMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Portlet.closeConfirmationMessage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.destroyOnClose = getAttributeAsString("destroyOnClose");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Portlet.destroyOnClose:" + t.getMessage() + "\n";
+        }
+        try {
+            s.heightAsString = getAttributeAsString("height");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Portlet.heightAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.minHeight = getAttributeAsString("minHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Portlet.minHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.minWidth = getAttributeAsString("minWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Portlet.minWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rowHeightAsString = getAttributeAsString("rowHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Portlet.rowHeightAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showCloseConfirmationMessage = getAttributeAsString("showCloseConfirmationMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Portlet.showCloseConfirmationMessage:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+
+    public LogicalStructureObject getLogicalStructure() {
+        PortletLogicalStructure s = new PortletLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.form.fields;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * FormItem that allows picking between several mutually exclusive options via a select list. <P> Options may be derived
@@ -68,8 +88,15 @@ import com.google.gwt.event.shared.HasHandlers;
 public class SelectItem extends FormItem  implements PickList, com.smartgwt.client.widgets.form.fields.events.HasDataArrivedHandlers {
 
     public static SelectItem getOrCreateRef(JavaScriptObject jsObj) {
+
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+		if(obj != null && JSOHelper.getAttribute(jsObj,"__ref")==null) {
+            return com.smartgwt.client.util.ObjectFactory.createFormItem("SelectItem",jsObj);
+
+        } else
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (SelectItem) obj;
@@ -78,12 +105,44 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        $wnd.isc["SelectItem"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.Canvas::getConfig()());
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        $wnd.isc["SelectItem"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getJsObj()());
+    }-*/;
+
     public SelectItem(){
         setAttribute("editorType", "SelectItem");
     }
 
     public SelectItem(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
+        
     }
 
     public SelectItem(String name) {
@@ -97,7 +156,9 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
         setAttribute("editorType", "SelectItem");
     }
 
+
     // ********************* Properties / Attributes ***********************
+
 
     /**
      * If we're setting the value of a select item and the value isn't a legal value in the valueMap, whether we should allow
@@ -121,13 +182,13 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * option to show up at the top of the select item pickList. Whether an empty  option is shown in the pickList is governed
      * by {@link com.smartgwt.client.widgets.form.fields.SelectItem#getAllowEmptyValue allowEmptyValue} instead.
      *
-     *
      * @return Boolean
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_dep_dep_selects" target="examples">Dependent Selects Example</a>
      */
     public Boolean getAddUnknownValues()  {
         return getAttributeAsBoolean("addUnknownValues");
     }
+
 
     /**
      * If set to true, always show an empty option in this item's pickList, allowing the user to clear the value (even if there
@@ -149,12 +210,12 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * com.smartgwt.client.widgets.form.fields.SelectItem#getOptionDataSource databound selectItem}, enabling
      * <code>allowEmptyValue</code> disables data paging - all data matching the  current criteria will be requested.
      *
-     *
      * @return Boolean
      */
     public Boolean getAllowEmptyValue()  {
         return getAttributeAsBoolean("allowEmptyValue");
     }
+
 
     /**
      * If this select item retrieves its options from a <code>dataSource</code>, should options be fetched from the server when
@@ -175,12 +236,12 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * order to allow the user to select a value via keyboard input while keyboard focus is on the SelectItem but the pickList
      * has not actually been shown.
      *
-     *
      * @return Boolean
      */
     public Boolean getAutoFetchData()  {
         return getAttributeAsBoolean("autoFetchData");
     }
+
 
     /**
      * For databound pickLists (see  optionDataSource), by default Smart GWT will cache and re-use datasets shown by pickLists
@@ -198,18 +259,18 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * in an LRU (least recently used) caching pattern. <P> Setting this flag to false avoids this caching for situations where
      * it is too aggressive.
      *
-     *
      * @return Boolean
      */
     public Boolean getCachePickListResults()  {
         return getAttributeAsBoolean("cachePickListResults");
     }
 
+
     /**
      * Base CSS class name for a form item's control box (surrounds text box and picker). <P> NOTE: See the {@link
      * CompoundFormItem_skinning} discussion for special skinning considerations.
      *
-     * @param controlStyle controlStyle Default value is "selectItemControl", [IRA]
+     * @param controlStyle . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}. Default value is "selectItemControl", [IRA]
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -221,14 +282,14 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * Base CSS class name for a form item's control box (surrounds text box and picker). <P> NOTE: See the {@link
      * CompoundFormItem_skinning} discussion for special skinning considerations.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getControlStyle()  {
         return getAttributeAsString("controlStyle");
     }
+
 
     /**
      * Select the first option as the default value for this SelectItem.  <P> If options are derived from a dataSource, the
@@ -252,12 +313,12 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * com.smartgwt.client.widgets.form.fields.SelectItem#getDefaultValue defaultValue} and {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem#defaultDynamicValue SelectItem.defaultDynamicValue}.
      *
-     *
      * @return Boolean
      */
     public Boolean getDefaultToFirstOption()  {
         return getAttributeAsBoolean("defaultToFirstOption");
     }
+
 
     /**
      * Static default value for this SelectItem. To default to the first option use {@link
@@ -273,12 +334,12 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * Static default value for this SelectItem. To default to the first option use {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem#getDefaultToFirstOption defaultToFirstOption} instead.
      *
-     *
      * @return Boolean
      */
     public Boolean getDefaultValue()  {
         return getAttributeAsBoolean("defaultValue");
     }
+
 
     /**
      * Specifies an alternative field from which display values should be retrieved for this item. <P> The display field can be
@@ -296,7 +357,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * return the dataSource title field by default. <P> This essentially enables the specified <code>optionDataSource</code>
      * to be used as a server based {@link valueMap}.
      *
-     * @param displayField displayField Default value is null
+     * @param displayField . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#selected_value_combobox_category" target="examples">List - Related Records Example</a>
      */
     public void setDisplayField(String displayField) {
@@ -319,13 +380,38 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * return the dataSource title field by default. <P> This essentially enables the specified <code>optionDataSource</code>
      * to be used as a server based {@link valueMap}.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#selected_value_combobox_category" target="examples">List - Related Records Example</a>
      */
     public String getDisplayField()  {
         return getAttributeAsString("displayField");
     }
+
+
+    /**
+     * By default HTML values in a selectItem will be interpreted by the browser. Setting this flag to true will causes HTML
+     * characters to be escaped, meaning the raw value of the field (for example <code>"&lt;b&gt;AAA&lt;/b&gt;"</code>) is
+     * displayed to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)
+     *
+     * @param escapeHTML escapeHTML Default value is false
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setEscapeHTML(Boolean escapeHTML) {
+        setAttribute("escapeHTML", escapeHTML);
+    }
+
+    /**
+     * By default HTML values in a selectItem will be interpreted by the browser. Setting this flag to true will causes HTML
+     * characters to be escaped, meaning the raw value of the field (for example <code>"&lt;b&gt;AAA&lt;/b&gt;"</code>) is
+     * displayed to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Boolean getEscapeHTML()  {
+        return getAttributeAsBoolean("escapeHTML");
+    }
+
 
     /**
      * If this item has a specified <code>optionDataSource</code> and this property is <code>true</code>, the list of fields
@@ -356,18 +442,21 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * com.smartgwt.client.widgets.form.fields.SelectItem#getSelectedRecord getSelectedRecord} will only include the fetched
      * fields.
      *
-     *
      * @return Boolean
      */
     public Boolean getFetchDisplayedFieldsOnly()  {
         return getAttributeAsBoolean("fetchDisplayedFieldsOnly");
     }
 
+
     /**
      * If <code>filterLocally</code> is set for this item, and this item is showing options  from a dataSource, fetch the
      * entire set of options from the server, and use these values to map the item value to the appropriate display value. Also
      * use <code>"local"</code> type filtering on drop down list of options. <P> This means data will only be fetched once from
-     * the server, and then filtered on the client.
+     * the server, and then filtered on the client. <P> Note - when this property is set to <code>false</code>, filtering will
+     * still be  performed on the client if a complete set of data for some criteria has been cached by a fetch, and a
+     * subsequent fetch has more restrictive criteria. To explicitly disable client-side filtering set the {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getUseClientFiltering useClientFiltering} property to false.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param filterLocally filterLocally Default value is false
@@ -381,8 +470,10 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * If <code>filterLocally</code> is set for this item, and this item is showing options  from a dataSource, fetch the
      * entire set of options from the server, and use these values to map the item value to the appropriate display value. Also
      * use <code>"local"</code> type filtering on drop down list of options. <P> This means data will only be fetched once from
-     * the server, and then filtered on the client.
-     *
+     * the server, and then filtered on the client. <P> Note - when this property is set to <code>false</code>, filtering will
+     * still be  performed on the client if a complete set of data for some criteria has been cached by a fetch, and a
+     * subsequent fetch has more restrictive criteria. To explicitly disable client-side filtering set the {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getUseClientFiltering useClientFiltering} property to false.
      *
      * @return Boolean
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getFilterLocally
@@ -390,6 +481,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     public Boolean getFilterLocally()  {
         return getAttributeAsBoolean("filterLocally");
     }
+
 
     /**
      * Default height for select items is 19px.
@@ -404,13 +496,16 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     /**
      * Default height for select items is 19px.
      *
-     *
      * @return int
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getHeight()  {
         return getAttributeAsInt("height");
     }
+
+
+
+
 
     /**
      * If true, multiple values may be selected. <P> The SelectItem will either render as a drop-down allowing multiple
@@ -421,8 +516,8 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * Strings reflecting the selected values. <P> When this value is true, we disable doubleClick events by default, instead
      * issuing two single clicks by forcibly setting {@link com.smartgwt.client.widgets.Canvas#getNoDoubleClicks
      * noDoubleClicks: true}. If you need to work with doubleClick events, you can disable this default behavior by explicitly
-     * setting formItem.pickListProperties.noDoubleClicks: false. <P> Note: <code>multiple:true</code> SelectItems do not
-     * currently support optionDataSource binding.  You can get around this by calling {@link
+     * setting formItem.pickListProperties.noDoubleClicks: false. <P> Note: <code>multiple:true</code> SelectItems with
+     * multipleAppearance:"grid" do not currently support optionDataSource binding.  You can get around this by calling {@link
      * com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData} directly and calling {@link
      * com.smartgwt.client.data.List#getValueMap dsResponse.data.getValueMap()} to obtain a valueMap.
      *
@@ -442,11 +537,10 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * Strings reflecting the selected values. <P> When this value is true, we disable doubleClick events by default, instead
      * issuing two single clicks by forcibly setting {@link com.smartgwt.client.widgets.Canvas#getNoDoubleClicks
      * noDoubleClicks: true}. If you need to work with doubleClick events, you can disable this default behavior by explicitly
-     * setting formItem.pickListProperties.noDoubleClicks: false. <P> Note: <code>multiple:true</code> SelectItems do not
-     * currently support optionDataSource binding.  You can get around this by calling {@link
+     * setting formItem.pickListProperties.noDoubleClicks: false. <P> Note: <code>multiple:true</code> SelectItems with
+     * multipleAppearance:"grid" do not currently support optionDataSource binding.  You can get around this by calling {@link
      * com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData} directly and calling {@link
      * com.smartgwt.client.data.List#getValueMap dsResponse.data.getValueMap()} to obtain a valueMap.
-     *
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -454,6 +548,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     public Boolean getMultiple()  {
         return getAttributeAsBoolean("multiple");
     }
+
 
     /**
      * How should items with {@link com.smartgwt.client.widgets.form.fields.SelectItem#getMultiple multiple} set to 'true' be
@@ -469,19 +564,69 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * How should items with {@link com.smartgwt.client.widgets.form.fields.SelectItem#getMultiple multiple} set to 'true' be
      * displayed?
      *
-     *
      * @return MultipleAppearance
      */
     public MultipleAppearance getMultipleAppearance()  {
         return EnumUtil.getEnum(MultipleAppearance.values(), getAttribute("multipleAppearance"));
     }
 
+
+    /**
+     * Causes the PickList to open when the down arrow is pressed, default false.   <P> For native OS widgets, down arrow
+     * changes the value of a select on Windows, but opens the select on Macs.  This setting is not recommended unless you are
+     * certain that all users of your applications will expect the Mac convention.
+     *
+     * @param openOnDownArrow openOnDownArrow Default value is false
+     */
+    public void setOpenOnDownArrow(Boolean openOnDownArrow) {
+        setAttribute("openOnDownArrow", openOnDownArrow);
+    }
+
+    /**
+     * Causes the PickList to open when the down arrow is pressed, default false.   <P> For native OS widgets, down arrow
+     * changes the value of a select on Windows, but opens the select on Macs.  This setting is not recommended unless you are
+     * certain that all users of your applications will expect the Mac convention.
+     *
+     * @return Boolean
+     */
+    public Boolean getOpenOnDownArrow()  {
+        return getAttributeAsBoolean("openOnDownArrow");
+    }
+
+
+    /**
+     * Causes the PickList to open when the spacebar is pressed, default false.   <P> For native OS widgets, space opens the
+     * PickList on Macs, but not on Windows.  Consider using this setting if your users are almost entirely Mac users, or
+     * enabling it only for users running MacOS.   <P> However, before using this setting, consider that it means that Spacebar
+     * will not be able to be used for another purpose when focus is in a SelectItem.
+     *
+     * @param openOnSpace openOnSpace Default value is false
+     */
+    public void setOpenOnSpace(Boolean openOnSpace) {
+        setAttribute("openOnSpace", openOnSpace);
+    }
+
+    /**
+     * Causes the PickList to open when the spacebar is pressed, default false.   <P> For native OS widgets, space opens the
+     * PickList on Macs, but not on Windows.  Consider using this setting if your users are almost entirely Mac users, or
+     * enabling it only for users running MacOS.   <P> However, before using this setting, consider that it means that Spacebar
+     * will not be able to be used for another purpose when focus is in a SelectItem.
+     *
+     * @return Boolean
+     */
+    public Boolean getOpenOnSpace()  {
+        return getAttributeAsBoolean("openOnSpace");
+    }
+
+
+
+
     /**
      * If this item has a specified <code>optionDataSource</code>, this attribute may be set to specify an explicit {@link
      * com.smartgwt.client.data.DSRequest#getOperationId operationId} when performing a fetch against the option dataSource to
      * pick up display value mapping.
      *
-     * @param optionOperationId optionOperationId Default value is null
+     * @param optionOperationId . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setOptionOperationId(String optionOperationId) {
         setAttribute("optionOperationId", optionOperationId);
@@ -492,12 +637,15 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * com.smartgwt.client.data.DSRequest#getOperationId operationId} when performing a fetch against the option dataSource to
      * pick up display value mapping.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getOptionOperationId()  {
         return getAttributeAsString("optionOperationId");
     }
+
+
+
+
 
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.SelectItem#getShowPickerIcon showPickerIcon} is true for this item,
@@ -516,19 +664,20 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * this property governs the size of the picker icon. If unset, the picker icon will be sized as a square to fit in the
      * available height for the icon.
      *
-     *
      * @return Integer
      */
     public Integer getPickerIconHeight()  {
         return getAttributeAsInt("pickerIconHeight");
     }
 
+
+
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.SelectItem#getShowPickerIcon showPickerIcon} is true for this item,
      * this property governs the src of the picker icon image to be displayed.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param pickerIconSrc pickerIconSrc Default value is "[SKIN]/DynamicForm/SelectItem_PickButton_icon.gif"
+     * @param pickerIconSrc . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is "[SKIN]/DynamicForm/SelectItem_PickButton_icon.gif"
      */
     public void setPickerIconSrc(String pickerIconSrc) {
         setAttribute("pickerIconSrc", pickerIconSrc);
@@ -538,17 +687,17 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * If {@link com.smartgwt.client.widgets.form.fields.SelectItem#getShowPickerIcon showPickerIcon} is true for this item,
      * this property governs the src of the picker icon image to be displayed.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getPickerIconSrc()  {
         return getAttributeAsString("pickerIconSrc");
     }
 
+
     /**
      * Base CSS class name for a form item's picker icon cell. If unset inherits from  this items <code>controlStyle</code>.
      *
-     * @param pickerIconStyle pickerIconStyle Default value is "selectItemPickerIcon", [IRA]
+     * @param pickerIconStyle . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}. Default value is "selectItemPickerIcon", [IRA]
      * @see com.smartgwt.client.widgets.form.fields.SelectItem#setControlStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -559,14 +708,14 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     /**
      * Base CSS class name for a form item's picker icon cell. If unset inherits from  this items <code>controlStyle</code>.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}
      * @see com.smartgwt.client.widgets.form.fields.SelectItem#getControlStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getPickerIconStyle()  {
         return getAttributeAsString("pickerIconStyle");
     }
+
 
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.SelectItem#getShowPickerIcon showPickerIcon} is true for this item,
@@ -585,12 +734,36 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * this property governs the size of the picker icon. If unset, the picker icon will be sized as a square to fit in the
      * available height for the icon.
      *
-     *
      * @return Integer
      */
     public Integer getPickerIconWidth()  {
         return getAttributeAsInt("pickerIconWidth");
     }
+
+
+    /**
+     * If this item has a databound pickList (for example  optionDataSource is set), this property can be used to provide
+     * static filter criteria when retrieving the data for the pickList.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param pickListCriteria pickListCriteria Default value is null
+     */
+    public void setPickListCriteria(Criteria pickListCriteria) {
+        setAttribute("pickListCriteria", pickListCriteria.getJsObj());
+    }
+
+    /**
+     * If this item has a databound pickList (for example  optionDataSource is set), this property can be used to provide
+     * static filter criteria when retrieving the data for the pickList.
+     *
+     * @return Criteria
+     */
+    public Criteria getPickListCriteria()  {
+        return new Criteria(getAttributeAsJavaScriptObject("pickListCriteria"));
+    }
+
+
+
 
     /**
      * Indicates whether or not this SelectItem will load its list of options  {@link
@@ -610,7 +783,6 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * com.smartgwt.client.data.DataSource#getProgressiveLoading progressively}.  This property is copied onto the underlying
      * PickList.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.data.DataSource#getProgressiveLoading
      * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
@@ -618,6 +790,34 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     public Boolean getProgressiveLoading()  {
         return getAttributeAsBoolean("progressiveLoading");
     }
+
+
+    /**
+     * Select items will submit their containing form on enter keypress  if {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter saveOnEnter} is true. Setting this property to
+     * <code>false</code> will disable this behavior. <P> Note that if the drop down list of options (pickList) is visible an
+     * <code>Enter</code> keypress is used to select a value from the available set of options and will not automatically cause
+     * form submission.
+     *
+     * @param saveOnEnter saveOnEnter Default value is true
+     */
+    public void setSaveOnEnter(Boolean saveOnEnter) {
+        setAttribute("saveOnEnter", saveOnEnter);
+    }
+
+    /**
+     * Select items will submit their containing form on enter keypress  if {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter saveOnEnter} is true. Setting this property to
+     * <code>false</code> will disable this behavior. <P> Note that if the drop down list of options (pickList) is visible an
+     * <code>Enter</code> keypress is used to select a value from the available set of options and will not automatically cause
+     * form submission.
+     *
+     * @return Boolean
+     */
+    public Boolean getSaveOnEnter()  {
+        return getAttributeAsBoolean("saveOnEnter");
+    }
+
 
     /**
      * When this item receives focus, should it be re-styled to indicate it has focus?
@@ -634,7 +834,6 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     /**
      * When this item receives focus, should it be re-styled to indicate it has focus?
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -642,6 +841,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     public Boolean getShowFocused()  {
         return getAttributeAsBoolean("showFocused");
     }
+
 
     /**
      * If showing a hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
@@ -660,7 +860,6 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * If showing a hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getHint
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -668,6 +867,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     public Boolean getShowHintInField()  {
         return getAttributeAsBoolean("showHintInField");
     }
+
 
     /**
      * If this item is part of a databound form, and has a specified <code>valueMap</code>, by default we show the valueMap
@@ -687,13 +887,13 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * options in the pickList for the item. Setting this property to true will ensure that the options displayed in our
      * pickList are derived from the form's <code>dataSource</code>.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public Boolean getShowOptionsFromDataSource()  {
         return getAttributeAsBoolean("showOptionsFromDataSource");
     }
+
 
     /**
      * When the user rolls over the select item, should the pickButton display it's  <code>Over</code> state?
@@ -708,12 +908,12 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     /**
      * When the user rolls over the select item, should the pickButton display it's  <code>Over</code> state?
      *
-     *
      * @return Boolean
      */
     public Boolean getShowOver()  {
         return getAttributeAsBoolean("showOver");
     }
+
 
     /**
      * Should we show a special 'picker' icon for this form item. Picker icons are customizable via {@link
@@ -733,18 +933,58 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * be rendered inside the  Form Item's "control box" area, and will call {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem#showPicker SelectItem.showPicker} when clicked.
      *
-     *
      * @return Boolean
      */
     public Boolean getShowPickerIcon()  {
         return getAttributeAsBoolean("showPickerIcon");
     }
 
+
+    /**
+     * Specifies the field by which this item should be initially sorted.  Can be set to  either a {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getName field name} or the index of the field in the fields  Array. Note
+     * that if <code>sortField</code> is initially specified as a number, it will be converted to a string (field name) after
+     * the item is initialized.
+     *
+     * @param sortField . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sort_sort" target="examples">Sort Example</a>
+     */
+    public void setSortField(String sortField) {
+        setAttribute("sortField", sortField);
+    }
+
+    /**
+     * Specifies the field by which this item should be initially sorted.  Can be set to  either a {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getName field name} or the index of the field in the fields  Array. Note
+     * that if <code>sortField</code> is initially specified as a number, it will be converted to a string (field name) after
+     * the item is initialized.
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sort_sort" target="examples">Sort Example</a>
+     */
+    public String getSortField()  {
+        return getAttributeAsString("sortField");
+    }
+
+    /**
+     * Specifies the field by which this item should be initially sorted.  Can be set to  either a {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getName field name} or the index of the field in the fields  Array. Note
+     * that if <code>sortField</code> is initially specified as a number, it will be converted to a string (field name) after
+     * the item is initialized.
+     *
+     * @param sortField sortField Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sort_sort" target="examples">Sort Example</a>
+     */
+    public void setSortField(Integer sortField) {
+        setAttribute("sortField", sortField);
+    }
+
+
     /**
      * Base CSS class name for a form item's text box element. <P> NOTE: See the {@link CompoundFormItem_skinning} discussion
      * for special skinning considerations.
      *
-     * @param textBoxStyle textBoxStyle Default value is "selectItemText", [IRA]
+     * @param textBoxStyle . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}. Default value is "selectItemText", [IRA]
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -756,14 +996,14 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * Base CSS class name for a form item's text box element. <P> NOTE: See the {@link CompoundFormItem_skinning} discussion
      * for special skinning considerations.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTextBoxStyle()  {
         return getAttributeAsString("textBoxStyle");
     }
+
 
     /**
      * When applying filter criteria to pickList data, what type of matching to use. <P> For a databound pickList ({@link
@@ -785,12 +1025,38 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * textMatchStyle}. <P> For a non-databound pickList, <code>textMatchStyle</code> is applied by  {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem#getFilterClientPickListData filterClientPickListData}.
      *
-     *
      * @return TextMatchStyle
      */
     public TextMatchStyle getTextMatchStyle()  {
         return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("textMatchStyle"));
     }
+
+
+    /**
+     * For {@link com.smartgwt.client.widgets.form.fields.SelectItem#getOptionDataSource databound} items, this property will
+     * be passed to the generated ResultSet data object for the pickList as {@link
+     * com.smartgwt.client.data.ResultSet#getUseClientFiltering useClientFiltering}. Setting to false will disable filtering on
+     * the client and ensure criteria are always passed to the DataSource directly.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param useClientFiltering useClientFiltering Default value is null
+     */
+    public void setUseClientFiltering(Boolean useClientFiltering) {
+        setAttribute("useClientFiltering", useClientFiltering);
+    }
+
+    /**
+     * For {@link com.smartgwt.client.widgets.form.fields.SelectItem#getOptionDataSource databound} items, this property will
+     * be passed to the generated ResultSet data object for the pickList as {@link
+     * com.smartgwt.client.data.ResultSet#getUseClientFiltering useClientFiltering}. Setting to false will disable filtering on
+     * the client and ensure criteria are always passed to the DataSource directly.
+     *
+     * @return Boolean
+     */
+    public Boolean getUseClientFiltering()  {
+        return getAttributeAsBoolean("useClientFiltering");
+    }
+
 
     /**
      * If this form item maps data values to display values by retrieving the  {@link
@@ -799,7 +1065,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * field to use as the underlying data value in records from the  optionDataSource.<br> If unset, assumed to be the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
      *
-     * @param valueField valueField Default value is null
+     * @param valueField . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#selected_value_combobox_category" target="examples">List - Related Records Example</a>
      */
     public void setValueField(String valueField) {
@@ -813,8 +1079,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * field to use as the underlying data value in records from the  optionDataSource.<br> If unset, assumed to be the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#selected_value_combobox_category" target="examples">List - Related Records Example</a>
      */
     public String getValueField()  {
@@ -838,16 +1103,17 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
 
     private native void setupDataArrivedEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.dataArrived = $entry(function(){
-                var param = {"startRow" : arguments[0], "endRow" : arguments[1], "data" : arguments[2]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var dataArrived = $entry(function(){
+            var param = {"startRow" : arguments[0], "endRow" : arguments[1], "data" : arguments[2]};
+            var event = @com.smartgwt.client.widgets.form.fields.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
+        obj.dataArrived =  dataArrived 
+        ;
    }-*/;
-            
-    /**
+	/**
      * Expression evaluated to determine the {@link com.smartgwt.client.widgets.form.fields.SelectItem#getDefaultValue
      * defaultValue} when no value is provided for this item. To default to the first option use {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem#getDefaultToFirstOption defaultToFirstOption} instead.
@@ -856,8 +1122,42 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.defaultDynamicValue();
     }-*/;
-            
-    /**
+	/**
+     * Only applies to databound items (see  optionDataSource).<br> Performs a fetch type operation on this item's DataSource
+     * to retrieve the set of valid options for the item, based on the current  pickListCriteria.
+     */
+    public native void fetchData() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.fetchData();
+    }-*/;
+
+	/**
+	 * @see {@link SelectItem#fetchData()}
+	 */
+	public void fetchData(DSCallback callback){
+		fetchData(callback,null);
+	}
+	/**
+     * Only applies to databound items (see  optionDataSource).<br> Performs a fetch type operation on this item's DataSource
+     * to retrieve the set of valid options for the item, based on the current  pickListCriteria.
+     * @param callback Callback to fire when the fetch completes. Callback will               fire with 4 parameters:<ul> 
+     * <li><code>item</code> a pointer to the form item  <li><code>dsResponse</code> the {@link
+     * com.smartgwt.client.data.DSResponse} returned by the server  <li><code>data</code> the raw data returned by the server 
+     * <li><code>dsRequest</code> the {@link com.smartgwt.client.data.DSRequest} sent to the server  </ul>
+     * @param requestProperties properties to apply to the              dsRequest for this fetch.
+     */
+    public native void fetchData(DSCallback callback, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.fetchData(
+			$entry( function(dsResponse,data,dsRequest) { 
+				if(callback!=null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(
+					@com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse), 
+					data, 
+					@com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest)
+				);
+			}), requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+	/**
      * Returns the <code>displayField</code> for this item. This will typically be specified explicitly via the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} attribute. However, if  that property is
      * unset, and the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} for this item is 
@@ -868,10 +1168,10 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      */
     public native String getDisplayFieldName() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        return self.getDisplayFieldName();
+        var ret = self.getDisplayFieldName();
+        return ret;
     }-*/;
-            
-    /**
+	/**
      * Getter method to retrieve the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} for this
      * item. If unset, default behavior will return the {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name}
      * of this field.
@@ -881,12 +1181,31 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      */
     public native String getValueFieldName() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        return self.getValueFieldName();
+        var ret = self.getValueFieldName();
+        return ret;
     }-*/;
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+    /**
+     * Class level method to set the default properties of this class. If set, then all subsequent instances of this
+     * class will automatically have the default properties that were set when this method was called. This is a powerful
+     * feature that eliminates the need for users to create a separate hierarchy of subclasses that only alter the default
+     * properties of this class. Can also be used for skinning / styling purposes.
+     * <P>
+     * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
+     * underlying class (including those automatically generated in JavaScript).
+     * This method should not be used to apply standard EventHandlers or override methods for
+     * a class - use a custom subclass instead.
+     *
+     * @param selectItemProperties properties that should be used as new defaults when instances of this class are created
+     */
+    public static native void setDefaultProperties(SelectItem selectItemProperties) /*-{
+    	var properties = $wnd.isc.addProperties({},selectItemProperties.@com.smartgwt.client.core.RefDataClass::getJsObj()());
+    	delete properties.ID;
+        $wnd.isc.SelectItem.addProperties(properties);
+    }-*/;
+
+    // ***********************************************************
 
 
     static {
@@ -925,11 +1244,11 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * <b>Note : this is an override point - if overridden this method will be called by the live form item during filtering.
      * However it is recommended that developers use
      * {@link #setPickListFilterCriteriaFunction(FormItemCriteriaFunction)} to build custom criteria instead of overriding this method directly. This ensures that
-     * the custom filter criteria generating code will be called even if the form item was automatically generated based on a template 
+     * the custom filter criteria generating code will be called even if the form item was automatically generated based on a template
      * passed to {@link com.smartgwt.client.widgets.grid.ListGridField#setEditorType}.</b>
      *
      * @return criteria to be used for databound or local filtering
-     */    
+     */
     protected native Criteria getPickListFilterCriteria() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var critJS = self.__getPickListFilterCriteria();
@@ -1145,46 +1464,6 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * after the item is initialized. <P> To programmatically change sort field or direction after initialization, call
      * ${isc.DocUtils.linkForRef('sort')}.
      *
-     * @param sortField sortField Default value is null
-     */
-    public void setSortField(String sortField) {
-        setAttribute("sortField", sortField);
-    }
-
-    /**
-     * Specifies the field by which this item should be initially sorted.  Can be set to  either a {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getName 'field name'} or the index of the field in the fields  Array.
-     * Note that if <code>sortField</code> is initally specified as a number, it will be converted to a string (field name)
-     * after the item is initialized. <P> To programmatically change sort field or direction after initialization, call
-     * ${isc.DocUtils.linkForRef('sort')}.
-     *
-     *
-     * @return String
-     */
-    public String getSortField()  {
-        return getAttributeAsString("sortField");
-    }
-
-    /**
-     * Specifies the field by which this item should be initially sorted.  Can be set to  either a {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getName 'field name'} or the index of the field in the fields  Array.
-     * Note that if <code>sortField</code> is initally specified as a number, it will be converted to a string (field name)
-     * after the item is initialized. <P> To programmatically change sort field or direction after initialization, call
-     * ${isc.DocUtils.linkForRef('sort')}.
-     *
-     * @param sortField sortField Default value is null
-     */
-    public void setSortField(Integer sortField) {
-        setAttribute("sortField", sortField);
-    }
-
-    /**
-     * Specifies the field by which this item should be initially sorted.  Can be set to  either a {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getName 'field name'} or the index of the field in the fields  Array.
-     * Note that if <code>sortField</code> is initally specified as a number, it will be converted to a string (field name)
-     * after the item is initialized. <P> To programmatically change sort field or direction after initialization, call
-     * ${isc.DocUtils.linkForRef('sort')}.
-     *
      *
      * @return Integer
      */
@@ -1221,29 +1500,6 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     public String getValueIconField() {
         return getAttributeAsString("valueIconField");
     }
-
-    /**
-     * If this item has a databound pick-list (for example {@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource
-     * optionDataSource} is set) this property can be used to provide static filter criteria when retrieving the data
-     * for the pickList. <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param pickListCriteria pickListCriteria Default value is null
-     */
-    public void setPickListCriteria(Criteria pickListCriteria) {
-        setAttribute("pickListCriteria", pickListCriteria.getJsObj());
-    }
-
-    /**
-     * If this item has a databound pick-list (for example {@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource
-     * optionDataSource} is set) this property can be used to provide static filter criteria when retrieving the data
-     * for the pickList.
-     *
-     * @return Criteria
-     */
-    public Criteria getPickListCriteria() {
-        return new Criteria(getAttributeAsJavaScriptObject("pickListCriteria"));
-    }
-
 
     /**
      * If true, even non-matching options will be shown, with configurable  {@link com.smartgwt.client.widgets.form.fields.PickList#getSeparatorRows
@@ -1314,7 +1570,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     public DataSource getOptionDataSource() {
         return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("optionDataSource"));
     }
-    
+
     public void setSeparatorRows(ListGridRecord[] separatorRows) {
         setAttribute("separatorRows", separatorRows);
     }
@@ -1348,7 +1604,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     }
 
     // ********************* Methods ***********************
-    
+
     /**
      * Returns the values of a SelectItem with multiple=true as an array of Strings.
      *
@@ -1384,7 +1640,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
             self.value = valuesJS;
         }
     }-*/;
-    
+
     /**
      * If true, multiple values may be selected. <P> The SelectItem will either render as a drop-down allowing multiple
      * selections, or a multi-row list of options similar to a small headerless {@link
@@ -1407,68 +1663,16 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
         return getAttributeAsBoolean("multiple");
     }
 
-    /**
-     * Only applies to databound items (see {@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource
-     * optionDataSource}).<br> Performs a fetch type operation on this item's DataSource to retrieve the set of valid
-     * options for the item, based on the current {@link com.smartgwt.client.widgets.form.fields.PickList#getPickListCriteria
-     * pickListCriteria}.
-     */
-    public native void fetchData() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.fetchData();
-    }-*/;
-
-    /**
-     * Only applies to databound items (see {@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource
-     * optionDataSource}).<br> Performs a fetch type operation on this item's DataSource to retrieve the set of valid
-     * options for the item, based on the current {@link com.smartgwt.client.widgets.form.fields.PickList#getPickListCriteria
-     * pickListCriteria}.
-     *
-     * @param callback Callback to fire when the fetch completes. Callback will               fire with 2 parameters:
-     *                 <code>item</code> a pointer to the form item and              <code>dsResponse</code> the {@link
-     *                 com.smartgwt.client.data.DSResponse} returned by the server.
-     */
-    public native void fetchData(DSCallback callback) /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.fetchData($entry(function (item, dsResponse, data, dsRequest) {
-            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
-            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
-            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }));
-    }-*/;
-
-    /**
-     * Only applies to databound items (see {@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource
-     * optionDataSource}).<br> Performs a fetch type operation on this item's DataSource to retrieve the set of valid
-     * options for the item, based on the current {@link com.smartgwt.client.widgets.form.fields.PickList#getPickListCriteria
-     * pickListCriteria}.
-     *
-     * @param callback          Callback to fire when the fetch completes. Callback will               fire with 2
-     *                          parameters: <code>item</code> a pointer to the form item and
-     *                          <code>dsResponse</code> the {@link com.smartgwt.client.data.DSResponse} returned by the
-     *                          server.
-     * @param requestProperties properties to apply to the              dsRequest for this fetch.
-     */
-    public native void fetchData(DSCallback callback, DSRequest requestProperties) /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.fetchData($entry(function (item, dsResponse, data, dsRequest) {
-            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
-            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
-            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }), requestPropertiesJS);
-    }-*/;
-
     public native ListGridRecord[] filterClientPickListData() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var dataJS =  self.filterClientPickListData();
-        return @com.smartgwt.client.widgets.grid.ListGrid::convertToListGridRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(dataJS);
+        return @com.smartgwt.client.util.ConvertTo::arrayOfListGridRecord(Lcom/google/gwt/core/client/JavaScriptObject;)(dataJS);
     }-*/;
 
     public native ListGridRecord[] getClientPickListData() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var dataJS =  self.getClientPickListData();
-        return @com.smartgwt.client.widgets.grid.ListGrid::convertToListGridRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(dataJS);
+        return @com.smartgwt.client.util.ConvertTo::arrayOfListGridRecord(Lcom/google/gwt/core/client/JavaScriptObject;)(dataJS);
     }-*/;
 
 //------------------- end PickList -------
@@ -1516,7 +1720,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     public native ListGridRecord[] getSelectedRecords() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var ret = self.getSelectedRecords();
-        return @com.smartgwt.client.widgets.grid.ListGrid::convertToListGridRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        return @com.smartgwt.client.util.ConvertTo::arrayOfListGridRecord(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
     /**
@@ -1532,14 +1736,14 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
             return crit == null ? null : crit.@com.smartgwt.client.data.Criteria::getJsObj()();
         });
     }-*/;
-    
+
     /**
      * Set up a method to return filter criteria for options displayed for this item.
      * <br>
-     * The criteria returned by this method are used to decide which options should appear in the 
+     * The criteria returned by this method are used to decide which options should appear in the
      * drop-down PickList shown by this SelectItem.
      * <br>
-     * Static criteria, specified via pickListCriteria, will always be included in addition to criteria 
+     * Static criteria, specified via pickListCriteria, will always be included in addition to criteria
      * returned by this method.
      *
      */
@@ -1553,7 +1757,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
             return crit == null ? null : crit.@com.smartgwt.client.data.Criteria::getJsObj()();
         });
     }-*/;
-    
+
 
     /**
      * Set the properties to be applied to the pickList created for this Form Item.
@@ -1585,9 +1789,38 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
             ret = self.value;
         }
         return ret == null || ret === undefined ? null : ret.toString();
-    }-*/;    
+    }-*/;
+
+    /**
+     * This method sorts the pickList on one or more fields, creating the underlying JS object
+     * if needed. Pass in an array of SortSpecifiers to have the grid's data sorted by the fields in each
+     * specifier.property and in the directions specified.  The grid can be sorted by any combination
+     * of fields, including fields specified in the fields array, whether visible or hidden, and
+     * {@link com.smartgwt.client.data.DataSource#getFields 'unused fields from the underlying dataSource'},
+     * if there is one.  If multiple fields are sorted, those that are visible show a directional icon and a small
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getSortNumeralStyle 'sort-numeral'} indicating that
+     * field's index in the sort configuration.
+     * <P>
+     * See {@link com.smartgwt.client.widgets.grid.ListGrid#addSort}
+     * and {@link com.smartgwt.client.widgets.grid.ListGrid#alterSort}
+     * APIs for information on making changes to the current sort configuration.
+     * @param sortSpecifiers Array of SortSpecifier objects
+     */
+    public native void setPickListSort(SortSpecifier[] sortSpecifiers) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()(),
+            specifiers = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(sortSpecifiers);
+        if (self != null && self.pickList != null) self.pickList.setSort(specifiers);
+        else {
+            var configJS = this.@com.smartgwt.client.core.DataClass::getAttributeAsJavaScriptObject(Ljava/lang/String;)("pickListProperties");
+            if (configJS == null) {
+                configJS = {};
+                this.@com.smartgwt.client.core.DataClass::setAttribute(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("pickListProperties", configJS);
+            }
+            configJS.initialSort = specifiers;
+        }
+    }-*/;
+
 
 }
-
 
 

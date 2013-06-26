@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +46,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class ShowValueEvent extends AbstractSmartEvent<ShowValueHandler>  {
 
     /**
@@ -92,7 +97,6 @@ public class ShowValueEvent extends AbstractSmartEvent<ShowValueHandler>  {
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(ShowValueHandler handler) {
         handler.onShowValue(this);
@@ -111,48 +115,48 @@ public class ShowValueEvent extends AbstractSmartEvent<ShowValueHandler>  {
         super(jsObj);
     }
 
-
-
-    /**
+	/**
      * new display-value for the item. This is the value after applying   any custom formatter or valueMap
      *
      * @return new display-value for the item. This is the value after applying   any custom formatter or valueMap
      */
-    public  native Object getDisplayValue() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return $wnd.SmartGWT.convertToJavaType(jsObj.displayValue);
+    public native Object getDisplayValue() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.displayValue;
+        return $wnd.SmartGWT.convertToJavaType(ret);
     }-*/;
-
-    /**
+	/**
      * underlying data value for the item
      *
      * @return underlying data value for the item
      */
-    public  native Object getDataValue() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return $wnd.SmartGWT.convertToJavaType(jsObj.dataValue);
+    public native Object getDataValue() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.dataValue;
+        return $wnd.SmartGWT.convertToJavaType(ret);
     }-*/;
-
-    /**
+	/**
      * the dynamicForm in which this item is contained
      *
      * @return the dynamicForm in which this item is contained
      */
-    public  native DynamicForm getForm() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.form);
+    public native DynamicForm getForm() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.form;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
-    /**
+	/**
      * the live form item instance
      *
      * @return the live form item instance
      */
-    public  native CanvasItem getItem() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.form.fields.CanvasItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
+    public native CanvasItem getItem() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.item;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.form.fields.CanvasItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
 
     
     /**

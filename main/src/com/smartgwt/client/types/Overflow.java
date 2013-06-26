@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,16 +17,14 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  */
 public enum Overflow implements ValueEnum {
     /**
      * Content that extends beyond the widget's width or height is displayed. Note: To have the content be sized only by the
-     * drawn size of  the content set the overflow to be Canvas.VISIBLE and specify a small size, allowing the size to expand
-     * to the size required by the content. Leaving the width / height for the widget undefined will use the default value of
-     * 100, and setting the size to zero may cause the widget not to draw.
+     * drawn size of the content set the overflow to be Canvas.VISIBLE and specify a small size, allowing the size to expand to
+     * the size required by the content. Leaving the width / height for the widget undefined will use the default value of 100,
+     * and setting the size to zero may cause the widget not to draw.
      */
     VISIBLE("visible"),
     /**
@@ -48,7 +49,6 @@ public enum Overflow implements ValueEnum {
      * Clip vertically but extend the canvas's clip region horizontally if necessary.
      */
     CLIP_V("clip_v");
-
     private String value;
 
     Overflow(String value) {

@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.tree.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasFolderClickHandlers extends HasHandlers {
     /**
      * This method is called when a folder record is clicked on.
@@ -29,3 +28,4 @@ public interface HasFolderClickHandlers extends HasHandlers {
      */
     HandlerRegistration addFolderClickHandler(FolderClickHandler handler);
 }
+

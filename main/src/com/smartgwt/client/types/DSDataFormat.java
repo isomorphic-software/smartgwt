@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Indicates the format to be used for HTTP requests and responses when fulfilling DSRequests (eg, when {@link
  * com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData} is called). <P> Note that {@link
@@ -66,7 +67,6 @@ public enum DSDataFormat implements ValueEnum {
      * respectively, and using <code>new Date()</code> to construct valid Dates.
      */
     CUSTOM("custom");
-
     private String value;
 
     DSDataFormat(String value) {

@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.calendar.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasEventChangedHandlers extends HasHandlers {
     /**
      * Notification fired whenever a user changes an event, whether by dragging the event or by editing it in a dialog. <P> In
@@ -31,3 +30,4 @@ public interface HasEventChangedHandlers extends HasHandlers {
      */
     HandlerRegistration addEventChangedHandler(EventChangedHandler handler);
 }
+

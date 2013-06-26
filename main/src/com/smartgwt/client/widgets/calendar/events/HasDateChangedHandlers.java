@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.calendar.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDateChangedHandlers extends HasHandlers {
     /**
      * Fires whenever the user changes the current date, including picking a specific date or navigating to a new week or
@@ -30,3 +29,4 @@ public interface HasDateChangedHandlers extends HasHandlers {
      */
     HandlerRegistration addDateChangedHandler(DateChangedHandler handler);
 }
+

@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.form.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasFilterChangedHandlers extends HasHandlers {
     /**
      * Handler fired when there is a change() event fired on any FormItem within the  filterBuilder.
@@ -29,3 +28,4 @@ public interface HasFilterChangedHandlers extends HasHandlers {
      */
     HandlerRegistration addFilterChangedHandler(FilterChangedHandler handler);
 }
+

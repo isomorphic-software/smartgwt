@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -44,18 +45,23 @@ import com.smartgwt.client.widgets.tree.events.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class TabTitleChangedEvent extends BrowserEvent<TabTitleChangedHandler>  implements Cancellable {
     private boolean cancel = false;
 
@@ -92,7 +98,6 @@ public class TabTitleChangedEvent extends BrowserEvent<TabTitleChangedHandler>  
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(TabTitleChangedHandler handler) {
         handler.onTabTitleChanged(this);
@@ -111,9 +116,8 @@ public class TabTitleChangedEvent extends BrowserEvent<TabTitleChangedHandler>  
         super(jsObj);
     }
 
-
     /**
-     * return false to suppress the title change
+     * Call this method to suppress the title change
      */
     public void cancel() {
         cancel = true;
@@ -125,36 +129,36 @@ public class TabTitleChangedEvent extends BrowserEvent<TabTitleChangedHandler>  
     public boolean isCancelled() {
         return cancel;
     }
-
-    /**
+	/**
      * the new title
      *
      * @return the new title
      */
-    public  native String getNewTitle() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.newTitle;
+    public native String getNewTitle() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.newTitle;
+        return ret;
     }-*/;
-
-    /**
+	/**
      * the old title
      *
      * @return the old title
      */
-    public  native String getOldTitle() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.oldTitle;
+    public native String getOldTitle() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.oldTitle;
+        return ret;
     }-*/;
-
-    /**
+	/**
      * the tab whose title has changed
      *
      * @return the tab whose title has changed
      */
-    public  native Tab getTab() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.tab.Tab::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tab);
+    public native Tab getTab() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.tab;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.tab.Tab::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
 
 }

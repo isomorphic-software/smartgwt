@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Mode for applying criteria to a tree.
  */
@@ -26,11 +27,11 @@ public enum TreeFilterMode implements ValueEnum {
      */
     STRICT("strict"),
     /**
-     * parent nodes are kept if they have children which match the criteria, or, in a tree with  loadDataOnDemand:true, if they
-     * have not loaded children yet.
+     * parent nodes are kept if they have children which match the criteria, or, in a tree with {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#getLoadDataOnDemand loadDataOnDemand:true}, if they have not loaded children
+     * yet.
      */
     KEEP_PARENTS("keepParents");
-
     private String value;
 
     TreeFilterMode(String value) {

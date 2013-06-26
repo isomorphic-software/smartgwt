@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +46,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class EditorExitEvent extends AbstractSmartEvent<EditorExitHandler>  implements Cancellable {
     private boolean cancel = false;
 
@@ -93,7 +98,6 @@ public class EditorExitEvent extends AbstractSmartEvent<EditorExitHandler>  impl
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(EditorExitHandler handler) {
         handler.onEditorExit(this);
@@ -112,7 +116,6 @@ public class EditorExitEvent extends AbstractSmartEvent<EditorExitHandler>  impl
         super(jsObj);
     }
 
-
     /**
      * Calling this method will cancel the default behavior                      (for example saving the row) and
      * leave the editor visible and focus                      in this edit cell.
@@ -127,66 +130,69 @@ public class EditorExitEvent extends AbstractSmartEvent<EditorExitHandler>  impl
     public boolean isCancelled() {
         return cancel;
     }
-
-    /**
+	/**
      * What interaction triggered this                                                          edit cell exit
      *
      * @return What interaction triggered this                                                          edit cell exit
      */
-    public  native EditCompletionEvent getEditCompletionEvent() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.editCompletionEvent;
+    public native EditCompletionEvent getEditCompletionEvent() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.editCompletionEvent;
+        if(ret == null) return null;
+        var enumValues = @com.smartgwt.client.types.EditCompletionEvent::values()();
+        return @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(enumValues, ret);
     }-*/;
-
-    /**
+	/**
      * record for the cell being edited
      *
      * @return record for the cell being edited
      */
-    public  native Record getRecord() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
+    public native ListGridRecord getRecord() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.record;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
-    /**
+	/**
      * new value for the cell being edited
      *
      * @return new value for the cell being edited
      */
-    public  native Object getNewValue() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return $wnd.SmartGWT.convertToJavaType(jsObj.newValue);
+    public native Object getNewValue() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.newValue;
+        return $wnd.SmartGWT.convertToJavaType(ret);
     }-*/;
-
-    /**
+	/**
      * row number for the cell
      *
      * @return row number for the cell
      */
-    public  native int getRowNum() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.rowNum;
+    public native int getRowNum() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.rowNum;
+        return ret;
     }-*/;
-
-    /**
+	/**
      * column number of the cell
      *
      * @return column number of the cell
      */
-    public  native int getColNum() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.colNum;
+    public native int getColNum() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.colNum;
+        return ret;
     }-*/;
-
-    /**
+	/**
      * ListGrid to which this field belongs
      *
      * @return ListGrid to which this field belongs
      */
-    public  native ListGrid getGrid() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.grid.ListGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.grid);
+    public native ListGrid getGrid() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.grid;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.grid.ListGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
 
 }

@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.grid.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasSortChangedHandlers extends HasHandlers {
     /**
      * Notification method executed when the {@link com.smartgwt.client.widgets.grid.ListGrid#setSort sort specifiers} change
@@ -30,3 +29,4 @@ public interface HasSortChangedHandlers extends HasHandlers {
      */
     HandlerRegistration addSortChangedHandler(SortChangedHandler handler);
 }
+

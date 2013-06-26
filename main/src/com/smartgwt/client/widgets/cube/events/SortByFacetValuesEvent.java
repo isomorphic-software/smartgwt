@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +46,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class SortByFacetValuesEvent extends BrowserEvent<SortByFacetValuesHandler>  {
 
     /**
@@ -92,7 +97,6 @@ public class SortByFacetValuesEvent extends BrowserEvent<SortByFacetValuesHandle
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(SortByFacetValuesHandler handler) {
         handler.onSortByFacetValues(this);
@@ -111,27 +115,26 @@ public class SortByFacetValuesEvent extends BrowserEvent<SortByFacetValuesHandle
         super(jsObj);
     }
 
-
-
-    /**
+	/**
      * facetValues to sort
      *
      * @return facetValues to sort
      */
-    public  native FacetValueMap getFacetValues() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.cube.FacetValueMap::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.facetValues);
+    public native FacetValueMap getFacetValues() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.facetValues;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.cube.FacetValueMap::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
-    /**
+	/**
      * true for ascending
      *
      * @return true for ascending
      */
-    public  native boolean getSortDirection() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.sortDirection;
+    public native boolean getSortDirection() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.sortDirection;
+        return ret;
     }-*/;
-
 
 }

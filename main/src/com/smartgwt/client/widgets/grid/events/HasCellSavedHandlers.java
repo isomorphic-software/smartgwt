@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.grid.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasCellSavedHandlers extends HasHandlers {
     /**
      * Fires after user edits have been successfully saved to the server, when the new value doesn't match the value before
@@ -34,3 +33,4 @@ public interface HasCellSavedHandlers extends HasHandlers {
      */
     HandlerRegistration addCellSavedHandler(CellSavedHandler handler);
 }
+

@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.drawing;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * An object containing properties that is used in Gradient types
@@ -68,20 +88,36 @@ public class ColorStop extends RefDataClass {
         return new ColorStop(jsObj);
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
+
     public ColorStop(){
         
     }
 
     public ColorStop(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
+        
     }
 
+    public ColorStop(String color, float offset) {
+        setColor(color);
+		setOffset(offset);
+        
+    }
+
+
     // ********************* Properties / Attributes ***********************
+
 
     /**
      * eg #ff0000 or red or rgb(255,0,0)
      *
-     * @param color color Default value is null
+     * @param color . See {@link com.smartgwt.client.docs.CSSColor CSSColor}. Default value is null
      */
     public void setColor(String color) {
         setAttribute("color", color);
@@ -90,12 +126,12 @@ public class ColorStop extends RefDataClass {
     /**
      * eg #ff0000 or red or rgb(255,0,0)
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSColor CSSColor}
      */
     public String getColor()  {
         return getAttributeAsString("color");
     }
+
 
     /**
      * The relative offset for the color.
@@ -109,12 +145,12 @@ public class ColorStop extends RefDataClass {
     /**
      * The relative offset for the color.
      *
-     *
      * @return float
      */
     public float getOffset()  {
         return getAttributeAsFloat("offset");
     }
+
 
     /**
      * 0 is transparent, 1 is fully opaque
@@ -128,7 +164,6 @@ public class ColorStop extends RefDataClass {
     /**
      * 0 is transparent, 1 is fully opaque
      *
-     *
      * @return float
      */
     public float getOpacity()  {
@@ -138,27 +173,9 @@ public class ColorStop extends RefDataClass {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
 
-
-
-    public static ColorStop[] convertToColorStopArray(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new ColorStop[]{};
-        }
-        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-        ColorStop[] objects = new ColorStop[componentsj.length];
-        for (int i = 0; i < componentsj.length; i++) {
-            JavaScriptObject componentJS = componentsj[i];
-            ColorStop obj = (ColorStop) RefDataClass.getRef(componentJS);
-            if (obj == null) obj = new ColorStop(componentJS);
-            objects[i] = obj;
-        }
-        return objects;
-    }
+    // ***********************************************************
 
 }
-
 
 

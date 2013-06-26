@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * While editing a ListGrid, what cell should we edit when the user attempts to navigate   into a cell past the end of an
  * editable row, via a Tab keypress, or a programmatic  saveAndEditNextCell() call?
@@ -41,7 +42,6 @@ public enum RowEndEditAction implements ValueEnum {
      * take no action
      */
     NONE("none");
-
     private String value;
 
     RowEndEditAction(String value) {

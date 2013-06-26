@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  */
 public enum ImageStyle implements ValueEnum {
@@ -35,7 +36,6 @@ public enum ImageStyle implements ValueEnum {
      * Allow the image to have natural size
      */
     NORMAL("normal");
-
     private String value;
 
     ImageStyle(String value) {

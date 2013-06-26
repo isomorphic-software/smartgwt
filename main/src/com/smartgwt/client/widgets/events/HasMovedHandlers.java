@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasMovedHandlers extends HasHandlers {
     /**
      * Notification method fired when this component is explicitly moved. Note that a component's position on the screen may
@@ -31,3 +30,4 @@ public interface HasMovedHandlers extends HasHandlers {
      */
     HandlerRegistration addMovedHandler(MovedHandler handler);
 }
+

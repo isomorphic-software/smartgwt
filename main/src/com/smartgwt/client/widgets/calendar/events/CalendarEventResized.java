@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +46,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class CalendarEventResized extends BrowserEvent<EventResizedHandler>  implements Cancellable {
     private boolean cancel = false;
 
@@ -93,7 +98,6 @@ public class CalendarEventResized extends BrowserEvent<EventResizedHandler>  imp
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(EventResizedHandler handler) {
         handler.onEventResized(this);
@@ -112,7 +116,6 @@ public class CalendarEventResized extends BrowserEvent<EventResizedHandler>  imp
         super(jsObj);
     }
 
-
     /**
      * Call this method to disallow the resize
      */
@@ -126,26 +129,27 @@ public class CalendarEventResized extends BrowserEvent<EventResizedHandler>  imp
     public boolean isCancelled() {
         return cancel;
     }
-
-    /**
+	/**
      * new end date and time that event is being resized to
      *
      * @return new end date and time that event is being resized to
      */
-    public  native Date getNewDate() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return (jsObj.newDate === undefined || jsObj.newDate == null) ? null: @com.smartgwt.client.util.JSOHelper::toDate(D)(jsObj.newDate.getTime());
+    public native Date getNewDate() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.newDate;
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
     }-*/;
-
-    /**
+	/**
      * 
      *
-     * @return CalendarEvent
+     * @return 
      */
-    public  native CalendarEvent getEvent() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.calendar.CalendarEvent::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.event);
+    public native CalendarEvent getEvent() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.event;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.calendar.CalendarEvent::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
 
 }

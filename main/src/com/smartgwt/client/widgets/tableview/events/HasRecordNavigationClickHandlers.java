@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.tableview.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasRecordNavigationClickHandlers extends HasHandlers {
     /**
      * Executed when the user clicks on a record, or on the navigate icon for a record depending on {@link
@@ -30,3 +29,4 @@ public interface HasRecordNavigationClickHandlers extends HasHandlers {
      */
     HandlerRegistration addRecordNavigationClickHandler(RecordNavigationClickHandler handler);
 }
+

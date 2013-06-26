@@ -3,8 +3,7 @@ package com.smartgwt.client.docs;
 
 /**
  * <h3>Visual Builder</h3>
- * The Smart GWT Visual Builder tool, accessible from the SDK Explorer as Tools->Visual
- *  Builder, is intended for:
+ * The Smart GWT Visual Builder tool is intended for:
  *  <ul>
  *  <li> business analysts and others doing functional application design, who want to create
  *  functional prototypes in a codeless, "what you see is what you get" environment
@@ -13,11 +12,6 @@ package com.smartgwt.client.docs;
  *  <li> developers building simple applications that can be completed entirely within Visual
  *  Builder
  *  </ul>
- *  <P>
- *  <h4>Using Visual Builder</h4>
- *  <P>
- *  Basic usage instructions are embedded in Visual Builder itself, in the "About Visual
- *  Builder" pane.  Click on it to open it.
  *  <P>
  *  <b>Visual Builder for Functional Design</b>
  *  <P>
@@ -40,9 +34,21 @@ package com.smartgwt.client.docs;
  *  users to collaboratively build and share prototypes of Smart GWT-based applications.  
  *  </ul>
  *  <P>
+ *  <h4>Launching &amp; Using Visual Builder</h4>
+ *  <P>
+ *  
+ *  Instructions for launching Visual Builder are in the 
+ * <a href='http://forums.smartclient.com/showthread.php?t=8159#aVisualBuilder'
+ * onclick="window.open('http://forums.smartclient.com/showthread.php?t=8159#aVisualBuilder');return
+ * false;">Smart GWT FAQ</a>.
+ *  
+ *  <P>
+ *  Basic usage instructions are embedded in Visual Builder itself, in the "About Visual
+ *  Builder" pane.  Click on it to open it.
+ *  <P>
  *  <b>Loading and Saving</b>
  *  <P>
- *  The "File" menu within Visual Builder allows screens to be saved and reloaded for further
+ *  The "Project" pane within Visual Builder allows screens to be saved and reloaded for further
  *  editing.  Saved screens <b>can</b> be edited outside of Visual Builder and successfully
  *  reloaded, however, as with any design tool that provides a drag and drop, dialog-driven
  *  approach to screen creation, Visual Builder cannot work with entirely free-form code.  In
@@ -61,33 +67,7 @@ package com.smartgwt.client.docs;
  *  JavaScript libraries should be added to Visual Builder itself via the customization
  *  facilities described below.
  *  <P>
- *  <h4>Installing Visual Builder</h4>
- *  <P>
- *  Visual Builder comes already installed and working in the SDK, and can be used from there out
- *  of the box.  This is the simplest thing to do during initial prototyping.
- *  <P>
- *  Further on in the development cycle, it may be advantageous to have Visual Builder available 
- *  outside the SDK, for example in your test environment.  Installing Visual Builder into 
- *  such an environment is very easy:
- *  <ul>
- *  <li>Perform a normal installation procedure, as discussed {@link iscInstall here}</li>
- *  <li>Copy the following .jar files from the SDK <code>lib</code> folder to the target 
- *  <code>WEB-INF/lib</code> folder: 
- *  <ul>
- *  <li><code>isomorphic_tools.jar</code></li>
- *  <li><code>isomorphic_sql.jar</code></li>
- *  <li><code>isomorphic_hibernate.jar</code></li>
- *  </ul></li>
- *  <li>Copy the SDK <code>tools</code> folder to the target application root</li>
- *  <li>Add the following line to the end of <code>WEB-INF/server.properties</code>:
- *  <ul>
- *  <li><code>FilesystemDataSource.enabled: true</code></li>
- *  </ul>
- *  </li>
- *  </ul>
- *  Note that it is safe to include Visual Builder even in a production environment, so long 
- *  as you ensure that the <code>tools</code> folder is protected with any normal HTTP
- *  authentication/authorization mechanism - for example, an authentication filter.
+ *  
  *  <P>
  *  <h4>Customizing Visual Builder</h4>
  *  <P>
@@ -106,7 +86,8 @@ package com.smartgwt.client.docs;
  *  <ul>
  *  <li> creating an XML version of the DataSource using the XML tag &lt;DataSource&gt; and the
  *  <code>constructor</code> property set to the name of your custom DataSource subclass (as
- *  described {@link com.smartgwt.client.docs.ComponentXML} under the heading <i>Custom Components</i>)
+ * described {@link com.smartgwt.client.docs.ComponentXML} under the heading <i>Custom
+ * Components</i>)
  *  <li> modifying [webroot]/tools/visualBuilder/globalDependencies.xml to load the JavaScript
  *  code for your custom DataSource class.  See examples in that file.
  *  </ul>
@@ -121,8 +102,8 @@ package com.smartgwt.client.docs;
  *  <P>
  *  As can be seen by looking at defaultComponents.xml, components are specified using a tree
  *  structure similar to that shown in the 
- * <a href="http://www.smartclient.com/smartgwtee/showcase/#treeLoadXML" target="examples">tree XML loading example</a>. 
- * The properties that can be set on
+ * <a href="http://www.smartclient.com/smartgwtee/showcase/#treeLoadXML" target="examples">tree
+ * XML loading example</a>.  The properties that can be set on
  *  nodes are:
  *  <ul>
  *  <li> <code>className</code>: name of the Smart GWT Class on which  create() will be
@@ -136,14 +117,16 @@ package com.smartgwt.client.docs;
  *  <pre>
  *  &lt;defaults canEdit="true"/&gt;</pre>
  *  NOTE: if you set any defaults that are not Canvas properties, you need to provide explicit
- *  type as documented under <i>Custom Properties</i> for {@link com.smartgwt.client.docs.ComponentXML}.
+ * type as documented under <i>Custom Properties</i> for {@link
+ * com.smartgwt.client.docs.ComponentXML}.
  *  <li> <code>children</code>: components that should appear as children in the tree under this
  *  node
  *  <li> <code>icon</code>: icon to show in the Visual Builder component tree (if desired)
  *  <li> <code>iconWidth/Height/Size</code>: dimensions of the icon in pixels ("iconSize" sets
  *  both)
  *  <li> <code>showDropIcon</code>: for components that allow children, whether to show a
- * special drop icon on valid drop (like {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons}).
+ * special drop icon on valid drop (like {@link
+ * com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons}).
  *  </ul>
  *  <P>
  *  In order to use custom classes in Visual Builder, you must modify
@@ -151,13 +134,15 @@ package com.smartgwt.client.docs;
  *  <ul>
  *  <li> the JavaScript class definition for the custom class (in other words, the
  *  {@link com.smartgwt.client.util.isc#defineClass defineClass()} call)
- *  <li> a {@link com.smartgwt.client.docs.ComponentSchema component schema} for the custom component
+ * <li> a {@link com.smartgwt.client.docs.ComponentSchema component schema} for the custom
+ * component
  *  </ul>
  *  See globalDependencies.xml for examples.
  *  <P>
  *  <h4>Component Schema and Visual Builder</h4>
  *  <P>
- *  When you provide {@link com.smartgwt.client.docs.ComponentSchema custom schema} for a component, Visual Builder
+ * When you provide {@link com.smartgwt.client.docs.ComponentSchema custom schema} for a
+ * component, Visual Builder
  *  uses that schema to drive component editing (Component Properties pane) and to drive drag
  *  and drop screen building functionality.
  *  <P>
@@ -168,25 +153,30 @@ package com.smartgwt.client.docs;
  *  name of a new group and using this on multiple custom fields.
  *  <P>
  *  The ComponentEditor will pick a FormItem for a custom field by the
- *  {@link com.smartgwt.client.types.FormItemType same rules} used for ordinary databinding, including the ability to
+ * {@link com.smartgwt.client.types.FormItemType same rules} used for ordinary databinding,
+ * including the ability to
  *  set field.editorType to use a custom FormItem.
  *  <P>
  *  When the "Apply" button is clicked, Visual Builder will look for an appropriate "setter
  *  function" for the custom field, for example, for a field named "myProp", Visual Builder will
- *  look for "setMyProp".  The target component will also be {@link com.smartgwt.client.widgets.Canvas#redraw redrawn}.
+ * look for "setMyProp".  The target component will also be {@link
+ * com.smartgwt.client.widgets.Canvas#redraw redrawn}.
  *  <P>
  *  <b>Event -&gt; Action Bindings</b>
  *  <P>
  *  The Component Properties pane contains an Events tab that allows you wire components events
  *  to actions on any other component currently in the project.
  *  <P>
- *  Events are simply {@link com.smartgwt.client.docs.StringMethods StringMethods} defined on the component.  In
+ * Events are simply {@link com.smartgwt.client.docs.StringMethods StringMethods} defined on the
+ * component.  In
  *  order to be considered events, method definitions must have been added to the class via
  *   Class.registerStringMethods and either be publicly documented Smart GWT methods or,
- *  for custom classes, have a methods definition in the {@link com.smartgwt.client.docs.ComponentSchema component
+ * for custom classes, have a methods definition in the {@link
+ * com.smartgwt.client.docs.ComponentSchema component
  *  schema}.
- * Examples of events are: {@link com.smartgwt.client.widgets.grid.ListGrid#addRecordClickHandler ListGrid.recordClick} and
- * {@link com.smartgwt.client.widgets.form.DynamicForm#addItemChangeHandler DynamicForm.itemChange}.
+ * Examples of events are: {@link com.smartgwt.client.widgets.grid.ListGrid#addRecordClickHandler
+ * ListGrid.recordClick} and {@link
+ * com.smartgwt.client.widgets.form.DynamicForm#addItemChangeHandler DynamicForm.itemChange}.
  *  <P>
  *  Actions are methods on any component that have a method definition in the
  *  {@link com.smartgwt.client.docs.ComponentSchema component schema} and specify action="true".
@@ -204,7 +194,8 @@ package com.smartgwt.client.docs;
  *  or to match an isAssignableFrom type check via a Smart GWT schema inheritance check.
  *  <li>The 'type' of a parameter is determined from the type documented in the Smart GWT
  *  reference for built-in components, or from the <code>type</code> attribute on the method
- *  param in the {@link com.smartgwt.client.docs.ComponentSchema component schema} definition of a custom component.
+ * param in the {@link com.smartgwt.client.docs.ComponentSchema component schema} definition of a
+ * custom component.
  *  <li>When a matching parameter is found, it is assigned to the current slot of the action and
  *  not considered for further parameter matching.
  *  <li>The above pattern is repeated until all non-optional parameters are exhausted, all
@@ -226,15 +217,17 @@ package com.smartgwt.client.docs;
  *  <P>
  *  You can declare custom containment relations, such as a custom class "Wizard" that accepts
  *  instances of the custom class "Pane" by simply declaring a
- *  {@link com.smartgwt.client.docs.ComponentSchema component schema} that says that Wizard has a property called
+ * {@link com.smartgwt.client.docs.ComponentSchema component schema} that says that Wizard has a
+ * property called
  *  "panes" of type "Pane".  Then, provide methods that allow components to be added and removed:
  *  <ul>
- *  <li> for a {@link com.smartgwt.client.data.DataSourceField#getMultiple multiple} field, provide "add" and "remove"
+ * <li> for a {@link com.smartgwt.client.data.DataSourceField#getMultiple multiple} field, provide
+ * "add" and "remove"
  *  functions based on the name of the field.  For example, for a field "panes" of type "Pane",
  *  provide "addPane()" that takes a Pane instance, and "removePane()" that takes a pane
  *  instance or pane ID 
- * <li> for a singular field (such as {@link com.smartgwt.client.widgets.Canvas#getContextMenu contextMenu} or {@link
- * com.smartgwt.client.widgets.tab.Tab#getPane pane}), provide a
+ * <li> for a singular field (such as {@link com.smartgwt.client.widgets.Canvas#getContextMenu
+ * contextMenu} or {@link com.smartgwt.client.widgets.tab.Tab#getPane pane}), provide a
  *  setter method named after the field (eg setContextMenu()) that takes either an instance of
  *  the component or null for removal
  *  </ul>
@@ -251,7 +244,8 @@ package com.smartgwt.client.docs;
  *  Smart GWT components expose many methods and properties.  For some environments, it is
  *  more appropriate to provide a simplified list of properties, events, and actions on either
  *  built-in Smart GWT components or your custom components.  This can be done by providing a
- *  custom {@link com.smartgwt.client.docs.ComponentSchema component schema} for an existing component that exposes
+ * custom {@link com.smartgwt.client.docs.ComponentSchema component schema} for an existing
+ * component that exposes
  *  your minimal set.  You also need to provide a trivial subclass of the class you're exposing
  *  so that it can be instantiated.
  *  <P>
@@ -283,7 +277,8 @@ package com.smartgwt.client.docs;
  *      &lt;/methods&gt;
  *  &lt;/DataSource&gt;
  *  </pre>
- *  See documentation above and also {@link com.smartgwt.client.docs.ComponentSchema component schema} for what the
+ * See documentation above and also {@link com.smartgwt.client.docs.ComponentSchema component
+ * schema} for what the
  *  properties above do.
  *  3.  Finally, you'll need to define an EButton class as a simple subclass of Button, as
  *  follows:

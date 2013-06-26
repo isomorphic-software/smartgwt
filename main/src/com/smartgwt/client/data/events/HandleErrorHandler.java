@@ -15,6 +15,7 @@
  */
  
 package com.smartgwt.client.data.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface HandleErrorHandler extends EventHandler {

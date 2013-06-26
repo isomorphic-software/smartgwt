@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDragResizeMoveHandlers extends HasHandlers {
     /**
      * Executed every time the mouse moves while drag-resizing. If this method does not Call {@link com.smartgwt.client.widgets.events.DragResizeMoveEvent#cancel()} from within {@link DragResizeMoveHandler#onDragResizeMove}, the {@link
@@ -32,3 +31,4 @@ public interface HasDragResizeMoveHandlers extends HasHandlers {
      */
     HandlerRegistration addDragResizeMoveHandler(DragResizeMoveHandler handler);
 }
+

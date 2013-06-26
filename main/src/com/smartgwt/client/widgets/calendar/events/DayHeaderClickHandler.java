@@ -15,6 +15,7 @@
  */
  
 package com.smartgwt.client.widgets.calendar.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface DayHeaderClickHandler extends EventHandler {

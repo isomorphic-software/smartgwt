@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.drawing;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * DrawItem subclass to render oval shapes, including circles.
@@ -73,12 +93,20 @@ public class DrawOval extends DrawItem {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
+    }
+
+
+
     public DrawOval(){
         scClassName = "DrawOval";
     }
 
     public DrawOval(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "DrawOval";
+        setJavaScriptObject(jsObj);
+        
     }
 
     public native JavaScriptObject create()/*-{
@@ -86,7 +114,9 @@ public class DrawOval extends DrawItem {
         var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
         return $wnd.isc[scClassName].create(config);
     }-*/;
+
     // ********************* Properties / Attributes ***********************
+
 
     /**
      * Center point of the oval.  If unset, derived from left/top/width/height.
@@ -95,21 +125,20 @@ public class DrawOval extends DrawItem {
      * Change the center point for this oval.
      *
      * @param centerPoint left coordinate. Default value is null
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCenterPoint(Point centerPoint)  throws IllegalStateException {
-        setAttribute("centerPoint", centerPoint.getJsObj(), false);
+    public void setCenterPoint(Point centerPoint) {
+        setAttribute("centerPoint", centerPoint.getJsObj(), true);
     }
 
     /**
      * Center point of the oval.  If unset, derived from left/top/width/height.
-     *
      *
      * @return Point
      */
     public Point getCenterPoint()  {
         return new Point(getAttributeAsJavaScriptObject("centerPoint"));
     }
+
 
     /**
      * Height in pixels.
@@ -126,15 +155,15 @@ public class DrawOval extends DrawItem {
     /**
      * Height in pixels.
      *
-     *
      * @return int
      */
     public int getHeight()  {
         return getAttributeAsInt("height");
     }
 
+
     /**
-     * Left coordinate in pixels relative to the DrawPane, or owning DrawGroup.
+     * Left coordinate in pixels relative to the DrawPane.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the left coordinate of the drawOval
@@ -146,14 +175,14 @@ public class DrawOval extends DrawItem {
     }
 
     /**
-     * Left coordinate in pixels relative to the DrawPane, or owning DrawGroup.
-     *
+     * Left coordinate in pixels relative to the DrawPane.
      *
      * @return int
      */
     public int getLeft()  {
         return getAttributeAsInt("left");
     }
+
 
     /**
      * Radius of the oval.  If unset, horizontal and vertical radii are derived from width and height
@@ -163,15 +192,13 @@ public class DrawOval extends DrawItem {
      *
      * @param radius new radius. This will be applied on both axes, meaning calling this  method will always result in the drawOval being
      * rendered as a circle. Default value is null
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setRadius(Integer radius)  throws IllegalStateException {
-        setAttribute("radius", radius, false);
+    public void setRadius(Integer radius) {
+        setAttribute("radius", radius, true);
     }
 
     /**
      * Radius of the oval.  If unset, horizontal and vertical radii are derived from width and height
-     *
      *
      * @return Integer
      */
@@ -179,8 +206,9 @@ public class DrawOval extends DrawItem {
         return getAttributeAsInt("radius");
     }
 
+
     /**
-     * Top coordinate in pixels relative to the DrawPane, or owning DrawGroup.
+     * Top coordinate in pixels relative to the DrawPane.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the top coordinate of the drawOval
@@ -192,14 +220,14 @@ public class DrawOval extends DrawItem {
     }
 
     /**
-     * Top coordinate in pixels relative to the DrawPane, or owning DrawGroup.
-     *
+     * Top coordinate in pixels relative to the DrawPane.
      *
      * @return int
      */
     public int getTop()  {
         return getAttributeAsInt("top");
     }
+
 
     /**
      * Width in pixels.
@@ -216,7 +244,6 @@ public class DrawOval extends DrawItem {
     /**
      * Width in pixels.
      *
-     *
      * @return int
      */
     public int getWidth()  {
@@ -224,8 +251,7 @@ public class DrawOval extends DrawItem {
     }
 
     // ********************* Methods ***********************
-            
-    /**
+	/**
      * Move the drawOval by the specified delta
      * @param dX number of pixels to move horizontally
      * @param dY number of pixels to move vertically
@@ -234,8 +260,7 @@ public class DrawOval extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.moveBy(dX, dY);
     }-*/;
-            
-    /**
+	/**
      * Move the drawOval to the specified left/top position. You may also call {@link
      * com.smartgwt.client.widgets.drawing.DrawOval#setCenterPoint DrawOval.setCenterPoint} to reposition the oval around a new
      * center position.
@@ -246,8 +271,7 @@ public class DrawOval extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.moveTo(left, top);
     }-*/;
-            
-    /**
+	/**
      * Resize by the specified delta. Note that the resize will occur from the current top/left  coordinates, meaning the
      * center positon of the oval may change. You may also use {@link com.smartgwt.client.widgets.drawing.DrawOval#setRadii
      * DrawOval.setRadii} to change the radius in either direction without modifying the centerpoint.
@@ -258,8 +282,7 @@ public class DrawOval extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.resizeBy(dX, dY);
     }-*/;
-            
-    /**
+	/**
      * Resize to the specified size. Note that the resize will occur from the current top/left  coordinates, meaning the center
      * positon of the oval may change. You may also use {@link com.smartgwt.client.widgets.drawing.DrawOval#setRadii
      * DrawOval.setRadii} to change the radius in either direction without modifying the centerpoint.
@@ -270,8 +293,7 @@ public class DrawOval extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.resizeTo(width, height);
     }-*/;
-            
-    /**
+	/**
      * Resize and reposition the drawOval by setting its radius, and centerPoint.
      * @param cx new horizontal center point coordinate
      * @param cy new vertical center point coordinate
@@ -282,8 +304,7 @@ public class DrawOval extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.setOval(cx, cy, rx, ry);
     }-*/;
-            
-    /**
+	/**
      * Resize the drawOval by setting its horizontal and vertical radius, and retaining its current center point.
      * @param rx new horizontal radius
      * @param ry new vertical radius
@@ -292,8 +313,7 @@ public class DrawOval extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.setRadii(rx, ry);
     }-*/;
-            
-    /**
+	/**
      * Move and resize the drawOval to match the specified coordinates and size.
      * @param left new left coordinate
      * @param top new top coordinate
@@ -306,10 +326,27 @@ public class DrawOval extends DrawItem {
     }-*/;
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+    /**
+     * Class level method to set the default properties of this class. If set, then all subsequent instances of this
+     * class will automatically have the default properties that were set when this method was called. This is a powerful
+     * feature that eliminates the need for users to create a separate hierarchy of subclasses that only alter the default
+     * properties of this class. Can also be used for skinning / styling purposes.
+     * <P>
+     * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
+     * underlying class (including those automatically generated in JavaScript).
+     * This method should not be used to apply standard EventHandlers or override methods for
+     * a class - use a custom subclass instead.
+     *
+     * @param drawOvalProperties properties that should be used as new defaults when instances of this class are created
+     */
+    public static native void setDefaultProperties(DrawOval drawOvalProperties) /*-{
+    	var properties = $wnd.isc.addProperties({},drawOvalProperties.@com.smartgwt.client.core.BaseClass::getConfig()());
+    	delete properties.ID;
+        $wnd.isc.DrawOval.addProperties(properties);
+    }-*/;
+
+    // ***********************************************************
 
 }
-
 
 

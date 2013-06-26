@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.grid.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasHeaderDoubleClickHandlers extends HasHandlers {
     /**
      * Handle a double click in the list header. <P> By default, calls {@link
@@ -32,3 +31,4 @@ public interface HasHeaderDoubleClickHandlers extends HasHandlers {
      */
     HandlerRegistration addHeaderDoubleClickHandler(HeaderDoubleClickHandler handler);
 }
+

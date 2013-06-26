@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDropOutHandlers extends HasHandlers {
     /**
      * Executed when the dragged object is moved out of the rectangle of this drop target. If you have set a visual indication
@@ -30,3 +29,4 @@ public interface HasDropOutHandlers extends HasHandlers {
      */
     HandlerRegistration addDropOutHandler(DropOutHandler handler);
 }
+

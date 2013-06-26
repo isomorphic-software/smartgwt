@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Trees that dynamically load nodes keep track of whether each node has loaded its children.
  */
@@ -36,7 +37,6 @@ public enum LoadState implements ValueEnum {
      * already fully loaded
      */
     LOADED("loaded");
-
     private String value;
 
     LoadState(String value) {

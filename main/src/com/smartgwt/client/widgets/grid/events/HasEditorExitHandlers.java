@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.grid.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasEditorExitHandlers extends HasHandlers {
     /**
      * Callback fired when the user attempts to navigate away from the current edit cell,  or complete the current edit.<br>
@@ -31,3 +30,4 @@ public interface HasEditorExitHandlers extends HasHandlers {
      */
     HandlerRegistration addEditorExitHandler(EditorExitHandler handler);
 }
+

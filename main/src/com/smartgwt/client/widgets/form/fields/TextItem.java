@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.form.fields;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * FormItem for managing a text field.
@@ -64,8 +84,15 @@ import com.google.gwt.event.shared.HasHandlers;
 public class TextItem extends FormItem {
 
     public static TextItem getOrCreateRef(JavaScriptObject jsObj) {
+
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+		if(obj != null && JSOHelper.getAttribute(jsObj,"__ref")==null) {
+            return com.smartgwt.client.util.ObjectFactory.createFormItem("TextItem",jsObj);
+
+        } else
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (TextItem) obj;
@@ -74,12 +101,44 @@ public class TextItem extends FormItem {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        $wnd.isc["TextItem"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.Canvas::getConfig()());
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        $wnd.isc["TextItem"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getJsObj()());
+    }-*/;
+
     public TextItem(){
         setAttribute("editorType", "TextItem");
     }
 
     public TextItem(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
+        
     }
 
     public TextItem(String name) {
@@ -93,7 +152,119 @@ public class TextItem extends FormItem {
         setAttribute("editorType", "TextItem");
     }
 
+
     // ********************* Properties / Attributes ***********************
+
+
+    /**
+     * This property may be set to <code>false</code> to explicitly  set the native HTML <code>"autocapitalize"</code>
+     * attribute to <code>"off"</code> in the data element of this item. <P> This attribute is used by some browsers- typically
+     * on mobile platforms - as a way to disable default auto-capitalize behavior within the item.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param browserAutoCapitalize browserAutoCapitalize Default value is null
+     */
+    public void setBrowserAutoCapitalize(Boolean browserAutoCapitalize) {
+        setAttribute("browserAutoCapitalize", browserAutoCapitalize);
+    }
+
+    /**
+     * This property may be set to <code>false</code> to explicitly  set the native HTML <code>"autocapitalize"</code>
+     * attribute to <code>"off"</code> in the data element of this item. <P> This attribute is used by some browsers- typically
+     * on mobile platforms - as a way to disable default auto-capitalize behavior within the item.
+     *
+     * @return Boolean
+     */
+    public Boolean getBrowserAutoCapitalize()  {
+        return getAttributeAsBoolean("browserAutoCapitalize");
+    }
+
+
+    /**
+     * This property may be set to <code>false</code> to explicitly  set the native HTML <code>"autocorrect"</code> attribute
+     * to <code>"off"</code> in the data element of this item. <P> This attribute is used by some browsers- typically on mobile
+     * platforms - as a way to disable default auto-correct behavior within the item.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param browserAutoCorrect browserAutoCorrect Default value is null
+     */
+    public void setBrowserAutoCorrect(Boolean browserAutoCorrect) {
+        setAttribute("browserAutoCorrect", browserAutoCorrect);
+    }
+
+    /**
+     * This property may be set to <code>false</code> to explicitly  set the native HTML <code>"autocorrect"</code> attribute
+     * to <code>"off"</code> in the data element of this item. <P> This attribute is used by some browsers- typically on mobile
+     * platforms - as a way to disable default auto-correct behavior within the item.
+     *
+     * @return Boolean
+     */
+    public Boolean getBrowserAutoCorrect()  {
+        return getAttributeAsBoolean("browserAutoCorrect");
+    }
+
+
+    /**
+     * This property corresponds to the HTML5 "inputType" attribute applied to the &lt;input&gt; element for this TextItem. <p>
+     * The only currently supported use of this attribute is hinting to touch-enabled mobile devices that a particular keyboard
+     * layout should be used.  Even here, be careful; to take a random example, using type "number" on Android up to at least
+     * 3.2 leads to a keyboard with no "-" key, so negative numbers cannot be entered. <p> <b>Valid values:</b> <table
+     * class="normal" cellpadding="2">   <tbody>   <tr>     <td valign="top"><em>"text"</em></td>     <td>Normal text
+     * keyboard</td>   </tr>   <tr>     <td valign="top"><em>"digits"</em></td>     <td>Makes the text field more suitable for
+     * entering a string of digits 0 - 9. On iOS,         this causes the virtual keyboard to show a numeric keypad with only
+     * "0", "1",         "2", ..., "9", and delete keys.</td>   </tr>   <tr>     <td valign="top"><em>"email"</em></td>    
+     * <td>Makes the text field more suitable for entering an e-mail address. On iOS, this         causes the virtual keyboard
+     * to show special "@" and "." keys on the alphabetic         keys screen.</td>   </tr>   <tr>     <td
+     * valign="top"><em>"tel"</em></td>     <td>Makes the text field more suitable for entering a telephone number. On iOS,
+     * this         causes the virtual keyboard to show a numeric keypad with a "+*#" key for         displaying punctuation
+     * keys.</td>   </tr>   <tr>     <td valign="top"><em>"number"</em></td>     <td>Makes the text field more suitable for
+     * entering a floating-point value. On iOS,         this causes the virtual keyboard to start on the number and punctuation
+     * keys screen.         <p>         <b>NOTE:</b> This is not an appropriate text input type for credit card numbers,       
+     * postal codes, ISBNs, and other formats that are not strictly parsable as floating-point         numbers. This is because
+     * the browser is required to perform floating-point value         sanitization to ensure that the value is a <a
+     * href="http://www.w3.org/TR/html5/infrastructure.html#valid-floating-point-number">valid floating-point number</a>.</td> 
+     * </tr>   <tr>     <td valign="top"><em>"url"</em></td>     <td>Makes the text field more suitable for entering a URL. On
+     * iOS, this causes the         virtual keyboard to show a special ".com" key.</td>   </tr>   <tr>     <td
+     * valign="top">Any&nbsp;vendor-<br>specific value</td>     <td>If a browser supports another input type.</td>   </tr>  
+     * </tbody> </table>
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param browserInputType . See {@link com.smartgwt.client.docs.String String}. Default value is null
+     */
+    public void setBrowserInputType(String browserInputType) {
+        setAttribute("browserInputType", browserInputType);
+    }
+
+    /**
+     * This property corresponds to the HTML5 "inputType" attribute applied to the &lt;input&gt; element for this TextItem. <p>
+     * The only currently supported use of this attribute is hinting to touch-enabled mobile devices that a particular keyboard
+     * layout should be used.  Even here, be careful; to take a random example, using type "number" on Android up to at least
+     * 3.2 leads to a keyboard with no "-" key, so negative numbers cannot be entered. <p> <b>Valid values:</b> <table
+     * class="normal" cellpadding="2">   <tbody>   <tr>     <td valign="top"><em>"text"</em></td>     <td>Normal text
+     * keyboard</td>   </tr>   <tr>     <td valign="top"><em>"digits"</em></td>     <td>Makes the text field more suitable for
+     * entering a string of digits 0 - 9. On iOS,         this causes the virtual keyboard to show a numeric keypad with only
+     * "0", "1",         "2", ..., "9", and delete keys.</td>   </tr>   <tr>     <td valign="top"><em>"email"</em></td>    
+     * <td>Makes the text field more suitable for entering an e-mail address. On iOS, this         causes the virtual keyboard
+     * to show special "@" and "." keys on the alphabetic         keys screen.</td>   </tr>   <tr>     <td
+     * valign="top"><em>"tel"</em></td>     <td>Makes the text field more suitable for entering a telephone number. On iOS,
+     * this         causes the virtual keyboard to show a numeric keypad with a "+*#" key for         displaying punctuation
+     * keys.</td>   </tr>   <tr>     <td valign="top"><em>"number"</em></td>     <td>Makes the text field more suitable for
+     * entering a floating-point value. On iOS,         this causes the virtual keyboard to start on the number and punctuation
+     * keys screen.         <p>         <b>NOTE:</b> This is not an appropriate text input type for credit card numbers,       
+     * postal codes, ISBNs, and other formats that are not strictly parsable as floating-point         numbers. This is because
+     * the browser is required to perform floating-point value         sanitization to ensure that the value is a <a
+     * href="http://www.w3.org/TR/html5/infrastructure.html#valid-floating-point-number">valid floating-point number</a>.</td> 
+     * </tr>   <tr>     <td valign="top"><em>"url"</em></td>     <td>Makes the text field more suitable for entering a URL. On
+     * iOS, this causes the         virtual keyboard to show a special ".com" key.</td>   </tr>   <tr>     <td
+     * valign="top">Any&nbsp;vendor-<br>specific value</td>     <td>If a browser supports another input type.</td>   </tr>  
+     * </tbody> </table>
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     */
+    public String getBrowserInputType()  {
+        return getAttributeAsString("browserInputType");
+    }
+
 
     /**
      * Should this form item fire its {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler change} handler
@@ -115,12 +286,12 @@ public class TextItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.FormItem#getValue getValue} will not reflect the value displayed in the form
      * item element as long as focus is in the form item element.
      *
-     *
      * @return Boolean
      */
     public Boolean getChangeOnKeypress()  {
         return getAttributeAsBoolean("changeOnKeypress");
     }
+
 
     /**
      * Should entered characters be converted to upper or lowercase? Also applies to values applied with {@link
@@ -140,13 +311,43 @@ public class TextItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue}. <P> Note: character casing cannot be used
      * at the same time as a {@link com.smartgwt.client.widgets.form.fields.TextItem#getMask mask}.
      *
-     *
      * @return CharacterCasing
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_keypress_filter" target="examples">KeyPress Filters Example</a>
      */
     public CharacterCasing getCharacterCasing()  {
         return EnumUtil.getEnum(CharacterCasing.values(), getAttribute("characterCasing"));
     }
+
+
+
+    /**
+     * With <code>formatOnBlur</code> enabled, this textItem will format its value according to any specified static {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#formatValue static formatter} as long as the item does not have focus.
+     * Once the user puts focus into the item the formatter will be removed. This provides a simply way for developers to show
+     * a nicely formatted display value in a freeform text field, without the need for an explicit {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#formatEditorValue FormItem.formatEditorValue}  and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#parseEditorValue FormItem.parseEditorValue} pair.
+     *
+     * @param formatOnBlur formatOnBlur Default value is false
+     */
+    public void setFormatOnBlur(Boolean formatOnBlur) {
+        setAttribute("formatOnBlur", formatOnBlur);
+    }
+
+    /**
+     * With <code>formatOnBlur</code> enabled, this textItem will format its value according to any specified static {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#formatValue static formatter} as long as the item does not have focus.
+     * Once the user puts focus into the item the formatter will be removed. This provides a simply way for developers to show
+     * a nicely formatted display value in a freeform text field, without the need for an explicit {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#formatEditorValue FormItem.formatEditorValue}  and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#parseEditorValue FormItem.parseEditorValue} pair.
+     *
+     * @return Boolean
+     */
+    public Boolean getFormatOnBlur()  {
+        return getAttributeAsBoolean("formatOnBlur");
+    }
+
 
     /**
      * Should {@link com.smartgwt.client.widgets.form.fields.TextItem#getFormatEditorValue formatEditorValue} re-run whenever
@@ -166,12 +367,12 @@ public class TextItem extends FormItem {
      * based on item.hasFocus, typically to display a longer, more informative string while the item does not have focus, and
      * simplifying it down to an easier-to-edit string when the user puts focus into the item.
      *
-     *
      * @return Boolean
      */
     public Boolean getFormatOnFocusChange()  {
         return getAttributeAsBoolean("formatOnFocusChange");
     }
+
 
     /**
      * Default height for text items.
@@ -186,13 +387,13 @@ public class TextItem extends FormItem {
     /**
      * Default height for text items.
      *
-     *
      * @return int
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getHeight()  {
         return getAttributeAsInt("height");
     }
+
 
     /**
      * Sets a keypress filter regular expression to limit valid characters that can be entered by the user. If defined, keys
@@ -204,7 +405,7 @@ public class TextItem extends FormItem {
      * Set the keyPressFilter for this item
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param keyPressFilter new keyPress filter for the item. Default value is null
+     * @param keyPressFilter new keyPress filter for the item. See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.widgets.form.fields.TextItem#setCharacterCasing
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_keypress_filter" target="examples">KeyPress Filters Example</a>
      */
@@ -218,14 +419,14 @@ public class TextItem extends FormItem {
      * if defined. <P> Note: keypress filtering cannot be used at the same time as a {@link
      * com.smartgwt.client.widgets.form.fields.TextItem#getMask mask}.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.form.fields.TextItem#getCharacterCasing
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_keypress_filter" target="examples">KeyPress Filters Example</a>
      */
     public String getKeyPressFilter()  {
         return getAttributeAsString("keyPressFilter");
     }
+
 
     /**
      * if set, maximum number of characters for this field
@@ -240,13 +441,13 @@ public class TextItem extends FormItem {
     /**
      * if set, maximum number of characters for this field
      *
-     *
      * @return Integer
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public Integer getLength()  {
         return getAttributeAsInt("length");
     }
+
 
     /**
      * Input mask used to filter text entry. <P> Sample masks: <UL> <LI>Phone number: (###) ###-####</LI> <LI>Social Security
@@ -269,7 +470,7 @@ public class TextItem extends FormItem {
      * Set the mask for this item. <P> Note that the current value of the field is cleared when changing the mask.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param mask mask to apply to text item. Default value is null
+     * @param mask mask to apply to text item. See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.widgets.form.fields.TextItem#setKeyPressFilter
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_masking" target="examples">Text - Masked Example</a>
      */
@@ -294,14 +495,14 @@ public class TextItem extends FormItem {
      * keyPressFilter}. Also note that this property is not supported for {@link
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem} or {@link com.smartgwt.client.widgets.form.fields.SpinnerItem}.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.form.fields.TextItem#getKeyPressFilter
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_masking" target="examples">Text - Masked Example</a>
      */
     public String getMask()  {
         return getAttributeAsString("mask");
     }
+
 
     /**
      * During entry into masked field, should keystrokes overwrite current position value? By default new keystrokes are
@@ -318,18 +519,18 @@ public class TextItem extends FormItem {
      * During entry into masked field, should keystrokes overwrite current position value? By default new keystrokes are
      * inserted into the field.
      *
-     *
      * @return Boolean
      */
     public Boolean getMaskOverwriteMode()  {
         return getAttributeAsBoolean("maskOverwriteMode");
     }
 
+
     /**
      * Character that is used to fill required empty mask positions to display text while control has no focus.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param maskPadChar maskPadChar Default value is " "
+     * @param maskPadChar . See {@link com.smartgwt.client.docs.String String}. Default value is " "
      */
     public void setMaskPadChar(String maskPadChar) {
         setAttribute("maskPadChar", maskPadChar);
@@ -338,18 +539,18 @@ public class TextItem extends FormItem {
     /**
      * Character that is used to fill required empty mask positions to display text while control has no focus.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMaskPadChar()  {
         return getAttributeAsString("maskPadChar");
     }
 
+
     /**
      * Character that is used to fill required empty mask positions to display text while control has focus.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param maskPromptChar maskPromptChar Default value is "_"
+     * @param maskPromptChar . See {@link com.smartgwt.client.docs.String String}. Default value is "_"
      */
     public void setMaskPromptChar(String maskPromptChar) {
         setAttribute("maskPromptChar", maskPromptChar);
@@ -358,12 +559,12 @@ public class TextItem extends FormItem {
     /**
      * Character that is used to fill required empty mask positions to display text while control has focus.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMaskPromptChar()  {
         return getAttributeAsString("maskPromptChar");
     }
+
 
     /**
      * Should entered mask value be saved with embedded literals?
@@ -378,12 +579,12 @@ public class TextItem extends FormItem {
     /**
      * Should entered mask value be saved with embedded literals?
      *
-     *
      * @return Boolean
      */
     public Boolean getMaskSaveLiterals()  {
         return getAttributeAsBoolean("maskSaveLiterals");
     }
+
 
     /**
      * When generating a print-view of the component containing this TextItem, should the form item expand to accommodate its
@@ -402,13 +603,61 @@ public class TextItem extends FormItem {
      * value? If set to false the text box will not expand to fit its content in the print view, instead showing exactly as it
      * does in the live form.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
     public Boolean getPrintFullText()  {
         return getAttributeAsBoolean("printFullText");
     }
+
+
+    /**
+     * Text items will submit their containing form on enter keypress  if {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter saveOnEnter} is true. Setting this property to
+     * <code>false</code> will disable this behavior.
+     *
+     * @param saveOnEnter saveOnEnter Default value is true
+     */
+    public void setSaveOnEnter(Boolean saveOnEnter) {
+        setAttribute("saveOnEnter", saveOnEnter);
+    }
+
+    /**
+     * Text items will submit their containing form on enter keypress  if {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter saveOnEnter} is true. Setting this property to
+     * <code>false</code> will disable this behavior.
+     *
+     * @return Boolean
+     */
+    public Boolean getSaveOnEnter()  {
+        return getAttributeAsBoolean("saveOnEnter");
+    }
+
+
+    /**
+     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnClick selectOnClick} behavior to be configured
+     * on a per-FormItem basis.  Normally all items in a form default to the value of {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnClick selectOnClick}.
+     *
+     * @param selectOnClick selectOnClick Default value is null
+     * @see com.smartgwt.client.docs.Focus Focus overview and related methods
+     */
+    public void setSelectOnClick(Boolean selectOnClick) {
+        setAttribute("selectOnClick", selectOnClick);
+    }
+
+    /**
+     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnClick selectOnClick} behavior to be configured
+     * on a per-FormItem basis.  Normally all items in a form default to the value of {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnClick selectOnClick}.
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Focus Focus overview and related methods
+     */
+    public Boolean getSelectOnClick()  {
+        return getAttributeAsBoolean("selectOnClick");
+    }
+
 
     /**
      * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured
@@ -427,7 +676,6 @@ public class TextItem extends FormItem {
      * on a per-FormItem basis.  Normally all items in a form default to the value of {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
@@ -435,9 +683,11 @@ public class TextItem extends FormItem {
         return getAttributeAsBoolean("selectOnFocus");
     }
 
+
     /**
      * If showing hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
-     * com.smartgwt.client.widgets.form.fields.TextItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
+     * com.smartgwt.client.widgets.form.fields.TextItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it. If
+     * the item is disabled the suffix "DisabledHint" will be used.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHintInField showHintInField Default value is null
@@ -450,8 +700,8 @@ public class TextItem extends FormItem {
 
     /**
      * If showing hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
-     * com.smartgwt.client.widgets.form.fields.TextItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
-     *
+     * com.smartgwt.client.widgets.form.fields.TextItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it. If
+     * the item is disabled the suffix "DisabledHint" will be used.
      *
      * @return Boolean
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getHint
@@ -461,11 +711,12 @@ public class TextItem extends FormItem {
         return getAttributeAsBoolean("showHintInField");
     }
 
+
     /**
      * Base CSS class name for this item's input element. NOTE: See the {@link CompoundFormItem_skinning} discussion for
      * special skinning considerations.
      *
-     * @param textBoxStyle textBoxStyle Default value is "textItem"
+     * @param textBoxStyle . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}. Default value is "textItem"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextBoxStyle(String textBoxStyle) {
@@ -476,13 +727,13 @@ public class TextItem extends FormItem {
      * Base CSS class name for this item's input element. NOTE: See the {@link CompoundFormItem_skinning} discussion for
      * special skinning considerations.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTextBoxStyle()  {
         return getAttributeAsString("textBoxStyle");
     }
+
 
     /**
      * Default width for fields.
@@ -497,7 +748,6 @@ public class TextItem extends FormItem {
     /**
      * Default width for fields.
      *
-     *
      * @return int
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -506,8 +756,7 @@ public class TextItem extends FormItem {
     }
 
     // ********************* Methods ***********************
-            
-    /**
+	/**
      * If this item currently has focus, clear the current selection. leaving focus in the item. Has no effect if the item is
      * undrawn or unfocused. Only applies to text-based items.
      */
@@ -515,19 +764,17 @@ public class TextItem extends FormItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.deselectValue();
     }-*/;
-
-    /**
+	/**
      * If this item currently has focus, clear the current selection. leaving focus in the item. Has no effect if the item is
      * undrawn or unfocused. Only applies to text-based items.
      * @param start By default the text insertion cursor will be moved to the end of the   current value - pass in this parameter to move to
      * the start instead
      */
-    public native void deselectValue(boolean start) /*-{
+    public native void deselectValue(Boolean start) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.deselectValue(start);
+        self.deselectValue(start == null ? null : start.@java.lang.Boolean::booleanValue()());
     }-*/;
-            
-    /**
+	/**
      * Returns the raw text value typed into this form field, which can differ from  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} in various cases - for example: <ul>
      * <li>for items that constrain the value range, such as a {@link com.smartgwt.client.widgets.form.fields.DateItem} with
@@ -542,10 +789,10 @@ public class TextItem extends FormItem {
      */
     public native String getEnteredValue() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        return self.getEnteredValue();
+        var ret = self.getEnteredValue();
+        return ret;
     }-*/;
-            
-    /**
+	/**
      * Returns the hint text for this item. Default implementation returns {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getHint hint}, or  null if there is no hint to show.
      *
@@ -554,18 +801,17 @@ public class TextItem extends FormItem {
      */
     public native String getHint() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        return self.getHint();
+        var ret = self.getHint();
+        return ret;
     }-*/;
-            
-    /**
+	/**
      * Put focus in this item and select the entire value. Only applies to text based items
      */
     public native void selectValue() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.selectValue();
     }-*/;
-            
-    /**
+	/**
      * Puts focus into this form item and selects characters between the given indices. Only applies to drawn text based items.
      * @param start selection starting character index
      * @param end end of selection character index
@@ -576,8 +822,26 @@ public class TextItem extends FormItem {
     }-*/;
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+    /**
+     * Class level method to set the default properties of this class. If set, then all subsequent instances of this
+     * class will automatically have the default properties that were set when this method was called. This is a powerful
+     * feature that eliminates the need for users to create a separate hierarchy of subclasses that only alter the default
+     * properties of this class. Can also be used for skinning / styling purposes.
+     * <P>
+     * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
+     * underlying class (including those automatically generated in JavaScript).
+     * This method should not be used to apply standard EventHandlers or override methods for
+     * a class - use a custom subclass instead.
+     *
+     * @param textItemProperties properties that should be used as new defaults when instances of this class are created
+     */
+    public static native void setDefaultProperties(TextItem textItemProperties) /*-{
+    	var properties = $wnd.isc.addProperties({},textItemProperties.@com.smartgwt.client.core.RefDataClass::getJsObj()());
+    	delete properties.ID;
+        $wnd.isc.TextItem.addProperties(properties);
+    }-*/;
+
+    // ***********************************************************
 
 
     /**
@@ -610,6 +874,5 @@ public class TextItem extends FormItem {
     }-*/;    
 
 }
-
 
 

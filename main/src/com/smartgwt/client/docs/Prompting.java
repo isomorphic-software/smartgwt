@@ -2,7 +2,8 @@
 package com.smartgwt.client.docs;
 
 /**
- * Objects / methods used for displaying prompts and warnings to the user via (possibly modal)  isc Dialog objects.
+ * Objects / methods used for displaying prompts and warnings to the user via (possibly modal) 
+ * isc Dialog objects.
  * @see com.smartgwt.client.widgets.Dialog#Prompt
  * @see com.smartgwt.client.widgets.Dialog#Warn
  * @see com.smartgwt.client.widgets.Dialog#Ask

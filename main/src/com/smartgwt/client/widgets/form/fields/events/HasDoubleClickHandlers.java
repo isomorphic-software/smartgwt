@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDoubleClickHandlers extends HasHandlers {
     /**
      * Called when this FormItem is double-clicked.
@@ -29,3 +28,4 @@ public interface HasDoubleClickHandlers extends HasHandlers {
      */
     HandlerRegistration addDoubleClickHandler(DoubleClickHandler handler);
 }
+

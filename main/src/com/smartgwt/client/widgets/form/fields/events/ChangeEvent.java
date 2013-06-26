@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +46,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  implements Cancellable {
     private boolean cancel = false;
 
@@ -93,7 +98,6 @@ public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  implements C
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(ChangeHandler handler) {
         handler.onChange(this);
@@ -112,7 +116,6 @@ public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  implements C
         super(jsObj);
     }
 
-
     /**
      * In your handler, Call this method to cancel the change,
      */
@@ -126,46 +129,47 @@ public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  implements C
     public boolean isCancelled() {
         return cancel;
     }
-
-    /**
+	/**
      * the managing DynamicForm instance
      *
      * @return the managing DynamicForm instance
      */
-    public  native DynamicForm getForm() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.form);
+    public native DynamicForm getForm() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.form;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
-    /**
+	/**
      * the form item itself (also available as "this")
      *
      * @return the form item itself (also available as "this")
      */
-    public  native FormItem getItem() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
+    public native FormItem getItem() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.item;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
-    /**
+	/**
      * The new value of the form item
      *
      * @return The new value of the form item
      */
-    public  native Object getValue() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return $wnd.SmartGWT.convertToJavaType(jsObj.value);
+    public native Object getValue() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.value;
+        return $wnd.SmartGWT.convertToJavaType(ret);
     }-*/;
-
-    /**
+	/**
      * The previous value of the form item
      *
      * @return The previous value of the form item
      */
-    public  native Object getOldValue() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return $wnd.SmartGWT.convertToJavaType(jsObj.oldValue);
+    public native Object getOldValue() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.oldValue;
+        return $wnd.SmartGWT.convertToJavaType(ret);
     }-*/;
-
 
 }

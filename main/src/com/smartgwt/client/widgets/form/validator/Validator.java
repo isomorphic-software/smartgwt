@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.form.validator;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A validator describes a check that should be performed on a value the user is trying to save. <p> Validators are
@@ -78,15 +98,26 @@ public class Validator extends DataClass {
         return new Validator(jsObj);
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
+
     public Validator(){
         
     }
 
     public Validator(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
+        
     }
 
+
     // ********************* Properties / Attributes ***********************
+
+
 
     /**
      * Indicates this validator runs on the client only. <p> Normally, if the server is trying to run validators and finds a
@@ -104,12 +135,18 @@ public class Validator extends DataClass {
      * validator that it can't execute, for safety reasons validation is considered to have failed.  Use this flag to
      * explicitly mark a validator that only needs to run on the client.
      *
-     *
      * @return Boolean
      */
     public Boolean getClientOnly()  {
         return getAttributeAsBoolean("clientOnly");
     }
+
+
+
+
+
+
+
 
     /**
      * Normally, all validators defined for a field will be run even if one of the validators has already failed.  However, if
@@ -129,12 +166,12 @@ public class Validator extends DataClass {
      * useful to prevent expensive validators from being run unnecessarily, or to allow custom validators that don't need to be
      * robust about handling every conceivable type of value.
      *
-     *
      * @return Boolean
      */
     public Boolean getStopIfFalse()  {
         return getAttributeAsBoolean("stopIfFalse");
     }
+
 
     /**
      * Indicates that if this validator is not passed, the user should not be allowed to exit the field - focus will be forced
@@ -158,12 +195,13 @@ public class Validator extends DataClass {
      * enabled. If this is a server-based validator, setting this property also implies that {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getSynchronousValidation synchronousValidation} is forced on.
      *
-     *
      * @return Boolean
      */
     public Boolean getStopOnError()  {
         return getAttributeAsBoolean("stopOnError");
     }
+
+
 
     /**
      * If true, validator will be validated when each item's "change" handler is fired as well as when the entire form is
@@ -183,7 +221,6 @@ public class Validator extends DataClass {
      * property can also be set at the form/grid or field level; If true at any level and not explicitly false on the
      * validator, the validator will be fired on change - displaying errors and rejecting the change on validation failure.
      *
-     *
      * @return Boolean
      */
     public Boolean getValidateOnChange()  {
@@ -193,8 +230,8 @@ public class Validator extends DataClass {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
     /**
@@ -206,7 +243,7 @@ public class Validator extends DataClass {
     public void setErrorMessage(String errorMessage) {
         setAttribute("errorMessage", errorMessage);
     }
-    
+
 
     /**
      * User-defined list of fields on which this validator depends. Primarily used for validators of type "custom" but can also
@@ -229,25 +266,6 @@ public class Validator extends DataClass {
     public String[] getDependentFields()  {
         return getAttributeAsStringArray("dependentFields");
     }
-    
-    public static Validator[] convertToValidatorArray(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new Validator[]{};
-        }
-        if (JSOHelper.isArray(nativeArray)) {
-            JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-            Validator[] objects = new Validator[componentsj.length];
-            for (int i = 0; i < componentsj.length; i++) {
-                JavaScriptObject componentJS = componentsj[i];
-                objects[i] = Validator.getOrCreateRef(componentJS);
-            }
-            return objects;
-        } else {
-            Validator[] ret = new Validator[1];
-            ret[0] = Validator.getOrCreateRef(nativeArray);
-            return ret;
-        }
-    }
 
     /**
      * Type of the validator. This can be one of the built-in
@@ -258,21 +276,21 @@ public class Validator extends DataClass {
     public void setType(ValidatorType type) {
         setAttribute("type", type.getValue());
     }
-    
+
     /**
      * Type of the validator defined as a String.
-     * <p> This API may be used to specify a custom validator type registered via 
+     * <p> This API may be used to specify a custom validator type registered via
      * {@link #addValidatorDefinition(String, Validator)}.
-     * 
+     *
      * @param type validator type
      */
     public void setType(String type) {
         setAttribute("type", type);
     }
-    
+
     /**
      * Built-in type of the validator as specified via {@link #setType(ValidatorType)}
-     * <p> 
+     * <p>
      * Note that if a custom validator type was specified via {@link #setType(String)} this
      * method will return null - use {@link #getTypeAsString()} to retrieve custom validator
      * types.
@@ -282,18 +300,18 @@ public class Validator extends DataClass {
     public ValidatorType getType()  {
         return EnumUtil.getEnum(ValidatorType.values(), getAttribute("type"));
     }
-    
+
     /**
      * Type of the validator as a string value. If type was specified via {@link #setType(ValidatorType)}
      * this method will return the underlying value of the ValidatorType enum. If type was
      * specified via {@link #setType(String)} the specified string will be returned.
      *
      * @return ValidatorType
-     */   
+     */
     public String getTypeAsString() {
     	return getAttribute("type");
     }
-    
+
     /**
      * Register a new standard validator type for reuse, by name. The validator passed in should
      * be of type {@link com.smartgwt.client.types.ValidatorType#CUSTOM}.
@@ -301,7 +319,7 @@ public class Validator extends DataClass {
      * Any new validator where {@link #setType(String)} is set to the registered
      * name will pick up all properties (error message, condition, etc)
      * from this validator definition.
-     * 
+     *
      * @param name name under which validator properties will be available
      * @param validator validator containing standard properties for reuse
      */
@@ -317,6 +335,5 @@ public class Validator extends DataClass {
 
 
 }
-
 
 

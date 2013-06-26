@@ -15,12 +15,13 @@
  */
  
 package com.smartgwt.client.widgets.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface ResizedHandler extends EventHandler {
     /**
      * Observable method called whenever a Canvas changes size. Note that if this canvas is {@link
-     * com.smartgwt.client.widgets.Canvas#getOverflow overflow:"visible"}, and is waiting for a queued redraw (see  {@link
+     * com.smartgwt.client.widgets.Canvas#getOverflow overflow:"visible"}, and is waiting for a queued redraw (see {@link
      * com.smartgwt.client.widgets.Canvas#isDirty Canvas.isDirty}), the value for {@link
      * com.smartgwt.client.widgets.Canvas#getVisibleWidth Canvas.getVisibleWidth} and {@link
      * com.smartgwt.client.widgets.Canvas#getVisibleHeight Canvas.getVisibleHeight} will be unreliable until

@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Entries for the {@link com.smartgwt.client.widgets.drawing.DrawItem#getKnobs knobs} array. Each specified knobType will
  * enable some UI  allowing the user to manipulate the drawItem directly.
@@ -60,7 +61,6 @@ public enum KnobType implements ValueEnum {
      * {@link com.smartgwt.client.widgets.drawing.DrawCurve#getControlPoint2 controlPoint2}
      */
     CONTROLPOINT2("controlPoint2");
-
     private String value;
 
     KnobType(String value) {

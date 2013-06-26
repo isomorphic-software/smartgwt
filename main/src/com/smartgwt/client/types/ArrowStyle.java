@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Supported styles for arrowheads
  */
@@ -33,7 +34,6 @@ public enum ArrowStyle implements ValueEnum {
      * Don't render an arrowhead at all
      */
     NULL(null);
-
     private String value;
 
     ArrowStyle(String value) {

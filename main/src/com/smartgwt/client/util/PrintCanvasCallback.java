@@ -4,7 +4,7 @@
  *
  * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * is published by the Free Software Foundation.  Smart GWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -13,12 +13,18 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
-
+ 
 package com.smartgwt.client.util;
 
 import com.smartgwt.client.widgets.PrintCanvas;
 
 public interface PrintCanvasCallback {
 
-    void execute(PrintCanvas printCanvas);
-}
+    /** 
+     * Callback executed when a Canvas is being printed.
+     *
+     * @param printCanvas The canvas being printed.
+     */
+	public void execute(PrintCanvas printCanvas);
+} 
+

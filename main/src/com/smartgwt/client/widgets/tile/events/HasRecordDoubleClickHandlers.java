@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.tile.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasRecordDoubleClickHandlers extends HasHandlers {
     /**
      * Executed when the tileGrid receives a 'doubleclick' event on a tile. The default implementation does nothing -- override
@@ -33,3 +32,4 @@ public interface HasRecordDoubleClickHandlers extends HasHandlers {
      */
     HandlerRegistration addRecordDoubleClickHandler(RecordDoubleClickHandler handler);
 }
+

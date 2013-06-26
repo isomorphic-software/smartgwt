@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.cube.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasSortByFacetValuesHandlers extends HasHandlers {
     /**
      * Called when a sort control is clicked on a FacetValueHeader.  Does nothing by default.
@@ -29,3 +28,4 @@ public interface HasSortByFacetValuesHandlers extends HasHandlers {
      */
     HandlerRegistration addSortByFacetValuesHandler(SortByFacetValuesHandler handler);
 }
+

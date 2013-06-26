@@ -15,6 +15,7 @@
  */
  
 package com.smartgwt.client.widgets.tile.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface RecordContextClickHandler extends EventHandler {
