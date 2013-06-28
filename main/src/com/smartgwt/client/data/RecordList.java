@@ -69,6 +69,7 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
         this.jsObj = jsObj;
     }
 
+    @Override
     protected JavaScriptObject create() {
         jsObj = JSOHelper.createJavaScriptArray();
         return jsObj;
@@ -877,24 +878,14 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
     }
 
     private native void setupDataChangedEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if (this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
-            obj = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-            obj.onDataChanged = function(){
-                var param = {};
-                var event = @com.smartgwt.client.data.events.DataChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            };
-        } else {
-            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
-            obj.onDataChanged = function () {
-                var param = {};
-                var event = @com.smartgwt.client.data.events.DataChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            }
-        }
-   }-*/;
+        var obj = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()(),
+            selfJ = this;
+        obj.onDataChanged = $entry(function () {
+            var param = {};
+            var event = @com.smartgwt.client.data.events.DataChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+        });
+    }-*/;
 
     /**
      * Returns the records in this RecordList as an array.

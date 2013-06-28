@@ -132,6 +132,7 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
         super(jsObj);
     }
 
+    @Override
     public native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.core.BaseClass::getConfig()();
         var rs = $wnd.isc.ResultSet.create(config);
@@ -1276,19 +1277,14 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
     }
 
     private native void setupDataArrivedEvent() /*-{
-        var obj = null,
+        var obj = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()(),
             selfJ = this;
-       if (this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
-            obj = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-       } else {
-           obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
-       }
-       obj.dataArrived = function(){
-            var param = {"startRow" : arguments[0], "endRow" : arguments[1]};
+        obj.dataArrived = $entry(function (startRow, endRow) {
+            var param = { startRow: startRow, endRow: endRow };
             var event = @com.smartgwt.client.data.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
             selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-       };
-   }-*/;
+        });
+    }-*/;
 
     // override getProperty / setProperty logic for ResultSet class only
 
