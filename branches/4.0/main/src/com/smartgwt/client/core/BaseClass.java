@@ -27,7 +27,6 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.util.IDManager;
 import com.smartgwt.client.util.JSOHelper;
-import com.smartgwt.client.util.JSONEncoder;
 import com.smartgwt.client.util.SC;
 
 import java.util.Date;
@@ -103,10 +102,9 @@ public abstract class BaseClass {
     }
 
     public native boolean isCreated()/*-{
-        var id = this.@com.smartgwt.client.core.BaseClass::getID()();
-        var obj = $wnd.window[id];
-        // && $wnd.isc.isA.Canvas(obj) === true
-        return id != null && obj != null && obj !== undefined;
+        var id = this.@com.smartgwt.client.core.BaseClass::getID()(),
+            obj;
+        return id != null && (obj = $wnd.window[id]) != null && obj[@com.smartgwt.client.util.SC::REF] == this;
     }-*/;
 
     public native JavaScriptObject getJsObj()/*-{
@@ -509,7 +507,7 @@ public abstract class BaseClass {
     private HandlerManager manager = null;
 
     public void fireEvent(GwtEvent<?> event) {
-        if (manager != null) {
+        if (manager != null && isCreated()) {
             manager.fireEvent(event);
         }
     }
