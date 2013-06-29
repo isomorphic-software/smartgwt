@@ -102,9 +102,9 @@ public abstract class BaseClass {
     }
 
     public native boolean isCreated()/*-{
-        var id = this.@com.smartgwt.client.core.BaseClass::getID()(),
-            obj;
-        return id != null && (obj = $wnd.window[id]) != null && obj[@com.smartgwt.client.util.SC::REF] == this;
+        var id = this.@com.smartgwt.client.core.BaseClass::getID()();
+        var obj = $wnd.window[id];
+        return id != null && obj != null;
     }-*/;
 
     public native JavaScriptObject getJsObj()/*-{
@@ -507,7 +507,7 @@ public abstract class BaseClass {
     private HandlerManager manager = null;
 
     public void fireEvent(GwtEvent<?> event) {
-        if (manager != null && isCreated()) {
+        if (manager != null) {
             manager.fireEvent(event);
         }
     }
