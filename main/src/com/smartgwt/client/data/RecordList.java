@@ -17,15 +17,15 @@
 package com.smartgwt.client.data;
 
 
-import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.event.shared.HandlerRegistration;
-import com.smartgwt.client.core.BaseClass;
-import com.smartgwt.client.util.JSOHelper;
-
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.event.shared.HandlerRegistration;
+import com.smartgwt.client.core.BaseClass;
+import com.smartgwt.client.util.JSOHelper;
 
 /**
  * An an ordered collection of Records. <P> This class is expected by list-oriented display
@@ -83,8 +83,6 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
     public boolean isCreated() {
         return jsObj != null;
     }
-
-    // ********************* Properties / Attributes ***********************
 
     // ********************* Methods ***********************
 
@@ -940,8 +938,13 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
     }
 
     private native void setupDataChangedEvent() /*-{
-        var obj = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()(),
+        var obj,
             selfJ = this;
+        if (this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+        }
         obj.onDataChanged = $entry(function () {
             var param = {};
             var event = @com.smartgwt.client.data.events.DataChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);

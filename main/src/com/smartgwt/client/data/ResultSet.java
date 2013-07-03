@@ -16,16 +16,19 @@
 package com.smartgwt.client.data;
 
 
+import java.util.Date;
+import java.util.Map;
+
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Element;
+import com.smartgwt.client.core.BaseClass;
 import com.smartgwt.client.types.CriteriaPolicy;
 import com.smartgwt.client.types.FetchMode;
 import com.smartgwt.client.util.EnumUtil;
 import com.smartgwt.client.util.JSOHelper;
-
-import java.util.Date;
-import java.util.Map;
+import com.smartgwt.client.util.SC;
 
 
 /**
@@ -101,7 +104,7 @@ import java.util.Map;
  * invalidateCache} can be set for an individual dsResponse.&#010 <P>&#010 <b>Data Paging with partial cache</b>&#010
  * <P>&#010 When in paging mode with a partial cache, a ResultSet relies on server side sorting, setting &#010 {@link
  * DSRequest#getSortBy sortBy} to the current sort field and direction.  In order for the cache to
- * &#010 remain coherant, row numbering must continue to agree between server and client as new&#010 fetches are issued,
+ * &#010 remain coherent, row numbering must continue to agree between server and client as new&#010 fetches are issued,
  * otherwise, duplicate rows or missing rows may occur.  &#010 <P>&#010 If concurrent modifications by other users are
  * allowed, generally the server should set&#010 {@link DSResponse#getInvalidateCache
  * invalidateCache} to clear the cache when concurrent modification is&#010 detected.&#010 <P>&#010 In paging mode with a
@@ -118,7 +121,11 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
 
     public static ResultSet getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
-        return new ResultSet(jsObj);
+        BaseClass obj = getRef(jsObj);
+        if (obj == null) {
+            obj = new ResultSet(jsObj);
+        }
+        return (ResultSet)obj;
     }
 
     public ResultSet(){
@@ -130,16 +137,36 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
 
     public ResultSet(JavaScriptObject jsObj){
         super(jsObj);
+        JSOHelper.setObjectAttribute(jsObj, SC.REF, this);
     }
 
     @Override
-    public native JavaScriptObject create()/*-{
+    protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.core.BaseClass::getConfig()();
         var rs = $wnd.isc.ResultSet.create(config);
         this.@com.smartgwt.client.data.RecordList::jsObj = rs;
         return rs;
     }-*/;
 
+    /**
+     * Ensures that the underlying SmartClient ResultSet object is created for this ResultSet
+     * instance. If the SmartClient object has already been created, then calling this method
+     * amounts to a no-op. Otherwise, the <code>isc.ResultSet.create()</code> function is
+     * executed to create the SmartClient ResultSet object wrapped by this instance.
+     * <p>
+     * This method is required to be called for standalone usage of a ResultSet. In addition,
+     * it can only be called after all initial configuration ({@link #getDataSource() dataSource},
+     * {@link #setAllRows(Record[]) allRows} if being used, etc.) has been set.
+     * 
+     * @throws IllegalStateException if no dataSource has been set
+     */
+    public void ensureCreated() throws IllegalStateException {
+        if (jsObj == null) {
+            final JavaScriptObject dataSource = JSOHelper.getAttributeAsJavaScriptObject(getConfig(), "dataSource");
+            if (dataSource == null) throw new IllegalStateException("Cannot create the ResultSet without a dataSource.");
+        }
+        getOrCreateJsObj();
+    }
 
     // ********************* Properties / Attributes ***********************
 
@@ -289,7 +316,7 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
      * @return DataSource
      */
     public DataSource getDataSource()  {
-            return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("dataSource"));
+        return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("dataSource"));
     }
 
     /**
@@ -1277,12 +1304,17 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
     }
 
     private native void setupDataArrivedEvent() /*-{
-        var obj = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()(),
+        var obj,
             selfJ = this;
+        if (this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+        }
         obj.dataArrived = $entry(function (startRow, endRow) {
             var param = { startRow: startRow, endRow: endRow };
             var event = @com.smartgwt.client.data.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-            selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            selfJ.@com.smartgwt.client.data.ResultSet::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
         });
     }-*/;
 
@@ -1336,6 +1368,12 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
 
     public void setProperty(String property, JavaScriptObject value) {
         JSOHelper.setAttribute(jsObj, property, value);
+    }
+
+    @Override
+    public void fireEvent(GwtEvent<?> event) {
+        if (jsObj == null) return;
+        super.fireEvent(event);
     }
 
     // ********************* Static Methods ***********************
