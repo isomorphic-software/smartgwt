@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ SmartGWT (GWT for SmartClient)
+  ~ Copyright 2008 and beyond, Isomorphic Software, Inc.
+  ~
+  ~ SmartGWT is free software; you can redistribute it and/or modify it
+  ~ under the terms of the GNU Lesser General Public License version 3
+  ~ as published by the Free Software Foundation.  SmartGWT is also
+  ~ available under typical commercial license terms - see
+  ~ http://smartclient.com/license
+  ~ This software is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+  ~ Lesser General Public License for more details.
+  -->
+
+<project name="Showcase" default="build" basedir=".">
+  <!-- Configure path to GWT SDK -->
+  <property environment="env"/>
+  <property name="gwt.sdk" value="${env.GWT_HOME}"/>
+
+  <fail unless="gwt.sdk" message="You must set the GWT_HOME environment variable to point to your GWT SDK"/>
+
+  <path id="project.class.path">
+    <pathelement location="war/WEB-INF/classes"/>
+    <pathelement location="${gwt.sdk}/gwt-user.jar"/>
+    <pathelement location="../../smartgwt.jar"/>
+    <pathelement location="../../smartgwt-skins.jar"/>
+
+    <fileset dir="${gwt.sdk}" includes="gwt-dev*.jar"/>
+    <fileset dir="${gwt.sdk}" includes="validation-api-*.jar"/>
+    <!-- Add any additional non-server libs (such as JUnit) -->
+    <fileset dir="war/WEB-INF/lib" includes="**/*.jar"/>
+
+  </path>
+
+  <target name="libs" description="Copy libs to WEB-INF/lib">
+    <mkdir dir="war/WEB-INF/lib" />
+    <copy todir="war/WEB-INF/lib" file="${gwt.sdk}/gwt-servlet.jar" />
+  </target>
+
+  <target name="javac" depends="libs" description="Compile java source">
+    <mkdir dir="war/WEB-INF/classes"/>
+    <javac srcdir="src" includes="**" encoding="utf-8"
+        destdir="war/WEB-INF/classes"
+        source="1.5" target="1.5" nowarn="true"
+        debug="true" debuglevel="lines,vars,source">
+      <classpath refid="project.class.path"/>
+    </javac>
+    <copy todir="war/WEB-INF/classes">
+      <fileset dir="src" excludes="**/*.java"/>
+    </copy>
+  </target>
+
+  <target name="gwtc" depends="javac" description="GWT compile to JavaScript">
+    <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+      <classpath>
+        <pathelement location="src"/>
+        <path refid="project.class.path"/>
+      </classpath>
+      <!-- add jvmarg -Xss16M or similar if you see a StackOverflowError -->
+      <jvmarg value="-Xmx600M"/>
+      <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+      <!-- <arg value="-style"   /><arg value="PRETTY"/> -->
+      <!-- <arg value="-optimize"/><arg value="0"     /> -->
+      <arg value="com.smartgwt.sample.showcase.Showcase"/>
+    </java>
+  </target>
+
+  <target name="hosted" depends="javac" description="Run hosted mode">
+    <java failonerror="true" fork="true" classname="com.google.gwt.dev.HostedMode">
+      <classpath>
+        <pathelement location="src"/>
+        <path refid="project.class.path"/>
+      </classpath>
+      <jvmarg value="-Xmx600M"/>
+      <arg value="-startupUrl"/>
+      <arg value="index.html"/>
+      <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+      <arg value="com.smartgwt.sample.showcase.Showcase"/>
+    </java>
+  </target>
+
+  <target name="build" depends="gwtc" description="Build this project" />
+
+  <target name="war" depends="build" description="Create a war file">
+    <zip destfile="showcase.war" basedir="war"/>
+  </target>
+
+  <target name="clean" description="Cleans this project">
+	<delete dir="war/WEB-INF/classes/com" failonerror="false" />
+
+    <delete dir="war/showcase" failonerror="false" />
+    </target>
+
+</project>

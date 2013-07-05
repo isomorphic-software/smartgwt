@@ -1,0 +1,331 @@
+/*
+ * Smart GWT (GWT for SmartClient)
+ * Copyright 2008 and beyond, Isomorphic Software, Inc.
+ *
+ * Smart GWT is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License version 3
+ * as published by the Free Software Foundation.  Smart GWT is also
+ * available under typical commercial license terms - see
+ * http://smartclient.com/license
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ */
+ 
+package com.smartgwt.client.widgets;
+
+
+import com.smartgwt.client.event.*;
+import com.smartgwt.client.core.*;
+import com.smartgwt.client.types.*;
+import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.widgets.*;
+import com.smartgwt.client.widgets.events.*;
+import com.smartgwt.client.widgets.form.*;
+import com.smartgwt.client.widgets.form.validator.*;
+import com.smartgwt.client.widgets.form.fields.*;
+import com.smartgwt.client.widgets.tile.*;
+import com.smartgwt.client.widgets.tile.events.*;
+import com.smartgwt.client.widgets.grid.*;
+import com.smartgwt.client.widgets.grid.events.*;
+import com.smartgwt.client.widgets.chart.*;
+import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.layout.events.*;
+import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tab.*;
+import com.smartgwt.client.widgets.toolbar.*;
+import com.smartgwt.client.widgets.tree.*;
+import com.smartgwt.client.widgets.tree.events.*;
+import com.smartgwt.client.widgets.viewer.*;
+import com.smartgwt.client.widgets.calendar.*;
+import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
+import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.user.client.Element;
+import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
+import com.google.gwt.event.shared.*;
+import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
+
+/**
+ * The ViewLoader component can be used to load new Smart GWT-based user interfaces into a running application. <P>
+ * <b>NOTE:</b> before using a ViewLoader, be sure that you have read about and understood the {@link
+ * com.smartgwt.client.docs.SmartArchitecture Smart GWT Architecture}.  The most responsive and scalable application
+ * architecture preloads views rather than using ViewLoaders. <P> A ViewLoader is a Canvas, and can be provided anywhere a
+ * Canvas can be provided: as a Tab pane, and Layout member, etc.  When a ViewLoader draws, it shows a {@link
+ * com.smartgwt.client.widgets.ViewLoader#getLoadingMessage loading message}, then performs an RPC to the {@link
+ * com.smartgwt.client.widgets.ViewLoader#getViewURL viewURL} to load components. <P> The response from the viewURL should
+ * be Smart GWT components defined in JavaScript, with no surrounding &lt;SCRIPT&gt; tags or other HTML framing.  The
+ * returned script can be dynamically generated, for example, it may be the result of a JSP containing an XML view
+ * description enclosed in {@link com.smartgwt.client.docs.XmlTag &lt;isomorphicXML&gt;} tags. <P> In the returned script,
+ * the special variable "viewLoader" is available to refer to the ViewLoader instance that is loading components.  The
+ * intended usage is that the returned script creates a view consisting of Smart GWT components, then calls
+ * <code>viewLoader.setView(myView)</code> to place the loaded view into the ViewLoader. If the view does not call
+ * setView() explicitly, the viewLoader will find the last top-level UI component (Canvas subclass) created by the view and
+ * set that as the current view. Top-level in this case means that the UI component is not contained in another UI
+ * component as a member or child. <p> The ViewLoader relies on the XMLHttpRequest object which can be disabled by
+ * end-users in some supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
+ * @see com.smartgwt.client.rpc.RPCRequest#getEvalResult
+ */
+public class ViewLoader extends Label {
+
+    public native static ViewLoader getOrCreateRef(JavaScriptObject jsObj) /*-{
+        if (jsObj == null) return null;
+        var instance = jsObj["__ref"];
+        if (instance == null) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("ViewLoader",jsObj);
+        } else {
+            return instance;
+        }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
+    }
+
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        $wnd.isc["ViewLoader"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.Canvas::getConfig()());
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        $wnd.isc["ViewLoader"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getJsObj()());
+    }-*/;
+
+    public ViewLoader(){
+        scClassName = "ViewLoader";
+    }
+
+    public ViewLoader(JavaScriptObject jsObj){
+        scClassName = "ViewLoader";
+        setJavaScriptObject(jsObj);
+        
+    }
+
+    protected native JavaScriptObject create()/*-{
+        var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+        var widget = $wnd.isc[scClassName].create(config);
+        this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Ljava/lang/String;Z)(widget.getID(), true);
+        this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
+        return widget;
+    }-*/;
+
+    // ********************* Properties / Attributes ***********************
+
+
+    /**
+     * By default a ViewLoader will explicitly prevent browser caching. <P> Set to true to allow browser caching <b>if the
+     * browser would normally do so</b>, in other words, if the HTTP headers returned with the response indicate that the
+     * response can be cached.
+     *
+     * @param allowCaching allowCaching Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setAllowCaching(Boolean allowCaching)  throws IllegalStateException {
+        setAttribute("allowCaching", allowCaching, false);
+    }
+
+    /**
+     * By default a ViewLoader will explicitly prevent browser caching. <P> Set to true to allow browser caching <b>if the
+     * browser would normally do so</b>, in other words, if the HTTP headers returned with the response indicate that the
+     * response can be cached.
+     *
+     * @return Boolean
+     */
+    public Boolean getAllowCaching()  {
+        return getAttributeAsBoolean("allowCaching");
+    }
+
+
+    /**
+     * Selects the HTTP method that will be used when fetching content.  Valid values are "POST" and "GET".
+     *
+     * @param httpMethod . See {@link com.smartgwt.client.docs.String String}. Default value is "GET"
+     */
+    public void setHttpMethod(String httpMethod) {
+        setAttribute("httpMethod", httpMethod, true);
+    }
+
+    /**
+     * Selects the HTTP method that will be used when fetching content.  Valid values are "POST" and "GET".
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     */
+    public String getHttpMethod()  {
+        return getAttributeAsString("httpMethod");
+    }
+
+
+    /**
+     * Message to show while the view is loading. Use <code>"\${loadingImage}"</code> to include {@link
+     * com.smartgwt.client.widgets.Canvas#loadingImageSrc a loading image}.
+     *
+     * @param loadingMessage . See {@link com.smartgwt.client.docs.String String}. Default value is "Loading View...&amp;nbsp;\${loadingImage}"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setLoadingMessage(String loadingMessage)  throws IllegalStateException {
+        setAttribute("loadingMessage", loadingMessage, false);
+    }
+
+    /**
+     * Message to show while the view is loading. Use <code>"\${loadingImage}"</code> to include {@link
+     * com.smartgwt.client.widgets.Canvas#loadingImageSrc a loading image}.
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     */
+    public String getLoadingMessage()  {
+        return getAttributeAsString("loadingMessage");
+    }
+
+
+
+    /**
+     * URL to load components from.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Change the URL this component loads a view from.  Triggers a fetch from the new URL. <P> Can also be called with no arguments to reload the view from the existing {@link com.smartgwt.client.widgets.ViewLoader#getViewURL viewURL}.
+     *
+     * @param viewURL URL to retrieve view from. See {@link com.smartgwt.client.docs.String String}. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * 
+     */
+    public void setViewURL(String viewURL)  throws IllegalStateException {
+        setAttribute("viewURL", viewURL, false);
+    }
+
+    /**
+     * URL to load components from.
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     * 
+     */
+    public String getViewURL()  {
+        return getAttributeAsString("viewURL");
+    }
+
+
+    // ********************* Methods ***********************
+	/**
+     * Retrieve the current view.  May be null if the view has not yet been loaded, or has been explicitly set to null.
+     *
+     * @return the current view
+     */
+    public native Canvas getView() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getView();
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+	/**
+     * StringMethod fired when the view has been loaded.  Has no default implementation.  May be observed or overridden to fire
+     * custom logic when loading completes.
+     * @param view the view that was loaded
+     */
+    public native void viewLoaded(Canvas view) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.viewLoaded(view.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+
+    // ********************* Static Methods ***********************
+    /**
+     * Class level method to set the default properties of this class. If set, then all subsequent instances of this
+     * class will automatically have the default properties that were set when this method was called. This is a powerful
+     * feature that eliminates the need for users to create a separate hierarchy of subclasses that only alter the default
+     * properties of this class. Can also be used for skinning / styling purposes.
+     * <P>
+     * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
+     * underlying class (including those automatically generated in JavaScript).
+     * This method should not be used to apply standard EventHandlers or override methods for
+     * a class - use a custom subclass instead.
+     *
+     * @param viewLoaderProperties properties that should be used as new defaults when instances of this class are created
+     */
+    public static native void setDefaultProperties(ViewLoader viewLoaderProperties) /*-{
+    	var properties = $wnd.isc.addProperties({},viewLoaderProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
+    	delete properties.ID;
+        $wnd.isc.ViewLoader.addProperties(properties);
+    }-*/;
+
+    // ***********************************************************
+
+    public LogicalStructureObject setLogicalStructure(ViewLoaderLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.allowCaching = getAttributeAsString("allowCaching");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ViewLoader.allowCaching:" + t.getMessage() + "\n";
+        }
+        try {
+            s.httpMethod = getAttributeAsString("httpMethod");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ViewLoader.httpMethod:" + t.getMessage() + "\n";
+        }
+        try {
+            s.loadingMessage = getAttributeAsString("loadingMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ViewLoader.loadingMessage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.viewURL = getAttributeAsString("viewURL");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ViewLoader.viewURL:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+
+    public LogicalStructureObject getLogicalStructure() {
+        ViewLoaderLogicalStructure s = new ViewLoaderLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
+}
+

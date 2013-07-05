@@ -1,0 +1,56 @@
+<!--
+Inheriting this module only packages the SmartClient JavaScript files. You will need to
+include them yourself in your host html file as follows :
+
+<script src=[module-name]/sc/modules/ISC_Core.js></script>
+
+<script src=[module-name]/sc/modules/ISC_Foundation.js></script>
+<script src=[module-name]/sc/modules/ISC_Containers.js></script>
+<script src=[module-name]/sc/modules/ISC_Grids.js></script>
+<script src=[module-name]/sc/modules/ISC_Forms.js></script>
+<script src=[module-name]/sc/modules/ISC_RichTextEditor.js></script>
+<script src=[module-name]/sc/modules/ISC_Calendar.js></script>
+
+<script src=[module-name]/sc/modules/ISC_DataBinding.js></script>
+-->
+        
+
+<module>
+    <inherits name='com.google.gwt.user.User'/>
+    <inherits name="com.google.gwt.xml.XML"/>
+    <inherits name="com.google.gwt.i18n.I18N"/>    
+    <inherits name="com.google.gwt.json.JSON"/>
+    <inherits name="com.google.gwt.http.HTTP"/>
+    <inherits name="com.google.gwt.event.Event"/>
+
+    <inherits name='com.smartclient.SmartClientNoScript'/>
+
+    <entry-point class='com.smartgwt.client.SmartGwtEntryPoint'/>
+    
+	<define-linker name="smartgwt" class="com.smartgwt.linker.SmartGwtLinker" />
+    <define-linker name="smartgwt_domain_sync" class="com.smartgwt.linker.SmartGwtDomainSyncLinker" />
+
+  	<add-linker name="smartgwt" />
+
+  	<set-configuration-property name="document.compatMode" value="BackCompat"/>
+
+  	<source path='client'/>
+  	<super-source path='deprecated'/>
+  	<source path='logicalstructure'/>
+
+	<generate-with class="com.smartgwt.rebind.MetaBeanFactoryGenerator">
+        <when-type-assignable class="com.smartgwt.client.bean.BeanFactory.MetaFactory" />
+    </generate-with>
+
+	<generate-with class="com.smartgwt.rebind.BeanValueTypeFactoryGenerator">
+        <when-type-assignable class="com.smartgwt.client.bean.BeanValueType.MetaFactory" />
+    </generate-with>
+
+	<generate-with class="com.smartgwt.rebind.CanvasMetaBeanFactoryGenerator">
+        <when-type-assignable class="com.smartgwt.client.bean.BeanFactory.CanvasMetaFactory" />
+    </generate-with>
+    
+    <generate-with class="com.smartgwt.rebind.FormItemMetaBeanFactoryGenerator">
+        <when-type-assignable class="com.smartgwt.client.bean.BeanFactory.FormItemMetaFactory" />
+    </generate-with>
+</module>
