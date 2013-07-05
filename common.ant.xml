@@ -20,7 +20,7 @@
 		<isset property="${env.SC_VER}" />
     </condition>
 	
-    <condition property="smartgwt.version" value="${env.SMARTGWT_VERSION}" else="4.0d">
+    <condition property="smartgwt.version" value="${env.SMARTGWT_VERSION}" else="4.0">
 		<isset property="env.SMARTGWT_VERSION" />
     </condition>
     
