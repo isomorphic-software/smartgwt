@@ -15,6 +15,7 @@
  */
  
 package com.smartgwt.client.widgets.form.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface HiddenValidationErrorsHandler extends EventHandler {

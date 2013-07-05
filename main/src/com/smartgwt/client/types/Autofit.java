@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Possible values for to change the behavior of how data will fill the ListGrid.
  */
@@ -32,7 +33,6 @@ public enum Autofit implements ValueEnum {
      * expand horizontally and vertically to accommodate content.
      */
     BOTH("both");
-
     private String value;
 
     Autofit(String value) {

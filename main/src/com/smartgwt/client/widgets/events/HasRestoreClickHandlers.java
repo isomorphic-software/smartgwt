@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -19,13 +19,13 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasRestoreClickHandlers extends HasHandlers {
     /**
-     * Notification method fired when the user clicks the 'restore' button.&#010
+     * Notification method fired when the user clicks the 'restore' button.
      *
-     * @param handler the onRestoreClick handler
+     * @param handler the restoreClick handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addRestoreClickHandler(RestoreClickHandler handler);
 }
+

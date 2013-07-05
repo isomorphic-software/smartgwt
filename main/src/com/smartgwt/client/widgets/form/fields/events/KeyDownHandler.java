@@ -15,6 +15,7 @@
  */
  
 package com.smartgwt.client.widgets.form.fields.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface KeyDownHandler extends EventHandler {

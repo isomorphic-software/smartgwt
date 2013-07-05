@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.grid.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDrawAreaChangedHandlers extends HasHandlers {
     /**
      * Notification method that fires when the drawArea changes due to scrolling.  Receives   the previous drawArea
@@ -34,3 +33,4 @@ public interface HasDrawAreaChangedHandlers extends HasHandlers {
      */
     HandlerRegistration addDrawAreaChangedHandler(DrawAreaChangedHandler handler);
 }
+

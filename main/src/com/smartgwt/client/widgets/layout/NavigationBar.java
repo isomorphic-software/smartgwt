@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.layout;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,50 +45,121 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * extends HLayout Navigation control implemented as a horizontal layout showing back and forward controls  and a title.
  */
 public class NavigationBar extends HLayout {
 
-    public static NavigationBar getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (NavigationBar) obj;
+    public native static NavigationBar getOrCreateRef(JavaScriptObject jsObj) /*-{
+        if (jsObj == null) return null;
+        var instance = jsObj["__ref"];
+        if (instance == null) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("NavigationBar",jsObj);
         } else {
-            return new NavigationBar(jsObj);
+            return instance;
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        $wnd.isc["NavigationBar"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.Canvas::getConfig()());
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        $wnd.isc["NavigationBar"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getJsObj()());
+    }-*/;
 
     public NavigationBar(){
         scClassName = "NavigationBar";
     }
 
     public NavigationBar(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "NavigationBar";
+        setJavaScriptObject(jsObj);
+        
     }
 
     protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
         var widget = $wnd.isc[scClassName].create(config);
+        this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Ljava/lang/String;Z)(widget.getID(), true);
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;
+
     // ********************* Properties / Attributes ***********************
+
+
+    /**
+     * The button displayed to the left of the title in this NavigationBar. By default this will be a {@link
+     * com.smartgwt.client.widgets.NavigationButton} with {@link com.smartgwt.client.widgets.NavigationButton#getDirection
+     * direction} set to <code>"back"</code>.
+     * <p>
+     * For an overview of how to use and configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return NavigationButton
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public NavigationButton getLeftButton() throws IllegalStateException {
+        errorIfNotCreated("leftButton");
+        return NavigationButton.getOrCreateRef(getAttributeAsJavaScriptObject("leftButton"));
+    }
+
 
     /**
      * {@link com.smartgwt.client.widgets.Button#getIcon Icon} for the {@link
@@ -97,7 +168,7 @@ public class NavigationBar extends HLayout {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getLeftButtonIcon leftButtonIcon}
      *
-     * @param leftButtonIcon new icon for left button. Default value is null
+     * @param leftButtonIcon new icon for left button. See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is null
      */
     public void setLeftButtonIcon(String leftButtonIcon) {
         setAttribute("leftButtonIcon", leftButtonIcon, true);
@@ -107,12 +178,12 @@ public class NavigationBar extends HLayout {
      * {@link com.smartgwt.client.widgets.Button#getIcon Icon} for the {@link
      * com.smartgwt.client.widgets.layout.NavigationBar#getLeftButton leftButton}
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getLeftButtonIcon()  {
         return getAttributeAsString("leftButtonIcon");
     }
+
 
     /**
      * {@link com.smartgwt.client.widgets.Button#getTitle Title} for the {@link
@@ -121,7 +192,7 @@ public class NavigationBar extends HLayout {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getLeftButtonTitle leftButtonTitle}
      *
-     * @param leftButtonTitle new title for left button. Default value is "&nbsp;"
+     * @param leftButtonTitle new title for left button. See {@link com.smartgwt.client.docs.String String}. Default value is "&nbsp;"
      */
     public void setLeftButtonTitle(String leftButtonTitle) {
         setAttribute("leftButtonTitle", leftButtonTitle, true);
@@ -131,12 +202,28 @@ public class NavigationBar extends HLayout {
      * {@link com.smartgwt.client.widgets.Button#getTitle Title} for the {@link
      * com.smartgwt.client.widgets.layout.NavigationBar#getLeftButton leftButton}
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getLeftButtonTitle()  {
         return getAttributeAsString("leftButtonTitle");
     }
+
+
+    /**
+     * The button displayed to the right of the title in this NavigationBar. By default this will be a {@link
+     * com.smartgwt.client.widgets.NavigationButton} with {@link com.smartgwt.client.widgets.NavigationButton#getDirection
+     * direction} set to <code>"forward"</code>.
+     * <p>
+     * For an overview of how to use and configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return NavigationButton
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public NavigationButton getRightButton() throws IllegalStateException {
+        errorIfNotCreated("rightButton");
+        return NavigationButton.getOrCreateRef(getAttributeAsJavaScriptObject("rightButton"));
+    }
+
 
     /**
      * {@link com.smartgwt.client.widgets.Button#getIcon Icon} for the {@link
@@ -145,7 +232,7 @@ public class NavigationBar extends HLayout {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getRightButtonIcon rightButtonIcon}
      *
-     * @param rightButtonIcon new icon for right button. Default value is null
+     * @param rightButtonIcon new icon for right button. See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is null
      */
     public void setRightButtonIcon(String rightButtonIcon) {
         setAttribute("rightButtonIcon", rightButtonIcon, true);
@@ -155,12 +242,12 @@ public class NavigationBar extends HLayout {
      * {@link com.smartgwt.client.widgets.Button#getIcon Icon} for the {@link
      * com.smartgwt.client.widgets.layout.NavigationBar#getRightButton rightButton}
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      */
     public String getRightButtonIcon()  {
         return getAttributeAsString("rightButtonIcon");
     }
+
 
     /**
      * {@link com.smartgwt.client.widgets.Button#getTitle Title} for the {@link
@@ -169,7 +256,7 @@ public class NavigationBar extends HLayout {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getRightButtonTitle rightButtonTitle}
      *
-     * @param rightButtonTitle new title for right button. Default value is "&nbsp;"
+     * @param rightButtonTitle new title for right button. See {@link com.smartgwt.client.docs.String String}. Default value is "&nbsp;"
      */
     public void setRightButtonTitle(String rightButtonTitle) {
         setAttribute("rightButtonTitle", rightButtonTitle, true);
@@ -179,12 +266,12 @@ public class NavigationBar extends HLayout {
      * {@link com.smartgwt.client.widgets.Button#getTitle Title} for the {@link
      * com.smartgwt.client.widgets.layout.NavigationBar#getRightButton rightButton}
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getRightButtonTitle()  {
         return getAttributeAsString("rightButtonTitle");
     }
+
 
     /**
      * The title to display centered in this NavigationBar
@@ -192,7 +279,7 @@ public class NavigationBar extends HLayout {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Updates the title for this navigationBar.
      *
-     * @param title New title. Default value is null
+     * @param title New title. See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setTitle(String title) {
         setAttribute("title", title, true);
@@ -201,31 +288,43 @@ public class NavigationBar extends HLayout {
     /**
      * The title to display centered in this NavigationBar
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getTitle()  {
         return getAttributeAsString("title");
     }
 
-    // ********************* Methods ***********************
-            
+
     /**
+     * The AutoChild label used to display the {@link com.smartgwt.client.widgets.layout.NavigationBar#getTitle title} in this
+     * NavigationBar.
+     * <p>
+     * For an overview of how to use and configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return Label
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public Label getTitleLabel() throws IllegalStateException {
+        errorIfNotCreated("titleLabel");
+        return Label.getOrCreateRef(getAttributeAsJavaScriptObject("titleLabel"));
+    }
+
+    // ********************* Methods ***********************
+	/**
      * Show or hide the {@link com.smartgwt.client.widgets.layout.NavigationBar#getLeftButton leftButton}
      * @param visible if true, the button will be shown, otherwise hidden.
      */
     public native void setShowLeftButton(boolean visible) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setShowLeftButton(visible);
+        self.setShowLeftButton(visible == null ? false : visible);
     }-*/;
-            
-    /**
+	/**
      * Show or hide the {@link com.smartgwt.client.widgets.layout.NavigationBar#getRightButton rightButton}
      * @param visible if true, the button will be shown, otherwise hidden.
      */
     public native void setShowRightButton(boolean visible) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setShowRightButton(visible);
+        self.setShowRightButton(visible == null ? false : visible);
     }-*/;
 
     // ********************* Static Methods ***********************
@@ -236,7 +335,7 @@ public class NavigationBar extends HLayout {
      * properties of this class. Can also be used for skinning / styling purposes.
      * <P>
      * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
-     * underlying class (including those automatically generated in JavaScript). 
+     * underlying class (including those automatically generated in JavaScript).
      * This method should not be used to apply standard EventHandlers or override methods for
      * a class - use a custom subclass instead.
      *
@@ -247,8 +346,8 @@ public class NavigationBar extends HLayout {
     	delete properties.ID;
         $wnd.isc.NavigationBar.addProperties(properties);
     }-*/;
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
 	
@@ -272,8 +371,40 @@ public class NavigationBar extends HLayout {
 	}-*/;
 
 
+    public LogicalStructureObject setLogicalStructure(NavigationBarLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.leftButtonIcon = getAttributeAsString("leftButtonIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "NavigationBar.leftButtonIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.leftButtonTitle = getAttributeAsString("leftButtonTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "NavigationBar.leftButtonTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rightButtonIcon = getAttributeAsString("rightButtonIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "NavigationBar.rightButtonIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rightButtonTitle = getAttributeAsString("rightButtonTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "NavigationBar.rightButtonTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.title = getAttributeAsString("title");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "NavigationBar.title:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+
+    public LogicalStructureObject getLogicalStructure() {
+        NavigationBarLogicalStructure s = new NavigationBarLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-
 

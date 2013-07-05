@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +46,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class DayBodyClickEvent extends BrowserEvent<DayBodyClickHandler>  implements Cancellable {
     private boolean cancel = false;
 
@@ -93,7 +98,6 @@ public class DayBodyClickEvent extends BrowserEvent<DayBodyClickHandler>  implem
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(DayBodyClickHandler handler) {
         handler.onDayBodyClick(this);
@@ -112,7 +116,6 @@ public class DayBodyClickEvent extends BrowserEvent<DayBodyClickHandler>  implem
         super(jsObj);
     }
 
-
     /**
      * Call this method to cancel the default action
      */
@@ -126,37 +129,39 @@ public class DayBodyClickEvent extends BrowserEvent<DayBodyClickHandler>  implem
     public boolean isCancelled() {
         return cancel;
     }
-
-    /**
+	/**
      * JavaScript Date object representing this day
      *
      * @return JavaScript Date object representing this day
      */
-    public  native Date getDate() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return (jsObj.date === undefined || jsObj.date == null) ? null: @com.smartgwt.client.util.JSOHelper::toDate(D)(jsObj.date.getTime());
+    public native Date getDate() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.date;
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
     }-*/;
-
-    /**
+	/**
      * the row number to which the parameter date belongs
      *
      * @return the row number to which the parameter date belongs
      */
-    public  native int getRowNum() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.rowNum;
+    public native Integer getRowNum() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.rowNum;
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
     }-*/;
-
-    /**
+	/**
      * the column number to which the parameter date belongs
      *
      * @return the column number to which the parameter date belongs
      */
-    public  native int getColNum() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.colNum;
+    public native Integer getColNum() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.colNum;
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
     }-*/;
-
 
     /**
      * the calendar itself
@@ -174,7 +179,7 @@ public class DayBodyClickEvent extends BrowserEvent<DayBodyClickHandler>  implem
      */
     public  native CalendarEvent[] getEvents() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.calendar.CalendarEvent::convertToCalendarEventArray(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.events);
+        return @com.smartgwt.client.util.ConvertTo::arrayOfCalendarEvent(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.events);
     }-*/;
 
 

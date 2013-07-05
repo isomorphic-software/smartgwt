@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Determines sizing model when sizing / positioning a canvas relative to its {@link
  * com.smartgwt.client.widgets.Canvas#getPercentBox percentBox}.
@@ -31,7 +32,6 @@ public enum PercentBoxModel implements ValueEnum {
      * Canvas.getViewportHeight},viewportHeight} and width of the other canvas
      */
     VIEWPORT("viewport");
-
     private String value;
 
     PercentBoxModel(String value) {

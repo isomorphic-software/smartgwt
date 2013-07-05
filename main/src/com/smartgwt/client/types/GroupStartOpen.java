@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Possible values for the state of ListGrid groups when groupBy is called
  */
@@ -32,7 +33,6 @@ public enum GroupStartOpen implements ValueEnum {
      * start with all groups closed
      */
     NONE("none");
-
     private String value;
 
     GroupStartOpen(String value) {

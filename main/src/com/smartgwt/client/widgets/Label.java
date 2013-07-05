@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Labels display a small amount of {@link com.smartgwt.client.widgets.Label#getAlign alignable} {@link
@@ -66,22 +86,54 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class Label extends Button {
 
-    public static Label getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (Label) obj;
+    public native static Label getOrCreateRef(JavaScriptObject jsObj) /*-{
+        if (jsObj == null) return null;
+        var instance = jsObj["__ref"];
+        if (instance == null) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("Label",jsObj);
         } else {
-            return new Label(jsObj);
+            return instance;
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        $wnd.isc["Label"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.Canvas::getConfig()());
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        $wnd.isc["Label"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getJsObj()());
+    }-*/;
 
     public Label(){
         scClassName = "Label";
     }
 
     public Label(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "Label";
+        setJavaScriptObject(jsObj);
+        
     }
 
     public Label(String contents) {
@@ -93,10 +145,13 @@ public class Label extends Button {
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
         var widget = $wnd.isc[scClassName].create(config);
+        this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Ljava/lang/String;Z)(widget.getID(), true);
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;
+
     // ********************* Properties / Attributes ***********************
+
 
     /**
      * Horizontal alignment of label text. See Alignment type for details.
@@ -111,13 +166,13 @@ public class Label extends Button {
     /**
      * Horizontal alignment of label text. See Alignment type for details.
      *
-     *
      * @return Alignment
      * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
     public Alignment getAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
     }
+
 
     /**
      * If true, ignore the specified size of this widget and always size just large enough to accommodate the title.  If
@@ -140,7 +195,6 @@ public class Label extends Button {
      * likely to distort the media. If you do want vertical  auto-fit, this can be achieved by simply setting a small height,
      * and having  overflow:"visible"
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
@@ -148,13 +202,14 @@ public class Label extends Button {
         return getAttributeAsBoolean("autoFit");
     }
 
+
     /**
      * The contents of a canvas or label widget. Any HTML string is acceptable.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Changes the contents of a widget to newContents, an HTML string. <P> When {@link com.smartgwt.client.widgets.Canvas#getDynamicContents dynamicContents} is set, <code>setContents()</code> can also be called with no arguments to cause contents to be re-evaluated.
      *
-     * @param contents an HTML string to be set as the contents of this widget. Default value is "&nbsp;"
+     * @param contents an HTML string to be set as the contents of this widget. See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is "&nbsp;"
      * @see com.smartgwt.client.widgets.Label#setDynamicContents
      */
     public void setContents(String contents) {
@@ -164,13 +219,13 @@ public class Label extends Button {
     /**
      * The contents of a canvas or label widget. Any HTML string is acceptable.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.widgets.Label#getDynamicContents
      */
     public String getContents()  {
         return getAttributeAsString("contents");
     }
+
 
     /**
      * Dynamic contents allows the contents string to be treated as a simple, but powerful
@@ -202,8 +257,8 @@ public class Label extends Button {
      *      dynamicContents: true,
      *      contents: "The slider value is \${mySlider.getValue()}."
      *  });
-     *      
-     *  myCanvas.observe(mySlider, "valueChanged", 
+     * 
+     *  myCanvas.observe(mySlider, "valueChanged",
      *                   "observer.markForRedraw()");
      *  </pre>
      *  You can embed an arbitrary number of dynamic expressions in the contents string.  The
@@ -260,8 +315,8 @@ public class Label extends Button {
      *      dynamicContents: true,
      *      contents: "The slider value is \${mySlider.getValue()}."
      *  });
-     *      
-     *  myCanvas.observe(mySlider, "valueChanged", 
+     * 
+     *  myCanvas.observe(mySlider, "valueChanged",
      *                   "observer.markForRedraw()");
      *  </pre>
      *  You can embed an arbitrary number of dynamic expressions in the contents string.  The
@@ -278,7 +333,6 @@ public class Label extends Button {
      *  has the dynamicContents string as its contents - in other words the canvas instance on
      *  which the template is declared.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.Label#getContents
      * @see com.smartgwt.client.widgets.Canvas#getDynamicContentsVars
@@ -288,6 +342,7 @@ public class Label extends Button {
         return getAttributeAsBoolean("dynamicContents");
     }
 
+
     /**
      * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the
      * imgDir of this component.
@@ -295,7 +350,7 @@ public class Label extends Button {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Change the icon being shown next to the title text.
      *
-     * @param icon URL of new icon. Default value is null
+     * @param icon URL of new icon. See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}. Default value is null
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setIcon(String icon) {
@@ -306,18 +361,18 @@ public class Label extends Button {
      * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the
      * imgDir of this component.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.SCImgURL SCImgURL}
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public String getIcon()  {
         return getAttributeAsString("icon");
     }
 
+
     /**
      * If this button is showing an icon should it be right or left aligned?
      *
-     * @param iconAlign iconAlign Default value is null
+     * @param iconAlign . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
@@ -328,13 +383,13 @@ public class Label extends Button {
     /**
      * If this button is showing an icon should it be right or left aligned?
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public String getIconAlign()  {
         return getAttributeAsString("iconAlign");
     }
+
 
     /**
      * Height in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
@@ -350,13 +405,13 @@ public class Label extends Button {
     /**
      * Height in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
      *
-     *
      * @return Integer
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public Integer getIconHeight()  {
         return getAttributeAsInt("iconHeight");
     }
+
 
     /**
      * If this button is showing an icon should it appear to the left or right of the title? valid options are
@@ -365,7 +420,7 @@ public class Label extends Button {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Changes the orientation of the icon relative to the text of the button.
      *
-     * @param iconOrientation The new orientation of the icon relative to the text of the button.. Default value is "left"
+     * @param iconOrientation The new orientation of the icon relative to the text of the button.. See {@link com.smartgwt.client.docs.String String}. Default value is "left"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
@@ -377,13 +432,13 @@ public class Label extends Button {
      * If this button is showing an icon should it appear to the left or right of the title? valid options are
      * <code>"left"</code> and <code>"right"</code>.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public String getIconOrientation()  {
         return getAttributeAsString("iconOrientation");
     }
+
 
     /**
      * Size in pixels of the icon image. <P> The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to
@@ -401,13 +456,13 @@ public class Label extends Button {
      * Size in pixels of the icon image. <P> The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to
      * configure width and height separately.
      *
-     *
      * @return int
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public int getIconSize()  {
         return getAttributeAsInt("iconSize");
     }
+
 
     /**
      * Pixels between icon and title text.
@@ -423,13 +478,13 @@ public class Label extends Button {
     /**
      * Pixels between icon and title text.
      *
-     *
      * @return int
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public int getIconSpacing()  {
         return getAttributeAsInt("iconSpacing");
     }
+
 
     /**
      * Width in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
@@ -445,13 +500,13 @@ public class Label extends Button {
     /**
      * Width in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
      *
-     *
      * @return Integer
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public Integer getIconWidth()  {
         return getAttributeAsInt("iconWidth");
     }
+
 
     /**
      * If using an icon for this button, whether to switch the icon image if the button becomes disabled.
@@ -467,13 +522,13 @@ public class Label extends Button {
     /**
      * If using an icon for this button, whether to switch the icon image if the button becomes disabled.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public Boolean getShowDisabledIcon()  {
         return getAttributeAsBoolean("showDisabledIcon");
     }
+
 
     /**
      * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
@@ -489,13 +544,13 @@ public class Label extends Button {
     /**
      * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public Boolean getShowDownIcon()  {
         return getAttributeAsBoolean("showDownIcon");
     }
+
 
     /**
      * If using an icon for this button, whether to switch the icon image when the button receives focus. <P> If {@link
@@ -515,13 +570,13 @@ public class Label extends Button {
      * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon
      * will be displayed when the canvas has focus, otherwise a separate <code>"Focused"</code> icon will be displayed
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public Boolean getShowFocusedIcon()  {
         return getAttributeAsBoolean("showFocusedIcon");
     }
+
 
     /**
      * If using an icon for this button, whether to switch the icon image on mouse rollover.
@@ -537,13 +592,13 @@ public class Label extends Button {
     /**
      * If using an icon for this button, whether to switch the icon image on mouse rollover.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public Boolean getShowRollOverIcon()  {
         return getAttributeAsBoolean("showRollOverIcon");
     }
+
 
     /**
      * If using an icon for this button, whether to switch the icon image when the button becomes selected.
@@ -559,13 +614,13 @@ public class Label extends Button {
     /**
      * If using an icon for this button, whether to switch the icon image when the button becomes selected.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public Boolean getShowSelectedIcon()  {
         return getAttributeAsBoolean("showSelectedIcon");
     }
+
 
     /**
      * Set the CSS class for this widget.  For a Label, this is equivalent to setting {@link
@@ -574,7 +629,7 @@ public class Label extends Button {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Dynamically change the CSS class for this widget.  For a Label, this is equivalent to {@link com.smartgwt.client.widgets.Label#getSetBaseStyle setBaseStyle}.
      *
-     * @param styleName new CSS style name. Default value is "normal"
+     * @param styleName new CSS style name. See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "normal"
      */
     public void setStyleName(String styleName) {
         setAttribute("styleName", styleName, true);
@@ -584,12 +639,12 @@ public class Label extends Button {
      * Set the CSS class for this widget.  For a Label, this is equivalent to setting {@link
      * com.smartgwt.client.widgets.Label#getBaseStyle baseStyle}.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      */
     public String getStyleName()  {
         return getAttributeAsString("styleName");
     }
+
 
     /**
      * Vertical alignment of label text. See VerticalAlignment type for details.
@@ -604,13 +659,13 @@ public class Label extends Button {
     /**
      * Vertical alignment of label text. See VerticalAlignment type for details.
      *
-     *
      * @return VerticalAlignment
      * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
     public VerticalAlignment getValign()  {
         return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("valign"));
     }
+
 
     /**
      * If false, the label text will not be wrapped to the next line.
@@ -624,7 +679,6 @@ public class Label extends Button {
 
     /**
      * If false, the label text will not be wrapped to the next line.
-     *
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
@@ -643,7 +697,7 @@ public class Label extends Button {
      * properties of this class. Can also be used for skinning / styling purposes.
      * <P>
      * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
-     * underlying class (including those automatically generated in JavaScript). 
+     * underlying class (including those automatically generated in JavaScript).
      * This method should not be used to apply standard EventHandlers or override methods for
      * a class - use a custom subclass instead.
      *
@@ -654,10 +708,113 @@ public class Label extends Button {
     	delete properties.ID;
         $wnd.isc.Label.addProperties(properties);
     }-*/;
-        
-    // ***********************************************************        
 
+    // ***********************************************************
+
+    public LogicalStructureObject setLogicalStructure(LabelLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.align = getAttributeAsString("align");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.align:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoFit = getAttributeAsString("autoFit");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.autoFit:" + t.getMessage() + "\n";
+        }
+        try {
+            s.contents = getAttributeAsString("contents");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.contents:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dynamicContents = getAttributeAsString("dynamicContents");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.dynamicContents:" + t.getMessage() + "\n";
+        }
+        try {
+            s.icon = getAttributeAsString("icon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.icon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconAlign = getAttributeAsString("iconAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.iconAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconHeight = getAttributeAsString("iconHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.iconHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconOrientation = getAttributeAsString("iconOrientation");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.iconOrientation:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconSize = getAttributeAsString("iconSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.iconSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconSpacing = getAttributeAsString("iconSpacing");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.iconSpacing:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconWidth = getAttributeAsString("iconWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.iconWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDisabledIcon = getAttributeAsString("showDisabledIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.showDisabledIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDownIcon = getAttributeAsString("showDownIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.showDownIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showFocusedIcon = getAttributeAsString("showFocusedIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.showFocusedIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showRollOverIcon = getAttributeAsString("showRollOverIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.showRollOverIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showSelectedIcon = getAttributeAsString("showSelectedIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.showSelectedIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.styleName = getAttributeAsString("styleName");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.styleName:" + t.getMessage() + "\n";
+        }
+        try {
+            s.valign = getAttributeAsString("valign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.valign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.wrap = getAttributeAsString("wrap");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.wrap:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+
+    public LogicalStructureObject getLogicalStructure() {
+        LabelLogicalStructure s = new LabelLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

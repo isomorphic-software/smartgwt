@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.calendar.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDayHeaderClickHandlers extends HasHandlers {
     /**
      * Called when the header area of a day in the month view is clicked on. <P> By default, moves to the day tab and shows the
@@ -31,3 +30,4 @@ public interface HasDayHeaderClickHandlers extends HasHandlers {
      */
     HandlerRegistration addDayHeaderClickHandler(DayHeaderClickHandler handler);
 }
+

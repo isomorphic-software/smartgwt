@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.form.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasSubmitValuesHandlers extends HasHandlers {
     /**
      * Triggered when a SubmitItem is included in the form is submitted and gets pressed.
@@ -29,3 +28,4 @@ public interface HasSubmitValuesHandlers extends HasHandlers {
      */
     HandlerRegistration addSubmitValuesHandler(SubmitValuesHandler handler);
 }
+

@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Format for encoding dates in JSON.  Note you can override {@link com.smartgwt.client.util.JSONEncoder#encodeDate
  * JSONEncoder.encodeDate} for a custom format.
@@ -37,7 +38,6 @@ public enum JSONDateFormat implements ValueEnum {
      *  regardless of timezone.
      */
     DATE_CONSTRUCTOR("dateConstructor");
-
     private String value;
 
     JSONDateFormat(String value) {

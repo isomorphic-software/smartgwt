@@ -15,6 +15,7 @@
  */
  
 package com.smartgwt.client.widgets.tab.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface TabContextMenuHandler extends EventHandler {

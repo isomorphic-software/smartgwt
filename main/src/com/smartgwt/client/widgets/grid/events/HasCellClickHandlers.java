@@ -19,13 +19,14 @@ package com.smartgwt.client.widgets.grid.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasCellClickHandlers extends HasHandlers {
     /**
-     * Called when a cell receives a click event.
+     * Called when a cell receives a click event. <P> Note that returning false from this method will not prevent any specified
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#rowClick ListGrid.rowClick} handler from firing.
      *
      * @param handler the cellClick handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addCellClickHandler(CellClickHandler handler);
 }
+

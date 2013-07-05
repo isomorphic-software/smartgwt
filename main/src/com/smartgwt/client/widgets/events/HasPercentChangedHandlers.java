@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasPercentChangedHandlers extends HasHandlers {
     /**
      * This method is called when the percentDone value changes. Observe this method to be notified upon a change to the
@@ -30,3 +29,4 @@ public interface HasPercentChangedHandlers extends HasHandlers {
      */
     HandlerRegistration addPercentChangedHandler(PercentChangedHandler handler);
 }
+

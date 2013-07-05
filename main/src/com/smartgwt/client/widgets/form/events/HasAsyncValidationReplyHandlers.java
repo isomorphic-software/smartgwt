@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.form.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasAsyncValidationReplyHandlers extends HasHandlers {
     /**
      * Notification fired when an asynchronous validation completes.
@@ -29,3 +28,4 @@ public interface HasAsyncValidationReplyHandlers extends HasHandlers {
      */
     HandlerRegistration addAsyncValidationReplyHandler(AsyncValidationReplyHandler handler);
 }
+

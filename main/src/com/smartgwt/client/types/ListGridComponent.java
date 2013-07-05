@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Standard component-type displayed within a ListGrid, as contained by {@link
  * com.smartgwt.client.widgets.grid.ListGrid#getGridComponents gridComponents}.
@@ -39,7 +40,6 @@ public enum ListGridComponent implements ValueEnum {
      * showGridSummary} is true.
      */
     SUMMARY_ROW("summaryRow");
-
     private String value;
 
     ListGridComponent(String value) {

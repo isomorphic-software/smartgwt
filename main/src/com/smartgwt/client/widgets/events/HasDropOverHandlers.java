@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDropOverHandlers extends HasHandlers {
     /**
      * Executed when the compatible dragged object is first moved over this drop target. Your implementation can use this to
@@ -30,3 +29,4 @@ public interface HasDropOverHandlers extends HasHandlers {
      */
     HandlerRegistration addDropOverHandler(DropOverHandler handler);
 }
+

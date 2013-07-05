@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.menu.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasItemClickHandlers extends HasHandlers {
     /**
      * Executed when a menu item with no click handler is clicked by the user. This          itemClick handler must be
@@ -30,3 +29,4 @@ public interface HasItemClickHandlers extends HasHandlers {
      */
     HandlerRegistration addItemClickHandler(ItemClickHandler handler);
 }
+

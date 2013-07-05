@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.grid.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasGroupByHandlers extends HasHandlers {
     /**
      * Callback fired when the listGrid is grouped or ungrouped.  <var class="SmartGwt">This event may be cancelled</var>
@@ -29,3 +28,4 @@ public interface HasGroupByHandlers extends HasHandlers {
      */
     HandlerRegistration addGroupByHandler(GroupByHandler handler);
 }
+

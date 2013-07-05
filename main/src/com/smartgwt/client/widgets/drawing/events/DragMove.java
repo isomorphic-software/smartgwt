@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -51,13 +52,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class DragMove extends AbstractSmartEvent<DragMoveHandler>  implements Cancellable {
     private boolean cancel = false;
 
@@ -94,7 +98,6 @@ public class DragMove extends AbstractSmartEvent<DragMoveHandler>  implements Ca
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(DragMoveHandler handler) {
         handler.onDragMove(this);
@@ -113,7 +116,6 @@ public class DragMove extends AbstractSmartEvent<DragMoveHandler>  implements Ca
         super(jsObj);
     }
 
-
     /**
      * Call this method to cancel the default behavior of allowing the shape to be drag-moved
      */
@@ -127,26 +129,25 @@ public class DragMove extends AbstractSmartEvent<DragMoveHandler>  implements Ca
     public boolean isCancelled() {
         return cancel;
     }
-
-    /**
-     * x-offset within the drawPane
+	/**
+     * x-coordinate within the drawPane
      *
-     * @return x-offset within the drawPane
+     * @return x-coordinate within the drawPane
      */
-    public  native int getX() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.x;
+    public native int getX() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.x;
+        return ret;
     }-*/;
-
-    /**
-     * y-coordinage within the drawPane
+	/**
+     * y-coordinate within the drawPane
      *
-     * @return y-coordinage within the drawPane
+     * @return y-coordinate within the drawPane
      */
-    public  native int getY() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.y;
+    public native int getY() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.y;
+        return ret;
     }-*/;
-
 
 }

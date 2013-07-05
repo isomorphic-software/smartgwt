@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.drawing;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * DrawItem subclass to render line segments.
@@ -73,12 +93,20 @@ public class DrawLine extends DrawItem {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
+    }
+
+
+
     public DrawLine(){
         scClassName = "DrawLine";
     }
 
     public DrawLine(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "DrawLine";
+        setJavaScriptObject(jsObj);
+        
     }
 
     public native JavaScriptObject create()/*-{
@@ -86,7 +114,9 @@ public class DrawLine extends DrawItem {
         var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
         return $wnd.isc[scClassName].create(config);
     }-*/;
+
     // ********************* Properties / Attributes ***********************
+
 
     /**
      * Ending left coordinate of the line.  Overrides left coordinate of {@link
@@ -103,12 +133,12 @@ public class DrawLine extends DrawItem {
      * Ending left coordinate of the line.  Overrides left coordinate of {@link
      * com.smartgwt.client.widgets.drawing.DrawLine#getEndPoint endPoint} if both are set.
      *
-     *
      * @return int
      */
     public int getEndLeft()  {
         return getAttributeAsInt("endLeft");
     }
+
 
     /**
      * End point of the line
@@ -125,12 +155,12 @@ public class DrawLine extends DrawItem {
     /**
      * End point of the line
      *
-     *
      * @return Point
      */
     public Point getEndPoint()  {
         return new Point(getAttributeAsJavaScriptObject("endPoint"));
     }
+
 
     /**
      * Ending top coordinate of the line.  Overrides top coordinate of {@link
@@ -147,12 +177,12 @@ public class DrawLine extends DrawItem {
      * Ending top coordinate of the line.  Overrides top coordinate of {@link
      * com.smartgwt.client.widgets.drawing.DrawLine#getEndPoint endPoint} if both are set.
      *
-     *
      * @return int
      */
     public int getEndTop()  {
         return getAttributeAsInt("endTop");
     }
+
 
     /**
      * Starting left coordinate of the line.  Overrides left coordinate of {@link
@@ -169,12 +199,12 @@ public class DrawLine extends DrawItem {
      * Starting left coordinate of the line.  Overrides left coordinate of {@link
      * com.smartgwt.client.widgets.drawing.DrawLine#getStartPoint startPoint} if both are set.
      *
-     *
      * @return int
      */
     public int getStartLeft()  {
         return getAttributeAsInt("startLeft");
     }
+
 
     /**
      * Start point of the line
@@ -191,12 +221,12 @@ public class DrawLine extends DrawItem {
     /**
      * Start point of the line
      *
-     *
      * @return Point
      */
     public Point getStartPoint()  {
         return new Point(getAttributeAsJavaScriptObject("startPoint"));
     }
+
 
     /**
      * Starting top coordinate of the line.  Overrides top coordinate of {@link
@@ -213,7 +243,6 @@ public class DrawLine extends DrawItem {
      * Starting top coordinate of the line.  Overrides top coordinate of {@link
      * com.smartgwt.client.widgets.drawing.DrawLine#getStartPoint startPoint} if both are set.
      *
-     *
      * @return int
      */
     public int getStartTop()  {
@@ -221,8 +250,7 @@ public class DrawLine extends DrawItem {
     }
 
     // ********************* Methods ***********************
-            
-    /**
+	/**
      * Move both the start and end points of the line by a relative amount.
      * @param left change to left coordinate in pixels
      * @param top change to top coordinate in pixels
@@ -231,8 +259,7 @@ public class DrawLine extends DrawItem {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.moveBy(left, top);
     }-*/;
-            
-    /**
+	/**
      * Move both the start and end points of the line, such that the startPoint ends up at the specified coordinate and the
      * line length and angle are unchanged.
      * @param left new startLeft coordinate in pixels
@@ -244,11 +271,28 @@ public class DrawLine extends DrawItem {
     }-*/;
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+    /**
+     * Class level method to set the default properties of this class. If set, then all subsequent instances of this
+     * class will automatically have the default properties that were set when this method was called. This is a powerful
+     * feature that eliminates the need for users to create a separate hierarchy of subclasses that only alter the default
+     * properties of this class. Can also be used for skinning / styling purposes.
+     * <P>
+     * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
+     * underlying class (including those automatically generated in JavaScript).
+     * This method should not be used to apply standard EventHandlers or override methods for
+     * a class - use a custom subclass instead.
+     *
+     * @param drawLineProperties properties that should be used as new defaults when instances of this class are created
+     */
+    public static native void setDefaultProperties(DrawLine drawLineProperties) /*-{
+    	var properties = $wnd.isc.addProperties({},drawLineProperties.@com.smartgwt.client.core.BaseClass::getConfig()());
+    	delete properties.ID;
+        $wnd.isc.DrawLine.addProperties(properties);
+    }-*/;
+
+    // ***********************************************************
 
 }
-
 
 
 

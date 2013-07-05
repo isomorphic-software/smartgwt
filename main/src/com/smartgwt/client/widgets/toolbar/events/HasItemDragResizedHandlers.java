@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.toolbar.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasItemDragResizedHandlers extends HasHandlers {
     /**
      * Observable, overrideable method - called when one of the Toolbar buttons is drag resized.
@@ -29,3 +28,4 @@ public interface HasItemDragResizedHandlers extends HasHandlers {
      */
     HandlerRegistration addItemDragResizedHandler(ItemDragResizedHandler handler);
 }
+

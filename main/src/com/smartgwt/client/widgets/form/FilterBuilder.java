@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.form;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * A form that allows the user to input advanced search criteria, including operators on field values such as "less than",
@@ -69,37 +89,87 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class FilterBuilder extends Layout  implements com.smartgwt.client.widgets.form.events.HasFilterChangedHandlers, com.smartgwt.client.widgets.form.events.HasSearchHandlers {
 
-    public static FilterBuilder getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (FilterBuilder) obj;
+    public native static FilterBuilder getOrCreateRef(JavaScriptObject jsObj) /*-{
+        if (jsObj == null) return null;
+        var instance = jsObj["__ref"];
+        if (instance == null) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("FilterBuilder",jsObj);
         } else {
-            return new FilterBuilder(jsObj);
+            return instance;
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        $wnd.isc["FilterBuilder"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.Canvas::getConfig()());
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        $wnd.isc["FilterBuilder"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getJsObj()());
+    }-*/;
 
     public FilterBuilder(){
         scClassName = "FilterBuilder";
     }
 
     public FilterBuilder(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "FilterBuilder";
+        setJavaScriptObject(jsObj);
+        
     }
 
     protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
         var widget = $wnd.isc[scClassName].create(config);
+        this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Ljava/lang/String;Z)(widget.getID(), true);
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;
+
     // ********************* Properties / Attributes ***********************
+
+
+    /**
+     * An ImgButton that allows new clauses to be added if {@link
+     * com.smartgwt.client.widgets.form.FilterBuilder#getShowAddButton showAddButton} is set.
+     * <p>
+     * For an overview of how to use and configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return ImgButton
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public ImgButton getAddButton() throws IllegalStateException {
+        errorIfNotCreated("addButton");
+        return ImgButton.getOrCreateRef(getAttributeAsJavaScriptObject("addButton"));
+    }
+
 
     /**
      * The hover prompt text for the add button.
      *
-     * @param addButtonPrompt addButtonPrompt Default value is "Add"
+     * @param addButtonPrompt . See {@link com.smartgwt.client.docs.String String}. Default value is "Add"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setAddButtonPrompt(String addButtonPrompt)  throws IllegalStateException {
@@ -109,12 +179,12 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     /**
      * The hover prompt text for the add button.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getAddButtonPrompt()  {
         return getAttributeAsString("addButtonPrompt");
     }
+
 
     /**
      * If set to false, the last clause cannot be removed.
@@ -129,18 +199,50 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     /**
      * If set to false, the last clause cannot be removed.
      *
-     *
      * @return Boolean
      */
     public Boolean getAllowEmpty()  {
         return getAttributeAsBoolean("allowEmpty");
     }
 
+
+    /**
+     * <b>Note :</b> This API is non-functional (always returns null) and exists only to make
+     * you aware that this MultiAutoChild exists.  See {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}
+     * for details.
+     * <p>
+     * Widget used as a "bracket" to hint to the user that a subclause groups several field-by-field filter criteria under one
+     * logical operator. <P> By default, a simple CSS-style Canvas with borders on three sides.  A vertical StretchImg could
+     * provide a more elaborate appearance.
+     *
+     * @return null
+     */
+    public Canvas getBracket()  {
+        return null;
+    }
+
+
+    /**
+     * VStack of all clauses that are part of this FilterBuilder
+     * <p>
+     * For an overview of how to use and configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return VStack
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public VStack getClauseStack() throws IllegalStateException {
+        errorIfNotCreated("clauseStack");
+        return VStack.getOrCreateRef(getAttributeAsJavaScriptObject("clauseStack"));
+    }
+
+
+
+
+
     /**
      * If specified, the FilterBuilder will dynamically fetch DataSourceField definitions from  this DataSource rather than
-     * using {@link com.smartgwt.client.widgets.form.FilterBuilder#getDataSource dataSource}.  The {@link
-     * com.smartgwt.client.widgets.form.FilterBuilder#getFieldPicker fieldPicker}  will default to being a {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem} rather than a {@link
+     * using {@link com.smartgwt.client.widgets.form.FilterBuilder#getDataSource dataSource}.  The FieldPicker  will default to
+     * being a {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem} rather than a {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem} so that the user  will have type-ahead auto-completion. <P> The
      * records returned from the <code>fieldDataSource</code> must have properties  corresponding to a {@link
      * com.smartgwt.client.data.DataSourceField} definition, at a minimum,  {@link
@@ -160,9 +262,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
 
     /**
      * If specified, the FilterBuilder will dynamically fetch DataSourceField definitions from  this DataSource rather than
-     * using {@link com.smartgwt.client.widgets.form.FilterBuilder#getDataSource dataSource}.  The {@link
-     * com.smartgwt.client.widgets.form.FilterBuilder#getFieldPicker fieldPicker}  will default to being a {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem} rather than a {@link
+     * using {@link com.smartgwt.client.widgets.form.FilterBuilder#getDataSource dataSource}.  The FieldPicker  will default to
+     * being a {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem} rather than a {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem} so that the user  will have type-ahead auto-completion. <P> The
      * records returned from the <code>fieldDataSource</code> must have properties  corresponding to a {@link
      * com.smartgwt.client.data.DataSourceField} definition, at a minimum,  {@link
@@ -173,16 +274,16 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * order to control the list of  {@link com.smartgwt.client.data.DataSource#setTypeOperators valid operators} for each
      * field.
      *
-     *
      * @return DataSource
      */
     public DataSource getFieldDataSource()  {
         return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("fieldDataSource"));
     }
 
+
+
     /**
-     * Properties to combine with the {@link com.smartgwt.client.widgets.form.FilterBuilder#getFieldPicker fieldPicker}
-     * autoChild FormItem.
+     * Properties to combine with the FieldPicker autoChild FormItem.
      *
      * @param fieldPickerProperties fieldPickerProperties Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -192,9 +293,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
-     * Properties to combine with the {@link com.smartgwt.client.widgets.form.FilterBuilder#getFieldPicker fieldPicker}
-     * autoChild FormItem.
-     *
+     * Properties to combine with the FieldPicker autoChild FormItem.
      *
      * @return FormItem
      */
@@ -202,10 +301,11 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         return FormItem.getOrCreateRef(getAttributeAsJavaScriptObject("fieldPickerProperties"));
     }
 
+
     /**
      * The title for the {@link com.smartgwt.client.widgets.form.FilterBuilder#getFieldPicker field-picker} select-item.
      *
-     * @param fieldPickerTitle fieldPickerTitle Default value is "Field Name"
+     * @param fieldPickerTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "Field Name"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setFieldPickerTitle(String fieldPickerTitle)  throws IllegalStateException {
@@ -215,17 +315,17 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     /**
      * The title for the {@link com.smartgwt.client.widgets.form.FilterBuilder#getFieldPicker field-picker} select-item.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getFieldPickerTitle()  {
         return getAttributeAsString("fieldPickerTitle");
     }
 
+
     /**
      * Title for the "And Not" operator (only applicable to the "inline" appearance)
      *
-     * @param inlineAndNotTitle inlineAndNotTitle Default value is "and not"
+     * @param inlineAndNotTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "and not"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setInlineAndNotTitle(String inlineAndNotTitle)  throws IllegalStateException {
@@ -235,17 +335,17 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     /**
      * Title for the "And Not" operator (only applicable to the "inline" appearance)
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getInlineAndNotTitle()  {
         return getAttributeAsString("inlineAndNotTitle");
     }
 
+
     /**
      * Title for the "And" operator (only applicable to the "inline" appearance)
      *
-     * @param inlineAndTitle inlineAndTitle Default value is "and"
+     * @param inlineAndTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "and"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setInlineAndTitle(String inlineAndTitle)  throws IllegalStateException {
@@ -255,17 +355,17 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     /**
      * Title for the "And" operator (only applicable to the "inline" appearance)
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getInlineAndTitle()  {
         return getAttributeAsString("inlineAndTitle");
     }
 
+
     /**
      * Title for the "Or" operator (only applicable to the "inline" appearance)
      *
-     * @param inlineOrTitle inlineOrTitle Default value is "or"
+     * @param inlineOrTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "or"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setInlineOrTitle(String inlineOrTitle)  throws IllegalStateException {
@@ -275,17 +375,18 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     /**
      * Title for the "Or" operator (only applicable to the "inline" appearance)
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getInlineOrTitle()  {
         return getAttributeAsString("inlineOrTitle");
     }
 
+
     /**
-     * Title for the "Match All" (and) operator
+     * Title for the "Match All" (and) operator  when using {@link com.smartgwt.client.types.TopOperatorAppearance
+     * topOperatorAppearance}:"radio".
      *
-     * @param matchAllTitle matchAllTitle Default value is "Match All"
+     * @param matchAllTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "Match All"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setMatchAllTitle(String matchAllTitle)  throws IllegalStateException {
@@ -293,19 +394,21 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
-     * Title for the "Match All" (and) operator
+     * Title for the "Match All" (and) operator  when using {@link com.smartgwt.client.types.TopOperatorAppearance
+     * topOperatorAppearance}:"radio".
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMatchAllTitle()  {
         return getAttributeAsString("matchAllTitle");
     }
 
+
     /**
-     * Title for the "Match Any" (or) operator
+     * Title for the "Match Any" (or) operator when using {@link com.smartgwt.client.types.TopOperatorAppearance
+     * topOperatorAppearance}:"radio".
      *
-     * @param matchAnyTitle matchAnyTitle Default value is "Match Any"
+     * @param matchAnyTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "Match Any"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setMatchAnyTitle(String matchAnyTitle)  throws IllegalStateException {
@@ -313,19 +416,21 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
-     * Title for the "Match Any" (or) operator
+     * Title for the "Match Any" (or) operator when using {@link com.smartgwt.client.types.TopOperatorAppearance
+     * topOperatorAppearance}:"radio".
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMatchAnyTitle()  {
         return getAttributeAsString("matchAnyTitle");
     }
 
+
     /**
-     * Title for the "Match None" (not) operator
+     * Title for the "Match None" (not) operator when using {@link com.smartgwt.client.types.TopOperatorAppearance
+     * topOperatorAppearance}:"radio".
      *
-     * @param matchNoneTitle matchNoneTitle Default value is "Match None"
+     * @param matchNoneTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "Match None"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setMatchNoneTitle(String matchNoneTitle)  throws IllegalStateException {
@@ -333,19 +438,20 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
-     * Title for the "Match None" (not) operator
+     * Title for the "Match None" (not) operator when using {@link com.smartgwt.client.types.TopOperatorAppearance
+     * topOperatorAppearance}:"radio".
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMatchNoneTitle()  {
         return getAttributeAsString("matchNoneTitle");
     }
 
+
     /**
      * The message to display next to fieldNames that do not exist in the available dataSource.
      *
-     * @param missingFieldPrompt missingFieldPrompt Default value is "[missing field definition]"
+     * @param missingFieldPrompt . See {@link com.smartgwt.client.docs.String String}. Default value is "[missing field definition]"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setMissingFieldPrompt(String missingFieldPrompt)  throws IllegalStateException {
@@ -355,17 +461,17 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     /**
      * The message to display next to fieldNames that do not exist in the available dataSource.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getMissingFieldPrompt()  {
         return getAttributeAsString("missingFieldPrompt");
     }
 
+
     /**
      * The title for the operator-picker select-item.
      *
-     * @param operatorPickerTitle operatorPickerTitle Default value is "Operator"
+     * @param operatorPickerTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "Operator"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setOperatorPickerTitle(String operatorPickerTitle)  throws IllegalStateException {
@@ -375,18 +481,34 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     /**
      * The title for the operator-picker select-item.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getOperatorPickerTitle()  {
         return getAttributeAsString("operatorPickerTitle");
     }
 
+
+    /**
+     * With {@link com.smartgwt.client.types.TopOperatorAppearance}:"radio", form that appears above the stack of clauses and
+     * allows picking the {@link com.smartgwt.client.types.LogicalOperator} for the overall FilterBuilder. <P> By default,
+     * consists of a simple RadioGroupItem.
+     * <p>
+     * For an overview of how to use and configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return DynamicForm
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public DynamicForm getRadioOperatorForm() throws IllegalStateException {
+        errorIfNotCreated("radioOperatorForm");
+        return DynamicForm.getOrCreateRef(getAttributeAsJavaScriptObject("radioOperatorForm"));
+    }
+
+
     /**
      * The title for the Operator RadioGroupItem displayed in the {@link
      * com.smartgwt.client.widgets.form.FilterBuilder#getRadioOperatorForm radioOperatorForm}.
      *
-     * @param radioOperatorTitle radioOperatorTitle Default value is "Overall Operator"
+     * @param radioOperatorTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "Overall Operator"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setRadioOperatorTitle(String radioOperatorTitle)  throws IllegalStateException {
@@ -397,18 +519,19 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * The title for the Operator RadioGroupItem displayed in the {@link
      * com.smartgwt.client.widgets.form.FilterBuilder#getRadioOperatorForm radioOperatorForm}.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getRadioOperatorTitle()  {
         return getAttributeAsString("radioOperatorTitle");
     }
 
+
+
     /**
      * For operators that check that a value is within a range, text to show between the start and end input fields for
      * specifying the limits of the range.
      *
-     * @param rangeSeparator rangeSeparator Default value is "and"
+     * @param rangeSeparator . See {@link com.smartgwt.client.docs.String String}. Default value is "and"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setRangeSeparator(String rangeSeparator)  throws IllegalStateException {
@@ -419,17 +542,32 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * For operators that check that a value is within a range, text to show between the start and end input fields for
      * specifying the limits of the range.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getRangeSeparator()  {
         return getAttributeAsString("rangeSeparator");
     }
 
+
+    /**
+     * The removal ImgButton that appears before each clause if {@link
+     * com.smartgwt.client.widgets.form.FilterBuilder#getShowRemoveButton showRemoveButton} is set.
+     * <p>
+     * For an overview of how to use and configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return ImgButton
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public ImgButton getRemoveButton() throws IllegalStateException {
+        errorIfNotCreated("removeButton");
+        return ImgButton.getOrCreateRef(getAttributeAsJavaScriptObject("removeButton"));
+    }
+
+
     /**
      * The hover prompt text for the remove button.
      *
-     * @param removeButtonPrompt removeButtonPrompt Default value is "Remove"
+     * @param removeButtonPrompt . See {@link com.smartgwt.client.docs.String String}. Default value is "Remove"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setRemoveButtonPrompt(String removeButtonPrompt)  throws IllegalStateException {
@@ -439,12 +577,12 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     /**
      * The hover prompt text for the remove button.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getRemoveButtonPrompt()  {
         return getAttributeAsString("removeButtonPrompt");
     }
+
 
     /**
      * Dictates whether values entered by a user should be retained in the value fields when a  different field is selected. 
@@ -462,12 +600,12 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * Default value is true. <P> Note that, when switching between fields that have an optionDataSource or valueMap, this
      * property is ignored and the values are never retained.
      *
-     *
      * @return Boolean
      */
     public Boolean getRetainValuesAcrossFields()  {
         return getAttributeAsBoolean("retainValuesAcrossFields");
     }
+
 
     /**
      * If true, when the user hits the Enter key while focused in a text-item in this  FilterBuilder, we automatically invoke
@@ -484,12 +622,12 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * If true, when the user hits the Enter key while focused in a text-item in this  FilterBuilder, we automatically invoke
      * the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#addSearchHandler FilterBuilder.search} method.
      *
-     *
      * @return Boolean
      */
     public Boolean getSaveOnEnter()  {
         return getAttributeAsBoolean("saveOnEnter");
     }
+
 
     /**
      * If set, a button will be shown underneath all current clauses allowing a new clause to be added.
@@ -504,12 +642,12 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     /**
      * If set, a button will be shown underneath all current clauses allowing a new clause to be added.
      *
-     *
      * @return Boolean
      */
     public Boolean getShowAddButton()  {
         return getAttributeAsBoolean("showAddButton");
     }
+
 
     /**
      * If true (the default), show field titles in the drop-down box used to select a field for querying. If false, show actual
@@ -526,12 +664,12 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * If true (the default), show field titles in the drop-down box used to select a field for querying. If false, show actual
      * field names instead.
      *
-     *
      * @return Boolean
      */
     public Boolean getShowFieldTitles()  {
         return getAttributeAsBoolean("showFieldTitles");
     }
+
 
     /**
      * If set, a button will be shown for each clause allowing it to be removed.
@@ -546,12 +684,12 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     /**
      * If set, a button will be shown for each clause allowing it to be removed.
      *
-     *
      * @return Boolean
      */
     public Boolean getShowRemoveButton()  {
         return getAttributeAsBoolean("showRemoveButton");
     }
+
 
     /**
      * If true, causes a CheckboxItem to appear to the left of each clause in "inline"  {@link
@@ -572,12 +710,12 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * clauses so that, for example, clauses can be removed from the filterBuilder  by application code.  This property is
      * ignored for appearances other than "inline".
      *
-     *
      * @return Boolean
      */
     public Boolean getShowSelectionCheckbox()  {
         return getAttributeAsBoolean("showSelectionCheckbox");
     }
+
 
     /**
      * Whether to show a button that allows the user to add subclauses.  Defaults to false if  the {@link
@@ -594,17 +732,51 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * Whether to show a button that allows the user to add subclauses.  Defaults to false if  the {@link
      * com.smartgwt.client.types.TopOperatorAppearance} is "radio" or "inline", true in all other cases.
      *
-     *
      * @return Boolean
      */
     public Boolean getShowSubClauseButton()  {
         return getAttributeAsBoolean("showSubClauseButton");
     }
 
+
+    /**
+     * Should the FieldPicker items be sorted alphabetically in the drop down list.
+     *
+     * @param sortFields sortFields Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setSortFields(Boolean sortFields)  throws IllegalStateException {
+        setAttribute("sortFields", sortFields, false);
+    }
+
+    /**
+     * Should the FieldPicker items be sorted alphabetically in the drop down list.
+     *
+     * @return Boolean
+     */
+    public Boolean getSortFields()  {
+        return getAttributeAsBoolean("sortFields");
+    }
+
+
+    /**
+     * Button allowing the user to add subclauses grouped by a {@link com.smartgwt.client.types.LogicalOperator}.
+     * <p>
+     * For an overview of how to use and configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return IButton
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public IButton getSubClauseButton() throws IllegalStateException {
+        errorIfNotCreated("subClauseButton");
+        return IButton.getOrCreateRef(getAttributeAsJavaScriptObject("subClauseButton"));
+    }
+
+
     /**
      * The hover prompt text for the subClauseButton.
      *
-     * @param subClauseButtonPrompt subClauseButtonPrompt Default value is "Add Subclause"
+     * @param subClauseButtonPrompt . See {@link com.smartgwt.client.docs.String String}. Default value is "Add Subclause"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setSubClauseButtonPrompt(String subClauseButtonPrompt)  throws IllegalStateException {
@@ -614,17 +786,17 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     /**
      * The hover prompt text for the subClauseButton.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSubClauseButtonPrompt()  {
         return getAttributeAsString("subClauseButtonPrompt");
     }
 
+
     /**
      * The title of the subClauseButton
      *
-     * @param subClauseButtonTitle subClauseButtonTitle Default value is "+()"
+     * @param subClauseButtonTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "+()"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setSubClauseButtonTitle(String subClauseButtonTitle)  throws IllegalStateException {
@@ -634,12 +806,12 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     /**
      * The title of the subClauseButton
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSubClauseButtonTitle()  {
         return getAttributeAsString("subClauseButtonTitle");
     }
+
 
     /**
      * Default logical operator for all top-level clauses in the FilterBuilder. <P> May be able to be changed by the user via
@@ -658,18 +830,37 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * Default logical operator for all top-level clauses in the FilterBuilder. <P> May be able to be changed by the user via
      * the UI, according to {@link com.smartgwt.client.types.TopOperatorAppearance}.
      *
-     *
      * @return LogicalOperator
      */
     public LogicalOperator getTopOperator()  {
         return EnumUtil.getEnum(LogicalOperator.values(), getAttribute("topOperator"));
     }
 
+
+
+    /**
+     * With {@link com.smartgwt.client.types.TopOperatorAppearance} "bracket" and "inline", a form that appears to the left of
+     * the stack of clauses and allows picking the {@link com.smartgwt.client.types.LogicalOperator} for the overall 
+     * FilterBuilder (or for that specific FilterClause, in the case of "inline") <P> By default, consists of a CheckboxItem if
+     * {@link com.smartgwt.client.widgets.form.FilterBuilder#getShowSelectionCheckbox showSelectionCheckbox} is true, and a 
+     * simple SelectItem containing the available logical operators.
+     * <p>
+     * For an overview of how to use and configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return DynamicForm
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public DynamicForm getTopOperatorForm() throws IllegalStateException {
+        errorIfNotCreated("topOperatorForm");
+        return DynamicForm.getOrCreateRef(getAttributeAsJavaScriptObject("topOperatorForm"));
+    }
+
+
     /**
      * The title for the left-aligned Operator selectItem in the {@link
      * com.smartgwt.client.widgets.form.FilterBuilder#getTopOperatorForm topOperatorForm}.
      *
-     * @param topOperatorTitle topOperatorTitle Default value is "Clause Operator"
+     * @param topOperatorTitle . See {@link com.smartgwt.client.docs.String String}. Default value is "Clause Operator"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setTopOperatorTitle(String topOperatorTitle)  throws IllegalStateException {
@@ -680,12 +871,12 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * The title for the left-aligned Operator selectItem in the {@link
      * com.smartgwt.client.widgets.form.FilterBuilder#getTopOperatorForm topOperatorForm}.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getTopOperatorTitle()  {
         return getAttributeAsString("topOperatorTitle");
     }
+
 
     /**
      * If true (the default), validates each entered value when it changes, to make sure it is a  a valid value of its type
@@ -706,7 +897,6 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * possible to validate the  <code>FilterBuilder</code> by calling {@link
      * com.smartgwt.client.widgets.form.FilterBuilder#validate FilterBuilder.validate} from your own code.
      *
-     *
      * @return Boolean
      */
     public Boolean getValidateOnChange()  {
@@ -714,8 +904,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     // ********************* Methods ***********************
-            
-    /**
+	/**
      * Add a new {@link com.smartgwt.client.widgets.form.FilterClause} to this FilterBuilder. <P> This API is intended for the
      * rare use case of adding a highly customized FilterClause component that does not include the standard
      * field/operator/value picking interface, instead providing a custom interface and returning a criterion via {@link
@@ -730,8 +919,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addClause(filterClause.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-            
-    /**
+	/**
      * Add a new criterion, including recursively adding sub-criteria for a criterion that contains other criteria.
      * @param criterion new criterion to be added
      */
@@ -739,8 +927,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addCriterion(criterion.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-            
-    /**
+	/**
      * Clear all current criteria.
      */
     public native void clearCriteria() /*-{
@@ -763,25 +950,21 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     private native void setupFilterChangedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var filterChanged = $entry(function(){
+            var param = {};
+
+                var event = @com.smartgwt.client.widgets.form.events.FilterChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({filterChanged:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.form.events.FilterChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({filterChanged:  filterChanged              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.filterChanged = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.form.events.FilterChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.filterChanged =  filterChanged             ;
         }
    }-*/;
-            
-    /**
+	/**
      * Returns the type of editor to use for the field. <P> Default behavior is to use the  editorType for a custom operator,
      * otherwise,  use {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem} for before/after/between operators on
      * date fields, otherwise,  use the same editor as would be chosen by a {@link
@@ -793,7 +976,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      */
     public native String getEditorType(DataSourceField field, OperatorId operatorId) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getEditorType(field.@com.smartgwt.client.core.DataClass::getJsObj()(), operatorId.@com.smartgwt.client.types.OperatorId::getValue()());
+        var ret = self.getEditorType(field.@com.smartgwt.client.core.DataClass::getJsObj()(), operatorId.@com.smartgwt.client.types.OperatorId::getValue()());
+        return ret;
     }-*/;
     /**
      * Add a search handler.
@@ -812,37 +996,30 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     private native void setupSearchEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var search = $entry(function(){
+            var param = {"criteria" : arguments[0]};
+
+                var event = @com.smartgwt.client.widgets.form.events.FilterSearchEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({search:$entry(function(){
-                        var param = {"criteria" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.form.events.FilterSearchEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({search:  search              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.search = $entry(function(){
-                   var param = {"criteria" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.form.events.FilterSearchEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.search =  search             ;
         }
    }-*/;
-            
-    /**
+	/**
      * Validate the clauses of this FilterBuilder.
      *
      * @return true if all clauses are valid, false otherwise
      */
     public native Boolean validate() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.validate();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        var ret = self.validate();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 
     // ********************* Static Methods ***********************
@@ -853,7 +1030,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * properties of this class. Can also be used for skinning / styling purposes.
      * <P>
      * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
-     * underlying class (including those automatically generated in JavaScript). 
+     * underlying class (including those automatically generated in JavaScript).
      * This method should not be used to apply standard EventHandlers or override methods for
      * a class - use a custom subclass instead.
      *
@@ -864,8 +1041,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     	delete properties.ID;
         $wnd.isc.FilterBuilder.addProperties(properties);
     }-*/;
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
 
@@ -874,10 +1051,10 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         super.onInit();
         onInit_FilterBuilder();
     }
-    
+
     protected native void onInit_FilterBuilder () /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        
+
         self.__getValueFieldProperties = self.getValueFieldProperties;
         self.getValueFieldProperties = $entry(function(type, fieldName, operatorId, itemType) {
             var jObj = this.__ref;
@@ -893,7 +1070,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
             if (formItemJ == null) return null;
             return formItemJ.@com.smartgwt.client.widgets.form.fields.FormItem::getEditorTypeConfig()();
         });
-        
+
     }-*/;
     /**
      * If true (the default), show field titles in the drop-down box used to select a field for querying. If false, show
@@ -912,6 +1089,9 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * @param dataSource dataSource Default value is null
      */
     public void setDataSource(DataSource dataSource) {
+    	if(dataSource==null) {
+    		throw new IllegalArgumentException("Invalid call to setDataSource() passing null.  If you're having trouble with loading DataSources, please see the following FAQ: http://forums.smartclient.com/showthread.php?t=8159#aDSLoad");
+    	}
         setAttribute("dataSource", dataSource.getOrCreateJsObj(), true);
     }
 
@@ -964,12 +1144,12 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         var critJS = self.getCriteria();
         return @com.smartgwt.client.data.AdvancedCriteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(critJS);
     }-*/;
-    
+
     /**
      * Get the edited criteria entered by the user.
      *
-     * @param By default if a user has selected a field and operator type, but has failed to enter a value for 
-     *          the field it will be skipped. This optional parameter allows you to retrieve all criteria, 
+     * @param By default if a user has selected a field and operator type, but has failed to enter a value for
+     *          the field it will be skipped. This optional parameter allows you to retrieve all criteria,
      *          including those with an empty value attribute.
      * @return Get the criteria entered by the user.
      */
@@ -978,7 +1158,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         var critJS = self.getCriteria(includeEmptyValues);
         return @com.smartgwt.client.data.AdvancedCriteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(critJS);
     }-*/;
-    
+
     /**
      * Returns the list of this FilterBuilder's FilterClauses that are currently selected.  A  clause is "selected" if the user
      * has checked the checkbox next to it; therefore, this  method always returns an empty list unless the  {@link
@@ -991,26 +1171,9 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     public native FilterClause[] getSelectedClauses() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var clauses = self.getSelectedClauses();
-        return @com.smartgwt.client.widgets.form.FilterBuilder::convertToFilterClauseArray(Lcom/google/gwt/core/client/JavaScriptObject;)(clauses);
+        return @com.smartgwt.client.util.ConvertTo::arrayOfFilterClause(Lcom/google/gwt/core/client/JavaScriptObject;)(clauses);
     }-*/;
-    protected static FilterClause[] convertToFilterClauseArray(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new FilterClause[]{};
-        }
-        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-        FilterClause[] objects = new FilterClause[componentsj.length];
-        for (int i = 0; i < componentsj.length; i++) {
-            JavaScriptObject componentJS = componentsj[i];
-            FilterClause obj = (FilterClause) BaseWidget.getRef(componentJS);
-            if (obj == null) {
-                obj = new FilterClause(componentJS);
-            }
-            objects[i] = obj;
-        }
-        return objects;
-    }
 
-    
     /**
      * Remove a clause this FilterBuilder is currently showing.
      * @param clause clause as retrieved from filterBuilder.clauses
@@ -1022,9 +1185,9 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
 
 
     public Canvas[] getMembers() {
-        return Canvas.convertToCanvasArray(getAttributeAsJavaScriptObject("members"));
+        return com.smartgwt.client.util.ConvertTo.arrayOfCanvas(getAttributeAsJavaScriptObject("members"));
     }
-    
+
     /**
      * Override to return properties for the FormItem(s) used for the "value" field displayed within clauses within this
      * filterBuilder. <P> Note that the  valueType impacts when this method is called. For operators with valueType
@@ -1052,7 +1215,175 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         return retVal;
     }-*/;
 
+    public LogicalStructureObject setLogicalStructure(FilterBuilderLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.addButtonPrompt = getAttributeAsString("addButtonPrompt");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.addButtonPrompt:" + t.getMessage() + "\n";
+        }
+        try {
+            s.allowEmpty = getAttributeAsString("allowEmpty");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.allowEmpty:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataSourceAsDataSource = getDataSource();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.dataSourceAsDataSource:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataSourceAsString = getAttributeAsString("dataSource");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.dataSourceAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.fieldDataSource = getFieldDataSource();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.fieldDataSource:" + t.getMessage() + "\n";
+        }
+        try {
+            s.fieldPickerProperties = getAttributeAsString("fieldPickerProperties");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.fieldPickerProperties:" + t.getMessage() + "\n";
+        }
+        try {
+            s.fieldPickerTitle = getAttributeAsString("fieldPickerTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.fieldPickerTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.inlineAndNotTitle = getAttributeAsString("inlineAndNotTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.inlineAndNotTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.inlineAndTitle = getAttributeAsString("inlineAndTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.inlineAndTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.inlineOrTitle = getAttributeAsString("inlineOrTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.inlineOrTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.matchAllTitle = getAttributeAsString("matchAllTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.matchAllTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.matchAnyTitle = getAttributeAsString("matchAnyTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.matchAnyTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.matchNoneTitle = getAttributeAsString("matchNoneTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.matchNoneTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.missingFieldPrompt = getAttributeAsString("missingFieldPrompt");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.missingFieldPrompt:" + t.getMessage() + "\n";
+        }
+        try {
+            s.operatorPickerTitle = getAttributeAsString("operatorPickerTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.operatorPickerTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.radioOperatorTitle = getAttributeAsString("radioOperatorTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.radioOperatorTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rangeSeparator = getAttributeAsString("rangeSeparator");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.rangeSeparator:" + t.getMessage() + "\n";
+        }
+        try {
+            s.removeButtonPrompt = getAttributeAsString("removeButtonPrompt");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.removeButtonPrompt:" + t.getMessage() + "\n";
+        }
+        try {
+            s.retainValuesAcrossFields = getAttributeAsString("retainValuesAcrossFields");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.retainValuesAcrossFields:" + t.getMessage() + "\n";
+        }
+        try {
+            s.saveOnEnter = getAttributeAsString("saveOnEnter");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.saveOnEnter:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showAddButton = getAttributeAsString("showAddButton");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.showAddButton:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showFieldTitles = getAttributeAsString("showFieldTitles");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.showFieldTitles:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showRemoveButton = getAttributeAsString("showRemoveButton");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.showRemoveButton:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showSelectionCheckbox = getAttributeAsString("showSelectionCheckbox");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.showSelectionCheckbox:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showSubClauseButton = getAttributeAsString("showSubClauseButton");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.showSubClauseButton:" + t.getMessage() + "\n";
+        }
+        try {
+            s.sortFields = getAttributeAsString("sortFields");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.sortFields:" + t.getMessage() + "\n";
+        }
+        try {
+            s.subClauseButtonPrompt = getAttributeAsString("subClauseButtonPrompt");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.subClauseButtonPrompt:" + t.getMessage() + "\n";
+        }
+        try {
+            s.subClauseButtonTitle = getAttributeAsString("subClauseButtonTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.subClauseButtonTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.topOperator = getAttributeAsString("topOperator");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.topOperator:" + t.getMessage() + "\n";
+        }
+        try {
+            s.topOperatorAppearance = getAttributeAsString("topOperatorAppearance");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.topOperatorAppearance:" + t.getMessage() + "\n";
+        }
+        try {
+            s.topOperatorTitle = getAttributeAsString("topOperatorTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.topOperatorTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.validateOnChange = getAttributeAsString("validateOnChange");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.validateOnChange:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+
+    public LogicalStructureObject getLogicalStructure() {
+        FilterBuilderLogicalStructure s = new FilterBuilderLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

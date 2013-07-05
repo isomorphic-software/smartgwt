@@ -15,11 +15,13 @@
  */
  
 package com.smartgwt.client.widgets.grid.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface CellClickHandler extends EventHandler {
     /**
-     * Called when a cell receives a click event.
+     * Called when a cell receives a click event. <P> Note that returning false from this method will not prevent any specified
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#rowClick ListGrid.rowClick} handler from firing.
      *
      * @param event the event
      */

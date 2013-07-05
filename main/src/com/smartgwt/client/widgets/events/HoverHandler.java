@@ -15,13 +15,14 @@
  */
  
 package com.smartgwt.client.widgets.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface HoverHandler extends EventHandler {
     /**
      * If <code>canHover</code> is true for this widget, the <code>hover</code> string method will be fired when the user
      * hovers over this canvas. If this method returns false, it will suppress the default behavior of showing a hover canvas
-     * if <code>this.showHover</code>  is true.
+     * if <code>this.showHover</code> is true.
      *
      * @param event the event
      */

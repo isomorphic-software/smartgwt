@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasClickHandlers extends HasHandlers {
     /**
      * Called when this FormItem is clicked on. <P> Note: <code>click()</code> is available on StaticTextItem, BlurbItems,
@@ -30,3 +29,4 @@ public interface HasClickHandlers extends HasHandlers {
      */
     HandlerRegistration addClickHandler(ClickHandler handler);
 }
+

@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * The method of component-pooling to employ for {@link
  * com.smartgwt.client.types.RecordComponentPoolingMode#getShowRecordComponents recordComponents}. <P>
@@ -27,17 +28,16 @@ public enum RecordComponentPoolingMode implements ValueEnum {
      */
     VIEWPORT("viewport"),
     /**
-     * components are cleared when not in the viewport, but stay with a record until the record is dropped from cache. Best for
-     * guaranteed small datasets.
+     * components are {@link com.smartgwt.client.widgets.Canvas#clear clear()ed} when not in the viewport, but stay with a
+     * record until the record is dropped from cache. Best for guaranteed small datasets.
      */
     DATA("data"),
     /**
-     * components are pooled and will be passed to getEmbeddedComponent() with "recordChanged" set to true. Best for large
-     * datasets where embedded components  are uniform across different records and can be efficiently reconfigured to work 
-     * with a new record
+     * components are pooled and will be passed to {@link com.smartgwt.client.widgets.grid.ListGrid#updateRecordComponent
+     * updateRecordComponent()} with the <code>recordChanged</code> parameter set to true. Best for large datasets where
+     * embedded components are uniform across different records and can be efficiently reconfigured to work with a new record
      */
     RECYCLE("recycle");
-
     private String value;
 
     RecordComponentPoolingMode(String value) {

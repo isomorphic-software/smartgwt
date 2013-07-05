@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * The Hover class handles showing a simple Smart GWT canvas containing arbitrary HTML, or triggering some other action in
@@ -64,20 +84,19 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class Hover {
 
+
     // ********************* Properties / Attributes ***********************
 
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-            
-    /**
+	/**
      * Hide hover hover Canvas shown via {@link com.smartgwt.client.widgets.Hover#show Hover.show}
      */
     public static native void hide() /*-{
         $wnd.isc.Hover.hide();
     }-*/;
-            
-    /**
+	/**
      * Displays a standard Hover canvas containing the specified HTML content.<br> This method may also be called to modify the
      * content of the hover if it is already showing. Call {@link com.smartgwt.client.widgets.Hover#hide Hover.hide} to hide
      * the canvas again.<br> A common use case for calling this method is to asynchronously fetch detail data from the server
@@ -91,7 +110,7 @@ public class Hover {
      * com.smartgwt.client.widgets.Hover#leftOffset leftOffset} and {@link com.smartgwt.client.widgets.Hover#topOffset
      * topOffset}. If this position would render the Hover canvas partially clipped, it will be automatically modified to
      * ensure the Hover  is entirely visible.
-     * @param contents contents for the hover
+     * @param contents contents for the hover. See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @param properties object containing attributes for managing the hover canvas'   appearance. Valid properties include:<ul>  <li>left, top,
      * width, height  <li>baseStyle  <li>opacity  <li>wrap  <li>moveWithMouse [overrides {@link
      * com.smartgwt.client.widgets.Hover#moveWithMouse moveWithMouse}] </ul>
@@ -99,10 +118,9 @@ public class Hover {
     public static native void show(String contents, Label properties) /*-{
         $wnd.isc.Hover.show(contents, properties.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 }
-
 
 

@@ -23,6 +23,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -59,6 +60,23 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Group Summary.
@@ -85,13 +103,6 @@ public class GroupSummary extends RefDataClass {
     }
 
 
-    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
-        $wnd.isc["GroupSummary"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.Canvas::getConfig()());
-    }-*/;
-
-    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
-        $wnd.isc["GroupSummary"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getJsObj()());
-    }-*/;
 
     public GroupSummary(){
         
@@ -103,6 +114,7 @@ public class GroupSummary extends RefDataClass {
         
     }
 
+
     // ********************* Properties / Attributes ***********************
 
     // ********************* Methods ***********************
@@ -112,6 +124,5 @@ public class GroupSummary extends RefDataClass {
     // ***********************************************************
 
 }
-
 
 

@@ -20,9 +20,10 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 
 import com.smartgwt.client.bean.BeanProperty;
+import com.smartgwt.client.bean.BeanValueType;
 
 import com.smartgwt.client.widgets.BaseWidget;
-import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.SC;
 
 import java.util.HashMap;

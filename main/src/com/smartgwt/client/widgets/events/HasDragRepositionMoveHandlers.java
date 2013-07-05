@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDragRepositionMoveHandlers extends HasHandlers {
     /**
      * Executed every time the mouse moves while drag-repositioning. If this method does not Call {@link com.smartgwt.client.widgets.events.DragRepositionMoveEvent#cancel()} from within {@link DragRepositionMoveHandler#onDragRepositionMove}, the {@link
@@ -32,3 +31,4 @@ public interface HasDragRepositionMoveHandlers extends HasHandlers {
      */
     HandlerRegistration addDragRepositionMoveHandler(DragRepositionMoveHandler handler);
 }
+

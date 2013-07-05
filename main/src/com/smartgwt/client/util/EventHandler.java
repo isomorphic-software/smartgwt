@@ -17,13 +17,13 @@
 package com.smartgwt.client.util;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * The ISC system provides a predictable cross-browser event-handling mechanism for ISC widgets. Events can be handled both
@@ -88,41 +108,33 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 public class EventHandler {
 
+
     // ********************* Properties / Attributes ***********************
 
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-            
-    /**
+	/**
      * Return true if the alt (option) key is being held down.   Note that this is only set reliably for keyboard events.
      *
      * @return true == alt key is down
      */
     public static native Boolean altKeyDown() /*-{
-        var retVal =$wnd.isc.EventHandler.altKeyDown();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        var ret = $wnd.isc.EventHandler.altKeyDown();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
-            
-    /**
+	/**
      * Return true if the control key is being held down.   Note that this is only set reliably for keyboard events.
      *
      * @return true == control key is down
      */
     public static native Boolean ctrlKeyDown() /*-{
-        var retVal =$wnd.isc.EventHandler.ctrlKeyDown();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        var ret = $wnd.isc.EventHandler.ctrlKeyDown();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
-            
-    /**
+	/**
      * Returns the current dragTarget.  This is the component on which the drag and drop interaction was initiated.  This only
      * returns something meaningful during a drag and drop interaction.
      *
@@ -131,35 +143,30 @@ public class EventHandler {
      */
     public static native Canvas getDragTarget() /*-{
         var ret = $wnd.isc.EventHandler.getDragTarget();
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-            
-    /**
+	/**
      * Return the character for the current key being pressed.   Note that this is only set reliably for keyPress events on
      * character keys.
      *
      * @return Character the user entered. May be null for non-character keys.
      */
     public static native String getKeyEventCharacter() /*-{
-        return $wnd.isc.EventHandler.getKeyEventCharacter();
+        var ret = $wnd.isc.EventHandler.getKeyEventCharacter();
+        return ret;
     }-*/;
-            
-    /**
+	/**
      * Returns the numeric characterValue reported by the browser.          Only available on keyPress events, and only for
      * character (or ascii control) keys
      *
      * @return Numeric character value reported by the browser                   (ASCII value of the key pressed)
      */
     public static native int getKeyEventCharacterValue() /*-{
-        return $wnd.isc.EventHandler.getKeyEventCharacterValue();
+        var ret = $wnd.isc.EventHandler.getKeyEventCharacterValue();
+        return ret;
     }-*/;
-            
-    /**
+	/**
      * Returns the natively reported target (or source) DOM element for the current mouse event. <b>NOTE:</b> Smart GWT cannot
      * guarantee that the same element will be reported in all browser/platform configurations for all event types. If you wish
      * to make use of this value, we recommend testing your use case  in all target browser configurations.
@@ -167,97 +174,113 @@ public class EventHandler {
      * @return native DOM element over which the mouse event occurred
      */
     public static native Element getNativeMouseTarget() /*-{
-        return $wnd.isc.EventHandler.getNativeMouseTarget();
+        var ret = $wnd.isc.EventHandler.getNativeMouseTarget();
+        return ret;
     }-*/;
-            
-    /**
+	/**
      * Return the canvas that is the target of the mouse event. Returns null if no canvas found.
      *
      * @return event target canvas
      */
     public static native Canvas getTarget() /*-{
         var ret = $wnd.isc.EventHandler.getTarget();
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-            
-    /**
-     * Applies to {@link com.smartgwt.client.widgets.Canvas#addMouseWheelHandler mouseWheel} events only. Returns an integer
-     * indicating how far the mouse wheel was rotated. This value will be positive if the user scrolled the mousewheel forward
-     * or up, or negative if scrolled in the other direction and will be a multiple of 1 where 1 indicates the smallest
-     * possible rotation of the wheel.
+	/**
+     * Applies to {@link com.smartgwt.client.widgets.Canvas#addMouseWheelHandler mouseWheel} events only. Returns a numeric
+     * value indicating how far the mouse wheel was rotated. This value will be positive if the user scrolled the mousewheel
+     * forward or up, or negative if scrolled in the other direction. For a standard wheel-mouse, an increment of 1 relates to
+     * the smallest possible rotation of the mouse wheel. For other scrolling devices, such as scroll  gestures on a track pad,
+     * wheel delta may be reported in finer grained increments  (causing this method to return a fractional value). Developers
+     * should also be aware that some browsers and operating systems allow the user to configure the sensitivity of the mouse
+     * wheel, which may change this value.
      *
-     * @return integer indicating how far the mouse wheel was rotated.
+     * @return numeric value indicating how far the mouse wheel was rotated.
      */
-    public static native int getWheelDelta() /*-{
-        return $wnd.isc.EventHandler.getWheelDelta();
+    public static native float getWheelDelta() /*-{
+        var ret = $wnd.isc.EventHandler.getWheelDelta();
+        return ret;
     }-*/;
-            
-    /**
+
+	/**
+     * Applies to {@link com.smartgwt.client.widgets.Canvas#addMouseWheelHandler mouseWheel} events only. Returns a numeric
+     * value indicating how far the mouse wheel was rotated. This value will be positive if the user scrolled the mousewheel
+     * forward or up, or negative if scrolled in the other direction. For a standard wheel-mouse, an increment of 1 relates to
+     * the smallest possible rotation of the mouse wheel. For other scrolling devices, such as scroll  gestures on a track pad,
+     * wheel delta may be reported in finer grained increments  (causing this method to return a fractional value). Developers
+     * should also be aware that some browsers and operating systems allow the user to configure the sensitivity of the mouse
+     * wheel, which may change this value.
+     *
+     * @return numeric value indicating how far the mouse wheel was rotated.
+     */
+    public static native double getWheelDeltaAsDouble() /*-{
+        var ret = $wnd.isc.EventHandler.getWheelDelta();
+        return ret;
+    }-*/;
+
+	/**
      * Return the page-relative X (horizontal) coordinate of an event.
      *
      * @return x-coordinate in page coordinate space
      */
     public static native int getX() /*-{
-        return $wnd.isc.EventHandler.getX();
+        var ret = $wnd.isc.EventHandler.getX();
+        return ret;
     }-*/;
-            
-    /**
+	/**
      * Return the page-relative Y (vertical) coordinate of an event.
      *
      * @return y-coordinate in page coordinate space
      */
     public static native int getY() /*-{
-        return $wnd.isc.EventHandler.getY();
+        var ret = $wnd.isc.EventHandler.getY();
+        return ret;
     }-*/;
-            
-    /**
+	/**
      * Returns true if the left mouse button is being pressed.
      *
      * @return true == left button is down, false == up
      */
     public static native Boolean leftButtonDown() /*-{
-        var retVal =$wnd.isc.EventHandler.leftButtonDown();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        var ret = $wnd.isc.EventHandler.leftButtonDown();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
-            
-    /**
+	/**
      * Returns true if the right mouse button is being pressed.
      *
      * @return true == right button is down, false == up
      */
     public static native Boolean rightButtonDown() /*-{
-        var retVal =$wnd.isc.EventHandler.rightButtonDown();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        var ret = $wnd.isc.EventHandler.rightButtonDown();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
-            
-    /**
+	/**
      * Return true if the shift key is being held down.   Note that this is only set reliably for keyboard events.
      *
      * @return true == shift key is down
      */
     public static native Boolean shiftKeyDown() /*-{
-        var retVal =$wnd.isc.EventHandler.shiftKeyDown();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        var ret = $wnd.isc.EventHandler.shiftKeyDown();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
-        
-    // ***********************************************************        
+	/**
+     * Return whether this Canvas is masked by a clickMask (see {@link com.smartgwt.client.widgets.Canvas#showClickMask
+     * Canvas.showClickMask}).
+     * @param target widget to check
+     *
+     * @return true if masked, false if not masked.
+     */
+    public static native Boolean targetIsMasked(Canvas target) /*-{
+        var ret = $wnd.isc.EventHandler.targetIsMasked(target.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+    // ***********************************************************
 
 
     /**
@@ -367,6 +390,5 @@ public class EventHandler {
     }-*/;
 
 }
-
 
 

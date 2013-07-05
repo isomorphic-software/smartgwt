@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.tab.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasTabSelectedHandlers extends HasHandlers {
     /**
      * Notification fired when a tab is selected. Note that this will only fire if  this tabSet is drawn. If a tab is selected
@@ -31,3 +30,4 @@ public interface HasTabSelectedHandlers extends HasHandlers {
      */
     HandlerRegistration addTabSelectedHandler(TabSelectedHandler handler);
 }
+

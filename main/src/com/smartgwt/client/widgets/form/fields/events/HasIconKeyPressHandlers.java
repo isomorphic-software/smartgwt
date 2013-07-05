@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasIconKeyPressHandlers extends HasHandlers {
     /**
      * StringMethod.      Default action to fire when an icon has keyboard focus and the user types a key.      May be
@@ -30,3 +29,4 @@ public interface HasIconKeyPressHandlers extends HasHandlers {
      */
     HandlerRegistration addIconKeyPressHandler(IconKeyPressHandler handler);
 }
+

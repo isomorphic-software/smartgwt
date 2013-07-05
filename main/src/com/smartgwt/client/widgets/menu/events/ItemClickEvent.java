@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +46,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class ItemClickEvent extends BrowserEvent<ItemClickHandler>  implements Cancellable {
     private boolean cancel = false;
 
@@ -93,7 +98,6 @@ public class ItemClickEvent extends BrowserEvent<ItemClickHandler>  implements C
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(ItemClickHandler handler) {
         handler.onItemClick(this);
@@ -112,7 +116,6 @@ public class ItemClickEvent extends BrowserEvent<ItemClickHandler>  implements C
         super(jsObj);
     }
 
-
     /**
      * false if event processing should be stopped, true to continue
      */
@@ -126,17 +129,17 @@ public class ItemClickEvent extends BrowserEvent<ItemClickHandler>  implements C
     public boolean isCancelled() {
         return cancel;
     }
-
-    /**
-     * Index of the column clicked by the user. May be null if                                  this menu item was activated in response to a keyboard event.
+	/**
+     * Index of the column clicked by the user. May be null if                                  this menu item was activated in
+     * response to a keyboard event.
      *
      * @return Index of the column clicked by the user. May be null if                                  this menu item was activated in response to a keyboard event.
      */
-    public  native int getColNum() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.colNum;
+    public native int getColNum() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.colNum;
+        return ret;
     }-*/;
-
 
     /**
      * Pointer to the item in question.

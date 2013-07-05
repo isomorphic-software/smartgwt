@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.form.fields;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Class for editable multi-line text areas (uses HTML <code>&lt;TEXTAREA&gt;</code> object)
@@ -64,8 +84,15 @@ import com.google.gwt.event.shared.HasHandlers;
 public class TextAreaItem extends FormItem {
 
     public static TextAreaItem getOrCreateRef(JavaScriptObject jsObj) {
+
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+		if(obj != null && JSOHelper.getAttribute(jsObj,"__ref")==null) {
+            return com.smartgwt.client.util.ObjectFactory.createFormItem("TextAreaItem",jsObj);
+
+        } else
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (TextAreaItem) obj;
@@ -74,12 +101,44 @@ public class TextAreaItem extends FormItem {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        $wnd.isc["TextAreaItem"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.Canvas::getConfig()());
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        $wnd.isc["TextAreaItem"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getJsObj()());
+    }-*/;
+
     public TextAreaItem(){
         setAttribute("editorType", "TextAreaItem");
     }
 
     public TextAreaItem(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
+        
     }
 
     public TextAreaItem(String name) {
@@ -93,7 +152,9 @@ public class TextAreaItem extends FormItem {
         setAttribute("editorType", "TextAreaItem");
     }
 
+
     // ********************* Properties / Attributes ***********************
+
 
     /**
      * Should this form item fire its {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler change} handler
@@ -115,12 +176,42 @@ public class TextAreaItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.FormItem#getValue getValue} will not reflect the value displayed in the form
      * item element as long as focus is in the form item element.
      *
-     *
      * @return Boolean
      */
     public Boolean getChangeOnKeypress()  {
         return getAttributeAsBoolean("changeOnKeypress");
     }
+
+
+
+    /**
+     * With <code>formatOnBlur</code> enabled, this textAreaItem will format its value according to any specified static {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#formatValue static formatter} as long as the item does not have focus.
+     * Once the user puts focus into the item the formatter will be removed. This provides a simply way for developers to show
+     * a nicely formatted display value in a freeform text field, without the need for an explicit {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#formatEditorValue FormItem.formatEditorValue}  and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#parseEditorValue FormItem.parseEditorValue} pair.
+     *
+     * @param formatOnBlur formatOnBlur Default value is false
+     */
+    public void setFormatOnBlur(Boolean formatOnBlur) {
+        setAttribute("formatOnBlur", formatOnBlur);
+    }
+
+    /**
+     * With <code>formatOnBlur</code> enabled, this textAreaItem will format its value according to any specified static {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#formatValue static formatter} as long as the item does not have focus.
+     * Once the user puts focus into the item the formatter will be removed. This provides a simply way for developers to show
+     * a nicely formatted display value in a freeform text field, without the need for an explicit {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#formatEditorValue FormItem.formatEditorValue}  and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#parseEditorValue FormItem.parseEditorValue} pair.
+     *
+     * @return Boolean
+     */
+    public Boolean getFormatOnBlur()  {
+        return getAttributeAsBoolean("formatOnBlur");
+    }
+
 
     /**
      * default height of this item
@@ -135,13 +226,13 @@ public class TextAreaItem extends FormItem {
     /**
      * default height of this item
      *
-     *
      * @return int
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getHeight()  {
         return getAttributeAsInt("height");
     }
+
 
     /**
      * Align icons with the top edge of text area icons by default.
@@ -155,12 +246,12 @@ public class TextAreaItem extends FormItem {
     /**
      * Align icons with the top edge of text area icons by default.
      *
-     *
      * @return VerticalAlignment
      */
     public VerticalAlignment getIconVAlign()  {
         return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("iconVAlign"));
     }
+
 
     /**
      * Minimum valid height for this TextAreaItem in px. If the specified {@link
@@ -178,12 +269,12 @@ public class TextAreaItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.TextAreaItem#getHeight height} is less than this value, the text area will still
      * render at this height.
      *
-     *
      * @return int
      */
     public int getMinHeight()  {
         return getAttributeAsInt("minHeight");
     }
+
 
     /**
      * When generating a print-view of the component containing this TextArea, should the form item expand to accommodate its
@@ -202,13 +293,38 @@ public class TextAreaItem extends FormItem {
      * value? If set to false the text box not expand to fit its content in the print view, instead showing exactly as it does
      * in the live form, possibly with scrollbars.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
     public Boolean getPrintFullText()  {
         return getAttributeAsBoolean("printFullText");
     }
+
+
+    /**
+     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnClick selectOnClick} behavior to be configured
+     * on a per-FormItem basis.  Normally all items in a form default to the value of {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnClick selectOnClick}.
+     *
+     * @param selectOnClick selectOnClick Default value is null
+     * @see com.smartgwt.client.docs.Focus Focus overview and related methods
+     */
+    public void setSelectOnClick(Boolean selectOnClick) {
+        setAttribute("selectOnClick", selectOnClick);
+    }
+
+    /**
+     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnClick selectOnClick} behavior to be configured
+     * on a per-FormItem basis.  Normally all items in a form default to the value of {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnClick selectOnClick}.
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Focus Focus overview and related methods
+     */
+    public Boolean getSelectOnClick()  {
+        return getAttributeAsBoolean("selectOnClick");
+    }
+
 
     /**
      * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured
@@ -227,13 +343,13 @@ public class TextAreaItem extends FormItem {
      * on a per-FormItem basis.  Normally all items in a form default to the value of {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
     public Boolean getSelectOnFocus()  {
         return getAttributeAsBoolean("selectOnFocus");
     }
+
 
     /**
      * If showing hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
@@ -254,7 +370,6 @@ public class TextAreaItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.TextAreaItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to
      * it.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getHint
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -263,11 +378,12 @@ public class TextAreaItem extends FormItem {
         return getAttributeAsBoolean("showHintInField");
     }
 
+
     /**
      * Base CSS class to apply to this item's input element. NOTE: See the {@link CompoundFormItem_skinning} discussion for
      * special skinning considerations.
      *
-     * @param textBoxStyle textBoxStyle Default value is "textItem"
+     * @param textBoxStyle . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}. Default value is "textItem"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextBoxStyle(String textBoxStyle) {
@@ -278,13 +394,13 @@ public class TextAreaItem extends FormItem {
      * Base CSS class to apply to this item's input element. NOTE: See the {@link CompoundFormItem_skinning} discussion for
      * special skinning considerations.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTextBoxStyle()  {
         return getAttributeAsString("textBoxStyle");
     }
+
 
     /**
      * default width of this item
@@ -299,7 +415,6 @@ public class TextAreaItem extends FormItem {
     /**
      * default width of this item
      *
-     *
      * @return int
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -307,9 +422,9 @@ public class TextAreaItem extends FormItem {
         return getAttributeAsInt("width");
     }
 
+
     // ********************* Methods ***********************
-            
-    /**
+	/**
      * If this item currently has focus, clear the current selection. leaving focus in the item. Has no effect if the item is
      * undrawn or unfocused. Only applies to text-based items.
      */
@@ -317,19 +432,17 @@ public class TextAreaItem extends FormItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.deselectValue();
     }-*/;
-
-    /**
+	/**
      * If this item currently has focus, clear the current selection. leaving focus in the item. Has no effect if the item is
      * undrawn or unfocused. Only applies to text-based items.
      * @param start By default the text insertion cursor will be moved to the end of the   current value - pass in this parameter to move to
      * the start instead
      */
-    public native void deselectValue(boolean start) /*-{
+    public native void deselectValue(Boolean start) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.deselectValue(start);
+        self.deselectValue(start == null ? null : start.@java.lang.Boolean::booleanValue()());
     }-*/;
-            
-    /**
+	/**
      * Returns the raw text value typed into this form field, which can differ from  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} in various cases - for example: <ul>
      * <li>for items that constrain the value range, such as a {@link com.smartgwt.client.widgets.form.fields.DateItem} with
@@ -344,18 +457,17 @@ public class TextAreaItem extends FormItem {
      */
     public native String getEnteredValue() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        return self.getEnteredValue();
+        var ret = self.getEnteredValue();
+        return ret;
     }-*/;
-            
-    /**
+	/**
      * Put focus in this item and select the entire value. Only applies to text based items
      */
     public native void selectValue() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.selectValue();
     }-*/;
-            
-    /**
+	/**
      * Puts focus into this form item and selects characters between the given indices. Only applies to drawn text based items.
      * @param start selection starting character index
      * @param end end of selection character index
@@ -366,8 +478,26 @@ public class TextAreaItem extends FormItem {
     }-*/;
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+    /**
+     * Class level method to set the default properties of this class. If set, then all subsequent instances of this
+     * class will automatically have the default properties that were set when this method was called. This is a powerful
+     * feature that eliminates the need for users to create a separate hierarchy of subclasses that only alter the default
+     * properties of this class. Can also be used for skinning / styling purposes.
+     * <P>
+     * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
+     * underlying class (including those automatically generated in JavaScript).
+     * This method should not be used to apply standard EventHandlers or override methods for
+     * a class - use a custom subclass instead.
+     *
+     * @param textAreaItemProperties properties that should be used as new defaults when instances of this class are created
+     */
+    public static native void setDefaultProperties(TextAreaItem textAreaItemProperties) /*-{
+    	var properties = $wnd.isc.addProperties({},textAreaItemProperties.@com.smartgwt.client.core.RefDataClass::getJsObj()());
+    	delete properties.ID;
+        $wnd.isc.TextAreaItem.addProperties(properties);
+    }-*/;
+
+    // ***********************************************************
 
 
     /**

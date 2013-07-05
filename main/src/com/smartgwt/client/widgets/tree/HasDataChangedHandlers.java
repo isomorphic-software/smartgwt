@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.tree;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDataChangedHandlers extends HasHandlers {
     /**
      * Called when the structure of this tree is changed in any way.  Intended to be observed. <br><br> Note that on a big
@@ -30,3 +29,4 @@ public interface HasDataChangedHandlers extends HasHandlers {
      */
     HandlerRegistration addDataChangedHandler(DataChangedHandler handler);
 }
+

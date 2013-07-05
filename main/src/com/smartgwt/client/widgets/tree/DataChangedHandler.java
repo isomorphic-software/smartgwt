@@ -15,6 +15,7 @@
  */
  
 package com.smartgwt.client.widgets.tree;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface DataChangedHandler extends EventHandler {

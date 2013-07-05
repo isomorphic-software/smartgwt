@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +46,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class MenuItemClickEvent extends AbstractSmartEvent<ClickHandler>  {
 
     /**
@@ -92,7 +97,6 @@ public class MenuItemClickEvent extends AbstractSmartEvent<ClickHandler>  {
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(ClickHandler handler) {
         handler.onClick(this);
@@ -111,47 +115,52 @@ public class MenuItemClickEvent extends AbstractSmartEvent<ClickHandler>  {
         super(jsObj);
     }
 
-
-
-    /**
-     * for a menu shown as a context menu, the Canvas the menu was shown                        on.  Otherwise the ${isc.DocUtils.linkForRef('class:Menu')} instance of which this&#010                        ${isc.DocUtils.linkForRef('object:MenuItem')} is a member.
+	/**
+     * for a menu shown as a context menu, the Canvas the menu was shown                        on.  Otherwise the {@link
+     * com.smartgwt.client.widgets.menu.Menu} instance of which this                        {@link
+     * com.smartgwt.client.widgets.menu.MenuItem} is a member.
      *
      * @return for a menu shown as a context menu, the Canvas the menu was shown                        on.  Otherwise the ${isc.DocUtils.linkForRef('class:Menu')} instance of which this&#010                        ${isc.DocUtils.linkForRef('object:MenuItem')} is a member.
      */
-    public  native Canvas getTarget() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.target);
+    public native Canvas getTarget() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.target;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
-    /**
-     * The ${isc.DocUtils.linkForRef('object:MenuItem')} that was clicked on.
+	/**
+     * The {@link com.smartgwt.client.widgets.menu.MenuItem} that was clicked on.
      *
      * @return The ${isc.DocUtils.linkForRef('object:MenuItem')} that was clicked on.
      */
-    public  native MenuItem getItem() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.menu.MenuItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
+    public native MenuItem getItem() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.item;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.menu.MenuItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
-    /**
-     * The ${isc.DocUtils.linkForRef('class:Menu')} instance of which this ${isc.DocUtils.linkForRef('object:MenuItem')} is a                          member.
+	/**
+     * The {@link com.smartgwt.client.widgets.menu.Menu} instance of which this {@link
+     * com.smartgwt.client.widgets.menu.MenuItem} is a                          member.
      *
      * @return The ${isc.DocUtils.linkForRef('class:Menu')} instance of which this ${isc.DocUtils.linkForRef('object:MenuItem')} is a                          member.
      */
-    public  native Menu getMenu() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.menu.Menu::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.menu);
+    public native Menu getMenu() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.menu;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.menu.Menu::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
-    /**
-     * Index of the column the user clicked. May be null if the                          user activated the menu via a keyboard event.
+	/**
+     * Index of the column the user clicked. May be null if the                          user activated the menu via a keyboard
+     * event.
      *
      * @return Index of the column the user clicked. May be null if the                          user activated the menu via a keyboard event.
      */
-    public  native int getColNum() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.colNum;
+    public native int getColNum() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.colNum;
+        return ret;
     }-*/;
-
 
 }

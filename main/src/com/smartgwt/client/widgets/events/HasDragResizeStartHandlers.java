@@ -19,14 +19,14 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDragResizeStartHandlers extends HasHandlers {
     /**
-     * Executed when resize dragging first starts. No default implementation.   Create this handler to set things up for the
-     * drag resize.
+     * Executed when resize dragging first starts. No default implementation. Create this handler to set things up for the drag
+     * resize.
      *
      * @param handler the dragResizeStart handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addDragResizeStartHandler(DragResizeStartHandler handler);
 }
+

@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.form.fields.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasShowValueHandlers extends HasHandlers {
     /**
      * This method will be called whenever this form item's value is being set via a programmatic call to e.g: {@link
@@ -32,3 +31,4 @@ public interface HasShowValueHandlers extends HasHandlers {
      */
     HandlerRegistration addShowValueHandler(ShowValueHandler handler);
 }
+

@@ -15,6 +15,7 @@
  */
  
 package com.smartgwt.client.widgets.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface MouseStillDownHandler extends EventHandler {

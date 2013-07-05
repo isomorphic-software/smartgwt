@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +46,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class CellSavedEvent extends BrowserEvent<CellSavedHandler>  {
 
     /**
@@ -92,7 +97,6 @@ public class CellSavedEvent extends BrowserEvent<CellSavedHandler>  {
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(CellSavedHandler handler) {
         handler.onCellSaved(this);
@@ -111,57 +115,56 @@ public class CellSavedEvent extends BrowserEvent<CellSavedHandler>  {
         super(jsObj);
     }
 
-
-
-    /**
+	/**
      * record for the cell being changed
      *
      * @return record for the cell being changed
      */
-    public  native Record getRecord() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
+    public native ListGridRecord getRecord() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.record;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
-    /**
+	/**
      * new value for the cell
      *
      * @return new value for the cell
      */
-    public  native Object getNewValue() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return $wnd.SmartGWT.convertToJavaType(jsObj.newValue);
+    public native Object getNewValue() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.newValue;
+        return $wnd.SmartGWT.convertToJavaType(ret);
     }-*/;
-
-    /**
+	/**
      * old value for the cell
      *
      * @return old value for the cell
      */
-    public  native Object getOldValue() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return $wnd.SmartGWT.convertToJavaType(jsObj.oldValue);
+    public native Object getOldValue() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.oldValue;
+        return $wnd.SmartGWT.convertToJavaType(ret);
     }-*/;
-
-    /**
+	/**
      * row number for the cell
      *
      * @return row number for the cell
      */
-    public  native int getRowNum() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.rowNum;
+    public native int getRowNum() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.rowNum;
+        return ret;
     }-*/;
-
-    /**
+	/**
      * column number of the cell
      *
      * @return column number of the cell
      */
-    public  native int getColNum() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.colNum;
+    public native int getColNum() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.colNum;
+        return ret;
     }-*/;
-
 
 }

@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDragStopHandlers extends HasHandlers {
     /**
      * Executed when the mouse button is released at the end of the drag. Your widget can use this opportunity to fire code
@@ -30,3 +29,4 @@ public interface HasDragStopHandlers extends HasHandlers {
      */
     HandlerRegistration addDragStopHandler(DragStopHandler handler);
 }
+

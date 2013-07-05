@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.calendar.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDayBodyClickHandlers extends HasHandlers {
     /**
      * Called when the body area of a day in the month view is clicked on, outside of any links to a particular event. <P> By
@@ -32,3 +31,4 @@ public interface HasDayBodyClickHandlers extends HasHandlers {
      */
     HandlerRegistration addDayBodyClickHandler(DayBodyClickHandler handler);
 }
+

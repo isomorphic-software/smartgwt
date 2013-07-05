@@ -19,11 +19,10 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasKeyPressHandlers extends HasHandlers {
     /**
      * Executed when a key is pressed and released on a focusable widget ({@link com.smartgwt.client.widgets.Canvas#getCanFocus
-     * canFocus}: true).  <P> Use {@link com.smartgwt.client.util.EventHandler#getKey EventHandler.getKey} to find out the
+     * canFocus}: true). <P> Use {@link com.smartgwt.client.util.EventHandler#getKey EventHandler.getKey} to find out the
      * String of the key that was pressed, and use {@link com.smartgwt.client.util.EventHandler#shiftKeyDown
      * EventHandler.shiftKeyDown} and related functions to determine whether modifier keys were down.
      *
@@ -32,3 +31,4 @@ public interface HasKeyPressHandlers extends HasHandlers {
      */
     HandlerRegistration addKeyPressHandler(KeyPressHandler handler);
 }
+

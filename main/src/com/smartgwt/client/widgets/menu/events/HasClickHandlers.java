@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.menu.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasClickHandlers extends HasHandlers {
     /**
      * Executed when this menu item is clicked by the user. The click handler must be specified as a function or string of
@@ -31,3 +30,4 @@ public interface HasClickHandlers extends HasHandlers {
      */
     HandlerRegistration addClickHandler(ClickHandler handler);
 }
+

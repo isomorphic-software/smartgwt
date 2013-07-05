@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.grid.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasRowEditorEnterHandlers extends HasHandlers {
     /**
      * Callback fired when the user starts editing a new row.
@@ -29,3 +28,4 @@ public interface HasRowEditorEnterHandlers extends HasHandlers {
      */
     HandlerRegistration addRowEditorEnterHandler(RowEditorEnterHandler handler);
 }
+

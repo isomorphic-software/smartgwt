@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.toolbar.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasItemClickHandlers extends HasHandlers {
     /**
      * Called when one of the buttons receives a click event
@@ -29,3 +28,4 @@ public interface HasItemClickHandlers extends HasHandlers {
      */
     HandlerRegistration addItemClickHandler(ItemClickHandler handler);
 }
+

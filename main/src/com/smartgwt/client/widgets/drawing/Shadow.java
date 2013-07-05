@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.drawing;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,21 +45,41 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
- * A class used to define a shadow used in a Draw<Shape> Types.
+ * A class used to define a shadow used in a Draw&lt;Shape&gt; Types.
  */
 public class Shadow extends DataClass {
 
@@ -68,15 +88,25 @@ public class Shadow extends DataClass {
         return new Shadow(jsObj);
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
+
     public Shadow(){
         
     }
 
     public Shadow(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
+        
     }
 
+
     // ********************* Properties / Attributes ***********************
+
 
     /**
      * 
@@ -90,17 +120,17 @@ public class Shadow extends DataClass {
     /**
      * 
      *
-     *
      * @return int
      */
     public int getBlur()  {
         return getAttributeAsInt("blur");
     }
 
+
     /**
      * 
      *
-     * @param color color Default value is black
+     * @param color . See {@link com.smartgwt.client.docs.CSSColor CSSColor}. Default value is black
      */
     public void setColor(String color) {
         setAttribute("color", color);
@@ -109,12 +139,12 @@ public class Shadow extends DataClass {
     /**
      * 
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSColor CSSColor}
      */
     public String getColor()  {
         return getAttributeAsString("color");
     }
+
 
     /**
      * 
@@ -128,7 +158,6 @@ public class Shadow extends DataClass {
     /**
      * 
      *
-     *
      * @return Point
      */
     public Point getOffset()  {
@@ -138,10 +167,9 @@ public class Shadow extends DataClass {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 }
-
 
 

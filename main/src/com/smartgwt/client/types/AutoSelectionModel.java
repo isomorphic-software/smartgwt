@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Selection model for {@link com.smartgwt.client.widgets.cube.CubeGrid} indicating which cells in the body should be
  * selected when row or column headers are selected.
@@ -37,7 +38,6 @@ public enum AutoSelectionModel implements ValueEnum {
      * Selecting row or column headers will not select cells in the body.
      */
     NONE("none");
-
     private String value;
 
     AutoSelectionModel(String value) {

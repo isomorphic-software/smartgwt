@@ -18,12 +18,11 @@ package com.smartgwt.client.types;
  */
  
 /**
- * Valid display formats for dates.  These strings are the names of formatters which can be  passed to
+ * Valid display formats for dates.  These strings are the names of formatters which can be passed to
  * <code>Date.setNormalDisplayFormat()</code> or <code>Date.setShortDisplayFormat()</code> and will be subsequently used as
  * default long or short formatters for date objects by Smart GWT components.<br> Default set of valid display formats is
  * as follows:<br><br>
  */
-@Deprecated
 public enum DateDisplayFormat implements ValueEnum {
     /**
      * Default native browser 'toString()' implementation. May vary by browser.<br> <i>Example</i>: <code>Fri Nov 04 2005
@@ -65,9 +64,10 @@ public enum DateDisplayFormat implements ValueEnum {
     TOSERIALIZEABLEDATE("toSerializeableDate"),
     /**
      * Date in the format &lt;YYYYMMDD&gt;T&lt;HHMMSS&gt;Z <i>Example</i>: <code>20051104T111001Z</code> <br> <br> Note: In
-     * addition to these standard formats, custom formatting can be set by passing a function directly to 
-     * Date.setNormalDisplayFormat et al. This  function will then be executed whenever the appropriate formatter method is
-     * called [eg   Date.toNormalDate], in the scope of the date instance in question.
+     * addition to these standard formats, custom formatting can be set by passing a function directly to {@link
+     * com.smartgwt.client.util.Date#setNormalDisplayFormat Date.setNormalDisplayFormat} et al. This function will then be
+     * executed whenever the appropriate formatter method is called [eg {@link com.smartgwt.client.util.Date#toNormalDate
+     * Date.toNormalDate}], in the scope of the date instance in question.
      */
     TODATESTAMP("toDateStamp");
     private String value;
@@ -80,4 +80,3 @@ public enum DateDisplayFormat implements ValueEnum {
         return this.value;
     }
 }
-        

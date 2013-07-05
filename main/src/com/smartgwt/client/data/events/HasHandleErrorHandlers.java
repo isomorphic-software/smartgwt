@@ -19,7 +19,6 @@ package com.smartgwt.client.data.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasHandleErrorHandlers extends HasHandlers {
     /**
      * If you define this method on a DataSource, it will be called whenever the server returns a DSResponse with a status
@@ -33,3 +32,4 @@ public interface HasHandleErrorHandlers extends HasHandlers {
      */
     HandlerRegistration addHandleErrorHandler(HandleErrorHandler handler);
 }
+

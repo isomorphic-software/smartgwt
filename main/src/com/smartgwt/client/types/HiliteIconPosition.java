@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -14,8 +17,6 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.types;
-
 /**
  * Where a {@link com.smartgwt.client.widgets.DataBoundComponent#getHiliteIcons hilite icon} will be placed relative to 
  * normal cell content.
@@ -33,7 +34,6 @@ public enum HiliteIconPosition implements ValueEnum {
      * icon will be shown instead of the normal cell contents
      */
     REPLACE("replace");
-
     private String value;
 
     HiliteIconPosition(String value) {

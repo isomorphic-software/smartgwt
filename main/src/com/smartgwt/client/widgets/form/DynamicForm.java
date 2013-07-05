@@ -13,9 +13,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
-
+ 
 package com.smartgwt.client.widgets.form;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +23,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,86 +45,147 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
+import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * The DynamicForm manages a collection of FormItems which represent user input controls.  The
- *  DynamicForm provides layout, value management, validation and databinding for the controls
- *  it manages.
+ *  DynamicForm provides {@link com.smartgwt.client.docs.FormLayout layout}, value management, validation and
+ *  databinding for the controls it manages.
  *  <P>
- * To create a DynamicForm, set {@link com.smartgwt.client.widgets.form.DynamicForm#getFields fields} to an Array of
- * Objects describing the
- *  FormItems you want to use.  For example:
+ *  
+ *  To create a DynamicForm, create several {@link com.smartgwt.client.widgets.form.fields.FormItem}s and pass them to
+ *  {@link com.smartgwt.client.widgets.form.DynamicForm#getSetItems setItems}.  For example:
  *  <pre>
- *     isc.DynamicForm.create({
- *         fields:[
- *             {name:"userName", type:"text"},  // creates a TextItem
- *             {name:"usState", type:"select"}  // creates a SelectItem
- *         ]
- *     })
+ *     DynamicForm form = new DynamicForm();
+ *     TextItem textItem = new TextItem("userName");
+ *     SelectItem selectItem = new SelectItem("usState");
+ *     form.setItems(textItem, selectItem);
  *  </pre>
+ *  
+ *  
  *  The item <code>name</code> is an identifier for the item that must be unique just within
  *  this form.  It is used:
  *  <ul>
- *  <li> as the property name under which the item's value is stored in the form (the form's
+ *  <li> as the name under which the item's value is stored in the form (the form's
  *       current values are accessible as {@link com.smartgwt.client.widgets.form.DynamicForm#getValues form.getValues()}
  *  <li> when retrieving the FormItem's current value (via
- *       {@link com.smartgwt.client.widgets.form.DynamicForm#getValue form.getValue()})
+ *       {@link com.smartgwt.client.widgets.form.DynamicForm#getValue form.getValue()}) 
  *  <li> to retrieve the item itself via {@link com.smartgwt.client.widgets.form.DynamicForm#getItem form.getItem()}
  *  </ul>
- *  The item <code>type</code> controls what kind of FormItem is created.  See
- *  {@link com.smartgwt.client.types.FormItemType}.
+ *  FormItems can also be created by binding the form to a DataSource via
+ *  <code>setDataSource()</code>.  In this case, FormItems are
+ *  chosen based on the data type of the field - see {@link com.smartgwt.client.types.FormItemType}.  You can override
+ *  the automatically chosen FormItem via {@link com.smartgwt.client.data.DataSourceField#getEditorType editorType}.  
  *  <P>
- * The {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} and {@link
- * com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue defaultValue} are also
- *  commonly specified.  All FormItems share a common set of properties for controlling
- *  {@link com.smartgwt.client.docs.FormLayout form layout}.  Other properties common to all FormItems are
- * documented on the {@link com.smartgwt.client.widgets.form.fields.FormItem} class, and properties specific to particular
- * FormItems are
- *  documented on the respective FormItems.
+ *  When using DataSource binding, you can also add additional FormItems not specified in the
+ *  DataSource, or override any properties on the automatically generated FormItems, without
+ *  having to re-declare any information that comes from the DataSource.  See the QuickStart
+ *  Guide chapter on Data Binding for an overview.
+ *  <P>
+ *  All FormItems share a common set of properties for controlling {@link com.smartgwt.client.docs.FormLayout form
+ * layout}.  Other properties common to all FormItems are documented on the {@link
+ * com.smartgwt.client.widgets.form.fields.FormItem}
+ *  class, and properties specific to particular FormItems are documented on the respective
+ *  FormItems.  
  *  <P>
  *  NOTE: For very simple forms consisting of exactly one item, you still use a DynamicForm.
  * See the "fontSelector" form in the <a href="http://www.smartclient.com/smartgwt/showcase/#toolstrip"
  * target="examples">Toolstrip example</a>.
  */
-public class DynamicForm extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.form.events.HasSubmitValuesHandlers, com.smartgwt.client.widgets.form.events.HasItemChangeHandlers, com.smartgwt.client.widgets.form.events.HasItemChangedHandlers, com.smartgwt.client.widgets.form.events.HasItemKeyPressHandlers, com.smartgwt.client.widgets.form.events.HasFormSubmitFailedHandlers, com.smartgwt.client.widgets.form.events.HasHiddenValidationErrorsHandlers, com.smartgwt.client.widgets.form.events.HasAsyncValidationReplyHandlers {
+public class DynamicForm extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.form.events.HasFormSubmitFailedHandlers, com.smartgwt.client.widgets.form.events.HasAsyncValidationReplyHandlers, com.smartgwt.client.widgets.form.events.HasHiddenValidationErrorsHandlers, com.smartgwt.client.widgets.form.events.HasItemChangeHandlers, com.smartgwt.client.widgets.form.events.HasItemChangedHandlers, com.smartgwt.client.widgets.form.events.HasItemKeyPressHandlers, com.smartgwt.client.widgets.form.events.HasSubmitValuesHandlers {
 
-    public static DynamicForm getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (DynamicForm) obj;
+    public native static DynamicForm getOrCreateRef(JavaScriptObject jsObj) /*-{
+        if (jsObj == null) return null;
+        var instance = jsObj["__ref"];
+        if (instance == null) {
+            return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)("DynamicForm",jsObj);
         } else {
-            return new DynamicForm(jsObj);
+            return instance;
         }
+    }-*/;
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        id = JSOHelper.getAttribute(jsObj, "ID");
     }
+
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        $wnd.isc["DynamicForm"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.Canvas::getConfig()());
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        $wnd.isc["DynamicForm"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getJsObj()());
+    }-*/;
 
     public DynamicForm(){
         scClassName = "DynamicForm";
     }
 
     public DynamicForm(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "DynamicForm";
+        setJavaScriptObject(jsObj);
+        
     }
 
     protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
         var widget = $wnd.isc[scClassName].create(config);
+        this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Ljava/lang/String;Z)(widget.getID(), true);
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;
+
     // ********************* Properties / Attributes ***********************
+
 
     /**
      * The URL to which the form will submit its values. <p> <b>NOTE:</b> this is used only in the very rare case that a form
@@ -134,7 +195,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.form.DynamicForm#getAction action} for this form.
      *
-     * @param action New action URL. Default value is "#"
+     * @param action New action URL. See {@link com.smartgwt.client.docs.String String}. Default value is "#"
      * @see com.smartgwt.client.rpc.RPCManager
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
      */
@@ -147,14 +208,14 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * is used to submit data directly to a URL.  Normal server contact is through RPCManager.<br> See {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit canSubmit} for more on this.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.rpc.RPCManager
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
      */
     public String getAction()  {
         return getAttributeAsString("action");
     }
+
 
     /**
      * For a form that produces filter criteria (see {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria
@@ -174,38 +235,14 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * input. <P> See {@link com.smartgwt.client.widgets.form.fields.FormItem#getAllowExpressions allowExpressions} for
      * details.
      *
-     *
      * @return Boolean
      */
     public Boolean getAllowExpressions()  {
         return getAttributeAsBoolean("allowExpressions");
     }
 
-    /**
-     * If {@link com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData autoFetchData} is <code>true</code>, this
-     * attribute allows the developer to specify a textMatchStyle for the initial {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#fetchData DynamicForm.fetchData} call.
-     *
-     * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
-     */
-    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle == null ? null : autoFetchTextMatchStyle.getValue(), false);
-    }
 
-    /**
-     * If {@link com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData autoFetchData} is <code>true</code>, this
-     * attribute allows the developer to specify a textMatchStyle for the initial {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#fetchData DynamicForm.fetchData} call.
-     *
-     *
-     * @return TextMatchStyle
-     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
-     */
-    public TextMatchStyle getAutoFetchTextMatchStyle()  {
-        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
-    }
+
 
     /**
      * If true, when the form is drawn, focus will automatically be put into the first focusable element in the form.<br> Note
@@ -223,7 +260,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * If true, when the form is drawn, focus will automatically be put into the first focusable element in the form.<br> Note
      * that to put focus in a different item you can explicitly call  <code>dynamicForm.focusInItem(<i>itemName</i>)</code>
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.form.DynamicForm#focusInItem
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
@@ -231,6 +267,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public Boolean getAutoFocus()  {
         return getAttributeAsBoolean("autoFocus");
     }
+
 
     /**
      * If this browser has a 'spellCheck' feature for text-based form item elements, should it be used for items in this form?
@@ -251,7 +288,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * browserSpellCheck} <P> Notes:<br> - this property only applies to text based items such as TextItem and
      * TextAreaItem.<br> - this property is not supported on all browsers.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getBrowserSpellCheck
      */
@@ -259,11 +295,12 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return getAttributeAsBoolean("browserSpellCheck");
     }
 
+
     /**
      * The name of the special field sent to the server as part of {@link com.smartgwt.client.widgets.form.DynamicForm#cancel
      * DynamicForm.cancel}
      *
-     * @param cancelParamName cancelParamName Default value is "org.apache.struts.taglib.html.CANCEL"
+     * @param cancelParamName . See {@link com.smartgwt.client.docs.String String}. Default value is "org.apache.struts.taglib.html.CANCEL"
      */
     public void setCancelParamName(String cancelParamName) {
         setAttribute("cancelParamName", cancelParamName, true);
@@ -273,18 +310,18 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * The name of the special field sent to the server as part of {@link com.smartgwt.client.widgets.form.DynamicForm#cancel
      * DynamicForm.cancel}
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getCancelParamName()  {
         return getAttributeAsString("cancelParamName");
     }
 
+
     /**
      * The value of the special field sent to the server as part of {@link com.smartgwt.client.widgets.form.DynamicForm#cancel
      * DynamicForm.cancel}
      *
-     * @param cancelParamValue cancelParamValue Default value is "cancel"
+     * @param cancelParamValue . See {@link com.smartgwt.client.docs.String String}. Default value is "cancel"
      */
     public void setCancelParamValue(String cancelParamValue) {
         setAttribute("cancelParamValue", cancelParamValue, true);
@@ -294,23 +331,24 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * The value of the special field sent to the server as part of {@link com.smartgwt.client.widgets.form.DynamicForm#cancel
      * DynamicForm.cancel}
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getCancelParamValue()  {
         return getAttributeAsString("cancelParamValue");
     }
 
+
     /**
-     * If set to false, the form will be marked read-only. A widget on the form is only considered editable if it is not
-     * individually marked read-only and all parents above it in the containment hierarchy, including the form, are also not
-     * marked read-only. This setting allows you to enable or disable editability of the form and all components at one time.
+     * If set to false, the form will be marked read-only. A widget on the form is editable if either (1) beginning with the
+     * widget and continuing up the containment hierarchy, including the form, the first widget to have a non-<code>null</code>
+     * canEdit attribute has canEdit:true, or (2) neither the widget nor any parent has a non-<code>null</code> canEdit
+     * attribute. This setting allows you to enable or disable the default editability of the form's components at one time.
      * <P> This setting differs from the enabled/disabled state in that most form items will allow copying of the contents
-     * while read-only but do not while disabled. <P> Note that a form and formItem are considered editable if canEdit is null
-     * (default) or <code>true</code>.
+     * while read-only but do not while disabled. <P> Note that a form is considered editable if canEdit is null (default) or
+     * <code>true</code>.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
-     * Is this form editable or read-only? Setting the form to non-editable causes all form items to render as read-only.
+     * Is this form editable or read-only? Setting the form to non-editable causes all form items to render as read-only unless a form item is specifically marked as editable (the item's {@link com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit canEdit} attribute is <code>true</code>).
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canEdit Can this form be edited?. Default value is null
@@ -320,19 +358,59 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * If set to false, the form will be marked read-only. A widget on the form is only considered editable if it is not
-     * individually marked read-only and all parents above it in the containment hierarchy, including the form, are also not
-     * marked read-only. This setting allows you to enable or disable editability of the form and all components at one time.
+     * If set to false, the form will be marked read-only. A widget on the form is editable if either (1) beginning with the
+     * widget and continuing up the containment hierarchy, including the form, the first widget to have a non-<code>null</code>
+     * canEdit attribute has canEdit:true, or (2) neither the widget nor any parent has a non-<code>null</code> canEdit
+     * attribute. This setting allows you to enable or disable the default editability of the form's components at one time.
      * <P> This setting differs from the enabled/disabled state in that most form items will allow copying of the contents
-     * while read-only but do not while disabled. <P> Note that a form and formItem are considered editable if canEdit is null
-     * (default) or <code>true</code>.
-     *
+     * while read-only but do not while disabled. <P> Note that a form is considered editable if canEdit is null (default) or
+     * <code>true</code>.
      *
      * @return Boolean
      */
     public Boolean getCanEdit()  {
         return getAttributeAsBoolean("canEdit");
     }
+
+
+    /**
+     * If this component is bound to a dataSource, this attribute may be specified to customize what fields from the dataSource
+     * may be edited by default. For example the {@link com.smartgwt.client.widgets.form.SearchForm} class has this attribute
+     * set to <code>"canFilter"</code> which allows search forms to edit dataSource fields marked as <code>canEdit:false</code>
+     * (but not those marked as <code>canFilter:false</code>). <P> Note that if <code>canEdit</code> is explicitly specified on
+     * a field in  the {@link com.smartgwt.client.widgets.DataBoundComponent#getFields fields} array, that property will be
+     * respected in preference to  the canEditAttribute value. (See {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit canEdit}, {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getCanEdit canEdit}). Also note that individual dataBoundComponents may
+     * have additional logic around whether a field can be edited - for example {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#canEditCell ListGrid.canEditCell} may be overridden.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canEditFieldAttribute . See {@link com.smartgwt.client.docs.String String}. Default value is "canEdit"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCanEditFieldAttribute(String canEditFieldAttribute)  throws IllegalStateException {
+        setAttribute("canEditFieldAttribute", canEditFieldAttribute, false);
+    }
+
+    /**
+     * If this component is bound to a dataSource, this attribute may be specified to customize what fields from the dataSource
+     * may be edited by default. For example the {@link com.smartgwt.client.widgets.form.SearchForm} class has this attribute
+     * set to <code>"canFilter"</code> which allows search forms to edit dataSource fields marked as <code>canEdit:false</code>
+     * (but not those marked as <code>canFilter:false</code>). <P> Note that if <code>canEdit</code> is explicitly specified on
+     * a field in  the {@link com.smartgwt.client.widgets.DataBoundComponent#getFields fields} array, that property will be
+     * respected in preference to  the canEditAttribute value. (See {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit canEdit}, {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getCanEdit canEdit}). Also note that individual dataBoundComponents may
+     * have additional logic around whether a field can be edited - for example {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#canEditCell ListGrid.canEditCell} may be overridden.
+     *
+     * @return . See {@link com.smartgwt.client.docs.String String}
+     */
+    public String getCanEditFieldAttribute()  {
+        return getAttributeAsString("canEditFieldAttribute");
+    }
+
 
     /**
      * DynamicForms are considered to have focus if any of their form items have focus. Note that setting
@@ -352,13 +430,13 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * <code>dynamicForm.canFocus</code> to false will have no effect on whether form items within the form may receive focus.
      * This property will only govern whether the form may receive focus if the form contains no focusable items.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
     public Boolean getCanFocus()  {
         return getAttributeAsBoolean("canFocus");
     }
+
 
     /**
      * Governs whether this form will be used to perform a standard HTML form submission. Note that if true, {@link
@@ -384,13 +462,13 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * to the server as they provide a far more sophisticated interface, with built in  options for server validation, required
      * fields, etc.<br>
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
      */
     public Boolean getCanSubmit()  {
         return getAttributeAsBoolean("canSubmit");
     }
+
 
     /**
      * If true, the headers for any {@link com.smartgwt.client.widgets.form.DynamicForm#getSectionItems SectionItems} will be
@@ -412,12 +490,12 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.fields.SectionItem#getCanTabToHeader canTabToHeader} <P> If unset, section headers will
      * be focusable if  setScreenReaderMode has been called. See {@link com.smartgwt.client.docs.Accessibility}.
      *
-     *
      * @return Boolean
      */
     public Boolean getCanTabToSectionHeaders()  {
         return getAttributeAsBoolean("canTabToSectionHeaders");
     }
+
 
     /**
      * Width of border for the table that form is drawn in. This is primarily used for debugging form layout.
@@ -432,13 +510,13 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * Width of border for the table that form is drawn in. This is primarily used for debugging form layout.
      *
-     *
      * @return int
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public int getCellBorder()  {
         return getAttributeAsInt("cellBorder");
     }
+
 
     /**
      * The amount of empty space, in pixels, surrounding each form item within its cell in the layout grid.
@@ -453,13 +531,35 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * The amount of empty space, in pixels, surrounding each form item within its cell in the layout grid.
      *
-     *
      * @return int
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public int getCellPadding()  {
         return getAttributeAsInt("cellPadding");
     }
+
+
+    /**
+     * Should the titles for form items be clipped if they are too large for the available  space? <p> Can be overridden for
+     * individual items via {@link com.smartgwt.client.widgets.form.fields.FormItem#getClipTitle clipTitle}.
+     *
+     * @param clipItemTitles clipItemTitles Default value is false
+     */
+    public void setClipItemTitles(boolean clipItemTitles) {
+        setAttribute("clipItemTitles", clipItemTitles, true);
+    }
+
+    /**
+     * Should the titles for form items be clipped if they are too large for the available  space? <p> Can be overridden for
+     * individual items via {@link com.smartgwt.client.widgets.form.fields.FormItem#getClipTitle clipTitle}.
+     *
+     * @return boolean
+     */
+    public boolean getClipItemTitles()  {
+        return getAttributeAsBoolean("clipItemTitles");
+    }
+
+
 
     /**
      * How to fetch and manage records retrieve from the server.  See {@link com.smartgwt.client.types.FetchMode}. <P> This
@@ -480,13 +580,13 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.DynamicForm#fetchData DynamicForm.fetchData}.  If a pre-existing ResultSet is passed to
      * setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode fetchMode} applies.
      *
-     *
      * @return FetchMode
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public FetchMode getDataFetchMode()  {
         return EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
     }
+
 
     /**
      * Default {@link com.smartgwt.client.types.DateDisplayFormat} for Date type values displayed in this form. <P> If some
@@ -499,8 +599,9 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter} take precedence over the format
      * specified at the component level. <P> If no explicit formatter is specified at the field or component level, dates will
-     * be  formatted according to the system-wide  short date display format or   short datetime display format depending on
-     * the specified field type.
+     * be  formatted according to the system-wide {@link com.smartgwt.client.util.Date#setShortDisplayFormat short date display
+     * format} or  {@link com.smartgwt.client.util.Date#setShortDatetimeDisplayFormat short datetime display format} depending
+     * on the specified field type.
      *
      * @param dateFormatter dateFormatter Default value is null
      */
@@ -519,15 +620,16 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter} take precedence over the format
      * specified at the component level. <P> If no explicit formatter is specified at the field or component level, dates will
-     * be  formatted according to the system-wide  short date display format or   short datetime display format depending on
-     * the specified field type.
-     *
+     * be  formatted according to the system-wide {@link com.smartgwt.client.util.Date#setShortDisplayFormat short date display
+     * format} or  {@link com.smartgwt.client.util.Date#setShortDatetimeDisplayFormat short datetime display format} depending
+     * on the specified field type.
      *
      * @return DateDisplayFormat
      */
     public DateDisplayFormat getDateFormatter()  {
         return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
     }
+
 
     /**
      * Default {@link com.smartgwt.client.types.DateDisplayFormat} for Date type values displayed in this form in fields of
@@ -536,7 +638,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * if specified, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter} take precedence over the format
      * specified at the component level. <P> If no explicit formatter is specified at the field or component level, datetime
-     * field values will be formatted according to the system-wide  short datetime display format.
+     * field values will be formatted according to the system-wide {@link
+     * com.smartgwt.client.util.Date#setShortDatetimeDisplayFormat short datetime display format}.
      *
      * @param datetimeFormatter datetimeFormatter Default value is null
      */
@@ -551,14 +654,15 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * if specified, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter} take precedence over the format
      * specified at the component level. <P> If no explicit formatter is specified at the field or component level, datetime
-     * field values will be formatted according to the system-wide  short datetime display format.
-     *
+     * field values will be formatted according to the system-wide {@link
+     * com.smartgwt.client.util.Date#setShortDatetimeDisplayFormat short datetime display format}.
      *
      * @return DateDisplayFormat
      */
     public DateDisplayFormat getDatetimeFormatter()  {
         return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("datetimeFormatter"));
     }
+
 
     /**
      * If set to true, client-side validators will not run on the form when validate() is called.  Server-side validators (if
@@ -577,7 +681,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * If set to true, client-side validators will not run on the form when validate() is called.  Server-side validators (if
      * any) will still run on attempted save.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
      * @see com.smartgwt.client.widgets.form.DynamicForm#submit
@@ -586,6 +689,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public Boolean getDisableValidation()  {
         return getAttributeAsBoolean("disableValidation");
     }
+
 
     /**
      * encoding for the form, use MULTIPART_ENCODING for file upload forms
@@ -601,7 +705,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * encoding for the form, use MULTIPART_ENCODING for file upload forms
      *
-     *
      * @return Encoding
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
      */
@@ -609,12 +712,13 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return EnumUtil.getEnum(Encoding.values(), getAttribute("encoding"));
     }
 
+
     /**
      * If {@link com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors} is false we show all errors
      * for the form item in  a single item rendered at the top of the form.<br> This attribute specifies the cellStyle to apply
      * to this item.
      *
-     * @param errorItemCellStyle errorItemCellStyle Default value is "formCellError"
+     * @param errorItemCellStyle . See {@link com.smartgwt.client.docs.String String}. Default value is "formCellError"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
@@ -627,20 +731,23 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * for the form item in  a single item rendered at the top of the form.<br> This attribute specifies the cellStyle to apply
      * to this item.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public String getErrorItemCellStyle()  {
         return getAttributeAsString("errorItemCellStyle");
     }
 
+
+
+
+
     /**
      * If {@link com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors} is false we show all errors
      * for the form item in  a single item rendered at the top of the form.<br> This attribute specifies an introductory string
      * rendered out before the individual error messages.
      *
-     * @param errorsPreamble errorsPreamble Default value is "The following errors were found"
+     * @param errorsPreamble . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is "The following errors were found"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
@@ -653,13 +760,14 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * for the form item in  a single item rendered at the top of the form.<br> This attribute specifies an introductory string
      * rendered out before the individual error messages.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public String getErrorsPreamble()  {
         return getAttributeAsString("errorsPreamble");
     }
+
+
 
     /**
      * If true, we ensure that column widths are at least as large as you specify them.  This means that if any single column
@@ -680,7 +788,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * specified sizes as long as no column overflows.  If any column overflows, space will be taken from any other columns
      * that aren't filling the available room, until there is no more free space, in which case the form as a whole overflows.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
@@ -688,13 +795,14 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return getAttributeAsBoolean("fixedColWidths");
     }
 
+
     /**
      * Warning to display to the user if an attempt to {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm natively
      * submit} a form is unable to submit to the server. The most common cause for this failure is that the user has typed an
      * invalid file-path into an upload type field.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param formSubmitFailedWarning formSubmitFailedWarning Default value is "Form was unable to be submitted. The most likely cause for this is an invalid value in an upload field."
+     * @param formSubmitFailedWarning . See {@link com.smartgwt.client.docs.String String}. Default value is "Form was unable to be submitted. The most likely cause for this is an invalid value in an upload field."
      */
     public void setFormSubmitFailedWarning(String formSubmitFailedWarning) {
         setAttribute("formSubmitFailedWarning", formSubmitFailedWarning, true);
@@ -705,12 +813,12 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * submit} a form is unable to submit to the server. The most common cause for this failure is that the user has typed an
      * invalid file-path into an upload type field.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getFormSubmitFailedWarning()  {
         return getAttributeAsString("formSubmitFailedWarning");
     }
+
 
     /**
      * Indicates whether the titles of required items in this form should use the special prefix and suffix specified by the
@@ -727,7 +835,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * Indicates whether the titles of required items in this form should use the special prefix and suffix specified by the
      * next two properties, instead of the standard prefix and suffix.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
@@ -735,9 +842,10 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return getAttributeAsBoolean("hiliteRequiredFields");
     }
 
+
     /**
      * When true, indicates that changes to items in this form will be automatically saved on a  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getImplicitSaveDelay delay}, as well as when the entire form is submitted.
+     * com.smartgwt.client.widgets.form.DynamicForm#getImplicitSaveDelay delay}, as well as when the entire form is submitted. 
      * Unless {@link com.smartgwt.client.widgets.form.DynamicForm#getImplicitSaveOnBlur form.implicitSaveOnBlur} is set  to
      * false, changes will also be automatically saved on editorExit for each item.  This attribute can also be set directly on
      * FormItems.
@@ -750,11 +858,10 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
     /**
      * When true, indicates that changes to items in this form will be automatically saved on a  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getImplicitSaveDelay delay}, as well as when the entire form is submitted.
+     * com.smartgwt.client.widgets.form.DynamicForm#getImplicitSaveDelay delay}, as well as when the entire form is submitted. 
      * Unless {@link com.smartgwt.client.widgets.form.DynamicForm#getImplicitSaveOnBlur form.implicitSaveOnBlur} is set  to
      * false, changes will also be automatically saved on editorExit for each item.  This attribute can also be set directly on
      * FormItems.
-     *
      *
      * @return Boolean
      */
@@ -762,10 +869,10 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return getAttributeAsBoolean("implicitSave");
     }
 
+
     /**
-     * When {@link com.smartgwt.client.widgets.form.DynamicForm#getImplicitSave implicitSave} is true, indicates that form item
-     * values will be automatically saved after a given pause during editing, as well as when  each item's "editorExit" handler
-     * is fired and when the entire form is submitted.
+     * When {@link com.smartgwt.client.widgets.form.DynamicForm#getImplicitSave implicitSave} is true, this attribute dictates
+     * the  millisecond delay after which form items are automatically saved during editing.
      *
      * @param implicitSaveDelay implicitSaveDelay Default value is 2000
      */
@@ -774,16 +881,15 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * When {@link com.smartgwt.client.widgets.form.DynamicForm#getImplicitSave implicitSave} is true, indicates that form item
-     * values will be automatically saved after a given pause during editing, as well as when  each item's "editorExit" handler
-     * is fired and when the entire form is submitted.
-     *
+     * When {@link com.smartgwt.client.widgets.form.DynamicForm#getImplicitSave implicitSave} is true, this attribute dictates
+     * the  millisecond delay after which form items are automatically saved during editing.
      *
      * @return int
      */
     public int getImplicitSaveDelay()  {
         return getAttributeAsInt("implicitSaveDelay");
     }
+
 
     /**
      * If true, form item values will be automatically saved when each item's "editorExit"  handler is fired as well as on a
@@ -799,12 +905,13 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * If true, form item values will be automatically saved when each item's "editorExit"  handler is fired as well as on a
      * delay and when the entire form is submitted.  This attribute can also be set directly on FormItems.
      *
-     *
      * @return Boolean
      */
     public Boolean getImplicitSaveOnBlur()  {
         return getAttributeAsBoolean("implicitSaveOnBlur");
     }
+
+
 
     /**
      * Text alignment for hovers shown for items
@@ -819,13 +926,13 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * Text alignment for hovers shown for items
      *
-     *
      * @return Alignment
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getHoverAlign
      */
     public Alignment getItemHoverAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("itemHoverAlign"));
     }
+
 
     /**
      * If the user rolls over an item, how long a delay before we fire any hover action / show a hover for that item?
@@ -840,13 +947,13 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * If the user rolls over an item, how long a delay before we fire any hover action / show a hover for that item?
      *
-     *
      * @return int
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getHoverDelay
      */
     public int getItemHoverDelay()  {
         return getAttributeAsInt("itemHoverDelay");
     }
+
 
     /**
      * A default height for hovers shown for items
@@ -861,13 +968,13 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * A default height for hovers shown for items
      *
-     *
      * @return Integer
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getHoverHeight
      */
     public Integer getItemHoverHeight()  {
         return getAttributeAsInt("itemHoverHeight");
     }
+
 
     /**
      * Opacity for hovers shown for items
@@ -882,7 +989,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * Opacity for hovers shown for items
      *
-     *
      * @return Integer
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getHoverOpacity
      */
@@ -890,10 +996,11 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return getAttributeAsInt("itemHoverOpacity");
     }
 
+
     /**
      * CSS Style for hovers shown for items
      *
-     * @param itemHoverStyle itemHoverStyle Default value is "formHover"
+     * @param itemHoverStyle . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}. Default value is "formHover"
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setHoverStyle
      */
     public void setItemHoverStyle(String itemHoverStyle) {
@@ -903,13 +1010,13 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * CSS Style for hovers shown for items
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName}
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getHoverStyle
      */
     public String getItemHoverStyle()  {
         return getAttributeAsString("itemHoverStyle");
     }
+
 
     /**
      * Vertical text alignment for hovers shown for items
@@ -924,13 +1031,13 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * Vertical text alignment for hovers shown for items
      *
-     *
      * @return Integer
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getHoverVAlign
      */
     public Integer getItemHoverVAlign()  {
         return getAttributeAsInt("itemHoverVAlign");
     }
+
 
     /**
      * A default width for hovers shown for items
@@ -946,7 +1053,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * A default width for hovers shown for items
      *
-     *
      * @return Integer
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getHoverWidth
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_hovers" target="examples">Hovers Example</a>
@@ -954,6 +1060,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public Integer getItemHoverWidth()  {
         return getAttributeAsInt("itemHoverWidth");
     }
+
 
     /**
      * Layout style to use with this form.   <P> The default of "table" uses a tabular layout similar to HTML tables, but with
@@ -987,13 +1094,14 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * column size <li> with different font styling or internationalized titles, items may overlap that did      not overlap in
      * the skin used at design time </ul>
      *
-     *
      * @return FormLayoutType
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public FormLayoutType getItemLayout()  {
         return EnumUtil.getEnum(FormLayoutType.values(), getAttribute("itemLayout"));
     }
+
+
 
     /**
      * When creating form items for fields with text type data, if the specified length of the field exceeds this threshold we
@@ -1012,7 +1120,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * will create form item of type  <code>this.longTextEditorType</code> (a TextAreaItem by default), rather than a simple
      * text item.  Overridden by explicitly specifying <code>editorType</code> for the field.
      *
-     *
      * @return int
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -1020,10 +1127,11 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return getAttributeAsInt("longTextEditorThreshold");
     }
 
+
     /**
      * Name of the Form Item class to use for text fields which exceed the  longTextEditorThreshold for this form.
      *
-     * @param longTextEditorType longTextEditorType Default value is "textArea"
+     * @param longTextEditorType . See {@link com.smartgwt.client.docs.String String}. Default value is "textArea"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setLongTextEditorType(String longTextEditorType) {
@@ -1033,17 +1141,17 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * Name of the Form Item class to use for text fields which exceed the  longTextEditorThreshold for this form.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getLongTextEditorType()  {
         return getAttributeAsString("longTextEditorType");
     }
 
+
     /**
      * The mechanism by which form data is sent to the action URL. See FormMethod type for details. <p> <b>NOTE:</b> this is
-     * used only in the very rare case that a form is used to submit data directly to a URL.  Normal server contact is through
+     * used only in the very rare case that a form is used to submit data directly to a URL.  Normal server contact is through 
      * {@link com.smartgwt.client.docs.DataBoundComponentMethods DataBound Component Methods}.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
@@ -1058,9 +1166,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
     /**
      * The mechanism by which form data is sent to the action URL. See FormMethod type for details. <p> <b>NOTE:</b> this is
-     * used only in the very rare case that a form is used to submit data directly to a URL.  Normal server contact is through
+     * used only in the very rare case that a form is used to submit data directly to a URL.  Normal server contact is through 
      * {@link com.smartgwt.client.docs.DataBoundComponentMethods DataBound Component Methods}.
-     *
      *
      * @return FormMethod
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
@@ -1068,6 +1175,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public FormMethod getMethod()  {
         return EnumUtil.getEnum(FormMethod.values(), getAttribute("method"));
     }
+
 
     /**
      * Minimum width of a form column.
@@ -1082,13 +1190,15 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * Minimum width of a form column.
      *
-     *
      * @return int
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public int getMinColWidth()  {
         return getAttributeAsInt("minColWidth");
     }
+
+
+
 
     /**
      * The number of columns of titles and items in this form's layout grid. A title and corresponding item each have their own
@@ -1105,13 +1215,14 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * The number of columns of titles and items in this form's layout grid. A title and corresponding item each have their own
      * column, so to display two form elements per row (each having a title and item), you would set this property to 4.
      *
-     *
      * @return int
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public int getNumCols()  {
         return getAttributeAsInt("numCols");
     }
+
+
 
     /**
      * If validateOnChange is true, and validation fails for an item on change, with no suggested value, should we revert to
@@ -1128,17 +1239,17 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * If validateOnChange is true, and validation fails for an item on change, with no suggested value, should we revert to
      * the previous value, or continue to display the bad value entered by the user. May be set at the item or form level.
      *
-     *
      * @return Boolean
      */
     public Boolean getRejectInvalidValueOnChange()  {
         return getAttributeAsBoolean("rejectInvalidValueOnChange");
     }
 
+
     /**
      * The required message for required field errors.
      *
-     * @param requiredMessage requiredMessage Default value is null
+     * @param requiredMessage . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is null
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public void setRequiredMessage(String requiredMessage) {
@@ -1148,19 +1259,19 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * The required message for required field errors.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public String getRequiredMessage()  {
         return getAttributeAsString("requiredMessage");
     }
 
+
     /**
      * The string prepended to the title of every required item in this form if highlightRequiredFields is true and the
      * titleOrientation property is set to "right".
      *
-     * @param requiredRightTitlePrefix requiredRightTitlePrefix Default value is "<b>:&nbsp;"
+     * @param requiredRightTitlePrefix . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is "<b>:&nbsp;"
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public void setRequiredRightTitlePrefix(String requiredRightTitlePrefix) {
@@ -1171,19 +1282,19 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * The string prepended to the title of every required item in this form if highlightRequiredFields is true and the
      * titleOrientation property is set to "right".
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public String getRequiredRightTitlePrefix()  {
         return getAttributeAsString("requiredRightTitlePrefix");
     }
 
+
     /**
      * The string appended to the title of every required item in this form if highlightRequiredFields is true and the
      * titleOrientation property is set to "right".
      *
-     * @param requiredRightTitleSuffix requiredRightTitleSuffix Default value is "</b>"
+     * @param requiredRightTitleSuffix . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is "</b>"
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public void setRequiredRightTitleSuffix(String requiredRightTitleSuffix) {
@@ -1194,18 +1305,18 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * The string appended to the title of every required item in this form if highlightRequiredFields is true and the
      * titleOrientation property is set to "right".
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public String getRequiredRightTitleSuffix()  {
         return getAttributeAsString("requiredRightTitleSuffix");
     }
 
+
     /**
      * The string prepended to the title of every required item in this form if highlightRequiredFields is true.
      *
-     * @param requiredTitlePrefix requiredTitlePrefix Default value is "<b>"
+     * @param requiredTitlePrefix . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is "<b>"
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public void setRequiredTitlePrefix(String requiredTitlePrefix) {
@@ -1215,18 +1326,18 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * The string prepended to the title of every required item in this form if highlightRequiredFields is true.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public String getRequiredTitlePrefix()  {
         return getAttributeAsString("requiredTitlePrefix");
     }
 
+
     /**
      * The string appended to the title of every required item in this form if highlightRequiredFields is true.
      *
-     * @param requiredTitleSuffix requiredTitleSuffix Default value is "&nbsp;:</b>"
+     * @param requiredTitleSuffix . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is "&nbsp;:</b>"
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public void setRequiredTitleSuffix(String requiredTitleSuffix) {
@@ -1236,18 +1347,18 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * The string appended to the title of every required item in this form if highlightRequiredFields is true.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public String getRequiredTitleSuffix()  {
         return getAttributeAsString("requiredTitleSuffix");
     }
 
+
     /**
      * The string prepended to the title of an item in this form if its titleOrientation property is set to "right".
      *
-     * @param rightTitlePrefix rightTitlePrefix Default value is ":&nbsp;"
+     * @param rightTitlePrefix . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is ":&nbsp;"
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public void setRightTitlePrefix(String rightTitlePrefix) {
@@ -1257,18 +1368,18 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * The string prepended to the title of an item in this form if its titleOrientation property is set to "right".
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public String getRightTitlePrefix()  {
         return getAttributeAsString("rightTitlePrefix");
     }
 
+
     /**
      * The string appended to the title of an item in this form if its titleOrientation property is set to "right".
      *
-     * @param rightTitleSuffix rightTitleSuffix Default value is ""
+     * @param rightTitleSuffix . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is ""
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public void setRightTitleSuffix(String rightTitleSuffix) {
@@ -1278,13 +1389,13 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * The string appended to the title of an item in this form if its titleOrientation property is set to "right".
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public String getRightTitleSuffix()  {
         return getAttributeAsString("rightTitleSuffix");
     }
+
 
     /**
      * If <code>true</code>, when the user hits the Enter key while focused in a text-item in this form, we automatically
@@ -1303,7 +1414,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * submit the form to the server using the  {@link com.smartgwt.client.widgets.form.DynamicForm#submit DynamicForm.submit}
      * method.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
      */
@@ -1311,11 +1421,12 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return getAttributeAsBoolean("saveOnEnter");
     }
 
+
     /**
      * Default {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
      * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData} is called. This property is automatically
      * set on a call to {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord DynamicForm.editRecord} or {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#editNewRecord DynamicForm.editNewRecord}, or may be set directly via
+     * com.smartgwt.client.widgets.form.DynamicForm#editNewRecord DynamicForm.editNewRecord}, or may be set directly via 
      * {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType DynamicForm.setSaveOperationType}. <P> If
      * <code>saveOperationType</code> is unset, the form will heuristically determine whether an "add" or "update" operation is
      * intended based on whether the primaryKey field is present and editable.
@@ -1333,21 +1444,28 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * Default {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
      * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData} is called. This property is automatically
      * set on a call to {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord DynamicForm.editRecord} or {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#editNewRecord DynamicForm.editNewRecord}, or may be set directly via
+     * com.smartgwt.client.widgets.form.DynamicForm#editNewRecord DynamicForm.editNewRecord}, or may be set directly via 
      * {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType DynamicForm.setSaveOperationType}. <P> If
      * <code>saveOperationType</code> is unset, the form will heuristically determine whether an "add" or "update" operation is
      * intended based on whether the primaryKey field is present and editable.
-     *
      *
      * @return Returns the {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
      * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData} is called. Valid options are
      * <code>"add"</code> or <code>"update"</code>. <P> If a {@link com.smartgwt.client.data.DSRequest} configuration object is
      * passed in containing an explicit operationType this will be returned. Otherwise {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned.
+     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned. This attribute is
+     * automatically set via calls to data binding methods such as {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editNewRecord DynamicForm.editNewRecord}, or it may be set explicitly. <P>
+     * If no explicit saveOperationType is specified for this form, the system will  look at the current values for the form.
+     * If the form has no value for the {@link com.smartgwt.client.data.DataSource#getPrimaryKeyField primaryKey field}, or
+     * that field is editable and has been modified we assume an add operation, otherwise an update. If the form is a member of
+     * a {@link com.smartgwt.client.widgets.form.ValuesManager}, the primary key field value will be derived from the
+     * valuesManager's values object.
      */
     public DSOperationType getSaveOperationType()  {
         return EnumUtil.getEnum(DSOperationType.values(), getAttribute("saveOperationType"));
     }
+
 
     /**
      * If the form has sections, [implemented as {@link com.smartgwt.client.widgets.form.fields.SectionItem}s], this attribute
@@ -1366,7 +1484,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * If the form has sections, [implemented as {@link com.smartgwt.client.widgets.form.fields.SectionItem}s], this attribute
      * controls whether multiple sections can be expanded at once.
      *
-     *
      * @return VisibilityMode
      * @see com.smartgwt.client.types.VisibilityMode
      * @see com.smartgwt.client.widgets.form.fields.SectionItem
@@ -1376,6 +1493,40 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return EnumUtil.getEnum(VisibilityMode.values(), getAttribute("sectionVisibilityMode"));
     }
 
+
+    /**
+     * If this property is set to true, whenever a text-based field in this form  ({@link
+     * com.smartgwt.client.widgets.form.fields.TextItem}, {@link com.smartgwt.client.widgets.form.fields.TextAreaItem}) is
+     * given focus - whether programmatically (see {@link com.smartgwt.client.widgets.form.DynamicForm#focusInItem
+     * DynamicForm.focusInItem}), or via a mouse click, all text within the item will be selected. <P> If you only want the
+     * value to be selected when on programmatic focus or keyboard navigation (this is the native browser behavior), set 
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} instead. <P> May be overridden at
+     * the form item level via {@link com.smartgwt.client.widgets.form.fields.FormItem#getSelectOnClick selectOnClick}.
+     *
+     * @param selectOnClick selectOnClick Default value is false
+     * @see com.smartgwt.client.docs.Focus Focus overview and related methods
+     */
+    public void setSelectOnClick(Boolean selectOnClick) {
+        setAttribute("selectOnClick", selectOnClick, true);
+    }
+
+    /**
+     * If this property is set to true, whenever a text-based field in this form  ({@link
+     * com.smartgwt.client.widgets.form.fields.TextItem}, {@link com.smartgwt.client.widgets.form.fields.TextAreaItem}) is
+     * given focus - whether programmatically (see {@link com.smartgwt.client.widgets.form.DynamicForm#focusInItem
+     * DynamicForm.focusInItem}), or via a mouse click, all text within the item will be selected. <P> If you only want the
+     * value to be selected when on programmatic focus or keyboard navigation (this is the native browser behavior), set 
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} instead. <P> May be overridden at
+     * the form item level via {@link com.smartgwt.client.widgets.form.fields.FormItem#getSelectOnClick selectOnClick}.
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Focus Focus overview and related methods
+     */
+    public Boolean getSelectOnClick()  {
+        return getAttributeAsBoolean("selectOnClick");
+    }
+
+
     /**
      * If this property is set to true, whenever a text-based field in this form  ({@link
      * com.smartgwt.client.widgets.form.fields.TextItem}, {@link com.smartgwt.client.widgets.form.fields.TextAreaItem}) is
@@ -1384,9 +1535,11 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * focus.  It's the normal behavior of text fields to select all text if the user navigates into them via keyboard, or if
      * the user navigates via mouse, to place the text insertion point at the mouse click, and Smart GWT preserves these
      * behaviors.  <code>selectOnFocus</code> is only needed for cases like a form within a pop-up dialog that should have the
-     * first field selected. <P> If <code>selectOnFocus</code> is false, the selection is not modified on focus - any previous
-     * selection within the item will be maintained. <P> May be overridden at the form item level via {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getSelectOnFocus selectOnFocus}.
+     * first field selected. <P> If you also want the value to be selected when the user clicks on the field, set  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnClick selectOnClick} instead. <P> If <code>selectOnFocus</code>
+     * is false, the selection is not modified on focus - any previous selection within the item will be maintained. <P> May be
+     * overridden at the form item level via {@link com.smartgwt.client.widgets.form.fields.FormItem#getSelectOnFocus
+     * selectOnFocus}.
      *
      * @param selectOnFocus selectOnFocus Default value is false
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
@@ -1403,10 +1556,11 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * focus.  It's the normal behavior of text fields to select all text if the user navigates into them via keyboard, or if
      * the user navigates via mouse, to place the text insertion point at the mouse click, and Smart GWT preserves these
      * behaviors.  <code>selectOnFocus</code> is only needed for cases like a form within a pop-up dialog that should have the
-     * first field selected. <P> If <code>selectOnFocus</code> is false, the selection is not modified on focus - any previous
-     * selection within the item will be maintained. <P> May be overridden at the form item level via {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getSelectOnFocus selectOnFocus}.
-     *
+     * first field selected. <P> If you also want the value to be selected when the user clicks on the field, set  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnClick selectOnClick} instead. <P> If <code>selectOnFocus</code>
+     * is false, the selection is not modified on focus - any previous selection within the item will be maintained. <P> May be
+     * overridden at the form item level via {@link com.smartgwt.client.widgets.form.fields.FormItem#getSelectOnFocus
+     * selectOnFocus}.
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
@@ -1415,9 +1569,10 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return getAttributeAsBoolean("selectOnFocus");
     }
 
+
     /**
      * If set, this <code>DynamicForm</code> will set both  {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getShowComplexFields showComplexFields} and
+     * com.smartgwt.client.widgets.DataBoundComponent#getShowComplexFields showComplexFields} and 
      * <code>showComplexFieldsRecursively</code> on any nested component used for showing/editing a complex field.  Thus any of
      * this form's items that handle complex fields will themselves also show complex fields.  This allows for handling of
      * field structures of any complexity. <p> If set, this value automatically sets {@link
@@ -1432,18 +1587,18 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
     /**
      * If set, this <code>DynamicForm</code> will set both  {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getShowComplexFields showComplexFields} and
+     * com.smartgwt.client.widgets.DataBoundComponent#getShowComplexFields showComplexFields} and 
      * <code>showComplexFieldsRecursively</code> on any nested component used for showing/editing a complex field.  Thus any of
      * this form's items that handle complex fields will themselves also show complex fields.  This allows for handling of
      * field structures of any complexity. <p> If set, this value automatically sets {@link
      * com.smartgwt.client.widgets.DataBoundComponent#getShowComplexFields showComplexFields} as well.
-     *
      *
      * @return Boolean
      */
     public Boolean getShowComplexFieldsRecursively()  {
         return getAttributeAsBoolean("showComplexFieldsRecursively");
     }
+
 
     /**
      * For databound forms, whether to show fields marked as detail fields.
@@ -1458,12 +1613,12 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * For databound forms, whether to show fields marked as detail fields.
      *
-     *
      * @return Boolean
      */
     public Boolean getShowDetailFields()  {
         return getAttributeAsBoolean("showDetailFields");
     }
+
 
     /**
      * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
@@ -1491,8 +1646,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}<code>:"left"</code> creates a compact
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
      * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
-     * determines whether fields  with validation errors should have special styling applied to them. See String for a
-     * discussion for how error styling is calculated.
+     * determines whether fields  with validation errors should have special styling applied to them. See FormItemBaseStyle for
+     * a  discussion for how error styling is calculated.
      *
      * @param showErrorIcons showErrorIcons Default value is true
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
@@ -1527,9 +1682,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}<code>:"left"</code> creates a compact
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
      * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
-     * determines whether fields  with validation errors should have special styling applied to them. See String for a
-     * discussion for how error styling is calculated.
-     *
+     * determines whether fields  with validation errors should have special styling applied to them. See FormItemBaseStyle for
+     * a  discussion for how error styling is calculated.
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
@@ -1537,6 +1691,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public Boolean getShowErrorIcons()  {
         return getAttributeAsBoolean("showErrorIcons");
     }
+
 
     /**
      * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
@@ -1564,8 +1719,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}<code>:"left"</code> creates a compact
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
      * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
-     * determines whether fields  with validation errors should have special styling applied to them. See String for a
-     * discussion for how error styling is calculated.
+     * determines whether fields  with validation errors should have special styling applied to them. See FormItemBaseStyle for
+     * a  discussion for how error styling is calculated.
      *
      * @param showErrorStyle showErrorStyle Default value is true
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
@@ -1600,9 +1755,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}<code>:"left"</code> creates a compact
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
      * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
-     * determines whether fields  with validation errors should have special styling applied to them. See String for a
-     * discussion for how error styling is calculated.
-     *
+     * determines whether fields  with validation errors should have special styling applied to them. See FormItemBaseStyle for
+     * a  discussion for how error styling is calculated.
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
@@ -1610,6 +1764,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public Boolean getShowErrorStyle()  {
         return getAttributeAsBoolean("showErrorStyle");
     }
+
 
     /**
      * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
@@ -1637,8 +1792,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}<code>:"left"</code> creates a compact
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
      * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
-     * determines whether fields  with validation errors should have special styling applied to them. See String for a
-     * discussion for how error styling is calculated.
+     * determines whether fields  with validation errors should have special styling applied to them. See FormItemBaseStyle for
+     * a  discussion for how error styling is calculated.
      *
      * @param showErrorText showErrorText Default value is false
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
@@ -1673,9 +1828,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}<code>:"left"</code> creates a compact
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
      * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
-     * determines whether fields  with validation errors should have special styling applied to them. See String for a
-     * discussion for how error styling is calculated.
-     *
+     * determines whether fields  with validation errors should have special styling applied to them. See FormItemBaseStyle for
+     * a  discussion for how error styling is calculated.
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
@@ -1683,6 +1837,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public Boolean getShowErrorText()  {
         return getAttributeAsBoolean("showErrorText");
     }
+
 
     /**
      * If true, field errors are written into the form next to the item(s) where the errors occurred.  Errors may appear as
@@ -1703,13 +1858,13 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * <P> If false, errors are written at the top of the form. <P> To do some other kind of error display, override {@link
      * com.smartgwt.client.widgets.form.DynamicForm#showErrors DynamicForm.showErrors}.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public Boolean getShowInlineErrors()  {
         return getAttributeAsBoolean("showInlineErrors");
     }
+
 
     /**
      * Indicates whether on validation failure, the error message displayed to the          user should be prepended with the
@@ -1726,13 +1881,13 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * Indicates whether on validation failure, the error message displayed to the          user should be prepended with the
      * title for the item.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public Boolean getShowTitlesWithErrorMessages()  {
         return getAttributeAsBoolean("showTitlesWithErrorMessages");
     }
+
 
     /**
      * Indicates that if validation fails, the user should not be allowed to exit the field - focus will be forced back into
@@ -1755,12 +1910,12 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * are server-based validators on this item, setting this property also implies that {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getSynchronousValidation synchronousValidation} is forced on.
      *
-     *
      * @return Boolean
      */
     public Boolean getStopOnError()  {
         return getAttributeAsBoolean("stopOnError");
     }
+
 
     /**
      * When calling {@link com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData} on a form or
@@ -1771,8 +1926,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * default by specifying  willHandleError on the DSRequest. In this case the callback passed in  will be fired even if the
      * server returns an error status code. <P> If <code>suppressValidationErrorCallback</code> is set to true, if a save
      * attempt returns a <i>validation</i> error code, the user-specified callback will not be fired <i>even if
-     * willHandleError:true</code> was specified on the dsRequest - though for other error codes, the callback would be fired
-     * if willHandle error is specified on the request. Note that this is the historical behavior for <var
+     * <code>willHandleError:true</code> was specified on the dsRequest</i>  - though for other error codes, the callback would
+     * be fired if willHandle error is  specified on the request. Note that this is the historical behavior for <var
      * class=smartclient>Smart GWT builds 8.0 and earlier</var> <var class=smartgwt>SmartGWT builds 4.0 and earlier</var>
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -1791,16 +1946,16 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * default by specifying  willHandleError on the DSRequest. In this case the callback passed in  will be fired even if the
      * server returns an error status code. <P> If <code>suppressValidationErrorCallback</code> is set to true, if a save
      * attempt returns a <i>validation</i> error code, the user-specified callback will not be fired <i>even if
-     * willHandleError:true</code> was specified on the dsRequest - though for other error codes, the callback would be fired
-     * if willHandle error is specified on the request. Note that this is the historical behavior for <var
+     * <code>willHandleError:true</code> was specified on the dsRequest</i>  - though for other error codes, the callback would
+     * be fired if willHandle error is  specified on the request. Note that this is the historical behavior for <var
      * class=smartclient>Smart GWT builds 8.0 and earlier</var> <var class=smartgwt>SmartGWT builds 4.0 and earlier</var>
-     *
      *
      * @return Boolean
      */
     public Boolean getSuppressValidationErrorCallback()  {
         return getAttributeAsBoolean("suppressValidationErrorCallback");
     }
+
 
     /**
      * If enabled, whenever validation is triggered and a request to the server is required, user interactivity will be blocked
@@ -1821,12 +1976,12 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * avoid blocking user interaction until it is strictly required. That is until the user attempts to use a FormItem whose
      * state could be affected by a server request that has not yet returned.
      *
-     *
      * @return Boolean
      */
     public Boolean getSynchronousValidation()  {
         return getAttributeAsBoolean("synchronousValidation");
     }
+
 
     /**
      * The name of a window or frame that will receive the results returned by the form's action. The default null indicates to
@@ -1838,7 +1993,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * Sets the {@link com.smartgwt.client.widgets.form.DynamicForm#getTarget target} for this form.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param target New submission target. Default value is null
+     * @param target New submission target. See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
      */
     public void setTarget(String target) {
@@ -1851,13 +2006,13 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * directly to a URL.  Normal server contact is through {@link com.smartgwt.client.docs.DataBoundComponentMethods DataBound
      * Component Methods}.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
      */
     public String getTarget()  {
         return getAttributeAsString("target");
     }
+
 
     /**
      * Default {@link com.smartgwt.client.types.TimeDisplayFormat} for {@link
@@ -1881,12 +2036,12 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * specified at the component level. <P> If no explicit formatter is specified at the field or component level, time values
      * will be  formatted according to the system-wide String. specified field type.
      *
-     *
      * @return TimeDisplayFormat
      */
     public TimeDisplayFormat getTimeFormatter()  {
         return EnumUtil.getEnum(TimeDisplayFormat.values(), getAttribute("timeFormatter"));
     }
+
 
     /**
      * Default alignment for item titles. If unset default alignment will be derived from {@link
@@ -1904,10 +2059,9 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.util.Page#isRTL text direction} as described in {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getTitleAlign DynamicForm.getTitleAlign}
      *
-     *
      * @return Get the alignment for the title for some item. Default implementation is as follows: <ul><li>If {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getTitleAlign titleAlign} is specified, it will be respected</li>
-     * <li>Otherwise if {@link com.smartgwt.client.widgets.form.DynamicForm#getTitleAlign this.titleAlign} is set, it will be
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTitleAlign titleAlign} is specified, it will be respected</li>    
+     * <li>Otherwise if {@link com.smartgwt.client.widgets.form.DynamicForm#getTitleAlign this.titleAlign} is set, it will be  
      * respected</li>     <li>Otherwise titles will be aligned according to {@link com.smartgwt.client.util.Page#isRTL text
      * direction},         with this method returning <code>"right"</code> if text direction is LTR,         or
      * <code>"left"</code> if text direction is RTL. </ul>
@@ -1915,6 +2069,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public Alignment getTitleAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("titleAlign"));
     }
+
 
     /**
      * Default orientation for titles for items in this form.  {@link com.smartgwt.client.types.TitleOrientation} lists valid
@@ -1937,7 +2092,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * options. <P> Note that titles on the left or right take up a cell in tabular {@link com.smartgwt.client.docs.FormLayout
      * form layouts}, but titles on top do not.
      *
-     *
      * @return Return the orientation of the title for a specific item or the default title orientation if no item is passed.
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_titles" target="examples">Titles Example</a>
@@ -1946,11 +2100,12 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return EnumUtil.getEnum(TitleOrientation.values(), getAttribute("titleOrientation"));
     }
 
+
     /**
      * The string prepended to the title of every item in this form.  See also +{requiredTitlePrefix} for fields that are
      * required.
      *
-     * @param titlePrefix titlePrefix Default value is ""
+     * @param titlePrefix . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is ""
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public void setTitlePrefix(String titlePrefix) {
@@ -1961,19 +2116,19 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * The string prepended to the title of every item in this form.  See also +{requiredTitlePrefix} for fields that are
      * required.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public String getTitlePrefix()  {
         return getAttributeAsString("titlePrefix");
     }
 
+
     /**
      * The string appended to the title of every item in this form.  See also +{requiredTitleSuffix} for fields that are
      * required.
      *
-     * @param titleSuffix titleSuffix Default value is "&nbsp;:"
+     * @param titleSuffix . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is "&nbsp;:"
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public void setTitleSuffix(String titleSuffix) {
@@ -1984,18 +2139,19 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * The string appended to the title of every item in this form.  See also +{requiredTitleSuffix} for fields that are
      * required.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public String getTitleSuffix()  {
         return getAttributeAsString("titleSuffix");
     }
 
+
+
     /**
      * The error message for a failed validator that does not specify its own errorMessage.
      *
-     * @param unknownErrorMessage unknownErrorMessage Default value is "Invalid value"
+     * @param unknownErrorMessage . See {@link com.smartgwt.client.docs.HTMLString HTMLString}. Default value is "Invalid value"
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public void setUnknownErrorMessage(String unknownErrorMessage) {
@@ -2005,13 +2161,35 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * The error message for a failed validator that does not specify its own errorMessage.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public String getUnknownErrorMessage()  {
         return getAttributeAsString("unknownErrorMessage");
     }
+
+
+    /**
+     * Associated userTask if current dynamic form used along with workflow.  See {@link
+     * com.smartgwt.client.util.workflow.UserTask userTask} for more details.
+     *
+     * @param userTask userTask Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setUserTask(UserTask userTask)  throws IllegalStateException {
+        setAttribute("userTask", userTask == null ? null : userTask.getOrCreateJsObj(), false);
+    }
+
+    /**
+     * Associated userTask if current dynamic form used along with workflow.  See {@link
+     * com.smartgwt.client.util.workflow.UserTask userTask} for more details.
+     *
+     * @return UserTask
+     */
+    public UserTask getUserTask()  {
+        return UserTask.getOrCreateRef(getAttributeAsJavaScriptObject("userTask"));
+    }
+
 
     /**
      * If true, form fields will be validated when each item's "change" handler is fired as well as when the entire form is
@@ -2035,7 +2213,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * explicitly set with <code>validateOnChange:false</code> will be fired on change - displaying errors and rejecting the
      * change on validation failure.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getValidateOnChange
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
@@ -2043,6 +2220,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public Boolean getValidateOnChange()  {
         return getAttributeAsBoolean("validateOnChange");
     }
+
 
     /**
      * If true, form items will be validated when each item's "editorExit" handler is fired as well as when the entire form is
@@ -2061,13 +2239,13 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * submitted or validated. <P> Note that this property can also be set at the item level to enable finer granularity
      * validation in response to user interaction - if true at either level, validation will occur on editorExit.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getValidateOnExit
      */
     public Boolean getValidateOnExit()  {
         return getAttributeAsBoolean("validateOnExit");
     }
+
 
     /**
      * validationURL can be set to do server-side validation against a different URL from where the form will ultimately save,
@@ -2083,7 +2261,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * addError()/setErrorReport() API on DSResponse.  See the javadoc for DSResponse for details. <P> See the Struts examples
      * in <code>[webroot]/examples/struts</code> for usage examples.
      *
-     * @param validationURL validationURL Default value is null
+     * @param validationURL . See {@link com.smartgwt.client.docs.String String}. Default value is null
      * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
      * @see com.smartgwt.client.widgets.form.DynamicForm#submit
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
@@ -2106,8 +2284,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * addError()/setErrorReport() API on DSResponse.  See the javadoc for DSResponse for details. <P> See the Struts examples
      * in <code>[webroot]/examples/struts</code> for usage examples.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
      * @see com.smartgwt.client.widgets.form.DynamicForm#submit
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
@@ -2115,6 +2292,9 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public String getValidationURL()  {
         return getAttributeAsString("validationURL");
     }
+
+
+
 
     /**
      * Whether titles for form items should wrap.  If not specified, titles will wrap by default.  Can be overridden for
@@ -2131,7 +2311,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * Whether titles for form items should wrap.  If not specified, titles will wrap by default.  Can be overridden for
      * individual items via {@link com.smartgwt.client.widgets.form.fields.FormItem#getWrapTitle wrapTitle}
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
@@ -2140,98 +2319,94 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     // ********************* Methods ***********************
-
-    /**
-     *
+	/**
+     * 
      *  This method exists for clean integration with existing server frameworks that have a 'cancel'
      *  feature which typically clears session state associated with the form.  When this method is
      *  called, an RPC is sent to the server with a parameter named
      *  {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with the value
      *  {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>
-     *
+     * 
      *  Note that no other form data is sent.  By default the current top-level page is replaced with the
      *  reply.  If you wish to ignore the server reply instead, call this method like this:
      *  <pre>
      *  dynamicFormInstance.cancel({ignoreTimeout: true, target: null});
      *  </pre>
-     *
+     * 
+     * @see com.smartgwt.client.widgets.form.DynamicForm#cancelEditing
+     * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
      */
     public native void cancel() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.cancel();
     }-*/;
-
-    /**
-     *
+	/**
+     * 
      *  This method exists for clean integration with existing server frameworks that have a 'cancel'
      *  feature which typically clears session state associated with the form.  When this method is
      *  called, an RPC is sent to the server with a parameter named
      *  {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with the value
      *  {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>
-     *
+     * 
      *  Note that no other form data is sent.  By default the current top-level page is replaced with the
      *  reply.  If you wish to ignore the server reply instead, call this method like this:
      *  <pre>
      *  dynamicFormInstance.cancel({ignoreTimeout: true, target: null});
      *  </pre>
-     *
+     * 
      * @param requestProperties additional properties to set on the RPCRequest                                          that will be issued
      * @see com.smartgwt.client.widgets.form.DynamicForm#cancelEditing
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
      */
     public native void cancel(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.cancel(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+        self.cancel(requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-
-    /**
+	/**
      * If the form or valuesManager has associated userTask workflow task than notify it about cancelling the changes.
      */
     public native void cancelEditing() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.cancelEditing();
     }-*/;
-
-    /**
+	/**
      * Clears all errors for this DynamicForm.
      * @param show If true, redraw the form to clear any visible error messages.
+     * @see com.smartgwt.client.docs.Errors Errors overview and related methods
      */
     public native void clearErrors(boolean show) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.clearErrors(show);
+        self.clearErrors(show == null ? false : show);
     }-*/;
-
-    /**
+	/**
      * Clear any validation errors on the field passed in.
      * @param fieldName field to clear errors from
      * @param show If true this method will fall through to {@link com.smartgwt.client.widgets.form.DynamicForm#showFieldErrors
      * DynamicForm.showFieldErrors}  to update the display
+     * @see com.smartgwt.client.docs.Errors Errors overview and related methods
      */
     public native void clearFieldErrors(String fieldName, boolean show) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.clearFieldErrors(fieldName, show);
+        self.clearFieldErrors(fieldName, show == null ? false : show);
     }-*/;
-
-    /**
+	/**
      * Clears the value for some field via a call to {@link com.smartgwt.client.widgets.form.fields.FormItem#clearValue
      * FormItem.clearValue} if appropriate. If there is no item associated with the field name, the field will just be cleared
      * within our stored set of values.
-     * @param fieldName Name of the field being cleared. A String may be used for  clearing details of nested data structures.
+     * @param fieldName Name of the field being cleared. A DataPath may be used for  clearing details of nested data structures.
      */
     public native void clearValue(String fieldName) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.clearValue(fieldName);
     }-*/;
-
-    /**
+	/**
      * Reset to default form values and clear errors
      */
     public native void clearValues() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.clearValues();
     }-*/;
-
-    /**
+	/**
      * Finish editing and store edited values in {@link com.smartgwt.client.util.workflow.Process#getState process state}.
      */
     public native void completeEditing() /*-{
@@ -2257,25 +2432,21 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     private native void setupFormSubmitFailedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var formSubmitFailed = $entry(function(){
+            var param = {};
+
+                var event = @com.smartgwt.client.widgets.form.events.FormSubmitFailedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({formSubmitFailed:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.form.events.FormSubmitFailedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({formSubmitFailed:  formSubmitFailed              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.formSubmitFailed = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.form.events.FormSubmitFailedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.formSubmitFailed =  formSubmitFailed             ;
         }
    }-*/;
-
-    /**
+	/**
      * If the current mouse event occurred over an item in this dynamicForm, returns that item.
      *
      * @return the current event target item
@@ -2283,15 +2454,10 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public native FormItem getEventItem() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getEventItem();
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.form.fields.FormItem::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
-    /**
+	/**
      * Return the current focus item for this form. If this form is drawn and has focus, this is the currently focused item. If
      * the form does not have focus or is undrawn this is the item that last had focus, or would have focus if the item were
      * drawn/given focus. Therefore note that this method can validly return an item which doesn't currently have focus. <P>
@@ -2303,15 +2469,10 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public native FormItem getFocusItem() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getFocusItem();
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.form.fields.FormItem::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
-    /**
+	/**
      * Return an AdvancedCriteria object based on the current set of values within this form. <p> Similar to {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria DynamicForm.getValuesAsCriteria}, except the returned
      * criteria object is guaranteed to be an AdvancedCriteria object, even if none of the form's fields has a specified {@link
@@ -2323,11 +2484,10 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public native AdvancedCriteria getValuesAsAdvancedCriteria() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getValuesAsAdvancedCriteria();
-        if(ret == null || ret === undefined) return null;
-        return @com.smartgwt.client.data.AdvancedCriteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(ret == null) return null;
+        return @com.smartgwt.client.data.AdvancedCriteria::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
-    /**
+	/**
      * Return an AdvancedCriteria object based on the current set of values within this form. <p> Similar to {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria DynamicForm.getValuesAsCriteria}, except the returned
      * criteria object is guaranteed to be an AdvancedCriteria object, even if none of the form's fields has a specified {@link
@@ -2340,9 +2500,9 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      */
     public native AdvancedCriteria getValuesAsAdvancedCriteria(TextMatchStyle textMatchStyle) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.getValuesAsAdvancedCriteria(textMatchStyle.@com.smartgwt.client.types.TextMatchStyle::getValue()());
-        if(ret == null || ret === undefined) return null;
-        return @com.smartgwt.client.data.AdvancedCriteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        var ret = self.getValuesAsAdvancedCriteria(textMatchStyle == null ? null : textMatchStyle.@com.smartgwt.client.types.TextMatchStyle::getValue()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.data.AdvancedCriteria::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
     /**
      * Add a asyncValidationReply handler.
@@ -2360,21 +2520,18 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     private native void setupAsyncValidationReplyEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var handleAsyncValidationReply = $entry(function(){
+            var param = {"success" : arguments[0], "errors" : arguments[1]};
+
+                var event = @com.smartgwt.client.widgets.form.events.AsyncValidationReplyEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({handleAsyncValidationReply:$entry(function(){
-                        var param = {"success" : arguments[0], "errors" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.form.events.AsyncValidationReplyEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({handleAsyncValidationReply:  handleAsyncValidationReply              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.handleAsyncValidationReply = $entry(function(){
-                   var param = {"success" : arguments[0], "errors" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.form.events.AsyncValidationReplyEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.handleAsyncValidationReply =  handleAsyncValidationReply             ;
         }
    }-*/;
     /**
@@ -2384,7 +2541,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * called when validation fails for<br> - a hidden field in this form<br> - if this form is databound, a datasource field
      * with specified validators, for which we   have no specified form item.<br> Implement this to provide custom validation
      * error handling for these fields.<br> By default hidden validation errors will be logged as warnings in the
-     * developerConsole. Call {@link com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent#cancel()} from within {@link HiddenValidationErrorsHandler#onHiddenValidationErrors} from this method to suppress that behavior.
+     * developerConsole. Call {@link com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent#cancel()} from within
+     * {@link HiddenValidationErrorsHandler#onHiddenValidationErrors} from this method to suppress that behavior.
      *
      * @param handler the hiddenValidationErrors handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -2397,29 +2555,31 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     private native void setupHiddenValidationErrorsEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var handleHiddenValidationErrors = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({handleHiddenValidationErrors:$debox($entry(function(){
-                        var param = {"errors" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({handleHiddenValidationErrors: 
+                function () {
+                    var param = {"errors" : arguments[0]};
+                    return handleHiddenValidationErrors(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.handleHiddenValidationErrors = $debox($entry(function(){
-                   var param = {"errors" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.handleHiddenValidationErrors = 
+                function () {
+                    var param = {"errors" : arguments[0]};
+                    return handleHiddenValidationErrors(param) == true;
+                }
+            ;
         }
    }-*/;
-
-    /**
+	/**
      * Return whether this form currently has any validation errors.<br> Validation errors are set up automatically by
      * validation, or may be explicitly set via {@link com.smartgwt.client.widgets.form.DynamicForm#setErrors
      * DynamicForm.setErrors} or {@link com.smartgwt.client.widgets.form.DynamicForm#setFieldErrors
@@ -2430,15 +2590,11 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      */
     public native Boolean hasErrors() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.hasErrors();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        var ret = self.hasErrors();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
-
-    /**
+	/**
      * Does this form currently h ave any validation errors on the field passed in?<br> Validation errors are set up
      * automatically by validation, or may be explicitly set via {@link com.smartgwt.client.widgets.form.DynamicForm#setErrors
      * DynamicForm.setErrors} or {@link com.smartgwt.client.widgets.form.DynamicForm#setFieldErrors
@@ -2450,15 +2606,11 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      */
     public native Boolean hasFieldErrors(String fieldName) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.hasFieldErrors(fieldName);
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        var ret = self.hasFieldErrors(fieldName);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
-
-    /**
+	/**
      * Hide a form item via {@link com.smartgwt.client.widgets.form.fields.FormItem#hide FormItem.hide}
      * @param itemName Name of the item to show
      */
@@ -2466,8 +2618,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.hideItem(itemName);
     }-*/;
-
-    /**
+	/**
      * Returns true if {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} is currently
      * "add".  See {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType}.
      *
@@ -2475,15 +2626,11 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      */
     public native Boolean isNewRecord() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.isNewRecord();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        var ret = self.isNewRecord();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
-
-    /**
+	/**
      * Is this component waiting for an asynchronous validation to complete? This method will return true after {@link
      * com.smartgwt.client.widgets.form.DynamicForm#validate DynamicForm.validate} is called on a component with server-side
      * validators for some field(s), until the server responds. <P> Note that the notification method {@link
@@ -2494,12 +2641,9 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      */
     public native Boolean isPendingAsyncValidation() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.isPendingAsyncValidation();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        var ret = self.isPendingAsyncValidation();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
     /**
      * Add a itemChange handler.
@@ -2519,25 +2663,28 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     private native void setupItemChangeEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var itemChange = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.form.events.ItemChangeEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({itemChange:$debox($entry(function(){
-                        var param = {"item" : arguments[0], "newValue" : arguments[1], "oldValue" : arguments[2]};
-                        var event = @com.smartgwt.client.widgets.form.events.ItemChangeEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({itemChange: 
+                function () {
+                    var param = {"item" : arguments[0], "newValue" : arguments[1], "oldValue" : arguments[2]};
+                    return itemChange(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.itemChange = $debox($entry(function(){
-                   var param = {"item" : arguments[0], "newValue" : arguments[1], "oldValue" : arguments[2]};
-                   var event = @com.smartgwt.client.widgets.form.events.ItemChangeEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.itemChange = 
+                function () {
+                    var param = {"item" : arguments[0], "newValue" : arguments[1], "oldValue" : arguments[2]};
+                    return itemChange(param) == true;
+                }
+            ;
         }
    }-*/;
     /**
@@ -2558,21 +2705,18 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     private native void setupItemChangedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var itemChanged = $entry(function(){
+            var param = {"item" : arguments[0], "newValue" : arguments[1]};
+
+                var event = @com.smartgwt.client.widgets.form.events.ItemChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({itemChanged:$entry(function(){
-                        var param = {"item" : arguments[0], "newValue" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.form.events.ItemChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({itemChanged:  itemChanged              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.itemChanged = $entry(function(){
-                   var param = {"item" : arguments[0], "newValue" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.form.events.ItemChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.itemChanged =  itemChanged             ;
         }
    }-*/;
     /**
@@ -2593,29 +2737,31 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     private native void setupItemKeyPressEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var itemKeyPress = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.form.events.ItemKeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({itemKeyPress:$debox($entry(function(){
-                        var param = {"item" : arguments[0], "keyName" : arguments[1], "characterValue" : arguments[2]};
-                        var event = @com.smartgwt.client.widgets.form.events.ItemKeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
+            obj.addProperties({itemKeyPress: 
+                function () {
+                    var param = {"item" : arguments[0], "keyName" : arguments[1], "characterValue" : arguments[2]};
+                    return itemKeyPress(param) == true;
+                }
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.itemKeyPress = $debox($entry(function(){
-                   var param = {"item" : arguments[0], "keyName" : arguments[1], "characterValue" : arguments[2]};
-                   var event = @com.smartgwt.client.widgets.form.events.ItemKeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
+            obj.itemKeyPress = 
+                function () {
+                    var param = {"item" : arguments[0], "keyName" : arguments[1], "characterValue" : arguments[2]};
+                    return itemKeyPress(param) == true;
+                }
+            ;
         }
    }-*/;
-
-    /**
+	/**
      * Resets values to the state it was the last time <code>setValues()</code> or <code>rememberValues()</code> was called. If
      * neither of those methods has been called, values will be set back to their initial values at init time.
      */
@@ -2623,26 +2769,103 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.reset();
     }-*/;
-
-    /**
+	/**
      * Same as {@link com.smartgwt.client.widgets.form.DynamicForm#reset DynamicForm.reset}.
      */
     public native void resetValues() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.resetValues();
     }-*/;
+	/**
+     * Validate and then save the form's current values to the {@link com.smartgwt.client.data.DataSource} this form is bound
+     * to. <p> If client-side validators are defined, they are executed first, and if any errors are found the save is aborted
+     * and the form will show the errors. <p> If client-side validation passes, a {@link com.smartgwt.client.data.DSRequest}
+     * will be sent, exactly as though {@link com.smartgwt.client.data.DataSource#addData DataSource.addData} or {@link
+     * com.smartgwt.client.data.DataSource#updateData DataSource.updateData} had been called with 
+     * ${isc.DocUtils.linkForRef('method:DynamicForm.getValues','the form's values')} as data.  The {@link
+     * com.smartgwt.client.data.DSRequest#getOperationType operationType} will be either "update" or "add", depending on the
+     * current {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType}. <P> On either a
+     * client-side or server-side validation failure, validation errors will be displayed in the form.  Visible items within a
+     * DynamicForm will be redrawn to display errors. Validation failure occurring on hidden items, or DataSource fields with
+     * no  associated form items may be handled via {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#addHandleHiddenValidationErrorsHandler
+     * DynamicForm.handleHiddenValidationErrors} or {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#addHandleHiddenValidationErrorsHandler
+     * ValuesManager.handleHiddenValidationErrors}. <P> In the case of a validation error, the callback will <b>not</b> be
+     * called by default since the form has already handled the failed save by displaying the validation errors to the user. 
+     * If you need to do something additional in this case, you can set {@link
+     * com.smartgwt.client.rpc.RPCRequest#getWillHandleError willHandleError} via the <code>requestProperties</code> parameter
+     * to force your callback to be invoked.  However, first consider: <ul> <li> if you are trying to customize display of
+     * validation errors, there are several {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons built-in
+     * modes} and {@link com.smartgwt.client.widgets.form.DynamicForm#showErrors DynamicForm.showErrors} may be a better place
+     * to put customizations. <li> for unrecoverable general errors (eg server is down), {@link
+     * com.smartgwt.client.rpc.RPCManager#handleError central error handling} in invoked, so consider placing customizations
+     * there unless an unrecoverable error should be handled specially by this specific form. </ul>
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#add_grid_form_category" target="examples">Add Example</a>
+     */
+    public native void saveData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.saveData();
+    }-*/;
 
-    /**
+	/**
+	 * @see {@link DynamicForm#saveData()}
+	 */
+	public void saveData(DSCallback callback){
+		saveData(callback,null);
+	}
+	/**
+     * Validate and then save the form's current values to the {@link com.smartgwt.client.data.DataSource} this form is bound
+     * to. <p> If client-side validators are defined, they are executed first, and if any errors are found the save is aborted
+     * and the form will show the errors. <p> If client-side validation passes, a {@link com.smartgwt.client.data.DSRequest}
+     * will be sent, exactly as though {@link com.smartgwt.client.data.DataSource#addData DataSource.addData} or {@link
+     * com.smartgwt.client.data.DataSource#updateData DataSource.updateData} had been called with 
+     * ${isc.DocUtils.linkForRef('method:DynamicForm.getValues','the form's values')} as data.  The {@link
+     * com.smartgwt.client.data.DSRequest#getOperationType operationType} will be either "update" or "add", depending on the
+     * current {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType}. <P> On either a
+     * client-side or server-side validation failure, validation errors will be displayed in the form.  Visible items within a
+     * DynamicForm will be redrawn to display errors. Validation failure occurring on hidden items, or DataSource fields with
+     * no  associated form items may be handled via {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#addHandleHiddenValidationErrorsHandler
+     * DynamicForm.handleHiddenValidationErrors} or {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#addHandleHiddenValidationErrorsHandler
+     * ValuesManager.handleHiddenValidationErrors}. <P> In the case of a validation error, the callback will <b>not</b> be
+     * called by default since the form has already handled the failed save by displaying the validation errors to the user. 
+     * If you need to do something additional in this case, you can set {@link
+     * com.smartgwt.client.rpc.RPCRequest#getWillHandleError willHandleError} via the <code>requestProperties</code> parameter
+     * to force your callback to be invoked.  However, first consider: <ul> <li> if you are trying to customize display of
+     * validation errors, there are several {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons built-in
+     * modes} and {@link com.smartgwt.client.widgets.form.DynamicForm#showErrors DynamicForm.showErrors} may be a better place
+     * to put customizations. <li> for unrecoverable general errors (eg server is down), {@link
+     * com.smartgwt.client.rpc.RPCManager#handleError central error handling} in invoked, so consider placing customizations
+     * there unless an unrecoverable error should be handled specially by this specific form. </ul>
+     * @param callback callback to invoke on completion
+     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#add_grid_form_category" target="examples">Add Example</a>
+     */
+    public native void saveData(DSCallback callback, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.saveData(
+			$entry( function(dsResponse,data,dsRequest) { 
+				if(callback!=null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(
+					@com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse), 
+					data, 
+					@com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest)
+				);
+			}), requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+	/**
      * Sets the value for some field
-     * @param fieldName Name of the field being updated. A String may                           be passed to set nested values
+     * @param fieldName Name of the field being updated. A DataPath may                           be passed to set nested values
      * @param value New value.
      */
     public native void setValue(String fieldName, String value) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setValue(fieldName, value);
     }-*/;
-
-    /**
+	/**
      * This method will display the specified criteria in this form for editing. The criteria parameter may be a simple {@link
      * com.smartgwt.client.data.Criterion} object or an {@link com.smartgwt.client.data.AdvancedCriteria} object. <P> For
      * simple criteria, the specified fieldName will be used to apply criteria to form items, as with a standard setValues()
@@ -2653,33 +2876,34 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * shouldSaveValue} is true for the item and   {@link com.smartgwt.client.widgets.form.fields.FormItem#canEditCriterion
      * FormItem.canEditCriterion} returns true for the criterion in question. By default  this method checks for a match with
      * both the <code>fieldName</code> and <code>operator</code>  of the criterion. The criterion is actually passed to the
-     * item for editing via  {@link com.smartgwt.client.widgets.form.fields.FormItem#setCriterion FormItem.setCriterion}. Note
-     * that these methods may be overridden for custom   handling. Also note that the default {@link
-     * com.smartgwt.client.widgets.form.fields.CanvasItem#setCriterion CanvasItem.setCriterion} implementation  handles editing
-     * nested criteria via embedded dynamicForms.</li> <li>Criteria which don't map to any form item will be stored directly on
-     * the form and  recombined with the edited values from each item when {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria DynamicForm.getValuesAsCriteria} is  called.</li> </ul>
+     * item for editing via    the <code>FormItemCriterionSetter</code>'s <code>setCriterion()</code> method.  Note that these
+     * methods may be overridden for custom  handling. Also note that the default  
+     * <code>FormItemCriterionSetter.setCriterion()</code> implementation  used by {@link
+     * com.smartgwt.client.widgets.form.fields.CanvasItem} handles editing nested criteria via embedded dynamicForms.</li>
+     * <li>Criteria which don't map to any form item will be stored directly on the form and  recombined with the edited values
+     * from each item when {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria
+     * DynamicForm.getValuesAsCriteria} is  called.</li> </ul>
      * @param criteria criteria to edit.
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
      */
     public native void setValuesAsCriteria(Criterion criteria) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setValuesAsCriteria(criteria.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-
-    /**
+	/**
      * If this form has any outstanding validation errors for the field passed in, show them now. Called when field errors are
-     * set directly via {@link com.smartgwt.client.widgets.form.DynamicForm#setFieldErrors DynamicForm.setFieldErrors} /
+     * set directly via {@link com.smartgwt.client.widgets.form.DynamicForm#setFieldErrors DynamicForm.setFieldErrors} / 
      * {@link com.smartgwt.client.widgets.form.DynamicForm#addFieldErrors DynamicForm.addFieldErrors} / {@link
      * com.smartgwt.client.widgets.form.DynamicForm#clearFieldErrors DynamicForm.clearFieldErrors}.<br> Default implementation
      * simply falls through to {@link com.smartgwt.client.widgets.form.DynamicForm#showErrors DynamicForm.showErrors}.
      * @param fieldName field to show errors for
+     * @see com.smartgwt.client.docs.Errors Errors overview and related methods
      */
     public native void showFieldErrors(String fieldName) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.showFieldErrors(fieldName);
     }-*/;
-
-    /**
+	/**
      * Show a form item via {@link com.smartgwt.client.widgets.form.fields.FormItem#show FormItem.show}
      * @param itemName Name of the item to show
      */
@@ -2687,9 +2911,67 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.showItem(itemName);
     }-*/;
+	/**
+     * <code>submit()</code> is automatically called when a {@link com.smartgwt.client.widgets.form.fields.SubmitItem} included
+     * in the form is clicked, or, if {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter saveOnEnter} is set,
+     * when the "Enter" key is pressed in a text input.  Submit can also be manually called. <P> If this form is part of a
+     * {@link com.smartgwt.client.widgets.form.ValuesManager}, this method will simply fall through to the submit method on the
+     * valuesManager. If not, and {@link com.smartgwt.client.widgets.form.DynamicForm#addSubmitValuesHandler
+     * form.submitValues()} exists, it will be called, and no further action will be taken. <P> Otherwise, default behavior
+     * varies based on {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit form.canSubmit}: if
+     * <code>canSubmit</code> is false, {@link com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData} will
+     * be called to handle saving via Smart GWT databinding.   <P> If <code>canSubmit</code> is true, the form will be
+     * submitted like an ordinary HTML form via {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm
+     * DynamicForm.submitForm}. <P> The parameters to <code>submit()</code> apply only if <code>submit()</code> will be calling
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData}.  If you override
+     * <code>submit()</code>, you can safely ignore the parameters as Smart GWT framework code does not pass them.
+     * @see com.smartgwt.client.widgets.form.events.SubmitValuesEvent
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void submit() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.submit();
+    }-*/;
 
-    /**
-     * Submits the form to the URL defined by {@link com.smartgwt.client.widgets.form.DynamicForm#getAction action},
+	/**
+	 * @see {@link DynamicForm#submit()}
+	 */
+	public void submit(DSCallback callback){
+		submit(callback,null);
+	}
+	/**
+     * <code>submit()</code> is automatically called when a {@link com.smartgwt.client.widgets.form.fields.SubmitItem} included
+     * in the form is clicked, or, if {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter saveOnEnter} is set,
+     * when the "Enter" key is pressed in a text input.  Submit can also be manually called. <P> If this form is part of a
+     * {@link com.smartgwt.client.widgets.form.ValuesManager}, this method will simply fall through to the submit method on the
+     * valuesManager. If not, and {@link com.smartgwt.client.widgets.form.DynamicForm#addSubmitValuesHandler
+     * form.submitValues()} exists, it will be called, and no further action will be taken. <P> Otherwise, default behavior
+     * varies based on {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit form.canSubmit}: if
+     * <code>canSubmit</code> is false, {@link com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData} will
+     * be called to handle saving via Smart GWT databinding.   <P> If <code>canSubmit</code> is true, the form will be
+     * submitted like an ordinary HTML form via {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm
+     * DynamicForm.submitForm}. <P> The parameters to <code>submit()</code> apply only if <code>submit()</code> will be calling
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData}.  If you override
+     * <code>submit()</code>, you can safely ignore the parameters as Smart GWT framework code does not pass them.
+     * @param callback callback to invoke on completion.                                          [Ignored if this.canSubmit is true]
+     * @param requestProperties additional properties to set on the DSRequest                                          that will be issued              
+     *                            [Ignored if this.canSubmit is true]
+     * @see com.smartgwt.client.widgets.form.events.SubmitValuesEvent
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void submit(DSCallback callback, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.submit(
+			$entry( function(dsResponse,data,dsRequest) { 
+				if(callback!=null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(
+					@com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse), 
+					data, 
+					@com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest)
+				);
+			}), requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+	/**
+     * Submits the form to the URL defined by {@link com.smartgwt.client.widgets.form.DynamicForm#getAction action}, 
      * identically to how a plain HTML &lt;form&gt; element would submit data, as either an HTTP GET or POST as specified by
      * {@link com.smartgwt.client.widgets.form.DynamicForm#getMethod method}. <P> <b>Notes:</b> <ul> <li>this is used only in
      * the very rare case that a form is used to submit data directly to a URL.  Normal server contact is through  {@link
@@ -2699,6 +2981,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.fields.HiddenItem}  with a {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue defaultValue} set.  This is analogous to &lt;input
      * type="hidden"&gt; in HTML forms. </ul>
+     * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
      */
     public native void submitForm() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -2720,25 +3003,34 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     private native void setupSubmitValuesEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var submitValues = $entry(function(){
+            var param = {"values" : arguments[0], "form" : arguments[1]};
+
+                var event = @com.smartgwt.client.widgets.form.events.SubmitValuesEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({submitValues:$entry(function(){
-                        var param = {"values" : arguments[0], "form" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.form.events.SubmitValuesEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({submitValues:  submitValues              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.submitValues = $entry(function(){
-                   var param = {"values" : arguments[0], "form" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.form.events.SubmitValuesEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.submitValues =  submitValues             ;
         }
    }-*/;
-
-    /**
+	/**
+     * Is the title for the given form item clipped? The form item must have title clipping enabled.
+     * @param item the form item.
+     *
+     * @return true if the title is clipped; false otherwise.
+     * @see com.smartgwt.client.widgets.form.DynamicForm#getClipItemTitles
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getClipTitle
+     */
+    public native boolean titleClipped(FormItem item) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.titleClipped(item.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return ret;
+    }-*/;
+	/**
      * Validates the form without submitting it, and redraws the form to display error messages if there are any validation
      * errors. Returns true if validation succeeds, or false if validation fails.<br> For databound forms, any Datasource field
      * validators will be run even if there is no  associated item in the form.<br> Validators will also be run on hidden form
@@ -2757,27 +3049,22 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_validation_type" target="examples">Type Example</a>
      */
-    public native Boolean validate(boolean validateHiddenFields) /*-{
+    public native boolean validate(boolean validateHiddenFields) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.validate(validateHiddenFields);
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        var ret = self.validate(validateHiddenFields == null ? false : validateHiddenFields);
+        return ret;
     }-*/;
-
-    /**
+	/**
      * Perform validation on the client and the server.
+     * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public native void validateData() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.validateData();
     }-*/;
-
-    /**
+	/**
      * Compares the current set of values with the values stored by the call to the {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#rememberValues DynamicForm.rememberValues} method.
+     * com.smartgwt.client.widgets.form.DynamicForm#rememberValues DynamicForm.rememberValues} method. 
      * <code>rememberValues()</code> runs when the form is initialized and on every call to {@link
      * com.smartgwt.client.widgets.form.DynamicForm#setValues DynamicForm.setValues}. Returns true if the values have changed,
      * and false otherwise.
@@ -2788,12 +3075,9 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      */
     public native Boolean valuesHaveChanged() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.valuesHaveChanged();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        var ret = self.valuesHaveChanged();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 
     // ********************* Static Methods ***********************
@@ -3179,23 +3463,10 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      */
     public FormItem[] getFields() {
         if(fields == null || getDataSource() != null) {
-            return convertToFormItemArray(getAttributeAsJavaScriptObject("fields"));
+            return com.smartgwt.client.util.ConvertTo.arrayOfFormItem(getAttributeAsJavaScriptObject("fields"));
         } else {
             return fields;
         }
-    }
-
-    private static FormItem[] convertToFormItemArray(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new FormItem[]{};
-        }
-        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-        FormItem[] objects = new FormItem[componentsj.length];
-        for (int i = 0; i < componentsj.length; i++) {
-            JavaScriptObject fieldJS = componentsj[i];
-            objects[i] = FormItemFactory.getFormItem(fieldJS);
-        }
-        return objects;
     }
 
     public FormItem getItem(String name) {
@@ -3211,12 +3482,19 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
             }
         } else {
             JavaScriptObject fieldJS = getFieldJS(name);
-            if(fieldJS != null) {
+
+            if(fieldJS!=null && JSOHelper.getAttribute(fieldJS, SC.REF)==null){
+                FormItem formItem = new FormItem();
+                formItem.setJsObj(fieldJS);
+
+                String type = formItem.getClassName();
+
+                return com.smartgwt.client.util.ObjectFactory.createFormItem(type,fieldJS);
+            } else if(fieldJS != null) {
                 return FormItemFactory.getFormItem(fieldJS);
-            } else {
-                return null;
             }
         }
+
         return null;
     }
 
@@ -3246,10 +3524,21 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
     /**
      * Validates the form without submitting it, and redraws the form to display error messages if there are any
-     * validation errors. Returns true if validation succeeds, or false if validation fails.<br> For databound forms,
-     * any Datasource field validators will be run even if there is no  associated item in the form.<br> Validators will
-     * also be run on hidden form items<br> In both these cases, validation failure can be handled via {@link
+     * validation errors. Returns true if validation succeeds, or false if validation fails.<br>
+     * For databound forms,
+     * any Datasource field validators will be run even if there is no  associated item in the form.<br>
+     * Validators will
+     * also be run on hidden form items<br>
+     * In both these cases, validation failure can be handled via {@link
      * com.smartgwt.client.widgets.form.DynamicForm#handleHiddenValidationErrors}
+     * <P>
+     * If this form has any fields which require server-side validation
+     * this will also be initialized. Such validation will
+     * occur asynchronously.<br>
+     * Developers can use {@link com.smartgwt.client.widgets.form.DynamicForm#isPendingAsyncValidation()}
+     * and
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#addAsyncValidationReplyHandler(com.smartgwt.client.widgets.form.events.AsyncValidationReplyHandler)}
+     * to detect and respond to asynchronous validation.
      *
      * @return true if validation succeeds, or false if validation fails.
      */
@@ -3278,6 +3567,16 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         var initialValuesJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(initialValues);
         return self.editNewRecord(initialValuesJS);
     }-*/;
+
+    /**
+     * Prepare to edit a new record by clearing the current set of values (or replacing them with initialValues if specified).
+     * Subsequent calls to saveData() will use an add rather than an update operation.
+     *
+     * @param initialValues initial set of values for the editor as a {@link Record} of attributes whose names correspond to form values. 
+     */
+    public void editNewRecord(Record initialValues) {
+        editNewRecord(initialValues.toMap());
+    }
 
     /**
      * Edit the record selected in the specified ListGrid.
@@ -3426,102 +3725,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public void setErrorOrientation(FormErrorOrientation errorOrientation) {
         setAttribute("errorOrientation", errorOrientation, true);
     }
-
-    public native void saveData() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.saveData();
-    }-*/;
-
-    public native void saveData(DSCallback callback) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.saveData($entry(function (dsResponse, data, dsRequest) {
-            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
-            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
-            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }));
-    }-*/;
-
-    public native void saveData(DSCallback callback, DSRequest requestProperties) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.saveData($entry(function (dsResponse, data, dsRequest) {
-            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
-            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
-            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }), requestPropertiesJS);
-    }-*/;
-
-
-    /**
-     * <code>submit()</code> is automatically called when a {@link com.smartgwt.client.widgets.form.fields.SubmitItem}
-     * included in the form is clicked, or, if {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter
-     * saveOnEnter} is set, when the "Enter" key is pressed in a text input.  Submit can also be manually called. <P> If
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#submitValues} exists, it will be called, then immediately
-     * return. <P> Otherwise, default behavior varies based on {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit
-     * canSubmit}: if <code>canSubmit</code> is false, {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}
-     * will be called to handle saving via Smart GWT databinding.   <P> If <code>canSubmit</code> is true, the form
-     * will be submitted like an ordinary HTML form via {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm}.
-     * <P> The parameters to <code>submit()</code> apply only if <code>submit()</code> will be calling {@link
-     * com.smartgwt.client.widgets.form.ValuesManager#saveData}.  If you override <code>submit()</code>, you can safely
-     * ignore the parameters as Smart GWT framework code does not pass them.
-     */
-    public native void submit() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.submit();
-    }-*/;
-
-    /**
-     * <code>submit()</code> is automatically called when a {@link com.smartgwt.client.widgets.form.fields.SubmitItem}
-     * included in the form is clicked, or, if {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter
-     * saveOnEnter} is set, when the "Enter" key is pressed in a text input.  Submit can also be manually called. <P> If
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#submitValues} exists, it will be called, then immediately
-     * return. <P> Otherwise, default behavior varies based on {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit
-     * canSubmit}: if <code>canSubmit</code> is false, {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}
-     * will be called to handle saving via Smart GWT databinding.   <P> If <code>canSubmit</code> is true, the form
-     * will be submitted like an ordinary HTML form via {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm}.
-     * <P> The parameters to <code>submit()</code> apply only if <code>submit()</code> will be calling {@link
-     * com.smartgwt.client.widgets.form.ValuesManager#saveData}.  If you override <code>submit()</code>, you can safely
-     * ignore the parameters as Smart GWT framework code does not pass them.
-     *
-     * @param callback callback to invoke on completion. [Ignored if canSubmit is true]
-     */
-    public native void submit(DSCallback callback) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.submit($entry(function (dsResponse, data, dsRequest) {
-            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
-            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
-            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }));
-    }-*/;
-
-    /**
-     * <code>submit()</code> is automatically called when a {@link com.smartgwt.client.widgets.form.fields.SubmitItem}
-     * included in the form is clicked, or, if {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter
-     * saveOnEnter} is set, when the "Enter" key is pressed in a text input.  Submit can also be manually called. <P> If
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#submitValues} exists, it will be called, then immediately
-     * return. <P> Otherwise, default behavior varies based on {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit
-     * canSubmit}: if <code>canSubmit</code> is false, {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}
-     * will be called to handle saving via Smart GWT databinding.   <P> If <code>canSubmit</code> is true, the form
-     * will be submitted like an ordinary HTML form via {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm}.
-     * <P> The parameters to <code>submit()</code> apply only if <code>submit()</code> will be calling {@link
-     * com.smartgwt.client.widgets.form.ValuesManager#saveData}.  If you override <code>submit()</code>, you can safely
-     * ignore the parameters as Smart GWT framework code does not pass them.
-     *
-     * @param callback          callback to invoke on completion.                                          [Ignored if
-     *                          this.canSubmit is true]
-     * @param requestProperties additional properties to set on the DSRequest
-     *                          that will be issued                                          [Ignored if this.canSubmit
-     *                          is true]
-     */
-    public native void submit(DSCallback callback, DSRequest requestProperties) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.saveData($entry(function (dsResponse, data, dsRequest) {
-            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
-            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
-            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }), requestPropertiesJS);
-    }-*/;
 
     /**
      * Edit an existing record.  Updates this editors values to match the values of the record  passed in. <P> Subsequent calls to <code>saveData()</code> will use an <code>update</code> rather than an <code>add</code> operation.
@@ -3681,10 +3884,12 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }-*/;
 
    /**
-    * The FormItemHoverFormatter should return the HTML to display in a hover canvas when the user holds the mousepointer over the item's title.
-    * Return null to suppress the hover canvas altogether.
+    * The <code>FormItemHoverFormatter</code> should return the HTML to display in a hover canvas
+    * when the user holds the mousepointer over an item's title and the title is clipped. Return
+    * null to suppress the hover canvas altogether.
     *
     * @param hoverFormatter the hover formatter
+    * @see #titleClipped(com.smartgwt.client.widgets.form.fields.FormItem)
     */
     public native void setItemTitleHoverFormatter(FormItemHoverFormatter hoverFormatter) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -3693,6 +3898,55 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
             var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             return hoverFormatter.@com.smartgwt.client.widgets.form.FormItemHoverFormatter::getHoverHTML(Lcom/smartgwt/client/widgets/form/fields/FormItem;Lcom/smartgwt/client/widgets/form/DynamicForm;)(itemJ, formJ);
         }));
+    }-*/;
+
+    /**
+     * The <code>FormItemHoverFormatter</code> should return the HTML to display in a hover canvas
+     * when the user holds the mousepointer over an item's value and the value is clipped. Return
+     * null to suppress the hover canvas altogether.
+     *
+     * @param hoverFormatter the hover formatter
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#valueClipped()
+     */
+    public native void setItemValueHoverFormatter(FormItemHoverFormatter hoverFormatter) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         var formJ = this;
+         self.valueHoverHTML = $debox($entry(function(item) {
+             var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
+             return hoverFormatter.@com.smartgwt.client.widgets.form.FormItemHoverFormatter::getHoverHTML(Lcom/smartgwt/client/widgets/form/fields/FormItem;Lcom/smartgwt/client/widgets/form/DynamicForm;)(itemJ, formJ);
+         }));
+     }-*/;
+
+    /**
+     * Bind to a DataSource.
+     * <P>
+     * Binding to a DataSource means that the component will use the DataSource to provide default data for
+     * its fields.
+     * <P>
+     * When binding to a new DataSource, if the component has any existing "fields" or has a dataset,
+     * these will be discarded by default, since it is assumed the new DataSource may represent a completely
+     * unrelated set of objects. If the old "fields" are still relevant, pass them to setDataSource().
+     * @param dataSource
+     * @param fields
+     */
+    public void setDataSource(DataSource dataSource, FormItem... fields) {
+        if (!isCreated()) {
+            setFields(fields);
+            setDataSource(dataSource);
+        } else {
+            JavaScriptObject jsFields = null;
+            if (fields != null) {
+                jsFields = JSOHelper.createJavaScriptArray();
+                for (int i = 0; i < fields.length; i++) {
+                    JSOHelper.setArrayValue(jsFields, i, fields[i].getJsObj());
+                }
+            }
+            setDataSourceJS(dataSource.getOrCreateJsObj(), jsFields);
+        }
+    }
+    private native void setDataSourceJS(JavaScriptObject dataSource, JavaScriptObject fields) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setDataSource(dataSource, fields);
     }-*/;
 
 
@@ -3827,6 +4081,15 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return getAttributeAsString("hiliteProperty");
     }
 
+    /** 
+     * Shows a FieldPicker interface allowing end-users to rearrange the order and visibiility
+     * of the fields in the associated DataBoundComponent.
+     */
+    public native void editFields() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.editFields();
+    }-*/;
+
     /**
      * Shows a HiliteEditor interface allowing end-users to edit the data-hilites currently in use by this DataBoundComponent.
      */
@@ -3882,7 +4145,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public native Hilite[] getHilites()/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var hilitesJS = self.getHilites();
-        return @com.smartgwt.client.data.Hilite::convertToHiliteArray(Lcom/google/gwt/core/client/JavaScriptObject;)(hilitesJS);
+        return @com.smartgwt.client.util.ConvertTo::arrayOfHilite(Lcom/google/gwt/core/client/JavaScriptObject;)(hilitesJS);
     }-*/;
 
     public void setDragDataAction(DragDataAction dragDataAction) {
@@ -3960,7 +4223,67 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     // ********************* Methods ***********************
-
+    /**
+     * Filters all objects according to the AdvancedCriteria passed
+     *
+     * @param adCriteria AdvancedCriteria to use to filter results
+     *
+     * @return all matching Objects or null if none found
+     */
+    public native Record[] findAll(AdvancedCriteria adCriteria) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = self.findAll(adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return recordsJS == null || recordsJS === undefined ? null : @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(recordsJS);
+    }-*/;
+    
+    /**
+     * Filters all objects according to the AdvancedCriteria passed and returns the first matching object or null if not found
+     *
+     * @param adCriteria AdvancedCriteria to use to filter results
+     *
+     * @return first matching object or null if not found
+     */
+    public native Record find(AdvancedCriteria adCriteria) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordJS = self.find(adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return recordJS == null || recordJS === undefined ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(recordJS);
+    }-*/;
+    
+    /**
+     * Finds the index of the first Record that matches with the AdvacendCriteria passed.
+     * @param adCriteria AdvancedCriteria to use to filter results
+     *
+     * @return index of the first matching Record or -1 if not found
+     */
+    public native int findIndex(AdvancedCriteria adCriteria) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.findIndex(adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+    
+    /**
+     * Like {@link RecordList#findIndex}, but considering the startIndex and endIndex parameters.
+     * @param startIndex first index to consider
+     * @param adCriteria AdvancedCriteria to use to filter results
+     * @param endIndex last index to consider
+     * 
+     * @return index of the first matching Record or -1 if not found
+     */
+    public native int findNextIndex(int startIndex, AdvancedCriteria adCriteria, int endIndex) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.findNextIndex(startIndex, adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()(), null, endIndex);
+    }-*/;
+    
+    /**
+     * Like {@link RecordList#findIndex}, but considering the startIndex parameter.
+     * @param startIndex first index to consider
+     * @param adCriteria AdvancedCriteria to use to filter results
+     * 
+     * @return index of the first matching Record or -1 if not found
+     */
+    public native int findNextIndex(int startIndex, AdvancedCriteria adCriteria) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.findNextIndex(startIndex, adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
 
     public native void selectRecord(Record record)/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -4116,6 +4439,9 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     public void setDataSource(DataSource dataSource) {
+    	if(dataSource==null) {
+    		throw new IllegalArgumentException("Invalid call to setDataSource() passing null.  If you're having trouble with loading DataSources, please see the following FAQ: http://forums.smartclient.com/showthread.php?t=8159#aDSLoad");
+    	}
         setAttribute("dataSource", dataSource.getOrCreateJsObj(), true);
     }
 
@@ -4129,6 +4455,14 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
     public Boolean getAutoFetchData() {
         return getAttributeAsBoolean("autoFetchData");
+    }
+
+    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle) throws IllegalStateException {
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
+    }
+
+    public TextMatchStyle getAutoFetchTextMatchStyle() {
+        return TextMatchStyle.valueOf(getAttributeAsString("autoFetchTextMatchStyle"));
     }
 
     public void setAutoFetchAsFilter(Boolean autoFetchAsFilter) throws IllegalStateException {
@@ -4227,7 +4561,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     public RecordList getRecordList() {
-        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        JavaScriptObject dataJS = getDataAsJSList();
         if(dataJS == null) return null;
 
         if(ResultSet.isResultSet(dataJS)) {
@@ -4235,69 +4569,28 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         }
         return new RecordList(dataJS);
     }
+    public native JavaScriptObject getDataAsJSList() /*-{
+    	var self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+    	if (self == null) return null;
+    	return self.getDataAsList();
+    	
+    }-*/;
 
-    /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
-     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
-     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
-     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
-     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
-     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
-     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
-     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
-     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
-     */
     public native void exportData() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportData();
     }-*/;
 
-    /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
-     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
-     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
-     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
-     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
-     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
-     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
-     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
-     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
-     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
-     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
-     */
     public native void exportData(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
-   /**
-    * Exports this component's data with client-side formatters applied, so is suitable for
-    * direct display to users.  This feature requires the SmartClient server, but does not
-    * rely on any server-side DataSources.
-    * <P>To export unformatted data from this component's dataSource, see
-    * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
-    * which does not include client-side formatters,
-    * but relies on both the SmartClient server and server-side DataSources.
-    * @see com.smartgwt.client.data.DataSource#exportClientData
-    */
     public native void exportClientData() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportClientData();
     }-*/;
 
-   /**
-    * Exports this component's data with client-side formatters applied, so is suitable for
-    * direct display to users.  This feature requires the SmartClient server, but does not
-    * rely on any server-side DataSources.
-    * <P>To export unformatted data from this component's dataSource, see
-    * {@link com.smartgwt.client.widgets.DataBoundComponent#exportData exportData}
-    * which does not include client-side formatters,
-    * but relies on both the SmartClient server and server-side DataSources.
-    * @param requestProperties Request properties for the export
-    * @see com.smartgwt.client.data.DataSource#exportClientData
-    */
     public native void exportClientData(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.exportClientData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
@@ -4400,7 +4693,426 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
             }));
         }
     }-*/;
+
+    public LogicalStructureObject setLogicalStructure(DynamicFormLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.action = getAttributeAsString("action");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.action:" + t.getMessage() + "\n";
+        }
+        try {
+            s.allowExpressions = getAttributeAsString("allowExpressions");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.allowExpressions:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoFocus = getAttributeAsString("autoFocus");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.autoFocus:" + t.getMessage() + "\n";
+        }
+        try {
+            s.browserSpellCheck = getAttributeAsString("browserSpellCheck");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.browserSpellCheck:" + t.getMessage() + "\n";
+        }
+        try {
+            s.cancelParamName = getAttributeAsString("cancelParamName");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.cancelParamName:" + t.getMessage() + "\n";
+        }
+        try {
+            s.cancelParamValue = getAttributeAsString("cancelParamValue");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.cancelParamValue:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canEdit = getAttributeAsString("canEdit");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.canEdit:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canEditFieldAttribute = getAttributeAsString("canEditFieldAttribute");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.canEditFieldAttribute:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canFocus = getAttributeAsString("canFocus");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.canFocus:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canSubmit = getAttributeAsString("canSubmit");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.canSubmit:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canTabToSectionHeaders = getAttributeAsString("canTabToSectionHeaders");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.canTabToSectionHeaders:" + t.getMessage() + "\n";
+        }
+        try {
+            s.cellBorder = getAttributeAsString("cellBorder");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.cellBorder:" + t.getMessage() + "\n";
+        }
+        try {
+            s.cellPadding = getAttributeAsString("cellPadding");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.cellPadding:" + t.getMessage() + "\n";
+        }
+        try {
+            s.clipItemTitles = getAttributeAsString("clipItemTitles");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.clipItemTitles:" + t.getMessage() + "\n";
+        }
+        try {
+            s.colWidths = getAttributeAsString("colWidths");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.colWidths:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataFetchMode = getAttributeAsString("dataFetchMode");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.dataFetchMode:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dateFormatter = getAttributeAsString("dateFormatter");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.dateFormatter:" + t.getMessage() + "\n";
+        }
+        try {
+            s.datetimeFormatter = getAttributeAsString("datetimeFormatter");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.datetimeFormatter:" + t.getMessage() + "\n";
+        }
+        try {
+            s.disableValidation = getAttributeAsString("disableValidation");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.disableValidation:" + t.getMessage() + "\n";
+        }
+        try {
+            s.encoding = getAttributeAsString("encoding");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.encoding:" + t.getMessage() + "\n";
+        }
+        try {
+            s.errorItemCellStyle = getAttributeAsString("errorItemCellStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.errorItemCellStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.errorOrientation = getAttributeAsString("errorOrientation");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.errorOrientation:" + t.getMessage() + "\n";
+        }
+        try {
+            s.errors = getAttributeAsString("errors");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.errors:" + t.getMessage() + "\n";
+        }
+        try {
+            s.errorsPreamble = getAttributeAsString("errorsPreamble");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.errorsPreamble:" + t.getMessage() + "\n";
+        }
+        try {
+            s.fields = getAttributeAsStringArray("fields");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.fieldsArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.fixedColWidths = getAttributeAsString("fixedColWidths");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.fixedColWidths:" + t.getMessage() + "\n";
+        }
+        try {
+            s.formSubmitFailedWarning = getAttributeAsString("formSubmitFailedWarning");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.formSubmitFailedWarning:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hiliteRequiredFields = getAttributeAsString("hiliteRequiredFields");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.hiliteRequiredFields:" + t.getMessage() + "\n";
+        }
+        try {
+            s.implicitSave = getAttributeAsString("implicitSave");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.implicitSave:" + t.getMessage() + "\n";
+        }
+        try {
+            s.implicitSaveDelay = getAttributeAsString("implicitSaveDelay");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.implicitSaveDelay:" + t.getMessage() + "\n";
+        }
+        try {
+            s.implicitSaveOnBlur = getAttributeAsString("implicitSaveOnBlur");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.implicitSaveOnBlur:" + t.getMessage() + "\n";
+        }
+        try {
+            s.itemHoverAlign = getAttributeAsString("itemHoverAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.itemHoverAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.itemHoverDelay = getAttributeAsString("itemHoverDelay");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.itemHoverDelay:" + t.getMessage() + "\n";
+        }
+        try {
+            s.itemHoverHeight = getAttributeAsString("itemHoverHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.itemHoverHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.itemHoverOpacity = getAttributeAsString("itemHoverOpacity");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.itemHoverOpacity:" + t.getMessage() + "\n";
+        }
+        try {
+            s.itemHoverStyle = getAttributeAsString("itemHoverStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.itemHoverStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.itemHoverVAlign = getAttributeAsString("itemHoverVAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.itemHoverVAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.itemHoverWidth = getAttributeAsString("itemHoverWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.itemHoverWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.itemLayout = getAttributeAsString("itemLayout");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.itemLayout:" + t.getMessage() + "\n";
+        }
+        try {
+            s.longTextEditorThreshold = getAttributeAsString("longTextEditorThreshold");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.longTextEditorThreshold:" + t.getMessage() + "\n";
+        }
+        try {
+            s.longTextEditorType = getAttributeAsString("longTextEditorType");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.longTextEditorType:" + t.getMessage() + "\n";
+        }
+        try {
+            s.method = getAttributeAsString("method");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.method:" + t.getMessage() + "\n";
+        }
+        try {
+            s.minColWidth = getAttributeAsString("minColWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.minColWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.numCols = getAttributeAsString("numCols");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.numCols:" + t.getMessage() + "\n";
+        }
+        try {
+            s.operator = getAttributeAsString("operator");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.operator:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rejectInvalidValueOnChange = getAttributeAsString("rejectInvalidValueOnChange");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.rejectInvalidValueOnChange:" + t.getMessage() + "\n";
+        }
+        try {
+            s.requiredMessage = getAttributeAsString("requiredMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.requiredMessage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.requiredRightTitlePrefix = getAttributeAsString("requiredRightTitlePrefix");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.requiredRightTitlePrefix:" + t.getMessage() + "\n";
+        }
+        try {
+            s.requiredRightTitleSuffix = getAttributeAsString("requiredRightTitleSuffix");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.requiredRightTitleSuffix:" + t.getMessage() + "\n";
+        }
+        try {
+            s.requiredTitlePrefix = getAttributeAsString("requiredTitlePrefix");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.requiredTitlePrefix:" + t.getMessage() + "\n";
+        }
+        try {
+            s.requiredTitleSuffix = getAttributeAsString("requiredTitleSuffix");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.requiredTitleSuffix:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rightTitlePrefix = getAttributeAsString("rightTitlePrefix");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.rightTitlePrefix:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rightTitleSuffix = getAttributeAsString("rightTitleSuffix");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.rightTitleSuffix:" + t.getMessage() + "\n";
+        }
+        try {
+            s.saveOnEnter = getAttributeAsString("saveOnEnter");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.saveOnEnter:" + t.getMessage() + "\n";
+        }
+        try {
+            s.saveOperationType = getAttributeAsString("saveOperationType");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.saveOperationType:" + t.getMessage() + "\n";
+        }
+        try {
+            s.sectionVisibilityMode = getAttributeAsString("sectionVisibilityMode");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.sectionVisibilityMode:" + t.getMessage() + "\n";
+        }
+        try {
+            s.selectOnClick = getAttributeAsString("selectOnClick");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.selectOnClick:" + t.getMessage() + "\n";
+        }
+        try {
+            s.selectOnFocus = getAttributeAsString("selectOnFocus");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.selectOnFocus:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showComplexFieldsRecursively = getAttributeAsString("showComplexFieldsRecursively");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.showComplexFieldsRecursively:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDetailFields = getAttributeAsString("showDetailFields");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.showDetailFields:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showErrorIcons = getAttributeAsString("showErrorIcons");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.showErrorIcons:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showErrorStyle = getAttributeAsString("showErrorStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.showErrorStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showErrorText = getAttributeAsString("showErrorText");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.showErrorText:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showInlineErrors = getAttributeAsString("showInlineErrors");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.showInlineErrors:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showTitlesWithErrorMessages = getAttributeAsString("showTitlesWithErrorMessages");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.showTitlesWithErrorMessages:" + t.getMessage() + "\n";
+        }
+        try {
+            s.stopOnError = getAttributeAsString("stopOnError");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.stopOnError:" + t.getMessage() + "\n";
+        }
+        try {
+            s.suppressValidationErrorCallback = getAttributeAsString("suppressValidationErrorCallback");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.suppressValidationErrorCallback:" + t.getMessage() + "\n";
+        }
+        try {
+            s.synchronousValidation = getAttributeAsString("synchronousValidation");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.synchronousValidation:" + t.getMessage() + "\n";
+        }
+        try {
+            s.target = getAttributeAsString("target");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.target:" + t.getMessage() + "\n";
+        }
+        try {
+            s.timeFormatter = getAttributeAsString("timeFormatter");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.timeFormatter:" + t.getMessage() + "\n";
+        }
+        try {
+            s.titleAlign = getAttributeAsString("titleAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.titleAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.titleOrientation = getAttributeAsString("titleOrientation");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.titleOrientation:" + t.getMessage() + "\n";
+        }
+        try {
+            s.titlePrefix = getAttributeAsString("titlePrefix");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.titlePrefix:" + t.getMessage() + "\n";
+        }
+        try {
+            s.titleSuffix = getAttributeAsString("titleSuffix");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.titleSuffix:" + t.getMessage() + "\n";
+        }
+        try {
+            s.titleWidthAsString = getAttributeAsString("titleWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.titleWidthAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.unknownErrorMessage = getAttributeAsString("unknownErrorMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.unknownErrorMessage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.userTask = getUserTask();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.userTask:" + t.getMessage() + "\n";
+        }
+        try {
+            s.validateOnChange = getAttributeAsString("validateOnChange");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.validateOnChange:" + t.getMessage() + "\n";
+        }
+        try {
+            s.validateOnExit = getAttributeAsString("validateOnExit");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.validateOnExit:" + t.getMessage() + "\n";
+        }
+        try {
+            s.validationURL = getAttributeAsString("validationURL");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.validationURL:" + t.getMessage() + "\n";
+        }
+        try {
+            s.values = getAttributeAsString("values");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.values:" + t.getMessage() + "\n";
+        }
+        try {
+            s.wrapItemTitles = getAttributeAsString("wrapItemTitles");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.wrapItemTitles:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+
+    public LogicalStructureObject getLogicalStructure() {
+        DynamicFormLogicalStructure s = new DynamicFormLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

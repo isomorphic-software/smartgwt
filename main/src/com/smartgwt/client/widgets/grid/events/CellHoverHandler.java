@@ -15,6 +15,7 @@
  */
  
 package com.smartgwt.client.widgets.grid.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface CellHoverHandler extends EventHandler {

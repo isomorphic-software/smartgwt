@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.grid.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasRecordExpandHandlers extends HasHandlers {
     /**
      * Handler fired when a record is expanded in a grid with <code>canExpandRecords</code> set to  true. Allows the expansion
@@ -30,3 +29,4 @@ public interface HasRecordExpandHandlers extends HasHandlers {
      */
     HandlerRegistration addRecordExpandHandler(RecordExpandHandler handler);
 }
+

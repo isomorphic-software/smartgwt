@@ -10,7 +10,7 @@ package com.smartgwt.client.docs;
  *  as a malformed response and displays a warning, and the login page is never displayed to the
  *  user.
  *  <P>
- *  The ideal handling of this scenario is that the form's attempt to save is "suspended" while the
+ * The ideal handling of this scenario is that the form's attempt to save is "suspended" while the
  *  user re-authenticates, then is completed normally.  Smart GWT makes it easy to
  *  implement this ideal handling <i>without</i> having to implement session timeout handling in
  *  every codepath that contacts the server, by providing central notification of session timeout,
@@ -23,19 +23,20 @@ package com.smartgwt.client.docs;
  *  called the <code>loginRequiredMarker</code>.
  *  <P>
  *  If your authentication system will redirect to a login page when a user's session is timed
- *  out, it's sufficient to simply embed the <code>loginRequiredMarker</code> in the login page.  The
+ * out, it's sufficient to simply embed the <code>loginRequiredMarker</code> in the login page. 
+ * The
  *  <code>loginRequiredMarker</code> is valid HTML and will have no effect on the behavior or
  *  appearance of the page.  The <code>loginRequiredMarker</code> is found in
  *  
  *  docs/loginRequiredMarker.html
  *  in your SDK.  Simply copy the contents of this file verbatim into your login page anywhere
- *  inside the &lt;body&gt; tag; it does not need to be customized in any way for your application.
+ * inside the &lt;body&gt; tag; it does not need to be customized in any way for your application.
  *  <P>
  *  If it's a problem to modify the login page (even with a marker that has no effect on
  *  appearance or behavior), see if you can configure your authentication system to return a
  *  special response specifically for background requests for data.  By default, when using the
- * Smart GWT Server Framework, all such requests go to the {@link com.smartgwt.client.rpc.RPCManager#actionURL actionURL}
- * and
+ * Smart GWT Server Framework, all such requests go to the {@link
+ * com.smartgwt.client.rpc.RPCManager#actionURL actionURL} and
  *  include an HTTP query parameter "isc_rpc=1"; various authentication systems can be
  *  configured to detect these requests and handle them separately.  One approach is to simply
  *  copy loginRequiredMarker.html into your application in an area not protected by
@@ -58,8 +59,8 @@ package com.smartgwt.client.docs;
  *  <li> Open a new browser window that goes to your plain HTML login form (or offer a link that
  *  opens such a browser window), using a modal dialog in the application page that prompts the
  *  user to login before continuing, then re-send the intercepted transaction
- * ({@link com.smartgwt.client.rpc.RPCManager#resendTransaction RPCManager.resendTransaction} when the user indicates he
- * has logged in.
+ * ({@link com.smartgwt.client.rpc.RPCManager#resendTransaction RPCManager.resendTransaction} when
+ * the user indicates he has logged in.
  *  This is simple, does not drop context, but is not seamless.
  *  
  *  <li> Use a Smart GWT interface, typically a DynamicForm in a Window, to collect credentials,
@@ -103,8 +104,9 @@ package com.smartgwt.client.docs;
  *  successful login response, and the loginRequiredMarker as part of a failed login response
  *  </ol>
  *  If your authentication system can accept POST'd credentials at any URL it protects, the last
- *  step may be as simple as configuring the loginSuccessMarker file itself as a protected
- *  resource (isomorphic/login/loginSuccess.html).
+ *  step may be as simple as configuring the <code>loginSuccessMarker</code> file itself as a
+ *  protected resource.  The <code>loginSuccessMarker</code> is found in
+ *  <code>docs/loginSuccessMarker.html</code> in your SDK.
  *  
  *  </span>
  *  <P>
@@ -119,7 +121,7 @@ package com.smartgwt.client.docs;
  *  <B>Advanced: concurrency</B>
  *  <P>
  *  If, after loginRequired() has fired and before the user has re-authenticated, you send
- *  additional RPCs to protected URLs, you will get additional loginRequired() notifications.  This
+ * additional RPCs to protected URLs, you will get additional loginRequired() notifications.  This
  *  may happen to applications that poll for data or periodically save without user action.  You
  *  may wish to avoid this by setting an application-specific flag to avoid firing requests during
  *  the relogin process.  However, you must ultimately either

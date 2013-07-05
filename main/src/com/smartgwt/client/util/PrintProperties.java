@@ -17,13 +17,13 @@
 package com.smartgwt.client.util;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Settings for generating printable HTML for components.
@@ -68,21 +88,65 @@ public class PrintProperties extends DataClass {
         return new PrintProperties(jsObj);
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
+
     public PrintProperties(){
         
     }
 
     public PrintProperties(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
+        
     }
 
+
     // ********************* Properties / Attributes ***********************
+
+
+
+
+    /**
+     * If true, generates HTML for export. <P> Some components, specifically {@link
+     * com.smartgwt.client.widgets.drawing.DrawPane} and {@link com.smartgwt.client.widgets.chart.FacetChart} on IE8 and
+     * earlier, need to generate different HTML for export versus in-browser print preview. When using {@link
+     * com.smartgwt.client.rpc.RPCManager#exportContent RPCManager.exportContent} the printForExport property is set to true
+     * automatically. If not using RPCManager.exportContent(), but the generated HTML will be sent for export, the
+     * <code>PrintProperties</code> passed to {@link com.smartgwt.client.widgets.Canvas#getPrintHTML Canvas.getPrintHTML} must
+     * have printForExport:true.
+     *
+     * @param printForExport printForExport Default value is null
+     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
+     */
+    public void setPrintForExport(Boolean printForExport) {
+        setAttribute("printForExport", printForExport);
+    }
+
+    /**
+     * If true, generates HTML for export. <P> Some components, specifically {@link
+     * com.smartgwt.client.widgets.drawing.DrawPane} and {@link com.smartgwt.client.widgets.chart.FacetChart} on IE8 and
+     * earlier, need to generate different HTML for export versus in-browser print preview. When using {@link
+     * com.smartgwt.client.rpc.RPCManager#exportContent RPCManager.exportContent} the printForExport property is set to true
+     * automatically. If not using RPCManager.exportContent(), but the generated HTML will be sent for export, the
+     * <code>PrintProperties</code> passed to {@link com.smartgwt.client.widgets.Canvas#getPrintHTML Canvas.getPrintHTML} must
+     * have printForExport:true.
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
+     */
+    public Boolean getPrintForExport()  {
+        return getAttributeAsBoolean("printForExport");
+    }
 
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
 
@@ -140,6 +204,5 @@ public class PrintProperties extends DataClass {
 
 
 }
-
 
 

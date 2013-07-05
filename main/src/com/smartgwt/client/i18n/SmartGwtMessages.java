@@ -77,10 +77,10 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Event Name")
   @Key("calendar_eventNameFieldTitle")
   String calendar_eventNameFieldTitle();
-
+  
   /**
    * Translated "Description".
-   * 
+   *
    * @return translated "Description"
    */
   @DefaultMessage("Description")
@@ -89,7 +89,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
 
   /**
    * Translated "From".
-   * 
+   *
    * @return translated "From"
    */
   @DefaultMessage("From")
@@ -98,7 +98,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
 
   /**
    * Translated "To".
-   * 
+   *
    * @return translated "To"
    */
   @DefaultMessage("To")
@@ -107,13 +107,13 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
 
   /**
    * Translated "Lane".
-   * 
+   *
    * @return translated "Lane"
    */
   @DefaultMessage("Lane")
   @Key("calendar_eventLaneFieldTitle")
   String calendar_eventLaneFieldTitle();
-
+ 
   /**
    * Translated "From must be before To".
    * 

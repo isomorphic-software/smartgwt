@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +46,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class FilterEditorSubmitEvent extends BrowserEvent<FilterEditorSubmitHandler>  implements Cancellable {
     private boolean cancel = false;
 
@@ -93,7 +98,6 @@ public class FilterEditorSubmitEvent extends BrowserEvent<FilterEditorSubmitHand
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(FilterEditorSubmitHandler handler) {
         handler.onFilterEditorSubmit(this);
@@ -112,7 +116,6 @@ public class FilterEditorSubmitEvent extends BrowserEvent<FilterEditorSubmitHand
         super(jsObj);
     }
 
-
     /**
      * Calling this method will suppress the filter from occurring
      */
@@ -126,16 +129,16 @@ public class FilterEditorSubmitEvent extends BrowserEvent<FilterEditorSubmitHand
     public boolean isCancelled() {
         return cancel;
     }
-
-    /**
+	/**
      * criteria derived from the filter editor values
      *
      * @return criteria derived from the filter editor values
      */
-    public  native Criteria getCriteria() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.criteria);
+    public native Criteria getCriteria() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.criteria;
+        if(ret == null) return null;
+        return @com.smartgwt.client.data.Criteria::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
 
 }

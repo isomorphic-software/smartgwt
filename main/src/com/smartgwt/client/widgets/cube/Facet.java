@@ -17,13 +17,13 @@
 package com.smartgwt.client.widgets.cube;
 
 
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -45,18 +45,38 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
 
 /**
  * Facet definition object made use of by the CubeGrid class.
@@ -64,8 +84,12 @@ import com.google.gwt.event.shared.HasHandlers;
 public class Facet extends RefDataClass {
 
     public static Facet getOrCreateRef(JavaScriptObject jsObj) {
+
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (Facet) obj;
@@ -74,12 +98,20 @@ public class Facet extends RefDataClass {
         }
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
+
+
     public Facet(){
         
     }
 
     public Facet(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
+        setAttribute(com.smartgwt.client.util.SC.REF, (Object) this);
     }
 
     public Facet(String id) {
@@ -93,7 +125,9 @@ public class Facet extends RefDataClass {
         
     }
 
+
     // ********************* Properties / Attributes ***********************
+
 
     /**
      * Default alignment for facet label title, and cells for this facet. Can be overridden at the facetValue level, or by
@@ -111,7 +145,6 @@ public class Facet extends RefDataClass {
      * Default alignment for facet label title, and cells for this facet. Can be overridden at the facetValue level, or by
      * setting titleAlign or cellAlign on the facet.
      *
-     *
      * @return Alignment
      * @see com.smartgwt.client.widgets.cube.Facet#getTitleAlign
      * @see com.smartgwt.client.widgets.cube.Facet#getCellAlign
@@ -120,10 +153,11 @@ public class Facet extends RefDataClass {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
     }
 
+
     /**
      * CSS line style to apply as a border after this facet, eg "1px dashed blue"
      *
-     * @param borderAfter borderAfter Default value is null
+     * @param borderAfter . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setBorderAfter(String borderAfter) {
         setAttribute("borderAfter", borderAfter);
@@ -132,17 +166,17 @@ public class Facet extends RefDataClass {
     /**
      * CSS line style to apply as a border after this facet, eg "1px dashed blue"
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getBorderAfter()  {
         return getAttributeAsString("borderAfter");
     }
 
+
     /**
      * CSS line style to apply as a border before this facet, eg "1px dashed blue"
      *
-     * @param borderBefore borderBefore Default value is null
+     * @param borderBefore . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setBorderBefore(String borderBefore) {
         setAttribute("borderBefore", borderBefore);
@@ -151,12 +185,12 @@ public class Facet extends RefDataClass {
     /**
      * CSS line style to apply as a border before this facet, eg "1px dashed blue"
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getBorderBefore()  {
         return getAttributeAsString("borderBefore");
     }
+
 
     /**
      * For tree facets, whether expand/collapse controls should be shown.
@@ -170,12 +204,12 @@ public class Facet extends RefDataClass {
     /**
      * For tree facets, whether expand/collapse controls should be shown.
      *
-     *
      * @return Boolean
      */
     public Boolean getCanCollapse()  {
         return getAttributeAsBoolean("canCollapse");
     }
+
 
     /**
      * If facet minimizing is enabled, whether this facet should show controls to minimize the next facet.  Generally a tree
@@ -193,12 +227,12 @@ public class Facet extends RefDataClass {
      * facet should not also allow minimizing the next facet - the interaction of the two types of collapsing can be confusing.
      * <P> See {@link com.smartgwt.client.widgets.cube.CubeGrid#getCanMinimizeFacets canMinimizeFacets}.
      *
-     *
      * @return Boolean
      */
     public Boolean getCanMinimize()  {
         return getAttributeAsBoolean("canMinimize");
     }
+
 
     /**
      * Default alignment of cells (in the body) for this facet
@@ -213,13 +247,13 @@ public class Facet extends RefDataClass {
     /**
      * Default alignment of cells (in the body) for this facet
      *
-     *
      * @return Alignment
      * @see com.smartgwt.client.widgets.cube.CubeGrid#getCellAlign
      */
     public Alignment getCellAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("cellAlign"));
     }
+
 
     /**
      * For tree facets, default collapse state for parent nodes
@@ -233,12 +267,13 @@ public class Facet extends RefDataClass {
     /**
      * For tree facets, default collapse state for parent nodes
      *
-     *
      * @return Boolean
      */
     public Boolean getCollapsed()  {
         return getAttributeAsBoolean("collapsed");
     }
+
+
 
     /**
      * When applied to a Chart, does the chart's data contain multiple values per record for this facet. See  data for a full
@@ -254,12 +289,12 @@ public class Facet extends RefDataClass {
      * When applied to a Chart, does the chart's data contain multiple values per record for this facet. See  data for a full
      * overview of <code>inlinedValues</code> behavior.
      *
-     *
      * @return Boolean
      */
     public Boolean getInlinedValues()  {
         return getAttributeAsBoolean("inlinedValues");
     }
+
 
     /**
      * Marks this facet as a hierarchical facet. <P> If set, {@link com.smartgwt.client.widgets.cube.Facet#getValues
@@ -289,17 +324,17 @@ public class Facet extends RefDataClass {
      * state can be controlled via {@link com.smartgwt.client.widgets.cube.Facet#getCollapsed facet.collapsed} and {@link
      * com.smartgwt.client.widgets.cube.FacetValue#getCollapsed collapsed}.
      *
-     *
      * @return Boolean
      */
     public Boolean getIsTree()  {
         return getAttributeAsBoolean("isTree");
     }
 
+
     /**
      * facetValueId of the rollup facetValue for this facet
      *
-     * @param rollupValue rollupValue Default value is cubeGrid.rollupValue
+     * @param rollupValue . See {@link com.smartgwt.client.docs.String String}. Default value is cubeGrid.rollupValue
      */
     public void setRollupValue(String rollupValue) {
         setAttribute("rollupValue", rollupValue);
@@ -308,12 +343,12 @@ public class Facet extends RefDataClass {
     /**
      * facetValueId of the rollup facetValue for this facet
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getRollupValue()  {
         return getAttributeAsString("rollupValue");
     }
+
 
     /**
      * Selection boundary determining what facets / facetValues can be selected together by drag selection / shift+click
@@ -329,12 +364,12 @@ public class Facet extends RefDataClass {
      * Selection boundary determining what facets / facetValues can be selected together by drag selection / shift+click
      * selection
      *
-     *
      * @return SelectionBoundary
      */
     public SelectionBoundary getSelectionBoundary()  {
         return EnumUtil.getEnum(SelectionBoundary.values(), getAttribute("selectionBoundary"));
     }
+
 
     /**
      * Indicates internal hierarchy should be displayed in reverse of normal tree order (so that parents follow children)
@@ -348,17 +383,17 @@ public class Facet extends RefDataClass {
     /**
      * Indicates internal hierarchy should be displayed in reverse of normal tree order (so that parents follow children)
      *
-     *
      * @return Boolean
      */
     public Boolean getShowParentsLast()  {
         return getAttributeAsBoolean("showParentsLast");
     }
 
+
     /**
      * Title for facet summary.
      *
-     * @param summaryTitle summaryTitle Default value is cubeGrid.summaryTitle
+     * @param summaryTitle . See {@link com.smartgwt.client.docs.String String}. Default value is cubeGrid.summaryTitle
      */
     public void setSummaryTitle(String summaryTitle) {
         setAttribute("summaryTitle", summaryTitle);
@@ -367,17 +402,17 @@ public class Facet extends RefDataClass {
     /**
      * Title for facet summary.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSummaryTitle()  {
         return getAttributeAsString("summaryTitle");
     }
 
+
     /**
      * Value for facet summary.
      *
-     * @param summaryValue summaryValue Default value is cubeGrid.summaryValue
+     * @param summaryValue . See {@link com.smartgwt.client.docs.String String}. Default value is cubeGrid.summaryValue
      */
     public void setSummaryValue(String summaryValue) {
         setAttribute("summaryValue", summaryValue);
@@ -386,12 +421,12 @@ public class Facet extends RefDataClass {
     /**
      * Value for facet summary.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getSummaryValue()  {
         return getAttributeAsString("summaryValue");
     }
+
 
     /**
      * If true, treat all values in this facet as a facetValueGroup - causes synched header reorder and resize.  Note: only
@@ -407,17 +442,17 @@ public class Facet extends RefDataClass {
      * If true, treat all values in this facet as a facetValueGroup - causes synched header reorder and resize.  Note: only
      * supported when all of a facets values are used.
      *
-     *
      * @return Boolean
      */
     public Boolean getSynchColumnLayout()  {
         return getAttributeAsBoolean("synchColumnLayout");
     }
 
+
     /**
      * User-visible title of this facet.  Shown on the facet label in the CubeGrid.
      *
-     * @param title title Default value is null
+     * @param title . See {@link com.smartgwt.client.docs.String String}. Default value is null
      */
     public void setTitle(String title) {
         setAttribute("title", title);
@@ -426,12 +461,12 @@ public class Facet extends RefDataClass {
     /**
      * User-visible title of this facet.  Shown on the facet label in the CubeGrid.
      *
-     *
-     * @return String
+     * @return . See {@link com.smartgwt.client.docs.String String}
      */
     public String getTitle()  {
         return getAttributeAsString("title");
     }
+
 
     /**
      * Alignment of facet label title
@@ -446,13 +481,13 @@ public class Facet extends RefDataClass {
     /**
      * Alignment of facet label title
      *
-     *
      * @return Alignment
      * @see com.smartgwt.client.widgets.cube.CubeGrid#getFacetTitleAlign
      */
     public Alignment getTitleAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("titleAlign"));
     }
+
 
     /**
      * Array of facetValue definitions.
@@ -467,13 +502,13 @@ public class Facet extends RefDataClass {
     /**
      * Array of facetValue definitions.
      *
-     *
      * @return FacetValue
      * @see com.smartgwt.client.widgets.cube.FacetValue
      */
     public FacetValue[] getValues()  {
-        return FacetValue.convertToFacetValueArray(getAttributeAsJavaScriptObject("values"));
+        return com.smartgwt.client.util.ConvertTo.arrayOfFacetValue(getAttributeAsJavaScriptObject("values"));
     }
+
 
     /**
      * Integer number of pixels.  For row facets, width of headers.
@@ -488,7 +523,6 @@ public class Facet extends RefDataClass {
     /**
      * Integer number of pixels.  For row facets, width of headers.
      *
-     *
      * @return int
      * @see com.smartgwt.client.widgets.cube.CubeGrid#getDefaultFacetWidth
      */
@@ -499,8 +533,8 @@ public class Facet extends RefDataClass {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
 	
@@ -551,7 +585,6 @@ public class Facet extends RefDataClass {
 
 
 }
-
 
 
 

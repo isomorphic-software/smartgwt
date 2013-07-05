@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasMouseUpHandlers extends HasHandlers {
     /**
      * Executed when the left mouse is released on this widget.  No default implementation.
@@ -29,3 +28,4 @@ public interface HasMouseUpHandlers extends HasHandlers {
      */
     HandlerRegistration addMouseUpHandler(MouseUpHandler handler);
 }
+

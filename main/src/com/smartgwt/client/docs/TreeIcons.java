@@ -9,6 +9,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getIconSize
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getOpenerIconSize
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getOpenerIconWidth
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getOpenerIconHeight
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix
@@ -22,6 +24,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconOpen
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconDrop
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowDisabledSelectionCheckbox
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getLeaveSelectionCheckboxGap
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getOpenerImage

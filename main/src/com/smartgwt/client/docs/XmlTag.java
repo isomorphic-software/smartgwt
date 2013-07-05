@@ -46,7 +46,7 @@ package com.smartgwt.client.docs;
  *  <p>
  *  An example that specifies both a filename and some XML in the tag body:
  *  <pre>
- *  &lt;isomorphic:XML name="test.xml"&gt;
+ *  &lt;isomorphic:XML filename="test.xml"&gt;
  *    &lt;Canvas backgroundColor="red"/&gt;
  *  &lt;/isomorphic:XML&gt;
  *  </pre>
