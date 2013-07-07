@@ -257,6 +257,7 @@ import com.smartgwt.sample.showcase.client.tabs.TabsCustomControlSample;
 import com.smartgwt.sample.showcase.client.tabs.TabsEditableTitlesSample;
 import com.smartgwt.sample.showcase.client.tabs.TabsTitleChangeSample;
 import com.smartgwt.sample.showcase.client.tiling.BasicTilingSample;
+import com.smartgwt.sample.showcase.client.tiling.CustomTilesSample;
 import com.smartgwt.sample.showcase.client.tiling.FilterSortTilingSample;
 import com.smartgwt.sample.showcase.client.tiling.LoadOnDemandTilingSample;
 import com.smartgwt.sample.showcase.client.tiling.TileEditingSample;
@@ -335,7 +336,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Field Picker", "grid-appearance-field-picker-new", "new-category", null, new FieldPickerSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Multi Grouping", "grid-grouping-multi-new", "new-category", null, new MultiGroupingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Local DataSource", "grid-databinding-local-datasource-new", "new-category", null, 
-                    						new GridDataBindingLocalDataSourceSample.Factory(), true, idSuffix),
+                                            new GridDataBindingLocalDataSourceSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Portal Layout", "portal-layout-category-new", "new-category", "silk/application_view_tile.png", null, true, idSuffix),
                     new ExplorerTreeNode("Repositioning", "repositioning-portal-layout-new", "portal-layout-category-new", null, new RearrangeSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Adding and removing columns", "add-remove-columns-portal-layout-new", "portal-layout-category-new", null, new AddRemoveColumnsSample.Factory(), true, idSuffix),
@@ -587,6 +588,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Load on Demand", "tiling-load-on-demand", "tiling-category", null, new LoadOnDemandTilingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Filter &amp; Sort", "tiling-filter-sort", "tiling-category", null, new FilterSortTilingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Tile Editing", "tiling-editing", "tiling-category", null, new TileEditingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Custom Tiles", "tiling-custom", "tiling-category", null, new CustomTilesSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Forms", "form-category", "root", "silk/vcard_edit.png", null, true, idSuffix),
 
