@@ -47,6 +47,7 @@ public class GwtShowcaseSample extends ShowcasePanel {
         tabPane1.setHeight100();
         tabPane1.addChild(getGwtTab());
         smartTab1.setPane(tabPane1);
+        smartTab1.setIconSize(16);
 
         Tab smartTab2 = new Tab("Another Tab &nbsp;", "pieces/16/pawn_blue.png");
         smartTab2.setPane(new CountryListGrid());
