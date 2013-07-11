@@ -1314,7 +1314,7 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
         obj.dataArrived = $entry(function (startRow, endRow) {
             var param = { startRow: startRow, endRow: endRow };
             var event = @com.smartgwt.client.data.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-            selfJ.@com.smartgwt.client.data.ResultSet::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
         });
     }-*/;
 
@@ -1368,12 +1368,6 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
 
     public void setProperty(String property, JavaScriptObject value) {
         JSOHelper.setAttribute(jsObj, property, value);
-    }
-
-    @Override
-    public void fireEvent(GwtEvent<?> event) {
-        if (jsObj == null) return;
-        super.fireEvent(event);
     }
 
     // ********************* Static Methods ***********************
