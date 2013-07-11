@@ -118,6 +118,7 @@ import com.smartgwt.client.util.SC;
  */
 public class ResultSet extends RecordList implements com.smartgwt.client.data.events.HasDataArrivedHandlers {
 
+    private boolean ensuringCreated = false;
 
     public static ResultSet getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -142,8 +143,19 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
 
     @Override
     protected native JavaScriptObject create()/*-{
-        var config = this.@com.smartgwt.client.core.BaseClass::getConfig()();
-        var rs = $wnd.isc.ResultSet.create(config);
+        var config = this.@com.smartgwt.client.core.BaseClass::getConfig()(),
+            rs;
+        if (this.@com.smartgwt.client.data.ResultSet::ensuringCreated) {
+            var selfJ = this;
+            rs = $wnd.isc.ResultSet.create(config, {
+                init : $entry(function () {
+                    selfJ.@com.smartgwt.client.data.RecordList::jsObj = this;
+                    return this.Super("init", arguments);
+                })
+            });
+        } else {
+            rs = $wnd.isc.ResultSet.create(config);
+        }
         this.@com.smartgwt.client.data.RecordList::jsObj = rs;
         return rs;
     }-*/;
@@ -165,7 +177,9 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
             final JavaScriptObject dataSource = JSOHelper.getAttributeAsJavaScriptObject(getConfig(), "dataSource");
             if (dataSource == null) throw new IllegalStateException("Cannot create the ResultSet without a dataSource.");
         }
+        this.ensuringCreated = true;
         getOrCreateJsObj();
+        this.ensuringCreated = false;
     }
 
     // ********************* Properties / Attributes ***********************
