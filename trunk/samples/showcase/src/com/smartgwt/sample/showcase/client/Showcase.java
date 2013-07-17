@@ -155,7 +155,7 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         VLayout sideNavLayout = new VLayout();
         sideNavLayout.setHeight100();
-        sideNavLayout.setWidth(185);
+        sideNavLayout.setWidth(215);
         sideNavLayout.setShowResizeBar(true);
 
         sideNav = new SideNavTree();
