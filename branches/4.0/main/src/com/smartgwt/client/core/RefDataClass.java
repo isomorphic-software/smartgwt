@@ -21,6 +21,7 @@ import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.smartgwt.client.util.IDManager;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.bean.BeanFactory;
@@ -56,6 +57,29 @@ public class RefDataClass extends DataClass {
                 return (RefDataClass) ref;
             }
         }
+    }
+
+    // IDManager support
+
+    protected String id;
+
+    protected void internalSetID(String id, boolean autoAssigned, boolean addIDToRegistry) {
+        if (this.id != null) {
+            IDManager.unregisterID(this, this.id);
+        }
+        if (addIDToRegistry) IDManager.registerID(this, id, false);
+        this.id = id;
+        setAttribute("ID",                        id);
+        setAttribute("_autoAssignedID", autoAssigned);
+    }
+
+	/**
+	 * Destroy this object.
+	 */
+    private void clearID() {
+        IDManager.unregisterID(this, this.id);
+        this.id = null;
+        setAttribute("ID", (String) null);
     }
     
 }

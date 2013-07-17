@@ -39,13 +39,11 @@ public abstract class BaseClass {
     protected String scClassName;
 
     public BaseClass() {
-        internalSetID(SC.generateID(getClass().getName()));
-        setAttribute("_autoAssignedID", true, false);
+        internalSetID(SC.generateID(getClass().getName()), true);
     }
 
     protected BaseClass(JavaScriptObject jsObj) {
-        String nativeID = JSOHelper.getAttribute(jsObj, "ID");
-        this.id = nativeID;
+        internalSetID(jsObj);
     }
 
     /**
@@ -57,18 +55,37 @@ public abstract class BaseClass {
         return id;
     }
 
-    private void internalSetID(String id) {
+    // Some BaseClass descendants don't want to register IDs globally, so
+    // create an override point here to control that.  For safety, we always
+    // want to unregister; it's OK if the object wasn't registered.
+    protected void registerID(String id, boolean skipUniqueJSIdentifierCheck) {
+        IDManager.registerID(this, id, skipUniqueJSIdentifierCheck);
+    }
+
+    protected void internalSetID(JavaScriptObject jsObj) {
         if (this.id != null) {
-            IDManager.unregisterID(this.id);
+            IDManager.unregisterID(this, this.id);
         }
-        IDManager.registerID(id);
-        setAttribute("ID", id, false);
+        String  id   = JSOHelper.getAttribute         (jsObj,              "ID");
+        boolean auto = JSOHelper.getAttributeAsBoolean(jsObj, "_autoAssignedID");
+        if (id != null) registerID(id, true);
         this.id = id;
+        JSOHelper.setAttribute(config,              "ID",   id);
+        JSOHelper.setAttribute(config, "_autoAssignedID", auto);
+    }
+
+    protected void internalSetID(String id, boolean autoAssigned) {
+        if (this.id != null) {
+            IDManager.unregisterID(this, this.id);
+        }
+        registerID(id, false);
+        this.id = id;
+        setAttribute("ID",                        id, false);
+        setAttribute("_autoAssignedID", autoAssigned, false);
     }
 
     public void setID(String id) {
-        internalSetID(id);
-        setAttribute("_autoAssignedID", false, false);
+        internalSetID(id, false);
     }
 
     /**
@@ -118,9 +135,12 @@ public abstract class BaseClass {
 
     public JavaScriptObject getOrCreateJsObj() {
         if (!isCreated()) {
+            if (id == null) {
+                internalSetID(SC.generateID(getClass().getName()), true);
+            }
+            JSOHelper.setObjectAttribute(config, SC.REF, this);
             JavaScriptObject jsObj = create();
-            JSOHelper.setObjectAttribute(jsObj, SC.REF, this);
-            onInit();
+            doInit();
             return jsObj;
         } else {
             return getJsObj();
@@ -134,14 +154,20 @@ public abstract class BaseClass {
 	/**
 	 * Destroy this object.
 	 */
-    public native void destroy()/*-{
+    public native void destroy() /*-{
 		var self = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-		var ID = this.@com.smartgwt.client.core.BaseClass::getID()();
-		if (self != null && self.destroy) self.destroy();
-		if (ID != null) {
-		    @com.smartgwt.client.util.IDManager::unregisterID(Ljava/lang/String;)(ID);
-		}
-	}-*/;
+		if (self != null && self.__destroy) self.__destroy();
+		var id = this.@com.smartgwt.client.core.BaseClass::getID()();
+		if (id != null) {
+            this.@com.smartgwt.client.core.BaseClass::clearID()();
+        }
+    }-*/;
+
+    private void clearID() {
+        IDManager.unregisterID(this, this.id);
+        this.id = null;
+    	JSOHelper.setNullAttribute(config, "ID");
+    } 
 
     protected void error(String attribute, String value, boolean allowPostCreate) throws IllegalStateException {
         if (allowPostCreate) {
@@ -166,9 +192,19 @@ public abstract class BaseClass {
 
     protected abstract JavaScriptObject create();
 
+    protected final native void doInit()/*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+        if (self) {
+            self.__destroy = self.destroy;
+            self.destroy = function() {
+                var jObj = this.__ref;
+                jObj.@com.smartgwt.client.core.BaseClass::destroy()();
+            };
+        };
+        this.@com.smartgwt.client.core.BaseClass::onInit()();
+    }-*/;
+
     protected void onInit() {}
-
-
 
     public String getAttribute(String attribute) {
         return getAttributeAsString(attribute);
