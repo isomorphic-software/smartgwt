@@ -2091,8 +2091,8 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    * @return translated "seconds"
    */
   @DefaultMessage("seconds")
-  @Key("groupingMessages_timezoneSecondssSuffix")
-  String groupingMessages_timezoneSecondssSuffix();
+  @Key("groupingMessages_timezoneSecondsSuffix")
+  String groupingMessages_timezoneSecondsSuffix();
 
   /**
    * Translated "by Day of Month".
@@ -2281,8 +2281,8 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    * @return translated "seconds"
    */
   @DefaultMessage("seconds")
-  @Key("grouping_timezoneSecondssSuffix")
-  String grouping_timezoneSecondssSuffix();
+  @Key("grouping_timezoneSecondsSuffix")
+  String grouping_timezoneSecondsSuffix();
 
   /**
    * Translated "Remove".
