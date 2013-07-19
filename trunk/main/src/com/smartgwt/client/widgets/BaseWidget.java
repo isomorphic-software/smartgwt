@@ -16,9 +16,16 @@
 
 package com.smartgwt.client.widgets;
 
+import java.util.Date;
+import java.util.Map;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.event.shared.*;
+import com.google.gwt.event.shared.EventHandler;
+import com.google.gwt.event.shared.GwtEvent;
+import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.event.shared.HasHandlers;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
@@ -28,8 +35,8 @@ import com.smartgwt.client.bean.BeanFactory;
 import com.smartgwt.client.core.BaseClass;
 import com.smartgwt.client.core.DataClass;
 import com.smartgwt.client.core.Function;
-import com.smartgwt.client.core.NativeObject;
 import com.smartgwt.client.core.LogicalStructure;
+import com.smartgwt.client.core.NativeObject;
 import com.smartgwt.client.types.Positioning;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.util.DOMUtil;
@@ -40,9 +47,6 @@ import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.events.DrawHandler;
 import com.smartgwt.logicalstructure.core.LogicalStructureObject;
 import com.smartgwt.logicalstructure.widgets.BaseWidgetLogicalStructure;
-
-import java.util.Date;
-import java.util.Map;
 
 public abstract class BaseWidget extends Widget implements HasHandlers, LogicalStructure {
 
@@ -264,7 +268,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     public native void destroy() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
 	    var id = self == null ? this.@com.smartgwt.client.widgets.BaseWidget::getID()() : self.ID;
-	    if (self != null) self.__destroy();
+        if (self != null && self.__destroy) self.__destroy();
         if (id != null) {
             @com.smartgwt.client.util.IDManager::unregisterID(Ljava/lang/String;)(id);
         }
