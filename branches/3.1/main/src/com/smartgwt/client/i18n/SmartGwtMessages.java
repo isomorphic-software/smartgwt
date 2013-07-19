@@ -1878,6 +1878,33 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String groupingMessages_upcomingTomorrowTitle();
 
   /**
+   * Translated "Week #".
+   *
+   * @return translated "Week #"
+   */
+  @DefaultMessage("Week #")
+  @Key("groupingMessages_weekNumberTitle")
+  String groupingMessages_weekNumberTitle();
+
+  /**
+   * Translated "minutes".
+   *
+   * @return translated "minutes"
+   */
+  @DefaultMessage("minutes")
+  @Key("groupingMessages_timezoneMinutesSuffix")
+  String groupingMessages_timezoneMinutesSuffix();
+
+  /**
+   * Translated "seconds".
+   *
+   * @return translated "seconds"
+   */
+  @DefaultMessage("seconds")
+  @Key("groupingMessages_timezoneSecondsSuffix")
+  String groupingMessages_timezoneSecondsSuffix();
+
+  /**
    * Translated "by Day of Month".
    * 
    * @return translated "by Day of Month"
@@ -2038,6 +2065,33 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Tomorrow")
   @Key("grouping_upcomingTomorrowTitle")
   String grouping_upcomingTomorrowTitle();
+
+  /**
+   * Translated "Week #".
+   *
+   * @return translated "Week #"
+   */
+  @DefaultMessage("Week #")
+  @Key("grouping_weekNumberTitle")
+  String grouping_weekNumberTitle();
+
+  /**
+   * Translated "minutes".
+   *
+   * @return translated "minutes"
+   */
+  @DefaultMessage("minutes")
+  @Key("grouping_timezoneMinutesSuffix")
+  String grouping_timezoneMinutesSuffix();
+
+  /**
+   * Translated "seconds".
+   *
+   * @return translated "seconds"
+   */
+  @DefaultMessage("seconds")
+  @Key("grouping_timezoneSecondsSuffix")
+  String grouping_timezoneSecondsSuffix();
 
   /**
    * Translated "Remove".

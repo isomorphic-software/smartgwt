@@ -152,6 +152,9 @@ public class I18nUtil {
             $wnd.isc.GroupingMessages.addClassProperties({byMinutesTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::grouping_byMinutesTitle()()});
             $wnd.isc.GroupingMessages.addClassProperties({bySecondsTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::grouping_bySecondsTitle()()});
             $wnd.isc.GroupingMessages.addClassProperties({byMillisecondsTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::grouping_byMillisecondsTitle()()});
+            $wnd.isc.GroupingMessages.addClassProperties({weekNumberTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::grouping_weekNumberTitle()()});
+            $wnd.isc.GroupingMessages.addClassProperties({timezoneMinutesSuffix: messages.@com.smartgwt.client.i18n.SmartGwtMessages::grouping_timezoneMinutesSuffix()()});
+            $wnd.isc.GroupingMessages.addClassProperties({timezoneSecondsSuffix: messages.@com.smartgwt.client.i18n.SmartGwtMessages::grouping_timezoneSecondsSuffix()()});
         }
 
         if($wnd.isc.Validator) {
