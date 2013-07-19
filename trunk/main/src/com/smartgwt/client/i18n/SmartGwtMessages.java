@@ -3356,6 +3356,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String operators_iEqualsTitle();
 
   /**
+   * Translated "matches pattern".
+   *
+   * @return translated "matches pattern"
+   */
+  @DefaultMessage("matches pattern")
+  @Key("operators_iMatchesPatternTitle")
+  String operators_iMatchesPatternTitle();
+
+  /**
    * Translated "does not contain".
    * 
    * @return translated "does not contain"
@@ -3411,7 +3420,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
 
   /**
    * Translated "matches expression".
-   * 
+   *
    * @return translated "matches expression"
    */
   @DefaultMessage("matches expression")
@@ -3462,6 +3471,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("less than")
   @Key("operators_lessThanTitle")
   String operators_lessThanTitle();
+
+  /**
+   * Translated "matches pattern (exact case)".
+   *
+   * @return translated "matches pattern (exact case)"
+   */
+  @DefaultMessage("matches pattern (exact case)")
+  @Key("operators_matchesPatternTitle")
+  String operators_matchesPatternTitle();
 
   /**
    * Translated "does not contain (match case)".

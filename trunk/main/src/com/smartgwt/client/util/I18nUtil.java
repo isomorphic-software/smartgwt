@@ -33,6 +33,7 @@ public class I18nUtil {
             initBuildinTypes();
         }
     }
+
     private static native void initBuildinTypes() /*-{
         if($wnd.isc.builtinTypes) {
             $wnd.isc.builtinTypes.localeInt.normalDisplayFormatter = 
@@ -158,6 +159,8 @@ public class I18nUtil {
             $wnd.isc.Operators.addClassProperties({notNullTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_notNullTitle()()});
             $wnd.isc.Operators.addClassProperties({regexpTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_regexpTitle()()});
             $wnd.isc.Operators.addClassProperties({iregexpTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_iregexpTitle()()});
+            $wnd.isc.Operators.addClassProperties({matchesPatternTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_matchesPatternTitle()()});
+            $wnd.isc.Operators.addClassProperties({iMatchesPatternTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_iMatchesPatternTitle()()});
             $wnd.isc.Operators.addClassProperties({inSetTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_inSetTitle()()});
             $wnd.isc.Operators.addClassProperties({notInSetTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_notInSetTitle()()});
             $wnd.isc.Operators.addClassProperties({equalsFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_equalsFieldTitle()()});
