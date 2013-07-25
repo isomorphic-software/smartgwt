@@ -45,8 +45,10 @@ public class MenuAppearanceSample extends ShowcasePanel {
         MenuItem dataSM = new MenuItem("data.xml");
         dataSM.setChecked(true);
         MenuItem componentSM = new MenuItem("Component Guide.doc");
+        MenuItem smartClientSM = new MenuItem("SmartClient.doc");
+        smartClientSM.setChecked(true);
         MenuItem ajaxSM = new MenuItem("AJAX.doc");
-        recentDocSubMenu.setItems(dataSM, componentSM, ajaxSM);
+        recentDocSubMenu.setItems(dataSM, componentSM, smartClientSM, ajaxSM);
 
         recentDocItem.setSubmenu(recentDocSubMenu);
 
