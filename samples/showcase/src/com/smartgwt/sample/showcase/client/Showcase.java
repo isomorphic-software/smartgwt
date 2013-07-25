@@ -197,9 +197,12 @@ public class Showcase implements EntryPoint, HistoryListener {
         mainTabSet.addTabSelectedHandler(new TabSelectedHandler() {
             public void onTabSelected(TabSelectedEvent event) {
                 Tab selectedTab = event.getTab();
-                Canvas pane = selectedTab.getPane();
 
-                if (pane != null) AutoTest.setTestRoot(((ShowcasePanel)pane).viewPanel);
+                Canvas pane = selectedTab.getPane();
+                if (pane instanceof ShowcasePanel) {
+                    AutoTest.setTestRoot(((ShowcasePanel)pane).viewPanel);
+                }
+
                 String historyToken = selectedTab.getAttribute("historyToken");
                 if (historyToken != null) {
                     History.newItem(historyToken, false);
