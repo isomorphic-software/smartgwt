@@ -2,6 +2,7 @@ package com.smartgwt.sample.showcase.client;
 
 import com.smartgwt.client.types.ContentsType;
 import com.smartgwt.client.types.Side;
+import com.smartgwt.client.util.AutoTest;
 import com.smartgwt.client.util.PrintProperties;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.HTMLPane;
@@ -21,7 +22,7 @@ import com.smartgwt.client.widgets.toolbar.ToolStripSpacer;
 
 public abstract class ShowcasePanel extends VLayout {
 
-    private Canvas viewPanel;
+    protected Canvas viewPanel;
 
     public ShowcasePanel() {
 
@@ -79,6 +80,14 @@ public abstract class ShowcasePanel extends VLayout {
         layout.setMembersMargin(10);
 
         viewPanel = getViewPanel();
+
+        // if sample's viewPanel is not already a simple Canvas, add a Canvas Wrapper
+        if (AutoTest.getTestRoot() != null && viewPanel.getScClassName() != "Canvas") {
+            Canvas rootCanvas = new Canvas();
+            rootCanvas.addChild(viewPanel);
+            viewPanel = rootCanvas;
+        }
+
         HLayout wrapper = new HLayout();
         wrapper.setWidth100();
         wrapper.addMember(viewPanel);

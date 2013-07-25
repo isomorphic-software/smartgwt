@@ -11,6 +11,7 @@ import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.TabBarControls;
 import com.smartgwt.client.types.VerticalAlignment;
 import com.smartgwt.client.util.SC;
+import com.smartgwt.client.util.AutoTest;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.ImgButton;
 import com.smartgwt.client.widgets.Label;
@@ -196,6 +197,9 @@ public class Showcase implements EntryPoint, HistoryListener {
         mainTabSet.addTabSelectedHandler(new TabSelectedHandler() {
             public void onTabSelected(TabSelectedEvent event) {
                 Tab selectedTab = event.getTab();
+                Canvas pane = selectedTab.getPane();
+
+                if (pane != null) AutoTest.setTestRoot(((ShowcasePanel)pane).viewPanel);
                 String historyToken = selectedTab.getAttribute("historyToken");
                 if (historyToken != null) {
                     History.newItem(historyToken, false);
