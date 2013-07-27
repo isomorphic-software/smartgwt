@@ -152,8 +152,10 @@ public class SmartGwtEntryPoint implements EntryPoint {
         }
 
         $wnd.SmartGWT.convertToJavaType = $entry(function(obj) {
-                if(obj == null) return null;
+        		if(obj == null) return null;
+                
                 var objType = typeof obj;
+
                 if(objType == 'string') {
                     return obj;
                 } else if (objType == 'number') {
@@ -172,26 +174,34 @@ public class SmartGwtEntryPoint implements EntryPoint {
                     }
                 } else if(objType == 'boolean') {
                     return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(obj);
+                    
+                // We may already be looking at a native java object. If so, just return it
+                // (Note that attempting to look at properties such as _constructor will crash on a native java object)
+                } else if ($wnd.SmartGWT.isNativeJavaObject(obj)) {
+                	return obj;
+
                 } else if($wnd.isc.isA.Date(obj)) {
                     return @com.smartgwt.client.util.JSOHelper::convertToJavaDate(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
                 } else if (obj._constructor && obj._constructor == 'DateRange') {
                     return @com.smartgwt.client.widgets.form.fields.DateRangeItem::convertToDateRange(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
                 } else if(@com.smartgwt.client.util.JSOHelper::isJSO(Ljava/lang/Object;)(obj)) {
+                	
                     return obj;
                 } else if($wnd.isc.isA.Array(obj)) {
                     return @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
                 } else {
-                    //handle case where object may be a GWT created class instance
+                	// We were unable to determine the type - return the object unmodified.
                     return obj;
                 }
         });
 
         $wnd.SmartGWT.convertToJavaObject = $entry(function (object, listAsArray, forceMap) {
+        	
             if (object == null) return null;
             var refProperty = @com.smartgwt.client.util.SC::REF;
 
 	    	if (!$wnd.isc.isA.Object(object)) {
-
+        	
 	    		return $wnd.SmartGWT.convertToJavaType(object);
 	    	} else if ($wnd.isc.isA.Date(object)) {
 
