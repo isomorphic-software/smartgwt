@@ -172,6 +172,20 @@ public class DataClass extends JsObject {
     public void setAttribute(String property, Object value) {
         JSOHelper.setAttribute(jsObj, property, value);
     }
+    
+    /**
+     * Set the attribute value to an Object.
+     * <P>
+     * Unlike {@link #setAttribute(String, Object)}, this method will store the value passed in as-is
+     * rather than converting to an equivalent object in JavaScript.
+     * 
+     * @param property
+     * @param value
+     */
+    public void setAttributeAsJavaObject(String property, Object value) {
+    	JSOHelper.setObjectAttribute(jsObj, property, value);
+    }
+
 
     public void setAttribute(String property, Double value) {
         JSOHelper.setAttribute(jsObj, property, value);
