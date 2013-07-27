@@ -171,6 +171,11 @@ public class SmartGwtEntryPoint implements EntryPoint {
                     }
                 } else if(objType == 'boolean') {
                     return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(obj);
+            	// We may already be looking at a native java object. If so, just return it
+                // (Note that attempting to look at properties such as _constructor will crash on a native java object)
+                } else if ($wnd.SmartGWT.isNativeJavaObject(obj)) {
+                	return obj;
+                    
                 } else if($wnd.isc.isA.Date(obj)) {
                     return @com.smartgwt.client.util.JSOHelper::convertToJavaDate(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
                 } else if (obj._constructor && obj._constructor == 'DateRange') {
@@ -180,7 +185,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
                 } else if($wnd.isc.isA.Array(obj)) {
                     return @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
                 } else {
-                    //handle case where object may be a GWT created class instance
+                	// We were unable to determine the type - return the object unmodified.
                     return obj;
                 }
         });
