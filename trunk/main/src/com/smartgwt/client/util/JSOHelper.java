@@ -218,7 +218,13 @@ public class JSOHelper {
             setAttribute(elem, attr, ((ValueEnum)value).getValue());
         } else if (value.getClass().isArray()) {
             if (value instanceof Object[]) {
-                setAttribute(elem, attr, convertToJavaScriptArray((Object[])value, true));
+            	// The Object[] passed in may contain unconvertable elements (POJOs)
+            	// In this case we'll end up with a JavaScript array which contains some
+            	// unconverted sub objects
+            	// We used to pass the extra "strict" parameter in to avoid this and
+            	// instead throw an exception, but that's more intrusive than silently 
+            	// storing some unconverted member.
+            	setAttribute(elem, attr, convertToJavaScriptArray((Object[])value));
             } else if (value instanceof int[]) {
                 setAttribute(elem, attr, convertToJavaScriptArray((int[])value));
             } else if (value instanceof double[]) {
@@ -239,17 +245,20 @@ public class JSOHelper {
                 assert false : value.getClass() + " should not be an array class.";
                 setObjectAttribute(elem, attr, value);
             }
-            
-        } else if (value instanceof List) {
-            setAttribute(elem, attr, convertToJavaScriptArray(((List<?>)value).toArray(), true));
+
+        // As with Object[]s, Java collections may contain unconvertable elements (POJOs)
+    	// In this case we'll end up with a JavaScript array which contains some
+    	// unconverted sub objects
+    	} else if (value instanceof List) {
+            setAttribute(elem, attr, convertToJavaScriptArray(((List<?>)value).toArray()));
         } else if (value instanceof Iterator) {
         	List listVal = new ArrayList();
         	while (((Iterator) value).hasNext()) listVal.add(((Iterator) value).next());
-            setAttribute(elem, attr, convertToJavaScriptArray(((List<?>)listVal).toArray(), true));
+            setAttribute(elem, attr, convertToJavaScriptArray(((List<?>)listVal).toArray()));
         } else if (value instanceof Set) {
         	setAttribute(elem, attr, JSOHelper.convertToJavaScriptArray(((Set<?>)value).toArray()));
         } else if (value instanceof Map) {
-            setAttribute(elem, attr, convertMapToJavascriptObject((Map<?, ?>) value, true));
+            setAttribute(elem, attr, convertMapToJavascriptObject((Map<?, ?>) value));
         } else {
             setObjectAttribute(elem, attr, value);
         }
@@ -826,6 +835,7 @@ public class JSOHelper {
     }
 
     public static JavaScriptObject convertToJavaScriptArray(Object[] array, boolean strict) {
+
         if(array == null) return null;
         JavaScriptObject jsArray = createJavaScriptArray();
         for (int i = 0; i < array.length; i++) {
