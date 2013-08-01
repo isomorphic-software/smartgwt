@@ -81,8 +81,8 @@ public abstract class ShowcasePanel extends VLayout {
 
         viewPanel = getViewPanel();
 
-        // if sample's viewPanel is not already a simple Canvas, add a Canvas Wrapper
-        if (viewPanel.getScClassName() != "Canvas") {
+        // add a Canvas wrapper unless view panel is already a Layout or simple Canvas
+        if (viewPanel.getScClassName() != "Canvas" && !(viewPanel instanceof Layout)) {
             Canvas rootCanvas = new Canvas();
             rootCanvas.addChild(viewPanel);
             viewPanel = rootCanvas;
