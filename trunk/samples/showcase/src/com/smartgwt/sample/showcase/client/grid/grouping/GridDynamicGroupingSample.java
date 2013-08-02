@@ -67,7 +67,7 @@ public class GridDynamicGroupingSample extends ShowcasePanel {
 
         ListGridField governmentField = new ListGridField("government");
         ListGridField continentField = new ListGridField("continent");
-        countryGrid.setFields(countryCodeField, nameField, governmentField, continentField);
+        countryGrid.setFields(nameField, governmentField, continentField, countryCodeField);
 
         countryGrid.setAutoFetchData(true);
 

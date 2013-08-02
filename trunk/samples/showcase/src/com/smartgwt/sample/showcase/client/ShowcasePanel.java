@@ -1,5 +1,8 @@
 package com.smartgwt.sample.showcase.client;
 
+import java.util.List;
+import java.util.Arrays;
+
 import com.smartgwt.client.types.ContentsType;
 import com.smartgwt.client.types.Side;
 import com.smartgwt.client.util.AutoTest;
@@ -10,10 +13,12 @@ import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
+import com.smartgwt.client.widgets.layout.HStack;
+import com.smartgwt.client.widgets.layout.VStack;
 import com.smartgwt.client.widgets.layout.HLayout;
+import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.layout.Layout;
 import com.smartgwt.client.widgets.layout.LayoutSpacer;
-import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
@@ -80,9 +85,7 @@ public abstract class ShowcasePanel extends VLayout {
         layout.setMembersMargin(10);
 
         viewPanel = getViewPanel();
-
-        // add a Canvas wrapper unless view panel is already a simpl Layout or Canvas
-        if ("Canvas|HLayout|VLayout".indexOf(viewPanel.getScClassName()) < 0) {
+        if (shouldWrapViewPanel()) {
             Canvas rootCanvas = new Canvas();
             rootCanvas.addChild(viewPanel);
             viewPanel = rootCanvas;
@@ -126,6 +129,13 @@ public abstract class ShowcasePanel extends VLayout {
         }
 
         addMember(layout);
+    }
+
+    protected boolean shouldWrapViewPanel() {
+        List optimalPanelClasses = Arrays.asList(
+            Canvas.class, HLayout.class, HStack.class, VLayout.class, VStack.class 
+        );
+        return optimalPanelClasses.indexOf(viewPanel.getClass()) < 0;
     }
 
     protected boolean isTopIntro() {
