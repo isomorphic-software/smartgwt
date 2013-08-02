@@ -135,7 +135,7 @@ public class FilterSortTilingSample extends ShowcasePanel {
 
         SelectItem sortItem = new SelectItem();
         sortItem.setName("sortBy");
-        sortItem.setTitle("Sort By");
+        sortItem.setTitle("Sort by");
 
         LinkedHashMap valueMap = new LinkedHashMap();
         valueMap.put("commonName", "Animal");
@@ -188,6 +188,11 @@ public class FilterSortTilingSample extends ShowcasePanel {
 
         return vStack;
 
+    }
+
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        return true;
     }
 
     public String getIntro() {
