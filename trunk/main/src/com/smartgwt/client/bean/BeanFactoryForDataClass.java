@@ -57,4 +57,12 @@ public abstract class BeanFactoryForDataClass<BeanClass extends DataClass>
         // the right factory.
         return ((DataClass) bean).getJsObj();
     }
+    
+    @SuppressWarnings("unchecked")
+    @Override
+    public void doSetJsObj (Object bean, JavaScriptObject jsObj) {
+        // The cast should be fine, as we'll only get here if we've picked
+        // the right factory.
+        ((DataClass) bean).setJsObj(jsObj);
+    }
 }

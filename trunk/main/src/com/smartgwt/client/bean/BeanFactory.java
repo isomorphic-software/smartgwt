@@ -381,6 +381,8 @@ public abstract class BeanFactory<BeanClass> {
             
             getOrCreateJsObj : $entry(@com.smartgwt.client.bean.BeanFactory::getOrCreateJsObj(Ljava/lang/Object;)),
 
+            setJsObj : $entry(@com.smartgwt.client.bean.BeanFactory::setJsObj(Ljava/lang/Object;Lcom/google/gwt/core/client/JavaScriptObject;)),
+
             getSGWTFactory : $entry(function (object) {
                 var beanFactory = @com.smartgwt.client.bean.BeanFactory::getFactory(Ljava/lang/Object;)(object);
                 if (beanFactory) {
@@ -807,6 +809,20 @@ public abstract class BeanFactory<BeanClass> {
         }
     }
 
+    public static void setJsObj (Object bean, JavaScriptObject jsObj) {
+        // Note that we can't use the parameterized BeanClass type in the static method
+        if (bean == null) return;
+            
+        BeanFactory<?> factory = BeanFactory.getFactory(bean.getClass());
+        if (factory == null) {
+            throw noFactoryException(bean.getClass());
+        } else {
+            // Need a different name for the instance method, since the signature
+            // is the same.
+            factory.doSetJsObj(bean, jsObj);
+        }
+    }
+
     // ------------------------------
     // Instance variables and methods
     // ------------------------------
@@ -1046,4 +1062,7 @@ public abstract class BeanFactory<BeanClass> {
     
     // Gets the uncerlying JavaScriptObject.
     public abstract JavaScriptObject doGetOrCreateJsObj (Object bean);
+    
+    // Sets the uncerlying JavaScriptObject.
+    public abstract void doSetJsObj (Object bean, JavaScriptObject jsObj);
 }

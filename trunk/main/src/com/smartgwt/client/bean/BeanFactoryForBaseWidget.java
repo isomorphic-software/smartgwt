@@ -23,6 +23,7 @@ import com.smartgwt.client.bean.BeanProperty;
 import com.smartgwt.client.bean.BeanValueType;
 
 import com.smartgwt.client.widgets.BaseWidget;
+import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.SC;
 
@@ -85,5 +86,12 @@ public abstract class BeanFactoryForBaseWidget<BeanClass extends BaseWidget>
         // The cast should be fine, as we'll only get here if we've picked
         // the right factory.
         return ((BaseWidget) bean).getOrCreateJsObj();
+    }
+    
+    @Override
+    public void doSetJsObj (Object bean, JavaScriptObject jsObj) {
+        if (bean instanceof Canvas) {
+            ((Canvas) bean).setJavaScriptObject(jsObj);
+        }
     }
 }
