@@ -45,7 +45,7 @@ public class CustomTilesSample extends ShowcasePanel {
         tileGrid.setHeight100();  
         tileGrid.setWidth100();
         tileGrid.setData(CarData.getRecords());
-//       tileGrid.setTileConstructor(CarTile.class.getName());
+        tileGrid.setTileConstructor(CarTile.class.getName());
         return tileGrid;
     }
 
