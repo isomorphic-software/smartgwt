@@ -441,6 +441,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Big Filter", "grid-big-filter", "grid-filter-category", null, new GridBigFilterSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Disable Filter", "grid-sortfilter-disable-filter", "grid-filter-category", null, new GridDisableFilterSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Date Range Filtering", "grid-daterange-filtering", "grid-filter-category", null, new GridDateRangeFilterSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Date Range (Presets)", "grid-daterange-presets", "grid-filter-category", null, new GridDateRangePresetsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Expression Filter", "grid-exp-filter", "grid-filter-category", null, new GridExpressionFilter.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Editing", "grid-editing-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
