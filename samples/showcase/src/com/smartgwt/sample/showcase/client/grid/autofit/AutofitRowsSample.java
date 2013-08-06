@@ -49,19 +49,20 @@ public class AutofitRowsSample extends ShowcasePanel {
         countryGrid.setOverflow(Overflow.VISIBLE);
         countryGrid.setLeaveScrollbarGap(false);
 
-        ListGridField nameField = new ListGridField("countryName", "Country", 120);
-        ListGridField backgroundField = new ListGridField("background", "Background");
+        ListGridField nameField = new ListGridField("countryName", "Country");
+        ListGridField capitalField = new ListGridField("capital", "Capital");
+        ListGridField continentField = new ListGridField("continent", "Continent");
         ListGridField countryCodeField = new ListGridField("countryCode", "Flag", 50);
-        countryCodeField.setAlign(Alignment.CENTER);
         countryCodeField.setType(ListGridFieldType.IMAGE);
         countryCodeField.setImageURLPrefix("flags/16/");
         countryCodeField.setImageURLSuffix(".png");
 
-        countryGrid.setFields(nameField, backgroundField, countryCodeField);
+        countryGrid.setFields(countryCodeField, nameField, capitalField, continentField);
 
         canvas.addChild(countryGrid);
 
         final ListGridRecord[] records = CountrySampleData.getRecords();
+        countryGrid.setData(records);
 
         final ListGridRecord[] records5 = new ListGridRecord[5];
         System.arraycopy(records, 0, records5, 0, 5);
@@ -69,8 +70,9 @@ public class AutofitRowsSample extends ShowcasePanel {
         final ListGridRecord[] records10 = new ListGridRecord[10];
         System.arraycopy(records, 0, records10, 0, 10);
 
-        IButton show5Button = new IButton("Show 5");
+        IButton show5Button = new IButton("Data set: 5 records");
         show5Button.setLeft(0);
+        show5Button.setWidth(150);
         show5Button.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 countryGrid.setData(records5);
@@ -78,8 +80,9 @@ public class AutofitRowsSample extends ShowcasePanel {
         });
         canvas.addChild(show5Button);
 
-        IButton show10Button = new IButton("Show 10");
-        show10Button.setLeft(120);
+        IButton show10Button = new IButton("Data set: 10 records");
+        show10Button.setLeft(170);
+        show10Button.setWidth(150);
         show10Button.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 countryGrid.setData(records10);
@@ -87,8 +90,9 @@ public class AutofitRowsSample extends ShowcasePanel {
         });
         canvas.addChild(show10Button);
 
-        IButton showAllButton = new IButton("Show All");
-        showAllButton.setLeft(240);
+        IButton showAllButton = new IButton("Data set: 15 records");
+        showAllButton.setLeft(340);
+        showAllButton.setWidth(150);
         showAllButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 countryGrid.setData(records);

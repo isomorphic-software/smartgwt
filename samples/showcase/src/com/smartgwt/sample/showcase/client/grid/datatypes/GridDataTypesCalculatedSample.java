@@ -98,7 +98,7 @@ final ListGridField populationField = new ListGridField("population", "Populatio
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
                 long gdpPerCapita = Math.round((record.getAttributeAsDouble("gdp") * 1000000000) / record.getAttributeAsInt("population"));
 
-                NumberFormat nf = NumberFormat.getFormat("0,000");
+                NumberFormat nf = NumberFormat.getFormat(gdpPerCapita >= 1000 ? "0,000" : "0");
                 return "$" + nf.format(gdpPerCapita);
             }
         });
