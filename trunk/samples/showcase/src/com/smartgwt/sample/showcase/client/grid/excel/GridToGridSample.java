@@ -125,6 +125,7 @@ public class GridToGridSample extends ShowcasePanel {
             ListGrid grid = new ListGrid();
             grid.setHeight(250);
             grid.setCanEdit(true);
+            grid.setCanSelectAll(true);
             grid.setCanDragSelect(true);
             grid.setCanSelectCells(true);
             grid.setLeaveScrollbarGap(false);
