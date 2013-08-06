@@ -42,7 +42,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
         }
 
         var asBuiltSCVersionNumber = @com.smartgwt.client.Version::getSCVersionNumber()();
-        if ($wnd.isc.versionNumber != asBuiltSCVersionNumber) {
+        if ($wnd.isc.versionNumber != asBuiltSCVersionNumber && $wnd.isc.versionNumber.indexOf("${")==-1 ) {
             var message = "This build of Smart GWT " + @com.smartgwt.client.Version::getVersion()() + " was built for SmartClient version " + asBuiltSCVersionNumber +
                           " but SmartClient version " + $wnd.isc.versionNumber + " is loaded.\n\nTo correct this problem, clear GWT's unitcache, run a GWT compile, " +
                           "restart the browser, and clear the browser's cache before visiting any pages.";
