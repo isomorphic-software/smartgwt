@@ -29,7 +29,6 @@ import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.PresetDateRangeData;
 import com.smartgwt.sample.showcase.client.data.PresetDateRangeXmlDS;
 import com.smartgwt.sample.showcase.client.data.WorldXmlDS;
 
