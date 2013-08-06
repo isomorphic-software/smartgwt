@@ -9,8 +9,8 @@ with this module. You will need to manually include the JS files in your host HT
 <script src=[module-name]/sc/modules-debug/ISC_Grids.js></script>
 <script src=[module-name]/sc/modules-debug/ISC_Forms.js></script>
 <script src=[module-name]/sc/modules-debug/ISC_RichTextEditor.js></script>
-<script src=[module-name]/sc/modules-debug/ISC_Calendar.js></script>
 <script src=[module-name]/sc/modules-debug/ISC_DataBinding.js></script>
+<script src=[module-name]/sc/modules-debug/ISC_Calendar.js></script>
 -->
 
 <module>

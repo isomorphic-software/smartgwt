@@ -9,9 +9,8 @@ include them yourself in your host html file as follows :
 <script src=[module-name]/sc/modules/ISC_Grids.js></script>
 <script src=[module-name]/sc/modules/ISC_Forms.js></script>
 <script src=[module-name]/sc/modules/ISC_RichTextEditor.js></script>
-<script src=[module-name]/sc/modules/ISC_Calendar.js></script>
-
 <script src=[module-name]/sc/modules/ISC_DataBinding.js></script>
+<script src=[module-name]/sc/modules/ISC_Calendar.js></script>
 -->
         
 
