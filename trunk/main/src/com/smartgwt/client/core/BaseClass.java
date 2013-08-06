@@ -499,6 +499,26 @@ public abstract class BaseClass {
         }
     }
 
+    protected void setAttribute(String attribute, Float[] value, boolean allowPostCreate) {
+        if (!isCreated()) {
+            JSOHelper.setAttribute(config, attribute, value);
+        } else if (allowPostCreate) {
+            setProperty(attribute, JSOHelper.convertToJavaScriptArray(value));
+        } else {
+            error(attribute, value.toString(), allowPostCreate);
+        }
+    }
+
+    protected void setAttribute(String attribute, Double[] value, boolean allowPostCreate) {
+        if (!isCreated()) {
+            JSOHelper.setAttribute(config, attribute, value);
+        } else if (allowPostCreate) {
+            setProperty(attribute, JSOHelper.convertToJavaScriptArray(value));
+        } else {
+            error(attribute, value.toString(), allowPostCreate);
+        }
+    }
+
     protected void setAttribute(String attribute, boolean value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
