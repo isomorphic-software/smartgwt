@@ -56,7 +56,7 @@ public class PresetDateRangeXmlDS extends DataSource {
         setFields(customerIDField, customerNameField, orderIDField,
         		orderDateField, orderDescriptionField, orderQtyField);
   
-        setTestData(PresetDateRangeData.getNewRecords());
+        //setTestData(PresetDateRangeData.getNewRecords());
         setClientOnly(true);
     }
 }
