@@ -1,36 +1,21 @@
 package com.smartgwt.sample.showcase.client.grid.sortfilter;
 
 import com.smartgwt.client.data.AdvancedCriteria;
-import com.smartgwt.client.data.Criteria;
 import com.smartgwt.client.data.Criterion;
-import com.smartgwt.client.data.DataSource;
-import com.smartgwt.client.data.DataSourceField;
-import com.smartgwt.client.data.DateRange;
-import com.smartgwt.client.data.Record;
-import com.smartgwt.client.data.RelativeDate;
-import com.smartgwt.client.types.FieldType;
 import com.smartgwt.client.types.OperatorId;
-import com.smartgwt.client.types.TitleOrientation;
 import com.smartgwt.client.widgets.Button;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
-import com.smartgwt.client.widgets.events.DrawEvent;
-import com.smartgwt.client.widgets.events.DrawHandler;
-import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.FilterBuilder;
-import com.smartgwt.client.widgets.form.PresetDateRangeItem;
-import com.smartgwt.client.widgets.form.fields.DateRangeItem;
-import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.PresetDateRangeXmlDS;
-import com.smartgwt.sample.showcase.client.data.WorldXmlDS;
+
 
 
 public class GridDateRangePresetsSample extends ShowcasePanel {
