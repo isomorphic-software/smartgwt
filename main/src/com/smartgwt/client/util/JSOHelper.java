@@ -1055,6 +1055,10 @@ public class JSOHelper {
        return array[index];
     }-*/;
 
+    public static native double getdoubleArrayValue(JavaScriptObject array, int index) /*-{
+       return array[index];
+    }-*/;
+    
     public static native Integer getIntegerArrayValue(JavaScriptObject array, int index) /*-{
         var ret = array[index];
         return (ret == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret));
@@ -1063,6 +1067,11 @@ public class JSOHelper {
     public static native Float getFloatArrayValue(JavaScriptObject array, int index) /*-{
         var ret = array[index];
         return (ret == null ? null : @com.smartgwt.client.util.JSOHelper::toFloat(F)(ret));
+    }-*/;
+
+    public static native Double getDoubleArrayValue(JavaScriptObject array, int index) /*-{
+        var ret = array[index];
+        return (ret == null ? null : @com.smartgwt.client.util.JSOHelper::toDouble(D)(ret));
     }-*/;
 
     public static native Date getDateArrayValue(JavaScriptObject array, int i) /*-{
@@ -1114,6 +1123,15 @@ public class JSOHelper {
         return arr;
     }
 
+    public static Double[] convertToJavaDoubleArray(JavaScriptObject array) {
+        int length = getArrayLength(array);
+        Double[] arr = new Double[length];
+        for (int i = 0; i < length; i++) {
+            arr[i] = getDoubleArrayValue(array, i);
+        }
+        return arr;
+    }
+    
     public static Date[] convertToJavaDateArray(JavaScriptObject array) {
         int length = getArrayLength(array);
         Date[] arr = new Date[length];

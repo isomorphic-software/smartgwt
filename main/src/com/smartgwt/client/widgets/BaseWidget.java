@@ -750,6 +750,16 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         }
     }
 
+    protected void setAttribute(String attribute, double[] value, boolean allowPostCreate) {
+        if (!isCreated()) {
+            JSOHelper.setAttribute(config, attribute, value);
+        } else if (allowPostCreate) {
+            setProperty(attribute, JSOHelper.convertToJavaScriptArray(value));
+        } else {
+            error(attribute, value.toString());
+        }
+    }
+
     protected void setAttribute(String attribute, Float[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
