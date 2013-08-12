@@ -672,7 +672,7 @@ public class ShowcaseData {
 
                     new ExplorerTreeNode("Portal Layout", "portal-layout-category", "root", "silk/application_view_tile.png", null, true, idSuffix),
                     new ExplorerTreeNode("Repositioning", "repositioning-portal-layout", "portal-layout-category", null, new RearrangeSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Adding and removing columns", "add-remove-columns-portal-layout", "portal-layout-category", null, new AddRemoveColumnsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Add/Remove Columns", "add-remove-columns-portal-layout", "portal-layout-category", null, new AddRemoveColumnsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Portlet Contents", "portlet-contents-portal-layout", "portal-layout-category", "silk/application_view_tile.png", null, true, idSuffix),
                     new ExplorerTreeNode("Window contents", "window-contents-portal-layout", "portlet-contents-portal-layout", null, new WindowContentsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Dragging components", "drag-components-portal-layout", "portlet-contents-portal-layout", null, new DragComponentsSample.Factory(), true, idSuffix),
