@@ -155,6 +155,14 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         this.scClassName = scClassName;
     }
 
+    private native void wrapDestroy() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        if (self && self.__sgwtDestroy == null) self.__sgwtDestroy = function () {
+            var jObj = this.__ref;
+            if (jObj != null) jObj.@com.smartgwt.client.widgets.BaseWidget::destroy()();
+        }
+    }-*/;
+
     protected final native void doInit()/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.__setDragTracker = self.setDragTracker;
@@ -196,17 +204,15 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             if (jObj != null) jObj.@com.smartgwt.client.widgets.BaseWidget::rendered()();
         }
 
-        self.__destroy = self.destroy;
-        self.destroy = function() {
-            var jObj = this.__ref;
-            jObj.@com.smartgwt.client.widgets.BaseWidget::destroy()();
-        };
-
+        this.@com.smartgwt.client.widgets.BaseWidget::wrapDestroy()();
         this.@com.smartgwt.client.widgets.BaseWidget::onInit()();
     }-*/;
 
-    protected void onInit() {
+    protected void onInit() {}
 
+    // install callbacks for a live SC widget
+    protected void onBind() {
+        wrapDestroy();
     }
 
     public boolean isConfigOnly() {
@@ -267,7 +273,10 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
      */
     public native void destroy() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-		if (self != null && self.__destroy) self.__destroy();
+	    if (self != null && self.__sgwtDestroy) {
+            delete self.__sgwtDestroy;
+            if (self.destroy) self.destroy();
+        }
 	    var id = this.@com.smartgwt.client.widgets.BaseWidget::id;
         if (id != null) {
             this.@com.smartgwt.client.widgets.BaseWidget::clearID()();
