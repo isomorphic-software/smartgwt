@@ -1,6 +1,11 @@
 package com.smartgwt.sample.showcase.client.data;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.smartgwt.sample.showcase.client.DebugConsoleCommand;
+import com.smartgwt.sample.showcase.client.ShowcaseConfiguration;
 import com.smartgwt.sample.showcase.client.basics.components.CreateSample;
 import com.smartgwt.sample.showcase.client.basics.components.LayerSample;
 import com.smartgwt.sample.showcase.client.basics.components.LayoutSample;
@@ -87,6 +92,8 @@ import com.smartgwt.sample.showcase.client.effects.dragdrop.DragResizeSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragTilesMoveSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragTrackerSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragTypesSample;
+import com.smartgwt.sample.showcase.client.effects.dragdrop.PortletAcrossWindowsSample;
+import com.smartgwt.sample.showcase.client.effects.dragdrop.RecordsAcrossWindowsSample;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.CornersSample;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.CssStylesSample;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.EdgesSample;
@@ -296,11 +303,12 @@ public class ShowcaseData {
         this.idSuffix = idSuffix;
     }
 
-    private ExplorerTreeNode[] data;
+    private List<ExplorerTreeNode> data;
 
     private ExplorerTreeNode[] getData() {
         if (data == null) {
-            data = new ExplorerTreeNode[]{
+            data = new ArrayList<ExplorerTreeNode>();
+            data.addAll(Arrays.asList(new ExplorerTreeNode[] {
                     new ExplorerTreeNode("Featured Samples", "featured-category", "root", "silk/house.png", null, true, idSuffix),
                     new ExplorerTreeNode("Demo Application", "featured-complete-app", "featured-category", "silk/layout_content.png", new MiniAppSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Smart GWT MVC", "featured-smartgwt-mvc", "featured-category", "silk/arrow_join.png", new TreeEditingSample.Factory(), true, idSuffix),
@@ -822,9 +830,15 @@ public class ShowcaseData {
                     //new ExplorerTreeNode("Grid Cells", "effects-lf-grid-cells", "effects-lf-category", null, null, false, idSuffix),
 
                     new CommandTreeNode("Developer Console", "debug-category", "root", "silk/bug.png", new DebugConsoleCommand(), true, idSuffix)
-            };
+            }));
+
+            if (ShowcaseConfiguration.getSingleton().isOpenForTesting()) {
+                data.add(new ExplorerTreeNode("Cross-Window Drag", "effects-cross-window-dd-category", "effects-dd-category", null, null, true, idSuffix));
+                data.add(new ExplorerTreeNode("Records across Windows", "effects-dd-records-across-windows", "effects-cross-window-dd-category", null, new RecordsAcrossWindowsSample.Factory(), true, idSuffix));
+                data.add(new ExplorerTreeNode("Portlet across Windows", "effects-dd-portlet-across-windows", "effects-cross-window-dd-category", null, new PortletAcrossWindowsSample.Factory(), true, idSuffix));
+            }
         }
-        return data;
+        return data.toArray(new ExplorerTreeNode[data.size()]);
     }
 
     public static ExplorerTreeNode[] getData(String idSuffix) {
