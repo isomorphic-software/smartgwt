@@ -156,7 +156,10 @@ public abstract class BaseClass {
 	 */
     public native void destroy() /*-{
 		var self = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-		if (self != null && self.__destroy) self.__destroy();
+		if (self != null && self.__sgwtDestroy) {
+            delete self.__sgwtDestroy;
+            if (self.destroy) self.destroy();
+        }
 		var id = this.@com.smartgwt.client.core.BaseClass::getID()();
 		if (id != null) {
             this.@com.smartgwt.client.core.BaseClass::clearID()();
@@ -192,19 +195,25 @@ public abstract class BaseClass {
 
     protected abstract JavaScriptObject create();
 
+    private native void wrapDestroy() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        if (self && self.__sgwtDestroy == null) self.__sgwtDestroy = function () {
+            var jObj = this.__ref;
+            if (jObj != null) jObj.@com.smartgwt.client.core.BaseClass::destroy()();
+        }
+    }-*/;
+
     protected final native void doInit()/*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-        if (self) {
-            self.__destroy = self.destroy;
-            self.destroy = function() {
-                var jObj = this.__ref;
-                jObj.@com.smartgwt.client.core.BaseClass::destroy()();
-            };
-        };
+        this.@com.smartgwt.client.core.BaseClass::wrapDestroy()();
         this.@com.smartgwt.client.core.BaseClass::onInit()();
     }-*/;
 
     protected void onInit() {}
+
+    // install callbacks for a live SC object
+    protected void onBind() {
+        wrapDestroy();
+    }
 
     public String getAttribute(String attribute) {
         return getAttributeAsString(attribute);

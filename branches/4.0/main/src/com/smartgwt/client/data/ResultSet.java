@@ -139,6 +139,7 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
     public ResultSet(JavaScriptObject jsObj){
         super(jsObj);
         JSOHelper.setObjectAttribute(jsObj, SC.REF, this);
+        onBind();
     }
 
     @Override
