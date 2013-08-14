@@ -65,8 +65,10 @@ public class IDManager {
     // of keywords, SmartClient will generate a proper warning; just avoid doing damage here.
     private static native void destroy(String id) /*-{
         var obj = $wnd[id];
-        if      ( $wnd.isc.isA.Canvas(obj)) obj.destroy();
-        else if (!$wnd.isc.ClassFactory._reservedWords[id]) {
+        if (obj != null && obj.destroy) {
+            delete obj.__sgwtDestroy;
+            obj.destroy();
+        } else if (!$wnd.isc.ClassFactory._reservedWords[id]) {
             try { $wnd[id] = null; } catch (e) {}
         }
     }-*/;
