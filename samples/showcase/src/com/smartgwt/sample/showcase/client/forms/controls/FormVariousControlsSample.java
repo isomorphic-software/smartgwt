@@ -70,9 +70,12 @@ public class FormVariousControlsSample extends ShowcasePanel {
 
         SliderItem sliderItem = new SliderItem();
         sliderItem.setTitle("Slider");
-        sliderItem.setWidth(250);
-        sliderItem.setMinValue(0);
-        sliderItem.setMaxValue(10);
+        sliderItem.setHeight(40);
+        sliderItem.setWidth(180);
+        sliderItem.setMinValue(1);
+        sliderItem.setMaxValue(5);
+        sliderItem.setNumValues(5);
+        sliderItem.setDefaultValue(4);
 
         CheckboxItem checkboxItem = new CheckboxItem();
         checkboxItem.setTitle("Checkbox");
