@@ -11,6 +11,7 @@ import com.smartgwt.client.widgets.form.fields.HeaderItem;
 import com.smartgwt.client.widgets.form.fields.PasswordItem;
 import com.smartgwt.client.widgets.form.fields.events.ClickEvent;
 import com.smartgwt.client.widgets.form.fields.events.ClickHandler;
+import com.smartgwt.client.widgets.form.validator.CustomValidator;
 import com.smartgwt.client.widgets.form.validator.MatchesFieldValidator;
 import com.smartgwt.client.widgets.form.validator.RegExpValidator;
 import com.smartgwt.sample.showcase.client.PanelFactory;
@@ -81,7 +82,19 @@ public class FormDataBindingSample extends ShowcasePanel {
         CheckboxItem acceptItem = new CheckboxItem();
         acceptItem.setName("acceptTerms");
         acceptItem.setTitle("I accept the terms of use.");
-        acceptItem.setRequired(true);
+        acceptItem.setDefaultValue(false);
+        CustomValidator isTrueValidator = new CustomValidator() {
+
+			@Override
+			protected boolean condition(Object value) {
+				if (new Boolean(true).equals(value)) return true;
+				return false;
+			}
+        	
+        };
+        isTrueValidator.setErrorMessage("You must accept the terms of use to continue");
+        acceptItem.setValidators(isTrueValidator);
+
         acceptItem.setWidth(150);
 
         ButtonItem validateItem = new ButtonItem();
