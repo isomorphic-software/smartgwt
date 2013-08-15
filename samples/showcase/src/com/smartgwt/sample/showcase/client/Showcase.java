@@ -200,7 +200,10 @@ public class Showcase implements EntryPoint, HistoryListener {
 
                 Canvas pane = selectedTab.getPane();
                 if (pane instanceof ShowcasePanel) {
-                    AutoTest.setTestRoot(((ShowcasePanel)pane).viewPanel);
+                    ShowcasePanel panel =(ShowcasePanel)pane;
+                    Canvas viewPanel = panel.viewPanel;
+                    AutoTest.setTestRoot(panel.shouldWrapViewPanel() ? 
+                                         viewPanel.getParentElement() : viewPanel);
                 }
 
                 String historyToken = selectedTab.getAttribute("historyToken");

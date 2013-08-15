@@ -85,12 +85,6 @@ public abstract class ShowcasePanel extends VLayout {
         layout.setMembersMargin(10);
 
         viewPanel = getViewPanel();
-        if (shouldWrapViewPanel()) {
-            Canvas rootCanvas = new Canvas();
-            rootCanvas.addChild(viewPanel);
-            viewPanel = rootCanvas;
-        }
-
         HLayout wrapper = new HLayout();
         wrapper.setWidth100();
         wrapper.addMember(viewPanel);
