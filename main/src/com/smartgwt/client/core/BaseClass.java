@@ -155,22 +155,30 @@ public abstract class BaseClass {
 	 * Destroy this object.
 	 */
     public native void destroy() /*-{
-		var self = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-		if (self != null && self.__sgwtDestroy) {
+        var self = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+        if (self != null && self.__sgwtDestroy) {
             delete self.__sgwtDestroy;
             if (self.destroy) self.destroy();
         }
-		var id = this.@com.smartgwt.client.core.BaseClass::getID()();
-		if (id != null) {
+        var id = this.@com.smartgwt.client.core.BaseClass::getID()();
+        if (id != null) {
             this.@com.smartgwt.client.core.BaseClass::clearID()();
         }
+        this.@com.smartgwt.client.widgets.BaseWidget::clearConfigRef()();
     }-*/;
 
     private void clearID() {
+        if (JSOHelper.getAttributeAsBoolean(config, "_autoAssignedID") &&
+            getRef(this.config) == null) SC.releaseID(getClass().getName(), this.id);
         IDManager.unregisterID(this, this.id);
         this.id = null;
-    	JSOHelper.setNullAttribute(config, "ID");
-    } 
+        JSOHelper.setNullAttribute(config, "ID");
+        JSOHelper.setNullAttribute(config, "_autoAssignedID");
+    }
+
+    private void clearConfigRef() {
+        JSOHelper.setNullAttribute(this.config, SC.REF);
+    }
 
     protected void error(String attribute, String value, boolean allowPostCreate) throws IllegalStateException {
         if (allowPostCreate) {
