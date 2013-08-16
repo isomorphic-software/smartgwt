@@ -164,7 +164,7 @@ public abstract class BaseClass {
         if (id != null) {
             this.@com.smartgwt.client.core.BaseClass::clearID()();
         }
-        this.@com.smartgwt.client.widgets.BaseWidget::clearConfigRef()();
+        this.@com.smartgwt.client.core.BaseClass::clearConfigRef()();
     }-*/;
 
     private void clearID() {
