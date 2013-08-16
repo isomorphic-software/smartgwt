@@ -278,12 +278,20 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             this.@com.smartgwt.client.widgets.BaseWidget::clearID()();
             this.@com.smartgwt.client.widgets.Canvas::onDestroy()();
         }
+        this.@com.smartgwt.client.widgets.BaseWidget::clearConfigRef()();
     }-*/;
 
     private void clearID() {
+        if (JSOHelper.getAttributeAsBoolean(config, "_autoAssignedID") &&
+            getRef(this.config) == null) SC.releaseID(getClass().getName(), this.id);
         IDManager.unregisterID(this, this.id);
         this.id = null;
     	JSOHelper.setNullAttribute(config, "ID");
+    	JSOHelper.setNullAttribute(config, "_autoAssignedID");
+    }
+
+    private void clearConfigRef() {
+        JSOHelper.setNullAttribute(this.config, SC.REF);
     }
 
     public void doOnRender(Function function) {

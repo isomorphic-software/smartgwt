@@ -40,6 +40,13 @@ public class SC {
         simpleName = simpleName.replace("$", "_");
         return $wnd.isc.ClassFactory.getNextGlobalIDForClass(simpleName);
     }-*/;
+
+    public static native void releaseID(String className, String id) /*-{
+        var simpleName = className.substring(className.lastIndexOf(".")+1);
+        //replace any $ characters from inner class names with an underscore
+        simpleName = simpleName.replace("$", "_");
+        return $wnd.isc.ClassFactory.releaseGlobalID(simpleName, id);
+    }-*/;
     
     public static native String getHome() /*-{
         return $wnd.isomorphicDir;

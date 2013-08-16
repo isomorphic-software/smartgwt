@@ -60,14 +60,20 @@ public class RefDataClass extends DataClass {
     }
 
     // IDManager support
+    //
+    // Descendants of this class do not themselves wrap SC objects, but instead serve as
+    // templates for SC objects with their own (separate) SGWT wrappers.  Since this object,
+    // the SC object and its separate SGWT wrapper all share the same ID, don't register
+    // this object with the SGWT ID Manager - instead merely verify availability of the ID.
+    // When/if the separate SGWT wrapper is built, it will be registered with this ID.
 
     protected String id;
 
-    protected void internalSetID(String id, boolean autoAssigned, boolean addIDToRegistry) {
+    protected void internalSetID(String id, boolean autoAssigned, boolean validateID) {
         if (this.id != null) {
             IDManager.unregisterID(this, this.id);
         }
-        if (addIDToRegistry) IDManager.registerID(this, id, false);
+        if (validateID) IDManager.validateID(id, false);
         this.id = id;
         setAttribute("ID",                        id);
         setAttribute("_autoAssignedID", autoAssigned);
