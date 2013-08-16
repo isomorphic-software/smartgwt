@@ -9,6 +9,45 @@ import com.smartgwt.client.widgets.BaseWidget;
 import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.layout.SectionStackSection;
 
+// ID Management -------------------------------------------------------------------------------
+//
+// The goal of ID Management is to ensure that at most a single SGWT object is assigned the
+// same ID, and that if a SC object also uses that ID, it can only be the underlying/wrapped
+// SC object for that SGWT object.  The overall system is designed so that:
+//
+// - When a SGWT object is created with new, so that there is no expected SC object with the
+//   same ID, then we verify that and warn of a collision if either a SGWT or SC object already
+//   has that ID.  Any collision will cause us to destroy() the old SGWT or SC object before
+//   registering the new one.  The ID is auto-generated unless specified in the constructor,
+//   and registered against the SGWT object - registration lasts until destroy() is called on
+//   that object.
+// 
+// - A SC API is used to provide the SGWT auto-generated IDs, so SC will not try to use them,
+//   but the SC side will have no knowledge of any manually set SGWT IDs before the underlying
+//   SC object is created.  In this case, a collision will be detected only when the SC
+//   object underlying the SGWT widget is created (say because it's drawn).
+//
+// - SC objects created by the SC JS Framework that have no SGWT presence will not be registered
+//   in the SGWT ID Management table, but will still trigger a collision if an attempt is
+//   made to register a SGWT widget with the same ID.
+//
+// - When a SGWT object is created from a live SC object, there is obviously no need to check
+//   the SC side for ID collisions, but we still check for collisions against other SGWT
+//   objects.  In this case the ID is provided by the SC object and is not generated or
+//   settable.  -
+//
+// - If setID() is called on a SGWT object, we perform the same collision check as if new
+//   had been called for that ID, and change the registered ID for that object.  If setID()
+//   is called for a SGWT object that already has an underlying SC JS object, then
+//   an exception is thrown as this is illegal.
+//
+//   When destroy() is called on either the SC or SGWT side, both objects will be destroy()ed
+//   if both exist - SC objects can be created outside of SGWT, and SGWT objects may not have
+//   created their underlying SC objects at the point when destroy is called.  Destroying a
+//   SGWT object unregisters its ID and destroying a SC object removes the window[ID] binding.
+//   If the ID is auto-generated, calling destroy() (whether both objects exist or just one on
+//   the SC or SGWT side) will return it to the common free pool of auto-generated IDs.
+
 public class IDManager {
 
     // Test for unique IDs:
@@ -25,7 +64,7 @@ public class IDManager {
 
     private static HashMap<String, Object> assignedIDs = new HashMap<String, Object>();
 
-    private static void validateID(String id, boolean skipUniqueJSIdentifierCheck) {
+    public static void validateID(String id, boolean skipUniqueJSIdentifierCheck) {
         assert id.matches("[a-zA-Z_$][0-9a-zA-Z_$]*") : "Invalid ID : " + id +
             ". Valid ID's must meet the following pattern [a-zA-Z_$][0-9a-zA-Z_$]*";
         
@@ -72,7 +111,6 @@ public class IDManager {
             try { $wnd[id] = null; } catch (e) {}
         }
     }-*/;
-
     
    public static void registerID(Object object, String id, 
                                   boolean skipUniqueJSIdentifierCheck) 
