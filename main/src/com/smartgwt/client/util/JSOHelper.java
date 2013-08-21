@@ -912,9 +912,9 @@ public class JSOHelper {
                 assert val != null;
                 assert !(val instanceof JavaScriptObject);
                 if (strict) {
-                    throw new UnsupportedOperationException("Can not convert element " + i +
-                    		" of the array to a JavaScriptObject.  Instances of class `" + (val.getClass().getName()) +
-                    		"' can not automatically be converted.  Please see the SmartClient documentation of " +
+                	throwUnconvertibleObjectException(val, 
+                			"Object is a member of an Array being converted to JavaScript. " + 
+                			"Please see the SmartClient documentation of " +
                     		"RPCRequest.data for a table of Java types that can be converted automatically.");
                 } else {
                     setArrayValue(jsArray, i, val);
@@ -924,6 +924,19 @@ public class JSOHelper {
         return jsArray;
     }
 
+    // Helper to throw an exception if we want to convert a method to JS but it's not a convertible type
+    // This is also called from JSNI when attempting to serialize a Java object as part of an RPC request
+    // within the SmartClient JS code. See isc.SmartGWT.throwUnconvertibleObjectException() defined in
+    // SmartGwtEntryPoint
+    public static void throwUnconvertibleObjectException(Object object, String messageDetail) {
+    	
+    	String message;
+    	if (object == null) message = "Null!!!";
+    	else if (object.getClass() == null) message = "NO Class??!!";
+    	else message = "Attempt to convert instance of class " + (object.getClass().getName()) + " to a JavaScript object failed.";
+    	if (messageDetail != null) message += " " + messageDetail;
+    	throw new UnsupportedOperationException(message);
+    }
 
     public static Integer toInteger(int value) {
         return value;
@@ -1210,7 +1223,10 @@ public class JSOHelper {
             } else {
                 assert value != null;
                 if (strict) {
-                    throw new UnsupportedOperationException("Unsupported type for attribute " + key + " : " + value + ".  Instances of class `" + (value.getClass().getName()) + "' can not automatically be converted.  Please see the SmartClient documentation of RPCRequest.data for a table of Java types that can be converted automatically.");
+                	throwUnconvertibleObjectException(value, 
+                			"Object is stored as attribute " + key + " of a Map being converted to JavaScript. " +
+                			"Please see the SmartClient documentation of " +
+                    		"RPCRequest.data for a table of Java types that can be converted automatically.");
                 } else {
                     setObjectAttribute(valueJS, key, value);
                 }
