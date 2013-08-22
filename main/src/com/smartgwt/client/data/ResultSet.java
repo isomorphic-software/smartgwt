@@ -162,6 +162,26 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
     }-*/;
 
     /**
+     * Returns the existing SGWT ResultSet, or creates and returns one if none exist,
+     * associated with the supplied {@link com.google.gwt.core.client.JavaScriptObject}.  If
+     * the supplied object is not a SmartClient ResultSet, a warning will be logged and null
+     * returned; otherwise the SGWT ResultSet will be returned.
+     *
+     * @param jsObj SmartClient ResultSet whose wrapper is wanted
+     *
+     * @return wrapping SGWT ResultSet or null
+     */
+    public static native ResultSet asSGWTComponent(JavaScriptObject jsObj) /*-{
+       if ($wnd.isc.isA.ResultSet(jsObj)) {
+           return @com.smartgwt.client.data.ResultSet::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
+       } 
+       var className = $wnd.isc.isAn.Instance(jsObj) ? jsObj.getScClassName() : "none";
+       @com.smartgwt.client.util.SC::logWarn(Ljava/lang/String;)("ResultSet.asSGWTComponent(): " +
+           "The supplied JS object must be a ResultSet - actual class is " + className + ".");
+       return null;
+    }-*/;
+
+    /**
      * Ensures that the underlying SmartClient ResultSet object is created for this ResultSet
      * instance. If the SmartClient object has already been created, then calling this method
      * amounts to a no-op. Otherwise, the <code>isc.ResultSet.create()</code> function is
