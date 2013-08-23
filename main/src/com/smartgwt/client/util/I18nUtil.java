@@ -231,8 +231,8 @@ public class I18nUtil {
             $wnd.isc.Validator.addClassProperties({notOneOf: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_notOneOf()()});
             $wnd.isc.Validator.addClassProperties({notAFunction: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_notAFunction()()});
 
-            $wnd.isc.Validator.addClassProperties({mustBeLaterThanTime: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_mustBeLaterThanTime()()});
-            $wnd.isc.Validator.addClassProperties({mustBeEarlierThanTime: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_mustBeEarlierThanTime()()});
+            $wnd.isc.Validator.addClassProperties({mustBeLaterThanTime: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_mustBeLaterThanTime()()).replace('$min', '${isc.Time.toShortTime(min)}')});
+            $wnd.isc.Validator.addClassProperties({mustBeEarlierThanTime: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_mustBeEarlierThanTime()()).replace('$max', '${isc.Time.toShortTime(max)}')});
         }
 
         if($wnd.isc.Time) {
@@ -488,7 +488,7 @@ public class I18nUtil {
             $wnd.isc.MultiFileItem.addProperties({pickerUploadButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiFileItem_pickerUploadButtonTitle()()});
             $wnd.isc.MultiFileItem.addProperties({pickerCancelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiFileItem_pickerCancelButtonTitle()()});
             $wnd.isc.MultiFileItem.addProperties({pickerAddAnotherFileButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiFileItem_pickerAddAnotherFileButtonTitle()()});
-            $wnd.isc.MultiFileItem.addProperties({pickerUploadProgressLabel: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiFileItem_pickerUploadProgressLabel()()});
+            $wnd.isc.MultiFileItem.addProperties({pickerUploadProgressLabel: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiFileItem_pickerUploadProgressLabel()()).replace('$fileName', '${fileName}').replace('$formattedFileSize', '${formattedFileSize}')});
         }
 
         if($wnd.isc.MenuButton) { 
