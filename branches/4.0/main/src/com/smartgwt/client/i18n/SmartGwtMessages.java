@@ -2934,11 +2934,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String multiFileItem_pickerAddAnotherFileButtonTitle();
 
   /**
-   * Translated "<b><nobr>Saving ${fileName} ${formattedFileSize}</nobr></b>".
+   * Translated "Saving $fileName $formattedFileSize".
    * 
-   * @return translated "<b><nobr>Saving ${fileName} ${formattedFileSize}</nobr></b>"
+   * @return translated "Saving $fileName $formattedFileSize"
    */
-  @DefaultMessage("<b><nobr>Saving ${fileName} ${formattedFileSize}</nobr></b>")
+  @DefaultMessage("Saving $fileName $formattedFileSize")
   @Key("multiFileItem_pickerUploadProgressLabel")
   String multiFileItem_pickerUploadProgressLabel();
 
@@ -4476,20 +4476,20 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String validator_requiredField();
 
   /**
-   * Translated "Must be later than ${isc.Time.toShortTime(min)}".
+   * Translated "Must be later than $min".
    * 
-   * @return translated "Must be later than ${isc.Time.toShortTime(min)}"
+   * @return translated "Must be later than $min"
    */
-  @DefaultMessage("Must be later than ${isc.Time.toShortTime(min)}")
+  @DefaultMessage("Must be later than $min")
   @Key("validator_mustBeLaterThanTime")
   String validator_mustBeLaterThanTime();
 
   /**
-   * Translated "Must be earlier than ${isc.Time.toShortTime(max)}".
+   * Translated "Must be earlier than $max".
    * 
-   * @return translated "Must be earlier than ${isc.Time.toShortTime(max)}"
+   * @return translated "Must be earlier than $max"
    */
-  @DefaultMessage("Must be earlier than ${isc.Time.toShortTime(max)}")
+  @DefaultMessage("Must be earlier than $max")
   @Key("validator_mustBeEarlierThanTime")
   String validator_mustBeEarlierThanTime();
 
