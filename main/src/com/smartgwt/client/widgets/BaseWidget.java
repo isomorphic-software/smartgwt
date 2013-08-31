@@ -62,7 +62,6 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
 
     protected String id;
     protected JavaScriptObject config = JSOHelper.createObject();
-    protected boolean isElementSet = false;
     protected String scClassName;
     protected boolean configOnly;
 
@@ -122,11 +121,6 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
 
     public static BaseWidget getRef(JavaScriptObject jsObj) {
         return jsObj == null ? null : (BaseWidget) JSOHelper.getAttributeAsObject(jsObj, SC.REF);
-    }
-
-    protected void setElement(Element elem) {
-        super.setElement(elem);
-        isElementSet = true;
     }
 
     /**
@@ -322,43 +316,6 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
 
     }
 
-    public Element getElement() {
-        return getElement(true);
-    }
-
-    public Element getElement(boolean allowPreRender) {
-
-        if (!isElementSet) {
-            JavaScriptObject jsObj = getJsObj();
-            if (!allowPreRender) {
-                error("This method should only be called after the component has been rendered");
-            }
-
-            if (jsObj == null) {
-                getOrCreateJsObj();
-            }
-
-            Element wrapperDiv = DOM.createDiv();
-            DOMUtil.setID(wrapperDiv, getID() + "_wrapper");
-            //the wrapper div must be attached to the dom, or else this widgets children don't get
-            //a handle to this widgets dom element (via getHandle()). For example if this self is a
-            // HLayout and containts a Canvas and IButton child member.
-            RootPanel.getBodyElement().appendChild(wrapperDiv);
-
-            Canvas self = ((Canvas) this);
-            //need to set properties before calling clear else the properties are not set on the jsObj (it ends up on the config)
-            setProperty("position", Positioning.RELATIVE.getValue());
-            setProperty("redrawOnResize", true);
-            setProperty("htmlElement", wrapperDiv);
-            self.clear();
-            self.draw();
-            setElement(wrapperDiv);
-            return wrapperDiv;
-
-        }
-        return super.getElement();
-    }
-
     public void setPosition(String position) {
         setAttribute("position", position, false);
     }
@@ -446,6 +403,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
                 internalSetID(SC.generateID(getClass().getName()), true);
             }
             JSOHelper.setObjectAttribute(config, SC.REF, this);
+            GWT.log("getOrCreateJsObj() - scClassName " + scClassName);
             JavaScriptObject jsObj = create();
             JSOHelper.setAttribute(jsObj, SC.MODULE, BeanFactory.getSGWTModule());
             return jsObj;
