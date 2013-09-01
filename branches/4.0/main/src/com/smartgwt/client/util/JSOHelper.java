@@ -1278,7 +1278,7 @@ public class JSOHelper {
             if (copyProperties) properties = $wnd.isc.addProperties({}, properties);
             delete properties.ID;
             delete properties.__ref;
-            delete pzzroperties._autoAssignedID;
+            delete properties._autoAssignedID;
         }
         return properties;
     }-*/;
