@@ -18,12 +18,12 @@ package com.smartgwt.client.core;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.event.shared.EventHandler;
+import com.google.gwt.event.shared.GwtEvent;
+import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.event.shared.HandlerManager;
-import com.google.gwt.event.shared.GwtEvent;
-import com.google.gwt.event.shared.EventHandler;
-import com.google.gwt.event.shared.HandlerRegistration;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.util.IDManager;
 import com.smartgwt.client.util.JSOHelper;
@@ -230,10 +230,10 @@ public abstract class BaseClass {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
-               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
-        return ret === undefined ? null : ret;
+        return ret;
     }-*/;
 
     public native Date getAttributeAsDate(String property)/*-{
@@ -247,10 +247,10 @@ public abstract class BaseClass {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
-               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
-        return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
+        return ret == null ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
     }-*/;
 
     public native Integer getAttributeAsInt(String property)/*-{
@@ -264,10 +264,10 @@ public abstract class BaseClass {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
-               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
-        return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
+        return ret == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
     }-*/;
 
     public native Double getAttributeAsDouble(String property)/*-{
@@ -281,10 +281,10 @@ public abstract class BaseClass {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
-               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
-        return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDouble(D)(ret);
+        return ret == null ? null : @com.smartgwt.client.util.JSOHelper::toDouble(D)(ret);
     }-*/;
 
     public native Element getAttributeAsElement(String property)/*-{
@@ -298,10 +298,10 @@ public abstract class BaseClass {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
-               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
-        return ret === undefined ? null : ret;
+        return ret;
     }-*/;
 
     public native JavaScriptObject getAttributeAsJavaScriptObject(String property)/*-{
@@ -315,10 +315,10 @@ public abstract class BaseClass {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
-               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
-        return ret === undefined ? null : ret;
+        return ret;
     }-*/;
 
     public native Float getAttributeAsFloat(String property)/*-{
@@ -332,10 +332,10 @@ public abstract class BaseClass {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
-               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
-        return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toFloat(F)(ret);
+        return ret == null ? null : @com.smartgwt.client.util.JSOHelper::toFloat(F)(ret);
     }-*/;
 
     public native Boolean getAttributeAsBoolean(String property)/*-{
@@ -349,10 +349,10 @@ public abstract class BaseClass {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
-               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
-        return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+        return ret == null ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 
     protected native String[] getAttributeAsStringArray(String property)/*-{
@@ -369,7 +369,7 @@ public abstract class BaseClass {
                ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
-        return ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        return ret == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
     public Map getAttributeAsMap(String property) {
