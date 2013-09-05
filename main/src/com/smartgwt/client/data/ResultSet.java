@@ -130,15 +130,18 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
     }
 
     public ResultSet(){
+        scClassName = "ResultSet";
     }
 
     public ResultSet(DataSource dataSource) {
         setDataSource(dataSource);
+        scClassName = "ResultSet";
     }
 
     public ResultSet(JavaScriptObject jsObj){
         super(jsObj);
         JSOHelper.setObjectAttribute(jsObj, SC.REF, this);
+        scClassName = "ResultSet";
         onBind();
     }
 
@@ -1352,58 +1355,6 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
             selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
         });
     }-*/;
-
-    // override getProperty / setProperty logic for ResultSet class only
-
-    //getters
-    public String getAttributeAsString(String property) {
-        return JSOHelper.getAttribute(jsObj, property);
-    }
-
-    public Date getAttributeAsDate(String property) {
-        return JSOHelper.getAttributeAsDate(jsObj, property);
-    }
-
-    public Integer getAttributeAsInt(String property) {
-        return JSOHelper.getAttributeAsInt(jsObj, property);
-    }
-
-    public Double getAttributeAsDouble(String property) {
-        return JSOHelper.getAttributeAsDouble(jsObj, property);
-    }
-
-    public Element getAttributeAsElement(String property) {
-        return JSOHelper.getAttributeAsElement(jsObj, property);
-    }
-
-    public JavaScriptObject getAttributeAsJavaScriptObject(String property) {
-        return JSOHelper.getAttributeAsJavaScriptObject(jsObj, property);
-    }
-
-    public Float getAttributeAsFloat(String property) {
-        return JSOHelper.getAttributeAsFloat(jsObj, property);
-    }
-
-    public Boolean getAttributeAsBoolean(String property) {
-        return JSOHelper.getAttributeAsBoolean(jsObj, property);
-    }
-
-    //setters
-    public void setProperty(String property, String value){
-        JSOHelper.setAttribute(jsObj, property, value);
-    }
-
-    public void setProperty(String property, boolean value) {
-        JSOHelper.setAttribute(jsObj, property, value);
-    }
-
-    public void setProperty(String property, double value){
-        JSOHelper.setAttribute(jsObj, property, value);
-    }
-
-    public void setProperty(String property, JavaScriptObject value) {
-        JSOHelper.setAttribute(jsObj, property, value);
-    }
 
     // ********************* Static Methods ***********************
 
