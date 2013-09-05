@@ -134,13 +134,15 @@ public abstract class BaseClass {
         }
     }-*/;
 
+    protected JavaScriptObject createJsObj() {
+        if (id == null) internalSetID(SC.generateID(getClass().getName()), true);
+        JSOHelper.setObjectAttribute(config, SC.REF, this);
+        return create();
+    }
+
     public JavaScriptObject getOrCreateJsObj() {
         if (!isCreated()) {
-            if (id == null) {
-                internalSetID(SC.generateID(getClass().getName()), true);
-            }
-            JSOHelper.setObjectAttribute(config, SC.REF, this);
-            JavaScriptObject jsObj = create();
+            JavaScriptObject jsObj = createJsObj();
             doInit();
             return jsObj;
         } else {
