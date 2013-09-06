@@ -403,7 +403,6 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
                 internalSetID(SC.generateID(getClass().getName()), true);
             }
             JSOHelper.setObjectAttribute(config, SC.REF, this);
-            GWT.log("getOrCreateJsObj() - scClassName " + scClassName);
             JavaScriptObject jsObj = create();
             JSOHelper.setAttribute(jsObj, SC.MODULE, BeanFactory.getSGWTModule());
             return jsObj;
