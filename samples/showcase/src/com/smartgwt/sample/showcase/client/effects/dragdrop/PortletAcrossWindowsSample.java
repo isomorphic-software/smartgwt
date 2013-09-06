@@ -119,4 +119,8 @@ public class PortletAcrossWindowsSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
+
+    protected boolean isTopIntro() {
+        return true;
+    }
 }

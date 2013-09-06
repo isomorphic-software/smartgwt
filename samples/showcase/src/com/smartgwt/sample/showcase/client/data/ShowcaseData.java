@@ -754,6 +754,10 @@ public class ShowcaseData {
                     //new ExplorerTreeNode("Drag Pan", "effects-dd-pan", "effects-dd-category", null, new DragPanSample.Factory(), true, idSuffix),
                     //new ExplorerTreeNode("Snap-to-Grid Dragging", "effects-dd-snap-to-grid", "effects-dd-category", null, null, false, idSuffix),
 
+                    new ExplorerTreeNode("Cross-Window Drag", "effects-cross-window-dd-category", "effects-dd-category", null, null, true, idSuffix),
+                    new ExplorerTreeNode("Records across Windows", "effects-dd-records-across-windows", "effects-cross-window-dd-category", null, new RecordsAcrossWindowsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Portlet across Windows", "effects-dd-portlet-across-windows", "effects-cross-window-dd-category", null, new PortletAcrossWindowsSample.Factory(), true, idSuffix),
+
                     new ExplorerTreeNode("Basics", "basics-category", "root", "silk/overlays.png", null, true, idSuffix),
                     new ExplorerTreeNode("Components", "basics-components-category", "basics-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Create", "basics-components-create", "basics-components-category", null, new CreateSample.Factory(), true, idSuffix),
@@ -833,9 +837,6 @@ public class ShowcaseData {
             }));
 
             if (ShowcaseConfiguration.getSingleton().isOpenForTesting()) {
-                data.add(new ExplorerTreeNode("Cross-Window Drag", "effects-cross-window-dd-category", "effects-dd-category", null, null, true, idSuffix));
-                data.add(new ExplorerTreeNode("Records across Windows", "effects-dd-records-across-windows", "effects-cross-window-dd-category", null, new RecordsAcrossWindowsSample.Factory(), true, idSuffix));
-                data.add(new ExplorerTreeNode("Portlet across Windows", "effects-dd-portlet-across-windows", "effects-cross-window-dd-category", null, new PortletAcrossWindowsSample.Factory(), true, idSuffix));
             }
         }
         return data.toArray(new ExplorerTreeNode[data.size()]);
