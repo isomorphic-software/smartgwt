@@ -38,19 +38,21 @@ public class GridDisableFilterSample extends ShowcasePanel {
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(500);
         countryGrid.setHeight(300);
+        countryGrid.setCellHeight(30);
         countryGrid.setDataSource(WorldXmlDS.getInstance());
 
         ListGridField countryCodeField = new ListGridField("countryCode", "Flag", 50);
         countryCodeField.setAlign(Alignment.CENTER);
         countryCodeField.setType(ListGridFieldType.IMAGE);
-        countryCodeField.setImageURLPrefix("flags/16/");
+        countryCodeField.setImageSize(24);
+        countryCodeField.setImageURLPrefix("flags/24/");
         countryCodeField.setImageURLSuffix(".png");
         countryCodeField.setCanFilter(false);
-        
+
         ListGridField nameField = new ListGridField("countryName", "Country");
         ListGridField capitalField = new ListGridField("capital", "Capital");
         capitalField.setCanFilter(false);
-        
+
         ListGridField continentField = new ListGridField("continent", "Continent");
 
         countryGrid.setFields(countryCodeField, nameField, capitalField, continentField);
