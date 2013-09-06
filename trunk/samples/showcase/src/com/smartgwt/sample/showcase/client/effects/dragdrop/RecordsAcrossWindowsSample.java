@@ -91,4 +91,8 @@ public class RecordsAcrossWindowsSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
+
+    protected boolean isTopIntro() {
+        return true;
+    }
 }
