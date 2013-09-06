@@ -975,7 +975,16 @@ public abstract class BeanFactory<BeanClass> {
         } else {
             // The type-cast should be safe, because we only get here once we've
             // picked the correct factory for the bean
-            property.setProperty((BeanClass) bean, value);
+            try {
+                property.setProperty((BeanClass) bean, value);
+            }
+            catch (BeanProperty.NoSetterException e) {
+                // There are some properties which have no setter on the SmartGWT
+                // side (because they aren't meant to be set from user code), but
+                // which do need to be set from framework code. So, if we have no
+                // setter, we fall back on setting the property via Javascript.
+                setJavascriptProperty((BeanClass) bean, propertyName, value);
+            }
         }
     }
 
