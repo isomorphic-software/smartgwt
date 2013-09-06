@@ -599,7 +599,7 @@ public abstract class BeanValueType<ValueType> {
     // Convenience function for conversion exceptions
     protected IllegalArgumentException conversionException (Object value) {
         return new IllegalArgumentException(
-            "Could not convert from " + value.getClass().getName() + 
+            "Could not convert from " + (value == null ? "null" : value.getClass().getName()) + 
             " to " + getValueType().getName()
         );
     }

@@ -64,7 +64,7 @@ public abstract class BeanProperty<BeanClass> {
         if (setter == null) {
             throw new IllegalArgumentException(
                 "No setter for " + getNameWithBean(bean) + 
-                " given value of type " + value.getClass().getName()
+                " given value of type " + (value == null ? "null" : value.getClass().getName())
             );
         }
         
@@ -73,7 +73,7 @@ public abstract class BeanProperty<BeanClass> {
         }
         catch (IllegalArgumentException ex) {
             final String message = "Could not set property " + getNameWithBean(bean) + 
-                                   " given value of type " + value.getClass().getName();
+                                   " given value of type " + (value == null ? "null" : value.getClass().getName());
             throw new IllegalArgumentException (message, ex);
         }
     }
