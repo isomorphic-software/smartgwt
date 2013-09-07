@@ -92,6 +92,7 @@ import com.smartgwt.sample.showcase.client.effects.dragdrop.DragResizeSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragTilesMoveSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragTrackerSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragTypesSample;
+import com.smartgwt.sample.showcase.client.effects.dragdrop.NativeDragCreateSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.PortletAcrossWindowsSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.RecordsAcrossWindowsSample;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.CornersSample;
@@ -755,6 +756,7 @@ public class ShowcaseData {
                     //new ExplorerTreeNode("Snap-to-Grid Dragging", "effects-dd-snap-to-grid", "effects-dd-category", null, null, false, idSuffix),
 
                     new ExplorerTreeNode("Cross-Window Drag", "effects-cross-window-dd-category", "effects-dd-category", null, null, true, idSuffix),
+                    new ExplorerTreeNode("Native Drag Create", "effects-dd-native-drag-create", "effects-cross-window-dd-category", null, new NativeDragCreateSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Records across Windows", "effects-dd-records-across-windows", "effects-cross-window-dd-category", null, new RecordsAcrossWindowsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Portlet across Windows", "effects-dd-portlet-across-windows", "effects-cross-window-dd-category", null, new PortletAcrossWindowsSample.Factory(), true, idSuffix),
 
