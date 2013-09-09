@@ -6,6 +6,8 @@ import java.util.List;
 
 import com.smartgwt.sample.showcase.client.DebugConsoleCommand;
 import com.smartgwt.sample.showcase.client.ShowcaseConfiguration;
+import com.smartgwt.sample.showcase.client.autotest.effects.dragdrop.TestableRecordsAcrossWindowsSample;
+import com.smartgwt.sample.showcase.client.autotest.effects.dragdrop.TestablePortletAcrossWindowsSample;
 import com.smartgwt.sample.showcase.client.basics.components.CreateSample;
 import com.smartgwt.sample.showcase.client.basics.components.LayerSample;
 import com.smartgwt.sample.showcase.client.basics.components.LayoutSample;
@@ -248,7 +250,6 @@ import com.smartgwt.sample.showcase.client.other.DialogsSample;
 import com.smartgwt.sample.showcase.client.other.ProgressBarSample;
 import com.smartgwt.sample.showcase.client.other.SliderSample;
 import com.smartgwt.sample.showcase.client.other.TypeReuseSample;
-import com.smartgwt.sample.showcase.client.portal.SimplePortalSample;
 import com.smartgwt.sample.showcase.client.portal.SimplePortalManualSample;
 import com.smartgwt.sample.showcase.client.printing.PrintingSample;
 import com.smartgwt.sample.showcase.client.sections.ExpandCollapseSample;
@@ -839,6 +840,8 @@ public class ShowcaseData {
             }));
 
             if (ShowcaseConfiguration.getSingleton().isOpenForTesting()) {
+                data.add(new ExplorerTreeNode("Testable Records across Windows", "testable-effects-dd-records-across-windows", "effects-cross-window-dd-category", null, new TestableRecordsAcrossWindowsSample.Factory(), true, idSuffix));
+                data.add(new ExplorerTreeNode("Testable Portlet across Windows", "testable-effects-dd-portlet-across-windows", "effects-cross-window-dd-category", null, new TestablePortletAcrossWindowsSample.Factory(), true, idSuffix));
             }
         }
         return data.toArray(new ExplorerTreeNode[data.size()]);
