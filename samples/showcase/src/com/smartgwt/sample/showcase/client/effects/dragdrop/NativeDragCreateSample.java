@@ -60,7 +60,7 @@ public class NativeDragCreateSample extends ShowcasePanel {
         DRAG_TRACKER_IMAGE_URLS.put("g", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEU0lEQVRo3tWawW4bNxCGv1kzie2cWhhI02N7LNB3q9vHaJI3zCloHMBIT3ZkR+Lfw1Ly7ooczio9tAQEaXdJLmf4z/zDGcH/vNnRnXcYqjzbX6n8Xn4zec7k2XIONZ7VVjSfa7y6no+cL/ItA2LAOAOG8om3mlCqqKklfK3P2HL57IDMNflYgDcMQALOgZflO60Swhaa62k2NjYDW4wN4g7YYGz3QozD/sSK1i+BK+A14gq4LPetoZljbfcWFdP4/lqIHcY94hb4CNyW6x1/oDR5wVnR/GvgF+An4HvE8yMBVMF1a1HL33IE0dG1gEfEZ+B9EeoL4qHAiXSYTgwFNlfAz8CvwA/AC4zhyDitIgwNwaxyTyHjzsADxg3CMD4h/iqwNpjvgAEJ4xLxHcYrxI8YF6gIYGVKz2BrLTswwbWNDGzIgPEB8RJ4NrXLtNDDgEjAc8Q5cIG4OAxovVAND9OClQJGPRf9BeJZgblNx6fqJHaA1HCyO2UFH7R8/3g9XYMt+6WqBrLjzxX0JnLuyzHsKVR7a6gKoIqx1RYlZwdywy7kuE0cwZz3pi6Depi2DlwiBq4gQTbeM8y0rMUW54oXmfZf3s8NbebK2NbiVVGCGu+vGnFuaF4d16cKfCLExsq+VQj1MNnaxh4UFIRaBC7Ws4GeFtXBsTX6TsnPHC/X4oncdK+OG127xVEjVYcE185X9UKnbGnLW3kkFiG2wNjU3LpeXINj6C3+sM5u50CfLhOvDZVP9SZrwhBHqWlVEOaFFQq8NArTiMDyvFBNy14oUQsdFAgxrOH11GH1pgC2wiv0YqOIVuVGoe3gDy+Y8yDSihaj3EDgOFlzDA4sU8gw1SCzHDzbRhmbhnLUPgydRmQRz+JxQiQkCaZekhu3WEeQXrjtzdNLDFjMO6buAaSXPSNorL1g0Ts/dCHU8yLq0L6Cu7OWyALQHFytLn97h4uagXPi4uU4klw70OhEaPSwriDLRx1EmAe8THIkVlk6gmgEuhI+HCWsvG9VItHswGu55S1Y5gAkHWilbkirgOeIJnS/hXMac6Tw+dUCyS1946Fn7cGoagO54UaXyV0aY6a7mANaXr5PDU5wYyGt37owfE456yo+v09kHkN63iOaNrF2tiHaUiPNIVQKayLPtrcVo3tpFTVg4oXTTwCbfuQdKVUWvAUegQ3wZZLi/lfSIKFagmYCbIAH4CtjWUktIxawBe6Bv0s5x1iWmHrpFTqxUcQ4n65zWfwN8BnjDvEVI++NPx20b0XasRr4vkzxgbFaY930u6fVFgRrkJrfE8YjHIp8t4hNgbWWENph3AEfyySfGMuu8zJrhPK1gh/8sWOZFe4xbhE3wB2w2/d7WtjvpdCtUug2zku9bOimUCIEuOYwNIflaJfGpix+A2x5My1079v1oRZ1dqhNeX8ZiDQ55+b4/flfDd7W/mqwb7/NqrqntWjovK7f2PPdWqb4j7d/AFA10363l8saAAAAAElFTkSuQmCC");
     }
 
-    public static class DragPiece extends Img {
+    private static final class DragPiece extends Img {
         public DragPiece(String src, String dragType) {
             setWidth(48);
             setHeight(48);
@@ -96,7 +96,7 @@ public class NativeDragCreateSample extends ShowcasePanel {
         }
     }
 
-    public static class DroppedPiece extends Img {
+    private static final class DroppedPiece extends Img {
         public DroppedPiece(String src, int left, int top) {
             setWidth(24);
             setHeight(24);
@@ -116,7 +116,7 @@ public class NativeDragCreateSample extends ShowcasePanel {
         }
     }
 
-    public static class PieceBin extends Canvas {
+    private static final class PieceBin extends Canvas {
         public PieceBin(String edgeImage, String... dropTypes) {
             setWidth(100);
             setHeight(100);
