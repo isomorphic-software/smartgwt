@@ -27,7 +27,7 @@ and manually add the script includes in your host html file.
   	<super-source path='deprecated'/>
   	<source path='logicalstructure'/>
 
-    <set-configuration-property name="document.compatMode" value="BackCompat"/>
+	<set-configuration-property name="document.compatMode.severity" value="IGNORE" />
 
 	<generate-with class="com.smartgwt.rebind.MetaBeanFactoryGenerator">
         <when-type-assignable class="com.smartgwt.client.bean.BeanFactory.MetaFactory" />
