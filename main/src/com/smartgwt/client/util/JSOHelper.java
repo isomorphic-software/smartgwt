@@ -218,7 +218,7 @@ public class JSOHelper {
             setAttribute(elem, attr, ((ValueEnum)value).getValue());
         } else if (value.getClass().isArray()) {
             if (value instanceof Object[]) {
-            	// The Object[] passed in may contain unconvertible elements (POJOs)
+            	// The Object[] passed in may contain unconvertable elements (POJOs)
             	// In this case we'll end up with a JavaScript array which contains some
             	// unconverted sub objects
             	// We used to pass the extra "strict" parameter in to avoid this and
@@ -246,7 +246,7 @@ public class JSOHelper {
                 setObjectAttribute(elem, attr, value);
             }
 
-        // As with Object[]s, Java collections may contain unconvertible elements (POJOs)
+        // As with Object[]s, Java collections may contain unconvertable elements (POJOs)
     	// In this case we'll end up with a JavaScript array which contains some
     	// unconverted sub objects
     	} else if (value instanceof List) {
@@ -912,9 +912,9 @@ public class JSOHelper {
                 assert val != null;
                 assert !(val instanceof JavaScriptObject);
                 if (strict) {
-                	throwUnconvertibleObjectException(val, 
-                			"Object is a member of an Array being converted to JavaScript. " + 
-                			"Please see the SmartClient documentation of " +
+                    throw new UnsupportedOperationException("Can not convert element " + i +
+                    		" of the array to a JavaScriptObject.  Instances of class `" + (val.getClass().getName()) +
+                    		"' can not automatically be converted.  Please see the SmartClient documentation of " +
                     		"RPCRequest.data for a table of Java types that can be converted automatically.");
                 } else {
                     setArrayValue(jsArray, i, val);
@@ -922,20 +922,6 @@ public class JSOHelper {
             }
         }
         return jsArray;
-    }
-    
-    // Helper to throw an exception if we want to convert a method to JS but it's not a convertible type
-    // This is also called from JSNI when attempting to serialize a Java object as part of an RPC request
-    // within the SmartClient JS code. See isc.SmartGWT.throwUnconvertibleObjectException() defined in
-    // SmartGwtEntryPoint
-    public static void throwUnconvertibleObjectException(Object object, String messageDetail) {
-    	
-    	String message;
-    	if (object == null) message = "Null!!!";
-    	else if (object.getClass() == null) message = "NO Class??!!";
-    	else message = "Attempt to convert instance of class " + (object.getClass().getName()) + " to a JavaScript object failed.";
-    	if (messageDetail != null) message += " " + messageDetail;
-    	throw new UnsupportedOperationException(message);
     }
 
 
@@ -1242,10 +1228,7 @@ public class JSOHelper {
             } else {
                 assert value != null;
                 if (strict) {
-                	throwUnconvertibleObjectException(value, 
-                			"Object is stored as attribute " + key + " of a Map being converted to JavaScript. " +
-                			"Please see the SmartClient documentation of " +
-                    		"RPCRequest.data for a table of Java types that can be converted automatically.");
+                    throw new UnsupportedOperationException("Unsupported type for attribute " + key + " : " + value + ".  Instances of class `" + (value.getClass().getName()) + "' can not automatically be converted.  Please see the SmartClient documentation of RPCRequest.data for a table of Java types that can be converted automatically.");
                 } else {
                     setObjectAttribute(valueJS, key, value);
                 }
@@ -1276,30 +1259,7 @@ public class JSOHelper {
      * @param destination the destination object
      * @param propertiesObject the propertiesObject
      */
-    public static native void addProperties(JavaScriptObject destination,
-                                            JavaScriptObject propertiesObject)
-    /*-{
+    public static native void addProperties(JavaScriptObject destination, JavaScriptObject propertiesObject) /*-{
         $wnd.isc.addProperties(destination, propertiesObject);
     }-*/;
-
-    /**
-     * Removes non-transferable properties from the supplied object
-     * (e.g. widget ID), performing a copy first if requested.
-     *
-     * @param properties the supplied object to clean
-     * @param copyProperties whether to copy the object first
-     * @return the cleaned properties object
-     */
-    public static native JavaScriptObject cleanProperties(JavaScriptObject properties,
-                                                          boolean copyProperties)
-    /*-{
-        if (properties != null) {
-            if (copyProperties) properties = $wnd.isc.addProperties({}, properties);
-            delete properties.ID;
-            delete properties.__ref;
-            delete properties._autoAssignedID;
-        }
-        return properties;
-    }-*/;
-
 }

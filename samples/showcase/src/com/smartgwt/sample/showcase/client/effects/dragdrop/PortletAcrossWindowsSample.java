@@ -65,28 +65,6 @@ public class PortletAcrossWindowsSample extends ShowcasePanel {
         }
     }
 
-    private static final class CustomPortalLayout extends PortalLayout {
-        public CustomPortalLayout() {
-            setWidth100();
-            setHeight100();
-            setNumColumns(3);
-            final Canvas columnProperties = new Canvas();
-            columnProperties.setDropTypes("partPortlet");
-            setAutoChildProperties("column", columnProperties);
-        }
-
-        @Override
-        public Canvas getDropPortlet(Canvas dragTarget, Integer colNum, Integer rowNum, Integer dropPosition) {
-            if (dragTarget instanceof Portlet) return dragTarget;
-
-            final String portletName = (String)EventHandler.getNativeDragData();
-            if (portletName != null) {
-                return createPortlet(portletName);
-            }
-            return null;
-        }
-    }
-
     private static Portlet createPortlet(final String portletName) {
         final String src = SRC_MAP.get(portletName);
         if (src == null) return null;
@@ -108,8 +86,28 @@ public class PortletAcrossWindowsSample extends ShowcasePanel {
 
     @Override
     public Canvas getViewPanel() {
-        final PortalLayout portalLayout = new CustomPortalLayout();
-        portalLayout.setID("portalLayout");
+        final PortalLayout portalLayout = new PortalLayout() {
+            {
+                setID("portalLayout");
+                setWidth100();
+                setHeight100();
+                setNumColumns(3);
+                final Canvas columnProperties = new Canvas();
+                columnProperties.setDropTypes("partPortlet");
+                setAutoChildProperties("column", columnProperties);
+            }
+
+            @Override
+            public Canvas getDropPortlet(Canvas dragTarget, Integer colNum, Integer rowNum, Integer dropPosition) {
+                if (dragTarget instanceof Portlet) return dragTarget;
+
+                final String portletName = (String)EventHandler.getNativeDragData();
+                if (portletName != null) {
+                    return createPortlet(portletName);
+                }
+                return null;
+            }
+        };
 
         portalLayout.addPortlet(createPortlet("Blue"), 0, 0);
         portalLayout.addPortlet(createPortlet("Green"), 1, 0);
@@ -120,9 +118,5 @@ public class PortletAcrossWindowsSample extends ShowcasePanel {
 
     public String getIntro() {
         return DESCRIPTION;
-    }
-
-    protected boolean isTopIntro() {
-        return true;
     }
 }

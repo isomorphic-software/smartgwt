@@ -1,6 +1,5 @@
 package com.smartgwt.sample.showcase.client.drawing;
 
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.drawing.Gauge;
 import com.smartgwt.client.widgets.drawing.GaugeSector;
@@ -78,7 +77,7 @@ public class GaugeSample extends ShowcasePanel {
         gauge.setHeight(400);
         gauge.setNumMajorTicks(11);
         gauge.setNumMinorTicks(101);
-        gauge.setValue(45.0);
+        gauge.setValue(45);
 
         gauge.setSectors(new GaugeSector[]{
             new GaugeSector(10, "#FF0000"),
@@ -112,11 +111,11 @@ public class GaugeSample extends ShowcasePanel {
 
         minValueConfigItem = new TextItem("text_minValue", "Min. Value");
         minValueConfigItem.setEndRow(true);
-        minValueConfigItem.setValue(String.valueOf(gauge.getMinValueAsDouble()));
+        minValueConfigItem.setValue(String.valueOf(gauge.getMinValue()));
         minValueConfigItem.addBlurHandler(new BlurHandler() {
             @Override
             public void onBlur(BlurEvent event) {
-                double minValue = Double.parseDouble(minValueConfigItem.getValueAsString());
+                float minValue = Float.parseFloat(minValueConfigItem.getValueAsString());
                 gauge.setMinValue(minValue);
                 updateGaugeValueConfigItem();
                 makeSectorsForm();
@@ -125,11 +124,11 @@ public class GaugeSample extends ShowcasePanel {
 
         maxValueConfigItem = new TextItem("text_maxValue", "Max. Value");
         maxValueConfigItem.setEndRow(true);
-        maxValueConfigItem.setValue(String.valueOf(gauge.getMaxValueAsDouble()));
+        maxValueConfigItem.setValue(String.valueOf(gauge.getMaxValue()));
         maxValueConfigItem.addBlurHandler(new BlurHandler() {
             @Override
             public void onBlur(BlurEvent event) {
-                double maxValue = Double.parseDouble(maxValueConfigItem.getValueAsString());
+                float maxValue = Float.parseFloat(maxValueConfigItem.getValueAsString());
                 gauge.setMaxValue(maxValue);
                 updateGaugeValueConfigItem();
                 makeSectorsForm();
@@ -186,21 +185,9 @@ public class GaugeSample extends ShowcasePanel {
         addSectorButtonItem.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                String valueStr = newSectorValueTextItem.getValueAsString();
-                Double value = null;
-                if (valueStr != null && !valueStr.isEmpty()) {
-                    try {
-                        value = Double.valueOf(valueStr);
-                    } catch (NumberFormatException ex) {
-                        // ignore a parse error
-                    }
-                }
-                if (value == null) {
-                    SC.say("Please type a number into the 'New Sector - Value' text box.");
-                } else {
-                    gauge.addSector(value);
-                    makeSectorsForm();
-                }
+                float value = Float.parseFloat(newSectorValueTextItem.getValueAsString());
+                gauge.addSector(value);
+                makeSectorsForm();
             }
         });
 
@@ -211,8 +198,8 @@ public class GaugeSample extends ShowcasePanel {
         gaugeValueConfigItem.addChangedHandler(new ChangedHandler() {
             @Override
             public void onChanged(ChangedEvent event) {
-                double value = Double.parseDouble(event.getValue().toString());
-                gauge.setValue(value);
+                int pos = Integer.parseInt(event.getValue().toString());
+                gauge.setValue(pos);
             }
         });
 
@@ -280,9 +267,9 @@ public class GaugeSample extends ShowcasePanel {
     }
 
     private void updateGaugeValueConfigItem() {
-        gaugeValueConfigItem.setMinValue(gauge.getMinValueAsDouble());
-        gaugeValueConfigItem.setMaxValue(gauge.getMaxValueAsDouble());
-        double value = gauge.getValueAsDouble();
+        gaugeValueConfigItem.setMinValue(gauge.getMinValue());
+        gaugeValueConfigItem.setMaxValue(gauge.getMaxValue());
+        float value = gauge.getValue();
         gaugeValueConfigItem.setDefaultValue(value);
         gaugeValueConfigItem.setValue(value);
     }

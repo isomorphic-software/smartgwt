@@ -92,14 +92,6 @@ public class SmartGwtEntryPoint implements EntryPoint {
             return true;
         };
 
-        // Helper JSNI method to throw an exception if attempting to convert an unconvertible native Java object to JavaScript
-        // This may be called from SmartClient framework code. Useful for the case where a developer has applied a native Java
-        // object to a DS transaction's data via 'setAttribute' or similar, and we want to throw a clear exception when
-        // attempting to serialize this data and send to the server.
-        $wnd.SmartGWT.throwUnconvertibleObjectException = function (object, message) {
-        	@com.smartgwt.client.util.JSOHelper::throwUnconvertibleObjectException(Ljava/lang/Object;Ljava/lang/String;)(object,message);
-        }
-
         if(!@com.google.gwt.core.client.GWT::isScript()()){
             $wnd.isc.Log.addClassMethods({
               warningLogged : function (message) {

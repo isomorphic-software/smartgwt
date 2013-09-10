@@ -113,12 +113,8 @@ public class IDManager {
     }-*/;
     
    public static void registerID(Object object, String id, 
-                                 boolean skipUniqueJSIdentifierCheck) 
+                                  boolean skipUniqueJSIdentifierCheck) 
     {
-        if (id == null) {
-            SC.logWarn("Object " + object + " cannot be registered with a null ID");
-            return;
-        }
         validateID(id, skipUniqueJSIdentifierCheck); 
         assignedIDs.put(id, object);
     }

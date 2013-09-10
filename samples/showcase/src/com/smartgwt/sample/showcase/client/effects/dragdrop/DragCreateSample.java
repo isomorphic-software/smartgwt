@@ -37,6 +37,7 @@ public class DragCreateSample extends ShowcasePanel {
     }
 
     public Canvas getViewPanel() {
+        
         HStack cubes = new HStack();
         cubes.setLayoutMargin(20);
         cubes.setMembersMargin(40);
@@ -44,17 +45,17 @@ public class DragCreateSample extends ShowcasePanel {
         cubes.addMember(new DragPiece("cube_blue.png", "b"));
         cubes.addMember(new DragPiece("cube_yellow.png", "y"));
         cubes.addMember(new DragPiece("cube_green.png", "g"));
-
+        
         HStack edges = new HStack();
         edges.setMembersMargin(20);
         edges.addMember(new PieceBin("edges/blue/6.png", "b"));
         edges.addMember(new PieceBin("edges/yellow/6.png", "y"));
         edges.addMember(new PieceBin("edges/green/6.png", "g"));
         edges.addMember(new PieceBin("edges/gray/6.png", "b", "y", "g"));
-
+        
         VStack main = new VStack();
         main.addMember(cubes);
-        main.addMember(edges);
+        main.addMember(edges);      
         return main;
     }
 
@@ -70,7 +71,6 @@ public class DragCreateSample extends ShowcasePanel {
             setDragType(dragType);
             setDragAppearance(DragAppearance.TRACKER);
         }
-
         @Override
         protected boolean setDragTracker() {
             EventHandler.setDragTracker(Canvas.imgHTML("pieces/24/" + getSrc(), 24, 24), 24, 24, 15, 15);
@@ -115,9 +115,8 @@ public class DragCreateSample extends ShowcasePanel {
             });
             addDropOverHandler(new DropOverHandler() {
                 public void onDropOver(DropOverEvent event) {
-                    if (willAcceptDrop()) {
+                    //if (willAcceptDrop())
                         setBackgroundColor("#ffff80");
-                    }
                 }
             });
             addDropOutHandler(new DropOutHandler() {

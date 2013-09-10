@@ -130,18 +130,15 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
     }
 
     public ResultSet(){
-        scClassName = "ResultSet";
     }
 
     public ResultSet(DataSource dataSource) {
         setDataSource(dataSource);
-        scClassName = "ResultSet";
     }
 
     public ResultSet(JavaScriptObject jsObj){
         super(jsObj);
         JSOHelper.setObjectAttribute(jsObj, SC.REF, this);
-        scClassName = "ResultSet";
         onBind();
     }
 
@@ -162,26 +159,6 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
         }
         this.@com.smartgwt.client.data.RecordList::jsObj = rs;
         return rs;
-    }-*/;
-
-    /**
-     * Returns the existing SGWT ResultSet, or creates and returns one if none exist,
-     * associated with the supplied {@link com.google.gwt.core.client.JavaScriptObject}.  If
-     * the supplied object is not a SmartClient ResultSet, a warning will be logged and null
-     * returned; otherwise the SGWT ResultSet will be returned.
-     *
-     * @param jsObj SmartClient ResultSet whose wrapper is wanted
-     *
-     * @return wrapping SGWT ResultSet or null
-     */
-    public static native ResultSet asSGWTComponent(JavaScriptObject jsObj) /*-{
-       if ($wnd.isc.isA.ResultSet(jsObj)) {
-           return @com.smartgwt.client.data.ResultSet::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
-       } 
-       var className = $wnd.isc.isAn.Instance(jsObj) ? jsObj.getScClassName() : "none";
-       @com.smartgwt.client.util.SC::logWarn(Ljava/lang/String;)("ResultSet.asSGWTComponent(): " +
-           "The supplied JS object must be a ResultSet - actual class is " + className + ".");
-       return null;
     }-*/;
 
     /**
@@ -1355,6 +1332,58 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
             selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
         });
     }-*/;
+
+    // override getProperty / setProperty logic for ResultSet class only
+
+    //getters
+    public String getAttributeAsString(String property) {
+        return JSOHelper.getAttribute(jsObj, property);
+    }
+
+    public Date getAttributeAsDate(String property) {
+        return JSOHelper.getAttributeAsDate(jsObj, property);
+    }
+
+    public Integer getAttributeAsInt(String property) {
+        return JSOHelper.getAttributeAsInt(jsObj, property);
+    }
+
+    public Double getAttributeAsDouble(String property) {
+        return JSOHelper.getAttributeAsDouble(jsObj, property);
+    }
+
+    public Element getAttributeAsElement(String property) {
+        return JSOHelper.getAttributeAsElement(jsObj, property);
+    }
+
+    public JavaScriptObject getAttributeAsJavaScriptObject(String property) {
+        return JSOHelper.getAttributeAsJavaScriptObject(jsObj, property);
+    }
+
+    public Float getAttributeAsFloat(String property) {
+        return JSOHelper.getAttributeAsFloat(jsObj, property);
+    }
+
+    public Boolean getAttributeAsBoolean(String property) {
+        return JSOHelper.getAttributeAsBoolean(jsObj, property);
+    }
+
+    //setters
+    public void setProperty(String property, String value){
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
+
+    public void setProperty(String property, boolean value) {
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
+
+    public void setProperty(String property, double value){
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
+
+    public void setProperty(String property, JavaScriptObject value) {
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
 
     // ********************* Static Methods ***********************
 

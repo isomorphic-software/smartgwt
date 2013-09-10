@@ -31,7 +31,7 @@ include them yourself in your host html file as follows :
 
   	<add-linker name="smartgwt" />
 
-	<set-configuration-property name="document.compatMode.severity" value="IGNORE" />
+  	<set-configuration-property name="document.compatMode" value="BackCompat"/>
 
   	<source path='client'/>
   	<super-source path='deprecated'/>

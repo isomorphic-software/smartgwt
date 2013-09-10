@@ -6,8 +6,6 @@ import java.util.List;
 
 import com.smartgwt.sample.showcase.client.DebugConsoleCommand;
 import com.smartgwt.sample.showcase.client.ShowcaseConfiguration;
-import com.smartgwt.sample.showcase.client.autotest.effects.dragdrop.TestableRecordsAcrossWindowsSample;
-import com.smartgwt.sample.showcase.client.autotest.effects.dragdrop.TestablePortletAcrossWindowsSample;
 import com.smartgwt.sample.showcase.client.basics.components.CreateSample;
 import com.smartgwt.sample.showcase.client.basics.components.LayerSample;
 import com.smartgwt.sample.showcase.client.basics.components.LayoutSample;
@@ -94,7 +92,6 @@ import com.smartgwt.sample.showcase.client.effects.dragdrop.DragResizeSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragTilesMoveSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragTrackerSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragTypesSample;
-import com.smartgwt.sample.showcase.client.effects.dragdrop.NativeDragCreateSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.PortletAcrossWindowsSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.RecordsAcrossWindowsSample;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.CornersSample;
@@ -250,6 +247,7 @@ import com.smartgwt.sample.showcase.client.other.DialogsSample;
 import com.smartgwt.sample.showcase.client.other.ProgressBarSample;
 import com.smartgwt.sample.showcase.client.other.SliderSample;
 import com.smartgwt.sample.showcase.client.other.TypeReuseSample;
+import com.smartgwt.sample.showcase.client.portal.SimplePortalSample;
 import com.smartgwt.sample.showcase.client.portal.SimplePortalManualSample;
 import com.smartgwt.sample.showcase.client.printing.PrintingSample;
 import com.smartgwt.sample.showcase.client.sections.ExpandCollapseSample;
@@ -756,11 +754,6 @@ public class ShowcaseData {
                     //new ExplorerTreeNode("Drag Pan", "effects-dd-pan", "effects-dd-category", null, new DragPanSample.Factory(), true, idSuffix),
                     //new ExplorerTreeNode("Snap-to-Grid Dragging", "effects-dd-snap-to-grid", "effects-dd-category", null, null, false, idSuffix),
 
-                    new ExplorerTreeNode("Cross-Window Drag", "effects-cross-window-dd-category", "effects-dd-category", null, null, true, idSuffix),
-                    new ExplorerTreeNode("Native Drag Create", "effects-dd-native-drag-create", "effects-cross-window-dd-category", null, new NativeDragCreateSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Records across Windows", "effects-dd-records-across-windows", "effects-cross-window-dd-category", null, new RecordsAcrossWindowsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portlet across Windows", "effects-dd-portlet-across-windows", "effects-cross-window-dd-category", null, new PortletAcrossWindowsSample.Factory(), true, idSuffix),
-
                     new ExplorerTreeNode("Basics", "basics-category", "root", "silk/overlays.png", null, true, idSuffix),
                     new ExplorerTreeNode("Components", "basics-components-category", "basics-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Create", "basics-components-create", "basics-components-category", null, new CreateSample.Factory(), true, idSuffix),
@@ -840,8 +833,9 @@ public class ShowcaseData {
             }));
 
             if (ShowcaseConfiguration.getSingleton().isOpenForTesting()) {
-                data.add(new ExplorerTreeNode("Testable Records across Windows", "testable-effects-dd-records-across-windows", "effects-cross-window-dd-category", null, new TestableRecordsAcrossWindowsSample.Factory(), true, idSuffix));
-                data.add(new ExplorerTreeNode("Testable Portlet across Windows", "testable-effects-dd-portlet-across-windows", "effects-cross-window-dd-category", null, new TestablePortletAcrossWindowsSample.Factory(), true, idSuffix));
+                data.add(new ExplorerTreeNode("Cross-Window Drag", "effects-cross-window-dd-category", "effects-dd-category", null, null, true, idSuffix));
+                data.add(new ExplorerTreeNode("Records across Windows", "effects-dd-records-across-windows", "effects-cross-window-dd-category", null, new RecordsAcrossWindowsSample.Factory(), true, idSuffix));
+                data.add(new ExplorerTreeNode("Portlet across Windows", "effects-dd-portlet-across-windows", "effects-cross-window-dd-category", null, new PortletAcrossWindowsSample.Factory(), true, idSuffix));
             }
         }
         return data.toArray(new ExplorerTreeNode[data.size()]);

@@ -5,9 +5,9 @@ import com.smartgwt.client.widgets.ImgProperties;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 
-public final class PartsListGrid extends ListGrid {
+public class PartsListGrid extends ListGrid {
 
-    public PartsListGrid() {
+    PartsListGrid() {
         setWidth(150);
         setCellHeight(24);
         setImageSize(16);

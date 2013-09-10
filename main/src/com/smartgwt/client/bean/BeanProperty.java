@@ -18,11 +18,7 @@ package com.smartgwt.client.bean;
 
 // Class that represents a logical property. Each logical property is uniquely
 // a combination of a bean class and a property name. 
-public abstract class BeanProperty<BeanClass> {
-    public static class NoSetterException extends Exception {
-
-    }
-
+public abstract class BeanProperty<BeanClass> {    
     // The name of the property. The generator normalizes the name, so that a
     // getter like getHorizontalPadding would become a property name like
     // "horizontalPadding". However, getHPadding would become "HPadding", and
@@ -63,10 +59,13 @@ public abstract class BeanProperty<BeanClass> {
         return getter.getPropertyAsString(bean);
     }
 
-    public void setProperty (BeanClass bean, Object value) throws NoSetterException {
+    public void setProperty (BeanClass bean, Object value) {
         BeanMethod<BeanClass, ?> setter = setterForValue(value); 
         if (setter == null) {
-            throw new NoSetterException();
+            throw new IllegalArgumentException(
+                "No setter for " + getNameWithBean(bean) + 
+                " given value of type " + value.getClass().getName()
+            );
         }
         
         try {
@@ -74,7 +73,7 @@ public abstract class BeanProperty<BeanClass> {
         }
         catch (IllegalArgumentException ex) {
             final String message = "Could not set property " + getNameWithBean(bean) + 
-                                   " given value of type " + (value == null ? "null" : value.getClass().getName());
+                                   " given value of type " + value.getClass().getName();
             throw new IllegalArgumentException (message, ex);
         }
     }
