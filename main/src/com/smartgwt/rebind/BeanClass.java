@@ -34,6 +34,7 @@ import com.smartgwt.rebind.BeanMethod;
 import com.smartgwt.rebind.BeanValueType;
 import com.smartgwt.client.widgets.BaseWidget;
 import com.smartgwt.client.core.DataClass;
+import com.smartgwt.client.bean.BeanFactory;
 import com.smartgwt.client.bean.BeanFactoryForBaseWidget;
 import com.smartgwt.client.bean.BeanFactoryForDataClass;
 
@@ -280,6 +281,8 @@ public class BeanClass {
             writeNewInstance();
             writeBlankLine();
 
+            writeMetadata();
+
             writeRegisterValueTypes(logger, context);
             writeBlankLine();
 
@@ -357,6 +360,30 @@ public class BeanClass {
         source.println("return " + beanClassName + ".class;");
         source.outdent();
         source.println("}");
+    }
+
+    private void writeMetadata () {
+        if (beanClassType.isAnnotationPresent(BeanFactory.FrameworkClass.class)) {
+            source.println("@Override public boolean isFrameworkClass () {");
+            source.indent();
+            source.println("return true;");
+            source.outdent();
+            source.println("}");
+            writeBlankLine();
+        }
+
+        BeanFactory.ScClassName scClass = beanClassType.getAnnotation(BeanFactory.ScClassName.class);
+        if (scClass != null) {
+            String className = scClass.value();
+            if (className != null && !className.equals("")) {
+                source.println("@Override public String getDefaultScClassName () {");
+                source.indent();
+                source.println("return \"" + className + "\";");
+                source.outdent();
+                source.println("}");
+                writeBlankLine();
+            }
+        }
     }
 
     private void writeGetPropertiesAndGetMethods () {
