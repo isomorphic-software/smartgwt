@@ -30,6 +30,13 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Annotation;
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 // ==================
 // Technical Overview
 // ==================
@@ -330,6 +337,33 @@ public abstract class BeanFactory<BeanClass> {
 
     }
 
+    // -----------
+    // Annotations
+    // -----------
+    
+    // We use annotations to indicate some metadata that the generator needs
+    // when generating a BeanFactory.
+
+    // An annotation used to indicate that a SmartGWT class is part of the
+    // the framework. The generator picks this up when generating the
+    // BeanFactory.
+    @Target(ElementType.TYPE)
+    @Retention(RetentionPolicy.RUNTIME)
+    public static @interface FrameworkClass {}
+
+    // An annotation used to indicate the default scClassName that a class
+    // will use. The generator picks this up when generating the BeanFactory.
+    // Of course, the class will also need to implement getScClassName (if
+    // it has a different scClassName than its superclass). But the generator
+    // can't pick up the results of getScClassName at compile-time. So, we
+    // need to indicate the default in the metadata.
+    @Inherited
+    @Target(ElementType.TYPE)
+    @Retention(RetentionPolicy.RUNTIME)
+    public static @interface ScClassName {
+        String value();
+    }
+
     // ------------------------------------------
     // Static housekeeping properties and methods
     // ------------------------------------------
@@ -391,6 +425,23 @@ public abstract class BeanFactory<BeanClass> {
                     return null;
                 }
             }),
+
+            getSGWTSuperClass : $entry(function (sgwtFactory) {
+                var sc = sgwtFactory.beanFactory.@com.smartgwt.client.bean.BeanFactory::superclassFactory;
+                if (sc) {
+                    return sc.@com.smartgwt.client.bean.BeanFactory::sgwtFactory;
+                } else {
+                    return null;
+                }
+            }),
+
+            getDefaultScClassName : $debox($entry(function (sgwtFactory) {
+                return sgwtFactory.beanFactory.@com.smartgwt.client.bean.BeanFactory::getDefaultScClassName()();
+            })),
+
+            isSGWTFrameworkClass : $debox($entry(function (sgwtFactory) {
+                return sgwtFactory.beanFactory.@com.smartgwt.client.bean.BeanFactory::isFrameworkClass()();
+            })),
 
             // Performs basic conversion from a JavaScript type to an
             // equivalent Java value, without taking into account any
@@ -823,6 +874,36 @@ public abstract class BeanFactory<BeanClass> {
         }
     }
 
+    /**
+     * Indicates whether the class is defined by the SmartGWT framework.
+     *
+     * @param klass The Class object
+     * @throws IllegalStateException If no factory has been generated for the class
+     */
+    public static boolean isFrameworkClass (Class<?> beanClass) {
+        BeanFactory<?> factory = BeanFactory.getFactory(beanClass);
+        if (factory == null) {
+            throw noFactoryException(beanClass);
+        } else {
+            return factory.isFrameworkClass();
+        }
+    }
+
+    /**
+     * Gets the default scClassName for the class.
+     *
+     * @param klass The Class object
+     * @throws IllegalStateException If no factory has been generated for the class
+     */
+    public static String getDefaultScClassName (Class<?> beanClass) {
+        BeanFactory<?> factory = BeanFactory.getFactory(beanClass);
+        if (factory == null) {
+            throw noFactoryException(beanClass);
+        } else {
+            return factory.getDefaultScClassName();
+        }
+    }
+
     // ------------------------------
     // Instance variables and methods
     // ------------------------------
@@ -922,12 +1003,13 @@ public abstract class BeanFactory<BeanClass> {
     // getMethods().
     protected abstract BeanProperty<BeanClass>[] getProperties (JsArray<JavaScriptObject> methods);
 
-    // Creates the SmartClient SGWTFactory. The callback functions are actually the same
-    // for every SGWTFactory, and defined in the SGWTModule, so we just pass the reference
-    // to the module.
+    // Creates the SmartClient SGWTFactory. Most of the callback functions are
+    // actually the same for every SGWTFactory, and defined in the SGWTModule,
+    // so we pass the reference to the module.
     private native JavaScriptObject createSGWTFactory () /*-{
         return $wnd.isc.SGWTFactory.create({
             beanClassName: this.@com.smartgwt.client.bean.BeanFactory::getBeanClassName()(),
+            beanFactory: this,
             sgwtModule: @com.smartgwt.client.bean.BeanFactory::getSGWTModule()()
         });
     }-*/;
@@ -1074,4 +1156,14 @@ public abstract class BeanFactory<BeanClass> {
     
     // Sets the uncerlying JavaScriptObject.
     public abstract void doSetJsObj (Object bean, JavaScriptObject jsObj);
+
+    public boolean isFrameworkClass () {
+        // default to false, so we only need to generate a method when it is true
+        return false;
+    }
+
+    public String getDefaultScClassName () {
+        // default to null
+        return null;
+    }
 }
