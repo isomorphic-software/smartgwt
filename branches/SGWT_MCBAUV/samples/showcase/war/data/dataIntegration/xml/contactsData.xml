@@ -1,0 +1,39 @@
+<contacts>
+    <contact>
+	    <name>Bob Smith</name>
+		<email>bob@bobco.com</email>
+		<organization>Bob Co.</organization>
+		<phone>555-1212</phone>
+	    <address>
+		    <street>55 bob lane</street>
+			<city>New York</city>
+			<state>NY</state>
+			<zip>10021</zip>
+		</address>
+	</contact>
+    <contact>
+	    <name>Emily Smith</name>
+		<email>emily@bobco.com</email>
+		<organization>Bob Co.</organization>
+		<phone>555-1212</phone>
+	    <address>
+		    <street>55 bob lane</street>
+			<city>New York</city>
+			<state>NY</state>
+			<zip>10021</zip>
+		</address>
+	</contact>
+    <contact>
+	    <name>Jim Smith</name>
+		<email>jim@acmerockets.com</email>
+		<organization>Acme rockets</organization>
+		<phone>655-2345</phone>
+	    <address>
+		    <street>66 New Montgomery St.</street>
+			<city>San Francisco</city>
+			<state>CA</state>
+			<zip>94105</zip>
+		</address>
+	</contact>
+</contacts>
+    

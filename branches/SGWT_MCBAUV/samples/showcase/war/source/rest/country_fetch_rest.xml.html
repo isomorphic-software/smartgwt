@@ -1,0 +1,86 @@
+<html>
+<head>
+<link rel="stylesheet" href="../../js/sh/SyntaxHighlighter.css" type="text/css" />
+<script src="../../js/sh/shCore.js"></script>
+<script src="../../js/sh/shBrushXml.js"></script>
+<style>
+
+* {
+font-family:Courier New,monospace;
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  font-size: 11px;
+}
+
+.dp-highlighter {
+  white-space: nowrap;
+  overflow: visible;
+  width: 600px;
+  font-size: 11px;
+  font-family:Courier New,monospace;
+}
+</style>
+
+</head>
+<body>
+<textarea name="code" class="xml:nogutter" rows="15" cols="120">
+<response>
+<status>0</status>
+<startRow>0</startRow>
+<endRow>7</endRow>
+<totalRows>7</totalRows>
+<data>
+<record>
+    <continent>North America</continent>
+    <countryName>United States</countryName>
+    <countryCode>US</countryCode>
+    <area>9631420</area>
+    <population>298444215</population>
+    <gdp>12360000</gdp>
+    <independence>1776-07-04</independence>
+    <government>federal republic</government>
+    <government_desc>2</government_desc>
+    <capital>Washington, DC</capital>
+    <member_g8>true</member_g8>
+    <article>http://en.wikipedia.org/wiki/United_states</article>
+</record>
+<record>
+    <continent>Europe</continent>
+    <countryName>Germany</countryName>
+    <countryCode>GM</countryCode>
+    <area>357021</area>
+    <population>82422299</population>
+    <gdp>2504000</gdp>
+    <independence>1871-01-18</independence>
+    <government>federal republic</government>
+    <government_desc>2</government_desc>
+    <capital>Berlin</capital>
+    <member_g8>true</member_g8>
+    <article>http://en.wikipedia.org/wiki/Germany</article>
+</record>
+<record>
+    <continent>Europe</continent>
+    <countryName>United Kingdom</countryName>
+    <countryCode>UK</countryCode>
+    <area>244820</area>
+    <population>60609153</population>
+    <gdp>1830000</gdp>
+    <independence>1801-01-01</independence>
+    <government>constitutional monarchy</government>
+    <government_desc>1</government_desc>
+    <capital>London</capital>
+    <member_g8>true</member_g8>
+    <article>http://en.wikipedia.org/wiki/United_kingdom</article>
+</record>
+
+<!--some more records. removed for brevity-->
+
+</data>
+</response>
+</textarea>
+<script class="javascript">
+dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+</body>
+</html>
