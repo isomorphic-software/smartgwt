@@ -27,6 +27,7 @@ import com.google.gwt.user.client.Window;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.util.IDManager;
 import com.smartgwt.client.util.JSOHelper;
+import com.smartgwt.client.util.ObjectFactory;
 import com.smartgwt.client.util.SC;
 
 import java.util.Date;
@@ -149,6 +150,45 @@ public abstract class BaseClass {
 
     public static BaseClass getRef(JavaScriptObject jsObj) {
         return jsObj == null ? null : (BaseClass) JSOHelper.getAttributeAsObject(jsObj, SC.REF);
+    }
+
+    /**
+     * Returns the existing SGWT component, or creates and returns one if none exist,
+     * associated with the supplied {@link com.google.gwt.core.client.JavaScriptObject}.  If
+     * the supplied object is not representable as a SGWT component descended from BaseClass,
+     * or if this method is not capable of creating the SGWT wrapper, a warning will be logged
+     * and null returned.  In the latter case, you must call asSGWTComponent on a more specific
+     * class (e.g. {@link com.smartgwt.client.data.ResultSet#asSGWTComponent
+     * ResultSet.asSGWTComponent}), or if no such method exists, simply build the wrapper with
+     * new, supplying the {@link com.google.gwt.core.client.JavaScriptObject}.
+     *
+     * @param jsObj SmartClient component whose wrapper is wanted
+     *
+     * @return wrapping SGWT component (instance of BaseClass-descended class) or null
+     */
+    public static native <T extends BaseClass> T asSGWTComponent(JavaScriptObject jsObj) /*-{
+       if (!$wnd.isc.isAn.Instance(jsObj)) {
+           @com.smartgwt.client.util.SC::logWarn(Ljava/lang/String;)("asSGWTComponent(): " +
+               "The supplied JS object was not an instance of a SmartClient Class");
+           return null;
+       }
+       return @com.smartgwt.client.core.BaseClass::asSGWTComponentHelper(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.getScClassName(),jsObj);
+    }-*/;
+
+    private static BaseClass asSGWTComponentHelper(String scClassName, JavaScriptObject jsObj) {
+        BaseClass baseClass = null;
+        try {
+            if ((baseClass = getRef(jsObj)) == null) {
+                baseClass = ObjectFactory.createBaseClass(scClassName, jsObj, false);
+            }
+            if (baseClass == null) SC.logWarn("BaseClass.asSGWTComponent(): unable to wrap " +
+                "the supplied JS object of class " + scClassName + "; call a more specific " +
+                "version of asSGWTComponent() or, if none exists, call new on the SGWT class.");
+        } catch (ClassCastException e) {
+            SC.logWarn("BaseClass.asSGWTComponent(): the supplied JS object of class " +
+                       scClassName + " cannot be wrapped with a BaseClass-descended class.");
+        }
+        return baseClass;
     }
 
 	/**
