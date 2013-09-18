@@ -346,7 +346,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         String  id   = JSOHelper.getAttribute         (jsObj,              "ID");
         boolean auto = JSOHelper.getAttributeAsBoolean(jsObj, "_autoAssignedID");
         IDManager.registerID(this, id, true);
-        this.id = id;
+        if (id != null) this.id = id;
         JSOHelper.setAttribute(config,              "ID",   id);
         JSOHelper.setAttribute(config, "_autoAssignedID", auto);
     }
@@ -402,7 +402,13 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             if (id == null) {
                 internalSetID(SC.generateID(getClass().getName()), true);
             }
-            JSOHelper.setObjectAttribute(config, SC.REF, this);
+            // The SC.REF property will already be set if new was called on a SmartClient
+            // JS properties object; warn here if we actually attempt to create() it.
+            if (getRef(config) == this) {
+                SC.logWarn("Instantiating in SGWT a properties object from the SmartClient " +
+                           "side may lead to undefined behavior if the SmartClient Framework " +
+                           "is expecting to perform the instantiation itself.");
+            } else JSOHelper.setObjectAttribute(config, SC.REF, this);
             JavaScriptObject jsObj = create();
             JSOHelper.setAttribute(jsObj, SC.MODULE, BeanFactory.getSGWTModule());
             return jsObj;

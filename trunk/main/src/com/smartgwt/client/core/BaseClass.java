@@ -119,6 +119,10 @@ public abstract class BaseClass {
         return config;
     }
 
+    public void setConfig(JavaScriptObject config) {
+        this.config = config;
+    }
+
     public native boolean isCreated()/*-{
         var id = this.@com.smartgwt.client.core.BaseClass::getID()();
         var obj = $wnd.window[id];
