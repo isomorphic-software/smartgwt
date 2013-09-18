@@ -17,10 +17,18 @@ import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class PortletResizeSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "Portlets can be drag-resized by their edges (just like resizing Windows). Try changing "+
-        "the height of a Portlet in a row. Notice how all the Portlets in that row change height together. Also note how each column will "+
-        "scroll if the height of Portlets is resized to exceed the available space. If a Portlet is resized in a way that leaves some of "+
-        "the available space unused, it will snap back to fill the space. ";
+    private static final String DESCRIPTION = "Portlets can be drag-resized by " +
+                            "their edges (just like resizing Windows). " +
+                            "<p>Try changing the height of Portlet 4.  Notice " +
+                            "how all the Portlets in that row change height " +
+                            "together. See how each column will scroll if the " +
+                            "height of Portlets is resized to exceed the " +
+                            "available space. " +
+                            "<p>Try changing the width of Portlet 1. Notice how " +
+                            "the width of the entire column changes. Now try " +
+                            "changing the width of Portlet 2. See how it takes " +
+                            "width from Portlet 3 rather than changing the " +
+                            "column's width.";
 
     public static class Factory implements PanelFactory {
         private String id;

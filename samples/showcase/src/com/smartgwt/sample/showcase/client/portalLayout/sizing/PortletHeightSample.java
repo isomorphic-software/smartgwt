@@ -66,7 +66,7 @@ public class PortletHeightSample extends ShowcasePanel {
         portlet2.setTitle("height: 100");
         portlet2.setHeight(100);
         LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
-        map.put("margin", "10");
+        map.put("padding", "10");
         portlet2.setBodyDefaults(map);
         Label label = new Label();
         label.setValign(VerticalAlignment.TOP);
