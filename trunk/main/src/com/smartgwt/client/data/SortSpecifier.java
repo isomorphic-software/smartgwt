@@ -21,12 +21,22 @@ import com.smartgwt.client.core.DataClass;
 import com.smartgwt.client.types.SortDirection;
 import com.smartgwt.client.util.EnumUtil;
 import com.smartgwt.client.util.JSOHelper;
+import com.smartgwt.client.widgets.grid.ListGrid;
 
 /**
  * Class defining the details of a single sort operation
  */
 public class SortSpecifier extends DataClass {
 
+    public native static SortSpecifier getOrCreateRef(JavaScriptObject jsObj) /*-{
+        if (jsObj == null) return null;
+        var instance = jsObj["__ref"];
+        if (instance == null) {
+            instance = @com.smartgwt.client.data.SortSpecifier::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
+        }
+        return instance;
+    }-*/;
+    
     public SortSpecifier(String fieldName, SortDirection sortDirection) {
         setField(fieldName);
         setDirection(sortDirection);
