@@ -22,6 +22,7 @@ import com.smartgwt.client.widgets.layout.Portlet;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
+import java.util.LinkedHashMap;
 
 public class PortletWidthSample extends ShowcasePanel {
     private static final String DESCRIPTION = "PortalLayouts distribute available column width amongst Portlets equally, or by the "+
@@ -64,6 +65,9 @@ public class PortletWidthSample extends ShowcasePanel {
         Portlet portlet2 = new Portlet();
         portlet2.setTitle("width: 200");
         portlet2.setWidth(200);
+        LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
+        map.put("padding", "10");
+        portlet2.setBodyDefaults(map);
         Label label = new Label();
         label.setValign(VerticalAlignment.TOP);
         label.setContents("Notice how the PortalLayout will stretch the last Portlet to fill the available space, if <code>preventRowUnderflow</code> is set.");

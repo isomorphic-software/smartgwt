@@ -109,7 +109,6 @@ import com.smartgwt.sample.showcase.client.portalLayout.portletContents.DragComp
 import com.smartgwt.sample.showcase.client.portalLayout.portletContents.WindowContentsSample;
 import com.smartgwt.sample.showcase.client.portalLayout.sizing.ColumnHeightSample;
 import com.smartgwt.sample.showcase.client.portalLayout.sizing.ColumnWidthSample;
-import com.smartgwt.sample.showcase.client.portalLayout.sizing.OverflowSample;
 import com.smartgwt.sample.showcase.client.portalLayout.sizing.PortletHeightSample;
 import com.smartgwt.sample.showcase.client.portalLayout.sizing.PortletResizeSample;
 import com.smartgwt.sample.showcase.client.portalLayout.sizing.PortletWidthSample;
@@ -360,7 +359,6 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Portlet height", "portlet-height-portal-layout-new", "sizing-portal-layout-new", null, new PortletHeightSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Portlet width", "portlet-width-portal-layout-new", "sizing-portal-layout-new", null, new PortletWidthSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Portlet resizing", "portlet-resizing-portal-layout-new", "sizing-portal-layout-new", null, new PortletResizeSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Overflowing width", "overflowing-width-portal-layout-new", "sizing-portal-layout-new", null, new OverflowSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Portlet Animation", "portlet-animation-portal-layout-new", "portal-layout-category-new", null, new PortletAnimationSample.Factory(), true, idSuffix),
                     // End of new samples
                     
@@ -692,7 +690,6 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Portlet height", "portlet-height-portal-layout", "sizing-portal-layout", null, new PortletHeightSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Portlet width", "portlet-width-portal-layout", "sizing-portal-layout", null, new PortletWidthSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Portlet resizing", "portlet-resizing-portal-layout", "sizing-portal-layout", null, new PortletResizeSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Overflowing width", "overflowing-width-portal-layout", "sizing-portal-layout", null, new OverflowSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Portlet Animation", "portlet-animation-portal-layout", "portal-layout-category", null, new PortletAnimationSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Buttons", "buttons-category", "root", "silk/brick.png", null, true, idSuffix),
