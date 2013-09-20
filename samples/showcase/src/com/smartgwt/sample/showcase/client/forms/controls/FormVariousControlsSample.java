@@ -48,18 +48,8 @@ public class FormVariousControlsSample extends ShowcasePanel {
         TextAreaItem textAreaItem = new TextAreaItem();
         textAreaItem.setTitle("TextArea");
 
-        LinkItem linkItem = new LinkItem("link");
-        linkItem.setTitle("LinkItem");
-        linkItem.setLinkTitle("Click Me");
-        linkItem.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                SC.say("Hello World");
-            }
-        });
-
         ColorPickerItem colorPicker = new ColorPickerItem();
         colorPicker.setTitle("Color Picker");
-        colorPicker.setWidth(85);
 
         SpinnerItem spinnerItem = new SpinnerItem();
         spinnerItem.setTitle("Spinner");
@@ -77,14 +67,25 @@ public class FormVariousControlsSample extends ShowcasePanel {
         sliderItem.setNumValues(5);
         sliderItem.setDefaultValue(4);
 
+        LinkItem linkItem = new LinkItem("link");
+        linkItem.setTitle("LinkItem");
+        linkItem.setLinkTitle("<br>Click Me<br>");
+        linkItem.setHeight(36);
+        linkItem.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                SC.say("Hello World");
+            }
+        });
+
         CheckboxItem checkboxItem = new CheckboxItem();
         checkboxItem.setTitle("Checkbox");
+        checkboxItem.setHeight(25);
 
         RadioGroupItem radioGroupItem = new RadioGroupItem();
         radioGroupItem.setTitle("Radio Group");
         radioGroupItem.setValueMap("Option 1", "Option 2");
 
-        form.setFields(textItem, linkItem, colorPicker, textAreaItem, spinnerItem, sliderItem, checkboxItem, radioGroupItem);
+        form.setFields(textItem, colorPicker, textAreaItem, spinnerItem, sliderItem, linkItem, checkboxItem, radioGroupItem);
         layout.addMember(form);
 
         DynamicForm selectComboForm = new DynamicForm();
