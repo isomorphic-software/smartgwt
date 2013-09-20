@@ -38,7 +38,7 @@ public class ColorPickerItem extends FormItem {
     }
 
     public ColorPickerItem() {
-        setType("color");
+        setAttribute("editorType", "ColorItem");
     }
 
     public ColorPickerItem(JavaScriptObject jsObj) {
@@ -47,13 +47,13 @@ public class ColorPickerItem extends FormItem {
 
     public ColorPickerItem(String name) {
         setName(name);
-        setType("color");
+        setAttribute("editorType", "ColorItem");
     }
 
     public ColorPickerItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("color");
+        setAttribute("editorType", "ColorItem");
     }
 
     /**
