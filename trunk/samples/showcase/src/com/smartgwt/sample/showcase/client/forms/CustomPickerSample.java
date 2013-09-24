@@ -1,12 +1,15 @@
 package com.smartgwt.sample.showcase.client.forms;
 
 import com.smartgwt.client.core.Rectangle;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Dialog;
 import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.FormItemIcon;
 import com.smartgwt.client.widgets.form.fields.TextItem;
+import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;
+import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;
 import com.smartgwt.client.widgets.form.fields.events.IconClickEvent;
 import com.smartgwt.client.widgets.form.fields.events.IconClickHandler;
 import com.smartgwt.sample.showcase.client.PanelFactory;
@@ -46,6 +49,13 @@ public class CustomPickerSample extends ShowcasePanel {
         decision.setTitle("Decision");
         form.setFields(decision);
 
+        decision.addChangeHandler(new ChangeHandler() {
+			@Override
+			public void onChange(ChangeEvent event) {
+				SC.say("User chooses " + event.getValue());
+			}
+		});
+        
         return form;
     }
 
@@ -106,7 +116,7 @@ public class CustomPickerSample extends ShowcasePanel {
         
         // set the specified value and dismiss the picker dialog
         private static void setCurrentValue(String value) {
-            currentEditor.setValue(value);
+            currentEditor.storeValue(value, true);
             dialog.hide();
         }
 
