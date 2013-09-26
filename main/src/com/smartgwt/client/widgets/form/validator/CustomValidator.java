@@ -96,7 +96,10 @@ public abstract class CustomValidator extends Validator {
                     self.@com.smartgwt.client.widgets.form.validator.CustomValidator::dataSourceField = @com.smartgwt.client.data.DataSourceField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
                 } else {
                     var dataSourceField = $wnd.isc.addProperties({}, item);
-                    if (dataSourceField.__ref) delete dataSourceField.__ref;
+                    if (dataSourceField.__ref) {
+                        delete dataSourceField.__ref;
+                        delete dataSourceField.__module;
+                    }
                     self.@com.smartgwt.client.widgets.form.validator.CustomValidator::dataSourceField = @com.smartgwt.client.data.DataSourceField::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dataSourceField);
                 }
             }

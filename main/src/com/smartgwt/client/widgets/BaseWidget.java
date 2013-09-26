@@ -290,6 +290,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
 
     private void clearConfigRef() {
         JSOHelper.setNullAttribute(this.config, SC.REF);
+        JSOHelper.setNullAttribute(this.config, SC.MODULE);
     }
 
     public void doOnRender(Function function) {
@@ -408,9 +409,11 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
                 SC.logWarn("Instantiating in SGWT a properties object from the SmartClient " +
                            "side may lead to undefined behavior if the SmartClient Framework " +
                            "is expecting to perform the instantiation itself.");
-            } else JSOHelper.setObjectAttribute(config, SC.REF, this);
+            } else {
+                JSOHelper.setObjectAttribute(config, SC.REF, this);
+                JSOHelper.setObjectAttribute(config, SC.MODULE, BeanFactory.getSGWTModule());
+            }
             JavaScriptObject jsObj = create();
-            JSOHelper.setAttribute(jsObj, SC.MODULE, BeanFactory.getSGWTModule());
             return jsObj;
         } else {
             return getJsObj();

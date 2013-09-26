@@ -285,6 +285,9 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    	 			continue;
 	    	 		}
 
+                    // Don't convert the GWT module created by BeanFactory
+                    if (fieldName == $wnd.isc.gwtModule) continue;
+
                     var val = object[fieldName];
                     //if the field name is '__ref', the the value is already a GWT java object reference
                     var convertedVal = (fieldName == refProperty || this.isNativeJavaObject(val) ? val : $wnd.SmartGWT.convertToJavaObject(val, false, false));
