@@ -37,6 +37,11 @@ public class TreeDragNodesSample extends ShowcasePanel {
         }
     }
 
+    // force extra wrapper layer so widget topology matches SC Feature Explorer
+    public boolean shouldWrapViewPanel() { 
+        return true; 
+    }
+
     public Canvas getViewPanel() {
 
         Tree grid1Tree = new Tree();
