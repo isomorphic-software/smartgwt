@@ -598,6 +598,9 @@ public abstract class BeanFactory<BeanClass> {
                                 // This shouldn't really happen, but ...
                                 if (!$wnd.isc.isA.String(fieldName)) continue;
 
+                                // Don't convert the __module created by BeanFactory
+                                if (fieldName == $wnd.isc.gwtModule) continue;
+
                                 // If the field name is '__ref', the the value
                                 // is already a GWT java object reference.
                                 // Otherwise, we convert it by calling
