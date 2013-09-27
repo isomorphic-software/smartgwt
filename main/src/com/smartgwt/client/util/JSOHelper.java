@@ -1189,6 +1189,11 @@ public class JSOHelper {
                 SC.logWarn("JSO::convertMapToJavascriptObject : skipping __ref in map");
                 continue;
             }
+            if (key.equals("__module")) {
+                SC.logWarn("JSO::convertMapToJavascriptObject : skipping __module in map");
+                continue;
+            }
+
             Object value = valueMap.get(key);
 
             if (value instanceof JavaScriptObject) {
@@ -1278,6 +1283,7 @@ public class JSOHelper {
             if (copyProperties) properties = $wnd.isc.addProperties({}, properties);
             delete properties.ID;
             delete properties.__ref;
+            delete properties.__module;
             delete properties._autoAssignedID;
         }
         return properties;

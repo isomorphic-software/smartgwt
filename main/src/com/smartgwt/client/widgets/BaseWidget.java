@@ -292,6 +292,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
 
     private void clearConfigRef() {
         JSOHelper.setNullAttribute(this.config, SC.REF);
+        JSOHelper.setNullAttribute(this.config, SC.MODULE);
     }
 
     public void doOnRender(Function function) {
@@ -442,8 +443,8 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
                 internalSetID(SC.generateID(getClass().getName()), true);
             }
             JSOHelper.setObjectAttribute(config, SC.REF, this);
+            JSOHelper.setObjectAttribute(config, SC.MODULE, BeanFactory.getSGWTModule());
             JavaScriptObject jsObj = create();
-            JSOHelper.setAttribute(jsObj, SC.MODULE, BeanFactory.getSGWTModule());
             return jsObj;
         } else {
             return getJsObj();
