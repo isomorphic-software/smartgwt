@@ -76,8 +76,8 @@ public class RefDataClass extends DataClass {
         }
         if (validateID) IDManager.validateID(id, false);
         this.id = id;
-        setAttribute("ID",                        id);
-        setAttribute("_autoAssignedID", autoAssigned);
+        setAttribute(     "ID",           id);
+        setAttribute(SC.AUTOID, autoAssigned);
     }
 
 	/**

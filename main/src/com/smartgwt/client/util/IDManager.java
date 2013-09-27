@@ -9,6 +9,8 @@ import com.smartgwt.client.widgets.BaseWidget;
 import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.layout.SectionStackSection;
 
+import com.google.gwt.core.client.JavaScriptObject;
+
 // ID Management -------------------------------------------------------------------------------
 //
 // The goal of ID Management is to ensure that at most a single SGWT object is assigned the
@@ -129,14 +131,28 @@ public class IDManager {
     // class, registration is mandatory so if it's not found it's a problem.
     public static void unregisterID(BaseWidget widget, String id) {
         Object value = assignedIDs.get(id);
-        if (value == widget) assignedIDs.remove(id);
-        else {
+        if (value != widget) {
             SC.logWarn("The SmartGWT component or object with ID: " + id + " can't be " +
                        "unregistered because another object has registered with the same ID!");
+            return;
+        }
+        assignedIDs.remove(id);
+        JavaScriptObject config = widget.getConfig();
+        if (BaseWidget.hasAutoAssignedID(config) && BaseWidget.getRef(config) == null) {
+            SC.releaseID(widget.getClass().getName(), id);
         }
     }
-    public static void unregisterID(Object object, String id) {
+    public static void unregisterID(BaseClass instance, String id) {
         Object value = assignedIDs.get(id);
-        if (value == object) assignedIDs.remove(id);
+        if (value != instance) return;
+        assignedIDs.remove(id);
+        JavaScriptObject config = instance.getConfig();
+        if (BaseClass.hasAutoAssignedID(config) && BaseClass.getRef(config) == null) {
+            SC.releaseID(instance.getClass().getName(), id);
+        }
+    }
+    public static void unregisterID(RefDataClass data, String id) {
+        Object value = assignedIDs.get(id);
+        if (value == data) assignedIDs.remove(id);
     }
 }

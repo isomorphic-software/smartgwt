@@ -67,12 +67,12 @@ public abstract class BaseClass {
         if (this.id != null) {
             IDManager.unregisterID(this, this.id);
         }
-        String  id   = JSOHelper.getAttribute         (jsObj,              "ID");
-        boolean auto = JSOHelper.getAttributeAsBoolean(jsObj, "_autoAssignedID");
+        String  id   = JSOHelper.getAttribute         (jsObj,      "ID");
+        boolean auto = JSOHelper.getAttributeAsBoolean(jsObj, SC.AUTOID);
         if (id != null) registerID(id, true);
         this.id = id;
-        JSOHelper.setAttribute(config,              "ID",   id);
-        JSOHelper.setAttribute(config, "_autoAssignedID", auto);
+        JSOHelper.setAttribute(config,      "ID",   id);
+        JSOHelper.setAttribute(config, SC.AUTOID, auto);
     }
 
     protected void internalSetID(String id, boolean autoAssigned) {
@@ -81,8 +81,8 @@ public abstract class BaseClass {
         }
         registerID(id, false);
         this.id = id;
-        setAttribute("ID",                        id, false);
-        setAttribute("_autoAssignedID", autoAssigned, false);
+        setAttribute("ID",                id, false);
+        setAttribute(SC.AUTOID, autoAssigned, false);
     }
 
     public void setID(String id) {
@@ -158,6 +158,10 @@ public abstract class BaseClass {
         return jsObj == null ? null : (BaseClass) JSOHelper.getAttributeAsObject(jsObj, SC.REF);
     }
 
+    public static boolean hasAutoAssignedID(JavaScriptObject jsObj) {
+        return jsObj == null ? false : JSOHelper.getAttributeAsBoolean(jsObj, SC.AUTOID);
+    }        
+
     /**
      * Returns the existing SGWT component, or creates and returns one if none exist,
      * associated with the supplied {@link com.google.gwt.core.client.JavaScriptObject}.  If
@@ -214,12 +218,10 @@ public abstract class BaseClass {
     }-*/;
 
     private void clearID() {
-        if (JSOHelper.getAttributeAsBoolean(config, "_autoAssignedID") &&
-            getRef(this.config) == null) SC.releaseID(getClass().getName(), this.id);
         IDManager.unregisterID(this, this.id);
         this.id = null;
-        JSOHelper.setNullAttribute(config, "ID");
-        JSOHelper.setNullAttribute(config, "_autoAssignedID");
+        JSOHelper.setNullAttribute(config,      "ID");
+        JSOHelper.setNullAttribute(config, SC.AUTOID);
     }
 
     private void clearConfigRef() {
