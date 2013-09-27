@@ -44,6 +44,8 @@ public class AnimateFadeSample extends ShowcasePanel {
 		image.setTop(105);
 		image.setLeft(10); 
 		image.setAnimateTime(1200); // milliseconds
+        // hidden at start
+        image.setOpacity(0);
 
 		IButton fadeOutButton = new IButton();
 		fadeOutButton.setTitle("Fade Out");
