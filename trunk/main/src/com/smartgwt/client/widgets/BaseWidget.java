@@ -123,6 +123,10 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         return jsObj == null ? null : (BaseWidget) JSOHelper.getAttributeAsObject(jsObj, SC.REF);
     }
 
+    public static boolean hasAutoAssignedID(JavaScriptObject jsObj) {
+        return jsObj == null ? false : JSOHelper.getAttributeAsBoolean(jsObj, SC.AUTOID);
+    }        
+
     /**
      * Returns the javascript class name.
      * @return
@@ -280,12 +284,10 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }-*/;
 
     private void clearID() {
-        if (JSOHelper.getAttributeAsBoolean(config, "_autoAssignedID") &&
-            getRef(this.config) == null) SC.releaseID(getClass().getName(), this.id);
         IDManager.unregisterID(this, this.id);
         this.id = null;
-    	JSOHelper.setNullAttribute(config, "ID");
-    	JSOHelper.setNullAttribute(config, "_autoAssignedID");
+    	JSOHelper.setNullAttribute(config,      "ID");
+    	JSOHelper.setNullAttribute(config, SC.AUTOID);
     }
 
     private void clearConfigRef() {
@@ -344,12 +346,12 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         if (this.id != null) {
             IDManager.unregisterID(this, this.id);
         }        
-        String  id   = JSOHelper.getAttribute         (jsObj,              "ID");
-        boolean auto = JSOHelper.getAttributeAsBoolean(jsObj, "_autoAssignedID");
+        String  id   = JSOHelper.getAttribute         (jsObj,      "ID");
+        boolean auto = JSOHelper.getAttributeAsBoolean(jsObj, SC.AUTOID);
         IDManager.registerID(this, id, true);
         if (id != null) this.id = id;
-        JSOHelper.setAttribute(config,              "ID",   id);
-        JSOHelper.setAttribute(config, "_autoAssignedID", auto);
+        JSOHelper.setAttribute(config,      "ID",   id);
+        JSOHelper.setAttribute(config, SC.AUTOID, auto);
     }
 
     protected void internalSetID(String id, boolean autoAssigned) {
@@ -358,8 +360,8 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         }
         IDManager.registerID(this, id, false);
         this.id = id;
-        setAttribute(             "ID",           id, false);
-        setAttribute("_autoAssignedID", autoAssigned, false);
+        setAttribute(     "ID",           id, false);
+        setAttribute(SC.AUTOID, autoAssigned, false);
     }
 
     public void setID(String id) {
