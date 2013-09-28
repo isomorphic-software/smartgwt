@@ -43,6 +43,10 @@ public class DataClass extends JsObject {
         return jsObj;
     }
 
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        this.jsObj = jsObj;
+    }
+
     /**
      * Set attribute value to a String
      * @param property
