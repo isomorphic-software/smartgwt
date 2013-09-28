@@ -111,12 +111,19 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         /*empty*/
     }
 
-    public BaseWidget(JavaScriptObject jsObj) {
-        internalSetID(jsObj);
-    }
-
     public BaseWidget(String id) {
         setID(id);
+    }
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        internalSetID(jsObj);
+        JSOHelper.setObjectAttribute(jsObj, SC.REF, this);
+        JSOHelper.setObjectAttribute(jsObj, SC.MODULE, BeanFactory.getSGWTModule());
+        if (!JSOHelper.isScClassInstance(jsObj)) {
+            setConfig(jsObj);
+            return;
+        }
+        onBind();
     }
 
     public static BaseWidget getRef(JavaScriptObject jsObj) {

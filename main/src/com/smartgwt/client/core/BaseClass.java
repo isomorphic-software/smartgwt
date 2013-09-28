@@ -18,6 +18,7 @@ package com.smartgwt.client.core;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
+import com.smartgwt.client.bean.BeanFactory;
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerManager;
@@ -45,6 +46,17 @@ public abstract class BaseClass {
 
     protected BaseClass(JavaScriptObject jsObj) {
         internalSetID(jsObj);
+    }
+
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        internalSetID(jsObj);
+        JSOHelper.setObjectAttribute(jsObj, SC.REF, this);
+        JSOHelper.setObjectAttribute(jsObj, SC.MODULE, BeanFactory.getSGWTModule());
+        if (!JSOHelper.isScClassInstance(jsObj)) {
+            setConfig(jsObj);
+            return;
+        }
+        onBind();
     }
 
     /**
