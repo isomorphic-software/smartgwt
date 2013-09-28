@@ -75,6 +75,7 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
         return jsObj;
     }
 
+    @Override
     public JavaScriptObject getJsObj() {
         return jsObj;
     }
@@ -83,6 +84,16 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
     public boolean isCreated() {
         return jsObj != null;
     }
+
+    @Override
+    public JavaScriptObject getOrCreateJsObj() {
+        if (!isCreated()) {
+            this.jsObj = createJsObj();
+            doInit();
+        }
+        return getJsObj();
+    }
+
 
     // ********************* Methods ***********************
 

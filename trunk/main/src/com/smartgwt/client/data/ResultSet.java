@@ -160,7 +160,6 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
         } else {
             rs = $wnd.isc.ResultSet.create(config);
         }
-        this.@com.smartgwt.client.data.RecordList::jsObj = rs;
         return rs;
     }-*/;
 
