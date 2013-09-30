@@ -151,6 +151,7 @@ import com.smartgwt.sample.showcase.client.grid.appearance.ColumnTitlesSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.CustomHeaderMenuSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.EmptyGridSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.EmptyValuesSample;
+import com.smartgwt.sample.showcase.client.grid.appearance.FormatValuesBuiltinSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.FormatValuesSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.FormulaSummaryBuilderSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.GridComponentsSample;
@@ -393,7 +394,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Animated Selection", "grid-appearance-animated-selection", "grid-appearance-category", null, new AnimatedSelectionSample.Factory(), true, idSuffix),
                     //new ExplorerTreeNode("RollOver Reticle Effect", "grid-appearance-reticle-selection", "grid-appearance-category", null, null, false, idSuffix),
                     new ExplorerTreeNode("RollOver Controls", "grid-appearance-rollover-controls", "grid-appearance-category", null, new RollOverControlsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Format Values", "grid-appearance-format-values", "grid-appearance-category", null, new FormatValuesSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Format Values", "grid-appearance-format-values-builtin", "grid-appearance-category", null, new FormatValuesBuiltinSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Format Values (custom)", "grid-appearance-format-values", "grid-appearance-category", null, new FormatValuesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Empty Values", "grid-appearance-empty-values", "grid-appearance-category", null, new EmptyValuesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Empty Grid", "grid-appearance-empty-grid", "grid-appearance-category", null, new EmptyGridSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Alternate Records", "grid-appearance-alternate", "grid-appearance-category", null, new AlternateRecordStyleSample.Factory(), true, idSuffix),
