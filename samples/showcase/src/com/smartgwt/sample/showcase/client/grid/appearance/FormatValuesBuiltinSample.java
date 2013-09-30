@@ -16,18 +16,17 @@ import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 import java.util.Date;
 
 
-public class FormatValuesSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "This grid applies custom formatters to the \"Nationhood\" and \"Area\" columns. " + 
-    		"Custom formatters are written in Java; they are useful when you have unusual formatting requirements that cannot be " +
-    		"achieved with the built-in declarative formatting features (though in fact both of these examples could have been " +
-    		"achieved without the need for custom formatters).<p>" +
-    		"Click on the \"Nationhood\" or \"Area\" column headers to sort the underlying data values.";
+public class FormatValuesBuiltinSample extends ShowcasePanel {
+    private static final String DESCRIPTION = "This grid applies formatters to the \"Nationhood\" and \"Area\" columns using SmartGWT's " +
+        "built-in declarative formatting feature, which can format dates and numbers using format strings like \"MMM dd yyyy\".  " +
+    	"If you have Pro+, this formatting will also be exported to Excel.<p>" + 
+        "Click on the \"Nationhood\" or \"Area\" column headers to sort the underlying data values.";
 
     public static class Factory implements PanelFactory {
         private String id;
 
         public Canvas create() {
-            FormatValuesSample panel = new FormatValuesSample();
+            FormatValuesBuiltinSample panel = new FormatValuesBuiltinSample();
             id = panel.getID();
             return panel;
         }
@@ -57,40 +56,11 @@ public class FormatValuesSample extends ShowcasePanel {
         ListGridField nameField = new ListGridField("countryName", "Country");
         ListGridField nationHoodField = new ListGridField("independence", "Nationhood");
         nationHoodField.setType(ListGridFieldType.DATE);
-
-        final DateTimeFormat dateFormatter = DateTimeFormat.getFormat("MMM d, yyyy");
-        nationHoodField.setCellFormatter(new CellFormatter() {
-            public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                if (value != null) {
-
-                    try {
-                        Date dateValue = (Date) value;
-                        return dateFormatter.format(dateValue);
-                    } catch (Exception e) {
-                        return value.toString();
-                    }
-                } else {
-                    return "";
-                }
-            }
-        });
-
+        nationHoodField.setFormat("MMM d, yyyy");
+        
         ListGridField areaField = new ListGridField("area", "Area (km&sup2;)");
         areaField.setType(ListGridFieldType.INTEGER);
-        areaField.setCellFormatter(new CellFormatter() {
-            public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                if(value == null) return null;
-
-                String val = null;
-                try {
-                    NumberFormat nf = NumberFormat.getFormat("0,000");
-                    val = nf.format(((Number) value).longValue());
-                } catch (Exception e) {
-                    return value.toString();
-                }
-                return val + "km&sup2";
-            }
-        });
+        areaField.setFormat(",0 km&sup2;");
 
         countryGrid.setFields(countryCodeField, nameField, nationHoodField, areaField);
         countryGrid.setCanResizeFields(true);
