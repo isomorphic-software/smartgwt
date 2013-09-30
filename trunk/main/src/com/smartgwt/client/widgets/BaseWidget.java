@@ -362,6 +362,12 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }
 
     protected void internalSetID(String id, boolean autoAssigned) {
+        // prevent transaction from being started if it cannot complete successfully
+        if (isCreated()) {
+            error("Attempt to call internalSetID to change id from " + this.id +
+                  " to " + id + " after the SC widget has already been created");
+            return;
+        }
         if (this.id != null) {
             IDManager.unregisterID(this, this.id);
         }
@@ -678,6 +684,8 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         if (!GWT.isScript()) {
             Window.alert("Error :" + message);
             throw new IllegalStateException(message);
+        } else {
+            SC.logWarn(message);
         }
     }
 
