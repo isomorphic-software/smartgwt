@@ -1491,6 +1491,33 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String FilterBuilder_inlineAndNotTitle();
   
   /**
+   * Translated "Advanced..".
+   * 
+   * @return translated "Advanced.."
+   */
+  @DefaultMessage("Advanced..")
+  @Key("FilterBuilder_modeSwitcherAdvancedMessage")
+  String FilterBuilder_modeSwitcherAdvancedMessage();
+    
+  /**
+   * Translated "Simple Mode..".
+   * 
+   * @return translated "Simple Mode.."
+   */
+  @DefaultMessage("Simple Mode..")
+  @Key("FilterBuilder_modeSwitcherSimpleMessage")
+  String FilterBuilder_modeSwitcherSimpleMessage();
+    
+  /**
+   * Translated "Criteria will be modified to fit in simpler editing interface".
+   * 
+   * @return translated "Criteria will be modified to fit in simpler editing interface"
+   */
+  @DefaultMessage("Criteria will be modified to fit in simpler editing interface")
+  @Key("FilterBuilder_modeSwitcherFlattenWarningMessage")
+  String FilterBuilder_modeSwitcherFlattenWarningMessage();
+    
+  /**
    * Translated "Remove".
    * 
    * @return translated "Remove"

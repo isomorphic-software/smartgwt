@@ -542,6 +542,9 @@ public class I18nUtil {
             $wnd.isc.FilterBuilder.addProperties({inlineAndTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::FilterBuilder_inlineAndTitle()()});
             $wnd.isc.FilterBuilder.addProperties({inlineOrTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::FilterBuilder_inlineOrTitle()()});
             $wnd.isc.FilterBuilder.addProperties({inlineAndNotTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::FilterBuilder_inlineAndNotTitle()()});
+            $wnd.isc.FilterBuilder.addProperties({modeSwitcherAdvancedMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::FilterBuilder_modeSwitcherAdvancedMessage()()});
+            $wnd.isc.FilterBuilder.addProperties({modeSwitcherSimpleMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::FilterBuilder_modeSwitcherSimpleMessage()()});
+            $wnd.isc.FilterBuilder.addProperties({modeSwitcherFlattenWarningMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::FilterBuilder_modeSwitcherFlattenWarningMessage()()});
         }
         if($wnd.isc.FilterClause) {
             $wnd.isc.FilterClause.addProperties({removeButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterClause_removeButtonPrompt()()});
