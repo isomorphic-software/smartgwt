@@ -1059,6 +1059,8 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      */
     RecordList getRecordList();
 
+    JavaScriptObject getDataAsJSList();
+
     /**
      * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
      * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
