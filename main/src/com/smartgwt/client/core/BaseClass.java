@@ -76,6 +76,12 @@ public abstract class BaseClass {
     }
 
     protected void internalSetID(JavaScriptObject jsObj) {
+        // prevent transaction from being started if it cannot complete successfully
+        if (isCreated()) {
+            error("Attempt to call internalSetID to change id from " + this.id +
+                  " to " + id + " after the SC instance has already been created");
+            return;
+        }
         if (this.id != null) {
             IDManager.unregisterID(this, this.id);
         }
@@ -258,6 +264,8 @@ public abstract class BaseClass {
         if (!GWT.isScript()) {
             Window.alert("Error :" + message);
             throw new IllegalStateException(message);
+        } else {
+            SC.logWarn(message);
         }
     }
 

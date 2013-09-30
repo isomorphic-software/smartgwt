@@ -127,10 +127,10 @@ public class FilterSortTilingSample extends ShowcasePanel {
         vStack.addMember(filterForm);
 
         final DynamicForm sortForm = new DynamicForm();
+        sortForm.setID("sortForm");
         sortForm.setIsGroup(true);
         sortForm.setGroupTitle("Sort");
         sortForm.setAutoFocus(false);
-        sortForm.setID("sortForm");
         sortForm.setNumCols(6);
 
         SelectItem sortItem = new SelectItem();
