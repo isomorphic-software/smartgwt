@@ -978,6 +978,69 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String date_inputFormat();
 
   /**
+   * Translated "Sunday".
+   * 
+   * @return translated "Sunday"
+   */
+  @DefaultMessage("Sunday")
+  @Key("date_dayNames_1")
+  String date_dayNames_1();
+
+  /**
+   * Translated "Monday".
+   * 
+   * @return translated "Monday"
+   */
+  @DefaultMessage("Monday")
+  @Key("date_dayNames_2")
+  String date_dayNames_2();
+
+  /**
+   * Translated "Tuesday".
+   * 
+   * @return translated "Tuesday"
+   */
+  @DefaultMessage("Tuesday")
+  @Key("date_dayNames_3")
+  String date_dayNames_3();
+
+  /**
+   * Translated "Wednesday".
+   * 
+   * @return translated "Wednesday"
+   */
+  @DefaultMessage("Wednesday")
+  @Key("date_dayNames_4")
+  String date_dayNames_4();
+
+  /**
+   * Translated "Thursday".
+   * 
+   * @return translated "Thursday"
+   */
+  @DefaultMessage("Thursday")
+  @Key("date_dayNames_5")
+  String date_dayNames_5();
+
+  /**
+   * Translated "Friday".
+   * 
+   * @return translated "Friday"
+   */
+  @DefaultMessage("Friday")
+  @Key("date_dayNames_6")
+  String date_dayNames_6();
+
+  /**
+   * Translated "Saturday".
+   * 
+   * @return translated "Saturday"
+   */
+  @DefaultMessage("Saturday")
+  @Key("date_dayNames_7")
+  String date_dayNames_7();
+
+  /**
    * Translated "Sun".
    * 
    * @return translated "Sun"
@@ -1041,40 +1104,121 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String date_shortDayNames_7();
 
   /**
+   * Translated "January".
+   * 
+   * @return translated "January"
+   */
+  @DefaultMessage("January")
+  @Key("date_monthNames_1")
+  String date_monthNames_1();
+
+  /**
+   * Translated "February".
+   * 
+   * @return translated "February"
+   */
+  @DefaultMessage("February")
+  @Key("date_monthNames_2")
+  String date_monthNames_2();
+
+  /**
+   * Translated "March".
+   * 
+   * @return translated "March"
+   */
+  @DefaultMessage("March")
+  @Key("date_monthNames_3")
+  String date_monthNames_3();
+
+  /**
+   * Translated "April".
+   * 
+   * @return translated "April"
+   */
+  @DefaultMessage("April")
+  @Key("date_monthNames_4")
+  String date_monthNames_4();
+
+  /**
+   * Translated "May".
+   * 
+   * @return translated "May"
+   */
+  @DefaultMessage("May")
+  @Key("date_monthNames_5")
+  String date_monthNames_5();
+
+  /**
+   * Translated "June".
+   * 
+   * @return translated "June"
+   */
+  @DefaultMessage("June")
+  @Key("date_monthNames_6")
+  String date_monthNames_6();
+
+  /**
+   * Translated "July".
+   * 
+   * @return translated "July"
+   */
+  @DefaultMessage("July")
+  @Key("date_monthNames_7")
+  String date_monthNames_7();
+
+  /**
+   * Translated "August".
+   * 
+   * @return translated "August"
+   */
+  @DefaultMessage("August")
+  @Key("date_monthNames_8")
+  String date_monthNames_8();
+
+  /**
+   * Translated "September".
+   * 
+   * @return translated "September"
+   */
+  @DefaultMessage("September")
+  @Key("date_monthNames_9")
+  String date_monthNames_9();
+
+  /**
+   * Translated "October".
+   * 
+   * @return translated "October"
+   */
+  @DefaultMessage("October")
+  @Key("date_monthNames_10")
+  String date_monthNames_10();
+
+  /**
+   * Translated "November".
+   * 
+   * @return translated "November"
+   */
+  @DefaultMessage("November")
+  @Key("date_monthNames_11")
+  String date_monthNames_11();
+
+  /**
+   * Translated "December".
+   * 
+   * @return translated "December"
+   */
+  @DefaultMessage("December")
+  @Key("date_monthNames_12")
+  String date_monthNames_12();
+
+  /**
    * Translated "Jan".
    * 
    * @return translated "Jan"
    */
   @DefaultMessage("Jan")
-  @Key("date_shortMonthNames_1")
+  @Key("date_monthNames_1")
   String date_shortMonthNames_1();
-
-  /**
-   * Translated "Oct".
-   * 
-   * @return translated "Oct"
-   */
-  @DefaultMessage("Oct")
-  @Key("date_shortMonthNames_10")
-  String date_shortMonthNames_10();
-
-  /**
-   * Translated "Nov".
-   * 
-   * @return translated "Nov"
-   */
-  @DefaultMessage("Nov")
-  @Key("date_shortMonthNames_11")
-  String date_shortMonthNames_11();
-
-  /**
-   * Translated "Dec".
-   * 
-   * @return translated "Dec"
-   */
-  @DefaultMessage("Dec")
-  @Key("date_shortMonthNames_12")
-  String date_shortMonthNames_12();
 
   /**
    * Translated "Feb".
@@ -1147,6 +1291,33 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Sep")
   @Key("date_shortMonthNames_9")
   String date_shortMonthNames_9();
+
+  /**
+   * Translated "Oct".
+   * 
+   * @return translated "Oct"
+   */
+  @DefaultMessage("Oct")
+  @Key("date_shortMonthNames_10")
+  String date_shortMonthNames_10();
+
+  /**
+   * Translated "Nov".
+   * 
+   * @return translated "Nov"
+   */
+  @DefaultMessage("Nov")
+  @Key("date_shortMonthNames_11")
+  String date_shortMonthNames_11();
+
+  /**
+   * Translated "Dec".
+   * 
+   * @return translated "Dec"
+   */
+  @DefaultMessage("Dec")
+  @Key("date_shortMonthNames_12")
+  String date_shortMonthNames_12();
 
   /**
    * Translated "Apply".

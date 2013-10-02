@@ -30,11 +30,11 @@ public class I18nUtil {
         if(!initialized) {
             SmartGwtMessages messages = GWT.create(SmartGwtMessages.class);
             initMessages(messages);
-            initBuildinTypes();
+            initBuiltinTypes();
         }
     }
 
-    private static native void initBuildinTypes() /*-{
+    private static native void initBuiltinTypes() /*-{
         if($wnd.isc.builtinTypes) {
             $wnd.isc.builtinTypes.localeInt.normalDisplayFormatter = 
             $wnd.isc.builtinTypes.localeInt.shortDisplayFormatter = function (value, field) {
@@ -64,6 +64,13 @@ public class I18nUtil {
                 var formattedValueJ = @com.smartgwt.client.util.I18nUtil::parseNum(Ljava/lang/String;)(valueJ);
                 return $wnd.SmartGWT.convertToPrimitiveType(formattedValueJ);
             };
+            var currencySymbol = @com.smartgwt.client.util.I18nUtil::getLocaleCurrencySymbol()();
+            if (currencySymbol == "US$") currencySymbol == "$";
+            $wnd.isc.NumberUtil.currencySymbol = currencySymbol;
+            $wnd.isc.NumberUtil.decimalSymbol = @com.smartgwt.client.util.I18nUtil::getLocaleDecimalSymbol()();
+            $wnd.isc.NumberUtil.groupingSymbol = @com.smartgwt.client.util.I18nUtil::getLocaleGroupingSymbol()();
+            $wnd.isc.NumberUtil.negativeSymbol = @com.smartgwt.client.util.I18nUtil::getLocaleNegativeSymbol()();
+            
         }
     }-*/;
     
@@ -77,6 +84,23 @@ public class I18nUtil {
     
     public static String formatLocaleCurrency(Object value) {
         return com.google.gwt.i18n.client.NumberFormat.getCurrencyFormat().format((Number)value);
+    }
+    
+    public static String getLocaleCurrencySymbol() {
+        String rtn = com.google.gwt.i18n.client.NumberFormat.getFormat("\u00A4").format(0);
+        return rtn.substring(rtn.length()-2,rtn.length()-1);
+    }
+    
+    public static String getLocaleDecimalSymbol() {
+        return com.google.gwt.i18n.client.NumberFormat.getFormat("0.00").format(0).substring(1,2);
+    }
+    
+    public static String getLocaleGroupingSymbol() {
+        return com.google.gwt.i18n.client.NumberFormat.getFormat("0,000").format(1234).substring(1,2);
+    }
+    
+    public static String getLocaleNegativeSymbol() {
+        return com.google.gwt.i18n.client.NumberFormat.getFormat("0").format(-1).substring(0,1);
     }
     
     public static double parseNum(String string) {
@@ -710,6 +734,16 @@ public class I18nUtil {
 
 //<localeGenerator -- SC locale parser will process whatever's inside these tags
 
+        $wnd.isc.addProperties($wnd.Date, {dayNames: [
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_dayNames_1()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_dayNames_2()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_dayNames_3()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_dayNames_4()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_dayNames_5()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_dayNames_6()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_dayNames_7()()]
+        });
+
         $wnd.isc.addProperties($wnd.Date, {shortDayNames: [
             messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_1()(),
             messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_2()(),
@@ -718,6 +752,21 @@ public class I18nUtil {
             messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_5()(),
             messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_6()(),
             messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_7()()]
+        });
+
+        $wnd.isc.addProperties($wnd.Date, {monthNames: [
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_monthNames_1()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_monthNames_2()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_monthNames_3()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_monthNames_4()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_monthNames_5()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_monthNames_6()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_monthNames_7()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_monthNames_8()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_monthNames_9()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_monthNames_10()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_monthNames_11()(),
+            messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_monthNames_12()()]
         });
 
         $wnd.isc.addProperties($wnd.Date, {shortMonthNames: [
