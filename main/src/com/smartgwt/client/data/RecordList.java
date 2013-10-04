@@ -393,52 +393,8 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
      *
      * @return first matching object or null if not found
      */
-    public <T extends Record> T find(String propertyName, String value) {
-        return (T) find(propertyName, (Object) value);
-    }
-
-    /**
-     * Like {@link RecordList#findIndex}, but returns the object itself instead of its index.
-     * @param propertyName property to match
-     * @param value value to compare against (if propertyName is a string)
-     *
-     * @return first matching object or null if not found
-     */
-    public <T extends Record> T find(String propertyName, int value) {
-        return (T) find(propertyName, (Object) value);
-    }
-
-    /**
-     * Like {@link RecordList#findIndex}, but returns the object itself instead of its index.
-     * @param propertyName property to match
-     * @param value value to compare against (if propertyName is a string)
-     *
-     * @return first matching object or null if not found
-     */
-    public <T extends Record> T find(String propertyName, float value) {
-        return (T) find(propertyName, (Object) value);
-    }
-
-    /**
-     * Like {@link RecordList#findIndex}, but returns the object itself instead of its index.
-     * @param propertyName property to match
-     * @param value value to compare against (if propertyName is a string)
-     *
-     * @return first matching object or null if not found
-     */
-    public <T extends Record> T find(String propertyName, boolean value) {
-        return (T) find(propertyName, (Object) value);
-    }
-
-    /**
-     * Like {@link RecordList#findIndex}, but returns the object itself instead of its index.
-     * @param propertyName property to match
-     * @param value value to compare against (if propertyName is a string)
-     *
-     * @return first matching object or null if not found
-     */
-    public <T extends Record> T find(String propertyName, Date value) {
-        return (T) find(propertyName, (Object) JSOHelper.convertToJavaScriptDate(value));
+    public Record find(String propertyName, Date value) {
+        return find(propertyName, (Object) JSOHelper.convertToJavaScriptDate(value));
     }
 
     /**
