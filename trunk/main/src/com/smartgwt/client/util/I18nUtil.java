@@ -378,6 +378,15 @@ public class I18nUtil {
             $wnd.isc.Selection.addProperties({selectionRangeNotLoadedMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::selection_selectionRangeNotLoadedMessage()()});
         }
 
+        if($wnd.isc.ListPropertiesDialog) {
+            $wnd.isc.ListPropertiesDialog.addProperties({title: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listPropertiesDialog_title()()});
+            $wnd.isc.ListPropertiesDialog.addProperties({applyButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listPropertiesDialog_applyButtonTitle()()});
+            $wnd.isc.ListPropertiesDialog.addProperties({cancelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listPropertiesDialog_cancelButtonTitle()()});
+        }
+        if($wnd.isc.ListPropertiesPane) {
+            $wnd.isc.ListPropertiesPane.addProperties({startNumberFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listPropertiesPane_startNumberFieldTitle()()});
+        }
+
         if($wnd.isc.ListGrid) {
             $wnd.isc.ListGrid.addProperties({emptyMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_emptyMessage()()});
             $wnd.isc.ListGrid.addProperties({loadingDataMessage: '${loadingImage}&nbsp;' + messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_loadingDataMessage()()});
@@ -468,6 +477,8 @@ public class I18nUtil {
         }
         
         if($wnd.isc.FormulaBuilder) {
+            $wnd.isc.FormulaBuilder.addProperties({autoHideCheckBoxLabel: messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_autoHideCheckBoxLabel()()});
+            $wnd.isc.FormulaBuilder.addProperties({helpTextIntro: messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_helpTextIntro()()});
             $wnd.isc.FormulaBuilder.addProperties({instructionsTextStart: messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_instructionsTextStart()() + ' ${builderType}'});
             $wnd.isc.FormulaBuilder.addProperties({samplePrompt: '<nobr>' + messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_samplePromptForRecord()() + ' ${title}</nobr><br><nobr>' + messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_samplePromptOutput()() + ' ${output}</nobr>'});
             $wnd.isc.FormulaBuilder.addProperties({builderTypeText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_builderTypeText()()});
@@ -711,9 +722,16 @@ public class I18nUtil {
             $wnd.isc.RelativeDateItem.addProperties({pickerIconPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_pickerIconPrompt()()});
             $wnd.isc.RelativeDateItem.addProperties({presetOptions: {"$today" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_today()(), "$yesterday" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_yesterday()(), "$tomorrow" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_tomorrow()(), "$weekAgo" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_minus_1w()(), "$weekFromNow" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_plus_1w()(), "$monthFromNow" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_plus_1m()()}});
         }
+        if($wnd.isc.PickList) {
+            $wnd.isc.PickList.addProperties({emptyPickListMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::pickList_emptyPickListMessage()()});
+        }
         if($wnd.isc.PickListMenu) {
             $wnd.isc.PickListMenu.addProperties({emptyMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::pickListMenu_emptyMessage()()});
         }
+        if($wnd.isc.Portlet) {
+            $wnd.isc.Portlet.addProperties({closeConfirmationMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::portlet_closeConfirmationMessage()()});
+        }
+        
         if($wnd.isc.Menu) {
             $wnd.isc.Menu.addProperties({emptyMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::menu_emptyMessage()()});
         }
