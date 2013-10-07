@@ -3949,8 +3949,8 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    * @return translated "No items to show"
    */
   @DefaultMessage("No items to show")
-  @Key("emptyPickListMessage")
-  String emptyPickListMessage();
+  @Key("pickList_emptyPickListMessage")
+  String pickList_emptyPickListMessage();
 
   /**
    * Translated "[Empty menu]".
@@ -3969,15 +3969,6 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("No items to display")
   @Key("pickTreeItem_emptyMenuMessage")
   String pickTreeItem_emptyMenuMessage();
-
-  /**
-   * Translated "Close portlet?".
-   * 
-   * @return translated "Close portlet?"
-   */
-  @DefaultMessage("Close portlet?")
-  @Key("portlet_closeConfirmationMessage")
-  String portlet_closeConfirmationMessage();
 
   /**
    * Translated "Print".
