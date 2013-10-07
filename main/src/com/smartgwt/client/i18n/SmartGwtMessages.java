@@ -2645,6 +2645,51 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String iMenuButton_title();
 
   /**
+   * Translated "Start at".
+   * 
+   * @return translated "Start at"
+   */
+  @DefaultMessage("Start at")
+  @Key("listPropertiesPane_startNumberFieldTitle")
+  String listPropertiesPane_startNumberFieldTitle();
+
+  /**
+   * Translated "List Properties".
+   * 
+   * @return translated "List Properties"
+   */
+  @DefaultMessage("List Properties")
+  @Key("listPropertiesDialog_title")
+  String listPropertiesDialog_title();
+
+  /**
+   * Translated "Apply".
+   * 
+   * @return translated "Apply"
+   */
+  @DefaultMessage("Apply")
+  @Key("listPropertiesDialog_applyButtonTitle")
+  String listPropertiesDialog_applyButtonTitle();
+
+  /**
+   * Translated "Cancel".
+   * 
+   * @return translated "Cancel"
+   */
+  @DefaultMessage("Cancel")
+  @Key("listPropertiesDialog_cancelButtonTitle")
+  String listPropertiesDialog_cancelButtonTitle();
+
+  /**
+   * Translated "Close portlet?".
+   * 
+   * @return translated "Close portlet?"
+   */
+  @DefaultMessage("Close portlet?")
+  @Key("portlet_closeConfirmationMessage")
+  String portlet_closeConfirmationMessage();
+
+  /**
    * Translated "Auto Fit All Columns".
    * 
    * @return translated "Auto Fit All Columns"
@@ -3898,6 +3943,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("pickListMenu_emptyMessage")
   String pickListMenu_emptyMessage();
   
+  /**
+   * Translated "No items to show".
+   * 
+   * @return translated "No items to show"
+   */
+  @DefaultMessage("No items to show")
+  @Key("emptyPickListMessage")
+  String emptyPickListMessage();
+
   /**
    * Translated "[Empty menu]".
    * 
