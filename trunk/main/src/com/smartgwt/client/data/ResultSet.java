@@ -619,6 +619,25 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
         return getAttributeAsBoolean("updatePartialCache");
     }
 
+    /**
+     * If true, records requested only for visible area.
+     *
+     * @param alwaysRequestVisibleRows alwaysRequestVisibleRows Default value is false
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setAlwaysRequestVisibleRows(Boolean alwaysRequestVisibleRows) throws IllegalStateException {
+        setAttribute("alwaysRequestVisibleRows", alwaysRequestVisibleRows, false);
+    }
+
+    /**
+     * If true, records requested only for visible area.
+     *
+     * @return Boolean
+     */
+    public Boolean getAlwaysRequestVisibleRows()  {
+        return getAttributeAsBoolean("alwaysRequestVisibleRows");
+    }
+
     // ********************* Methods ***********************
 
     /**
