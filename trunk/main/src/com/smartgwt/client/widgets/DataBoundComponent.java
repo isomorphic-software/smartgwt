@@ -1090,33 +1090,7 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
      * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
      */
-    void exportData(DSRequest requestProperties);
-    
-   /**
-    * Exports this component's data with client-side formatters applied, so is suitable for 
-    * direct display to users.  This feature requires the SmartClient server, but does not 
-    * rely on any server-side DataSources.
-    * <P>To export unformatted data from this component's dataSource, see 
-    * {@link com.smartgwt.client.DataBoundComponent#exportData exportData}
-    * which does not include client-side formatters, 
-    * but relies on both the SmartClient server and server-side DataSources.
-    * @see com.smartgwt.client.data.DataSource#exportClientData
-    */
-    void exportClientData();
-
-   /**
-    * Exports this component's data with client-side formatters applied, so is suitable for 
-    * direct display to users.  This feature requires the SmartClient server, but does not 
-    * rely on any server-side DataSources.
-    * <P>To export unformatted data from this component's dataSource, see 
-    * {@link com.smartgwt.client.DataBoundComponent#exportData exportData}
-    * which does not include client-side formatters, 
-    * but relies on both the SmartClient server and server-side DataSources.
-    * @param requestProperties Request properties for the export
-    * @see com.smartgwt.client.data.DataSource#exportClientData
-    */
-    void exportClientData(DSRequest requestProperties);
-    
+    void exportData(DSRequest requestProperties);    
 
     /**
      * Shows a HiliteEditor interface allowing end-users to edit the data-hilites currently in use by this DataBoundComponent.
