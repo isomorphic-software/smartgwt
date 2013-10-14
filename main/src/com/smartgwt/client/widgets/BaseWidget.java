@@ -352,8 +352,11 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     protected void internalSetID(JavaScriptObject jsObj) {
         if (this.id != null) {
             IDManager.unregisterID(this, this.id);
-        }        
+        }
         String  id   = JSOHelper.getAttribute         (jsObj,      "ID");
+        if (this.id != null && !this.id.equals(id) && getAttributeAsBoolean(SC.AUTOID)) {
+            SC.releaseID(getClass().getName(), this.id);
+        }
         boolean auto = JSOHelper.getAttributeAsBoolean(jsObj, SC.AUTOID);
         IDManager.registerID(this, id, true);
         if (id != null) this.id = id;
@@ -372,6 +375,11 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             IDManager.unregisterID(this, this.id);
         }
         IDManager.registerID(this, id, false);
+        // If we previously auto-assigned an ID, release the ID back to SmartClient if the new
+        // ID is different.
+        if (this.id != null && !this.id.equals(id) && getAttributeAsBoolean(SC.AUTOID)) {
+            SC.releaseID(getClass().getName(), this.id);
+        }
         this.id = id;
         setAttribute(     "ID",           id, false);
         setAttribute(SC.AUTOID, autoAssigned, false);
