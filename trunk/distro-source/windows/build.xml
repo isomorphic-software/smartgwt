@@ -28,6 +28,8 @@
 			<zipfileset dir="${project.build}" prefix="${project.distname}" />
 			<zipfileset dir="src" prefix="${project.distname}" />
 
+            <zipfileset dir="${smartgwt.build.out}/maven" prefix="${project.distname}/maven" />
+
 			<zipfileset dir="${smartgwt.root}/samples" prefix="${project.distname}">
 				<include name="helloworld-1.5"/>
 				<include name="helloworld-1.5/**"/>
