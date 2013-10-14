@@ -234,6 +234,20 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
 
     /**
      * Find the index of the first Record where property == value in the object.
+     * <P> Note: JavaScript has no long type, so the long value becomes a JavaScript Number, which has a lesser range than Java long.
+     * The range for integer numbers in Javascript is [-9007199254740992,9007199254740992] or [-Math.pow(2,53),Math.pow(2,53)].
+     * @param propertyName property to match
+     * @param value value to compare against (if propertyName is a string)
+     *
+     * @return index of the first matching Record or -1 if not found
+     */
+    public native int findIndex(String propertyName, Long value) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        return self.findIndex(propertyName, value);
+    }-*/;
+
+    /**
+     * Find the index of the first Record where property == value in the object.
      * @param propertyName property to match
      * @param value value to compare against (if propertyName is a string)
      *
@@ -322,6 +336,22 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
 
     /**
      * Like {@link RecordList#findIndex}, but inspects a range from startIndex to endIndex.
+     * <P> Note: JavaScript has no long type, so the long value becomes a JavaScript Number, which has a lesser range than Java long.
+     * The range for integer numbers in Javascript is [-9007199254740992,9007199254740992] or [-Math.pow(2,53),Math.pow(2,53)].
+     * @param startIndex first index to consider
+     * @param propertyName property to match
+     * @param value value to compare against (if propertyName is a string)
+     * @param endIndex last index to consider
+     *
+     * @return index of the first matching Record or -1 if not found
+     */
+    public native int findNextIndex(int startIndex, String propertyName, Long value, int endIndex) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        return self.findNextIndex(startIndex, propertyName, value, endIndex);
+    }-*/;
+
+    /**
+     * Like {@link RecordList#findIndex}, but inspects a range from startIndex to endIndex.
      * @param startIndex first index to consider
      * @param propertyName property to match
      * @param value value to compare against (if propertyName is a string)
@@ -383,6 +413,21 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
      * @return first matching object or null if not found
      */
     public native Record find(String propertyName, int value) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var recordJS = self.find(propertyName, value);
+        return recordJS == null || recordJS === undefined ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(recordJS);
+    }-*/;
+
+    /**
+     * Like {@link RecordList#findIndex}, but returns the object itself instead of its index.
+     * <P> Note: JavaScript has no long type, so the long value becomes a JavaScript Number, which has a lesser range than Java long.
+     * The range for integer numbers in Javascript is [-9007199254740992,9007199254740992] or [-Math.pow(2,53),Math.pow(2,53)].
+     * @param propertyName property to match
+     * @param value value to compare against (if propertyName is a string)
+     *
+     * @return first matching object or null if not found
+     */
+    public native Record find(String propertyName, Long value) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var recordJS = self.find(propertyName, value);
         return recordJS == null || recordJS === undefined ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(recordJS);
@@ -463,6 +508,22 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
      * @return all matching Objects or null if none found
      */
     public native Record[] findAll(String propertyName, int value) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var recordsJS = self.findAll(propertyName, value);
+        return recordsJS == null || recordsJS === undefined ? null : @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(recordsJS);
+    }-*/;
+
+    /**
+     * Find all objects where property == value in the object
+     * <P> Note: JavaScript has no long type, so the long value becomes a JavaScript Number, which has a lesser range than Java long.
+     * The range for integer numbers in Javascript is [-9007199254740992,9007199254740992] or [-Math.pow(2,53),Math.pow(2,53)].
+     *
+     * @param propertyName property to match
+     * @param value value to compare against (if propertyName is a string)
+     *
+     * @return all matching Objects or null if none found
+     */
+    public native Record[] findAll(String propertyName, Long value) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var recordsJS = self.findAll(propertyName, value);
         return recordsJS == null || recordsJS === undefined ? null : @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(recordsJS);
