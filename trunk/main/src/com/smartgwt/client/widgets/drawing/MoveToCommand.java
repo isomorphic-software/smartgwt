@@ -18,7 +18,7 @@ public class MoveToCommand extends DrawShapeCommand {
     }
 
     private void internalSetArgs(Point p) {
-        super.setArgs(p.getAsJSArray());
+        super.setArgs(p.getJsObj());
     }
 
     /**
