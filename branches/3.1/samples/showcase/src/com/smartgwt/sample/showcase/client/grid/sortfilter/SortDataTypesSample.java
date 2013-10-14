@@ -36,6 +36,7 @@ public class SortDataTypesSample extends ShowcasePanel {
     public Canvas getViewPanel() {
 
         final ListGrid countryGrid = new ListGrid();
+        countryGrid.setID("countryList");
         countryGrid.setWidth(500);
         countryGrid.setHeight(224);
         countryGrid.setShowAllRecords(true);
