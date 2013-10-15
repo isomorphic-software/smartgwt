@@ -1770,42 +1770,6 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String fieldPickerField_cellAlignTitle();
 
   /**
-   * Translated "Add Custom Fields".
-   * 
-   * @return translated "Add Custom Fields"
-   */
-  @DefaultMessage("Add Custom Fields")
-  @Key("fieldPickerField_addCustomFieldsButtonTitle")
-  String fieldPickerField_addCustomFieldsButtonTitle();
-
-  /**
-   * Translated "Name".
-   * 
-   * @return translated "Name"
-   */
-  @DefaultMessage("Name")
-  @Key("fieldPickerField_availableTitleTitle")
-  String fieldPickerField_availableTitleTitle();
-
-  /**
-   * Translated "Field Title".
-   * 
-   * @return translated "Field Title"
-   */
-  @DefaultMessage("Field Title")
-  @Key("fieldPickerField_currentTitleTitle")
-  String fieldPickerField_currentTitleTitle();
-  
-  /**
-   * Translated "Sample Value".
-   * 
-   * @return translated "Sample Value"
-   */
-  @DefaultMessage("Sample Value")
-  @Key("fieldPickerField_sampleValueTitle")
-  String fieldPickerField_sampleValueTitle();
-  
-  /**
    * Translated "Highlights...".
    * 
    * @return translated "Highlights..."
@@ -1877,6 +1841,42 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("fieldPicker_cancelButtonTitle")
   String fieldPicker_cancelButtonTitle();
 
+  /**
+   * Translated "Add Custom Fields".
+   * 
+   * @return translated "Add Custom Fields"
+   */
+  @DefaultMessage("Add Custom Fields")
+  @Key("fieldPicker_addCustomFieldsButtonTitle")
+  String fieldPicker_addCustomFieldsButtonTitle();
+
+  /**
+   * Translated "Name".
+   * 
+   * @return translated "Name"
+   */
+  @DefaultMessage("Name")
+  @Key("fieldPicker_availableTitleTitle")
+  String fieldPicker_availableTitleTitle();
+
+  /**
+   * Translated "Field Title".
+   * 
+   * @return translated "Field Title"
+   */
+  @DefaultMessage("Field Title")
+  @Key("fieldPicker_currentTitleTitle")
+  String fieldPicker_currentTitleTitle();
+  
+  /**
+   * Translated "Sample Value".
+   * 
+   * @return translated "Sample Value"
+   */
+  @DefaultMessage("Sample Value")
+  @Key("fieldPicker_sampleValueTitle")
+  String fieldPicker_sampleValueTitle();
+  
   /**
    * Translated "Field Picker".
    * 

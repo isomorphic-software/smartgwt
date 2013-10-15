@@ -588,16 +588,12 @@ public class I18nUtil {
         }
 
         if($wnd.isc.FieldPickerField) {
-            $wnd.isc.FieldPickerField.addProperties({frozenTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPickerField_frozenTitle()()});
-            $wnd.isc.FieldPickerField.addProperties({precisionTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPickerField_precisionTitle()()});
-            $wnd.isc.FieldPickerField.addProperties({decimalPrecisionTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPickerField_decimalPrecisionTitle()()});
-            $wnd.isc.FieldPickerField.addProperties({decimalPadTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPickerField_decimalPadTitle()()});
-            $wnd.isc.FieldPickerField.addProperties({alignTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPickerField_alignTitle()()});
-            $wnd.isc.FieldPickerField.addProperties({cellAlignTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPickerField_cellAlignTitle()()});
-            $wnd.isc.FieldPickerField.addProperties({addCustomFieldsButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPickerField_addCustomFieldsButtonTitle()()});
-            $wnd.isc.FieldPickerField.addProperties({availableTitleTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPickerField_availableTitleTitle()()});
-            $wnd.isc.FieldPickerField.addProperties({currentTitleTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPickerField_currentTitleTitle()()});
-            $wnd.isc.FieldPickerField.addProperties({sampleValueTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPickerField_sampleValueTitle()()});
+            $wnd.isc.FieldPickerField.addClassProperties({frozenTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPickerField_frozenTitle()()});
+            $wnd.isc.FieldPickerField.addClassProperties({precisionTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPickerField_precisionTitle()()});
+            $wnd.isc.FieldPickerField.addClassProperties({decimalPrecisionTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPickerField_decimalPrecisionTitle()()});
+            $wnd.isc.FieldPickerField.addClassProperties({decimalPadTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPickerField_decimalPadTitle()()});
+            $wnd.isc.FieldPickerField.addClassProperties({alignTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPickerField_alignTitle()()});
+            $wnd.isc.FieldPickerField.addClassProperties({cellAlignTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPickerField_cellAlignTitle()()});
         }
 
         if($wnd.isc.FieldPicker) {
@@ -609,6 +605,10 @@ public class I18nUtil {
             $wnd.isc.FieldPicker.addProperties({instructions: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPicker_instructions()()});
             $wnd.isc.FieldPicker.addProperties({saveAndExitButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPicker_saveAndExitButtonTitle()()});
             $wnd.isc.FieldPicker.addProperties({cancelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPicker_cancelButtonTitle()()});
+            $wnd.isc.FieldPicker.addProperties({addCustomFieldsButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPicker_addCustomFieldsButtonTitle()()});
+            $wnd.isc.FieldPicker.addProperties({availableTitleTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPicker_availableTitleTitle()()});
+            $wnd.isc.FieldPicker.addProperties({currentTitleTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPicker_currentTitleTitle()()});
+            $wnd.isc.FieldPicker.addProperties({sampleValueTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPicker_sampleValueTitle()()});
         }
 
         if($wnd.isc.FieldPickerWindow) {
