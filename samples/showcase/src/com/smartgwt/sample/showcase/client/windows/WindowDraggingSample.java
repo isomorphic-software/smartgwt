@@ -35,13 +35,13 @@ public class WindowDraggingSample extends ShowcasePanel {
                         + "<b>Severity 2</b> - Major problem<br/>An important function of the system is not available in production, and the user's operations are restricted.<br/><br/>"
                         + "<b>Severity 3</b> - Minor problem<br/>Inability to use a function of the system occurs, but it does not seriously affect the user's operations.");
         label.setHeight100();
-        label.setPadding(5);
+        label.setPadding(10);
+        label.setDefaultWidth(300);
         label.setValign(VerticalAlignment.TOP);
 
         Window window = new Window();
-        window.setTitle("Dragging a window");
-        window.setWidth(300);
-        window.setHeight(230);
+        window.setTitle("Severity Levels");
+        window.setAutoSize(true);
         window.setCanDragReposition(true);
         window.setCanDragResize(true);
         window.addItem(label);
