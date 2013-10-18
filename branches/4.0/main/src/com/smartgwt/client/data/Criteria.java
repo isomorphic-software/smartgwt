@@ -97,6 +97,28 @@ public class Criteria extends DataClass {
         JSOHelper.setAttribute(jsObj, field, value);
     }
 
+    public void addCriteria(String field, Object value) {
+        if (value instanceof String) {
+            addCriteria(field, (String) value);
+        } else if (value instanceof Integer) {
+            addCriteria(field, (Integer) value);
+        } else if (value instanceof Boolean) {
+            addCriteria(field, (Boolean) value);
+        } else if (value instanceof Date) {
+            addCriteria(field, (Date) value);
+        } else if (value instanceof Float) {
+            addCriteria(field, (Float) value);
+        } else if (value instanceof Long) {
+            addCriteria(field, (Long) value);
+        } else if (value instanceof String[]) {
+            addCriteria(field, (String[]) value);
+        } else if (value instanceof Integer[]) {
+            addCriteria(field, (Integer[]) value);
+        } else if (value instanceof Double[]) {
+            addCriteria(field, (Double[]) value);
+        }
+    }
+
     /**
      * Adds the criteria from the passed criteria object.
      *
