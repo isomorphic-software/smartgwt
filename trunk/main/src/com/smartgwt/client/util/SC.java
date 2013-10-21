@@ -48,6 +48,10 @@ public class SC {
         simpleName = simpleName.replace("$", "_");
         return $wnd.isc.ClassFactory.releaseGlobalID(simpleName, id);
     }-*/;
+
+    public static native boolean keepGlobals() /*-{
+        return $wnd.isc.keepGlobals;                                             
+    }-*/;
     
     public static native String getHome() /*-{
         return $wnd.isomorphicDir;
