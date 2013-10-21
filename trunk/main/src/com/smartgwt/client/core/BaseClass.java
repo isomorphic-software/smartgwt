@@ -159,7 +159,9 @@ public abstract class BaseClass {
     protected JavaScriptObject createJsObj() {
         if (id == null) internalSetID(SC.generateID(getClass().getName()), true);
         JSOHelper.setObjectAttribute(config, SC.REF, this);
-        return create();
+        JavaScriptObject jsObj = create();
+        if (SC.keepGlobals()) internalSetID(jsObj);
+        return jsObj;
     }
 
     public JavaScriptObject getOrCreateJsObj() {
