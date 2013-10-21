@@ -123,6 +123,8 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             setConfig(jsObj);
             return;
         }
+        JSOHelper.setObjectAttribute(getConfig(), SC.REF, this);
+        JSOHelper.setObjectAttribute(getConfig(), SC.MODULE, BeanFactory.getSGWTModule());
         onBind();
     }
 
