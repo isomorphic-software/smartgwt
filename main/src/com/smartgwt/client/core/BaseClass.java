@@ -56,6 +56,8 @@ public abstract class BaseClass {
             setConfig(jsObj);
             return;
         }
+        JSOHelper.setObjectAttribute(getConfig(), SC.REF, this);
+        JSOHelper.setObjectAttribute(getConfig(), SC.MODULE, BeanFactory.getSGWTModule());
         onBind();
     }
 
