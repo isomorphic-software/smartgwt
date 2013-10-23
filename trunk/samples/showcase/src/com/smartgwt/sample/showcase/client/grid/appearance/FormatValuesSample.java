@@ -19,8 +19,7 @@ import java.util.Date;
 public class FormatValuesSample extends ShowcasePanel {
     private static final String DESCRIPTION = "This grid applies custom formatters to the \"Nationhood\" and \"Area\" columns. " + 
     		"Custom formatters are written in Java; they are useful when you have unusual formatting requirements that cannot be " +
-    		"achieved with the built-in declarative formatting features (though in fact both of these examples could have been " +
-    		"achieved without the need for custom formatters).<p>" +
+    		"achieved with the built-in declarative formatting features (as is the case with the \"Nationhood\" formatting in this sample).<p>" +
     		"Click on the \"Nationhood\" or \"Area\" column headers to sort the underlying data values.";
 
     public static class Factory implements PanelFactory {
@@ -57,15 +56,15 @@ public class FormatValuesSample extends ShowcasePanel {
         ListGridField nameField = new ListGridField("countryName", "Country");
         ListGridField nationHoodField = new ListGridField("independence", "Nationhood");
         nationHoodField.setType(ListGridFieldType.DATE);
+        nationHoodField.setWidth("25%");
 
-        final DateTimeFormat dateFormatter = DateTimeFormat.getFormat("MMM d, yyyy");
         nationHoodField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
                 if (value != null) {
 
                     try {
                         Date dateValue = (Date) value;
-                        return dateFormatter.format(dateValue);
+                        return (new Date().getYear() - dateValue.getYear()) + " years ago";
                     } catch (Exception e) {
                         return value.toString();
                     }
@@ -80,15 +79,7 @@ public class FormatValuesSample extends ShowcasePanel {
         areaField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
                 if(value == null) return null;
-
-                String val = null;
-                try {
-                    NumberFormat nf = NumberFormat.getFormat("0,000");
-                    val = nf.format(((Number) value).longValue());
-                } catch (Exception e) {
-                    return value.toString();
-                }
-                return val + "km&sup2";
+                return value + "km&sup2";
             }
         });
 
