@@ -50,7 +50,7 @@ public class SC {
     }-*/;
 
     public static native boolean keepGlobals() /*-{
-        return $wnd.isc.keepGlobals;                                             
+        return !!$wnd.isc.keepGlobals;                                             
     }-*/;
     
     public static native String getHome() /*-{
