@@ -57,6 +57,7 @@ public class FormatValuesBuiltinSample extends ShowcasePanel {
         ListGridField nationHoodField = new ListGridField("independence", "Nationhood");
         nationHoodField.setType(ListGridFieldType.DATE);
         nationHoodField.setFormat("MMM d, yyyy");
+        nationHoodField.setWidth("25%");
         
         ListGridField areaField = new ListGridField("area", "Area (km&sup2;)");
         areaField.setType(ListGridFieldType.INTEGER);
