@@ -286,6 +286,10 @@ public class I18nUtil {
             $wnd.isc.DynamicForm.addProperties({formSubmitFailedWarning: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dynamicForm_formSubmitFailedWarning()()});
         }
 
+        if($wnd.isc.FormItem) {
+            $wnd.isc.FormItem.addProperties({loadingDisplayValue: messages.@com.smartgwt.client.i18n.SmartGwtMessages::formItem_loadingDisplayValue()()});
+        }
+
         if($wnd.isc.SelectItem) {
             $wnd.isc.SelectItem.addProperties({otherTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::selectOtherItem_otherTitle()()});
             $wnd.isc.SelectItem.addProperties({selectOtherPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::selectOtherItem_selectOtherPrompt()() + ' ${item.getTitle()} :'});

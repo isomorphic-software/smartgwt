@@ -188,6 +188,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String calendar_weekPrefix();
 
   /**
+   * Translated "Loading...".
+   * 
+   * @return translated "Loading"
+   */
+  @DefaultMessage("Loading...")
+  @Key("formItem_loadingDisplayValue")
+  String formItem_loadingDisplayValue();
+
+  /**
    * Translated "Click to select a new color".
    * 
    * @return translated "Click to select a new color"
