@@ -17,18 +17,14 @@
 package com.smartgwt.client.bean.types;
 
 import com.google.gwt.core.client.JavaScriptObject;
-
 import com.smartgwt.client.bean.BeanValueType;
-import com.smartgwt.client.bean.BeanValueType.Convertability;
-import com.smartgwt.client.bean.types.OtherValueType;
 
 // Deals with ValueTypes that literally take JavaScriptObjects as parameters
 // (as opposed to JsoWrapperValueType, which deals with ValueTypes that
 // can be constructed via JavaScriptObjects).
-public class JsoValueType<ValueType extends JavaScriptObject> 
-       extends OtherValueType<ValueType> {
+public class JsoValueType<ValueType extends JavaScriptObject> extends OtherValueType<ValueType> {
 
-    public static <T extends JavaScriptObject> void registerValueType (Class<T> klass) { 
+    public static <T extends JavaScriptObject> void registerJsoValueType (Class<T> klass) { 
         // We check first to see if it's already registered, to avoid
         // constructing the singleton over and over again. This will
         // be called multiple times as various BeanFactories initialize
@@ -37,7 +33,7 @@ public class JsoValueType<ValueType extends JavaScriptObject>
             BeanValueType.registerBeanValueType(new JsoValueType<T>(klass));
         }
     }
-    
+
     protected JsoValueType (Class<ValueType> valueType) {
         super(valueType);
     }
