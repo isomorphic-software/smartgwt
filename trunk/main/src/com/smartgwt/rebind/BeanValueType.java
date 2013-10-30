@@ -16,38 +16,54 @@
 
 package com.smartgwt.rebind;
 
-import com.google.gwt.core.ext.typeinfo.JType;
-import com.google.gwt.core.ext.typeinfo.JMethod;
-import com.google.gwt.core.ext.typeinfo.JClassType;
-import com.google.gwt.core.ext.typeinfo.JPrimitiveType;
-import com.google.gwt.core.ext.typeinfo.JArrayType;
-import com.google.gwt.core.ext.typeinfo.JEnumType;
-import com.google.gwt.core.ext.typeinfo.JConstructor;
-import com.google.gwt.core.ext.typeinfo.TypeOracle;
-
-import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.ext.Generator;
-import com.google.gwt.core.ext.GeneratorContext;
-import com.google.gwt.core.ext.TreeLogger;
-import com.google.gwt.core.ext.UnableToCompleteException;
-import com.google.gwt.user.rebind.ClassSourceFileComposerFactory;
-import com.google.gwt.user.rebind.SourceWriter;
-
-import com.smartgwt.rebind.BeanProperty;
-import com.smartgwt.rebind.BeanMethod;
-
-import com.smartgwt.client.bean.types.*;
-import com.smartgwt.client.widgets.BaseWidget;
-import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.data.DataSource;
-import com.smartgwt.client.types.ValueEnum;
-
-import java.lang.reflect.Method;
 import java.io.PrintWriter;
-import java.util.Map;
-import java.util.HashMap;
 import java.util.Arrays;
 import java.util.Date;
+
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.ext.GeneratorContext;
+import com.google.gwt.core.ext.TreeLogger;
+import com.google.gwt.core.ext.typeinfo.JArrayType;
+import com.google.gwt.core.ext.typeinfo.JClassType;
+import com.google.gwt.core.ext.typeinfo.JConstructor;
+import com.google.gwt.core.ext.typeinfo.JEnumType;
+import com.google.gwt.core.ext.typeinfo.JMethod;
+import com.google.gwt.core.ext.typeinfo.JPrimitiveType;
+import com.google.gwt.core.ext.typeinfo.JType;
+import com.google.gwt.core.ext.typeinfo.TypeOracle;
+import com.google.gwt.user.rebind.ClassSourceFileComposerFactory;
+import com.google.gwt.user.rebind.SourceWriter;
+import com.smartgwt.client.bean.types.BooleanValueType;
+import com.smartgwt.client.bean.types.CanvasBaseValueType;
+import com.smartgwt.client.bean.types.DataSourceBaseValueType;
+import com.smartgwt.client.bean.types.DateValueType;
+import com.smartgwt.client.bean.types.DoubleValueType;
+import com.smartgwt.client.bean.types.EnumValueType;
+import com.smartgwt.client.bean.types.FloatValueType;
+import com.smartgwt.client.bean.types.IntegerValueType;
+import com.smartgwt.client.bean.types.InterfaceArrayValueType;
+import com.smartgwt.client.bean.types.InterfaceValueType;
+import com.smartgwt.client.bean.types.JsoValueType;
+import com.smartgwt.client.bean.types.JsoWrapperValueType;
+import com.smartgwt.client.bean.types.LongValueType;
+import com.smartgwt.client.bean.types.NumberValueType;
+import com.smartgwt.client.bean.types.ObjectArrayValueType;
+import com.smartgwt.client.bean.types.OtherValueType;
+import com.smartgwt.client.bean.types.PBooleanArrayValueType;
+import com.smartgwt.client.bean.types.PBooleanValueType;
+import com.smartgwt.client.bean.types.PDoubleArrayValueType;
+import com.smartgwt.client.bean.types.PDoubleValueType;
+import com.smartgwt.client.bean.types.PFloatArrayValueType;
+import com.smartgwt.client.bean.types.PFloatValueType;
+import com.smartgwt.client.bean.types.PIntegerArrayValueType;
+import com.smartgwt.client.bean.types.PIntegerValueType;
+import com.smartgwt.client.bean.types.PLongArrayValueType;
+import com.smartgwt.client.bean.types.PLongValueType;
+import com.smartgwt.client.bean.types.StringValueType;
+import com.smartgwt.client.bean.types.ValueEnumValueType;
+import com.smartgwt.client.data.DataSource;
+import com.smartgwt.client.types.ValueEnum;
+import com.smartgwt.client.widgets.Canvas;
 
 // Generates a class which represents a type which is used by some bean method
 // as a parameter type. This is mainly so that we can use instanceof for
@@ -350,11 +366,23 @@ public class BeanValueType {
     }
 
     public void writeRegisterValueType (SourceWriter source, TreeLogger logger, GeneratorContext context) {
+        final String registerValueTypeStaticMethodName;
+        if (findType(EnumValueType.class).equals(beanValueType)) {
+            registerValueTypeStaticMethodName = "registerEnumValueType";
+        } else if (findType(JsoValueType.class).equals(beanValueType)) {
+            registerValueTypeStaticMethodName = "registerJsoValueType";
+        } else if (findType(OtherValueType.class).equals(beanValueType)) {
+            registerValueTypeStaticMethodName = "registerOtherValueType";
+        } else if (findType(ValueEnumValueType.class).equals(beanValueType)) {
+            registerValueTypeStaticMethodName = "registerValueEnumValueType";
+        } else {
+            registerValueTypeStaticMethodName = "registerValueType";
+        }
         source.println(
             // We import all the pre-written BeanValueType classes, but we need to 
             // use the qualified name of ones that we are generating ...
             (requiresGeneration ? getQualifiedFactoryName() : getSimpleFactoryName()) + 
-            ".registerValueType(" + 
+            "." + registerValueTypeStaticMethodName + "(" + 
             // Will take either class literal, empty array, or neither (but not both)
             (constructorTakesClassLiteral ? getQualifiedValueTypeLiteral() : "") +
             // Add the empty array parameter if we are an array ...
