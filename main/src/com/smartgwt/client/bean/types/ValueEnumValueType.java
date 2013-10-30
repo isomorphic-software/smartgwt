@@ -18,20 +18,16 @@ package com.smartgwt.client.bean.types;
 
 import com.smartgwt.client.bean.BeanValueType;
 import com.smartgwt.client.types.ValueEnum;
-import java.lang.Enum;
 
-public class ValueEnumValueType<ValueType extends Enum<ValueType> & ValueEnum> 
-       extends EnumValueType<ValueType> {
+public class ValueEnumValueType<ValueType extends Enum<ValueType> & ValueEnum> extends EnumValueType<ValueType> {
 
-    @SuppressWarnings("unchecked")
-    // Should be safe because the generated code will use the appropriate class
-    public static void registerValueType (Class klass) { 
+    public static <T extends Enum<T> & ValueEnum> void registerValueEnumValueType (Class<T> klass) { 
         // We check first to see if it's already registered, to avoid
         // constructing the singleton over and over again. This will
         // be called multiple times as various BeanFactories initialize
         // themselves.
         if (BeanValueType.getBeanValueType(klass) == null) {
-            BeanValueType.registerBeanValueType(new ValueEnumValueType(klass));
+            BeanValueType.registerBeanValueType(new ValueEnumValueType<T>(klass));
         }
     }
 
