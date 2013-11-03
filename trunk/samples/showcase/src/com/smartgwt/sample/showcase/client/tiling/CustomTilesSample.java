@@ -6,7 +6,7 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.tile.TileGrid;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CarData;
+import com.smartgwt.sample.showcase.client.data.AnimalXmlDS;
 
 public class CustomTilesSample extends ShowcasePanel {
 
@@ -32,20 +32,21 @@ public class CustomTilesSample extends ShowcasePanel {
         }
     }
     
-    public interface CarTileMetaFactory extends BeanFactory.MetaFactory {
-        BeanFactory<CarTile> getCarTileFactory();
+    public interface AnimalTileMetaFactory extends BeanFactory.MetaFactory {
+        BeanFactory<AnimalTile> getAnimalTileFactory();
     }
 
     public Canvas getViewPanel() {
-        GWT.create(CarTileMetaFactory.class);
+        GWT.create(AnimalTileMetaFactory.class);
         
         TileGrid tileGrid = new TileGrid();
-        tileGrid.setTileWidth(200);  
+        tileGrid.setTileWidth(250);  
         tileGrid.setTileHeight(150);
         tileGrid.setHeight100();  
         tileGrid.setWidth100();
-        tileGrid.setData(CarData.getRecords());
-        tileGrid.setTileConstructor(CarTile.class.getName());
+        tileGrid.setDataSource(AnimalXmlDS.getInstance());
+        tileGrid.setAutoFetchData(true);
+        tileGrid.setTileConstructor(AnimalTile.class.getName());
         return tileGrid;
     }
 
