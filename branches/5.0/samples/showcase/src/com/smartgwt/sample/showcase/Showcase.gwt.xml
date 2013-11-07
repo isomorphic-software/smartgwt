@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 1.6.4//EN" "http://google-web-toolkit.googlecode.com/svn/tags/1.6.4/distro-source/core/src/gwt-module.dtd">
+
+<module rename-to="showcase">
+
+    <inherits name='com.google.gwt.user.User'/>
+    <inherits name="com.google.gwt.core.Core"/>
+    <inherits name="com.google.gwt.user.History"/>
+
+    <inherits name="com.smartgwt.SmartGwtNoScript"/>
+    <inherits name="com.smartgwt.DrawingNoScript"/>
+    <inherits name="com.smartgwt.tools.SmartGwtTools"/>
+    <inherits name="com.smartclient.theme.enterprise.EnterpriseResources"/>
+    <inherits name="com.smartclient.theme.enterpriseblue.EnterpriseBlueResources"/>
+    <inherits name="com.smartclient.theme.graphite.GraphiteResources"/>
+    <inherits name="com.smartclient.theme.simplicity.SimplicityResources"/>
+
+    <entry-point class='com.smartgwt.sample.showcase.client.Showcase'/>
+
+
+
+  <!-- Internationalization support. Uncomment to enable i18n to these locales -->
+
+<!--
+    <extend-property name="locale" values="en"/>
+    <extend-property name="locale" values="ba"/>
+    <extend-property name="locale" values="cr"/>
+    <extend-property name="locale" values="cs"/>
+    <extend-property name="locale" values="de"/>
+    <extend-property name="locale" values="el"/>
+    <extend-property name="locale" values="es"/>
+    <extend-property name="locale" values="fi"/>
+    <extend-property name="locale" values="fr_FR"/>
+    <extend-property name="locale" values="it"/>
+    <extend-property name="locale" values="nb_NO"/>
+    <extend-property name="locale" values="nl"/>
+    <extend-property name="locale" values="pl"/>
+    <extend-property name="locale" values="pt"/>
+    <extend-property name="locale" values="pt_BR"/>
+    <extend-property name="locale" values="ro_RO"/>
+    <extend-property name="locale" values="ru_RU"/>
+    <extend-property name="locale" values="sk"/>
+    <extend-property name="locale" values="sr"/>
+    <extend-property name="locale" values="sr_Latn"/>
+    <extend-property name="locale" values="zh_CN"/>
+    <extend-property name="locale" values="ja"/>
+    <extend-property name="locale" values="pl_PL"/>
+    <extend-property name="locale" values="id"/>
+    <extend-property name="locale" values="zh_TW"/>
+    <extend-property name="locale" values="hu_HU"/>
+    <extend-property name="locale" values="ar"/>
+    <extend-property name="locale" values="fr"/>
+    <extend-property name="locale" values="uk_AU"/>    
+    <extend-property name="locale" values="sv_SE"/>    
+-->
+
+
+</module>
