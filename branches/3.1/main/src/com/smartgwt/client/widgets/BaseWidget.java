@@ -161,7 +161,12 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         self.__getInnerHTML = self.getInnerHTML;
         self.getInnerHTML = function() {
             var jObj = this.__ref;
-            return jObj.@com.smartgwt.client.widgets.BaseWidget::getInnerHTML()();
+            this.__getInnerHTMLArguments = arguments;
+            try {
+                return jObj.@com.smartgwt.client.widgets.BaseWidget::getInnerHTML()();
+            } finally {
+                this.__getInnerHTMLArguments = null;
+            }
         };
         
         if (self.shouldRedrawOnResize == $wnd.isc.Canvas.getPrototype().shouldRedrawOnResize) {
@@ -226,7 +231,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
      */
     public native String getInnerHTML() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.__getInnerHTML();
+        return self.__getInnerHTML.apply(self, self.__getInnerHTMLArguments);
     }-*/;
 
     /**
