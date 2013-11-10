@@ -362,7 +362,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         return id;
     }
 
-    protected void internalSetID(JavaScriptObject jsObj) {
+    protected final void internalSetID(JavaScriptObject jsObj) {
         if (this.id != null) {
             IDManager.unregisterID(this, this.id);
         }
@@ -377,7 +377,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         JSOHelper.setAttribute(config, SC.AUTOID, auto);
     }
 
-    protected void internalSetID(String id, boolean autoAssigned) {
+    protected final void internalSetID(String id, boolean autoAssigned) {
         // prevent transaction from being started if it cannot complete successfully
         if (isCreated()) {
             error("Attempt to call internalSetID to change id from " + this.id +
