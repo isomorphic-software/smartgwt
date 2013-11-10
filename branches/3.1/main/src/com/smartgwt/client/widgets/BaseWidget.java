@@ -19,19 +19,16 @@ package com.smartgwt.client.widgets;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.smartgwt.client.core.BaseClass;
 import com.smartgwt.client.core.DataClass;
 import com.smartgwt.client.core.Function;
 import com.smartgwt.client.core.NativeObject;
 import com.smartgwt.client.core.LogicalStructure;
-import com.smartgwt.client.types.Positioning;
+import com.smartgwt.client.core.RefDataClass;
 import com.smartgwt.client.types.ValueEnum;
-import com.smartgwt.client.util.DOMUtil;
 import com.smartgwt.client.util.IDManager;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.SC;
@@ -116,7 +113,16 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }
 
     public static BaseWidget getRef(JavaScriptObject jsObj) {
-        return jsObj == null ? null : (BaseWidget) JSOHelper.getAttributeAsObject(jsObj, SC.REF);
+        if (jsObj == null) {
+            return null;
+        } else {
+            final Object ref = JSOHelper.getAttributeAsObject((JavaScriptObject)jsObj, SC.REF);
+            if (ref == null || !(ref instanceof BaseWidget)) {
+                return null;
+            } else {
+                return (BaseWidget)ref;
+            }
+        }
     }
 
     protected void setElement(Element elem) {
