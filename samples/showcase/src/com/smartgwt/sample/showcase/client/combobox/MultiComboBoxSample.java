@@ -7,6 +7,7 @@ import com.smartgwt.client.types.MultiComboBoxLayoutStyle;
 import com.smartgwt.client.types.TitleOrientation;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.form.DynamicForm;
+import com.smartgwt.client.widgets.form.fields.CheckboxItem;
 import com.smartgwt.client.widgets.form.fields.MultiComboBoxItem;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
@@ -58,6 +59,7 @@ public class MultiComboBoxSample extends ShowcasePanel {
     public Canvas getViewPanel() {
 
         final MultiComboBoxLayoutStyle initialLayoutStyle = MultiComboBoxLayoutStyle.FLOW;
+        final boolean initialAddUnknownValues = false;
 
         final MultiComboBoxItem suppliesItem = new MultiComboBoxItem("supplies", "Items");
         suppliesItem.setOptionDataSource(ItemSupplyXmlDS.getInstance());
@@ -69,6 +71,7 @@ public class MultiComboBoxSample extends ShowcasePanel {
 
         final SelectItem layoutStyleSelector = new SelectItem();
         layoutStyleSelector.setTitle("Change layout style");
+        layoutStyleSelector.setColSpan(2);
         layoutStyleSelector.setDefaultValue(initialLayoutStyle.getValue());
         layoutStyleSelector.setValueMap(LAYOUT_STYLES.keySet().toArray(new String[LAYOUT_STYLES.size()]));
         layoutStyleSelector.addChangedHandler(new ChangedHandler() {
@@ -79,12 +82,23 @@ public class MultiComboBoxSample extends ShowcasePanel {
             }
         });
 
+        final CheckboxItem auvCheckbox = new CheckboxItem();
+        auvCheckbox.setTitle("Allow New Values");
+        auvCheckbox.setValue(initialAddUnknownValues);
+        auvCheckbox.addChangedHandler(new ChangedHandler() {
+            @Override
+            public void onChanged(ChangedEvent event) {
+                suppliesItem.setAddUnknownValues((Boolean)event.getValue());
+            }
+        });
+
         final DynamicForm configureForm = new DynamicForm();
         configureForm.setIsGroup(true);
         configureForm.setGroupTitle("Configure Multi ComboBox");
         configureForm.setWidth100();
+        configureForm.setPadding(3);
         configureForm.setTitleOrientation(TitleOrientation.TOP);
-        configureForm.setItems(layoutStyleSelector);
+        configureForm.setItems(layoutStyleSelector, auvCheckbox);
 
         final DynamicForm suppliesForm = new DynamicForm();
         suppliesForm.setWidth100();
