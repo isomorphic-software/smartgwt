@@ -23,7 +23,6 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
-import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 import com.google.gwt.user.client.Element;
@@ -35,7 +34,6 @@ import com.smartgwt.client.core.DataClass;
 import com.smartgwt.client.core.Function;
 import com.smartgwt.client.core.LogicalStructure;
 import com.smartgwt.client.core.NativeObject;
-import com.smartgwt.client.core.RefDataClass;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.util.IDManager;
 import com.smartgwt.client.util.JSOHelper;
@@ -61,18 +59,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     protected JavaScriptObject config = JSOHelper.createObject();
     protected String scClassName;
     protected boolean configOnly;
-
-    //event handling code
-    //can be removed when GWT issue http://code.google.com/p/google-web-toolkit/issues/detail?id=3378
-    //is fixed
-    private HandlerManager manager;
-
-    public void fireEvent(GwtEvent<?> event) {
-        if (manager != null && id != null) {
-            manager.fireEvent(event);
-        }
-    }
-
+    
     /**
      * Adds this handler to the widget.
      *
@@ -81,29 +68,14 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
      * @param handler the handler
      * @return {@link HandlerRegistration} used to remove the handler
      */
-    protected final <H extends EventHandler> HandlerRegistration doAddHandler(
-            final H handler, GwtEvent.Type<H> type) {
-        return ensureHandlers().addHandler(type, handler);
-    }
-
-    /**
-     * Ensures the existence of the handler manager.
-     *
-     * @return the handler manager
-     */
-    HandlerManager ensureHandlers() {
-        return manager == null ? manager = new HandlerManager(this)
-                : manager;
-    }
-
-    HandlerManager getManager() {
-        return manager;
+    protected final <H extends EventHandler> HandlerRegistration doAddHandler(final H handler, GwtEvent.Type<H> type) {
+    	return addHandler(handler, type);
     }
 
     public int getHandlerCount(GwtEvent.Type<?> type) {
-        return manager == null ? 0 : manager.getHandlerCount(type);
-    }
-
+    	return super.getHandlerCount(type);
+    };
+    
     public BaseWidget() {
         /*empty*/
     }
@@ -328,15 +300,29 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }
 
     public HandlerRegistration addDrawHandler(DrawHandler handler) {
+    	setupDrawHandlerEvent();
         return doAddHandler(handler, DrawEvent.getType());
     }
 
-    protected void onDraw() {
+    private native void setupDrawHandlerEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        var drawn = $entry(function(){
+            selfJ.@com.smartgwt.client.widgets.BaseWidget::rendered()();
+        });
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onDraw: drawn});
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onDraw = drawn;
+        }
+    }-*/;
 
+    protected void onDraw() {
     }
 
     protected void onDestroy() {
-
     }
 
     public void setPosition(String position) {
