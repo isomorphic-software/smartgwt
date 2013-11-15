@@ -7,6 +7,9 @@ import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.RecordList;
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.TextImportSettings;
+import com.smartgwt.client.data.DSCallback;
+import com.smartgwt.client.data.DSRequest;
+import com.smartgwt.client.data.DSResponse;
 import com.smartgwt.client.types.Autofit;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.Visibility;
@@ -126,12 +129,14 @@ public class ExcelToGridSample extends ShowcasePanel
         ArrayList<String> fieldNames = new ArrayList<String>();
 
         int[][] cells = this.countryList.getCellSelection().getSelectedCells();
-        if (cells.length > 0) {
-            int firstCol = cells[0][1];
-            ListGridField[] fields = this.countryList.getFields();
-            for (int col = firstCol; col < fields.length; col++) {
-                fieldNames.add(this.countryList.getFieldName(col));
-            }
+        if (cells.length == 0) {
+            countryList.getCellSelection().selectCell(0, 0);
+            cells = countryList.getCellSelection().getSelectedCells();
+        }
+        int firstCol = cells[0][1];
+        ListGridField[] fields = this.countryList.getFields();
+        for (int col = firstCol; col < fields.length; col++) {
+            fieldNames.add(this.countryList.getFieldName(col));
         }
         TextImportSettings settings = new TextImportSettings();
         settings.setFieldList(fieldNames.toArray(new String[0]));
@@ -147,13 +152,20 @@ public class ExcelToGridSample extends ShowcasePanel
     public Canvas getViewPanel() {
         DataSource dataSource = CountryXmlDS.getInstance();
 
-        ListGrid grid = new ListGrid();
+        final ListGrid grid = new ListGrid();
         grid.setCanEdit(true);
         grid.setAutoFetchData(true);
         grid.setCanDragSelect(true);
         grid.setCanSelectCells(true);
         grid.setDataSource(dataSource);
         grid.setAutoFitData(Autofit.VERTICAL);
+        grid.fetchData(null, new DSCallback() {
+            @Override
+            public void execute(DSResponse dsResponse, Object data,
+                    DSRequest dsRequest) {
+                grid.getCellSelection().selectCell(0, 0);
+            }
+        });
         this.countryList = grid;
 
         Button button = new Button();
