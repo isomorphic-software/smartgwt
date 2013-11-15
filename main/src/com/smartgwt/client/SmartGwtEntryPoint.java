@@ -92,6 +92,11 @@ public class SmartGwtEntryPoint implements EntryPoint {
             return true;
         };
 
+        // provide a way to check whether an SC.REF is really a SGWT Tab or some other widget 
+        $wnd.SmartGWT.isTab = function (target) {
+            return @com.smartgwt.client.widgets.tab.Tab::isTab(Ljava/lang/Object;)(target);
+        }
+
         // Helper JSNI method to throw an exception if attempting to convert an unconvertible native Java object to JavaScript
         // This may be called from SmartClient framework code. Useful for the case where a developer has applied a native Java
         // object to a DS transaction's data via 'setAttribute' or similar, and we want to throw a clear exception when
