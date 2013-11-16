@@ -788,3 +788,149 @@ html>body .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopRight {
     text-overflow:ellipsis;    
     color: #336699;
 }
+
+/* ------- Explorer Buttons ------- */
+.explorerButtonBoxR {
+	padding: 5px;
+	padding-top: 15px;
+	padding-bottom: 10px;
+	margin-top: 8px;
+	margin-bottom: 6pt;
+	text-align: center;
+	-moz-box-shadow: 1px 1px 2px 2px #aaa;
+	-webkit-box-shadow: 1px 1px 2px 2px #aaa;
+	box-shadow: 1px 1px 2px 2px #aaa;
+}
+.explorerButtonBoxGradient {
+	background:linear-gradient(to bottom, #e2e2e2 5%, #fdfdfd 100%);
+}
+.explorerButtonBoxB {
+	height: 28pt;
+	width: 65pt;
+	border: 2px solid red;
+	background: grey;
+}
+
+.ERbutton a {
+	margin-top: 8pt;
+	line-height: 40px;
+	height:40px;
+	width: 96pt;
+	font-size: 10.5pt;
+}
+.ERbutton div {
+	line-height: 14pt;
+	margin-bottom: 4pt;
+	font-family: Calibri, Lucida Sans Unicode, Lucida Grande, Trebuchet MS, Helvetica, Arial, sans-serif;
+	font-size: 11pt;
+	color: #666;
+	font-weight: bold;
+}
+.EBbutton a {
+	font-size: 10pt;
+	line-height: 14pt;
+	height: 20px;
+	width: 100pt;
+}				 
+.EBbutton span {
+	font-family: Calibri, Lucida Sans Unicode, Lucida Grande, Trebuchet MS, Helvetica, Arial, sans-serif;
+	font-size: 10pt;
+	color: #666;
+	font-weight: bold;
+}
+.EbuttonPrefix {
+	line-height: 14pt;
+	margin-bottom: 4pt;
+	font-family: Calibri, Lucida Sans Unicode, Lucida Grande, Trebuchet MS, Helvetica, Arial, sans-serif;
+	font-size: 11pt;
+	color: #666;
+	font-weight: bold;
+}
+ 
+.darkgrey_Ebutton a {	
+	background-color:#595959;
+	text-align:center;
+	vertical-align: middle;
+    display:inline-block;
+	color:#ffffff;
+    font-family: Calibri, "Lucida Sans Unicode","Lucida Grande","Trebuchet MS", Helvetica, Arial, sans-serif;
+    text-decoration:none;
+}
+.darkgrey_Ebutton a:hover {
+    background-color:#363636;
+	color: #fff;
+}
+.darkgrey_Ebutton a:active {
+    position:relative;
+    top:1px;
+}
+
+.blue_Ebutton a {
+    background-color:#4b76f7;
+    text-align:center;
+    vertical-align: middle;
+    display:inline-block;
+    color:#ffffff;
+    font-family: Calibri, "Lucida Sans Unicode","Lucida Grande","Trebuchet MS", Helvetica, Arial, sans-serif;
+    text-decoration:none;
+}
+.blue_Ebutton a:hover {
+    background-color:#1a3ea9;
+	color: #fff;
+}
+.blue_Ebutton a:active {
+    position:relative;
+    top:1px;
+}
+.orange_Ebutton a {
+    background-color:#f60;
+    text-align:center;
+    vertical-align: middle;
+    display:inline-block;
+    color:#ffffff;
+    font-family: Calibri, "Lucida Sans Unicode","Lucida Grande","Trebuchet MS", Helvetica, Arial, sans-serif;
+    text-decoration:none;
+}
+.orange_Ebutton a:hover {
+    background-color:#cd5a0d;
+	color: #fff;
+}
+.orange_Ebutton a:active {
+    position:relative;
+    top:1px;
+}
+
+/* ------- Explorer Style ------- */
+.explorerBottomPane {
+	border-top: 1px solid lightgrey;
+}
+
+.explorerSelectedButtonPrefixText {
+	padding-left: 8pt;
+	overflow: hidden;
+}
+
+.explorerWelcomePageTitle {
+	text-align: center;
+	font-size: 14pt;
+    padding:7px;
+	border-bottom: 1px solid #ebebeb;
+}
+
+.explorerWelcomePagePoints {
+	float: left;
+} 
+.explorerWelcomePageBullet {
+	border: 6px solid grey; background-color: grey; color: white;
+	width: 12px;
+	height: 12px;
+	border-radius: 12px;
+	float: left;
+	margin-right: 5pt;
+}
+.explorerWelcomePageNumber {
+	position: relative; top: -5pt; left: 1pt;
+}
+.explorerWelcomeViewDoc {
+	float: left;
+}
