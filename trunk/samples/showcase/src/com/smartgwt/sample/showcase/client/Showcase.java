@@ -348,7 +348,7 @@ private boolean isc_websiteMode = scConstants.websiteMode();
 					"<img src='images/icon_javascript_t.png'" +
 						"style='height: 30pt; float: left; margin-right: 2pt; " +
 					"margin-left: 2pt; margin-top: 10pt;'/>" +
-					"<a style='line-height: 12pt; padding-top: 5pt;' "+
+					"<a target='_top' style='line-height: 12pt; padding-top: 5pt;' "+
 					"href='" + "http://www.smartclient.com/#Welcome" + "' " +
 					">" + "Smart Client<br/>Hands-On Demo" + "</a>");
         smartGwtButtonR.setStyleName("darkgrey_Ebutton ERbutton");
@@ -367,7 +367,7 @@ private boolean isc_websiteMode = scConstants.websiteMode();
         Label contactUsButtonR = new Label("<div>Got questions?" +
         		  "<div style='font-size: 8pt;'>We'd love to hear from you!</div>" +
         		  "</div>" +
-					"<a href='" + "/company/contact.jsp" + "' " +
+					"<a target='_top' href='" + "/company/contact.jsp" + "' " +
 					">" + "Contact Us" + "</a>");
         contactUsButtonR.setStyleName("darkgrey_Ebutton ERbutton");
         contactUsButtonR.setWidth(200);
@@ -383,7 +383,7 @@ private boolean isc_websiteMode = scConstants.websiteMode();
         rightPane.addMember(freeTrialButtonBoxR);
         
         Label freeTrialButtonR = new Label("<div>Try it out for yourself!</div>" +
-        			"<a style='line-height: 12pt; padding-top: 5pt;' " +
+        			"<a target='_top' style='line-height: 12pt; padding-top: 5pt;' " +
         			"href='" + "/product/download.jsp" + "' " +
         			">" + "Free Trial<br/><span style='font-size: 8pt;'>60 days</span>" + "</a>");
         freeTrialButtonR.setStyleName("blue_Ebutton ERbutton");
@@ -400,7 +400,7 @@ private boolean isc_websiteMode = scConstants.websiteMode();
         rightPane.addMember(pricingTrialButtonBoxR);
         
         Label pricingTrialButtonR = new Label("<div>Want your own?</div>" +
-				"<a href='" + "/product/" + "' " +
+				"<a target='_top' href='" + "/product/" + "' " +
 				">" + "Editions & Pricing" + "</a>");
         pricingTrialButtonR.setStyleName("orange_Ebutton ERbutton");
         pricingTrialButtonR.setWidth(200);
@@ -416,7 +416,7 @@ private boolean isc_websiteMode = scConstants.websiteMode();
         rightPane.addMember(learnMoreButtonBoxR);
         
         Label learnMoreButtonR = new Label("<div>Isomorphic has the advantage.</div>" +
-				"<a href='" + "technology/whysmart.jsp" + "' " +
+				"<a target='_top' href='" + "technology/whysmart.jsp" + "' " +
 				">" + "Learn More >" + "</a>");
         learnMoreButtonR.setStyleName("darkgrey_Ebutton ERbutton");
         learnMoreButtonR.setWidth(200);
@@ -427,13 +427,13 @@ private boolean isc_websiteMode = scConstants.websiteMode();
 
         // Bottom Pane buttons
         // Free Trial Call to action button in bottom panel
-        Label freeTrialButtonB = new Label("<a href='/product/download.jsp' " +
+        Label freeTrialButtonB = new Label("<a target='_top' href='/product/download.jsp' " +
     			">Free Trial</a>");
         freeTrialButtonB.setStyleName("blue_Ebutton EBbutton");
         bottomPaneLeft.addMember(freeTrialButtonB);
         
         // Pricing Call to action button in bottom panel
-        Label pricingButtonB = new Label("<a href='/product/' " +
+        Label pricingButtonB = new Label("<a target='_top' href='/product/' " +
 			">Editions & Pricing</a>");
         pricingButtonB.setStyleName("orange_Ebutton EBbutton");
         bottomPaneLeft.addMember(pricingButtonB);
@@ -443,7 +443,7 @@ private boolean isc_websiteMode = scConstants.websiteMode();
         smartGWTButtonPreB.setStyleName("EBbutton");
         smartGWTButtonPreB.setWidth("180pt");
         bottomPaneRight.addMember(smartGWTButtonPreB);
-        Label smartGWTButtonB = new Label("<a style='width: 130pt;' " +
+        Label smartGWTButtonB = new Label("<a target='_top' style='width: 130pt;' " +
 			"href='http://www.smartclient.com/smartgwtee/showcase'" +
 			" >Smart GWT Live Demo</a>");
         smartGWTButtonB.setStyleName("darkgrey_Ebutton EBbutton");
