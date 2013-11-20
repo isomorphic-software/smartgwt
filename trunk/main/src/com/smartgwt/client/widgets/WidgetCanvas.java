@@ -4,12 +4,18 @@ import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.smartgwt.client.types.Overflow;
+import com.smartgwt.client.util.JSOHelper;
 
 public class WidgetCanvas extends Canvas {
     private Widget widget;
 
     public WidgetCanvas(Widget widget) {
         this.widget = widget;
+        
+        // The double-div setup causes the container div with size set to 100% x 100%
+        // to not expand to fill all available space vertically with the HTML5 doctype enabled.
+        JSOHelper.setAttribute(getConfig(), "useClipDiv", false);
+        
         setRedrawOnResize(false);
         setAttribute("_redrawWithParent", false, false);
         setAttribute("_clearWithRemoveChild", true, false);
