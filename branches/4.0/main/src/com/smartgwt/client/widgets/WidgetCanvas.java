@@ -4,6 +4,7 @@ import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.smartgwt.client.types.Overflow;
+import com.smartgwt.client.util.JSOHelper;
 
 public class WidgetCanvas extends Canvas {
     private Widget widget;
