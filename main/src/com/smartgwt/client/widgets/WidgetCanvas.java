@@ -10,6 +10,11 @@ public class WidgetCanvas extends Canvas {
 
     public WidgetCanvas(Widget widget) {
         this.widget = widget;
+
+        // The double-div setup causes the container div with size set to 100% x 100%
+        // to not expand to fill all available space vertically with the HTML5 doctype enabled.
+        JSOHelper.setAttribute(getConfig(), "useClipDiv", false);
+
         setRedrawOnResize(false);
         setAttribute("_redrawWithParent", false, false);
         setAttribute("_clearWithRemoveChild", true, false);
