@@ -800,8 +800,10 @@ html>body .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopRight {
 	-moz-box-shadow: 1px 1px 2px 2px #aaa;
 	-webkit-box-shadow: 1px 1px 2px 2px #aaa;
 	box-shadow: 1px 1px 2px 2px #aaa;
+	border: 1px solid #e2e2e2;
 }
 .explorerButtonBoxGradient {
+	background-color: #e2e2e2;
 	background:linear-gradient(to bottom, #e2e2e2 5%, #fdfdfd 100%);
 }
 .explorerButtonBoxB {
