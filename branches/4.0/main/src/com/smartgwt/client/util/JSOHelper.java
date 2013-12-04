@@ -55,6 +55,16 @@ public class JSOHelper {
     }-*/;
 
     /**
+     * Returns whether the supplied JavaScriptObject is a SmartClient class (a Class object
+     * itself, rather than an instance of a class).
+     * @param the object to evaluate
+     * @return whether object is a Class object
+     */
+    public static native boolean isScClassObject(JavaScriptObject javaScriptObject)/*-{
+        return $wnd.isc.isA.ClassObject(javaScriptObject);
+    }-*/;                                                                                     
+
+    /**
      * Evaluate the passed string as Javascript
      *
      * @param jsFrag the string to evaluate
@@ -1225,6 +1235,12 @@ public class JSOHelper {
             	setAttribute(valueJS, key, innerMapJS);
             } else if (value instanceof List){
                 setAttribute(valueJS, key, JSOHelper.convertToJavaScriptArray(((List)value).toArray(), strict));
+            } else if (value instanceof DataClass) {
+                setAttribute(valueJS, key, ((DataClass) value).getJsObj());
+            } else if (value instanceof BaseClass) {
+                setAttribute(valueJS, key, ((BaseClass) value).getJsObj());
+            } else if (value instanceof BaseWidget) {
+                setAttribute(valueJS, key, ((BaseWidget) value).getOrCreateJsObj());
             } else {
                 assert value != null;
                 if (strict) {

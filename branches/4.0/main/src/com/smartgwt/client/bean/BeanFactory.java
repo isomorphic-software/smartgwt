@@ -488,6 +488,14 @@ public abstract class BeanFactory<BeanClass> {
                                 return obj;
                             }
                         }
+
+                        // Check if it is a Class object, for which
+                        // isc.isAn.Instance() returns false. We can't do any
+                        // meaningful conversion of Class objects, so we just
+                        // pass them through. Note that if a particular method
+                        // wants a String, BeanValueType will convert it later
+                        // to the class name.
+                        if ($wnd.isc.isA.ClassObject(obj)) return obj;
                         
                         if ($wnd.isc.isAn.Object(obj)) {
                             // If it's a String object, use the primitive instead
