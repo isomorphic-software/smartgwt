@@ -17,13 +17,10 @@
 package com.smartgwt.client.bean.types;
 
 import com.smartgwt.client.bean.BeanValueType;
-import com.smartgwt.client.bean.BeanValueType.Convertability;
-import java.lang.Enum;
 
-public class EnumValueType<ValueType extends Enum<ValueType>>
-       extends OtherValueType<ValueType> {
-    
-    public static <T extends Enum<T>> void registerValueType (Class<T> klass) { 
+public class EnumValueType<ValueType extends Enum<ValueType>> extends OtherValueType<ValueType> {
+
+    public static <T extends Enum<T>> void registerEnumValueType (Class<T> klass) { 
         // We check first to see if it's already registered, to avoid
         // constructing the singleton over and over again. This will
         // be called multiple times as various BeanFactories initialize
@@ -36,7 +33,7 @@ public class EnumValueType<ValueType extends Enum<ValueType>>
     protected EnumValueType (Class<ValueType> valueType) {
         super(valueType);
     }
-    
+
     @Override
     public Convertability convertabilityFrom (Object value) {
         if (value instanceof String) return Convertability.SUPPORTED;
