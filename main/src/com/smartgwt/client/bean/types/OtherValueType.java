@@ -17,12 +17,12 @@
 package com.smartgwt.client.bean.types;
 
 import com.smartgwt.client.bean.BeanValueType;
-import com.smartgwt.client.bean.BeanValueType.Convertability;
 
 // Class which deals with arbitrary value types. We take the class literal in
 // the constructor so that we can do some reflection at run-time.
 public class OtherValueType<ValueType> extends BeanValueType<ValueType> {
-    public static <T> void registerValueType (Class<T> klass) { 
+
+    public static <T> void registerOtherValueType (Class<T> klass) { 
         // We check first to see if it's already registered, to avoid
         // constructing the singleton over and over again. This will
         // be called multiple times as various BeanFactories initialize
