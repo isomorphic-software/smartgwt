@@ -62,17 +62,6 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     protected String scClassName;
     protected boolean configOnly;
 
-    //event handling code
-    //can be removed when GWT issue http://code.google.com/p/google-web-toolkit/issues/detail?id=3378
-    //is fixed
-    private HandlerManager manager;
-
-    public void fireEvent(GwtEvent<?> event) {
-        if (manager != null && id != null) {
-            manager.fireEvent(event);
-        }
-    }
-
     /**
      * Adds this handler to the widget.
      *
@@ -81,28 +70,13 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
      * @param handler the handler
      * @return {@link HandlerRegistration} used to remove the handler
      */
-    protected final <H extends EventHandler> HandlerRegistration doAddHandler(
-            final H handler, GwtEvent.Type<H> type) {
-        return ensureHandlers().addHandler(type, handler);
-    }
-
-    /**
-     * Ensures the existence of the handler manager.
-     *
-     * @return the handler manager
-     */
-    HandlerManager ensureHandlers() {
-        return manager == null ? manager = new HandlerManager(this)
-                : manager;
-    }
-
-    HandlerManager getManager() {
-        return manager;
+    protected final <H extends EventHandler> HandlerRegistration doAddHandler(final H handler, GwtEvent.Type<H> type) {
+    	return addHandler(handler, type);
     }
 
     public int getHandlerCount(GwtEvent.Type<?> type) {
-        return manager == null ? 0 : manager.getHandlerCount(type);
-    }
+    	return super.getHandlerCount(type);
+    };
 
     public BaseWidget() {
         /*empty*/
