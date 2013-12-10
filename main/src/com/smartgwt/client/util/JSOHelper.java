@@ -1200,7 +1200,30 @@ public class JSOHelper {
      * @param destination the destination object
      * @param propertiesObject the propertiesObject 
      */
-    public static native void addProperties(JavaScriptObject destination, JavaScriptObject propertiesObject) /*-{
+    public static native void addProperties(JavaScriptObject destination,
+                                            JavaScriptObject propertiesObject)
+    /*-{
         $wnd.isc.addProperties(destination, propertiesObject);
     }-*/;
+
+    /**
+     * Removes non-transferable properties from the supplied object
+     * (e.g. widget ID), performing a copy first if requested.
+     *
+     * @param properties the supplied object to clean
+     * @param copyProperties whether to copy the object first
+     * @return the cleaned properties object
+     */
+    public static native JavaScriptObject cleanProperties(JavaScriptObject properties,
+                                                          boolean copyProperties)
+    /*-{
+        if (properties != null) {
+            if (copyProperties) properties = $wnd.isc.addProperties({}, properties);
+            delete properties.ID;
+            delete properties.__ref;
+            delete properties._autoAssignedID;
+        }
+        return properties;
+    }-*/;
+
 }
