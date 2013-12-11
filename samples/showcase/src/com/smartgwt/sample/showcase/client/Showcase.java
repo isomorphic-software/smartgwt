@@ -439,13 +439,13 @@ private boolean isc_websiteMode = scConstants.websiteMode();
         bottomPaneLeft.addMember(pricingButtonB);
 
         // SmartGWT Call to action button in bottom panel
-        Label smartGWTButtonPreB = new Label("<span>Prefer to write UI in Java?</span>");
+        Label smartGWTButtonPreB = new Label("<span>Prefer to write UI in Javascript?</span>");
         smartGWTButtonPreB.setStyleName("EBbutton");
-        smartGWTButtonPreB.setWidth("180pt");
+        smartGWTButtonPreB.setWidth("220pt");
         bottomPaneRight.addMember(smartGWTButtonPreB);
         Label smartGWTButtonB = new Label("<a target='_top' style='width: 130pt;' " +
 			"href='http://www.smartclient.com/smartgwtee/showcase'" +
-			" >Smart GWT Live Demo</a>");
+			" >SmartClient Live Demo</a>");
         smartGWTButtonB.setStyleName("darkgrey_Ebutton EBbutton");
         bottomPaneRight.addMember(smartGWTButtonB);
 
