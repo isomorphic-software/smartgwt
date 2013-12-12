@@ -444,7 +444,7 @@ private boolean isc_websiteMode = scConstants.websiteMode();
         smartGWTButtonPreB.setWidth("220pt");
         bottomPaneRight.addMember(smartGWTButtonPreB);
         Label smartGWTButtonB = new Label("<a target='_top' style='width: 130pt;' " +
-			"href='http://www.smartclient.com/smartgwtee/showcase'" +
+			"href='http://www.smartclient.com/#Welcome'" +
 			" >SmartClient Live Demo</a>");
         smartGWTButtonB.setStyleName("darkgrey_Ebutton EBbutton");
         bottomPaneRight.addMember(smartGWTButtonB);
