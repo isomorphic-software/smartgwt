@@ -888,7 +888,7 @@ public class JSOHelper {
             else if (val instanceof DataClass) {
                 JSOHelper.setArrayValue(jsArray, i, ((DataClass) val).getJsObj());
             } else if (val instanceof BaseClass) {
-                JSOHelper.setArrayValue(jsArray, i, ((BaseClass) val).getJsObj());
+                JSOHelper.setArrayValue(jsArray, i, ((BaseClass) val).getOrCreateJsObj());
             } else if (val instanceof BaseWidget) {
                 JSOHelper.setArrayValue(jsArray, i, ((BaseWidget) val).getOrCreateJsObj());
             } else if (val instanceof Record) {
