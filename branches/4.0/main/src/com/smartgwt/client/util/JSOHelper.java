@@ -55,6 +55,15 @@ public class JSOHelper {
     }-*/;
 
     /**
+     * Returns whether the supplied JavaScriptObject is a SmartClient class instance.
+     * @param the object to evaluate
+     * @return whether object is an instance
+     */
+    public static native boolean isScClassInstance(JavaScriptObject javaScriptObject)/*-{
+        return $wnd.isc.isAn.Instance(javaScriptObject);
+    }-*/;                                                                                     
+
+    /**
      * Returns whether the supplied JavaScriptObject is a SmartClient class (a Class object
      * itself, rather than an instance of a class).
      * @param the object to evaluate
