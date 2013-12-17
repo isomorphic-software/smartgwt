@@ -20,6 +20,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.bean.BeanValueType;
 import com.smartgwt.client.bean.BeanValueType.Convertability;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.bean.types.JsoWrapperValueType;
 import java.util.Map;
 
@@ -27,6 +28,15 @@ public abstract class CanvasBaseValueType<ValueType extends Canvas> extends JsoW
     @Override
     public Convertability convertabilityFrom (Object value) {
         if (value instanceof String) {
+            return Convertability.SUPPORTED;
+        } else if (value instanceof Map) {
+            // If we get a Map, it's a POJO that was turned into a Map.
+            // If we're supplied a POJO and expect a Canvas, then the POJO
+            // is almost certainly a config object. If you contruct
+            // a BaseWidget with a config object as the JSO, the constructor
+            // does the right thing. So, this should work in all cases
+            // (unlike in JsoWrapperValueType, where we don't support
+            // plain Maps if there is an expected scClassName).
             return Convertability.SUPPORTED;
         }
 
@@ -40,6 +50,20 @@ public abstract class CanvasBaseValueType<ValueType extends Canvas> extends JsoW
         // scClassName programmatically until we instantiante the SmartGWT
         // class, since it's returned from an instance method.
         return "Canvas";
+    }
+    
+    @Override
+    protected boolean canWrapJavaScriptObject (JavaScriptObject value) {
+        if (JSOHelper.isScClassInstance(value)) {
+            // If it is a SmartClient instance, then check it against
+            // the expected scClass (as super does)
+            return super.canWrapJavaScriptObject(value);
+        } else {
+            // If it's not a SmartClient instance, then assume that it is a
+            // config object. We can convert that, since the BaseWidget
+            // constructor which takes JSO's does the right thing.
+            return true;
+        }
     }
 
     private native JavaScriptObject getJSCanvas (String id) /*-{
@@ -55,6 +79,14 @@ public abstract class CanvasBaseValueType<ValueType extends Canvas> extends JsoW
             // for the ID, and then recursively convert that, since we do
             // know how to convert JavaScriptObjects.
             return super.convertFrom(getJSCanvas((String) value));
+        } else if (value instanceof Map) {
+            // If we get a Map, it's a POJO that was turned into a Map.
+            // If we're supplied a POJO and expect a Canvas, then the POJO
+            // is almost certainly a config object. If you contruct
+            // a BaseWidget with a config object as the JSO, the constructor
+            // does the right thing. So, we just convert the Map back
+            // to a JavaScriptObject and convert that.
+            return convertFrom(convertToJavaScriptObject(value));
         } else {            
             return super.convertFrom(value);
         }
