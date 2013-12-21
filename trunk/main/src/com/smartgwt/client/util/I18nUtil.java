@@ -731,7 +731,7 @@ public class I18nUtil {
             $wnd.isc.RelativeDateItem.addProperties({presetOptions: {"$today" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_today()(), "$yesterday" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_yesterday()(), "$tomorrow" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_tomorrow()(), "$weekAgo" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_minus_1w()(), "$weekFromNow" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_plus_1w()(), "$monthFromNow" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_plus_1m()()}});
         }
         if($wnd.isc.PickList) {
-            $wnd.isc.PickList.addProperties({emptyPickListMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::pickList_emptyPickListMessage()()});
+            $wnd.isc.PickList.addInterfaceProperties({emptyPickListMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::pickList_emptyPickListMessage()()});
         }
         if($wnd.isc.PickListMenu) {
             $wnd.isc.PickListMenu.addProperties({emptyMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::pickListMenu_emptyMessage()()});
