@@ -125,6 +125,10 @@ public class Criteria extends DataClass {
      * @param otherCriteria the passed criteria object
      */
     public void addCriteria(Criteria otherCriteria) {
+        if (otherCriteria instanceof AdvancedCriteria || otherCriteria instanceof Criterion) {
+            throw new IllegalArgumentException("Cannot add a Criterion or AdvancedCriteria to simple Criteria. " +
+                            "Use Criteria.asAdvancedCriteria() to convert to AdvancedCriteria");
+        }
         Map otherMap = otherCriteria.getValues();
         Set otherKeys = otherMap.keySet();
         for (Iterator i=otherKeys.iterator(); i.hasNext(); ) {
