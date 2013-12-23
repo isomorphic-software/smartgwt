@@ -104,6 +104,7 @@ import com.smartgwt.sample.showcase.client.effects.looknfeel.ShadowsSample;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.TranslucencySample;
 import com.smartgwt.sample.showcase.client.portalLayout.AddRemoveColumnsSample;
 import com.smartgwt.sample.showcase.client.portalLayout.PortletAnimationSample;
+import com.smartgwt.sample.showcase.client.portalLayout.PortletEventsSample;
 import com.smartgwt.sample.showcase.client.portalLayout.RearrangeSample;
 import com.smartgwt.sample.showcase.client.portalLayout.portletContents.DragComponentsSample;
 import com.smartgwt.sample.showcase.client.portalLayout.portletContents.WindowContentsSample;
@@ -693,6 +694,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Portlet width", "portlet-width-portal-layout", "sizing-portal-layout", null, new PortletWidthSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Portlet resizing", "portlet-resizing-portal-layout", "sizing-portal-layout", null, new PortletResizeSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Portlet Animation", "portlet-animation-portal-layout", "portal-layout-category", null, new PortletAnimationSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Portlet Events", "portlet-events-portal-layout", "portal-layout-category", null, new PortletEventsSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Buttons", "buttons-category", "root", "silk/brick.png", null, true, idSuffix),
                     new ExplorerTreeNode("Appearance", "buttons-category-appearance", "buttons-category", null, new ButtonAppearanceSample.Factory(), true, idSuffix),

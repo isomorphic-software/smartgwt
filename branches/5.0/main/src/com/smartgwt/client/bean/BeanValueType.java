@@ -22,9 +22,25 @@ import com.smartgwt.client.bean.types.*;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.util.JSOHelper;
 
+import com.smartgwt.client.core.BaseClass;
+import com.smartgwt.client.core.DataClass;
+import com.smartgwt.client.core.Function;
+import com.smartgwt.client.core.RefDataClass;
+import com.smartgwt.client.data.Record;
+import com.smartgwt.client.data.RecordList;
+import com.smartgwt.client.data.RelativeDate;
+import com.smartgwt.client.data.ResultSet;
+import com.smartgwt.client.types.ValueEnum;
+import com.smartgwt.client.util.SC;
+import com.smartgwt.client.widgets.BaseWidget;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Date;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 // This is a superclass for generated classes that help deal with the value
 // types used by BeanFactories ... that is, the types of the parameters which
@@ -495,7 +511,182 @@ public abstract class BeanValueType<ValueType> {
      * @return A JavaScriptObject wrapped in a Javascript array
      */
     public static JavaScriptObject wrapInJavascriptArray (Object value) {
-        return JSOHelper.convertToJavaScriptArray(new Object[] {value}, true);
+        return convertToJavaScriptArray(new Object[] {value});
+    }
+
+    // We used to use JSOHelper.convertToJavaScriptArray here, but the
+    // JSOHelper version does some things that don't work well in this context.
+    // For instance, it converts Trees to multi-level Arrays, which is sensible
+    // for many purposes, but we need to be able to round-trip from SC Tree ->
+    // SGWT Tree -> SC Tree.
+    public static JavaScriptObject convertToJavaScriptArray (Object[] array) {
+        JavaScriptObject jsArray = JSOHelper.createJavaScriptArray();
+
+        for (int i = 0; i < array.length; i++) {
+            Object val = array[i];
+
+            if (val == null) {
+                JSOHelper.setArrayValue(jsArray, i, (JavaScriptObject) val);
+            } else if (val instanceof String || val instanceof Character) {
+                JSOHelper.setArrayValue(jsArray, i, val.toString());
+            } else if (val instanceof Number) {
+                if (val instanceof Long) {
+                    JSOHelper.setArrayValue(jsArray, i, ((Long) val).longValue());
+                } else {
+                    JSOHelper.setArrayValue(jsArray, i, JSOHelper.doubleValue((Number) val));
+                }
+            } else if (val instanceof Boolean) {
+                JSOHelper.setArrayValue(jsArray, i, ((Boolean) val).booleanValue());
+            } else if (val instanceof Date) {
+                JSOHelper.setArrayValue(jsArray, i, (Date) val);
+            } else if (val instanceof ValueEnum) {
+                JSOHelper.setArrayValue(jsArray, i, ((ValueEnum) val).getValue());
+            } else if (val instanceof JavaScriptObject) {
+                JSOHelper.setArrayValue(jsArray, i, (JavaScriptObject) val);
+            } else if (val instanceof DataClass) {
+                JSOHelper.setArrayValue(jsArray, i, ((DataClass) val).getJsObj());
+            } else if (val instanceof BaseClass) {
+                JSOHelper.setArrayValue(jsArray, i, ((BaseClass) val).getOrCreateJsObj());
+            } else if (val instanceof BaseWidget) {
+                JSOHelper.setArrayValue(jsArray, i, ((BaseWidget) val).getOrCreateJsObj());
+            } else if (val instanceof Record) {
+                JSOHelper.setArrayValue(jsArray, i, ((Record) val).getJsObj());
+            } else if (val.getClass().isArray()) {
+                if (val instanceof Object[]) {
+                    // Recurse into our own version, rather than JSOHelper
+                    JSOHelper.setArrayValue(jsArray, i, convertToJavaScriptArray((Object[]) val));
+                } else if (val instanceof int[]) {
+                    JSOHelper.setArrayValue(jsArray, i, JSOHelper.convertToJavaScriptArray((int[]) val));
+                } else if (val instanceof double[]) {
+                    JSOHelper.setArrayValue(jsArray, i, JSOHelper.convertToJavaScriptArray((double[]) val));
+                } else if (val instanceof float[]) {
+                    JSOHelper.setArrayValue(jsArray, i, JSOHelper.convertToJavaScriptArray((float[]) val));
+                } else if (val instanceof boolean[]) {
+                    JSOHelper.setArrayValue(jsArray, i, JSOHelper.convertToJavaScriptArray((boolean[]) val));
+                } else if (val instanceof char[]) {
+                    JSOHelper.setArrayValue(jsArray, i, JSOHelper.convertToJavaScriptArray((char[]) val));
+                } else if (val instanceof byte[]) {
+                    JSOHelper.setArrayValue(jsArray, i, JSOHelper.convertToJavaScriptArray((byte[]) val));
+                } else if (val instanceof short[]) {
+                    JSOHelper.setArrayValue(jsArray, i, JSOHelper.convertToJavaScriptArray((short[]) val));
+                } else if (val instanceof long[]) {
+                    JSOHelper.setArrayValue(jsArray, i, JSOHelper.convertToJavaScriptArray((long[]) val));
+                } else {
+                    assert false : val.getClass() + " should not be an array class.";
+                    JSOHelper.setArrayValue(jsArray, i, (JavaScriptObject) null);
+                }
+            } else if (val instanceof List) {
+                // Recurse into our own version of convertToJavaScriptArray (and below)
+                JSOHelper.setArrayValue(jsArray, i, convertToJavaScriptArray(((List<?>) val).toArray()));
+            } else if (val instanceof Iterator) {
+            	List listVal = new ArrayList();
+            	while (((Iterator) val).hasNext()) listVal.add(((Iterator) val).next());            	
+            	JSOHelper.setArrayValue(jsArray, i, convertToJavaScriptArray(((List<?>) listVal).toArray()));
+            } else if (val instanceof Set) {
+                JSOHelper.setArrayValue(jsArray, i, convertToJavaScriptArray(((Set<?>) val).toArray()));
+            } else if (val instanceof Map) {
+                // Use our own version of convertMapToJavascriptObject
+                JSOHelper.setArrayValue(jsArray, i, convertMapToJavascriptObject((Map) val));
+            } else {
+                throw new IllegalArgumentException(
+                    "Could not convert from " + 
+                    (val == null ? "null" : val.getClass().getName()) + 
+                    " to JavaScriptObject"
+                );
+            }
+        }
+
+        return jsArray; 
+    }
+   
+    // We used to rely on JSOHelper.convertMapToJavascriptObject, but we need
+    // to make it use our convertToJavaScriptArray, among other small differences.
+    public static JavaScriptObject convertMapToJavascriptObject (Map valueMap) {
+        if (valueMap == null) return null;
+        JavaScriptObject valueJS = JSOHelper.createObject();
+
+        for (Iterator iterator = valueMap.keySet().iterator(); iterator.hasNext();) {
+            String key = (String) iterator.next();
+
+            if (key == null) {
+                SC.logWarn("JSO::convertMapToJavascriptObject : Map contains null key - dropping this entry.");
+                continue;
+            } else if (key.equals("__ref")) {
+                SC.logWarn("JSO::convertMapToJavascriptObject : skipping __ref in map");
+                continue;
+            } else if (key.equals("__module")) {
+                SC.logWarn("JSO::convertMapToJavascriptObject : skipping __module in map");
+                continue;
+            }
+
+            Object value = valueMap.get(key);
+
+            if (value == null) {
+                JSOHelper.setNullAttribute(valueJS, key);
+            } else if (value instanceof JavaScriptObject) {
+                JSOHelper.setAttribute(valueJS, key, (JavaScriptObject) value);
+            } else if (value instanceof Date) {
+                JSOHelper.setAttribute(valueJS, key, ((Date) value));
+            } else if (value instanceof Number) {
+                JSOHelper.setAttribute(valueJS, key, JSOHelper.doubleValue((Number) value));
+            } else if (value instanceof String || value instanceof Character) {
+                JSOHelper.setAttribute(valueJS, key, value.toString());
+            } else if (value instanceof Boolean) {
+                JSOHelper.setAttribute(valueJS, key, ((Boolean) value).booleanValue());
+            } else if (value.getClass().isArray()) {
+                if (value instanceof Object[]) {
+                    // Use our convertToJavaScriptArray
+                    JSOHelper.setAttribute(valueJS, key, convertToJavaScriptArray((Object[]) value));
+                } else if (value instanceof int[]) {
+                    JSOHelper.setAttribute(valueJS, key, JSOHelper.convertToJavaScriptArray((int[]) value));
+                } else if (value instanceof float[]) {
+                    JSOHelper.setAttribute(valueJS, key, JSOHelper.convertToJavaScriptArray((float[]) value));
+                } else if (value instanceof double[]) {
+                    JSOHelper.setAttribute(valueJS, key, JSOHelper.convertToJavaScriptArray((double[]) value));
+                } else if (value instanceof boolean[]) {
+                    JSOHelper.setAttribute(valueJS, key, JSOHelper.convertToJavaScriptArray((boolean[]) value));
+                } else if (value instanceof char[]) {
+                    JSOHelper.setAttribute(valueJS, key, JSOHelper.convertToJavaScriptArray((char[]) value));
+                } else if (value instanceof byte[]) {
+                    JSOHelper.setAttribute(valueJS, key, JSOHelper.convertToJavaScriptArray((byte[]) value));
+                } else if (value instanceof short[]) {
+                    JSOHelper.setAttribute(valueJS, key, JSOHelper.convertToJavaScriptArray((short[]) value));
+                } else if (value instanceof long[]) {
+                    JSOHelper.setAttribute(valueJS, key, JSOHelper.convertToJavaScriptArray((long[]) value));
+                } else {
+                    assert false : value.getClass() + " should not be an array class.";
+                    JSOHelper.setNullAttribute(valueJS, key);
+                }
+            } else if (value instanceof Map) {
+                // Use our convertMapToJavascriptObject
+            	JavaScriptObject innerMapJS = convertMapToJavascriptObject((Map) value);
+            	JSOHelper.setAttribute(valueJS, key, innerMapJS);
+            } else if (value instanceof List) {
+                JSOHelper.setAttribute(valueJS, key, convertToJavaScriptArray(((List) value).toArray()));
+            } else if (value instanceof Iterator) {
+            	List listVal = new ArrayList();
+            	while (((Iterator) value).hasNext()) listVal.add(((Iterator) value).next());            	
+            	JSOHelper.setAttribute(valueJS, key, convertToJavaScriptArray(((List<?>) listVal).toArray()));
+            } else if (value instanceof Set) {
+                JSOHelper.setAttribute(valueJS, key, convertToJavaScriptArray(((Set<?>) value).toArray()));
+            } else if (value instanceof DataClass) {
+                JSOHelper.setAttribute(valueJS, key, ((DataClass) value).getJsObj());
+            } else if (value instanceof BaseClass) {
+                JSOHelper.setAttribute(valueJS, key, ((BaseClass) value).getOrCreateJsObj());
+            } else if (value instanceof BaseWidget) {
+                JSOHelper.setAttribute(valueJS, key, ((BaseWidget) value).getOrCreateJsObj());
+            } else if (value instanceof Record) {
+                JSOHelper.setAttribute(valueJS, key, ((Record) value).getJsObj());
+            } else {
+                throw new IllegalArgumentException(
+                    "Could not convert from " + 
+                    (value == null ? "null" : value.getClass().getName()) + 
+                    " to JavaScriptObject"
+                );
+            }
+        }
+
+        return valueJS;
     }
 
     /**

@@ -161,6 +161,7 @@ public abstract class BaseClass {
     protected JavaScriptObject createJsObj() {
         if (id == null) internalSetID(SC.generateID(getClass().getName()), true);
         JSOHelper.setObjectAttribute(config, SC.REF, this);
+        JSOHelper.setObjectAttribute(config, SC.MODULE, BeanFactory.getSGWTModule());
         JavaScriptObject jsObj = create();
         if (SC.keepGlobals()) internalSetID(jsObj);
         return jsObj;
@@ -248,6 +249,7 @@ public abstract class BaseClass {
 
     private void clearConfigRef() {
         JSOHelper.setNullAttribute(this.config, SC.REF);
+        JSOHelper.setNullAttribute(this.config, SC.MODULE);
     }
 
     protected void error(String attribute, String value, boolean allowPostCreate) throws IllegalStateException {

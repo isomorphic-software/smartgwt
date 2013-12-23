@@ -47,7 +47,7 @@ public class FileLoader {
      * @param skinImgDir    the skinImgDir
      * @param baseImageURLs a list of base urls
      */
-    public static void cacheImgs(String skinImgDir, List<String> baseImageURLs) {
+    public static void cacheImgs(String skinImgDir, Iterable<String> baseImageURLs) {
         String skinDir = getSkinDir();
         for (String img : baseImageURLs) {
             img = img.replace("[SKINIMG]", skinDir + "images/");

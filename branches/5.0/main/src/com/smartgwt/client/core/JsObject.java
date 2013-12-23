@@ -41,6 +41,10 @@ public class JsObject {
         this.jsObj = jsObj;
     }
 
+    public final void setJavaScriptObject(JavaScriptObject jsObj) {
+        setJsObj(jsObj);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof JsObject)) return false;
