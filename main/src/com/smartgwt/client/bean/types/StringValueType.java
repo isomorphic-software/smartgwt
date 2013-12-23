@@ -19,6 +19,9 @@ package com.smartgwt.client.bean.types;
 import com.smartgwt.client.bean.BeanValueType;
 import com.smartgwt.client.bean.BeanValueType.Convertability;
 import com.smartgwt.client.util.DateUtil;
+import com.smartgwt.client.util.JSOHelper;
+
+import com.google.gwt.core.client.JavaScriptObject;
 
 import java.util.Date;
 import java.util.Iterator;
@@ -102,11 +105,23 @@ public class StringValueType extends BeanValueType<String> {
                 // If it's a primitive array, then we need to tediously type ...
                 return convertToPrimitiveString(convertFromPrimitiveArray(value));
             }
-        } else {
-            // If it's not an array, then just make use of any
-            // doConvertToString methods we may have defined ...
-            return convertToPrimitiveString(convertToString(value));
+        } else if (value instanceof Class) {
+            // If the value is a Class object (not an instance), and we want a
+            // String, then this is probably a _constructor-like field and we
+            // should supply the name of the class.
+            return convertToPrimitiveString(((Class) value).getName());
+        } else if (value instanceof JavaScriptObject) {
+            // If the value is a SmartClient Class object (the Class itself,
+            // not an instance), and we want a String, then it's probably a
+            // constructor field, so we should provide the name of the class.
+            if (JSOHelper.isScClassObject((JavaScriptObject) value)) {
+                return convertToPrimitiveString(JSOHelper.getClassName((JavaScriptObject) value));
+            }
         }
+        
+        // If we haven't returned anything yet, then just make use of any
+        // doConvertToString methods we may have defined ...
+        return convertToPrimitiveString(convertToString(value));
     }
 
     protected String convertFromPrimitiveArray (Object value) {

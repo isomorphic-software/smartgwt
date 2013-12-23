@@ -23,13 +23,10 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
-import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.smartgwt.client.bean.BeanFactory;
 import com.smartgwt.client.core.BaseClass;
@@ -37,9 +34,7 @@ import com.smartgwt.client.core.DataClass;
 import com.smartgwt.client.core.Function;
 import com.smartgwt.client.core.LogicalStructure;
 import com.smartgwt.client.core.NativeObject;
-import com.smartgwt.client.types.Positioning;
 import com.smartgwt.client.types.ValueEnum;
-import com.smartgwt.client.util.DOMUtil;
 import com.smartgwt.client.util.IDManager;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.SC;
@@ -64,18 +59,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     protected JavaScriptObject config = JSOHelper.createObject();
     protected String scClassName;
     protected boolean configOnly;
-
-    //event handling code
-    //can be removed when GWT issue http://code.google.com/p/google-web-toolkit/issues/detail?id=3378
-    //is fixed
-    private HandlerManager manager;
-
-    public void fireEvent(GwtEvent<?> event) {
-        if (manager != null && id != null) {
-            manager.fireEvent(event);
-        }
-    }
-
+    
     /**
      * Adds this handler to the widget.
      *
@@ -84,29 +68,14 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
      * @param handler the handler
      * @return {@link HandlerRegistration} used to remove the handler
      */
-    protected final <H extends EventHandler> HandlerRegistration doAddHandler(
-            final H handler, GwtEvent.Type<H> type) {
-        return ensureHandlers().addHandler(type, handler);
-    }
-
-    /**
-     * Ensures the existence of the handler manager.
-     *
-     * @return the handler manager
-     */
-    HandlerManager ensureHandlers() {
-        return manager == null ? manager = new HandlerManager(this)
-                : manager;
-    }
-
-    HandlerManager getManager() {
-        return manager;
+    protected final <H extends EventHandler> HandlerRegistration doAddHandler(final H handler, GwtEvent.Type<H> type) {
+    	return addHandler(handler, type);
     }
 
     public int getHandlerCount(GwtEvent.Type<?> type) {
-        return manager == null ? 0 : manager.getHandlerCount(type);
-    }
-
+    	return super.getHandlerCount(type);
+    };
+    
     public BaseWidget() {
         /*empty*/
     }
@@ -129,7 +98,16 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }
 
     public static BaseWidget getRef(JavaScriptObject jsObj) {
-        return jsObj == null ? null : (BaseWidget) JSOHelper.getAttributeAsObject(jsObj, SC.REF);
+        if (jsObj == null) {
+            return null;
+        } else {
+            final Object ref = JSOHelper.getAttributeAsObject((JavaScriptObject)jsObj, SC.REF);
+            if (ref == null || !(ref instanceof BaseWidget)) {
+                return null;
+            } else {
+                return (BaseWidget)ref;
+            }
+        }
     }
 
     public static boolean hasAutoAssignedID(JavaScriptObject jsObj) {
@@ -322,15 +300,29 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }
 
     public HandlerRegistration addDrawHandler(DrawHandler handler) {
+    	setupDrawHandlerEvent();
         return doAddHandler(handler, DrawEvent.getType());
     }
 
-    protected void onDraw() {
+    private native void setupDrawHandlerEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        var drawn = $entry(function(){
+            selfJ.@com.smartgwt.client.widgets.BaseWidget::rendered()();
+        });
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onDraw: drawn});
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onDraw = drawn;
+        }
+    }-*/;
 
+    protected void onDraw() {
     }
 
     protected void onDestroy() {
-
     }
 
     public void setPosition(String position) {
@@ -356,7 +348,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         return id;
     }
 
-    protected void internalSetID(JavaScriptObject jsObj) {
+    protected final void internalSetID(JavaScriptObject jsObj) {
         if (this.id != null) {
             IDManager.unregisterID(this, this.id);
         }
@@ -371,7 +363,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         JSOHelper.setAttribute(config, SC.AUTOID, auto);
     }
 
-    protected void internalSetID(String id, boolean autoAssigned) {
+    protected final void internalSetID(String id, boolean autoAssigned) {
         // prevent transaction from being started if it cannot complete successfully
         if (isCreated()) {
             error("Attempt to call internalSetID to change id from " + this.id +

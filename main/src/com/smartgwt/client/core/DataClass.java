@@ -39,14 +39,6 @@ public class DataClass extends JsObject {
         super(jsObj);
     }
 
-    public JavaScriptObject getJsObj() {
-        return jsObj;
-    }
-
-    public void setJavaScriptObject(JavaScriptObject jsObj) {
-        this.jsObj = jsObj;
-    }
-
     /**
      * Set attribute value to a String
      * @param property
@@ -57,7 +49,7 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Returns attribute value set as a String
+     * Returns attribute value as a String
      * @param property
      * @return
      */
@@ -66,7 +58,7 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Returns attribute value set as a String.
+     * Returns attribute value as a String.
      * @param property
      * @return
      */
@@ -75,7 +67,7 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Set attribute value as an int.
+     * Set attribute value to an int.
      * Value will be stored as a JavaScript Number on the underlying data object
      * @param property
      * @param value
@@ -85,7 +77,7 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Set attribute value as a double.
+     * Set attribute value to a double.
      * Value will be stored as a JavaScript Number on the underlying data object
      * @param property
      * @param value
@@ -93,9 +85,9 @@ public class DataClass extends JsObject {
     public void setAttribute(String property, double value) {
         JSOHelper.setAttribute(jsObj, property, value);
     }
-    
+
     /**
-     * Set attribute value as a long.
+     * Set attribute value to a long.
      * Value will be stored as a JavaScript Number on the underlying data object.
      * @param property
      * @param value
@@ -115,7 +107,7 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Set attribute value as a boolean.
+     * Set attribute value to a boolean.
      * @param property
      * @param value
      */
@@ -141,7 +133,7 @@ public class DataClass extends JsObject {
     public Double getAttributeAsDouble(String property) {
         return JSOHelper.getAttributeAsDouble(jsObj, property);
     }
-    
+
     /**
      * Returns attribute as a Long.
      * Applies to values stored as a JavaScript Number on the underlying data object.
@@ -152,7 +144,7 @@ public class DataClass extends JsObject {
         Double dVal = this.getAttributeAsDouble(property);
         return dVal == null ? null : dVal.longValue();
     }
-    
+
     /**
      * Returns attribute as a double array.
      * Applies to values stored as a JavaScript Array of Numbers on the underlying data object.
@@ -164,7 +156,7 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Set attribute value as an int array.
+     * Set attribute value to an int array.
      * Value will be stored as a JavaScript Array of Numbers on the underlying data object.
      * @param property
      * @param value
@@ -172,9 +164,9 @@ public class DataClass extends JsObject {
     public void setAttribute(String property, int[] value) {
         JSOHelper.setAttribute(jsObj, property, value);
     }
-    
+
     /**
-     * Set attribute value as an Integer array.
+     * Set attribute value to an Integer array.
      * Value will be stored as a JavaScript Array of Numbers on the underlying data object.
      * @param property
      * @param value
@@ -182,11 +174,10 @@ public class DataClass extends JsObject {
     public void setAttribute(String property, Integer[] value) {
         JSOHelper.setAttribute(jsObj, property, value);
     }
-    
+
     /**
-     * Set attribute value as a DataClass array.
+     * Set attribute value to a DataClass array.
      * Value will be stored as a JavaScript Array of the underlying JavaScript objects for each entry.
-     * instance passed in.
      * @param property
      * @param value
      */
@@ -195,10 +186,8 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Set attribute value as a BaseClass array.
+     * Set attribute value to a BaseClass array.
      * Value will be stored as a JavaScript Array of the underlying JavaScript objects for each entry.
-     * instance passed in.
-     * 
      * @param property
      * @param value
      */
@@ -207,10 +196,8 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Set attribute value as a BaseWidget array.
+     * Set attribute value to a BaseWidget array.
      * Value will be stored as a JavaScript Array of the underlying JavaScript objects for each entry.
-     * instance passed in.
-     * 
      * @param property
      * @param value
      */
@@ -227,9 +214,9 @@ public class DataClass extends JsObject {
     public int[] getAttributeAsIntArray(String property) {
         return JSOHelper.getAttributeAsIntArray(jsObj, property);
     }
-    
+
     /**
-     * Set attribute value as an Integer array.
+     * Set attribute value to a String array.
      * Value will be stored as a JavaScript Array of Strings on the underlying data object.
      * @param property
      * @param value
@@ -237,7 +224,7 @@ public class DataClass extends JsObject {
     public void setAttribute(String property, String[] value) {
         JSOHelper.setAttribute(jsObj, property, value);
     }
-    
+
     /**
      * Returns attribute as a String array.
      * Applies to values stored as a JavaScript Array of Strings on the underlying data object.
@@ -247,9 +234,9 @@ public class DataClass extends JsObject {
     public String[] getAttributeAsStringArray(String property) {
         return JSOHelper.getAttributeAsStringArray(jsObj, property);
     }
-    
+
     /**
-     * Set attribute value as a DataClass.
+     * Set attribute value to a DataClass.
      * Value will be stored as the underlying JavaScript object for the DataClass
      * instance passed in.
      * 
@@ -261,7 +248,7 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Set attribute value as a BaseClass.
+     * Set attribute value to a BaseClass.
      * Value will be stored as the underlying JavaScript object for the BaseClass
      * instance passed in.
      * 
@@ -273,7 +260,7 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Set attribute value as a JavaScriptObject.
+     * Set attribute value to a JavaScriptObject.
      * 
      * @param property
      * @param value
@@ -281,9 +268,9 @@ public class DataClass extends JsObject {
     public void setAttribute(String property, JavaScriptObject value) {
         JSOHelper.setAttribute(jsObj, property, value);
     }
-    
+
     /**
-     * Set attribute value as a Date.
+     * Set attribute value to a Date.
      * Value will be stored as a JavaScript Date on the underlying data object
      * 
      * @param property
@@ -292,9 +279,9 @@ public class DataClass extends JsObject {
     public void setAttribute(String property, Date value) {
         JSOHelper.setAttribute(jsObj, property, value);
     }
-    
+
     /**
-     * Set attribute value as a double array.
+     * Set attribute value to a double array.
      * Value will be stored as a JavaScript Array of Numbers on the underlying data object
      * 
      * @param property
@@ -303,9 +290,9 @@ public class DataClass extends JsObject {
     public void setAttribute(String property, double[] value) {
     	JSOHelper.setAttribute(jsObj, property, value);
     }
-    
+
     /**
-     * Set attribute value as a Boolean.
+     * Set attribute value to a Boolean.
      * 
      * @param property
      * @param value
@@ -315,7 +302,7 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Set attribute value as a Map.
+     * Set attribute value to a Map.
      * Value will be stored as a JavaScript Object on the underlying data object,
      * with property/value pairs matching the keys/values specified on the Map.
      * Note that this is a recursive conversion - each value will also be converted to
@@ -329,7 +316,7 @@ public class DataClass extends JsObject {
     }
     
     /**
-     * Set attribute value as a ValueEnum array.
+     * Set attribute value to a ValueEnum array.
      * Value will be stored as a JavaScript Array containing the each Enum value.
      * 
      * @param property
@@ -340,7 +327,7 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Set attribute value as a ValueEnum.
+     * Set attribute value to a ValueEnum.
      * The value of the ValueEnum will be stored on the underlying data object.
      * 
      * @param property
@@ -395,7 +382,7 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Set attribute value as a Double.
+     * Set attribute value to a Double.
      * Value will be stored as a JavaScript Number on the underlying data object
      * @param property
      * @param value
@@ -405,7 +392,7 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Set attribute value as an Integer.
+     * Set attribute value to an Integer.
      * Value will be stored as a JavaScript Number on the underlying data object
      * @param property
      * @param value
@@ -415,7 +402,7 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Set attribute value as a Float.
+     * Set attribute value to a Float.
      * Value will be stored as a JavaScript Number on the underlying data object
      * @param property
      * @param value

@@ -14,6 +14,7 @@
     <inherits name="com.smartclient.theme.enterpriseblue.EnterpriseBlueResources"/>
     <inherits name="com.smartclient.theme.graphite.GraphiteResources"/>
     <inherits name="com.smartclient.theme.simplicity.SimplicityResources"/>
+	<inherits name="com.google.gwt.i18n.I18N"/>
 
     <entry-point class='com.smartgwt.sample.showcase.client.Showcase'/>
 
