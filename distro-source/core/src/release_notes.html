@@ -192,7 +192,7 @@
 <h5>Calendar</h5><ul>
     <div><li>Added Calendar.showDayLanes - uses calendar.lanes to render a number of columns showing events for the same day - for example, the daily schedules of a number of staff members.</li></div>
 
-    <div><li>Added proper filter support<BR>Added renderEventsOnDemand for all calendar views<BR>Optimized event rendering in views other than timeline</li></div>
+    <div><li>Added renderEventsOnDemand for all calendar views<BR>Optimized event rendering in views other than timeline</li></div>
     <div><li>Reworked eventWindow drag-and-drop subsystem in all views except month</li></div>
     <div><li>Added Calendar.getDateFromPoint(x, y, useSnapDates) to return a date instance appropriate for a given offset into the body of the selected calendar view</li></div>
     <div><li>Added new public APIs, showEventEditor() and showEvent/NewEventDialog()<BR>Added new timeline attribute overlapSortSpecifiers - allows overlapping events in each lane to be sorted vertically - default remains as it was (by startDateField, earliest appearing top-most in it's lane)</li></div>
@@ -519,7 +519,7 @@ Fixed Event Editors when event field-names have been overridden in code.  Altere
 </ul>
 
 <h5>HiliteEditor</h5><ul>
-    <div><li>Fixed a bug in Hilite Editor where save would fail if there the editor was loaded with some hilites but all of them were removed before attempting a save.<BR>Fixed cancellation of the eventClick() event for Timelines.<BR>Fixed timeline event left-offsets and table-cell widths and prevented overflow on timeline event windows in print-preview</li></div>
+    <div><li>Fixed a bug in Hilite Editor where save would fail if there the editor was loaded with some hilites but all of them were removed before attempting a save.</li></div>
 
 </ul>
 
@@ -542,7 +542,7 @@ Fixed Event Editors when event field-names have been overridden in code.  Altere
 
 <h5>DateChooser</h5><ul>
     <div><li>Fixed default time value for RelativeDateItems when used in a range-based item, according to the rangePosition</li></div>
-    <div><li>* Added DateChooser.showSecondItem as a shortcut for using pickerTimeItemProperties and exposed DateItem.pickerProperties as DateChooser Properties</li></div>
+    <div><li>Added DateChooser.showSecondItem as a shortcut for using pickerTimeItemProperties and exposed DateItem.pickerProperties as DateChooser Properties</li></div>
     <div><li>Fixed a bug in TimeItem where midday/midnight would use the wrong AM/PM indicator</li></div>
     <div><li>Fixed auto-sizing of DateGrid in DateChoosers with a custom size</li></div>
     <div><li>Added support for DateChooser.weekHeaderStyle and DateChooser.fiscalYearHeaderStyle</li></div>
@@ -732,7 +732,7 @@ Fixed Event Editors when event field-names have been overridden in code.  Altere
 <h5>TabSet</h5><ul>
     <div><li>IE10: Fixed an issue where two or more tabs in a tabset pulling in frameset pages would cause the tabs to obscure each other due to a native issue in IE10.</li></div>
     <div><li>Fixed an issue where a TabBar control could fail to appear if its visibility was<BR>changed from "hidden" to "inherit".</li></div>
-    <div><li>* Fixed a couple of JS errors that could occur in SimpleTabButton when a tab is added with visibility:"hidden"</li></div>
+    <div><li>Fixed a couple of JS errors that could occur in SimpleTabButton when a tab is added with visibility:"hidden"</li></div>
     <div><li>Set default value for Tab.iconSize to 16.</li></div>
 
 </ul>
@@ -997,7 +997,7 @@ Fixed Event Editors when event field-names have been overridden in code.  Altere
     <div><li>Added showClippedValuesOnHover, cellValueHover(), and cellValueHoverHTML() to ListGrid<BR>to control displaying a hover for a cell whose value is clipped. Also added a utility<BR>method, ListGrid.cellValueIsClipped(), to determine whether a cell value is clipped.</li></div>
 </ul>
 <h5>ListGrid TreeGrid</h5><ul>
-    <div><li>Added ListGrid support for canDropBelowRecords - set to false to prevent drops in the empty area of a grid's body<BR>* Fixed ListGrid support for showDropLines: false<BR>* Fixes to canDragRecordsOut and canAcceptDroppedRecords implementations for TreeGrid</li></div></ul>
+    <div><li>Added ListGrid support for canDropBelowRecords - set to false to prevent drops in the empty area of a grid's body<BR>Fixed ListGrid support for showDropLines: false<BR>Fixed to canDragRecordsOut and canAcceptDroppedRecords implementations for TreeGrid</li></div></ul>
 <h5>ScreenReader</h5><ul>
     <div><li>Enhanced screenreader support: Added support for setting ariaRole for formItems and setting arbitrary ariaState<BR>attributes for both Canvases and FormItems</li></div></ul>
 <h5>Scrollbar</h5><ul>
@@ -1204,8 +1204,8 @@ Fixed Event Editors when event field-names have been overridden in code.  Altere
     <div><li>Fixed an issue &nbsp;where events that ended before 1am would be extended to 11:59pm</li></div>
     <div><li>Fixed custom workday styling in Day and Week views by ensuring that dateIsWorkday() is passed the correct date</li></div>
     <div><li>Fixed handling of null startDate and startDate &gt; endDate for Timeliine</li></div>
-    <div><li>Fixed a bug where when a long event is overlapped in its very last unit (30 mins by default) by another event which is exactly that long, both events would render at full width, but one after the other, partly obscuring the next column in the grid<BR>* fixed a bug where dragging an overlapping event into a different column did not correctly render the original column because the event being dragged was still being taken into account</li></div>
-    <div><li>Fixed placement of overlapping calendar events when one or more ends at 00:00.<BR>* Fixed JS error when showing event hovers in the MonthView</li></div>
+    <div><li>Fixed a bug where when a long event is overlapped in its very last unit (30 mins by default) by another event which is exactly that long, both events would render at full width, but one after the other, partly obscuring the next column in the grid<BR>Fixed a bug where dragging an overlapping event into a different column did not correctly render the original column because the event being dragged was still being taken into account</li></div>
+    <div><li>Fixed placement of overlapping calendar events when one or more ends at 00:00.<BR>Fixed JS error when showing event hovers in the MonthView</li></div>
     <div><li>Fixed JS error when showing the quick event editor in non-timeline views</li></div>
     <div><li>Fixes: timeline event drag-drop in all cases, events drawing past the end of the timeline, column rebuilding after selecting a date with the picker, bubbling of dragReposition events for timeline events - also adds two optimizations and fixes two JS errors</li></div></ul>
 <h5>Canvas</h5><ul>
