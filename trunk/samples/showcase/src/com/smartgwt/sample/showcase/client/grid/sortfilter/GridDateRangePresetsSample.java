@@ -56,6 +56,9 @@ public class GridDateRangePresetsSample extends ShowcasePanel {
 
     public Canvas getViewPanel() {
         VLayout layout = new VLayout(8);
+        layout.setWidth100();
+        layout.setHeight100();
+        layout.setMembersMargin(10);
 
         // ---------------------------------------------------------------------------------------
         // Date Range (Presets)
@@ -64,18 +67,13 @@ public class GridDateRangePresetsSample extends ShowcasePanel {
         dateRangeLabel.setHeight(25);
         dateRangeLabel.setContents("RecentDateRangeItem (ListGrid FilterEditor)");
         dateRangeLabel.setBaseStyle("exampleSeparator");
-        layout.addMember(dateRangeLabel);
 
         PresetDateRangeXmlDS dataSource = PresetDateRangeXmlDS.getInstance();
 
         // Create a ListGrid displaying data from the worldDS  
         final ListGrid grid1 = new ListGrid();
-        grid1.setTop(50);
-        grid1.setLeft(10);
-        grid1.setWidth(590);
-        grid1.setHeight(120);
+        grid1.setWidth(595);
         grid1.setDataSource(dataSource);
-
         grid1.setShowFilterEditor(true);
 
         RecentDateRangeItem rangeItem = new RecentDateRangeItem();
@@ -87,9 +85,8 @@ public class GridDateRangePresetsSample extends ShowcasePanel {
         orderDate.setCanFilter(true);
         grid1.setUseAllDataSourceFields(true);
         grid1.setFields(orderDate);
+        grid1.setAutoFetchData(true);
 
-        layout.addMember(grid1);
-        
         // ---------------------------------------------------------------------------------------
         // FilterBuilder Example 
         Label filterBuilderLabel = new Label();
@@ -97,19 +94,16 @@ public class GridDateRangePresetsSample extends ShowcasePanel {
         filterBuilderLabel.setHeight(25);
         filterBuilderLabel.setContents("RecentDateRangeItem (FilterBuilder)");
         filterBuilderLabel.setBaseStyle("exampleSeparator");
-        layout.addMember(filterBuilderLabel);
 
         final FilterBuilder filterBuilder = new FilterBuilder();
         filterBuilder.setWidth(595);
-        filterBuilder.setHeight(70);
         filterBuilder.setDataSource(dataSource);
         AdvancedCriteria ac = new AdvancedCriteria(OperatorId.AND);
         Criterion c = new Criterion();
         c.setFieldName("orderDate");
         ac.addCriteria(c);
         filterBuilder.setCriteria(ac);
-        layout.addMember(filterBuilder);
-        
+
         final ListGrid grid2 = new ListGrid();
 
         Button searchButton = new Button("Filter");
@@ -121,23 +115,19 @@ public class GridDateRangePresetsSample extends ShowcasePanel {
 				grid2.fetchData(criteria);
 			}
 		});
-        layout.addMember(searchButton);
-        
+
         ListGridField orderDate2 = new ListGridField("orderDate", "Order Date");
         orderDate2.setFilterEditorProperties(rangeItem);
         orderDate2.setCanFilter(true);
 
-        grid2.setTop(340);
-        grid2.setWidth(590);
-        grid2.setHeight(120);
+        grid2.setWidth(595);
         grid2.setDataSource(dataSource);
         grid2.setAutoFetchData(true);
         grid2.setShowFilterEditor(true);
         grid2.setUseAllDataSourceFields(true);
         grid2.setFields(orderDate2);
         
-        layout.addMember(grid2);
-           
+        layout.setMembers(dateRangeLabel, grid1, filterBuilderLabel, filterBuilder, searchButton, grid2);
         return layout;
     }
 
