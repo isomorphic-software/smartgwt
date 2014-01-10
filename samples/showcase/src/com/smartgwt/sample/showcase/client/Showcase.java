@@ -344,13 +344,13 @@ private boolean isc_websiteMode = scConstants.websiteMode();
         smartGwtButtonBoxR.setWidth(200);
         rightPane.addMember(smartGwtButtonBoxR);
         
-        Label smartGwtButtonR = new Label("<div style='font-size: 9pt;''>Prefer to write UI in Javascript?</div>" +
+        Label smartGwtButtonR = new Label("<div style='font-size: 9pt;''>Prefer to write UI in JavaScript?</div>" +
 					"<img src='images/icon_javascript_t.png'" +
 						"style='height: 30pt; float: left; margin-right: 2pt; " +
 					"margin-left: 2pt; margin-top: 10pt;'/>" +
 					"<a target='_top' style='line-height: 12pt; padding-top: 5pt;' "+
 					"href='" + "http://www.smartclient.com/#Welcome" + "' " +
-					">" + "Smart Client<br/>Hands-On Demo" + "</a>");
+					">" + "SmartClient<br/>Hands-On Demo" + "</a>");
         smartGwtButtonR.setStyleName("darkgrey_Ebutton ERbutton");
         smartGwtButtonR.setWidth(200);
         smartGwtButtonR.setHeight(1);
@@ -439,7 +439,7 @@ private boolean isc_websiteMode = scConstants.websiteMode();
         bottomPaneLeft.addMember(pricingButtonB);
 
         // SmartGWT Call to action button in bottom panel
-        Label smartGWTButtonPreB = new Label("<span>Prefer to write UI in Javascript?</span>");
+        Label smartGWTButtonPreB = new Label("<span>Prefer to write UI in JavaScript?</span>");
         smartGWTButtonPreB.setStyleName("EBbutton");
         smartGWTButtonPreB.setWidth("220pt");
         bottomPaneRight.addMember(smartGWTButtonPreB);
