@@ -31,11 +31,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Criteria for selecting only a matching set of records from a DataSource. Criteria can be applied on the client and
- * server. Unless configured otherwise, criteria will generally be applied client-side by ResultSets via
- * ResultSet.applyFilter(). <br> The criteria format supported by the SmartClient Server built-in SQLDataSource and
- * HibernateDataSource is a JavaScript Object where each property specifies the name and required value for a field.
- * Multiple legal values for a field can be provided as an Array.
+ * Criteria for selecting only a matching set of records from a DataSource.  Criteria can be applied on the client and
+ * server.  Unless configured otherwise, criteria will generally be applied client-side by {@link
+ * com.smartgwt.client.data.ResultSet}s via {@link com.smartgwt.client.data.ResultSet#applyFilter ResultSet.applyFilter}.  
+ * <P> Client- and server-side systems built into Smart GWT understand two criteria formats by default: simple key-value
+ * pairs (Criteria) or the {@link com.smartgwt.client.data.AdvancedCriteria} format.   <P>  <P> Use {@link
+ * com.smartgwt.client.data.DataSource#combineCriteria DataSource.combineCriteria} to combine two Criteria objects
+ * (including Criteria and AdvancedCriteria) or {@link com.smartgwt.client.data.DataSource#convertCriteria
+ * DataSource.convertCriteria} to convert simple Criteria to the AdvancedCriteria format. <P>  When sent to the Smart GWT
+ * server, the Java representation of the criteria is described {@link com.smartgwt.client.rpc.RPCRequest#getData here}. 
+ * When sent to other servers, the {@link com.smartgwt.client.types.DSProtocol operationBinding.dataProtocol} affects the
+ * format.
  */
 public class Criteria extends DataClass {
 
