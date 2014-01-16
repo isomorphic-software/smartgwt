@@ -1,8 +1,12 @@
 package com.smartgwt.sample.showcase.client.menu;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.layout.HStack;
 import com.smartgwt.client.widgets.menu.Menu;
 import com.smartgwt.client.widgets.menu.MenuButton;
 import com.smartgwt.client.widgets.menu.MenuItem;
@@ -10,9 +14,6 @@ import com.smartgwt.client.widgets.menu.events.ItemClickEvent;
 import com.smartgwt.client.widgets.menu.events.ItemClickHandler;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class MenuCustomColumnsSample extends ShowcasePanel {
     
@@ -76,7 +77,12 @@ public class MenuCustomColumnsSample extends ShowcasePanel {
 			}
 		});
 
-		return new MenuButton("Show Menu", menu);
+		MenuButton menuButton = new MenuButton("Show Menu", menu);
+
+		HStack layout = new HStack();
+		layout.setWidth100();
+		layout.setMembers(menuButton);
+		return layout;
 	}
 
 	public String getIntro() {

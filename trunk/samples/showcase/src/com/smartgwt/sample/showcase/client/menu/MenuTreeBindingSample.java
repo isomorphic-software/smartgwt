@@ -2,6 +2,8 @@ package com.smartgwt.sample.showcase.client.menu;
 
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.layout.HStack;
+import com.smartgwt.client.widgets.layout.VStack;
 import com.smartgwt.client.widgets.menu.IMenuButton;
 import com.smartgwt.client.widgets.menu.Menu;
 import com.smartgwt.client.widgets.menu.MenuItem;
@@ -37,7 +39,7 @@ public class MenuTreeBindingSample extends ShowcasePanel {
 
 	public Canvas getViewPanel() {
 
-		Canvas main = new Canvas();
+		VStack vLayout = new VStack(10);
 
 		Menu mDepartment = new Menu();
 		mDepartment.setCanSelectParentItems(true);
@@ -52,9 +54,9 @@ public class MenuTreeBindingSample extends ShowcasePanel {
 		});
 
 		IMenuButton bDepartment = new IMenuButton("Go to department", mDepartment);
-		bDepartment.setWidth(130);
+		bDepartment.setWidth(140);
 
-		main.addChild(bDepartment);
+		vLayout.addMember(bDepartment);
 
 		Menu mCategory = new Menu();
 		mCategory.setCanSelectParentItems(true);
@@ -71,12 +73,14 @@ public class MenuTreeBindingSample extends ShowcasePanel {
 		});
 
 		IMenuButton bCategory = new IMenuButton("Go to category", mCategory);
-		bCategory.setTop(30);
 		bCategory.setWidth(140);
 
-		main.addChild(bCategory);
+		vLayout.addMember(bCategory);
 
-		return main;
+		HStack layout = new HStack();
+		layout.setWidth100();
+		layout.setMembers(vLayout);
+		return layout;
 	}
 
 	private Tree getLocalItemsAsTree() {
