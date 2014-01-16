@@ -1,7 +1,11 @@
 package com.smartgwt.sample.showcase.client.menu;
 
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.layout.HStack;
+import com.smartgwt.client.widgets.menu.IMenuButton;
+import com.smartgwt.client.widgets.menu.Menu;
+import com.smartgwt.client.widgets.menu.MenuItem;
+import com.smartgwt.client.widgets.menu.MenuItemSeparator;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
@@ -68,7 +72,11 @@ public class MenuSubmenusSample extends ShowcasePanel {
 
         IMenuButton menuButton = new IMenuButton("File", menu);
         menuButton.setWidth(100);
-        return menuButton;
+
+        HStack layout = new HStack();
+        layout.setWidth100();
+        layout.setMembers(menuButton);
+        return layout;
     }
 
     public String getIntro() {
