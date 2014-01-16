@@ -178,9 +178,16 @@
 		<move file="${smartgwt.root}/fmpp/data/referenceDocs.xml" tofile="${smartgwt.root}/fmpp/data/referenceDocs-bak.xml" failonerror="false"/>
 		<copy file="${SC_HOME}/smartclientSDK/isomorphic/system/reference/referenceDocs.xml" tofile="${smartgwt.root}/fmpp/data/referenceDocs.xml" failonerror="false"/>
 	
-        <mkdir dir="${smartgwt.build.out}/doc"/>
+		<mkdir dir="${smartgwt.build.out}/doc"/>
 		<copy file="${SC_HOME}/smartclientSDK/isomorphic/login/loginRequiredMarker.html" tofile="${smartgwt.build.out}/doc/loginRequiredMarker.html"/>
 		<copy file="${SC_HOME}/smartclientSDK/isomorphic/login/loginSuccessMarker.html" tofile="${smartgwt.build.out}/doc/loginSuccessMarker.html"/>
+		
+				
+		<mkdir dir="${smartgwt.build.out}/maven"/>
+		<copy toDir="${smartgwt.build.out}/maven">
+		    <fileset dir="${SC_HOME}/smartclientSDK/maven" />
+		</copy>
+		
     </target>
 
 
