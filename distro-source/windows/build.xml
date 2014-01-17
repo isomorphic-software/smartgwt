@@ -47,6 +47,8 @@
 				<exclude name="helloworld-2.0/*.iml" />
 			</zipfileset>
 
+			<zipfileset dir="${smartgwt.build.out}/maven" prefix="${project.distname}/maven" />
+			
 			<!-- doc -->
 			<zipfileset dir="${smartgwt.build.out}" prefix="${project.distname}">
 				<include name="doc" />
