@@ -60,7 +60,7 @@ public class CompactCalendarSample extends ShowcasePanel {
             protected String getDayBodyHTML(Date date, CalendarEvent[] events, Calendar calendar, int rowNum, int colNum) {
                 String returnStr = date.getDate() + "";
                 if(events != null && events.length > 0) {
-                    returnStr += imgHTML("icons/16/approved.png", 16, 16, "image", "style='margin-top:6px'", null);
+                    returnStr += imgHTML("icons/16/approved.png", 16, 16, "image", null, null);
                 }
                 return returnStr;
             }
