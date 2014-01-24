@@ -6,7 +6,15 @@ import com.smartgwt.sample.showcase.client.ShowcaseConfiguration;
 
 public class ExplorerTreeNode extends TreeNode {
 
-    public ExplorerTreeNode(String name, String nodeID, String parentNodeID, String icon, PanelFactory factory, boolean enabled, String idSuffix) {
+    public ExplorerTreeNode(String name, String nodeID, String parentNodeID, String icon, 
+                            PanelFactory factory, boolean enabled, String idSuffix)
+    {
+        this(name, nodeID, parentNodeID, icon, factory, enabled, true, idSuffix);
+    }
+
+    public ExplorerTreeNode(String name, String nodeID, String parentNodeID, String icon, 
+               PanelFactory factory, boolean enabled, boolean testEnabled, String idSuffix)
+    {
         if (enabled) {
             setName(name);
         } else {
@@ -18,6 +26,8 @@ public class ExplorerTreeNode extends TreeNode {
         setIcon(icon);
 
         setFactory(factory);
+
+        if (!testEnabled) setTestDisabled();
 
         if (ShowcaseConfiguration.getSingleton().isOpenForTesting() && null != factory) {
             String className = factory.getClass().getName().replaceFirst("\\$.*$","");
@@ -91,6 +101,9 @@ public class ExplorerTreeNode extends TreeNode {
         return getAttributeAsString("iconSrc");
     }
 
+    public void setTestDisabled() {
+        setAttribute("testDisabled", true);
+    }
 
     @Override
     public boolean equals(Object o) {
