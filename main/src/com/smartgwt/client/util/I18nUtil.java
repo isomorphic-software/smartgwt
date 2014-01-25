@@ -142,6 +142,7 @@ public class I18nUtil {
         }
 
         if($wnd.isc.BatchUploader) {
+            $wnd.isc.BatchUploader.addProperties({uploadButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::batchUploader_uploadButtonTitle()()});
             $wnd.isc.BatchUploader.addProperties({uploadFileLabel: messages.@com.smartgwt.client.i18n.SmartGwtMessages::batchUploader_uploadFileLabel()()});
             $wnd.isc.BatchUploader.addProperties({commitConfirmationMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::batchUploader_commitConfirmationMessage()()});
         }
