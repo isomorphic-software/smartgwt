@@ -5,6 +5,24 @@ package com.smartgwt.client.i18n;
  * 	/Users/sjivan/java/smartgwt-svn/trunk/main/src/com/smartgwt/client/i18n/SmartGwtMessages.properties'.
  */
 public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
+
+  /**
+   * Translated "Upload File".
+   * 
+   * @return translated "Upload File"
+   */
+  @DefaultMessage("Upload File")
+  @Key("batchUploader_uploadFileLabel")
+  String batchUploader_uploadFileLabel();
+
+  /**
+   * Translated "Records added".
+   * 
+   * @return translated "Records added"
+   */
+  @DefaultMessage("Records added")
+  @Key("batchUploader_commitConfirmationMessage")
+  String batchUploader_commitConfirmationMessage();
   
   /**
    * Translated "Either enter valid criteria or hit &#39;Cancel&#39; to abandon changes.".
