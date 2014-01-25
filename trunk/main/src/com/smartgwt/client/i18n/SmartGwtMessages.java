@@ -7,6 +7,15 @@ package com.smartgwt.client.i18n;
 public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
 
   /**
+   * Translated "Upload".
+   * 
+   * @return translated "Upload"
+   */
+  @DefaultMessage("Upload")
+  @Key("batchUploader_uploadButtonTitle")
+  String batchUploader_uploadButtonTitle();
+
+  /**
    * Translated "Upload File".
    * 
    * @return translated "Upload File"
