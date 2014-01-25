@@ -64,8 +64,8 @@ public class MultiComboBoxSample extends ShowcasePanel {
         final MultiComboBoxItem suppliesItem = new MultiComboBoxItem("supplies", "Items");
         suppliesItem.setOptionDataSource(ItemSupplyXmlDS.getInstance());
         suppliesItem.setDisplayField("itemName");
-        suppliesItem.setValueField("itemID");
-        suppliesItem.setValue(new int[] { 1, 10, 23, 123 });
+        suppliesItem.setValueField("SKU");
+        suppliesItem.setValue(new String[] { "58074604", "90600", "1089400", "6024900" });
         suppliesItem.setAutoFetchData(true);
         suppliesItem.setLayoutStyle(initialLayoutStyle);
 
