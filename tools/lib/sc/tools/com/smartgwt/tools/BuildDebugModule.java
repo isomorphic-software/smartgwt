@@ -28,6 +28,15 @@ public class BuildDebugModule {
 
     private static final Set<String> seenSet = new HashSet<String>();
 
+    // The GWT compiler removes the second, third, etc. <script> element having the same src URL
+    // as a previously specified <script>. In cases where we actually want to load the script
+    // multiple times (startDefiningFramework.js and stopDefiningFramework.js), we add a unique
+    // token to the src URL so that GWT thinks they are different scripts.
+    //
+    // It is sufficient to add the unique token to the #hash portion of the src URL. This way,
+    // the browser does not download the script twice.
+    private static final long UNIQUE_TOKEN = System.currentTimeMillis();
+
     public static void main(String[] args) {
         if (args.length != 3) {
             printUsage();
@@ -82,6 +91,14 @@ public class BuildDebugModule {
                     hd.endElement("", "", "script");
                 }
             }
+
+            // Add a <script> element for the stopDefiningFramework script.
+            hd.characters("\n     ".toCharArray(), 0, 5);
+            atts.clear();
+            atts.addAttribute("", "", "src", "CDATA", "sc/client/language/stopDefiningFramework.js#" + UNIQUE_TOKEN);
+            hd.startElement("", "", "script", atts);
+            hd.endElement("", "", "script");
+
             hd.characters("\n".toCharArray(), 0, 1);
             hd.endElement("", "", "module");
             hd.characters("\n".toCharArray(), 0, 1);
@@ -100,6 +117,7 @@ public class BuildDebugModule {
         List<String> result = new ArrayList<String>();
 
         // Open file for reading
+        System.out.println("  Reading \"" + jsFileName + "\"");
         FileInputStream fis = new FileInputStream(basePath + jsFileName.replace("/", File.separator));
         BufferedReader br = new BufferedReader(new InputStreamReader(fis));
 
@@ -149,6 +167,26 @@ public class BuildDebugModule {
             line = br.readLine();
         }
 
+        if (jsFileName.endsWith("ISC_Core.js") ||
+            jsFileName.endsWith("ISC_Core"))
+        {
+            // Find the Packager.js entry.
+            int packagerJsIndex = 0;
+            for (int i = 0; i < result.size(); ++i) {
+                if (result.get(i).endsWith("language/Packager.js")) {
+                    packagerJsIndex = i;
+                    result.remove(i);
+                    break;
+                }
+            }
+            result.add(packagerJsIndex, "sc/client/language/startDefiningFramework.js#" + UNIQUE_TOKEN);
+            result.add(packagerJsIndex, "sc/client/language/Packager.js");
+        } else if (jsFileName.endsWith("ISC_Drawing.js") ||
+                   jsFileName.endsWith("ISC_Drawing"))
+        {
+            result.add(0, "sc/client/language/startDefiningFramework.js#" + UNIQUE_TOKEN);
+        }
+
         // if no libs were found, include the source file itself
         if (result.size() == 0) {
             result.add(jsFileName);
@@ -164,5 +202,4 @@ public class BuildDebugModule {
         System.out.println("Parameters: {source GWT module} {base path} {output file}\n");
         System.out.println("Example: <path to SmartClientDefault.gwt.xml> <SC_HOME> <path to SmartClientDebug.gwt.xml>\n");
     }
-
 }
