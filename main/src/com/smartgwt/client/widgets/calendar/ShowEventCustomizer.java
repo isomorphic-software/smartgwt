@@ -6,23 +6,9 @@ import java.util.Date;
  * Called to determine a particular event should be visible in the passed view
  */
 public abstract class ShowEventCustomizer {
-    
-    private Calendar calendar;
-
-    public void setCalendar(Calendar calendar) {
-        this.calendar = calendar;
-    }
-    /**
-     * Returns the Calendar in which the passed event is being rendered
-     * @return Calendar in which the event is being rendered
-     */
-    public Calendar getCalendar() {
-        return this.calendar;
-    }
-    
-
     /**
      * showEvent() should be implemented and return true if the passed event should be visible in the passed view
+     * To access the Calendar itself, use calendarView.getCalendar().
      * @param event the event in question
      * @param calendarView the view in which the event will appear
      * @return true if the event should be rendered in the passed view, or false otherwise
