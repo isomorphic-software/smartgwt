@@ -26,7 +26,7 @@ public abstract class DateStyleCustomizer {
      * @param date the date to return a style name for
      * @param rowNum the row number of the passed date in the passed view
      * @param colNum the column number of the passed date in the passed view
-     * @param calendarView the view in which the event is being rendered
+     * @param calendarView the view in which the date cell is being rendered
      * @return CSS class to apply to the cell associated with the passed date in the passed view
      */
     public abstract String getDateStyle(Date date, int rowNum, int colNum, CalendarView calendarView);
