@@ -28,15 +28,6 @@ public class BuildDebugModule {
 
     private static final Set<String> seenSet = new HashSet<String>();
 
-    // The GWT compiler removes the second, third, etc. <script> element having the same src URL
-    // as a previously specified <script>. In cases where we actually want to load the script
-    // multiple times (startDefiningFramework.js and stopDefiningFramework.js), we add a unique
-    // token to the src URL so that GWT thinks they are different scripts.
-    //
-    // It is sufficient to add the unique token to the #hash portion of the src URL. This way,
-    // the browser does not download the script twice.
-    private static final long UNIQUE_TOKEN = System.currentTimeMillis();
-
     public static void main(String[] args) {
         if (args.length != 3) {
             printUsage();
@@ -80,7 +71,8 @@ public class BuildDebugModule {
                     jsFileName = jsFileName.substring(jsFileName.lastIndexOf("/"), jsFileName.length());
 
                 System.out.println("Processing \"" + jsFileName + "\" ...");
-                String[] includes = getIncludes(basePath, jsFileName);
+                final String moduleName = getModuleName(jsFileName);
+                String[] includes = getIncludes(basePath, jsFileName, moduleName);
                 hd.characters("\n     ".toCharArray(), 0, 5);
                 hd.comment((" " + jsFileName + " ").toCharArray(), 0, jsFileName.length() + 2);
                 for (int j = 0; j < includes.length; j++) {
@@ -90,14 +82,14 @@ public class BuildDebugModule {
                     hd.startElement("", "", "script", atts);
                     hd.endElement("", "", "script");
                 }
-            }
 
-            // Add a <script> element for the stopDefiningFramework script.
-            hd.characters("\n     ".toCharArray(), 0, 5);
-            atts.clear();
-            atts.addAttribute("", "", "src", "CDATA", "sc/client/language/stopDefiningFramework.js#" + UNIQUE_TOKEN);
-            hd.startElement("", "", "script", atts);
-            hd.endElement("", "", "script");
+                // Add a <script> element for the stopDefiningFramework script.
+                hd.characters("\n     ".toCharArray(), 0, 5);
+                atts.clear();
+                atts.addAttribute("", "", "src", "CDATA", "sc/client/language/stopDefiningFramework.js#module=" + moduleName);
+                hd.startElement("", "", "script", atts);
+                hd.endElement("", "", "script");
+            }
 
             hd.characters("\n".toCharArray(), 0, 1);
             hd.endElement("", "", "module");
@@ -111,7 +103,13 @@ public class BuildDebugModule {
         }
     }
 
-    private static String[] getIncludes(String basePath, String jsFileName) throws Exception {
+    private static String getModuleName(String jsFileName) {
+        final int periodPos = jsFileName.lastIndexOf('.');
+        if (periodPos >= 0) jsFileName = jsFileName.substring(0, periodPos);
+        return jsFileName.substring(Math.max(jsFileName.lastIndexOf('/') + 1, jsFileName.lastIndexOf("ISC_") + 4));
+    }
+
+    private static String[] getIncludes(String basePath, String jsFileName, String moduleName) throws Exception {
         System.getProperties().list(System.out);
         // List of files to include
         List<String> result = new ArrayList<String>();
@@ -179,12 +177,10 @@ public class BuildDebugModule {
                     break;
                 }
             }
-            result.add(packagerJsIndex, "sc/client/language/startDefiningFramework.js#" + UNIQUE_TOKEN);
+            result.add(packagerJsIndex, "sc/client/language/startDefiningFramework.js#module=" + moduleName);
             result.add(packagerJsIndex, "sc/client/language/Packager.js");
-        } else if (jsFileName.endsWith("ISC_Drawing.js") ||
-                   jsFileName.endsWith("ISC_Drawing"))
-        {
-            result.add(0, "sc/client/language/startDefiningFramework.js#" + UNIQUE_TOKEN);
+        } else {
+            result.add(0, "sc/client/language/startDefiningFramework.js#module=" + moduleName);
         }
 
         // if no libs were found, include the source file itself
