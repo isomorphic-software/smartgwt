@@ -499,6 +499,16 @@ public abstract class BaseClass {
         }
     }
 
+    public void setAttribute(String attribute, Integer[] value, boolean allowPostCreate) {
+        if (!isCreated()) {
+            JSOHelper.setAttribute(config, attribute, JSOHelper.convertToJavaScriptArray(value));
+        } else if (allowPostCreate) {
+            setProperty(attribute, JSOHelper.convertToJavaScriptArray(value));
+        } else {
+            error(attribute, value.toString(), allowPostCreate);
+        }
+    }
+
     public void setAttribute(String attribute, BaseClass[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, JSOHelper.convertToJavaScriptArray(value));
