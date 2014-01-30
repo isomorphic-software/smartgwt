@@ -16,23 +16,23 @@
 
 package com.smartgwt.client.core;
 
+import java.util.Date;
+import java.util.Map;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.smartgwt.client.bean.BeanFactory;
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
+import com.smartgwt.client.bean.BeanFactory;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.util.IDManager;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.ObjectFactory;
 import com.smartgwt.client.util.SC;
-
-import java.util.Date;
-import java.util.Map;
 
 public abstract class BaseClass {
 
@@ -590,7 +590,27 @@ public abstract class BaseClass {
         }
     }
 
+    protected void setAttribute(String attribute, float[] value, boolean allowPostCreate) {
+        if (!isCreated()) {
+            JSOHelper.setAttribute(config, attribute, value);
+        } else if (allowPostCreate) {
+            setProperty(attribute, JSOHelper.convertToJavaScriptArray(value));
+        } else {
+            error(attribute, value.toString(), allowPostCreate);
+        }
+    }
+
     protected void setAttribute(String attribute, Float[] value, boolean allowPostCreate) {
+        if (!isCreated()) {
+            JSOHelper.setAttribute(config, attribute, value);
+        } else if (allowPostCreate) {
+            setProperty(attribute, JSOHelper.convertToJavaScriptArray(value));
+        } else {
+            error(attribute, value.toString(), allowPostCreate);
+        }
+    }
+
+    protected void setAttribute(String attribute, double[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
