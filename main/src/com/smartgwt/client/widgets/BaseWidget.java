@@ -30,6 +30,7 @@ import com.smartgwt.client.core.DataClass;
 import com.smartgwt.client.core.Function;
 import com.smartgwt.client.core.LogicalStructure;
 import com.smartgwt.client.core.NativeObject;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.Positioning;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.util.DOMUtil;
@@ -680,6 +681,23 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             }
         }
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+    protected native Record getAttributeAsRecord(String property)/*-{
+        var ret;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            var widget = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            ret = widget.getProperty(property);
+        } else {
+            var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
+            if(config[property] != undefined) {
+                ret = config[property];
+            } else {
+               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
+            }
+        }
+        return ret == null || ret === undefined ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
     private void error(String attribute, String value) throws IllegalStateException {
