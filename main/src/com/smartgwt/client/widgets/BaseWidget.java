@@ -677,6 +677,23 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
+    protected native Record getAttributeAsRecord(String property)/*-{
+        var ret;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            var widget = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            ret = widget.getProperty(property);
+        } else {
+            var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
+            if(config[property] != undefined) {
+                ret = config[property];
+            } else {
+               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
+            }
+        }
+        return ret == null || ret === undefined ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
     private void error(String attribute, String value) throws IllegalStateException {
         error("Cannot change configuration property '" + attribute + "' to " + value + " now that component " + id + " has been created.");
     }
