@@ -34,6 +34,7 @@ import com.smartgwt.client.core.DataClass;
 import com.smartgwt.client.core.Function;
 import com.smartgwt.client.core.LogicalStructure;
 import com.smartgwt.client.core.NativeObject;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.util.IDManager;
 import com.smartgwt.client.util.JSOHelper;
