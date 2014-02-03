@@ -3,7 +3,7 @@ package com.smartgwt.client.widgets.calendar;
 import java.util.Date;
 
 /**
- * Called to determine the hover HTML to be displayed when the user hovers over a cell displayed in the calendar month view tab.
+ * Called to determine the hover HTML to be displayed when the user hovers over an eventCanvas in a calendar.
  */
 public abstract class EventHoverHTMLCustomizer {
     
@@ -22,11 +22,39 @@ public abstract class EventHoverHTMLCustomizer {
     }
     
     /**
-     * hoverHTML() should be implemented and return the string of HTML to display when the user hovers
-     * over ListGrid cells
+     * getEventHoverHTML() should be implemented and return the string of HTML to display when the user hovers
+     * over an event
      * @param calendarEvent the event being hovered over.
      * @param eventWindow the event window being hovered
      * @return HTML to display
      */
     public abstract String getEventHoverHTML(CalendarEvent calendarEvent, EventWindow eventWindow);
+    
+    /**
+     * getEventHoverHTML() should be implemented and return the string of HTML to display when the user hovers
+     * over an event
+     * @param calendarEvent the event being hovered over.
+     * @param eventCanvas the eventCanvas being hovered
+     * @return HTML to display
+     */
+    public abstract String getEventHoverHTML(CalendarEvent calendarEvent, EventCanvas eventCanvas);
+    
+    /**
+     * getZoneHoverHTML() should be implemented and return the string of HTML to display when the user hovers
+     * over a ZoneCanvas
+     * @param zone the Zone being hovered over.
+     * @param zoneCanvas the zoneCanvas being hovered
+     * @return HTML to display
+     */
+    public abstract String getZoneHoverHTML(CalendarEvent zone, ZoneCanvas zoneCanvas);
+    
+    /**
+     * getIndicatorHoverHTML() should be implemented and return the string of HTML to display when the user hovers
+     * over an IndicatorCanvas
+     * @param indicator the Indicator being hovered over.
+     * @param indicatorCanvas the indicatorCanvas being hovered
+     * @return HTML to display
+     */
+    public abstract String getIndicatorHoverHTML(CalendarEvent indicator, IndicatorCanvas indicatorCanvas);
+
 }

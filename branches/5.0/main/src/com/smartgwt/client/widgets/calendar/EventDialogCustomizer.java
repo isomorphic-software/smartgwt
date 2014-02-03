@@ -25,5 +25,5 @@ public abstract class EventDialogCustomizer {
      * @param isNewEvent true for a new event - if true, calendarEvent represent defaults to apply to the new event
      * @return false to prevent the default Event Dialog from showing
      */
-    public abstract Boolean showEventDialog(CalendarEvent calendarEvent, Boolean isNewEvent);
+    public abstract boolean showEventDialog(CalendarEvent calendarEvent, Boolean isNewEvent);
 }
