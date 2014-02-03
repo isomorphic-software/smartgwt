@@ -1,4 +1,4 @@
-package com.smartgwt.sample.showcase.client.tiling;
+package com.smartgwt.sample.showcase.client.data;
 
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.Overflow;

@@ -6,6 +6,7 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.tile.TileGrid;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
+import com.smartgwt.sample.showcase.client.data.AnimalTile;
 import com.smartgwt.sample.showcase.client.data.AnimalXmlDS;
 
 public class CustomTilesSample extends ShowcasePanel {
