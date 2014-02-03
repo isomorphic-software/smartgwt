@@ -26,5 +26,6 @@ public abstract class EventEditorCustomizer {
      * @param calendarView the view in which the event is being rendered
      * @return false to prevent the default Event Editor from showing
      */
-    public abstract Boolean showEventEditor(CalendarEvent calendarEvent, Boolean isNewEvent);
+    public abstract boolean showEventEditor(CalendarEvent calendarEvent, Boolean isNewEvent);
+
 }
