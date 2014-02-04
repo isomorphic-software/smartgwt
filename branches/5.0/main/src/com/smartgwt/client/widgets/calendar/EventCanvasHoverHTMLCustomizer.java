@@ -3,9 +3,9 @@ package com.smartgwt.client.widgets.calendar;
 import java.util.Date;
 
 /**
- * Called to determine the hover HTML to be displayed when the user hovers over an eventWindow in a calendar.
+ * Called to determine the hover HTML to be displayed when the user hovers over an eventCanvas in a calendar.
  */
-public abstract class EventHoverHTMLCustomizer {
+public abstract class EventCanvasHoverHTMLCustomizer {
     
     private Calendar calendar;
 
@@ -22,12 +22,12 @@ public abstract class EventHoverHTMLCustomizer {
     }
     
     /**
-     * getEventHoverHTML() should be implemented and return the string of HTML to display when the user hovers
+     * getHoverHTML() should be implemented and return the string of HTML to display when the user hovers
      * over an event
      * @param calendarEvent the event being hovered over.
-     * @param eventWindow the event window being hovered
+     * @param eventCanvas the eventCanvas being hovered
      * @return HTML to display
      */
-    public abstract String getEventHoverHTML(CalendarEvent calendarEvent, EventWindow eventWindow);
+    public abstract String getHoverHTML(CalendarEvent calendarEvent, EventCanvas eventCanvas);
     
 }
