@@ -67,10 +67,10 @@ public class DragCopySample extends ShowcasePanel {
         countryGrid2.setCanAcceptDroppedRecords(true);
 
         ListGridField countryCodeField2 = new ListGridField("countryCode", "Flag", 50);
-        countryCodeField.setAlign(Alignment.CENTER);
-        countryCodeField.setType(ListGridFieldType.IMAGE);
-        countryCodeField.setImageURLPrefix("flags/16/");
-        countryCodeField.setImageURLSuffix(".png");
+        countryCodeField2.setAlign(Alignment.CENTER);
+        countryCodeField2.setType(ListGridFieldType.IMAGE);
+        countryCodeField2.setImageURLPrefix("flags/16/");
+        countryCodeField2.setImageURLSuffix(".png");
         ListGridField nameField2 = new ListGridField("countryName", "Country");
                 
         countryGrid2.setFields(countryCodeField2, nameField2);
