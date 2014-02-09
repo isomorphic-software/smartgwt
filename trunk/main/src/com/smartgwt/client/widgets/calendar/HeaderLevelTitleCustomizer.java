@@ -22,8 +22,7 @@ public abstract class HeaderLevelTitleCustomizer {
     }
     
     /**
-     * hoverHTML() should be implemented and return the string of HTML to display when the user hovers
-     * over ListGrid cells
+     * getTitle() should be implemented and return the string of HTML to display in the header for a given span in the HeaderLevel
      * @param headerLevel HeaderLevel a reference to this headerLevel
      * @param startDate Date the start of the date-range covered by this span in this level
      * @param endDate Date the end of the date-range covered by this span in this level - may be null
