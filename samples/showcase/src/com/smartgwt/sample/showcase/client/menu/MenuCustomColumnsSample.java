@@ -53,7 +53,7 @@ public class MenuCustomColumnsSample extends ShowcasePanel {
 		closeField.setValueIconSize(16);
 		closeField.setWidth(16);
 
-		menu.setFields(new ListGridField("title"), closeField);
+		menu.setFields(Menu.TITLE_FIELD, closeField);
 
 		MenuItem item1 = new MenuItem("Item 1");
 		item1.setAttribute("canDismiss", false);
