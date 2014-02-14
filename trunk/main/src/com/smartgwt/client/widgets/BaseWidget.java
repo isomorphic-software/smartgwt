@@ -52,8 +52,11 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         init();
     }
 
+    private static String FALSE_PLACEHOLDER;
+
     private static native void init()/*-{
         $wnd.isc.setAutoDraw(false);
+        @com.smartgwt.client.widgets.BaseWidget::FALSE_PLACEHOLDER = new String("false");
     }-*/;
 
     protected String id;
@@ -162,7 +165,16 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             var jObj = this.__ref;
             this.__getInnerHTMLArguments = arguments;
             try {
-                return jObj.@com.smartgwt.client.widgets.BaseWidget::getInnerHTML()();
+                var ret = jObj.@com.smartgwt.client.widgets.BaseWidget::getInnerHTML()();
+                if (ret === @com.smartgwt.client.widgets.BaseWidget::FALSE_PLACEHOLDER) {
+                    return false;
+                } else {
+                	// Call "String(...)" [note this is not the constructor "new String(...)"]
+                	// This will ensure we map any String object to the primitive
+                	// (Equivalent to calling someStringObject.valueOf()). This makes sure our
+                	// SmartClient String extensions get applied as necessary downstream.
+                    return ret == null ? null : String(ret);
+                }
             } finally {
                 this.__getInnerHTMLArguments = null;
             }
@@ -230,7 +242,12 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
      */
     public native String getInnerHTML() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.__getInnerHTML.apply(self, self.__getInnerHTMLArguments);
+        var ret = self.__getInnerHTML.apply(self, self.__getInnerHTMLArguments);
+        
+        if (ret === false) {
+            ret = @com.smartgwt.client.widgets.BaseWidget::FALSE_PLACEHOLDER;
+        }
+        return ret;
     }-*/;
 
     /**
