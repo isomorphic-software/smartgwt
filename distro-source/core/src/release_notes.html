@@ -55,6 +55,8 @@
     <div><li>New Subsystem: The SmartGWT TestRunner is a system for running a suite of Selenium tests on a periodic basis, comparing the results to previous results, and generating email alerts reporting on new test failures or fixes to tests that were previously failing.<br>
     For more information search for TestRunner in the Reference Guide.
 </li></div>
+     <div><li>Upgrade selenium webdriver support to use selenium 2.39 (which supports FF26)</li></div>
+     <div><li>Allow choice of browser when using SeleneseRunner.</li></div>
     <div><li>Improve capability to record drag resizing and drag &amp; drop to ListGrid<BR>operations in Selenium IDE, and have them play back correctly.</li></div>
     <div><li>Improve stability of Selenium playback.</li></div>
     <div><li>Added capability to generate Selenium commands for clicks into text fields.</li></div>
@@ -70,6 +72,14 @@
 </ul>
     
 <h5>DataSource and DataBound Component</h5><ul>
+    <div><li>Introduce new textMatchStyle "exactCase" and review and harmonize textMatchStyle implementations in the client and each of the three server-side DataSource implementations (JPA, Hibernate and SQL)
+     <BR><BR>RELEASE NOTE:<BR>This modification introduces a new textMatchStyle, "exactCase", which is a case-sensitive exact match, unlike the existing "exact" textMatchStyle, which is case-insensitive. &nbsp;Also, textMatchStyle now defaults to a new defaultTextMatchStyle property on the DataSource, rather than the old value of "exact". &nbsp;The default value of DS.defaultTextMatchStyle is "exact", so there are no behavior changes unless you configure them.<BR><BR>A number of behaviors around textMatchStyle have been changed in the server-side DataSource implementations, for the sake of consistency amongst themselves and with the client code. &nbsp;For full details read the detailed discussion in the client-side "TedxtMatchStyle" documentation, but some of the headlines:<BR>- textMatchStyle "exact" is now case-insensitive in SQLDataSource, as it is in all the other impls; previously this was database-specific<BR>- JPA and Hibernate DataSources now support the ignoreTextMatchStyle flag; previously there was no support in these two implementations<BR>- JPA and Hibernate DataSources now treat bad date criteria as "always false"; previously they were treated as "always true"<BR><BR>If you have application code that was depending on these old behaviors, we have left the means in place to switch some of them back on. &nbsp;Please read the "TextMatchStyle" documentation referred to above.<BR>
+     </li></div>
+     <div><li>Exposing property DSResponse.affectedRows<BR>Implementation in HB/JPA data sources.</li></div>
+
+     <div><li>Implement optional support for preserving millisecond precision in times and datetimes across client/server roundtrips</li></div>      
+
+
     <div><li>Introduce formal support for an emptyDisplayValue property on DataSourceFields.</li></div>
     <div><li>Added server-side criteria handling for fields with multiple:true</li></div>
     <div><li>Added support for client side filtering on datasource fields with multiple=true</li></div>
@@ -132,6 +142,8 @@
 
 
 <h5>Visual Builder and BMML importer</h5><ul>
+    <div><li>Add property VisualBuilder.canAddRootComponents to improve new-user experience.</li></div>
+
     <div><li>Allow children of Layouts to be drag resized in Visual Builder.</li></div>
     <div><li>Support editing the generated XML code and screen is rebuilt upon confirmation.</li></div>
    <div><li>Various improvements to Balsamiq importer</li></div>
@@ -145,7 +157,10 @@
 
 </ul>
     
-    
+
+ <h5>Class</h5><ul>
+     <div><li>Added advanced Class methods markUnsupportedMethods() and isMethodSupported()<BR>to mark methods of derived classes which do not support certain parent class methods<BR>as unsupported.</li></div>
+ </ul>
 
     
 <h5>Browser</h5><ul>
@@ -161,6 +176,9 @@
 </ul>
     
 <h5>Drawing</h5><ul>
+    <div><li>Added DrawOval.getRadiusX() and getRadiusY().</li></div>
+    <div><li>Added support for DrawPane.canDragScroll, which allows users to drag-scroll the<BR>DrawPane to move the viewport around for a large drawing.</li></div>
+
     <div><li>Added utility method DrawSector.getArcMidpoint().</li></div>
     <div><li>Added support for DrawItem.cursor.</li></div>
     <div><li>Added support for DrawItem hovers. Like the corresponding Canvas attributes/methods,<BR>DrawItem now supports the canHover, showHover, and prompt attributes, the hover() event,<BR>and getHoverHTML() to customize the contents of the hover.</li></div>
@@ -171,6 +189,7 @@
 </ul>
 
 <h5>FacetChart</h5><ul>
+
     <div><li>Added the FacetChart.drawnValueContainsPoint() utility method to check whether a<BR>given DrawnValue contains a point.</li></div>
     <div><li>Added method FacetChart.getDrawnValues() to retrieve DrawnValues for the given<BR>FacetValueMap (or all DrawnValues if the FacetValueMap is null).</li></div>
     <div><li>Added utility methods FacetChart.getDrawnValueAtPoint() and getDrawnValuesAtPoint(),<BR>which are similar to getNearestDrawnValue() and getNearestDrawnValues() except that<BR>DrawnValues returned by the new API methods must be under the given coordinates.</li></div>
@@ -190,6 +209,11 @@
 
 
 <h5>Calendar</h5><ul>
+    <div><li>New duration-based CalendarEvent constructors</li></div>
+    <div><li>New Calendar Customizers for SGWT - EventEditor, EventDialog, ZoneHoverHTML and IndicatorHTML</li></div>
+
+    <div><li>Fixed combination of eventWindow properties for new windows and made changes to allow TimelineWindows that show their header to also show a close button</li></div>
+    <div><li>Fixed several bugs related to the drag rect when dragging CalendarEvents in Day and Week views</li></div> 	 
     <div><li>Added Calendar.showDayLanes - uses calendar.lanes to render a number of columns showing events for the same day - for example, the daily schedules of a number of staff members.</li></div>
 
     <div><li>Added renderEventsOnDemand for all calendar views<BR>Optimized event rendering in views other than timeline</li></div>
@@ -213,11 +237,17 @@
     <div><li>Added parameters "canOcclude" and "skipAnimation" to canvas.animateShow() method to give developers greater control<BR>over this method's behavior.</li></div>
     
     <div><li>Created public APIs getOuterElement() and getContentElement() for retrieving the DOM elements associated with a SmartGWT Canvas.</li></div>
-
-
 </ul>
 
+<h5>StatefulCanvas</h5><ul>
+    <div><li>Added StatefulCanvas.iconStyle to set a CSS class on the icon image.</li></div>
+    <div><li>Added support for StatefulCanvas.showRTLIcon, to signal that RTL media for the icon<BR>is available.</li></div>
+    <div><li>Added StatefulCanvas.ignoreRTL.</li></div>
+</ul>
+
+
 <h5>CubeGrid</h5><ul>
+    <div><li>Expose properties facet.height and facet.labelHeight to allow more control<BR>over the minimum height of facet header rows in a CubeGrid.</li></div>
     <div><li>Added capability to load facet values from a DataSource - developer is no longer required to define them up front in the CubeGrid definition.</li></div>
 
 </ul>
@@ -258,6 +288,13 @@
 
 
 <h5>ListGrid</h5><ul>
+    <div><li>New feature attribute: listGrid.hiliteHTMLAfterFormat and listGridField.hiliteHTMLAfterFormat. Allows developers to<BR>cause hilite HTML [htmlBefore, htmlAfter and replacementValue] to apply before or after cell formatters run.</li></div>
+    <div><li>New attribute ListGrid.canEditTitles (false by default) for allowing users to edit titles in the Advanced Field Picker<BR>If set to true we also pick up field titles as part of getFieldState()</li></div>
+
+    <div><li>Optimize ListGrid.getFormulaFieldValue() and ListGrid.getSummaryFieldValue()<BR>so that the results are cached inside the records.</li></div>
+    <div><li>Improved ListGrid.recalculateSummaries() in the presence of a grouped ListGrid<BR>with group summaries to only update the summaries for the passed records.</li></div>    
+
+    <div><li>New selectRange() API on ListGrid for selecting a contiguous set of rows</li></div>
     <div><li>Added ListGridField.hidden attribute to indicate field is initially hidden. This is a shortcut for specifying a showIf function which returns false.</li></div>
     
     <div><li>Add ListGrid and ListGridField property showHilitesInGroupSummary to control display<BR>of hilites in group summary rows.</li></div>
@@ -291,8 +328,8 @@
 </ul>
     
 <h5>TabSet</h5><ul>
+    <div><li>Added support for string-based tabBarConstructor and for tabBarAlign: "center"</li></div> 
     <div><li>Exposed the new property Tab.canReorder for disabling drag-reorder of specific tabs when TabSet.canReorderTabs is true.</li></div>
-
 </ul>
     
 <h5>DynamicForm</h5><ul>
@@ -301,6 +338,7 @@
 </ul>
     
 <h5>FormItem</h5><ul>
+    <div><li>Added attributes FormItem.showRTL and FormItemIcon.showRTL to enable RTL-mode-specific<BR>styling of forms.</li></div>
     <div><li>New FormItem feature: Avoid applying specified formItem height to the text-box for an item in cases where the<BR>text box is not visually distinct to a user - for example StaticTextItem or a formItem with canEdit set to false<BR>where readOnlyDisplay is "static". This makes the vAlign property behave intuitively, effecting the aligment of<BR>the text value.</li></div>
     <div><li>New API 'getPixelWidth' / 'getPixelHeight' for FormItems - allows developers to retrieve the pixel width/height<BR>for items where size was specified as a string</li></div>
     <div><li>Add FormItem.showFocusedErrorState property.</li></div>
@@ -346,14 +384,18 @@
 
 </ul>
 
+<h5>MultiSortDialog.js</h5><ul>
+    <div><li>Allow sort configuration using hidden fields</li></div>
+</ul>
+
 
 <h5>FilterBuilder</h5><ul>
+    <div><li>New properties to simplify customization of FilterBuilder autoChild components, including- fieldPickerWidth, <BR>- operatorPickerWidth,<BR>- valueItemWidth<BR>- topOperatorItemWidth<BR>And support for using autoChild patterns for customizing the topOperatorForm, topOperator item,fieldPicker item, operatorPicker item</li></div> 	  	           
     <div><li>Added modeSwitcher to FilterBuilder.</li></div>
-
-
 </ul>
 
 <h5>Server configuration</h5><ul>
+    <div><li>Added new Velocity variables:<BR>rpc: the current RPCManager instance (with synonym "rpcManager")<BR>log: a Logger instance in category "velocityTemplate"</li></div>
     <div><li>Added a {CLASSPATH} token that can be used in server.properties when specifying paths to datasource and app files.</li></div>
     <div><li>Improvment of Long / BigInteger / BigDecimal handling. Optional conversion to String to preserve precision.</li>
 </ul>
@@ -387,7 +429,8 @@ to the previous version's patch branch, so bugs listed here are often already re
     <div><li>Improve stability of scLocator generation for Tabs and FormItems.</li></div>
     <div><li>Remove possible Developer Console warning when TabSet is drawn.</li></div>
     <div><li>Correct functionality in WebDriver support where findElements() didn't return correct results in some cases.</li></div>
-<div><li>Fix possible crash while recording with Selenium IDE.</li></div>
+    <div><li>Fix possible crash while recording with Selenium IDE.</li></div>
+    <div><li>Ensure a stable locator is generated for drops into a ListGrid, no matter<BR>how ListGrid.recordDropAppearance is set.</li></div>
     <div><li>Improve scLocator generation for TreeGrid by adding a title if present in the<BR>underlying Tree record.</li></div>
     
 </ul>
@@ -434,6 +477,9 @@ ListGrid creation.</div></li>
 
     
 <h5>DataSource</h5><ul>
+    <div><li>Added "criteria" parameter to DataSource.copyCriteria()</li></div>
+    <div><li>Fix problem "excel"-pasting into ListGrid if XPath notation is used in the<BR>data definition.</li></div>
+
     <div><li>cacheAllOperationId and cacheAcrossOperationIds were mis-documented as being attributes of DataSourceField. &nbsp;They are<BR>actually attributes of DataSource. &nbsp;Fixed.</li></div>
 
     <div><li>Added a warn message telling the reason why we are setting the condition to FALSE when trying to match a Date or Boolean using a CONTAINS criterion</li></div>
@@ -519,18 +565,31 @@ Fixed Event Editors when event field-names have been overridden in code.  Altere
 </ul>
 
 <h5>HiliteEditor</h5><ul>
+    <div><li>Improved behavior within FilterBuilders and HiliteEditors for fields with a specified displayField</li></div>
+    <div><li>Fixed the issue that an Advanced Hilite Editor window could be placed partially<BR>off-screen in RTL mode.</li></div>
     <div><li>Fixed a bug in Hilite Editor where save would fail if there the editor was loaded with some hilites but all of them were removed before attempting a save.</li></div>
 
 </ul>
 
 <h5>Canvas</h5><ul>
+ 	     <div><li>Documented Canvas.hideUsingDisplayNone as a way to work around browser bugs where<BR>iframe or plugin content burns through despite being invisible.</li></div>
+ 	     <div><li>Fixed the issue that the group label of a grouped Canvas could be mispositioned if the grouped Canvas is resized (RTL mode).</li></div>
+ 	     <div><li>Fixed an issue where a PDF export of a ListGrid using value icons would be missing<BR>the icon images.</li></div>
+ 	     <div><li>Fixed the issue in Internet Explorer 8 Quirks mode, and IE 6 &amp; 7 Quirks/Strict,<BR>where the scroll position of a ListGrid would reset to hard right in certain cases,<BR>such as when using the scroll left scrollbar button (RTL mode).</li></div>
+ 	     <div><li>Fixed an issue where css box-shadows would not display properly on certain SmartClient components</li></div>
     <div><li>Fixed the issue in Internet Explorer 8 Quirks mode, and IE 6 &amp; 7 Quirks/Strict,<BR>where the scroll position of a ListGrid would reset to hard right in certain cases,<BR>such as when using the scroll left scrollbar button (RTL mode).</li></div>
     <div><li>Fixed an issue in RTL mode in Internet Explorer 8, strict mode, that vertically<BR>scrolling a ListGrid having a filter editor would affect the horizontal scrollbar<BR>position.</li></div>
     <div><li>Fixed an issue in Internet Explorer when showCustomScrollbars is false (e.g. the Simplicity<BR>skin is being used) where overly long menus did not have vertical scrollbars.</li></div>
     <div><li>Disabled Mobile Safari's tap highlight effect on SmartGWT components.</li></div>
 </ul>
 
-<h5>CubeGrid</h5><ul>
+ <h5>CubeGrid</h5><ul>
+ 	     <div><li>Expose CubeGrid.showFacetValueContextMenus property.</li></div>
+ 	     <div><li>Prevent the menus controlled by ListGrid.showHeaderMenuButton and <BR>ListGrid.showHeaderContextMenu from showing up for a CubeGrid.</li></div>
+ 	     <div><li>Fix hideEmptyFacetValues not working for non-databound CubeGrids.</li></div>
+ 	     <div><li>Fix issue where a CubeGrid may not have all of its data properly indexed.</li></div>
+ 	     <div><li>Improve how CubeGrid assigns row and column positions to very large datasets.</li></div>
+
     <div><li>Fix possibility of superfluous DataSource fetch when toggling open facets on<BR>a CubeGrid with rowHeaderGridMode: true.</li></div>
     <div><li>Fixed two problems affecting CubeGrids configured for Load on Demand. &nbsp;<BR>First, prevent problem where server reply ordering can cause blank rows or<BR>columns to show up in a CubeGrid where valid data should be present. &nbsp;Second,<BR>fix separate issue affecting only CubeGrids with hideEmptyFacetValues: true<BR>where entire row or column facets may be missing after the initial load.</li></div>
     <div><li>Fix problem where CubeGrid facet might not expand after collapsing it, if<BR>CubeGrid.hideEmptyFacetValues is set to true.</li></div>
@@ -554,6 +613,12 @@ Fixed Event Editors when event field-names have been overridden in code.  Altere
 </ul>
 
 <h5>Drawing</h5><ul>
+     <div><li>Fixed the issue that a DrawImage would change in the stack order when the referenced<BR>image was loaded.</li></div>
+     <div><li>Improved the documentation of drawing Gradient objects.</li></div>
+     <div><li>Fixed the numerous warnings logged when drag-resizing a DrawItem via resize knobs.</li></div>
+     <div><li>Fixed the issue that tick lines on a Gauge widget could disappear.</li></div>
+     <div><li>Fixed the issue that the labels of a Gauge widget could overlap the dial.</li></div>
+
     <div><li>Clarified the documentation on which knob types are supported by each of the DrawItem classes.</li></div>
     <div><li>On iPhone and iPad, fixed the DrawLabel methods: moveTo(), moveBy(), setContents(),<BR>and setFontSize().</li></div>
     <div><li>Fixed an issue on iOS devices where value-axis, data-axis, and legend labels were misplaced.</li></div>
@@ -588,7 +653,16 @@ Fixed Event Editors when event field-names have been overridden in code.  Altere
 
 </ul>
 
-<h5>FacetChart</h5>
+
+<h5>FacetChart.js</h5><ul>
+    <div><li>Fixed that SmartGWT's FacetChart.setZoomStartValue() and setZoomEndValue()
+        should not throw an IllegalStateException if called after creation because the
+        zoomStartValue and zoomEndValue properties can be set after draw(). &nbsp;Also added
+        the corresponding getters.</li></div>
+     <div><li>Clarified the documentation of FacetChart.showDataValues and fixed an issue where<BR>data values were incorrectly shown on a dense pie chart.</li></div>
+     <div><li>Fixed an issue where FacetChart data axis labels could overlap each other instead<BR>of being rotated.</li></div>
+
+
     <div><li>Fixed a bug that hover labels showing the nearest data values in a FacetChart
     could persist even after setData() is called with an empty data array.</div></li>
 
@@ -611,6 +685,8 @@ Fixed Event Editors when event field-names have been overridden in code.  Altere
 </ul>
 
 <h5>FieldPicker</h5><ul>
+    <div><li>Fixed error dialogs "clientOnly add operation failed" and "clientOnly remove operation failed"<BR>that could be displayed when fields were dragged and dropped to and from the Available<BR>and Visible fields grids of a field picker.</li></div>
+    <div><li>In the FieldPicker, display field records for fields with no title more<BR>gracefully, and hide hidden fields if ListGridField.canHide is false.</li></div>
     <div><li>Avoid popping up error dialog in FieldPicker where logging a warning suffices.</li></div>
 
 </ul>
@@ -622,6 +698,22 @@ Fixed Event Editors when event field-names have been overridden in code.  Altere
 
 
 <h5>ListGrid</h5><ul>
+    <div><li>Fixed an issue whereby toggling group folders would fail while the editor is visible</li></div>
+    <div><li>Fixed a bug where embeddedComponents could be drawn in the wrong column in grids with frozen fields</li></div>
+    <div><li>Fixed an issue with a few reserved keywords for field names (including "size") potentially breaking some "getField(...)" calls.</li></div>
+    <div><li>Fix issue where formula fields may not be calculated for ListGrid.</li></div>
+    <div><li>Fix possible error when ListGrid.showGroupSummaryInHeader is true.</li></div>
+    <div><li>Clarify documentation for ListGrid.recalculateSummaries()</li></div>
+    <div><li>Added RTL media for ListGrid expansion field images to the Enterprise, EnterpriseBlue, and Graphite skins.</li></div>
+    <div><li>Fixed the issue that a ListGrid's headerMenuButton would partially overlap the<BR>field name of a left-aligned field in RTL mode.</li></div>
+    <div><li>Fixed the issue that the sort arrow icons and multilevel sort indicators in ListGrid<BR>header buttons were not properly mirrored in RTL mode.</li></div>
+    <div><li>Fixed an issue in Internet Explorer where pressing the Enter/Return key within a<BR>form item of a ListGrid filter editor form could introduce a horizontal scrollbar<BR>on the page and shift the ListGrid to the right.</li></div>
+    <div><li>Fixed a problem where autoFit of all column widths could miscalculate sizes when grouped</li></div>
+    <div><li>Improve stability of ListGrid.getRecordDropPosition().</li></div>
+    <div><li>Fix (non-TreeGrid) ListGrid so that we properly implement the documented <BR>default for recordDropAppearance.</li></div>
+    <div><li>Fixed a bug where setFields() could cause an unnecessary resort()</li></div>
+    <div><li>Ensure correctness when records with a cached user formulae are copied<BR>between ListGrids.</li></div>
+
     <div><li>ListGrid default header context menu won't allow you to hide all columns any more. At least one column must always be visible.</li></div>
 
     <div><li>Fixed keyboard-based scrolling through the values in a PresetCriteriaItem used in a ListGrid's FilterEditor.</li></div>
@@ -690,6 +782,8 @@ Fixed Event Editors when event field-names have been overridden in code.  Altere
 </ul>
 
 <h5>Tree</h5><ul>
+    <div><li>Fixed the issue that top-level TreeGrid folders were improperly indented in PDF exports.</li></div> 	     
+
     <div><li>Fixed and optimized TreeGrid RecordComponent management when drag-moving</li></div>
     <div><li>Fix for an issue where ListGrid grouping could cause specified sort to be lost.</li></div>
 
@@ -742,6 +836,10 @@ Fixed Event Editors when event field-names have been overridden in code.  Altere
 </ul>
 
 <h5>DynamicForm</h5><ul>
+    <div><li>Fixed an issue where in Internet Explorer, if a form was redrawn while a user was typing in a text field, keystrokes<BR>could be dropped.</li></div>
+    <div><li>Fixed the issue that a FormItem's valueIconLeftPadding and valueIconRightPadding<BR>were not mirrored in RTL mode.</li></div>
+    <div><li>Fixed an issue which could rarely cause items within a form to show a value applied to a different item</li></div>
+
     <div><li>Fixed issue with integer field with optionDataSource or displayField being rendered<BR>as an IntegerItem instead of SelectItem by default.</li></div>
     <div><li>Fixed recursive call in DataSource.compareValues.</li></div>
     <div><li>Fixed readOnlyDisplay usage when a form is initially canEdit: false</li></div>
@@ -759,12 +857,16 @@ Fixed Event Editors when event field-names have been overridden in code.  Altere
 </ul>
 
 <h5>FilterBuilder</h5><ul>
+    <div><li>fixed an issue where subClauseButtonTitle / subClauseButtonPrompt wouldn't be propogated to nested subclauses</li></div>
+
     <div><li>Fixed ability to set the width of the FieldPicker in FilterBuilders</li></div>
     <div><li>FilterBuilder now initializeable without a dataSource (but a dataSource needs to be provided later<BR>via setDataSource() for this component to be usable)</li></div>
 
 </ul>
 
 <h5>FormItem</h5><ul>
+    <div><li>Fixed an issue where the increase and decrease icons of a SpinnerItem might not<BR>line up exactly in Internet Explorer 11.</li></div>  
+
     <div><li>Improved behavior and clarified documentation around how formItems handle percentage sizes.</li></div>
 
     <div><li>Fixed a bug where the in-field hint of a MultiComboBoxItem would be cleared after<BR>calling setValueMap().</li></div>
@@ -774,6 +876,9 @@ Fixed Event Editors when event field-names have been overridden in code.  Altere
 
 </ul>
 
+<h5>TileGrid</h5><ul>
+ 	     <div><li>Fixed a runtime error when dragging records into a TileGrid.</li></div>
+ 	 </ul>
 
 <h5>CanvasItem</h5><ul>
     <div><li>Fixed the bug that a CanvasItem's canvas was positioned incorrectly if the form<BR>was showing scrollbars and was vertically and/or horizontally scrolled.</li></div>
@@ -787,6 +892,11 @@ Fixed Event Editors when event field-names have been overridden in code.  Altere
     <div><li>Modified the default width of CheckboxItems to match that of TextItems rather than having the clickable area extend to the edge of the column containing the item.</li></div>
 
 </ul>
+
+<h5>ComboBoxItem</h5><ul>
+    <div><li>Fixed the issue in Internet Explorer, RTL mode, that the pickList of a ComboBoxItem<BR>was positioned incorrectly.</li></div>
+</ul>
+
 <h5>ContainerItem</h5><ul>
     <div><li>Fixed an issue where TimeItems could fail to output their value in print HTML</li></div>
 
@@ -828,6 +938,11 @@ Fixed Event Editors when event field-names have been overridden in code.  Altere
 </ul>
 
 <h5>DataSource server-side fixes</h5><ul>
+    <div><li>Fix incorrect SQL WHERE clause being generated if an "inSet" criterion is added to the criteria via the server-side API dsRequest.addToCriteria() and the "values" object passed to that method is not a java.util.List</li></div>
+    <div><li>Change the AdvancedCriteria operators selected when uplifting simple critieria to AdvancedCriteria, to correctly reflect the simple criteria textMatchStyle's case-sensitivity behavior</li></div>
+    <div><li>Fix an exception in SQLDataSource when inserting CLOBs or binary field(s) with an explicit NULL value into an Oracle database</li></div>
+    <div><li>In the "inSet" criteria-handling logic, accept any type of Number object rather than insisting on a particular concrete type</li></div>
+    <div><li>Correct a problem when adding full-formed AdvancedCriteria objects as sub-criteria via the DSRequest.addToCriteria() API</li></div>
     <div><li>Add support for fields that express a customSelectClause when they are the target of an includeFrom</li></div>
     <div><li>DataSource.enumTranslateStrategy is now correctly applied to relatedUpdates.</li></div>
     <div><li>Ensure that non-key &lt;criteria&gt; values on an operationBinding do not get trimmed off during DSRequest processing</li></div>
