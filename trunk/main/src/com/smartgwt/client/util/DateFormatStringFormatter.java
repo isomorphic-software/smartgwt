@@ -19,7 +19,7 @@ public class DateFormatStringFormatter implements DateDisplayFormatter {
         } else {
             var formatString = this.@com.smartgwt.client.util.DateFormatStringFormatter::formatString;
             var dateJS = @com.smartgwt.client.util.JSOHelper::toDateJS(Ljava/util/Date;)(date);
-            return dateJS.format(formatString);
+            return $wnd.isc.DateUtil.format(dateJS, formatString);
         }
     }-*/;
 
