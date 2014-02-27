@@ -8,8 +8,10 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.EmployeeXmlDS;
 
 public class FrozenColumnsSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "<p>Setting frozen:true enables frozen columns for Trees.</p><p>Columns can be frozen and unfrozen by right-clicking on column headers." +
-            "Column resize, column reorder, drag and drop and load on demand all function normally. Double click a cell to edit.</p>";
+    private static final String DESCRIPTION = "<p>Grids and multi-column trees can set a  " +
+            "column to frozen by setting <code>frozen:true</code>.</p><p>Columns can be " +
+            "reorder, drag and drop and load on demand all function normally. Double click " +
+            "a cell to edit.</p>";
 
     public static class Factory implements PanelFactory {
         private String id;
