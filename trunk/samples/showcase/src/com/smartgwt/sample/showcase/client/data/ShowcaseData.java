@@ -344,25 +344,15 @@ public class ShowcaseData {
 
                     // New samples since previous release
                     new ExplorerTreeNode("New Samples", "new-category", "root", "silk/new.png", null, true, idSuffix),                     
-                    
-                    new ExplorerTreeNode("Field Picker", "grid-appearance-field-picker-new", "new-category", null, new FieldPickerSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Multi Grouping", "grid-grouping-multi-new", "new-category", null, new MultiGroupingSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Local DataSource", "grid-databinding-local-datasource-new", "new-category", null, 
-                                            new GridDataBindingLocalDataSourceSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portal Layout", "portal-layout-category-new", "new-category", "silk/application_view_tile.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Repositioning", "repositioning-portal-layout-new", "portal-layout-category-new", null, new RearrangeSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Adding and removing columns", "add-remove-columns-portal-layout-new", "portal-layout-category-new", null, new AddRemoveColumnsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portlet Contents", "portlet-contents-portal-layout-new", "portal-layout-category-new", "silk/application_view_tile.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Window contents", "window-contents-portal-layout-new", "portlet-contents-portal-layout-new", null, new WindowContentsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Dragging components", "drag-components-portal-layout-new", "portlet-contents-portal-layout-new", null, new DragComponentsSample.Factory(), true, idSuffix),
-                    
-                    new ExplorerTreeNode("Sizing", "sizing-portal-layout-new", "portal-layout-category-new", "silk/application_view_tile.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Column height", "column-height-portal-layout-new", "sizing-portal-layout-new", null, new ColumnHeightSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Column width", "column-width-portal-layout-new", "sizing-portal-layout-new", null, new ColumnWidthSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portlet height", "portlet-height-portal-layout-new", "sizing-portal-layout-new", null, new PortletHeightSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portlet width", "portlet-width-portal-layout-new", "sizing-portal-layout-new", null, new PortletWidthSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portlet resizing", "portlet-resizing-portal-layout-new", "sizing-portal-layout-new", null, new PortletResizeSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portlet Animation", "portlet-animation-portal-layout-new", "portal-layout-category-new", null, new PortletAnimationSample.Factory(), true, idSuffix),
+
+                    new ExplorerTreeNode("Custom Tiles", "tiling-custom-new", "new-category", null, new CustomTilesSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Portlet Events", "portlet-events-portal-layout-new", "new-category", null, new PortletEventsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Custom Menu Columns", "menus-category-customcolumns-new", "new-category", null, new MenuCustomColumnsSample.Factory(), true, idSuffix),
+
+                    new ExplorerTreeNode("Cross-Window Drag", "effects-cross-window-dd-category-new", "new-category", null, null, true, idSuffix),
+                    new ExplorerTreeNode("Native Drag Create", "effects-dd-native-drag-create-new", "effects-cross-window-dd-category-new", null, new NativeDragCreateSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Records across Windows", "effects-dd-records-across-windows-new", "effects-cross-window-dd-category-new", null, new RecordsAcrossWindowsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Portlet across Windows", "effects-dd-portlet-across-windows-new", "effects-cross-window-dd-category-new", null, new PortletAcrossWindowsSample.Factory(), true, idSuffix),
                     // End of new samples
                     
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
@@ -398,6 +388,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("RollOver Controls", "grid-appearance-rollover-controls", "grid-appearance-category", null, new RollOverControlsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Format Values (Declared Formats)", "grid-appearance-format-values-builtin", "grid-appearance-category", null, new FormatValuesBuiltinSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Format Values (Custom Formatting)", "grid-appearance-format-values", "grid-appearance-category", null, new FormatValuesSample.Factory(), true, idSuffix),
+                    
                     new ExplorerTreeNode("Empty Values", "grid-appearance-empty-values", "grid-appearance-category", null, new EmptyValuesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Empty Grid", "grid-appearance-empty-grid", "grid-appearance-category", null, new EmptyGridSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Alternate Records", "grid-appearance-alternate", "grid-appearance-category", null, new AlternateRecordStyleSample.Factory(), true, idSuffix),
@@ -452,8 +443,12 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Nested Filter", "grid-nested-filter-builder", "grid-filter-category", null, new GridNestedFilterBulderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Big Filter", "grid-big-filter", "grid-filter-category", null, new GridBigFilterSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Disable Filter", "grid-sortfilter-disable-filter", "grid-filter-category", null, new GridDisableFilterSample.Factory(), true, idSuffix),
+                    
                     new ExplorerTreeNode("Date Range Filtering", "grid-daterange-filtering", "grid-filter-category", null, new GridDateRangeFilterSample.Factory(), true, idSuffix),
+                    
                     new ExplorerTreeNode("Date Range (Presets)", "grid-daterange-presets", "grid-filter-category", null, new GridDateRangePresetsSample.Factory(), true, idSuffix),
+                    
+                    
                     new ExplorerTreeNode("Expression Filter", "grid-exp-filter", "grid-filter-category", null, new GridExpressionFilter.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Editing", "grid-editing-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
