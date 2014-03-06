@@ -2,7 +2,6 @@ package com.smartgwt.sample.showcase.client.drawing;
 
 import com.smartgwt.client.types.Cursor;
 import com.smartgwt.client.types.Overflow;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Slider;
 import com.smartgwt.client.widgets.drawing.DrawCurve;
@@ -57,7 +56,7 @@ public class ZoomAndPanSample extends ShowcasePanel {
         drawPane.setBackgroundColor("papayawhip");
         drawPane.setOverflow(Overflow.HIDDEN);
         drawPane.setCursor(Cursor.AUTO);
-        
+
         drawPane.addDrawHandler(new DrawHandler() {
             @Override
             public void onDraw(DrawEvent event) {
@@ -70,19 +69,19 @@ public class ZoomAndPanSample extends ShowcasePanel {
                 triangleLabel.setTop(175);
                 triangleLabel.setContents("Triangle");
                 triangleLabel.draw();
-             
+
                 DrawTriangle drawTriangle = new DrawTriangle();
                 drawTriangle.setDrawPane(drawPane);
                 drawTriangle.setPoints(new Point(100,50),new Point(150,150),new Point(50,150));
                 drawTriangle.draw();
-        
+
                 DrawLabel curveLabel = new DrawLabel();
                 curveLabel.setDrawPane(drawPane);
                 curveLabel.setLeft(200);
                 curveLabel.setTop(175);
                 curveLabel.setContents("Curve");
                 curveLabel.draw();
-                
+
                 DrawCurve drawCurve = new DrawCurve();
                 drawCurve.setDrawPane(drawPane);
                 drawCurve.setStartPoint(new Point(200,50));
@@ -90,27 +89,27 @@ public class ZoomAndPanSample extends ShowcasePanel {
                 drawCurve.setControlPoint1(new Point(250,0));
                 drawCurve.setControlPoint2(new Point(250,200));
                 drawCurve.draw();
-        
+
                 DrawLabel linePathLabel = new DrawLabel();
                 linePathLabel.setDrawPane(drawPane);
                 linePathLabel.setLeft(350);
                 linePathLabel.setTop(175);
                 linePathLabel.setContents("Line Path");
                 linePathLabel.draw();
-                
+
                 DrawLinePath drawLinePath = new DrawLinePath();
                 drawLinePath.setDrawPane(drawPane);
                 drawLinePath.setStartPoint(new Point(350,50));
                 drawLinePath.setEndPoint(new Point(450,150));
                 drawLinePath.draw();
-        
+
                 DrawLabel pathLabel = new DrawLabel();
                 pathLabel.setDrawPane(drawPane);
                 pathLabel.setLeft(500);
                 pathLabel.setTop(175);
                 pathLabel.setContents("Path");
                 pathLabel.draw();
-                
+
                 DrawPath drawPath = new DrawPath();
                 drawPath.setDrawPane(drawPane);
                 drawPath.setPoints(
@@ -126,14 +125,14 @@ public class ZoomAndPanSample extends ShowcasePanel {
                         new Point(500,150)
                 );
                 drawPath.draw();
-        
+
                 DrawLabel ovalLabel = new DrawLabel();
                 ovalLabel.setDrawPane(drawPane);
                 ovalLabel.setLeft(50);
                 ovalLabel.setTop(415);
                 ovalLabel.setContents("Oval");
                 ovalLabel.draw();
-                
+
                 DrawOval drawOval = new DrawOval();
                 drawOval.setDrawPane(drawPane);
                 drawOval.setLeft(50);
@@ -141,14 +140,14 @@ public class ZoomAndPanSample extends ShowcasePanel {
                 drawOval.setWidth(100);
                 drawOval.setHeight(100);
                 drawOval.draw();
-        
+
                 DrawLabel rectLabel = new DrawLabel();
                 rectLabel.setDrawPane(drawPane);
                 rectLabel.setLeft(200);
                 rectLabel.setTop(415);
                 rectLabel.setContents("Rect");
                 rectLabel.draw();
-                
+
                 DrawRect drawRect = new DrawRect();
                 drawRect.setDrawPane(drawPane);
                 drawRect.setLeft(200);
@@ -156,27 +155,27 @@ public class ZoomAndPanSample extends ShowcasePanel {
                 drawRect.setWidth(150);
                 drawRect.setHeight(100);
                 drawRect.draw();
-        
+
                 DrawLabel lineLabel = new DrawLabel();
                 lineLabel.setDrawPane(drawPane);
                 lineLabel.setLeft(400);
                 lineLabel.setTop(415);
                 lineLabel.setContents("Line");
                 lineLabel.draw();
-                
+
                 DrawLine drawLine = new DrawLine();
                 drawLine.setDrawPane(drawPane);
                 drawLine.setStartPoint(new Point(400,300));
                 drawLine.setEndPoint(new Point(500,400));
                 drawLine.draw();
-        
+
                 DrawLabel sectorLabel = new DrawLabel();
                 sectorLabel.setDrawPane(drawPane);
                 sectorLabel.setLeft(550);
                 sectorLabel.setTop(415);
                 sectorLabel.setContents("Sector");
                 sectorLabel.draw();
-                
+
                 DrawSector drawSector = new DrawSector();
                 drawSector.setDrawPane(drawPane);
                 drawSector.setCenterPoint(new Point(550,300));
@@ -193,11 +192,12 @@ public class ZoomAndPanSample extends ShowcasePanel {
         ValueChangedHandler paneRotationSliderValueChangeHandler = new ValueChangedHandler() {
             @Override
             public void onValueChanged(ValueChangedEvent event) {
-                drawPane.setRotation(event.getValue());
-                drawPane.redraw();
+                if (drawPane.isCreated()) {
+                    drawPane.rotate(event.getValue());
+                }
             }
         };
-        
+
         Slider paneRotationSlider = new Slider();
         paneRotationSlider.setMinValue(0);
         paneRotationSlider.setMaxValue(360);
@@ -210,16 +210,16 @@ public class ZoomAndPanSample extends ShowcasePanel {
         paneRotationSlider.setVertical(false);
         paneRotationSlider.addValueChangedHandler(paneRotationSliderValueChangeHandler);
         paneRotationSlider.draw();
-        /**/
 
         ValueChangedHandler zoomSliderValueChangeHandler = new ValueChangedHandler() {
             @Override
             public void onValueChanged(ValueChangedEvent event) {
-                Slider sliderItem = (Slider) event.getSource();
-                drawPane.zoom(sliderItem.getValue());
+                if (drawPane.isCreated()) {
+                    drawPane.zoom(event.getValue());
+                }
             }
         };
-        
+
         Slider zoomSlider = new Slider();
         zoomSlider.setMinValue(.10f);
         zoomSlider.setMaxValue(3.0f);
@@ -234,7 +234,7 @@ public class ZoomAndPanSample extends ShowcasePanel {
         zoomSlider.setVertical(false);
         zoomSlider.addValueChangedHandler(zoomSliderValueChangeHandler);
         zoomSlider.draw();
-        
+
         VLayout layout = new VLayout();
         layout.addMember(drawPane);
         layout.addMember(paneRotationSlider);
