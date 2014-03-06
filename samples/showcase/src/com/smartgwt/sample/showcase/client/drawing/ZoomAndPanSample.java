@@ -186,9 +186,6 @@ public class ZoomAndPanSample extends ShowcasePanel {
             }
         });
 
-        /*
-         * Behavior does not exist on DrawPane through GWT right now.
-         */
         ValueChangedHandler paneRotationSliderValueChangeHandler = new ValueChangedHandler() {
             @Override
             public void onValueChanged(ValueChangedEvent event) {
