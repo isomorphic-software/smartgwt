@@ -66,7 +66,7 @@ public class ShadowsSample extends ShowcasePanel {
             public void onDraw(DrawEvent event) {
                 softness.addValueChangedHandler(new ValueChangedHandler() {
                     public void onValueChanged(ValueChangedEvent event) {
-                        label.setShadowSoftness(event.getValue());
+                        label.setShadowSoftness((int)event.getValue());
                         label.updateShadow();
                     }
                 });
@@ -87,7 +87,7 @@ public class ShadowsSample extends ShowcasePanel {
             public void onDraw(DrawEvent event) {
                 offset.addValueChangedHandler(new ValueChangedHandler() {
                     public void onValueChanged(ValueChangedEvent event) {
-                        label.setShadowOffset(event.getValue());
+                        label.setShadowOffset((int)event.getValue());
                         label.updateShadow();
                     }
                 });
