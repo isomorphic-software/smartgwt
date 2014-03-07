@@ -63,8 +63,10 @@ public class GridSummariesSample extends ShowcasePanel {
                 Set<String> uniqueCategories = new HashSet<String>();
 
                 for (int i = 0; i < records.length; i++) {
-                    Record record = records[i];
-                    uniqueCategories.add(((OrderItem) record).getCategory());
+                    // convert each supplied Record to an OrderItem if it's not one already
+                    OrderItem item = records[i] instanceof OrderItem ? (OrderItem)records[i] :
+                                                                    new OrderItem(records[i]);
+                    uniqueCategories.add(item.getCategory());
                 }
                 return uniqueCategories.size() + " Categories";
             }
