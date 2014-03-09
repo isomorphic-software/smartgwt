@@ -349,7 +349,7 @@ private boolean isc_websiteMode = scConstants.websiteMode();
 						"style='height: 30pt; float: left; margin-right: 2pt; " +
 					"margin-left: 2pt; margin-top: 10pt;'/>" +
 					"<a target='_top' style='line-height: 12pt; padding-top: 5pt;' "+
-					"href='" + "http://www.smartclient.com/#Welcome" + "' " +
+					"href='" + "/#Welcome" + "' " +
 					">" + "SmartClient<br/>Hands-On Demo" + "</a>");
         smartGwtButtonR.setStyleName("darkgrey_Ebutton ERbutton");
         smartGwtButtonR.setWidth(200);
@@ -416,7 +416,7 @@ private boolean isc_websiteMode = scConstants.websiteMode();
         rightPane.addMember(learnMoreButtonBoxR);
         
         Label learnMoreButtonR = new Label("<div>Isomorphic has the advantage.</div>" +
-				"<a target='_top' href='" + "technology/whysmart.jsp" + "' " +
+				"<a target='_top' href='" + "/technology/whysmart.jsp" + "' " +
 				">" + "Learn More >" + "</a>");
         learnMoreButtonR.setStyleName("darkgrey_Ebutton ERbutton");
         learnMoreButtonR.setWidth(200);
@@ -444,7 +444,7 @@ private boolean isc_websiteMode = scConstants.websiteMode();
         smartGWTButtonPreB.setWidth("220pt");
         bottomPaneRight.addMember(smartGWTButtonPreB);
         Label smartGWTButtonB = new Label("<a target='_top' style='width: 130pt;' " +
-			"href='http://www.smartclient.com/#Welcome'" +
+			"href='/#Welcome'" +
 			" >SmartClient Live Demo</a>");
         smartGWTButtonB.setStyleName("darkgrey_Ebutton EBbutton");
         bottomPaneRight.addMember(smartGWTButtonB);
