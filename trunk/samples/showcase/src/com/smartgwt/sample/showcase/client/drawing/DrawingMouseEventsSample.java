@@ -186,22 +186,22 @@ public class DrawingMouseEventsSample extends ShowcasePanel {
                 drawLine.setStartPoint(new Point(400,300));
                 drawLine.setEndPoint(new Point(500,400));
                 drawLine.draw();
-        
+
                 DrawLabel sectorLabel = new DrawLabel();
                 sectorLabel.setDrawPane(drawPane);
                 sectorLabel.setLeft(550);
                 sectorLabel.setTop(415);
                 sectorLabel.setContents("Sector");
                 sectorLabel.draw();
-                
+
                 DrawSector drawSector = new DrawSector();
                 drawSector.setDrawPane(drawPane);
                 drawSector.setCenterPoint(new Point(550,300));
-                drawSector.setStartAngle(0);
-                drawSector.setEndAngle(90);
+                drawSector.setStartAngle(0.0);
+                drawSector.setEndAngle(90.0);
                 drawSector.setRadius(100);
                 drawSector.draw();
-                
+
                 DrawItem[] drawItems = drawPane.getDrawItems();
                 for (int i = 0; i < drawItems.length; i++) {
                     DrawItem drawItem = drawItems[i];
