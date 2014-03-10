@@ -50,8 +50,8 @@ public class GridTopHeaderSample extends ShowcasePanel {
         section.setExpanded(true);
 
         final ListGrid countryGrid = new ListGrid();
-        countryGrid.setWidth(550);
-        countryGrid.setHeight(224);
+        countryGrid.setWidth("100%");
+        countryGrid.setHeight("100%");
         countryGrid.setShowAllRecords(true);
         countryGrid.setCellHeight(22);
         countryGrid.setDataSource(CountryXmlDS.getInstance());
