@@ -13,16 +13,16 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.calendar.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasEventRemoveClickHandlers extends HasHandlers {
     /**
-     * Called whenever the close icon of an event is clicked within the day or week view. Call {@link com.smartgwt.client.widgets.calendar.events.CalendarEventRemoveClick#cancel()} from within {@link EventRemoveClickHandler#onEventRemoveClick} to cancel the removal,
+     * Called whenever the close icon of an event is clicked within the day or week view. Call {@link com.smartgwt.client.widgets.calendar.events.CalendarEventRemoveClick#cancel()} from within {@link com.smartgwt.client.widgets.calendar.events.EventRemoveClickHandler#onEventRemoveClick} to cancel the removal,
      * or . <P> Implement this method to do something like, for example, showing a confirmation dialog  before
      * an event is removed.
      *
@@ -31,3 +31,4 @@ public interface HasEventRemoveClickHandlers extends HasHandlers {
      */
     HandlerRegistration addEventRemoveClickHandler(EventRemoveClickHandler handler);
 }
+

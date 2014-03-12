@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Default buttons that you can use in your Dialogs. <P> On click these call canonical methods that you can override in
  * your Dialog. <P> Refer to these buttons via the syntax <code>isc.Dialog.OK</code> when passing them into {@link
@@ -53,7 +55,6 @@ public enum DialogButtons implements ValueEnum {
      * com.smartgwt.client.widgets.Dialog#DONE_BUTTON_TITLE DONE_BUTTON_TITLE}.
      */
     DONE("done");
-
     private String value;
 
     DialogButtons(String value) {

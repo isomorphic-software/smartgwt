@@ -4,18 +4,22 @@ package com.smartgwt.client.docs;
 /**
  * <h3>Admin Console</h3>
  * The Admin Console allows you to configure database access for DataSources that use
- *  Smart GWT's built-in {@link com.smartgwt.client.docs.SqlDataSource SQL engine}.  You can either use the Admin
+ * Smart GWT's built-in {@link com.smartgwt.client.docs.SqlDataSource SQL engine}.  You can either
+ * use the Admin
  *  Console UI (as explained below) or directly specify equivalent properties in your
- *  server.properties file (see "Manually specifying.." below).
+ * {@link com.smartgwt.client.docs.Server_properties server.properties} file (see "Manually
+ * specifying.." below).
  *  <P>
  *  
  *  
  *  To use the Admin Console, make sure you have followed the 
- *  {@link com.smartgwt.client.docs.SgwtEESetup full installation instructions} - double check that you have the
+ * {@link com.smartgwt.client.docs.SgwtEESetup full installation instructions} - double check that
+ * you have the
  *  correct GWT &lt;inherits&gt; as shown in those instructions.  Then, launch your GWT project
  *  from your IDE, and open a web browser to <i>moduleBaseURL</i>/tools/adminConsole.jsp.  For
  *  example, if you load your application by going to a URL that ends in
- *  builtinds/builtinds.html, the correct URL for the Admin Console is builtinds/tools/adminConsole.jsp.
+ * builtinds/builtinds.html, the correct URL for the Admin Console is
+ * builtinds/tools/adminConsole.jsp.
  *  <P>
  *  If it's not clear what URL to use, you can add the following code to your onModuleLoad()
  *  method to create a button that opens the Admin Console:
@@ -38,7 +42,9 @@ package com.smartgwt.client.docs;
  *  connection, set it as the default connection using the "Set as Default" button.
  *  
  *  <P>
- *  These settings will be written to server.properties in your deployment directory - use
+ * These settings will be written to {@link com.smartgwt.client.docs.Server_properties
+ * server.properties}
+ *  in your deployment directory - use
  *  the "Download server.properties" button to download the settings and merge them to the
  *  server.properties file in your Eclipse (or other IDE) project.
  *  
@@ -51,7 +57,8 @@ package com.smartgwt.client.docs;
  *  The test file to use with your DataSource is specified in the <code>testFileName</code>
  *  DataSource configuration property. The test file uses the extension .data.xml.
  *  <p>
- *  The test data file should consist of a top-level &lt;List&gt; element containing a series of XML
+ * The test data file should consist of a top-level &lt;List&gt; element containing a series of
+ * XML
  *  elements named after your DataSource's ID, each of which creates one DataSource
  *  record. Values for each field are given within tags named after the field name. 
  *  <p>
@@ -130,7 +137,9 @@ package com.smartgwt.client.docs;
  *  <br>
  *  <b>Manually specifying database connection settings</b>
  *  <p>
- *  The Admin Console maintains settings in the <code>server.properties</code> file, found in 
+ * The Admin Console maintains settings in the {@link com.smartgwt.client.docs.Server_properties
+ * server.properties}
+ *  file, found in 
  *  your application's <code>WEB-INF/classes</code> directory.  If you prefer, you can maintain
  *  these settings by directly editing that file.  You should restart your servlet engine 
  *  after changing this file.
@@ -138,7 +147,8 @@ package com.smartgwt.client.docs;
  *  For example, the following settings are the defaults in a new Smart GWT installation for 
  *  a MySQL server; they are approximately correct for a MySQL server running on the same 
  *  machine as the servlet engine and listening on the default MySQL port.  For details of what
- *  each of these properties means, check {@link com.smartgwt.client.docs.SqlSettings this page}.<pre>
+ * each of these properties means, check {@link com.smartgwt.client.docs.SqlSettings this
+ * page}.<pre>
  *    sql.Mysql.database.type: mysql
  *    sql.Mysql.database.ansiMode: false
  *    sql.Mysql.interface.type: dataSource
@@ -166,18 +176,21 @@ package com.smartgwt.client.docs;
  *  it happens to be very similar to the database type - "Mysql" as opposed to "mysql" - but in 
  *  fact the name has no significance and could be any string.  When referring to specific 
  *  database connections in your {@link com.smartgwt.client.data.DataSource DataSources} with the 
- *  {@link com.smartgwt.client.docs.serverds.DataSource#dbName dbName} property, it is the database <em>name</em> you use.
+ * {@link com.smartgwt.client.docs.serverds.DataSource#dbName dbName} property, it is the database
+ * <em>name</em> you use.
  *  <p>
  *  NOTE: It is common for DataSources to not specify <code>dbName</code>.  In this case, the 
  *  default database is used.  To specify the default database manually in 
- *  <code>server.properties</code>, set <code>sql.defaultDatabase</code>, using database 
+ * {@link com.smartgwt.client.docs.Server_properties server.properties}, set
+ * <code>sql.defaultDatabase</code>, using database 
  *  name.  So, to set our example connection from above as the default:<pre>
  *    sql.defaultDatabase: Mysql
  *  </pre>
  *  <P>
  *  <b>Manually specifying JNDI settings</b>
  *  <p>
- *  Instead of specifying database connection parameters directly in <code>server.properties</code>,
+ *  Instead of specifying database connection parameters directly in 
+ *  {@link com.smartgwt.client.docs.Server_properties server.properties},
  *  it is possible to connect to a database that is configured as a JNDI resource in your 
  *  application server.  Assume you have an Oracle JNDI resource with the name "jndiTest", 
  *  configured similar to this in Tomcat:

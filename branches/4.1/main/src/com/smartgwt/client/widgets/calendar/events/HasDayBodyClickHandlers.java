@@ -13,17 +13,17 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.calendar.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDayBodyClickHandlers extends HasHandlers {
     /**
      * Called when the body area of a day in the month view is clicked on, outside of any links to a particular event. <P> By
-     * default, if the user can add events, shows a dialog for adding a new event for that day.  Call {@link com.smartgwt.client.widgets.calendar.events.DayBodyClickEvent#cancel()} from within {@link DayBodyClickHandler#onDayBodyClick} to cancel this
+     * default, if the user can add events, shows a dialog for adding a new event for that day.  Call {@link com.smartgwt.client.widgets.calendar.events.DayBodyClickEvent#cancel()} from within {@link com.smartgwt.client.widgets.calendar.events.DayBodyClickHandler#onDayBodyClick} to cancel this
      * action. <P> Not called if the day falls outside the current month and {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getShowOtherDays showOtherDays} is false.
      *
@@ -32,3 +32,4 @@ public interface HasDayBodyClickHandlers extends HasHandlers {
      */
     HandlerRegistration addDayBodyClickHandler(DayBodyClickHandler handler);
 }
+

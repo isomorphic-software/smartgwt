@@ -47,9 +47,9 @@ package com.smartgwt.client.docs;
  *  <P>
  *  Finally, it is possible to have a DataSource which initially fetches the entire dataset and
  *  performs all subsequent fetching locally, while still visiting the server to perform all 
- *  other operations.  See {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData}.
+ * other operations.  See {@link com.smartgwt.client.data.DataSource#getCacheAllData
+ * cacheAllData}.
  * @see com.smartgwt.client.data.DataSource#getClientOnly
- * @see com.smartgwt.client.data.DataSource#getTestData
  */
 public interface ClientOnlyDataSources {
 }

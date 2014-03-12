@@ -19,8 +19,9 @@ package com.smartgwt.client.docs;
  *  Note that this JSP tag must be surrounded by &lt;SCRIPT&gt; tags in the JSP because it
  *  generates JavaScript code.  Like other tags that generate JavaScript code, this tag can be
  *  used in a JSP that is included from your main page in order to create separate
- *  cacheability.  For example:<pre>
- *      &lt;SCRIPT SRC="myUIDefinitions.jsp"&gt;&lt;/SCRIPT&gt;
+ *  cacheability.  For example:
+ *  <pre>
+ *  &lt;SCRIPT SRC="myUIDefinitions.jsp"&gt;&lt;/SCRIPT&gt;
  *  </pre>
  *  <p>
  *  Example of using this tag :
@@ -46,7 +47,7 @@ package com.smartgwt.client.docs;
  *  <p>
  *  An example that specifies both a filename and some XML in the tag body:
  *  <pre>
- *  &lt;isomorphic:XML name="test.xml"&gt;
+ *  &lt;isomorphic:XML filename="test.xml"&gt;
  *    &lt;Canvas backgroundColor="red"/&gt;
  *  &lt;/isomorphic:XML&gt;
  *  </pre>

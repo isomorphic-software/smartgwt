@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.data;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,16 +50,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
@@ -63,6 +74,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * all the properties available on the basic {@link com.smartgwt.client.rpc.RPCResponse}, in addition to the properties
  * listed here.
  */
+@BeanFactory.FrameworkClass
 public class DSResponse extends RPCResponse {
 
     public static DSResponse getOrCreateRef(JavaScriptObject jsObj) {
@@ -70,21 +82,81 @@ public class DSResponse extends RPCResponse {
         return new DSResponse(jsObj);
     }
 
+
     public DSResponse(){
         
     }
 
     public DSResponse(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
+
+
+    public DSResponse(String dataSource) {
+        setDataSource(dataSource);
+                
+    }
+
+
+    public DSResponse(String dataSource, DSOperationType operationType) {
+        setDataSource(dataSource);
+		setOperationType(operationType);
+                
+    }
+
+
+    public DSResponse(String dataSource, DSOperationType operationType, Record... data) {
+        setDataSource(dataSource);
+		setOperationType(operationType);
+		setData(data);
+                
+    }
+
 
     // ********************* Properties / Attributes ***********************
 
+    /**
+     * For "fetch" operations, this is the array of Records fetched.  For "update", "add", and "remove" operations, this is
+     * typically an array containing a single Record representing the record that was updated, added, or removed.
+     *
+     * @return Record...
+     */
+    public Record[] getData()  {
+        return com.smartgwt.client.util.ConvertTo.arrayOfRecord(getAttributeAsJavaScriptObject("data"));
+    }
+
+    /**
+     * For "fetch" operations, this is the array of Records fetched.  For "update", "add", and "remove" operations, this is
+     * typically an array containing a single Record representing the record that was updated, added, or removed.
+     *
+     * @return RecordList
+     */
+    public RecordList getDataAsRecordList()  {
+        return RecordList.getOrCreateRef(getAttributeAsJavaScriptObject("data"));
+    }
+
+    /**
+     * The DataSource of this DSResponse.
+     *
+     * @param dataSource  Default value is null
+     */
+    public void setDataSource(String dataSource) {
+        setAttribute("dataSource", dataSource);
+    }
+
+    /**
+     * The DataSource of this DSResponse.
+     *
+     * @return String
+     */
+    public String getDataSource()  {
+        return getAttributeAsString("dataSource");
+    }
 
     /**
      * End row of returned server results, when using paged result fetching <p> Note that startRow and endRow are zero-based -
      * the first record is row zero.
-     *
      *
      * @return Integer
      */
@@ -92,11 +164,24 @@ public class DSResponse extends RPCResponse {
         return getAttributeAsInt("endRow");
     }
 
+    /**
+     * Server-side validation errors for an attempted "update" or "add" operation, as a  JS Object where each property name is
+     * a field name from the record and each property value contains error information. <P> To extract just the simple error
+     * strings for each field we recommend passing this object to {@link com.smartgwt.client.data.DataSource#getSimpleErrors
+     * DataSource.getSimpleErrors} <P> The Java API DSResponse.addError(fieldName, errorMessage) is used to send server-side
+     * errors to the client.  See the Java Server Reference for details.
+     *
+     * @return Map
+     * @see com.smartgwt.client.data.events.ErrorEvent
+     * @see com.smartgwt.client.docs.ErrorHandling ErrorHandling overview and related methods
+     */
+    public Map getErrors()  {
+        return getAttributeAsMap("errors");
+    }
 
     /**
      * If set, indicates that this response came from the offline cache, not the server.  This  flag is the only reliable way
      * for application code to determine the source of a response.
-     *
      *
      * @return Boolean
      */
@@ -104,11 +189,20 @@ public class DSResponse extends RPCResponse {
         return getAttributeAsBoolean("fromOfflineCache");
     }
 
+    /**
+     * HTTP headers returned by the server as a map from header name to header value. <P> Headers are available only when the
+     * default {@link com.smartgwt.client.types.RPCTransport} "xmlHttpRequest" is in use, and browsers may limit access to
+     * headers for cross-domain requests or in other security-sensitive scenarios.
+     *
+     * @return Map
+     */
+    public Map getHttpHeaders()  {
+        return getAttributeAsMap("httpHeaders");
+    }
 
     /**
      * Optional flag that can be set by the server to force ResultSets to drop any caches of records from the DataSource that
      * was the target of the operation.
-     *
      *
      * @return Boolean
      */
@@ -116,11 +210,9 @@ public class DSResponse extends RPCResponse {
         return getAttributeAsBoolean("invalidateCache");
     }
 
-
     /**
      * Timestamp (millisecond value) to indicate when this dsResponse was cached in  {@link com.smartgwt.client.util.Offline
      * offline storage}.  Not applicable if the response has never been  stored offline.
-     *
      *
      * @return Integer
      */
@@ -128,11 +220,61 @@ public class DSResponse extends RPCResponse {
         return getAttributeAsInt("offlineTimestamp");
     }
 
+    /**
+     * The operation type of the request corresponding to this DSResponse.
+     *
+     * @param operationType  Default value is null
+     */
+    public void setOperationType(DSOperationType operationType) {
+        setAttribute("operationType", operationType == null ? null : operationType.getValue());
+    }
+
+    /**
+     * The operation type of the request corresponding to this DSResponse.
+     *
+     * @return DSOperationType
+     */
+    public DSOperationType getOperationType()  {
+        return EnumUtil.getEnum(DSOperationType.values(), getAttribute("operationType"));
+    }
+
+    /**
+     * An extra property of each DSResponse to a queued request that indicates whether the queue as a whole succeeded.  A
+     * queueStatus of {@link com.smartgwt.client.rpc.RPCResponse#STATUS_SUCCESS STATUS_SUCCESS}, or 0, indicates that the queue
+     * succeeded whereas a queueStatus of {@link com.smartgwt.client.rpc.RPCResponse#STATUS_FAILURE STATUS_FAILURE}, or -1,
+     * indicates that the queue failed. <p>For example, if two "update" requests are sent in a queue and the first succeeded,
+     * but the second failed validation, then both DSResponses' queueStatus would be -1, but the {@link
+     * com.smartgwt.client.data.DSResponse#getStatus status} of the first would be {@link
+     * com.smartgwt.client.rpc.RPCResponse#STATUS_SUCCESS STATUS_SUCCESS} and the status of the second would be an error code
+     * such as {@link com.smartgwt.client.rpc.RPCResponse#STATUS_VALIDATION_ERROR STATUS_VALIDATION_ERROR}.
+     *
+     * @param queueStatus 
+     * @see com.smartgwt.client.docs.ErrorHandling ErrorHandling overview and related methods
+     */
+    public void setQueueStatus(int queueStatus) {
+        setAttribute("queueStatus", queueStatus);
+    }
+
+    /**
+     * An extra property of each DSResponse to a queued request that indicates whether the queue as a whole succeeded.  A
+     * queueStatus of {@link com.smartgwt.client.rpc.RPCResponse#STATUS_SUCCESS STATUS_SUCCESS}, or 0, indicates that the queue
+     * succeeded whereas a queueStatus of {@link com.smartgwt.client.rpc.RPCResponse#STATUS_FAILURE STATUS_FAILURE}, or -1,
+     * indicates that the queue failed. <p>For example, if two "update" requests are sent in a queue and the first succeeded,
+     * but the second failed validation, then both DSResponses' queueStatus would be -1, but the {@link
+     * com.smartgwt.client.data.DSResponse#getStatus status} of the first would be {@link
+     * com.smartgwt.client.rpc.RPCResponse#STATUS_SUCCESS STATUS_SUCCESS} and the status of the second would be an error code
+     * such as {@link com.smartgwt.client.rpc.RPCResponse#STATUS_VALIDATION_ERROR STATUS_VALIDATION_ERROR}.
+     *
+     * @return int
+     * @see com.smartgwt.client.docs.ErrorHandling ErrorHandling overview and related methods
+     */
+    public int getQueueStatus()  {
+        return getAttributeAsInt("queueStatus");
+    }
 
     /**
      * Starting row of returned server results, when using paged result fetching <p> Note that startRow and endRow are
      * zero-based - the first record is row zero.
-     *
      *
      * @return Integer
      */
@@ -140,10 +282,30 @@ public class DSResponse extends RPCResponse {
         return getAttributeAsInt("startRow");
     }
 
+    /**
+     * Same meaning as {@link com.smartgwt.client.rpc.RPCResponse#getStatus status}, except DSResponses have additional error
+     * codes, such as {@link com.smartgwt.client.rpc.RPCResponse#STATUS_VALIDATION_ERROR validation failure}.
+     *
+     * @param status 
+     * @see com.smartgwt.client.docs.ErrorHandling ErrorHandling overview and related methods
+     */
+    public void setStatus(int status) {
+        setAttribute("status", status);
+    }
+
+    /**
+     * Same meaning as {@link com.smartgwt.client.rpc.RPCResponse#getStatus status}, except DSResponses have additional error
+     * codes, such as {@link com.smartgwt.client.rpc.RPCResponse#STATUS_VALIDATION_ERROR validation failure}.
+     *
+     * @return int
+     * @see com.smartgwt.client.docs.ErrorHandling ErrorHandling overview and related methods
+     */
+    public int getStatus()  {
+        return getAttributeAsInt("status");
+    }
 
     /**
      * Total number of rows available from the server that match the current filter criteria, when using paged result fetching.
-     *
      *
      * @return Integer
      */
@@ -154,8 +316,8 @@ public class DSResponse extends RPCResponse {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
 
@@ -224,70 +386,24 @@ public class DSResponse extends RPCResponse {
     public void setErrors(JavaScriptObject errors) {
         setAttribute("errors", errors);
     }    
-
+    
     /**
-     * Server-side validation errors for an attempted "update" or "add" operation, as a JS Object where each property
-     * name is a field name from the record and each property value is an error message to be shown to the user.  For
-     * example:<pre>     dsResponse.errors = {         userId : "A user with this userId already exists",
-     * orderId : "No Order with ID '6A18294' exists"     } </pre> The Java API DSResponse.addError(fieldName,
-     * errorMessage) is used to send server-side errors to the client.  See the Java Server Reference for details.
+     * For "fetch" operations, this is the array of Records fetched.  For "update", "add", and "remove" operations, this is
+     * typically an array containing a single Record representing the record that was updated, added, or removed.
      *
-     * @return the errors map
+     * @param data data Default value is null
      */
-    public Map getErrors() {
-    	
-        //internally the errors object can be a JSO, or single values array
-        JavaScriptObject jsObj = getAttributeAsJavaScriptObject("errors");
-        if(JSOHelper.isArray(jsObj)) {
-            jsObj = JSOHelper.getJSOArrayValue(jsObj, 0);
-        }
-        return JSOHelper.convertToMap(jsObj);
-    }
-
-    /**
-     * For DataSource operations, this is typically either an Array of records representing records (for "fetch"
-     * operations) or a array of a single record representing the updated record (for "update", "add" or "remove" operations).
-     *
-     * @param data the data
-     */
-    public void setData(Record[] data) {
-        setAttribute("data", data);
-    }
-
-    /**
-     * Return the data as an array of Records.
-     *
-     * @return the data
-     */
-    public Record[] getData() {
-        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
-        return Record.convertToRecordArray(dataJS);
-    }
-
-    /**
-     * Return the data as a RecordList.
-     *
-     * @return the data
-     */
-    public RecordList getDataAsRecordList() {
-        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
-        return dataJS == null ? null : new RecordList(dataJS);
-    }
-
-    /**
-     * HTTP headers returned by the server, as a Map of Header name -> Header value
-     * <p>
-     * Headers are available only when the default {@link com.smartgwt.client.types.RPCTransport} 
-     * "xmlHttpRequest" is in use, and browsers may limit access to headers for cross-domain requests 
-     * or in other security-sensitive scenarios.
-     *
-     * @return the http headers
-     */
-    public Map getHttpHeaders() {
-        return  getAttributeAsMap("httpHeaders");
+    public void setData(Record... data) {
+    	if (data != null && data.length > 0) {
+ 			Record r1 = data[0];
+ 			if (!(r1 instanceof ListGridRecord)) {
+ 				SC.logWarn("setData(): DSResponse data is expected to be an array of ListGridRecords." +
+ 						" This allows the data to be displayed as expected in ListGrids bound to this dataSource.");
+ 			}
+ 		}
+    	setAttribute("data", data);
     }
 
 }
-
 
 

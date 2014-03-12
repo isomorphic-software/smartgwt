@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Supported styles of drawing lines.
  */
@@ -44,7 +46,6 @@ public enum LinePattern implements ValueEnum {
      * Dashed line, with longer, more widely spaced dashes
      */
     LONGDASH("longdash");
-
     private String value;
 
     LinePattern(String value) {

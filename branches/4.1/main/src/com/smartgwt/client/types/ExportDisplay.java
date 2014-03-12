@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Method to use for displaying the exported data.
  */
@@ -27,8 +29,11 @@ public enum ExportDisplay implements ValueEnum {
     /**
      * Show the data in a new browser window
      */
-    WINDOW("window");
-
+    WINDOW("window"),
+    /**
+     * Return the data for further programmatic processing in the browser
+     */
+    RETURN("return");
     private String value;
 
     ExportDisplay(String value) {

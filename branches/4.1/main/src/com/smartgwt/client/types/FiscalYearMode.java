@@ -16,12 +16,13 @@ package com.smartgwt.client.types;
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 /**
- * Strategies for calculating the FiscalYear within a {@link com.smartgwt.client.types.FiscalYearMode#getFisalCalendar
- * fisalCalendar} from the  specified {@link com.smartgwt.client.widgets.FiscalCalendar#getDefaultDate defaultDate} and
- * {@link com.smartgwt.client.widgets.FiscalCalendar#getDefaultMonth defaultMonth} If the specified fiscal year date starts
- * in one calendar year and ends in the next.
+ * Strategies for calculating the FiscalYear within a {@link com.smartgwt.client.widgets.FiscalCalendar} from the specified
+ * {@link com.smartgwt.client.widgets.FiscalCalendar#getDefaultDate defaultDate} and {@link
+ * com.smartgwt.client.widgets.FiscalCalendar#getDefaultMonth defaultMonth} If the specified fiscal year date starts in one
+ * calendar year and ends in the next.
  */
 public enum FiscalYearMode implements ValueEnum {
     /**
@@ -48,4 +49,3 @@ public enum FiscalYearMode implements ValueEnum {
         return this.value;
     }
 }
-        

@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.grid.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasSelectionUpdatedHandlers extends HasHandlers {
     /**
      * Called when selection changes. Note this method fires exactly once for any given change unlike the {@link
@@ -34,3 +34,4 @@ public interface HasSelectionUpdatedHandlers extends HasHandlers {
      */
     HandlerRegistration addSelectionUpdatedHandler(SelectionUpdatedHandler handler);
 }
+

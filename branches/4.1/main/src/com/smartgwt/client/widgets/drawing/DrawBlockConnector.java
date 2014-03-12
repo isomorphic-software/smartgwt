@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.drawing;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,23 +50,31 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * DrawItem subclass to render multi-segment, orthogonal-routing paths.
  */
-public class DrawBlockConnector extends DrawItem {
+@BeanFactory.FrameworkClass
+@BeanFactory.ScClassName("DrawBlockConnector")
+public class DrawBlockConnector extends DrawCurve {
 
     public static DrawBlockConnector getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -73,12 +86,14 @@ public class DrawBlockConnector extends DrawItem {
         }
     }
 
+
     public DrawBlockConnector(){
         scClassName = "DrawBlockConnector";
     }
 
     public DrawBlockConnector(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "DrawBlockConnector";
+        setJavaScriptObject(jsObj);
     }
 
     public native JavaScriptObject create()/*-{
@@ -86,53 +101,15 @@ public class DrawBlockConnector extends DrawItem {
         var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
         return $wnd.isc[scClassName].create(config);
     }-*/;
+
     // ********************* Properties / Attributes ***********************
-
-    /**
-     * First cubic bezier control point.
-     *
-     * @param controlPoint1 controlPoint1 Default value is [100,0]
-     */
-    public void setControlPoint1(Point controlPoint1) {
-        setAttribute("controlPoint1", controlPoint1.getJsObj(), true);
-    }
-
-    /**
-     * First cubic bezier control point.
-     *
-     *
-     * @return Point
-     */
-    public Point getControlPoint1()  {
-        return new Point(getAttributeAsJavaScriptObject("controlPoint1"));
-    }
-
-    /**
-     * Second cubic bezier control point.
-     *
-     * @param controlPoint2 controlPoint2 Default value is [0,100]
-     */
-    public void setControlPoint2(Point controlPoint2) {
-        setAttribute("controlPoint2", controlPoint2.getJsObj(), true);
-    }
-
-    /**
-     * Second cubic bezier control point.
-     *
-     *
-     * @return Point
-     */
-    public Point getControlPoint2()  {
-        return new Point(getAttributeAsJavaScriptObject("controlPoint2"));
-    }
 
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 }
-
 
 

@@ -3,6 +3,7 @@ package com.smartgwt.client.docs;
 
 /**
  * Object's "stacking order" above or below other objects
+ * @see com.smartgwt.client.widgets.Canvas#getZIndex
  * @see com.smartgwt.client.widgets.Canvas#bringToFront
  * @see com.smartgwt.client.widgets.Canvas#sendToBack
  * @see com.smartgwt.client.widgets.Canvas#moveAbove

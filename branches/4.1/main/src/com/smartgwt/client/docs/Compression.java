@@ -12,9 +12,11 @@ package com.smartgwt.client.docs;
  *  available, depending on your server of choice.  Microsoft's IIS has built-in compression
  *  capability, please check the reference manual for details.  If you're using Apache, you can
  * use <a href='http://sourceforge.net/projects/mod-gzip/'
- * onclick="window.open('http://sourceforge.net/projects/mod-gzip/');return false;">mod_gzip</a> or 
+ * onclick="window.open('http://sourceforge.net/projects/mod-gzip/');return false;">mod_gzip</a>
+ * or 
  * use <a href='http://httpd.apache.org/docs/2.0/mod/mod_deflate.html'
- * onclick="window.open('http://httpd.apache.org/docs/2.0/mod/mod_deflate.html');return false;">mod_deflate</a>.  Some
+ * onclick="window.open('http://httpd.apache.org/docs/2.0/mod/mod_deflate.html');return
+ * false;">mod_deflate</a>.  Some
  *  servlet containers also natively support dynamic compression.
  *  <p>
  *  The Smart GWT Java back-end supports two types of response compression:
@@ -82,8 +84,8 @@ package com.smartgwt.client.docs;
  *  <p>
  *  The FileDownload servlet and CompressionFilter filter can serve the following mime-types
  *  compressed: text/html, text/xml, application/x-javascript, text/javascript, text/ecmascript,
- *  image/svg+xml.  If your files are not being compressed, make sure your servlet container
- *  has a mime type mapping that identifies it as one of the above file types.
+ * image/svg+xml, application/javascript.  If your files are not being compressed, make sure your 
+ *  servlet container has a mime type mapping that identifies it as one of the above file types.
  *  <p>
  *  Compression for the mime types listed above is supported on all browsers supported by
  *  Smart GWT.  There is one exception: compression of javascript files for IE versions older

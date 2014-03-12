@@ -13,6 +13,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.form.fields.events;
 
@@ -24,6 +25,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +41,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,18 +51,25 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class KeyPressEvent extends AbstractSmartEvent<KeyPressHandler>  implements Cancellable {
     private boolean cancel = false;
 
@@ -93,7 +106,6 @@ public class KeyPressEvent extends AbstractSmartEvent<KeyPressHandler>  implemen
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(KeyPressHandler handler) {
         handler.onKeyPress(this);
@@ -112,7 +124,6 @@ public class KeyPressEvent extends AbstractSmartEvent<KeyPressHandler>  implemen
         super(jsObj);
     }
 
-
     /**
      * Call this method to attempt to cancel the event.  Note for general purpose                   APIs for managing whether user
      * input is allowed, use {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler FormItem.change}         
@@ -129,36 +140,39 @@ public class KeyPressEvent extends AbstractSmartEvent<KeyPressHandler>  implemen
         return cancel;
     }
 
-    /**
+	/**
      * Item over which the keypress occurred
      *
      * @return Item over which the keypress occurred
      */
-    public  native FormItem getItem() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
+    public native FormItem getItem() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.item;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
-    /**
+	/**
      * Pointer to the item's form
      *
      * @return Pointer to the item's form
      */
-    public  native DynamicForm getForm() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.form);
+    public native DynamicForm getForm() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.form;
+        return @com.smartgwt.client.widgets.form.DynamicForm::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
-    /**
+	/**
      * Name of the key pressed (Example: <code>"A"</code>, <code>"Enter"</code>)
      *
      * @return Name of the key pressed (Example: <code>"A"</code>, <code>"Enter"</code>)
      */
-    public  native String getKeyName() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.keyName;
+    public native String getKeyName() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.keyName;
+        return ret;
     }-*/;
-
 
     /**
      * If this was a character key, this is the numeric value for the character
@@ -170,6 +184,32 @@ public class KeyPressEvent extends AbstractSmartEvent<KeyPressHandler>  implemen
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
         var ret = jsObj.characterValue;
         return (ret === undefined || ret == null) ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
+    }-*/;
+    /**
+     * Helper method pointing to {@link com.smartgwt.client.util.EventHandler#altKeyDown}
+     * 
+     * @return true if the alt key is being held down.
+     */
+    public final native boolean isAltKeyDown()/*-{
+        return $wnd.isc.EH.altKeyDown();
+    }-*/;
+
+    /**
+     * Helper method pointing to {@link com.smartgwt.client.util.EventHandler#ctrlKeyDown}
+     * 
+     * @return true if the control key is being held down.
+     */
+    public final native boolean isCtrlKeyDown()/*-{
+        return $wnd.isc.EH.ctrlKeyDown();
+    }-*/;
+
+    /**
+     * Helper method pointing to {@link com.smartgwt.client.util.EventHandler#shiftKeyDown}
+     * 
+     * @return true if the shift key is being held down.
+     */
+    public final native boolean isShiftKeyDown()/*-{
+        return $wnd.isc.EH.shiftKeyDown();
     }-*/;
 
 

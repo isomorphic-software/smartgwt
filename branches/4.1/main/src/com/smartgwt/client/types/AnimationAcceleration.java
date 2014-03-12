@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Acceleration effect for animations. Can either be a ratio function or a string. Ratio functions take a value between 0
  * and 1 which represents how much of the  animation's duration has elapsed, and return another value between 0 and 1
@@ -40,7 +42,6 @@ public enum AnimationAcceleration implements ValueEnum {
      * - no bias
      */
     NONE("none");
-
     private String value;
 
     AnimationAcceleration(String value) {

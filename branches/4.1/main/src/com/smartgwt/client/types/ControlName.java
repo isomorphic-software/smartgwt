@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * <code>ControlNames</code> are strings used to specify which UI controls should appear  in the editor toolbar.<br>
  */
@@ -49,7 +51,7 @@ public enum ControlName implements ValueEnum {
      */
     ALIGNRIGHT("alignRight"),
     /**
-     * A button to center the selected text
+     * A button to center the selected text.
      */
     ALIGNCENTER("alignCenter"),
     /**
@@ -57,14 +59,34 @@ public enum ControlName implements ValueEnum {
      */
     JUSTIFY("justify"),
     /**
-     * A color-picker allowing the user to set the text color
+     * A color-picker allowing the user to set the text color.
      */
     COLOR("color"),
     /**
-     * A color picker allowing the user to set the text background color
+     * A color picker allowing the user to set the text background color.
      */
-    BACKGROUNDCOLOR("backgroundColor");
-
+    BACKGROUNDCOLOR("backgroundColor"),
+    /**
+     * Within text, indents the paragraph. Within a list, increases the list level.
+     */
+    INDENT("indent"),
+    /**
+     * Within text, outdents the paragraph. Within a list, decreases the list level.
+     */
+    OUTDENT("outdent"),
+    /**
+     * Turns the current selection into an ordered list (HTML &lt;ol&gt;) or converts an unordered list to an ordered list.
+     */
+    ORDEREDLIST("orderedList"),
+    /**
+     * Turns the current selection into an unordered list (HTML &lt;ul&gt;) or converts an ordered list to an unordered list.
+     */
+    UNORDEREDLIST("unorderedList"),
+    /**
+     * Shows the {@link com.smartgwt.client.widgets.RichTextEditor#getListPropertiesDialog listPropertiesDialog} to allow
+     * configuring the options of the currently selected HTML list.
+     */
+    LISTPROPERTIES("listProperties");
     private String value;
 
     ControlName(String value) {

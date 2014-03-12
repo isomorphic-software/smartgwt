@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.form.fields;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,16 +50,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
@@ -149,6 +160,7 @@ import com.google.gwt.event.shared.HasHandlers;
  *  "remove" DSRequest against the {@link com.smartgwt.client.widgets.form.fields.MultiFileItem#getDataSource dataSource}.
  * @see com.smartgwt.client.docs.Upload Upload overview and related methods
  */
+@BeanFactory.FrameworkClass
 public class MultiFileItem extends CanvasItem {
 
     public static MultiFileItem getOrCreateRef(JavaScriptObject jsObj) {
@@ -156,31 +168,56 @@ public class MultiFileItem extends CanvasItem {
         return new MultiFileItem(jsObj);
     }
 
+
     public MultiFileItem(){
         setAttribute("editorType", "MultiFileItem");
     }
 
     public MultiFileItem(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
+
 
     public MultiFileItem(String name) {
         setName(name);
-        setAttribute("editorType", "MultiFileItem");
+                setAttribute("editorType", "MultiFileItem");
     }
+
 
     public MultiFileItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setAttribute("editorType", "MultiFileItem");
+                setAttribute("editorType", "MultiFileItem");
     }
+
 
     // ********************* Properties / Attributes ***********************
 
     /**
+     * The {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getPrompt prompt} of the {@link
+     * com.smartgwt.client.widgets.form.fields.MultiFileItem#getEditButton edit button}.
+     *
+     * @param editButtonPrompt  Default value is "Add files"
+     */
+    public void setEditButtonPrompt(String editButtonPrompt) {
+        setAttribute("editButtonPrompt", editButtonPrompt);
+    }
+
+    /**
+     * The {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getPrompt prompt} of the {@link
+     * com.smartgwt.client.widgets.form.fields.MultiFileItem#getEditButton edit button}.
+     *
+     * @return String
+     */
+    public String getEditButtonPrompt()  {
+        return getAttributeAsString("editButtonPrompt");
+    }
+
+    /**
      * Empty message to display when there are no files listed.
      *
-     * @param emptyMessage emptyMessage Default value is "Click icon to add..."
+     * @param emptyMessage  Default value is "Click icon to add..."
      */
     public void setEmptyMessage(String emptyMessage) {
         setAttribute("emptyMessage", emptyMessage);
@@ -189,20 +226,166 @@ public class MultiFileItem extends CanvasItem {
     /**
      * Empty message to display when there are no files listed.
      *
-     *
      * @return String
      */
     public String getEmptyMessage()  {
         return getAttributeAsString("emptyMessage");
     }
 
+    /**
+     * The contents of the "Add another" file button in the picker launched by the {@link
+     * com.smartgwt.client.widgets.form.fields.MultiFileItem#getEditButton edit button}.
+     *
+     * @param pickerAddAnotherFileButtonTitle  See {@link com.smartgwt.client.docs.HTMLString HTMLString} . Default value is "<u>Add&nbsp;another</u>"
+     */
+    public void setPickerAddAnotherFileButtonTitle(String pickerAddAnotherFileButtonTitle) {
+        setAttribute("pickerAddAnotherFileButtonTitle", pickerAddAnotherFileButtonTitle);
+    }
+
+    /**
+     * The contents of the "Add another" file button in the picker launched by the {@link
+     * com.smartgwt.client.widgets.form.fields.MultiFileItem#getEditButton edit button}.
+     *
+     * @return  See {@link com.smartgwt.client.docs.HTMLString HTMLString} 
+     */
+    public String getPickerAddAnotherFileButtonTitle()  {
+        return getAttributeAsString("pickerAddAnotherFileButtonTitle");
+    }
+
+    /**
+     * The title of the cancel button in the picker lauched by the {@link
+     * com.smartgwt.client.widgets.form.fields.MultiFileItem#getEditButton edit button}.
+     *
+     * @param pickerCancelButtonTitle  Default value is "Cancel"
+     */
+    public void setPickerCancelButtonTitle(String pickerCancelButtonTitle) {
+        setAttribute("pickerCancelButtonTitle", pickerCancelButtonTitle);
+    }
+
+    /**
+     * The title of the cancel button in the picker lauched by the {@link
+     * com.smartgwt.client.widgets.form.fields.MultiFileItem#getEditButton edit button}.
+     *
+     * @return String
+     */
+    public String getPickerCancelButtonTitle()  {
+        return getAttributeAsString("pickerCancelButtonTitle");
+    }
+
+    /**
+     * MultiFileItems use a {@link com.smartgwt.client.widgets.MultiFilePicker} instance as their picker. The generated
+     * <code>picker</code> autoChild may be customized via the standard  {@link com.smartgwt.client.types.AutoChild} pattern.
+     *
+     * @param pickerConstructor  See {@link com.smartgwt.client.docs.SCClassName SCClassName} . Default value is "MultiFilePicker"
+     */
+    public void setPickerConstructor(String pickerConstructor) {
+        setAttribute("pickerConstructor", pickerConstructor);
+    }
+
+    /**
+     * MultiFileItems use a {@link com.smartgwt.client.widgets.MultiFilePicker} instance as their picker. The generated
+     * <code>picker</code> autoChild may be customized via the standard  {@link com.smartgwt.client.types.AutoChild} pattern.
+     *
+     * @return  See {@link com.smartgwt.client.docs.SCClassName SCClassName} 
+     */
+    public String getPickerConstructor()  {
+        return getAttributeAsString("pickerConstructor");
+    }
+
+    /**
+     * The initial title of the upload button in the picker lauched by the {@link
+     * com.smartgwt.client.widgets.form.fields.MultiFileItem#getEditButton edit button} that is used before the form is saved.
+     *
+     * @param pickerUploadButtonInitialTitle  Default value is "OK"
+     * @see com.smartgwt.client.widgets.form.fields.MultiFileItem#setPickerUploadButtonTitle
+     */
+    public void setPickerUploadButtonInitialTitle(String pickerUploadButtonInitialTitle) {
+        setAttribute("pickerUploadButtonInitialTitle", pickerUploadButtonInitialTitle);
+    }
+
+    /**
+     * The initial title of the upload button in the picker lauched by the {@link
+     * com.smartgwt.client.widgets.form.fields.MultiFileItem#getEditButton edit button} that is used before the form is saved.
+     *
+     * @return String
+     * @see com.smartgwt.client.widgets.form.fields.MultiFileItem#getPickerUploadButtonTitle
+     */
+    public String getPickerUploadButtonInitialTitle()  {
+        return getAttributeAsString("pickerUploadButtonInitialTitle");
+    }
+
+    /**
+     * The title of the upload button in the picker lauched by the {@link
+     * com.smartgwt.client.widgets.form.fields.MultiFileItem#getEditButton edit button} that is used after the form is saved.
+     *
+     * @param pickerUploadButtonTitle  Default value is "Save"
+     * @see com.smartgwt.client.widgets.form.fields.MultiFileItem#setPickerUploadButtonInitialTitle
+     */
+    public void setPickerUploadButtonTitle(String pickerUploadButtonTitle) {
+        setAttribute("pickerUploadButtonTitle", pickerUploadButtonTitle);
+    }
+
+    /**
+     * The title of the upload button in the picker lauched by the {@link
+     * com.smartgwt.client.widgets.form.fields.MultiFileItem#getEditButton edit button} that is used after the form is saved.
+     *
+     * @return String
+     * @see com.smartgwt.client.widgets.form.fields.MultiFileItem#getPickerUploadButtonInitialTitle
+     */
+    public String getPickerUploadButtonTitle()  {
+        return getAttributeAsString("pickerUploadButtonTitle");
+    }
+
+    /**
+     * Specifies the label of the progress meter in the picker lauched by the {@link
+     * com.smartgwt.client.widgets.form.fields.MultiFileItem#getEditButton edit button}.  This property is a dynamic string,
+     * similar to the {@link com.smartgwt.client.widgets.Canvas#getDynamicContents dynamicContents} feature, with the variables
+     * <code>fileName</code> and <code>formattedFileSize</code>.
+     *
+     * @param pickerUploadProgressLabel  See {@link com.smartgwt.client.docs.HTMLString HTMLString} . Default value is "Saving \${fileName} \${formattedFileSize}"
+     */
+    public void setPickerUploadProgressLabel(String pickerUploadProgressLabel) {
+        setAttribute("pickerUploadProgressLabel", pickerUploadProgressLabel);
+    }
+
+    /**
+     * Specifies the label of the progress meter in the picker lauched by the {@link
+     * com.smartgwt.client.widgets.form.fields.MultiFileItem#getEditButton edit button}.  This property is a dynamic string,
+     * similar to the {@link com.smartgwt.client.widgets.Canvas#getDynamicContents dynamicContents} feature, with the variables
+     * <code>fileName</code> and <code>formattedFileSize</code>.
+     *
+     * @return  See {@link com.smartgwt.client.docs.HTMLString HTMLString} 
+     */
+    public String getPickerUploadProgressLabel()  {
+        return getAttributeAsString("pickerUploadProgressLabel");
+    }
+
+    /**
+     * The {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getPrompt prompt} of the {@link
+     * com.smartgwt.client.widgets.form.fields.MultiFileItem#getRemoveButton remove button}.
+     *
+     * @param removeButtonPrompt  Default value is "Remove selected files"
+     */
+    public void setRemoveButtonPrompt(String removeButtonPrompt) {
+        setAttribute("removeButtonPrompt", removeButtonPrompt);
+    }
+
+    /**
+     * The {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getPrompt prompt} of the {@link
+     * com.smartgwt.client.widgets.form.fields.MultiFileItem#getRemoveButton remove button}.
+     *
+     * @return String
+     */
+    public String getRemoveButtonPrompt()  {
+        return getAttributeAsString("removeButtonPrompt");
+    }
+
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 }
-
 
 

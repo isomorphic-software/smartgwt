@@ -13,17 +13,17 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.menu.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasClickHandlers extends HasHandlers {
     /**
      * Executed when this menu item is clicked by the user. The click handler must be specified as a function or string of
-     * script.  Call {@link com.smartgwt.client.widgets.menu.events.MenuItemClickEvent#cancel()} from within {@link ClickHandler#onClick} to suppress the {@link com.smartgwt.client.widgets.menu.Menu#addItemClickHandler Menu.itemClick}
+     * script.  Call {@link com.smartgwt.client.widgets.menu.events.MenuItemClickEvent#cancel()} from within {@link com.smartgwt.client.widgets.menu.events.ClickHandler#onClick} to suppress the {@link com.smartgwt.client.widgets.menu.Menu#addItemClickHandler Menu.itemClick}
      * handler if specified.
      *
      * @param handler the click handler
@@ -31,3 +31,4 @@ public interface HasClickHandlers extends HasHandlers {
      */
     HandlerRegistration addClickHandler(ClickHandler handler);
 }
+
