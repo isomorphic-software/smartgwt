@@ -16,10 +16,17 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.StretchImgButton#setIconOrientation
  * @see com.smartgwt.client.widgets.StretchImgButton#setIcon
  * @see com.smartgwt.client.widgets.events.IconClickEvent
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getIconSpacing
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getShowDisabledIcon
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getShowRollOverIcon
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getShowFocusedIcon
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getShowDownIcon
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getShowSelectedIcon
  * @see com.smartgwt.client.widgets.StatefulCanvas#getIcon
  * @see com.smartgwt.client.widgets.StatefulCanvas#getIconSize
  * @see com.smartgwt.client.widgets.StatefulCanvas#getIconWidth
  * @see com.smartgwt.client.widgets.StatefulCanvas#getIconHeight
+ * @see com.smartgwt.client.widgets.StatefulCanvas#getIconStyle
  * @see com.smartgwt.client.widgets.StatefulCanvas#getIconOrientation
  * @see com.smartgwt.client.widgets.StatefulCanvas#getIconSpacing
  * @see com.smartgwt.client.widgets.StatefulCanvas#getShowDisabledIcon
@@ -31,6 +38,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Button#getIconSize
  * @see com.smartgwt.client.widgets.Button#getIconWidth
  * @see com.smartgwt.client.widgets.Button#getIconHeight
+ * @see com.smartgwt.client.widgets.Button#getIconStyle
  * @see com.smartgwt.client.widgets.Button#getIconOrientation
  * @see com.smartgwt.client.widgets.Button#getIconAlign
  * @see com.smartgwt.client.widgets.Button#getIconSpacing
@@ -75,12 +83,12 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.StretchImgButton#getShowFocusedIcon
  * @see com.smartgwt.client.widgets.StretchImgButton#getShowDownIcon
  * @see com.smartgwt.client.widgets.StretchImgButton#getShowSelectedIcon
- * @see com.smartgwt.client.widgets.grid.ListGridField#getIconSpacing
- * @see com.smartgwt.client.widgets.grid.ListGridField#getShowDisabledIcon
- * @see com.smartgwt.client.widgets.grid.ListGridField#getShowRollOverIcon
- * @see com.smartgwt.client.widgets.grid.ListGridField#getShowFocusedIcon
- * @see com.smartgwt.client.widgets.grid.ListGridField#getShowDownIcon
- * @see com.smartgwt.client.widgets.grid.ListGridField#getShowSelectedIcon
+ * @see com.smartgwt.client.widgets.layout.ImgSectionHeader#getIcon
+ * @see com.smartgwt.client.widgets.layout.ImgSectionHeader#getIconAlign
+ * @see com.smartgwt.client.widgets.layout.ImgSectionHeader#getIconSize
+ * @see com.smartgwt.client.widgets.layout.ImgSectionHeader#getIconHeight
+ * @see com.smartgwt.client.widgets.layout.ImgSectionHeader#getIconWidth
+ * @see com.smartgwt.client.widgets.layout.ImgSectionHeader#getIconOrientation
  */
 public interface ButtonIcon {
 }

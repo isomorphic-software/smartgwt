@@ -13,13 +13,15 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.calendar.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface BackgroundMouseDownHandler extends EventHandler {
     /**
-     * Callback fired when the mouse button is depressed over a background-cell, ie, one  without an event.  Call {@link com.smartgwt.client.widgets.calendar.events.BackgroundMouseDownEvent#cancel()} from within {@link BackgroundMouseDownHandler#onBackgroundMouseDown} to
+     * Callback fired when the mouse button is depressed over a background-cell, ie, one  without an event.  Call {@link com.smartgwt.client.widgets.calendar.events.BackgroundMouseDownEvent#cancel()} from within {@link com.smartgwt.client.widgets.calendar.events.BackgroundMouseDownHandler#onBackgroundMouseDown} to
      * cancel the default behavior of allowing sweep selection via dragging.
      *
      * @param event the event

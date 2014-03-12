@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Format for encoding dates in JSON.  Note you can override {@link com.smartgwt.client.util.JSONEncoder#encodeDate
  * JSONEncoder.encodeDate} for a custom format.
@@ -24,8 +26,8 @@ public enum JSONDateFormat implements ValueEnum {
     /**
      * dates are is encoded as a String in <a target=_blank href="http://www.w3.org/TR/xmlschema-2/#dateTime">XML Schema date
      * format</a> in UTC, for example, "2005-08-02" for logical date fields or "2005-08-01T21:35:48.350" for
-     * <code>datetime</code> fields. See {@link com.smartgwt.client.docs.DateFormatAndStorage Date format and storage} for more
-     * information.
+     * <code>datetime</code> fields. See {@link com.smartgwt.client.docs.DateFormatAndStorage Date format and\n storage} for
+     * more information.
      */
     XML_SCHEMA("xmlSchema"),
     /**
@@ -37,7 +39,6 @@ public enum JSONDateFormat implements ValueEnum {
      *  regardless of timezone.
      */
     DATE_CONSTRUCTOR("dateConstructor");
-
     private String value;
 
     JSONDateFormat(String value) {

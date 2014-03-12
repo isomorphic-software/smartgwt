@@ -13,12 +13,14 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanCollapseGroup
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupTitleField
  * @see com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummaryInHeader
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getShowCollapsedGroupSummary
  * @see com.smartgwt.client.widgets.grid.ListGridField#getGroupingModes
  * @see com.smartgwt.client.widgets.grid.ListGridField#getGroupingMode
  * @see com.smartgwt.client.widgets.grid.ListGridField#getDefaultGroupingMode
  * @see com.smartgwt.client.widgets.grid.ListGridField#getGroupPrecision
  * @see com.smartgwt.client.widgets.grid.ListGridField#getGroupGranularity
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupNodeStyle
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupNodeBaseStyle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupIcon
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupIconSize
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupIndentSize

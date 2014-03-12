@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,13 +16,12 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is true, ExpansionMode
  * dictates the type of UI to be displayed in the expanded portion of the row. <P> There are a number of builtin
- * ExpansionModes and you can override  {@link com.smartgwt.client.widgets.grid.ListGrid#getExpansionComponent
+ * ExpansionModes and you can override {@link com.smartgwt.client.widgets.grid.ListGrid#getExpansionComponent
  * getExpansionComponent()} to create your own expansion behaviors.
  */
 public enum ExpansionMode implements ValueEnum {
@@ -36,18 +38,18 @@ public enum ExpansionMode implements ValueEnum {
     /**
      * Show a separate {@link com.smartgwt.client.widgets.grid.ListGrid} containing related-records. See {@link
      * com.smartgwt.client.widgets.grid.ListGridRecord#getDetailDS detailDS} and {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getRecordDetailDSProperty recordDetailDSProperty} for  more information.
+     * com.smartgwt.client.widgets.grid.ListGrid#getRecordDetailDSProperty recordDetailDSProperty} for more information.
      */
     RELATED("related"),
     /**
      * Show a {@link com.smartgwt.client.widgets.form.DynamicForm} to edit those fields from the record which are not already
      * present in the grid. If the record is collapsed with unsaved changes and {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getExpansionEditorShowSaveDialog expansionEditorShowSaveDialog} is not set,
-     * Edits will be saved automatically, or stored as  editValues if  {@link
+     * Edits will be saved automatically, or stored as {@link com.smartgwt.client.docs.Editing editValues} if {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits} is false. Otherwise, a confirmation dialog is
-     * displayed. Can optionally show a  {@link com.smartgwt.client.widgets.grid.ListGrid#getShowExpansionEditorSaveButton save
+     * displayed. Can optionally show a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowExpansionEditorSaveButton save
      * button} and {@link com.smartgwt.client.widgets.grid.ListGrid#getExpansionEditorCollapseOnSave auto-collapse} when save
-     * is pressed.  If a record fails validation on save and the field in question is not visible in the grid, the record is
+     * is pressed. If a record fails validation on save and the field in question is not visible in the grid, the record is
      * automatically expanded and validated to show the errors.
      */
     EDITOR("editor"),
@@ -57,7 +59,6 @@ public enum ExpansionMode implements ValueEnum {
      * related-records.
      */
     DETAIL_RELATED("detailRelated");
-
     private String value;
 
     ExpansionMode(String value) {

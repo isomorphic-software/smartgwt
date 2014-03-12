@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  */
 public enum Selected implements ValueEnum {
@@ -31,7 +33,6 @@ public enum Selected implements ValueEnum {
      * StatefulCanvas is not selected
      */
     UNSELECTED("");
-
     private String value;
 
     Selected(String value) {

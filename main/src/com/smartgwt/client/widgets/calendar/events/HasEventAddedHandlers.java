@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.calendar.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasEventAddedHandlers extends HasHandlers {
     /**
      * Notification fired whenever a user adds an event. <P> In a calendar with a DataSource, eventAdded() fires <b>after</b>
@@ -30,3 +30,4 @@ public interface HasEventAddedHandlers extends HasHandlers {
      */
     HandlerRegistration addEventAddedHandler(EventAddedHandler handler);
 }
+

@@ -7,6 +7,9 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getDragData
  * @see com.smartgwt.client.widgets.tree.TreeGrid#transferSelectedData
  * @see com.smartgwt.client.widgets.tile.TileLayout#getDragData
+ * @see com.smartgwt.client.widgets.tile.TileGrid#setCanReorderTiles
+ * @see com.smartgwt.client.widgets.tile.TileGrid#setCanDragTilesOut
+ * @see com.smartgwt.client.widgets.tile.TileGrid#setCanAcceptDroppedRecords
  * @see com.smartgwt.client.widgets.tile.TileGrid#getDragData
  * @see com.smartgwt.client.widgets.Window#getCanDragReposition
  * @see com.smartgwt.client.widgets.Window#getCanDragResize

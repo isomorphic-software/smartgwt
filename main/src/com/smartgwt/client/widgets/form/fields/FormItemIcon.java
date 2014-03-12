@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.form.fields;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,16 +50,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
@@ -63,28 +74,86 @@ import com.google.gwt.event.shared.HasHandlers;
  * the item in the page flow.
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getIcons
  */
-public class FormItemIcon extends DataClass  implements com.smartgwt.client.widgets.form.fields.events.HasFormItemClickHandlers {
+@BeanFactory.FrameworkClass
+public class FormItemIcon extends DataClass implements com.smartgwt.client.widgets.form.fields.events.HasFormItemClickHandlers {
 
     public static FormItemIcon getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
         return new FormItemIcon(jsObj);
     }
 
+
     public FormItemIcon(){
         
     }
 
     public FormItemIcon(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
+
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * Base CSS style. If set, as the component changes state and/or is focused, suffixes will be added to the base style.
+     * Possible suffixes include "Over" if the user mouses over the icon and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItemIcon#getShowOver this.showOver} is true, "Disabled" if the icon is
+     * disabled, and "Focused". In addition, if {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getShowRTL showRTL}
+     * is enabled, then an "RTL" suffix will be added.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param baseStyle  See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName} . Default value is null
+     */
+    public void setBaseStyle(String baseStyle) {
+        setAttribute("baseStyle", baseStyle);
+    }
+
+    /**
+     * Base CSS style. If set, as the component changes state and/or is focused, suffixes will be added to the base style.
+     * Possible suffixes include "Over" if the user mouses over the icon and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItemIcon#getShowOver this.showOver} is true, "Disabled" if the icon is
+     * disabled, and "Focused". In addition, if {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getShowRTL showRTL}
+     * is enabled, then an "RTL" suffix will be added.
+     *
+     * @return  See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName} 
+     */
+    public String getBaseStyle()  {
+        return getAttributeAsString("baseStyle");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit canEdit} is set to false, should this icon be
+     * disabled. If unset this is determined by {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisableIconsOnReadOnly disableIconsOnReadOnly}. Note that if {@link
+     * com.smartgwt.client.widgets.form.fields.FormItemIcon#getNeverDisable neverDisable} is set to true, the icons will be
+     * rendered enabled regardless of this setting and whether the item is editable.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param disableOnReadOnly  Default value is null
+     */
+    public void setDisableOnReadOnly(Boolean disableOnReadOnly) {
+        setAttribute("disableOnReadOnly", disableOnReadOnly);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit canEdit} is set to false, should this icon be
+     * disabled. If unset this is determined by {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisableIconsOnReadOnly disableIconsOnReadOnly}. Note that if {@link
+     * com.smartgwt.client.widgets.form.fields.FormItemIcon#getNeverDisable neverDisable} is set to true, the icons will be
+     * rendered enabled regardless of this setting and whether the item is editable.
+     *
+     * @return Boolean
+     */
+    public Boolean getDisableOnReadOnly()  {
+        return getAttributeAsBoolean("disableOnReadOnly");
+    }
 
     /**
      * If set, this property determines the height of this icon in px.      If unset the form item's <code>iconHeight</code>
      * property will be used instead.
      *
-     * @param height height Default value is null
+     * @param height  Default value is null
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setIconHeight
      */
     public void setHeight(Integer height) {
@@ -95,7 +164,6 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      * If set, this property determines the height of this icon in px.      If unset the form item's <code>iconHeight</code>
      * property will be used instead.
      *
-     *
      * @return Integer
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getIconHeight
      */
@@ -104,10 +172,32 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     }
 
     /**
+     * If set, this property determines the number of pixels space to be displayed on       the left of this form item
+     * icon.<br>      If unset the form item's <code>iconHSpace</code> property will be used instead.
+     *
+     * @param hspace  Default value is null
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setIconHSpace
+     */
+    public void setHspace(Integer hspace) {
+        setAttribute("hspace", hspace);
+    }
+
+    /**
+     * If set, this property determines the number of pixels space to be displayed on       the left of this form item
+     * icon.<br>      If unset the form item's <code>iconHSpace</code> property will be used instead.
+     *
+     * @return Integer
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getIconHSpace
+     */
+    public Integer getHspace()  {
+        return getAttributeAsInt("hspace");
+    }
+
+    /**
      * Identifier for this form item icon. This identifier (if set) should be unique within this form item and may be used to
      * get a pointer to the icon object via {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcon FormItem.getIcon}.
      *
-     * @param name name Default value is null
+     * @param name  Default value is null
      */
     public void setName(String name) {
         setAttribute("name", name);
@@ -116,7 +206,6 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     /**
      * Identifier for this form item icon. This identifier (if set) should be unique within this form item and may be used to
      * get a pointer to the icon object via {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcon FormItem.getIcon}.
-     *
      *
      * @return String
      */
@@ -127,10 +216,15 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     /**
      * If <code>icon.neverDisable</code> is true, when this form item is disabled, the  icon will remain enabled.  Note that
      * disabling the entire form will disable all items, together with their  icons including those marked as neverDisable -
-     * this property only has an effect  if the form is enabled and a specific item is disabled within it.
+     * this property only has an effect  if the form is enabled and a specific item is disabled within it. <P> If this property
+     * is true, the icons will also remain enabled if a form item  is marked as {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit canEdit:false}. For finer grained control over whether icons
+     * are enabled for read-only icons see {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisableIconsOnReadOnly
+     * disableIconsOnReadOnly} and {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getDisableOnReadOnly
+     * disableOnReadOnly}
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param neverDisable neverDisable Default value is null
+     * @param neverDisable  Default value is null
      */
     public void setNeverDisable(Boolean neverDisable) {
         setAttribute("neverDisable", neverDisable);
@@ -139,8 +233,12 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     /**
      * If <code>icon.neverDisable</code> is true, when this form item is disabled, the  icon will remain enabled.  Note that
      * disabling the entire form will disable all items, together with their  icons including those marked as neverDisable -
-     * this property only has an effect  if the form is enabled and a specific item is disabled within it.
-     *
+     * this property only has an effect  if the form is enabled and a specific item is disabled within it. <P> If this property
+     * is true, the icons will also remain enabled if a form item  is marked as {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit canEdit:false}. For finer grained control over whether icons
+     * are enabled for read-only icons see {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisableIconsOnReadOnly
+     * disableIconsOnReadOnly} and {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getDisableOnReadOnly
+     * disableOnReadOnly}
      *
      * @return Boolean
      */
@@ -153,7 +251,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      * item's <code>iconPrompt</code> property will be used instead.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param prompt prompt Default value is null
+     * @param prompt  Default value is null
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setIconPrompt
      */
     public void setPrompt(String prompt) {
@@ -164,7 +262,6 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      * If set, this property will be displayed as a prompt (and tooltip text) for this form item icon. <P> If unset the form
      * item's <code>iconPrompt</code> property will be used instead.
      *
-     *
      * @return String
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getIconPrompt
      */
@@ -173,10 +270,11 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     }
 
     /**
-     * Should this icon's image switch to the appropriate "focused" source when the user puts focus on the form item or icon?
+     * Should this icon's image and/or {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getBaseStyle baseStyle}
+     * switch to the appropriate "Focused" value when the user puts focus on the form item or icon?
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param showFocused showFocused Default value is null
+     * @param showFocused  Default value is null
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setShowFocusedIcons
      * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#setShowFocusedWithItem
      */
@@ -185,8 +283,8 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     }
 
     /**
-     * Should this icon's image switch to the appropriate "focused" source when the user puts focus on the form item or icon?
-     *
+     * Should this icon's image and/or {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getBaseStyle baseStyle}
+     * switch to the appropriate "Focused" value when the user puts focus on the form item or icon?
      *
      * @return Boolean
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getShowFocusedIcons
@@ -204,7 +302,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      * property is unset, default behavior is to show focused state when the item receives focus.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param showFocusedWithItem showFocusedWithItem Default value is null
+     * @param showFocusedWithItem  Default value is null
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setShowFocusedIcons
      * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#setShowFocused
      */
@@ -219,7 +317,6 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      * the focused state should be shown when the item as a whole receives focus or just if the icon receives focus. If this
      * property is unset, default behavior is to show focused state when the item receives focus.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getShowFocusedIcons
      * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#getShowFocused
@@ -229,10 +326,11 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     }
 
     /**
-     * Should this icon's image switch to the appropriate "over" source when the user rolls over or focuses on the icon?
+     * Should this icon's image and/or {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getBaseStyle baseStyle}
+     * switch to the appropriate "Over" value when the user rolls over or focuses on the icon?
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param showOver showOver Default value is null
+     * @param showOver  Default value is null
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setShowOverIcons
      */
     public void setShowOver(Boolean showOver) {
@@ -240,8 +338,8 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     }
 
     /**
-     * Should this icon's image switch to the appropriate "over" source when the user rolls over or focuses on the icon?
-     *
+     * Should this icon's image and/or {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getBaseStyle baseStyle}
+     * switch to the appropriate "Over" value when the user rolls over or focuses on the icon?
      *
      * @return Boolean
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getShowOverIcons
@@ -251,11 +349,46 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     }
 
     /**
+     * Should this icon's {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getSrc src} and/or {@link
+     * com.smartgwt.client.widgets.form.fields.FormItemIcon#getBaseStyle baseStyle} switch to the appropriate RTL value when
+     * the FormItem is in RTL mode? If true, then the image URL for all states will have "_rtl" added before the extension.
+     * Also, if baseStyle is set, all style names will have an "RTL" suffix. This should only be enabled if RTL media is
+     * available. <p> For example, if an icon's src is "[SKINIMG]formItemIcons/myFormIcon.png" and the baseStyle is
+     * "myFormIcon", then in the "Down" state, Smart GWT will use "[SKINIMG]formItemIcons/myFormIcon_Down_rtl.png" for the
+     * image source and "myFormIconDownRTL" for the style name.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showRTL  Default value is null
+     */
+    public void setShowRTL(Boolean showRTL) {
+        setAttribute("showRTL", showRTL);
+    }
+
+    /**
+     * Should this icon's {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getSrc src} and/or {@link
+     * com.smartgwt.client.widgets.form.fields.FormItemIcon#getBaseStyle baseStyle} switch to the appropriate RTL value when
+     * the FormItem is in RTL mode? If true, then the image URL for all states will have "_rtl" added before the extension.
+     * Also, if baseStyle is set, all style names will have an "RTL" suffix. This should only be enabled if RTL media is
+     * available. <p> For example, if an icon's src is "[SKINIMG]formItemIcons/myFormIcon.png" and the baseStyle is
+     * "myFormIcon", then in the "Down" state, Smart GWT will use "[SKINIMG]formItemIcons/myFormIcon_Down_rtl.png" for the
+     * image source and "myFormIconDownRTL" for the style name.
+     *
+     * @return Boolean
+     */
+    public Boolean getShowRTL()  {
+        return getAttributeAsBoolean("showRTL");
+    }
+
+    /**
      * If set, this property determines this icon's image source. If unset the form item's <code>defaultIconSrc</code> property
      * will be used instead.<br> As with <code>defaultIconSrc</code> this URL will be modified by adding "_Over" or "_Disabled"
-     * if appropriate to show the icons over or disabled state.
+     * if appropriate to show the icon's over or disabled state. <p> If {@link
+     * com.smartgwt.client.widgets.form.fields.FormItemIcon#getShowRTL showRTL} is enabled, then "_rtl" will be added to the
+     * source URL before the extension. <p> The special value "blank" means that no image will be shown for this icon. This is
+     * particularly useful together with {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getBaseStyle baseStyle} to
+     * implement spriting of the different icon states.
      *
-     * @param src src Default value is null
+     * @param src  See {@link com.smartgwt.client.docs.SCImgURL SCImgURL} . Default value is null
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setDefaultIconSrc
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_icons" target="examples">Icons Example</a>
      */
@@ -266,10 +399,13 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     /**
      * If set, this property determines this icon's image source. If unset the form item's <code>defaultIconSrc</code> property
      * will be used instead.<br> As with <code>defaultIconSrc</code> this URL will be modified by adding "_Over" or "_Disabled"
-     * if appropriate to show the icons over or disabled state.
+     * if appropriate to show the icon's over or disabled state. <p> If {@link
+     * com.smartgwt.client.widgets.form.fields.FormItemIcon#getShowRTL showRTL} is enabled, then "_rtl" will be added to the
+     * source URL before the extension. <p> The special value "blank" means that no image will be shown for this icon. This is
+     * particularly useful together with {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getBaseStyle baseStyle} to
+     * implement spriting of the different icon states.
      *
-     *
-     * @return String
+     * @return  See {@link com.smartgwt.client.docs.SCImgURL SCImgURL} 
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getDefaultIconSrc
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_icons" target="examples">Icons Example</a>
      */
@@ -285,7 +421,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      * globalTabIndex}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param tabIndex tabIndex Default value is null
+     * @param tabIndex  Default value is null
      */
     public void setTabIndex(Integer tabIndex) {
         setAttribute("tabIndex", tabIndex);
@@ -298,7 +434,6 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      * extremely advanced in the same way as using {@link com.smartgwt.client.widgets.form.fields.FormItem#getGlobalTabIndex
      * globalTabIndex}.
      *
-     *
      * @return Integer
      */
     public Integer getTabIndex()  {
@@ -309,7 +444,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      * If set, this property determines the width of this icon in px.      If unset the form item's <code>iconWidth</code>
      * property will be used instead.
      *
-     * @param width width Default value is null
+     * @param width  Default value is null
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setIconWidth
      */
     public void setWidth(Integer width) {
@@ -319,7 +454,6 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     /**
      * If set, this property determines the width of this icon in px.      If unset the form item's <code>iconWidth</code>
      * property will be used instead.
-     *
      *
      * @return Integer
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getIconWidth
@@ -332,8 +466,8 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     /**
      * Add a formItemClick handler.
      * <p>
-     * StringMethod action to fire when this icon is clicked      If unset the form item's <code>iconClick</code> method will
-     * be fired instead (if      specified).
+     * Called when this icon is clicked. The default action is to call {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#showPicker FormItem.showPicker}.
      *
      * @param handler the formItemClick handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -345,16 +479,18 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
 
     private native void setupFormItemClickEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.click = $entry(function(){
-                var param = {"form" : arguments[0], "item" : arguments[1], "icon" : arguments[2]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.FormItemIconClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var click = $entry(function(){
+            var param = {"form" : arguments[0], "item" : arguments[1], "icon" : arguments[2]};
+            var event = @com.smartgwt.client.widgets.form.fields.events.FormItemIconClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
+        obj.click =  click 
+        ;
    }-*/;
-            
-    /**
+
+	/**
      * StringMethod action to fire when this icon has focus and receives a keypress      event.      If unset the form item's
      * <code>iconKeyPress</code> method will be fired instead       (if specified).
      * @param keyName Name of the key pressed
@@ -368,9 +504,10 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
         self.keyPress(keyName, character, form.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), item.@com.smartgwt.client.core.DataClass::getJsObj()(), icon.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
+
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
     public boolean equals(Object o) {
@@ -387,8 +524,29 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     public int hashCode() {
         return getSrc() != null ? getSrc().hashCode() : 0;
     }
+    
+    /**
+     * Set showIf condition.
+     * <p>
+     * If specified, <code>icon.showIf</code> will be evaluated when the form item is drawn or redrawn. Return true if the icon
+     * should be visible, or false if it should be hidden. Note that if {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#showIcon FormItem.showIcon} or {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#hideIcon FormItem.hideIcon} is called, this method will be overridden.
+     *
+     * @param handler the showIf handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public native void setShowIfCondition(FormItemIfFunction showIf) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.showIf = $debox($entry(function(form, item) {
+            var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
+            var valueJ =  $wnd.SmartGWT.convertToJavaType(item.getValue());
+            var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(form);
+            return showIf.@com.smartgwt.client.widgets.form.FormItemIfFunction::execute(Lcom/smartgwt/client/widgets/form/fields/FormItem;Ljava/lang/Object;Lcom/smartgwt/client/widgets/form/DynamicForm;)(itemJ, valueJ, formJ);
+        }));
+    }-*/;
+
 
 }
-
 
 

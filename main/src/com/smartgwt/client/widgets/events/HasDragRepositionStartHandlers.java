@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDragRepositionStartHandlers extends HasHandlers {
     /**
      * Executed when dragging first starts. No default implementation.  Create this handler to set things up for the drag
@@ -30,3 +30,4 @@ public interface HasDragRepositionStartHandlers extends HasHandlers {
      */
     HandlerRegistration addDragRepositionStartHandler(DragRepositionStartHandler handler);
 }
+

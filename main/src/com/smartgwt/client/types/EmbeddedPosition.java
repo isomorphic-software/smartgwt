@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * How a component should be embedded within its record or cell
  */
@@ -33,7 +35,6 @@ public enum EmbeddedPosition implements ValueEnum {
      * be used if snapTo is unset (so top / left alignment of cell content will map to snapTo of "TL", etc).
      */
     WITHIN("within");
-
     private String value;
 
     EmbeddedPosition(String value) {

@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,21 +16,20 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Enum used within the {@link com.smartgwt.client.widgets.form.FilterBuilder} class to indicate the role of a particular 
  * value-field form item within a filter clause.
  */
 public enum ValueItemType implements ValueEnum {
     /**
-     * This is the single form item that will populate the generated {@link com.smartgwt.client.data.Criteria#getValue value}
+     * This is the single form item that will populate the generated {@link com.smartgwt.client.data.Criterion#getValue value}
      * for this clause. This applies for operators with  valueType of <code>"fieldType"</code> or <code>"custom"</code>.
      */
     VALUE("value"),
     /**
-     * This is the single form item that will populated the generated {@link com.smartgwt.client.data.Criteria#getValue value}
+     * This is the single form item that will populate the generated {@link com.smartgwt.client.data.Criterion#getValue value}
      * for  valueType of <code>"fieldName"</code>.
      */
     NAME("name"),
@@ -41,7 +43,6 @@ public enum ValueItemType implements ValueEnum {
      * <code>"valueRange"</code>.
      */
     END("end");
-
     private String value;
 
     ValueItemType(String value) {

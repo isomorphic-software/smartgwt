@@ -13,6 +13,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.grid.events;
 
@@ -24,6 +25,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +41,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,18 +51,25 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class EditFailedEvent extends BrowserEvent<EditFailedHandler>  {
 
     /**
@@ -92,7 +105,6 @@ public class EditFailedEvent extends BrowserEvent<EditFailedHandler>  {
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(EditFailedHandler handler) {
         handler.onEditFailed(this);
@@ -112,68 +124,86 @@ public class EditFailedEvent extends BrowserEvent<EditFailedHandler>  {
     }
 
 
-
-    /**
+	/**
      * current index of the row we attempted to save
      *
      * @return current index of the row we attempted to save
      */
-    public  native int getRowNum() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.rowNum;
+    public native int getRowNum() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.rowNum;
+        return ret;
     }-*/;
 
-    /**
+	/**
      * index of the column where the edit failed, if applicable
      *
      * @return index of the column where the edit failed, if applicable
      */
-    public  native int getColNum() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.colNum;
+    public native int getColNum() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.colNum;
+        return ret;
     }-*/;
 
-    /**
+	/**
+     * new values that we attempted to save
+     *
+     * @return new values that we attempted to save
+     */
+    public native Map getNewValues() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.newValues;
+        return @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * new values that we attempted to save
+     *
+     * @return new values that we attempted to save
+     */
+    public native Record getNewValuesAsRecord() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.newValues;
+        if(ret == null) return null;
+        return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * the complete original values from before the save occurred
+     *
+     * @return the complete original values from before the save occurred
+     */
+    public native Record getOldValues() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.oldValues;
+        if(ret == null) return null;
+        return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
      * Edit completion event that led to the save                                                  attempt
      *
      * @return Edit completion event that led to the save                                                  attempt
      */
-    public  native EditCompletionEvent getEditCompletionEvent() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.editCompletionEvent;
+    public native EditCompletionEvent getEditCompletionEvent() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.editCompletionEvent;
+        if(ret == null) return null;
+        var enumValues = @com.smartgwt.client.types.EditCompletionEvent::values()();
+        return @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(enumValues, ret);
     }-*/;
 
-    /**
+	/**
      * DSResponse, for saves through a DataSource
      *
      * @return DSResponse, for saves through a DataSource
      */
-    public  native DSResponse getDsResponse() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.dsResponse);
+    public native DSResponse getDsResponse() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.dsResponse;
+        if(ret == null) return null;
+        return @com.smartgwt.client.data.DSResponse::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
-
-    /**
-     * A Map of the new values that we attempted to save. In addition to fields that were changed, the Map contains
-     * the primary key field
-     *
-     * @return new values that we attempted to save
-     */
-    public  native Map getNewValues() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.newValues);        
-    }-*/;
-
-    /**
-     * old values before the save occurred
-     *
-     * @return old values before the save occurred
-     */
-    public  native Record getRecord() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.oldValues);    
-    }-*/;    
-
 
 }
