@@ -1,0 +1,28 @@
+<DataSource
+    ID="worldDS"
+    serverType="sql"
+    tableName="worldDS"
+    testFileName="world.data.xml"
+>
+    <fields>
+        <field name="pk"            type="sequence"   hidden="true"            primaryKey="true" />
+        <field name="countryCode"   type="text"       title="Code"             required="true"   />
+        <field name="countryName"   type="text"       title="Country"          required="true"   />
+        <field name="capital"       type="text"       title="Capital"          />
+        <field name="government"    type="text"       title="Government"       length="500"      />
+        <field name="continent"     type="text"       title="Continent"        >
+            <valueMap>
+                <value>Europe</value>
+                <value>Asia</value>
+                <value>North America</value>
+                <value>Australia/Oceania</value>
+                <value>South America</value>
+                <value>Africa</value>
+            </valueMap>
+        </field>
+        <field name="independence"  type="date"       title="Nationhood"          />
+        <field name="area"          type="float"      title="Area (km&amp;sup2;)" />
+        <field name="population"    type="integer"    title="Population"          />
+        <field name="gdp"           type="float"      title="GDP ($M)"            />
+    </fields>
+</DataSource>

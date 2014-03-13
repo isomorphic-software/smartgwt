@@ -1,0 +1,12 @@
+<DataSource ID="itemCategoryListingsDS" constructor="EBayCategoryItemListingsDS">
+    <fields>
+        <field name="GalleryURL" title="Thumb" type="image" valueXPath="default:PictureDetails/default:GalleryURL"/>
+        <field name="ItemID" primaryKey="true"/>
+        <field name="Title"/>
+        <field name="Currency"/>
+        <field name="Price" valueXPath="default:SellingStatus/default:CurrentPrice"/>
+        <field name="StartTime" type="date" valueXPath="default:ListingDetails/default:StartTime"/>
+        <field name="EndTime" type="date" valueXPath="default:ListingDetails/default:EndTime"/>
+        <field name="BidCount" type="integer" valueXPath="default:SellingStatus/default:BidCount"/>
+    </fields>
+</DataSource>

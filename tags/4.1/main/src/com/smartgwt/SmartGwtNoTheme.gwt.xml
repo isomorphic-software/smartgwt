@@ -1,0 +1,39 @@
+<!--Injects the SmartClient JavaScript files without bundling / including any skins-->
+<module>
+    <inherits name='com.google.gwt.user.User'/>
+    <inherits name="com.google.gwt.xml.XML"/>
+    <inherits name="com.google.gwt.i18n.I18N"/>
+    <inherits name="com.google.gwt.json.JSON"/>
+    <inherits name="com.google.gwt.http.HTTP"/>
+    <inherits name="com.google.gwt.event.Event"/>
+
+    <inherits name="com.smartclient.SmartClientDefault"/>
+
+    <entry-point class='com.smartgwt.client.SmartGwtEntryPoint'/>
+
+	<define-linker name="smartgwt" class="com.smartgwt.linker.SmartGwtLinker" />
+    <define-linker name="smartgwt_domain_sync" class="com.smartgwt.linker.SmartGwtDomainSyncLinker" />
+  	<add-linker name="smartgwt" />
+    
+  	<set-configuration-property name="document.compatMode" value="BackCompat"/>
+
+  	<source path='client'/>
+  	<super-source path='deprecated'/>
+  	<source path='logicalstructure'/>
+
+	<generate-with class="com.smartgwt.rebind.MetaBeanFactoryGenerator">
+        <when-type-assignable class="com.smartgwt.client.bean.BeanFactory.MetaFactory" />
+    </generate-with>
+
+	<generate-with class="com.smartgwt.rebind.BeanValueTypeFactoryGenerator">
+        <when-type-assignable class="com.smartgwt.client.bean.BeanValueType.MetaFactory" />
+    </generate-with>
+
+	<generate-with class="com.smartgwt.rebind.CanvasMetaBeanFactoryGenerator">
+        <when-type-assignable class="com.smartgwt.client.bean.BeanFactory.CanvasMetaFactory" />
+    </generate-with>
+    
+    <generate-with class="com.smartgwt.rebind.FormItemMetaBeanFactoryGenerator">
+        <when-type-assignable class="com.smartgwt.client.bean.BeanFactory.FormItemMetaFactory" />
+    </generate-with>
+</module>
