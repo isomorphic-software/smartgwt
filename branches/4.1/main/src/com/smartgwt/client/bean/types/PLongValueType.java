@@ -19,7 +19,6 @@ package com.smartgwt.client.bean.types;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.bean.types.LongValueType;
 import com.smartgwt.client.bean.BeanValueType;
-import com.google.gwt.core.client.UnsafeNativeLong;
 
 public class PLongValueType extends LongValueType {
     public static void registerValueType () { 
