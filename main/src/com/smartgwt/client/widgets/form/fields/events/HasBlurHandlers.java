@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.form.fields.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasBlurHandlers extends HasHandlers {
     /**
      * Called when this FormItem loses focus.
@@ -29,3 +29,4 @@ public interface HasBlurHandlers extends HasHandlers {
      */
     HandlerRegistration addBlurHandler(BlurHandler handler);
 }
+

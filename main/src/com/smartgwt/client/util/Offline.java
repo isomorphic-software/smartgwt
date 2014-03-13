@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.util;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,16 +50,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
@@ -71,31 +82,36 @@ import com.google.gwt.event.shared.HasHandlers;
  * versions of Internet Explorer (6 and 7).  The amount  of storage available is dictated by the browser, and varies from
  * approximately 500KB to  approximately 5MB.
  */
+@BeanFactory.FrameworkClass
 public class Offline {
+
 
     // ********************* Properties / Attributes ***********************
 
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-            
-    /**
+	/**
      * Explicitly sets this session into offline mode.  This setting will override whatever  state the browser reports.  This
      * allows users to manually set an application into  offline or online state.
+     * @see com.smartgwt.client.util.Offline#goOnline
+     * @see com.smartgwt.client.util.Offline#useNativeOfflineDetection
      */
     public static native void goOffline() /*-{
         $wnd.isc.Offline.goOffline();
     }-*/;
-            
-    /**
+
+	/**
      * Explicitly sets this session into online mode.  This setting will override whatever  state the browser reports.  This
      * allows users to manually set an application into  offline or online state.
+     * @see com.smartgwt.client.util.Offline#goOffline
+     * @see com.smartgwt.client.util.Offline#useNativeOfflineDetection
      */
     public static native void goOnline() /*-{
         $wnd.isc.Offline.goOnline();
     }-*/;
-            
-    /**
+
+	/**
      * Returns true if the current browser session is offline (ie, not connected to a network). If an online/offline state has
      * been set explicitly (see {@link com.smartgwt.client.util.Offline#goOffline Offline.goOffline} and  {@link
      * com.smartgwt.client.util.Offline#goOnline Offline.goOnline}), the explicitly-set state will be returned.  Otherwise, the
@@ -109,23 +125,23 @@ public class Offline {
      * @see com.smartgwt.client.util.Offline#useNativeOfflineDetection
      */
     public static native Boolean isOffline() /*-{
-        var retVal =$wnd.isc.Offline.isOffline();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        var ret = $wnd.isc.Offline.isOffline();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
-            
-    /**
+
+
+	/**
      * Removes the key/value pair mapped by the passed-in key from browser-local storage
      * @param key The key to remove
+     * @see com.smartgwt.client.util.Offline#put
+     * @see com.smartgwt.client.util.Offline#get
      */
     public static native void remove(String key) /*-{
         $wnd.isc.Offline.remove(key);
     }-*/;
-            
-    /**
+
+	/**
      * Tells the Offline system to query the browser for the current online/offline state. Calling this method switches off the
      * explicit offline mode setting switched on by  calling {@link com.smartgwt.client.util.Offline#goOnline Offline.goOnline}
      * or {@link com.smartgwt.client.util.Offline#goOffline Offline.goOffline}. <p> It is important to note that browsers vary
@@ -134,12 +150,15 @@ public class Offline {
      * browsers have a manual "Work Offline" mode which allows the user  to make the decision, and Smart GWT provides an
      * equivalent mechanism with the  <code>goOffline</code> and <code>goOnline</code> methods.  Generally speaking, these 
      * methods are more reliable than allowing the browser to decide whether your application is offline.
+     * @see com.smartgwt.client.util.Offline#goOnline
+     * @see com.smartgwt.client.util.Offline#goOffline
      */
     public static native void useNativeOfflineDetection() /*-{
         $wnd.isc.Offline.useNativeOfflineDetection();
     }-*/;
-        
-    // ***********************************************************        
+
+
+    // ***********************************************************
 
 
     /**
@@ -192,8 +211,7 @@ public class Offline {
             setValue(key, ((Integer) value).intValue(), recycleEntries);
         } else if (value instanceof Long) {
             //we officially do not support Long type, and GWT disallows passing long values to JSNI
-            //casting to int, instead or erroring out, as it works in most cases
-            setValue(key, ((Long) value).intValue(), recycleEntries);
+            setValue(key, ((Long) value).doubleValue(), recycleEntries);
         } else if (value instanceof Double) {
             setValue(key, ((Double) value).doubleValue(), recycleEntries);
         } else if (value instanceof Float) {
@@ -238,7 +256,6 @@ public class Offline {
     }-*/;
 
 }
-
 
 
 

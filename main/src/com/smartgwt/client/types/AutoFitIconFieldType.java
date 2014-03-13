@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * How should fields of {@link com.smartgwt.client.types.ListGridFieldType type:"icon"} be sized by default?
  */
@@ -32,7 +34,6 @@ public enum AutoFitIconFieldType implements ValueEnum {
      * size the field to accommodate the title (or the width of the icon if it exceeds the width of the title.
      */
     TITLE("title");
-
     private String value;
 
     AutoFitIconFieldType(String value) {

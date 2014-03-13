@@ -7,7 +7,10 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#isExpansionField
  * @see com.smartgwt.client.widgets.grid.ListGrid#canExpandRecord
  * @see com.smartgwt.client.widgets.grid.ListGrid#expandRecord
+ * @see com.smartgwt.client.widgets.grid.ListGrid#expandRecords
  * @see com.smartgwt.client.widgets.grid.ListGrid#collapseRecord
+ * @see com.smartgwt.client.widgets.grid.ListGrid#collapseRecords
+ * @see com.smartgwt.client.widgets.grid.ListGrid#isExpanded
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCurrentExpansionComponent
  * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionComponent
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecordProperty

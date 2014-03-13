@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Order of pickers and which pickers are present when using a DateItem with {@link
  * com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} false.
@@ -49,7 +51,6 @@ public enum DateItemSelectorFormat implements ValueEnum {
      * Output only month, year fields.
      */
     MONTH_YEAR("MY");
-
     private String value;
 
     DateItemSelectorFormat(String value) {

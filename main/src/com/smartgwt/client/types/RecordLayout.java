@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,34 +16,40 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Controls the style of TableView record display
  */
 public enum RecordLayout implements ValueEnum {
     /**
-     * Show  title field only
+     * Show {@link com.smartgwt.client.widgets.tableview.TableView#getTitleField title field} only
      */
     TITLE_ONLY("titleOnly"),
     /**
-     * Show  title and  description fields only
+     * Show {@link com.smartgwt.client.widgets.tableview.TableView#getTitleField title} and {@link
+     * com.smartgwt.client.widgets.tableview.TableView#getDescriptionField description} fields only
      */
     TITLE_DESCRIPTION("titleAndDescription"),
     /**
-     * Show  title,  description and  info fields only
+     * Show {@link com.smartgwt.client.widgets.tableview.TableView#getTitleField title}, {@link
+     * com.smartgwt.client.widgets.tableview.TableView#getDescriptionField description} and {@link
+     * com.smartgwt.client.widgets.tableview.TableView#getInfoField info} fields only
      */
     SUMMARY_INFO("summaryInfo"),
     /**
-     * Show  title,  description and  data fields only
+     * Show {@link com.smartgwt.client.widgets.tableview.TableView#getTitleField title}, {@link
+     * com.smartgwt.client.widgets.tableview.TableView#getDescriptionField description} and {@link
+     * com.smartgwt.client.widgets.tableview.TableView#getDataField data} fields only
      */
     SUMMARY_DATA("summaryData"),
     /**
-     * Show  title,  description,  info and  data fields similar to the iPhoneOS Mail application
+     * Show {@link com.smartgwt.client.widgets.tableview.TableView#getTitleField title}, {@link
+     * com.smartgwt.client.widgets.tableview.TableView#getDescriptionField description}, {@link
+     * com.smartgwt.client.widgets.tableview.TableView#getInfoField info} and {@link
+     * com.smartgwt.client.widgets.tableview.TableView#getDataField data} fields similar to the iPhoneOS Mail application
      */
     SUMMARY_FULL("summaryFull");
-
     private String value;
 
     RecordLayout(String value) {

@@ -13,19 +13,24 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.drawing.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasClickHandlers extends HasHandlers {
     /**
-     * Executed when the left mouse is clicked (pressed and then released) on this widget.  No default implementation.
+     * Notification fired when the user clicks on this DrawItem. <p> Note that if this item is part of a {@link
+     * com.smartgwt.client.widgets.drawing.DrawGroup}, then the group's {@link
+     * com.smartgwt.client.widgets.drawing.DrawGroup#getUseGroupRect useGroupRect} setting affects whether this item receives
+     * the notification. If useGroupRect is true, then this item will <em>not</em> receive the notification. Otherwise, the
+     * item receives the notification and notification bubbles up to the group.
      *
      * @param handler the click handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addClickHandler(ClickHandler handler);
 }
+

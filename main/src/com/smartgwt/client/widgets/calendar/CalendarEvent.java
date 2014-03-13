@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.calendar;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,16 +50,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
@@ -62,11 +73,16 @@ import com.google.gwt.event.shared.HasHandlers;
  * A type of {@link com.smartgwt.client.data.Record} which represents an event to occur at a specific time, displayed
  * within the calendar.
  */
+@BeanFactory.FrameworkClass
 public class CalendarEvent extends Record {
 
     public static CalendarEvent getOrCreateRef(JavaScriptObject jsObj) {
+
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+
         if(obj != null && obj instanceof CalendarEvent) {
             obj.setJsObj(jsObj);
             return (CalendarEvent) obj;
@@ -75,61 +91,124 @@ public class CalendarEvent extends Record {
         }
     }
 
+
     public CalendarEvent(){
         
     }
 
     public CalendarEvent(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
-    public CalendarEvent(int eventId, String name, String description, java.util.Date startDate, java.util.Date endDate
-				) {
+
+    public CalendarEvent(int eventId, String name, String description, java.util.Date startDate, java.util.Date endDate     ) {
         setEventId(eventId);
 		setName(name);
 		setDescription(description);
 		setStartDate(startDate);
-		setEndDate
-				(endDate
-				);
-        
+		setEndDate     (endDate     );
+                
     }
 
-    public CalendarEvent(int eventId, String name, String description, java.util.Date startDate, java.util.Date endDate, boolean canEdit
-				) {
+
+    public CalendarEvent(int eventId, String name, String description, java.util.Date startDate, java.util.Date endDate, boolean canEdit     ) {
         setEventId(eventId);
 		setName(name);
 		setDescription(description);
 		setStartDate(startDate);
 		setEndDate(endDate);
-		setCanEdit
-				(canEdit
-				);
-        
+		setCanEdit     (canEdit     );
+                
     }
 
-    public CalendarEvent(int eventId, String name, String description, java.util.Date startDate, java.util.Date endDate, boolean canEdit, String eventWindowStyle
-				) {
+
+    public CalendarEvent(int eventId, String name, String description, java.util.Date startDate, java.util.Date endDate, boolean canEdit, String eventWindowStyle     ) {
         setEventId(eventId);
 		setName(name);
 		setDescription(description);
 		setStartDate(startDate);
 		setEndDate(endDate);
 		setCanEdit(canEdit);
-		setEventWindowStyle
-				(eventWindowStyle
-				);
-        
+		setEventWindowStyle     (eventWindowStyle     );
+                
     }
+
+
+    public CalendarEvent(int eventId, String name, String description, java.util.Date startDate, java.util.Date endDate, String lane     ) {
+        setEventId(eventId);
+		setName(name);
+		setDescription(description);
+		setStartDate(startDate);
+		setEndDate(endDate);
+		setLane     (lane     );
+                
+    }
+
+
+    public CalendarEvent(int eventId, String name, String description, java.util.Date startDate, java.util.Date endDate, boolean canEdit, String eventWindowStyle, String lane     ) {
+        setEventId(eventId);
+		setName(name);
+		setDescription(description);
+		setStartDate(startDate);
+		setEndDate(endDate);
+		setCanEdit(canEdit);
+		setEventWindowStyle(eventWindowStyle);
+		setLane     (lane     );
+                
+    }
+
 
     // ********************* Properties / Attributes ***********************
 
     /**
+     * An optional background color for this event's window.
+     *
+     * @param backgroundColor  Default value is null
+     */
+    public void setBackgroundColor(String backgroundColor) {
+        setAttribute("backgroundColor", backgroundColor);
+    }
+
+    /**
+     * An optional background color for this event's window.
+     *
+     * @return String
+     */
+    public String getBackgroundColor()  {
+        return getAttributeAsString("backgroundColor");
+    }
+
+    /**
+     * Boolean indicating whether this event can be moved between lanes.  Can also be set at the {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getCanEditLane calendar level}. <P> The name of this field within the
+     * CalendarEvent can be changed via  {@link com.smartgwt.client.widgets.calendar.Calendar#getCanEditLaneField
+     * canEditLaneField}.
+     *
+     * @param canEditLane  Default value is null
+     */
+    public void setCanEditLane(String canEditLane) {
+        setAttribute("canEditLane", canEditLane);
+    }
+
+    /**
+     * Boolean indicating whether this event can be moved between lanes.  Can also be set at the {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getCanEditLane calendar level}. <P> The name of this field within the
+     * CalendarEvent can be changed via  {@link com.smartgwt.client.widgets.calendar.Calendar#getCanEditLaneField
+     * canEditLaneField}.
+     *
+     * @return String
+     */
+    public String getCanEditLane()  {
+        return getAttributeAsString("canEditLane");
+    }
+
+    /**
      * String which represents the description of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of this
-     * field within the CalendarEvent can be changed via  {@link
+     * field within the CalendarEvent can be changed via {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getDescriptionField descriptionField}
      *
-     * @param description description Default value is null
+     * @param description  Default value is null
      */
     public void setDescription(String description) {
         setAttribute("description", description);
@@ -137,9 +216,8 @@ public class CalendarEvent extends Record {
 
     /**
      * String which represents the description of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of this
-     * field within the CalendarEvent can be changed via  {@link
+     * field within the CalendarEvent can be changed via {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getDescriptionField descriptionField}
-     *
      *
      * @return String
      */
@@ -149,34 +227,33 @@ public class CalendarEvent extends Record {
 
     /**
      * Date object which represents the end date of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of
-     * this field within the CalendarEvent can be changed via  {@link
+     * this field within the CalendarEvent can be changed via {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getEndDateField endDateField}
      *
-     * @param endDate endDate Default value is null
+     * @param endDate  Default value is null
      */
-    public void setEndDate(java.util.Date endDate) {
+    public void setEndDate(Date endDate) {
         setAttribute("endDate", endDate);
     }
 
     /**
      * Date object which represents the end date of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of
-     * this field within the CalendarEvent can be changed via  {@link
+     * this field within the CalendarEvent can be changed via {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getEndDateField endDateField}
      *
-     *
-     * @return java.util.Date
+     * @return Date
      */
-    public java.util.Date getEndDate()  {
+    public Date getEndDate()  {
         return getAttributeAsDate("endDate");
     }
 
     /**
      * CSS style series to use for the draggable event window that represents this event.  If specified, overrides {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyle eventWindowStyle} for this specific event. <P> The
-     * name of this field within the CalendarEvent can be changed via  {@link
+     * name of this field within the CalendarEvent can be changed via {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyleField eventWindowStyleField}
      *
-     * @param eventWindowStyle eventWindowStyle Default value is null
+     * @param eventWindowStyle  See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName} . Default value is null
      */
     public void setEventWindowStyle(String eventWindowStyle) {
         setAttribute("eventWindowStyle", eventWindowStyle);
@@ -185,22 +262,44 @@ public class CalendarEvent extends Record {
     /**
      * CSS style series to use for the draggable event window that represents this event.  If specified, overrides {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyle eventWindowStyle} for this specific event. <P> The
-     * name of this field within the CalendarEvent can be changed via  {@link
+     * name of this field within the CalendarEvent can be changed via {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyleField eventWindowStyleField}
      *
-     *
-     * @return String
+     * @return  See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName} 
      */
     public String getEventWindowStyle()  {
         return getAttributeAsString("eventWindowStyle");
     }
 
     /**
-     * String which represents the name of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of this field
-     * within the CalendarEvent can be changed via  {@link com.smartgwt.client.widgets.calendar.Calendar#getNameField
-     * nameField}
+     * When in Timeline mode, or when {@link com.smartgwt.client.widgets.calendar.Calendar#getShowDayLanes showDayLanes} is
+     * true, a string that  represents the name of the {@link com.smartgwt.client.widgets.calendar.Calendar#getLanes lane} this
+     * {@link com.smartgwt.client.widgets.calendar.CalendarEvent} should  sit in.  The name of this field within the
+     * CalendarEvent can be changed via {@link com.smartgwt.client.widgets.calendar.Calendar#getLaneNameField laneNameField}.
      *
-     * @param name name Default value is null
+     * @param lane  Default value is null
+     */
+    public void setLane(String lane) {
+        setAttribute("lane", lane);
+    }
+
+    /**
+     * When in Timeline mode, or when {@link com.smartgwt.client.widgets.calendar.Calendar#getShowDayLanes showDayLanes} is
+     * true, a string that  represents the name of the {@link com.smartgwt.client.widgets.calendar.Calendar#getLanes lane} this
+     * {@link com.smartgwt.client.widgets.calendar.CalendarEvent} should  sit in.  The name of this field within the
+     * CalendarEvent can be changed via {@link com.smartgwt.client.widgets.calendar.Calendar#getLaneNameField laneNameField}.
+     *
+     * @return String
+     */
+    public String getLane()  {
+        return getAttributeAsString("lane");
+    }
+
+    /**
+     * String which represents the name of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of this field
+     * within the CalendarEvent can be changed via {@link com.smartgwt.client.widgets.calendar.Calendar#getNameField nameField}
+     *
+     * @param name  Default value is null
      */
     public void setName(String name) {
         setAttribute("name", name);
@@ -208,9 +307,7 @@ public class CalendarEvent extends Record {
 
     /**
      * String which represents the name of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of this field
-     * within the CalendarEvent can be changed via  {@link com.smartgwt.client.widgets.calendar.Calendar#getNameField
-     * nameField}
-     *
+     * within the CalendarEvent can be changed via {@link com.smartgwt.client.widgets.calendar.Calendar#getNameField nameField}
      *
      * @return String
      */
@@ -220,32 +317,49 @@ public class CalendarEvent extends Record {
 
     /**
      * Date object which represents the start date of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}. The name of
-     * this field within the CalendarEvent can be changed via  {@link
+     * this field within the CalendarEvent can be changed via {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getStartDateField startDateField}
      *
-     * @param startDate startDate Default value is null
+     * @param startDate  Default value is null
      */
-    public void setStartDate(java.util.Date startDate) {
+    public void setStartDate(Date startDate) {
         setAttribute("startDate", startDate);
     }
 
     /**
      * Date object which represents the start date of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}. The name of
-     * this field within the CalendarEvent can be changed via  {@link
+     * this field within the CalendarEvent can be changed via {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getStartDateField startDateField}
      *
-     *
-     * @return java.util.Date
+     * @return Date
      */
-    public java.util.Date getStartDate()  {
+    public Date getStartDate()  {
         return getAttributeAsDate("startDate");
+    }
+
+    /**
+     * An optional text color for this event's window.
+     *
+     * @param textColor  Default value is null
+     */
+    public void setTextColor(String textColor) {
+        setAttribute("textColor", textColor);
+    }
+
+    /**
+     * An optional text color for this event's window.
+     *
+     * @return String
+     */
+    public String getTextColor()  {
+        return getAttributeAsString("textColor");
     }
 
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
     public void setEventId(Integer eventId) {
@@ -278,23 +392,6 @@ public class CalendarEvent extends Record {
         return getAttributeAsBoolean("canEdit");
     }
 
-    private static CalendarEvent[] convertToCalendarEventArray(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new CalendarEvent[]{};
-        }
-        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-        CalendarEvent[] objects = new CalendarEvent[componentsj.length];
-        for (int i = 0; i < componentsj.length; i++) {
-            JavaScriptObject componentJS = componentsj[i];
-            CalendarEvent obj = (CalendarEvent) RefDataClass.getRef(componentJS);
-            if (obj == null) obj = new CalendarEvent(componentJS);
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
 }
-
-
 
 

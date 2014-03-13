@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.form.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasColorSelectedHandlers extends HasHandlers {
     /**
      * Override this method to be notified when the user selects a color either by clicking a basic color box in simple mode,
@@ -30,3 +30,4 @@ public interface HasColorSelectedHandlers extends HasHandlers {
      */
     HandlerRegistration addColorSelectedHandler(ColorSelectedHandler handler);
 }
+

@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,14 +16,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
- * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanHover canHover} and  {@link
+ * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanHover canHover} and {@link
  * com.smartgwt.client.widgets.grid.ListGrid#getShowHoverComponents showHoverComponents} are both true, HoverMode dictates
  * the type of UI to be displayed when a user hovers over a row or cell. <P> There are a number of builtin HoverModes and
- * you can override  {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHoverComponent getCellHoverComponent()} to
+ * you can override {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHoverComponent getCellHoverComponent()} to
  * create your own hover behaviors.
  */
 public enum HoverMode implements ValueEnum {
@@ -37,7 +39,7 @@ public enum HoverMode implements ValueEnum {
     /**
      * Show a separate {@link com.smartgwt.client.widgets.grid.ListGrid} containing related-records. See {@link
      * com.smartgwt.client.widgets.grid.ListGridRecord#getDetailDS detailDS} and {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getRecordDetailDSProperty recordDetailDSProperty} for  more information.
+     * com.smartgwt.client.widgets.grid.ListGrid#getRecordDetailDSProperty recordDetailDSProperty} for more information.
      */
     RELATED("related"),
     /**
@@ -46,7 +48,6 @@ public enum HoverMode implements ValueEnum {
      * related-records.
      */
     DETAIL_RELATED("detailRelated");
-
     private String value;
 
     HoverMode(String value) {

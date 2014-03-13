@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.util.workflow;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,13 +50,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
@@ -61,15 +75,22 @@ import com.google.gwt.event.shared.HasHandlers;
  * storing outputs in the process state. <P> By default a ServiceTask takes the data indicated by {@link
  * com.smartgwt.client.util.workflow.Task#getInputField inputField} and uses it as {@link
  * com.smartgwt.client.data.DSRequest#getData data}.  This means the input data becomes {@link
- * com.smartgwt.client.util.workflow.ServiceTask#getCritera Critera} for a "fetch" operation, new record values for an
- * "add" operation, etc. <P> Alternatively, you can set {@link com.smartgwt.client.util.workflow.ServiceTask#getCriteria
- * criteria} for a "fetch" operation, or {@link com.smartgwt.client.util.workflow.ServiceTask#getValues values} for other
- * operationTypes.  In both cases, you have the ability to use simple expressions like $input.<i>fieldName</i> to take
- * portions of the input data and use it as part of the criteria or values. <P> As a special case, if the
- * <code>inputField</code> is an atomic value (just a String or Number rather than a Record) and operationType is "fetch",
- * it will be assumed to be value for the primary key field of the target DataSource if {@link
- * com.smartgwt.client.util.workflow.ServiceTask#getCriteria criteria} is not explicitly specified
+ * com.smartgwt.client.data.Criteria} for a "fetch" operation, new record values for an "add" operation, etc. <P>
+ * Alternatively, you can set {@link com.smartgwt.client.util.workflow.ServiceTask#getCriteria criteria} for a "fetch"
+ * operation, or {@link com.smartgwt.client.util.workflow.ServiceTask#getValues values} for other operationTypes.  In both
+ * cases, you have the ability to use simple expressions like $input.<i>fieldName</i> to take portions of the input data
+ * and use it as part of the criteria or values. <P> As a special case, if the <code>inputField</code> is an atomic value
+ * (just a String or Number rather than a Record) and operationType is "fetch", it will be assumed to be value for the
+ * primary key field of the target DataSource if {@link com.smartgwt.client.util.workflow.ServiceTask#getCriteria criteria}
+ * is not explicitly specified <P> OutputData and outputFieldList work as filters. You should determine which properties
+ * should be fetched into the process state. If you want to load all data without defining every property manually you can
+ * pass a name started with '$' and fetched record or records will be  placed as a record or an array of records by the
+ * name without this specific symbol. <P> For example if you specify 'id' and 'name' in outputFieldList, only these
+ * properties will be fetched in the process state. If you pass '$record' in outputField a whole record will be  stored in
+ * process state under the 'record' key. Also you can use javascript syntax there. For example '$record.item[0]'.
  */
+@BeanFactory.FrameworkClass
+@BeanFactory.ScClassName("ServiceTask")
 public class ServiceTask extends Task {
 
     public static ServiceTask getOrCreateRef(JavaScriptObject jsObj) {
@@ -82,17 +103,14 @@ public class ServiceTask extends Task {
         }
     }
 
+
     public ServiceTask(){
         scClassName = "ServiceTask";
     }
 
     public ServiceTask(JavaScriptObject jsObj){
-        super(jsObj);
-    }
-
-    public ServiceTask(String ID) {
-        setID(ID);
         scClassName = "ServiceTask";
+        setJavaScriptObject(jsObj);
     }
 
     public native JavaScriptObject create()/*-{
@@ -100,6 +118,7 @@ public class ServiceTask extends Task {
         var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
         return $wnd.isc[scClassName].create(config);
     }-*/;
+
     // ********************* Properties / Attributes ***********************
 
     /**
@@ -113,7 +132,7 @@ public class ServiceTask extends Task {
      * other than "fetch".  Update or delete operations should place the primary key to update in {@link
      * com.smartgwt.client.util.workflow.ServiceTask#getValues values}.
      *
-     * @param criteria criteria Default value is null
+     * @param criteria  Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.TaskIO TaskIO overview and related methods
      */
@@ -132,7 +151,6 @@ public class ServiceTask extends Task {
      * other than "fetch".  Update or delete operations should place the primary key to update in {@link
      * com.smartgwt.client.util.workflow.ServiceTask#getValues values}.
      *
-     *
      * @return Criteria
      * @see com.smartgwt.client.docs.TaskIO TaskIO overview and related methods
      */
@@ -146,7 +164,7 @@ public class ServiceTask extends Task {
      * com.smartgwt.client.util.workflow.ServiceTask#getCriteria criteria} if specified, via {@link
      * com.smartgwt.client.data.DataSource#combineCriteria DataSource.combineCriteria}.
      *
-     * @param fixedCriteria fixedCriteria Default value is null
+     * @param fixedCriteria  Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setFixedCriteria(Criteria fixedCriteria)  throws IllegalStateException {
@@ -158,7 +176,6 @@ public class ServiceTask extends Task {
      * the {@link com.smartgwt.client.util.workflow.Task#getInputField inputField} or with {@link
      * com.smartgwt.client.util.workflow.ServiceTask#getCriteria criteria} if specified, via {@link
      * com.smartgwt.client.data.DataSource#combineCriteria DataSource.combineCriteria}.
-     *
      *
      * @return Criteria
      */
@@ -173,7 +190,7 @@ public class ServiceTask extends Task {
      * <code>fixedValues</code> overwriting values provided by the <code>inputField</code>, but explicitly specified {@link
      * com.smartgwt.client.util.workflow.ServiceTask#getValues values} overriding <code>fixedValues</code>.
      *
-     * @param fixedValues fixedValues Default value is null
+     * @param fixedValues  Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setFixedValues(Record fixedValues)  throws IllegalStateException {
@@ -187,7 +204,6 @@ public class ServiceTask extends Task {
      * <code>fixedValues</code> overwriting values provided by the <code>inputField</code>, but explicitly specified {@link
      * com.smartgwt.client.util.workflow.ServiceTask#getValues values} overriding <code>fixedValues</code>.
      *
-     *
      * @return Record
      */
     public Record getFixedValues()  {
@@ -197,16 +213,15 @@ public class ServiceTask extends Task {
     /**
      * Type of operation to invoke
      *
-     * @param operationType operationType Default value is "fetch"
+     * @param operationType  Default value is "fetch"
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setOperationType(DSOperationType operationType)  throws IllegalStateException {
-        setAttribute("operationType", operationType.getValue(), false);
+        setAttribute("operationType", operationType == null ? null : operationType.getValue(), false);
     }
 
     /**
      * Type of operation to invoke
-     *
      *
      * @return DSOperationType
      */
@@ -220,7 +235,7 @@ public class ServiceTask extends Task {
      * com.smartgwt.client.docs.TaskInputExpression}.  Use {@link com.smartgwt.client.util.workflow.ServiceTask#getFixedValues
      * fixedValues} for any values that start with "$" but should be treated as a literal.
      *
-     * @param values values Default value is null
+     * @param values  Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setValues(Record values)  throws IllegalStateException {
@@ -233,7 +248,6 @@ public class ServiceTask extends Task {
      * com.smartgwt.client.docs.TaskInputExpression}.  Use {@link com.smartgwt.client.util.workflow.ServiceTask#getFixedValues
      * fixedValues} for any values that start with "$" but should be treated as a literal.
      *
-     *
      * @return Record
      */
     public Record getValues()  {
@@ -243,8 +257,8 @@ public class ServiceTask extends Task {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
 
@@ -273,11 +287,13 @@ public class ServiceTask extends Task {
      * @param dataSource dataSource Default value is null
      */
     public void setDataSource(DataSource dataSource) {
-        setAttribute("dataSource", dataSource == null ? null : dataSource.getOrCreateJsObj(), false);
+    	if(dataSource==null) {
+    		throw new IllegalArgumentException("Invalid call to setDataSource() passing null.  If you're having trouble with loading DataSources, please see the following FAQ: http://forums.smartclient.com/showthread.php?t=8159#aDSLoad");
+    	}
+        setAttribute("dataSource", dataSource.getOrCreateJsObj(), false);
     }
 
 
 }
-
 
 

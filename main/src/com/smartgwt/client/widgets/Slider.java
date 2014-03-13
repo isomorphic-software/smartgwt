@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,18 +50,43 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.rte.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
+import com.smartgwt.logicalstructure.widgets.tools.*;
 
 /**
  * The Slider class implements a GUI slider widget allowing the user to select a numeric   value from within a range by
@@ -68,45 +98,77 @@ import com.google.gwt.event.shared.HasHandlers;
  * <code>valueChanged()</code> method whenever its value is   changed.  This can be observed or overridden on the Slider
  * instance to perform some action.
  */
-public class Slider extends Canvas  implements com.smartgwt.client.widgets.events.HasValueChangedHandlers {
+@BeanFactory.FrameworkClass
+@BeanFactory.ScClassName("Slider")
+public class Slider extends Canvas implements com.smartgwt.client.widgets.events.HasValueChangedHandlers {
 
     public static Slider getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (Slider) obj;
-        } else {
+        if (jsObj == null) return null;
+        final BaseWidget refInstance = BaseWidget.getRef(jsObj);
+        if (refInstance == null) {
             return new Slider(jsObj);
+        } else {
+            assert refInstance instanceof Slider;
+            return (Slider)refInstance;
         }
     }
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        $wnd.isc.Slider.changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.Canvas::getConfig()());
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        $wnd.isc.Slider.changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getJsObj()());
+    }-*/;
 
     public Slider(){
         scClassName = "Slider";
     }
 
     public Slider(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "Slider";
+        setJavaScriptObject(jsObj);
     }
+
 
     public Slider(String title) {
         setTitle(title);
-        scClassName = "Slider";
+                scClassName = "Slider";
     }
 
     protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
         var widget = $wnd.isc[scClassName].create(config);
+        if ($wnd.isc.keepGlobals) this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Lcom/google/gwt/core/client/JavaScriptObject;)(widget);
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;
+
     // ********************* Properties / Attributes ***********************
 
     /**
      * Should the thumb be animated to its new position when the value is changed programmatically, or by clicking in the
      * slider track.
      *
-     * @param animateThumb animateThumb Default value is true
+     * @param animateThumb  Default value is true
      */
     public void setAnimateThumb(Boolean animateThumb) {
         setAttribute("animateThumb", animateThumb, true);
@@ -115,7 +177,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * Should the thumb be animated to its new position when the value is changed programmatically, or by clicking in the
      * slider track.
-     *
      *
      * @return Boolean
      */
@@ -126,7 +187,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * If thumb animation is enabled, should the thumb be animated to its initial value?
      *
-     * @param animateThumbInit animateThumbInit Default value is false
+     * @param animateThumbInit  Default value is false
      */
     public void setAnimateThumbInit(Boolean animateThumbInit) {
         setAttribute("animateThumbInit", animateThumbInit, true);
@@ -134,7 +195,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
      * If thumb animation is enabled, should the thumb be animated to its initial value?
-     *
      *
      * @return Boolean
      */
@@ -145,7 +205,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * Duration of thumb animation, in milliseconds.
      *
-     * @param animateThumbTime animateThumbTime Default value is 250
+     * @param animateThumbTime  Default value is 250
      */
     public void setAnimateThumbTime(int animateThumbTime) {
         setAttribute("animateThumbTime", animateThumbTime, true);
@@ -153,7 +213,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
      * Duration of thumb animation, in milliseconds.
-     *
      *
      * @return int
      */
@@ -164,7 +223,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * Indicates whether keyboard manipulation of the slider is allowed.
      *
-     * @param canFocus canFocus Default value is true
+     * @param canFocus  Default value is true
      */
     public void setCanFocus(Boolean canFocus) {
         setAttribute("canFocus", canFocus, true);
@@ -172,7 +231,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
      * Indicates whether keyboard manipulation of the slider is allowed.
-     *
      *
      * @return Boolean
      */
@@ -184,7 +242,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Specifies whether the value range of the slider should be flipped so that values increase as the thumb is moved down
      * (for a vertical slider) or to the left (for a horizontal slider).
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getFlipValues flipValues} property of the slider
      *
      * @param flipValues flip slider values?. Default value is false
@@ -197,7 +255,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Specifies whether the value range of the slider should be flipped so that values increase as the thumb is moved down
      * (for a vertical slider) or to the left (for a horizontal slider).
      *
-     *
      * @return Boolean
      */
     public Boolean getFlipValues()  {
@@ -208,7 +265,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Optional CSS style for the thumb for a horizontally oriented slider. <P> Will have the suffix "down" added when the
      * mouse is down on the thumb, and "Disabled" added when the slider is disabled.
      *
-     * @param hThumbStyle hThumbStyle Default value is null
+     * @param hThumbStyle  See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName} . Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setHThumbStyle(String hThumbStyle)  throws IllegalStateException {
@@ -219,8 +276,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Optional CSS style for the thumb for a horizontally oriented slider. <P> Will have the suffix "down" added when the
      * mouse is down on the thumb, and "Disabled" added when the slider is disabled.
      *
-     *
-     * @return String
+     * @return  See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName} 
      */
     public String getHThumbStyle()  {
         return getAttributeAsString("hThumbStyle");
@@ -230,7 +286,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Optional CSS style for the track for a horizontally oriented slider. <P> Will have the suffix "Disabled" added when the
      * slider is disabled.
      *
-     * @param hTrackStyle hTrackStyle Default value is null
+     * @param hTrackStyle  See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName} . Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setHTrackStyle(String hTrackStyle)  throws IllegalStateException {
@@ -241,8 +297,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Optional CSS style for the track for a horizontally oriented slider. <P> Will have the suffix "Disabled" added when the
      * slider is disabled.
      *
-     *
-     * @return String
+     * @return  See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName} 
      */
     public String getHTrackStyle()  {
         return getAttributeAsString("hTrackStyle");
@@ -251,7 +306,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * The height of the labels used to display the minimum, maximum and current values of the slider.
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getLabelHeight labelHeight} property of the slider
      *
      * @param labelHeight new label height. Default value is 20
@@ -263,7 +318,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * The height of the labels used to display the minimum, maximum and current values of the slider.
      *
-     *
      * @return int
      */
     public int getLabelHeight()  {
@@ -273,7 +327,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * The space around the labels used to display the minimum, maximum and current values of the slider.
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getLabelSpacing labelSpacing} property of the slider
      *
      * @param labelSpacing new label spacing. Default value is 5
@@ -285,7 +339,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * The space around the labels used to display the minimum, maximum and current values of the slider.
      *
-     *
      * @return int
      */
     public int getLabelSpacing()  {
@@ -295,7 +348,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * The width of the labels used to display the minimum, maximum and current values of the slider.
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getLabelWidth labelWidth} property of the slider
      *
      * @param labelWidth new label width. Default value is 50
@@ -307,7 +360,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * The width of the labels used to display the minimum, maximum and current values of the slider.
      *
-     *
      * @return int
      */
     public int getLabelWidth()  {
@@ -318,7 +370,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Used to set slider height if vertical, slider width if horizontal. Applied to the slider track, not necessarily the
      * entire widget. Overridden by an explicit width/height specification for the widget.
      *
-     * @param length length Default value is 200
+     * @param length  Default value is 200
      */
     public void setLength(int length) {
         setAttribute("length", length, true);
@@ -327,7 +379,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * Used to set slider height if vertical, slider width if horizontal. Applied to the slider track, not necessarily the
      * entire widget. Overridden by an explicit width/height specification for the widget.
-     *
      *
      * @return int
      */
@@ -339,12 +390,14 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * The maximum slider value. The slider value is equal to maxValue when the thumb is at the top or right of the slider
      * (unless flipValues is true, in which case the maximum value is at the bottom/left of the slider)
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getMaxValue maximum value} of the slider
      *
-     * @param maxValue the new maximum value. Default value is 100
+     * @param maxValue the new maximum value <b>Note:</b>Use Doubles rather Floats when manipulating decimal values.  See {@link
+     * com.smartgwt.client.docs.GwtFloatVsDouble} for details. Default value is 100
      * @see com.smartgwt.client.widgets.Slider#setFlipValues
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
+     * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
     public void setMaxValue(float maxValue) {
         setAttribute("maxValue", maxValue, true);
@@ -354,20 +407,48 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * The maximum slider value. The slider value is equal to maxValue when the thumb is at the top or right of the slider
      * (unless flipValues is true, in which case the maximum value is at the bottom/left of the slider)
      *
-     *
      * @return float
      * @see com.smartgwt.client.widgets.Slider#getFlipValues
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
+     * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
     public float getMaxValue()  {
         return getAttributeAsFloat("maxValue");
     }
 
     /**
+     * The maximum slider value. The slider value is equal to maxValue when the thumb is at the top or right of the slider
+     * (unless flipValues is true, in which case the maximum value is at the bottom/left of the slider)
+     *
+     * <p>If this method is called after the component has been drawn/initialized:
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getMaxValue maximum value} of the slider
+     *
+     * @param maxValue the new maximum value <b>Note:</b>Use Doubles rather Floats when manipulating decimal values.  See {@link
+     * com.smartgwt.client.docs.GwtFloatVsDouble} for details. Default value is 100
+     * @see com.smartgwt.client.widgets.Slider#setFlipValues
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
+     */
+    public void setMaxValue(double maxValue) {
+        setAttribute("maxValue", maxValue, true);
+    }
+
+    /**
+     * The maximum slider value. The slider value is equal to maxValue when the thumb is at the top or right of the slider
+     * (unless flipValues is true, in which case the maximum value is at the bottom/left of the slider)
+     *
+     * @return double
+     * @see com.smartgwt.client.widgets.Slider#getFlipValues
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
+     */
+    public double getMaxValueAsDouble()  {
+        return getAttributeAsDouble("maxValue");
+    }
+
+    /**
      * The text displayed in the label for the maximum value of the slider. If left as null, then slider.maxValue will be
      * displayed.
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getMaxValueLabel maxValueLabel} property of the slider
      *
      * @param maxValueLabel new label text. Default value is null
@@ -382,7 +463,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * The text displayed in the label for the maximum value of the slider. If left as null, then slider.maxValue will be
      * displayed.
      *
-     *
      * @return String
      * @see com.smartgwt.client.widgets.Slider#getShowRange
      * @see com.smartgwt.client.widgets.Slider#getMaxValue
@@ -395,12 +475,14 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * The minimum slider value. The slider value is equal to minValue when the thumb is at the bottom or left of the slider
      * (unless flipValues is true, in which case the minimum value is at the top/right of the slider)
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getMinValue minimum value} of the slider
      *
-     * @param minValue the new minimum value. Default value is 1
+     * @param minValue the new minimum value <b>Note:</b>Use Doubles rather Floats when manipulating decimal values.  See {@link
+     * com.smartgwt.client.docs.GwtFloatVsDouble} for details. Default value is 1
      * @see com.smartgwt.client.widgets.Slider#setFlipValues
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
+     * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
     public void setMinValue(float minValue) {
         setAttribute("minValue", minValue, true);
@@ -410,20 +492,48 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * The minimum slider value. The slider value is equal to minValue when the thumb is at the bottom or left of the slider
      * (unless flipValues is true, in which case the minimum value is at the top/right of the slider)
      *
-     *
      * @return float
      * @see com.smartgwt.client.widgets.Slider#getFlipValues
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
+     * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
     public float getMinValue()  {
         return getAttributeAsFloat("minValue");
     }
 
     /**
+     * The minimum slider value. The slider value is equal to minValue when the thumb is at the bottom or left of the slider
+     * (unless flipValues is true, in which case the minimum value is at the top/right of the slider)
+     *
+     * <p>If this method is called after the component has been drawn/initialized:
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getMinValue minimum value} of the slider
+     *
+     * @param minValue the new minimum value <b>Note:</b>Use Doubles rather Floats when manipulating decimal values.  See {@link
+     * com.smartgwt.client.docs.GwtFloatVsDouble} for details. Default value is 1
+     * @see com.smartgwt.client.widgets.Slider#setFlipValues
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
+     */
+    public void setMinValue(double minValue) {
+        setAttribute("minValue", minValue, true);
+    }
+
+    /**
+     * The minimum slider value. The slider value is equal to minValue when the thumb is at the bottom or left of the slider
+     * (unless flipValues is true, in which case the minimum value is at the top/right of the slider)
+     *
+     * @return double
+     * @see com.smartgwt.client.widgets.Slider#getFlipValues
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
+     */
+    public double getMinValueAsDouble()  {
+        return getAttributeAsDouble("minValue");
+    }
+
+    /**
      * The text displayed in the label for the minimum value of the slider. If left as null, then slider.minValue will be
      * displayed.
      *
-     * @param minValueLabel minValueLabel Default value is null
+     * @param minValueLabel  Default value is null
      * @see com.smartgwt.client.widgets.Slider#setShowRange
      * @see com.smartgwt.client.widgets.Slider#setMinValue
      */
@@ -434,7 +544,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * The text displayed in the label for the minimum value of the slider. If left as null, then slider.minValue will be
      * displayed.
-     *
      *
      * @return String
      * @see com.smartgwt.client.widgets.Slider#getShowRange
@@ -449,10 +558,11 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * <code>minValue</code> and <code>maxValue</code>) will be divided into this many steps. As the thumb is moved along the
      * track it will only select these values and appear to jump between the steps.
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getNumValues number of values} for the slider
      *
-     * @param numValues the new number of values. Default value is null
+     * @param numValues the new number of values <b>Note:</b>Use Doubles rather Floats when manipulating decimal values.  See {@link
+     * com.smartgwt.client.docs.GwtFloatVsDouble} for details. Default value is null
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
     public void setNumValues(Integer numValues) {
@@ -463,7 +573,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * The number of discrete values represented by slider. If specified, the range of valid values (between
      * <code>minValue</code> and <code>maxValue</code>) will be divided into this many steps. As the thumb is moved along the
      * track it will only select these values and appear to jump between the steps.
-     *
      *
      * @return Integer
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
@@ -476,7 +585,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to
      * this number of decimal places. If set to null the value will not be rounded
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getRoundPrecision roundPrecision} property of the slider
      *
      * @param roundPrecision new round precision. Default value is 1
@@ -489,7 +598,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to
      * this number of decimal places. If set to null the value will not be rounded
      *
-     *
      * @return int
      */
     public int getRoundPrecision()  {
@@ -501,7 +609,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * a fixed number of decimal places controlled by {@link com.smartgwt.client.widgets.Slider#getRoundPrecision
      * roundPrecision}.
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} property of the slider
      *
      * @param roundValues round slider values?. Default value is true
@@ -515,7 +623,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * a fixed number of decimal places controlled by {@link com.smartgwt.client.widgets.Slider#getRoundPrecision
      * roundPrecision}.
      *
-     *
      * @return Boolean
      */
     public Boolean getRoundValues()  {
@@ -526,7 +633,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Indicates whether labels for the min and max values of the slider should be displayed. The default positions for these
      * labels are below the start/end of a horizontal slider, or to the right of the start/end of a vertical slider.
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getShowRange showRange} property of the slider
      *
      * @param showRange show the slider range?. Default value is true
@@ -541,7 +648,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Indicates whether labels for the min and max values of the slider should be displayed. The default positions for these
      * labels are below the start/end of a horizontal slider, or to the right of the start/end of a vertical slider.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.Slider#getMinValueLabel
      * @see com.smartgwt.client.widgets.Slider#getMaxValueLabel
@@ -554,7 +660,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Indicates whether the slider's title should be displayed. The default position for this label is to the left of a
      * horizontal slider, or above a vertical slider.
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getShowTitle showTitle} property of the slider
      *
      * @param showTitle show the slider title?. Default value is true
@@ -568,7 +674,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Indicates whether the slider's title should be displayed. The default position for this label is to the left of a
      * horizontal slider, or above a vertical slider.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.Slider#getTitle
      */
@@ -580,7 +685,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Indicates whether a label for the value of the slider should be displayed. The default position for this label is to the
      * right of a vertical slider, or below a horizontal  slider.
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getShowValue showValue} property of the slider
      *
      * @param showValue show the slider value?. Default value is true
@@ -594,7 +699,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Indicates whether a label for the value of the slider should be displayed. The default position for this label is to the
      * right of a vertical slider, or below a horizontal  slider.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.Slider#getValue
      */
@@ -606,10 +710,11 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * The percentage of the total slider that constitutes one discrete step. The slider will move one step when the
      * appropriate arrow key is pressed.
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getStepPercent stepPercent} property of the slider
      *
      * @param stepPercent new slider step percent. Default value is 5
+     * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
     public void setStepPercent(float stepPercent) {
         setAttribute("stepPercent", stepPercent, true);
@@ -619,11 +724,34 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * The percentage of the total slider that constitutes one discrete step. The slider will move one step when the
      * appropriate arrow key is pressed.
      *
-     *
      * @return float
+     * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
     public float getStepPercent()  {
         return getAttributeAsFloat("stepPercent");
+    }
+
+    /**
+     * The percentage of the total slider that constitutes one discrete step. The slider will move one step when the
+     * appropriate arrow key is pressed.
+     *
+     * <p>If this method is called after the component has been drawn/initialized:
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getStepPercent stepPercent} property of the slider
+     *
+     * @param stepPercent new slider step percent. Default value is 5
+     */
+    public void setStepPercent(double stepPercent) {
+        setAttribute("stepPercent", stepPercent, true);
+    }
+
+    /**
+     * The percentage of the total slider that constitutes one discrete step. The slider will move one step when the
+     * appropriate arrow key is pressed.
+     *
+     * @return double
+     */
+    public double getStepPercentAsDouble()  {
+        return getAttributeAsDouble("stepPercent");
     }
 
     /**
@@ -636,7 +764,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * <li><code>v{baseName}_down.{extension}</code>:  appearance when the slider is enabled and the     thumb is clicked.
      * <li><code>v{baseName}_Disabled.{extension}</code>:  appearance when the slider is disabled. </ul>
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getThumbSrc thumbSrc} property of the slider
      *
      * @param thumbSrc new thumbSrc. Default value is "thumb.gif"
@@ -655,7 +783,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * <li><code>v{baseName}_down.{extension}</code>:  appearance when the slider is enabled and the     thumb is clicked.
      * <li><code>v{baseName}_Disabled.{extension}</code>:  appearance when the slider is disabled. </ul>
      *
-     *
      * @return String
      */
     public String getThumbSrc()  {
@@ -665,7 +792,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * The dimension of the thumb perpendicular to the slider track.
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getThumbThickWidth thumbThickWidth} property of the slider
      *
      * @param thumbThickWidth new thumbThickWidth. Default value is 23
@@ -677,7 +804,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * The dimension of the thumb perpendicular to the slider track.
      *
-     *
      * @return int
      */
     public int getThumbThickWidth()  {
@@ -687,7 +813,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * The dimension of the thumb parallel to the slider track.
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getThumbThinWidth thumbThinWidth} property of the slider
      *
      * @param thumbThinWidth new thumbThinWidth. Default value is 17
@@ -699,7 +825,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * The dimension of the thumb parallel to the slider track.
      *
-     *
      * @return int
      */
     public int getThumbThinWidth()  {
@@ -709,7 +834,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * Optional display title for the slider.
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getTitle title} of the slider
      *
      * @param title new title for the slider. Default value is "Set Value"
@@ -722,7 +847,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * Optional display title for the slider.
      *
-     *
      * @return String
      * @see com.smartgwt.client.widgets.Slider#getShowTitle
      */
@@ -733,7 +857,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * The height of vertical slider start and end images, or width of horizontal slider start and end images.
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackCapSize trackCapSize} property of the slider
      *
      * @param trackCapSize new trackCapSize. Default value is 6
@@ -745,7 +869,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * The height of vertical slider start and end images, or width of horizontal slider start and end images.
      *
-     *
      * @return int
      */
     public int getTrackCapSize()  {
@@ -755,7 +878,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * The imageType setting for the slider track.
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackImageType trackImageType} property of the slider
      *
      * @param trackImageType new trackImageType. Default value is "stretch"
@@ -768,7 +891,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
      * The imageType setting for the slider track.
-     *
      *
      * @return ImageStyle
      * @see com.smartgwt.client.types.ImageStyle
@@ -797,7 +919,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * centered, tiled, or stretched. <li><code>v{baseName}_end.{extension}</code>:  end (top edge) of the track for a slider  
      *   that is disabled. </ul>
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackSrc trackSrc} property of the slider
      *
      * @param trackSrc new trackSrc. Default value is "track.gif"
@@ -826,7 +948,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * centered, tiled, or stretched. <li><code>v{baseName}_end.{extension}</code>:  end (top edge) of the track for a slider  
      *   that is disabled. </ul>
      *
-     *
      * @return String
      * @see com.smartgwt.client.widgets.Slider#getTrackImageType
      */
@@ -837,7 +958,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * The thickness of the track. This is the width, for a vertical slider, or the height, for a horizontal slider.
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackWidth trackWidth} property of the slider
      *
      * @param trackWidth new trackWidth. Default value is 7
@@ -849,7 +970,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * The thickness of the track. This is the width, for a vertical slider, or the height, for a horizontal slider.
      *
-     *
      * @return int
      */
     public int getTrackWidth()  {
@@ -860,14 +980,16 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * The slider value. This value should lie between the minValue and maxValue and increases as the thumb is moved up (for a
      * vertical slider) or right (for a horizontal slider) unless flipValues is set to true.
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the slider value to newValue and moves the slider thumb to the appropriate position for this value. Sends the 'sliderMove' event to the sliderTarget.
      *
-     * @param value the new value. Default value is 1
+     * @param value the new value <b>Note:</b>Use Doubles rather Floats when manipulating decimal values.  See {@link
+     * com.smartgwt.client.docs.GwtFloatVsDouble} for details. Default value is 1
      * @see com.smartgwt.client.widgets.Slider#setMinValue
      * @see com.smartgwt.client.widgets.Slider#setMaxValue
      * @see com.smartgwt.client.widgets.Slider#setFlipValues
      * @see com.smartgwt.client.widgets.Slider#setShowValue
+     * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
     public void setValue(float value) {
         setAttribute("value", value, true);
@@ -877,6 +999,38 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * The slider value. This value should lie between the minValue and maxValue and increases as the thumb is moved up (for a
      * vertical slider) or right (for a horizontal slider) unless flipValues is set to true.
      *
+     * @return Returns the current slider value.
+     * @see com.smartgwt.client.widgets.Slider#getMinValue
+     * @see com.smartgwt.client.widgets.Slider#getMaxValue
+     * @see com.smartgwt.client.widgets.Slider#getFlipValues
+     * @see com.smartgwt.client.widgets.Slider#getShowValue
+     * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
+     */
+    public float getValue()  {
+        return getAttributeAsFloat("value");
+    }
+
+    /**
+     * The slider value. This value should lie between the minValue and maxValue and increases as the thumb is moved up (for a
+     * vertical slider) or right (for a horizontal slider) unless flipValues is set to true.
+     *
+     * <p>If this method is called after the component has been drawn/initialized:
+     * Sets the slider value to newValue and moves the slider thumb to the appropriate position for this value. Sends the 'sliderMove' event to the sliderTarget.
+     *
+     * @param value the new value <b>Note:</b>Use Doubles rather Floats when manipulating decimal values.  See {@link
+     * com.smartgwt.client.docs.GwtFloatVsDouble} for details. Default value is 1
+     * @see com.smartgwt.client.widgets.Slider#setMinValue
+     * @see com.smartgwt.client.widgets.Slider#setMaxValue
+     * @see com.smartgwt.client.widgets.Slider#setFlipValues
+     * @see com.smartgwt.client.widgets.Slider#setShowValue
+     */
+    public void setValue(double value) {
+        setAttribute("value", value, true);
+    }
+
+    /**
+     * The slider value. This value should lie between the minValue and maxValue and increases as the thumb is moved up (for a
+     * vertical slider) or right (for a horizontal slider) unless flipValues is set to true.
      *
      * @return Returns the current slider value.
      * @see com.smartgwt.client.widgets.Slider#getMinValue
@@ -884,14 +1038,14 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * @see com.smartgwt.client.widgets.Slider#getFlipValues
      * @see com.smartgwt.client.widgets.Slider#getShowValue
      */
-    public float getValue()  {
-        return getAttributeAsFloat("value");
+    public double getValueAsDouble()  {
+        return getAttributeAsDouble("value");
     }
 
     /**
      * Indicates whether this is a vertical or horizontal slider.
      *
-     * <br><br>If this method is called after the component has been drawn/initialized:
+     * <p>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getVertical vertical} property of the slider
      *
      * @param vertical is the slider vertical. Default value is true
@@ -904,7 +1058,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * Indicates whether this is a vertical or horizontal slider.
      *
-     *
      * @return Boolean
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
@@ -916,7 +1069,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Optional CSS style for the thumb for a vertically oriented slider.  See {@link
      * com.smartgwt.client.widgets.Slider#getHThumbStyle hThumbStyle} for state suffixes.
      *
-     * @param vThumbStyle vThumbStyle Default value is null
+     * @param vThumbStyle  See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName} . Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setVThumbStyle(String vThumbStyle)  throws IllegalStateException {
@@ -927,8 +1080,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Optional CSS style for the thumb for a vertically oriented slider.  See {@link
      * com.smartgwt.client.widgets.Slider#getHThumbStyle hThumbStyle} for state suffixes.
      *
-     *
-     * @return String
+     * @return  See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName} 
      */
     public String getVThumbStyle()  {
         return getAttributeAsString("vThumbStyle");
@@ -938,7 +1090,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Optional CSS style for the track for a vertically oriented slider. <P> Will have the suffix "Disabled" added when the
      * slider is disabled.
      *
-     * @param vTrackStyle vTrackStyle Default value is null
+     * @param vTrackStyle  See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName} . Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setVTrackStyle(String vTrackStyle)  throws IllegalStateException {
@@ -949,8 +1101,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Optional CSS style for the track for a vertically oriented slider. <P> Will have the suffix "Disabled" added when the
      * slider is disabled.
      *
-     *
-     * @return String
+     * @return  See {@link com.smartgwt.client.docs.CSSStyleName CSSStyleName} 
      */
     public String getVTrackStyle()  {
         return getAttributeAsString("vTrackStyle");
@@ -960,8 +1111,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * Add a valueChanged handler.
      * <p>
-     * This method is called when the slider value changes. This occurs when the setValue method is called, or when the slider
-     * is moved. Observe this method to be notified when the slider value changes.
+     * This method is called when the slider value changes. This occurs when the {@link
+     * com.smartgwt.client.widgets.Slider#setValue setValue()} method is called, or when the slider is moved. Observe this
+     * method to be notified when the slider value changes.
      *
      * @param handler the valueChanged handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -974,25 +1126,21 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     private native void setupValueChangedEvent() /*-{
         var obj = null;
         var selfJ = this;
+        var valueChanged = $entry(function(){
+            var param = {"value" : arguments[0]};
+
+                var event = @com.smartgwt.client.widgets.events.ValueChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({valueChanged:$entry(function(){
-                        var param = {"value" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.events.ValueChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            obj.addProperties({valueChanged:  valueChanged              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.valueChanged = $entry(function(){
-                   var param = {"value" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.events.ValueChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            obj.valueChanged =  valueChanged             ;
         }
    }-*/;
-            
-    /**
+	/**
      * Call this method in your {@link com.smartgwt.client.widgets.Slider#addValueChangedHandler Slider.valueChanged} handler
      * to determine whether the value change is due to an ongoing drag interaction (true) or due to a thumb-release, mouse
      * click, keypress, or programmatic event (false). You may choose to execute temporary or partial updates while the slider
@@ -1002,38 +1150,199 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      */
     public native Boolean valueIsChanging() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.valueIsChanging();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        var ret = self.valueIsChanging();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 
+
     // ********************* Static Methods ***********************
-    /**
-     * Class level method to set the default properties of this class. If set, then all subsequent instances of this
-     * class will automatically have the default properties that were set when this method was called. This is a powerful
-     * feature that eliminates the need for users to create a separate hierarchy of subclasses that only alter the default
-     * properties of this class. Can also be used for skinning / styling purposes.
-     * <P>
-     * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
-     * underlying class (including those automatically generated in JavaScript). 
-     * This method should not be used to apply standard EventHandlers or override methods for
-     * a class - use a custom subclass instead.
+
+    /** 
+     * Class level method to set the default properties of this class.  If set, then all
+     * existing and subsequently created instances of this class will automatically have
+     * default properties corresponding to
+     * the properties set on the SmartGWT class instance passed to this function before its
+     * underlying SmartClient JS object was created.
+     * This is a powerful feature that eliminates the need for users to create a separate
+     * hierarchy of subclasses that only alter the default properties of this class. Can also
+     * be used for skinning / styling purposes.  <P> <b>Note:</b> This method is intended for
+     * setting default attributes only and will affect all instances of the underlying class
+     * (including those automatically generated in JavaScript).  This method should not be used
+     * to apply standard EventHandlers or override methods for a class - use a custom subclass
+     * instead.  Calling this method after instances have been created can result in undefined
+     * behavior, since it bypasses any setters and a class instance may have already examined 
+     * a particular property and not be expecting any changes through this route.
      *
      * @param sliderProperties properties that should be used as new defaults when instances of this class are created
      */
     public static native void setDefaultProperties(Slider sliderProperties) /*-{
     	var properties = $wnd.isc.addProperties({},sliderProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
-    	delete properties.ID;
+        @com.smartgwt.client.util.JSOHelper::cleanProperties(Lcom/google/gwt/core/client/JavaScriptObject;Z)(properties,false);
         $wnd.isc.Slider.addProperties(properties);
     }-*/;
-        
-    // ***********************************************************        
 
+    // ***********************************************************
+
+    public LogicalStructureObject setLogicalStructure(SliderLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.animateThumb = getAttributeAsString("animateThumb");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.animateThumb:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateThumbInit = getAttributeAsString("animateThumbInit");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.animateThumbInit:" + t.getMessage() + "\n";
+        }
+        try {
+            s.animateThumbTime = getAttributeAsString("animateThumbTime");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.animateThumbTime:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canFocus = getAttributeAsString("canFocus");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.canFocus:" + t.getMessage() + "\n";
+        }
+        try {
+            s.flipValues = getAttributeAsString("flipValues");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.flipValues:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hThumbStyle = getAttributeAsString("hThumbStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.hThumbStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hTrackStyle = getAttributeAsString("hTrackStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.hTrackStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.labelHeight = getAttributeAsString("labelHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.labelHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.labelSpacing = getAttributeAsString("labelSpacing");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.labelSpacing:" + t.getMessage() + "\n";
+        }
+        try {
+            s.labelWidth = getAttributeAsString("labelWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.labelWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.length = getAttributeAsString("length");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.length:" + t.getMessage() + "\n";
+        }
+        try {
+            s.maxValueLabel = getAttributeAsString("maxValueLabel");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.maxValueLabel:" + t.getMessage() + "\n";
+        }
+        try {
+            s.minValueLabel = getAttributeAsString("minValueLabel");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.minValueLabel:" + t.getMessage() + "\n";
+        }
+        try {
+            s.numValues = getAttributeAsString("numValues");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.numValues:" + t.getMessage() + "\n";
+        }
+        try {
+            s.roundPrecision = getAttributeAsString("roundPrecision");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.roundPrecision:" + t.getMessage() + "\n";
+        }
+        try {
+            s.roundValues = getAttributeAsString("roundValues");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.roundValues:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showRange = getAttributeAsString("showRange");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.showRange:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showTitle = getAttributeAsString("showTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.showTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showValue = getAttributeAsString("showValue");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.showValue:" + t.getMessage() + "\n";
+        }
+        try {
+            s.thumbSrc = getAttributeAsString("thumbSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.thumbSrc:" + t.getMessage() + "\n";
+        }
+        try {
+            s.thumbThickWidth = getAttributeAsString("thumbThickWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.thumbThickWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.thumbThinWidth = getAttributeAsString("thumbThinWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.thumbThinWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.title = getAttributeAsString("title");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.title:" + t.getMessage() + "\n";
+        }
+        try {
+            s.trackCapSize = getAttributeAsString("trackCapSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.trackCapSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.trackImageType = getAttributeAsString("trackImageType");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.trackImageType:" + t.getMessage() + "\n";
+        }
+        try {
+            s.trackSrc = getAttributeAsString("trackSrc");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.trackSrc:" + t.getMessage() + "\n";
+        }
+        try {
+            s.trackWidth = getAttributeAsString("trackWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.trackWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vertical = getAttributeAsString("vertical");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.vertical:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vThumbStyle = getAttributeAsString("vThumbStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.vThumbStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vTrackStyle = getAttributeAsString("vTrackStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.vTrackStyle:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+
+    public LogicalStructureObject getLogicalStructure() {
+        SliderLogicalStructure s = new SliderLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-
 

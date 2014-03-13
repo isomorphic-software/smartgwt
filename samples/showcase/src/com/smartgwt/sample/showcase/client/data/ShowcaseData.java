@@ -245,8 +245,6 @@ import com.smartgwt.sample.showcase.client.menu.MenuCustomColumnsSample;
 import com.smartgwt.sample.showcase.client.menu.MenuSubmenusSample;
 import com.smartgwt.sample.showcase.client.menu.MenuTreeBindingSample;
 import com.smartgwt.sample.showcase.client.miniapp.MiniAppSample;
-import com.smartgwt.sample.showcase.client.mobile.DialingSample;
-import com.smartgwt.sample.showcase.client.mobile.ResponsiveDesign;
 import com.smartgwt.sample.showcase.client.mvc.PatternReuseSample;
 import com.smartgwt.sample.showcase.client.offline.OfflinePreferencesSample;
 import com.smartgwt.sample.showcase.client.other.DateChooserSample;
@@ -323,11 +321,6 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Nested Grid", "featured-nested-grid", "featured-category", "crystal/16/mimetypes/widget_doc.png", new GridRowExpansionRelatedRecordsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Tile Sort &amp; Filtering", "featured-tile-filtering", "featured-category", "silk/application_view_tile.png", new FilterSortTilingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Print Grid", "featured-print-grid", "featured-category", "silk/printer.png", new PrintingSample.Factory(), true, idSuffix),
-
-                    // Disabled for now. We don't want to expose this folder until we have a certain number of samples complete.
-//                  new ExplorerTreeNode("Responsive Design", "responsive-design", "mobile", "silk/calendar.png", new ResponsiveDesign.Factory(), false, idSuffix),
-//                  new ExplorerTreeNode("Dialing", "dialing", "mobile", "silk/calendar.png", new DialingSample.Factory(), false, idSuffix),
-
                     new ExplorerTreeNode("Adv. Filter Builder", "featured-filter-builder-grid", "featured-category", "crystal/oo/sc_insertformula.png", new GridNestedFilterBulderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Frozen Columns", "featured-tree-grid", "featured-category", "silk/chart_organisation.png", new FrozenColumnsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid Header Spans", "featured-grid-header-span", "featured-category", null, new GridHeaderSpansSample.Factory(), true, idSuffix),

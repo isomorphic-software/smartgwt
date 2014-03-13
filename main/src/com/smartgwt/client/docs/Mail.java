@@ -3,7 +3,7 @@ package com.smartgwt.client.docs;
 
 /**
  * The following APIs are all related to Mail.
- * @see com.smartgwt.client.types.Mail
+ * @see com.smartgwt.client.client.docs.Mail
  * @see com.smartgwt.client.docs.serverds.OperationBinding#mail
  * @see com.smartgwt.client.docs.serverds.Mail#templateFile
  * @see com.smartgwt.client.docs.serverds.Mail#messageTemplate
@@ -15,6 +15,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.docs.serverds.Mail#subject
  * @see com.smartgwt.client.docs.serverds.Mail#multiple
  * @see com.smartgwt.client.docs.serverds.Mail#messageData
+ * @see com.smartgwt.client.docs.serverds.Mail#contentType
+ * @see com.smartgwt.client.docs.serverds.Mail#encoding
  */
 public interface Mail {
 }

@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  */
 public enum CriteriaPolicy implements ValueEnum {
@@ -24,11 +26,10 @@ public enum CriteriaPolicy implements ValueEnum {
      */
     DROPONCHANGE("dropOnChange"),
     /**
-     * Cache is retained as along as the only changes to criteria make the criteria more restrictive as determined by {@link
+     * Cache is retained as long as the only changes to criteria make the criteria more restrictive as determined by {@link
      * com.smartgwt.client.data.ResultSet#compareCriteria ResultSet.compareCriteria}.
      */
     DROPONSHORTENING("dropOnShortening");
-
     private String value;
 
     CriteriaPolicy(String value) {

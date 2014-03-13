@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.tab.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasTabIconClickHandlers extends HasHandlers {
     /**
      * Method fired when the user clicks the icon for a tab, as specified via {@link
@@ -32,3 +32,4 @@ public interface HasTabIconClickHandlers extends HasHandlers {
      */
     HandlerRegistration addTabIconClickHandler(TabIconClickHandler handler);
 }
+

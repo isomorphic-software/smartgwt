@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * What the {@link com.smartgwt.client.util.JSONEncoder} should do when it encounters a circular reference in an object
  * structure.
@@ -35,7 +37,6 @@ public enum JSONCircularReferenceMode implements ValueEnum {
      * object tree that was serialized. This potentially allows the original object graph to be reconstructed.
      */
     PATH("path");
-
     private String value;
 
     JSONCircularReferenceMode(String value) {

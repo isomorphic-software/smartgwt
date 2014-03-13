@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.drawing;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,22 +50,29 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * An object containing properties that is used in Gradient types
  */
+@BeanFactory.FrameworkClass
 public class ColorStop extends RefDataClass {
 
     public static ColorStop getOrCreateRef(JavaScriptObject jsObj) {
@@ -68,20 +80,30 @@ public class ColorStop extends RefDataClass {
         return new ColorStop(jsObj);
     }
 
+
     public ColorStop(){
         
     }
 
     public ColorStop(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
+
+
+    public ColorStop(String color, float offset) {
+        setColor(color);
+		setOffset(offset);
+                
+    }
+
 
     // ********************* Properties / Attributes ***********************
 
     /**
      * eg #ff0000 or red or rgb(255,0,0)
      *
-     * @param color color Default value is null
+     * @param color  See {@link com.smartgwt.client.docs.CSSColor CSSColor} . Default value is null
      */
     public void setColor(String color) {
         setAttribute("color", color);
@@ -90,8 +112,7 @@ public class ColorStop extends RefDataClass {
     /**
      * eg #ff0000 or red or rgb(255,0,0)
      *
-     *
-     * @return String
+     * @return  See {@link com.smartgwt.client.docs.CSSColor CSSColor} 
      */
     public String getColor()  {
         return getAttributeAsString("color");
@@ -100,7 +121,7 @@ public class ColorStop extends RefDataClass {
     /**
      * The relative offset for the color.
      *
-     * @param offset offset Default value is 0.0
+     * @param offset  Default value is 0.0
      */
     public void setOffset(float offset) {
         setAttribute("offset", offset);
@@ -108,7 +129,6 @@ public class ColorStop extends RefDataClass {
 
     /**
      * The relative offset for the color.
-     *
      *
      * @return float
      */
@@ -119,7 +139,7 @@ public class ColorStop extends RefDataClass {
     /**
      * 0 is transparent, 1 is fully opaque
      *
-     * @param opacity opacity Default value is 1.0
+     * @param opacity  Default value is 1.0
      */
     public void setOpacity(float opacity) {
         setAttribute("opacity", opacity);
@@ -127,7 +147,6 @@ public class ColorStop extends RefDataClass {
 
     /**
      * 0 is transparent, 1 is fully opaque
-     *
      *
      * @return float
      */
@@ -138,27 +157,9 @@ public class ColorStop extends RefDataClass {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
 
-
-
-    public static ColorStop[] convertToColorStopArray(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new ColorStop[]{};
-        }
-        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-        ColorStop[] objects = new ColorStop[componentsj.length];
-        for (int i = 0; i < componentsj.length; i++) {
-            JavaScriptObject componentJS = componentsj[i];
-            ColorStop obj = (ColorStop) RefDataClass.getRef(componentJS);
-            if (obj == null) obj = new ColorStop(componentJS);
-            objects[i] = obj;
-        }
-        return objects;
-    }
+    // ***********************************************************
 
 }
-
 
 

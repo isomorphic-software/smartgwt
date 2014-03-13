@@ -13,6 +13,8 @@
 
 
 		<mkdir dir="${smartgwt.build.dist}" />
+		<mkdir dir="${smartgwt.build.out}/maven" />
+
 		<zip destfile="${project.dist}">
 			<!-- jars -->
 

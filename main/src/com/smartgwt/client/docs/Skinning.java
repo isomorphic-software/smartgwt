@@ -18,18 +18,26 @@ package com.smartgwt.client.docs;
  *  images
  * 
  *  <li> Smart GWT components can be skinned by replacing the CSS styles and images that
- *  the components use by default, or by using JavaScript properties to configure
- *  components to use new CSS styles and new image URLs.
+ *  the components use by default, or by setting properties on components to configure
+ *  them to use new CSS styles and new image URLs.
  * 
- *  <li> You can change the appearance of an individual Smart GWT component by 
+ *  <li> You can change the appearance of an individual Smart GWT component by
  *  
  *  
- *  calling setter methods such as {@link com.smartgwt.client.widgets.Canvas#getStyleName setStyleName()} or
- *  {@link com.smartgwt.client.widgets.Canvas#getBackgroundColor setBackgroundColor()}, or you can skin all
- *  components of the same class at once, by using Canvas.setDefaultProperties().
+ * calling setter methods such as {@link com.smartgwt.client.widgets.Canvas#getStyleName
+ * setStyleName()} or
+ * {@link com.smartgwt.client.widgets.Canvas#getBackgroundColor setBackgroundColor()}, or you can
+ * skin all
+ *  components of the same class at once, by using Canvas.setDefaultProperties()
  *  to change the defaults for the class.
  *  
  * 
+ * 
+ *  <li> CSS is used to control details of appearance such as fonts, borders and background
+ *       colors and gradients, but component properties are used to control layout and
+ * positioning of components.  See {@link com.smartgwt.client.docs.CSSStyleName} for more details
+ * about correct
+ *       usage.
  *  <li> A "skin" consists of:
  *  <ul>
  *  <li> a single CSS stylesheet containing all CSS styles used by Smart GWT components
@@ -37,11 +45,11 @@ package com.smartgwt.client.docs;
  *  <li> a single JavaScript file that sets component defaults (<code>load_skin.js</code>)
  *  <li> a directory tree of images organized by component
  *  </ul>
- *  
+ * 
  *  <li>
- *  The example skins that come with Smart GWT are 
- *    
- *  inside smartgwt.jar and smartgwt-skins.jar as GWT modules.  
+ *  The example skins that come with Smart GWT are
+ *  
+ *  inside smartgwt.jar and smartgwt-skins.jar as GWT modules.
  *  The standard directory layout for a skin is:
  *  <pre>
  *         skin_styles.css
@@ -54,25 +62,99 @@ package com.smartgwt.client.docs;
  *             ... other directories containing
  *                 component or shared media ...
  *  </pre>
- *  <li> 
+ *  <li>
  *  
  *  
  *  A skin is implicitly loaded when you add an &lt;inherits&gt; tag in your .gwt.xml file to
- *  include SmartGWT components (name="com.smartgwt(ee).SmartGWT(Pro|Power|EE)").  To switch skins,
+ * include SmartGWT components (name="com.smartgwt(ee).SmartGWT(Pro|Power|EE)").  To switch skins,
  *  add the "NoTheme" suffix to the "name" attribute of this &lt;inherits&gt; tag, then add
  *  &lt;inherits name="com.smartclient.theme.enterpriseblue.<i>SkinName</i>"/&gt;.  These
- *  tags cause a &lt;SCRIPT SRC=&gt; tag to be injected into your bootstrap .html page, which loads
+ * tags cause a &lt;SCRIPT SRC=&gt; tag to be injected into your bootstrap .html page, which loads
  *  load_skin.js for the appropriate skin.
  *  
  *  load_skin.js loads the stylesheet and sets the CSS styleNames and media URLs that
  *  Smart GWT components will use.
  *  </ul>
  *  <P>
+ *  <h4>CSS3 mode</h4>
+ *  <P>
+ *  Three of Smart GWT's most commonly used skins - Enterprise, EnterpriseBlue and Graphite - now
+ *  have a "CSS3 mode" in which almost all images required by the skin are replaced with CSS3
+ *  settings that appear nearly identical to the image-based appearance.  This results in a
+ *  performance boost through both a simplified DOM and far few images being loaded.
+ *  <P>
+ *  By default CSS3 mode is automatically used in modern browsers such as Firefox, Chrome, Safari,
+ * IE 9 in standards mode, and IE 10+.  Internet Explorer version 8 and earlier does not have
+ * sufficient
+ *  CSS support to create a close match to the existing image-based skin, so CSS3 mode is not
+ *  enabled by default. If CSS3 mode is manually enabled for IE when not automatically enabled,
+ * this will result in a degraded appearance that is similar across IE6, 7, and 8: rounded
+ * elements
+ *  such as tabs will become square, and backgrounds will have lower quality if not disappear.
+ *  <P>
+ *  To override the default decision on whether to use CSS3 support, set the JavaScript global
+ *  variable <code>isc_css3Mode</code> before any of the Smart GWT libraries are loaded.  For
+ *  example:
+ *  <pre>
+ *    &lt;script&gt;isc_css3Mode = "on";&lt;/script&gt;
+ *  </pre>
+ *  <P>
+ *  Possible settings are:
+ *  <P>
+ *  <ul>
+ *    <li>"supported" :<br><i>(default setting)</i> CSS3 mode will be used for browsers that fully
+ *        support it (including rounded edges and full gradient support)</li>
+ *    <li>"off" :<br>CSS3 mode will never be used</li>
+ *    <li>"on" :<br>CSS3 mode will be used for all browsers</li>
+ *  </ul>
+ *  <P>
+ *  For more control than the above settings provide, you can create a custom skin based on one
+ *  of the above 3 skins and modify load_skin.js - whether CSS3 mode is used is controlled by a
+ *  JavaScript variable <code>useCSS3</code> defined in this file.
+ *  <P>
+ *  <b>NOTE</b>: we are working on improving IE9 support using the limited CSS3 features
+ *  provided by this browser, but at the moment, the well-published workarounds for IE9's CSS3
+ *  bugs create other bugs of their own that are, as yet, unresolved.
+ *  <P>
+ *  <h4>Spriting</h4>
+ *  <p>
+ *  In addition to having a CSS3 mode, the Enterprise, EnterpriseBlue, and Graphite skins also
+ *  support spriting of user interface images. This typically results in reduced load times and
+ *  eliminates noticeable delays in changes of component appearance while the browser downloads
+ *  a required image. Because of these benefits, spriting is enabled by default in all browsers
+ *  except for Internet&nbsp;Explorer 6.
+ *  <p>
+ *  When spriting is enabled, Smart GWT uses images which have several of the smaller images
+ * combined into one. For example, the up and down arrow images of a {@link
+ * com.smartgwt.client.widgets.form.fields.SpinnerItem} in
+ *  the normal, "Focused", and "Disabled" states are combined into one image. The file size of
+ *  the combined image is 65% smaller than the sum of the file sizes of the 6 constituent images,
+ *  and the browser does not have to make 6 separate HTTP requests.
+ *  <p>
+ *  If certain component metrics (such as the height of a component or padding) are changed,
+ *  then the Enterprise, EnterpriseBlue, and Graphite skins' image sprites might not work in the
+ *  customized skin. In this case, spriting can be disabled by setting the JavaScript global
+ *  variable <code>isc_spriting</code> to "off" before any of the Smart GWT libraries are loaded.
+ *  For example:
+ *  <pre>
+ *    &lt;script&gt;isc_spriting = "off";&lt;/script&gt;
+ *  </pre>
+ *  Possible settings are:
+ *  <P>
+ *  <ul>
+ *    <li>"supported" :<br><i>(default setting)</i> Spriting will be used in browsers that fully
+ *        support it</li>
+ *    <li>"off" :<br>Spriting will not be used</li>
+ *  </ul>
  *  <h4>Modifying Skins</h4>
  *  <P>
  *  To modify a skin, first create a copy of one of the skins that comes with the Smart GWT
- *  SDK, then modify the copy.  Full instructions are provided in Chapter 9 of the 
- *  ${isc.DocUtils.linkForDocNode('QuickStartGuide', 'QuickStart Guide')}.
+ *  SDK, then modify the copy.  Full instructions are provided in Chapter 9 of the
+ *  
+ *  
+ * <a href='http://docs.smartclient.com'
+ * onclick="window.open('http://docs.smartclient.com');return false;">QuickStart Guide</a>.
+ *  
  *  <P>
  *  <h4>Locating Skinning Properties</h4>
  *  <P>
@@ -80,18 +162,19 @@ package com.smartgwt.client.docs;
  *  <P>
  *  
  *  
- *  Given a Smart GWT component that you want to skin, open it's JavaDoc:
+ *  Given a Smart GWT component that you want to skin, open its JavaDoc:
  *  
  *  <ul>
  *  <li> for properties that set CSS styles, look for properties whose name includes "style", eg
  *  {@link com.smartgwt.client.widgets.Button#getBaseStyle baseStyle}
  *  <li> for properties that control URLs to media, look for properties whose name includes
  *  "src", "image" or "icon", such as {@link com.smartgwt.client.widgets.Img#getSrc src}
- *  <li> for subcomponents that also support skinning, 
- *  
- *  
- *  look for methods like set<i>Subcomponent</i>Properties(), such as Window.setPaneContainerProperties().
- *  
+ *  <li> for subcomponents that also support skinning, look for properties that are documented
+ * as being {@link com.smartgwt.client.docs.AutoChildUsage "AutoChildren"} and check the reference
+ * for the type of
+ * the AutoChild for settable properties.  For example, {@link
+ * com.smartgwt.client.widgets.Window#getMinimizeButton minimizeButton} is an
+ *  ImgButton and therefore supports {@link com.smartgwt.client.widgets.ImgButton#getSrc src}.  
  *  </ul>
  *  
  *  <P>
@@ -100,12 +183,13 @@ package com.smartgwt.client.docs;
  *  
  *  <P>
  *  Specific browsers offer alternate approaches to quickly discover the images or style names
- *  being used for a part of a Smart GWT component's appearance: 
+ *  being used for a part of a Smart GWT component's appearance:
  *  <ul>
  *  <li> the Firefox browser offers a dialog via Tools->"Page Info" that gives a manifest of
  *  media used in the page.
- * <li> the <a href='http://www.getfirebug.com/' onclick="window.open('http://www.getfirebug.com/');return
- * false;">Firebug</a> extension for Firefox has an
+ * <li> the <a href='http://www.getfirebug.com/'
+ * onclick="window.open('http://www.getfirebug.com/');return false;">Firebug</a> extension for
+ * Firefox has an
  *  "Inspect" feature that allows you to see the HTML, CSS and media in use for a given area of
  *  the screen
  *  <li> right clicking (option-click on a Mac) on an image and choosing "Properties" shows a
@@ -113,20 +197,21 @@ package com.smartgwt.client.docs;
  *  <ul>
  *  <li> if a Smart GWT component is showing text over an image, right-click at the very edge of
  *  the underlying image to get image properties rather than information about the text label
- *  <li> on some browsers, in order to see the full image URL, you may need to drag select the 
+ *  <li> on some browsers, in order to see the full image URL, you may need to drag select the
  *  partial URL of the image shown in the properties dialog
  *  </ul>
  *  </ul>
  *  <P>
  *  <h4>Image URLs in Smart GWT</h4>
  *  <P>
- * Properties that refer to images by URL, such as {@link com.smartgwt.client.widgets.Img#getSrc src} and {@link
- * com.smartgwt.client.widgets.Button#getIcon icon}, are
+ * Properties that refer to images by URL, such as {@link com.smartgwt.client.widgets.Img#getSrc
+ * src} and {@link com.smartgwt.client.widgets.Button#getIcon icon}, are
  *  specially interpreted in Smart GWT to allow for simpler and more uniform image URLs,
  *  and to allow applications to be restructured more easily.
  *  <P>
  *  Unlike the URL used with an HTML &lt;IMG&gt; element, the image URL passed to a Smart GWT
- *  component is not assumed to be relative to the current page.  See String for a
+ * component is not assumed to be relative to the current page.  See {@link
+ * com.smartgwt.client.docs.SCImgURL} for a
  *  full explanation of the default application image directory, and the meaning of the "[SKIN]"
  *  prefix.
  *  <P>
@@ -138,7 +223,7 @@ package com.smartgwt.client.docs;
  *  from the "Enterprise" skin includes the following code to establish the media used by
  *  {@link com.smartgwt.client.widgets.Window#getMinimizeButton minimizeButton}:
  *  <pre>
- *     isc.Window.changeDefaults("minimizeButtonDefaults", { 
+ *     isc.Window.changeDefaults("minimizeButtonDefaults", {
  *          src:"[SKIN]/Window/minimize.png"
  *     });
  *  </pre>
@@ -146,19 +231,19 @@ package com.smartgwt.client.docs;
  *  <b>NOTE:</b> These are JavaScript APIs and hence do not appear in SmartGWT
  *  JavaDoc - you may want to refer to the &#83;martClient Reference available at
  * <a href='http://www.smartclient.com/product/documentation.jsp'
- * onclick="window.open('http://www.smartclient.com/product/documentation.jsp');return false;">Isomorphic.com</a> for these
- * specific
+ * onclick="window.open('http://www.smartclient.com/product/documentation.jsp');return
+ * false;">Isomorphic.com</a> for these specific
  *  APIs.
- *  
+ * 
  *  <h4>Specifying Image Sizes</h4>
  *  <P>
  *  Many Smart GWT components must know some image sizes in advance, in order to allow those
  *  components to autosize to data or content.
  *  <P>
- * For example, the {@link com.smartgwt.client.widgets.tab.ImgTab}s used in {@link com.smartgwt.client.widgets.tab.TabSet}s
- * are capable of automatically sizing
- * to a variable length {@link com.smartgwt.client.widgets.tab.Tab#getTitle title}.  To make this possible, Smart GWT must
- * know the
+ * For example, the {@link com.smartgwt.client.widgets.tab.ImgTab}s used in {@link
+ * com.smartgwt.client.widgets.tab.TabSet}s are capable of automatically sizing
+ * to a variable length {@link com.smartgwt.client.widgets.tab.Tab#getTitle title}.  To make this
+ * possible, Smart GWT must know the
  *  sizes of the images used as "endcaps" on each tab in advance.
  *  <P>
  *  Like image URLs, image sizes are specified in <code>load_skin.js</code>.  The following code
@@ -170,21 +255,6 @@ package com.smartgwt.client.docs;
  *      })
  *  </pre>
  *  <P>
- *  <h4>CSS usage in Smart GWT</h4>
- *  <P>
- *  In Smart GWT, screen layout and sizing are controlled via JavaScript, and appearance via
- *  CSS and images.  
- *  <P>
- *  CSS borders, margins and padding applied to Smart GWT components can be treated as purely
- *  visual properties with no effect on sizing or layout.  Unlike HTML elements, a Smart GWT
- *  component will always have the exact size you specify via JavaScript, regardless of browser
- *  platform, browser compatibility mode, or borders, margins, or padding, all of which normally
- *  affect the final size of an HTML element. 
- *  <P>
- *  For this reason, Smart GWT skinning requires only novice-level familiarity with CSS, as CSS
- *  is used principally for colors and fonts.  See String for
- *  further details on what properties should be set via CSS vs via JavaScript.
- *  <P>
  *  <h4>Statefulness and Suffixes</h4>
  *  <P>
  *  Some components or areas within components, including buttons and the cells within a grid, are
@@ -193,8 +263,8 @@ package com.smartgwt.client.docs;
  *  <P>
  *  Stateful components switch the CSS styles or image URLs they are using as they transition
  *  from state to state, appending state information as suffixes on the style names or URL.
- * See {@link com.smartgwt.client.widgets.Img#getSrc src} and {@link com.smartgwt.client.widgets.Button#getBaseStyle
- * baseStyle} for details and examples.
+ * See {@link com.smartgwt.client.widgets.Img#getSrc src} and {@link
+ * com.smartgwt.client.widgets.Button#getBaseStyle baseStyle} for details and examples.
  *  <P>
  *  Smart GWT has built-in logic to manage a series of state transitions, such as:
  *  <ul>
@@ -205,53 +275,65 @@ package com.smartgwt.client.docs;
  *  <li> "selected": showing one of a set of components in a different state to indicate
  *  selection
  *  </ul>
- * Flags on some components, such as {@link com.smartgwt.client.widgets.ImgButton#getShowRollOver showRollOver}, allow you
- * to control whether the
- *  component will switch CSS style or image URL when the component transitions into a given state.
+ * Flags on some components, such as {@link com.smartgwt.client.widgets.ImgButton#getShowRollOver
+ * showRollOver}, allow you to control whether the
+ * component will switch CSS style or image URL when the component transitions into a given state.
  *  <P>
  *  <h4>StretchImg: 3-segment stretchable images</h4>
  *  <P>
- *  A {@link com.smartgwt.client.widgets.StretchImg} is Smart GWT component that renders out a compound image composed of 3
+ * A {@link com.smartgwt.client.widgets.StretchImg} is Smart GWT component that renders out a
+ * compound image composed of 3
  *  image files: two fixed-size endcaps images and a stretchable center segment.  Like stateful
  *  components, the names of each image segment is appended to the image URL as a suffix.  See
  *  {@link com.smartgwt.client.widgets.StretchImg#getSrc src} for details.
  *  <P>
  *  <h4>EdgedCanvas</h4>
  *  <P>
- *  Similar to a StretchImg, an {@link com.smartgwt.client.widgets.EdgedCanvas} provides an image-based decorative edge
+ * Similar to a StretchImg, an {@link com.smartgwt.client.widgets.EdgedCanvas} provides an
+ * image-based decorative edge
  *  around and/or behind another component, with up to 9 segments (a 3x3 grid).  Decorative
- *  edges can be added to any component by setting {@link com.smartgwt.client.widgets.Canvas#getShowEdges showEdges:true}.
+ * edges can be added to any component by setting {@link
+ * com.smartgwt.client.widgets.Canvas#getShowEdges showEdges:true}.
  *  EdgedCanvas is also used to construct dropshadows, which can be enabled on any component via
  *  {@link com.smartgwt.client.widgets.Canvas#getShowShadow showShadow:true}.
  *  <P>
- *  <h4>Multiple looks for the same component type</h4>
- *  <P>
- *  In some cases you need to create two variations in appearance for a component with the same
- *  behavior.  For example, you may want to create a specialized Window, called "PaletteWindow",
- *  that behaves like a normal Window but has a very compact look & feel.  To create a
- * separately skinnable component for PaletteWindow, use {@link com.smartgwt.client.util.isc#defineClass isc.defineClass}. 
- * For
- *  example:
- *  <pre>
- *     isc.defineClass("PaletteWindow", "Window");
- *     isc.PaletteWindow.addProperties({
- *         showFooter:false,
- *         ...
- *     })
- *  </pre>
- *  This creates a &#83;martClient class, which does not exist as a Java class.  To
- *  make your SmartGWT widget use the settings on this Smart GWT class, call setScClassName() passing
- *  the String name of the Smart GWT class.
+ *  
+ *  
+ *  <p>
+ *  <h4>Advanced: setScClassName()</h4>
+ *  <p>
+ *  In rare situations, such as trying to share a skin between a &#83;martClient and Smart GWT
+ *  application, you may have a &#83;martClient class that has been defined to hold certain skin
+ *  settings where there is no corresponding Smart GWT class.  For example, you might have a 
+ *  &#83;martClient subclass of ListGrid called "LedgerGrid" that changes cell styles to appear
+ *  more like a ledger.
+ *  <p>
+ *  In this case, you can generally use the Smart GWT class that is the nearest superclass of
+ *  the &#83;martClient class (ListGrid in this case), then use a call to
+ *  setScClassName("LedgerGrid") to cause the &#83;martClient class to be used as the underlying
+ *  &#83;martClient class used by the GWT ListGrid instance.
+ *  
  *  <P>
  *  <h4>Where to put skin-related JavaScript</h4>
  *  <P>
- *  If you're creating a custom skin, you can place JavaScript snippets such as those shown above in your
- *  custom skin's load_skin.js file.  If you prefer not to create a custom skin for small customizations,
+ * If you're creating a custom skin, you can place JavaScript snippets such as those shown above
+ * in your
+ * custom skin's load_skin.js file.  If you prefer not to create a custom skin for small
+ * customizations,
  * you can execute JavaScript via a <a href='http://www.google.com/search?q=gwt+jsni'
- * onclick="window.open('http://www.google.com/search?q=gwt+jsni');return false;">JSNI</a> method in
- *  your Java code.  With this latter approach, be sure to change "isc." to "$wnd.isc." wherever it
+ * onclick="window.open('http://www.google.com/search?q=gwt+jsni');return false;">JSNI</a> method
+ * in
+ * your Java code.  With this latter approach, be sure to change "isc." to "$wnd.isc." wherever it
  *  appears, and to call the JSNI method before creating any SmartGWT components.
- * 
+ *  </smartgwt>
+ *  <p>
+ *  <h4>Limitations</h4>
+ *  <P>
+ *  In most cases, using newer CSS features such as CSS3 prefix attribute selectors or CSS3
+ *  pseudo-classes in a skin will just work, provided the browser supports those CSS features.
+ *  However, in some cases, Smart GWT needs to be able to extract style information from
+ *  CSS style declarations. For this reason, only single class name selectors are officially
+ *  supported (e.g. <code>.myButton, .myButtonDown</code>) and @-rules are not supported.
  */
 public interface Skinning {
 }

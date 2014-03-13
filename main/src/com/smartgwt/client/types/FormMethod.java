@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Form METHOD parameters - how the form fields are submitted to the server
  */
@@ -28,7 +30,6 @@ public enum FormMethod implements ValueEnum {
      * POST request -- separate field encoding (no max)
      */
     POST("POST");
-
     private String value;
 
     FormMethod(String value) {

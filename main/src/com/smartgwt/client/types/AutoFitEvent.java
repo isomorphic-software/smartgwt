@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Event on a listGrid header to trigger auto-fit of the listgrid field.
  */
@@ -32,7 +34,6 @@ public enum AutoFitEvent implements ValueEnum {
      * No event will trigger auto-fit.
      */
     NONE("none");
-
     private String value;
 
     AutoFitEvent(String value) {
