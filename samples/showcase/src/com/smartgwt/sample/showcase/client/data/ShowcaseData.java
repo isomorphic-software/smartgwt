@@ -703,8 +703,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Appearance", "menus-category-appearance", "menus-category", null, new MenuAppearanceSample.Factory(), true, idSuffix),
                     //new ExplorerTreeNode("Dynamic Items", "menus-category-dynamic", "menus-category", null, new MenuDynamicItemsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Sub Menus", "menus-category-submenus", "menus-category", null, new MenuSubmenusSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Tree Binding", "menus-category-treebinding", "menus-category", null, new MenuTreeBindingSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Custom Columns", "menus-category-customcolumns", "menus-category", null, new MenuCustomColumnsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Tree Binding", "menus-category-treebinding", "menus-category", "silk/chart_organisation.png", new MenuTreeBindingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Custom Columns", "menus-category-customcolumns", "menus-category", "silk/application_view_detail.png", new MenuCustomColumnsSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("ToolStrip", "toolstrip-category", "root", "silk/application_view_list.png", null, true, idSuffix),
                     new ExplorerTreeNode("ToolStrip", "toolstrip", "toolstrip-category", null, new ToolStripSample.Factory(), true, idSuffix),
