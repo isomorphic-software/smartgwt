@@ -63,7 +63,41 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     protected JavaScriptObject config = JSOHelper.createObject();
     protected String scClassName;
     protected boolean configOnly;
-    
+
+    // Properties stashed by BeanFactory when calling the no-arg constructor.
+    // We pick them up immediately in the constructor so that they don't get
+    // applied to the wrong object (in case the constructor of a subclass
+    // triggers the construction of some other object).  Fortunately, our
+    // constructor is called first! The properties get applied when
+    // getOrCreateJsObj() is called (checked below), or when all constructors
+    // have finished (checked by BeanFactory), whichever comes first.
+    protected Map<String, Object> factoryProperties;
+
+    // Tracks whether this object was created by a BeanFactory. The BeanFactory
+    // code will set this property via the reflection mechanism when creating
+    // an instance. Thus, it can check whether the property has been correctly
+    // applied. (That is, if factoryCreated is false for an object which 
+    // BeanFactory creates, then BeanFactory knows something went wrong).
+    //
+    // There is one known case where properties are not correctly applied via
+    // reflection: when (a) a class has a static initializer; (b) the static
+    // initializer is not triggered before the use of reflection to create an
+    // object of that class; and (c) the static initializer itself creates an
+    // object of that class. 
+    //
+    // We can't detect that case directly, but we can at least detect the
+    // resulting failure and try to recover (and generate a useful error
+    // message).
+    protected boolean factoryCreated;
+
+    public void setFactoryCreated (boolean createdByBeanFactory) {
+        factoryCreated = createdByBeanFactory;
+    }
+
+    public boolean isFactoryCreated () {
+        return factoryCreated;
+    }
+
     /**
      * Adds this handler to the widget.
      *
@@ -81,7 +115,37 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     };
     
     public BaseWidget() {
-        /*empty*/
+        // We immediately pick up any properties which BeanFactory has stashed.
+        // We can't pick them up later (for instance, at getOrCreateJsObj()
+        // time), because the constructor could create *other* objects first
+        // and trigger getOrCreateJsObj() on them -- in which case, the global
+        // would be applied to the wrong object. So, we need to pick up the
+        // global at the earliest moment after the constructor is called --
+        // which is here, since superclass constructors get called before
+        // subclass constructors.
+        //
+        // We only need to deal with the no-arg constructor because that is the
+        // one which BeanFactory uses. An alternative would be to use a
+        // constructor which takes a JavaScriptObject, but that would mean that
+        // developers would need to implement that constructor for custom
+        // classes, and it's undesirable to force them to do so.
+        //
+        // We don't apply the properties immediately, because we're at the very
+        // beginning of the base class constructor -- the setters may rely on
+        // further construction having taken place. So we delay as long as
+        // possible -- either until getOrCreateJsObj() is called, or the object
+        // is fully constructed, whichever comes first.
+        //
+        // We test the factoryPropertiesClass to avoid applying properties
+        // intended for a different class. This can occur if a static
+        // initializer creates objects, since the static initializer can run
+        // after the properties are stashed but before the constructor runs.
+        // Checking the factoryPropertiesClass at least limits the problem to
+        // cases where the static initializer creates objects of the same class.
+        if (getClass() == BeanFactory.getFactoryPropertiesClass()) {
+            factoryProperties = BeanFactory.getFactoryProperties();
+            BeanFactory.clearFactoryProperties();
+        }
     }
 
     public BaseWidget(String id) {
@@ -453,6 +517,13 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
                 JSOHelper.setObjectAttribute(config, SC.REF, this);
                 JSOHelper.setObjectAttribute(config, SC.MODULE, BeanFactory.getSGWTModule());
             }
+
+            // Apply the properties provided by BeanFactory if they haven't
+            // already been applied. We do this before calling create(), since
+            // the constructor on the SmartClient side may be expecting some
+            // of these properties.
+            applyFactoryProperties();
+
             JavaScriptObject jsObj = create();
             return jsObj;
         } else {
@@ -464,6 +535,29 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         return $wnd.isc.Canvas.create(config);
     }-*/;
+
+    // Apply any properties provided by BeanFactory before it called the no-arg
+    // constructor. We call this before constructing the jsObj. Otherwise, the
+    // constructor on the SmartClient side may be missing some properties it
+    // expected to be supplied. If all the SmartGWT constructors finish and
+    // getOrCreateJsObj() hasn't been triggered yet, then BeanFactory will call
+    // this with the fully-constructed object.
+    // 
+    // Note that the factoryProperties may be a mix of values that will be
+    // passed through to the config object (either because there is no SmartGWT
+    // setter or because that's what the SmartGWT setter does), and values
+    // which are actually handled by SmartGWT itself. In principle, we could
+    // delay applying the latter until later, but we can't really tell one from
+    // the other, especially for developer subclasses.
+    public void applyFactoryProperties () {
+        if (factoryProperties != null) {
+            // Make sure that this is re-entrant without infinite loop
+            Map<String, Object> properties = factoryProperties;
+            factoryProperties = null;
+
+            BeanFactory.setProperties(this, properties);
+        }
+    }
 
     public String getAttribute(String attribute) {
         return getAttributeAsString(attribute);

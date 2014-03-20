@@ -94,4 +94,14 @@ public abstract class BeanFactoryForBaseWidget<BeanClass extends BaseWidget>
             ((Canvas) bean).setJavaScriptObject(jsObj);
         }
     }
+
+    @Override
+    public boolean isFactoryCreated (BeanClass bean) {
+        return bean.isFactoryCreated();
+    }
+
+    @Override
+    protected void applyFactoryProperties (BeanClass bean) {
+        if (bean != null) bean.applyFactoryProperties();
+    }
 }
