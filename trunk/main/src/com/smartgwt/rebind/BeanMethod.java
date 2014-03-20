@@ -129,6 +129,13 @@ public class BeanMethod {
                method.getParameters().length == 1;
     }
 
+    public boolean isStaticInitMethod () {
+        return method.isPublic() &&
+               method.isStatic() &&
+               method.getParameters().length == 0 &&
+               method.getName().equals("beanFactoryInit");
+    }
+
     // We lowercase the first character, unless the second character is
     // uppercase.  This catches cases like ID, or HAlign and VAlign
     private String recapitalize(String propertyName) {

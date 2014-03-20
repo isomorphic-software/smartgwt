@@ -378,7 +378,7 @@ public abstract class BeanFactory<BeanClass> {
 
     private static native JavaScriptObject exportSGWTModule () /*-{
         var module = {
-            newInstance : $entry(@com.smartgwt.client.bean.BeanFactory::newInstance(Ljava/lang/String;)),
+            newInstance : $entry(@com.smartgwt.client.bean.BeanFactory::newInstance(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)),
 
             setProperty : $entry(function (obj, propName, value) {
                 // We need to pre-convert the value to a Java object, so that
@@ -636,6 +636,43 @@ public abstract class BeanFactory<BeanClass> {
         return sgwtModule;
     }
 
+    // When creating a new instance via the BeanFactory, we may store some
+    // properties here to be applied to the new instance. These properties are
+    // picked up by the no-arg constructor, and then immediately cleared here
+    // (so that they don't get picked up by any nested constructor calls).
+    //
+    // We do this instead of calling a constructor which takes properties,
+    // because we don't want to force developers to implement such a
+    // constructor in order to use the reflection mechanism.
+    //
+    // We can't simply apply the properties after the instance is constructed,
+    // because the constructor may trigger getOrCreateJsObj(), and the
+    // constructor on the SmartClient side may need the properties. However, we
+    // do wait until the instance is fully constructed unless
+    // getOrCreateJsObj() is called first.
+    private static Map<String, Object> factoryProperties;
+
+    public static Map<String, Object> getFactoryProperties () {
+        return factoryProperties;
+    }
+    
+    public static void clearFactoryProperties () {
+        factoryProperties = null;
+        factoryPropertiesClass = null;
+    }
+
+    // The class for which the factoryProperties are intended. Stashing this
+    // helps us avoid the complication of triggering a static initializer,
+    // which might itself create an instance before the instance for which the
+    // properties are intended. By keeping track of the class for which the
+    // properties are intended, we can limit the problem to static initializers
+    // which create an instance of that very class.
+    private static Class<?> factoryPropertiesClass;
+
+    public static Class<?> getFactoryPropertiesClass () {
+        return factoryPropertiesClass;
+    }
+
     // The factories, hashed by the fully-qualified class name of the base class.
     private static Map<String, BeanFactory<?>> factoriesByName = new HashMap<String, BeanFactory<?>>();
  
@@ -747,6 +784,106 @@ public abstract class BeanFactory<BeanClass> {
             return factory.newInstance();
         }
     }
+ 
+    /**
+     * Create an instance based on the provided class name, and apply the
+     * provided properties to it.
+     *
+     * The properties are applied after the instance is constructed with
+     * its no-arg constructor, unless the constructor triggers a call to
+     * getOrCreateJsObj(). In that case, the properties are applied before
+     * calling getOrCreateJsObj(), to ensure that the jsObj gets all the
+     * intended properties when it is constructed.
+     *
+     * @param className the class name
+     * @param properties a JavaScriptObject whose key/value pairs represent
+     *                   property names and values
+     * @return a new instance of the class, with the properties applied
+     * @throws IllegalStateException If no factory has been generated for the className
+     */
+    public static Object newInstance (String className, JavaScriptObject properties) {
+        BeanFactory<?> factory = BeanFactory.getFactory(className);
+        if (factory == null) {
+            throw noFactoryException(className);
+        } else {
+            return factory.newInstance(properties);
+        }
+    }
+
+    /**
+     * Create an instance based on the provided class object, and apply the
+     * provided properties to it.
+     *
+     * The properties are applied after the instance is constructed with
+     * its no-arg constructor, unless the constructor triggers a call to
+     * getOrCreateJsObj(). In that case, the properties are applied before
+     * calling getOrCreateJsObj(), to ensure that the jsObj gets all the
+     * intended properties when it is constructed.
+     *
+     * @param klass the class object
+     * @param properties a JavaScriptObject whose key/value pairs represent
+     *                   property names and values
+     * @return a new instance of the class, with the properties applied
+     * @throws IllegalStateException If no factory has been generated for the class
+     */
+    public static Object newInstance (Class<?> klass, JavaScriptObject properties) {
+        BeanFactory<?> factory = BeanFactory.getFactory(klass);
+        if (factory == null) {
+            throw noFactoryException(klass);
+        } else {
+            return factory.newInstance(properties);
+        }
+    }
+
+    /**
+     * Create an instance based on the provided class name, and apply the
+     * provided properties to it.
+     *
+     * The properties are applied after the instance is constructed with
+     * its no-arg constructor, unless the constructor triggers a call to
+     * getOrCreateJsObj(). In that case, the properties are applied before
+     * calling getOrCreateJsObj(), to ensure that the jsObj gets all the
+     * intended properties when it is constructed.
+     *
+     * @param className the class name
+     * @param properties a Map whose key/value pairs represent
+     *                   property names and values
+     * @return a new instance of the class, with the properties applied
+     * @throws IllegalStateException If no factory has been generated for the className
+     */
+    public static Object newInstance (String className, Map<String, Object> properties) {
+        BeanFactory<?> factory = BeanFactory.getFactory(className);
+        if (factory == null) {
+            throw noFactoryException(className);
+        } else {
+            return factory.newInstance(properties);
+        }
+    }
+
+    /**
+     * Create an instance based on the provided class object, and apply the
+     * provided properties to it.
+     *
+     * The properties are applied after the instance is constructed with
+     * its no-arg constructor, unless the constructor triggers a call to
+     * getOrCreateJsObj(). In that case, the properties are applied before
+     * calling getOrCreateJsObj(), to ensure that the jsObj gets all the
+     * intended properties when it is constructed.
+     *
+     * @param klass the class object
+     * @param properties a Map whose key/value pairs represent
+     *                   property names and values
+     * @return a new instance of the class, with the properties applied
+     * @throws IllegalStateException If no factory has been generated for the class
+     */
+    public static Object newInstance (Class<?> klass, Map<String, Object> properties) {
+        BeanFactory<?> factory = BeanFactory.getFactory(klass);
+        if (factory == null) {
+            throw noFactoryException(klass);
+        } else {
+            return factory.newInstance(properties);
+        }
+    }
 
     /**
      * Sets a property of a bean to a value.
@@ -776,6 +913,27 @@ public abstract class BeanFactory<BeanClass> {
                 // Need a different name for the instance method, since the signature
                 // is the same.
                 factory.doSetProperty(bean, property, value);
+            }
+        }
+    }
+   
+    /**
+     * Applies a Map of property names and values to a bean.
+     *
+     * @param bean The object whose properties are to be set
+     * @param properties A Map whose key/value pairs represent property names and values
+     * @throws IllegalStateException If no factory has been generated for the bean's class
+     * @throws IllegalArgumentException If there is no appropriate setter for a value
+     */
+    public static void setProperties (Object bean, Map<String, Object> properties) {
+        if (bean != null) {
+            BeanFactory<?> factory = BeanFactory.getFactory(bean.getClass());
+            if (factory == null) {
+                throw noFactoryException(bean.getClass());
+            } else {
+                // Need a different name for the instance method, since the signature
+                // is the same.
+                factory.doSetProperties(bean, properties);
             }
         }
     }
@@ -1043,9 +1201,113 @@ public abstract class BeanFactory<BeanClass> {
         return getBeanClass().getName();
     }
 
-    // Create a new instance of the underlying class. Must be generated for
-    // all subclasses.
-    public abstract BeanClass newInstance ();
+    // Create an new instance of the factory's underlying class.
+    // Must be generated for all subclasses.
+    protected abstract BeanClass doNewInstance ();
+    
+    public BeanClass newInstance () {
+        return newInstance((Map<String, Object>) null);
+    }
+
+    @SuppressWarnings("unchecked")
+    public BeanClass newInstance (JavaScriptObject properties) {
+        if (properties == null) return newInstance();
+
+        Object javaProperties = BeanValueType.convertToJava(properties);
+        if (javaProperties instanceof Map) {
+            return newInstance ((Map<String, Object>) javaProperties);
+        } else {
+            throw new IllegalArgumentException("properties were not a plain JavaScript object");
+        }
+    }
+
+    // All calls to the various overloaded newInstance methods will end up here
+    public BeanClass newInstance (Map<String, Object> properties) {
+        // Always provide the factoryCreated property, so that we can test
+        // whether the properties were correctly applied. There is one scenario
+        // in which the properties will be applied to the wrong object: where
+        // (a) the BeanClass has a static initializer; (b) the static initializer
+        // has not previously run; and (c) the static initializer creates an 
+        // instance of the BeanClass. We can't check for that scenario in 
+        // advance, but we can check afterwards and try to recover.
+        if (properties == null) properties = new HashMap<String, Object>();
+        properties.put("factoryCreated", true);
+
+        // Trigger any static initializers before stashing the properties.
+        // This is a no-op unless the BeanClass defines a public static no-arg
+        // method named beanFactoryInit(). Doing so avoids the problem
+        // mentioned above re: static initializers.
+        triggerStaticInitializers();
+
+        // Stash the provided properties. See comments above on factoryProperties
+        factoryProperties = properties;
+        factoryPropertiesClass = getBeanClass();
+
+        // Construct the new instance. Note that the BeanClass will apply the
+        // properties if getOrCreateJsObj() is called before the constructor returns
+        BeanClass instance = doNewInstance();
+
+        // Apply the properties supplied by BeanFactory, if they haven't
+        // already been applied via getOrCreateJsObj().
+        applyFactoryProperties(instance);
+
+        // If the BeanClass is abstract, doNewInstance will return null and we
+        // don't need any further checking
+        if (instance == null) return instance;
+
+        // Check whether the properties were applied, by checking for the
+        // factoryCreated property we always supply
+        if (isFactoryCreated(instance)) {
+            // It worked!
+            return instance;
+        } else {
+            // In the static initializer scenario discussed above, we should be
+            // able to make it work just by trying again ... since we've now
+            // triggered the static initializer, the problem won't occur a
+            // second time. Note that we can't just apply the properties now
+            // to the already-created instance, because it may have already
+            // called getOrCreateJsObj(), and may have needed the properties
+            // then. We could possibly check whether the jsObj has been created ...
+            // if not, we could just apply the properties now rather than 
+            // recreating the object.
+            factoryProperties = properties;
+            factoryPropertiesClass = getBeanClass();
+            instance = doNewInstance();
+            applyFactoryProperties(instance);
+
+            if (isFactoryCreated(instance)) {
+                // It worked the second time. Now, it's still a problem,
+                // because the instance created by the static initializer will
+                // have received some unwanted properties, and we don't know
+                // what the effects of that are. Also, we've created two new instances
+                // instead of one (since we had to retry). So, we still log an error
+                // message.
+                String beanClassName = getBeanClassName();
+                SC.logWarn(
+                    "The BeanFactory for " + beanClassName + " failed to apply properties " +
+                    "to a new instance on the first attempt, but succeeded on the second " +
+                    "attempt. A known cause for this is where " + beanClassName + " has a " +
+                    "static initializer, the static initializer has not run yet, and the " +
+                    "static initializer itself creates an instance of " + beanClassName + ". " +
+                    "To work around this problem, define a static no-arg public method within " +
+                    beanClassName + " named beanFactoryInit(). BeanFactory will call that function " +
+                    "in order to trigger static initialization before trying to create " +
+                    "a new instance. Or, you can do something else to ensure that the " +
+                    "static initializer is called before creating instances of " +
+                    beanClassName + " via BeanFactory."
+                );
+                return instance;
+            } else {
+                // It failed again, so we better throw an exception
+                throw new IllegalStateException("BeanFactory for " + getBeanClassName() + " failed to apply properties to a new instance.");
+            }
+        }
+    }
+
+    protected void triggerStaticInitializers () {
+        // This is a no-op, unless a specific BeanClass defines a public static
+        // no-arg method names beanFactoryInit()
+    }
 
     // Sets a property of the bean to a value
     @SuppressWarnings("unchecked")
@@ -1077,6 +1339,19 @@ public abstract class BeanFactory<BeanClass> {
                 // which do need to be set from framework code. So, if we have no
                 // setter, we fall back on setting the property via Javascript.
                 setJavascriptProperty((BeanClass) bean, propertyName, value);
+            }
+        }
+    }
+
+    public void doSetProperties (Object bean, Map<String, Object> properties) {
+        for (Map.Entry<String, Object> entry : properties.entrySet()) {
+            Object key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (key instanceof String) {
+                doSetProperty(bean, (String) key, value);
+            } else {
+                throw new IllegalArgumentException("a property name was not a String");
             }
         }
     }
@@ -1167,6 +1442,11 @@ public abstract class BeanFactory<BeanClass> {
     
     // Sets the uncerlying JavaScriptObject.
     public abstract void doSetJsObj (Object bean, JavaScriptObject jsObj);
+
+    // Whether the bean was created by a BeanFactory
+    public abstract boolean isFactoryCreated (BeanClass bean);
+
+    protected abstract void applyFactoryProperties (BeanClass bean);
 
     public boolean isFrameworkClass () {
         // default to false, so we only need to generate a method when it is true

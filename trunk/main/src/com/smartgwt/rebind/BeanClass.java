@@ -63,6 +63,7 @@ public class BeanClass {
     private BeanClass superclass;
     private JClassType factoryClass;
     private SourceWriter source;
+    private boolean hasStaticInitMethod;
 
     private Map<String, BeanProperty> properties;
     
@@ -119,6 +120,8 @@ public class BeanClass {
         for (JMethod method : beanClassType.getMethods()) {
             BeanMethod beanMethod = new BeanMethod(method, typeOracle);
             String propertyName = beanMethod.getName();
+
+            if (beanMethod.isStaticInitMethod()) hasStaticInitMethod = true;
             
             if (!excludedPropertyNames.contains(propertyName)) {
                 if (beanMethod.isGetter() || beanMethod.isSetter()) {
@@ -278,7 +281,12 @@ public class BeanClass {
                 writeBlankLine();
             }
 
-            writeNewInstance();
+            if (hasStaticInitMethod) {
+                writeTriggerStaticInitializers();
+                writeBlankLine();
+            }
+
+            writeDoNewInstance();
             writeBlankLine();
 
             writeMetadata();
@@ -472,8 +480,17 @@ public class BeanClass {
         source.println("}");
     }
 
-    private void writeNewInstance() {
-        source.println("@Override public " + getSimpleBeanClassName() + " newInstance() {");
+    private void writeTriggerStaticInitializers () {
+        source.println("// Trigger static initialization before creating new instance, in order to avoid bug");
+        source.println("@Override protected void triggerStaticInitializers () {");
+        source.indent();
+        source.println(getSimpleBeanClassName() + ".beanFactoryInit();");
+        source.outdent();
+        source.println("}");
+    }
+
+    private void writeDoNewInstance() {
+        source.println("@Override protected " + getSimpleBeanClassName() + " doNewInstance() {");
         source.indent();
         
         if (beanClassType.isAbstract()) {
