@@ -12,6 +12,9 @@ public class KeyIdentifier extends DataClass {
 
     /**
      * Return the keyName.
+     * <P>
+     * See {@link com.smartgwt.client.docs.KeyName} for an overview of the keyName
+     * values returned for each key</smartgwt>
      *
      * @return the keyName
      */
