@@ -326,7 +326,7 @@ public class ShowcaseData {
 
                     // Disabled for now. We don't want to expose this folder until we have a certain number of samples complete.
 //                  new ExplorerTreeNode("Responsive Design", "responsive-design", "mobile", "silk/calendar.png", new ResponsiveDesign.Factory(), false, idSuffix),
-//                  new ExplorerTreeNode("Dialing", "dialing", "mobile", "silk/calendar.png", new DialingSample.Factory(), false, idSuffix),
+//                  new ExplorerTreeNode("Dialing", "dialing", "mobile", "silk/phone.png", new DialingSample.Factory(), false, idSuffix),
 
                     new ExplorerTreeNode("Adv. Filter Builder", "featured-filter-builder-grid", "featured-category", "crystal/oo/sc_insertformula.png", new GridNestedFilterBulderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Frozen Columns", "featured-tree-grid", "featured-category", "silk/chart_organisation.png", new FrozenColumnsSample.Factory(), true, idSuffix),
@@ -344,7 +344,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("XSD DataSource", "featured-xsd-ds", "featured-category", "silk/database_gear.png", new XsdDataSourceSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("GWT Integration", "featured-gwt-integration", "featured-category", "gwt/icon16.png", new GwtShowcaseSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Databound Dragging", "grid-db-dragging-featured-category", "featured-category", "silk/database_link.png", new GridDataBoundDragDropSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Adaptive Filter", "grid-adaptive-filter-featured-category", "featured-category", "crystal/16/actions/show_table_row.png", new AdaptiveFilterSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Adaptive Filter", "grid-adaptive-filter-featured-category", "featured-category", "silk/funnel.png", new AdaptiveFilterSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Formula &amp; Summary Builder", "formula-sumamry-builder-featured-category", "featured-category", "crystal/oo/sc_insertformula.png", new FormulaSummaryBuilderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid Summaries", "grid-summaries-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Offline Preferences", "grid-offline-pref-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new OfflinePreferencesSample.Factory(), true, idSuffix),
@@ -440,12 +440,12 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Disable Sort", "grid-sort-disable-sort", "grid-sort-category", null, new DisableSortSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Sort Arrows", "grid-sort-sort-arrows", "grid-sort-category", null, new SortArrowsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Data-Aware Sort", "grid-sort-datatypes", "grid-sort-category", null, new SortDataTypesSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Adaptive Sort", "grid-sort-adaptive-sort", "grid-sort-category", "crystal/16/actions/resizerow.png", new AdaptiveSortSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Adaptive Sort", "grid-sort-adaptive-sort", "grid-sort-category", "silk/table_relationship.png", new AdaptiveSortSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Filtering", "grid-filter-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Filter", "grid-sortfilter-filter", "grid-filter-category", null, new GridFilterSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Live Filter", "grid-sortfilter-live-filter", "grid-filter-category", null, new GridLiveFilterSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Adaptive Filter", "grid-sortfilter-adaptive-filter", "grid-filter-category", "crystal/16/actions/show_table_row.png", new AdaptiveFilterSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Adaptive Filter", "grid-sortfilter-adaptive-filter", "grid-filter-category", "silk/funnel.png", new AdaptiveFilterSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Custom Filter", "grid-custom-filter-builder", "grid-filter-category", null, new GridFilterBulderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Nested Filter", "grid-nested-filter-builder", "grid-filter-category", null, new GridNestedFilterBulderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Big Filter", "grid-big-filter", "grid-filter-category", null, new GridBigFilterSample.Factory(), true, idSuffix),
