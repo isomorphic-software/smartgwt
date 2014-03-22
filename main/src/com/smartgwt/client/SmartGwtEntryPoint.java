@@ -21,6 +21,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.smartgwt.client.util.I18nUtil;
 import com.smartgwt.client.util.LogUtil;
+import com.smartgwt.client.bean.BeanFactory;
 
 /**
  * Internal Smart GWT Entry point class where framework level initialization code executes
@@ -364,6 +365,10 @@ public class SmartGwtEntryPoint implements EntryPoint {
                     GWT.log("Uncaught exception escaped", e);
                 }
             });
+
+            // Trigger generation of BeanFactories for any classes annotated with BeanFactory.Generate
+            GWT.create(BeanFactory.AnnotationMetaFactory.class);
+
             initialized = true;
         }
     }

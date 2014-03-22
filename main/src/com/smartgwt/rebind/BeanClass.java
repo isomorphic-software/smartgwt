@@ -23,6 +23,7 @@ import com.google.gwt.core.ext.UnableToCompleteException;
 import com.google.gwt.core.ext.typeinfo.JClassType;
 import com.google.gwt.core.ext.typeinfo.JType;
 import com.google.gwt.core.ext.typeinfo.JMethod;
+import com.google.gwt.core.ext.typeinfo.JConstructor;
 import com.google.gwt.core.ext.typeinfo.JPrimitiveType;
 import com.google.gwt.core.ext.typeinfo.NotFoundException;
 import com.google.gwt.core.ext.typeinfo.TypeOracle;
@@ -88,9 +89,9 @@ public class BeanClass {
         )
     );
 
-    public BeanClass (JClassType beanClassType, TypeOracle typeOracle) {
+    public BeanClass (JClassType beanClassType) {
         this.beanClassType = beanClassType;
-        this.typeOracle = typeOracle;
+        this.typeOracle = beanClassType.getOracle();
 
         final JClassType baseWidgetType = typeOracle.findType(BaseWidget.class.getCanonicalName());
         final JClassType dataClassType = typeOracle.findType(DataClass.class.getCanonicalName());
@@ -107,7 +108,7 @@ public class BeanClass {
         if (beanClassType != baseWidgetType && beanClassType != dataClassType) {
             JClassType beanSuperclassType = this.beanClassType.getSuperclass();
             if (beanSuperclassType != null) {
-                this.superclass = new BeanClass(beanSuperclassType, typeOracle);
+                this.superclass = new BeanClass(beanSuperclassType);
             }
         }
 
@@ -230,7 +231,28 @@ public class BeanClass {
         return methods.indexOf(method);
     }
 
-    public String generateFactory (TreeLogger logger, GeneratorContext context) {
+    public String generateFactory (TreeLogger logger, GeneratorContext context) throws UnableToCompleteException {
+        // Must extend BaseWidget or DataCLass
+        if (factoryClass == null) {
+            logger.log(TreeLogger.ERROR, 
+                "Cannot generate a BeanFactory for " + 
+                beanClassType.getQualifiedSourceName() + 
+                " because it does not extend BaseWidget or DataClass"
+            );
+            throw new UnableToCompleteException();
+        }
+        
+        // We only generate factories for classes that have a no-arg constructor
+        JConstructor constructor = beanClassType.findConstructor(new JType[]{});
+        if (constructor == null) {
+            logger.log(TreeLogger.ERROR, 
+                "Cannot generate a BeanFactory for " + 
+                beanClassType.getQualifiedSourceName() + 
+                " because it does not have a no-arg constructor"
+            );
+            throw new UnableToCompleteException();
+        }
+
         final String packageName = beanClassType.getPackage().getName();
         final String factoryName = getSimpleFactoryName();
         ClassSourceFileComposerFactory composer = new ClassSourceFileComposerFactory(packageName, factoryName);

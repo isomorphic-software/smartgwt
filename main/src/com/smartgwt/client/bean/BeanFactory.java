@@ -149,7 +149,7 @@ import java.lang.annotation.Target;
 // 1. The BeanFactory static method finds the right BeanFactory for the object.
 // 2. The BeanFactory instance picks out the correct BeanProperty.
 // 3. The BeanProperty looks at its BeanMethods, and if more than one, uses
-//    BeanValueType which BeanMethod is best for the value supplied.
+//    BeanValueType to determine which BeanMethod is best for the value supplied.
 // 4. The BeanProperty uses BeanValueType to convert the value to the type
 //    that the selected BeanMethod needs.
 // 5. The BeanMethod uses JSNI to call the actual setter.
@@ -165,8 +165,9 @@ import java.lang.annotation.Target;
  * <p>Once the appropriate subclass has been created, you can use the class via
  * the static methods.
  *
- * <p>For the moment, this class only works with subclasses of {@link
- * BaseWidget} or {@link FormItem}.
+ * <p>For the moment, this class only works with subclasses of 
+ * {@link com.smartgwt.client.widgets.BaseWidget} or 
+ * {@link com.smartgwt.client.widgets.form.fields.FormItem}.
  */
 public abstract class BeanFactory<BeanClass> {
     // --------------------
@@ -177,17 +178,24 @@ public abstract class BeanFactory<BeanClass> {
     * An interface which you can extend in order to register classes
     * with the <code>BeanFactory</code> reflection mechanism.
     *
+    * <p><b>Note</b>: While this mechanism continues to work, there is
+    * now an easier way to register classes for reflection, by annotating
+    * them with the {@link BeanFactory.Generate} annotation.
+    *
     * <p>In order to use a {@link BeanFactory} for a class, you need to
     * register it by generating a <code>BeanFactory</code> subclass for the
     * class. You can use {@link BeanFactory.CanvasMetaFactory} to scan the
     * class path and register every {@link Canvas} subclass (including your
     * custom subclasses), or use {@link BeanFactory.FormItemMetaFactory} to
-    * regiser every {@link FormItem} subclass. However, if you know that you
-    * only need to register some classes for reflection, then you can use
-    * <code>BeanFactory.MetaFactory</code> instead.
+    * regiser every {@link com.smartgwt.client.widgets.form.fields.FormItem} 
+    * subclass. However, if you know that you only need to register some
+    * classes for reflection, then you can use
+    * <code>BeanFactory.MetaFactory</code> instead (or, even more conveniently,
+    * the {@link BeanFactory.Generate} annotation).
     *
-    * <p>Usage is most easily explained with an example. First, you define an
-    * interface. (Note that it can be an inner interface.)
+    * <p>Usage of <code>BeanFactory.MetaFactory</code> is most easily explained
+    * with an example. First, you define an interface. (Note that it can be an
+    * inner interface.)
     *
     * <blockquote><pre>
     * public interface MyMetaFactory extends BeanFactory.MetaFactory {
@@ -237,6 +245,8 @@ public abstract class BeanFactory<BeanClass> {
     * the factories are used. However, you can modularize by creating some factories
     * first and other factories later, as long as each factory is created before
     * being used.
+    *
+    * @see BeanFactory.Generate
     */
     public static interface MetaFactory {
         // One understands that a factory to generate factories is in danger of
@@ -259,7 +269,11 @@ public abstract class BeanFactory<BeanClass> {
         // factory -- a factory that can create factories.
         //
         // So, MetaFactory is just a marker -- by defining an interface
-        // which extends it, you tell GWT to generate factories. 
+        // which extends it, you tell GWT to generate factories.
+        //
+        // Note that for most uses, BeanFactory.MetaFactory has now been superseded
+        // by the more convenient BeanFactory.Generate annotation, but the older
+        // method still works.
         
     }
 
@@ -287,14 +301,17 @@ public abstract class BeanFactory<BeanClass> {
     *
     * <p>Alternatively if only specific <code>Canvas</code> types need to be
     * instantiated and configured dynamically, you can generate specific
-    * factories by using the {@link BeanFactory.MetaFactory} interface instead.
+    * factories by annotating classes with the {@link BeanFactory.Generate}
+    * annotation instead.
     * 
     * <p>If there are only a limited number of types which require dynamic
     * configuration, it will save code size to use the
-    * <code>BeanFactory.MetaFactory</code> interface for those types. Once the
+    * <code>BeanFactory.Generate</code> annotation for those types. Once the
     * metadata is generated, GWT's opportunities to prune dead code are more
     * limited for those classes, since it cannot know what properties will be
     * set or retrieved at run-time.
+    *
+    * @see BeanFactory.Generate
     */
     public static interface CanvasMetaFactory {
 
@@ -324,16 +341,26 @@ public abstract class BeanFactory<BeanClass> {
     *
     * <p>Alternatively if only specific <code>FormItem</code> types need to be
     * instantiated and configured dynamically, you can generate specific
-    * factories by using the {@link BeanFactory.MetaFactory} interface instead.
+    * factories by annotating classes with the {@link BeanFactory.Generate}
+    * annotation instead.
     * 
     * <p>If there are only a limited number of types which require dynamic
     * configuration, it will save code size to use the
-    * <code>BeanFactory.MetaFactory</code> interface for those types. Once the
+    * <code>BeanFactory.Generate</code> interface for those types. Once the
     * metadata is generated, GWT's opportunities to prune dead code are more
     * limited for those classes, since it cannot know what properties will be
     * set or retrieved at run-time.
+    *
+    * @see BeanFactory.Generate
     */
     public static interface FormItemMetaFactory {
+
+    }
+
+    // This is a marker interface used internally to trigger processing of the
+    // BeanFactory.Generate annotations, via a call to GWT.create in
+    // com.smartgwt.client.SmartGwtEntryPoint.
+    public static interface AnnotationMetaFactory {
 
     }
 
@@ -362,6 +389,47 @@ public abstract class BeanFactory<BeanClass> {
     @Retention(RetentionPolicy.RUNTIME)
     public static @interface ScClassName {
         String value();
+    }
+
+    /**
+     * Annotation which will trigger the generation of BeanFactories.
+     *
+     * <p>If no value is supplied, a BeanFactory will be generated for the class
+     * that the annotation is applied to. So, if you have a custom class for which you would like to generate
+     * a BeanFactory, you can just annotate it like this:
+     * <blockquote><pre>
+     * {@literal @}BeanFactory.Generate
+     * public MyCanvas extends Canvas {
+     *    ...
+     * }</pre></blockquote>
+     * <p>
+     * If you want to generate BeanFactories for framework classes, you can
+     * supply a value for the annotation, where the value is an array
+     * of class literals. For instance:
+     * <blockquote><pre>
+     * {@literal @}BeanFactory.Generate({ListGrid.class, TreeGrid.class})
+     * public interface EmptyInterface {
+     * }</pre></blockquote>
+     * <p>
+     * Note that when supplying values for the annotation, the class you
+     * annotate (here <code>EmptyInterface</code>) will <b>not</b> itself have
+     * a BeanFactory generated for it. Thus, you can use an empty inner interface
+     * for this purpose.
+     * <p>
+     * If you want to generate BeanFactories for all {@link Canvas}
+     * subclasses or all {@link com.smartgwt.client.widgets.form.fields.FormItem} 
+     * subclasses, you can use {@link BeanFactory.CanvasMetaFactory} or 
+     * {@link BeanFactory.FormItemMetaFactory} instead. However, that is less
+     * efficient if there are only a limited number of classes which need
+     * BeanFactories.
+     *
+     * @see BeanFactory.CanvasMetaFactory
+     * @see BeanFactory.FormItemMetaFactory
+     */
+    @Target(ElementType.TYPE)
+    @Retention(RetentionPolicy.RUNTIME)
+    public static @interface Generate {
+        Class[] value() default {};
     }
 
     // ------------------------------------------
@@ -988,7 +1056,7 @@ public abstract class BeanFactory<BeanClass> {
     /**
      * Gets an array of the names of the properties of a class.
      *
-     * @param className The name of the class
+     * @param beanClassName The name of the class
      * @throws IllegalStateException If no factory has been generated for the class
      */
     public static String[] getAttributes (String beanClassName) {
@@ -1003,7 +1071,7 @@ public abstract class BeanFactory<BeanClass> {
     /**
      * Gets an array of the names of the properties of a class.
      *
-     * @param klass The klass object
+     * @param beanClass The klass object
      * @throws IllegalStateException If no factory has been generated for the class
      */
     public static String[] getAttributes (Class<?> beanClass) {
@@ -1046,7 +1114,7 @@ public abstract class BeanFactory<BeanClass> {
     /**
      * Indicates whether the class is defined by the SmartGWT framework.
      *
-     * @param klass The Class object
+     * @param beanClass The Class object
      * @throws IllegalStateException If no factory has been generated for the class
      */
     public static boolean isFrameworkClass (Class<?> beanClass) {
@@ -1061,7 +1129,7 @@ public abstract class BeanFactory<BeanClass> {
     /**
      * Gets the default scClassName for the class.
      *
-     * @param klass The Class object
+     * @param beanClass The Class object
      * @throws IllegalStateException If no factory has been generated for the class
      */
     public static String getDefaultScClassName (Class<?> beanClass) {
