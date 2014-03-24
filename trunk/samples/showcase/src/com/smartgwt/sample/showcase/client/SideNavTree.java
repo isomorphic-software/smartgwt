@@ -19,6 +19,7 @@ package com.smartgwt.sample.showcase.client;
 import com.smartgwt.client.types.SelectionStyle;
 import com.smartgwt.client.types.SortArrow;
 import com.smartgwt.client.types.TreeModelType;
+import com.smartgwt.client.util.Browser;
 import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeGridField;
@@ -36,15 +37,14 @@ public class SideNavTree extends TreeGrid {
         setHeight100();
         setSelectionType(SelectionStyle.SINGLE);
         setCustomIconProperty("icon");
-        setAnimateFolderTime(100);
-        setAnimateFolders(true);
-        setAnimateFolderSpeed(1000);
+        setAnimateFolders(Browser.getIsDesktop());
+        setAttribute("animateRowsMaxTime", 200, true);
         setNodeIcon("silk/application_view_list.png");
         setShowSortArrow(SortArrow.CORNER);
         setShowAllRecords(true);
         setLoadDataOnDemand(false);
         setCanSort(false);
-        
+
         TreeGridField field = new TreeGridField();
         field.setCanFilter(true);
         field.setName("nodeTitle");
