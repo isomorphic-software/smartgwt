@@ -123,12 +123,20 @@ public class SC {
     }-*/;
 
     /**
-     * Return true if Firebug is enabled.
+     * Returns <code>true</code> if Firebug is enabled.
      *
-     * @return true if firebug is enabled
+     * @return <code>true</code> if Firebug is enabled; <code>false</code> otherwise.
      */
     public static native boolean hasFirebug() /*-{
-        return ($wnd.isc.Browser.isMoz && $wnd.console != null && ($wnd.console.firebug != null || $wnd.console.exception != null));
+        // http://stackoverflow.com/questions/398111/javascript-that-detects-firebug
+        // Note that console.exception was added to Firefox 28, so we need to check whether console.exception
+        // is a native function or not.
+        // https://developer.mozilla.org/en-US/docs/Web/API/console.error
+        return ($wnd.isc.Browser.isMoz &&
+                $wnd.console != null &&
+                ($wnd.console.firebug != null ||
+                 ($wnd.console.exception != null &&
+                  ($wnd.isc.Browser.version <= 27 || $wnd.console.exception.toString().indexOf("[native code]") < 0))));
     }-*/;
 
     public static native boolean isIE()/*-{
