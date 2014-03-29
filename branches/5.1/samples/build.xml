@@ -1,0 +1,34 @@
+<project name="samples" default="build" basedir=".">
+	<property name="smartgwt.root" location=".." />
+	<property name="project.tail" value="samples" />
+	<import file="${smartgwt.root}/common.ant.xml" />
+
+	<!-- "build" is the default when subprojects are directly targetted -->
+	<property name="target" value="build" />
+
+
+	<target name="-do" description="Run all subprojects">
+	   <!-- ><gwt.ant dir="helloworld-1.6" target="build"/> -->
+	   <gwt.ant dir="showcase" />		
+	</target>
+
+		<target name="build" description="Builds GWT">
+		<antcall target="-do">
+			<param name="target" value="build" />
+		</antcall>
+	</target>
+	
+	<target name="test" depends="build" description="Test GWT">
+		<antcall target="-do">
+			<param name="target" value="test" />
+		</antcall>
+	</target>
+	
+	<target name="clean" description="Cleans this project's intermediate and output files">
+		<delete dir="${project.build}" />
+		<delete dir="${smartgwtee.build.out}/samples-scripts" />
+		<!-- ><gwt.ant dir="helloworld-1.6" target="clean"/> -->
+		<gwt.ant dir="showcase" target="clean"/>
+	</target>
+			
+</project>

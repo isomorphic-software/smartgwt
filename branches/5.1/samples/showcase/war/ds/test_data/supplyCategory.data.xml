@@ -1,0 +1,1010 @@
+<List>
+<supplyCategory>
+    <categoryName>Office Paper Products</categoryName>
+    <parentID>root</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Calculator Rolls</categoryName>
+    <parentID>Office Paper Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Adding Machine/calculator Roll</categoryName>
+    <parentID>Calculator Rolls</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>General Office Products</categoryName>
+    <parentID>root</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Adhesives</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Pastes and Gum</categoryName>
+    <parentID>Adhesives</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Spray Adhesives</categoryName>
+    <parentID>Adhesives</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Roll-on Glue</categoryName>
+    <parentID>Adhesives</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Super Glue</categoryName>
+    <parentID>Adhesives</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>U-Tac</categoryName>
+    <parentID>Adhesives</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Blu-Tack</categoryName>
+    <parentID>Adhesives</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Rollfix Glue</categoryName>
+    <parentID>Adhesives</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Glue Sticks</categoryName>
+    <parentID>Adhesives</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Bantex Self Adhesive</categoryName>
+    <parentID>Adhesives</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Account Books</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Memo/Note Books</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Spiral Books</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Exercise Books</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Scrapbooks</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Where-is-it Books</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Telephone Address Books</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Wage/Time Books</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Vehicle Log Books</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Dictionaries</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Street Directories</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Telephone Message Books</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Sundry Books</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Carbonless / Carbon Books</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Office Pads</categoryName>
+    <parentID>Office Paper Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Desk and Office Pads</categoryName>
+    <parentID>Office Pads</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Boards and Accessories</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Boards-whiteboard/display</categoryName>
+    <parentID>Boards and Accessories</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Display Books</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Batteries</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Accessories</categoryName>
+    <parentID>Boards and Accessories</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Office Machines and Electronics</categoryName>
+    <parentID>root</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Office Machine Sundries</categoryName>
+    <parentID>Office Machines and Electronics</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Pinboard</categoryName>
+    <parentID>Boards and Accessories</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Correction Products</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Correction Fluid</categoryName>
+    <parentID>Correction Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Correction Pens</categoryName>
+    <parentID>Correction Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Cover Up Tape</categoryName>
+    <parentID>Correction Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Sundry Stationery Supplies</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Carbon Paper</categoryName>
+    <parentID>Sundry Stationery Supplies</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Calculators and Accessories</categoryName>
+    <parentID>Office Machines and Electronics</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Handheld Pocket</categoryName>
+    <parentID>Calculators and Accessories</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Portable Printout/display</categoryName>
+    <parentID>Calculators and Accessories</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Computer Consumables</categoryName>
+    <parentID>root</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Printing Supplies</categoryName>
+    <parentID>Computer Consumables</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Inkjet Cartridges</categoryName>
+    <parentID>Printing Supplies</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Cards and Card Holders</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Name Cards and Badges</categoryName>
+    <parentID>Cards and Card Holders</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Office Filing and Storage</categoryName>
+    <parentID>root</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Folders</categoryName>
+    <parentID>Office Filing and Storage</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Cash/deed Boxes</categoryName>
+    <parentID>Sundry Stationery Supplies</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Binding Accessories</categoryName>
+    <parentID>Office Filing and Storage</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Computer Binder</categoryName>
+    <parentID>Binding Accessories</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Indices and Dividers</categoryName>
+    <parentID>Office Filing and Storage</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Photocopy/lasercopy Paper</categoryName>
+    <parentID>Office Paper Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Bank Paper</categoryName>
+    <parentID>Photocopy/lasercopy Paper</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Letter Openers / Bodkins</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Pen/pencil Tidies and Caddies</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Document Trays</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Drawer Tidies</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Cubes and Memo Refills</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Bookends</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Counter Bells</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Spike Files</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Desk Pad/mat</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Tape Dispensers</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Sundry Desk Accessories</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Wrapping and Strapping</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Wrapping Dispenser</categoryName>
+    <parentID>Wrapping and Strapping</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Stationery Racks</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Telephone Address Finders</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Letter Sorters</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Canteen and Washroom Products</categoryName>
+    <parentID>root</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Washroom</categoryName>
+    <parentID>Canteen and Washroom Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Waste Bins</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Staplers and Staples</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Staplers</categoryName>
+    <parentID>Staplers and Staples</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Standard Office Envelopes</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Wage Envelopes</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Inter Office Envelopes</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Mailing Bags</categoryName>
+    <parentID>Wrapping and Strapping</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Invoice Enclosed Envelopes</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Sundry Files</categoryName>
+    <parentID>Office Filing and Storage</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Erasers</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Standard Erasers</categoryName>
+    <parentID>Erasers</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Filing Accessories and Clips</categoryName>
+    <parentID>Office Filing and Storage</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Bulldog Clips</categoryName>
+    <parentID>Filing Accessories and Clips</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Nal Clip</categoryName>
+    <parentID>Filing Accessories and Clips</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Paper Clips</categoryName>
+    <parentID>Filing Accessories and Clips</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>File Fasteners</categoryName>
+    <parentID>Filing Accessories and Clips</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Grip/paper Binders</categoryName>
+    <parentID>Filing Accessories and Clips</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Foldback Clips</categoryName>
+    <parentID>Filing Accessories and Clips</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Binding Machines</categoryName>
+    <parentID>Office Machines and Electronics</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Spiral Binding Machines</categoryName>
+    <parentID>Binding Machines</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Punch/spiral Binding</categoryName>
+    <parentID>Binding Accessories</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Slide Binding/snapbind Strips</categoryName>
+    <parentID>Binding Accessories</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Management Files</categoryName>
+    <parentID>Office Filing and Storage</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Expanding Files</categoryName>
+    <parentID>Office Filing and Storage</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Manilla Folders</categoryName>
+    <parentID>Folders</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Clipboards</categoryName>
+    <parentID>Office Filing and Storage</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Spiral Spring Files</categoryName>
+    <parentID>Office Filing and Storage</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Lever Clamp/clamp/punchless</categoryName>
+    <parentID>Office Filing and Storage</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Storage and Archival Filing</categoryName>
+    <parentID>Office Filing and Storage</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Archive Storage</categoryName>
+    <parentID>Storage and Archival Filing</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Transfer Covers</categoryName>
+    <parentID>Storage and Archival Filing</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Lever Arch Files</categoryName>
+    <parentID>Office Filing and Storage</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Half Arch Files</categoryName>
+    <parentID>Office Filing and Storage</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Ring Binders and Insert Binders</categoryName>
+    <parentID>Office Filing and Storage</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Ring Binders</categoryName>
+    <parentID>Ring Binders and Insert Binders</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Insert Binders</categoryName>
+    <parentID>Ring Binders and Insert Binders</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Magazine Files</categoryName>
+    <parentID>Office Filing and Storage</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Box Files</categoryName>
+    <parentID>Storage and Archival Filing</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Post Binders</categoryName>
+    <parentID>Office Filing and Storage</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Suspension Filing</categoryName>
+    <parentID>Office Filing and Storage</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Suspension Files</categoryName>
+    <parentID>Suspension Filing</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Specialty Paper and Film</categoryName>
+    <parentID>Printing Supplies</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Overhead Projectors</categoryName>
+    <parentID>Office Machines and Electronics</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Overhead Projector Machines</categoryName>
+    <parentID>Overhead Projectors</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Overhead Projector Consumables</categoryName>
+    <parentID>Overhead Projectors</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Document Wallets</categoryName>
+    <parentID>Office Filing and Storage</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Luggage/carry Cases</categoryName>
+    <parentID>Sundry Stationery Supplies</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Fingerettes</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Suspension Inserts</categoryName>
+    <parentID>Suspension Filing</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Suspension Frames</categoryName>
+    <parentID>Suspension Filing</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Stamps , Stamp Pads and Inks</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Stamp Pad Inks</categoryName>
+    <parentID>Stamps , Stamp Pads and Inks</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Dividers For Files</categoryName>
+    <parentID>Indices and Dividers</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Indices For Files</categoryName>
+    <parentID>Indices and Dividers</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Sundry Indicies/Dividers</categoryName>
+    <parentID>Indices and Dividers</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Card Box Dividers</categoryName>
+    <parentID>Indices and Dividers</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Cutters</categoryName>
+    <parentID>Sundry Stationery Supplies</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Cutter Blades</categoryName>
+    <parentID>Sundry Stationery Supplies</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Labels and Labelling</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Labelling Tape</categoryName>
+    <parentID>Labels and Labelling</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Dispensers Pack Labels</categoryName>
+    <parentID>Labels and Labelling</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Instruction Labels</categoryName>
+    <parentID>Labels and Labelling</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Address Labels</categoryName>
+    <parentID>Labels and Labelling</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Printers Pak Labels</categoryName>
+    <parentID>Labels and Labelling</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Ring Reinforcements</categoryName>
+    <parentID>Labels and Labelling</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Markers</categoryName>
+    <parentID>Computer Consumables</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>OHP Markers</categoryName>
+    <parentID>Markers</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>General Office Markers</categoryName>
+    <parentID>Markers</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Whiteboard Markers</categoryName>
+    <parentID>Markers</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Highlighter Markers</categoryName>
+    <parentID>Computer Consumables</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Highlighters</categoryName>
+    <parentID>Highlighter Markers</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Pens Ballpoint and Refills</categoryName>
+    <parentID>Computer Consumables</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Rolling Ball Pens</categoryName>
+    <parentID>Pens Ballpoint and Refills</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Stamps</categoryName>
+    <parentID>Stamps , Stamp Pads and Inks</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Dictating Equipment</categoryName>
+    <parentID>Office Machines and Electronics</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Dictating Machines</categoryName>
+    <parentID>Dictating Equipment</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Lecture Pads</categoryName>
+    <parentID>Office Pads</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Flipchart Pads</categoryName>
+    <parentID>Office Pads</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Analysis/dissection Pads</categoryName>
+    <parentID>Office Pads</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Graph Pads</categoryName>
+    <parentID>Office Pads</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Post-it Products</categoryName>
+    <parentID>Office Paper Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Self-Adhesive / Post-it Notes</categoryName>
+    <parentID>Post-it Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Post-it Dispenser</categoryName>
+    <parentID>Post-it Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Post-it Memo Board</categoryName>
+    <parentID>Post-it Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Post-it Tape Flags</categoryName>
+    <parentID>Post-it Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Instruction Pads</categoryName>
+    <parentID>Post-it Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Telephone Message Pads</categoryName>
+    <parentID>Office Pads</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Petty Cash Pads</categoryName>
+    <parentID>Office Pads</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Ballpoint Pens</categoryName>
+    <parentID>Pens Ballpoint and Refills</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Legal Ball Pens</categoryName>
+    <parentID>Pens Ballpoint and Refills</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Specialty Pens</categoryName>
+    <parentID>Office Paper Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Fountain</categoryName>
+    <parentID>Specialty Pens</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Photocopy Paper</categoryName>
+    <parentID>Photocopy/lasercopy Paper</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Blotting Paper</categoryName>
+    <parentID>Photocopy/lasercopy Paper</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Refill Sheets</categoryName>
+    <parentID>Office Pads</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Cardboard/boxboard</categoryName>
+    <parentID>Wrapping and Strapping</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Tissue</categoryName>
+    <parentID>Wrapping and Strapping</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Punches</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Pencils and Sharpeners</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Pencils</categoryName>
+    <parentID>Pencils and Sharpeners</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Mechanical Pencils and Leads</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Mechanical Clutch Pencils</categoryName>
+    <parentID>Mechanical Pencils and Leads</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Lead Refills</categoryName>
+    <parentID>Mechanical Pencils and Leads</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Pencil Sharpeners</categoryName>
+    <parentID>Pencils and Sharpeners</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Pencil Cases</categoryName>
+    <parentID>Sundry Stationery Supplies</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Rubber Bands</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Rulers</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Sheet Protectors and Pvc Pockets</categoryName>
+    <parentID>Office Filing and Storage</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>PVC Pockets</categoryName>
+    <parentID>Sheet Protectors and Pvc Pockets</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Sheet Protectors</categoryName>
+    <parentID>Sheet Protectors and Pvc Pockets</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Shredders</categoryName>
+    <parentID>Office Machines and Electronics</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Shredder Machines</categoryName>
+    <parentID>Shredders</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Scissors</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Staples</categoryName>
+    <parentID>Staplers and Staples</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Staple Removers</categoryName>
+    <parentID>Staplers and Staples</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Tapes</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Adhesive/transparent Tape</categoryName>
+    <parentID>Tapes</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Magic Tape</categoryName>
+    <parentID>Tapes</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Masking Tape</categoryName>
+    <parentID>Tapes</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Packaging Tape</categoryName>
+    <parentID>Tapes</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Adhesive Tape</categoryName>
+    <parentID>Adhesives</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Bookbinding Tape</categoryName>
+    <parentID>Tapes</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Fax and Telex Rolls</categoryName>
+    <parentID>Office Paper Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Facsimile Rolls</categoryName>
+    <parentID>Fax and Telex Rolls</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Trimmers and Guillotines</categoryName>
+    <parentID>Office Machines and Electronics</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Trimmers</categoryName>
+    <parentID>Trimmers and Guillotines</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Tickets</categoryName>
+    <parentID>Sundry Stationery Supplies</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Twine</categoryName>
+    <parentID>Wrapping and Strapping</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>String</categoryName>
+    <parentID>Wrapping and Strapping</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Bubble Wrap</categoryName>
+    <parentID>Wrapping and Strapping</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Stretch/Pallet Wrap</categoryName>
+    <parentID>Wrapping and Strapping</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Canteen</categoryName>
+    <parentID>Canteen and Washroom Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Retail Books</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Alpha/letter/numeric</categoryName>
+    <parentID>Labels and Labelling</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Laminating Machines</categoryName>
+    <parentID>Office Machines and Electronics</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Strapping</categoryName>
+    <parentID>Wrapping and Strapping</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Dictating Head Sets</categoryName>
+    <parentID>Dictating Equipment</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Photographic Supplies</categoryName>
+    <parentID>Sundry Stationery Supplies</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Inter Office Memo Pads</categoryName>
+    <parentID>Office Pads</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Foot Rests</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Shredder Consumables</categoryName>
+    <parentID>Shredders</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Electrical Supplies</categoryName>
+    <parentID>Sundry Stationery Supplies</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Organisers</categoryName>
+    <parentID>Office Machines and Electronics</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Suspension Tabs</categoryName>
+    <parentID>Suspension Filing</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Thermal Binding</categoryName>
+    <parentID>Binding Accessories</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Parchment</categoryName>
+    <parentID>General Office Products</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Computer Hardware/software</categoryName>
+    <parentID>root</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Peripherals</categoryName>
+    <parentID>Computer Hardware/software</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Multimedia Projectors</categoryName>
+    <parentID>Peripherals</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>File Folder Labels</categoryName>
+    <parentID>Labels and Labelling</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Double Sided Tape</categoryName>
+    <parentID>Tapes</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Presentation Files</categoryName>
+    <parentID>Office Filing and Storage</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Dictating Accessories</categoryName>
+    <parentID>Dictating Equipment</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Stamp Pads</categoryName>
+    <parentID>Stamps , Stamp Pads and Inks</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Tags</categoryName>
+    <parentID>Wrapping and Strapping</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Record Card Boxes and Cards</categoryName>
+    <parentID>Cards and Card Holders</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Office Furniture</categoryName>
+    <parentID>root</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Small</categoryName>
+    <parentID>Office Furniture</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Large</categoryName>
+    <parentID>Office Furniture</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Audio</categoryName>
+    <parentID>Sundry Stationery Supplies</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Metal Cupboards/cabinets</categoryName>
+    <parentID>Office Furniture</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Lateral File Cabinets</categoryName>
+    <parentID>Metal Cupboards/cabinets</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Filing Cabinets</categoryName>
+    <parentID>Office Furniture</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Art Supplies</categoryName>
+    <parentID>Sundry Stationery Supplies</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Tackers</categoryName>
+    <parentID>Staplers and Staples</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Plastic/cellophane Bags</categoryName>
+    <parentID>Wrapping and Strapping</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>First Aid</categoryName>
+    <parentID>root</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>First Aid Kits</categoryName>
+    <parentID>First Aid</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Complete Kits</categoryName>
+    <parentID>First Aid Kits</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Basic Kits</categoryName>
+    <parentID>First Aid Kits</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Storage Compartment</categoryName>
+    <parentID>Storage and Archival Filing</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Thermal Binding Machine</categoryName>
+    <parentID>Binding Machines</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Hooks</categoryName>
+    <parentID>Adhesives</parentID>
+</supplyCategory>
+<supplyCategory>
+    <categoryName>Poster Strips</categoryName>
+    <parentID>Adhesives</parentID>
+</supplyCategory>
+</List>

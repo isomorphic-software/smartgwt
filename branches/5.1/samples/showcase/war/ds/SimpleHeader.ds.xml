@@ -1,0 +1,7 @@
+<DataSource ID="SimpleHeader" serverType="component" 
+            inheritsFrom="HLayout" clientConstructor="SimpleHeader">
+    <fields>
+        <field name="titleText" type="string" group="title"/>
+        <field name="titleStyle" type="CSSClassName" group="title"/>
+    </fields>
+</DataSource>
