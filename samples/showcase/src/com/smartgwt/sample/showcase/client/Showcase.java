@@ -159,9 +159,12 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         ToolStrip toolStripVersion = new ToolStrip();
         toolStripVersion.setWidth100();
+        toolStripVersion.setHeight(44);
         final Label version = new Label(M.versionLabelContents(Version.getVersion(), "" + Version.getBuildDate()).asString());
         version.setWidth100();
+        version.setHeight100();
         version.setPadding(5);
+        version.setValign(VerticalAlignment.CENTER);
         toolStripVersion.addMember(version);
         sideNavLayout.addMember(toolStripVersion);
 
