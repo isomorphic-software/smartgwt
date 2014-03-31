@@ -417,30 +417,6 @@ public class Showcase implements EntryPoint, HistoryListener {
             detailTools.add(new LayoutSpacer(5, 1));
         }
 
-        printButton = new ToolStripButton();
-        printButton.setWidth(20);
-        printButton.setHeight(20);
-        printButton.setDisabled(true);
-        if (useDesktopMode) printButton.setTitle(M.printButtonTitle().asString());
-        printButton.setIcon("silk/printer.png");
-        printButton.setShowFocused(false);
-        printButton.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
-            public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
-                final ShowcasePanel showcasePanel;
-                if (useDesktopMode) {
-                    final Tab tab = mainTabSet.getSelectedTab();
-                    showcasePanel = (ShowcasePanel)tab.getPane();
-                } else {
-                    showcasePanel = (ShowcasePanel)splitPane.getDetailPane();
-                }
-                Canvas.showPrintPreview(showcasePanel.viewPanel);
-            }
-        });
-        if (useDesktopMode) {
-            detailTools.add(printButton);
-            detailTools.add(new LayoutSpacer(5, 1));
-        }
-
         showOverviewButton = new ToolStripButton();
         showOverviewButton.setWidth(20);
         showOverviewButton.setHeight(20);
@@ -464,6 +440,28 @@ public class Showcase implements EntryPoint, HistoryListener {
             detailTools.add(showOverviewButton);
             detailTools.add(new LayoutSpacer(5, 1));
         }
+
+        printButton = new ToolStripButton();
+        printButton.setWidth(20);
+        printButton.setHeight(20);
+        printButton.setDisabled(true);
+        if (useDesktopMode) printButton.setTitle(M.printButtonTitle().asString());
+        printButton.setIcon("silk/printer.png");
+        printButton.setShowFocused(false);
+        printButton.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
+            public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
+                final ShowcasePanel showcasePanel;
+                if (useDesktopMode) {
+                    final Tab tab = mainTabSet.getSelectedTab();
+                    showcasePanel = (ShowcasePanel)tab.getPane();
+                } else {
+                    showcasePanel = (ShowcasePanel)splitPane.getDetailPane();
+                }
+                Canvas.showPrintPreview(showcasePanel.viewPanel);
+            }
+        });
+        detailTools.add(printButton);
+        detailTools.add(new LayoutSpacer(5, 1));
 
         sourceButton = new ToolStripButton();
         sourceButton.setWidth(20);
