@@ -34,7 +34,7 @@ public class RestfulDataSourceSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             RestfulDataSourceSample panel = new RestfulDataSourceSample();
             id = panel.getID();
             return panel;
@@ -154,24 +154,28 @@ public class RestfulDataSourceSample extends ShowcasePanel {
         tabSet.setWidth(500);
         Tab fetchTab = new Tab("country_fetch.xml");
         final HTMLPane fetchPane = new HTMLPane();
+        fetchPane.setHideUsingDisplayNone(true); // work-around for http://crbug.com/338105
         fetchPane.setContentsURL("source/rest/country_fetch_rest.xml.html");
         fetchPane.setContentsType(ContentsType.PAGE);
         fetchTab.setPane(fetchPane);
 
         Tab addTab = new Tab("country_add.xml");
         final HTMLPane addPane = new HTMLPane();
+        addPane.setHideUsingDisplayNone(true);
         addPane.setContentsURL("source/rest/country_add_rest.xml.html");
         addPane.setContentsType(ContentsType.PAGE);
         addTab.setPane(addPane);
 
         Tab updateTab = new Tab("country_update.xml");
         final HTMLPane updatePane = new HTMLPane();
+        updatePane.setHideUsingDisplayNone(true);
         updatePane.setContentsURL("source/rest/country_update_rest.xml.html");
         updatePane.setContentsType(ContentsType.PAGE);
         updateTab.setPane(updatePane);
 
         Tab removeTab = new Tab("country_remove.xml");
         final HTMLPane removePane = new HTMLPane();
+        removePane.setHideUsingDisplayNone(true);
         removePane.setContentsURL("source/rest/country_remove_rest.xml.html");
         removePane.setContentsType(ContentsType.PAGE);
         removeTab.setPane(removePane);
