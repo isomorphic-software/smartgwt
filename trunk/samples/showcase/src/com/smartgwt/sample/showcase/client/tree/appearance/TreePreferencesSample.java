@@ -1,7 +1,12 @@
 package com.smartgwt.sample.showcase.client.tree.appearance;
 
 import com.google.gwt.i18n.client.NumberFormat;
-import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Criteria;
+import com.smartgwt.client.data.DSCallback;
+import com.smartgwt.client.data.DSRequest;
+import com.smartgwt.client.data.DSResponse;
+import com.smartgwt.client.data.DataSource;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.fields.DataSourceIntegerField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.types.SelectionStyle;
@@ -41,7 +46,7 @@ public class TreePreferencesSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             TreePreferencesSample panel = new TreePreferencesSample();
             id = panel.getID();
             return panel;

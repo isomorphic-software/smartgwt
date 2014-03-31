@@ -1,5 +1,8 @@
 package com.smartgwt.sample.showcase.client.dataintegration.xml;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.data.WSDLLoadCallback;
 import com.smartgwt.client.data.WebService;
@@ -19,9 +22,6 @@ import com.smartgwt.client.widgets.form.fields.events.KeyPressHandler;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 public class WSDLWebServiceSample extends ShowcasePanel {
 
     private static final String DESCRIPTION = "Smart GWT can load WSDL service definitions and call web service " +
@@ -31,7 +31,7 @@ public class WSDLWebServiceSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             WSDLWebServiceSample panel = new WSDLWebServiceSample();
             id = panel.getID();
             return panel;

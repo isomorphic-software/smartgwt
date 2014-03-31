@@ -19,7 +19,7 @@ public class ShowHideSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             ShowHideSample panel = new ShowHideSample();
             id = panel.getID();
             return panel;

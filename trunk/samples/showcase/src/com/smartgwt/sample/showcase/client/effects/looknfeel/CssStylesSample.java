@@ -1,5 +1,7 @@
 package com.smartgwt.sample.showcase.client.effects.looknfeel;
 
+import java.util.LinkedHashMap;
+
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.HTMLFlow;
 import com.smartgwt.client.widgets.form.DynamicForm;
@@ -8,8 +10,6 @@ import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-
-import java.util.LinkedHashMap;
 
 public class CssStylesSample extends ShowcasePanel {
 
@@ -27,7 +27,7 @@ public class CssStylesSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             CssStylesSample panel = new CssStylesSample();
             id = panel.getID();
             return panel;

@@ -19,7 +19,7 @@ public class LayerSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             LayerSample panel = new LayerSample();
             id = panel.getID();
             return panel;

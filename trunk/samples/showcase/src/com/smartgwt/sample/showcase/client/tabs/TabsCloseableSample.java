@@ -11,8 +11,6 @@ import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
-import com.smartgwt.client.widgets.tab.events.CloseClickHandler;
-import com.smartgwt.client.widgets.tab.events.TabCloseClickEvent;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
@@ -21,7 +19,7 @@ public class TabsCloseableSample extends ShowcasePanel {
 
     public static class Factory implements PanelFactory {
         private String id;
-        public Canvas create() {
+        public ShowcasePanel create() {
             TabsCloseableSample panel = new TabsCloseableSample();
             id = panel.getID();
             return panel;

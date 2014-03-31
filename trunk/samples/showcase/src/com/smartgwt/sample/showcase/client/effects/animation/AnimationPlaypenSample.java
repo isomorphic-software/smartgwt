@@ -4,8 +4,17 @@ import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.AnimationEffect;
 import com.smartgwt.client.types.DragAppearance;
 import com.smartgwt.client.types.Overflow;
-import com.smartgwt.client.widgets.*;
-import com.smartgwt.client.widgets.events.*;
+import com.smartgwt.client.widgets.AnimationCallback;
+import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.HTMLPane;
+import com.smartgwt.client.widgets.IButton;
+import com.smartgwt.client.widgets.Slider;
+import com.smartgwt.client.widgets.events.ClickEvent;
+import com.smartgwt.client.widgets.events.ClickHandler;
+import com.smartgwt.client.widgets.events.DragRepositionStopEvent;
+import com.smartgwt.client.widgets.events.DragRepositionStopHandler;
+import com.smartgwt.client.widgets.events.DragResizeStopEvent;
+import com.smartgwt.client.widgets.events.DragResizeStopHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.RadioGroupItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
@@ -20,7 +29,7 @@ public class AnimationPlaypenSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             AnimationPlaypenSample panel = new AnimationPlaypenSample();
             id = panel.getID();
             return panel;

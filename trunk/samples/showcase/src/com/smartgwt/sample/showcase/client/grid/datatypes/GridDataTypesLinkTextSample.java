@@ -17,7 +17,7 @@ public class GridDataTypesLinkTextSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridDataTypesLinkTextSample panel = new GridDataTypesLinkTextSample();
             id = panel.getID();
             return panel;

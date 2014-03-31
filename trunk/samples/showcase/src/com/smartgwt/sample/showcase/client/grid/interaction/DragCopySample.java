@@ -16,7 +16,7 @@ public class DragCopySample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             DragCopySample panel = new DragCopySample();
             id = panel.getID();
             return panel;

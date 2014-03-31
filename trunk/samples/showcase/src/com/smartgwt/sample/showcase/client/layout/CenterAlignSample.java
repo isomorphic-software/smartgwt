@@ -17,11 +17,10 @@
 package com.smartgwt.sample.showcase.client.layout;
 
 import com.smartgwt.client.types.Alignment;
-import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Label;
-import com.smartgwt.client.widgets.layout.LayoutSpacer;
 import com.smartgwt.client.widgets.layout.HLayout;
+import com.smartgwt.client.widgets.layout.LayoutSpacer;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
@@ -40,7 +39,7 @@ public class CenterAlignSample extends ShowcasePanel {
         
     public static class Factory implements PanelFactory {
         private String id;
-        public Canvas create() {
+        public ShowcasePanel create() {
             CenterAlignSample panel = new CenterAlignSample();
             id = panel.getID();
             return panel;

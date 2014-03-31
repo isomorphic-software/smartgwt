@@ -16,7 +16,6 @@
 package com.smartgwt.sample.showcase.client.miniapp;
 
 import com.smartgwt.client.data.DataSource;
-import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.ButtonItem;
 import com.smartgwt.client.widgets.form.fields.CheckboxItem;
 import com.smartgwt.client.widgets.form.fields.ComboBoxItem;

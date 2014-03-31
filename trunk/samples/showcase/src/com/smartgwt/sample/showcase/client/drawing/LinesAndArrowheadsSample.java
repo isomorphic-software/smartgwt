@@ -29,7 +29,7 @@ public class LinesAndArrowheadsSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             LinesAndArrowheadsSample panel = new LinesAndArrowheadsSample();
             id = panel.getID();
             return panel;

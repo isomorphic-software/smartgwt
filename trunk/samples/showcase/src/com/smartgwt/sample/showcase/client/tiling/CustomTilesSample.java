@@ -18,7 +18,7 @@ public class CustomTilesSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             CustomTilesSample panel = new CustomTilesSample();
             id = panel.getID();
             return panel;

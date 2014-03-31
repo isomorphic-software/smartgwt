@@ -16,10 +16,16 @@
 
 package com.smartgwt.sample.showcase.client;
 
+import com.google.gwt.safehtml.shared.SafeHtml;
+
 public class SourceEntity {
 
     private String title;
     private String url;
+
+    public SourceEntity(SafeHtml title, String url) {
+        this(title.asString(), url);
+    }
 
     public SourceEntity(String title, String url) {
         this.title = title;

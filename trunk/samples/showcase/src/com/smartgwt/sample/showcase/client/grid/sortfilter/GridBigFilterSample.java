@@ -24,7 +24,7 @@ public class GridBigFilterSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridBigFilterSample panel = new GridBigFilterSample();
             id = panel.getID();
             return panel;

@@ -26,7 +26,7 @@ public class ChildrenArraysTreeSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             ChildrenArraysTreeSample panel = new ChildrenArraysTreeSample();
             id = panel.getID();
             return panel;

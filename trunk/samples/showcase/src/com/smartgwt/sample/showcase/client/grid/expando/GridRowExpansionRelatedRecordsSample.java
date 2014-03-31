@@ -1,7 +1,6 @@
 package com.smartgwt.sample.showcase.client.grid.expando;
 
 import com.smartgwt.client.data.DataSource;
-import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.ListGridEditEvent;
 import com.smartgwt.client.types.RowEndEditAction;
@@ -27,7 +26,7 @@ public class GridRowExpansionRelatedRecordsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridRowExpansionRelatedRecordsSample panel = new GridRowExpansionRelatedRecordsSample();
             id = panel.getID();
             return panel;

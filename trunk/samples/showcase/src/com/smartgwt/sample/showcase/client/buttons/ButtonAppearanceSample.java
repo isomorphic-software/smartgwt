@@ -17,7 +17,7 @@ public class ButtonAppearanceSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             ButtonAppearanceSample panel = new ButtonAppearanceSample();
             id = panel.getID();
             return panel;

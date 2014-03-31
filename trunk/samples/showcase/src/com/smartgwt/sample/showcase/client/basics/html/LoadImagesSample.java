@@ -14,7 +14,7 @@ public class LoadImagesSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             LoadImagesSample panel = new LoadImagesSample();
             id = panel.getID();
             return panel;

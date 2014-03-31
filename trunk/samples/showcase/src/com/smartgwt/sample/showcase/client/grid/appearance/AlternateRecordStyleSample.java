@@ -21,7 +21,7 @@ public class AlternateRecordStyleSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             AlternateRecordStyleSample panel = new AlternateRecordStyleSample();
             id = panel.getID();
             return panel;

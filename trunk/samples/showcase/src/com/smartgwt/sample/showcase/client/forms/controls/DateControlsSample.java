@@ -4,7 +4,11 @@ import com.smartgwt.client.data.DateRange;
 import com.smartgwt.client.data.RelativeDate;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.form.DynamicForm;
-import com.smartgwt.client.widgets.form.fields.*;
+import com.smartgwt.client.widgets.form.fields.DateItem;
+import com.smartgwt.client.widgets.form.fields.DateRangeItem;
+import com.smartgwt.client.widgets.form.fields.MiniDateRangeItem;
+import com.smartgwt.client.widgets.form.fields.RelativeDateItem;
+import com.smartgwt.client.widgets.form.fields.TimeItem;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
@@ -19,7 +23,7 @@ public class DateControlsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             DateControlsSample panel = new DateControlsSample();
             id = panel.getID();
             return panel;

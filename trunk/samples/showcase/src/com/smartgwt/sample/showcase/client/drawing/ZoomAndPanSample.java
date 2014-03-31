@@ -31,7 +31,7 @@ public class ZoomAndPanSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             ZoomAndPanSample panel = new ZoomAndPanSample();
             id = panel.getID();
             return panel;

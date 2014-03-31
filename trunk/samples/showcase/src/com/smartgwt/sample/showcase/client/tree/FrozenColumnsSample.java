@@ -16,7 +16,7 @@ public class FrozenColumnsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             FrozenColumnsSample panel = new FrozenColumnsSample();
             id = panel.getID();
             return panel;

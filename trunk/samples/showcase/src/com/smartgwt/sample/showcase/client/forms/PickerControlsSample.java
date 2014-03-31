@@ -17,7 +17,7 @@ public class PickerControlsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             PickerControlsSample panel = new PickerControlsSample();
             id = panel.getID();
             return panel;

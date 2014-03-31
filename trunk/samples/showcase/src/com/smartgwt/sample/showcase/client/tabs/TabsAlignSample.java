@@ -15,7 +15,7 @@ public class TabsAlignSample extends ShowcasePanel {
 
     public static class Factory implements PanelFactory {
         private String id;
-        public Canvas create() {
+        public ShowcasePanel create() {
             TabsAlignSample panel = new TabsAlignSample();
             id = panel.getID();
             return panel;

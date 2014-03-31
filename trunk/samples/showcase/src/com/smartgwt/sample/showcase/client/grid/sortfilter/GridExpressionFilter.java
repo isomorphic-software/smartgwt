@@ -40,7 +40,7 @@ public class GridExpressionFilter extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridExpressionFilter panel = new GridExpressionFilter();
             id = panel.getID();
             return panel;

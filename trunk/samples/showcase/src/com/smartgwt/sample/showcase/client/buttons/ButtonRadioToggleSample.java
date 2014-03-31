@@ -16,7 +16,7 @@ public class ButtonRadioToggleSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             ButtonRadioToggleSample panel = new ButtonRadioToggleSample();
             id = panel.getID();
             return panel;

@@ -3,8 +3,8 @@ package com.smartgwt.sample.showcase.client.combobox;
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.form.DynamicForm;
-import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.ComboBoxItem;
+import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.sample.showcase.client.PanelFactory;
@@ -23,7 +23,7 @@ public class MultiFieldSearchSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
     	private String id;
 
-		public Canvas create() {
+		public ShowcasePanel create() {
 			MultiFieldSearchSample panel = new MultiFieldSearchSample();
 		    id = panel.getID();
 		    return panel;

@@ -14,7 +14,7 @@ public class WindowMinimizeSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             WindowMinimizeSample panel = new WindowMinimizeSample();
             id = panel.getID();
             return panel;

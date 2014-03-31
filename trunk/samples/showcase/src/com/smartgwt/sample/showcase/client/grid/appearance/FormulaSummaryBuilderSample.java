@@ -33,7 +33,7 @@ public class FormulaSummaryBuilderSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             FormulaSummaryBuilderSample panel = new FormulaSummaryBuilderSample();
             id = panel.getID();
             return panel;

@@ -15,7 +15,7 @@ public class BasicTilingSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             BasicTilingSample panel = new BasicTilingSample();
             id = panel.getID();
             return panel;

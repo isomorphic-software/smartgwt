@@ -31,7 +31,7 @@ public class RecordsAcrossWindowsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             final RecordsAcrossWindowsSample panel = new RecordsAcrossWindowsSample();
             id = panel.getID();
             return panel;
