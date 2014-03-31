@@ -88,7 +88,13 @@
                 <exclude name="**/ISC_SQLBrowser.js"/>
             </zipfileset>
 
-            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/development"                        includes="ISC_DBConsole.js,ISC_DeveloperConsole.js,ISC_DocViewer.js,ISC_FileViewer.js,ISC_FileLoader.js,ISC_SyntaxHiliter.js,ISC_Tools.js,ISC_Core.js,ISC_Foundation.js,ISC_Containers.js,ISC_Grids.js,ISC_Forms.js,ISC_DataBinding.js,ISC_RealtimeMessagingDMI.js,ISC_RemoteDebug.js"
+            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/development"
+                        includes="ISC_RealtimeMessaging.js"
+                        prefix="com/smartclient/public/sc/system/development"/>
+
+            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/development"
+                        includes="ISC_DBConsole.js,ISC_DeveloperConsole.js,ISC_DocViewer.js,ISC_FileViewer.js,ISC_FileLoader.js,ISC_SyntaxHiliter.js,
+                                  ISC_Tools.js,ISC_Core.js,ISC_Foundation.js,ISC_Containers.js,ISC_Grids.js,ISC_Forms.js,ISC_DataBinding.js,ISC_RealtimeMessaging.js"
                         prefix="com/smartclient/tools/public/sc/system/development"/>
 
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/helpers" includes="printFrame.*,empty.html,*.css,*.svg,isomorphic_applets.jar"
