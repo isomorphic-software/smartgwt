@@ -20,7 +20,7 @@ public class UserSizingSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             UserSizingSample panel = new UserSizingSample();
             id = panel.getID();
             return panel;

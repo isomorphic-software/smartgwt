@@ -20,7 +20,7 @@ public class GridDataBoundUpdateSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridDataBoundUpdateSample panel = new GridDataBoundUpdateSample();
             id = panel.getID();
             return panel;

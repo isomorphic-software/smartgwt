@@ -5,7 +5,16 @@ import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.util.EventHandler;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Label;
-import com.smartgwt.client.widgets.events.*;
+import com.smartgwt.client.widgets.events.MouseMoveEvent;
+import com.smartgwt.client.widgets.events.MouseMoveHandler;
+import com.smartgwt.client.widgets.events.MouseOutEvent;
+import com.smartgwt.client.widgets.events.MouseOutHandler;
+import com.smartgwt.client.widgets.events.MouseStillDownEvent;
+import com.smartgwt.client.widgets.events.MouseStillDownHandler;
+import com.smartgwt.client.widgets.events.MouseUpEvent;
+import com.smartgwt.client.widgets.events.MouseUpHandler;
+import com.smartgwt.client.widgets.events.MouseWheelEvent;
+import com.smartgwt.client.widgets.events.MouseWheelHandler;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
@@ -18,7 +27,7 @@ public class MouseEventsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             MouseEventsSample panel = new MouseEventsSample();
             id = panel.getID();
             return panel;

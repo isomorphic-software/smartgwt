@@ -33,7 +33,7 @@ public class LinearGradientSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             LinearGradientSample panel = new LinearGradientSample();
             id = panel.getID();
             return panel;

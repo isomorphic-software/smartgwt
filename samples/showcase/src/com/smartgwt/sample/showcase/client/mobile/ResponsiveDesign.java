@@ -40,7 +40,7 @@ public class ResponsiveDesign extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             ResponsiveDesign panel = new ResponsiveDesign();
             id = panel.getID();
             return panel;

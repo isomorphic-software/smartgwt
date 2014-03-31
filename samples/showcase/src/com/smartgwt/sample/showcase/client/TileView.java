@@ -1,18 +1,32 @@
 package com.smartgwt.sample.showcase.client;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Set;
+
 import com.google.gwt.user.client.History;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.Alignment;
+import com.smartgwt.client.types.MultipleAppearance;
 import com.smartgwt.client.types.OperatorId;
-import com.smartgwt.client.types.TreeModelType;
 import com.smartgwt.client.types.TitleOrientation;
-import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.Window;
-import com.smartgwt.client.widgets.events.*;
+import com.smartgwt.client.types.TreeModelType;
+import com.smartgwt.client.util.Browser;
+import com.smartgwt.client.widgets.events.DrawEvent;
+import com.smartgwt.client.widgets.events.DrawHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.events.ItemChangedEvent;
 import com.smartgwt.client.widgets.form.events.ItemChangedHandler;
-import com.smartgwt.client.widgets.form.fields.*;
+import com.smartgwt.client.widgets.form.fields.CheckboxItem;
+import com.smartgwt.client.widgets.form.fields.FormItem;
+import com.smartgwt.client.widgets.form.fields.FormItemIcon;
+import com.smartgwt.client.widgets.form.fields.PickerIcon;
+import com.smartgwt.client.widgets.form.fields.SelectItem;
+import com.smartgwt.client.widgets.form.fields.SliderItem;
+import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.form.fields.events.IconClickEvent;
 import com.smartgwt.client.widgets.form.fields.events.IconClickHandler;
 import com.smartgwt.client.widgets.form.fields.events.KeyPressEvent;
@@ -29,18 +43,18 @@ import com.smartgwt.sample.showcase.client.data.CommandTreeNode;
 import com.smartgwt.sample.showcase.client.data.ExplorerTreeNode;
 import com.smartgwt.sample.showcase.client.data.ShowcaseData;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 public class TileView extends VLayout {
+    private static final ShowcaseMessages M = ShowcaseMessages.INSTANCE;
+
     private TileGrid tileGrid;
-    private String idSuffix = "_tileView";
+    private final String idSuffix = SideNavTree.ID_SUFFIX;
     private TreeNode[] showcaseData = ShowcaseData.getData(idSuffix);
-    private Canvas parentPanel;
-    private SliderItem numSamplesItem;
     private DynamicForm filterForm;
+
+    private TextItem searchItem;
+    private SliderItem numSamplesItem;
+    private CheckboxItem ascendingItem;
+    private CheckboxItem disabledModeCB;
 
     private CheckboxItem featuredCB;
     private CheckboxItem newSamplesCB;
@@ -53,7 +67,7 @@ public class TileView extends VLayout {
     private CheckboxItem layoutCB;
     private CheckboxItem windowsCB;
     private CheckboxItem tabsCB;
-    private CheckboxItem accordionCB;
+    private CheckboxItem sectionsCB;
     private CheckboxItem portalLayoutCB;
     private CheckboxItem buttonsCB;
     private CheckboxItem menusCB;
@@ -64,14 +78,12 @@ public class TileView extends VLayout {
     private CheckboxItem basicsCB;
     private CheckboxItem drawingCB;
     private CheckboxItem effectsCB;
-    private CheckboxItem ascendingItem;
-    private CheckboxItem disabledModeCB;
-    private TextItem searchItem;
+    // ---- OR ----
+    private SelectItem categoriesItem;
 
     private Tree tree;
 
-
-    public TileView(Canvas parentPanel) {
+    public TileView() {
         setMargin(3);
         tree = new Tree();
         tree.setModelType(TreeModelType.PARENT);
@@ -84,7 +96,6 @@ public class TileView extends VLayout {
 
         tree.setData(showcaseData);
 
-        this.parentPanel = parentPanel;
         setMembersMargin(10);
 
         setWidth100();
@@ -107,7 +118,7 @@ public class TileView extends VLayout {
             }
         });
         nameField.setCellStyle("thumbnailTitle");
-        
+
         DetailViewerField iconField = new DetailViewerField("thumbnail");
         iconField.setType("image");
         iconField.setImageHeight(89);
@@ -139,7 +150,7 @@ public class TileView extends VLayout {
             }
         });
 
-        searchItem = new TextItem("description", "Search");
+        searchItem = new TextItem("description", M.searchTitle().asString());
         searchItem.setTitleOrientation(TitleOrientation.TOP);
         searchItem.setColSpan(2);
         searchItem.setTitleAlign(Alignment.LEFT);
@@ -166,59 +177,101 @@ public class TileView extends VLayout {
         });
 
         numSamplesItem = new SliderItem("numSamples");
-        numSamplesItem.setTitle("# of Samples");
+        numSamplesItem.setTitle(M.numSamplesTitle().asString());
         numSamplesItem.setTitleOrientation(TitleOrientation.TOP);
         numSamplesItem.setColSpan(2);
         numSamplesItem.setTitleAlign(Alignment.LEFT);
         numSamplesItem.setMinValue(1);
         // grep '^ *new ExplorerTreeNode' ShowcaseData.java | grep -o 'new [^.,]*\.Factory()' | sort | uniq | wc
-        numSamplesItem.setMaxValue(329);
+        numSamplesItem.setMaxValue(320);
         numSamplesItem.setDefaultValue(100);
         numSamplesItem.setHeight(50);
         numSamplesItem.setOperator(OperatorId.LESS_THAN);
-        
-        featuredCB = new CheckboxItem("featuredCB", "Featured Samples");
-        featuredCB.setValue(true);
-
-        newSamplesCB = new CheckboxItem("newSamplesCB", "New Samples");
-        comboBoxCB = new CheckboxItem("comboBoxCB", "ComboBox &amp; Family");
-        gridsCB = new CheckboxItem("gridsCB", "Grids");
-        treeCB = new CheckboxItem("treeCB", "Tree");
-        calendarCB = new CheckboxItem("calendarCB", "Calendar");
-        tilesCB = new CheckboxItem("tilesCB", "Data View / Tiling");
-        formsCB = new CheckboxItem("formsCB", "Forms");
-        layoutCB = new CheckboxItem("layoutCB", "Layouts");
-        windowsCB = new CheckboxItem("windowsCB", "Windows");
-        tabsCB = new CheckboxItem("tabsCB", "Tabs");
-        accordionCB = new CheckboxItem("accordionCB", "Accordion / Sections");
-        portalLayoutCB = new CheckboxItem("portalLayoutCB", "Portal Layout");
-        buttonsCB = new CheckboxItem("buttonsCB", "Buttons");
-        menusCB = new CheckboxItem("menusCB", "Menus");
-        toolStripCB = new CheckboxItem("toolStripCB", "ToolStrip");
-        otherControlsCB = new CheckboxItem("otherControlsCB", "Other Controls");
-        dataIntegrationCB = new CheckboxItem("dataIntegrationCB", "Data Integration");
-        dragDropCB = new CheckboxItem("dragDropCB", "Drag &amp; Drop");
-        basicsCB = new CheckboxItem("basicsCB", "Basics");
-        drawingCB = new CheckboxItem("drawingCB", "Drawing");
-        effectsCB = new CheckboxItem("effectsCB", "Effects &amp; Animation");
 
         ascendingItem = new CheckboxItem("chkSortDir");
-        ascendingItem.setTitle("Ascending");
+        ascendingItem.setTitle(M.ascendingTitle().asString());
 
-        disabledModeCB = new CheckboxItem("disabledModeCB", "Disabled Mode");
+        disabledModeCB = new CheckboxItem("disabledModeCB", M.disabledModeTitle().asString());
 
+        if (!Browser.getIsTouch()) {
+            featuredCB = new CheckboxItem("featuredCB", M.featuredCategoryName().asString());
+            featuredCB.setValue(true);
+            newSamplesCB = new CheckboxItem("newSamplesCB", M.newSamplesCategoryName().asString());
+            comboBoxCB = new CheckboxItem("comboBoxCB", M.comboBoxCategoryName().asString());
+            gridsCB = new CheckboxItem("gridsCB", M.gridsCategoryName().asString());
+            treeCB = new CheckboxItem("treeCB", M.treeCategoryName().asString());
+            calendarCB = new CheckboxItem("calendarCB", M.calendarCategoryName().asString());
+            tilesCB = new CheckboxItem("tilesCB", M.tilesCategoryName().asString());
+            formsCB = new CheckboxItem("formsCB", M.formsCategoryName().asString());
+            layoutCB = new CheckboxItem("layoutCB", M.layoutCategoryName().asString());
+            windowsCB = new CheckboxItem("windowsCB", M.windowsCategoryName().asString());
+            tabsCB = new CheckboxItem("tabsCB", M.tabsCategoryName().asString());
+            sectionsCB = new CheckboxItem("accordionCB", M.sectionsCategoryName().asString());
+            portalLayoutCB = new CheckboxItem("portalLayoutCB", M.portalLayoutCategoryName().asString());
+            buttonsCB = new CheckboxItem("buttonsCB", M.buttonsCategoryName().asString());
+            menusCB = new CheckboxItem("menusCB", M.menusCategoryName().asString());
+            toolStripCB = new CheckboxItem("toolStripCB", M.toolStripCategoryName().asString());
+            otherControlsCB = new CheckboxItem("otherControlsCB", M.otherControlsCategoryName().asString());
+            dataIntegrationCB = new CheckboxItem("dataIntegrationCB", M.dataIntegrationCategoryName().asString());
+            dragDropCB = new CheckboxItem("dragDropCB", M.dragDropCategoryName().asString());
+            basicsCB = new CheckboxItem("basicsCB", M.basicsCategoryName().asString());
+            drawingCB = new CheckboxItem("drawingCB", M.drawingCategoryName().asString());
+            effectsCB = new CheckboxItem("effectsCB", M.effectsCategoryName().asString());
+        } else {
+            categoriesItem = new SelectItem("categories", M.categoriesTitle().asString());
+            categoriesItem.setTitleOrientation(TitleOrientation.TOP);
+            categoriesItem.setColSpan(4);
+            categoriesItem.setMultiple(true);
+            categoriesItem.setMultipleAppearance(MultipleAppearance.GRID);
+            final LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
+            valueMap.put("featured_category", M.featuredCategoryName().asString());
+            valueMap.put("new_category", M.newSamplesCategoryName().asString());
+            valueMap.put("combobox_category", M.comboBoxCategoryName().asString());
+            valueMap.put("grid_category", M.gridsCategoryName().asString());
+            valueMap.put("tree_category", M.treeCategoryName().asString());
+            valueMap.put("calendar_category", M.calendarCategoryName().asString());
+            valueMap.put("tiling_category", M.tilesCategoryName().asString());
+            valueMap.put("form_category", M.formsCategoryName().asString());
+            valueMap.put("layout_category", M.layoutCategoryName().asString());
+            valueMap.put("layout_windows_category", M.windowsCategoryName().asString());
+            valueMap.put("layout_tabs_category", M.tabsCategoryName().asString());
+            valueMap.put("layout_sections_category", M.sectionsCategoryName().asString());
+            valueMap.put("portal_layout_category", M.portalLayoutCategoryName().asString());
+            valueMap.put("buttons_category", M.buttonsCategoryName().asString());
+            valueMap.put("menus_category", M.menusCategoryName().asString());
+            valueMap.put("toolstrip_category", M.toolStripCategoryName().asString());
+            valueMap.put("controls_category", M.otherControlsCategoryName().asString());
+            valueMap.put("data_integration_category", M.dataIntegrationCategoryName().asString());
+            valueMap.put("effects_dd_category", M.dragDropCategoryName().asString());
+            valueMap.put("basics_category", M.basicsCategoryName().asString());
+            valueMap.put("drawing", M.drawingCategoryName().asString());
+            valueMap.put("effects_category", M.effectsCategoryName().asString());
+            categoriesItem.setValueMap(valueMap);
+            categoriesItem.setDefaultValue(new String[] {"featured_category"});
+        }
 
-
-        filterForm.setFields(searchItem, numSamplesItem, ascendingItem, disabledModeCB, 
-            featuredCB, newSamplesCB, comboBoxCB, gridsCB, treeCB, calendarCB, tilesCB,
-            formsCB, layoutCB, windowsCB, tabsCB, accordionCB, portalLayoutCB, buttonsCB, menusCB,
-            toolStripCB, otherControlsCB, dataIntegrationCB, dragDropCB, basicsCB, drawingCB,
-            effectsCB);
+        final List<FormItem> filterFormItems = new ArrayList<FormItem>();
+        filterFormItems.add(searchItem);
+        filterFormItems.add(numSamplesItem);
+        filterFormItems.add(ascendingItem);
+        filterFormItems.add(disabledModeCB);
+        if (!Browser.getIsTouch()) {
+            filterFormItems.addAll(Arrays.asList(
+                    featuredCB, newSamplesCB, comboBoxCB, gridsCB,
+                    treeCB, calendarCB, tilesCB, formsCB,
+                    layoutCB, windowsCB, tabsCB, sectionsCB,
+                    portalLayoutCB, buttonsCB, menusCB, toolStripCB,
+                    otherControlsCB, dataIntegrationCB, dragDropCB, basicsCB,
+                    drawingCB, effectsCB));
+        } else {
+            filterFormItems.add(categoriesItem);
+        }
+        filterForm.setItems(filterFormItems.toArray(new FormItem[filterFormItems.size()]));
 
         filterForm.addItemChangedHandler(new ItemChangedHandler() {
             public void onItemChanged(ItemChangedEvent event) {
                 FormItem item = event.getItem();
-                if (item instanceof CheckboxItem || item instanceof SliderItem) {
+                if (item instanceof CheckboxItem || item instanceof SliderItem || item == categoriesItem) {
                     updateTiles();
                 }
             }
@@ -231,32 +284,35 @@ public class TileView extends VLayout {
     }
 
     private void updateTiles() {
-        String searchText = (String) searchItem.getValue();
+        final String searchText = (String)searchItem.getValue();
 
-        List<String> categories = new ArrayList<String>();
-        if (featuredCB.getValueAsBoolean()) categories.add("featured_category");
-        if (newSamplesCB.getValueAsBoolean()) categories.add("new_category");
-        if (comboBoxCB.getValueAsBoolean()) categories.add("combobox_category");
-        if (gridsCB.getValueAsBoolean()) categories.add("grid_category");
-        if (treeCB.getValueAsBoolean()) categories.add("tree_category");
-        if (calendarCB.getValueAsBoolean()) categories.add("calendar_category");
-        if (tilesCB.getValueAsBoolean()) categories.add("tiling_category");
-        if (formsCB.getValueAsBoolean()) categories.add("form_category");
-        if (layoutCB.getValueAsBoolean()) categories.add("layout_category");
-        if (windowsCB.getValueAsBoolean()) categories.add("layout_windows_category");
-        if (tabsCB.getValueAsBoolean()) categories.add("layout_tabs_category");
-        if (accordionCB.getValueAsBoolean()) categories.add("layout_sections_category");
-        if (portalLayoutCB.getValueAsBoolean()) categories.add("portal_layout_category");
-        if (buttonsCB.getValueAsBoolean()) categories.add("buttons_category");
-        if (menusCB.getValueAsBoolean()) categories.add("menus_category");
-        if (toolStripCB.getValueAsBoolean()) categories.add("toolstrip_category");
-        if (otherControlsCB.getValueAsBoolean()) categories.add("controls_category");
-        if (dataIntegrationCB.getValueAsBoolean()) categories.add("data_integration_category");
-        if (dragDropCB.getValueAsBoolean()) categories.add("effects_dd_category");
-        if (basicsCB.getValueAsBoolean()) categories.add("basics_category");
-        if (drawingCB.getValueAsBoolean()) categories.add("drawing");
-        if (effectsCB.getValueAsBoolean()) categories.add("effects_category");
-
+        final List<String> categories = new ArrayList<String>();
+        if (!Browser.getIsTouch()) {
+            if (featuredCB.getValueAsBoolean()) categories.add("featured_category");
+            if (newSamplesCB.getValueAsBoolean()) categories.add("new_category");
+            if (comboBoxCB.getValueAsBoolean()) categories.add("combobox_category");
+            if (gridsCB.getValueAsBoolean()) categories.add("grid_category");
+            if (treeCB.getValueAsBoolean()) categories.add("tree_category");
+            if (calendarCB.getValueAsBoolean()) categories.add("calendar_category");
+            if (tilesCB.getValueAsBoolean()) categories.add("tiling_category");
+            if (formsCB.getValueAsBoolean()) categories.add("form_category");
+            if (layoutCB.getValueAsBoolean()) categories.add("layout_category");
+            if (windowsCB.getValueAsBoolean()) categories.add("layout_windows_category");
+            if (tabsCB.getValueAsBoolean()) categories.add("layout_tabs_category");
+            if (sectionsCB.getValueAsBoolean()) categories.add("layout_sections_category");
+            if (portalLayoutCB.getValueAsBoolean()) categories.add("portal_layout_category");
+            if (buttonsCB.getValueAsBoolean()) categories.add("buttons_category");
+            if (menusCB.getValueAsBoolean()) categories.add("menus_category");
+            if (toolStripCB.getValueAsBoolean()) categories.add("toolstrip_category");
+            if (otherControlsCB.getValueAsBoolean()) categories.add("controls_category");
+            if (dataIntegrationCB.getValueAsBoolean()) categories.add("data_integration_category");
+            if (dragDropCB.getValueAsBoolean()) categories.add("effects_dd_category");
+            if (basicsCB.getValueAsBoolean()) categories.add("basics_category");
+            if (drawingCB.getValueAsBoolean()) categories.add("drawing");
+            if (effectsCB.getValueAsBoolean()) categories.add("effects_category");
+        } else {
+            categories.addAll(Arrays.asList(categoriesItem.getValues()));
+        }
 
         showTiles(searchText, categories);
 
@@ -265,73 +321,33 @@ public class TileView extends VLayout {
     }
 
     private void showSample(Record node) {
-
         boolean isExplorerTreeNode = node instanceof ExplorerTreeNode;
         if (node instanceof CommandTreeNode) {
             CommandTreeNode commandTreeNode = (CommandTreeNode) node;
             commandTreeNode.getCommand().execute();
         } else if (isExplorerTreeNode) {
-            ExplorerTreeNode explorerTreeNode = (ExplorerTreeNode) node;
-            PanelFactory factory = explorerTreeNode.getFactory();
-            if (factory != null) {
-
-                Canvas panel = factory.create();
-                panel.setDisabled(disabledModeCB.getValueAsBoolean());
-                
-                String sampleName = explorerTreeNode.getName();
-
-                String icon = explorerTreeNode.getIcon();
-                if (icon == null) {
-                    icon = "silk/plugin.png";
-                }
-
-                final Window window = new Window();
-                window.setKeepInParentRect(true);
-                window.setHeaderIcon(icon, 16, 16);
-                window.setTitle(sampleName);
-                window.setWidth100();
-                window.setHeight100();
-                window.setShowMinimizeButton(false);
-                window.setShowCloseButton(true);
-                window.setCanDragReposition(false);
-                window.setCanDragResize(false);
-                window.setShowShadow(false);
-                window.addItem(panel);
-                window.setParentElement(parentPanel);
-                String nodeID = explorerTreeNode.getNodeID();
-                String historyToken = nodeID.substring(0, nodeID.indexOf(idSuffix));
-                History.newItem(historyToken, false);
-                window.addCloseClickHandler(new CloseClickHandler() {
-                    public void onCloseClick(CloseClickEvent event) {
-                        History.newItem("", false);
-                        window.destroy();
-                    }
-                });
-                window.show();
-            }
+            ExplorerTreeNode explorerTreeNode = (ExplorerTreeNode)node;
+            History.newItem(explorerTreeNode.getNodeID(), true);
         }
     }
 
-
     private void showTiles(String searchText, List<String> categories) {
+        final Set<TreeNode> data = new HashSet<TreeNode>();
 
+        final int maxResults = ((Number)numSamplesItem.getValue()).intValue();
 
-        Set data = new HashSet();
-
-        int maxResults = ((Number)numSamplesItem.getValue()).intValue();
-
-        if(searchText != null) {
+        if (searchText != null) {
             TreeNode[] children = tree.getAllNodes();
             applyFilter(tree, children, data, searchText, maxResults, true);
         } else {
-            for (String category : categories) {
+            for (final String category : categories) {
                 TreeNode categoryNode = tree.find("nodeID", category + idSuffix);
                 TreeNode[] children = tree.getChildren(categoryNode);
 
                 applyFilter(tree, children, data, searchText, maxResults, false);
             }
         }
-        tileGrid.setData((Record[]) data.toArray(new Record[data.size()]));
+        tileGrid.setData((Record[])data.toArray(new Record[data.size()]));
     }
 
     private void applyFilter(Tree tree, TreeNode[] children, Set data, String searchText,int maxResults, boolean skipCategories) {

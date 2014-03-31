@@ -17,7 +17,7 @@ public class DropdownListGridSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             DropdownListGridSample panel = new DropdownListGridSample();
             id = panel.getID();
             return panel;

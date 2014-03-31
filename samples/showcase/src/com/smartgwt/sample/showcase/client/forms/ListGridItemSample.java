@@ -19,12 +19,7 @@ package com.smartgwt.sample.showcase.client.forms;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.google.gwt.user.client.Window;
-import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.RecordList;
-import com.smartgwt.client.data.Record;
-import com.smartgwt.client.util.SC;
-import com.smartgwt.client.widgets.Button;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.Label;
@@ -35,18 +30,15 @@ import com.smartgwt.client.widgets.events.DrawHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.events.ItemChangedEvent;
 import com.smartgwt.client.widgets.form.events.ItemChangedHandler;
-import com.smartgwt.client.widgets.form.fields.events.FormItemInitHandler;
-import com.smartgwt.client.widgets.form.fields.events.ShowValueEvent;
-import com.smartgwt.client.widgets.form.fields.events.ShowValueHandler;
-import com.smartgwt.client.widgets.form.fields.ButtonItem;
 import com.smartgwt.client.widgets.form.fields.CanvasItem;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
+import com.smartgwt.client.widgets.form.fields.events.FormItemInitHandler;
+import com.smartgwt.client.widgets.form.fields.events.ShowValueEvent;
+import com.smartgwt.client.widgets.form.fields.events.ShowValueHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
-import com.smartgwt.client.widgets.grid.events.DataArrivedEvent;
-import com.smartgwt.client.widgets.grid.events.DataArrivedHandler;
 import com.smartgwt.client.widgets.grid.events.SelectionUpdatedEvent;
 import com.smartgwt.client.widgets.grid.events.SelectionUpdatedHandler;
 import com.smartgwt.client.widgets.layout.HLayout;
@@ -72,7 +64,7 @@ public class ListGridItemSample extends ShowcasePanel {
         
     public static class Factory implements PanelFactory {
         private String id;
-        public Canvas create() {
+        public ShowcasePanel create() {
             ListGridItemSample panel = new ListGridItemSample();
             id = panel.getID();
             return panel;

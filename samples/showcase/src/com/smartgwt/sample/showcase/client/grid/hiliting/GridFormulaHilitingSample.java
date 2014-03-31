@@ -1,12 +1,8 @@
 package com.smartgwt.sample.showcase.client.grid.hiliting;
 
 import com.google.gwt.i18n.client.NumberFormat;
-import com.smartgwt.client.data.AdvancedCriteria;
-import com.smartgwt.client.data.Criterion;
-import com.smartgwt.client.data.Hilite;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.ListGridFieldType;
-import com.smartgwt.client.types.OperatorId;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.events.ClickEvent;
@@ -35,7 +31,7 @@ public class GridFormulaHilitingSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridFormulaHilitingSample panel = new GridFormulaHilitingSample();
             id = panel.getID();
             return panel;

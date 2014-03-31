@@ -16,7 +16,7 @@ public class MillerColumnsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             MillerColumnsSample panel = new MillerColumnsSample();
             id = panel.getID();
             return panel;

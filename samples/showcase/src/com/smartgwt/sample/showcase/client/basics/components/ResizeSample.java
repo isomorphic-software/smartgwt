@@ -17,7 +17,7 @@ public class ResizeSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             ResizeSample panel = new ResizeSample();
             id = panel.getID();
             return panel;

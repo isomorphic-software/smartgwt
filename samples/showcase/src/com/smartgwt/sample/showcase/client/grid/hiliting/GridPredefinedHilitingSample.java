@@ -2,7 +2,6 @@ package com.smartgwt.sample.showcase.client.grid.hiliting;
 
 import com.google.gwt.i18n.client.NumberFormat;
 import com.smartgwt.client.data.AdvancedCriteria;
-import com.smartgwt.client.data.Criteria;
 import com.smartgwt.client.data.Criterion;
 import com.smartgwt.client.data.Hilite;
 import com.smartgwt.client.types.Alignment;
@@ -33,7 +32,7 @@ public class GridPredefinedHilitingSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridPredefinedHilitingSample panel = new GridPredefinedHilitingSample();
             id = panel.getID();
             return panel;

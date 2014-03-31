@@ -1,7 +1,5 @@
 package com.smartgwt.sample.showcase.client.forms;
 
-import java.util.List;
-
 import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.data.Criteria;
 import com.smartgwt.client.data.DSCallback;
@@ -47,7 +45,7 @@ public class NestedEditorSample extends ShowcasePanel {
         
     public static class Factory implements PanelFactory {
         private String id;
-        public Canvas create() {
+        public ShowcasePanel create() {
             NestedEditorSample panel = new NestedEditorSample();
             id = panel.getID();
             return panel;

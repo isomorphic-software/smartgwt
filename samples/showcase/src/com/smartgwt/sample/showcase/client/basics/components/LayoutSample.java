@@ -16,7 +16,7 @@ public class LayoutSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             LayoutSample panel = new LayoutSample();
             id = panel.getID();
             return panel;

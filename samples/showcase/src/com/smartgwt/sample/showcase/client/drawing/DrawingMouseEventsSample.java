@@ -39,7 +39,7 @@ public class DrawingMouseEventsSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             DrawingMouseEventsSample panel = new DrawingMouseEventsSample();
             id = panel.getID();
             return panel;

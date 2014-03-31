@@ -34,7 +34,7 @@ public class PickTreeFieldSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             PickTreeFieldSample panel = new PickTreeFieldSample();
             id = panel.getID();
             return panel;

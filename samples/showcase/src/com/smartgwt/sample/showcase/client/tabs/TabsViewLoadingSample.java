@@ -17,7 +17,7 @@ public class TabsViewLoadingSample extends ShowcasePanel {
 	public static class Factory implements PanelFactory {
 		private String id;
 
-		public Canvas create() {
+		public ShowcasePanel create() {
 			TabsViewLoadingSample panel = new TabsViewLoadingSample();
 			id = panel.getID();
 			return panel;

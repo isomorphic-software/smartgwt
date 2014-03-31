@@ -1,31 +1,38 @@
 package com.smartgwt.sample.showcase.client;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.HistoryListener;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.smartgwt.client.Version;
 import com.smartgwt.client.core.KeyIdentifier;
 import com.smartgwt.client.types.Alignment;
+import com.smartgwt.client.types.CurrentPane;
+import com.smartgwt.client.types.Cursor;
+import com.smartgwt.client.types.DeviceMode;
 import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.types.TabBarControls;
 import com.smartgwt.client.types.VerticalAlignment;
+import com.smartgwt.client.util.AutoTest;
+import com.smartgwt.client.util.Browser;
 import com.smartgwt.client.util.Page;
 import com.smartgwt.client.util.SC;
-import com.smartgwt.client.util.AutoTest;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.ImgButton;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.Window;
-import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.events.DrawHandler;
+import com.smartgwt.client.widgets.events.IconClickEvent;
+import com.smartgwt.client.widgets.events.IconClickHandler;
 import com.smartgwt.client.widgets.events.ResizedEvent;
 import com.smartgwt.client.widgets.events.ResizedHandler;
-import com.smartgwt.client.widgets.events.VisibilityChangedEvent;
-import com.smartgwt.client.widgets.events.VisibilityChangedHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;
@@ -35,8 +42,12 @@ import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.HStack;
 import com.smartgwt.client.widgets.layout.Layout;
 import com.smartgwt.client.widgets.layout.LayoutSpacer;
+import com.smartgwt.client.widgets.layout.NavigationBar;
+import com.smartgwt.client.widgets.layout.SplitPane;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.layout.VStack;
+import com.smartgwt.client.widgets.layout.events.PaneChangedEvent;
+import com.smartgwt.client.widgets.layout.events.PaneChangedHandler;
 import com.smartgwt.client.widgets.menu.Menu;
 import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.menu.MenuItemIfFunction;
@@ -55,37 +66,48 @@ import com.smartgwt.client.widgets.tree.events.LeafClickHandler;
 import com.smartgwt.sample.showcase.client.data.CommandTreeNode;
 import com.smartgwt.sample.showcase.client.data.ExplorerTreeNode;
 
-import java.util.LinkedHashMap;
-
 @SuppressWarnings("deprecation")
 public class Showcase implements EntryPoint, HistoryListener {
-	
-SCConstants scConstants = (SCConstants)GWT.create(SCConstants.class);
-private boolean isc_websiteMode = scConstants.websiteMode();
+    private static final ShowcaseMessages M = ShowcaseMessages.INSTANCE;
 
+    private final SCConstants scConstants = (SCConstants)GWT.create(SCConstants.class);
+    private boolean isc_websiteMode = scConstants.websiteMode();
+
+    private SplitPane splitPane;
     private TabSet mainTabSet;
-    private SideNavTree sideNav;
     private Menu contextMenu;
+    private SideNavTree sideNav;
+    private Layout homePanel;
 	private HLayout topPane;
-	private HLayout leftSuperPane;
-	private Canvas centerPane;
 	private VStack rightPane;
 	private HStack bottomPane;
 	private HLayout bottomPaneLeft;
 	private HLayout bottomPaneRight;
 
+    private List<Canvas> detailTools;
+    private ToolStripButton printButton;
+    private ToolStripButton sourceButton;
+    private ToolStripButton showOverviewButton;
+
     public void onModuleLoad() {
+        final boolean useDesktopMode = ShowcaseConfiguration.getSingleton().isOpenForTesting() || Browser.getIsDesktop();
+
         final String initToken = History.getToken();
         // If the request contains param "websiteMode", override the configured value
-        String isc_websiteModeParam = com.google.gwt.user.client.Window.Location.getParameter("isc_websiteMode");
-        if(isc_websiteModeParam!=null) {
-        	isc_websiteMode = Boolean.parseBoolean(isc_websiteModeParam);
+        {
+            final String isc_websiteModeParam = com.google.gwt.user.client.Window.Location.getParameter("isc_websiteMode");
+            if (isc_websiteModeParam != null) {
+                isc_websiteMode = isc_websiteModeParam.isEmpty() || Boolean.parseBoolean(isc_websiteModeParam);
+            }
         }
+        isc_websiteMode = isc_websiteMode && useDesktopMode;
 
-        //setup overall layout / viewport
-        VLayout main = new VLayout() {
+        // setup overall layout
+        final VLayout main = new VLayout() {
             {
                 setID("isc_Showcase_1_0");
+                setWidth100();
+                setHeight100();
             }
 
             @Override
@@ -97,102 +119,30 @@ private boolean isc_websiteMode = scConstants.websiteMode();
             }
         };
 
-        ToolStrip topBar = new ToolStrip();
-        topBar.setHeight(33);
-        topBar.setWidth100();
+        splitPane = new SplitPane();
+        splitPane.setDeviceMode(useDesktopMode ? DeviceMode.DESKTOP : DeviceMode.HANDSET);
+        splitPane.setShowMiniNav(false);
+        splitPane.setWidth100();
+        splitPane.setHeight100();
+        splitPane.setAddHistoryEntries(false);
 
-        topBar.addSpacer(6);
-        ImgButton sgwtHomeButton = new ImgButton();
-        sgwtHomeButton.setSrc("pieces/24/cube_green.png");
-        sgwtHomeButton.setWidth(24);
-        sgwtHomeButton.setHeight(24);
-        sgwtHomeButton.setPrompt("Smart GWT Project Page");
-        sgwtHomeButton.setHoverStyle("interactImageHover");
-        sgwtHomeButton.setShowRollOver(false);
-        sgwtHomeButton.setShowDownIcon(false);
-        sgwtHomeButton.setShowDown(false);
-        sgwtHomeButton.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
-            public void onClick(ClickEvent event) {
-                com.google.gwt.user.client.Window.open("http://code.google.com/p/smartgwt/",
-                                                       "sgwt", null);
-            }
-        });
-        topBar.addMember(sgwtHomeButton);
-        topBar.addSpacer(6);
-
-        Label title = new Label("Smart GWT Showcase");
-        title.setStyleName("sgwtTitle");
-        title.setWidth(300);
-        topBar.addMember(title);
-
-        topBar.addFill();
-
-        ToolStripButton devConsoleButton = new ToolStripButton();
-        devConsoleButton.setTitle("Developer Console");
-        devConsoleButton.setIcon("silk/bug.png");
-        devConsoleButton.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
-            public void onClick(ClickEvent event) {
-                SC.showConsole();
-            }
-        });
-
-        topBar.addButton(devConsoleButton);
-
-        topBar.addSeparator();
-
-        ImgButton imgButton = new ImgButton();
-        imgButton.setWidth(18);
-        imgButton.setHeight(18);
-        imgButton.setSrc("silk/emoticon.png");
-        imgButton.setShowFocused(false);
-        imgButton.setShowFocusedIcon(false);
-        imgButton.setPrompt("I'm feeling lucky");
-        imgButton.setHoverWidth(110);
-        imgButton.setHoverStyle("interactImageHover");
-
-        imgButton.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
-            public void onClick(ClickEvent event) {
-                ExplorerTreeNode[] data = sideNav.getShowcaseData();
-                int size = data.length;
-                for (int i = 0; i < 15; i++) {
-                    int sampleIndex = (int) (size * java.lang.Math.random());
-                    ExplorerTreeNode sample = data[sampleIndex];
-                    if (sample.getFactory() != null && !(sample instanceof CommandTreeNode)) {
-                        showSample(sample);
-                        break;
-                    }
-                }
-            }
-        });
-
-        topBar.addMember(imgButton);
-
-        topBar.addSpacer(6);
-
-        main.setWidth100();
-        main.setHeight100();
-        main.setStyleName("tabSetContainer");
+        splitPane.setNavigationTitle(M.navigationPaneTitle().asString());
 
         VLayout featureExplorer = new VLayout();
-        featureExplorer.setLayoutMargin(5);
         featureExplorer.setWidth100();
         featureExplorer.setHeight100();
-        
+
         topPane = new HLayout();
         topPane.setHeight100();
         topPane.setOverflow(Overflow.HIDDEN);
-        
-        leftSuperPane = new HLayout();
-        leftSuperPane.setResizeBarTarget("next");
-        leftSuperPane.setOverflow(Overflow.HIDDEN);
-        
+
         VLayout sideNavLayout = new VLayout();
         sideNavLayout.setHeight100();
         sideNavLayout.setWidth(215);
-        sideNavLayout.setShowResizeBar(true);
 
         sideNav = new SideNavTree();
         sideNav.setID("isc_SideNavTree_0");
+        sideNav.setBorder("0px");
         sideNav.addLeafClickHandler(new LeafClickHandler() {
             public void onLeafClick(LeafClickEvent event) {
                 TreeNode node = event.getLeaf();
@@ -206,266 +156,382 @@ private boolean isc_websiteMode = scConstants.websiteMode();
         }
 
         sideNavLayout.addMember(sideNav);
-        
+
         ToolStrip toolStripVersion = new ToolStrip();
         toolStripVersion.setWidth100();
-        Label version = new Label("Version: "+Version.getVersion()+"<br>Built "+Version.getBuildDate());
+        final Label version = new Label(M.versionLabelContents(Version.getVersion(), "" + Version.getBuildDate()).asString());
         version.setWidth100();
         version.setPadding(5);
         toolStripVersion.addMember(version);
         sideNavLayout.addMember(toolStripVersion);
-        
-        mainTabSet = new TabSet();
 
-        Layout paneContainerProperties = new Layout();
-        paneContainerProperties.setLayoutMargin(0);
-        paneContainerProperties.setLayoutTopMargin(1);
-        mainTabSet.setPaneContainerProperties(paneContainerProperties);
+        if (useDesktopMode) {
+            mainTabSet = new TabSet();
+            mainTabSet.setWidth100();
+            mainTabSet.setHeight100();
+            mainTabSet.setPaneContainerOverflow(Overflow.AUTO);
+            mainTabSet.addTabSelectedHandler(new TabSelectedHandler() {
+                public void onTabSelected(TabSelectedEvent event) {
+                    Tab selectedTab = event.getTab();
 
-        mainTabSet.setWidth100();
-        mainTabSet.setHeight100();
-        mainTabSet.addTabSelectedHandler(new TabSelectedHandler() {
-            public void onTabSelected(TabSelectedEvent event) {
-                Tab selectedTab = event.getTab();
+                    Canvas pane = selectedTab.getPane();
+                    assert pane == homePanel || pane instanceof ShowcasePanel;
+                    if (pane instanceof ShowcasePanel) {
+                        ShowcasePanel panel = (ShowcasePanel)pane;
+                        Canvas viewPanel = panel.viewPanel;
+                        AutoTest.setTestRoot(panel.shouldWrapViewPanel() ? 
+                                             viewPanel.getParentElement() : viewPanel);
+                    }
 
-                Canvas pane = selectedTab.getPane();
-                if (pane instanceof ShowcasePanel) {
-                    ShowcasePanel panel =(ShowcasePanel)pane;
-                    Canvas viewPanel = panel.viewPanel;
-                    AutoTest.setTestRoot(panel.shouldWrapViewPanel() ? 
-                                         viewPanel.getParentElement() : viewPanel);
+                    String historyToken = selectedTab.getAttribute("historyToken");
+                    if (historyToken != null) {
+                        History.newItem(historyToken, false);
+                    } else {
+                        History.newItem("main", false);
+                    }
                 }
+            });
 
-                String historyToken = selectedTab.getAttribute("historyToken");
-                if (historyToken != null) {
-                    History.newItem(historyToken, false);
-                } else {
-                    History.newItem("main", false);
-                }
-            }
-        });
-
-        LayoutSpacer layoutSpacer = new LayoutSpacer();
-        layoutSpacer.setWidth(5);
-
-        SelectItem selectItem = new SelectItem();
-        selectItem.setHeight(21);
-        selectItem.setWidth(130);
-        LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
-        valueMap.put("EnterpriseBlue", "Enterprise Blue");
-        valueMap.put("Enterprise", "Enterprise Gray");
-        valueMap.put("Graphite", "Graphite");
-        valueMap.put("Simplicity", "Simplicity");
-
-
-        selectItem.setValueMap(valueMap);
-
-        final String skinCookieName = "skin_name_2_4";
-        String currentSkin = Cookies.getCookie(skinCookieName);
-        if (currentSkin == null) {
-            currentSkin = "Enterprise";
+            contextMenu = createContextMenu();
         }
-        selectItem.setDefaultValue(currentSkin);
-        selectItem.setShowTitle(false);
-        selectItem.addChangeHandler(new ChangeHandler() {
-            public void onChange(ChangeEvent event) {
-                Cookies.setCookie(skinCookieName, (String) event.getValue());
-                com.google.gwt.user.client.Window.Location.reload();
+
+        homePanel = new HLayout();
+        homePanel.setHeight100();
+        homePanel.setWidth100();
+        final TileView tileView = new TileView();
+        homePanel.addMember(tileView);
+
+        if (isc_websiteMode) {
+            // Build and add the rightPane, with callToAction buttons
+            rightPane = new VStack();
+            rightPane.setDefaultLayoutAlign(Alignment.CENTER);
+            rightPane.setOverflow(Overflow.HIDDEN);
+            rightPane.setWidth(234);
+            rightPane.hide();
+
+            // Add bottomPane
+            bottomPaneLeft = new HLayout();
+            bottomPaneLeft.setWidth("50%");
+            bottomPaneLeft.setHeight(30);
+            bottomPaneLeft.setAlign(Alignment.LEFT);
+            bottomPaneLeft.setLayoutLeftMargin(10);
+            bottomPaneLeft.setMembersMargin(10);
+
+            bottomPaneRight = new HLayout();
+            bottomPaneRight.setWidth("50%");
+            bottomPaneRight.setHeight(30);
+            bottomPaneRight.setAlign(Alignment.RIGHT);
+            bottomPaneRight.setLayoutLeftMargin(10);
+
+            bottomPane = new HStack();
+            bottomPane.addMember(bottomPaneLeft);
+            bottomPane.addMember(bottomPaneRight);
+            bottomPane.setOverflow(Overflow.HIDDEN);
+            bottomPane.setHeight(30);
+            bottomPane.setWidth100();
+            bottomPane.setStyleName("explorerBottomPane");
+            bottomPane.hide();
+
+            // Right Pane buttons
+            // SmartGWT Call to action button in right panel
+            Layout smartGwtButtonBoxR = new Layout();
+            smartGwtButtonBoxR.setStyleName("explorerButtonBoxR");
+            smartGwtButtonBoxR.setWidth(200);
+            rightPane.addMember(smartGwtButtonBoxR);
+
+            Label smartGwtButtonR = new Label("<div style='font-size: 9pt;''>Prefer to write UI in JavaScript?</div>" +
+                        "<img src='images/icon_javascript_t.png'" +
+                            "style='height: 30pt; float: left; margin-right: 2pt; " +
+                        "margin-left: 2pt; margin-top: 10pt;'/>" +
+                        "<a target='_top' style='line-height: 12pt; padding-top: 5pt;' "+
+                        "href='" + "/#Welcome" + "' " +
+                        ">" + "SmartClient<br/>Hands-On Demo" + "</a>");
+            smartGwtButtonR.setStyleName("darkgrey_Ebutton ERbutton");
+            smartGwtButtonR.setWidth(200);
+            smartGwtButtonR.setHeight(1);
+            smartGwtButtonR.setAlign(Alignment.CENTER);
+            smartGwtButtonR.setValign(VerticalAlignment.CENTER);
+            smartGwtButtonBoxR.addMember(smartGwtButtonR);
+
+            // Contact Us Call to action button in right panel
+            Layout contactUsButtonBoxR = new Layout();
+            contactUsButtonBoxR.setStyleName("explorerButtonBoxR explorerButtonBoxGradient");
+            contactUsButtonBoxR.setWidth(200);
+            rightPane.addMember(contactUsButtonBoxR);
+
+            Label contactUsButtonR = new Label("<div>Got questions?" +
+                      "<div style='font-size: 8pt;'>We'd love to hear from you!</div>" +
+                      "</div>" +
+                        "<a target='_top' href='" + "/company/contact.jsp" + "' " +
+                        ">" + "Contact Us" + "</a>");
+            contactUsButtonR.setStyleName("darkgrey_Ebutton ERbutton");
+            contactUsButtonR.setWidth(200);
+            contactUsButtonR.setHeight(1);
+            contactUsButtonR.setAlign(Alignment.CENTER);
+            contactUsButtonR.setValign(VerticalAlignment.CENTER);
+            contactUsButtonBoxR.addMember(contactUsButtonR);
+
+            // Free Trial Call to action button in right panel
+            Layout freeTrialButtonBoxR = new Layout();
+            freeTrialButtonBoxR.setStyleName("explorerButtonBoxR explorerButtonBoxGradient");
+            freeTrialButtonBoxR.setWidth(200);
+            rightPane.addMember(freeTrialButtonBoxR);
+
+            Label freeTrialButtonR = new Label("<div>Try it out for yourself!</div>" +
+                        "<a target='_top' style='line-height: 12pt; padding-top: 5pt;' " +
+                        "href='" + "/product/download.jsp" + "' " +
+                        ">" + "Free Trial<br/><span style='font-size: 8pt;'>60 days</span>" + "</a>");
+            freeTrialButtonR.setStyleName("blue_Ebutton ERbutton");
+            freeTrialButtonR.setWidth(200);
+            freeTrialButtonR.setHeight(1);
+            freeTrialButtonR.setAlign(Alignment.CENTER);
+            freeTrialButtonR.setValign(VerticalAlignment.CENTER);
+            freeTrialButtonBoxR.addMember(freeTrialButtonR);
+
+            // Pricing Call to action button in right panel
+            Layout pricingTrialButtonBoxR = new Layout();
+            pricingTrialButtonBoxR.setStyleName("explorerButtonBoxR explorerButtonBoxGradient");
+            pricingTrialButtonBoxR.setWidth(200);
+            rightPane.addMember(pricingTrialButtonBoxR);
+
+            Label pricingTrialButtonR = new Label("<div>Want your own?</div>" +
+                    "<a target='_top' href='" + "/product/" + "' " +
+                    ">" + "Editions & Pricing" + "</a>");
+            pricingTrialButtonR.setStyleName("orange_Ebutton ERbutton");
+            pricingTrialButtonR.setWidth(200);
+            pricingTrialButtonR.setHeight(1);
+            pricingTrialButtonR.setAlign(Alignment.CENTER);
+            pricingTrialButtonR.setValign(VerticalAlignment.CENTER);
+            pricingTrialButtonBoxR.addMember(pricingTrialButtonR);
+
+            // Learn More Call to action button in right panel
+            Layout learnMoreButtonBoxR = new Layout();
+            learnMoreButtonBoxR.setStyleName("explorerButtonBoxR explorerButtonBoxGradient");
+            learnMoreButtonBoxR.setWidth(200);
+            rightPane.addMember(learnMoreButtonBoxR);
+
+            Label learnMoreButtonR = new Label("<div>Isomorphic has the advantage.</div>" +
+                    "<a target='_top' href='" + "/technology/whysmart.jsp" + "' " +
+                    ">" + "Learn More >" + "</a>");
+            learnMoreButtonR.setStyleName("darkgrey_Ebutton ERbutton");
+            learnMoreButtonR.setWidth(200);
+            learnMoreButtonR.setHeight(1);
+            learnMoreButtonR.setAlign(Alignment.CENTER);
+            learnMoreButtonR.setValign(VerticalAlignment.CENTER);
+            learnMoreButtonBoxR.addMember(learnMoreButtonR);
+
+            // Bottom Pane buttons
+            // Free Trial Call to action button in bottom panel
+            Label freeTrialButtonB = new Label("<a target='_top' href='/product/download.jsp' " +
+                    ">Free Trial</a>");
+            freeTrialButtonB.setStyleName("blue_Ebutton EBbutton");
+            bottomPaneLeft.addMember(freeTrialButtonB);
+
+            // Pricing Call to action button in bottom panel
+            Label pricingButtonB = new Label("<a target='_top' href='/product/' " +
+                ">Editions & Pricing</a>");
+            pricingButtonB.setStyleName("orange_Ebutton EBbutton");
+            bottomPaneLeft.addMember(pricingButtonB);
+
+            // SmartGWT Call to action button in bottom panel
+            Label smartGWTButtonPreB = new Label("<span>Prefer to write UI in JavaScript?</span>");
+            smartGWTButtonPreB.setStyleName("EBbutton");
+            smartGWTButtonPreB.setWidth("220pt");
+            bottomPaneRight.addMember(smartGWTButtonPreB);
+            Label smartGWTButtonB = new Label("<a target='_top' style='width: 130pt;' " +
+                "href='/#Welcome'" +
+                " >SmartClient Live Demo</a>");
+            smartGWTButtonB.setStyleName("darkgrey_Ebutton EBbutton");
+            bottomPaneRight.addMember(smartGWTButtonB);
+        }
+
+        final NavigationBar navigationBarProperties = new NavigationBar();
+        final Label navTitleLabelProperties = new Label();
+        navTitleLabelProperties.setStyleName("navBarHeader");
+        navTitleLabelProperties.setIcon("pieces/24/cube_green.png");
+        navTitleLabelProperties.setIconWidth(24);
+        navTitleLabelProperties.setIconHeight(24);
+        navTitleLabelProperties.addIconClickHandler(new IconClickHandler() {
+            @Override
+            public void onIconClick(IconClickEvent event) {
+                com.google.gwt.user.client.Window.open("http://code.google.com/p/smartgwt/", "sgwt", null);
+            }
+        });
+        navTitleLabelProperties.setIconCursor(Cursor.POINTER);
+        navigationBarProperties.setAutoChildProperties("titleLabel", navTitleLabelProperties);
+        splitPane.setAutoChildProperties("navigationBar", navigationBarProperties);
+        final Label detailTitleLabelProperties = new Label();
+        detailTitleLabelProperties.setStyleName("navBarHeader");
+        detailTitleLabelProperties.setIconWidth(24);
+        detailTitleLabelProperties.setIconHeight(24);
+        splitPane.setAutoChildProperties("detailTitleLabel", detailTitleLabelProperties);
+        if (splitPane.getDeviceMode() != DeviceMode.DESKTOP) {
+            splitPane.addPaneChangedHandler(new PaneChangedHandler() {
+                @Override
+                public void onPaneChanged(PaneChangedEvent event) {
+                    if (event.getNewPane() == CurrentPane.NAVIGATION) {
+                        final Label titleLabel = splitPane.getNavigationBar().getTitleLabel();
+                        titleLabel.setStyleName("navBarHeader");
+                        titleLabel.setIcon("pieces/24/cube_green.png");
+                    }
+                }
+            });
+        }
+        splitPane.setNavigationPane(sideNavLayout);
+
+        detailTools = new ArrayList<Canvas>(3);
+        if (useDesktopMode) {
+            final SelectItem selectItem = new SelectItem("skin", M.skinItemTitle().asString());
+            selectItem.setHeight(21);
+            selectItem.setWidth(130);
+            final LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
+            valueMap.put("Enterprise", M.enterpriseSkinName());
+            valueMap.put("EnterpriseBlue", M.enterpriseBlueSkinName());
+            valueMap.put("Graphite", M.graphiteSkinName());
+            //valueMap.put("Simplicity", "Simplicity"); // no support for SplitPane
+            selectItem.setValueMap(valueMap);
+            final String skinCookieName = "skin_name_2_4";
+            String currentSkin = Cookies.getCookie(skinCookieName);
+            if (currentSkin == null) {
+                currentSkin = "Enterprise";
+            }
+            selectItem.setDefaultValue(currentSkin);
+            selectItem.setShowTitle(false);
+            selectItem.addChangeHandler(new ChangeHandler() {
+                public void onChange(ChangeEvent event) {
+                    Cookies.setCookie(skinCookieName, (String) event.getValue());
+                    com.google.gwt.user.client.Window.Location.reload();
+                }
+            });
+
+            final DynamicForm skinSwitcherForm = new DynamicForm();
+            skinSwitcherForm.setHeight(selectItem.getHeight());
+            skinSwitcherForm.setPadding(0);
+            skinSwitcherForm.setMargin(0);
+            skinSwitcherForm.setCellPadding(1);
+            skinSwitcherForm.setNumCols(1);
+            skinSwitcherForm.setFields(selectItem);
+            skinSwitcherForm.setLayoutAlign(VerticalAlignment.CENTER);
+            detailTools.add(new LayoutSpacer(5, 1));
+            detailTools.add(skinSwitcherForm);
+            detailTools.add(new LayoutSpacer(5, 1));
+        }
+
+        printButton = new ToolStripButton();
+        printButton.setWidth(20);
+        printButton.setHeight(20);
+        printButton.setDisabled(true);
+        if (useDesktopMode) printButton.setTitle(M.printButtonTitle().asString());
+        printButton.setIcon("silk/printer.png");
+        printButton.setShowFocused(false);
+        printButton.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
+            public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
+                final ShowcasePanel showcasePanel;
+                if (useDesktopMode) {
+                    final Tab tab = mainTabSet.getSelectedTab();
+                    showcasePanel = (ShowcasePanel)tab.getPane();
+                } else {
+                    showcasePanel = (ShowcasePanel)splitPane.getDetailPane();
+                }
+                Canvas.showPrintPreview(showcasePanel.viewPanel);
+            }
+        });
+        if (useDesktopMode) {
+            detailTools.add(printButton);
+            detailTools.add(new LayoutSpacer(5, 1));
+        }
+
+        showOverviewButton = new ToolStripButton();
+        showOverviewButton.setWidth(20);
+        showOverviewButton.setHeight(20);
+        showOverviewButton.setDisabled(true);
+        showOverviewButton.setIcon("silk/book_open.png");
+        showOverviewButton.setShowFocused(false);
+        showOverviewButton.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
+            @Override
+            public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
+                final ShowcasePanel showcasePanel;
+                if (useDesktopMode) {
+                    final Tab tab = mainTabSet.getSelectedTab();
+                    showcasePanel = (ShowcasePanel)tab.getPane();
+                } else {
+                    showcasePanel = (ShowcasePanel)splitPane.getDetailPane();
+                }
+                showcasePanel.showOverview(useDesktopMode);
+            }
+        });
+        if (!useDesktopMode) {
+            detailTools.add(showOverviewButton);
+            detailTools.add(new LayoutSpacer(5, 1));
+        }
+
+        sourceButton = new ToolStripButton();
+        sourceButton.setWidth(20);
+        sourceButton.setHeight(20);
+        sourceButton.setDisabled(true);
+        if (useDesktopMode) sourceButton.setTitle(M.viewSourceButtonTitle().asString());
+        sourceButton.setIcon("silk/page_white_cup.png");
+        sourceButton.setShowFocused(false);
+        sourceButton.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
+            @Override
+            public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
+                final ShowcasePanel showcasePanel;
+                if (useDesktopMode) {
+                    final Tab tab = mainTabSet.getSelectedTab();
+                    showcasePanel = (ShowcasePanel)tab.getPane();
+                } else {
+                    showcasePanel = (ShowcasePanel)splitPane.getDetailPane();
+                }
+                SourceEntity[] sourceUrls = showcasePanel.getSourceUrls();
+                if (sourceUrls == null || sourceUrls.length == 0) {
+                    sourceUrls = new SourceEntity[] {
+                                new SourceEntity(M.sourceTabTitle(), showcasePanel. getSourceGenUrl())
+                            };
+                }
+                showcasePanel.showSource(sourceUrls, 640, 600, useDesktopMode);
             }
         });
 
-        DynamicForm form = new DynamicForm();
-        form.setPadding(0);
-        form.setMargin(0);
-        form.setCellPadding(1);
-        form.setNumCols(1);
-        form.setFields(selectItem);
+        detailTools.add(sourceButton);
 
-        mainTabSet.setTabBarControls(TabBarControls.TAB_SCROLLER, TabBarControls.TAB_PICKER, layoutSpacer, form);
+        if (useDesktopMode) {
+            splitPane.setShowDetailToolStrip(false);
+            final Tab tab = new Tab();
+            tab.setID("main_tab");
+            tab.setTitle(M.homeTabTitle().asString());
+            tab.setIcon("pieces/16/cube_green.png", 16);
+            tab.setWidth(80);
+            tab.setPane(homePanel);
+            mainTabSet.addTab(tab);
+            final List<Object> actualControls = new ArrayList<Object>(2 + detailTools.size());
+            actualControls.add(TabBarControls.TAB_SCROLLER);
+            actualControls.add(TabBarControls.TAB_PICKER);
+            actualControls.addAll(detailTools);
+            mainTabSet.setTabBarControls(actualControls.toArray(new Object[actualControls.size()]));
+            splitPane.setDetailPane(mainTabSet);
+        } else {
+            splitPane.setDetailTitle(M.homeNodeName().asString());
+            splitPane.setDetailPane(homePanel);
+            splitPane.setDetailToolButtons(detailTools.toArray(new Canvas[detailTools.size()]));
+        }
 
-        contextMenu = createContextMenu();
-
-        Tab tab = new Tab();
-        tab.setTitle("Home&nbsp;&nbsp;");
-        tab.setIcon("pieces/16/cube_green.png", 16);
-        tab.setWidth(80);
-
-        HLayout mainPanel = new HLayout();
-        mainPanel.setHeight100();
-        mainPanel.setWidth100();
-
-        TileView tileView = new TileView(mainPanel);
-        mainPanel.addMember(tileView);
-
-        tab.setPane(mainPanel);
-
-        mainTabSet.addTab(tab);
-
-        centerPane = new Canvas();
-        centerPane.setBackgroundImage("[SKIN]/shared/background.gif");
-        centerPane.setWidth100();
-        centerPane.setHeight100();
-        centerPane.addChild(mainTabSet);
-
-        // Build and add the rightPane, with callToAction buttons
-        rightPane = new VStack();
-        rightPane.setDefaultLayoutAlign(Alignment.CENTER);
-        rightPane.setOverflow(Overflow.HIDDEN);
-        rightPane.setWidth(234);
-        rightPane.hide();
-                
-        // Add bottomPane
-        bottomPaneLeft = new HLayout();
-        bottomPaneLeft.setWidth("50%");
-        bottomPaneLeft.setHeight(30);
-        bottomPaneLeft.setAlign(Alignment.LEFT);
-        bottomPaneLeft.setLayoutLeftMargin(10);
-        bottomPaneLeft.setMembersMargin(10);
-        
-        bottomPaneRight = new HLayout();
-        bottomPaneRight.setWidth("50%");
-        bottomPaneRight.setHeight(30);
-        bottomPaneRight.setAlign(Alignment.RIGHT);
-        bottomPaneRight.setLayoutLeftMargin(10);
-
-        bottomPane = new HStack();
-        bottomPane.addMember(bottomPaneLeft);
-        bottomPane.addMember(bottomPaneRight);
-        bottomPane.setOverflow(Overflow.HIDDEN);
-        bottomPane.setHeight(30);
-        bottomPane.setWidth100();
-        bottomPane.setStyleName("explorerBottomPane");
-        bottomPane.hide();
-        
-        // Right Pane buttons
-        // SmartGWT Call to action button in right panel
-        Layout smartGwtButtonBoxR = new Layout();
-        smartGwtButtonBoxR.setStyleName("explorerButtonBoxR");
-        smartGwtButtonBoxR.setWidth(200);
-        rightPane.addMember(smartGwtButtonBoxR);
-        
-        Label smartGwtButtonR = new Label("<div style='font-size: 9pt;''>Prefer to write UI in JavaScript?</div>" +
-					"<img src='images/icon_javascript_t.png'" +
-						"style='height: 30pt; float: left; margin-right: 2pt; " +
-					"margin-left: 2pt; margin-top: 10pt;'/>" +
-					"<a target='_top' style='line-height: 12pt; padding-top: 5pt;' "+
-					"href='" + "/#Welcome" + "' " +
-					">" + "SmartClient<br/>Hands-On Demo" + "</a>");
-        smartGwtButtonR.setStyleName("darkgrey_Ebutton ERbutton");
-        smartGwtButtonR.setWidth(200);
-        smartGwtButtonR.setHeight(1);
-        smartGwtButtonR.setAlign(Alignment.CENTER);
-        smartGwtButtonR.setValign(VerticalAlignment.CENTER);
-        smartGwtButtonBoxR.addMember(smartGwtButtonR);
-        
-        // Contact Us Call to action button in right panel
-        Layout contactUsButtonBoxR = new Layout();
-        contactUsButtonBoxR.setStyleName("explorerButtonBoxR explorerButtonBoxGradient");
-        contactUsButtonBoxR.setWidth(200);
-        rightPane.addMember(contactUsButtonBoxR);
-        
-        Label contactUsButtonR = new Label("<div>Got questions?" +
-        		  "<div style='font-size: 8pt;'>We'd love to hear from you!</div>" +
-        		  "</div>" +
-					"<a target='_top' href='" + "/company/contact.jsp" + "' " +
-					">" + "Contact Us" + "</a>");
-        contactUsButtonR.setStyleName("darkgrey_Ebutton ERbutton");
-        contactUsButtonR.setWidth(200);
-        contactUsButtonR.setHeight(1);
-        contactUsButtonR.setAlign(Alignment.CENTER);
-        contactUsButtonR.setValign(VerticalAlignment.CENTER);
-        contactUsButtonBoxR.addMember(contactUsButtonR);
-
-        // Free Trial Call to action button in right panel
-        Layout freeTrialButtonBoxR = new Layout();
-        freeTrialButtonBoxR.setStyleName("explorerButtonBoxR explorerButtonBoxGradient");
-        freeTrialButtonBoxR.setWidth(200);
-        rightPane.addMember(freeTrialButtonBoxR);
-        
-        Label freeTrialButtonR = new Label("<div>Try it out for yourself!</div>" +
-        			"<a target='_top' style='line-height: 12pt; padding-top: 5pt;' " +
-        			"href='" + "/product/download.jsp" + "' " +
-        			">" + "Free Trial<br/><span style='font-size: 8pt;'>60 days</span>" + "</a>");
-        freeTrialButtonR.setStyleName("blue_Ebutton ERbutton");
-        freeTrialButtonR.setWidth(200);
-        freeTrialButtonR.setHeight(1);
-        freeTrialButtonR.setAlign(Alignment.CENTER);
-        freeTrialButtonR.setValign(VerticalAlignment.CENTER);
-        freeTrialButtonBoxR.addMember(freeTrialButtonR);
-
-        // Pricing Call to action button in right panel
-        Layout pricingTrialButtonBoxR = new Layout();
-        pricingTrialButtonBoxR.setStyleName("explorerButtonBoxR explorerButtonBoxGradient");
-        pricingTrialButtonBoxR.setWidth(200);
-        rightPane.addMember(pricingTrialButtonBoxR);
-        
-        Label pricingTrialButtonR = new Label("<div>Want your own?</div>" +
-				"<a target='_top' href='" + "/product/" + "' " +
-				">" + "Editions & Pricing" + "</a>");
-        pricingTrialButtonR.setStyleName("orange_Ebutton ERbutton");
-        pricingTrialButtonR.setWidth(200);
-        pricingTrialButtonR.setHeight(1);
-        pricingTrialButtonR.setAlign(Alignment.CENTER);
-        pricingTrialButtonR.setValign(VerticalAlignment.CENTER);
-        pricingTrialButtonBoxR.addMember(pricingTrialButtonR);
-
-        // Learn More Call to action button in right panel
-        Layout learnMoreButtonBoxR = new Layout();
-        learnMoreButtonBoxR.setStyleName("explorerButtonBoxR explorerButtonBoxGradient");
-        learnMoreButtonBoxR.setWidth(200);
-        rightPane.addMember(learnMoreButtonBoxR);
-        
-        Label learnMoreButtonR = new Label("<div>Isomorphic has the advantage.</div>" +
-				"<a target='_top' href='" + "/technology/whysmart.jsp" + "' " +
-				">" + "Learn More >" + "</a>");
-        learnMoreButtonR.setStyleName("darkgrey_Ebutton ERbutton");
-        learnMoreButtonR.setWidth(200);
-        learnMoreButtonR.setHeight(1);
-        learnMoreButtonR.setAlign(Alignment.CENTER);
-        learnMoreButtonR.setValign(VerticalAlignment.CENTER);
-        learnMoreButtonBoxR.addMember(learnMoreButtonR);
-
-        // Bottom Pane buttons
-        // Free Trial Call to action button in bottom panel
-        Label freeTrialButtonB = new Label("<a target='_top' href='/product/download.jsp' " +
-    			">Free Trial</a>");
-        freeTrialButtonB.setStyleName("blue_Ebutton EBbutton");
-        bottomPaneLeft.addMember(freeTrialButtonB);
-        
-        // Pricing Call to action button in bottom panel
-        Label pricingButtonB = new Label("<a target='_top' href='/product/' " +
-			">Editions & Pricing</a>");
-        pricingButtonB.setStyleName("orange_Ebutton EBbutton");
-        bottomPaneLeft.addMember(pricingButtonB);
-
-        // SmartGWT Call to action button in bottom panel
-        Label smartGWTButtonPreB = new Label("<span>Prefer to write UI in JavaScript?</span>");
-        smartGWTButtonPreB.setStyleName("EBbutton");
-        smartGWTButtonPreB.setWidth("220pt");
-        bottomPaneRight.addMember(smartGWTButtonPreB);
-        Label smartGWTButtonB = new Label("<a target='_top' style='width: 130pt;' " +
-			"href='/#Welcome'" +
-			" >SmartClient Live Demo</a>");
-        smartGWTButtonB.setStyleName("darkgrey_Ebutton EBbutton");
-        bottomPaneRight.addMember(smartGWTButtonB);
-
-        leftSuperPane.addMember(sideNavLayout);
-        leftSuperPane.addMember(centerPane);
-        topPane.addMember(leftSuperPane);
-        topPane.addMember(rightPane);
+        topPane.addMember(splitPane);
         featureExplorer.addMember(topPane);
-        featureExplorer.addMember(bottomPane);
 
-        main.addMember(topBar);
+        if (isc_websiteMode) {
+            topPane.addMember(rightPane);
+            featureExplorer.addMember(bottomPane);
+        }
+
         main.addMember(featureExplorer);
-        
-        if (SC.hasFirebug()) {
+
+        if (SC.hasFirebug() && useDesktopMode) {
             Label label = new Label();
             label.setWidth100();
             label.setHeight(50);
             label.setValign(VerticalAlignment.CENTER);
             label.setAlign(Alignment.CENTER);
-            label.setContents("Firebug can make the Showcase run slow. For the best performance, we suggest disabling Firebug for this site.");
+            label.setContents("Firebug can make the Showcase run slowly. For the best performance, we suggest disabling Firebug on this site.");
 
             Window fbWindow = new Window();
             fbWindow.setTitle("Firebug Detected");
@@ -473,86 +539,44 @@ private boolean isc_websiteMode = scConstants.websiteMode();
             fbWindow.setHeight(80);
             fbWindow.addItem(label);
             fbWindow.setRedrawOnResize(true);
-            main.addMember(fbWindow);
+            fbWindow.show();
         }
-        
-        main.addDrawHandler(new DrawHandler() {
+
+        splitPane.addDrawHandler(new DrawHandler() {
 			@Override
 			public void onDraw(DrawEvent event) {
-				pageRedrawn();
+				pageResized();
 			}
 		});
-                
-        main.addResizedHandler(new ResizedHandler() {
+
+        splitPane.addResizedHandler(new ResizedHandler() {
 			@Override
 			public void onResized(ResizedEvent event) {
 				pageResized();
 			}
 		});
-        
-        rightPane.addVisibilityChangedHandler(new VisibilityChangedHandler() {
-			@Override
-			public void onVisibilityChanged(VisibilityChangedEvent event) {
-				rightPaneVisibilityChanged(event.getIsVisible());
-			}
-		});
 
         main.draw();
-        
+
         // Add history listener
         History.addHistoryListener(this);
 
         RootPanel p = RootPanel.get("loadingWrapper");
-        if (p != null) RootPanel.getBodyElement().removeChild(p.getElement());        
+        if (p != null) RootPanel.getBodyElement().removeChild(p.getElement());
     }
-    
-	private void pageRedrawn() {
-    	if(isc_websiteMode ==true) {
-			leftSuperPane.setShowResizeBar(true);
-			// If browser width > 900px, show right, else show bottom
-			if(Page.getWidth()>900) {
-				rightPane.show();
-				bottomPane.hide();
-			} else {
-				bottomPane.show();
-				rightPane.hide();
-			}
-		}
-	}
 
-    private void rightPaneVisibilityChanged(boolean isVisible) {
-    	if(isc_websiteMode ==true) {
-    		if(Page.getWidth()<=900) {
-    			rightPane.hide();
-    			bottomPane.show();
-    			return;
-    		}
-    		if(isVisible) {
-    			centerPane.setHeight100();
-    			bottomPane.hide();
-    			rightPane.show();
-    		} else {
-    			centerPane.setHeight(leftSuperPane.getHeight()-bottomPane.getHeight());
-    			bottomPane.show();
-    			rightPane.hide();
-    		}
-    	}
-    }
-    
     private void pageResized() {
-    	if(isc_websiteMode ==true) {
-    		if(leftSuperPane!=null && Page.getWidth()<=900) {
-    			if(leftSuperPane.getShowResizeBar()) {
-    				rightPane.hide();
-    				bottomPane.show();
-    			} else {
-    				rightPane.show();
-    				bottomPane.hide();    				
-    			}
-    		}
-    	}
+        if (isc_websiteMode) {
+            if (Page.getWidth() <= 900) {
+                rightPane.hide();
+                bottomPane.show();
+            } else {
+                rightPane.show();
+                bottomPane.hide();
+            }
+        }
     }
-       
+
     private Menu createContextMenu() {
         Menu menu = new Menu();
         menu.setWidth(140);
@@ -616,63 +640,162 @@ private boolean isc_websiteMode = scConstants.websiteMode();
         return menu;
     }
 
+    private void disableDetailTools() {
+        printButton.disable();
+        sourceButton.disable();
+        showOverviewButton.disable();
+
+        if (splitPane.getDeviceMode() == DeviceMode.DESKTOP) {
+            // TabSet.tabBarControls is not writable.
+            //mainTabSet.setTabBarControls((Object[])null);
+        } else {
+            splitPane.setDetailToolButtons((Canvas[])null);
+        }
+    }
+
+    private void enableDetailTools() {
+        printButton.enable();
+        sourceButton.enable();
+        showOverviewButton.enable();
+
+        if (splitPane.getDeviceMode() == DeviceMode.DESKTOP) {
+            // TabSet.tabBarControls is not writable.
+            //mainTabSet.setTabBarControls(detailTools.toArray(new Object[detailTools.size()]));
+        } else {
+            splitPane.setDetailToolButtons(detailTools.toArray(new Canvas[detailTools.size()]));
+        }
+    }
+
     protected void showSample(TreeNode node) {
-        boolean isExplorerTreeNode = node instanceof ExplorerTreeNode;
+        final boolean autotest = ShowcaseConfiguration.getSingleton().isOpenForTesting();
+        final boolean useDesktopMode = splitPane.getDeviceMode() == DeviceMode.DESKTOP;
+        assert !autotest || useDesktopMode;
+        assert !useDesktopMode || mainTabSet != null;
+
         if (node instanceof CommandTreeNode) {
-            CommandTreeNode commandTreeNode = (CommandTreeNode) node;
+            disableDetailTools();
+            final CommandTreeNode commandTreeNode = (CommandTreeNode)node;
             commandTreeNode.getCommand().execute();
-        } else if (isExplorerTreeNode) {
-            ExplorerTreeNode explorerTreeNode = (ExplorerTreeNode) node;
-            PanelFactory factory = explorerTreeNode.getFactory();
-            if (factory != null) {
-                String panelID = factory.getID();
-                Tab tab = null;
-                if (panelID != null) {
-                    String tabID = panelID + "_tab";
-                    tab = mainTabSet.getTab(tabID);
+        } else if (node instanceof ExplorerTreeNode) {
+            final ExplorerTreeNode explorerTreeNode = (ExplorerTreeNode)node;
+            final PanelFactory factory;
+            if ("main".equals(explorerTreeNode.getNodeID())) {
+                showHomePanel();
+            } else if ((factory = explorerTreeNode.getFactory()) != null) {
+                final String sampleName = explorerTreeNode.getName();
+                String icon = explorerTreeNode.getIcon();
+                if (icon == null) {
+                    icon = "silk/application_view_list.png";
                 }
-                if (tab == null) {
-                    boolean autotest = ShowcaseConfiguration.getSingleton().isOpenForTesting();
-                    Canvas panel = autotest ? SampleResultsManager.create(mainTabSet, factory) : factory.create();
-                    tab = new Tab();
-                    tab.setID(factory.getID() + "_tab");
-                    //store history token on tab so that when an already open is selected, one can retrieve the
-                    //history token and update the URL
-                    tab.setAttribute("historyToken", explorerTreeNode.getNodeID());
-                    tab.setContextMenu(contextMenu);
 
-                    String sampleName = explorerTreeNode.getName();
-
-                    String icon = explorerTreeNode.getIcon();
-                    if (icon == null) {
-                        icon = "silk/plugin.png";
+                if (useDesktopMode) {
+                    Tab tab = null;
+                    String panelID = factory.getID();
+                    if (panelID != null) {
+                        String tabID = panelID + "_tab";
+                        tab = mainTabSet.getTab(tabID);
                     }
-                    String imgHTML = Canvas.imgHTML(icon, 16, 16);
-                    tab.setTitle("<span>" + imgHTML + "&nbsp;" + sampleName + "</span>");
-                    tab.setPane(panel);
-                    tab.setCanClose(true);
-                    mainTabSet.addTab(tab);
+                    final Canvas panel;
+                    if (tab == null) {
+                        panel = autotest ? SampleResultsManager.create(mainTabSet, factory) : factory.create();
+                        if (panel instanceof ShowcasePanel) {
+                            ((ShowcasePanel)panel).showOverview(useDesktopMode);
+                        }
+                        tab = new Tab();
+                        tab.setID(factory.getID() + "_tab");
+                        // store history token on tab so that when an already open is selected, one can retrieve the
+                        // history token and update the URL
+                        tab.setAttribute("historyToken", explorerTreeNode.getNodeID());
+                        tab.setContextMenu(contextMenu);
+                        tab.setTitle("<nobr>" + Canvas.imgHTML(icon, 16, 16) + "&nbsp;<span style='display:inline-block;line-height:16px;vertical-align:text-top'>" + sampleName + "</span></nobr>");
+                        tab.setPane(panel);
+                        tab.setCanClose(true);
+                        mainTabSet.addTab(tab);
+                    } else {
+                        panel = tab.getPane();
+                    }
+                    if (panel instanceof ShowcasePanel) {
+                        enableDetailTools();
+                    } else {
+                        disableDetailTools();
+                    }
+                    assert tab != null;
                     mainTabSet.selectTab(tab);
                 } else {
-                    mainTabSet.selectTab(tab);
+                    final Canvas panel = autotest ? SampleResultsManager.create(mainTabSet, factory) : factory.create();
+                    panel.setOverflow(Overflow.AUTO);
+                    if (panel instanceof ShowcasePanel) {
+                        ((ShowcasePanel)panel).setLayoutMargin(15);
+                        enableDetailTools();
+                    } else {
+                        disableDetailTools();
+                    }
+                    splitPane.setDetailPane(panel);
+                    splitPane.showDetailPane(sampleName, M.shortNavigationPaneTitle().asString());
+                    updateSampleIcon(icon);
                 }
             }
         }
     }
 
+    private void updateSampleIcon(String icon) {
+        if (splitPane.getDeviceMode() == DeviceMode.DESKTOP) {
+            ((Label)splitPane.getCanvasAutoChild("detailTitleLabel")).setIcon(icon);
+        } else {
+            final Label titleLabel = splitPane.getNavigationBar().getTitleLabel();
+            titleLabel.setStyleName("navBarHeader");
+            titleLabel.setIcon(icon);
+        }
+    }
+
+    private void showHomePanel() {
+        disableDetailTools();
+
+        if (splitPane.getDeviceMode() == DeviceMode.DESKTOP) {
+            final Tab tab = mainTabSet.getTab("main_tab");
+            assert tab != null;
+            mainTabSet.selectTab(tab);
+        } else {
+            splitPane.setDetailPane(homePanel);
+            splitPane.showDetailPane(M.homeNodeName().asString(), M.shortNavigationPaneTitle().asString());
+            updateSampleIcon(null);
+        }
+    }
+
     public void onHistoryChanged(String historyToken) {
-        if (historyToken == null || historyToken.equals("")) {
-            mainTabSet.selectTab(0);
+        if (historyToken == null || "".equals(historyToken) || "main".equals(historyToken)) {
+            showHomePanel();
+            final ListGridRecord selectedRecord = sideNav.getSelectedRecord();
+            if (selectedRecord != null) {
+                sideNav.deselectRecord(selectedRecord);
+            }
+            sideNav.selectRecord(0);
+            new Timer() {
+                @Override
+                public void run() {
+                    sideNav.scrollToRow(0, VerticalAlignment.TOP);
+                }
+            }.schedule(100);
         } else {
             ExplorerTreeNode[] showcaseData = sideNav.getShowcaseData();
-            for (ExplorerTreeNode explorerTreeNode : showcaseData) {
-                if (explorerTreeNode.getNodeID().equals(historyToken)) {
+            for (final ExplorerTreeNode explorerTreeNode : showcaseData) {
+                final String nodeID = explorerTreeNode.getNodeID();
+                if (historyToken.equals(nodeID)) {
                     showSample(explorerTreeNode);
-                    ListGridRecord selectedRecord = sideNav.getSelectedRecord();
-                    if(selectedRecord != null) {
+                    final ListGridRecord selectedRecord = sideNav.getSelectedRecord();
+                    if (selectedRecord != null) {
                         sideNav.deselectRecord(selectedRecord);
                     }
                     sideNav.selectRecord(explorerTreeNode);
+                    final int r = sideNav.getRecordIndex(explorerTreeNode);
+                    if (r >= 0) {
+                        new Timer() {
+                            @Override
+                            public void run() {
+                                sideNav.scrollToRow(r, VerticalAlignment.CENTER);
+                            }
+                        }.schedule(100);
+                    }
                     Tree tree = sideNav.getData();
                     TreeNode categoryNode = tree.getParent(explorerTreeNode);
                     while (categoryNode != null && !"/".equals(tree.getName(categoryNode))) {

@@ -1,5 +1,9 @@
 package com.smartgwt.sample.showcase.client.grid;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import com.smartgwt.client.data.Criteria;
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.types.ListGridFieldType;
@@ -22,10 +26,6 @@ import com.smartgwt.sample.showcase.client.data.EmployeeData;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
 import com.smartgwt.sample.showcase.client.data.SupplyCategoryXmlDS;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 public class GridDependentSelectsSample extends ShowcasePanel {
 
     private static final String DESCRIPTION = "<p>In the first example, <b>Double Click</b> on any row to start editing. Select a value in the \"Division\" column to change the " +
@@ -36,7 +36,7 @@ public class GridDependentSelectsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridDependentSelectsSample panel = new GridDependentSelectsSample();
             id = panel.getID();
             return panel;

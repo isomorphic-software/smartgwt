@@ -17,7 +17,7 @@ public class AutofitColumnsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             AutofitColumnsSample panel = new AutofitColumnsSample();
             id = panel.getID();
             return panel;

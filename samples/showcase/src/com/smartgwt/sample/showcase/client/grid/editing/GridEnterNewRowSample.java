@@ -25,7 +25,7 @@ public class GridEnterNewRowSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridEnterNewRowSample panel = new GridEnterNewRowSample();
             id = panel.getID();
             return panel;

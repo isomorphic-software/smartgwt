@@ -1,6 +1,7 @@
 package com.smartgwt.sample.showcase.client.data;
 
 import java.util.Date;
+
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 public class CountrySampleData {

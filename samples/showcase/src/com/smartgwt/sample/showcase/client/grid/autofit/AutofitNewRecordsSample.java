@@ -22,7 +22,7 @@ public class AutofitNewRecordsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             AutofitNewRecordsSample panel = new AutofitNewRecordsSample();
             id = panel.getID();
             return panel;

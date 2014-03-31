@@ -2,10 +2,7 @@ package com.smartgwt.sample.showcase.client.grid.appearance;
 
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.Autofit;
-import com.smartgwt.client.types.Alignment;
-import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
@@ -31,7 +28,7 @@ public class FieldPickerSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             FieldPickerSample panel = new FieldPickerSample();
             id = panel.getID();
             return panel;

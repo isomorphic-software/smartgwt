@@ -1,132 +1,54 @@
 package com.smartgwt.sample.showcase.client;
 
-import java.util.List;
 import java.util.Arrays;
+import java.util.List;
 
 import com.smartgwt.client.types.ContentsType;
 import com.smartgwt.client.types.Side;
-import com.smartgwt.client.util.AutoTest;
-import com.smartgwt.client.util.PrintProperties;
+import com.smartgwt.client.util.Browser;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.HTMLPane;
-import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.Window;
-import com.smartgwt.client.widgets.events.ClickEvent;
-import com.smartgwt.client.widgets.events.ClickHandler;
-import com.smartgwt.client.widgets.layout.HStack;
-import com.smartgwt.client.widgets.layout.VStack;
 import com.smartgwt.client.widgets.layout.HLayout;
-import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.layout.HStack;
 import com.smartgwt.client.widgets.layout.Layout;
-import com.smartgwt.client.widgets.layout.LayoutSpacer;
+import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.layout.VStack;
 import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
-import com.smartgwt.client.widgets.toolbar.ToolStrip;
-import com.smartgwt.client.widgets.toolbar.ToolStripButton;
-import com.smartgwt.client.widgets.toolbar.ToolStripSpacer;
 
 public abstract class ShowcasePanel extends VLayout {
 
     protected Canvas viewPanel;
 
-    public ShowcasePanel() {
+    private Window introWindow;
 
+    public ShowcasePanel() {
         setWidth100();
         setHeight100();
 
-        SourceEntity[] sourceUrls = getSourceUrls();
-        if(sourceUrls == null)
-        {
-            String sourceUrl = getSourceGenUrl();
-            if(sourceUrl != null) {
-                SourceEntity sourceEntity = new SourceEntity("Source", sourceUrl);
-                sourceUrls = new SourceEntity[] {sourceEntity};
-            }
-        }
-
-        if (sourceUrls != null) {
-
-            ToolStrip topBar = new ToolStrip();
-            topBar.setWidth100();
-            topBar.addFill();
-
-            ToolStripButton printButton = new ToolStripButton();
-            printButton.setTitle("Print");
-            printButton.setIcon("silk/printer.png");
-            printButton.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    Canvas.showPrintPreview(viewPanel);
-                }
-            });
-            topBar.addMember(printButton);
-
-            topBar.addSeparator();
-
-            ToolStripButton sourceButton = new ToolStripButton();
-            sourceButton.setTitle("View Source");
-            sourceButton.setIcon("silk/page_white_cup.png");
-            final SourceEntity[] finalSourceUrls = sourceUrls;
-            sourceButton.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    showSource(finalSourceUrls, 640, 600);
-                }
-            });
-            topBar.addMember(sourceButton);
-
-            topBar.addSpacer(new ToolStripSpacer(6));
-            addMember(topBar);
-        }
-
-        boolean topIntro = isTopIntro();
-        Layout layout = topIntro ? new VLayout() : new HLayout();
-
-        layout.setWidth100();
-        layout.setMargin(10);
-        layout.setMembersMargin(10);
-
         viewPanel = getViewPanel();
-        HLayout wrapper = new HLayout();
-        wrapper.setWidth100();
-        wrapper.addMember(viewPanel);
+        if (Browser.getIsDesktop()) {
+            final boolean topIntro = isTopIntro();
+            final Layout layout = topIntro ? new VLayout() : new HLayout();
 
-        String intro = getIntro();
-        if (intro != null) {
-            Window introWindow = new Window();
-            introWindow.setTitle("Overview");
-            introWindow.setHeaderIcon("pieces/16/cube_green.png", 16, 16);
-            introWindow.setKeepInParentRect(true);
+            layout.setWidth100();
+            layout.setMargin(10);
+            layout.setMembersMargin(10);
 
-            String introContents = "<p class='intro-para'>" + intro + "</p>";
-            Canvas contents = new Canvas();
-            contents.setCanSelectText(true);
-            contents.setPadding(10);
-            contents.setContents(introContents);
-            if (topIntro) {
-                contents.setWidth100();
-            } else {
-                contents.setDefaultWidth(200);
-            }
+            final HLayout wrapper = new HLayout();
+            wrapper.setWidth100();
+            wrapper.addMember(viewPanel);
 
-            introWindow.setAutoSize(true);
-            introWindow.setAutoHeight();
-            introWindow.addItem(contents);
-
-            if (topIntro) {
-                layout.addMember(introWindow);
-                layout.addMember(wrapper);
-            } else {
-                layout.addMember(wrapper);
-                layout.addMember(introWindow);
-            }
+            layout.addMember(wrapper);
+            addMember(layout);
         } else {
-            addMember(wrapper);
+            addMember(viewPanel);
         }
-
-        addMember(layout);
     }
 
     protected boolean shouldWrapViewPanel() {
-        List optimalPanelClasses = Arrays.asList(
+        List<Class<?>> optimalPanelClasses = Arrays.<Class<?>>asList(
             Canvas.class, HLayout.class, HStack.class, VLayout.class, VStack.class 
         );
         return optimalPanelClasses.indexOf(viewPanel.getClass()) < 0;
@@ -140,7 +62,7 @@ public abstract class ShowcasePanel extends VLayout {
         return null;
     }
 
-    public String getSourceGenUrl() {
+    public final String getSourceGenUrl() {
         String className = getClass().getName();
         String htmlPath = className.replace("com.smartgwt.sample.showcase.client.", "").replace(".", "/") + ".java.html";
         return "sourcegen/" + htmlPath;
@@ -168,13 +90,18 @@ public abstract class ShowcasePanel extends VLayout {
 
     public abstract Canvas getViewPanel();
 
-    protected void showSource(SourceEntity[] sourceUrls, int width, int height) {
-
+    protected void showSource(SourceEntity[] sourceUrls, int width, int height, boolean useDesktopMode) {
         final Window win = new Window();
+        win.setShouldPrint(false);
         win.setTitle("Source");
         win.setHeaderIcon("pieces/16/cube_green.png", 16, 16);
         win.setHideUsingDisplayNone(true);
         win.setKeepInParentRect(true);
+        if (!useDesktopMode) {
+            win.setMaximized(true);
+            win.setShowMaximizeButton(false);
+            win.setShowMinimizeButton(false);
+        }
 
         int userWidth = com.google.gwt.user.client.Window.getClientWidth() - 20;
         win.setWidth(userWidth < width ? userWidth : width);
@@ -211,18 +138,70 @@ public abstract class ShowcasePanel extends VLayout {
             }
         }
 
-        if (getCssUrl() != null)
+        if (getCssUrl() != null) {
             tabs.addTab(buildSourceTab("CSS", "silk/css.png", getCssUrl()));
+        }
 
-        if (getJsonDataUrl() != null)
+        if (getJsonDataUrl() != null) {
             tabs.addTab(buildSourceTab("JSON", "silk/database_table.png", getJsonDataUrl()));
+        }
 
-        if (getXmlDataUrl() != null)
+        if (getXmlDataUrl() != null) {
             tabs.addTab(buildSourceTab("XML", "silk/database_table.png", getXmlDataUrl()));
+        }
 
         win.addItem(tabs);
-        addChild(win);
+        if (useDesktopMode) addChild(win);
         win.show();
+    }
+
+    protected void showOverview(boolean useDesktopMode) {
+        final boolean topIntro = isTopIntro();
+        final String intro = getIntro();
+        if (intro == null || intro.isEmpty()) return;
+
+        if (introWindow == null) {
+            introWindow = new Window();
+            introWindow.setShouldPrint(false);
+            introWindow.setTitle("Overview");
+            introWindow.setHeaderIcon("pieces/16/cube_green.png", 16, 16);
+            introWindow.setKeepInParentRect(true);
+            if (!useDesktopMode) {
+                introWindow.setMaximized(true);
+                introWindow.setShowMaximizeButton(false);
+                introWindow.setShowMinimizeButton(false);
+            }
+
+            String introContents = "<p class='intro-para'>" + intro + "</p>";
+            Canvas contents = new Canvas();
+            contents.setCanSelectText(true);
+            contents.setPadding(10);
+            contents.setContents(introContents);
+            if (topIntro) {
+                contents.setWidth100();
+            } else {
+                contents.setDefaultWidth(200);
+            }
+
+            if (useDesktopMode) {
+                introWindow.setAutoSize(true);
+                introWindow.setAutoHeight();
+            }
+            introWindow.setCanDragReposition(false);
+            introWindow.setCanDragResize(false);
+            introWindow.addItem(contents);
+        }
+
+        if (useDesktopMode) {
+            final Layout layout = ((Layout)getMember(0));
+            if (topIntro) {
+                layout.addMember(introWindow, 0);
+            } else {
+                layout.addMember(introWindow);
+            }
+        } else {
+            introWindow.show();
+        }
     }
 
     public Tab buildSourceTab(SourceEntity sourceEntity) {
@@ -248,5 +227,4 @@ public abstract class ShowcasePanel extends VLayout {
         tab.setPane(tabPane);
         return tab;
     }
-
 }

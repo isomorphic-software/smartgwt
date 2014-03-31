@@ -15,7 +15,7 @@ public class DragReorderSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             DragReorderSample panel = new DragReorderSample();
             id = panel.getID();
             return panel;

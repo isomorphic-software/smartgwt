@@ -22,7 +22,7 @@ public class ShadowsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             ShadowsSample panel = new ShadowsSample();
             id = panel.getID();
             return panel;

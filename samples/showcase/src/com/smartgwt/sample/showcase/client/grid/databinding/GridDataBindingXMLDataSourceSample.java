@@ -19,7 +19,7 @@ public class GridDataBindingXMLDataSourceSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridDataBindingXMLDataSourceSample panel = new GridDataBindingXMLDataSourceSample();
             id = panel.getID();
             return panel;

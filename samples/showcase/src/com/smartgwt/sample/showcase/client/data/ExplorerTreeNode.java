@@ -1,10 +1,17 @@
 package com.smartgwt.sample.showcase.client.data;
 
+import com.google.gwt.safehtml.shared.SafeHtml;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcaseConfiguration;
 
 public class ExplorerTreeNode extends TreeNode {
+
+    public ExplorerTreeNode(SafeHtml name, String nodeID, String parentNodeID, String icon,
+            PanelFactory factory, boolean enabled, String idSuffix)
+    {
+        this(name.asString(), nodeID, parentNodeID, icon, factory, enabled, true, idSuffix);
+    }
 
     public ExplorerTreeNode(String name, String nodeID, String parentNodeID, String icon, 
                             PanelFactory factory, boolean enabled, String idSuffix)

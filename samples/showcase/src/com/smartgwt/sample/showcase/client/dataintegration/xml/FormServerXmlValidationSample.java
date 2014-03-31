@@ -27,7 +27,7 @@ public class FormServerXmlValidationSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             FormServerXmlValidationSample panel = new FormServerXmlValidationSample();
             id = panel.getID();
             return panel;

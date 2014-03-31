@@ -25,7 +25,7 @@ public class BasicFocusTabbingSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
         	BasicFocusTabbingSample panel = new BasicFocusTabbingSample();
             id = panel.getID();
             return panel;
