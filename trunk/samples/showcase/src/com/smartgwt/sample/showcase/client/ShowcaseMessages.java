@@ -1,6 +1,6 @@
 package com.smartgwt.sample.showcase.client;
 
-import com.google.gwt.core.shared.GWT;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.Messages;
 import com.google.gwt.safehtml.shared.SafeHtml;
 
