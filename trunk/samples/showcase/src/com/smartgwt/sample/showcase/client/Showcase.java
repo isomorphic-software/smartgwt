@@ -6,11 +6,12 @@ import java.util.List;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.HistoryListener;
 import com.google.gwt.user.client.Timer;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.smartgwt.client.Version;
 import com.smartgwt.client.core.KeyIdentifier;
 import com.smartgwt.client.types.Alignment;
@@ -562,9 +563,9 @@ public class Showcase implements EntryPoint, HistoryListener {
         // Add history listener
         History.addHistoryListener(this);
 
-        final RootPanel p = RootPanel.get("loadingWrapper");
-        if (p != null) {
-            p.clear(true);
+        final Element elem = Document.get().getElementById("loadingWrapper");
+        if (elem != null) {
+            elem.removeFromParent();
         }
     }
 
