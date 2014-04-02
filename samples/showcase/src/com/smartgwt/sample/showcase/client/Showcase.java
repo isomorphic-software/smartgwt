@@ -172,6 +172,7 @@ public class Showcase implements EntryPoint, HistoryListener {
             mainTabSet = new TabSet();
             mainTabSet.setWidth100();
             mainTabSet.setHeight100();
+            mainTabSet.setDestroyPanes(true);
             mainTabSet.setPaneContainerOverflow(Overflow.AUTO);
             mainTabSet.addTabSelectedHandler(new TabSelectedHandler() {
                 public void onTabSelected(TabSelectedEvent event) {
@@ -368,7 +369,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         detailTitleLabelProperties.setIconWidth(24);
         detailTitleLabelProperties.setIconHeight(24);
         splitPane.setAutoChildProperties("detailTitleLabel", detailTitleLabelProperties);
-        if (splitPane.getDeviceMode() != DeviceMode.DESKTOP) {
+        if (!useDesktopMode) {
             splitPane.addPaneChangedHandler(new PaneChangedHandler() {
                 @Override
                 public void onPaneChanged(PaneChangedEvent event) {
@@ -382,7 +383,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         }
         splitPane.setNavigationPane(sideNavLayout);
 
-        detailTools = new ArrayList<Canvas>(3);
+        detailTools = new ArrayList<Canvas>();
         if (useDesktopMode) {
             final SelectItem selectItem = new SelectItem("skin", M.skinItemTitle().asString());
             selectItem.setHeight(21);
@@ -492,7 +493,6 @@ public class Showcase implements EntryPoint, HistoryListener {
                 showcasePanel.showSource(sourceUrls, 640, 600, useDesktopMode);
             }
         });
-
         detailTools.add(sourceButton);
 
         if (useDesktopMode) {
@@ -562,8 +562,10 @@ public class Showcase implements EntryPoint, HistoryListener {
         // Add history listener
         History.addHistoryListener(this);
 
-        RootPanel p = RootPanel.get("loadingWrapper");
-        if (p != null) RootPanel.getBodyElement().removeChild(p.getElement());
+        final RootPanel p = RootPanel.get("loadingWrapper");
+        if (p != null) {
+            p.clear(true);
+        }
     }
 
     private void pageResized() {
@@ -731,7 +733,11 @@ public class Showcase implements EntryPoint, HistoryListener {
                     } else {
                         disableDetailTools();
                     }
+                    final Canvas oldDetailPane = splitPane.getDetailPane();
                     splitPane.setDetailPane(panel);
+                    if (oldDetailPane != null && oldDetailPane != homePanel) {
+                        oldDetailPane.destroy();
+                    }
                     splitPane.showDetailPane(sampleName, M.shortNavigationPaneTitle().asString());
                     updateSampleIcon(icon);
                 }
