@@ -70,6 +70,10 @@ public class DragMenuGridSample extends ShowcasePanel {
         partNameField2.setWidth(140);
         ListGridField partNumField2 = new ListGridField("partNum", 80);
 
+        partSrcField2.setTitle("");
+        partNameField2.setTitle("Part Name");
+        partNumField2.setTitle("#");
+        
         partsGrid.setFields(partSrcField2, partNameField2, partNumField2);
 
         partsGrid.setData(new Record[] {
