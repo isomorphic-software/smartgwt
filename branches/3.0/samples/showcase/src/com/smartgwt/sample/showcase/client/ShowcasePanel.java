@@ -212,25 +212,18 @@ public abstract class ShowcasePanel extends VLayout {
     }
 
     public Tab buildSourceTab(SourceEntity sourceEntity) {
-        HTMLPane tabPane = new HTMLPane();
-        tabPane.setWidth100();
-        tabPane.setHeight100();
-        tabPane.setContentsURL(sourceEntity.getUrl());
-        tabPane.setContentsType(ContentsType.PAGE);
-
-        Tab tab = new Tab(sourceEntity.getTitle(), "silk/script_go.png");
-        tab.setPane(tabPane);
-        return tab;
+        return buildSourceTab(sourceEntity.getTitle(), "silk/script_go.png", sourceEntity.getUrl());
     }
 
     public Tab buildSourceTab(String title, String icon, String url) {
-        HTMLPane tabPane = new HTMLPane();
+        final HTMLPane tabPane = new HTMLPane();
+        tabPane.setHideUsingDisplayNone(true); // work-around for http://crbug.com/338105
         tabPane.setWidth100();
         tabPane.setHeight100();
         tabPane.setContentsURL(url);
         tabPane.setContentsType(ContentsType.PAGE);
 
-        Tab tab = new Tab(title, icon);
+        final Tab tab = new Tab(title, icon);
         tab.setPane(tabPane);
         return tab;
     }
