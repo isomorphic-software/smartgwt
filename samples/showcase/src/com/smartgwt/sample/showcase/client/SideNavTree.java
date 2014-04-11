@@ -30,7 +30,7 @@ public class SideNavTree extends TreeGrid {
 
     static final String ID_SUFFIX = "";
 
-    private ExplorerTreeNode[] showcaseData = ShowcaseData.getData(ID_SUFFIX);
+    private ExplorerTreeNode[] showcaseData = ShowcaseData.getDataVersioned(ID_SUFFIX);
 
     public SideNavTree() {
         setWidth100();
@@ -64,7 +64,7 @@ public class SideNavTree extends TreeGrid {
 
         setData(tree);
     }
-
+ 
     public ExplorerTreeNode[] getShowcaseData() {
         return showcaseData;
     }

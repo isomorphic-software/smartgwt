@@ -7,8 +7,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.History;
 import com.smartgwt.client.data.Record;
+import com.smartgwt.client.bean.BeanFactory;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.MultipleAppearance;
 import com.smartgwt.client.types.OperatorId;
@@ -37,18 +39,20 @@ import com.smartgwt.client.widgets.tile.events.RecordClickEvent;
 import com.smartgwt.client.widgets.tile.events.RecordClickHandler;
 import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeNode;
+import com.smartgwt.client.widgets.Img;
 import com.smartgwt.client.widgets.viewer.DetailFormatter;
 import com.smartgwt.client.widgets.viewer.DetailViewerField;
 import com.smartgwt.sample.showcase.client.data.CommandTreeNode;
 import com.smartgwt.sample.showcase.client.data.ExplorerTreeNode;
 import com.smartgwt.sample.showcase.client.data.ShowcaseData;
+import com.smartgwt.client.widgets.Canvas;
 
 public class TileView extends VLayout {
     private static final ShowcaseMessages M = ShowcaseMessages.INSTANCE;
 
     private TileGrid tileGrid;
     private final String idSuffix = SideNavTree.ID_SUFFIX;
-    private TreeNode[] showcaseData = ShowcaseData.getData(idSuffix);
+    private TreeNode[] showcaseData = ShowcaseData.getDataVersioned(idSuffix);
     private DynamicForm filterForm;
 
     private TextItem searchItem;
@@ -78,10 +82,15 @@ public class TileView extends VLayout {
     private CheckboxItem basicsCB;
     private CheckboxItem drawingCB;
     private CheckboxItem effectsCB;
+    private CheckboxItem betaSamplesCB;
     // ---- OR ----
     private SelectItem categoriesItem;
 
     private Tree tree;
+
+    public interface ShowcaseCustomTileMetaFactory extends BeanFactory.MetaFactory {  
+        BeanFactory<ShowcaseCustomTile> getShowcaseCustomTileFactory();  
+    } 
 
     public TileView() {
         setMargin(3);
@@ -100,17 +109,26 @@ public class TileView extends VLayout {
 
         setWidth100();
 
-        tileGrid = new TileGrid();
+        GWT.create(ShowcaseCustomTileMetaFactory.class);
+
+        tileGrid = new TileGrid() {
+			@Override
+			public Canvas getTile(int recordNum) {
+				ShowcaseCustomTile customTile = (ShowcaseCustomTile) super.getTile(recordNum);
+				customTile.applyRecord();
+				return customTile;
+			}
+		};
         tileGrid.setShowEdges(true);
         tileGrid.setTileWidth(140);
         tileGrid.setTileHeight(120);
         tileGrid.setWidth100();
         tileGrid.setHeight100();
         tileGrid.setShowAllRecords(true);
-
+        tileGrid.setTileConstructor(ShowcaseCustomTile.class.getName());  
         tileGrid.setAutoFetchData(false);
         tileGrid.setAnimateTileChange(true);
-
+/*
         DetailViewerField nameField = new DetailViewerField("nodeTitle");
         nameField.setDetailFormatter(new DetailFormatter() {
             public String format(Object value, Record record, DetailViewerField field) {
@@ -124,9 +142,9 @@ public class TileView extends VLayout {
         iconField.setImageHeight(89);
         iconField.setImageWidth(119);
         iconField.setCellStyle("thumbnail");
+*/
 
-
-        tileGrid.setFields(iconField, nameField);
+    //    tileGrid.setFields(iconField, nameField);
 
 
         tileGrid.addRecordClickHandler(new RecordClickHandler() {
@@ -135,7 +153,7 @@ public class TileView extends VLayout {
                 showSample(record);
             }
         });
-
+  
         filterForm = new DynamicForm();
         filterForm.setBorder("1px solid #9C9C9C");
         filterForm.setNumCols(8);
@@ -217,6 +235,7 @@ public class TileView extends VLayout {
             basicsCB = new CheckboxItem("basicsCB", M.basicsCategoryName().asString());
             drawingCB = new CheckboxItem("drawingCB", M.drawingCategoryName().asString());
             effectsCB = new CheckboxItem("effectsCB", M.effectsCategoryName().asString());
+            betaSamplesCB = new CheckboxItem("betaSamplesCB", M.betaSamplesName().asString());
         } else {
             categoriesItem = new SelectItem("categories", M.categoriesTitle().asString());
             categoriesItem.setTitleOrientation(TitleOrientation.TOP);
@@ -246,6 +265,7 @@ public class TileView extends VLayout {
             valueMap.put("basics_category", M.basicsCategoryName().asString());
             valueMap.put("drawing", M.drawingCategoryName().asString());
             valueMap.put("effects_category", M.effectsCategoryName().asString());
+            valueMap.put("beta_samples", M.betaSamplesName().asString());
             categoriesItem.setValueMap(valueMap);
             categoriesItem.setDefaultValue(new String[] {"featured_category"});
         }
@@ -262,7 +282,7 @@ public class TileView extends VLayout {
                     layoutCB, windowsCB, tabsCB, sectionsCB,
                     portalLayoutCB, buttonsCB, menusCB, toolStripCB,
                     otherControlsCB, dataIntegrationCB, dragDropCB, basicsCB,
-                    drawingCB, effectsCB));
+                    drawingCB, effectsCB, betaSamplesCB));
         } else {
             filterFormItems.add(categoriesItem);
         }
@@ -310,6 +330,7 @@ public class TileView extends VLayout {
             if (basicsCB.getValueAsBoolean()) categories.add("basics_category");
             if (drawingCB.getValueAsBoolean()) categories.add("drawing");
             if (effectsCB.getValueAsBoolean()) categories.add("effects_category");
+            if (betaSamplesCB.getValueAsBoolean()) categories.add("beta_samples");
         } else {
             categories.addAll(Arrays.asList(categoriesItem.getValues()));
         }
@@ -341,13 +362,34 @@ public class TileView extends VLayout {
             applyFilter(tree, children, data, searchText, maxResults, true);
         } else {
             for (final String category : categories) {
-                TreeNode categoryNode = tree.find("nodeID", category + idSuffix);
-                TreeNode[] children = tree.getChildren(categoryNode);
+                if (category.equalsIgnoreCase("beta_samples")) {
+                    TreeNode[] children = tree.getAllNodes();
+                    searchBetaSamples(tree, children, data, searchText, maxResults, false);                    
+                } else {
+                    TreeNode categoryNode = tree.find("nodeID", category + idSuffix);
+                    TreeNode[] children = tree.getChildren(categoryNode);
 
-                applyFilter(tree, children, data, searchText, maxResults, false);
+                    applyFilter(tree, children, data, searchText, maxResults, false);
+                }
             }
         }
         tileGrid.setData((Record[])data.toArray(new Record[data.size()]));
+    }
+
+    private void searchBetaSamples(Tree tree, TreeNode[] children, Set data, String searchText,int maxResults, boolean skipCategories) {
+        for (int i = 0; i < children.length; i++) {
+            if(data.size() == maxResults) return;
+            TreeNode child = children[i];
+            if (!tree.hasChildren(child)) {
+                boolean isExplorerTreeNode = child instanceof ExplorerTreeNode;
+                if (isExplorerTreeNode) {
+                    ExplorerTreeNode explorerTreeNode = (ExplorerTreeNode) child;
+                    if (explorerTreeNode.getName().contains("BETA")) data.add(children[i]);
+                }
+            } else if(!skipCategories) {
+                searchBetaSamples(tree, tree.getChildren(child), data, searchText, maxResults, skipCategories);
+            }
+        }
     }
 
     private void applyFilter(Tree tree, TreeNode[] children, Set data, String searchText,int maxResults, boolean skipCategories) {
