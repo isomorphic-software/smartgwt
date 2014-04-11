@@ -335,12 +335,34 @@ public class ShowcaseData {
     private static final ShowcaseMessages M = ShowcaseMessages.INSTANCE;
 
     private String idSuffix;
+    private final String currentReleaseVersion = "4.1";
 
     public ShowcaseData(String idSuffix) {
         this.idSuffix = idSuffix;
     }
 
     private List<ExplorerTreeNode> data;
+
+    private ExplorerTreeNode[] getShowcaseDataVersioned() {
+        ExplorerTreeNode[] showcaseData = getData();
+        for (final ExplorerTreeNode explorerTreeNode : showcaseData) {
+            if (explorerTreeNode.getVersion() == null) {
+                continue;
+            } else if (Float.parseFloat(explorerTreeNode.getVersion()) > Float.parseFloat(currentReleaseVersion)) {
+                explorerTreeNode.setName(explorerTreeNode.getName() + "<sup style='color: red;font-size:10px;font-weight: 700;'> BETA</sup>");
+            } else if (Float.parseFloat(explorerTreeNode.getVersion()) == Float.parseFloat(currentReleaseVersion)) {
+                boolean exist = false;
+                for (final ExplorerTreeNode explorerTreeNode1 : showcaseData) {
+                    if ((explorerTreeNode1.getParentNodeID().equalsIgnoreCase("new_category")) &&
+                        (explorerTreeNode1.getNodeID().equals(explorerTreeNode.getNodeID()))) {
+                        exist = true;
+                    }
+                }
+                if (!exist) explorerTreeNode.setParentNodeID("new_category");
+            }
+        }
+        return showcaseData;
+    }
 
     private ExplorerTreeNode[] getData() {
         if (data == null) {
@@ -357,8 +379,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Print Grid", "featured-print-grid", "featured-category", "silk/printer.png", new PrintingSample.Factory(), true, idSuffix),
 
                     // Disabled for now. We don't want to expose this folder until we have a certain number of samples complete.
-//                  new ExplorerTreeNode("Responsive Design", "responsive-design", "mobile", "silk/calendar.png", new ResponsiveDesign.Factory(), false, idSuffix),
-//                  new ExplorerTreeNode("Dialing", "dialing", "mobile", "silk/phone.png", new DialingSample.Factory(), false, idSuffix),
+//                  new ExplorerTreeNode("Responsive Design", "responsive-design", "mobile", "silk/calendar.png", new ResponsiveDesign.Factory(), false, idSuffix, "5.0"),
+//                  new ExplorerTreeNode("Dialing", "dialing", "mobile", "silk/phone.png", new DialingSample.Factory(), false, idSuffix, "5.0"),
 
                     new ExplorerTreeNode("Adv. Filter Builder", "featured-filter-builder-grid", "featured-category", "crystal/oo/sc_insertformula.png", new GridNestedFilterBulderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Frozen Columns", "featured-tree-grid", "featured-category", "silk/chart_organisation.png", new FrozenColumnsSample.Factory(), true, idSuffix),
@@ -383,15 +405,6 @@ public class ShowcaseData {
 
                     // New samples since previous release
                     new ExplorerTreeNode("New Samples", "new-category", "root", "silk/new.png", null, true, idSuffix),                     
-
-                    new ExplorerTreeNode("Custom Tiles", "tiling-custom-new", "new-category", null, new CustomTilesSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portlet Events", "portlet-events-portal-layout-new", "new-category", null, new PortletEventsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Custom Menu Columns", "menus-category-customcolumns-new", "new-category", null, new MenuCustomColumnsSample.Factory(), true, idSuffix),
-
-                    new ExplorerTreeNode("Cross-Window Drag", "effects-cross-window-dd-category-new", "new-category", null, null, true, idSuffix),
-                    new ExplorerTreeNode("Native Drag Create", "effects-dd-native-drag-create-new", "effects-cross-window-dd-category-new", null, new NativeDragCreateSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Records across Windows", "effects-dd-records-across-windows-new", "effects-cross-window-dd-category-new", null, new RecordsAcrossWindowsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portlet across Windows", "effects-dd-portlet-across-windows-new", "effects-cross-window-dd-category-new", null, new PortletAcrossWindowsSample.Factory(), true, idSuffix),
                     // End of new samples
                     
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
@@ -409,7 +422,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Add on the fly", "select-other-combobox-category", "combobox-category", null, new SelectOtherFieldSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Picktree", "picktree-combobox-category", "combobox-category", null, new PickTreeFieldSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Multi-Select", "multi-select-combobox-category", "combobox-category", null, new SelectMultipleSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Multi ComboBox", "multicombobox-category", "combobox-category", null, new MultiComboBoxSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Multi ComboBox", "multicombobox-category", "combobox-category", null, new MultiComboBoxSample.Factory(), true, idSuffix, "4.1"),
 
                     new ExplorerTreeNode("Grids", "grid-category", "root", "silk/application_view_detail.png", null, true, idSuffix),
                     new ExplorerTreeNode("Appearance", "grid-appearance-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
@@ -635,7 +648,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Load on Demand", "tiling-load-on-demand", "tiling-category", null, new LoadOnDemandTilingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Filter &amp; Sort", "tiling-filter-sort", "tiling-category", null, new FilterSortTilingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Tile Editing", "tiling-editing", "tiling-category", null, new TileEditingSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Custom Tiles", "tiling-custom", "tiling-category", null, new CustomTilesSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Custom Tiles", "tiling-custom", "tiling-category", null, new CustomTilesSample.Factory(), true, idSuffix, "4.1"),
 
                     new ExplorerTreeNode("Forms", "form-category", "root", "silk/vcard_edit.png", null, true, idSuffix),
 
@@ -729,7 +742,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Portlet width", "portlet-width-portal-layout", "sizing-portal-layout", null, new PortletWidthSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Portlet resizing", "portlet-resizing-portal-layout", "sizing-portal-layout", null, new PortletResizeSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Portlet Animation", "portlet-animation-portal-layout", "portal-layout-category", null, new PortletAnimationSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portlet Events", "portlet-events-portal-layout", "portal-layout-category", null, new PortletEventsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Portlet Events", "portlet-events-portal-layout", "portal-layout-category", null, new PortletEventsSample.Factory(), true, idSuffix, "4.1"),
 
                     new ExplorerTreeNode("Buttons", "buttons-category", "root", "silk/brick.png", null, true, idSuffix),
                     new ExplorerTreeNode("Appearance", "buttons-category-appearance", "buttons-category", null, new ButtonAppearanceSample.Factory(), true, idSuffix),
@@ -743,7 +756,7 @@ public class ShowcaseData {
                     //new ExplorerTreeNode("Dynamic Items", "menus-category-dynamic", "menus-category", null, new MenuDynamicItemsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Sub Menus", "menus-category-submenus", "menus-category", null, new MenuSubmenusSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Tree Binding", "menus-category-treebinding", "menus-category", "silk/chart_organisation.png", new MenuTreeBindingSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Custom Columns", "menus-category-customcolumns", "menus-category", "silk/application_view_detail.png", new MenuCustomColumnsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Custom Columns", "menus-category-customcolumns", "menus-category", "silk/application_view_detail.png", new MenuCustomColumnsSample.Factory(), true, idSuffix, "4.1"),
 
                     new ExplorerTreeNode("ToolStrip", "toolstrip-category", "root", "silk/application_view_list.png", null, true, idSuffix),
                     new ExplorerTreeNode("ToolStrip", "toolstrip", "toolstrip-category", null, new ToolStripSample.Factory(), true, idSuffix),
@@ -792,7 +805,7 @@ public class ShowcaseData {
                     //new ExplorerTreeNode("Drag Pan", "effects-dd-pan", "effects-dd-category", null, new DragPanSample.Factory(), true, idSuffix),
                     //new ExplorerTreeNode("Snap-to-Grid Dragging", "effects-dd-snap-to-grid", "effects-dd-category", null, null, false, idSuffix),
 
-                    new ExplorerTreeNode("Cross-Window Drag", "effects-cross-window-dd-category", "effects-dd-category", null, null, true, idSuffix),
+                    new ExplorerTreeNode("Cross-Window Drag", "effects-cross-window-dd-category", "effects-dd-category", null, null, true, idSuffix, "4.1"),
                     new ExplorerTreeNode("Native Drag Create", "effects-dd-native-drag-create", "effects-cross-window-dd-category", null, new NativeDragCreateSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Records across Windows", "effects-dd-records-across-windows", "effects-cross-window-dd-category", null, new RecordsAcrossWindowsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Portlet across Windows", "effects-dd-portlet-across-windows", "effects-cross-window-dd-category", null, new PortletAcrossWindowsSample.Factory(), true, idSuffix),
@@ -885,5 +898,9 @@ public class ShowcaseData {
 
     public static ExplorerTreeNode[] getData(String idSuffix) {
         return new ShowcaseData(idSuffix).getData();
+    }
+
+    public static ExplorerTreeNode[] getDataVersioned(String idSuffix) {
+        return new ShowcaseData(idSuffix).getShowcaseDataVersioned();
     }
 }

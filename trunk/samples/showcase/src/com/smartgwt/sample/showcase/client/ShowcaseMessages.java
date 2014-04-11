@@ -99,6 +99,8 @@ public interface ShowcaseMessages extends Messages {
     public SafeHtml drawingCategoryName();
     @DefaultMessage("Effects &amp; Animation")
     public SafeHtml effectsCategoryName();
+    @DefaultMessage("<span style=\"color:red;font-weight:700;\">BETA</span>")
+    public SafeHtml betaSamplesName();
 
     @DefaultMessage("Categories")
     public SafeHtml categoriesTitle();
