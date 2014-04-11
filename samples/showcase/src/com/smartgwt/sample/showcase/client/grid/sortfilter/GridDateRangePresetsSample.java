@@ -27,14 +27,12 @@ public class GridDateRangePresetsSample extends ShowcasePanel {
         "custom interface for selecting criteria. There's also a simple subclass of this item, " +
         "<code>PresetDateRangeItem</code>, which has custom code to show a DateRangeDialog for " +
         "collecting custom-criteria." +
-        "<p>This example demonstrates using a subclass of the second example in both a ListGrid's " +
-        "FilterEditor, and in a stand-alone FilterBuilder. A simple subclass of " +
+        "<p>This example demonstrates using a subclass of the second example in a ListGrid's " +
+        "FilterEditor. A simple subclass of " +
         "<code>PresetDateRangeItem</code> is created, called <i>RecentDateRangeItem</i>, that lists a number of " +
-        "common options for filtering by recent date ranges. This is then used as an editor in " +
-        "both UIs. In the first example, select an option in the \"Order Date\" field and click " +
-        "the 'Filter' icon to see the filter applied. In the second example, choose " +
-        "a named-range in the \"value\" field to the right of the FilterBuilder and click the " + 
-        "'Filter' button below to have the selected criteria applied to the bottom grid.</p>";
+        "common options for filtering by recent date ranges. This is then used as an editor.  " +
+        "Select an option in the \"Order Date\" field and click " +
+        "the 'Filter' icon to see the filter applied.";
 
     public static class Factory implements PanelFactory {
         private String id;
@@ -86,48 +84,8 @@ public class GridDateRangePresetsSample extends ShowcasePanel {
         grid1.setUseAllDataSourceFields(true);
         grid1.setFields(orderDate);
         grid1.setAutoFetchData(true);
-
-        // ---------------------------------------------------------------------------------------
-        // FilterBuilder Example 
-        Label filterBuilderLabel = new Label();
-        filterBuilderLabel.setWidth(595);
-        filterBuilderLabel.setHeight(25);
-        filterBuilderLabel.setContents("RecentDateRangeItem (FilterBuilder)");
-        filterBuilderLabel.setBaseStyle("exampleSeparator");
-
-        final FilterBuilder filterBuilder = new FilterBuilder();
-        filterBuilder.setWidth(595);
-        filterBuilder.setDataSource(dataSource);
-        AdvancedCriteria ac = new AdvancedCriteria(OperatorId.AND);
-        Criterion c = new Criterion();
-        c.setFieldName("orderDate");
-        ac.addCriteria(c);
-        filterBuilder.setCriteria(ac);
-
-        final ListGrid grid2 = new ListGrid();
-
-        Button searchButton = new Button("Filter");
-        searchButton.setAutoFit(true);
-        searchButton.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {
-				AdvancedCriteria criteria = filterBuilder.getCriteria();
-				grid2.fetchData(criteria);
-			}
-		});
-
-        ListGridField orderDate2 = new ListGridField("orderDate", "Order Date");
-        orderDate2.setFilterEditorProperties(rangeItem);
-        orderDate2.setCanFilter(true);
-
-        grid2.setWidth(595);
-        grid2.setDataSource(dataSource);
-        grid2.setAutoFetchData(true);
-        grid2.setShowFilterEditor(true);
-        grid2.setUseAllDataSourceFields(true);
-        grid2.setFields(orderDate2);
         
-        layout.setMembers(dateRangeLabel, grid1, filterBuilderLabel, filterBuilder, searchButton, grid2);
+        layout.setMembers(dateRangeLabel, grid1);
         return layout;
     }
 
