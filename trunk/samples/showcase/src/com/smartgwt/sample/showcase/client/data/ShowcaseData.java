@@ -50,6 +50,7 @@ import com.smartgwt.sample.showcase.client.combobox.FormatDropDownSample;
 import com.smartgwt.sample.showcase.client.combobox.FormatRelatedValueSample;
 import com.smartgwt.sample.showcase.client.combobox.LocalAndDataboundComboBoxSample;
 import com.smartgwt.sample.showcase.client.combobox.MultiComboBoxSample;
+import com.smartgwt.sample.showcase.client.combobox.ComboBoxSpecialValuesSample;
 import com.smartgwt.sample.showcase.client.combobox.MultiFieldSearchSample;
 import com.smartgwt.sample.showcase.client.combobox.PickTreeFieldSample;
 import com.smartgwt.sample.showcase.client.combobox.SelectMultipleSample;
@@ -423,6 +424,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Picktree", "picktree-combobox-category", "combobox-category", null, new PickTreeFieldSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Multi-Select", "multi-select-combobox-category", "combobox-category", null, new SelectMultipleSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Multi ComboBox", "multicombobox-category", "combobox-category", null, new MultiComboBoxSample.Factory(), true, idSuffix, "4.1"),
+                    new ExplorerTreeNode("Special Values", "specialvalues-combobox-category", "combobox-category", null, new ComboBoxSpecialValuesSample.Factory(), true, idSuffix, "5.0"),
 
                     new ExplorerTreeNode("Grids", "grid-category", "root", "silk/application_view_detail.png", null, true, idSuffix),
                     new ExplorerTreeNode("Appearance", "grid-appearance-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
