@@ -62,7 +62,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
         }
         // Debox Javascript objects that wrap primitives for the benefit of Java in hosted mode.
         // E.g. JS Boolean or Number must be converted to primitives to return them from JSNI.
-        // Note: Java boxing (e.g. lang.util.Boolean) is separate & requires adding extra code.
+        // Note: Java boxing (e.g. java.lang.Boolean) is separate & requires adding extra code.
         $debox = function(val) {
             return @com.google.gwt.core.client.GWT::isScript()() ? val : function() {
             var v = val.apply(this, arguments);
