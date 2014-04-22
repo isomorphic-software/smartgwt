@@ -160,7 +160,7 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         ToolStrip toolStripVersion = new ToolStrip();
         toolStripVersion.setWidth100();
-        toolStripVersion.setHeight(44);
+        toolStripVersion.setHeight(useDesktopMode ? 34 : 44);
         final Label version = new Label(M.versionLabelContents(Version.getVersion(), "" + Version.getBuildDate()).asString());
         version.setWidth100();
         version.setHeight100();
@@ -352,6 +352,10 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         final NavigationBar navigationBarProperties = new NavigationBar();
         final Label navTitleLabelProperties = new Label();
+        if (useDesktopMode) {
+            navigationBarProperties.setHeight(34);
+            navTitleLabelProperties.setHeight(34);
+        }
         navTitleLabelProperties.setStyleName("navBarHeader");
         navTitleLabelProperties.setIcon("pieces/24/cube_green.png");
         navTitleLabelProperties.setIconWidth(24);
@@ -501,7 +505,7 @@ public class Showcase implements EntryPoint, HistoryListener {
             final Tab tab = new Tab();
             tab.setID("main_tab");
             tab.setTitle(M.homeTabTitle().asString());
-            tab.setIcon("pieces/16/cube_green.png", 16);
+            tab.setIcon("silk/house.png", 16);
             tab.setWidth(80);
             tab.setPane(homePanel);
             mainTabSet.addTab(tab);
