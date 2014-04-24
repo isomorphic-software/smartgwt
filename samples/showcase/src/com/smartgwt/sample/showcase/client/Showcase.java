@@ -39,6 +39,7 @@ import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.widgets.grid.HoverCustomizer;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.HStack;
 import com.smartgwt.client.widgets.layout.Layout;
@@ -147,6 +148,19 @@ public class Showcase implements EntryPoint, HistoryListener {
         sideNav = new SideNavTree();
         sideNav.setID("isc_SideNavTree_0");
         sideNav.setBorder("0px");
+        sideNav.setShowHover(true);
+        sideNav.setCanHover(true);
+        sideNav.setHoverCustomizer(new HoverCustomizer() {
+            @Override
+            public String hoverHTML(Object value, ListGridRecord record, int rowNum, int colNum) {
+                if (record instanceof ExplorerTreeNode) {
+                    ExplorerTreeNode node = (ExplorerTreeNode)record;
+                    return "<div style=\"width:450px;\">" + node.getFactory().getDescription() + "</div>";
+                } else {
+                    return "";
+                }
+            }
+        });
         sideNav.addNodeClickHandler(new NodeClickHandler() {
             public void onNodeClick(NodeClickEvent event) {
                 TreeNode node = event.getNode();
