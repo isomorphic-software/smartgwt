@@ -266,6 +266,7 @@ import com.smartgwt.sample.showcase.client.menu.MenuAppearanceSample;
 import com.smartgwt.sample.showcase.client.menu.MenuCustomColumnsSample;
 import com.smartgwt.sample.showcase.client.menu.MenuSubmenusSample;
 import com.smartgwt.sample.showcase.client.menu.MenuTreeBindingSample;
+import com.smartgwt.sample.showcase.client.mobile.MobileComboBoxSample;
 import com.smartgwt.sample.showcase.client.miniapp.MiniAppSample;
 import com.smartgwt.sample.showcase.client.mvc.PatternReuseSample;
 import com.smartgwt.sample.showcase.client.offline.OfflinePreferencesSample;
@@ -380,8 +381,24 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Print Grid", "featured-print-grid", "featured-category", "silk/printer.png", new PrintingSample.Factory(), true, idSuffix),
 
                     // Disabled for now. We don't want to expose this folder until we have a certain number of samples complete.
+                    //new ExplorerTreeNode("Mobile samples", "mobile", "root", "silk/phone.png", null, true, idSuffix),   
 //                  new ExplorerTreeNode("Responsive Design", "responsive-design", "mobile", "silk/calendar.png", new ResponsiveDesign.Factory(), false, idSuffix, "5.0"),
 //                  new ExplorerTreeNode("Dialing", "dialing", "mobile", "silk/phone.png", new DialingSample.Factory(), false, idSuffix, "5.0"),
+/*                    new FolderTreeNode("Adaptive UI", "adaptive-ui-ms", "mobile", "silk/phone.png", true, idSuffix) {{
+                            setDescription(
+                                    "Smart GWT components automatically adapt to the smaller screen size and "+
+                                    "different pointing behavior of mobile devices. "+
+                                    "<p>"+
+                                    "Components like Combo Boxes, Menus and Dialogs will automatically use the entire screen "+
+                                    "and offer alternative UI for dismissal and navigation (for example: submenus slide in)."+
+                                    "<p>"+
+                                    "Context menus and hovers can be triggered by finger taps or long touches. "+
+                                    "<p>"+
+                                    "Because of these and many other automatic behavior changes for mobile devices, you really "+
+                                    "can build cross-device applications with a single technology and single codebase."
+                            );
+                        }},                  
+                    new ExplorerTreeNode("Combo Box", "combobox-ms", "adaptive-ui-ms", null, new MobileComboBoxSample.Factory(), true, idSuffix, "5.0"),*/
 
                     new ExplorerTreeNode("Adv. Filter Builder", "featured-filter-builder-grid", "featured-category", "crystal/oo/sc_insertformula.png", new GridNestedFilterBulderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Frozen Columns", "featured-tree-grid", "featured-category", "silk/chart_organisation.png", new FrozenColumnsSample.Factory(), true, idSuffix),
@@ -425,6 +442,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Multi-Select", "multi-select-combobox-category", "combobox-category", null, new SelectMultipleSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Multi ComboBox", "multicombobox-category", "combobox-category", null, new MultiComboBoxSample.Factory(), true, idSuffix, "4.1"),
                     new ExplorerTreeNode("Special Values", "specialvalues-combobox-category", "combobox-category", null, new ComboBoxSpecialValuesSample.Factory(), true, idSuffix, "5.0"),
+                    // this sample is hidden because the "Mobile Samples" folder is hidden as well.
+                    //new ExplorerTreeNode("Mobile ComboBox", "combobox-mobile", "combobox-category", null, new MobileComboBoxSample.Factory(), true, idSuffix, "5.0"),
 
                     new ExplorerTreeNode("Grids", "grid-category", "root", "silk/application_view_detail.png", null, true, idSuffix),
                     new ExplorerTreeNode("Appearance", "grid-appearance-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),

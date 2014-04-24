@@ -64,8 +64,11 @@ import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.client.widgets.tree.events.LeafClickEvent;
 import com.smartgwt.client.widgets.tree.events.LeafClickHandler;
+import com.smartgwt.client.widgets.tree.events.NodeClickEvent;
+import com.smartgwt.client.widgets.tree.events.NodeClickHandler;
 import com.smartgwt.sample.showcase.client.data.CommandTreeNode;
 import com.smartgwt.sample.showcase.client.data.ExplorerTreeNode;
+import com.smartgwt.sample.showcase.client.data.FolderTreeNode;
 
 @SuppressWarnings("deprecation")
 public class Showcase implements EntryPoint, HistoryListener {
@@ -144,9 +147,9 @@ public class Showcase implements EntryPoint, HistoryListener {
         sideNav = new SideNavTree();
         sideNav.setID("isc_SideNavTree_0");
         sideNav.setBorder("0px");
-        sideNav.addLeafClickHandler(new LeafClickHandler() {
-            public void onLeafClick(LeafClickEvent event) {
-                TreeNode node = event.getLeaf();
+        sideNav.addNodeClickHandler(new NodeClickHandler() {
+            public void onNodeClick(NodeClickEvent event) {
+                TreeNode node = event.getNode();
                 showSample(node);
             }
         });
@@ -684,6 +687,67 @@ public class Showcase implements EntryPoint, HistoryListener {
             disableDetailTools();
             final CommandTreeNode commandTreeNode = (CommandTreeNode)node;
             commandTreeNode.getCommand().execute();
+        }  else if (node instanceof FolderTreeNode && sideNav.getTree().hasChildren(node)) {
+            final FolderTreeNode folderTreeNode = (FolderTreeNode)node;
+            String panelID = folderTreeNode.getNodeID();
+
+            final String folderName = folderTreeNode.getName();
+            String icon = folderTreeNode.getIcon();
+            if (icon == null) {
+                icon = "silk/plugin.png";
+            }
+
+            if (useDesktopMode) {
+                Tab tab = null;
+                if (panelID != null) {
+                    String tabID = panelID + "_tab";
+                    tab = mainTabSet.getTab(tabID);
+                }
+                if (tab == null) {
+                    tab = new Tab();
+                    tab.setID(folderTreeNode.getNodeID() + "_tab");
+                    //store history token on tab so that when an already open is selected, one can retrieve the
+                    //history token and update the URL
+                    tab.setAttribute("historyToken", folderTreeNode.getNodeID());
+                    tab.setContextMenu(contextMenu);
+
+                    tab.setTitle("<nobr>" + Canvas.imgHTML(icon, 16, 16) + "&nbsp;<span style='display:inline-block;line-height:16px;vertical-align:text-top'>" + folderName + "</span></nobr>");
+
+                    Window window = new Window();
+                    window.setTitle(tab.getTitle());
+                    window.setWidth(500);
+                    window.setHeight(375);
+                    window.setKeepInParentRect(true);
+                    window.setTop(30);
+                    window.setLeft(30);
+                    window.setCanDragResize(true);
+
+                    final Canvas tableCanvas = createTableCanvas(folderTreeNode);
+                    window.addItem(tableCanvas);
+
+                    VLayout panel = new VLayout();
+                    panel.addChild(window);
+                    tab.setPane(panel);
+
+                    tab.setCanClose(true);
+                    mainTabSet.addTab(tab);
+                    mainTabSet.selectTab(tab);
+                }
+                mainTabSet.selectTab(tab);
+            } else {
+                final Canvas panel = createTableCanvas(folderTreeNode);
+                panel.setOverflow(Overflow.AUTO);
+                final Canvas oldDetailPane = splitPane.getDetailPane();
+                splitPane.setDetailPane(panel);
+                if (oldDetailPane != null && oldDetailPane != homePanel) {
+                    oldDetailPane.destroy();
+                }
+                splitPane.showDetailPane(folderName, M.shortNavigationPaneTitle().asString());
+                updateSampleIcon(icon);
+            }
+
+            disableDetailTools();
+            History.newItem(folderTreeNode.getNodeID(), false);
         } else if (node instanceof ExplorerTreeNode) {
             final ExplorerTreeNode explorerTreeNode = (ExplorerTreeNode)node;
             final PanelFactory factory;
@@ -748,6 +812,63 @@ public class Showcase implements EntryPoint, HistoryListener {
                 }
             }
         }
+    }
+
+    private Canvas createTableCanvas(FolderTreeNode folderTreeNode) {
+        final Layout layout = new VLayout(10);
+        layout.setLayoutMargin(10);
+        final List<Canvas> layoutMembers = new ArrayList<Canvas>();
+
+        if (folderTreeNode.getDescription() != null) {
+            String descriptionText = "<p class='intro-para'>" + folderTreeNode.getDescription() + "</p>";
+            Canvas descriptionCanvas = new Canvas();
+            descriptionCanvas.setPadding(10);
+            descriptionCanvas.setContents(descriptionText);
+            layoutMembers.add(descriptionCanvas);
+        }
+
+        TreeNode[] children = sideNav.getTree().getChildren(folderTreeNode);
+        for (TreeNode l: children) {
+            System.out.println("leave: " + l.getName());
+        }
+        int numRows = (int) Math.round(children.length / 2f);
+        StringBuilder buf = new StringBuilder();
+        int firstColIndex = 0;
+        int secondColIndex = numRows;
+        buf.append("<table class='explorerFolderList' align='center' cellSpacing='5'>");
+        for (int i = 0; i < numRows; i++) {
+            ExplorerTreeNode node1 = (ExplorerTreeNode) children[firstColIndex++];
+            ExplorerTreeNode node2 = (secondColIndex < children.length ? (ExplorerTreeNode) children[secondColIndex++] : null);
+
+            this._htmlForCell(node1, buf);
+            buf.append("<td width=10>&nbsp;</td>");
+            this._htmlForCell(node2, buf);
+            buf.append("</tr>");
+        }
+        buf.append("</table>");
+
+        final Canvas tableCanvas = new Canvas();
+        tableCanvas.setContents(buf.toString());
+        layoutMembers.add(tableCanvas);
+
+        layout.setMembers(layoutMembers.toArray(new Canvas[layoutMembers.size()]));
+        return layout;
+    }
+
+    private void _htmlForCell(ExplorerTreeNode node, StringBuilder sb) {
+        if (node == null) {
+            sb.append("<td>&nbsp;</td>");
+            return;
+        }
+
+        String icon = node.getIcon() != null ? node.getIcon() : "silk/plugin.png";
+        String imgHTML = Canvas.imgHTML(icon, 16, 16);
+
+        sb.append("<td>");
+        sb.append(imgHTML);
+        sb.append("&nbsp;");
+        sb.append("<a target='_top' href='#" + node.getNodeID() + "'>" + node.getName() + "</a>");
+        sb.append("</td>");
     }
 
     private void updateSampleIcon(String icon) {
