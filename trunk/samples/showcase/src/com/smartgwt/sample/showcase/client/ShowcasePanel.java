@@ -95,7 +95,6 @@ public abstract class ShowcasePanel extends VLayout {
         win.setShouldPrint(false);
         win.setTitle("Source");
         win.setHeaderIcon("pieces/16/cube_green.png", 16, 16);
-        win.setHideUsingDisplayNone(true);
         win.setKeepInParentRect(true);
         if (!useDesktopMode) {
             win.setMaximized(true);
@@ -210,7 +209,6 @@ public abstract class ShowcasePanel extends VLayout {
 
     public Tab buildSourceTab(String title, String icon, String url) {
         final HTMLPane tabPane = new HTMLPane();
-        tabPane.setHideUsingDisplayNone(true); // work-around for http://crbug.com/338105
         tabPane.setWidth100();
         tabPane.setHeight100();
         tabPane.setContentsURL(url);
