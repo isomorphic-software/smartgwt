@@ -154,11 +154,13 @@ public class Showcase implements EntryPoint, HistoryListener {
             @Override
             public String hoverHTML(Object value, ListGridRecord record, int rowNum, int colNum) {
                 if (record instanceof ExplorerTreeNode) {
-                    ExplorerTreeNode node = (ExplorerTreeNode)record;
-                    return "<div style=\"width:450px;\">" + node.getFactory().getDescription() + "</div>";
-                } else {
-                    return "";
+                    final ExplorerTreeNode node = (ExplorerTreeNode)record;
+                    final PanelFactory factory = node.getFactory();
+                    if (factory != null) {
+                        return "<div style=\"width:450px;\">" + factory.getDescription() + "</div>";
+                    }
                 }
+                return null; // no hover
             }
         });
         sideNav.addNodeClickHandler(new NodeClickHandler() {
