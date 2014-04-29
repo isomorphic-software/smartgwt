@@ -98,6 +98,7 @@ import com.smartgwt.sample.showcase.client.effects.dragdrop.DragTypesSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.NativeDragCreateSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.PortletAcrossWindowsSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.RecordsAcrossWindowsSample;
+import com.smartgwt.sample.showcase.client.effects.dragdrop.DragSnapToGridSample;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.CornersSample;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.CssStylesSample;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.EdgesSample;
@@ -831,7 +832,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Drag Resize", "effects-dd-resize", "effects-dd-category", null, new DragResizeSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag Tracker", "effects-dd-tracker", "effects-dd-category", null, new DragTrackerSample.Factory(), true, idSuffix),
                     //new ExplorerTreeNode("Drag Pan", "effects-dd-pan", "effects-dd-category", null, new DragPanSample.Factory(), true, idSuffix),
-                    //new ExplorerTreeNode("Snap-to-Grid Dragging", "effects-dd-snap-to-grid", "effects-dd-category", null, null, false, idSuffix),
+                    new ExplorerTreeNode("Snap-to-Grid Dragging", "effects-dd-snap-to-grid", "effects-dd-category", null, new DragSnapToGridSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Cross-Window Drag", "effects-cross-window-dd-category", "effects-dd-category", null, null, true, idSuffix, "4.1"),
                     new ExplorerTreeNode("Native Drag Create", "effects-dd-native-drag-create", "effects-cross-window-dd-category", null, new NativeDragCreateSample.Factory(), true, idSuffix),
