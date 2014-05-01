@@ -76,8 +76,8 @@ public class FormVariousControlsSample extends ShowcasePanel {
         sliderItem.setTitle("Slider");
         sliderItem.setHeight(40);
         sliderItem.setWidth(180);
-        sliderItem.setMinValue(1);
-        sliderItem.setMaxValue(5);
+        sliderItem.setMinValue(1.0);
+        sliderItem.setMaxValue(5.0);
         sliderItem.setNumValues(5);
         sliderItem.setDefaultValue(4);
 
