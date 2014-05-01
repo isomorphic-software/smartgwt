@@ -38,8 +38,8 @@ import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.grid.HoverCustomizer;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.HStack;
 import com.smartgwt.client.widgets.layout.Layout;
@@ -63,8 +63,6 @@ import com.smartgwt.client.widgets.toolbar.ToolStrip;
 import com.smartgwt.client.widgets.toolbar.ToolStripButton;
 import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeNode;
-import com.smartgwt.client.widgets.tree.events.LeafClickEvent;
-import com.smartgwt.client.widgets.tree.events.LeafClickHandler;
 import com.smartgwt.client.widgets.tree.events.NodeClickEvent;
 import com.smartgwt.client.widgets.tree.events.NodeClickHandler;
 import com.smartgwt.sample.showcase.client.data.CommandTreeNode;
@@ -149,7 +147,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         sideNav.setID("isc_SideNavTree_0");
         sideNav.setBorder("0px");
         sideNav.setShowHover(true);
-        sideNav.setCanHover(true);
+        sideNav.setCanHover(useDesktopMode);
         sideNav.setHoverCustomizer(new HoverCustomizer() {
             @Override
             public String hoverHTML(Object value, ListGridRecord record, int rowNum, int colNum) {
