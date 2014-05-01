@@ -270,6 +270,7 @@ import com.smartgwt.sample.showcase.client.menu.MenuTreeBindingSample;
 import com.smartgwt.sample.showcase.client.mobile.MobileComboBoxSample;
 import com.smartgwt.sample.showcase.client.mobile.MobileSelectListSample;
 import com.smartgwt.sample.showcase.client.mobile.MobileMenusSample;
+import com.smartgwt.sample.showcase.client.mobile.MobileWindowsDialogsSample;
 import com.smartgwt.sample.showcase.client.miniapp.MiniAppSample;
 import com.smartgwt.sample.showcase.client.mvc.PatternReuseSample;
 import com.smartgwt.sample.showcase.client.offline.OfflinePreferencesSample;
@@ -403,7 +404,8 @@ public class ShowcaseData {
                         }},                  
                     new ExplorerTreeNode("Combo Box", "combobox-ms", "adaptive-ui-ms", null, new MobileComboBoxSample.Factory(), true, idSuffix, "5.0"),
                     new ExplorerTreeNode("Select List", "selectlist-ms", "adaptive-ui-ms", null, new MobileSelectListSample.Factory(), true, idSuffix, "5.0"),
-                    new ExplorerTreeNode("Menus", "menus-ms", "adaptive-ui-ms", null, new MobileMenusSample.Factory(), true, idSuffix, "5.0"),*/
+                    new ExplorerTreeNode("Menus", "menus-ms", "adaptive-ui-ms", null, new MobileMenusSample.Factory(), true, idSuffix, "5.0"),
+                    new ExplorerTreeNode("Windows &amp; Dialogs", "windows-dialogs-ms", "adaptive-ui-ms", null, new MobileWindowsDialogsSample.Factory(), true, idSuffix, "5.0"),*/
 
                     new ExplorerTreeNode("Adv. Filter Builder", "featured-filter-builder-grid", "featured-category", "crystal/oo/sc_insertformula.png", new GridNestedFilterBulderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Frozen Columns", "featured-tree-grid", "featured-category", "silk/chart_organisation.png", new FrozenColumnsSample.Factory(), true, idSuffix),
@@ -738,6 +740,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Header Icons", "layout-windows-header-icons", "layout-windows-category", null, new WindowHeaderIconsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Header Controls", "layout-windows-header-controls", "layout-windows-category", null, new WindowHeaderControlsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Footer", "layout-windows-footer", "layout-windows-category", null, new WindowFooterSample.Factory(), true, idSuffix),
+                    // this sample is hidden because the "Mobile Samples" folder is hidden as well.
+//                    new ExplorerTreeNode("Mobile UI", "layout-windows-mobile-ui", "layout-windows-category", null, new MobileWindowsDialogsSample.Factory(), true, idSuffix, "5.0"),
 
                     new ExplorerTreeNode("Tabs", "layout-tabs-category", "root", "silk/tab.png", null, true, idSuffix),
                     new ExplorerTreeNode("Orientation", "layout-tabs-orientation", "layout-tabs-category", null, new OrientationSample.Factory(), true, idSuffix),
