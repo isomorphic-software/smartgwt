@@ -5,8 +5,6 @@ import com.smartgwt.client.types.DragAppearance;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Img;
 import com.smartgwt.client.widgets.Label;
-import com.smartgwt.client.widgets.events.DrawEvent;
-import com.smartgwt.client.widgets.events.DrawHandler;
 import com.smartgwt.client.widgets.events.FocusChangedEvent;
 import com.smartgwt.client.widgets.events.FocusChangedHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
@@ -39,9 +37,8 @@ public class BasicFocusTabbingSample extends ShowcasePanel {
             return DESCRIPTION;
         }
     }
-      
+
     public Canvas getViewPanel() {
-    	
         HStack hStack = new HStack();
         hStack.setWidth(300);
         hStack.setHeight(100);
@@ -49,14 +46,14 @@ public class BasicFocusTabbingSample extends ShowcasePanel {
         hStack.setCanAcceptDrop(true);
         hStack.setAnimateMembers(true);
         hStack.setDropLineThickness(4);
-        
+
         final Label focusLabel = new Label();
         focusLabel.setID("focusLabel");
         focusLabel.setAlign(Alignment.CENTER);
         focusLabel.setTop(150);
         focusLabel.setWidth(300);
         focusLabel.setHeight(50);
-        
+
         final Img bluePawn = new Img();
         bluePawn.setID("bluePawn");
         bluePawn.setLayoutAlign(Alignment.CENTER);
@@ -67,11 +64,6 @@ public class BasicFocusTabbingSample extends ShowcasePanel {
         bluePawn.setCanDragReposition(true);
         bluePawn.setCanDrop(true);
         bluePawn.setDragAppearance(DragAppearance.TARGET);
-        bluePawn.addDrawHandler(new DrawHandler() {
-			public void onDraw(DrawEvent event) {
-				bluePawn.focus();
-			}
-        });
         bluePawn.addFocusChangedHandler(new FocusChangedHandler() {
 			public void onFocusChanged(FocusChangedEvent event) {
 				changeLabel(focusLabel, bluePawn.getID(), event.getHasFocus());
@@ -81,10 +73,10 @@ public class BasicFocusTabbingSample extends ShowcasePanel {
         ComboBoxItem field1 = new ComboBoxItem();
         field1.setName("field1");
         field1.setValueMap("Option 1", "Option 2");
-        
+
         DateItem field2 = new DateItem();
         field2.setName("field2");
-        
+
         final DynamicForm simpleForm = new DynamicForm();
         simpleForm.setID("simpleForm");
         simpleForm.setLayoutAlign(Alignment.CENTER);
@@ -95,7 +87,7 @@ public class BasicFocusTabbingSample extends ShowcasePanel {
 				changeLabel(focusLabel, simpleForm.getID(), event.getHasFocus());
 			}
         });
-        
+
         final Img greenPawn = new Img();
         greenPawn.setID("greenPawn");
         greenPawn.setLayoutAlign(Alignment.CENTER);
@@ -115,12 +107,12 @@ public class BasicFocusTabbingSample extends ShowcasePanel {
         hStack.addMember(bluePawn);
         hStack.addMember(simpleForm);
         hStack.addMember(greenPawn);
-        
+
         VLayout vLayout = new VLayout();
         vLayout.setMembersMargin(10);
         vLayout.addMember(hStack);
         vLayout.addMember(focusLabel);
-        
+
         return vLayout;
     }
 
