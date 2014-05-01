@@ -93,4 +93,11 @@ public class MenuAppearanceSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
+
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        // match SC Feature Explorer sample topology
+        return true;
+    }
+
 }
