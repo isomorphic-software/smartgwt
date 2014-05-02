@@ -15,12 +15,13 @@ public class CircleToCommand extends DrawShapeCommand {
     }
 
     public CircleToCommand(Point centerPoint, double radius, double startAngle, double endAngle) {
+        this();
         internalSetArgs(centerPoint, radius, startAngle, endAngle);
     }
 
     private void internalSetArgs(Point centerPoint, double radius, double startAngle, double endAngle) {
         final JavaScriptObject args = JSOHelper.createJavaScriptArray();
-        JSOHelper.setArrayValue(args, 0, centerPoint);
+        JSOHelper.setArrayValue(args, 0, centerPoint.getJsObj());
         JSOHelper.setArrayValue(args, 1, radius);
         JSOHelper.setArrayValue(args, 2, startAngle);
         JSOHelper.setArrayValue(args, 3, endAngle);
