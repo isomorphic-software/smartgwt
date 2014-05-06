@@ -22,6 +22,7 @@ public abstract class ShowcasePanel extends VLayout {
     protected Canvas viewPanel;
 
     private Window introWindow;
+    private String betaMessage = "";
 
     public ShowcasePanel() {
         setWidth100();
@@ -154,6 +155,10 @@ public abstract class ShowcasePanel extends VLayout {
         win.show();
     }
 
+    protected void setBetaMessage(String message) {
+        this.betaMessage = message;
+    }
+
     protected void showOverview(boolean useDesktopMode) {
         final boolean topIntro = isTopIntro();
         final String intro = getIntro();
@@ -171,7 +176,7 @@ public abstract class ShowcasePanel extends VLayout {
                 introWindow.setShowMinimizeButton(false);
             }
 
-            String introContents = "<p class='intro-para'>" + intro + "</p>";
+            String introContents = "<p class='intro-para'>" + intro + this.betaMessage + "</p>";
             Canvas contents = new Canvas();
             contents.setCanSelectText(true);
             contents.setPadding(10);

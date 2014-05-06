@@ -72,6 +72,7 @@ import com.smartgwt.sample.showcase.client.data.FolderTreeNode;
 @SuppressWarnings("deprecation")
 public class Showcase implements EntryPoint, HistoryListener {
     private static final ShowcaseMessages M = ShowcaseMessages.INSTANCE;
+    private static final String preReleaseVersion = "5.0";
 
     private final SCConstants scConstants = (SCConstants)GWT.create(SCConstants.class);
     private boolean isc_websiteMode = scConstants.websiteMode();
@@ -91,6 +92,10 @@ public class Showcase implements EntryPoint, HistoryListener {
     private ToolStripButton printButton;
     private ToolStripButton sourceButton;
     private ToolStripButton showOverviewButton;
+
+    public static String getPreReleaseVersion() {
+        return preReleaseVersion;
+    }
 
     public void onModuleLoad() {
         final boolean useDesktopMode = ShowcaseConfiguration.getSingleton().isOpenForTesting() || Browser.getIsDesktop();
@@ -148,17 +153,32 @@ public class Showcase implements EntryPoint, HistoryListener {
         sideNav.setBorder("0px");
         sideNav.setShowHover(true);
         sideNav.setCanHover(useDesktopMode);
+        sideNav.setHoverStyle("hoverTreeGridCustom");
         sideNav.setHoverCustomizer(new HoverCustomizer() {
             @Override
             public String hoverHTML(Object value, ListGridRecord record, int rowNum, int colNum) {
                 if (record instanceof ExplorerTreeNode) {
-                    final ExplorerTreeNode node = (ExplorerTreeNode)record;
-                    final PanelFactory factory = node.getFactory();
-                    if (factory != null) {
-                        return "<div style=\"width:450px;\">" + factory.getDescription() + "</div>";
+                    ExplorerTreeNode node = (ExplorerTreeNode)record;
+                    String customDiv = "<div style=\"width:450px; " +
+                               "margin-top:10px; "+
+                               "margin-bottom:10px; "+
+                               "margin-left:10px; "+
+                               "margin-right:10px;\">";
+
+                    if (node.getName().contains("BETA")) {
+                        return customDiv +
+                               node.getFactory().getDescription() + 
+                               "<br><br><span style='color: red;font-size:11px;font-weight: 700;'>BETA</span> : "+
+                               "This sample demonstrates features available in the next available version of "+
+                               "Smart GWT, " +preReleaseVersion+ ".  To download a " +preReleaseVersion+" SDK, "+
+                               "click on \"Pre-release versions\" on the Download page."+
+                               "</div>";
+                    } else {
+                        return (node.getFactory().getDescription() == null) ? "" : customDiv + node.getFactory().getDescription() +"</div>";
                     }
+                } else {
+                    return "";
                 }
-                return null; // no hover
             }
         });
         sideNav.addNodeClickHandler(new NodeClickHandler() {
@@ -785,6 +805,15 @@ public class Showcase implements EntryPoint, HistoryListener {
                     if (tab == null) {
                         panel = autotest ? SampleResultsManager.create(mainTabSet, factory) : factory.create();
                         if (panel instanceof ShowcasePanel) {
+                            String betaMessage = "";
+                            if (explorerTreeNode.getName().contains("BETA")) {
+                                betaMessage = "<br><br><span style='color: red;font-size:11px;font-weight: 700;'>BETA</span> : "+
+                                    "This sample demonstrates features available in the "+
+                                    "<a href=\"http://www.smartclient.com/product/downloadOtherReleases.jsp#nextVersion\" target=\"_blank\"> "+
+                                    "next available version</a> "+
+                                    "of Smart GWT, " +preReleaseVersion+ ".";
+                            }
+                            ((ShowcasePanel)panel).setBetaMessage(betaMessage);
                             ((ShowcasePanel)panel).showOverview(useDesktopMode);
                         }
                         tab = new Tab();
