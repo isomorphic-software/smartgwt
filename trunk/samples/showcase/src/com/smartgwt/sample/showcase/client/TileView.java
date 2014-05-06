@@ -384,7 +384,11 @@ public class TileView extends VLayout {
                 boolean isExplorerTreeNode = child instanceof ExplorerTreeNode;
                 if (isExplorerTreeNode) {
                     ExplorerTreeNode explorerTreeNode = (ExplorerTreeNode) child;
-                    if (explorerTreeNode.getName().contains("BETA")) data.add(children[i]);
+                    
+                    if (explorerTreeNode.getName().contains("BETA")) {
+                        children[i].setAttribute("description", explorerTreeNode.getFactory().getDescription());
+                        data.add(children[i]);
+                    }
                 }
             } else if(!skipCategories) {
                 searchBetaSamples(tree, tree.getChildren(child), data, searchText, maxResults, skipCategories);

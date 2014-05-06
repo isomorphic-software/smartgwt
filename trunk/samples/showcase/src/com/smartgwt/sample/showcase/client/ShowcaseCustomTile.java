@@ -10,10 +10,16 @@ import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.form.fields.StaticTextItem;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.widgets.tile.SimpleTile;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.widgets.HoverHTMLCustomizer;
+
+import java.util.Map;
+import java.util.HashMap;
 
 public class ShowcaseCustomTile extends SimpleTile {  
     
     private DynamicForm form;
+    private String preReleaseVersion = Showcase.getPreReleaseVersion();
 
     public ShowcaseCustomTile() {  
       setOverflow(Overflow.HIDDEN);  
@@ -40,9 +46,31 @@ public class ShowcaseCustomTile extends SimpleTile {
       });  
       final Img betaImage = new Img();
       betaImage.setSrc("beta.png");
-      betaImage.setSnapTo("TL");
-      betaImage.setWidth(100);
-      betaImage.setHeight(85);
+      betaImage.setSnapTo("TR");
+      betaImage.setWidth(119);
+      betaImage.setHeight(89);
+      betaImage.setHoverStyle("hoverTreeGridCustom");
+      betaImage.setShowHover(true);
+      betaImage.setCanHover(true);
+      betaImage.setHoverHTMLCustomizer(new HoverHTMLCustomizer() {
+
+          @Override
+          public String getHoverHTML() {
+              String customDiv = "<div style=\"width:200px; " +
+                               "margin-top:10px; "+
+                               "margin-bottom:10px; "+
+                               "margin-left:10px; "+
+                               "margin-right:10px;\">";
+              return customDiv +
+                     (String)form.getValue("description") +
+                     "<br><br><span style='color: red;font-size:11px;font-weight: 700;'>BETA</span> : "+
+                     "This sample demonstrates features available in the next available version of "+
+                     "Smart GWT, " +preReleaseVersion+ ".  To download a " +preReleaseVersion+" SDK, "+
+                     "click on \"Pre-release versions\" on the Download page."+
+                     "</div>";
+          }
+			
+      });
 
       StaticTextItem nameField = new StaticTextItem("nodeTitle");  
       nameField.setShowTitle(false);
@@ -59,8 +87,10 @@ public class ShowcaseCustomTile extends SimpleTile {
                 return newValue;
             }
       });
+      StaticTextItem descriptionField = new StaticTextItem("description");  
+      descriptionField.setVisible(false);
       
-      form.setFields(iconField, nameField); 
+      form.setFields(iconField, nameField, descriptionField); 
 
       addChild(form);
   }

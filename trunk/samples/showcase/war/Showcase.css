@@ -9,6 +9,18 @@
     text-align: left;
 }
 
+.hoverTreeGridCustom {
+    border:1px solid #CCCCCC;
+    background-color:white;
+    -moz-box-shadow: 0 0 6px #E8E8E8;
+    -webkit-box-shadow: 0 0 6px#E8E8E8;
+    box-shadow: 0 0 6px #E8E8E8;
+    font-size:11px;
+    font-family: Calibri, "Lucida Sans Unicode","Lucida Grande","Trebuchet MS", Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    color:#363B30;
+}
+
 /* Buttons*/
 .cssButton {
     padding:2px;
