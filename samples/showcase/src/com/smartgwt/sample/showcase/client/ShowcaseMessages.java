@@ -38,7 +38,7 @@ public interface ShowcaseMessages extends Messages {
 
 
 
-    @DefaultMessage("Home")
+    @DefaultMessage("Smart GWT Showcase")
     public SafeHtml homeNodeName();
 
 

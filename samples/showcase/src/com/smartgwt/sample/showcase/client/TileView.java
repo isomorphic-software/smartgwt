@@ -303,6 +303,12 @@ public class TileView extends VLayout {
 
     }
 
+    public void updateTiles(String searchText) {
+        filterForm.setValue("description", searchText);
+        updateTiles();
+        filterForm.focusInItem(searchItem);
+    }
+
     private void updateTiles() {
         final String searchText = (String)searchItem.getValue();
 
