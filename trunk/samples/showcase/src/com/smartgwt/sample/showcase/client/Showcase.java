@@ -3,6 +3,7 @@ package com.smartgwt.sample.showcase.client;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -38,9 +39,12 @@ import com.smartgwt.client.widgets.events.IconClickHandler;
 import com.smartgwt.client.widgets.events.ResizedEvent;
 import com.smartgwt.client.widgets.events.ResizedHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
+import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;
+import com.smartgwt.client.widgets.form.fields.events.KeyPressEvent;
+import com.smartgwt.client.widgets.form.fields.events.KeyPressHandler;
 import com.smartgwt.client.widgets.grid.HoverCustomizer;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.layout.HLayout;
@@ -95,7 +99,7 @@ public class Showcase implements EntryPoint, HistoryListener {
 	private HStack bottomPane;
 	private HLayout bottomPaneLeft;
 	private HLayout bottomPaneRight;
-
+    private TileView tileView;
     private List<Canvas> detailTools;
     private ToolStripButton printButton;
     private ToolStripButton sourceButton;
@@ -161,7 +165,8 @@ public class Showcase implements EntryPoint, HistoryListener {
         splitPane.setHeight100();
         splitPane.setAddHistoryEntries(false);
 
-        splitPane.setNavigationTitle(M.navigationPaneTitle().asString());
+        if (useDesktopMode) splitPane.setShowNavigationBar(false);
+        else splitPane.setNavigationTitle(M.navigationPaneTitle().asString());
 
         VLayout featureExplorer = new VLayout();
         featureExplorer.setWidth100();
@@ -175,8 +180,31 @@ public class Showcase implements EntryPoint, HistoryListener {
         sideNavLayout.setHeight100();
         sideNavLayout.setWidth(215);
 
+        DynamicForm searchForm = new DynamicForm();
+        searchForm.setWidth100();
+        TextItem searchItem = new TextItem();
+        searchItem.setShowTitle(false);
+        searchItem.setWidth("*");
+        searchItem.setColSpan(2);
+        searchItem.addKeyPressHandler(new KeyPressHandler() {
+            @Override
+            public void onKeyPress(KeyPressEvent event) {
+                if("enter".equalsIgnoreCase(event.getKeyName())) {
+                    if ((event.getItem().getValue() != null) && (String.valueOf(event.getItem().getValue()).trim().length() > 0)) {
+                        mainTabSet.selectTab(0);// Home tab
+                        tileView.updateTiles(String.valueOf(event.getItem().getValue()));
+                        event.getItem().clearValue();
+                    }
+                }
+            }
+        });
+        searchForm.setFields(searchItem);
+
+        sideNavLayout.addMember(searchForm);
+
         sideNav = new SideNavTree();
         sideNav.setID("isc_SideNavTree_0");
+        //sideNav.setShowHeader(useDesktopMode);
         sideNav.setBorder("0px");
         sideNav.setShowHover(true);
         sideNav.setCanHover(useDesktopMode);
@@ -269,7 +297,8 @@ public class Showcase implements EntryPoint, HistoryListener {
         homePanel = new HLayout();
         homePanel.setHeight100();
         homePanel.setWidth100();
-        final TileView tileView = new TileView();
+        
+        tileView = new TileView();
         homePanel.addMember(tileView);
 
         if (isc_websiteMode) {
@@ -418,29 +447,29 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         final NavigationBar navigationBarProperties = new NavigationBar();
         final Label navTitleLabelProperties = new Label();
-        if (useDesktopMode) {
+        /*if (useDesktopMode) {
             navigationBarProperties.setHeight(34);
             navTitleLabelProperties.setHeight(34);
         }
-        navTitleLabelProperties.setStyleName("navBarHeader");
+        navTitleLabelProperties.setStyleName("navBarHeader");*/
         navTitleLabelProperties.setIcon("pieces/24/cube_green.png");
         navTitleLabelProperties.setIconWidth(24);
         navTitleLabelProperties.setIconHeight(24);
-        navTitleLabelProperties.addIconClickHandler(new IconClickHandler() {
+        /*navTitleLabelProperties.addIconClickHandler(new IconClickHandler() {
             @Override
             public void onIconClick(IconClickEvent event) {
                 com.google.gwt.user.client.Window.open("http://code.google.com/p/smartgwt/", "sgwt", null);
             }
         });
-        navTitleLabelProperties.setIconCursor(Cursor.POINTER);
+        navTitleLabelProperties.setIconCursor(Cursor.POINTER);*/
         navigationBarProperties.setAutoChildProperties("titleLabel", navTitleLabelProperties);
         splitPane.setAutoChildProperties("navigationBar", navigationBarProperties);
         final Label detailTitleLabelProperties = new Label();
-        detailTitleLabelProperties.setStyleName("navBarHeader");
+        //detailTitleLabelProperties.setStyleName("navBarHeader");
         detailTitleLabelProperties.setIconWidth(24);
         detailTitleLabelProperties.setIconHeight(24);
         splitPane.setAutoChildProperties("detailTitleLabel", detailTitleLabelProperties);
-        if (!useDesktopMode) {
+        /*if (!useDesktopMode) {
             splitPane.addPaneChangedHandler(new PaneChangedHandler() {
                 @Override
                 public void onPaneChanged(PaneChangedEvent event) {
@@ -451,7 +480,7 @@ public class Showcase implements EntryPoint, HistoryListener {
                     }
                 }
             });
-        }
+        }*/
         splitPane.setNavigationPane(sideNavLayout);
 
         detailTools = new ArrayList<Canvas>();
