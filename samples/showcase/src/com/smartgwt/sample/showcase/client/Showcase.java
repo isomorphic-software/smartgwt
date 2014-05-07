@@ -19,12 +19,15 @@ import com.smartgwt.client.types.CurrentPane;
 import com.smartgwt.client.types.Cursor;
 import com.smartgwt.client.types.DeviceMode;
 import com.smartgwt.client.types.Overflow;
+import com.smartgwt.client.types.PageOrientation;
 import com.smartgwt.client.types.TabBarControls;
 import com.smartgwt.client.types.VerticalAlignment;
 import com.smartgwt.client.util.AutoTest;
 import com.smartgwt.client.util.Browser;
 import com.smartgwt.client.util.Page;
 import com.smartgwt.client.util.SC;
+import com.smartgwt.client.util.events.OrientationChangeEvent;
+import com.smartgwt.client.util.events.OrientationChangeHandler;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.Window;
@@ -74,6 +77,11 @@ public class Showcase implements EntryPoint, HistoryListener {
     private static final ShowcaseMessages M = ShowcaseMessages.INSTANCE;
     private static final String preReleaseVersion = "5.0";
 
+    private static native boolean _leaveMinimalUISpace() /*-{
+        return ($wnd.isc.Browser.isIPhone && !$wnd.isc.Browser.isIPad &&
+                $wnd.isc.Browser.isMobileSafari && $wnd.isc.Browser.iOSMinorVersion >= 7.1);
+    }-*/;
+
     private final SCConstants scConstants = (SCConstants)GWT.create(SCConstants.class);
     private boolean isc_websiteMode = scConstants.websiteMode();
 
@@ -98,7 +106,26 @@ public class Showcase implements EntryPoint, HistoryListener {
     }
 
     public void onModuleLoad() {
+        final boolean leaveMinimalUISpace = _leaveMinimalUISpace();
         final boolean useDesktopMode = ShowcaseConfiguration.getSingleton().isOpenForTesting() || Browser.getIsDesktop();
+
+        if (leaveMinimalUISpace) {
+            Canvas.setDefaultPageSpace(Page.getOrientation() == PageOrientation.LANDSCAPE ? 20 : 0);
+
+            final Label minimalUISpacer = new Label();
+            minimalUISpacer.setWidth100();
+            minimalUISpacer.setHeight(20);
+            minimalUISpacer.setLeavePageSpace(0);
+            minimalUISpacer.setBackgroundColor("Black");
+            minimalUISpacer.setIcon("cubes.png");
+            minimalUISpacer.setIconWidth(16);
+            minimalUISpacer.setIconHeight(16);
+            minimalUISpacer.setContents("<strong style='color: White; font-size: 15px;'>Isomorphic Software</strong>");
+            minimalUISpacer.setAlign(Alignment.CENTER);
+            minimalUISpacer.setAriaRole("presentation");
+            minimalUISpacer.setAriaState("hidden", "true");
+            minimalUISpacer.draw();
+        }
 
         final String initToken = History.getToken();
         // If the request contains param "websiteMode", override the configured value
@@ -602,6 +629,16 @@ public class Showcase implements EntryPoint, HistoryListener {
 		});
 
         main.draw();
+
+        if (leaveMinimalUISpace) {
+            Page.addOrientationChangeHandler(new OrientationChangeHandler() {
+                @Override
+                public void onOrientationChange(OrientationChangeEvent event) {
+                    com.google.gwt.user.client.Window.scrollTo(0, 0);
+                    Canvas.setDefaultPageSpace(Page.getOrientation() == PageOrientation.LANDSCAPE ? 20 : 0);
+                }
+            });
+        }
 
         // Add history listener
         History.addHistoryListener(this);
