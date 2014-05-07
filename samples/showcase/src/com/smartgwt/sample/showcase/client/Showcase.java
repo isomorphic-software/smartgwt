@@ -640,7 +640,7 @@ public class Showcase implements EntryPoint, HistoryListener {
             fbWindow.setHeight(80);
             fbWindow.addItem(label);
             fbWindow.setRedrawOnResize(true);
-            fbWindow.show();
+            main.addMember(fbWindow);
         }
 
         splitPane.addDrawHandler(new DrawHandler() {
