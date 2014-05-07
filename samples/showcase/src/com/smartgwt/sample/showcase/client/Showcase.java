@@ -447,29 +447,29 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         final NavigationBar navigationBarProperties = new NavigationBar();
         final Label navTitleLabelProperties = new Label();
-        /*if (useDesktopMode) {
+        if (useDesktopMode) {
             navigationBarProperties.setHeight(34);
             navTitleLabelProperties.setHeight(34);
         }
-        navTitleLabelProperties.setStyleName("navBarHeader");*/
+        navTitleLabelProperties.setStyleName("navBarHeader");
         navTitleLabelProperties.setIcon("pieces/24/cube_green.png");
         navTitleLabelProperties.setIconWidth(24);
         navTitleLabelProperties.setIconHeight(24);
-        /*navTitleLabelProperties.addIconClickHandler(new IconClickHandler() {
+        navTitleLabelProperties.addIconClickHandler(new IconClickHandler() {
             @Override
             public void onIconClick(IconClickEvent event) {
                 com.google.gwt.user.client.Window.open("http://code.google.com/p/smartgwt/", "sgwt", null);
             }
         });
-        navTitleLabelProperties.setIconCursor(Cursor.POINTER);*/
+        navTitleLabelProperties.setIconCursor(Cursor.POINTER);
         navigationBarProperties.setAutoChildProperties("titleLabel", navTitleLabelProperties);
         splitPane.setAutoChildProperties("navigationBar", navigationBarProperties);
         final Label detailTitleLabelProperties = new Label();
-        //detailTitleLabelProperties.setStyleName("navBarHeader");
+        detailTitleLabelProperties.setStyleName("navBarHeader");
         detailTitleLabelProperties.setIconWidth(24);
         detailTitleLabelProperties.setIconHeight(24);
         splitPane.setAutoChildProperties("detailTitleLabel", detailTitleLabelProperties);
-        /*if (!useDesktopMode) {
+        if (!useDesktopMode) {
             splitPane.addPaneChangedHandler(new PaneChangedHandler() {
                 @Override
                 public void onPaneChanged(PaneChangedEvent event) {
@@ -480,7 +480,7 @@ public class Showcase implements EntryPoint, HistoryListener {
                     }
                 }
             });
-        }*/
+        }
         splitPane.setNavigationPane(sideNavLayout);
 
         detailTools = new ArrayList<Canvas>();
