@@ -158,27 +158,29 @@ public class Showcase implements EntryPoint, HistoryListener {
             @Override
             public String hoverHTML(Object value, ListGridRecord record, int rowNum, int colNum) {
                 if (record instanceof ExplorerTreeNode) {
-                    ExplorerTreeNode node = (ExplorerTreeNode)record;
-                    String customDiv = "<div style=\"width:450px; " +
-                               "margin-top:10px; "+
-                               "margin-bottom:10px; "+
-                               "margin-left:10px; "+
-                               "margin-right:10px;\">";
+                    final ExplorerTreeNode node = (ExplorerTreeNode)record;
+                    final PanelFactory factory = node.getFactory();
+                    if (factory != null && factory.getDescription() != null) {
+                        String customDiv = "<div style=\"width:450px; " +
+                                   "margin-top:10px; " +
+                                   "margin-bottom:10px; " +
+                                   "margin-left:10px; " +
+                                   "margin-right:10px;\">" +
+                                   factory.getDescription();
 
-                    if (node.getName().contains("BETA")) {
-                        return customDiv +
-                               node.getFactory().getDescription() + 
-                               "<br><br><span style='color: red;font-size:11px;font-weight: 700;'>BETA</span> : "+
-                               "This sample demonstrates features available in the next available version of "+
-                               "Smart GWT, " +preReleaseVersion+ ".  To download a " +preReleaseVersion+" SDK, "+
-                               "click on \"Pre-release versions\" on the Download page."+
-                               "</div>";
-                    } else {
-                        return (node.getFactory().getDescription() == null) ? "" : customDiv + node.getFactory().getDescription() +"</div>";
+                        if (node.getName().contains("BETA")) {
+                            customDiv +=
+                                   "<br><br><span style='color: red;font-size:11px;font-weight: 700;'>BETA</span> : " +
+                                   "This sample demonstrates features available in the next available version of " +
+                                   "Smart GWT, " + preReleaseVersion + ".  To download a " + preReleaseVersion + " SDK, " +
+                                   "click on \"Pre-release versions\" on the Download page.";
+                        }
+
+                        customDiv += "</div>";
+                        return customDiv;
                     }
-                } else {
-                    return "";
                 }
+                return null; // no hover
             }
         });
         sideNav.addNodeClickHandler(new NodeClickHandler() {
