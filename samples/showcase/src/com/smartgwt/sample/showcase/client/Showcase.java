@@ -473,7 +473,7 @@ public class Showcase implements EntryPoint, HistoryListener {
             splitPane.addPaneChangedHandler(new PaneChangedHandler() {
                 @Override
                 public void onPaneChanged(PaneChangedEvent event) {
-                    if (event.getNewPane() == CurrentPane.NAVIGATION) {
+                    if (event.getPane() == CurrentPane.NAVIGATION) {
                         final Label titleLabel = splitPane.getNavigationBar().getTitleLabel();
                         titleLabel.setStyleName("navBarHeader");
                         titleLabel.setIcon("pieces/24/cube_green.png");
