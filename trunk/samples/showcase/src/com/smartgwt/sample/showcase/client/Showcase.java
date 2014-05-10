@@ -3,7 +3,6 @@ package com.smartgwt.sample.showcase.client;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -39,8 +38,8 @@ import com.smartgwt.client.widgets.events.IconClickHandler;
 import com.smartgwt.client.widgets.events.ResizedEvent;
 import com.smartgwt.client.widgets.events.ResizedHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
-import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
+import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;
 import com.smartgwt.client.widgets.form.fields.events.KeyPressEvent;
@@ -181,19 +180,27 @@ public class Showcase implements EntryPoint, HistoryListener {
         sideNavLayout.setWidth(215);
 
         DynamicForm searchForm = new DynamicForm();
+        searchForm.setCellPadding(0);
         searchForm.setWidth100();
-        TextItem searchItem = new TextItem();
+        // Use the name 'search' so that we get a Search button on iOS instead of a Go button.
+        final TextItem searchItem = new TextItem("search", M.searchSamplesTitle().asString());
         searchItem.setShowTitle(false);
+        searchItem.setHint(M.searchSamplesHint());
+        searchItem.setShowHintInField(true);
         searchItem.setWidth("*");
         searchItem.setColSpan(2);
         searchItem.addKeyPressHandler(new KeyPressHandler() {
             @Override
             public void onKeyPress(KeyPressEvent event) {
-                if("enter".equalsIgnoreCase(event.getKeyName())) {
-                    if ((event.getItem().getValue() != null) && (String.valueOf(event.getItem().getValue()).trim().length() > 0)) {
-                        mainTabSet.selectTab(0);// Home tab
-                        tileView.updateTiles(String.valueOf(event.getItem().getValue()));
-                        event.getItem().clearValue();
+                if ("enter".equalsIgnoreCase(event.getKeyName())) {
+                    String value = searchItem.getValueAsString();
+                    if (value != null) {
+                        value = value.trim();
+                        if (!value.isEmpty()) {
+                            mainTabSet.selectTab("main_tab"); // Home tab
+                            tileView.updateTiles(value);
+                            searchItem.clearValue();
+                        }
                     }
                 }
             }
@@ -204,8 +211,6 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         sideNav = new SideNavTree();
         sideNav.setID("isc_SideNavTree_0");
-        //sideNav.setShowHeader(useDesktopMode);
-        sideNav.setBorder("0px");
         sideNav.setShowHover(true);
         sideNav.setCanHover(useDesktopMode);
         sideNav.setHoverStyle("hoverTreeGridCustom");
@@ -614,6 +619,15 @@ public class Showcase implements EntryPoint, HistoryListener {
             splitPane.setDetailTitle(M.homeNodeName().asString());
             splitPane.setDetailPane(homePanel);
             splitPane.setDetailToolButtons(detailTools.toArray(new Canvas[detailTools.size()]));
+            splitPane.addPaneChangedHandler(new PaneChangedHandler() {
+                @Override
+                public void onPaneChanged(PaneChangedEvent event) {
+                    // Disable the search field whenever we're not displaying the 'navigation'
+                    // pane so that the user cannot use the Prev button on the virtual keyboard
+                    // to focus the field, which is out of sight.
+                    searchItem.setDisabled(event.getPane() != CurrentPane.NAVIGATION);
+                }
+            });
         }
 
         topPane.addMember(splitPane);
