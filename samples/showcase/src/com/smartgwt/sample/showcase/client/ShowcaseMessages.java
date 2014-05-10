@@ -13,6 +13,11 @@ public interface ShowcaseMessages extends Messages {
     @DefaultMessage("Samples")
     public SafeHtml shortNavigationPaneTitle();
 
+    @DefaultMessage("Search samples")
+    public SafeHtml searchSamplesTitle();
+    @DefaultMessage("Search samples...")
+    public String searchSamplesHint();
+
     @DefaultMessage("Version: {0}<br>Built {1}")
     public SafeHtml versionLabelContents(String version, String buildDate);
 
