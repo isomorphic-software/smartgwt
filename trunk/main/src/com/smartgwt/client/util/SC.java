@@ -654,7 +654,7 @@ public class SC {
     }
 
     /**
-     * Returns true is the optional Analytics module has been loaded.
+     * Returns true if the optional Analytics module has been loaded.
      *
      * @return true if Analytics module is loaded
      */
@@ -663,7 +663,7 @@ public class SC {
     }-*/;
 
     /**
-     * Returns true is the optional Charts module has been loaded.
+     * Returns true if the optional Charts module has been loaded.
      *
      * @return true if Charts module is loaded
      */
@@ -672,7 +672,7 @@ public class SC {
     }-*/;
 
     /**
-     * Returns true is the optional Drawing module has been loaded.
+     * Returns true if the optional Drawing module has been loaded.
      *
      * @return true if Drawing module is loaded
      */
@@ -681,7 +681,7 @@ public class SC {
     }-*/;
 
     /**
-     * Returns true is the optional PluginBridges module has been loaded.
+     * Returns true if the optional PluginBridges module has been loaded.
      *
      * @return true if PluginBridges module is loaded
      */
@@ -690,7 +690,7 @@ public class SC {
     }-*/;
 
     /**
-     * Returns true is the optional RealtimeMessaging module has been loaded.
+     * Returns true if the optional RealtimeMessaging module has been loaded.
      *
      * @return true if RealtimeMessaging module is loaded
      */
