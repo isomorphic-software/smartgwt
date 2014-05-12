@@ -139,7 +139,8 @@ public class GridDependentSelectsSample extends ShowcasePanel {
 
         categoryField.addChangedHandler(new com.smartgwt.client.widgets.grid.events.ChangedHandler() {
             public void onChanged(com.smartgwt.client.widgets.grid.events.ChangedEvent event) {
-                remoteDataGrid.clearEditValue(event.getRowNum(), "itemName");
+                // setEditValue() explicitly to null, to override any existing value in the record that was from another category
+                remoteDataGrid.setEditValue(event.getRowNum(), "itemName", (String)null);
             }
         });
 
