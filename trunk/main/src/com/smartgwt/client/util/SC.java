@@ -697,6 +697,15 @@ public class SC {
     public static native boolean hasRealtimeMessaging()/*-{
         return $wnd.isc.Messaging != null;
     }-*/;
+
+    /**
+     * Returns true if the optional Dashboard &amp; Tools module is available.
+     * 
+     * @return true if Dashboard &amp; Tools module is available.
+     */
+    public static native boolean hasDashboardAndTools()/*-{
+        return ($wnd.isc.EditContext != null) && !$wnd.isc.EditContext.vbOnly;
+    }-*/;
     
     /**
      * Enables full screen reader mode. Must be called before any components are created. See {@link com.smartgwt.client.docs.Accessibility}.
