@@ -118,6 +118,7 @@ public class TileView extends VLayout {
 			}
 		};
         if (useDesktopMode) tileGrid.setStyleName("showcaseTileGrid");
+        tileGrid.setShowEdges(false);
         tileGrid.setTileWidth(useDesktopMode ? 140 : 70);
         tileGrid.setTileHeight(useDesktopMode ? 120 : 90); // not half of "normal" because there needs to be room for the label,
                                                            // especially since the labels tend to wrap, so they require 2-3 lines
