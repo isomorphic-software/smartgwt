@@ -112,6 +112,8 @@ public class Showcase implements EntryPoint, HistoryListener {
         final boolean leaveMinimalUISpace = _leaveMinimalUISpace();
         final boolean useDesktopMode = ShowcaseConfiguration.getSingleton().isOpenForTesting() || Browser.getIsDesktop();
 
+        ShowcaseCustomTile.useDesktopMode = useDesktopMode;
+
         if (leaveMinimalUISpace) {
             Canvas.setDefaultPageSpace(Page.getOrientation() == PageOrientation.LANDSCAPE ? 20 : 0);
 
