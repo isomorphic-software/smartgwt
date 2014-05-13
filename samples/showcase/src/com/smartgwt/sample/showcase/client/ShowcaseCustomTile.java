@@ -45,7 +45,7 @@ public class ShowcaseCustomTile extends SimpleTile {
         iconField.setValueIconWidth(iconWidth);
         iconField.setValueIconHeight(iconHeight);
         iconField.setAlign(Alignment.CENTER);
-        iconField.setCellStyle("thumbnailBorder");
+        iconField.setCellStyle("thumbnail");
         iconField.setValueIconMapper(new ValueIconMapper() {
             @Override  
             public String getValueIcon(Object value) {
