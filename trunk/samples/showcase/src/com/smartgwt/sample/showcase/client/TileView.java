@@ -9,14 +9,15 @@ import java.util.Set;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.History;
-import com.smartgwt.client.data.Record;
 import com.smartgwt.client.bean.BeanFactory;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.MultipleAppearance;
 import com.smartgwt.client.types.OperatorId;
 import com.smartgwt.client.types.TitleOrientation;
 import com.smartgwt.client.types.TreeModelType;
 import com.smartgwt.client.util.Browser;
+import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.events.DrawHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
@@ -28,6 +29,7 @@ import com.smartgwt.client.widgets.form.fields.FormItemIcon;
 import com.smartgwt.client.widgets.form.fields.PickerIcon;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.SliderItem;
+import com.smartgwt.client.widgets.form.fields.SpacerItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.form.fields.events.IconClickEvent;
 import com.smartgwt.client.widgets.form.fields.events.IconClickHandler;
@@ -39,13 +41,9 @@ import com.smartgwt.client.widgets.tile.events.RecordClickEvent;
 import com.smartgwt.client.widgets.tile.events.RecordClickHandler;
 import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeNode;
-import com.smartgwt.client.widgets.Img;
-import com.smartgwt.client.widgets.viewer.DetailFormatter;
-import com.smartgwt.client.widgets.viewer.DetailViewerField;
 import com.smartgwt.sample.showcase.client.data.CommandTreeNode;
 import com.smartgwt.sample.showcase.client.data.ExplorerTreeNode;
 import com.smartgwt.sample.showcase.client.data.ShowcaseData;
-import com.smartgwt.client.widgets.Canvas;
 
 public class TileView extends VLayout {
     private static final ShowcaseMessages M = ShowcaseMessages.INSTANCE;
@@ -58,7 +56,7 @@ public class TileView extends VLayout {
     private TextItem searchItem;
     private SliderItem numSamplesItem;
     private CheckboxItem ascendingItem;
-    private CheckboxItem disabledModeCB;
+    //private CheckboxItem disabledModeCB;
 
     private CheckboxItem featuredCB;
     private CheckboxItem newSamplesCB;
@@ -90,9 +88,9 @@ public class TileView extends VLayout {
 
     public interface ShowcaseCustomTileMetaFactory extends BeanFactory.MetaFactory {  
         BeanFactory<ShowcaseCustomTile> getShowcaseCustomTileFactory();  
-    } 
+    }
 
-    public TileView() {
+    public TileView(boolean useDesktopMode) {
         setMargin(3);
         tree = new Tree();
         tree.setModelType(TreeModelType.PARENT);
@@ -128,24 +126,6 @@ public class TileView extends VLayout {
         tileGrid.setTileConstructor(ShowcaseCustomTile.class.getName());  
         tileGrid.setAutoFetchData(false);
         tileGrid.setAnimateTileChange(true);
-/*
-        DetailViewerField nameField = new DetailViewerField("nodeTitle");
-        nameField.setDetailFormatter(new DetailFormatter() {
-            public String format(Object value, Record record, DetailViewerField field) {
-                return value.toString();
-            }
-        });
-        nameField.setCellStyle("thumbnailTitle");
-
-        DetailViewerField iconField = new DetailViewerField("thumbnail");
-        iconField.setType("image");
-        iconField.setImageHeight(89);
-        iconField.setImageWidth(119);
-        iconField.setCellStyle("thumbnail");
-*/
-
-    //    tileGrid.setFields(iconField, nameField);
-
 
         tileGrid.addRecordClickHandler(new RecordClickHandler() {
             public void onRecordClick(RecordClickEvent event) {
@@ -153,24 +133,30 @@ public class TileView extends VLayout {
                 showSample(record);
             }
         });
-  
+
         filterForm = new DynamicForm();
+        filterForm.setFixedColWidths(true);
         filterForm.setBorder("1px solid #9C9C9C");
-        filterForm.setNumCols(8);
-        filterForm.setColWidths(16, "*", 16, "*", 16, "*", 16, "*");
+        if (useDesktopMode) {
+            filterForm.setNumCols(8);
+            filterForm.setColWidths(16, "*", 16, "*", 16, "*", 16, "*");
+        } else {
+            filterForm.setNumCols(3);
+            filterForm.setColWidths("*", 10, "*");
+        }
         filterForm.setAutoFocus(false);
         filterForm.setPadding(5);
 
         addDrawHandler(new DrawHandler() {
             public void onDraw(DrawEvent event) {
                 updateTiles();
-
             }
         });
 
         searchItem = new TextItem("description", M.searchTitle().asString());
+        searchItem.setWidth("*");
         searchItem.setTitleOrientation(TitleOrientation.TOP);
-        searchItem.setColSpan(2);
+        searchItem.setColSpan(useDesktopMode ? 2 : 1);
         searchItem.setTitleAlign(Alignment.LEFT);
         searchItem.addKeyPressHandler(new KeyPressHandler() {
             public void onKeyPress(KeyPressEvent event) {
@@ -194,24 +180,26 @@ public class TileView extends VLayout {
             }
         });
 
-        numSamplesItem = new SliderItem("numSamples");
-        numSamplesItem.setTitle(M.numSamplesTitle().asString());
-        numSamplesItem.setTitleOrientation(TitleOrientation.TOP);
-        numSamplesItem.setColSpan(2);
-        numSamplesItem.setTitleAlign(Alignment.LEFT);
-        numSamplesItem.setMinValue(1);
-        // grep '^ *new ExplorerTreeNode' ShowcaseData.java | grep -o 'new [^.,]*\.Factory()' | sort | uniq | wc
-        numSamplesItem.setMaxValue(320);
-        numSamplesItem.setDefaultValue(100);
-        numSamplesItem.setHeight(50);
-        numSamplesItem.setOperator(OperatorId.LESS_THAN);
+        if (useDesktopMode) {
+            numSamplesItem = new SliderItem("numSamples");
+            numSamplesItem.setTitle(M.numSamplesTitle().asString());
+            numSamplesItem.setTitleOrientation(TitleOrientation.TOP);
+            numSamplesItem.setColSpan(1);
+            numSamplesItem.setTitleAlign(Alignment.LEFT);
+            numSamplesItem.setMinValue(1.0);
+            // grep '^ *new ExplorerTreeNode' ShowcaseData.java | grep -o 'new [^.,]*\.Factory()' | sort | uniq | wc
+            numSamplesItem.setMaxValue(320.0);
+            numSamplesItem.setDefaultValue(100);
+            numSamplesItem.setHeight(50);
+            numSamplesItem.setOperator(OperatorId.LESS_THAN);
 
-        ascendingItem = new CheckboxItem("chkSortDir");
-        ascendingItem.setTitle(M.ascendingTitle().asString());
+            ascendingItem = new CheckboxItem("chkSortDir");
+            ascendingItem.setTitle(M.ascendingTitle().asString());
+        }
 
-        disabledModeCB = new CheckboxItem("disabledModeCB", M.disabledModeTitle().asString());
+        //disabledModeCB = new CheckboxItem("disabledModeCB", M.disabledModeTitle().asString());
 
-        if (!Browser.getIsTouch()) {
+        if (useDesktopMode) {
             featuredCB = new CheckboxItem("featuredCB", M.featuredCategoryName().asString());
             featuredCB.setValue(true);
             newSamplesCB = new CheckboxItem("newSamplesCB", M.newSamplesCategoryName().asString());
@@ -239,7 +227,7 @@ public class TileView extends VLayout {
         } else {
             categoriesItem = new SelectItem("categories", M.categoriesTitle().asString());
             categoriesItem.setTitleOrientation(TitleOrientation.TOP);
-            categoriesItem.setColSpan(4);
+            categoriesItem.setColSpan(1);
             categoriesItem.setMultiple(true);
             categoriesItem.setMultipleAppearance(MultipleAppearance.GRID);
             final LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
@@ -272,10 +260,16 @@ public class TileView extends VLayout {
 
         final List<FormItem> filterFormItems = new ArrayList<FormItem>();
         filterFormItems.add(searchItem);
-        filterFormItems.add(numSamplesItem);
-        filterFormItems.add(ascendingItem);
-        filterFormItems.add(disabledModeCB);
-        if (!Browser.getIsTouch()) {
+        {
+            final SpacerItem spacerItem = new SpacerItem();
+            spacerItem.setWidth(1);
+            filterFormItems.add(spacerItem);
+        }
+        if (useDesktopMode) {
+            filterFormItems.add(numSamplesItem);
+            filterFormItems.add(ascendingItem);
+            filterFormItems.add(new SpacerItem());
+            //filterFormItems.add(disabledModeCB);
             filterFormItems.addAll(Arrays.asList(
                     featuredCB, newSamplesCB, comboBoxCB, gridsCB,
                     treeCB, calendarCB, tilesCB, formsCB,
@@ -343,7 +337,7 @@ public class TileView extends VLayout {
 
         showTiles(searchText, categories);
 
-        Boolean sortDir = ascendingItem.getValueAsBoolean();
+        final boolean sortDir = (ascendingItem == null ? true : ascendingItem.getValueAsBoolean());
         tileGrid.sortByProperty("name", sortDir);
     }
 
@@ -361,7 +355,7 @@ public class TileView extends VLayout {
     private void showTiles(String searchText, List<String> categories) {
         final Set<TreeNode> data = new HashSet<TreeNode>();
 
-        final int maxResults = ((Number)numSamplesItem.getValue()).intValue();
+        final Integer maxResults = (numSamplesItem == null ? null : Integer.valueOf(numSamplesItem.getValueAsFloat().intValue()));
 
         if (searchText != null) {
             TreeNode[] children = tree.getAllNodes();
@@ -370,9 +364,10 @@ public class TileView extends VLayout {
             for (final String category : categories) {
                 if (category.equalsIgnoreCase("beta_samples")) {
                     TreeNode[] children = tree.getAllNodes();
-                    searchBetaSamples(tree, children, data, searchText, maxResults, false);                    
+                    searchBetaSamples(tree, children, data, searchText, maxResults, false);
                 } else {
                     TreeNode categoryNode = tree.find("nodeID", category + idSuffix);
+                    if (categoryNode == null) continue;
                     TreeNode[] children = tree.getChildren(categoryNode);
 
                     applyFilter(tree, children, data, searchText, maxResults, false);
@@ -382,15 +377,14 @@ public class TileView extends VLayout {
         tileGrid.setData((Record[])data.toArray(new Record[data.size()]));
     }
 
-    private void searchBetaSamples(Tree tree, TreeNode[] children, Set data, String searchText,int maxResults, boolean skipCategories) {
+    private void searchBetaSamples(Tree tree, TreeNode[] children, Set<TreeNode> data, String searchText, Integer maxResults, boolean skipCategories) {
         for (int i = 0; i < children.length; i++) {
-            if(data.size() == maxResults) return;
-            TreeNode child = children[i];
+            if (maxResults != null && data.size() >= maxResults) return;
+            final TreeNode child = children[i];
             if (!tree.hasChildren(child)) {
                 boolean isExplorerTreeNode = child instanceof ExplorerTreeNode;
                 if (isExplorerTreeNode) {
-                    ExplorerTreeNode explorerTreeNode = (ExplorerTreeNode) child;
-                    
+                    final ExplorerTreeNode explorerTreeNode = (ExplorerTreeNode) child;
                     if (explorerTreeNode.getName().contains("BETA")) {
                         children[i].setAttribute("description", explorerTreeNode.getFactory().getDescription());
                         data.add(children[i]);
@@ -402,9 +396,9 @@ public class TileView extends VLayout {
         }
     }
 
-    private void applyFilter(Tree tree, TreeNode[] children, Set data, String searchText,int maxResults, boolean skipCategories) {
+    private void applyFilter(Tree tree, TreeNode[] children, Set<TreeNode> data, String searchText, Integer maxResults, boolean skipCategories) {
         for (int i = 0; i < children.length; i++) {
-            if(data.size() == maxResults) return;
+            if (maxResults != null && data.size() >= maxResults) return;
             TreeNode child = children[i];
             if (!tree.hasChildren(child)) {
                 if (searchText != null) {
