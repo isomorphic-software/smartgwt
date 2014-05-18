@@ -42,11 +42,27 @@ public class SC {
         return $wnd.isc.ClassFactory.getNextGlobalIDForClass(simpleName);
     }-*/;
 
+    //>IDocument One complication is that in "keep globals" mode, the SGWT wrapper's current SC
+    // jsObj will actually also be bound under the old ID!  To avoid problems in this case, we
+    // don't immediately release it but merely update the ID class to the right value.  We also
+    // log a warning if we're not able to release the ID and it's not expected.//<IDocument
     public static native void releaseID(String className, String id) /*-{
         var simpleName = className.substring(className.lastIndexOf(".")+1);
         //replace any $ characters from inner class names with an underscore
         simpleName = simpleName.replace("$", "_");
-        return $wnd.isc.ClassFactory.releaseGlobalID(simpleName, id);
+        // handle "keep globals" mode where spurious $wnd bindings are present
+        if (id == null || (typeof $wnd.window[id] == 'undefined')) {
+            $wnd.isc.ClassFactory.releaseGlobalID(simpleName, id);
+        } else {
+            if (!$wnd.isc.keepGlobals) {
+                var message = "Unexpected global binding found for ID " + id +
+                    " in SC::releaseID; unable to release it for use by a new SC JS object.";
+                @com.smartgwt.client.util.SC::logWarn(Ljava/lang/String;)(message);
+            }
+            else if ($wnd.isc.autoAssignedTempGlobals[id]) {
+                     $wnd.isc.autoAssignedTempGlobals[id] = simpleName;
+            }
+        }
     }-*/;
 
     public static native boolean keepGlobals() /*-{
