@@ -1,5 +1,9 @@
 package com.smartgwt.sample.showcase.client.effects.dragdrop;
 
+import com.google.gwt.event.dom.client.LoadEvent;
+import com.google.gwt.event.dom.client.LoadHandler;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.smartgwt.client.types.Cursor;
 import com.smartgwt.client.types.DragAppearance;
 import com.smartgwt.client.types.ImageStyle;
@@ -35,18 +39,18 @@ public class DragPanSample extends ShowcasePanel {
         }
     }
 
-    public Canvas getViewPanel() {
-        Canvas canvas = new Canvas();
-        canvas.addChild(new DragPanSampleImg());
-        return canvas;
-    }
-
     public static class DragPanSampleImg extends Img {
+
+        private static final String IMG_URL = Canvas.getImgURL("[APPIMG]other/cpu.jpg");
+        private static boolean loaded = false;
+
         private int startScrollLeft;
         private int startScrollTop;
+
         public DragPanSampleImg() {
-            super("other/cpu.jpg", 200, 200);
-            
+            setWidth(200);
+            setHeight(200);
+            if (loaded) setSrc(IMG_URL);
             setLeft(50);
             setTop(50);
             setOverflow(Overflow.HIDDEN);
@@ -61,7 +65,7 @@ public class DragPanSample extends ShowcasePanel {
                     startScrollLeft = getScrollLeft();
                     startScrollTop = getScrollTop();
                 }
-            });          
+            });
             addDragMoveHandler(new DragMoveHandler() {
                 public void onDragMove(DragMoveEvent event) {
                     int left = startScrollLeft - EventHandler.getX() + EventHandler.getMouseDownX();
@@ -69,7 +73,28 @@ public class DragPanSample extends ShowcasePanel {
                     scrollTo(left,top);
                 }
             });
+
+            if (!loaded) {
+                final Image image = new Image();
+                image.addLoadHandler(new LoadHandler() {
+                    @Override
+                    public void onLoad(LoadEvent event) {
+                        loaded = true;
+                        setSrc(IMG_URL);
+                    }
+                });
+                image.setVisible(false);
+                // Need to attach the Image to the widget tree in order for the load handler
+                // to fire.
+                RootLayoutPanel.get().add(image);
+                image.setUrl(IMG_URL);
+            }
         }
+    }
+
+    @Override
+    public Canvas getViewPanel() {
+        return new DragPanSampleImg();
     }
 
     public String getIntro() {
