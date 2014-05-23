@@ -44,13 +44,13 @@ import com.smartgwt.sample.showcase.client.calendar.OverlappingEventsCalendarSam
 import com.smartgwt.sample.showcase.client.calendar.SimpleCalendarSample;
 import com.smartgwt.sample.showcase.client.calendar.SimpleTimelineSample;
 import com.smartgwt.sample.showcase.client.calendar.WorkdayCalendarSample;
+import com.smartgwt.sample.showcase.client.combobox.ComboBoxSpecialValuesSample;
 import com.smartgwt.sample.showcase.client.combobox.ComboBoxStyledSample;
 import com.smartgwt.sample.showcase.client.combobox.DropdownListGridSample;
 import com.smartgwt.sample.showcase.client.combobox.FormatDropDownSample;
 import com.smartgwt.sample.showcase.client.combobox.FormatRelatedValueSample;
 import com.smartgwt.sample.showcase.client.combobox.LocalAndDataboundComboBoxSample;
 import com.smartgwt.sample.showcase.client.combobox.MultiComboBoxSample;
-import com.smartgwt.sample.showcase.client.combobox.ComboBoxSpecialValuesSample;
 import com.smartgwt.sample.showcase.client.combobox.MultiFieldSearchSample;
 import com.smartgwt.sample.showcase.client.combobox.PickTreeFieldSample;
 import com.smartgwt.sample.showcase.client.combobox.SelectMultipleSample;
@@ -91,14 +91,15 @@ import com.smartgwt.sample.showcase.client.effects.dragdrop.DragListMoveSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragListSelectSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragMenuGridSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragMoveImageSample;
+import com.smartgwt.sample.showcase.client.effects.dragdrop.DragPanSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragResizeSample;
+import com.smartgwt.sample.showcase.client.effects.dragdrop.DragSnapToGridSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragTilesMoveSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragTrackerSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragTypesSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.NativeDragCreateSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.PortletAcrossWindowsSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.RecordsAcrossWindowsSample;
-import com.smartgwt.sample.showcase.client.effects.dragdrop.DragSnapToGridSample;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.CornersSample;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.CssStylesSample;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.EdgesSample;
@@ -267,10 +268,6 @@ import com.smartgwt.sample.showcase.client.menu.MenuAppearanceSample;
 import com.smartgwt.sample.showcase.client.menu.MenuCustomColumnsSample;
 import com.smartgwt.sample.showcase.client.menu.MenuSubmenusSample;
 import com.smartgwt.sample.showcase.client.menu.MenuTreeBindingSample;
-import com.smartgwt.sample.showcase.client.mobile.MobileComboBoxSample;
-import com.smartgwt.sample.showcase.client.mobile.MobileSelectListSample;
-import com.smartgwt.sample.showcase.client.mobile.MobileMenusSample;
-import com.smartgwt.sample.showcase.client.mobile.MobileWindowsDialogsSample;
 import com.smartgwt.sample.showcase.client.miniapp.MiniAppSample;
 import com.smartgwt.sample.showcase.client.mvc.PatternReuseSample;
 import com.smartgwt.sample.showcase.client.offline.OfflinePreferencesSample;
@@ -835,7 +832,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Drag Effects", "effects-dd-effects", "effects-dd-category", null, new DragEffectsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag Resize", "effects-dd-resize", "effects-dd-category", null, new DragResizeSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag Tracker", "effects-dd-tracker", "effects-dd-category", null, new DragTrackerSample.Factory(), true, idSuffix),
-                    //new ExplorerTreeNode("Drag Pan", "effects-dd-pan", "effects-dd-category", null, new DragPanSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Drag Pan", "effects-dd-pan", "effects-dd-category", null, new DragPanSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Snap-to-Grid Dragging", "effects-dd-snap-to-grid", "effects-dd-category", null, new DragSnapToGridSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Cross-Window Drag", "effects-cross-window-dd-category", "effects-dd-category", null, null, true, idSuffix, "4.1"),
