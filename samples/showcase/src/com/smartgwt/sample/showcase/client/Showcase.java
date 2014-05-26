@@ -181,7 +181,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         sideNavLayout.setHeight100();
         sideNavLayout.setWidth(215);
 
-        DynamicForm searchForm = new DynamicForm();
+        final DynamicForm searchForm = new DynamicForm();
         searchForm.setCellPadding(0);
         searchForm.setWidth100();
         // Use the name 'search' so that we get a Search button on iOS instead of a Go button.
@@ -191,6 +191,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         searchItem.setShowHintInField(true);
         searchItem.setWidth("*");
         searchItem.setColSpan(2);
+        searchItem.setBrowserAutoCorrect(false);
         searchItem.addKeyPressHandler(new KeyPressHandler() {
             @Override
             public void onKeyPress(KeyPressEvent event) {
@@ -199,7 +200,8 @@ public class Showcase implements EntryPoint, HistoryListener {
                     if (value != null) {
                         value = value.trim();
                         if (!value.isEmpty()) {
-                            mainTabSet.selectTab("main_tab"); // Home tab
+                            searchItem.blurItem();
+                            showHomePanel();
                             tileView.updateTiles(value);
                             searchItem.clearValue();
                         }

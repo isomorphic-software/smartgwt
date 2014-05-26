@@ -48,6 +48,8 @@ import com.smartgwt.sample.showcase.client.data.ShowcaseData;
 public class TileView extends VLayout {
     private static final ShowcaseMessages M = ShowcaseMessages.INSTANCE;
 
+    private final boolean useDesktopMode;
+
     private TileGrid tileGrid;
     private final String idSuffix = SideNavTree.ID_SUFFIX;
     private TreeNode[] showcaseData = ShowcaseData.getDataVersioned(idSuffix);
@@ -91,6 +93,7 @@ public class TileView extends VLayout {
     }
 
     public TileView(boolean useDesktopMode) {
+        this.useDesktopMode = useDesktopMode;
         setMargin(3);
         tree = new Tree();
         tree.setModelType(TreeModelType.PARENT);
@@ -302,7 +305,9 @@ public class TileView extends VLayout {
     public void updateTiles(String searchText) {
         filterForm.setValue("description", searchText);
         updateTiles();
-        filterForm.focusInItem(searchItem);
+        // Don't focusInItem() on mobile because the browser will attempt to scroll the newly-focused
+        // searchItem into view, as the SplitPane page transition is underway.
+        if (useDesktopMode) filterForm.focusInItem(searchItem);
     }
 
     private void updateTiles() {
