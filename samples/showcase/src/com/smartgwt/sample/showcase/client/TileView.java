@@ -14,6 +14,7 @@ import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.MultipleAppearance;
 import com.smartgwt.client.types.OperatorId;
+import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.types.TitleOrientation;
 import com.smartgwt.client.types.TreeModelType;
 import com.smartgwt.client.util.Browser;
@@ -94,7 +95,6 @@ public class TileView extends VLayout {
 
     public TileView(boolean useDesktopMode) {
         this.useDesktopMode = useDesktopMode;
-        setMargin(3);
         tree = new Tree();
         tree.setModelType(TreeModelType.PARENT);
         tree.setNameProperty("name");
@@ -109,6 +109,7 @@ public class TileView extends VLayout {
         setMembersMargin(10);
 
         setWidth100();
+        setOverflow(Overflow.HIDDEN);
 
         GWT.create(ShowcaseCustomTileMetaFactory.class);
 
