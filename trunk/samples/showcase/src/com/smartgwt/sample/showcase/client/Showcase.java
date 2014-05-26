@@ -306,8 +306,10 @@ public class Showcase implements EntryPoint, HistoryListener {
         homePanel = new HLayout();
         homePanel.setHeight100();
         homePanel.setWidth100();
+        homePanel.setOverflow(Overflow.HIDDEN);
 
         tileView = new TileView(useDesktopMode);
+        tileView.setWidth100();
         homePanel.addMember(tileView);
 
         if (isc_websiteMode) {
