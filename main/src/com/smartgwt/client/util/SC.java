@@ -344,6 +344,23 @@ public class SC {
     }-*/;
 
     /**
+     * If a dialog triggered via {@link #say(String)}, {@link #ask(String, BooleanCallback)},
+     * {@link #warn(String)}, {@link #confirm(String, BooleanCallback)} or {@link #askforValue(String, ValueCallback)}
+     * is currently visible, it will be dismissed.  The callback passed to the relevant method will never fire.
+     * <p>
+     * Note this is a rarely used API with very few valid use cases.  As an example, perhaps some kind of
+     * periodic (non-user triggered) event would cause an entire area of the UI to be removed (such as a tab)
+     * and the system wants to ensure that no modal dialogs are currently showing from that part of the UI.
+     * In this case, while <code>dismissCurrentDialog</code> could be used to ensure the part of the UI being
+     * removed didn't leave behind a modal dialog.
+     * <p>
+     * To clear a modal prompt shown by {@link #showPrompt(String)}, use {@link #clearPrompt()} instead.
+     */
+    public static native void dismissCurrentDialog() /*-{
+        $wnd.isc.dismissCurrentDialog();
+    }-*/;
+
+    /**
      * Show a modal prompt to the user. This method will display the message using the Dialog.Prompt singleton object.
      * <p>
      * <b>Note</b>: if this prompt is to be shown to the user during some slow logic, we advise calling this method, then
