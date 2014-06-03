@@ -112,6 +112,7 @@ import com.smartgwt.sample.showcase.client.forms.ListGridItemSample;
 import com.smartgwt.sample.showcase.client.forms.NestedEditorSample;
 import com.smartgwt.sample.showcase.client.forms.PickerControlsSample;
 import com.smartgwt.sample.showcase.client.forms.TextMaskingSample;
+import com.smartgwt.sample.showcase.client.forms.PickTreeSample;
 import com.smartgwt.sample.showcase.client.forms.controls.FormVariousControlsSample;
 import com.smartgwt.sample.showcase.client.forms.dependencies.FormConditionallyRequiredSample;
 import com.smartgwt.sample.showcase.client.forms.dependencies.FormDataboundDependentSelectsSample;
@@ -720,7 +721,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Text Masking", "form-masking", "form-category", "silk/vcard_edit.png", new TextMaskingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Nested Editor", "nested-editor", "form-category", "silk/vcard_edit.png", new NestedEditorSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("ListGrid Item", "form-grid-item", "form-category", "silk/vcard_edit.png", new ListGridItemSample.Factory(), true, idSuffix),
-                    
+                    new ExplorerTreeNode("Tree", "form-picktree-item", "form-category", null, new PickTreeSample.Factory(), true, idSuffix),
+
                     new ExplorerTreeNode("Layout", "layout-category", "root", "widgets/container.png", null, true, idSuffix),
                     new ExplorerTreeNode("Stack", "layout-stack", "layout-category", null, new StackSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Layout", "layout-layout", "layout-category", null, new LayoutSample.Factory(), true, idSuffix),
