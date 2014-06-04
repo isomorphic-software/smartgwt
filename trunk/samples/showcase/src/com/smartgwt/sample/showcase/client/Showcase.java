@@ -230,7 +230,7 @@ public class Showcase implements EntryPoint, HistoryListener {
                                    "margin-bottom:10px; " +
                                    "margin-left:10px; " +
                                    "margin-right:10px;\">" +
-                                   factory.getDescription();
+                                   "<b>Sample Description</b>: " + factory.getDescription();
 
                         if (node.getName().contains("BETA")) {
                             customDiv +=

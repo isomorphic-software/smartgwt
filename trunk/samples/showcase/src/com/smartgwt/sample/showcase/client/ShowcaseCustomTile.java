@@ -69,7 +69,7 @@ public class ShowcaseCustomTile extends SimpleTile {
                                  "margin-left:10px; "+
                                  "margin-right:10px;\">";
                 return customDiv +
-                       (String)form.getValue("description") +
+                       "<b>Sample Description</b>: " + (String)form.getValue("description") +
                        "<br><br><span style='color: red;font-size:11px;font-weight: 700;'>BETA</span> : "+
                        "This sample demonstrates features available in the next available version of "+
                        "Smart GWT, " +preReleaseVersion+ ".  To download a " +preReleaseVersion+" SDK, "+
