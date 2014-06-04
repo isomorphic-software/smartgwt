@@ -113,6 +113,7 @@ public class ResponsiveDesign extends ShowcasePanel {
         });
         VLayout container = new VLayout();
         container.setLayoutMargin(10);
+        container.setMembersMargin(2);
         container.setMembers(flipButton, splitPane);
         return container;
     }
