@@ -159,14 +159,16 @@ public class TileView extends VLayout {
             }
         });
 
-        searchItem = new TextItem("description", M.searchTitle().asString());
+        searchItem = new TextItem("description_search", M.searchTitle().asString());
         searchItem.setWidth("*");
         searchItem.setTitleOrientation(TitleOrientation.TOP);
         searchItem.setColSpan(useDesktopMode ? 2 : 1);
         searchItem.setTitleAlign(Alignment.LEFT);
+        searchItem.setBrowserAutoCorrect(false);
         searchItem.addKeyPressHandler(new KeyPressHandler() {
             public void onKeyPress(KeyPressEvent event) {
-                if("enter".equalsIgnoreCase(event.getKeyName())) {
+                if ("Enter".equals(event.getKeyName())) {
+                    searchItem.blurItem();
                     updateTiles();
                 }
             }
@@ -304,7 +306,7 @@ public class TileView extends VLayout {
     }
 
     public void updateTiles(String searchText) {
-        filterForm.setValue("description", searchText);
+        searchItem.setValue(searchText);
         updateTiles();
         // Don't focusInItem() on mobile because the browser will attempt to scroll the newly-focused
         // searchItem into view, as the SplitPane page transition is underway.
