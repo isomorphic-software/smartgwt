@@ -173,6 +173,7 @@ import com.smartgwt.sample.showcase.client.grid.autofit.AutofitNewRecordsSample;
 import com.smartgwt.sample.showcase.client.grid.autofit.AutofitRowsSample;
 import com.smartgwt.sample.showcase.client.grid.autofit.AutofitValuesSample;
 import com.smartgwt.sample.showcase.client.grid.autofit.FreeSpaceSample;
+import com.smartgwt.sample.showcase.client.mobile.NavigationBarSample;
 import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingDataSourceFieldsSample;
 import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingInlineDataSample;
 import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingJSONDataSourceSample;
@@ -403,7 +404,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Combo Box", "combobox-ms", "adaptive-ui-ms", null, new MobileComboBoxSample.Factory(), true, idSuffix, "5.0"),
                     new ExplorerTreeNode("Select List", "selectlist-ms", "adaptive-ui-ms", null, new MobileSelectListSample.Factory(), true, idSuffix, "5.0"),
                     new ExplorerTreeNode("Menus", "menus-ms", "adaptive-ui-ms", null, new MobileMenusSample.Factory(), true, idSuffix, "5.0"),
-                    new ExplorerTreeNode("Windows &amp; Dialogs", "windows-dialogs-ms", "adaptive-ui-ms", null, new MobileWindowsDialogsSample.Factory(), true, idSuffix, "5.0"),*/
+                    new ExplorerTreeNode("Windows &amp; Dialogs", "windows-dialogs-ms", "adaptive-ui-ms", null, new MobileWindowsDialogsSample.Factory(), true, idSuffix, "5.0"),
+                    new ExplorerTreeNode("Navigation Bar Auto-fit", "navigation-bar-ms", "mobile", "silk/phone.png", new NavigationBarSample.Factory(), true, idSuffix, "5.0"),*/
 
                     new ExplorerTreeNode("Adv. Filter Builder", "featured-filter-builder-grid", "featured-category", "crystal/oo/sc_insertformula.png", new GridNestedFilterBulderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Frozen Columns", "featured-tree-grid", "featured-category", "silk/chart_organisation.png", new FrozenColumnsSample.Factory(), true, idSuffix),
