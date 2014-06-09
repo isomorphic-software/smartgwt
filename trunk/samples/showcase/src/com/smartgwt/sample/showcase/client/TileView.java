@@ -237,7 +237,7 @@ public class TileView extends VLayout {
             categoriesItem.setTitleOrientation(TitleOrientation.TOP);
             categoriesItem.setColSpan(1);
             categoriesItem.setMultiple(true);
-            categoriesItem.setMultipleAppearance(MultipleAppearance.GRID);
+            categoriesItem.setMultipleAppearance(MultipleAppearance.PICKLIST);
             final LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
             valueMap.put("featured_category", M.featuredCategoryName().asString());
             valueMap.put("new_category", M.newSamplesCategoryName().asString());
@@ -264,6 +264,31 @@ public class TileView extends VLayout {
             valueMap.put("beta_samples", M.betaSamplesName().asString());
             categoriesItem.setValueMap(valueMap);
             categoriesItem.setDefaultValue(new String[] {"featured_category"});
+
+            final LinkedHashMap<String, String> valueMapIcons = new LinkedHashMap<String, String>();
+            valueMapIcons.put("featured_category", ((ExplorerTreeNode)tree.find("nodeID", "featured_category"+ idSuffix)).getIcon());
+            valueMapIcons.put("new_category", ((ExplorerTreeNode)tree.find("nodeID", "new_category"+ idSuffix)).getIcon());
+            valueMapIcons.put("combobox_category", ((ExplorerTreeNode)tree.find("nodeID", "combobox_category"+ idSuffix)).getIcon());
+            valueMapIcons.put("grid_category", ((ExplorerTreeNode)tree.find("nodeID", "grid_category"+ idSuffix)).getIcon());
+            valueMapIcons.put("tree_category", ((ExplorerTreeNode)tree.find("nodeID", "tree_category"+ idSuffix)).getIcon());
+            valueMapIcons.put("calendar_category", ((ExplorerTreeNode)tree.find("nodeID", "calendar_category"+ idSuffix)).getIcon());
+            valueMapIcons.put("tiling_category", ((ExplorerTreeNode)tree.find("nodeID", "tiling_category"+ idSuffix)).getIcon());
+            valueMapIcons.put("form_category", ((ExplorerTreeNode)tree.find("nodeID", "form_category"+ idSuffix)).getIcon());
+            valueMapIcons.put("layout_category", ((ExplorerTreeNode)tree.find("nodeID", "layout_category"+ idSuffix)).getIcon());
+            valueMapIcons.put("layout_windows_category", ((ExplorerTreeNode)tree.find("nodeID", "layout_windows_category"+ idSuffix)).getIcon());
+            valueMapIcons.put("layout_tabs_category", ((ExplorerTreeNode)tree.find("nodeID", "layout_tabs_category"+ idSuffix)).getIcon());
+            valueMapIcons.put("layout_sections_category", ((ExplorerTreeNode)tree.find("nodeID", "layout_sections_category"+ idSuffix)).getIcon());
+            valueMapIcons.put("portal_layout_category", ((ExplorerTreeNode)tree.find("nodeID", "portal_layout_category"+ idSuffix)).getIcon());
+            valueMapIcons.put("buttons_category", ((ExplorerTreeNode)tree.find("nodeID", "buttons_category"+ idSuffix)).getIcon());
+            valueMapIcons.put("menus_category", ((ExplorerTreeNode)tree.find("nodeID", "menus_category"+ idSuffix)).getIcon());
+            valueMapIcons.put("toolstrip_category", ((ExplorerTreeNode)tree.find("nodeID", "toolstrip_category"+ idSuffix)).getIcon());
+            valueMapIcons.put("controls_category", ((ExplorerTreeNode)tree.find("nodeID", "controls_category"+ idSuffix)).getIcon());
+            valueMapIcons.put("data_integration_category", ((ExplorerTreeNode)tree.find("nodeID", "data_integration_category"+ idSuffix)).getIcon());
+            valueMapIcons.put("effects_dd_category", ((ExplorerTreeNode)tree.find("nodeID", "effects_dd_category"+ idSuffix)).getIcon());
+            valueMapIcons.put("basics_category", ((ExplorerTreeNode)tree.find("nodeID", "basics_category"+ idSuffix)).getIcon());
+            valueMapIcons.put("drawing", ((ExplorerTreeNode)tree.find("nodeID", "drawing"+ idSuffix)).getIcon());
+            valueMapIcons.put("effects_category", ((ExplorerTreeNode)tree.find("nodeID", "effects_category"+ idSuffix)).getIcon());
+            categoriesItem.setValueIcons(valueMapIcons);
         }
 
         final List<FormItem> filterFormItems = new ArrayList<FormItem>();
