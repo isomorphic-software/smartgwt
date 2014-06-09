@@ -239,29 +239,29 @@ public class TileView extends VLayout {
             categoriesItem.setMultiple(true);
             categoriesItem.setMultipleAppearance(MultipleAppearance.PICKLIST);
             final LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
-            valueMap.put("featured_category", M.featuredCategoryName().asString());
-            valueMap.put("new_category", M.newSamplesCategoryName().asString());
-            valueMap.put("combobox_category", M.comboBoxCategoryName().asString());
-            valueMap.put("grid_category", M.gridsCategoryName().asString());
-            valueMap.put("tree_category", M.treeCategoryName().asString());
-            valueMap.put("calendar_category", M.calendarCategoryName().asString());
-            valueMap.put("tiling_category", M.tilesCategoryName().asString());
-            valueMap.put("form_category", M.formsCategoryName().asString());
-            valueMap.put("layout_category", M.layoutCategoryName().asString());
-            valueMap.put("layout_windows_category", M.windowsCategoryName().asString());
-            valueMap.put("layout_tabs_category", M.tabsCategoryName().asString());
             valueMap.put("layout_sections_category", M.sectionsCategoryName().asString());
-            valueMap.put("portal_layout_category", M.portalLayoutCategoryName().asString());
-            valueMap.put("buttons_category", M.buttonsCategoryName().asString());
-            valueMap.put("menus_category", M.menusCategoryName().asString());
-            valueMap.put("toolstrip_category", M.toolStripCategoryName().asString());
-            valueMap.put("controls_category", M.otherControlsCategoryName().asString());
-            valueMap.put("data_integration_category", M.dataIntegrationCategoryName().asString());
-            valueMap.put("effects_dd_category", M.dragDropCategoryName().asString());
             valueMap.put("basics_category", M.basicsCategoryName().asString());
+            valueMap.put("beta_samples", M.betaSamplesName().asString());
+            valueMap.put("buttons_category", M.buttonsCategoryName().asString());
+            valueMap.put("calendar_category", M.calendarCategoryName().asString());
+            valueMap.put("combobox_category", M.comboBoxCategoryName().asString());
+            valueMap.put("data_integration_category", M.dataIntegrationCategoryName().asString());
+            valueMap.put("tiling_category", M.tilesCategoryName().asString());
+            valueMap.put("effects_dd_category", M.dragDropCategoryName().asString());
             valueMap.put("drawing", M.drawingCategoryName().asString());
             valueMap.put("effects_category", M.effectsCategoryName().asString());
-            valueMap.put("beta_samples", M.betaSamplesName().asString());
+            valueMap.put("featured_category", M.featuredCategoryName().asString());
+            valueMap.put("form_category", M.formsCategoryName().asString());
+            valueMap.put("grid_category", M.gridsCategoryName().asString());
+            valueMap.put("layout_category", M.layoutCategoryName().asString());
+            valueMap.put("menus_category", M.menusCategoryName().asString());
+            valueMap.put("new_category", M.newSamplesCategoryName().asString());
+            valueMap.put("controls_category", M.otherControlsCategoryName().asString());
+            valueMap.put("portal_layout_category", M.portalLayoutCategoryName().asString());
+            valueMap.put("layout_tabs_category", M.tabsCategoryName().asString());
+            valueMap.put("toolstrip_category", M.toolStripCategoryName().asString());
+            valueMap.put("tree_category", M.treeCategoryName().asString());
+            valueMap.put("layout_windows_category", M.windowsCategoryName().asString());
             categoriesItem.setValueMap(valueMap);
             categoriesItem.setDefaultValue(new String[] {"featured_category"});
 
@@ -304,12 +304,10 @@ public class TileView extends VLayout {
             filterFormItems.add(new SpacerItem());
             //filterFormItems.add(disabledModeCB);
             filterFormItems.addAll(Arrays.asList(
-                    featuredCB, newSamplesCB, comboBoxCB, gridsCB,
-                    treeCB, calendarCB, tilesCB, formsCB,
-                    layoutCB, windowsCB, tabsCB, sectionsCB,
-                    portalLayoutCB, buttonsCB, menusCB, toolStripCB,
-                    otherControlsCB, dataIntegrationCB, dragDropCB, basicsCB,
-                    drawingCB, effectsCB, betaSamplesCB));
+                    sectionsCB, basicsCB, betaSamplesCB, buttonsCB, calendarCB, comboBoxCB, dataIntegrationCB,
+                    tilesCB, dragDropCB, drawingCB, effectsCB, featuredCB, formsCB, gridsCB, layoutCB, 
+                    menusCB, newSamplesCB, otherControlsCB, portalLayoutCB, tabsCB, toolStripCB, 
+                    treeCB, windowsCB));
         } else {
             filterFormItems.add(categoriesItem);
         }
