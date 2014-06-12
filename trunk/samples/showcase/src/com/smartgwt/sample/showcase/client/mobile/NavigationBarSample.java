@@ -51,11 +51,10 @@ public class NavigationBarSample extends ShowcasePanel {
     public Canvas getViewPanel() {
         final NavigationBar navBar = new NavigationBar();
         navBar.setWidth(296);
-        navBar.setLeftButtonTitle("Previous");
-        navBar.setShortLeftButtonTitle("");
+        navBar.setLeftButtonTitle("Employees");
         navBar.setRightButtonTitle("Action");
         navBar.setShowRightButton(true);
-        navBar.setTitle("NavBar Title");
+        navBar.setTitle("Fa Bai");
 		
         final IButton button1 = new IButton();
         button1.setTitle("Fa Bai");
