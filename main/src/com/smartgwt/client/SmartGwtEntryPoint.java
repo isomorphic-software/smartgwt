@@ -16,11 +16,13 @@
 
 package com.smartgwt.client;
 
+import com.google.gwt.event.shared.UmbrellaException;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.smartgwt.client.util.I18nUtil;
 import com.smartgwt.client.util.LogUtil;
+import com.smartgwt.client.util.SC;
 
 /**
  * Internal Smart GWT Entry point class where framework level initialization code executes
@@ -345,23 +347,46 @@ public class SmartGwtEntryPoint implements EntryPoint {
     }-*/;
 
     public void onModuleLoad() {
-        //added boolean init check flag because GWT for some reason invokes this entry point class twice in hosted mode
-        //even though it appears only once in the load hierarchy. Check with GWT team.
+        // added boolean init check flag because GWT for some reason invokes this entry point
+        // class twice in hosted mode even though it appears only once in the load
+        // hierarchy. Check with GWT team.
         if (!initialized) {
             LogUtil.setJSNIErrorHandler();
             init();
             I18nUtil.init();
-            //install a default UEH that displays the error message in an alert when in development mode so that
-            //is is not overlooked by the user during development
+
+            // install a default UEH that displays the error message in an alert when in
+            // development mode so that is is not overlooked by the user during development
             GWT.setUncaughtExceptionHandler(new GWT.UncaughtExceptionHandler() {
-                public void onUncaughtException(Throwable e) {
+
+                public void onUncaughtException(Throwable t) {
                     if (!GWT.isScript()) {
-                        Window.alert("Uncaught exception escaped : " + e.getClass().getName() + "\n" + e.getMessage() +
-                                "\nSee the Development console log for details." +
-                                "\nRegister a GWT.setUncaughtExceptionHandler(..) for custom uncaught exception handling."
+                        Window.alert("Uncaught exception escaped: " + t.getClass().getName() +
+                            "\n" + t.getMessage() + "\nSee the GWT exception log for " +
+                            "details.\nRegister a GWT.setUncaughtExceptionHandler(..) " +
+                            "for custom uncaught exception handling."
                         );
                     }
-                    GWT.log("Uncaught exception escaped", e);
+                    GWT.log("Uncaught exception escaped", t);
+
+                    // log the exception with stack trace to the developer console
+                    if (t instanceof UmbrellaException) {
+                        UmbrellaException uncaught = (UmbrellaException) t;
+                        Throwable[] exceptions = uncaught.getCauses().toArray(new Throwable[0]);
+
+                        String message = "";
+                        for (int i = 0; i < exceptions.length; i++) {
+                            if (i > 0) message += "\n";
+                            if (GWT.isScript()) {
+                                message += exceptions[i];
+                            } else {
+                                // no details are provided by getCauses() in development mode
+                                message += "GWT devlopment mode has encountered exception: " +
+                                    exceptions[i] + ".  See the GWT exception log for details.";
+                            }
+                        }
+                        SC.logWarn(message);
+                    }
                 }
             });
             initialized = true;
