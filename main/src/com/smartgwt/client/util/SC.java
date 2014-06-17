@@ -51,7 +51,7 @@ public class SC {
         //replace any $ characters from inner class names with an underscore
         simpleName = simpleName.replace("$", "_");
         // handle "keep globals" mode where spurious $wnd bindings are present
-        if (id == null || (typeof $wnd.window[id] == 'undefined')) {
+        if (id == null || $wnd.window[id] == null) {
             $wnd.isc.ClassFactory.releaseGlobalID(simpleName, id);
         } else {
             if (!$wnd.isc.keepGlobals) {
