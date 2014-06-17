@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
@@ -41,7 +42,9 @@ import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;
+import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;
+import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.client.widgets.form.fields.events.KeyPressEvent;
 import com.smartgwt.client.widgets.form.fields.events.KeyPressHandler;
 import com.smartgwt.client.widgets.grid.HoverCustomizer;
@@ -68,6 +71,7 @@ import com.smartgwt.client.widgets.tab.events.TabSelectedHandler;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
 import com.smartgwt.client.widgets.toolbar.ToolStripButton;
 import com.smartgwt.client.widgets.tree.Tree;
+import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.client.widgets.tree.events.NodeClickEvent;
 import com.smartgwt.client.widgets.tree.events.NodeClickHandler;
@@ -103,7 +107,13 @@ public class Showcase implements EntryPoint, HistoryListener {
     private ToolStripButton printButton;
     private ToolStripButton sourceButton;
     private ToolStripButton showOverviewButton;
+    private DynamicForm searchForm;
 
+    private ExplorerTreeNode lastMatch;
+    private String lastValue;
+    private String lastName;
+    private List<ExplorerTreeNode> lastOpenedFolders = new ArrayList<ExplorerTreeNode>();
+	
     public static String getPreReleaseVersion() {
         return preReleaseVersion;
     }
@@ -181,7 +191,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         sideNavLayout.setHeight100();
         sideNavLayout.setWidth(215);
 
-        final DynamicForm searchForm = new DynamicForm();
+        searchForm = new DynamicForm();
         searchForm.setCellPadding(0);
         searchForm.setWidth100();
         // Use the name 'search' so that we get a Search button on iOS instead of a Go button.
@@ -207,6 +217,12 @@ public class Showcase implements EntryPoint, HistoryListener {
                         }
                     }
                 }
+            }
+        });
+        searchItem.addChangedHandler(new ChangedHandler() {
+            @Override
+            public void onChanged(ChangedEvent event) {
+                findNode();					
             }
         });
         searchForm.setFields(searchItem);
@@ -812,6 +828,8 @@ public class Showcase implements EntryPoint, HistoryListener {
         }  else if (node instanceof FolderTreeNode && sideNav.getTree().hasChildren(node)) {
             final FolderTreeNode folderTreeNode = (FolderTreeNode)node;
             String panelID = folderTreeNode.getNodeID();
+           
+            revertState();
 
             final String folderName = folderTreeNode.getName();
             String icon = folderTreeNode.getIcon();
@@ -876,6 +894,7 @@ public class Showcase implements EntryPoint, HistoryListener {
             if ("main".equals(explorerTreeNode.getNodeID())) {
                 showHomePanel();
             } else if ((factory = explorerTreeNode.getFactory()) != null) {
+                revertState();
                 final String sampleName = explorerTreeNode.getName();
                 String icon = explorerTreeNode.getIcon();
                 if (icon == null) {
@@ -1069,5 +1088,98 @@ public class Showcase implements EntryPoint, HistoryListener {
                 }
             }
         }
+    }
+
+    private void revertState() {
+        if (lastMatch != null) {
+            lastMatch.setName(lastName);
+            sideNav.refreshRow(sideNav.getRecordIndex(lastMatch));
+        }
+        lastValue = null;
+        lastMatch = null;
+        lastName = null;
+
+        if (lastOpenedFolders != null) {
+            for (int i = 0; i < lastOpenedFolders.size(); i++) sideNav.getTree().closeFolder(lastOpenedFolders.get(i));
+        }
+        lastOpenedFolders = null;
+        searchForm.clearValue("search");
+    }
+	
+    private void findNode() {
+        if ((sideNav == null) || (sideNav.getData() == null)) return;
+        String search = (String)searchForm.getValue("search");
+        if (search == null) {
+            revertState();
+            return;
+        }
+        search = search.toLowerCase();
+        boolean findNext = ((lastMatch != null) && (lastValue.equalsIgnoreCase(search))) ? true : false;
+        lastValue = search;
+        ExplorerTreeNode[] des = sideNav.getShowcaseData();
+        int startIndex = 0;
+        for (int i = 0; i < des.length; i++) {
+            startIndex = (lastMatch != null) ? (des[i].getName().matches(lastMatch.getName())) ? i : 0 : 0;
+        }
+        if (findNext) startIndex++;
+
+        if (lastMatch != null) {
+            lastMatch.setName(lastName);
+            lastName = null;
+            sideNav.refreshRow(sideNav.getRecordIndex(lastMatch));
+            lastMatch = null;
+        }
+        ExplorerTreeNode match = findNext(des, startIndex, search);
+        if (match == null) match = findNext(des, 0, search);
+
+        if (match != null) {
+            lastMatch = match;
+            // collapse previously auto-opened folders
+            if (lastOpenedFolders != null) {
+                for (int i = 0; i < lastOpenedFolders.size(); i++) {
+                    sideNav.getTree().closeFolder(lastOpenedFolders.get(i));
+                }
+            }
+            lastOpenedFolders = null;
+            TreeNode[] parents = (sideNav.getTree().getParents(match) != null) ? sideNav.getTree().getParents(match) : null;
+            if (parents != null) {
+                lastOpenedFolders = new ArrayList<ExplorerTreeNode>();
+                for (int i = 0; i < parents.length; i++) {
+                    TreeNode parent = parents[i];
+                    if (!sideNav.getTree().isOpen(parent)) {
+                        lastOpenedFolders.add((ExplorerTreeNode)parent);
+                        sideNav.getTree().openFolder(parent);
+                    }
+                }
+            }
+            // if the matched node is a folder, auto-expand it (probably want to see what's inside)
+            if (sideNav.getTree().isFolder(match) && !sideNav.getTree().isOpen(match)) {
+                sideNav.getTree().openFolder(match);
+                lastOpenedFolders.add(match);
+            }
+            int recordIndex = sideNav.getRecordIndex(match);
+            sideNav.refreshRow(recordIndex);
+            sideNav.scrollToRow(recordIndex);
+        }
+    }
+	
+    private ExplorerTreeNode findNext (ExplorerTreeNode[] des, int startIndex, String search) {
+        for (final ExplorerTreeNode node : des) {
+            if (node.getName().toLowerCase().contains(search)) {
+                lastName = node.getName();
+                String newValue = null;
+                if (node.getName().matches("/<.*>/")) {
+                    // if it looks like html, make sure not to replace in tags
+        	        RegExp searchRe = RegExp.compile("(^|>)([^<]*?)("+search+")", "ig");
+                    newValue = searchRe.replace(node.getName(), "$1$2<span style='background-color:#00B2FA;'>$3</span>");
+                } else {
+                    RegExp searchRe = RegExp.compile("("+search+")", "ig");
+                    newValue = searchRe.replace(node.getName(), "<span style='background-color:#00B2FA;'>$1</span>");
+                }
+                node.setName(newValue);
+                return node;
+            }
+        }
+        return null;
     }
 }

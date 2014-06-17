@@ -132,7 +132,7 @@ public class TileView extends VLayout {
         tileGrid.setTileConstructor(ShowcaseCustomTile.class.getName());  
         tileGrid.setAutoFetchData(false);
         tileGrid.setAnimateTileChange(true);
-
+        tileGrid.setEmptyMessage("No samples match your criteria.");
         tileGrid.addRecordClickHandler(new RecordClickHandler() {
             public void onRecordClick(RecordClickEvent event) {
                 Record record = event.getRecord();
