@@ -443,6 +443,23 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
     }-*/;
 
     /**
+     * Like {@link RecordList#findIndex}, but returns the object itself instead of its index.
+     * @param propertyName property to match
+     * @param value value to compare against (if propertyName is a string)
+     *
+     * @return first matching object or null if not found
+     */
+    public Record find(String propertyName, Boolean value) {
+        if (value == null) return null;
+        return this._find(propertyName, value.booleanValue());
+    }
+    private native Record _find(String propertyName, boolean value) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var recordJS = self.find(propertyName, value);
+        return recordJS == null || recordJS === undefined ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(recordJS);
+    }-*/;
+
+    /**
      * Find all objects where property == value in the object
      * @param properties set of properties and values to
      * match
