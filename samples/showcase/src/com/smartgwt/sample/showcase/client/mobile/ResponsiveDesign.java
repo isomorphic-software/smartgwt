@@ -8,6 +8,7 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.events.RecordClickEvent;
 import com.smartgwt.client.widgets.grid.events.RecordClickHandler;
 import com.smartgwt.client.widgets.layout.SplitPane;
@@ -79,7 +80,13 @@ public class ResponsiveDesign extends ShowcasePanel {
                 splitPane.showDetailPane();
             }
         });
-
+        if (deviceMode.equals(DeviceMode.TABLET)) {
+            ListGridField itemNameField = new ListGridField("itemName");
+            ListGridField unitCostField = new ListGridField("unitCost");
+            ListGridField inStockField = new ListGridField("inStock");
+            listPane.setFields(itemNameField, unitCostField, inStockField);
+        }
+        
         final TreeGrid navigationPane = new TreeGrid();
         navigationPane.setAutoDraw(Boolean.TRUE);
         navigationPane.setDataSource(SupplyCategoryXmlDS.getInstance());
