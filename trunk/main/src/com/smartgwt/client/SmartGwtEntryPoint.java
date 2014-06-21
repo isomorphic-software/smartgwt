@@ -16,6 +16,8 @@
 
 package com.smartgwt.client;
 
+import java.util.Set;
+
 import com.google.gwt.event.shared.UmbrellaException;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -349,6 +351,8 @@ public class SmartGwtEntryPoint implements EntryPoint {
         }        
     }-*/;
 
+    private boolean hasUncaughtExceptions;
+
     public void onModuleLoad() {
         // added boolean init check flag because GWT for some reason invokes this entry point
         // class twice in hosted mode even though it appears only once in the load
@@ -363,33 +367,45 @@ public class SmartGwtEntryPoint implements EntryPoint {
             GWT.setUncaughtExceptionHandler(new GWT.UncaughtExceptionHandler() {
 
                 public void onUncaughtException(Throwable t) {
-                    if (!GWT.isScript()) {
-                        Window.alert("Uncaught exception escaped: " + t.getClass().getName() +
-                            "\n" + t.getMessage() + "\nSee the GWT exception log for " +
+
+                    String exceptionSummary = "Uncaught exception escaped: " +
+                        t.getClass().getName() + "\n" + t.getMessage();
+
+                    if (GWT.isScript()) {
+                        // In production mode, log detailed exception content, 
+                        // including stack traces, to the developer console.
+                        if (t instanceof UmbrellaException) {
+                            Set<Throwable> causes = ((UmbrellaException) t).getCauses();
+                            Throwable[] exceptions = causes.toArray(new Throwable[0]);
+
+                            String message = "";
+                            for (int i = 0; i < exceptions.length; i++) {
+                                if (i > 0) message += "\n";
+                                message += exceptions[i];
+                            }
+                            SC.logWarn(message);
+                        } else {
+                            SC.logWarn(exceptionSummary);
+                        }
+                    } else {
+                        // In development mode, details are sent to the GWT development
+                        // console (in Eclipse or equivalent) by the GWT.log call below.
+                        Window.alert(exceptionSummary + "\nSee the GWT exception log for " +
                             "details.\nRegister a GWT.setUncaughtExceptionHandler(..) " +
                             "for custom uncaught exception handling."
                         );
-                    }
-                    GWT.log("Uncaught exception escaped", t);
-
-                    // log the exception with stack trace to the developer console
-                    if (t instanceof UmbrellaException) {
-                        UmbrellaException uncaught = (UmbrellaException) t;
-                        Throwable[] exceptions = uncaught.getCauses().toArray(new Throwable[0]);
-
-                        String message = "";
-                        for (int i = 0; i < exceptions.length; i++) {
-                            if (i > 0) message += "\n";
-                            if (GWT.isScript()) {
-                                message += exceptions[i];
-                            } else {
-                                // no details are provided by getCauses() in development mode
-                                message += "GWT devlopment mode has encountered exception: " +
-                                    exceptions[i] + ".  See the GWT exception log for details.";
-                            }
+                        // Unfortunately, all developer console logs show up in the GWT development 
+                        // mode console as well.  So to avoid confusion and duplication, just log a
+                        // heads-up message to the developer console to alert user to check Eclipse.
+                        if (!hasUncaughtExceptions) {
+                            SC.logWarn("GWT uncaught exceptions have been encountered.  " +
+                                       "Check the Development Mode console for more details.");
                         }
-                        SC.logWarn(message);
+                        // GWT.log no-ops in production mode
+                        GWT.log("Uncaught exception escaped", t);
                     }
+
+                   hasUncaughtExceptions = true;
                 }
             });
 
