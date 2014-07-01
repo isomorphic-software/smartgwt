@@ -214,6 +214,26 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("calendar_weekPrefix")
   String calendar_weekPrefix();
 
+
+  /**
+   * Translated "< $monthName".
+   * 
+   * @return translated "< $monthName"
+   */
+  @DefaultMessage("< $monthName")
+  @Key("calendar_monthButtonTitle")
+  String calendar_monthButtonTitle();
+
+  
+  /**
+   * Translated "Back".
+   * 
+   * @return translated "Back"
+   */
+  @DefaultMessage("Back")
+  @Key("calendar_backButtonTitle")
+  String calendar_backButtonTitle();
+
   /**
    * Translated "Loading...".
    * 

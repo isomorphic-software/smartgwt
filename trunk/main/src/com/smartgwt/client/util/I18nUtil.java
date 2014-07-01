@@ -570,6 +570,8 @@ public class I18nUtil {
             $wnd.isc.Calendar.addProperties({timelineViewTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_timelineViewTitle()()});
             $wnd.isc.Calendar.addProperties({weekViewTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_weekViewTitle()()});
             $wnd.isc.Calendar.addProperties({weekPrefix: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_weekPrefix()()});
+            $wnd.isc.Calendar.addProperties({monthButtonTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_monthButtonTitle()()).replace('$monthName', '${monthName}')});
+            $wnd.isc.Calendar.addProperties({backButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_backButtonTitle()()});
         }
         
         if($wnd.isc.FilterBuilder) {
