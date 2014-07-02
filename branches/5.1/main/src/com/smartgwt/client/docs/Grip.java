@@ -12,6 +12,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Splitbar#getShowDownGrip
  * @see com.smartgwt.client.widgets.Splitbar#getShowRollOverGrip
  * @see com.smartgwt.client.widgets.Splitbar#getShowClosedGrip
+ * @see com.smartgwt.client.widgets.Splitbar#getInvertClosedGripIfTargetAfter
  * @see com.smartgwt.client.widgets.Snapbar#getShowGrip
  * @see com.smartgwt.client.widgets.Snapbar#getShowDownGrip
  * @see com.smartgwt.client.widgets.Snapbar#getShowRollOverGrip

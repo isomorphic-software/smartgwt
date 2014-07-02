@@ -7,8 +7,8 @@ import com.smartgwt.client.types.SelectionStyle;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
-import com.smartgwt.client.widgets.grid.events.SelectionUpdatedHandler;
 import com.smartgwt.client.widgets.grid.events.SelectionUpdatedEvent;
+import com.smartgwt.client.widgets.grid.events.SelectionUpdatedHandler;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CountrySampleData;
@@ -20,7 +20,7 @@ public class CheckboxSelectSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             CheckboxSelectSample panel = new CheckboxSelectSample();
             id = panel.getID();
             return panel;

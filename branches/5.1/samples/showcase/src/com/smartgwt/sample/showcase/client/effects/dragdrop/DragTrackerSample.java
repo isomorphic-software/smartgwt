@@ -7,7 +7,12 @@ import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Img;
 import com.smartgwt.client.widgets.Label;
-import com.smartgwt.client.widgets.events.*;
+import com.smartgwt.client.widgets.events.DropEvent;
+import com.smartgwt.client.widgets.events.DropHandler;
+import com.smartgwt.client.widgets.events.DropOutEvent;
+import com.smartgwt.client.widgets.events.DropOutHandler;
+import com.smartgwt.client.widgets.events.DropOverEvent;
+import com.smartgwt.client.widgets.events.DropOverHandler;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
@@ -18,7 +23,7 @@ public class DragTrackerSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             DragTrackerSample panel = new DragTrackerSample();
             id = panel.getID();
             return panel;

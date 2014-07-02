@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.cube.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasFixedFacetValueChangedHandlers extends HasHandlers {
     /**
      * Notification fired when a fixed facet value is set for some facet.
@@ -29,3 +29,4 @@ public interface HasFixedFacetValueChangedHandlers extends HasHandlers {
      */
     HandlerRegistration addFixedFacetValueChangedHandler(FixedFacetValueChangedHandler handler);
 }
+

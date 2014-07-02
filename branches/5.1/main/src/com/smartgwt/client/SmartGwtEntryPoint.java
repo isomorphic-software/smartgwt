@@ -16,12 +16,16 @@
 
 package com.smartgwt.client;
 
+import java.util.Set;
+
+import com.google.gwt.event.shared.UmbrellaException;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.smartgwt.client.util.I18nUtil;
 import com.smartgwt.client.util.LogUtil;
 import com.smartgwt.client.bean.BeanFactory;
+import com.smartgwt.client.util.SC;
 
 /**
  * Internal Smart GWT Entry point class where framework level initialization code executes
@@ -60,7 +64,9 @@ public class SmartGwtEntryPoint implements EntryPoint {
         if ($wnd.isc.Browser.isIE && $wnd.isc.Browser.version >= 7) {
             $wnd.isc.EventHandler._IECanSetKeyCode = {};
         }
-        //debox Java primitive values for Javascript in hosted mode.
+        // Debox Javascript objects that wrap primitives for the benefit of Java in hosted mode.
+        // E.g. JS Boolean or Number must be converted to primitives to return them from JSNI.
+        // Note: Java boxing (e.g. java.lang.Boolean) is separate & requires adding extra code.
         $debox = function(val) {
             return @com.google.gwt.core.client.GWT::isScript()() ? val : function() {
             var v = val.apply(this, arguments);
@@ -345,24 +351,61 @@ public class SmartGwtEntryPoint implements EntryPoint {
         }        
     }-*/;
 
+    private boolean hasUncaughtExceptions;
+
     public void onModuleLoad() {
-        //added boolean init check flag because GWT for some reason invokes this entry point class twice in hosted mode
-        //even though it appears only once in the load hierarchy. Check with GWT team.
+        // added boolean init check flag because GWT for some reason invokes this entry point
+        // class twice in hosted mode even though it appears only once in the load
+        // hierarchy. Check with GWT team.
         if (!initialized) {
             LogUtil.setJSNIErrorHandler();
             init();
             I18nUtil.init();
-            //install a default UEH that displays the error message in an alert when in development mode so that
-            //is is not overlooked by the user during development
+
+            // install a default UEH that displays the error message in an alert when in
+            // development mode so that is is not overlooked by the user during development
             GWT.setUncaughtExceptionHandler(new GWT.UncaughtExceptionHandler() {
-                public void onUncaughtException(Throwable e) {
-                    if (!GWT.isScript()) {
-                        Window.alert("Uncaught exception escaped : " + e.getClass().getName() + "\n" + e.getMessage() +
-                                "\nSee the Development console log for details." +
-                                "\nRegister a GWT.setUncaughtExceptionHandler(..) for custom uncaught exception handling."
+
+                public void onUncaughtException(Throwable t) {
+
+                    String exceptionSummary = "Uncaught exception escaped: " +
+                        t.getClass().getName() + "\n" + t.getMessage();
+
+                    if (GWT.isScript()) {
+                        // In production mode, log detailed exception content, 
+                        // including stack traces, to the developer console.
+                        if (t instanceof UmbrellaException) {
+                            Set<Throwable> causes = ((UmbrellaException) t).getCauses();
+                            Throwable[] exceptions = causes.toArray(new Throwable[0]);
+
+                            String message = "";
+                            for (int i = 0; i < exceptions.length; i++) {
+                                if (i > 0) message += "\n";
+                                message += exceptions[i];
+                            }
+                            SC.logWarn(message);
+                        } else {
+                            SC.logWarn(exceptionSummary);
+                        }
+                    } else {
+                        // In development mode, details are sent to the GWT development
+                        // console (in Eclipse or equivalent) by the GWT.log call below.
+                        Window.alert(exceptionSummary + "\nSee the GWT exception log for " +
+                            "details.\nRegister a GWT.setUncaughtExceptionHandler(..) " +
+                            "for custom uncaught exception handling."
                         );
+                        // Unfortunately, all developer console logs show up in the GWT development 
+                        // mode console as well.  So to avoid confusion and duplication, just log a
+                        // heads-up message to the developer console to alert user to check Eclipse.
+                        if (!hasUncaughtExceptions) {
+                            SC.logWarn("GWT uncaught exceptions have been encountered.  " +
+                                       "Check the Development Mode console for more details.");
+                        }
+                        // GWT.log no-ops in production mode
+                        GWT.log("Uncaught exception escaped", t);
                     }
-                    GWT.log("Uncaught exception escaped", e);
+
+                   hasUncaughtExceptions = true;
                 }
             });
 

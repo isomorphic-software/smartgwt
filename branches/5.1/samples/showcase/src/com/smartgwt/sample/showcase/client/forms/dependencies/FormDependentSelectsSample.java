@@ -1,5 +1,8 @@
 package com.smartgwt.sample.showcase.client.forms.dependencies;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
@@ -8,9 +11,6 @@ import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class FormDependentSelectsSample extends ShowcasePanel {
 
     private static final String DESCRIPTION = "Select a \"Division\" to cause the \"Department\" select to be populated with departments from that division.";
@@ -18,7 +18,7 @@ public class FormDependentSelectsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             FormDependentSelectsSample panel = new FormDependentSelectsSample();
             id = panel.getID();
             return panel;

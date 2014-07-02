@@ -27,7 +27,7 @@ public class TreeEditingSample extends ShowcasePanel {
 	public static class Factory implements PanelFactory {
 		private String id;
 
-		public Canvas create() {
+		public ShowcasePanel create() {
 			TreeEditingSample panel = new TreeEditingSample();
 			id = panel.getID();
 			return panel;

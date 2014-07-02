@@ -17,7 +17,7 @@ public class GridEditFreezeSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridEditFreezeSample panel = new GridEditFreezeSample();
             id = panel.getID();
             return panel;

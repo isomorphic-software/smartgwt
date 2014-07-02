@@ -7,18 +7,22 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGridField#getGroupTitle
  * @see com.smartgwt.client.widgets.grid.ListGrid#groupBy
  * @see com.smartgwt.client.widgets.grid.ListGrid#getOriginalData
+ * @see com.smartgwt.client.widgets.calendar.Calendar#groupLanesBy
  * @see com.smartgwt.client.widgets.grid.ListGrid#getOriginalData
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupTree
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupStartOpen
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanCollapseGroup
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getCollapseGroupOnRowClick
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupTitleField
  * @see com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummaryInHeader
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getShowCollapsedGroupSummary
  * @see com.smartgwt.client.widgets.grid.ListGridField#getGroupingModes
  * @see com.smartgwt.client.widgets.grid.ListGridField#getGroupingMode
  * @see com.smartgwt.client.widgets.grid.ListGridField#getDefaultGroupingMode
  * @see com.smartgwt.client.widgets.grid.ListGridField#getGroupPrecision
  * @see com.smartgwt.client.widgets.grid.ListGridField#getGroupGranularity
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupNodeStyle
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupNodeBaseStyle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupIcon
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupIconSize
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupIndentSize
@@ -28,6 +32,9 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getIsGrouped
  * @see com.smartgwt.client.widgets.grid.ListGrid#getNullGroupTitle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupByField
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSortByGroupFirst
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupSortDirection
+ * @see com.smartgwt.client.widgets.calendar.Calendar#getLaneGroupStartOpen
  */
 public interface Grouping {
 }

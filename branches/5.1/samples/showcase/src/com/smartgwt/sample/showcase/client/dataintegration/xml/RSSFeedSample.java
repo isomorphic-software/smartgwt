@@ -16,7 +16,7 @@ public class RSSFeedSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             RSSFeedSample panel = new RSSFeedSample();
             id = panel.getID();
             return panel;

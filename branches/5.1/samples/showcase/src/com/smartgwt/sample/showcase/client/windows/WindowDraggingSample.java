@@ -14,7 +14,7 @@ public class WindowDraggingSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             WindowDraggingSample panel = new WindowDraggingSample();
             id = panel.getID();
             return panel;

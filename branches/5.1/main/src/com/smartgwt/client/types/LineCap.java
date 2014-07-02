@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Supported styles of drawing the endpoints of a line
  */
@@ -33,7 +35,6 @@ public enum LineCap implements ValueEnum {
      * "square" do
      */
     BUTT("butt");
-
     private String value;
 
     LineCap(String value) {

@@ -2,8 +2,9 @@
 package com.smartgwt.client.docs;
 
 /**
- * Referring to and loading other files. <P> The two main URL settings relevant to file loading are:<br> * appDir  (where
- * application-specific files live)<br> * isomorphicDir (where system supplied files live)<br>
+ * Referring to and loading other files. <P> The two main URL settings relevant to file loading
+ * are:<br> * appDir  (where application-specific files live)<br> * isomorphicDir (where system
+ * supplied files live)<br>
  * @see com.smartgwt.client.util.Page#defaultUnsupportedBrowserURL
  * @see com.smartgwt.client.util.Page#protocolURLs
  * @see com.smartgwt.client.util.Page#getAppDir
@@ -19,6 +20,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.util.Page#getImgURL
  * @see com.smartgwt.client.util.Page#getURL
  * @see com.smartgwt.client.util.Page#loadStyleSheet
+ * @see com.smartgwt.client.util.Page#setAddVersionToSkinCSS
+ * @see com.smartgwt.client.util.Page#isAddVersionToSkinCSS
  */
 public interface Files {
 }

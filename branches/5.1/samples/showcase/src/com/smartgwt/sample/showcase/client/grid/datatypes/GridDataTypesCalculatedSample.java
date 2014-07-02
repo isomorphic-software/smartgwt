@@ -5,7 +5,11 @@ import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.ListGridEditEvent;
 import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.grid.*;
+import com.smartgwt.client.widgets.grid.CellFormatter;
+import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.widgets.grid.SortNormalizer;
 import com.smartgwt.client.widgets.grid.events.EditorExitEvent;
 import com.smartgwt.client.widgets.grid.events.EditorExitHandler;
 import com.smartgwt.sample.showcase.client.PanelFactory;
@@ -20,7 +24,7 @@ public class GridDataTypesCalculatedSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridDataTypesCalculatedSample panel = new GridDataTypesCalculatedSample();
             id = panel.getID();
             return panel;

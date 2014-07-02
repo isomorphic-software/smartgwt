@@ -1,5 +1,7 @@
 package com.smartgwt.sample.showcase.client.tiling;
 
+import java.util.LinkedHashMap;
+
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.OperatorId;
 import com.smartgwt.client.widgets.Canvas;
@@ -23,8 +25,6 @@ import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.AnimalXmlDS;
 
-import java.util.LinkedHashMap;
-
 public class FilterSortTilingSample extends ShowcasePanel {
 
     private static final String DESCRIPTION = "<p>Tiled views can be filtered and sorted just like ListGrids. Use the \"Search\" form to " +
@@ -35,7 +35,7 @@ public class FilterSortTilingSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             FilterSortTilingSample panel = new FilterSortTilingSample();
             id = panel.getID();
             return panel;

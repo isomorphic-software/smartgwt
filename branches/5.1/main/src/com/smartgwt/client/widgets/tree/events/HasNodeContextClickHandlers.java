@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.tree.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasNodeContextClickHandlers extends HasHandlers {
     /**
      * This method is called when a context click occurs on a leaf or folder record.  Note that if you set up a callback for
@@ -32,3 +32,4 @@ public interface HasNodeContextClickHandlers extends HasHandlers {
      */
     HandlerRegistration addNodeContextClickHandler(NodeContextClickHandler handler);
 }
+

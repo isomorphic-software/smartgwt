@@ -1,19 +1,33 @@
 package com.smartgwt.sample.showcase.client.forms.controls;
 
+import java.util.LinkedHashMap;
+
 import com.smartgwt.client.data.DateRange;
 import com.smartgwt.client.data.RelativeDate;
 import com.smartgwt.client.types.MultipleAppearance;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.form.DynamicForm;
-import com.smartgwt.client.widgets.form.fields.*;
+import com.smartgwt.client.widgets.form.fields.CheckboxItem;
+import com.smartgwt.client.widgets.form.fields.ColorPickerItem;
+import com.smartgwt.client.widgets.form.fields.ComboBoxItem;
+import com.smartgwt.client.widgets.form.fields.DateItem;
+import com.smartgwt.client.widgets.form.fields.DateRangeItem;
+import com.smartgwt.client.widgets.form.fields.LinkItem;
+import com.smartgwt.client.widgets.form.fields.MiniDateRangeItem;
+import com.smartgwt.client.widgets.form.fields.RadioGroupItem;
+import com.smartgwt.client.widgets.form.fields.RelativeDateItem;
+import com.smartgwt.client.widgets.form.fields.SelectItem;
+import com.smartgwt.client.widgets.form.fields.SliderItem;
+import com.smartgwt.client.widgets.form.fields.SpinnerItem;
+import com.smartgwt.client.widgets.form.fields.TextAreaItem;
+import com.smartgwt.client.widgets.form.fields.TextItem;
+import com.smartgwt.client.widgets.form.fields.TimeItem;
 import com.smartgwt.client.widgets.form.fields.events.ClickEvent;
 import com.smartgwt.client.widgets.form.fields.events.ClickHandler;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-
-import java.util.LinkedHashMap;
 
 public class FormVariousControlsSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Demonstration of several form controls.";
@@ -21,7 +35,7 @@ public class FormVariousControlsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             FormVariousControlsSample panel = new FormVariousControlsSample();
             id = panel.getID();
             return panel;
@@ -40,6 +54,8 @@ public class FormVariousControlsSample extends ShowcasePanel {
         VLayout layout = new VLayout(10);
 
         final DynamicForm form = new DynamicForm();
+        form.setWidth(400);
+        form.setColWidths(120, "*");
 
         TextItem textItem = new TextItem();
         textItem.setTitle("Text");
@@ -51,19 +67,28 @@ public class FormVariousControlsSample extends ShowcasePanel {
         ColorPickerItem colorPicker = new ColorPickerItem();
         colorPicker.setTitle("Color Picker");
 
-        SpinnerItem spinnerItem = new SpinnerItem();
-        spinnerItem.setTitle("Spinner");
-        spinnerItem.setDefaultValue(5);
-        spinnerItem.setMin(0);
-        spinnerItem.setMax(10);
-        spinnerItem.setStep(0.5f);
+        SpinnerItem stackedSpinnerItem = new SpinnerItem();
+        stackedSpinnerItem.setTitle("Stacked Spinner");
+        stackedSpinnerItem.setDefaultValue(5);
+        stackedSpinnerItem.setMin(0);
+        stackedSpinnerItem.setMax(10);
+        stackedSpinnerItem.setStep(0.5f);
+        stackedSpinnerItem.setWriteStackedIcons(true);
+
+        SpinnerItem unstackedSpinnerItem = new SpinnerItem();
+        unstackedSpinnerItem.setTitle("Unstacked Spinner");
+        unstackedSpinnerItem.setDefaultValue(5);
+        unstackedSpinnerItem.setMin(0);
+        unstackedSpinnerItem.setMax(10);
+        unstackedSpinnerItem.setStep(0.5f);
+        unstackedSpinnerItem.setWriteStackedIcons(false);
 
         SliderItem sliderItem = new SliderItem();
         sliderItem.setTitle("Slider");
         sliderItem.setHeight(40);
         sliderItem.setWidth(180);
-        sliderItem.setMinValue(1);
-        sliderItem.setMaxValue(5);
+        sliderItem.setMinValue(1.0);
+        sliderItem.setMaxValue(5.0);
         sliderItem.setNumValues(5);
         sliderItem.setDefaultValue(4);
 
@@ -85,11 +110,13 @@ public class FormVariousControlsSample extends ShowcasePanel {
         radioGroupItem.setTitle("Radio Group");
         radioGroupItem.setValueMap("Option 1", "Option 2");
 
-        form.setFields(textItem, colorPicker, textAreaItem, spinnerItem, sliderItem, linkItem, checkboxItem, radioGroupItem);
+        form.setFields(textItem, colorPicker, textAreaItem, stackedSpinnerItem, unstackedSpinnerItem,
+                sliderItem, linkItem, checkboxItem, radioGroupItem);
         layout.addMember(form);
 
         DynamicForm selectComboForm = new DynamicForm();
         selectComboForm.setWidth(450);
+        selectComboForm.setColWidths(120, "*");
         selectComboForm.setIsGroup(true);
         selectComboForm.setGroupTitle("Select / Combo Controls");
 
@@ -160,6 +187,7 @@ public class FormVariousControlsSample extends ShowcasePanel {
 
         DynamicForm dateForm = new DynamicForm();
         dateForm.setWidth(450);
+        dateForm.setColWidths(120, "*");
         dateForm.setIsGroup(true);
         dateForm.setGroupTitle("Date Controls");
 

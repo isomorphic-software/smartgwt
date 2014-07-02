@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Policy for whether resize bars are shown on members by default.
  */
@@ -42,7 +44,6 @@ public enum LayoutResizeBarPolicy implements ValueEnum {
      * showResizeBar:true}
      */
     NONE("none");
-
     private String value;
 
     LayoutResizeBarPolicy(String value) {

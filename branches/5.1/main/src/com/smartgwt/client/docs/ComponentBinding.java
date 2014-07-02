@@ -11,7 +11,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.DataSourceField#getEditorType
  * @see com.smartgwt.client.data.DataSourceField#getReadOnlyEditorType
  * @see com.smartgwt.client.data.DataSourceField#getHidden
- * @see com.smartgwt.client.data.DataSourceField#getIgnore
+ * @see com.smartgwt.client.docs.serverds.DataSourceField#ignore
  * @see com.smartgwt.client.data.DataSourceField#getDetail
  */
 public interface ComponentBinding {

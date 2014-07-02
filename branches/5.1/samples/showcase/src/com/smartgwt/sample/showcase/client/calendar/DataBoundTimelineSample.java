@@ -13,7 +13,6 @@ import com.smartgwt.client.widgets.calendar.Lane;
 import com.smartgwt.client.widgets.calendar.Timeline;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CalendarData;
 import com.smartgwt.sample.showcase.client.data.TimelineData;
 
 public class DataBoundTimelineSample extends ShowcasePanel {
@@ -27,7 +26,7 @@ public class DataBoundTimelineSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             DataBoundTimelineSample panel = new DataBoundTimelineSample();
             id = panel.getID();
             return panel;

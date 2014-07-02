@@ -42,11 +42,27 @@ public class SC {
         return $wnd.isc.ClassFactory.getNextGlobalIDForClass(simpleName);
     }-*/;
 
+    //>IDocument One complication is that in "keep globals" mode, the SGWT wrapper's current SC
+    // jsObj will actually also be bound under the old ID!  To avoid problems in this case, we
+    // don't immediately release it but merely update the ID class to the right value.  We also
+    // log a warning if we're not able to release the ID and it's not expected.//<IDocument
     public static native void releaseID(String className, String id) /*-{
         var simpleName = className.substring(className.lastIndexOf(".")+1);
         //replace any $ characters from inner class names with an underscore
         simpleName = simpleName.replace("$", "_");
-        return $wnd.isc.ClassFactory.releaseGlobalID(simpleName, id);
+        // handle "keep globals" mode where spurious $wnd bindings are present
+        if (id == null || $wnd.window[id] == null) {
+            $wnd.isc.ClassFactory.releaseGlobalID(simpleName, id);
+        } else {
+            if (!$wnd.isc.keepGlobals) {
+                var message = "Unexpected global binding found for ID " + id +
+                    " in SC::releaseID; unable to release it for use by a new SC JS object.";
+                @com.smartgwt.client.util.SC::logWarn(Ljava/lang/String;)(message);
+            }
+            else if ($wnd.isc.autoAssignedTempGlobals[id]) {
+                     $wnd.isc.autoAssignedTempGlobals[id] = simpleName;
+            }
+        }
     }-*/;
 
     public static native boolean keepGlobals() /*-{
@@ -325,6 +341,23 @@ public class SC {
             if(value === undefined) value = null;
             callback.@com.smartgwt.client.util.ValueCallback::execute(Ljava/lang/String;)(value);
         }, dialogPropertiesJS);
+    }-*/;
+
+    /**
+     * If a dialog triggered via {@link #say(String)}, {@link #ask(String, BooleanCallback)},
+     * {@link #warn(String)}, {@link #confirm(String, BooleanCallback)} or {@link #askforValue(String, ValueCallback)}
+     * is currently visible, it will be dismissed.  The callback passed to the relevant method will never fire.
+     * <p>
+     * Note this is a rarely used API with very few valid use cases.  As an example, perhaps some kind of
+     * periodic (non-user triggered) event would cause an entire area of the UI to be removed (such as a tab)
+     * and the system wants to ensure that no modal dialogs are currently showing from that part of the UI.
+     * In this case, while <code>dismissCurrentDialog</code> could be used to ensure the part of the UI being
+     * removed didn't leave behind a modal dialog.
+     * <p>
+     * To clear a modal prompt shown by {@link #showPrompt(String)}, use {@link #clearPrompt()} instead.
+     */
+    public static native void dismissCurrentDialog() /*-{
+        $wnd.isc.dismissCurrentDialog();
     }-*/;
 
     /**
@@ -654,7 +687,7 @@ public class SC {
     }
 
     /**
-     * Returns true is the optional Analytics module has been loaded.
+     * Returns true if the optional Analytics module has been loaded.
      *
      * @return true if Analytics module is loaded
      */
@@ -663,7 +696,7 @@ public class SC {
     }-*/;
 
     /**
-     * Returns true is the optional Charts module has been loaded.
+     * Returns true if the optional Charts module has been loaded.
      *
      * @return true if Charts module is loaded
      */
@@ -672,7 +705,7 @@ public class SC {
     }-*/;
 
     /**
-     * Returns true is the optional Drawing module has been loaded.
+     * Returns true if the optional Drawing module has been loaded.
      *
      * @return true if Drawing module is loaded
      */
@@ -681,7 +714,7 @@ public class SC {
     }-*/;
 
     /**
-     * Returns true is the optional PluginBridges module has been loaded.
+     * Returns true if the optional PluginBridges module has been loaded.
      *
      * @return true if PluginBridges module is loaded
      */
@@ -690,12 +723,21 @@ public class SC {
     }-*/;
 
     /**
-     * Returns true is the optional RealtimeMessaging module has been loaded.
+     * Returns true if the optional RealtimeMessaging module has been loaded.
      *
      * @return true if RealtimeMessaging module is loaded
      */
     public static native boolean hasRealtimeMessaging()/*-{
         return $wnd.isc.Messaging != null;
+    }-*/;
+
+    /**
+     * Returns true if the optional Dashboard &amp; Tools module is available.
+     * 
+     * @return true if Dashboard &amp; Tools module is available.
+     */
+    public static native boolean hasDashboardAndTools()/*-{
+        return ($wnd.isc.EditContext != null) && !$wnd.isc.EditContext.vbOnly;
     }-*/;
     
     /**

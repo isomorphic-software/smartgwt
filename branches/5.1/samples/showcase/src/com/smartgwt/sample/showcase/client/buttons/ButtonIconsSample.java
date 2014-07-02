@@ -19,7 +19,7 @@ public class ButtonIconsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             ButtonIconsSample panel = new ButtonIconsSample();
             id = panel.getID();
             return panel;

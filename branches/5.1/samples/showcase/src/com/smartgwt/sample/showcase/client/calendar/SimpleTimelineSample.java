@@ -2,11 +2,11 @@ package com.smartgwt.sample.showcase.client.calendar;
 
 import java.util.Date;
 
+import com.smartgwt.client.types.TimeUnit;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.calendar.HeaderLevel;
 import com.smartgwt.client.widgets.calendar.Lane;
 import com.smartgwt.client.widgets.calendar.Timeline;
-import com.smartgwt.client.types.TimeUnit;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.TimelineData;
@@ -23,7 +23,7 @@ public class SimpleTimelineSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             SimpleTimelineSample panel = new SimpleTimelineSample();
             id = panel.getID();
             return panel;

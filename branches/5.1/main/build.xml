@@ -49,15 +49,20 @@
         <copyfile src="src/com/smartgwt/client/i18n/SmartGwtMessages_fr_FR.properties" dest="src/com/smartgwt/client/i18n/SmartGwtMessages_fr.properties"/>
         <copyfile src="src/com/smartgwt/client/i18n/SmartGwtMessages_ru_RU.properties" dest="src/com/smartgwt/client/i18n/SmartGwtMessages_ru.properties"/>
         <mkdir dir="${smartgwt.build.lib}"/>
+        <unzip src="${smartgwt.tools.lib}/sc/${smartclient.version}/smartclient.jar" dest="${javac.out}" >
+            <patternset>
+                <exclude name="**/selenium/*"/>
+            </patternset>
+        </unzip>
+        <replace dir="${javac.out}/com/smartclient" includes="**/ISC_Core.js,**/Page.js"
+            token=" * http://smartclient.com/license&#13;&#13;&#10; */&#13;&#13;&#10;" 
+            value=" * http://smartclient.com/license&#13;&#13;&#10; */&#13;&#13;&#10;/*#ISO_DIR#*/" />
         <gwt.jar>
             <fileset dir="src">
                 <exclude name="**/package.html"/>
                 <!--do not distribute ext-->
                 <!--<exclude name="com/smartgwt/public/**/*"/>-->
             </fileset>
-            <zipfileset dirmode="755" filemode="644" src="${smartgwt.tools.lib}/sc/${smartclient.version}/smartclient.jar">
-                <exclude name="**/selenium/*"/>
-            </zipfileset>
 
             <fileset dir="${javac.out}"/>
         </gwt.jar>

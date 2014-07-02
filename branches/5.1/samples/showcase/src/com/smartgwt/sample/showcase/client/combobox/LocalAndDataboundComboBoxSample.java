@@ -1,5 +1,7 @@
 package com.smartgwt.sample.showcase.client.combobox;
 
+import java.util.LinkedHashMap;
+
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.form.DynamicForm;
@@ -8,8 +10,6 @@ import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
 
-import java.util.LinkedHashMap;
-
 public class LocalAndDataboundComboBoxSample extends ShowcasePanel {
 
     private static final String DESCRIPTION = "Start typing in either field to see a list of matching options. The field labelled \"Item Name\" retrieves options dynamically from the SupplyItem DataSource";
@@ -17,7 +17,7 @@ public class LocalAndDataboundComboBoxSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             LocalAndDataboundComboBoxSample panel = new LocalAndDataboundComboBoxSample();
             id = panel.getID();
             return panel;

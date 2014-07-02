@@ -15,7 +15,7 @@ public class LoadOnDemandTreeSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             LoadOnDemandTreeSample panel = new LoadOnDemandTreeSample();
             id = panel.getID();
             return panel;

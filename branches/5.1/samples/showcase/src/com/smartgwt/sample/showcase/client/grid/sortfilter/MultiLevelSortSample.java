@@ -27,7 +27,7 @@ public class MultiLevelSortSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             MultiLevelSortSample panel = new MultiLevelSortSample();
             id = panel.getID();
             return panel;

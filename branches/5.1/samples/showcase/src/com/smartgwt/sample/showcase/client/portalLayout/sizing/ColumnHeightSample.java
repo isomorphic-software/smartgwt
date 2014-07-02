@@ -1,21 +1,11 @@
 package com.smartgwt.sample.showcase.client.portalLayout.sizing;
 
-import com.smartgwt.client.types.Alignment;
-import com.smartgwt.client.types.DragAppearance;
-import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.types.Overflow;
-import com.smartgwt.client.widgets.AnimationCallback;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.Img;
-import com.smartgwt.client.widgets.ImgProperties;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
-import com.smartgwt.client.widgets.grid.ListGrid;
-import com.smartgwt.client.widgets.grid.ListGridField;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-import com.smartgwt.client.widgets.layout.LayoutSpacer;
 import com.smartgwt.client.widgets.layout.PortalLayout;
 import com.smartgwt.client.widgets.layout.Portlet;
 import com.smartgwt.client.widgets.layout.VLayout;
@@ -32,7 +22,7 @@ public class ColumnHeightSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             ColumnHeightSample panel = new ColumnHeightSample();
             id = panel.getID();
             return panel;

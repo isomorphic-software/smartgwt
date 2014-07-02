@@ -17,7 +17,7 @@ public class MenuAppearanceSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             MenuAppearanceSample panel = new MenuAppearanceSample();
             id = panel.getID();
             return panel;
@@ -93,4 +93,11 @@ public class MenuAppearanceSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
+
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        // match SC Feature Explorer sample topology
+        return true;
+    }
+
 }

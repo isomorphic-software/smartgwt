@@ -1,9 +1,9 @@
 package com.smartgwt.sample.showcase.client.grid.gridform;
 
-import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.DSCallback;
-import com.smartgwt.client.data.DSResponse;
 import com.smartgwt.client.data.DSRequest;
+import com.smartgwt.client.data.DSResponse;
+import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.Label;
@@ -24,7 +24,7 @@ public class GridFormAddSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridFormAddSample panel = new GridFormAddSample();
             id = panel.getID();
             return panel;

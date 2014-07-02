@@ -13,8 +13,10 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.form.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface HiddenValidationErrorsHandler extends EventHandler {
@@ -23,7 +25,7 @@ public interface HiddenValidationErrorsHandler extends EventHandler {
      * called when validation fails for<br> - a hidden field in this form<br> - if this form is databound, a datasource field
      * with specified validators, for which we   have no specified form item.<br> Implement this to provide custom validation
      * error handling for these fields.<br> By default hidden validation errors will be logged as warnings in the
-     * developerConsole. Call {@link com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent#cancel()} from within {@link HiddenValidationErrorsHandler#onHiddenValidationErrors} from this method to suppress that behavior.
+     * developerConsole. Call {@link com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent#cancel()} from within {@link com.smartgwt.client.widgets.form.events.HiddenValidationErrorsHandler#onHiddenValidationErrors} from this method to suppress that behavior.
      *
      * @param event the event
      */

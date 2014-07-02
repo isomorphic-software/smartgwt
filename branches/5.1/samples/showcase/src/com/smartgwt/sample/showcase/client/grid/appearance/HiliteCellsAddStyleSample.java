@@ -20,7 +20,7 @@ public class HiliteCellsAddStyleSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             HiliteCellsAddStyleSample panel = new HiliteCellsAddStyleSample();
             id = panel.getID();
             return panel;

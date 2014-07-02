@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  */
 public enum PromptStyle implements ValueEnum {
@@ -28,7 +30,6 @@ public enum PromptStyle implements ValueEnum {
      * promptCursor}
      */
     CURSOR("cursor");
-
     private String value;
 
     PromptStyle(String value) {

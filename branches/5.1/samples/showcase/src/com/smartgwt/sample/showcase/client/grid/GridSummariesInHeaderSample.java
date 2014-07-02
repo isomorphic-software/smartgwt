@@ -16,6 +16,9 @@
 
 package com.smartgwt.sample.showcase.client.grid;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.google.gwt.i18n.client.NumberFormat;
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.Record;
@@ -24,14 +27,16 @@ import com.smartgwt.client.types.GroupStartOpen;
 import com.smartgwt.client.types.RecordSummaryFunctionType;
 import com.smartgwt.client.types.SummaryFunctionType;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.grid.*;
+import com.smartgwt.client.widgets.grid.CellFormatter;
+import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.widgets.grid.ListGridSummaryField;
+import com.smartgwt.client.widgets.grid.SummaryFunction;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.OrderItem;
 import com.smartgwt.sample.showcase.client.data.OrderItemLocalDS;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class GridSummariesInHeaderSample extends ShowcasePanel {
 
@@ -50,7 +55,7 @@ public class GridSummariesInHeaderSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridSummariesInHeaderSample panel = new GridSummariesInHeaderSample();
             id = panel.getID();
             return panel;

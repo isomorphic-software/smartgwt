@@ -1,13 +1,13 @@
 package com.smartgwt.sample.showcase.client.combobox;
 
+import java.util.LinkedHashMap;
+
 import com.smartgwt.client.types.MultipleAppearance;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-
-import java.util.LinkedHashMap;
 
 public class SelectMultipleSample extends ShowcasePanel {
 
@@ -16,7 +16,7 @@ public class SelectMultipleSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             SelectMultipleSample panel = new SelectMultipleSample();
             id = panel.getID();
             return panel;

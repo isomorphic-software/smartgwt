@@ -214,6 +214,26 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("calendar_weekPrefix")
   String calendar_weekPrefix();
 
+
+  /**
+   * Translated "< $monthName".
+   * 
+   * @return translated "< $monthName"
+   */
+  @DefaultMessage("< $monthName")
+  @Key("calendar_monthButtonTitle")
+  String calendar_monthButtonTitle();
+
+  
+  /**
+   * Translated "Back".
+   * 
+   * @return translated "Back"
+   */
+  @DefaultMessage("Back")
+  @Key("calendar_backButtonTitle")
+  String calendar_backButtonTitle();
+
   /**
    * Translated "Loading...".
    * 
@@ -3987,6 +4007,24 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("No items to show")
   @Key("pickList_emptyPickListMessage")
   String pickList_emptyPickListMessage();
+
+  /**
+   * Translated "No items to show".
+   * 
+   * @return translated "No items to show"
+   */
+  @DefaultMessage("No items to show")
+  @Key("selectItem_emptyPickListMessage")
+  String selectItem_emptyPickListMessage();
+
+  /**
+   * Translated "No items to show".
+   * 
+   * @return translated "No items to show"
+   */
+  @DefaultMessage("No items to show")
+  @Key("comboBoxItem_emptyPickListMessage")
+  String comboBoxItem_emptyPickListMessage();
 
   /**
    * Translated "[Empty menu]".

@@ -16,7 +16,7 @@ public class NestingSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             NestingSample panel = new NestingSample();
             id = panel.getID();
             return panel;

@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Controls how an object changes state when clicked
  */
@@ -32,7 +34,6 @@ public enum SelectionType implements ValueEnum {
      * object moves to "down" state, causing another object to go up (radio)
      */
     RADIO("radio");
-
     private String value;
 
     SelectionType(String value) {

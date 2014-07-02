@@ -3,14 +3,12 @@ package com.smartgwt.sample.showcase.client.effects.dragdrop;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.google.gwt.dom.client.Document;
-import com.google.gwt.dom.client.Element;
-import com.google.gwt.dom.client.Style;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.Cursor;
 import com.smartgwt.client.types.DragAppearance;
 import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.util.EventHandler;
+import com.smartgwt.client.util.FileLoader;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Img;
 import com.smartgwt.client.widgets.events.DragStartEvent;
@@ -38,7 +36,7 @@ public class NativeDragCreateSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             final NativeDragCreateSample panel = new NativeDragCreateSample();
             id = panel.getID();
             return panel;
@@ -173,19 +171,7 @@ public class NativeDragCreateSample extends ShowcasePanel {
 
     @Override
     public Canvas getViewPanel() {
-        Element preloadedImagesContainer = Document.get().getElementById("preloadedImagesContainer");
-        if (preloadedImagesContainer == null) {
-            preloadedImagesContainer = Document.get().createDivElement();
-            preloadedImagesContainer.setId("preloadedImagesContainer");
-            Document.get().getBody().appendChild(preloadedImagesContainer);
-        }
-        String innerHTML = "";
-        for (final String imageURL : DRAG_TRACKER_IMAGE_URLS.values()) {
-            innerHTML += "<img src='" + imageURL + "'>";
-        }
-        preloadedImagesContainer.setInnerHTML(innerHTML);
-        preloadedImagesContainer.getStyle().setPosition(Style.Position.ABSOLUTE);
-        preloadedImagesContainer.getStyle().setTop(-50.0, Style.Unit.PX);
+        FileLoader.cacheImgs(getSkinImgDir(), DRAG_TRACKER_IMAGE_URLS.values());
 
         final HStack piecesLayout = new HStack(40);
         piecesLayout.setLayoutMargin(20);

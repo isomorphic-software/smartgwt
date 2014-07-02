@@ -1,5 +1,6 @@
 package com.smartgwt.sample.showcase.client.grid.dataoperation;
 
+import com.smartgwt.client.rpc.RPCManager;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
@@ -8,7 +9,6 @@ import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
-import com.smartgwt.client.rpc.RPCManager;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.WorldXmlDS;
@@ -21,7 +21,7 @@ public class GridDataBoundRemoveSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridDataBoundRemoveSample panel = new GridDataBoundRemoveSample();
             id = panel.getID();
             return panel;

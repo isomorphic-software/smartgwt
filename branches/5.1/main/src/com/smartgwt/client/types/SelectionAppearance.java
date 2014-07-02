@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * How data selection should be presented to the user.
  */
@@ -28,10 +30,9 @@ public enum SelectionAppearance implements ValueEnum {
     ROW_STYLE("rowStyle"),
     /**
      * an extra, non-data column should be automatically added to the ListGrid, showing checkboxes that can be toggled to
-     * select rows.  See {@link com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField ListGrid.getCheckboxField}.
+     * select rows. See {@link com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField ListGrid.getCheckboxField}.
      */
     CHECKBOX("checkbox");
-
     private String value;
 
     SelectionAppearance(String value) {

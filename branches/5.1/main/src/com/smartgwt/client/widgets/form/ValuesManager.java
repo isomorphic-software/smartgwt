@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.form;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,16 +50,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
@@ -78,7 +89,9 @@ import com.google.gwt.event.shared.HasHandlers;
  * However, when using a ValuesManager these extra values are only allowed on the ValuesManager itself. Member forms will
  * not track values for which they do not have FormItems.
  */
-public class ValuesManager extends BaseClass  implements com.smartgwt.client.widgets.form.events.HasSubmitValuesHandlers, com.smartgwt.client.widgets.form.events.HasHiddenValidationErrorsHandlers {
+@BeanFactory.FrameworkClass
+@BeanFactory.ScClassName("ValuesManager")
+public class ValuesManager extends BaseClass implements com.smartgwt.client.widgets.form.events.HasHiddenValidationErrorsHandlers {
 
     public static ValuesManager getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -90,12 +103,14 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         }
     }
 
+
     public ValuesManager(){
         scClassName = "ValuesManager";
     }
 
     public ValuesManager(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "ValuesManager";
+        setJavaScriptObject(jsObj);
     }
 
     public native JavaScriptObject create()/*-{
@@ -103,7 +118,29 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
         return $wnd.isc[scClassName].create(config);
     }-*/;
+
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} to use when performing add operations.
+     *
+     * @param addOperation  Default value is null
+     * @see com.smartgwt.client.docs.Operations Operations overview and related methods
+     */
+    public void setAddOperation(String addOperation) {
+        setAttribute("addOperation", addOperation, true);
+    }
+
+    /**
+     * {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} to use when performing add operations.
+     *
+     * @return String
+     * @see com.smartgwt.client.docs.Operations Operations overview and related methods
+     */
+    public String getAddOperation()  {
+        return getAttributeAsString("addOperation");
+    }
+    
 
     /**
      * If explicitly set to false, prevents the ValuesManager from automatically propagating data value changes to its members.
@@ -111,7 +148,7 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      * com.smartgwt.client.widgets.form.ValuesManager#synchronizeMembers ValuesManager.synchronizeMembers}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param autoSynchronize autoSynchronize Default value is null
+     * @param autoSynchronize  Default value is null
      */
     public void setAutoSynchronize(Boolean autoSynchronize) {
         setAttribute("autoSynchronize", autoSynchronize, true);
@@ -122,19 +159,20 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      * You can manually synchronize member data values  at any time with a call to {@link
      * com.smartgwt.client.widgets.form.ValuesManager#synchronizeMembers ValuesManager.synchronizeMembers}.
      *
-     *
      * @return Boolean
      */
     public Boolean getAutoSynchronize()  {
         return getAttributeAsBoolean("autoSynchronize");
     }
+    
+    
 
     /**
      * If set to true, client-side validators will not run on the form when validate() is called.  Server-side validators (if
      * any) will still run on attempted save.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param disableValidation disableValidation Default value is null
+     * @param disableValidation  Default value is null
      * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
      * @see com.smartgwt.client.widgets.form.DynamicForm#submit
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
@@ -147,7 +185,6 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      * If set to true, client-side validators will not run on the form when validate() is called.  Server-side validators (if
      * any) will still run on attempted save.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
      * @see com.smartgwt.client.widgets.form.DynamicForm#submit
@@ -156,6 +193,29 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
     public Boolean getDisableValidation()  {
         return getAttributeAsBoolean("disableValidation");
     }
+    
+    
+
+    /**
+     * {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} to use when performing remove operations.
+     *
+     * @param removeOperation  Default value is null
+     * @see com.smartgwt.client.docs.Operations Operations overview and related methods
+     */
+    public void setRemoveOperation(String removeOperation) {
+        setAttribute("removeOperation", removeOperation, true);
+    }
+
+    /**
+     * {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} to use when performing remove operations.
+     *
+     * @return String
+     * @see com.smartgwt.client.docs.Operations Operations overview and related methods
+     */
+    public String getRemoveOperation()  {
+        return getAttributeAsString("removeOperation");
+    }
+    
 
     /**
      * Default {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
@@ -184,16 +244,23 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      * <code>saveOperationType</code> is unset, the form will heuristically determine whether an "add" or "update" operation is
      * intended based on whether the primaryKey field is present and editable.
      *
-     *
      * @return Returns the {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
      * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData} is called. Valid options are
      * <code>"add"</code> or <code>"update"</code>. <P> If a {@link com.smartgwt.client.data.DSRequest} configuration object is
      * passed in containing an explicit operationType this will be returned. Otherwise {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned.
+     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned. This attribute is
+     * automatically set via calls to data binding methods such as {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editNewRecord DynamicForm.editNewRecord}, or it may be set explicitly. <P>
+     * If no explicit saveOperationType is specified for this form, the system will  look at the current values for the form.
+     * If the form has no value for the {@link com.smartgwt.client.data.DataSource#getPrimaryKeyField primaryKey field}, or
+     * that field is editable and has been modified we assume an add operation, otherwise an update. If the form is a member of
+     * a {@link com.smartgwt.client.widgets.form.ValuesManager}, the primary key field value will be derived from the
+     * valuesManager's values object.
      */
     public DSOperationType getSaveOperationType()  {
         return EnumUtil.getEnum(DSOperationType.values(), getAttribute("saveOperationType"));
     }
+    
 
     /**
      * When calling {@link com.smartgwt.client.widgets.form.ValuesManager#saveData ValuesManager.saveData} on a form or
@@ -201,15 +268,15 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      * the error code returned by the server indicates a validation error, it will be displayed to the user by updating the
      * form items to show the error messages, and firing any specified hiddenValidationErrors handler, otherwise the standard
      * RPCManager error handling logic would be invoked. <P> Developers who want to handle errors themselves can override this
-     * default by specifying  willHandleError on the DSRequest. In this case the callback passed in  will be fired even if the
-     * server returns an error status code. <P> If <code>suppressValidationErrorCallback</code> is set to true, if a save
-     * attempt returns a <i>validation</i> error code, the user-specified callback will not be fired <i>even if
-     * willHandleError:true</code> was specified on the dsRequest - though for other error codes, the callback would be fired
-     * if willHandle error is specified on the request. Note that this is the historical behavior for <var
-     * class=smartclient>Smart GWT builds 8.0 and earlier</var> <var class=smartgwt>SmartGWT builds 4.0 and earlier</var>
+     * default by specifying {@link com.smartgwt.client.rpc.RPCRequest#getWillHandleError dsRequest.willHandleError} on the
+     * DSRequest. In this case the callback passed in  will be fired even if the server returns an error status code. <P> If
+     * <code>suppressValidationErrorCallback</code> is set to true, if a save attempt returns a <i>validation</i> error code,
+     * the user-specified callback will not be fired <i>even if <code>willHandleError:true</code> was specified on the
+     * dsRequest</i>  - though for other error codes, the callback would be fired if willHandleError is  specified on the
+     * request. Note that this is the historical behavior for  SmartGWT builds 4.0 and earlier
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param suppressValidationErrorCallback suppressValidationErrorCallback Default value is false
+     * @param suppressValidationErrorCallback  Default value is false
      */
     public void setSuppressValidationErrorCallback(Boolean suppressValidationErrorCallback) {
         setAttribute("suppressValidationErrorCallback", suppressValidationErrorCallback, true);
@@ -221,23 +288,64 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      * the error code returned by the server indicates a validation error, it will be displayed to the user by updating the
      * form items to show the error messages, and firing any specified hiddenValidationErrors handler, otherwise the standard
      * RPCManager error handling logic would be invoked. <P> Developers who want to handle errors themselves can override this
-     * default by specifying  willHandleError on the DSRequest. In this case the callback passed in  will be fired even if the
-     * server returns an error status code. <P> If <code>suppressValidationErrorCallback</code> is set to true, if a save
-     * attempt returns a <i>validation</i> error code, the user-specified callback will not be fired <i>even if
-     * willHandleError:true</code> was specified on the dsRequest - though for other error codes, the callback would be fired
-     * if willHandle error is specified on the request. Note that this is the historical behavior for <var
-     * class=smartclient>Smart GWT builds 8.0 and earlier</var> <var class=smartgwt>SmartGWT builds 4.0 and earlier</var>
-     *
+     * default by specifying {@link com.smartgwt.client.rpc.RPCRequest#getWillHandleError dsRequest.willHandleError} on the
+     * DSRequest. In this case the callback passed in  will be fired even if the server returns an error status code. <P> If
+     * <code>suppressValidationErrorCallback</code> is set to true, if a save attempt returns a <i>validation</i> error code,
+     * the user-specified callback will not be fired <i>even if <code>willHandleError:true</code> was specified on the
+     * dsRequest</i>  - though for other error codes, the callback would be fired if willHandleError is  specified on the
+     * request. Note that this is the historical behavior for  SmartGWT builds 4.0 and earlier
      *
      * @return Boolean
      */
     public Boolean getSuppressValidationErrorCallback()  {
         return getAttributeAsBoolean("suppressValidationErrorCallback");
     }
+    
+
+    /**
+     * {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} to use when performing update operations.
+     *
+     * @param updateOperation  Default value is null
+     * @see com.smartgwt.client.docs.Operations Operations overview and related methods
+     */
+    public void setUpdateOperation(String updateOperation) {
+        setAttribute("updateOperation", updateOperation, true);
+    }
+
+    /**
+     * {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} to use when performing update operations.
+     *
+     * @return String
+     * @see com.smartgwt.client.docs.Operations Operations overview and related methods
+     */
+    public String getUpdateOperation()  {
+        return getAttributeAsString("updateOperation");
+    }
+    
 
     // ********************* Methods ***********************
-            
-    /**
+	/**
+     * Add a new member to this valuesManager.  Any {@link com.smartgwt.client.widgets.Canvas} can be a member of a
+     * valuesManager, even components like {@link com.smartgwt.client.widgets.layout.Layout} or {@link
+     * com.smartgwt.client.widgets.tab.TabSet} that do not actually have any values to manage.  When "valueless" components
+     * like these bind to a ValuesManager, it is in order to provide their own child components with a shared valuesManager so
+     * that complex data can be displayed and edited - see  {@link com.smartgwt.client.docs.DataPath} for more details. <p> For
+     * components like {@link com.smartgwt.client.widgets.form.DynamicForm} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid}, which do have  a set of values to manage, the component's values will
+     * subsequently be available through this valuesManager. <p> Note on pre-existent values when the member component is a
+     * {@link com.smartgwt.client.widgets.form.DynamicForm}:<br> If the valuesManager has a value specified for some field, for
+     * which the member form has an item, this value will be applied to the member form.  This is true whether the item has a
+     * value or not.<br> However if the member form has a value for some field, and the ValuesManager does not have a specified
+     * value for the same field, we allow the valuesManager to pick up the  value from the member form.
+     * @param member component (or ID of component) to add to                                           this valuesManager as a member.
+     * @see com.smartgwt.client.widgets.form.ValuesManager#addMembers
+     */
+    public native void addMember(DynamicForm member) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.addMember(member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+
+	/**
      * 
      *  This method exists for clean integration with existing server frameworks that have a 'cancel'
      *  feature which typically clears session state associated with the form.  When this method is
@@ -251,13 +359,15 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      *  dynamicFormInstance.cancel({ignoreTimeout: true, target: null});
      *  </pre>
      * 
+     * @see com.smartgwt.client.widgets.form.DynamicForm#cancelEditing
+     * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
      */
     public native void cancel() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.cancel();
     }-*/;
 
-    /**
+	/**
      * 
      *  This method exists for clean integration with existing server frameworks that have a 'cancel'
      *  feature which typically clears session state associated with the form.  When this method is
@@ -277,30 +387,37 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      */
     public native void cancel(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.cancel(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+        self.cancel(requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-            
-    /**
+	
+
+	/**
      * Clears all errors from member forms.
      * @param showErrors If true, clear any visible error messages.
+     * @see com.smartgwt.client.docs.Errors Errors overview and related methods
      */
     public native void clearErrors(boolean showErrors) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.clearErrors(showErrors);
+        self.clearErrors(showErrors == null ? false : showErrors);
     }-*/;
-            
-    /**
+
+
+
+	/**
      * Clear all validation errors associated with some field in this form
      * @param fieldName field for which errors should be cleared
      * @param show if true, and the field is present in one of our member forms,                        redraw it to clear any currently
      * visible validation errors
+     * @see com.smartgwt.client.docs.Errors Errors overview and related methods
      */
     public native void clearFieldErrors(String fieldName, boolean show) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.clearFieldErrors(fieldName, show);
+        self.clearFieldErrors(fieldName, show == null ? false : show);
     }-*/;
-            
-    /**
+
+
+
+	/**
      * Clear the value for some field.
      * @param fieldName Which field to set the value for
      */
@@ -308,16 +425,207 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.clearValue(fieldName);
     }-*/;
-            
-    /**
+
+
+	/**
      * Clear out all the values managed by this values manager.
      */
     public native void clearValues() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.clearValues();
     }-*/;
-            
+
+	/**
+     * Prepare to edit a new record by clearing the current set of values (or replacing them  with initialValues if specified).
+     * <br> This method will also call {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType
+     * DynamicForm.setSaveOperationType} to ensure subsequent calls to <code>saveData()</code> will use an <code>add</code>
+     * rather than an <code>update</code> operation.
+     * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void editNewRecord() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.editNewRecord();
+    }-*/;
+
+
+	/**
+     * Prepare to edit a new record by clearing the current set of values (or replacing them  with initialValues if specified).
+     * <br> This method will also call {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType
+     * DynamicForm.setSaveOperationType} to ensure subsequent calls to <code>saveData()</code> will use an <code>add</code>
+     * rather than an <code>update</code> operation.
+     * @param initialValues initial set of values for the editor as a map of field names to their corresponding     values
+     * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void editNewRecord(Map initialValues) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.editNewRecord(initialValues == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(initialValues));
+    }-*/;
+
+	/**
+     * Prepare to edit a new record by clearing the current set of values (or replacing them  with initialValues if specified).
+     * <br> This method will also call {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType
+     * DynamicForm.setSaveOperationType} to ensure subsequent calls to <code>saveData()</code> will use an <code>add</code>
+     * rather than an <code>update</code> operation.
+     * @param initialValues initial set of values for the editor as a map of field names to their corresponding     values
+     * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void editNewRecord(Record initialValues) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.editNewRecord(initialValues.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+
+	/**
+     * Edit an existing record.  Updates this editors values to match the values of the record  passed in, via {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#setValues ValuesManager.setValues}. <P> This method will also call {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType DynamicForm.setSaveOperationType} to ensure 
+     * subsequent calls to <code>saveData()</code> will use an <code>update</code> rather than an <code>add</code> operation.
+     * @param record the record to be edited as a map of field names to their corresponding values
+     * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void editRecord(Record record) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.editRecord(record.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+
+	/**
+     * Retrieve data that matches the provided criteria, and edit the first record returned
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void fetchData() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+	    if(@com.smartgwt.client.data.Criterion::instanceOf(Ljava/lang/Object;)(criteria)){
+	    	@com.smartgwt.client.util.JSOHelper::setAttribute(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;Ljava/lang/String;)(criteria.@com.smartgwt.client.data.Criterion::getJsObj()(),"_constructor","AdvancedCriteria");
+	    }
+        self.fetchData();
+    }-*/;
+
     /**
+     * @see ValuesManager#fetchData
+     */
+    public void fetchData(Criteria criteria){
+        fetchData(criteria, null, null);
+    }
+
+    /**
+     * @see ValuesManager#fetchData
+     */
+    public void fetchData(Criteria criteria, DSCallback callback){
+        fetchData(criteria, callback, null);
+    }
+
+	/**
+     * Retrieve data that matches the provided criteria, and edit the first record returned
+     * @param criteria search criteria
+     * @param callback callback to invoke on completion
+     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void fetchData(Criteria criteria, DSCallback callback, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+	    if(@com.smartgwt.client.data.Criterion::instanceOf(Ljava/lang/Object;)(criteria)){
+	    	@com.smartgwt.client.util.JSOHelper::setAttribute(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;Ljava/lang/String;)(criteria.@com.smartgwt.client.data.Criterion::getJsObj()(),"_constructor","AdvancedCriteria");
+	    }
+        self.fetchData(criteria == null ? null : criteria.@com.smartgwt.client.core.DataClass::getJsObj()(), 
+			$entry( function(dsResponse, data, dsRequest) { 
+				if(callback!=null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(
+					@com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse), 
+					data, 
+					@com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest)
+				);
+			}), requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+	
+	/**
+     * Retrieve data that matches the provided criteria, and edit the first record returned.<br> Differs from {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#fetchData DynamicForm.fetchData} in that a case insensitive substring match
+     * will be performed against the criteria to retrieve the data.
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void filterData() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+	    if(@com.smartgwt.client.data.Criterion::instanceOf(Ljava/lang/Object;)(criteria)){
+	    	@com.smartgwt.client.util.JSOHelper::setAttribute(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;Ljava/lang/String;)(criteria.@com.smartgwt.client.data.Criterion::getJsObj()(),"_constructor","AdvancedCriteria");
+	    }
+        self.filterData();
+    }-*/;
+
+    /**
+     * @see ValuesManager#filterData
+     */
+    public void filterData(Criteria criteria){
+        filterData(criteria, null, null);
+    }
+
+    /**
+     * @see ValuesManager#filterData
+     */
+    public void filterData(Criteria criteria, DSCallback callback){
+        filterData(criteria, callback, null);
+    }
+
+	/**
+     * Retrieve data that matches the provided criteria, and edit the first record returned.<br> Differs from {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#fetchData DynamicForm.fetchData} in that a case insensitive substring match
+     * will be performed against the criteria to retrieve the data.
+     * @param criteria search criteria
+     * @param callback callback to invoke on completion
+     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void filterData(Criteria criteria, DSCallback callback, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+	    if(@com.smartgwt.client.data.Criterion::instanceOf(Ljava/lang/Object;)(criteria)){
+	    	@com.smartgwt.client.util.JSOHelper::setAttribute(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;Ljava/lang/String;)(criteria.@com.smartgwt.client.data.Criterion::getJsObj()(),"_constructor","AdvancedCriteria");
+	    }
+        self.filterData(criteria == null ? null : criteria.@com.smartgwt.client.core.DataClass::getJsObj()(), 
+			$entry( function(dsResponse, data, dsRequest) { 
+				if(callback!=null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(
+					@com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse), 
+					data, 
+					@com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest)
+				);
+			}), requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+	
+	/**
+     * Returns all values within this DynamicForm that have changed since  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#rememberValues DynamicForm.rememberValues} last ran. Note that {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#rememberValues DynamicForm.rememberValues} runs on dynamicForm
+     * initialization, and with every call to {@link com.smartgwt.client.widgets.form.DynamicForm#setValues
+     * DynamicForm.setValues} so this will typically contain all values the user has explicitly edited since then.
+     *
+     * @return changed values in the form
+     * @see com.smartgwt.client.widgets.form.ValuesManager#getOldValues
+     */
+    public native Map getChangedValues() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getChangedValues();
+        return @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Returns the set of errors for this valuesManager. Errors will be returned as an object of the format <br>
+     * <code>{field1:errors, field2:errors}</code><br> Where each errors object is either a single error message or an array of
+     * error message strings.
+     *
+     * @return Object containing mapping from field names to error strings. Returns null                  if there are no errors for
+     * this valuesManager.
+     * @see com.smartgwt.client.docs.Errors Errors overview and related methods
+     */
+    public native Map getErrors() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getErrors();
+        return @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+
+	/**
      * Given a fieldName or dataPath, this method will find the member responsible for interacting with that field's value. If
      * no form is found, returns null.
      * @param fieldName fieldName or dataPath to check
@@ -327,15 +635,86 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
     public native Canvas getMemberForField(String fieldName) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var ret = self.getMemberForField(fieldName);
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
+        return @com.smartgwt.client.widgets.Canvas::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-            
+
+
+	/**
+     * Returns the set of values last stored by {@link com.smartgwt.client.widgets.form.DynamicForm#rememberValues
+     * DynamicForm.rememberValues}. Note that <code>rememberValues()</code> is called automatically by {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setValues DynamicForm.setValues}, and on form initialization, so this
+     * typically contains all values as they were before the user edited them.
+     *
+     * @return old values in the form
+     * @see com.smartgwt.client.widgets.form.ValuesManager#getChangedValues
+     */
+    public native Map getOldValues() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getOldValues();
+        return @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Returns the current set of values for the values manager instance.  This includes the values from any form managed by
+     * this manager, as well as any values explicitly applied via {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#setValues ValuesManager.setValues}.
+     *
+     * @return a map of the values for this manager
+     */
+    public native Map getValues() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getValues();
+        return @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
     /**
+     * Add a hiddenValidationErrors handler.
+     * <p>
+     * Method to display validation error messages for a valuesManager when there is not currently visible form item displaying
+     * the errors. This will be called when validation fails for<br> - a field in a hidden or undrawn member form<br> - a
+     * hidden field in a visible member form<br> - for databound ValuesManagers, a datasource field with specified validators,
+     * but not   associated item in any member.<br> Implement this to provide custom validation error handling for these
+     * fields.<br> By default hidden validation errors will be logged as warnings in the developerConsole. Call {@link
+     * com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent#cancel()} from within {@link
+     * com.smartgwt.client.widgets.form.events.HiddenValidationErrorsHandler#onHiddenValidationErrors} from this method to
+     * suppress that behavior.
+     *
+     * @param handler the hiddenValidationErrors handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addHiddenValidationErrorsHandler(com.smartgwt.client.widgets.form.events.HiddenValidationErrorsHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent.getType()) == 0) setupHiddenValidationErrorsEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent.getType());
+    }
+
+    private native void setupHiddenValidationErrorsEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        var handleHiddenValidationErrors = $debox($entry(function(param){
+                var event = @com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            }));
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            obj.addProperties({handleHiddenValidationErrors: 
+                function () {
+                    var param = {"errors" : arguments[0]};
+                    return handleHiddenValidationErrors(param) == true;
+                }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+            obj.handleHiddenValidationErrors = 
+                function () {
+                    var param = {"errors" : arguments[0]};
+                    return handleHiddenValidationErrors(param) == true;
+                }
+            ;
+        }
+   }-*/;
+	/**
      * Are there any errors associated with any fields in this valuesManager?
      *
      * @return returns true if there are any outstanding validation errors, false                   otherwise.
@@ -343,15 +722,13 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      */
     public native Boolean hasErrors() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var retVal =self.hasErrors();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        var ret = self.hasErrors();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
-            
-    /**
+
+
+	/**
      * Are there any errors associated with a field in this valuesManager?
      * @param fieldName field to check for errors
      *
@@ -360,15 +737,13 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      */
     public native Boolean hasFieldErrors(String fieldName) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var retVal =self.hasFieldErrors(fieldName);
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        var ret = self.hasFieldErrors(fieldName);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
-            
-    /**
+
+
+	/**
      * Returns true if {@link com.smartgwt.client.widgets.form.ValuesManager#getSaveOperationType saveOperationType} is
      * currently "add".  See {@link com.smartgwt.client.widgets.form.ValuesManager#getSaveOperationType saveOperationType}.
      *
@@ -376,45 +751,210 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      */
     public native Boolean isNewRecord() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var retVal =self.isNewRecord();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        var ret = self.isNewRecord();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
-            
-    /**
+
+	/**
+     * Remove a member form from this valuesManager, so its values are no longer managed  by this instance.  This does not
+     * clear the values associated with the form from the valuesManager - they  will still be available via
+     * <code>valuesManager.getValues()</code>, but will not be  updated as the form is manipulated.
+     * @param member form (or ID of form) to remove from this valuesManager
+     * @see com.smartgwt.client.widgets.form.ValuesManager#removeMembers
+     */
+    public native void removeMember(DynamicForm member) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.removeMember(member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+
+
+	/**
+     * Remove multiple member forms from this valuesManager.
+     * @param members array of forms to remove
+     * @see com.smartgwt.client.widgets.form.ValuesManager#removeMember
+     */
+    public native void removeMembers(DynamicForm... members) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.removeMembers(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(members));
+    }-*/;
+
+
+	/**
      * Same as {@link com.smartgwt.client.widgets.form.DynamicForm#reset DynamicForm.reset}.
      */
     public native void resetValues() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.resetValues();
     }-*/;
-            
-    /**
-     * Method to explicitly show the latest set of validation errors present on this  ValuesManager.<br> Will redraw all member
-     * forms to display (or clear) currently visible errors, and fire {@link
-     * com.smartgwt.client.widgets.form.ValuesManager#handleHiddenValidationErrors ValuesManager.handleHiddenValidationErrors}
-     * to allow custom handling of hidden errors.
+
+	/**
+     * Validate and then save the form's current values to the {@link com.smartgwt.client.data.DataSource} this form is bound
+     * to. <p> If client-side validators are defined, they are executed first, and if any errors are found the save is aborted
+     * and the form will show the errors. <p> If client-side validation passes, a {@link com.smartgwt.client.data.DSRequest}
+     * will be sent, exactly as though {@link com.smartgwt.client.data.DataSource#addData DataSource.addData} or {@link
+     * com.smartgwt.client.data.DataSource#updateData DataSource.updateData} had been called with 
+     * ${isc.DocUtils.linkForRef('method:DynamicForm.getValues','the form\'s values')} as data.  The {@link
+     * com.smartgwt.client.data.DSRequest#getOperationType operationType} will be either "update" or "add", depending on the
+     * current {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType}. <P> On either a
+     * client-side or server-side validation failure, validation errors will be displayed in the form.  Visible items within a
+     * DynamicForm will be redrawn to display errors. Validation failure occurring on hidden items, or DataSource fields with
+     * no  associated form items may be handled via {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#addHiddenValidationErrorsHandler DynamicForm.hiddenValidationErrors} or
+     * {@link com.smartgwt.client.widgets.form.ValuesManager#addHiddenValidationErrorsHandler
+     * ValuesManager.hiddenValidationErrors}. <P> In the case of a validation error, the callback will <b>not</b> be called by
+     * default since the form has already handled the failed save by displaying the validation errors to the user.  If you need
+     * to do something additional in this case, you can set {@link com.smartgwt.client.rpc.RPCRequest#getWillHandleError
+     * willHandleError} via the <code>requestProperties</code> parameter to force your callback to be invoked.  However, first
+     * consider: <ul> <li> if you are trying to customize display of validation errors, there are several {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons built-in modes} and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#showErrors DynamicForm.showErrors} may be a better place to put
+     * customizations. <li> for unrecoverable general errors (eg server is down), {@link
+     * com.smartgwt.client.rpc.RPCManager#handleError central error handling} in invoked, so consider placing customizations
+     * there unless an unrecoverable error should be handled specially by this specific form. </ul>
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#add_grid_form_category" target="examples">Add Example</a>
      */
-    public native void showErrors() /*-{
+    public native void saveData() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.showErrors();
+        self.saveData();
     }-*/;
-            
+
     /**
+     * @see ValuesManager#saveData
+     */
+    public void saveData(DSCallback callback){
+        saveData(callback, null);
+    }
+
+	/**
+     * Validate and then save the form's current values to the {@link com.smartgwt.client.data.DataSource} this form is bound
+     * to. <p> If client-side validators are defined, they are executed first, and if any errors are found the save is aborted
+     * and the form will show the errors. <p> If client-side validation passes, a {@link com.smartgwt.client.data.DSRequest}
+     * will be sent, exactly as though {@link com.smartgwt.client.data.DataSource#addData DataSource.addData} or {@link
+     * com.smartgwt.client.data.DataSource#updateData DataSource.updateData} had been called with 
+     * ${isc.DocUtils.linkForRef('method:DynamicForm.getValues','the form\'s values')} as data.  The {@link
+     * com.smartgwt.client.data.DSRequest#getOperationType operationType} will be either "update" or "add", depending on the
+     * current {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType}. <P> On either a
+     * client-side or server-side validation failure, validation errors will be displayed in the form.  Visible items within a
+     * DynamicForm will be redrawn to display errors. Validation failure occurring on hidden items, or DataSource fields with
+     * no  associated form items may be handled via {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#addHiddenValidationErrorsHandler DynamicForm.hiddenValidationErrors} or
+     * {@link com.smartgwt.client.widgets.form.ValuesManager#addHiddenValidationErrorsHandler
+     * ValuesManager.hiddenValidationErrors}. <P> In the case of a validation error, the callback will <b>not</b> be called by
+     * default since the form has already handled the failed save by displaying the validation errors to the user.  If you need
+     * to do something additional in this case, you can set {@link com.smartgwt.client.rpc.RPCRequest#getWillHandleError
+     * willHandleError} via the <code>requestProperties</code> parameter to force your callback to be invoked.  However, first
+     * consider: <ul> <li> if you are trying to customize display of validation errors, there are several {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons built-in modes} and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#showErrors DynamicForm.showErrors} may be a better place to put
+     * customizations. <li> for unrecoverable general errors (eg server is down), {@link
+     * com.smartgwt.client.rpc.RPCManager#handleError central error handling} in invoked, so consider placing customizations
+     * there unless an unrecoverable error should be handled specially by this specific form. </ul>
+     * @param callback callback to invoke on completion
+     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#add_grid_form_category" target="examples">Add Example</a>
+     */
+    public native void saveData(DSCallback callback, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.saveData(
+			$entry( function(dsResponse, data, dsRequest) { 
+				if(callback!=null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(
+					@com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse), 
+					data, 
+					@com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest)
+				);
+			}), requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+	
+
+	/**
+     * Replaces the current values of the ValuesManager and all member components with the  values passed in. <P> Values should
+     * be provided as an Object containing the new values as properties, where each propertyName is the name of a {@link
+     * com.smartgwt.client.docs.Items form item} in one of the member forms, and each property value is the value to apply to
+     * that form item via {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue}. <P> Values with
+     * no corresponding form item may also be passed, will be tracked by the valuesManager and returned by subsequent calls to
+     * {@link com.smartgwt.client.widgets.form.ValuesManager#getValues ValuesManager.getValues}. <P> Any {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem} for which a value is not provided will revert to its {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue defaultValue}.  To cause all FormItems to revert to
+     * default values, pass null. <P> This method also calls {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#rememberValues ValuesManager.rememberValues} so that a subsequent later
+     * call to {@link com.smartgwt.client.widgets.form.ValuesManager#resetValues ValuesManager.resetValues} will revert to the
+     * passed values.
+     * @param values new set of values for this values manager.
+     */
+    public native void setValues(Map values) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.setValues(values == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(values));
+    }-*/;
+
+
+	/**
      * Method to explicitly show the latest set of validation errors present on some field  within this ValuesManager.<br> If
      * the field in question is present as a visible item in a member form, the form item will be redrawn to display the error
-     * message(s). Otherwise {@link com.smartgwt.client.widgets.form.ValuesManager#handleHiddenValidationErrors
-     * ValuesManager.handleHiddenValidationErrors} will be fired to allow  custom handling of hidden errors.
+     * message(s). Otherwise {@link com.smartgwt.client.widgets.form.ValuesManager#addHiddenValidationErrorsHandler
+     * ValuesManager.hiddenValidationErrors} will be fired to allow  custom handling of hidden errors.
+     * @see com.smartgwt.client.docs.Errors Errors overview and related methods
      */
     public native void showFieldErrors() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.showFieldErrors();
     }-*/;
-            
+
+	/**
+     * <code>submit()</code> is automatically called when a {@link com.smartgwt.client.widgets.form.fields.SubmitItem} in a
+     * member form is clicked, or if {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter saveOnEnter} is set for
+     * some member form, when the "Enter" key is pressed in a text input.  Submit can also be manually called. <P> If {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#submitValues valuesManager.submitValues()} exists, it will be called, and
+     * no further action will be taken. <P> Otherwise, {@link com.smartgwt.client.widgets.form.ValuesManager#saveData
+     * ValuesManager.saveData} will be called to handle saving via Smart GWT databinding.   <P> The parameters to
+     * <code>submit()</code> apply only if <code>submit()</code> will be calling {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#saveData ValuesManager.saveData}.  If you override <code>submit()</code>,
+     * you can safely ignore the parameters as Smart GWT framework code does not pass them.
+     * @see com.smartgwt.client.widgets.form.ValuesManager#submitValues
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void submit() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.submit();
+    }-*/;
+
     /**
+     * @see ValuesManager#submit
+     */
+    public void submit(DSCallback callback){
+        submit(callback, null);
+    }
+
+	/**
+     * <code>submit()</code> is automatically called when a {@link com.smartgwt.client.widgets.form.fields.SubmitItem} in a
+     * member form is clicked, or if {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter saveOnEnter} is set for
+     * some member form, when the "Enter" key is pressed in a text input.  Submit can also be manually called. <P> If {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#submitValues valuesManager.submitValues()} exists, it will be called, and
+     * no further action will be taken. <P> Otherwise, {@link com.smartgwt.client.widgets.form.ValuesManager#saveData
+     * ValuesManager.saveData} will be called to handle saving via Smart GWT databinding.   <P> The parameters to
+     * <code>submit()</code> apply only if <code>submit()</code> will be calling {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#saveData ValuesManager.saveData}.  If you override <code>submit()</code>,
+     * you can safely ignore the parameters as Smart GWT framework code does not pass them.
+     * @param callback callback to invoke on completion.
+     * @param requestProperties additional properties to set on the DSRequest                                          that will be issued
+     * @see com.smartgwt.client.widgets.form.ValuesManager#submitValues
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void submit(DSCallback callback, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.submit(
+			$entry( function(dsResponse, data, dsRequest) { 
+				if(callback!=null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(
+					@com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse), 
+					data, 
+					@com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest)
+				);
+			}), requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+	
+	/**
      * Update all of this ValuesManager's members to reflect the current values held by the   ValuesManager.  It is not
      * normally necesary to manually synchronize members, but you   will need to do so if you switch off {@link
      * com.smartgwt.client.widgets.form.ValuesManager#getAutoSynchronize automatic synchronization}.
@@ -423,12 +963,12 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.synchronizeMembers();
     }-*/;
-            
-    /**
+
+	/**
      * Validate the current set of values for this values manager against validators defined in the member forms. For databound
      * valuesManagers, also perform validation against any validators defined on datasource fields. <P> Note that if validation
      * errors occur for a value that is not shown in any member forms, those errors will cause a warning and {@link
-     * com.smartgwt.client.widgets.form.ValuesManager#handleHiddenValidationErrors ValuesManager.handleHiddenValidationErrors}
+     * com.smartgwt.client.widgets.form.ValuesManager#addHiddenValidationErrorsHandler ValuesManager.hiddenValidationErrors}
      * will be called.  This can occur if:<br> - A datasource field has no corresponding item in any member form<br> - The item
      * in question is hidden<br> - The member form containing the item is hidden.
      *
@@ -437,15 +977,12 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      */
     public native Boolean validate() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var retVal =self.validate();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        var ret = self.validate();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
-            
-    /**
+
+	/**
      * Compares the current set of values with the values stored by the call to the {@link
      * com.smartgwt.client.widgets.form.DynamicForm#rememberValues DynamicForm.rememberValues} method. 
      * <code>rememberValues()</code> runs when the form is initialized and on every call to {@link
@@ -458,18 +995,67 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      */
     public native Boolean valuesHaveChanged() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var retVal =self.valuesHaveChanged();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        var ret = self.valuesHaveChanged();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 
-    // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
 
+    // ********************* Static Methods ***********************
+
+	/**
+     * Retrieve a ValuesManager by it's global {@link com.smartgwt.client.widgets.Canvas#getID ID}.
+     * @param ID global ID of the ValuesManager
+     *
+     * @return the ValuesManager, or null if not found
+     */
+    public static native ValuesManager getById(String ID) /*-{
+        var ret = $wnd.isc.ValuesManager.getById(ID);
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.form.ValuesManager::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+
+
+    // ***********************************************************
+
+
+
+	protected void onInit() {
+    	super.onInit();
+    	onInit_ValuesManager();
+    }
+    
+    protected native void onInit_ValuesManager() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self._showErrors = self.showErrors;
+        self.showErrors = $entry(function() {
+            var jObj = this.__ref;
+            jObj.@com.smartgwt.client.widgets.form.ValuesManager::showErrors()();
+        });
+    }-*/;
+
+    /**
+     * If this form has any outstanding validation errors, show them now.<br>&#010 This method is called when the set of errors are
+     * changed by {@link com.smartgwt.client.widgets.form.DynamicForm#setErrors} or&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#validate}.
+     * <br>&#010 Default implementation will redraw the form to display error messages and call&#010
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#handleHiddenValidationErrors} to&#010 display errors with no visible field.
+     * <p/>
+     * <br>
+     * <p/>
+     * <p><b>Note: This is an override point</b>.&#010 This method may be overridden to perform custom display of validation errors.
+     */
+    public void showErrors() {
+    	JavaScriptObject jsObj = this.getJsObj();
+    	showErrorsJS(jsObj);
+    }
+    private native void showErrorsJS(JavaScriptObject jsObj) /*-{
+    	if (jsObj == null) return;
+    	if (jsObj._showErrors != null) jsObj._showErrors();
+    	// if onInit never ran (binding occurred after creation in JS space, perhaps),
+    	// just call standard showErrors
+    	else if (jsObj.showErrors != null) jsObj.showErrors();
+    }-*/;
 
     /**
      * The DataSource that this component should bind to for default fields and for performing&#010 DataSource
@@ -478,6 +1064,9 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      * @param dataSource dataSource Default value is null
      */
     public void setDataSource(DataSource dataSource) {
+    	if(dataSource==null) {
+    		throw new IllegalArgumentException("Invalid call to setDataSource() passing null.  If you're having trouble with loading DataSources, please see the following FAQ: http://forums.smartclient.com/showthread.php?t=8159#aDSLoad");
+    	}
         setAttribute("dataSource", dataSource.getOrCreateJsObj(), true);
     }
 
@@ -488,16 +1077,6 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
      */
     public DataSource getDataSource() {
         return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("dataSource"));
-    }
-
-    /**
-     * Set the values for this values manager. Member forms will be updated as required by this change.
-     * Note that pre-existant values in other fields are cleared out by this.
-     *
-     * @param values the values
-     */
-    public void setValues(Map values) {
-        setAttribute("values", values, true);
     }
 
     /**
@@ -532,7 +1111,7 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.setValue(fieldName, value);
     }-*/;
-    
+
     /**
      * Set the value for some field.
      *
@@ -640,55 +1219,6 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
     }-*/;
 
     /**
-     * Returns the current set of values for the values manager instance. This includes the values from any form managed by this manager, as well as any values explicitly
-     * applied via ValuesManager.setValues().
-     *
-     * @return the values
-     */
-    public native Map getValues() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var value = self.getValues();
-        if(value == null) return null;
-        var valueJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
-        return valueJ;
-    }-*/;
-    
-
-    /**
-     * Returns all values within this ValuesManager that have changed since  {@link
-     * com.smartgwt.client.widgets.form.ValuesManager#rememberValues rememberValues} last ran. Note that 
-     * {@link com.smartgwt.client.widgets.form.ValuesManager#rememberValues rememberValues} runs on
-     * valuesManager
-     * initialization, and with every call to {@link com.smartgwt.client.widgets.form.ValuesManager#setValues
-     * ValuesManager.setValues} so this will typically contain all values the user has explicitly edited since then.
-     *
-     * @return the values
-     */
-    public native Map getChangedValues() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var value = self.getChangedValues();
-        if(value == null) return null;
-        var valueJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
-        return valueJ;
-    }-*/;
-
-    /**
-     * Returns the set of values last stored by {@link com.smartgwt.client.widgets.form.ValuesManager#rememberValues
-     * ValuesManager.rememberValues}. Note that <code>rememberValues()</code> is called automatically by {@link
-     * com.smartgwt.client.widgets.form.ValuesManager#setValues ValuesManager.setValues}, and on form initialization, so this
-     * typically contains all values as they were before the user edited them.
-     *
-     * @return the values
-     */
-    public native Map getOldValues() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var value = self.getOldValues();
-        if(value == null) return null;
-        var valueJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
-        return valueJ;
-    }-*/;
-
-    /**
      * Edit the record selected in the specified selection component (typically a {@link
      * com.smartgwt.client.widgets.grid.ListGrid}). <P> Updates the values of this editor to match the selected record's
      * values. <P> If this form has a dataSource, then saving via {@link com.smartgwt.client.widgets.form.ValuesManager#saveData}
@@ -704,90 +1234,33 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
     }-*/;
 
     /**
-     * &#010 Edit an existing record.  Updates this editors values to match the values of the record &#010 passed in, via {@link com.smartgwt.client.widgets.form.ValuesManager#setValues}.&#010 <P>&#010 This method will also call {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType} to ensure &#010 subsequent calls to <code>saveData()</code> will use an <code>update</code> rather than&#010 an <code>add</code> operation.&#010&#010
-     *
-     * @param record the record to be edited as a map of field names to their corresponding values
-     */
-    public native void editRecord(Record record) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.editRecord(record.@com.smartgwt.client.core.DataClass::getJsObj()());
-    }-*/;
-
-    /**
-     * Prepare to edit a new record by clearing the current set of values (or replacing them with initialValues if specified).
-     * Subsequent calls to saveData() will use an add rather than an update operation.
-     */
-    public native void editNewRecord() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        return self.editNewRecord();
-    }-*/;
-
-    /**
-     * Prepare to edit a new record by clearing the current set of values (or replacing them with initialValues if specified).
-     * Subsequent calls to saveData() will use an add rather than an update operation.
-     *
-     * @param initialValues initial set of values for the editor as a map of field names to their corresponding values
-     */
-    public native void editNewRecord(Map initialValues) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var initialValuesJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(initialValues);
-        return self.editNewRecord(initialValuesJS);
-    }-*/;
-
-    /**
-     * Add a new member form to this valuesManager. This form's values will subsequently be available through this
-     * valuesManager.  <br> Note on pre-existant values: If the valuesManager has a value specified for some field, for
-     * which the member form has an item, this value will be applied to the member form.  This is true whether the item
-     * has a value or not.<br> However if the member form has a value for some field, and the ValuesManager does not
-     * have a specified value for the same field, we allow the valuesManager to pick up the  value from the member
-     * form.
-     *
-     * @param member form (or ID of form) to add to                                           this valuesManager as a
-     *               member.
-     */
-    public native void addMember(DynamicForm member) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var memberJS = member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.addMember(memberJS);
-    }-*/;
-
-    /**
-     * Remove a member form from this valuesManager, so its values are no longer managed by this instance. This does not
-     * clear the values associated with the form from the valuesManager - they will still be available via
-     * valuesManager.getValues(), but will not be updated as the form is manipulated.
-     *
-     * @param member form to remove from this valuesManager
-     */
-    public native void removeMember(DynamicForm member) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var memberJS = member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.removeMember(memberJS);
-    }-*/;
-
-    /**
-     * Returns an array of members in this ValuesManager.
+     * Returns an array of members in this ValuesManager.  Note that this is a convenience method: it returns an array of DynamicForm, 
+     * and so can only be validly used if all the ValuesManager's members are DynamicForms (a ValuesManager's members are traditionally 
+     * DynamicForms, but they can be any kind of Canvas).  See {@link com.smartgwt.client.widgets.form.ValuesManager#getMemberCanvases}
      *
      * @return the members
      */
     public DynamicForm[] getMembers() {
-        return convertToDynamicFormArray(getAttributeAsJavaScriptObject("members"));
-    }
-
-    private static DynamicForm[] convertToDynamicFormArray(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new DynamicForm[]{};
-        }
-        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-        DynamicForm[] objects = new DynamicForm[componentsj.length];
-        for (int i = 0; i < componentsj.length; i++) {
-            JavaScriptObject componentJS = componentsj[i];
-            DynamicForm obj = DynamicForm.getOrCreateRef(componentJS);
-            objects[i] = obj;
-        }
-        return objects;
+    	java.util.HashSet<DynamicForm> dynamicForms = new java.util.HashSet<DynamicForm>();
+    	for(Canvas canvas : getMemberCanvases()) {
+    		if(canvas instanceof DynamicForm) {
+    			dynamicForms.add((DynamicForm) canvas);
+    		}
+    	}
+        return dynamicForms.toArray(new DynamicForm[]{});
     }
 
     /**
+     * Returns the members of this ValuesManager as an array of Canvas objects.  See also 
+     * {@link com.smartgwt.client.widgets.form.ValuesManager#getMembers}
+     *
+     * @return the members
+     */
+    public Canvas[] getMemberCanvases() {
+        return com.smartgwt.client.util.ConvertTo.arrayOfCanvas(getAttributeAsJavaScriptObject("members"));
+    }
+
+     /**
      * Remove a member form from this valuesManager, so its values are no longer managed by this instance. This does not
      * clear the values associated with the form from the valuesManager - they will still be available via
      * valuesManager.getValues(), but will not be updated as the form is manipulated.
@@ -797,260 +1270,6 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
     public native void removeMember(String formID) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.removeMember(formID);
-    }-*/;
-
-    public native void fetchData() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.fetchData();
-    }-*/;
-
-    /**
-     * Retrieve data that matches the provided criteria, and edit the first record returned
-     *
-     * @param criteria search criteria
-     */
-    public native void fetchData(Criteria criteria) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.fetchData(criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()());
-    }-*/;
-
-    /**
-     * Retrieve data that matches the provided criteria, and edit the first record returned
-     *
-     * @param criteria search criteria
-     * @param callback callback to invoke on completion
-     */
-    public native void fetchData(Criteria criteria, DSCallback callback) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
-        self.fetchData(critJS, $entry(function (dsResponse, data, dsRequest) {
-            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
-            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
-            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }));
-    }-*/;
-
-    /**
-     * Retrieve data that matches the provided criteria, and edit the first record returned
-     *
-     * @param criteria          search criteria
-     * @param callback          callback to invoke on completion
-     * @param requestProperties additional properties to set on the DSRequest
-     *                          that will be issued
-     */
-    public native void fetchData(Criteria criteria, DSCallback callback, DSRequest requestProperties) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
-        var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.fetchData(critJS, $entry(function (dsResponse, data, dsRequest) {
-            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
-            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
-            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }), requestPropertiesJS);
-    }-*/;
-
-    /**
-     * Retrieve data that matches the provided criteria, and edit the first record returned.<br> Differs from {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#fetchData} in that a case insensitive substring match will be
-     * performed against the criteria to retrieve the data.
-     *
-     * @param criteria search criteria
-     */
-    public native void filterData(Criteria criteria) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.filterData(criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()());
-    }-*/;
-
-    /**
-     * Retrieve data that matches the provided criteria, and edit the first record returned.<br> Differs from {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#fetchData} in that a case insensitive substring match will be
-     * performed against the criteria to retrieve the data.
-     *
-     * @param criteria search criteria
-     * @param callback callback to invoke on completion
-     */
-    public native void filterData(Criteria criteria, DSCallback callback) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
-        self.filterData(critJS, $entry(function (dsResponse, data, dsRequest) {
-            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
-            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
-            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }));
-    }-*/;
-
-    /**
-     * Retrieve data that matches the provided criteria, and edit the first record returned.<br> Differs from {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#fetchData} in that a case insensitive substring match will be
-     * performed against the criteria to retrieve the data.
-     *
-     * @param criteria          search criteria
-     * @param callback          callback to invoke on completion
-     * @param requestProperties additional properties to set on the DSRequest
-     *                          that will be issued
-     */
-    public native void filterData(Criteria criteria, DSCallback callback, DSRequest requestProperties) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
-        var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.filterData(critJS, $entry(function (dsResponse, data, dsRequest) {
-            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
-            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
-            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }), requestPropertiesJS);
-    }-*/;
-
-    /**
-     * Validate and then save the form's current values to the {@link com.smartgwt.client.data.DataSource} this form is
-     * bound to. <p> If client-side validators are defined, they are executed first, and if any errors are found the
-     * save is aborted and the form will show the errors. <p> If client-side validation passes, a {@link
-     * com.smartgwt.client.data.DSRequest} will be sent, exactly as though {@link com.smartgwt.client.data.DataSource#addData}
-     * or {@link com.smartgwt.client.data.DataSource#updateData} had been called with  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValues} as data.  The {@link
-     * com.smartgwt.client.data.DSRequest#getOperationType operationType} will be either "update" or "add" depending on
-     * whether values were initially provided via <code>editRecord()</code> or <code>editNew()</code>. <P> On either a
-     * client-side or server-side validation failure, validation errors will be displayed in the form.  Visible items
-     * within a DynamicForms will be redrawn to display errors. Validation failure occuring on hidden items, or
-     * DataSource fields with no  associated form items may be handled via {@link com.smartgwt.client.widgets.form.DynamicForm#handleHiddenValidationErrors}
-     * or {@link com.smartgwt.client.widgets.form.ValuesManager#handleHiddenValidationErrors}. <P> {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValidationURL validationURL} can be set to do validation against
-     * a different URL from where the form will ultimately save, as part of an incremental upgrade strategy for Struts
-     * and Struts-like applications.
-     */
-    public native void saveData() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.saveData();
-    }-*/;
-
-    /**
-     * Validate and then save the form's current values to the {@link com.smartgwt.client.data.DataSource} this form is
-     * bound to. <p> If client-side validators are defined, they are executed first, and if any errors are found the
-     * save is aborted and the form will show the errors. <p> If client-side validation passes, a {@link
-     * com.smartgwt.client.data.DSRequest} will be sent, exactly as though {@link com.smartgwt.client.data.DataSource#addData}
-     * or {@link com.smartgwt.client.data.DataSource#updateData} had been called with  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValues} as data.  The {@link
-     * com.smartgwt.client.data.DSRequest#getOperationType operationType} will be either "update" or "add" depending on
-     * whether values were initially provided via <code>editRecord()</code> or <code>editNew()</code>. <P> On either a
-     * client-side or server-side validation failure, validation errors will be displayed in the form.  Visible items
-     * within a DynamicForms will be redrawn to display errors. Validation failure occuring on hidden items, or
-     * DataSource fields with no  associated form items may be handled via {@link com.smartgwt.client.widgets.form.DynamicForm#handleHiddenValidationErrors}
-     * or {@link com.smartgwt.client.widgets.form.ValuesManager#handleHiddenValidationErrors}. <P> {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValidationURL validationURL} can be set to do validation against
-     * a different URL from where the form will ultimately save, as part of an incremental upgrade strategy for Struts
-     * and Struts-like applications.
-     *
-     * @param callback callback to invoke on completion
-     */
-    public native void saveData(DSCallback callback) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.saveData($entry(function (dsResponse, data, dsRequest) {
-            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
-            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
-            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }));
-    }-*/;
-
-    /**
-     * Validate and then save the form's current values to the {@link com.smartgwt.client.data.DataSource} this form is
-     * bound to. <p> If client-side validators are defined, they are executed first, and if any errors are found the
-     * save is aborted and the form will show the errors. <p> If client-side validation passes, a {@link
-     * com.smartgwt.client.data.DSRequest} will be sent, exactly as though {@link com.smartgwt.client.data.DataSource#addData}
-     * or {@link com.smartgwt.client.data.DataSource#updateData} had been called with  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValues} as data.  The {@link
-     * com.smartgwt.client.data.DSRequest#getOperationType operationType} will be either "update" or "add" depending on
-     * whether values were initially provided via <code>editRecord()</code> or <code>editNew()</code>. <P> On either a
-     * client-side or server-side validation failure, validation errors will be displayed in the form.  Visible items
-     * within a DynamicForms will be redrawn to display errors. Validation failure occuring on hidden items, or
-     * DataSource fields with no  associated form items may be handled via {@link com.smartgwt.client.widgets.form.DynamicForm#handleHiddenValidationErrors}
-     * or {@link com.smartgwt.client.widgets.form.ValuesManager#handleHiddenValidationErrors}. <P> {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValidationURL validationURL} can be set to do validation against
-     * a different URL from where the form will ultimately save, as part of an incremental upgrade strategy for Struts
-     * and Struts-like applications.
-     *
-     * @param callback          callback to invoke on completion
-     * @param requestProperties additional properties to set on the DSRequest
-     *                          that will be issued
-     */
-    public native void saveData(DSCallback callback, DSRequest requestProperties) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.saveData($entry(function (dsResponse, data, dsRequest) {
-            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
-            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
-            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }), requestPropertiesJS);
-    }-*/;
-
-    /**
-     * <code>submit()</code> is automatically called when a {@link com.smartgwt.client.widgets.form.fields.SubmitItem}
-     * included in the form is clicked, or, if {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter
-     * saveOnEnter} is set, when the "Enter" key is pressed in a text input.  Submit can also be manually called. <P> If
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#submitValues} exists, it will be called, then immediately
-     * return. <P> Otherwise, default behavior varies based on {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit
-     * canSubmit}: if <code>canSubmit</code> is false, {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}
-     * will be called to handle saving via Smart GWT databinding.   <P> If <code>canSubmit</code> is true, the form
-     * will be submitted like an ordinary HTML form via {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm}.
-     * <P> The parameters to <code>submit()</code> apply only if <code>submit()</code> will be calling {@link
-     * com.smartgwt.client.widgets.form.ValuesManager#saveData}.  If you override <code>submit()</code>, you can safely
-     * ignore the parameters as Smart GWT framework code does not pass them.
-     */
-    public native void submit() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.submit();
-    }-*/;
-
-    /**
-     * <code>submit()</code> is automatically called when a {@link com.smartgwt.client.widgets.form.fields.SubmitItem}
-     * included in the form is clicked, or, if {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter
-     * saveOnEnter} is set, when the "Enter" key is pressed in a text input.  Submit can also be manually called. <P> If
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#submitValues} exists, it will be called, then immediately
-     * return. <P> Otherwise, default behavior varies based on {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit
-     * canSubmit}: if <code>canSubmit</code> is false, {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}
-     * will be called to handle saving via Smart GWT databinding.   <P> If <code>canSubmit</code> is true, the form
-     * will be submitted like an ordinary HTML form via {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm}.
-     * <P> The parameters to <code>submit()</code> apply only if <code>submit()</code> will be calling {@link
-     * com.smartgwt.client.widgets.form.ValuesManager#saveData}.  If you override <code>submit()</code>, you can safely
-     * ignore the parameters as Smart GWT framework code does not pass them.
-     *
-     * @param callback callback to invoke on completion.                                          [Ignored if
-     *                 this.canSubmit is true]
-     */
-    public native void submit(DSCallback callback) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.submit($entry(function (dsResponse, data, dsRequest) {
-            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
-            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
-            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }));
-    }-*/;
-
-    /**
-     * <code>submit()</code> is automatically called when a {@link com.smartgwt.client.widgets.form.fields.SubmitItem}
-     * included in the form is clicked, or, if {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter
-     * saveOnEnter} is set, when the "Enter" key is pressed in a text input.  Submit can also be manually called. <P> If
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#submitValues} exists, it will be called, then immediately
-     * return. <P> Otherwise, default behavior varies based on {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit
-     * canSubmit}: if <code>canSubmit</code> is false, {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}
-     * will be called to handle saving via Smart GWT databinding.   <P> If <code>canSubmit</code> is true, the form
-     * will be submitted like an ordinary HTML form via {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm}.
-     * <P> The parameters to <code>submit()</code> apply only if <code>submit()</code> will be calling {@link
-     * com.smartgwt.client.widgets.form.ValuesManager#saveData}.  If you override <code>submit()</code>, you can safely
-     * ignore the parameters as Smart GWT framework code does not pass them.
-     *
-     * @param callback          callback to invoke on completion.                                          [Ignored if
-     *                          this.canSubmit is true]
-     * @param requestProperties additional properties to set on the DSRequest
-     *                          that will be issued                                          [Ignored if this.canSubmit
-     *                          is true]
-     */
-    public native void submit(DSCallback callback, DSRequest requestProperties) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.saveData($entry(function (dsResponse, data, dsRequest) {
-            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
-            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
-            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }), requestPropertiesJS);
     }-*/;
 
     /**
@@ -1082,19 +1301,6 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var errorsJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(errors);
         return self.setErrors(errorsJS, showErrors);
-    }-*/;
-
-    /**
-     * Returns the set of errors for this valuesManager.
-     *
-     * @return errors. key is field name, value is error. Returns null if no errors
-     */
-    public native Map getErrors() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var value = self.getErrors();
-        if(value == null) return null;
-        var valueJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
-        return valueJ;
     }-*/;
 
     /**
@@ -1157,7 +1363,6 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         if (fieldJS == null) return null;
         return @com.smartgwt.client.widgets.form.fields.FormItemFactory::getFormItem(Lcom/google/gwt/core/client/JavaScriptObject;)(fieldJS);
     }-*/;
-
     /**
      * Add a submitValues handler.
      * <p>
@@ -1192,49 +1397,6 @@ public class ValuesManager extends BaseClass  implements com.smartgwt.client.wid
         }
    }-*/;
 
-    /**
-     * Add a hiddenValidationErrors handler.
-     * <p>
-     * Method to display validation error messages for fields that are not currently visible  in this form.<br> This will be
-     * called when validation fails for<br> - a hidden field in this form<br> - if this form is databound, a datasource field
-     * with specified validators, for which we   have no specified form item.<br> Implement this to provide custom validation
-     * error handling for these fields.<br> By default hidden validation errors will be logged as warnings in the
-     * developerConsole. Return false from this method to suppress that behavior.
-     *
-     * @param handler the hiddenValidationErrors handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addHiddenValidationErrorsHandler(com.smartgwt.client.widgets.form.events.HiddenValidationErrorsHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent.getType()) == 0) setupHiddenValidationErrorsEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent.getType());
-    }
-
-    private native void setupHiddenValidationErrorsEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
-            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-            obj.addProperties({handleHiddenValidationErrors:$debox($entry(function(){
-                        var param = {"errors" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }))
-             });
-        } else {
-            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
-            obj.handleHiddenValidationErrors = $debox($entry(function(){
-                   var param = {"errors" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               }));
-        }
-   }-*/;
-
 }
-
 
 

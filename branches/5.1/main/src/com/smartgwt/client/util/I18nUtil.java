@@ -570,6 +570,8 @@ public class I18nUtil {
             $wnd.isc.Calendar.addProperties({timelineViewTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_timelineViewTitle()()});
             $wnd.isc.Calendar.addProperties({weekViewTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_weekViewTitle()()});
             $wnd.isc.Calendar.addProperties({weekPrefix: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_weekPrefix()()});
+            $wnd.isc.Calendar.addProperties({monthButtonTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_monthButtonTitle()()).replace('$monthName', '${monthName}')});
+            $wnd.isc.Calendar.addProperties({backButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_backButtonTitle()()});
         }
         
         if($wnd.isc.FilterBuilder) {
@@ -738,6 +740,12 @@ public class I18nUtil {
         }
         if($wnd.isc.PickList) {
             $wnd.isc.PickList.addInterfaceProperties({emptyPickListMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::pickList_emptyPickListMessage()()});
+        }
+        if($wnd.isc.SelectItem) {
+            $wnd.isc.SelectItem.addProperties({emptyPickListMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::selectItem_emptyPickListMessage()()});
+        }
+        if($wnd.isc.ComboBoxItem) {
+            $wnd.isc.ComboBoxItem.addProperties({emptyPickListMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::comboBoxItem_emptyPickListMessage()()});
         }
         if($wnd.isc.PickListMenu) {
             $wnd.isc.PickListMenu.addProperties({emptyMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::pickListMenu_emptyMessage()()});

@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.cube.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasSortByFacetIdHandlers extends HasHandlers {
     /**
      * Called when a sort control is clicked on a FacetHeader.  Does nothing by default.
@@ -29,3 +29,4 @@ public interface HasSortByFacetIdHandlers extends HasHandlers {
      */
     HandlerRegistration addSortByFacetIdHandler(SortByFacetIdHandler handler);
 }
+

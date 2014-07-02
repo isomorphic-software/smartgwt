@@ -23,7 +23,7 @@ public class PortletEventsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             PortletEventsSample panel = new PortletEventsSample();
             id = panel.getID();
             return panel;

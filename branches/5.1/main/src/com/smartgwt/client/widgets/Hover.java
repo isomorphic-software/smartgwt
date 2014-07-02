@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,16 +50,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
@@ -62,21 +73,27 @@ import com.google.gwt.event.shared.HasHandlers;
  * The Hover class handles showing a simple Smart GWT canvas containing arbitrary HTML, or triggering some other action in
  * response to a user holding the mouse-pointer (or hovering) over a specific widget.
  */
+@BeanFactory.FrameworkClass
 public class Hover {
+
 
     // ********************* Properties / Attributes ***********************
 
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-            
-    /**
+	/**
      * Hide hover hover Canvas shown via {@link com.smartgwt.client.widgets.Hover#show Hover.show}
      */
     public static native void hide() /*-{
         $wnd.isc.Hover.hide();
     }-*/;
-            
+
+
+    // ***********************************************************
+
+
+
     /**
      * Displays a standard Hover canvas containing the specified HTML content.<br> This method may also be called to modify the
      * content of the hover if it is already showing. Call {@link com.smartgwt.client.widgets.Hover#hide Hover.hide} to hide
@@ -91,18 +108,40 @@ public class Hover {
      * com.smartgwt.client.widgets.Hover#leftOffset leftOffset} and {@link com.smartgwt.client.widgets.Hover#topOffset
      * topOffset}. If this position would render the Hover canvas partially clipped, it will be automatically modified to
      * ensure the Hover  is entirely visible.
-     * @param contents contents for the hover
+     * @param contents contents for the hover. See {@link com.smartgwt.client.docs.HTMLString HTMLString}
      * @param properties object containing attributes for managing the hover canvas'   appearance. Valid properties include:<ul>  <li>left, top,
-     * width, height  <li>baseStyle  <li>opacity  <li>wrap  <li>moveWithMouse [overrides {@link
-     * com.smartgwt.client.widgets.Hover#moveWithMouse moveWithMouse}] </ul>
+     * width, height  <li>baseStyle  <li>opacity  <li>wrap  <li>moveWithMouse  </ul>
      */
     public static native void show(String contents, Label properties) /*-{
-        $wnd.isc.Hover.show(contents, properties.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+        $wnd.isc.Hover.show(
+            contents,
+            (properties != null ? properties.@com.smartgwt.client.widgets.BaseWidget::getConfig()() : null));
     }-*/;
-        
-    // ***********************************************************        
+
+    /**
+     * Displays a standard Hover canvas containing the specified canvas as the content.<br> This method may also be called to modify the
+     * content of the hover if it is already showing. Call {@link com.smartgwt.client.widgets.Hover#hide Hover.hide} to hide
+     * the canvas again.<br> A common use case for calling this method is to asynchronously fetch detail data from the server
+     * about some component, and display it in the Hover canvas when the data is returned. Note that in this case you will
+     * typically need to verify that the user is still hovering  over the component in question before calling Hover.show() -
+     * if the user has moved the mouse  off the component, the information will not apply to whatever is now under the mouse. 
+     * Suggested approaches for handling this are to either use a {@link com.smartgwt.client.widgets.Canvas#addMouseOutHandler
+     * Canvas.mouseOut} handler to track when the user moves off the component, or checking {@link
+     * com.smartgwt.client.util.EventHandler#getTarget EventHandler.getTarget} as part of the asynchronous callback <p> The
+     * default Hover canvas position will be based on the mouse pointer position, adjusted by {@link
+     * com.smartgwt.client.widgets.Hover#leftOffset leftOffset} and {@link com.smartgwt.client.widgets.Hover#topOffset
+     * topOffset}. If this position would render the Hover canvas partially clipped, it will be automatically modified to
+     * ensure the Hover  is entirely visible.
+     * @param contents contents for the hover. See {@link com.smartgwt.client.docs.HTMLString HTMLString}
+     * @param properties object containing attributes for managing the hover canvas'   appearance. Valid properties include:<ul>  <li>left, top,
+     * width, height  <li>baseStyle  <li>opacity  <li>wrap  <li>moveWithMouse  </ul>
+     */
+    public static native void show(Canvas contents, Label properties) /*-{
+        $wnd.isc.Hover.show(
+            (contents != null ? contents.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()() : null),
+            (properties != null ? properties.@com.smartgwt.client.widgets.BaseWidget::getConfig()() : null));
+    }-*/;
 
 }
-
 
 

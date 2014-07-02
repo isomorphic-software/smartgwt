@@ -49,7 +49,6 @@ package com.smartgwt.client.docs;
  *                      &lt;type&gt;file&lt;/type&gt;
  *                      &lt;fileName&gt;myPrivateCode.js&lt;/fileName&gt;
  *                      &lt;jsStripping&gt;full&lt;/jsStripping&gt;
- *                      &lt;jsObfuscation&gt;1&lt;/jsObfuscation&gt;
  *                  &lt;/component&gt;
  *              &lt;/components&gt;
  *          &lt;/FileAssemblyEntry&gt;
@@ -67,9 +66,10 @@ package com.smartgwt.client.docs;
  *      <td>any file<br>XML file<br>ISC DataSource file<br>ISC UI file<br></td></tr>
  *  <tr><td>name</td><td>file identifier</td>
  *      <td>identifier for a ds or ui file</td></tr>
- *  <tr><td>fileName</td><td>file path</td><td>path to a file or xmlFile (relative to webRoot)</td></tr>
+ * <tr><td>fileName</td><td>file path</td><td>path to a file or xmlFile (relative to
+ * webRoot)</td></tr>
  *  <tr><td>jsStripping</td><td>none<br>partial<br>full</td>
- *      <td>level of stripping (whitespace, comment, and delimiter removal) applied to file</td></tr>
+ *   <td>level of stripping (whitespace, comment, and delimiter removal) applied to file</td></tr>
  *  </table>
  *  <p>
  *  All component types except file are converted from valid ISC XML format to JavaScript format
@@ -119,7 +119,8 @@ package com.smartgwt.client.docs;
  *  <li>--config &lt;file&gt; - location of the fileAssembly.xml configuration file
  *  <li>--webRoot &lt;dir&gt; - location of the webRoot that the fileAssembler uses to access the
  *  component files.
- *  <li>--outputDir &lt;dir&gt; - location of directory where you want output files to go - typically
+ * <li>--outputDir &lt;dir&gt; - location of directory where you want output files to go -
+ * typically
  *  this is the webRoot of your production build.  These are the files you'll deploy to
  *  production.
  *  </ul>
