@@ -1,5 +1,8 @@
 package com.smartgwt.sample.showcase.client.forms;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.smartgwt.client.core.Rectangle;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
@@ -15,16 +18,13 @@ import com.smartgwt.client.widgets.form.fields.events.IconClickHandler;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class CustomPickerSample extends ShowcasePanel {
     private static final String DESCRIPTION = "<p>The CustomPicker example demonstrates various custom picker icons that (YesNoMaybeItem) implemented as a \"picker\" that the user can pop up from a picker icon next to a form or grid value.</p>";
 
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             CustomPickerSample panel = new CustomPickerSample();
             id = panel.getID();
             return panel;

@@ -19,7 +19,7 @@ public class NodeTitlesTreeSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             NodeTitlesTreeSample panel = new NodeTitlesTreeSample();
             id = panel.getID();
             return panel;

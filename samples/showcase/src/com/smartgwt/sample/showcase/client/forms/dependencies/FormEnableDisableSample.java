@@ -20,7 +20,7 @@ public class FormEnableDisableSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             FormEnableDisableSample panel = new FormEnableDisableSample();
             id = panel.getID();
             return panel;

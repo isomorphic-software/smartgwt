@@ -52,11 +52,14 @@ import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -78,19 +81,6 @@ public class DateUtil {
 
     // ********************* Methods ***********************
 	/**
-     * Return this date formatted according to the parameter FormatString.  This method is used to implement the {@link
-     * com.smartgwt.client.data.DataSourceField#getFormat format} functionality, but it can also be used to format arbitrary
-     * dates programmatically
-     * @param format The format to apply to this date. See {@link com.smartgwt.client.docs.FormatString FormatString}
-     *
-     * @return formatted date string
-     */
-    public native String format(String format) /*-{
-        var ret = self.format(format);
-        return ret;
-    }-*/;
-				
-	/**
      * Return the full day of week name for this date (Monday, Tuesday, etc). To modify the value returned by this method, set
      * {@link com.smartgwt.client.util.Date#dayNames dayNames}
      *
@@ -100,7 +90,7 @@ public class DateUtil {
         var ret = self.getDayName();
         return ret;
     }-*/;
-				
+
 	/**
      * Returns the fiscal week number of the current date, according to the global {@link
      * com.smartgwt.client.util.Date#setFiscalCalendar FiscalCalendar}.
@@ -111,7 +101,7 @@ public class DateUtil {
         var ret = self.getFiscalWeek();
         return ret;
     }-*/;
-				
+
 	/**
      * Returns the fiscal week number of the current date, according to the global {@link
      * com.smartgwt.client.util.Date#setFiscalCalendar FiscalCalendar}.
@@ -123,7 +113,7 @@ public class DateUtil {
         var ret = self.getFiscalWeek(fiscalCalendar == null ? null : fiscalCalendar.@com.smartgwt.client.core.DataClass::getJsObj()());
         return ret;
     }-*/;
-
+	
 	/**
      * Returns the {@link com.smartgwt.client.widgets.FiscalYear} object appropriate for the the current date, according to the
      * {@link com.smartgwt.client.widgets.FiscalCalendar FiscalCalendar}.
@@ -135,10 +125,10 @@ public class DateUtil {
         if(ret == null) return null;
         return @com.smartgwt.client.widgets.FiscalYear::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-				
+
 	/**
-     * Return the full name of the month for this date (January, February, etc) To modify the value returned by this method,
-     * set {@link com.smartgwt.client.util.Date#shortMonthNames shortMonthNames}
+     * Return the full name of the month for this date (January, February, etc) To modify the value returned by this method, 
+     * use {@link com.smartgwt.client.util.DateUtil#setMonthNames()}.
      *
      * @return Month name
      */
@@ -146,7 +136,8 @@ public class DateUtil {
         var ret = self.getMonthName();
         return ret;
     }-*/;
-				
+
+
 	/**
      * Return the abbreviated (up to 3 chars) day of week name for this date (Mon, Tue, etc). To modify the value returned by
      * this method, set {@link com.smartgwt.client.util.Date#shortDayNames shortDayNames}
@@ -158,11 +149,13 @@ public class DateUtil {
         var ret = self.getShortDayName(length);
         return ret;
     }-*/;
-				
+
+
+
 	/**
-     * Return the abbreviated (up to 3 chars) name of the month for this date (Jan, Feb, etc) To modify the value returned by
-     * this method, set {@link com.smartgwt.client.util.Date#shortMonthNames shortMonthNames}
-     * @param length Number of characters to return (Defaults to 3, can't be                                  longer than 3)
+     * Return the abbreviated name of the month for this date (Jan, Feb, etc) To modify the value returned by this method,  use
+     * {@link com.smartgwt.client.util.DateUtil#setShortMonthNames()}.
+     * @param length Number of characters to return (Defaults to 3, can't be longer than 3)
      *
      * @return Abbreviated month name (3 character string)
      */
@@ -170,7 +163,8 @@ public class DateUtil {
         var ret = self.getShortMonthName(length);
         return ret;
     }-*/;
-				
+
+
 	/**
      * Return a 2 digit year for this date.
      *
@@ -180,7 +174,7 @@ public class DateUtil {
         var ret = self.getShortYear();
         return ret;
     }-*/;
-				
+
 	/**
      * Returns an integer containing the week number
      *
@@ -190,7 +184,7 @@ public class DateUtil {
         var ret = self.getWeek();
         return ret;
     }-*/;
-				
+
 	/**
      * Return this date in the format (UTC timezone):    <code><i>YYYYMMDD</i>T<i>HHMMSS</i>[Z]</code>
      *
@@ -200,7 +194,7 @@ public class DateUtil {
         var ret = self.toDateStamp();
         return ret;
     }-*/;
-				
+
 	/**
      * Return this date in the format: <code>DD/MM/YYYY</code>
      *
@@ -210,7 +204,7 @@ public class DateUtil {
         var ret = self.toEuropeanShortDate();
         return ret;
     }-*/;
-				
+
 	/**
      * Return this date in the format: <code>DD/MM/YYYY HH:MM</code>.
      *
@@ -220,7 +214,7 @@ public class DateUtil {
         var ret = self.toEuropeanShortDateTime();
         return ret;
     }-*/;
-				
+
 	/**
      * Return the date in this format: <code>YYYY/MM/DD</code>
      *
@@ -230,7 +224,7 @@ public class DateUtil {
         var ret = self.toJapanShortDate();
         return ret;
     }-*/;
-				
+
 	/**
      * Return this date in the format: <code>YYYY/MM/DD HH:MM:SS</code>
      *
@@ -240,7 +234,8 @@ public class DateUtil {
         var ret = self.toJapanShortDateTime();
         return ret;
     }-*/;
-				
+
+
 	/**
      * Returns the date as a formatted string using the format set up via the <code>setNormalDisplayFormat()</code> method.
      * Note that the default formatter for this method is <code>"toLocaleString"</code>.
@@ -252,7 +247,9 @@ public class DateUtil {
         var ret = self.toNormalDate(format.@com.smartgwt.client.types.DateDisplayFormat::getValue()());
         return ret;
     }-*/;
-				
+
+
+
 	/**
      * Returns the datetime as a formatted string using the format set up via the <code>setNormalDatetimeDisplayFormat()</code>
      * method.
@@ -264,7 +261,8 @@ public class DateUtil {
         var ret = self.toNormalDatetime(format.@com.smartgwt.client.types.DateDisplayFormat::getValue()());
         return ret;
     }-*/;
-				
+
+
 	/**
      * Returns the datetime as a formatted string using the format set up via the <code>setNormalDatetimeDisplayFormat()</code>
      * method.
@@ -278,7 +276,7 @@ public class DateUtil {
         var ret = self.toNormalDatetime(format.@com.smartgwt.client.types.DateDisplayFormat::getValue()(), useCustomTimezone == null ? null : useCustomTimezone.@java.lang.Boolean::booleanValue()());
         return ret;
     }-*/;
-
+	
 	/**
      * Return this date in 'serialized' format <code>YYYY-MM-DD HH:MM:SS</code>
      *
@@ -288,7 +286,8 @@ public class DateUtil {
         var ret = self.toSerializeableDate();
         return ret;
     }-*/;
-				
+
+
 	/**
      * Returns the date as a formatted string using the format set up via the <code>setShortDisplayFormat()</code> method.
      * @param format Optional Format for the date returned
@@ -299,7 +298,8 @@ public class DateUtil {
         var ret = self.toShortDate(format.@com.smartgwt.client.types.DateDisplayFormat::getValue()());
         return ret;
     }-*/;
-				
+
+
 	/**
      * Returns the date as a formatted string using the format set up via the <code>setShortDisplayFormat()</code> method.
      * @param format Optional Format for the date returned
@@ -312,6 +312,7 @@ public class DateUtil {
         var ret = self.toShortDate(format.@com.smartgwt.client.types.DateDisplayFormat::getValue()(), useCustomTimezone == null ? null : useCustomTimezone.@java.lang.Boolean::booleanValue()());
         return ret;
     }-*/;
+	
 
 	/**
      * Returns the datetime as a formatted string using the format set up via the <code>setShortDatetimeDisplayFormat()</code>
@@ -324,7 +325,8 @@ public class DateUtil {
         var ret = self.toShortDateTime(format.@com.smartgwt.client.types.DateDisplayFormat::getValue()());
         return ret;
     }-*/;
-				
+
+
 	/**
      * Returns the datetime as a formatted string using the format set up via the <code>setShortDatetimeDisplayFormat()</code>
      * method.
@@ -338,7 +340,7 @@ public class DateUtil {
         var ret = self.toShortDateTime(format.@com.smartgwt.client.types.DateDisplayFormat::getValue()(), useCustomTimezone == null ? null : useCustomTimezone.@java.lang.Boolean::booleanValue()());
         return ret;
     }-*/;
-
+	
 	/**
      * Return this date in the format: <code>MM/DD/YYYY</code>
      *
@@ -348,7 +350,7 @@ public class DateUtil {
         var ret = self.toUSShortDate();
         return ret;
     }-*/;
-				
+
 	/**
      * Return this date in the format: <code>MM/DD/YYYY HH:MM</code>
      *
@@ -358,9 +360,10 @@ public class DateUtil {
         var ret = self.toUSShortDateTime();
         return ret;
     }-*/;
-				
+
 
     // ********************* Static Methods ***********************
+
 	/**
      * Compare two dates; returns 0 if equal, -1 if the first date is greater (later), or 1 if the second date is greater.  If
      * either value is not a Date object, it is treated as the epoch (midnight on Jan 1 1970) for comparison purposes.
@@ -373,7 +376,9 @@ public class DateUtil {
         var ret = $wnd.isc.Date.compareDates(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date1), @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date2));
         return ret;
     }-*/;
-				
+
+
+
 	/**
      * Compare two dates, normalizing out the time elements so that only the date elements are considered; returns 0 if equal,
      * -1 if the first date is greater (later), or 1 if the second date is greater.
@@ -387,7 +392,8 @@ public class DateUtil {
         var ret = $wnd.isc.Date.compareLogicalDates(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date1), @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date2));
         return ret;
     }-*/;
-				
+
+
 	/**
      * Create a new <code>Date</code> object - synonym for <code>new Date(arguments)</code>
      *
@@ -398,7 +404,7 @@ public class DateUtil {
         if(ret == null) return null;
         return @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
     }-*/;
-				
+
 	/**
      * Returns the global attribute that dictates which day should be treated as the first day of  the week in calendars and
      * date calculations.  The parameter is expected to be an integer  value between 0 (Sunday) and 6 (Saturday). <P> The
@@ -410,7 +416,7 @@ public class DateUtil {
         var ret = $wnd.isc.Date.getFirstDayOfWeek();
         return ret;
     }-*/;
-				
+
 	/**
      * Returns the global {@link com.smartgwt.client.widgets.FiscalCalendar FiscalCalendar object} representing the start month
      * and date of the fiscal year in the current locale.
@@ -422,7 +428,7 @@ public class DateUtil {
         if(ret == null) return null;
         return @com.smartgwt.client.widgets.FiscalCalendar::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-				
+
 	/**
      * Returns the start date of the fiscal year for the passed date.
      * @param date the date, or the year-number, to get the fiscal year for
@@ -434,7 +440,7 @@ public class DateUtil {
         if(ret == null) return null;
         return @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
     }-*/;
-				
+
 	/**
      * Returns the start date of the fiscal year for the passed date.
      * @param date the date, or the year-number, to get the fiscal year for
@@ -447,6 +453,7 @@ public class DateUtil {
         if(ret == null) return null;
         return @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
     }-*/;
+	
 
 	/**
      * Returns a date's week-number, according to the fiscal calendar
@@ -458,7 +465,8 @@ public class DateUtil {
         var ret = $wnd.isc.Date.getFiscalWeek(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date));
         return ret;
     }-*/;
-				
+
+
 	/**
      * Returns a date's week-number, according to the fiscal calendar
      * @param date the date to get the fiscal year for
@@ -470,7 +478,7 @@ public class DateUtil {
         var ret = $wnd.isc.Date.getFiscalWeek(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date), fiscalCalendar == null ? null : fiscalCalendar.@com.smartgwt.client.core.DataClass::getJsObj()());
         return ret;
     }-*/;
-
+	
 	/**
      * Returns the {@link com.smartgwt.client.widgets.FiscalYear} object for the fiscal year in which the passed date exists.
      * @param date the date to get the fiscal year for
@@ -482,7 +490,7 @@ public class DateUtil {
         if(ret == null) return null;
         return @com.smartgwt.client.widgets.FiscalYear::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-				
+
 	/**
      * Returns the {@link com.smartgwt.client.widgets.FiscalYear} object for the fiscal year in which the passed date exists.
      * @param date the date to get the fiscal year for
@@ -495,7 +503,7 @@ public class DateUtil {
         if(ret == null) return null;
         return @com.smartgwt.client.widgets.FiscalYear::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
+	
 	/**
      * Retrieves the default format for strings being parsed into dates via <code>Date.parseInput()</code>
      *
@@ -506,7 +514,7 @@ public class DateUtil {
         var ret = $wnd.isc.Date.getInputFormat();
         return ret;
     }-*/;
-				
+
 	/**
      * Return an array of days that are considered "weekend" days. Values will be the integers returned by the JavaScript
      * built-in Date.getDay(), eg, 0 is Sunday and 6 is Saturday. Override {@link com.smartgwt.client.util.Date#weekendDays
@@ -520,7 +528,8 @@ public class DateUtil {
         if(ret == null) return null;
         return @com.smartgwt.client.util.ConvertTo::arrayOfInteger(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-				
+
+
 	/**
      * Parse a date passed in as a string, returning the appropriate date object.
      * @param dateString date value as a string
@@ -532,23 +541,22 @@ public class DateUtil {
         if(ret == null) return null;
         return @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
     }-*/;
-				
 
-	/**
-	 * @see {@link Date#parseInput()}
-	 */
-	public Date parseInput(String dateString, String format){
-		return parseInput(dateString,format,(Integer) null,null);
-	}
-	
 
-	/**
-	 * @see {@link Date#parseInput()}
-	 */
-	public Date parseInput(String dateString, String format, Integer centuryThreshold){
-		return parseInput(dateString,format,centuryThreshold,null);
-	}
-	
+    /**
+     * @see Date#parseInput
+     */
+    public static Date parseInput(String dateString, String format){
+        return parseInput(dateString, format, (Integer) null, null);
+    }
+
+    /**
+     * @see Date#parseInput
+     */
+    public static Date parseInput(String dateString, String format, Integer centuryThreshold){
+        return parseInput(dateString, format, centuryThreshold, null);
+    }
+
 	/**
      * Parse a date passed in as a string, returning the appropriate date object.
      * @param dateString date value as a string
@@ -567,6 +575,7 @@ public class DateUtil {
         if(ret == null) return null;
         return @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
     }-*/;
+	
 
 	/**
      * Sets the global attribute that dictates which day should be treated as the first day of the week in calendars and date
@@ -577,7 +586,9 @@ public class DateUtil {
     public static native void setFirstDayOfWeek(int firstDayOfWeek) /*-{
         $wnd.isc.Date.setFirstDayOfWeek(firstDayOfWeek);
     }-*/;
-				
+
+
+
 	/**
      * Sets the global fiscal calendar, which is used for all calls to getFiscalYear() / getFiscalWeek() if those methods
      * aren't passed a fiscalCalander.
@@ -586,22 +597,23 @@ public class DateUtil {
     public static native void setFiscalCalendar(FiscalCalendar fiscalCalendar) /*-{
         $wnd.isc.Date.setFiscalCalendar(fiscalCalendar.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-				
+
+
 	/**
      * Sets up the default system-wide input format for strings being parsed into dates via <code>Date.parseInput()</code>.
      * This will effect how Smart GWT components showing editable date or datetime fields parse user-entered values into live
-     * Date objects. <P> The input format can be specified as a DateInputFormat - a 3 character string like <code>"MDY"</code>
-     * indicating the order of the Month, Day and Year components of date strings. <P> As an example - an input format of "MDY"
-     * would parse "01/02/1999" to Jan 2nd 1999<br> This standard parsing logic will also handle date-time strings such as
-     * "01/02/1999 08:45", or "01/02/1999 16:21:05". <P> Notes: <ul> <li>If the inputFormat is not explicitly set,the system
-     * automatically determines     the standard input format will be based on the specified {@link
-     * com.smartgwt.client.util.Date#getShortDisplayFormat shortDisplayFormat}     wherever possible.     For example if the
-     * short display format has been set to "toEuropeanShortDate" the input     format will default to "DMY".</li> <li>The
-     * default date parsing functionality built into Smart GWT will handle dates presented     with any separator string, and
-     * can handle 1 or 2 digit day and month values and 2 or 4     digit year values. This means that in many cases custom date
-     * display formats can be parsed     back to Date values without the need for a custom parser function. However if more    
-     * sophisticated parsing logic is required, a function may be passed into this method. In     this case the parser function
-     * should be able to handle parsing date and datetime values     formatted via {@link
+     * Date objects. <P> The input format can be specified as a {@link com.smartgwt.client.docs.DateInputFormat} - a 3
+     * character string like <code>"MDY"</code> indicating the order of the Month, Day and Year components of date strings. <P>
+     * As an example - an input format of "MDY" would parse "01/02/1999" to Jan 2nd 1999<br> This standard parsing logic will
+     * also handle date-time strings such as "01/02/1999 08:45", or "01/02/1999 16:21:05". <P> Notes: <ul> <li>If the
+     * inputFormat is not explicitly set,the system automatically determines     the standard input format will be based on the
+     * specified {@link com.smartgwt.client.util.Date#setShortDisplayFormat Date.shortDisplayFormat}     wherever possible.    
+     * For example if the short display format has been set to "toEuropeanShortDate" the input     format will default to
+     * "DMY".</li> <li>The default date parsing functionality built into Smart GWT will handle dates presented     with any
+     * separator string, and can handle 1 or 2 digit day and month values and 2 or 4     digit year values. This means that in
+     * many cases custom date display formats can be parsed     back to Date values without the need for a custom parser
+     * function. However if more     sophisticated parsing logic is required, a function may be passed into this method. In    
+     * this case the parser function should be able to handle parsing date and datetime values     formatted via {@link
      * com.smartgwt.client.util.Date#toShortDate Date.toShortDate} and {@link com.smartgwt.client.util.Date#toShortDateTime
      * Date.toShortDateTime}.</li> <li>Date parsing and formatting logic may be overridden at the component level by setting   
      *  properties directly on the component or field in question.</li> </ul>
@@ -613,43 +625,16 @@ public class DateUtil {
     public static native void setInputFormat(String format) /*-{
         $wnd.isc.Date.setInputFormat(format);
     }-*/;
-				
-	/**
-     * Set the default normal format for datetime values. After calling this method, subsequent calls to {@link
-     * com.smartgwt.client.util.Date#toNormalDatetime Date.toNormalDatetime} will return a string formatted according to this
-     * format specification. Note that this will be the standard datetime format used by Smart GWT components. <P> The
-     * <code>format</code> parameter may be a FormatString, a {@link com.smartgwt.client.types.DateDisplayFormat}  string, or a
-     * function. If passed a function, this function will be executed in the scope of the Date and should return the formatted
-     * string.<br>
-     * @param format new formatter. See {@link com.smartgwt.client.docs.FormatString FormatString}
-     * 
-     * 
-     */
-    public static native void setNormalDatetimeDisplayFormat(String format) /*-{
-        $wnd.isc.Date.setNormalDatetimeDisplayFormat(format);
-    }-*/;
-				
-	/**
-     * Set the default formatter for date objects to the method name passed in.  After calling this method, subsequent calls to
-     * {@link com.smartgwt.client.util.Date#toNormalDate Date.toNormalDate} will return a string formatted according to this
-     * format specification. Note: this will be the standard long date format used by Smart GWT components. <p> The
-     * <code>format</code> parameter may be a FormatString, a {@link com.smartgwt.client.types.DateDisplayFormat}  string, or a
-     * function. If passed a function, this function will be executed in the scope of the Date and should return the formatted
-     * string.<br> <p> Initial default normalDisplayFormat is <code>"toLocaleString"</code>
-     * @param format new formatter. See {@link com.smartgwt.client.docs.FormatString FormatString}
-     */
-    public static native void setNormalDisplayFormat(String format) /*-{
-        $wnd.isc.Date.setNormalDisplayFormat(format);
-    }-*/;
-				
+
 	/**
      * Set the default short format for dates. After calling this method, subsequent calls to {@link
      * com.smartgwt.client.util.Date#toShortDate Date.toShortDate} will return a string formatted according to this format
      * specification. Note that this will be the standard short date format used by Smart GWT components. <P> The
-     * <code>format</code> parameter may be a FormatString, a {@link com.smartgwt.client.types.DateDisplayFormat}  string, or a
-     * function. If passed a function, this function will be executed in the scope of the Date and should return the formatted
-     * string.<br> <P> Initial default shortDateFormat is <code>"toUSShortDate"</code>. This property is commonly modified for
-     * localization of applications. See <a href='http://en.wikipedia.org/wiki/Date_format_by_country'
+     * <code>format</code> parameter may be a {@link com.smartgwt.client.docs.FormatString}, a {@link
+     * com.smartgwt.client.types.DateDisplayFormat}  string, or a function. If passed a function, this function will be
+     * executed in the scope of the Date and should return the formatted string.<br> <P> Initial default shortDateFormat is
+     * <code>"toUSShortDate"</code>. This property is commonly modified for localization of applications. See <a
+     * href='http://en.wikipedia.org/wiki/Date_format_by_country'
      * onclick="window.open('http://en.wikipedia.org/wiki/Date_format_by_country');return
      * false;">http://en.wikipedia.org/wiki/Date_format_by_country</a> for a useful overview of standard date formats per
      * country.
@@ -660,7 +645,8 @@ public class DateUtil {
     public static native void setShortDisplayFormat(String format) /*-{
         $wnd.isc.Date.setShortDisplayFormat(format);
     }-*/;
-				
+
+
 	/**
      * Sets the global attribute that dictates whether the {@link com.smartgwt.client.widgets.DateChooser choosers} shelled
      * from {@link com.smartgwt.client.widgets.form.fields.DateItem DateItems} show a UI for working with Fiscal Years.
@@ -669,7 +655,9 @@ public class DateUtil {
     public static native void setShowChooserFiscalYearPickers(boolean showChooserFiscalYearPickers) /*-{
         $wnd.isc.Date.setShowChooserFiscalYearPickers(showChooserFiscalYearPickers == null ? false : showChooserFiscalYearPickers);
     }-*/;
-				
+
+
+
 	/**
      * Sets the global attribute that dictates whether the {@link com.smartgwt.client.widgets.DateChooser choosers} shelled
      * from {@link com.smartgwt.client.widgets.form.fields.DateItem DateItems} show a UI for working with Weeks.
@@ -678,7 +666,9 @@ public class DateUtil {
     public static native void setShowChooserWeekPickers(boolean showChooserWeekPickers) /*-{
         $wnd.isc.Date.setShowChooserWeekPickers(showChooserWeekPickers == null ? false : showChooserWeekPickers);
     }-*/;
-				
+
+
+
 	/**
      * Sets the days that are considered {@link com.smartgwt.client.util.Date#weekendDays weekend days}.  The parameter  should
      * be array of the integers returned by the JavaScript built-in Date.getDay(), eg, 0 is  Sunday and 6 is Saturday. 
@@ -689,7 +679,8 @@ public class DateUtil {
     public static native void setWeekendDays(Integer[] weekendDays) /*-{
         $wnd.isc.Date.setWeekendDays(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(weekendDays));
     }-*/;
-				
+
+
 
     // ***********************************************************
 
@@ -961,20 +952,6 @@ public class DateUtil {
     }-*/;
 
     /**
-     * Set the default format for date objects to the DateDisplayFormat passed in. After calling this method, subsequent calls to Date.toNormalDate will return a string formatted according to this format specification.
-     * <br>
-     * <b>Note</b>: this will be the standard long date format used by SmartGWT components.
-     * Initial default normalDisplayFormat is "toLocaleString"
-     *
-     * @param format the DateDisplayFormat
-     * @deprecated This method is deprecated in favor of {@link #setNormalDateDisplayFormatter(DateDisplayFormatter)}.
-     */
-    @Deprecated
-    public static native void setNormalDateDisplayFormat(DateDisplayFormat format) /*-{
-        $wnd.Date.setNormalDisplayFormat(format.@com.smartgwt.client.types.DateDisplayFormat::getValue()());
-    }-*/;
-
-    /**
      * Set the default datetime format for date objects to the DateDisplayFormat passed in. After calling this method, subsequent calls to Date.toNormalDate will return a string formatted according to this format specification.
      * <br>
      * <b>Note</b>: this will be the standard long datetime format used by SmartGWT components.
@@ -1010,7 +987,7 @@ public class DateUtil {
      * });
      * </pre>
      * As of version 4.1, SmartGWT has built-in string-based formatting of date and time values via
-     * the <code>DataFormatStringFormatter</code> class. The main advantage of using the built-in
+     * the <code>DateFormatStringFormatter</code> class. The main advantage of using the built-in
      * formatting feature is that it is harmonized with the formatting we export to Excel and other 
      * targets, leading to an exported document that more closely resembles the original application.  
      * See {@link com.smartgwt.client.data.DataSOurceField#format} for details.
@@ -1025,28 +1002,6 @@ public class DateUtil {
     public static native void setNormalDateDisplayFormatter(DateDisplayFormatter formatter) /*-{
         var formatterJS = @com.smartgwt.client.util.DateUtil::convertDateDisplayFormatterToJS(Lcom/smartgwt/client/util/DateDisplayFormatter;)(formatter);
         $wnd.Date.setNormalDisplayFormat(formatterJS);
-    }-*/;
-
-    /**
-     * Set the system wide default short date format.
-     * The specified format will be used by default by SmartGwt components when formatting date values to
-     * short date format (and by {@link #formatAsShortDate(Date)}).
-     * <P>
-     * This method, together with {@link DateUtil#setDefaultDateSeparator(String)} provide support for most
-     * standard "short date" formats. However if a custom format which doesn't match any of the specified
-     * {@link DateDisplayFormat} types is required, a custom formatting function may be provided via
-     * {@link #setShortDateDisplayFormatter(DateDisplayFormatter)}.
-     * <P>
-     * Note that the default short date format is initially set to DateDisplayFormat.TOUSSHORTDATE. This property
-     * is commonly modified for localization of applications. See <a href="http://en.wikipedia.org/wiki/Date_format_by_country">Date format by country</a>
-     * for a useful overview of standard date formats per country.
-     *
-     * @param format the DateDisplayFormat
-     * @deprecated This method is deprecated in favor of {@link #setShortDateDisplayFormatter(DateDisplayFormatter)}.
-     */
-    @Deprecated
-    public static native void setShortDateDisplayFormat(DateDisplayFormat format) /*-{
-        $wnd.Date.setShortDisplayFormat(format.@com.smartgwt.client.types.DateDisplayFormat::getValue()());
     }-*/;
 
 
@@ -1083,28 +1038,6 @@ public class DateUtil {
     public static native void setShortDateDisplayFormatter(DateDisplayFormatter formatter) /*-{
         var formatterJS = @com.smartgwt.client.util.DateUtil::convertDateDisplayFormatterToJS(Lcom/smartgwt/client/util/DateDisplayFormatter;)(formatter);
         $wnd.Date.setShortDisplayFormat(formatterJS);
-    }-*/;
-
-    /**
-     * Set the system wide default short datetime format.
-     * The specified format will be used by default by SmartGwt components when formatting datetime field values to
-     * short datetime format (and by {@link #formatAsShortDatetime(Date)}).
-     * <P>
-     * This method, together with {@link DateUtil#setDefaultDateSeparator(String)} provide support for most
-     * standard "short date" formats. However if a custom format which doesn't match any of the specified
-     * {@link DateDisplayFormat} types is required, a custom formatting function may be provided via
-     * {@link #setShortDatetimeDisplayFormatter(DateDisplayFormatter)}.
-     * <P>
-     * Note that the default short datetime format is initially set to {@link DateDisplayFormat#TOUSSHORTDATETIME}.
-     * This property is commonly modified for localization of applications. See <a href="http://en.wikipedia.org/wiki/Date_format_by_country">Date format by country</a>
-     * for a useful overview of standard date formats per country.
-     *
-     * @param format the DateDisplayFormat
-     * @deprecated This method is deprecated in favor of {@link #setShortDatetimeDisplayFormatter(DateDisplayFormatter)}.
-     */
-    @Deprecated
-    public static native void setShortDatetimeDisplayFormat(DateDisplayFormat format) /*-{
-        $wnd.Date.setShortDatetimeDisplayFormat(format.@com.smartgwt.client.types.DateDisplayFormat::getValue()());
     }-*/;
 
 
@@ -1249,7 +1182,7 @@ public class DateUtil {
     }-*/;
 
     /**
-     * Format a date as a string according to the format specified by 
+     * Format a date as a string according to the format specified by
      * {@link #setNormalDateDisplayFormatter(DateDisplayFormatter)}.
      * <P>
      * This calls the standard date formatting function used by SmartGWT components to display short-formatted
@@ -1312,10 +1245,8 @@ public class DateUtil {
      * formatted string values to Dates. This custom parser will be used by SmartGwt components
      * parsing editable date or datetime type values back to live dates by default.
      * The string passed in will be formatted according to the standard "short date"
-     * or "short datetime" format (which may be customized via
-     * {@link #setShortDateDisplayFormat(DateDisplayFormat)} or
+     * or "short datetime" format (which may be customized via the
      * {@link #setShortDateDisplayFormatter(DateDisplayFormatter)} and
-     * {@link #setShortDatetimeDisplayFormat(DateDisplayFormat)} or
      * {@link #setShortDatetimeDisplayFormatter(DateDisplayFormatter)} methods.
      * <P>
      * Note that the default date parsing logic already handles all standard short date formats, including
@@ -1341,19 +1272,34 @@ public class DateUtil {
      *
      * @param parser
      */
-    public static native void setDateParser(DateParser parser) /*-{
-        $wnd.Date.setInputFormat(function(dateStr) {
+    public static  void setDateParser(DateParser parser) {
+    	// Remember the default inputFormat so if the dev calls "clearDateParser()" we can reset to the same default.
+    	if (!hasCustomParser && currentInputFormat == null) {
+    		currentInputFormat = getSmartClientInputFormat();
+    	}
+    	hasCustomParser = true;
+    	setDateParserJS(parser);
+    }
+    private static boolean hasCustomParser = false; 
+    private static native void setDateParserJS(DateParser parser) /*-{
+    	$wnd.Date.setInputFormat(function(dateStr) {
                 var dateJ = parser.@com.smartgwt.client.util.DateParser::parse(Ljava/lang/String;)(dateStr);
                 if(dateJ == null) return null;
                 return @com.smartgwt.client.util.JSOHelper::toDateJS(Ljava/util/Date;)(dateJ);
             }
         );
     }-*/;
+    private static native String getSmartClientInputFormat() /*-{
+    	var format = $wnd.Date._inputFormat;
+    	if ($wnd.isc.isA.String(format)) return format;
+    	return null;
+    }-*/;
 
     /**
      * Sets up the default system-wide input format for strings being parsed into dates via SmartGWT
      * utilities and components (see {@link #parseInput(String)}). This input format is respected when
      * parsing formatted strings to "date" or "datetime" type values.
+     *
      * <P>
      * This method takes a 3 character string like <code>"MDY"</code> indicating the
      * order of the Month, Day and Year components of date strings.
@@ -1364,9 +1310,11 @@ public class DateUtil {
      * <P>
      * Notes:
      * <ul>
+     * <li>Has no effect if a custom parser has been specified via {@link #setDateParser(DateParser) unless you
+     *     also call {@link #clearDateParser()} to discard the parser.</li>
      * <li>If this method is never called, the system attempts to automatically determine the standard input
      *     format will be automatically determined based on the specified
-     *     {@link #setShortDateDisplayFormat(DateDisplayFormat) short date display format}. For
+     *     {@link #setShortDateDisplayFormatter(DateDisplayFormatter) short date display format}. For
      *     example if the short display format has been set to "toEuropeanShortDate" the input format will default
      *     to "DMY".</li>
      * <li>The default date parsing functionality built into SmartGWT will handle dates presented
@@ -1380,9 +1328,33 @@ public class DateUtil {
      *
      * @param inputFormat
      */
-    public static native void setDateInputFormat(String inputFormat) /*-{
+    public static void setDateInputFormat(String inputFormat) {
+    	currentInputFormat = inputFormat;
+    	if (hasCustomParser) {
+    		SC.logWarn("DateUtil.setDateInputFormat(): A custom parser method has already been provided via " +
+    				"DateUtil.setDateParser(). To revert back to a standard input format, first call DateUtil.clearDateParser()");
+    	} else {
+    		setDateInputFormatJS(inputFormat);
+    	}
+    }
+    private static String currentInputFormat = null;
+    private static native void setDateInputFormatJS(String inputFormat) /*-{
         $wnd.Date.setInputFormat(inputFormat);
     }-*/;
+    
+    /**
+     * If a custom system wide date parser has been specified via {@link #setDateParser(DateParser)}, clear this and
+     * revert to the standard date input format specified via {@link #setDateInputFormat(String)}.
+     *
+     */
+    public static void clearDateParser() {
+		if (!hasCustomParser) return;
+    	hasCustomParser = false;
+    	
+    	setDateInputFormatJS(currentInputFormat);
+	}
+
+
 
     /**
      * Converts a RelativeDate shortcut string such as <code>"$today"</code> to a RelativeDateString such as <code>"+0D"</code>
@@ -1437,7 +1409,7 @@ public class DateUtil {
      * {@link DateDisplayFormatter} for details.
      * <p>
      * As of version 4.1, SmartGWT has built-in string-based formatting of date and time values via
-     * the <code>DataFormatStringFormatter</code> class. The main advantage of using the built-in
+     * the <code>DateFormatStringFormatter</code> class. The main advantage of using the built-in
      * formatting feature is that it is harmonized with the formatting we export to Excel and other 
      * targets, leading to an exported document that more closely resembles the original application.  
      * See {@link com.smartgwt.client.data.DataSourceField#format} for details.
@@ -1496,6 +1468,60 @@ public class DateUtil {
         return @com.smartgwt.client.util.JSOHelper::toDate(D)(jsDatetime.getTime());
 
     }-*/;
+
+    
+    /**
+     * Format the parameter date using the parameter format string.  This is a convenience
+     * method; it simply creates a {@link com.smartgwt.client.util.DateFormatStringFormatter}
+     * and calls its <code>format()</code> method
+     * @param date the Date to format
+     * @param format the format string to use
+     * @return the parameter date formatted according to the parameter format string
+     */
+    public static String format(Date date, String format) {
+        return new DateFormatStringFormatter(format).format(date);
+    };
+
+    /**
+     * Set the array of names of months.  For example:
+     * <pre>
+     * new String[] {
+     *     "January", "February", "March", "April", "May", "June", "July",
+     *     "August", "September", "October", "November", "December" }
+     * </pre>
+     * The appropriate month name will then be returned from {@link #getMonthName()}, and may
+     * be used whenever SmartGWT components display month-names (for example in the
+     * {@link DateItem DateItem class}).
+     * <p><b>Note : </b> This is an advanced setting</p>
+     * @param monthNames a length 12 array of month names
+     */
+    public static native void setMonthNames(String[] monthNames) /*-{
+        var monthNamesJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(monthNames);
+        if (monthNamesJS != null && monthNamesJS.length == 12) {
+            $wnd.isc.addProperties($wnd.Date, { monthNames: monthNamesJS });
+        }
+    }-*/;
+
+    /**
+     * Set the array of names of months.  For example:
+     * <pre>
+     * new String[] {
+     *     "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+     *     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }
+     * </pre>
+     * The appropriate month name will then be returned from {@link #getShortMonthName()}, and
+     * may be used whenever SmartGWT components display month-names (for example in the
+     * {@link DateItem DateItem class}).
+     * <p><b>Note : </b> This is an advanced setting</p>
+     * @param shortMonthNames a length 12 array of abbreviated month names
+     */
+    public static native void setShortMonthNames(String[] shortMonthNames) /*-{
+        var shortMonthNamesJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(shortMonthNames);
+        if (shortMonthNamesJS != null && shortMonthNamesJS.length == 12) {
+            $wnd.isc.addProperties($wnd.Date, { shortMonthNames: shortMonthNamesJS });
+        }
+    }-*/;
+
 
 /* -- fiscal year support --*/
 

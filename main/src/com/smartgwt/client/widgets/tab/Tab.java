@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.tab;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,16 +50,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
@@ -80,11 +91,16 @@ import com.google.gwt.event.shared.HasHandlers;
  *  &lt;/TabSet&gt;
  *  </pre>
  */
-public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.tab.events.HasTabDeselectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabSelectedHandlers {
+@BeanFactory.FrameworkClass
+public class Tab extends RefDataClass implements com.smartgwt.client.widgets.tab.events.HasTabDeselectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabSelectedHandlers {
 
     public static Tab getOrCreateRef(JavaScriptObject jsObj) {
+
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (Tab) obj;
@@ -93,35 +109,45 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
         }
     }
 
+
     public Tab(){
-        setID(com.smartgwt.client.util.SC.generateID(getClass().getName()));
+        internalSetID(SC.generateID(getClass().getName()), true, true);
     }
 
     public Tab(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
+
 
     public Tab(String title) {
         setTitle(title);
-        setID(com.smartgwt.client.util.SC.generateID(getClass().getName()));
+                internalSetID(SC.generateID(getClass().getName()), true, true);
     }
+
 
     public Tab(String title, String icon) {
         setTitle(title);
 		setIcon(icon);
-        setID(com.smartgwt.client.util.SC.generateID(getClass().getName()));
+                internalSetID(SC.generateID(getClass().getName()), true, true);
     }
+
 
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Determines whether this tab should show an icon allowing the user to dismiss the tab by clicking on it directly. The URL
-     * for this icon's image will be derived from  {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon}
-     * by default, but may be overridden by explicitly specifying {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon
-     * closeIcon}. <P> If unset, this property is derived from {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs
-     * canCloseTabs}
+     * Determines whether this tab should show a close icon allowing the user to dismiss the tab by clicking on the close icon
+     * directly. The URL for the close icon's image will be derived from  {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon} by default, but may be overridden by explicitly
+     * specifying {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon}. <p> If unset or null, this property is
+     * derived from {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}. <p> Note that setting
+     * <code>canClose</code> means that {@link com.smartgwt.client.widgets.tab.Tab#getIcon icon} cannot be used, because it's
+     * used for the {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon} - see {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs} for a workaround. <p> After the TabSet has been
+     * created, you can change a tab's canClose property by calling {@link
+     * com.smartgwt.client.widgets.tab.TabSet#setCanCloseTab TabSet.setCanCloseTab}.
      *
-     * @param canClose canClose Default value is null
+     * @param canClose  Default value is null
      * @see com.smartgwt.client.widgets.tab.TabSet#closeClick
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_closeable" target="examples">Closeable Tabs Example</a>
      */
@@ -130,12 +156,16 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
     }
 
     /**
-     * Determines whether this tab should show an icon allowing the user to dismiss the tab by clicking on it directly. The URL
-     * for this icon's image will be derived from  {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon}
-     * by default, but may be overridden by explicitly specifying {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon
-     * closeIcon}. <P> If unset, this property is derived from {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs
-     * canCloseTabs}
-     *
+     * Determines whether this tab should show a close icon allowing the user to dismiss the tab by clicking on the close icon
+     * directly. The URL for the close icon's image will be derived from  {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon} by default, but may be overridden by explicitly
+     * specifying {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon}. <p> If unset or null, this property is
+     * derived from {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}. <p> Note that setting
+     * <code>canClose</code> means that {@link com.smartgwt.client.widgets.tab.Tab#getIcon icon} cannot be used, because it's
+     * used for the {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon} - see {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs} for a workaround. <p> After the TabSet has been
+     * created, you can change a tab's canClose property by calling {@link
+     * com.smartgwt.client.widgets.tab.TabSet#setCanCloseTab TabSet.setCanCloseTab}.
      *
      * @return Boolean
      * @see com.smartgwt.client.widgets.tab.TabSet#closeClick
@@ -144,13 +174,17 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
     public Boolean getCanClose()  {
         return getAttributeAsBoolean("canClose");
     }
+    
 
     /**
      * If specified, overrides the {@link com.smartgwt.client.widgets.tab.TabSet#getCanEditTabTitles canEditTabTitles} setting,
-     * for this one tab only.
+     * for this one tab only. <p> Note that the TabSet's {@link com.smartgwt.client.widgets.tab.TabSet#getTitleEditEvent
+     * titleEditEvent} must be set to a supported {@link com.smartgwt.client.types.TabTitleEditEvent} in order for users to be
+     * able to edit this tab's title.
      *
-     * @param canEditTitle canEditTitle Default value is null
+     * @param canEditTitle  Default value is null
      * @see com.smartgwt.client.widgets.tab.TabSet#setCanEditTabTitles
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_title_editable" target="examples">User-Editable Titles Example</a>
      */
     public void setCanEditTitle(Boolean canEditTitle) {
         setAttribute("canEditTitle", canEditTitle);
@@ -158,22 +192,58 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
 
     /**
      * If specified, overrides the {@link com.smartgwt.client.widgets.tab.TabSet#getCanEditTabTitles canEditTabTitles} setting,
-     * for this one tab only.
-     *
+     * for this one tab only. <p> Note that the TabSet's {@link com.smartgwt.client.widgets.tab.TabSet#getTitleEditEvent
+     * titleEditEvent} must be set to a supported {@link com.smartgwt.client.types.TabTitleEditEvent} in order for users to be
+     * able to edit this tab's title.
      *
      * @return Boolean
      * @see com.smartgwt.client.widgets.tab.TabSet#getCanEditTabTitles
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_title_editable" target="examples">User-Editable Titles Example</a>
      */
     public Boolean getCanEditTitle()  {
         return getAttributeAsBoolean("canEditTitle");
     }
+    
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tab.TabSet#getCanReorderTabs canReorderTabs} is set to <code>true</code>, setting
+     * <code>canReorder</code> explicitly to <code>false</code> for some tab will disallow drag-reordering of this tab. Has no
+     * effect if <code>canReorderTabs</code> is not true at the tabSet level. <P> Note that this setting also disallows a
+     * reorder of another tab into the slot before or following this tab. This means for tabs located at the beginning or end
+     * of the  tab-bar, users cannot changing the index of the tab by dropping another before or after it. However if you have
+     * a <i><code>canReorder:false</code></i> tab which is not at the beginning or end of the tab bar, users can drag reorder
+     * other tabs around it which may ultimately change its position.
+     *
+     * @param canReorder  Default value is null
+     * @see com.smartgwt.client.widgets.tab.TabSet#setCanReorderTabs
+     */
+    public void setCanReorder(Boolean canReorder) {
+        setAttribute("canReorder", canReorder);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tab.TabSet#getCanReorderTabs canReorderTabs} is set to <code>true</code>, setting
+     * <code>canReorder</code> explicitly to <code>false</code> for some tab will disallow drag-reordering of this tab. Has no
+     * effect if <code>canReorderTabs</code> is not true at the tabSet level. <P> Note that this setting also disallows a
+     * reorder of another tab into the slot before or following this tab. This means for tabs located at the beginning or end
+     * of the  tab-bar, users cannot changing the index of the tab by dropping another before or after it. However if you have
+     * a <i><code>canReorder:false</code></i> tab which is not at the beginning or end of the tab bar, users can drag reorder
+     * other tabs around it which may ultimately change its position.
+     *
+     * @return Boolean
+     * @see com.smartgwt.client.widgets.tab.TabSet#getCanReorderTabs
+     */
+    public Boolean getCanReorder()  {
+        return getAttributeAsBoolean("canReorder");
+    }
+    
 
     /**
      * Custom src for the close icon for this tab to display if it is closeable. See {@link
      * com.smartgwt.client.widgets.tab.Tab#getCanClose canClose} and {@link
      * com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}.
      *
-     * @param closeIcon closeIcon Default value is null
+     * @param closeIcon  See {@link com.smartgwt.client.docs.SCImgURL SCImgURL} . Default value is null
      */
     public void setCloseIcon(String closeIcon) {
         setAttribute("closeIcon", closeIcon);
@@ -184,18 +254,18 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      * com.smartgwt.client.widgets.tab.Tab#getCanClose canClose} and {@link
      * com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}.
      *
-     *
-     * @return String
+     * @return  See {@link com.smartgwt.client.docs.SCImgURL SCImgURL} 
      */
     public String getCloseIcon()  {
         return getAttributeAsString("closeIcon");
     }
+    
 
     /**
      * Size of the {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon} for this tab. If unspecified the icon
      * will be sized according to {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIconSize closeTabIconSize}
      *
-     * @param closeIconSize closeIconSize Default value is null
+     * @param closeIconSize  Default value is null
      */
     public void setCloseIconSize(Integer closeIconSize) {
         setAttribute("closeIconSize", closeIconSize);
@@ -205,18 +275,20 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      * Size of the {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon} for this tab. If unspecified the icon
      * will be sized according to {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIconSize closeTabIconSize}
      *
-     *
      * @return Integer
      */
     public Integer getCloseIconSize()  {
         return getAttributeAsInt("closeIconSize");
     }
+    
+    
+    
 
     /**
      * If {@link com.smartgwt.client.widgets.tab.Tab#getIcon icon} is specified, this property may be used to specify a size
      * for the icon
      *
-     * @param iconHeight iconHeight Default value is null
+     * @param iconHeight  Default value is null
      */
     public void setIconHeight(Integer iconHeight) {
         setAttribute("iconHeight", iconHeight);
@@ -226,19 +298,19 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      * If {@link com.smartgwt.client.widgets.tab.Tab#getIcon icon} is specified, this property may be used to specify a size
      * for the icon
      *
-     *
      * @return Integer
      */
     public Integer getIconHeight()  {
         return getAttributeAsInt("iconHeight");
     }
+    
 
     /**
      * If {@link com.smartgwt.client.widgets.tab.Tab#getIcon icon} is specified, this property may be used to specify a size
      * for the icon. Per side sizing may be specified instead via {@link com.smartgwt.client.widgets.tab.Tab#getIconWidth
      * iconWidth} and {@link com.smartgwt.client.widgets.tab.Tab#getIconHeight iconHeight}.
      *
-     * @param iconSize iconSize Default value is null
+     * @param iconSize  Default value is 16
      */
     public void setIconSize(Integer iconSize) {
         setAttribute("iconSize", iconSize);
@@ -249,18 +321,18 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      * for the icon. Per side sizing may be specified instead via {@link com.smartgwt.client.widgets.tab.Tab#getIconWidth
      * iconWidth} and {@link com.smartgwt.client.widgets.tab.Tab#getIconHeight iconHeight}.
      *
-     *
      * @return Integer
      */
     public Integer getIconSize()  {
         return getAttributeAsInt("iconSize");
     }
+    
 
     /**
      * If {@link com.smartgwt.client.widgets.tab.Tab#getIcon icon} is specified, this property may be used to specify a size
      * for the icon
      *
-     * @param iconWidth iconWidth Default value is null
+     * @param iconWidth  Default value is null
      */
     public void setIconWidth(Integer iconWidth) {
         setAttribute("iconWidth", iconWidth);
@@ -270,19 +342,75 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      * If {@link com.smartgwt.client.widgets.tab.Tab#getIcon icon} is specified, this property may be used to specify a size
      * for the icon
      *
-     *
      * @return Integer
      */
     public Integer getIconWidth()  {
         return getAttributeAsInt("iconWidth");
     }
+    
+    
+
+    /**
+     * Optional name for the tab, which can later be used to reference the tab. APIs requiring a reference to a tab will accept
+     * the tab's name [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab TabSet.selectTab}, {@link
+     * com.smartgwt.client.widgets.tab.TabSet#updateTab TabSet.updateTab}, {@link
+     * com.smartgwt.client.widgets.tab.TabSet#removeTab TabSet.removeTab}].<br> This name will also be passed to the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler TabSet.tabSelected} and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler TabSet.tabDeselected} handler functions, if specified.
+     * <p> This identifier is requred to be locally unique to the TabSet and cannot be used to get a global reference to the
+     * Tab.  If you want a global reference, set {@link com.smartgwt.client.widgets.tab.Tab#getID ID} instead.
+     *
+     * @param name  Default value is null
+     */
+    public void setName(String name) {
+        setAttribute("name", name);
+    }
+
+    /**
+     * Optional name for the tab, which can later be used to reference the tab. APIs requiring a reference to a tab will accept
+     * the tab's name [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab TabSet.selectTab}, {@link
+     * com.smartgwt.client.widgets.tab.TabSet#updateTab TabSet.updateTab}, {@link
+     * com.smartgwt.client.widgets.tab.TabSet#removeTab TabSet.removeTab}].<br> This name will also be passed to the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler TabSet.tabSelected} and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler TabSet.tabDeselected} handler functions, if specified.
+     * <p> This identifier is requred to be locally unique to the TabSet and cannot be used to get a global reference to the
+     * Tab.  If you want a global reference, set {@link com.smartgwt.client.widgets.tab.Tab#getID ID} instead.
+     *
+     * @return String
+     */
+    public String getName()  {
+        return getAttributeAsString("name");
+    }
+    
+    
+
+    /**
+     * Space to leave around the pane within this Tab. If specified, this property takes precedence over {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getPaneMargin paneMargin}
+     *
+     * @param paneMargin  Default value is null
+     */
+    public void setPaneMargin(Integer paneMargin) {
+        setAttribute("paneMargin", paneMargin);
+    }
+
+    /**
+     * Space to leave around the pane within this Tab. If specified, this property takes precedence over {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getPaneMargin paneMargin}
+     *
+     * @return Integer
+     */
+    public Integer getPaneMargin()  {
+        return getAttributeAsInt("paneMargin");
+    }
+    
 
     /**
      * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true for this TabSet, if set this
      * property will determine the title of the picker menu item for this tab. If unset, {@link
      * com.smartgwt.client.widgets.tab.Tab#getTitle title} will be used instead
      *
-     * @param pickerTitle pickerTitle Default value is null
+     * @param pickerTitle  See {@link com.smartgwt.client.docs.HTMLString HTMLString} . Default value is null
      * @see com.smartgwt.client.widgets.tab.TabSet#setShowTabPicker
      * @see com.smartgwt.client.widgets.tab.Tab#setTitle
      */
@@ -295,19 +423,19 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      * property will determine the title of the picker menu item for this tab. If unset, {@link
      * com.smartgwt.client.widgets.tab.Tab#getTitle title} will be used instead
      *
-     *
-     * @return String
+     * @return  See {@link com.smartgwt.client.docs.HTMLString HTMLString} 
      * @see com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker
      * @see com.smartgwt.client.widgets.tab.Tab#getTitle
      */
     public String getPickerTitle()  {
         return getAttributeAsString("pickerTitle");
     }
+    
 
     /**
      * Specifies the prompt to be displayed when the mouse hovers over the tab.
      *
-     * @param prompt prompt Default value is null
+     * @param prompt  See {@link com.smartgwt.client.docs.HTMLString HTMLString} . Default value is null
      */
     public void setPrompt(String prompt) {
         setAttribute("prompt", prompt);
@@ -316,19 +444,20 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
     /**
      * Specifies the prompt to be displayed when the mouse hovers over the tab.
      *
-     *
-     * @return String
+     * @return  See {@link com.smartgwt.client.docs.HTMLString HTMLString} 
      */
     public String getPrompt()  {
         return getAttributeAsString("prompt");
     }
+    
+    
 
     /**
      * You can specify an explicit width for the tab using this property.  Note that tabs automatically size to make room for
      * the full title, but if you want to e.g. specify a uniform width for all tabs in a TabSet, this property enables you to
      * do so.
      *
-     * @param width width Default value is 100
+     * @param width  Default value is 100
      */
     public void setWidth(int width) {
         setAttribute("width", width);
@@ -339,12 +468,12 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      * the full title, but if you want to e.g. specify a uniform width for all tabs in a TabSet, this property enables you to
      * do so.
      *
-     *
      * @return int
      */
     public int getWidth()  {
         return getAttributeAsInt("width");
     }
+    
 
     // ********************* Methods ***********************
     /**
@@ -364,15 +493,20 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
 
     private native void setupTabDeselectedEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.tabDeselected = $debox($entry(function(){
-                var param = {"tabSet" : arguments[0], "tabNum" : arguments[1], "tabPane" : arguments[2], "ID" : arguments[3], "tab" : arguments[4], "newTab" : arguments[5]};
-                var event = @com.smartgwt.client.widgets.tab.events.TabDeselectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var tabDeselected = $debox($entry(function(param){
+            var event = @com.smartgwt.client.widgets.tab.events.TabDeselectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
             }));
+        obj.tabDeselected = 
+            function () {
+                var param = {"tabSet" : arguments[0], "tabNum" : arguments[1], "tabPane" : arguments[2], "ID" : arguments[3], "tab" : arguments[4], "newTab" : arguments[5], "name" : arguments[6]};
+                return tabDeselected(param) == true;
+            }
+        ;
    }-*/;
     /**
      * Add a tabSelected handler.
@@ -391,18 +525,20 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
 
     private native void setupTabSelectedEvent() /*-{
         var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.tabSelected = $entry(function(){
-                var param = {"tabSet" : arguments[0], "tabNum" : arguments[1], "tabPane" : arguments[2], "ID" : arguments[3], "tab" : arguments[4]};
-                var event = @com.smartgwt.client.widgets.tab.events.TabSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+        obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selfJ = this;
+        var tabSelected = $entry(function(){
+            var param = {"tabSet" : arguments[0], "tabNum" : arguments[1], "tabPane" : arguments[2], "ID" : arguments[3], "tab" : arguments[4], "name" : arguments[5]};
+            var event = @com.smartgwt.client.widgets.tab.events.TabSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
+        obj.tabSelected =  tabSelected 
+        ;
    }-*/;
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
     /**
@@ -417,8 +553,7 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      * @param ID ID Default value is null
      */
     public void setID(String ID) {
-        IDManager.isValidID(ID);
-        setAttribute("ID", ID);
+        internalSetID(ID, false, true);
     }
 
     /**
@@ -434,7 +569,7 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      * @return String
      */
     public String getID()  {
-        return getAttributeAsString("ID");
+        return this.id;
     }
 
     /**
@@ -612,7 +747,7 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      * @return the tab pane
      */
     public Canvas getPane() {
-        return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("pane"));
+        return Canvas.getByJSObject(getAttributeAsJavaScriptObject("pane"));
     }
 
     /**
@@ -630,7 +765,7 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
      * @return Menu
      */
     public Menu getContextMenu()  {
-        return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("contextMenu"));
+        return (Menu)Menu.getByJSObject(getAttributeAsJavaScriptObject("contextMenu"));
     }
 
     private TabSet tabSet;
@@ -641,6 +776,10 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
 
     public void setTabSet(TabSet tabSet) {
         this.tabSet = tabSet;
+    }
+
+    private static boolean isTab(Object object) {
+        return object instanceof Tab;
     }
 
     private static boolean isTab(JavaScriptObject jsObj) {
@@ -685,6 +824,5 @@ public class Tab extends RefDataClass  implements com.smartgwt.client.widgets.ta
     
 
 }
-
 
 

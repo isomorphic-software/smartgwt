@@ -25,7 +25,7 @@ public class YahooXmlServicesSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             YahooXmlServicesSample panel = new YahooXmlServicesSample();
             id = panel.getID();
             return panel;

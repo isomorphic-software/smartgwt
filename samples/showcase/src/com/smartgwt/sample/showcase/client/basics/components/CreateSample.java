@@ -17,7 +17,7 @@ public class CreateSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             CreateSample panel = new CreateSample();
             id = panel.getID();
             return panel;

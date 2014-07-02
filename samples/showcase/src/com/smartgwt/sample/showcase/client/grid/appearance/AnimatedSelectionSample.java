@@ -1,6 +1,9 @@
 package com.smartgwt.sample.showcase.client.grid.appearance;
 
-import com.smartgwt.client.types.*;
+import com.smartgwt.client.types.Alignment;
+import com.smartgwt.client.types.AnimationEffect;
+import com.smartgwt.client.types.ListGridFieldType;
+import com.smartgwt.client.types.SelectionStyle;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
@@ -16,7 +19,7 @@ public class AnimatedSelectionSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             AnimatedSelectionSample panel = new AnimatedSelectionSample();
             id = panel.getID();
             return panel;

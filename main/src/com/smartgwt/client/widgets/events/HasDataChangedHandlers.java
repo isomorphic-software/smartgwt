@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDataChangedHandlers extends HasHandlers {
     /**
      * Method to override or observe in order to be notified when a user picks a date value. <P> Has no default behavior (so no
@@ -31,3 +31,4 @@ public interface HasDataChangedHandlers extends HasHandlers {
      */
     HandlerRegistration addDataChangedHandler(DataChangedHandler handler);
 }
+

@@ -22,7 +22,7 @@ public class RibbonBarSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             RibbonBarSample panel = new RibbonBarSample();
             id = panel.getID();
             return panel;

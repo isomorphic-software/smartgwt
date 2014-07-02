@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,21 +16,19 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  */
 public enum Positioning implements ValueEnum {
     /**
-     * The canvas is absolutely positioned with respect to its parentElement.
+     * The canvas is absolutely positioned with respect to its parent.
      */
     ABSOLUTE("absolute"),
     /**
      * The canvas is relatively positioned according to the document flow.
      */
     RELATIVE("relative");
-
     private String value;
 
     Positioning(String value) {

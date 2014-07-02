@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Events registerable via {@link com.smartgwt.client.util.Page#setEvent Page.setEvent}
  */
@@ -79,7 +81,6 @@ public enum PageEvent implements ValueEnum {
      * resize or rotation of a mobile device. see classMethod:Page.setEvent() see classMethod:Page.clearEvent()
      */
     ORIENTATIONCHANGE("orientationChange");
-
     private String value;
 
     PageEvent(String value) {

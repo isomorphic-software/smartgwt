@@ -20,7 +20,7 @@ public class WorkdayCalendarSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             WorkdayCalendarSample panel = new WorkdayCalendarSample();
             id = panel.getID();
             return panel;

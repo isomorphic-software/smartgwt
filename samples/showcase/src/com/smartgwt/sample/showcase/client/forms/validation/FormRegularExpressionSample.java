@@ -19,7 +19,7 @@ public class FormRegularExpressionSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
         	FormRegularExpressionSample panel = new FormRegularExpressionSample();
             id = panel.getID();
             return panel;

@@ -1,15 +1,14 @@
 package com.smartgwt.sample.showcase.client.portalLayout;
 
+import java.util.LinkedHashMap;
+
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.DragAppearance;
 import com.smartgwt.client.types.HeaderControls;
-import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.types.SelectionStyle;
 import com.smartgwt.client.widgets.AnimationCallback;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.Img;
-import com.smartgwt.client.widgets.ImgProperties;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.events.CloseClickEvent;
 import com.smartgwt.client.widgets.events.CloseClickHandler;
@@ -26,8 +25,6 @@ import com.smartgwt.client.widgets.layout.Portlet;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
-import java.util.LinkedHashMap;
-
 public class PortletAnimationSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Click on the portlet list to the left to create portlets and see them animate into place. Drag " +
         "portlets around to new locations and they animate into place.";
@@ -37,7 +34,7 @@ public class PortletAnimationSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             PortletAnimationSample panel = new PortletAnimationSample();
             id = panel.getID();
             return panel;

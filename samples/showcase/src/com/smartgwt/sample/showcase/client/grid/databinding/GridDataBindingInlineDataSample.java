@@ -16,7 +16,7 @@ public class GridDataBindingInlineDataSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridDataBindingInlineDataSample panel = new GridDataBindingInlineDataSample();
             id = panel.getID();
             return panel;

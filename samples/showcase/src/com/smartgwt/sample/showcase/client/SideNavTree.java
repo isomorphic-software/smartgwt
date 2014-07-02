@@ -28,9 +28,9 @@ import com.smartgwt.sample.showcase.client.data.ShowcaseData;
 
 public class SideNavTree extends TreeGrid {
 
-    private String idSuffix = "";
+    static final String ID_SUFFIX = "";
 
-    private ExplorerTreeNode[] showcaseData = ShowcaseData.getData(idSuffix);
+    private ExplorerTreeNode[] showcaseData = ShowcaseData.getDataVersioned(ID_SUFFIX);
 
     public SideNavTree() {
         setWidth100();
@@ -44,6 +44,7 @@ public class SideNavTree extends TreeGrid {
         setShowAllRecords(true);
         setLoadDataOnDemand(false);
         setCanSort(false);
+        setShowHeader(false);
 
         TreeGridField field = new TreeGridField();
         field.setCanFilter(true);
@@ -57,13 +58,13 @@ public class SideNavTree extends TreeGrid {
         tree.setOpenProperty("isOpen");
         tree.setIdField("nodeID");
         tree.setParentIdField("parentNodeID");
-        tree.setRootValue("root" + idSuffix);
+        tree.setRootValue("root" + ID_SUFFIX);
 
         tree.setData(showcaseData);
 
         setData(tree);
     }
-
+ 
     public ExplorerTreeNode[] getShowcaseData() {
         return showcaseData;
     }

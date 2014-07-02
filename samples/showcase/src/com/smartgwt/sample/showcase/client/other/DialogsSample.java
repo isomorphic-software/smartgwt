@@ -19,7 +19,7 @@ public class DialogsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             DialogsSample panel = new DialogsSample();
             id = panel.getID();
             return panel;

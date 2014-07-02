@@ -26,7 +26,7 @@ public class LiveGridFetchSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             LiveGridFetchSample panel = new LiveGridFetchSample();
             id = panel.getID();
             return panel;
@@ -122,6 +122,7 @@ public class LiveGridFetchSample extends ShowcasePanel {
         final ListGrid listGrid = new ListGrid();
         listGrid.setWidth100();
         listGrid.setHeight100();
+        listGrid.setMinFieldWidth(80);
         listGrid.setAutoFetchData(true);
         listGrid.setDataSource(dataSource);
 

@@ -18,7 +18,7 @@ public class OverlappingEventsCalendarSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             OverlappingEventsCalendarSample panel = new OverlappingEventsCalendarSample();
             id = panel.getID();
             return panel;

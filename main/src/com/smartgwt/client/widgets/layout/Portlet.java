@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.layout;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,56 +50,142 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.rte.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
+import com.smartgwt.logicalstructure.widgets.tools.*;
 
 /**
  * Custom subclass of Window configured to be embedded within a PortalLayout.
  */
+@BeanFactory.FrameworkClass
+@BeanFactory.ScClassName("Portlet")
 public class Portlet extends Window {
 
     public static Portlet getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (Portlet) obj;
-        } else {
+        if (jsObj == null) return null;
+        final BaseWidget refInstance = BaseWidget.getRef(jsObj);
+        if (refInstance == null) {
             return new Portlet(jsObj);
+        } else {
+            assert refInstance instanceof Portlet;
+            return (Portlet)refInstance;
         }
     }
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        $wnd.isc.Portlet.changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.Canvas::getConfig()());
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        $wnd.isc.Portlet.changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getJsObj()());
+    }-*/;
 
     public Portlet(){
         scClassName = "Portlet";
     }
 
     public Portlet(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "Portlet";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
         var widget = $wnd.isc[scClassName].create(config);
+        if ($wnd.isc.keepGlobals) this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Lcom/google/gwt/core/client/JavaScriptObject;)(widget);
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;
+
     // ********************* Properties / Attributes ***********************
+    
+
+    /**
+     * If specified, this properties block will be passed to {@link com.smartgwt.client.util.isc#confirm isc.confirm} as the
+     * properties parameter when the {@link com.smartgwt.client.widgets.layout.Portlet#getCloseConfirmationMessage
+     * closeConfirmationMessage} is shown,  allowing developers to customize the appear of the confirmation dialog (modifying
+     * its title, etc).
+     *
+     * @param closeConfirmationDialogProperties  Default value is null
+     */
+    public void setCloseConfirmationDialogProperties(Dialog closeConfirmationDialogProperties) {
+        JavaScriptObject config = closeConfirmationDialogProperties == null ? null : closeConfirmationDialogProperties.getConfig();
+        setAttribute("closeConfirmationDialogProperties", JSOHelper.cleanProperties(config, true), true);
+    }
+
+    /**
+     * If specified, this properties block will be passed to {@link com.smartgwt.client.util.isc#confirm isc.confirm} as the
+     * properties parameter when the {@link com.smartgwt.client.widgets.layout.Portlet#getCloseConfirmationMessage
+     * closeConfirmationMessage} is shown,  allowing developers to customize the appear of the confirmation dialog (modifying
+     * its title, etc).
+     *
+     * @return Dialog
+     */
+    public Dialog getCloseConfirmationDialogProperties()  {
+        Dialog properties = new Dialog();
+        properties.setConfigOnly(true);
+        properties.setConfig(getAttributeAsJavaScriptObject("closeConfirmationDialogProperties"));
+        return properties;
+    }
+    
 
     /**
      * Confirmation message to show the user when closing portlets if {@link
      * com.smartgwt.client.widgets.layout.Portlet#getShowCloseConfirmationMessage showCloseConfirmationMessage} is true.
      *
-     * @param closeConfirmationMessage closeConfirmationMessage Default value is "Close portlet?"
+     * @param closeConfirmationMessage  Default value is "Close portlet?"
      */
     public void setCloseConfirmationMessage(String closeConfirmationMessage) {
         setAttribute("closeConfirmationMessage", closeConfirmationMessage, true);
@@ -104,17 +195,17 @@ public class Portlet extends Window {
      * Confirmation message to show the user when closing portlets if {@link
      * com.smartgwt.client.widgets.layout.Portlet#getShowCloseConfirmationMessage showCloseConfirmationMessage} is true.
      *
-     *
      * @return String
      */
     public String getCloseConfirmationMessage()  {
         return getAttributeAsString("closeConfirmationMessage");
     }
+    
 
     /**
      * Whether to call {@link com.smartgwt.client.widgets.Canvas#destroy destroy()} when closing the Portlet.
      *
-     * @param destroyOnClose destroyOnClose Default value is false
+     * @param destroyOnClose  Default value is false
      */
     public void setDestroyOnClose(Boolean destroyOnClose) {
         setAttribute("destroyOnClose", destroyOnClose, true);
@@ -123,19 +214,21 @@ public class Portlet extends Window {
     /**
      * Whether to call {@link com.smartgwt.client.widgets.Canvas#destroy destroy()} when closing the Portlet.
      *
-     *
      * @return Boolean
      */
     public Boolean getDestroyOnClose()  {
         return getAttributeAsBoolean("destroyOnClose");
     }
+    
+    
+    
 
     /**
      * Specifies a minimum height for the Portlet. The height of rows within a {@link
-     * com.smartgwt.client.widgets.layout.Portlet#getPortaLayout PortaLayout} will be adjusted to take into account the
-     * minHeight of all the Portlets in that row.
+     * com.smartgwt.client.widgets.layout.PortalLayout} will be adjusted to take into account the minHeight of all the Portlets
+     * in that row.
      *
-     * @param minHeight minHeight Default value is 60
+     * @param minHeight  Default value is 60
      * @see com.smartgwt.client.widgets.Canvas#setMinHeight
      */
     public void setMinHeight(int minHeight) {
@@ -144,9 +237,8 @@ public class Portlet extends Window {
 
     /**
      * Specifies a minimum height for the Portlet. The height of rows within a {@link
-     * com.smartgwt.client.widgets.layout.Portlet#getPortaLayout PortaLayout} will be adjusted to take into account the
-     * minHeight of all the Portlets in that row.
-     *
+     * com.smartgwt.client.widgets.layout.PortalLayout} will be adjusted to take into account the minHeight of all the Portlets
+     * in that row.
      *
      * @return int
      * @see com.smartgwt.client.widgets.Canvas#getMinHeight
@@ -154,11 +246,12 @@ public class Portlet extends Window {
     public int getMinHeight()  {
         return getAttributeAsInt("minHeight");
     }
+    
 
     /**
      * Specifies a minimum width for the Portlet.
      *
-     * @param minWidth minWidth Default value is 70
+     * @param minWidth  Default value is 70
      * @see com.smartgwt.client.widgets.Canvas#setMinWidth
      */
     public void setMinWidth(int minWidth) {
@@ -168,19 +261,20 @@ public class Portlet extends Window {
     /**
      * Specifies a minimum width for the Portlet.
      *
-     *
      * @return int
      * @see com.smartgwt.client.widgets.Canvas#getMinWidth
      */
     public int getMinWidth()  {
         return getAttributeAsInt("minWidth");
     }
+    
+    
 
     /**
      * If true, {@link com.smartgwt.client.widgets.layout.Portlet#getCloseConfirmationMessage closeConfirmationMessage} will be
      * displayed before portlets are closed
      *
-     * @param showCloseConfirmationMessage showCloseConfirmationMessage Default value is true
+     * @param showCloseConfirmationMessage  Default value is true
      */
     public void setShowCloseConfirmationMessage(Boolean showCloseConfirmationMessage) {
         setAttribute("showCloseConfirmationMessage", showCloseConfirmationMessage, true);
@@ -190,46 +284,88 @@ public class Portlet extends Window {
      * If true, {@link com.smartgwt.client.widgets.layout.Portlet#getCloseConfirmationMessage closeConfirmationMessage} will be
      * displayed before portlets are closed
      *
-     *
      * @return Boolean
      */
     public Boolean getShowCloseConfirmationMessage()  {
         return getAttributeAsBoolean("showCloseConfirmationMessage");
     }
+    
 
     // ********************* Methods ***********************
-            
-    /**
-     * closeClick overridden to show {@link com.smartgwt.client.widgets.layout.Portlet#getCloseConfirmationMessage
-     * closeConfirmationMessage} to the user before removing the portlet from the PortalLayout via {@link
-     * com.smartgwt.client.widgets.layout.PortalLayout#removePortlet PortalLayout.removePortlet}
+	/**
+     * <code>close()</code> method overridden to show  {@link
+     * com.smartgwt.client.widgets.layout.Portlet#getCloseConfirmationMessage closeConfirmationMessage} to the user before
+     * removing the portlet from the PortalLayout via {@link com.smartgwt.client.widgets.layout.PortalLayout#removePortlet
+     * PortalLayout.removePortlet}
+     */
+    public native void close() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.close();
+    }-*/;
+
+	/**
+     * Handles a click on the close button of this portlet.  The default implementation calls {@link
+     * com.smartgwt.client.widgets.layout.Portlet#close Portlet.close}. <P>  Developers may use
+     * <code>addCloseClickHandler()</code> to provide custom handling when the user clicks this button. Custom implementations
+     * may call <code>close()</code> to trigger the default behavior.
      */
     public native void closeClick() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.closeClick();
     }-*/;
 
+	/**
+     * Gets the {@link com.smartgwt.client.widgets.layout.PortalLayout} which encloses this Portlet (or null, if none).
+     *
+     * @return the PortalLayout enclosing this Portlet
+     */
+    public native PortalLayout getPortalLayout() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getPortalLayout();
+        return @com.smartgwt.client.widgets.layout.PortalLayout::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Gets the position of the Portlet within its {@link com.smartgwt.client.widgets.layout.PortalLayout}. Returns null if the
+     * Portlet is not in a PortalLayout.
+     *
+     * @return the position of the Portlet
+     */
+    public native PortalPosition getPortalPosition() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getPortalPosition();
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.layout.PortalPosition::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+
     // ********************* Static Methods ***********************
-    /**
-     * Class level method to set the default properties of this class. If set, then all subsequent instances of this
-     * class will automatically have the default properties that were set when this method was called. This is a powerful
-     * feature that eliminates the need for users to create a separate hierarchy of subclasses that only alter the default
-     * properties of this class. Can also be used for skinning / styling purposes.
-     * <P>
-     * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
-     * underlying class (including those automatically generated in JavaScript). 
-     * This method should not be used to apply standard EventHandlers or override methods for
-     * a class - use a custom subclass instead.
+
+    /** 
+     * Class level method to set the default properties of this class.  If set, then all
+     * existing and subsequently created instances of this class will automatically have
+     * default properties corresponding to
+     * the properties set on the SmartGWT class instance passed to this function before its
+     * underlying SmartClient JS object was created.
+     * This is a powerful feature that eliminates the need for users to create a separate
+     * hierarchy of subclasses that only alter the default properties of this class. Can also
+     * be used for skinning / styling purposes.  <P> <b>Note:</b> This method is intended for
+     * setting default attributes only and will affect all instances of the underlying class
+     * (including those automatically generated in JavaScript).  This method should not be used
+     * to apply standard EventHandlers or override methods for a class - use a custom subclass
+     * instead.  Calling this method after instances have been created can result in undefined
+     * behavior, since it bypasses any setters and a class instance may have already examined 
+     * a particular property and not be expecting any changes through this route.
      *
      * @param portletProperties properties that should be used as new defaults when instances of this class are created
      */
     public static native void setDefaultProperties(Portlet portletProperties) /*-{
     	var properties = $wnd.isc.addProperties({},portletProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
-    	delete properties.ID;
+        @com.smartgwt.client.util.JSOHelper::cleanProperties(Lcom/google/gwt/core/client/JavaScriptObject;Z)(properties,false);
         $wnd.isc.Portlet.addProperties(properties);
     }-*/;
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
     /**
@@ -350,7 +486,55 @@ public class Portlet extends Window {
         return getAttributeAsString("height");
     }
 
+    public LogicalStructureObject setLogicalStructure(PortletLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.closeConfirmationDialogProperties = getAttributeAsString("closeConfirmationDialogProperties");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Portlet.closeConfirmationDialogProperties:" + t.getMessage() + "\n";
+        }
+        try {
+            s.closeConfirmationMessage = getAttributeAsString("closeConfirmationMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Portlet.closeConfirmationMessage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.destroyOnClose = getAttributeAsString("destroyOnClose");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Portlet.destroyOnClose:" + t.getMessage() + "\n";
+        }
+        try {
+            s.heightAsString = getAttributeAsString("height");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Portlet.heightAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.minHeight = getAttributeAsString("minHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Portlet.minHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.minWidth = getAttributeAsString("minWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Portlet.minWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rowHeightAsString = getAttributeAsString("rowHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Portlet.rowHeightAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showCloseConfirmationMessage = getAttributeAsString("showCloseConfirmationMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Portlet.showCloseConfirmationMessage:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+
+    public LogicalStructureObject getLogicalStructure() {
+        PortletLogicalStructure s = new PortletLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
 

@@ -1,17 +1,20 @@
 package com.smartgwt.sample.showcase.client.grid.grouping;
 
+import java.util.Date;
+import java.util.LinkedHashMap;
+
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.GroupStartOpen;
 import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.grid.*;
+import com.smartgwt.client.widgets.grid.GroupValueFunction;
+import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CountryXmlDS;
-
-import java.util.LinkedHashMap;
-import java.util.Date;
 
 public class GridGroupingModesSample extends ShowcasePanel {
     private static final String DESCRIPTION = "This sample shows that a single ListGrid field may be grouped in more than one way, by setting its groupingModes property, a valueMap. By default the grid is shown grouped by the \"Hemisphere\" mode of the Continent field--you can also group by the Continent Name. Similarly, there are two ways to group by the Nationhood field. You must define the getGroupValue() method of a field to apply logic appropriate to the field's groupingMode.";
@@ -19,7 +22,7 @@ public class GridGroupingModesSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridGroupingModesSample panel = new GridGroupingModesSample();
             id = panel.getID();
             return panel;

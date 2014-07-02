@@ -32,7 +32,7 @@ public class PortletAcrossWindowsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             final PortletAcrossWindowsSample panel = new PortletAcrossWindowsSample();
             id = panel.getID();
             return panel;

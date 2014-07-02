@@ -17,7 +17,7 @@ public class GroupedEditingSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GroupedEditingSample panel = new GroupedEditingSample();
             id = panel.getID();
             return panel;

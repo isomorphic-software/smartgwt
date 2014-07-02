@@ -2,7 +2,6 @@ package com.smartgwt.sample.showcase.client.effects.dragdrop;
 
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.RecordList;
-import com.smartgwt.client.data.ResultSet;
 import com.smartgwt.client.types.DragDataAction;
 import com.smartgwt.client.types.VerticalAlignment;
 import com.smartgwt.client.widgets.Canvas;
@@ -26,7 +25,7 @@ public class DragListCopySample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             DragListCopySample panel = new DragListCopySample();
             id = panel.getID();
             return panel;

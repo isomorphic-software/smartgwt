@@ -1,5 +1,7 @@
 package com.smartgwt.sample.showcase.client.forms.details;
 
+import java.util.HashMap;
+
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.ButtonItem;
@@ -11,8 +13,6 @@ import com.smartgwt.client.widgets.form.fields.events.ItemHoverHandler;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
-import java.util.HashMap;
-
 public class FormHoversSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Hover anywhere over the field to see what the current value means. " + 
     "Change the value or disable the field to see different hovers. Note that the hovers contain HTML formatting.";
@@ -21,7 +21,7 @@ public class FormHoversSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
         	FormHoversSample panel = new FormHoversSample();
             id = panel.getID();
             return panel;

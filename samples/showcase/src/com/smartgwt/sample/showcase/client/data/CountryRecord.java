@@ -1,8 +1,8 @@
 package com.smartgwt.sample.showcase.client.data;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
 import java.util.Date;
+
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 public class CountryRecord extends ListGridRecord {
 

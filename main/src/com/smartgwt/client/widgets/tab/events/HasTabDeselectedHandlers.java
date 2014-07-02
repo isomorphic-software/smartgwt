@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.tab.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasTabDeselectedHandlers extends HasHandlers {
     /**
      * Notification fired when a tab is deselected.
@@ -29,3 +29,4 @@ public interface HasTabDeselectedHandlers extends HasHandlers {
      */
     HandlerRegistration addTabDeselectedHandler(TabDeselectedHandler handler);
 }
+

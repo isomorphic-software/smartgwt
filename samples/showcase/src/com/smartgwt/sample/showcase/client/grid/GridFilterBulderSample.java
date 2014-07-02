@@ -29,7 +29,7 @@ public class GridFilterBulderSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridFilterBulderSample panel = new GridFilterBulderSample();
             id = panel.getID();
             return panel;

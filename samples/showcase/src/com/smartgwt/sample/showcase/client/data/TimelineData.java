@@ -1,8 +1,8 @@
 package com.smartgwt.sample.showcase.client.data;
 
-import com.smartgwt.client.widgets.calendar.CalendarEvent;
-
 import java.util.Date;
+
+import com.smartgwt.client.widgets.calendar.CalendarEvent;
 
 public class TimelineData {
 

@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.rpc;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,16 +50,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
@@ -65,6 +76,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * @see com.smartgwt.client.rpc.RPCManager#send
  * @see com.smartgwt.client.rpc.RPCManager#sendRequest
  */
+@BeanFactory.FrameworkClass
 public class RPCRequest extends DataClass {
 
     public static RPCRequest getOrCreateRef(JavaScriptObject jsObj) {
@@ -72,13 +84,16 @@ public class RPCRequest extends DataClass {
         return new RPCRequest(jsObj);
     }
 
+
     public RPCRequest(){
         
     }
 
     public RPCRequest(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
+
 
     // ********************* Properties / Attributes ***********************
 
@@ -88,7 +103,7 @@ public class RPCRequest extends DataClass {
      * different from those already in the queue, it will be sent to the server separately, ahead of the queue,  and a warning
      * will be logged to the Developer Console.
      *
-     * @param actionURL actionURL Default value is RPCManager.actionURL
+     * @param actionURL  Default value is RPCManager.actionURL
      * @see com.smartgwt.client.rpc.RPCManager#actionURL
      */
     public void setActionURL(String actionURL) {
@@ -101,20 +116,58 @@ public class RPCRequest extends DataClass {
      * different from those already in the queue, it will be sent to the server separately, ahead of the queue,  and a warning
      * will be logged to the Developer Console.
      *
-     *
      * @return String
      * @see com.smartgwt.client.rpc.RPCManager#actionURL
      */
     public String getActionURL()  {
         return getAttributeAsString("actionURL");
     }
+    
+
+    /**
+     * Advanced flag to avoid a potential memory leak in Internet Explorer 9 for requests with JSON formatted responses. <P>
+     * This attribute may be set to <code>false</code> to explicitly enable the  workaround described {@link
+     * com.smartgwt.client.rpc.RPCManager#allowIE9Leak here} for this request,  avoiding a potential memory leak in Internet
+     * Explorer 9. <P> This workaround has a limitation in that if parsing the JSON response generates certain object types
+     * including JavaScript <code>Date</code> or <code>function</code> objects, attempts to interact with these objects can
+     * subsequently lead to a  JavaScript error with the message <code>"Can't execute code from a freed script"</code>. <P>
+     * This workaround therefore may not be suitable for all transactions or dataSources within a given application. <P> This
+     * property may also be set globally within an application (via  {@link com.smartgwt.client.rpc.RPCManager#allowIE9Leak
+     * allowIE9Leak})_. <P> Note: This memory leak and workaround is discussed further in the online  <a
+     * href="http://forums.smartclient.com/showthread.php?t=8159">Smart GWT FAQ</a>.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param allowIE9Leak  Default value is null
+     */
+    public void setAllowIE9Leak(Boolean allowIE9Leak) {
+        setAttribute("allowIE9Leak", allowIE9Leak);
+    }
+
+    /**
+     * Advanced flag to avoid a potential memory leak in Internet Explorer 9 for requests with JSON formatted responses. <P>
+     * This attribute may be set to <code>false</code> to explicitly enable the  workaround described {@link
+     * com.smartgwt.client.rpc.RPCManager#allowIE9Leak here} for this request,  avoiding a potential memory leak in Internet
+     * Explorer 9. <P> This workaround has a limitation in that if parsing the JSON response generates certain object types
+     * including JavaScript <code>Date</code> or <code>function</code> objects, attempts to interact with these objects can
+     * subsequently lead to a  JavaScript error with the message <code>"Can't execute code from a freed script"</code>. <P>
+     * This workaround therefore may not be suitable for all transactions or dataSources within a given application. <P> This
+     * property may also be set globally within an application (via  {@link com.smartgwt.client.rpc.RPCManager#allowIE9Leak
+     * allowIE9Leak})_. <P> Note: This memory leak and workaround is discussed further in the online  <a
+     * href="http://forums.smartclient.com/showthread.php?t=8159">Smart GWT FAQ</a>.
+     *
+     * @return Boolean
+     */
+    public Boolean getAllowIE9Leak()  {
+        return getAttributeAsBoolean("allowIE9Leak");
+    }
+    
 
     /**
      * For xmlHttp transport + httpMethod: "GET" only, set to true to force a conditional GET request even if the browser
      * thinks it has a current cached response.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param bypassCache bypassCache Default value is false
+     * @param bypassCache  Default value is false
      */
     public void setBypassCache(Boolean bypassCache) {
         setAttribute("bypassCache", bypassCache);
@@ -124,12 +177,13 @@ public class RPCRequest extends DataClass {
      * For xmlHttp transport + httpMethod: "GET" only, set to true to force a conditional GET request even if the browser
      * thinks it has a current cached response.
      *
-     *
      * @return Boolean
      */
     public Boolean getBypassCache()  {
         return getAttributeAsBoolean("bypassCache");
     }
+    
+    
 
     /**
      * For use only with the {@link com.smartgwt.client.types.RPCTransport scriptInclude} transport, this attribute
@@ -155,7 +209,7 @@ public class RPCRequest extends DataClass {
      *  <code>rpcRequest.callbackParam</code> is ignored by all transport other than
      *  <code>scriptInclude</code>.
      *
-     * @param callbackParam callbackParam Default value is "callback"
+     * @param callbackParam  Default value is "callback"
      */
     public void setCallbackParam(String callbackParam) {
         setAttribute("callbackParam", callbackParam);
@@ -185,12 +239,13 @@ public class RPCRequest extends DataClass {
      *  <code>rpcRequest.callbackParam</code> is ignored by all transport other than
      *  <code>scriptInclude</code>.
      *
-     *
      * @return String
      */
     public String getCallbackParam()  {
         return getAttributeAsString("callbackParam");
     }
+    
+    
 
     /**
      * For use during {@link com.smartgwt.client.docs.Relogin Relogin}, this property marks this request an attempt to login,
@@ -201,7 +256,7 @@ public class RPCRequest extends DataClass {
      * that are login attempts from RPCs that are not.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param containsCredentials containsCredentials Default value is false
+     * @param containsCredentials  Default value is false
      * @see com.smartgwt.client.docs.Relogin Relogin overview and related methods
      */
     public void setContainsCredentials(Boolean containsCredentials) {
@@ -216,19 +271,19 @@ public class RPCRequest extends DataClass {
      * <code>containsCredentials</code>, however, it does typically simplify relogin logic by separating the handling of RPCs
      * that are login attempts from RPCs that are not.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.docs.Relogin Relogin overview and related methods
      */
     public Boolean getContainsCredentials()  {
         return getAttributeAsBoolean("containsCredentials");
     }
+    
 
     /**
      * Valid with the xmlHttpRequest transport only and only when {@link com.smartgwt.client.rpc.RPCRequest#getHttpMethod
      * httpMethod} is set to "POST".
      *
-     * @param contentType contentType Default value is "application/x-www-form-urlencoded"
+     * @param contentType  Default value is "application/x-www-form-urlencoded"
      */
     public void setContentType(String contentType) {
         setAttribute("contentType", contentType);
@@ -238,12 +293,109 @@ public class RPCRequest extends DataClass {
      * Valid with the xmlHttpRequest transport only and only when {@link com.smartgwt.client.rpc.RPCRequest#getHttpMethod
      * httpMethod} is set to "POST".
      *
-     *
      * @return String
      */
     public String getContentType()  {
         return getAttributeAsString("contentType");
     }
+    
+
+    /**
+     * This attribute specifies the payload of the RPCRequest.     When using the {@link com.smartgwt.client.docs.IscServer
+     * Smart GWT server}, objects sent to the server as <code>request.data</code> will be available on the server-side
+     * <code>RPCRequest</code> object as Java Objects. This is achieved by serializing the client side data in a JSON type
+     * format and generating Java Objects on the server from this serialized data. <P> If the client side
+     * <code>request.data</code> is set to a Java object in your SmartGWT code it will be serialized as JSON as follows:<br> -
+     * Numeric client side values (int, Integer, etc) will be serialized as JavaScript numbers.<br> - String values will be
+     * serialized as JavaScript strings.<br> - Date values will be serialized as JavaScript dates.<br> - Maps or Record objects
+     * will be serialized as JavaScript Objects.<br> - Arrays or Lists will become JavaScript arrays<br> Serialization of Maps
+     * and Arrays is recursive - each entry in an Array, or attribute on a Map will also be serialized according to the above
+     * rules.<br> Note that you can also set <code>request.data</code> directly to a JavaScriptObject, and use the
+     * <code>JSOHelper</code> class or <code><i>SomeObject.</i>getJSObj()</code> to  perform your own data conversions on the
+     * client. The serialized JavaScript will then be converted back to Java on the server according to the following rules. 
+     * <P> Here are the  mapping of JavaScript types to their corresponding server object types:<br><br> <table class='normal'
+     * border='1'>   <tr><td><b>JS Type</b></td>     <td><b>Java Type</b></td></tr>   <tr><td>Object: {}</td>        
+     * <td>Map</td></tr>   <tr><td>Array: []</td>          <td>List</td></tr>   <tr><td>String</td>            
+     * <td>String</td></tr>   <tr><td>Number</td>             <td>Long|Double</td></tr>   <tr><td>Boolean</td>           
+     * <td>Boolean</td></tr>   <tr><td>Date</td>               <td>java.util.Date</td></tr>   <tr><td>String</td>            
+     * <td>com.smartgwt.client.types.ValueEnum</td></tr> </table> <br><br> Note that the order of keys/values in the Maps
+     * created on the server is not guaranteed because JavaScript Object literals do not guarantee order. <p> Server->client
+     * conversion follows this table as well, with some extras.  See the toJS() method on JSTranslater in the server
+     * documentation for a description of additional behaviors. <P> When <b>not</b> communicating with the Smart GWT server,
+     * <code>rpcRequest.data</code> becomes simple HTTP parameters or an HTTP request body - see {@link
+     * com.smartgwt.client.rpc.RPCRequest#getUseSimpleHttp useSimpleHttp} for details.
+     *
+     * @param data  Default value is null
+     * @see com.smartgwt.client.rpc.RPCResponse#setData
+     */
+    public void setData(String data) {
+        setAttribute("data", data);
+    }
+
+    /**
+     * This attribute specifies the payload of the RPCRequest.     When using the {@link com.smartgwt.client.docs.IscServer
+     * Smart GWT server}, objects sent to the server as <code>request.data</code> will be available on the server-side
+     * <code>RPCRequest</code> object as Java Objects. This is achieved by serializing the client side data in a JSON type
+     * format and generating Java Objects on the server from this serialized data. <P> If the client side
+     * <code>request.data</code> is set to a Java object in your SmartGWT code it will be serialized as JSON as follows:<br> -
+     * Numeric client side values (int, Integer, etc) will be serialized as JavaScript numbers.<br> - String values will be
+     * serialized as JavaScript strings.<br> - Date values will be serialized as JavaScript dates.<br> - Maps or Record objects
+     * will be serialized as JavaScript Objects.<br> - Arrays or Lists will become JavaScript arrays<br> Serialization of Maps
+     * and Arrays is recursive - each entry in an Array, or attribute on a Map will also be serialized according to the above
+     * rules.<br> Note that you can also set <code>request.data</code> directly to a JavaScriptObject, and use the
+     * <code>JSOHelper</code> class or <code><i>SomeObject.</i>getJSObj()</code> to  perform your own data conversions on the
+     * client. The serialized JavaScript will then be converted back to Java on the server according to the following rules. 
+     * <P> Here are the  mapping of JavaScript types to their corresponding server object types:<br><br> <table class='normal'
+     * border='1'>   <tr><td><b>JS Type</b></td>     <td><b>Java Type</b></td></tr>   <tr><td>Object: {}</td>        
+     * <td>Map</td></tr>   <tr><td>Array: []</td>          <td>List</td></tr>   <tr><td>String</td>            
+     * <td>String</td></tr>   <tr><td>Number</td>             <td>Long|Double</td></tr>   <tr><td>Boolean</td>           
+     * <td>Boolean</td></tr>   <tr><td>Date</td>               <td>java.util.Date</td></tr>   <tr><td>String</td>            
+     * <td>com.smartgwt.client.types.ValueEnum</td></tr> </table> <br><br> Note that the order of keys/values in the Maps
+     * created on the server is not guaranteed because JavaScript Object literals do not guarantee order. <p> Server->client
+     * conversion follows this table as well, with some extras.  See the toJS() method on JSTranslater in the server
+     * documentation for a description of additional behaviors. <P> When <b>not</b> communicating with the Smart GWT server,
+     * <code>rpcRequest.data</code> becomes simple HTTP parameters or an HTTP request body - see {@link
+     * com.smartgwt.client.rpc.RPCRequest#getUseSimpleHttp useSimpleHttp} for details.
+     *
+     * @param data  Default value is null
+     * @see com.smartgwt.client.rpc.RPCResponse#setData
+     */
+    public void setData(Record data) {
+        setAttribute("data", data.getJsObj());
+    }
+
+    /**
+     * This attribute specifies the payload of the RPCRequest.     When using the {@link com.smartgwt.client.docs.IscServer
+     * Smart GWT server}, objects sent to the server as <code>request.data</code> will be available on the server-side
+     * <code>RPCRequest</code> object as Java Objects. This is achieved by serializing the client side data in a JSON type
+     * format and generating Java Objects on the server from this serialized data. <P> If the client side
+     * <code>request.data</code> is set to a Java object in your SmartGWT code it will be serialized as JSON as follows:<br> -
+     * Numeric client side values (int, Integer, etc) will be serialized as JavaScript numbers.<br> - String values will be
+     * serialized as JavaScript strings.<br> - Date values will be serialized as JavaScript dates.<br> - Maps or Record objects
+     * will be serialized as JavaScript Objects.<br> - Arrays or Lists will become JavaScript arrays<br> Serialization of Maps
+     * and Arrays is recursive - each entry in an Array, or attribute on a Map will also be serialized according to the above
+     * rules.<br> Note that you can also set <code>request.data</code> directly to a JavaScriptObject, and use the
+     * <code>JSOHelper</code> class or <code><i>SomeObject.</i>getJSObj()</code> to  perform your own data conversions on the
+     * client. The serialized JavaScript will then be converted back to Java on the server according to the following rules. 
+     * <P> Here are the  mapping of JavaScript types to their corresponding server object types:<br><br> <table class='normal'
+     * border='1'>   <tr><td><b>JS Type</b></td>     <td><b>Java Type</b></td></tr>   <tr><td>Object: {}</td>        
+     * <td>Map</td></tr>   <tr><td>Array: []</td>          <td>List</td></tr>   <tr><td>String</td>            
+     * <td>String</td></tr>   <tr><td>Number</td>             <td>Long|Double</td></tr>   <tr><td>Boolean</td>           
+     * <td>Boolean</td></tr>   <tr><td>Date</td>               <td>java.util.Date</td></tr>   <tr><td>String</td>            
+     * <td>com.smartgwt.client.types.ValueEnum</td></tr> </table> <br><br> Note that the order of keys/values in the Maps
+     * created on the server is not guaranteed because JavaScript Object literals do not guarantee order. <p> Server->client
+     * conversion follows this table as well, with some extras.  See the toJS() method on JSTranslater in the server
+     * documentation for a description of additional behaviors. <P> When <b>not</b> communicating with the Smart GWT server,
+     * <code>rpcRequest.data</code> becomes simple HTTP parameters or an HTTP request body - see {@link
+     * com.smartgwt.client.rpc.RPCRequest#getUseSimpleHttp useSimpleHttp} for details.
+     *
+     * @param data  Default value is null
+     * @see com.smartgwt.client.rpc.RPCResponse#setData
+     */
+    public void setData(Map data) {
+        setAttribute("data", data);
+    }
+    
 
     /**
      * If enabled, causes the RPCRequest to download the requested resource as a file, either  showing the browser's Save
@@ -252,7 +404,7 @@ public class RPCRequest extends DataClass {
      * silently use {@link com.smartgwt.client.rpc.RPCRequest#getTransport transport}: "hiddenFrame".
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param downloadResult downloadResult Default value is false
+     * @param downloadResult  Default value is false
      */
     public void setDownloadResult(Boolean downloadResult) {
         setAttribute("downloadResult", downloadResult);
@@ -264,19 +416,19 @@ public class RPCRequest extends DataClass {
      * window}. <P> Setting this attribute to true means that no callback will be fired and implies that the  request will
      * silently use {@link com.smartgwt.client.rpc.RPCRequest#getTransport transport}: "hiddenFrame".
      *
-     *
      * @return Boolean
      */
     public Boolean getDownloadResult()  {
         return getAttributeAsBoolean("downloadResult");
     }
+    
 
     /**
      * When {@link com.smartgwt.client.rpc.RPCRequest#getDownloadResult downloadResult} is true, setting this attribute to true
      * causes the content of the downloaded file to be displayed in a new browser window.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param downloadToNewWindow downloadToNewWindow Default value is false
+     * @param downloadToNewWindow  Default value is false
      */
     public void setDownloadToNewWindow(Boolean downloadToNewWindow) {
         setAttribute("downloadToNewWindow", downloadToNewWindow);
@@ -286,12 +438,12 @@ public class RPCRequest extends DataClass {
      * When {@link com.smartgwt.client.rpc.RPCRequest#getDownloadResult downloadResult} is true, setting this attribute to true
      * causes the content of the downloaded file to be displayed in a new browser window.
      *
-     *
      * @return Boolean
      */
     public Boolean getDownloadToNewWindow()  {
         return getAttributeAsBoolean("downloadToNewWindow");
     }
+    
 
     /**
      * This works similarly to {@link com.smartgwt.client.rpc.RPCRequest#getServerOutputAsString serverOutputAsString} except
@@ -329,7 +481,7 @@ public class RPCRequest extends DataClass {
      *  supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param evalResult evalResult Default value is false
+     * @param evalResult  Default value is false
      * @see com.smartgwt.client.widgets.ViewLoader
      * @see com.smartgwt.client.rpc.RPCRequest#setEvalVars
      */
@@ -372,7 +524,6 @@ public class RPCRequest extends DataClass {
      *  This feature relies on the XMLHttpRequest object which can be disabled by end-users in some
      *  supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.ViewLoader
      * @see com.smartgwt.client.rpc.RPCRequest#getEvalVars
@@ -380,13 +531,49 @@ public class RPCRequest extends DataClass {
     public Boolean getEvalResult()  {
         return getAttributeAsBoolean("evalResult");
     }
+    
+
+    /**
+     * If you've set {@link com.smartgwt.client.rpc.RPCRequest#getEvalResult evalResult} : true, then the property values of
+     * this object will be available in the evaluation scope of the result under the variable names specified by the property
+     * names.  <p> So e.g. if evalVars is: <code>{foo: "bar"}</code> then a reference to the variable <code>foo</code> in the
+     * result will evaluate to <code>"bar"</code>.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param evalVars  Default value is null
+     */
+    public void setEvalVars(Map evalVars) {
+        setAttribute("evalVars", evalVars);
+    }
+    
+
+    /**
+     * HTTP headers to send, as a Object mapping Header name -> Header value, eg<br> { "Content-Type" : "text/xml" } <P> Valid
+     * with the xmlHttpRequest {@link com.smartgwt.client.rpc.RPCRequest#getTransport transport} only.
+     *
+     * @param httpHeaders  Default value is null
+     */
+    public void setHttpHeaders(Map httpHeaders) {
+        setAttribute("httpHeaders", httpHeaders);
+    }
+
+    /**
+     * HTTP headers to send, as a Object mapping Header name -> Header value, eg<br> { "Content-Type" : "text/xml" } <P> Valid
+     * with the xmlHttpRequest {@link com.smartgwt.client.rpc.RPCRequest#getTransport transport} only.
+     *
+     * @return Map
+     */
+    public Map getHttpHeaders()  {
+        return getAttributeAsMap("httpHeaders");
+    }
+    
 
     /**
      * Selects the HTTP method that will be used for the request.  Typical values are "POST" and "GET". <P> The more obscure
      * "PUT", "DELETE" and "HEAD" methods are also valid, however, none of these are supported by the Safari browser previous
      * to version 3.0.
      *
-     * @param httpMethod httpMethod Default value is "POST"
+     * @param httpMethod  Default value is "POST"
      */
     public void setHttpMethod(String httpMethod) {
         setAttribute("httpMethod", httpMethod);
@@ -397,12 +584,12 @@ public class RPCRequest extends DataClass {
      * "PUT", "DELETE" and "HEAD" methods are also valid, however, none of these are supported by the Safari browser previous
      * to version 3.0.
      *
-     *
      * @return String
      */
     public String getHttpMethod()  {
         return getAttributeAsString("httpMethod");
     }
+    
 
     /**
      * When set to true, no reply is expected from the server.  However, if a reply is received, it will be processed.<p> Note:
@@ -410,7 +597,7 @@ public class RPCRequest extends DataClass {
      * for this request.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param ignoreTimeout ignoreTimeout Default value is false
+     * @param ignoreTimeout  Default value is false
      */
     public void setIgnoreTimeout(Boolean ignoreTimeout) {
         setAttribute("ignoreTimeout", ignoreTimeout);
@@ -421,20 +608,20 @@ public class RPCRequest extends DataClass {
      * setting this to true, forces {@link com.smartgwt.client.rpc.RPCRequest#getSendNoQueue sendNoQueue} to <code>true</code>
      * for this request.
      *
-     *
      * @return Boolean
      */
     public Boolean getIgnoreTimeout()  {
         return getAttributeAsBoolean("ignoreTimeout");
     }
+    
 
     /**
      * If enabled, the server omits any key/value pairs in map that have null values from the response.  This can reduce the
      * size of the response when many fields have null values. <p> To enable this globally for all responses you can set
-     * RPCManager.omitNullMapValuesInResponse in server.properties.
+     * RPCManager.omitNullMapValuesInResponse in {@link com.smartgwt.client.docs.Server_properties server.properties}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param omitNullMapValuesInResponse omitNullMapValuesInResponse Default value is false
+     * @param omitNullMapValuesInResponse  Default value is false
      */
     public void setOmitNullMapValuesInResponse(Boolean omitNullMapValuesInResponse) {
         setAttribute("omitNullMapValuesInResponse", omitNullMapValuesInResponse);
@@ -443,20 +630,51 @@ public class RPCRequest extends DataClass {
     /**
      * If enabled, the server omits any key/value pairs in map that have null values from the response.  This can reduce the
      * size of the response when many fields have null values. <p> To enable this globally for all responses you can set
-     * RPCManager.omitNullMapValuesInResponse in server.properties.
-     *
+     * RPCManager.omitNullMapValuesInResponse in {@link com.smartgwt.client.docs.Server_properties server.properties}.
      *
      * @return Boolean
      */
     public Boolean getOmitNullMapValuesInResponse()  {
         return getAttributeAsBoolean("omitNullMapValuesInResponse");
     }
+    
+
+    /**
+     * Values to be sent as simple HTTP params, as a JavaScript Object where each property/value pair will become an HTTP
+     * parameter name and value.  These parameters are then accessible on the server, for example, using
+     * servletRequest.getParameter(paramName) in Java Servlets.   <P> Array-valued parameters will be submitted as multiple
+     * instances of the same parameter, similar to an HTML form with a multi-select (?paramName=value1&amp;paramName=value2
+     * ...), accessible as getParameterValues(paramName) in Java Servlets.  Any non-atomic type, such as an Object, will be
+     * serialized to <a href='http://www.json.org/' onclick="window.open('http://www.json.org/');return false;">JSON</a> by the
+     * {@link com.smartgwt.client.util.JSONEncoder}.  If this isn't desirable, serialize the data in advance so that the value
+     * provided in <code>rpcRequest.params</code> is a String. <P> Note that this API is primarily used in combination with
+     * {@link com.smartgwt.client.rpc.RPCRequest#getUseSimpleHttp useSimpleHttp} - when contacting the Smart GWT Server, use
+     * {@link com.smartgwt.client.rpc.RPCRequest#getData data} instead, which provides full JavaScript &lt;-&gt; Java
+     * translation of arbitrary structures. <code>rpcRequest.params</code> can also be used with the Smart GWT Server, where it
+     * provides an an opportunity to send additional data aside from the main {@link com.smartgwt.client.rpc.RPCRequest#getData
+     * data} payload.  This is useful for adding data to DataSource requests which will be kept separate from the automatically
+     * sent DataSource data, or for making parts of the request visible in the URL for HTTP-level logging or layer 4 switches.
+     * <P> Note that in contrast to {@link com.smartgwt.client.rpc.RPCRequest#getData data} object, the data in
+     * <code>rpcRequest.params</code> is not deserialized by the Smart GWT server, and all values arrive on the server as
+     * String type (like HTTP parameters always do). <p>  <p> Note: The params are submitted once per http transaction.  If you
+     * are using  {@link com.smartgwt.client.rpc.RPCManager#startQueue request queuing} to bundle multiple RPCRequests or
+     * DSRequests into a single HTTP turnaround, the params from the various RPCRequests will be merged, with the later-queued
+     * transactions winning on parameter name collisions.  A warning will be logged in the Developer Console if multiple
+     * RPCRequests specified params.
+     *
+     * @param params  Default value is null
+     */
+    public void setParams(Map params) {
+        setAttribute("params", params);
+    }
+    
+    
 
     /**
      * Overrides RPCManager.defaultPrompt for this request only.  If you're using queuing, note that the prompt string from the
      * first request in the queue is the one that is shown to the user.
      *
-     * @param prompt prompt Default value is RPCManager.defaultPrompt
+     * @param prompt  See {@link com.smartgwt.client.docs.HTMLString HTMLString} . Default value is RPCManager.defaultPrompt
      * @see com.smartgwt.client.rpc.RPCManager#defaultPrompt
      * @see com.smartgwt.client.rpc.RPCManager#showPrompt
      * @see com.smartgwt.client.rpc.RPCManager#promptStyle
@@ -474,8 +692,7 @@ public class RPCRequest extends DataClass {
      * Overrides RPCManager.defaultPrompt for this request only.  If you're using queuing, note that the prompt string from the
      * first request in the queue is the one that is shown to the user.
      *
-     *
-     * @return String
+     * @return  See {@link com.smartgwt.client.docs.HTMLString HTMLString} 
      * @see com.smartgwt.client.rpc.RPCManager#defaultPrompt
      * @see com.smartgwt.client.rpc.RPCManager#showPrompt
      * @see com.smartgwt.client.rpc.RPCManager#promptStyle
@@ -488,6 +705,7 @@ public class RPCRequest extends DataClass {
     public String getPrompt()  {
         return getAttributeAsString("prompt");
     }
+    
 
     /**
      * Controls the cursor shown when {@link com.smartgwt.client.rpc.RPCManager#promptStyle promptStyle} is set to
@@ -496,7 +714,7 @@ public class RPCRequest extends DataClass {
      * "progress".  The reason for this split is that the above-mentioned browsers do not support CSS2.1 - which is required
      * for the "progress" cursor type.
      *
-     * @param promptCursor promptCursor Default value is browser-dependent
+     * @param promptCursor  Default value is browser-dependent
      * @see com.smartgwt.client.rpc.RPCManager#promptCursor
      * @see com.smartgwt.client.docs.RpcPrompt RpcPrompt overview and related methods
      */
@@ -511,7 +729,6 @@ public class RPCRequest extends DataClass {
      * "progress".  The reason for this split is that the above-mentioned browsers do not support CSS2.1 - which is required
      * for the "progress" cursor type.
      *
-     *
      * @return String
      * @see com.smartgwt.client.rpc.RPCManager#promptCursor
      * @see com.smartgwt.client.docs.RpcPrompt RpcPrompt overview and related methods
@@ -519,12 +736,43 @@ public class RPCRequest extends DataClass {
     public String getPromptCursor()  {
         return getAttributeAsString("promptCursor");
     }
+    
+
+    /**
+     * Overrides RPCManager.promptDelay for this request only. Defaults to {@link
+     * com.smartgwt.client.rpc.RPCManager#promptDelay promptDelay}. <p> If you're using queuing, note that the promptDelay of
+     * the first request is used for the entire queue.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param promptDelay  Default value is RPCManager.promptDelay
+     * @see com.smartgwt.client.rpc.RPCRequest#setShowPrompt
+     * @see com.smartgwt.client.rpc.RPCManager#promptDelay
+     * @see com.smartgwt.client.docs.RpcPrompt RpcPrompt overview and related methods
+     */
+    public void setPromptDelay(int promptDelay) {
+        setAttribute("promptDelay", promptDelay);
+    }
+
+    /**
+     * Overrides RPCManager.promptDelay for this request only. Defaults to {@link
+     * com.smartgwt.client.rpc.RPCManager#promptDelay promptDelay}. <p> If you're using queuing, note that the promptDelay of
+     * the first request is used for the entire queue.
+     *
+     * @return int
+     * @see com.smartgwt.client.rpc.RPCRequest#getShowPrompt
+     * @see com.smartgwt.client.rpc.RPCManager#promptDelay
+     * @see com.smartgwt.client.docs.RpcPrompt RpcPrompt overview and related methods
+     */
+    public int getPromptDelay()  {
+        return getAttributeAsInt("promptDelay");
+    }
+    
 
     /**
      * Controls the prompt style for this request only.  Defaults to {@link com.smartgwt.client.rpc.RPCManager#promptStyle
      * promptStyle}.
      *
-     * @param promptStyle promptStyle Default value is RPCManager.promptStyle
+     * @param promptStyle  Default value is RPCManager.promptStyle
      * @see com.smartgwt.client.rpc.RPCManager#promptStyle
      * @see com.smartgwt.client.docs.RpcPrompt RpcPrompt overview and related methods
      */
@@ -536,7 +784,6 @@ public class RPCRequest extends DataClass {
      * Controls the prompt style for this request only.  Defaults to {@link com.smartgwt.client.rpc.RPCManager#promptStyle
      * promptStyle}.
      *
-     *
      * @return PromptStyle
      * @see com.smartgwt.client.rpc.RPCManager#promptStyle
      * @see com.smartgwt.client.docs.RpcPrompt RpcPrompt overview and related methods
@@ -544,12 +791,13 @@ public class RPCRequest extends DataClass {
     public PromptStyle getPromptStyle()  {
         return EnumUtil.getEnum(PromptStyle.values(), getAttribute("promptStyle"));
     }
+    
 
     /**
      * When set to true, this request is sent to the server immediately, bypassing any current queue.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param sendNoQueue sendNoQueue Default value is false
+     * @param sendNoQueue  Default value is false
      */
     public void setSendNoQueue(Boolean sendNoQueue) {
         setAttribute("sendNoQueue", sendNoQueue);
@@ -558,12 +806,12 @@ public class RPCRequest extends DataClass {
     /**
      * When set to true, this request is sent to the server immediately, bypassing any current queue.
      *
-     *
      * @return Boolean
      */
     public Boolean getSendNoQueue()  {
         return getAttributeAsBoolean("sendNoQueue");
     }
+    
 
     /**
      * Setting this flag makes the body of the HTTP response available as a String in the {@link
@@ -585,7 +833,7 @@ public class RPCRequest extends DataClass {
      * for loading structured data in various formats.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param serverOutputAsString serverOutputAsString Default value is false
+     * @param serverOutputAsString  Default value is false
      */
     public void setServerOutputAsString(Boolean serverOutputAsString) {
         setAttribute("serverOutputAsString", serverOutputAsString);
@@ -610,20 +858,21 @@ public class RPCRequest extends DataClass {
      * onclick="window.open('http://www.json.org/');return false;">JSON</a>, and {@link com.smartgwt.client.data.DataSource}
      * for loading structured data in various formats.
      *
-     *
      * @return Boolean
      */
     public Boolean getServerOutputAsString()  {
         return getAttributeAsBoolean("serverOutputAsString");
     }
+    
 
     /**
-     * Overrides RPCManager.showPrompt for this request only.  If you're using queuing, note that if any of the requests in the
-     * queue specify showPrompt:true, then a prompt will be shown for the entire queue with the prompt text of the first
-     * request in the queue to specify a custom prompt if promptStyle is set to "dialog".  If promptStyle is set to "cursor"
-     * for the request that specified showPrompt: true, then the entire queue uses the "cursor" style for the prompt.
+     * Overrides <code>RPCManager.showPrompt</code> for this request only. <p> If you're using queuing, note that if any of the
+     * requests in the queue specify showPrompt:true, then a prompt will be shown for the entire queue with the prompt text of
+     * the first request in the queue to specify a custom prompt if promptStyle is set to "dialog". <p> If promptStyle is set
+     * to "cursor" for the request that specified showPrompt: true, then the entire queue uses the "cursor" style for the
+     * prompt.
      *
-     * @param showPrompt showPrompt Default value is RPCManager.showPrompt
+     * @param showPrompt  Default value is null
      * @see com.smartgwt.client.rpc.RPCManager#showPrompt
      * @see com.smartgwt.client.docs.RpcPrompt RpcPrompt overview and related methods
      */
@@ -632,11 +881,11 @@ public class RPCRequest extends DataClass {
     }
 
     /**
-     * Overrides RPCManager.showPrompt for this request only.  If you're using queuing, note that if any of the requests in the
-     * queue specify showPrompt:true, then a prompt will be shown for the entire queue with the prompt text of the first
-     * request in the queue to specify a custom prompt if promptStyle is set to "dialog".  If promptStyle is set to "cursor"
-     * for the request that specified showPrompt: true, then the entire queue uses the "cursor" style for the prompt.
-     *
+     * Overrides <code>RPCManager.showPrompt</code> for this request only. <p> If you're using queuing, note that if any of the
+     * requests in the queue specify showPrompt:true, then a prompt will be shown for the entire queue with the prompt text of
+     * the first request in the queue to specify a custom prompt if promptStyle is set to "dialog". <p> If promptStyle is set
+     * to "cursor" for the request that specified showPrompt: true, then the entire queue uses the "cursor" style for the
+     * prompt.
      *
      * @return Boolean
      * @see com.smartgwt.client.rpc.RPCManager#showPrompt
@@ -645,32 +894,87 @@ public class RPCRequest extends DataClass {
     public Boolean getShowPrompt()  {
         return getAttributeAsBoolean("showPrompt");
     }
+    
 
     /**
-     * Overrides RPCManager.defaultTimeout for this request only.  If you're using queuing, note that the timeout setting
-     * derived from the last request in the queue is used for the entire queue.  If you want to override the timeout for the
-     * queue, make sure to set your override at least on the last request in the queue.
+     * If {@link com.smartgwt.client.rpc.RPCRequest#getEvalResult evalResult} is set, setting this property to true causes
+     * {@link com.smartgwt.client.widgets.Canvas#getAutoDraw autoDraw} to be set to false for the duration of the result
+     * evaluation - which is generally what you want if you're returning new components from the server. <P> This also effects
+     * components loaded via the {@link com.smartgwt.client.rpc.RPCManager#loadScreen RPCManager.loadScreen} API.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param timeout timeout Default value is RPCManager.defaultTimeout
+     * @param suppressAutoDraw  Default value is true
+     */
+    public void setSuppressAutoDraw(Boolean suppressAutoDraw) {
+        setAttribute("suppressAutoDraw", suppressAutoDraw);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.rpc.RPCRequest#getEvalResult evalResult} is set, setting this property to true causes
+     * {@link com.smartgwt.client.widgets.Canvas#getAutoDraw autoDraw} to be set to false for the duration of the result
+     * evaluation - which is generally what you want if you're returning new components from the server. <P> This also effects
+     * components loaded via the {@link com.smartgwt.client.rpc.RPCManager#loadScreen RPCManager.loadScreen} API.
+     *
+     * @return Boolean
+     */
+    public Boolean getSuppressAutoDraw()  {
+        return getAttributeAsBoolean("suppressAutoDraw");
+    }
+    
+
+    /**
+     * Sets the timeout on this request.  Default is to use {@link com.smartgwt.client.rpc.RPCManager#defaultTimeout
+     * defaultTimeout}.   <p> If you're using {@link com.smartgwt.client.rpc.RPCManager#startQueue queuing}, note that the
+     * timeout setting derived from the last request in the queue is used for the entire queue.  If you want to override the
+     * timeout for the queue, make sure to set your override at least on the last request in the queue. <p> For the
+     * "xmlHttpRequest" {@link com.smartgwt.client.rpc.RPCRequest#getTransport transport}, this timeout can only happen if the
+     * server actually fails to respond within the specified number of milliseconds.  For the "hiddenFrame" transport, this
+     * timeout will occur for non-200 (HTTP_OK) responses. <p> If <code>timeout</code> is set to zero, the RPCManager will not
+     * enforce a timeout for this request.  However, note that all browsers enforce their own timeouts on HTTP requests, and
+     * may have different timeouts for different kinds of failures (no response at all from server, hung response after
+     * receiving headers, hung response after receiving partial data, etc). Also, intervening web proxies or firewalls may
+     * impose timeouts of their own. <p> As a rough rule of thumb, if your server response will have a lengthy pause before
+     * data begins to be sent, 1-2 minutes is the maximum allowable pause for a public site and still may not work for a
+     * minority of users, but up to 4 minutes may be allowable in a controlled environment (intranet or extranet with
+     * well-known user base). <p> Above these limits, your code should return some kind of immediate response to the browser,
+     * then kick off a server-side process to complete processing.  The browser can then either poll for completion, or use a
+     * server-push notification system such as Smart GWT Real-Time Messaging (see <a href='http://smartclient.com/product'
+     * onclick="window.open('http://smartclient.com/product');return false;">http://smartclient.com/product</a>).
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param timeout  Default value is null
      * @see com.smartgwt.client.rpc.RPCManager#defaultTimeout
      */
-    public void setTimeout(int timeout) {
+    public void setTimeout(Integer timeout) {
         setAttribute("timeout", timeout);
     }
 
     /**
-     * Overrides RPCManager.defaultTimeout for this request only.  If you're using queuing, note that the timeout setting
-     * derived from the last request in the queue is used for the entire queue.  If you want to override the timeout for the
-     * queue, make sure to set your override at least on the last request in the queue.
+     * Sets the timeout on this request.  Default is to use {@link com.smartgwt.client.rpc.RPCManager#defaultTimeout
+     * defaultTimeout}.   <p> If you're using {@link com.smartgwt.client.rpc.RPCManager#startQueue queuing}, note that the
+     * timeout setting derived from the last request in the queue is used for the entire queue.  If you want to override the
+     * timeout for the queue, make sure to set your override at least on the last request in the queue. <p> For the
+     * "xmlHttpRequest" {@link com.smartgwt.client.rpc.RPCRequest#getTransport transport}, this timeout can only happen if the
+     * server actually fails to respond within the specified number of milliseconds.  For the "hiddenFrame" transport, this
+     * timeout will occur for non-200 (HTTP_OK) responses. <p> If <code>timeout</code> is set to zero, the RPCManager will not
+     * enforce a timeout for this request.  However, note that all browsers enforce their own timeouts on HTTP requests, and
+     * may have different timeouts for different kinds of failures (no response at all from server, hung response after
+     * receiving headers, hung response after receiving partial data, etc). Also, intervening web proxies or firewalls may
+     * impose timeouts of their own. <p> As a rough rule of thumb, if your server response will have a lengthy pause before
+     * data begins to be sent, 1-2 minutes is the maximum allowable pause for a public site and still may not work for a
+     * minority of users, but up to 4 minutes may be allowable in a controlled environment (intranet or extranet with
+     * well-known user base). <p> Above these limits, your code should return some kind of immediate response to the browser,
+     * then kick off a server-side process to complete processing.  The browser can then either poll for completion, or use a
+     * server-push notification system such as Smart GWT Real-Time Messaging (see <a href='http://smartclient.com/product'
+     * onclick="window.open('http://smartclient.com/product');return false;">http://smartclient.com/product</a>).
      *
-     *
-     * @return int
+     * @return Integer
      * @see com.smartgwt.client.rpc.RPCManager#defaultTimeout
      */
-    public int getTimeout()  {
+    public Integer getTimeout()  {
         return getAttributeAsInt("timeout");
     }
+    
 
     /**
      * Selects the transport used for this RPCRequest.  If unset, the value of {@link
@@ -688,7 +992,7 @@ public class RPCRequest extends DataClass {
      * calling {@link com.smartgwt.client.rpc.RPCManager#xmlHttpRequestAvailable RPCManager.xmlHttpRequestAvailable}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param transport transport Default value is RPCManager.defaultTransport
+     * @param transport  Default value is RPCManager.defaultTransport
      * @see com.smartgwt.client.rpc.RPCManager#defaultTransport
      */
     public void setTransport(RPCTransport transport) {
@@ -710,13 +1014,52 @@ public class RPCRequest extends DataClass {
      * disabled ActiveX).  You can check whether or not the <code>xmlHttpRequest</code> transport is currently available by
      * calling {@link com.smartgwt.client.rpc.RPCManager#xmlHttpRequestAvailable RPCManager.xmlHttpRequestAvailable}.
      *
-     *
      * @return RPCTransport
      * @see com.smartgwt.client.rpc.RPCManager#defaultTransport
      */
     public RPCTransport getTransport()  {
         return EnumUtil.getEnum(RPCTransport.values(), getAttribute("transport"));
     }
+    
+
+    /**
+     * Indicates whether this request should use the HttpProxyServlet in order to enable contacting hosts other than the origin
+     * server (available only in Pro Edition or better). <P> When various UI components issues requests automatically, or when
+     * a call to {@link com.smartgwt.client.rpc.RPCManager#sendProxied RPCManager.sendProxied} is made, the HttpProxy will
+     * automatically be used for a URL that starts with "http" and uses a hostname other than "localhost" or
+     * <code>window.location.hostname</code>, or if the port number differs. <P> <code>rpcRequest.useHttpProxy</code> should
+     * only be used to force requests to go through the HttpProxy when the above rules don't work, or to avoid using the
+     * HttpProxy when contacting hosts that allow cross-site calls via the <a
+     * href='http://www.google.com/search?q=http+access+control'
+     * onclick="window.open('http://www.google.com/search?q=http+access+control');return false;">Http Access Control</a>
+     * standard. <P> You can also set {@link com.smartgwt.client.rpc.RPCManager#useHttpProxy useHttpProxy}:false to avoid ever
+     * using the HttpProxyServlet.
+     *
+     * @param useHttpProxy  Default value is null
+     */
+    public void setUseHttpProxy(Boolean useHttpProxy) {
+        setAttribute("useHttpProxy", useHttpProxy);
+    }
+
+    /**
+     * Indicates whether this request should use the HttpProxyServlet in order to enable contacting hosts other than the origin
+     * server (available only in Pro Edition or better). <P> When various UI components issues requests automatically, or when
+     * a call to {@link com.smartgwt.client.rpc.RPCManager#sendProxied RPCManager.sendProxied} is made, the HttpProxy will
+     * automatically be used for a URL that starts with "http" and uses a hostname other than "localhost" or
+     * <code>window.location.hostname</code>, or if the port number differs. <P> <code>rpcRequest.useHttpProxy</code> should
+     * only be used to force requests to go through the HttpProxy when the above rules don't work, or to avoid using the
+     * HttpProxy when contacting hosts that allow cross-site calls via the <a
+     * href='http://www.google.com/search?q=http+access+control'
+     * onclick="window.open('http://www.google.com/search?q=http+access+control');return false;">Http Access Control</a>
+     * standard. <P> You can also set {@link com.smartgwt.client.rpc.RPCManager#useHttpProxy useHttpProxy}:false to avoid ever
+     * using the HttpProxyServlet.
+     *
+     * @return Boolean
+     */
+    public Boolean getUseHttpProxy()  {
+        return getAttributeAsBoolean("useHttpProxy");
+    }
+    
 
     /**
      * When set to true, assume the request is not going to the Smart GWT server, and hence send a simple HTTP request that
@@ -735,7 +1078,7 @@ public class RPCRequest extends DataClass {
      * {@link com.smartgwt.client.rpc.RPCRequest#getServerOutputAsString serverOutputAsString} to true as well.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param useSimpleHttp useSimpleHttp Default value is false
+     * @param useSimpleHttp  Default value is false
      */
     public void setUseSimpleHttp(Boolean useSimpleHttp) {
         setAttribute("useSimpleHttp", useSimpleHttp);
@@ -757,12 +1100,13 @@ public class RPCRequest extends DataClass {
      * indicate the content type of the request body. <p> Setting <code>useSimpleHttp</code> to true also automatically sets
      * {@link com.smartgwt.client.rpc.RPCRequest#getServerOutputAsString serverOutputAsString} to true as well.
      *
-     *
      * @return Boolean
      */
     public Boolean getUseSimpleHttp()  {
         return getAttributeAsBoolean("useSimpleHttp");
     }
+    
+    
 
     /**
      * With willHandleError:false, rpcResponses that indicate an error go through centralized handling in the RPCManager and
@@ -770,8 +1114,9 @@ public class RPCRequest extends DataClass {
      * rpcResponses that have an error status and must handle them. <P> See also the error handling section in the {@link
      * com.smartgwt.client.rpc.RPCManager} docs.
      *
-     * @param willHandleError willHandleError Default value is false
+     * @param willHandleError  Default value is false
      * @see com.smartgwt.client.rpc.RPCManager
+     * @see com.smartgwt.client.docs.ErrorHandling ErrorHandling overview and related methods
      */
     public void setWillHandleError(Boolean willHandleError) {
         setAttribute("willHandleError", willHandleError);
@@ -783,19 +1128,19 @@ public class RPCRequest extends DataClass {
      * rpcResponses that have an error status and must handle them. <P> See also the error handling section in the {@link
      * com.smartgwt.client.rpc.RPCManager} docs.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.rpc.RPCManager
+     * @see com.smartgwt.client.docs.ErrorHandling ErrorHandling overview and related methods
      */
     public Boolean getWillHandleError()  {
         return getAttributeAsBoolean("willHandleError");
     }
+    
 
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-            
-    /**
+	/**
      * RPCRequest shouldn't be created directly. Instead, pass Properties to  {@link
      * com.smartgwt.client.rpc.RPCManager#sendRequest RPCManager.sendRequest} and {@link
      * com.smartgwt.client.rpc.RPCManager#send RPCManager.send}.
@@ -803,139 +1148,89 @@ public class RPCRequest extends DataClass {
     public static native void create() /*-{
         $wnd.isc.RPCRequest.create();
     }-*/;
-        
-    // ***********************************************************        
+
+
+    // ***********************************************************
 
 
 
 	/**
-     * This attribute specifies the payload of the RPCRequest.     When using the {@link
-     * com.smartgwt.client.rpc.RPCRequest#getIscServer Smart GWT server}, objects sent to the server as
+     * This attribute specifies the payload of the RPCRequest.     
+     * When using the {@link com.smartgwt.client.rpc.RPCRequest#getIscServer Smart GWT server}, objects sent to the server as 
      * <code>request.data</code> will be available on the server-side <code>RPCRequest</code> object as Java Objects. This is
      * achieved by serializing the client side data in a JSON type format and generating Java Objects on the server from this
-     * serialized data. <P> If the client side <code>request.data</code> is set to a Java object in your SmartGWT code it will
-     * be serialized as JSON as follows:<br> - Numeric client side values (int, Integer, etc) will be serialized as JavaScript
-     * numbers.<br> - String values will be serialized as JavaScript strings.<br> - Date values will be serialized as
-     * JavaScript dates.<br> - Maps or Record objects will be serialized as JavaScript Objects.<br> - Arrays or Lists will
-     * become JavaScript arrays<br> Serialization of Maps and Arrays is recursive - each entry in an Array, or attribute on a
-     * Map will also be serialized according to the above rules.<br> Note that you can also set <code>request.data</code>
-     * directly to a JavaScriptObject, and use the <code>JSOHelper</code> class or <code><i>SomeObject.</i>getJSObj()</code> to
-     * perform your own data conversions on the client. The serialized JavaScript will then be converted back to Java on the
-     * server according to the following rules.  <P> Here are the  mapping of JavaScript types to their corresponding server
-     * object types:<br><br> <table class='normal' border='1'>   <tr><td><b>JS Type</b></td>     <td><b>Java Type</b></td></tr>
-     * <tr><td>Object: {}</td>         <td>Map</td></tr>   <tr><td>Array: []</td>          <td>List</td></tr>  
-     * <tr><td>String</td>             <td>String</td></tr>   <tr><td>Number</td>             <td>Long|Double</td></tr>  
-     * <tr><td>Boolean</td>            <td>Boolean</td></tr>   <tr><td>Date</td>               <td>java.util.Date</td></tr> 
-     * </table> <br><br> Note that the order of keys/values in the Maps created on the server is not guaranteed because
-     * JavaScript Object literals do not guarantee order. <p> Server->client conversion follows the this table as well, with
+     * serialized data. 
+     * <P>
+     * If the client side <code>request.data</code> is set to a Java object in your SmartGWT code on the client side, 
+     * logic in your server side code will be passed the following equivalent objects:
+     * 
+     *  <table class='normal' border='1'>   
+     *  <tr><td><b>Client</b></td>     <td><b>Server Type</b></td></tr>
+     *  <tr><td>boolean primitive or Boolean</td><td>Boolean</td></tr>
+     *  <tr><td>Non-fractional numeric value<br>(e.g: int, Integer, long, Long)</td><td>Long</td></tr>
+     *  <tr><td>Fractional numeric value<br>(e.g:float, Float, double, Double)</td><td>Double</td></tr>
+     *  <tr><td>String</td><td>String</td></tr>
+     *  <tr><td>Date</td><td>Date</td></tr>
+     *  <tr><td>List, Set, Iterator</td><td>List</td></tr>
+     *  <tr><td>Map</td><td>Map</td></tr>
+     *  <tr><td>Record</td><td>Map</td></tr>
+     *  <tr><td>RecordList</td><td>List of Map</td></tr>
+     *  <tr><td>ResultSet</td><td>List of Map <br>(containing only loaded rows if the ResultSet has a partial cache on the client)</td></tr>
+     *  </table>
+     *  
+     * <br><br> Note that the order of keys/values in the Maps created on the server is not guaranteed because
+     * JavaScript Object literals do not guarantee order. <p> Server->client conversion follows this table as well, with
      * some extras.  See the toJS() method on JSTranslater in the server documentation for a description of additional
      * behaviors. <P> When <b>not</b> communicating with the Smart GWT server, <code>rpcRequest.data</code> becomes simple HTTP
      * parameters or an HTTP request body - see {@link com.smartgwt.client.rpc.RPCRequest#getUseSimpleHttp useSimpleHttp} for
      * details.
+     * 
      *
      * @param data data Default value is null
-     * @see com.smartgwt.client.rpc.RPCResponse#getData
+     * @see com.smartgwt.client.rpc.RPCResponse#getDataAsMap()
+     * @see com.smartgwt.client.rpc.RPCResponse#getDataAsObject()
+     * @see com.smartgwt.client.rpc.RPCResponse#getDataAsString()
      */
     public void setData(JavaScriptObject data) {
         setAttribute("data", data);
     }
 
     /**
-     * This attribute specifies the payload of the RPCRequest.     When using the {@link
-     * com.smartgwt.client.rpc.RPCRequest#getIscServer Smart GWT server}, objects sent to the server as
+     * Returns the payload of this request to be sent to the server, as a JavaScriptObject.
+     * <P>
+     * When using the {@link com.smartgwt.client.rpc.RPCRequest#getIscServer Smart GWT server}, objects sent to the server as 
      * <code>request.data</code> will be available on the server-side <code>RPCRequest</code> object as Java Objects. This is
      * achieved by serializing the client side data in a JSON type format and generating Java Objects on the server from this
-     * serialized data. <P> If the client side <code>request.data</code> is set to a Java object in your SmartGWT code it will
-     * be serialized as JSON as follows:<br> - Numeric client side values (int, Integer, etc) will be serialized as JavaScript
-     * numbers.<br> - String values will be serialized as JavaScript strings.<br> - Date values will be serialized as
-     * JavaScript dates.<br> - Maps or Record objects will be serialized as JavaScript Objects.<br> - Arrays or Lists will
-     * become JavaScript arrays<br> Serialization of Maps and Arrays is recursive - each entry in an Array, or attribute on a
-     * Map will also be serialized according to the above rules.<br> Note that you can also set <code>request.data</code>
-     * directly to a JavaScriptObject, and use the <code>JSOHelper</code> class or <code><i>SomeObject.</i>getJSObj()</code> to
-     * perform your own data conversions on the client. The serialized JavaScript will then be converted back to Java on the
-     * server according to the following rules.  <P> Here are the  mapping of JavaScript types to their corresponding server
-     * object types:<br><br> <table class='normal' border='1'>   <tr><td><b>JS Type</b></td>     <td><b>Java Type</b></td></tr>
-     * <tr><td>Object: {}</td>         <td>Map</td></tr>   <tr><td>Array: []</td>          <td>List</td></tr>  
-     * <tr><td>String</td>             <td>String</td></tr>   <tr><td>Number</td>             <td>Long|Double</td></tr>  
-     * <tr><td>Boolean</td>            <td>Boolean</td></tr>   <tr><td>Date</td>               <td>java.util.Date</td></tr> 
-     * </table> <br><br> Note that the order of keys/values in the Maps created on the server is not guaranteed because
-     * JavaScript Object literals do not guarantee order. <p> Server->client conversion follows the this table as well, with
+     * serialized data. 
+     * <P>
+     * If the client side <code>request.data</code> is set to a Java object in your SmartGWT code on the client side, 
+     * logic in your server side code will be passed the following equivalent objects:
+     * 
+     *  <table class='normal' border='1'>   
+     *  <tr><td><b>Client</b></td>     <td><b>Server Type</b></td></tr>
+     *  <tr><td>boolean primitive or Boolean</td><td>Boolean</td></tr>
+     *  <tr><td>Non-fractional numeric value<br>(e.g: int, Integer, long, Long)</td><td>Long</td></tr>
+     *  <tr><td>Fractional numeric value<br>(e.g:float, Float, double, Double)</td><td>Double</td></tr>
+     *  <tr><td>String</td><td>String</td></tr>
+     *  <tr><td>Date</td><td>Date</td></tr>
+     *  <tr><td>List, Set, Iterator</td><td>List</td></tr>
+     *  <tr><td>Map</td><td>Map</td></tr>
+     *  <tr><td>Record</td><td>Map</td></tr>
+     *  <tr><td>RecordList</td><td>List of Map</td></tr>
+     *  <tr><td>ResultSet</td><td>List of Map <br>(containing only loaded rows if the ResultSet has a partial cache on the client)</td></tr>
+     *  </table>
+     *  
+     * <br><br> Note that the order of keys/values in the Maps created on the server is not guaranteed because
+     * JavaScript Object literals do not guarantee order. <p> Server->client conversion follows this table as well, with
      * some extras.  See the toJS() method on JSTranslater in the server documentation for a description of additional
      * behaviors. <P> When <b>not</b> communicating with the Smart GWT server, <code>rpcRequest.data</code> becomes simple HTTP
      * parameters or an HTTP request body - see {@link com.smartgwt.client.rpc.RPCRequest#getUseSimpleHttp useSimpleHttp} for
      * details.
-     *
-     * @param data data Default value is null
-     * @see com.smartgwt.client.rpc.RPCResponse#getData
+     * 
+     * @see com.smartgwt.client.rpc.RPCResponse#getDataAsMap()
+     * @see com.smartgwt.client.rpc.RPCResponse#getDataAsObject()
+     * @see com.smartgwt.client.rpc.RPCResponse#getDataAsString()
      */
-    public void setData(String data) {
-        setAttribute("data", data);
-    }
-
-    /**
-     * This attribute specifies the payload of the RPCRequest.     When using the {@link
-     * com.smartgwt.client.rpc.RPCRequest#getIscServer Smart GWT server}, objects sent to the server as
-     * <code>request.data</code> will be available on the server-side <code>RPCRequest</code> object as Java Objects. This is
-     * achieved by serializing the client side data in a JSON type format and generating Java Objects on the server from this
-     * serialized data. <P> If the client side <code>request.data</code> is set to a Java object in your SmartGWT code it will
-     * be serialized as JSON as follows:<br> - Numeric client side values (int, Integer, etc) will be serialized as JavaScript
-     * numbers.<br> - String values will be serialized as JavaScript strings.<br> - Date values will be serialized as
-     * JavaScript dates.<br> - Maps or Record objects will be serialized as JavaScript Objects.<br> - Arrays or Lists will
-     * become JavaScript arrays<br> Serialization of Maps and Arrays is recursive - each entry in an Array, or attribute on a
-     * Map will also be serialized according to the above rules.<br> Note that you can also set <code>request.data</code>
-     * directly to a JavaScriptObject, and use the <code>JSOHelper</code> class or <code><i>SomeObject.</i>getJSObj()</code> to
-     * perform your own data conversions on the client. The serialized JavaScript will then be converted back to Java on the
-     * server according to the following rules.  <P> Here are the  mapping of JavaScript types to their corresponding server
-     * object types:<br><br> <table class='normal' border='1'>   <tr><td><b>JS Type</b></td>     <td><b>Java Type</b></td></tr>
-     * <tr><td>Object: {}</td>         <td>Map</td></tr>   <tr><td>Array: []</td>          <td>List</td></tr>  
-     * <tr><td>String</td>             <td>String</td></tr>   <tr><td>Number</td>             <td>Long|Double</td></tr>  
-     * <tr><td>Boolean</td>            <td>Boolean</td></tr>   <tr><td>Date</td>               <td>java.util.Date</td></tr> 
-     * </table> <br><br> Note that the order of keys/values in the Maps created on the server is not guaranteed because
-     * JavaScript Object literals do not guarantee order. <p> Server->client conversion follows the this table as well, with
-     * some extras.  See the toJS() method on JSTranslater in the server documentation for a description of additional
-     * behaviors. <P> When <b>not</b> communicating with the Smart GWT server, <code>rpcRequest.data</code> becomes simple HTTP
-     * parameters or an HTTP request body - see {@link com.smartgwt.client.rpc.RPCRequest#getUseSimpleHttp useSimpleHttp} for
-     * details.
-     *
-     * @param data data Default value is null
-     * @see com.smartgwt.client.rpc.RPCResponse#getData
-     */
-    public void setData(Record data) {
-        setAttribute("data", data.getJsObj());
-    }
-
-    /**
-     * This attribute specifies the payload of the RPCRequest.     When using the {@link
-     * com.smartgwt.client.rpc.RPCRequest#getIscServer Smart GWT server}, objects sent to the server as
-     * <code>request.data</code> will be available on the server-side <code>RPCRequest</code> object as Java Objects. This is
-     * achieved by serializing the client side data in a JSON type format and generating Java Objects on the server from this
-     * serialized data. <P> If the client side <code>request.data</code> is set to a Java object in your SmartGWT code it will
-     * be serialized as JSON as follows:<br> - Numeric client side values (int, Integer, etc) will be serialized as JavaScript
-     * numbers.<br> - String values will be serialized as JavaScript strings.<br> - Date values will be serialized as
-     * JavaScript dates.<br> - Maps or Record objects will be serialized as JavaScript Objects.<br> - Arrays or Lists will
-     * become JavaScript arrays<br> Serialization of Maps and Arrays is recursive - each entry in an Array, or attribute on a
-     * Map will also be serialized according to the above rules.<br> Note that you can also set <code>request.data</code>
-     * directly to a JavaScriptObject, and use the <code>JSOHelper</code> class or <code><i>SomeObject.</i>getJSObj()</code> to
-     * perform your own data conversions on the client. The serialized JavaScript will then be converted back to Java on the
-     * server according to the following rules.  <P> Here are the  mapping of JavaScript types to their corresponding server
-     * object types:<br><br> <table class='normal' border='1'>   <tr><td><b>JS Type</b></td>     <td><b>Java Type</b></td></tr>
-     * <tr><td>Object: {}</td>         <td>Map</td></tr>   <tr><td>Array: []</td>          <td>List</td></tr>  
-     * <tr><td>String</td>             <td>String</td></tr>   <tr><td>Number</td>             <td>Long|Double</td></tr>  
-     * <tr><td>Boolean</td>            <td>Boolean</td></tr>   <tr><td>Date</td>               <td>java.util.Date</td></tr> 
-     * </table> <br><br> Note that the order of keys/values in the Maps created on the server is not guaranteed because
-     * JavaScript Object literals do not guarantee order. <p> Server->client conversion follows the this table as well, with
-     * some extras.  See the toJS() method on JSTranslater in the server documentation for a description of additional
-     * behaviors. <P> When <b>not</b> communicating with the Smart GWT server, <code>rpcRequest.data</code> becomes simple HTTP
-     * parameters or an HTTP request body - see {@link com.smartgwt.client.rpc.RPCRequest#getUseSimpleHttp useSimpleHttp} for
-     * details.
-     *
-     * @param data data Default value is null
-     * @see com.smartgwt.client.rpc.RPCResponse#getData
-     */
-    public void setData(Map data) {
-        setAttribute("data", data);
-    }
-
     public JavaScriptObject getData() {
         return getAttributeAsJavaScriptObject("data");
     }
@@ -944,70 +1239,6 @@ public class RPCRequest extends DataClass {
         return getAttributeAsString("data");
     }
 
-    /**
-     * Values to be sent as simple HTTP params, as a JavaScript Object where each property/value pair will become an
-     * HTTP parameter name and value.  These parameters are then accessible on the server, for example, using
-     * servletRequest.getParameter(paramName) in Java Servlets.   <P> This API is primarily used in combination with
-     * {@link com.smartgwt.client.rpc.RPCRequest#getUseSimpleHttp useSimpleHttp}. <P> When contacting the Smart GWT
-     * server, setting <code>params</code> is an opportunity to send additional data aside from the main {@link
-     * com.smartgwt.client.rpc.RPCRequest#getData data} payload; this is useful for  adding data to DataSource requests
-     * which will be kept separate from the automatically sent DataSource data. <P> Note that in contrast to {@link
-     * com.smartgwt.client.rpc.RPCRequest#getData data} object, the data in <code>rpcRequest.params</code> is not
-     * serialized/deserialized by the Smart GWT server, and all values arrive on the server as String type (like HTTP
-     * parameters always do). <p> The params value can also be a componentID or component instance that provides a
-     * method getValues() that returns an Object literal.  Smart GWT components {@link
-     * com.smartgwt.client.widgets.form.DynamicForm}, {@link com.smartgwt.client.widgets.form.ValuesManager} are two
-     * such classes.  Lastly, you may specify the ID of a native form element (retreivable via getElementById()) and the
-     * params will be populated from there.  If there is an error resolving your params directive, it will be logged to
-     * the Developer Console. <p> Note: The params are submitted once per http transaction.  If you are using  {@link
-     * com.smartgwt.client.rpc.RPCManager#startQueue} to bundle multiple RPCRequests or DSRequests into a single HTTP
-     * turnaround, the params from the various RPCRequests will be merged, with the later-queued transactions winning on
-     * parameter name collisions.  A warning will be logged in the Developer Console if multiple RPCRequests specified
-     * params.
-     *
-     * @param params params Default value is null
-     */
-    public void setParams(Map params) {
-        setAttribute("params", params);
-    }
-
-    /**
-     * HTTP headers to send, as a mapping Header name -> Header value, eg
-     * { "Content-Type" : "text/xml" }
-     * <p>
-     * Valid with the xmlHttpRequest transport only.
-     *
-     * @param httpHeaders the http headers
-     */
-    public void setHttpHeaders(Map httpHeaders) {
-        setAttribute("httpHeaders", httpHeaders);
-    }
-
-    /**
-     * HTTP headers to send, as a mapping Header name -> Header value, eg
-     * { "Content-Type" : "text/xml" }
-     * <p>
-     * Valid with the xmlHttpRequest transport only.
-     *
-     * @return the http headers
-     */
-    public Map getHttpHeaders() {
-        return  getAttributeAsMap("httpHeaders");
-    }
-
-    /**
-     * If you've set {@link com.smartgwt.client.rpc.RPCRequest#setEvalResult(Boolean)}  : true, then the property values of this object will
-     * be available in the evaluation scope of the result under the variable names specified by the property names.
-     * <p>
-     * So e.g. if evalVars is: {foo: "bar"} then a reference to the variable foo in the result will evaluate to "bar".
-     *
-     * @param evalVars the eval vars. Defaults to null
-     */
-    public void setEvalVars(Map evalVars) {
-        setAttribute("evalVars", evalVars);
-    }
-
 }
-
 
 

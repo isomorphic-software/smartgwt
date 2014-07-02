@@ -29,7 +29,7 @@ public class GridComponentsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridComponentsSample panel = new GridComponentsSample();
             id = panel.getID();
             return panel;

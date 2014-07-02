@@ -13,15 +13,17 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.grid.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface DrawAreaChangedHandler extends EventHandler {
     /**
-     * Notification method that fires when the drawArea changes due to scrolling.  Receives   the previous drawArea
-     * co-ordinates as parameters.  Call {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawArea ListGrid.getDrawArea} to 
-     * get the new drawArea co-ordinates. <P> Note that if this grid is showing any {@link
+     * Notification method that fires when the drawArea changes due to scrolling.  Receives the previous drawArea co-ordinates
+     * as parameters.  Call {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawArea ListGrid.getDrawArea} to get the new
+     * drawArea co-ordinates. <P> Note that if this grid is showing any {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getFrozen frozen fields}, they will not be included in the
      * <code>oldStartCol</code>, <code>oldEndCol</code> range reported by this method. Frozen fields are assumed never to be
      * scrolled out of view.

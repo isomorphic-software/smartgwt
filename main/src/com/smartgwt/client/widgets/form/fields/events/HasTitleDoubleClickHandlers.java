@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.form.fields.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasTitleDoubleClickHandlers extends HasHandlers {
     /**
      * Notification method fired when the user double-clicks the title for this item
@@ -29,3 +29,4 @@ public interface HasTitleDoubleClickHandlers extends HasHandlers {
      */
     HandlerRegistration addTitleDoubleClickHandler(TitleDoubleClickHandler handler);
 }
+

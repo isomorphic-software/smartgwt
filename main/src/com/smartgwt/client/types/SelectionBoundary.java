@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Boundary type for limiting where contiguous selection (via shift+click or drag selection) can be applied across {@link
  * com.smartgwt.client.widgets.cube.Facet#getSelectionBoundary facets} or  {@link
@@ -34,7 +36,6 @@ public enum SelectionBoundary implements ValueEnum {
      * selection boundary applies to both edges.
      */
     BOTH("both");
-
     private String value;
 
     SelectionBoundary(String value) {

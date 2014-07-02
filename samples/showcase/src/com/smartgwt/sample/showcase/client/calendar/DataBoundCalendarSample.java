@@ -21,7 +21,7 @@ public class DataBoundCalendarSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             DataBoundCalendarSample panel = new DataBoundCalendarSample();
             id = panel.getID();
             return panel;

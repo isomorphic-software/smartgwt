@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Is this page being viewed in landscape or portrait orientation? Typically used with mobile devices.
  */
@@ -28,7 +30,6 @@ public enum PageOrientation implements ValueEnum {
      * Portrait orientation: page is taller than it is wide.
      */
     PORTRAIT("portrait");
-
     private String value;
 
     PageOrientation(String value) {

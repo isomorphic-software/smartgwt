@@ -16,7 +16,7 @@ public class XmlXPathSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             XmlXPathSample panel = new XmlXPathSample();
             id = panel.getID();
             return panel;

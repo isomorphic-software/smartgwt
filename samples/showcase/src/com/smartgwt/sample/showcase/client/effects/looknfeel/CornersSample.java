@@ -18,7 +18,7 @@ public class CornersSample extends ShowcasePanel {
 	public static class Factory implements PanelFactory {
 		private String id;
 
-		public Canvas create() {
+		public ShowcasePanel create() {
 			CornersSample panel = new CornersSample();
 			id = panel.getID();
 			return panel;

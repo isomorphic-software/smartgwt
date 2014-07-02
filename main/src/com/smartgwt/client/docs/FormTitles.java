@@ -4,6 +4,7 @@ package com.smartgwt.client.docs;
 /**
  * <h3>Form Titles</h3>
  * Properties that affect form item title placement and styling.
+ * @see com.smartgwt.client.widgets.form.FilterBuilder#setTopOperatorAppearance
  * @see com.smartgwt.client.widgets.form.DynamicForm#setTitleOrientation
  * @see com.smartgwt.client.data.DataSource#getRequiredMessage
  * @see com.smartgwt.client.widgets.form.DynamicForm#getTitleOrientation

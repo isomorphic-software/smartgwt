@@ -18,7 +18,7 @@ public class EdgesSample extends ShowcasePanel {
 	public static class Factory implements PanelFactory {
 		private String id;
 
-		public Canvas create() {
+		public ShowcasePanel create() {
 			EdgesSample panel = new EdgesSample();
 			id = panel.getID();
 			return panel;

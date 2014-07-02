@@ -24,7 +24,7 @@ public class AdaptiveFilterSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             AdaptiveFilterSample panel = new AdaptiveFilterSample();
             id = panel.getID();
             return panel;

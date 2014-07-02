@@ -19,7 +19,7 @@ public class ColumnAlignSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             ColumnAlignSample panel = new ColumnAlignSample();
             id = panel.getID();
             return panel;

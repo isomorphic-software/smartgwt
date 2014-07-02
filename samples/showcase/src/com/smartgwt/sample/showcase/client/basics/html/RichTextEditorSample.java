@@ -17,7 +17,7 @@ public class RichTextEditorSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             RichTextEditorSample panel = new RichTextEditorSample();
             id = panel.getID();
             return panel;

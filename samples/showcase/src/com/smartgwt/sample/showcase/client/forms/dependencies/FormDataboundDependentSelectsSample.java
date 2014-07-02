@@ -21,7 +21,7 @@ public class FormDataboundDependentSelectsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             FormDataboundDependentSelectsSample panel = new FormDataboundDependentSelectsSample();
             id = panel.getID();
             return panel;

@@ -20,7 +20,7 @@ public class GridDataTypesDecimalSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridDataTypesDecimalSample panel = new GridDataTypesDecimalSample();
             id = panel.getID();
             return panel;

@@ -13,7 +13,7 @@ public class DragEffectsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             DragEffectsSample panel = new DragEffectsSample();
             id = panel.getID();
             return panel;

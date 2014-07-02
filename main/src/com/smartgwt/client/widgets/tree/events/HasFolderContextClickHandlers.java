@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.tree.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasFolderContextClickHandlers extends HasHandlers {
     /**
      * This method is called when a context click occurs on a folder record.
@@ -29,3 +29,4 @@ public interface HasFolderContextClickHandlers extends HasHandlers {
      */
     HandlerRegistration addFolderContextClickHandler(FolderContextClickHandler handler);
 }
+

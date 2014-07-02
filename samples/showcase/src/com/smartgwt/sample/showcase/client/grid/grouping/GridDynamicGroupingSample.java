@@ -22,7 +22,7 @@ public class GridDynamicGroupingSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridDynamicGroupingSample panel = new GridDynamicGroupingSample();
             id = panel.getID();
             return panel;

@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * What to do if the user hits escape while editing a cell.
  */
@@ -25,10 +27,14 @@ public enum EscapeKeyEditAction implements ValueEnum {
      */
     CANCEL("cancel"),
     /**
-     * end editing
+     * end editing (will save edit values if {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits}
+     * is true).
      */
-    DONE("done");
-
+    DONE("done"),
+    /**
+     * exit the editor (edit values will be left intact but not saved).
+     */
+    EXIT("exit");
     private String value;
 
     EscapeKeyEditAction(String value) {

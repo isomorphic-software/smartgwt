@@ -20,7 +20,7 @@ public class AddRemoveSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             AddRemoveSample panel = new AddRemoveSample();
             id = panel.getID();
             return panel;

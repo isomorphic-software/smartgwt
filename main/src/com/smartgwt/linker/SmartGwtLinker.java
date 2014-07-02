@@ -45,18 +45,19 @@ public class SmartGwtLinker extends AbstractLinker {
         Set<EmittedArtifact> emittedArtifacts = artifacts.find(EmittedArtifact.class);
         for (EmittedArtifact emittedArtifact : emittedArtifacts) {
             String partialPath = emittedArtifact.getPartialPath();
-
             //if encounter ISC_Core.js or Page.js (when inheriting SmartGwtDebug.gwt.xml), inject the appropriate
             //isomorphicDir var so that users don't need to explicitly specify this in their host html file.
             if (partialPath.endsWith("/ISC_Core.js") || partialPath.endsWith("/Page.js")) {
-
                 String contents = getContents(emittedArtifact, logger);
-                int insertIdx = contents.indexOf("*/") + 2;
-                StringBuffer sb = new StringBuffer(contents);
-                sb.insert(insertIdx, "\nif(typeof isomorphicDir == 'undefined'){isomorphicDir = '" + context.getModuleName() + "/sc/';}\n");
+                int isoDirInd = contents.indexOf("/*#ISO_DIR#*/");
+                if (isoDirInd >= 0) {
+                    StringBuffer sb = new StringBuffer(contents);
+                    sb.replace(isoDirInd, isoDirInd + "/*#ISO_DIR#*/".length(), 
+                        "if(typeof isomorphicDir == 'undefined'){isomorphicDir = '" + context.getModuleName() + "/sc/';}\n");
 
-                toReturn.remove(emittedArtifact);
-                toReturn.add(emitString(logger, sb.toString(), partialPath));
+                    toReturn.remove(emittedArtifact);
+                    toReturn.add(emitString(logger, sb.toString(), partialPath));
+                }
             }
         }
         return toReturn;

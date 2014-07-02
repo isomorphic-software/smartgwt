@@ -7,7 +7,14 @@ import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.util.EventHandler;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Img;
-import com.smartgwt.client.widgets.events.*;
+import com.smartgwt.client.widgets.events.DropEvent;
+import com.smartgwt.client.widgets.events.DropHandler;
+import com.smartgwt.client.widgets.events.DropOutEvent;
+import com.smartgwt.client.widgets.events.DropOutHandler;
+import com.smartgwt.client.widgets.events.DropOverEvent;
+import com.smartgwt.client.widgets.events.DropOverHandler;
+import com.smartgwt.client.widgets.events.ShowContextMenuEvent;
+import com.smartgwt.client.widgets.events.ShowContextMenuHandler;
 import com.smartgwt.client.widgets.layout.HStack;
 import com.smartgwt.client.widgets.layout.VStack;
 import com.smartgwt.sample.showcase.client.PanelFactory;
@@ -21,7 +28,7 @@ public class DragCreateSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             DragCreateSample panel = new DragCreateSample();
             id = panel.getID();
             return panel;
