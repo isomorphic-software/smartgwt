@@ -63,7 +63,7 @@ public class DragCopySample extends ShowcasePanel {
         countryGrid2.setLeft(350);
         countryGrid2.setShowAllRecords(true);
         countryGrid2.setEmptyMessage("Drop Rows Here");
-        countryGrid2.setCanReorderFields(true);
+        countryGrid2.setCanReorderRecords(true);
         countryGrid2.setCanAcceptDroppedRecords(true);
 
         ListGridField countryCodeField2 = new ListGridField("countryCode", "Flag", 50);
