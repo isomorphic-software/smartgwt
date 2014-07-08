@@ -179,6 +179,7 @@ import com.smartgwt.sample.showcase.client.mobile.MobileMenusSample;
 import com.smartgwt.sample.showcase.client.mobile.MobileSelectListSample;
 import com.smartgwt.sample.showcase.client.mobile.MobileComboBoxSample;
 import com.smartgwt.sample.showcase.client.mobile.MobileWindowsDialogsSample;
+import com.smartgwt.sample.showcase.client.mobile.MobileCalendarSample;
 import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingDataSourceFieldsSample;
 import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingInlineDataSample;
 import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingJSONDataSourceSample;
@@ -410,6 +411,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Select List", "selectlist-ms", "adaptive-ui-ms", null, new MobileSelectListSample.Factory(), true, idSuffix, "5.0"),
                     new ExplorerTreeNode("Menus", "menus-ms", "adaptive-ui-ms", null, new MobileMenusSample.Factory(), true, idSuffix, "5.0"),
                     new ExplorerTreeNode("Windows &amp; Dialogs", "windows-dialogs-ms", "adaptive-ui-ms", null, new MobileWindowsDialogsSample.Factory(), true, idSuffix, "5.0"),
+                    new ExplorerTreeNode("Calendar", "mobile-calendar-ms", "adaptive-ui-ms", null, new MobileCalendarSample.Factory(), true, idSuffix, "5.0"),
                     new ExplorerTreeNode("Spinner Control", "spinner-control-ms", "adaptive-ui-ms", null, new SpinnerControlSample.Factory(), true, idSuffix, "5.0"),
                     new ExplorerTreeNode("Navigation Bar Auto-fit", "navigation-bar-ms", "mobile", "silk/phone.png", new NavigationBarSample.Factory(), true, idSuffix, "5.0"),*/
 
