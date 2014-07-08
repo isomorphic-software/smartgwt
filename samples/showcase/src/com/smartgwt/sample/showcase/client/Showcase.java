@@ -89,6 +89,12 @@ public class Showcase implements EntryPoint, HistoryListener {
                 $wnd.isc.Browser.isMobileSafari && $wnd.isc.Browser.iOSMinorVersion >= 7.1);
     }-*/;
 
+    private static native boolean _configureDataSources() /*-{
+        if ($wnd.isc.DataSource) $wnd.isc.DataSource.addProperties({
+            firstGeneratedSequenceValue: 1
+        });
+    }-*/;
+
     private final SCConstants scConstants = (SCConstants)GWT.create(SCConstants.class);
     private boolean isc_websiteMode = scConstants.websiteMode();
 
@@ -141,6 +147,8 @@ public class Showcase implements EntryPoint, HistoryListener {
             minimalUISpacer.setAriaState("hidden", "true");
             minimalUISpacer.draw();
         }
+
+        _configureDataSources();
 
         final String initToken = History.getToken();
         // If the request contains param "websiteMode", override the configured value
