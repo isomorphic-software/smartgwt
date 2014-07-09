@@ -521,11 +521,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dataBoundComponent_unknownErrorMessage();
 
   /**
-   * Translated "Edit Hilites".
+   * Translated "Edit Highlights".
    * 
-   * @return translated "Edit Hilites"
+   * @return translated "Edit Highlights"
    */
-  @DefaultMessage("Edit Hilites")
+  @DefaultMessage("Edit Highlights")
   @Key("dataBoundComponent_editHilitesDialogTitle")
   String dataBoundComponent_editHilitesDialogTitle();
 
@@ -2600,11 +2600,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String hiliteEditor_availableFieldsColumnTitle();
 
   /**
-   * Translated "Advanced Hilite Editor".
+   * Translated "Advanced Highlight Editor".
    * 
-   * @return translated "Advanced Hilite Editor"
+   * @return translated "Advanced Highlight Editor"
    */
-  @DefaultMessage("Advanced Hilite Editor")
+  @DefaultMessage("Advanced Highlight Editor")
   @Key("advancedHiliteEditor_title")
   String advancedHiliteEditor_title();
 
