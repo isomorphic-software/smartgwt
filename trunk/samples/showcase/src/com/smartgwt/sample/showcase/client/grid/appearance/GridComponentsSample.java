@@ -86,15 +86,15 @@ public class GridComponentsSample extends ShowcasePanel {
         
         gridEditControls.setMembers(totalsLabel, spacer, editButton, removeButton);
         
+        ListGridField countryCode = new ListGridField("countryCode");
         ListGridField countryName = new ListGridField("countryName");
         ListGridField capital = new ListGridField("capital");
         ListGridField continent = new ListGridField("continent");
-        ListGridField independence = new ListGridField("independence");
 
         countryGrid = new ListGrid();
-        countryGrid.setFields(new ListGridField[] { countryName, capital, continent, independence });
+        countryGrid.setFields(new ListGridField[] { countryCode, countryName, capital, continent });
         countryGrid.setWidth(500);
-        countryGrid.setHeight100();
+        countryGrid.setHeight(425);
         countryGrid.setDataSource(CountryXmlDS.getInstance());
         countryGrid.setAutoFetchData(true);
         countryGrid.setShowFilterEditor(true);

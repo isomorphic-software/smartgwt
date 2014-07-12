@@ -2,6 +2,7 @@ package com.smartgwt.sample.showcase.client.grid.appearance;
 
 import java.util.Date;
 
+import com.smartgwt.client.util.NumberUtil;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.Canvas;
@@ -77,7 +78,7 @@ public class FormatValuesSample extends ShowcasePanel {
         areaField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
                 if(value == null) return null;
-                return value + "km&sup2";
+                return NumberUtil.format((Integer)value, ",0") + " km&sup2";
             }
         });
 
