@@ -271,6 +271,7 @@ import com.smartgwt.sample.showcase.client.gwtintegration.GwtShowcaseSample;
 import com.smartgwt.sample.showcase.client.layout.CenterAlignSample;
 import com.smartgwt.sample.showcase.client.layout.NestingSample;
 import com.smartgwt.sample.showcase.client.layout.UserSizingSample;
+import com.smartgwt.sample.showcase.client.layout.SplitPaneSample;
 import com.smartgwt.sample.showcase.client.menu.MenuAppearanceSample;
 import com.smartgwt.sample.showcase.client.menu.MenuCustomColumnsSample;
 import com.smartgwt.sample.showcase.client.menu.MenuSubmenusSample;
@@ -732,6 +733,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Tree", "form-picktree-item", "form-category", null, new PickTreeSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Layout", "layout-category", "root", "widgets/container.png", null, true, idSuffix),
+                    new ExplorerTreeNode("SplitPane", "layout-splitpane", "layout-category", null, new SplitPaneSample.Factory(), false, idSuffix, "5.1"),              
                     new ExplorerTreeNode("Stack", "layout-stack", "layout-category", null, new StackSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Layout", "layout-layout", "layout-category", null, new LayoutSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Nesting", "layout-nesting", "layout-category", null, new NestingSample.Factory(), true, idSuffix),
