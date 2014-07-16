@@ -1,13 +1,21 @@
 package com.smartgwt.sample.showcase.client.grid.expando;
 
+import com.smartgwt.client.core.Rectangle;
 import com.smartgwt.client.data.DataSource;
+import com.smartgwt.client.util.Page;
+import com.smartgwt.client.util.Browser;
 import com.smartgwt.client.types.Alignment;
+import com.smartgwt.client.widgets.AnimationCallback;
 import com.smartgwt.client.types.ListGridEditEvent;
 import com.smartgwt.client.types.RowEndEditAction;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
+import com.smartgwt.client.widgets.Label;
+import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
+import com.smartgwt.client.widgets.events.CloseClickEvent;
+import com.smartgwt.client.widgets.events.CloseClickHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.layout.HLayout;
@@ -16,6 +24,7 @@ import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
 import com.smartgwt.sample.showcase.client.data.SupplyCategoryXmlDS;
+import com.smartgwt.sample.showcase.client.SourceEntity;
 
 public class GridRowExpansionRelatedRecordsSample extends ShowcasePanel {
 
@@ -43,15 +52,63 @@ public class GridRowExpansionRelatedRecordsSample extends ShowcasePanel {
 
     public Canvas getViewPanel() {
 
-        DataSource dataSource = SupplyCategoryXmlDS.getInstance();
+        if (Browser.getIsHandset()) {
+            VLayout layout = new VLayout(15);
 
-        ListGrid listGrid = new ListGrid() {
-            public DataSource getRelatedDataSource(ListGridRecord record) {
-                return ItemSupplyXmlDS.getInstance();
-            }
+            layout.addMember(new Label("This is a full-screen example - click the \"Show Example\" button to show fullscreen."));
 
-            @Override
-            protected Canvas getExpansionComponent(final ListGridRecord record) {
+            final IButton button = new IButton("Show Example");
+            button.setWidth(140);
+            button.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    Rectangle rect = button.getPageRect();
+                    final Canvas animateOutline = new Canvas();
+                    animateOutline.setBorder("2px solid black");
+                    animateOutline.setTop(rect.getTop());
+                    animateOutline.setLeft(rect.getLeft());
+                    animateOutline.setWidth(rect.getLeft());
+                    animateOutline.setHeight(rect.getHeight());
+
+                    animateOutline.show();
+                    animateOutline.animateRect(0, 0, Page.getWidth(), Page.getHeight(), new AnimationCallback() {
+                        public void execute(boolean earlyFinish) {
+                            animateOutline.hide();
+                            final FullScreenSample appWindow = new FullScreenSample();
+                            appWindow.addCloseClickHandler(new CloseClickHandler() {
+                                public void onCloseClick(CloseClickEvent event) {
+                                    animateOutline.setRect(0, 0, Page.getWidth(), Page.getHeight());
+                                    animateOutline.show();
+                                    appWindow.destroy();
+                                    Rectangle targetRect = button.getPageRect();
+                                    animateOutline.animateRect(targetRect.getLeft(), targetRect.getTop(), targetRect.getWidth(),
+                                            targetRect.getHeight(), new AnimationCallback() {
+                                                public void execute(boolean earlyFinish) {
+                                                    animateOutline.hide();
+                                                }
+                                            }, 500);
+    
+                                }
+                            });
+                            appWindow.show();
+                        }
+                    }, 500
+                    );
+                }
+            });
+
+            layout.addMember(button);
+
+            return layout;  
+        } else {
+            DataSource dataSource = SupplyCategoryXmlDS.getInstance();
+
+            ListGrid listGrid = new ListGrid() {
+                public DataSource getRelatedDataSource(ListGridRecord record) {
+                    return ItemSupplyXmlDS.getInstance();
+                }
+
+                @Override
+                protected Canvas getExpansionComponent(final ListGridRecord record) {
 
                 final ListGrid grid = this;
 
@@ -59,7 +116,6 @@ public class GridRowExpansionRelatedRecordsSample extends ShowcasePanel {
                 layout.setPadding(5);
 
                 final ListGrid countryGrid = new ListGrid();
-                countryGrid.setWidth(500);
                 countryGrid.setHeight(224);
                 countryGrid.setCellHeight(22);
                 countryGrid.setDataSource(getRelatedDataSource(record));
@@ -104,18 +160,47 @@ public class GridRowExpansionRelatedRecordsSample extends ShowcasePanel {
                 layout.addMember(hLayout);
 
                 return layout;
-            }
-        };
+                }
+            };
 
-        listGrid.setWidth(600);
-        listGrid.setHeight(500);
-        listGrid.setDrawAheadRatio(4);
-        listGrid.setCanExpandRecords(true);
+            listGrid.setWidth100();
+            listGrid.setHeight(500);
+            listGrid.setDrawAheadRatio(4);
+            listGrid.setCanExpandRecords(true);
 
-        listGrid.setAutoFetchData(true);
-        listGrid.setDataSource(dataSource);
+            listGrid.setAutoFetchData(true);
+            listGrid.setDataSource(dataSource);
+    
+            return listGrid;
+        }
+    }
 
-        return listGrid;
+    class FullScreenSample extends Window {
+
+        FullScreenSample() {
+            setTitle("Nested Grid");
+            setWidth100();
+            setHeight100();
+            setShowMinimizeButton(false);
+            setShowCloseButton(true);
+            setCanDragReposition(false);
+            setCanDragResize(false);
+            setShowShadow(false);
+            addItem(new GridRowExpansionRelatedRecordsPanel());
+        }
+    }
+
+    @Override
+    public SourceEntity[] getSourceUrls() {
+        if (!Browser.getIsHandset()) {
+            return new SourceEntity[] {
+                new SourceEntity("Source", "source/grid/expando/GridRowExpansionRelatedRecordsSample.java.html")
+            };
+        } else {
+            return new SourceEntity[] {
+                new SourceEntity("Source", "source/grid/expando/GridRowExpansionRelatedRecordsPanel.java.html")
+            };
+        }
     }
 
     public String getIntro() {
