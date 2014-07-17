@@ -89,7 +89,7 @@ public class Showcase implements EntryPoint, HistoryListener {
                 $wnd.isc.Browser.isMobileSafari && $wnd.isc.Browser.iOSMinorVersion >= 7.1);
     }-*/;
 
-    private static native boolean _configureDataSources() /*-{
+    private static native void _configureDataSources() /*-{
         if ($wnd.isc.DataSource) $wnd.isc.DataSource.addProperties({
             firstGeneratedSequenceValue: 1
         });
