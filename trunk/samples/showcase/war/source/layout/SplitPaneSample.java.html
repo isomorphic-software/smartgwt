@@ -52,8 +52,6 @@ import com.smartgwt.client.widgets.grid.events.RecordClickEvent;
 import com.smartgwt.client.widgets.grid.events.RecordClickHandler;  
 import com.smartgwt.client.widgets.layout.SplitPane;  
 import com.smartgwt.client.widgets.layout.VLayout;  
-import com.smartgwt.client.widgets.tab.Tab;  
-import com.smartgwt.client.widgets.tab.TabSet;  
 import com.smartgwt.client.widgets.tree.TreeGrid;  
 import com.smartgwt.client.widgets.tree.events.NodeClickEvent;  
 import com.smartgwt.client.widgets.tree.events.NodeClickHandler;  
@@ -63,7 +61,7 @@ import com.smartgwt.sample.showcase.client.data.SupplyCategoryXmlDS;
   
 import com.google.gwt.core.client.EntryPoint;  
   
-public class SplitPaneSample extends TabSet implements EntryPoint {  
+public class SplitPaneSample extends VLayout implements EntryPoint {  
   
     public Canvas createSplitPane() {  
         final SplitPane splitPane = new SplitPane();  
@@ -113,20 +111,14 @@ public class SplitPaneSample extends TabSet implements EntryPoint {
         splitPane.setDetailPane(detailPane);  
         splitPane.setNavigationPane(navigationPane);  
         splitPane.setListPane(listPane);  
-  
-        VLayout container = new VLayout();  
-        container.setLayoutMargin(10);  
-        container.setMembersMargin(2);  
-        container.setMembers(splitPane);  
-        return container;  
+
+        return splitPane;  
     }  
   
     public void onModuleLoad() {  
         setWidth100();
         setHeight100();
-        Tab tab = new Tab(Browser.getIsDesktop()?"desktop":Browser.getIsTablet()?"tablet":"handset");
-        tab.setPane(createSplitPane());
-        setTabs(tab);
+        addMember(createSplitPane());
         draw();  
     }  
   
