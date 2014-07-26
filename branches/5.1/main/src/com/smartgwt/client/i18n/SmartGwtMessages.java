@@ -38,7 +38,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    * 
    * @return translated "The following columns in your imported data were ignored because they did not match any of the expected column names: $discardedColumns"
    */
-  @DefaultMessage("Records added")
+  @DefaultMessage("The following columns in your imported data were ignored because they did not match any of the expected column names: $discardedColumns")
   @Key("batchUplaoder_discardedColumnsMessage")
   String batchUplaoder_discardedColumnsMessage();
 
