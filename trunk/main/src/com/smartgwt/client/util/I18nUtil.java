@@ -770,6 +770,7 @@ public class I18nUtil {
             $wnd.isc.ComboBoxItem.addProperties({pickerSearchFieldHint: messages.@com.smartgwt.client.i18n.SmartGwtMessages::comboBoxItem_pickerSearchFieldHint()()});
             $wnd.isc.ComboBoxItem.addProperties({pickerExitButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::comboBoxItem_pickerExitButtonTitle()()});
             $wnd.isc.ComboBoxItem.addProperties({pickerSaveButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::comboBoxItem_pickerSaveButtonTitle()()});
+        }
         if($wnd.isc.PickListMenu) {
             $wnd.isc.PickListMenu.addProperties({emptyMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::pickListMenu_emptyMessage()()});
         }
