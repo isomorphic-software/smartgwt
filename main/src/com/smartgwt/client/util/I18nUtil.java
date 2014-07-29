@@ -222,6 +222,13 @@ public class I18nUtil {
             $wnd.isc.Operators.addClassProperties({iNotContainsFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_iNotContainsFieldTitle()()});
             $wnd.isc.Operators.addClassProperties({iNotStartsWithFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_iNotStartsWithFieldTitle()()});
             $wnd.isc.Operators.addClassProperties({iNotEndsWithFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_iNotEndsWithFieldTitle()()});
+
+            $wnd.isc.Operators.addClassProperties({containsPatternTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_containsPatternTitle()()});
+            $wnd.isc.Operators.addClassProperties({iContainsPatternTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_iContainsPatternTitle()()});
+            $wnd.isc.Operators.addClassProperties({startsWithPatternTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_startsWithPatternTitle()()});
+            $wnd.isc.Operators.addClassProperties({iStartsWithPatternTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_iStartsWithPatternTitle()()});
+            $wnd.isc.Operators.addClassProperties({endsWithPatternTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_endsWithPatternTitle()()});
+            $wnd.isc.Operators.addClassProperties({iEndsWithPatternTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_iEndsWithPatternTitle()()});
         }
 
         if($wnd.isc.GroupingMessages) {
@@ -460,6 +467,7 @@ public class I18nUtil {
 
         $wnd.isc.Canvas.addProperties({offlineSaveMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_offlineSaveMessage()()});
         $wnd.isc.Canvas.addProperties({emptyExportMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_emptyExportMessage()()});
+        $wnd.isc.Canvas.addProperties({editHilitesText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_editHilitesText()()});
 
         if($wnd.isc.DataSource) {
             $wnd.isc.DataSource.addClassProperties({offlineMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataSource_offlineMessage()()});
@@ -478,8 +486,13 @@ public class I18nUtil {
             $wnd.isc.FacetChart.addClassProperties({polynomialDegreeRegressionLinesContextMenuItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::facetChart_polynomialDegreeRegressionLinesContextMenuItemTitle()()});
             $wnd.isc.FacetChart.addClassProperties({polynomialDegreePrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::facetChart_polynomialDegreePrompt()()});
             $wnd.isc.FacetChart.addClassProperties({invalidPolynomialDegreeMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::facetChart_invalidPolynomialDegreeMessage()()});
+            $wnd.isc.FacetChart.addClassProperties({proportionalContextMenuItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::facetChart_proportionalContextMenuItemTitle()()});
         }
         
+        if($wnd.isc.TileGrid) {
+            $wnd.isc.TileGrid.addProperties({emptyMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::tileGrid_emptyMessage()()});
+        }
+
         if($wnd.isc.TreeGrid) {
             $wnd.isc.TreeGrid.addProperties({parentAlreadyContainsChildMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::treeGrid_parentAlreadyContainsChildMessage()()});
             $wnd.isc.TreeGrid.addProperties({cantDragIntoSelfMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::treeGrid_cantDragIntoSelfMessage()()});
@@ -573,6 +586,10 @@ public class I18nUtil {
             $wnd.isc.Calendar.addProperties({weekPrefix: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_weekPrefix()()});
             $wnd.isc.Calendar.addProperties({monthButtonTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_monthButtonTitle()()).replace('$monthName', '${monthName}')});
             $wnd.isc.Calendar.addProperties({backButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_backButtonTitle()()});
+            $wnd.isc.Calendar.addProperties({eventSublaneFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_eventSublaneFieldTitle()()});
+            $wnd.isc.Calendar.addProperties({eventDurationFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_eventDurationFieldTitle()()});
+            $wnd.isc.Calendar.addProperties({eventDurationUnitFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_eventDurationUnitFieldTitle()()});
+
         }
         
         if($wnd.isc.FilterBuilder) {
@@ -602,6 +619,7 @@ public class I18nUtil {
             $wnd.isc.FilterClause.addProperties({removeButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterClause_removeButtonPrompt()()});
             $wnd.isc.FilterClause.addProperties({fieldPickerTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterClause_fieldPickerTitle()()});
             $wnd.isc.FilterClause.addProperties({valueItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterClause_valueItemTitle()()});
+            $wnd.isc.FilterClause.addProperties({operatorPickerTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterClause_operatorPickerTitle()()});
         }
 
         if($wnd.isc.FieldPickerField) {
@@ -626,6 +644,8 @@ public class I18nUtil {
             $wnd.isc.FieldPicker.addProperties({availableTitleTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPicker_availableTitleTitle()()});
             $wnd.isc.FieldPicker.addProperties({currentTitleTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPicker_currentTitleTitle()()});
             $wnd.isc.FieldPicker.addProperties({sampleValueTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPicker_sampleValueTitle()()});
+            $wnd.isc.FieldPicker.addProperties({removeItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPicker_removeItemTitle()()});
+            $wnd.isc.FieldPicker.addProperties({emptyTitleHint: messages.@com.smartgwt.client.i18n.SmartGwtMessages::fieldPicker_emptyTitleHint()()});
         }
 
         if($wnd.isc.FieldPickerWindow) {
@@ -744,9 +764,13 @@ public class I18nUtil {
         }
         if($wnd.isc.SelectItem) {
             $wnd.isc.SelectItem.addProperties({emptyPickListMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::selectItem_emptyPickListMessage()()});
+            $wnd.isc.SelectItem.addProperties({pickerExitButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::selectItem_pickerExitButtonTitle()()});
         }
         if($wnd.isc.ComboBoxItem) {
             $wnd.isc.ComboBoxItem.addProperties({emptyPickListMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::comboBoxItem_emptyPickListMessage()()});
+            $wnd.isc.ComboBoxItem.addProperties({pickerSearchFieldHint: messages.@com.smartgwt.client.i18n.SmartGwtMessages::comboBoxItem_pickerSearchFieldHint()()});
+            $wnd.isc.ComboBoxItem.addProperties({pickerExitButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::comboBoxItem_pickerExitButtonTitle()()});
+            $wnd.isc.ComboBoxItem.addProperties({pickerSaveButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::comboBoxItem_pickerSaveButtonTitle()()});
         }
         if($wnd.isc.PickListMenu) {
             $wnd.isc.PickListMenu.addProperties({emptyMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::pickListMenu_emptyMessage()()});
