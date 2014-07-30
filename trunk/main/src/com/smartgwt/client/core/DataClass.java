@@ -124,36 +124,6 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Set attribute value to an int.
-     * Value will be stored as a JavaScript Number on the underlying data object
-     * @param property
-     * @param value
-     */
-    public void setAttribute(String property, int value) {
-        JSOHelper.setAttribute(jsObj, property, value);
-    }
-
-    /**
-     * Set attribute value to a double.
-     * Value will be stored as a JavaScript Number on the underlying data object
-     * @param property
-     * @param value
-     */
-    public void setAttribute(String property, double value) {
-        JSOHelper.setAttribute(jsObj, property, value);
-    }
-
-    /**
-     * Set attribute value to a long.
-     * Value will be stored as a JavaScript Number on the underlying data object.
-     * @param property
-     * @param value
-     */
-    public void setAttribute(String property, long value) {
-        JSOHelper.setAttribute(jsObj, property, value);
-    }
-
-    /**
      * Returns attribute value as an Integer.
      * Applies to values stored as a JavaScript number on the underlying data object.
      * @param property
@@ -161,15 +131,6 @@ public class DataClass extends JsObject {
      */
     public Integer getAttributeAsInt(String property) {
         return JSOHelper.getAttributeAsInt(jsObj, property);
-    }
-
-    /**
-     * Set attribute value to a boolean.
-     * @param property
-     * @param value
-     */
-    public void setAttribute(String property, boolean value) {
-        JSOHelper.setAttribute(jsObj, property, value);
     }
 
     /**
@@ -210,26 +171,6 @@ public class DataClass extends JsObject {
      */
     public double[] getAttributeAsDoubleArray(String property) {
         return JSOHelper.getAttributeAsDoubleArray(jsObj, property);
-    }
-
-    /**
-     * Set attribute value to an int array.
-     * Value will be stored as a JavaScript Array of Numbers on the underlying data object.
-     * @param property
-     * @param value
-     */
-    public void setAttribute(String property, int[] value) {
-        JSOHelper.setAttribute(jsObj, property, value);
-    }
-
-    /**
-     * Set attribute value to an Integer array.
-     * Value will be stored as a JavaScript Array of Numbers on the underlying data object.
-     * @param property
-     * @param value
-     */
-    public void setAttribute(String property, Integer[] value) {
-        JSOHelper.setAttribute(jsObj, property, value);
     }
 
     /**
@@ -338,27 +279,6 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Set attribute value to a double array.
-     * Value will be stored as a JavaScript Array of Numbers on the underlying data object
-     * 
-     * @param property
-     * @param value
-     */
-    public void setAttribute(String property, double[] value) {
-    	JSOHelper.setAttribute(jsObj, property, value);
-    }
-
-    /**
-     * Set attribute value to a Boolean.
-     * 
-     * @param property
-     * @param value
-     */
-    public void setAttribute(String property, Boolean value) {
-        JSOHelper.setAttribute(jsObj, property, value);
-    }
-
-    /**
      * Set attribute value to a Map.
      * Value will be stored as a JavaScript Object on the underlying data object,
      * with property/value pairs matching the keys/values specified on the Map.
@@ -439,12 +359,31 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Set attribute value to a Double.
+     * Set attribute value to a boolean.
+     * @param property
+     * @param value
+     */
+    public void setAttribute(String property, boolean value) {
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
+
+    /**
+     * Set attribute value to a Boolean.
+     * 
+     * @param property
+     * @param value
+     */
+    public void setAttribute(String property, Boolean value) {
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
+
+    /**
+     * Set attribute value to an int.
      * Value will be stored as a JavaScript Number on the underlying data object
      * @param property
      * @param value
      */
-    public void setAttribute(String property, Double value) {
+    public void setAttribute(String property, int value) {
         JSOHelper.setAttribute(jsObj, property, value);
     }
 
@@ -459,6 +398,16 @@ public class DataClass extends JsObject {
     }
 
     /**
+     * Set attribute value to a long.
+     * Value will be stored as a JavaScript Number on the underlying data object.
+     * @param property
+     * @param value
+     */
+    public void setAttribute(String property, long value) {
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
+
+    /**
      * Set attribute value to a Float.
      * Value will be stored as a JavaScript Number on the underlying data object
      * @param property
@@ -466,6 +415,57 @@ public class DataClass extends JsObject {
      */
     public void setAttribute(String property, Float value) {
         JSOHelper.setAttribute(jsObj, property, value);
+    }
+
+    /**
+     * Set attribute value to a double.
+     * Value will be stored as a JavaScript Number on the underlying data object
+     * @param property
+     * @param value
+     */
+    public void setAttribute(String property, double value) {
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
+
+    /**
+     * Set attribute value to a Double.
+     * Value will be stored as a JavaScript Number on the underlying data object
+     * @param property
+     * @param value
+     */
+    public void setAttribute(String property, Double value) {
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
+
+    /**
+     * Set attribute value to an int array.
+     * Value will be stored as a JavaScript Array of Numbers on the underlying data object.
+     * @param property
+     * @param value
+     */
+    public void setAttribute(String property, int[] value) {
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
+
+    /**
+     * Set attribute value to an Integer array.
+     * Value will be stored as a JavaScript Array of Numbers on the underlying data object.
+     * @param property
+     * @param value
+     */
+    public void setAttribute(String property, Integer[] value) {
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
+
+    /**
+     * Set attribute value to a double array.
+     * Value will be stored as a JavaScript Array of Numbers on the underlying data object
+     * 
+     * @param property
+     * @param value
+     */
+    public void setAttribute(String property, double[] value) {
+    	JSOHelper.setAttribute(jsObj, property, value);
     }
 
     /**
