@@ -2,7 +2,15 @@ package com.smartgwt.sample.showcase.client.grid.interaction;
 
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.ListGridFieldType;
+import com.smartgwt.client.types.VerticalAlignment;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.data.RecordList;
+import com.smartgwt.client.widgets.layout.HStack;
+import com.smartgwt.client.widgets.layout.VStack;
+import com.smartgwt.client.widgets.TransferImgButton;
+import com.smartgwt.client.widgets.events.ClickEvent;
+import com.smartgwt.client.widgets.events.ClickHandler;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.sample.showcase.client.PanelFactory;
@@ -31,8 +39,10 @@ public class DragReorderSample extends ShowcasePanel {
     }
 
     public Canvas getViewPanel() {
+        HStack hStack = new HStack(10);
+        hStack.setHeight(160);
 
-        ListGrid countryGrid = new ListGrid();
+        final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(300);
         countryGrid.setHeight(224);
         countryGrid.setShowAllRecords(true);
@@ -50,7 +60,82 @@ public class DragReorderSample extends ShowcasePanel {
         countryGrid.setFields(countryCodeField, nameField, capitalField);
         countryGrid.setData(CountrySampleData.getRecords());
 
-        return countryGrid;
+        hStack.addMember(countryGrid);
+
+        VStack modifyStack = new VStack(3);
+        modifyStack.setWidth(20);
+        modifyStack.setLayoutAlign(VerticalAlignment.CENTER);
+        modifyStack.setHeight(74);
+
+        TransferImgButton up = new TransferImgButton(TransferImgButton.UP);
+        up.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                ListGridRecord selectedRecord = countryGrid.getSelectedRecord();
+                if(selectedRecord != null) {
+                    int idx = countryGrid.getRecordIndex(selectedRecord);
+                    if(idx > 0) {
+                        RecordList rs = countryGrid.getRecordList();
+                        rs.removeAt(idx);
+                        rs.addAt(selectedRecord, idx - 1);
+                    }
+                }
+            }
+        });
+
+        TransferImgButton upFirst = new TransferImgButton(TransferImgButton.UP_FIRST);
+        upFirst.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                ListGridRecord selectedRecord = countryGrid.getSelectedRecord();
+                if(selectedRecord != null) {
+                    int idx = countryGrid.getRecordIndex(selectedRecord);
+                    if(idx > 0) {
+                        RecordList rs = countryGrid.getRecordList();
+                        rs.removeAt(idx);
+                        rs.addAt(selectedRecord, 0);
+                    }
+                }
+            }
+        });
+
+        TransferImgButton down = new TransferImgButton(TransferImgButton.DOWN);
+        down.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                ListGridRecord selectedRecord = countryGrid.getSelectedRecord();
+                if(selectedRecord != null) {
+                    RecordList rs = countryGrid.getRecordList();
+                    int numRecords = rs.getLength();
+                    int idx = countryGrid.getRecordIndex(selectedRecord);
+                    if(idx < numRecords - 1) {
+                        rs.removeAt(idx);
+                        rs.addAt(selectedRecord, idx + 1);
+                    }
+                }
+            }
+        });
+
+        TransferImgButton downLast = new TransferImgButton(TransferImgButton.DOWN_LAST);
+        downLast.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                ListGridRecord selectedRecord = countryGrid.getSelectedRecord();
+                if(selectedRecord != null) {
+                    RecordList rs = countryGrid.getRecordList();
+                    int numRecords = rs.getLength();
+                    int idx = countryGrid.getRecordIndex(selectedRecord);
+                    if(idx < numRecords - 1) {
+                        rs.removeAt(idx);
+                        rs.addAt(selectedRecord, rs.getLength());
+                    }
+                }
+            }
+        });
+        modifyStack.addMember(upFirst);
+        modifyStack.addMember(up);
+        modifyStack.addMember(down);
+        modifyStack.addMember(downLast);
+
+        hStack.addMember(modifyStack);
+
+        return hStack;
     }
 
     public String getIntro() {
