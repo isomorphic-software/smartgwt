@@ -134,13 +134,17 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Returns attribute value set as a Boolean.
+     * Returns attribute value set as a Boolean.  
+     * If the value is not a boolean null will be returned.
      * @param property
      * @return
      */
-    public Boolean getAttributeAsBoolean(String property) {
-        return JSOHelper.getAttributeAsBoolean(jsObj, property);
-    }
+    public native Boolean getAttributeAsBoolean(String property) /*-{
+        var obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        if (obj == null) return null;
+        var ret = obj[property];
+        return $wnd.isc.isA.Boolean(ret) ? ret.valueOf() : null;
+    }-*/;
 
     /**
      * Returns attribute as a Double.
