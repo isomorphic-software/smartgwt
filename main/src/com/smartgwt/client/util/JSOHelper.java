@@ -542,10 +542,35 @@ public class JSOHelper {
         return jsCells;
     }
 
+    /**
+     * Returns the attribute value as a boolean, so that null is not allowed.  A null or
+     * any non-Boolean will be converted to false.  
+     * <P>
+     * Note: if null is desired, use instead the three parameter variation below.
+     * 
+     * @param elem the JavaScriptObject containing the property
+     * @param attr the property name
+     * @return the property value
+     */
+    public static boolean getAttributeAsBoolean(JavaScriptObject elem, String attr) {
+        return getAttributeAsBoolean(elem, attr, false);
+    }
 
-    public static native boolean getAttributeAsBoolean(JavaScriptObject elem, String attr) /*-{
-	    var ret = elem[attr];
-	    return (ret == null || ret === undefined) ? false : ret;
+    /**
+     * Returns the attribute value as a Boolean.  Any non-Boolean will be converted to null,
+     * unless nullAllowed is false, in which case false will be returned instead.
+     * 
+     * @param elem the JavaScriptObject containing the property
+     * @param attr the property name
+     * @param nullAllowed whether to permit a null return value
+     * @return the property value
+     */
+    public static native Boolean getAttributeAsBoolean(JavaScriptObject elem, String attr, boolean nullAllowed) /*-{
+        var ret = elem[attr];
+        if ($wnd.isc.isA.Boolean(ret)) ret = ret.valueOf();
+        else if (!nullAllowed)         ret = false;
+        else                           return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 
     public static native Object getAttributeAsObject(JavaScriptObject elem, String attr) /*-{
