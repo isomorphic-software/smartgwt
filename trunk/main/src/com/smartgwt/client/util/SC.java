@@ -534,7 +534,7 @@ public class SC {
      * @param category category to log in, defaults to "Log"
      */
     public static native void logWarn(String message, String category) /*-{
-    	$wnd.isc.logWarn(message);
+    	$wnd.isc.logWarn(message, category);
 	}-*/;
 
     /**
