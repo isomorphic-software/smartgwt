@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.HistoryListener;
@@ -20,15 +20,12 @@ import com.smartgwt.client.types.CurrentPane;
 import com.smartgwt.client.types.Cursor;
 import com.smartgwt.client.types.DeviceMode;
 import com.smartgwt.client.types.Overflow;
-import com.smartgwt.client.types.PageOrientation;
 import com.smartgwt.client.types.TabBarControls;
 import com.smartgwt.client.types.VerticalAlignment;
 import com.smartgwt.client.util.AutoTest;
 import com.smartgwt.client.util.Browser;
 import com.smartgwt.client.util.Page;
 import com.smartgwt.client.util.SC;
-import com.smartgwt.client.util.events.OrientationChangeEvent;
-import com.smartgwt.client.util.events.OrientationChangeHandler;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.Window;
@@ -42,8 +39,8 @@ import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;
-import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;
+import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.client.widgets.form.fields.events.KeyPressEvent;
 import com.smartgwt.client.widgets.form.fields.events.KeyPressHandler;
@@ -71,7 +68,6 @@ import com.smartgwt.client.widgets.tab.events.TabSelectedHandler;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
 import com.smartgwt.client.widgets.toolbar.ToolStripButton;
 import com.smartgwt.client.widgets.tree.Tree;
-import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.client.widgets.tree.events.NodeClickEvent;
 import com.smartgwt.client.widgets.tree.events.NodeClickHandler;
@@ -83,11 +79,6 @@ import com.smartgwt.sample.showcase.client.data.FolderTreeNode;
 public class Showcase implements EntryPoint, HistoryListener {
     private static final ShowcaseMessages M = ShowcaseMessages.INSTANCE;
     private static final String preReleaseVersion = "5.0";
-
-    private static native boolean _leaveMinimalUISpace() /*-{
-        return ($wnd.isc.Browser.isIPhone && !$wnd.isc.Browser.isIPad &&
-                $wnd.isc.Browser.isMobileSafari && $wnd.isc.Browser.iOSMinorVersion >= 7.1);
-    }-*/;
 
     private static native void _configureDataSources() /*-{
         if ($wnd.isc.DataSource) $wnd.isc.DataSource.addProperties({
@@ -125,14 +116,11 @@ public class Showcase implements EntryPoint, HistoryListener {
     }
 
     public void onModuleLoad() {
-        final boolean leaveMinimalUISpace = _leaveMinimalUISpace();
         final boolean useDesktopMode = ShowcaseConfiguration.getSingleton().isOpenForTesting() || Browser.getIsDesktop();
 
         ShowcaseCustomTile.useDesktopMode = useDesktopMode;
 
-        if (leaveMinimalUISpace) {
-            Canvas.setDefaultPageSpace(Page.getOrientation() == PageOrientation.LANDSCAPE ? 20 : 0);
-
+        if (Browser.getIsTouch()) {
             final Label minimalUISpacer = new Label();
             minimalUISpacer.setWidth100();
             minimalUISpacer.setHeight(20);
@@ -702,16 +690,6 @@ public class Showcase implements EntryPoint, HistoryListener {
 		});
 
         main.draw();
-
-        if (leaveMinimalUISpace) {
-            Page.addOrientationChangeHandler(new OrientationChangeHandler() {
-                @Override
-                public void onOrientationChange(OrientationChangeEvent event) {
-                    com.google.gwt.user.client.Window.scrollTo(0, 0);
-                    Canvas.setDefaultPageSpace(Page.getOrientation() == PageOrientation.LANDSCAPE ? 20 : 0);
-                }
-            });
-        }
 
         // Add history listener
         History.addHistoryListener(this);
