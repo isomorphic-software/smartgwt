@@ -77,13 +77,31 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Returns attribute value set as a Boolean.  
-     * If the value is not a boolean null will be returned.
-     * @param property
-     * @return
+     * Returns attribute value set as a Boolean.  For convenience in checking boolean
+     * properties, <code>getAttributeAsBoolean</code> will return Boolean <code>false</code>
+     * if the attribute value is <code>null</code> or not a Boolean.  Use the two parameter
+     * variant of this API {@link #getAttributeAsBoolean(String, boolean)} if you want
+     * <code>null</code> returned for <code>null</code> attribute values.
+     * @param property the property name
+     * @return the property value
      */
     public Boolean getAttributeAsBoolean(String property) {
-        return JSOHelper.getAttributeAsBoolean(jsObj, property, true);
+        return getAttributeAsBoolean(property, false);
+    }
+
+    /**
+     * Returns attribute value set as a Boolean.  If the attribute value is <code>null</code>
+     * or not a Boolean, the return value depends upon <code>allowNull</code>.  If 
+     * <code>allowNull</code> is true, <code>null</code> will be returned; otherwise Boolean
+     * <code>false</code> will be returned.  For a simpler approach that never returns 
+     * <codE>null</code>, use the one parameter variant of this API 
+     * {@link #getAttributeAsBoolean(String)}.
+     * @param property the property name
+     * @param allowNull whether to allow null
+     * @return the property value
+     */
+    public Boolean getAttributeAsBoolean(String property, boolean allowNull) {
+        return JSOHelper.getAttributeAsBoolean(jsObj, property, allowNull);
     }
 
     /**
