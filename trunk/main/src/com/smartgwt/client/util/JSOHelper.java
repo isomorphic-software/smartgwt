@@ -543,11 +543,11 @@ public class JSOHelper {
     }
 
     /**
-     * Returns the attribute value as a boolean, so that null is not allowed.  A null or
-     * any non-Boolean will be converted to false.  
-     * <P>
-     * Note: if null is desired, use instead the three parameter variation below.
-     * 
+     * Returns attribute value set as a Boolean.  For convenience in checking boolean
+     * properties, <code>getAttributeAsBoolean</code> will return Boolean <code>false</code>
+     * if the attribute value is <code>null</code> or not a Boolean.  Use the three parameter
+     * variant of this API {@link #getAttributeAsBoolean(JavaScriptObject, String, boolean)}
+     * if you want <code>null</code> returned for <code>null</code> attribute values.
      * @param elem the JavaScriptObject containing the property
      * @param attr the property name
      * @return the property value
@@ -557,19 +557,22 @@ public class JSOHelper {
     }
 
     /**
-     * Returns the attribute value as a Boolean.  Any non-Boolean will be converted to null,
-     * unless nullAllowed is false, in which case false will be returned instead.
-     * 
+     * Returns attribute value set as a Boolean.  If the attribute value is <code>null</code>
+     * or not a Boolean, the return value depends upon <code>allowNull</code>.  If 
+     * <code>allowNull</code> is true, <code>null</code> will be returned; otherwise Boolean
+     * <code>false</code> will be returned.  For a simpler approach that never returns 
+     * <codE>null</code>, use the two parameter variant of this API 
+     * {@link #getAttributeAsBoolean(JavaScriptObject, String)}.
      * @param elem the JavaScriptObject containing the property
      * @param attr the property name
-     * @param nullAllowed whether to permit a null return value
+     * @param allowNull whether to permit a <code>null</code> return value
      * @return the property value
      */
-    public static native Boolean getAttributeAsBoolean(JavaScriptObject elem, String attr, boolean nullAllowed) /*-{
+    public static native Boolean getAttributeAsBoolean(JavaScriptObject elem, String attr, boolean allowNull) /*-{
         var ret = elem[attr];
         if ($wnd.isc.isA.Boolean(ret)) ret = ret.valueOf();
-        else if (!nullAllowed)         ret = false;
-        else                           return null;
+        else if (!allowNull)         ret = false;
+        else                         return null;
         return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 
