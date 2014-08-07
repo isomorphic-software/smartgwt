@@ -104,7 +104,10 @@ public class ShowcaseCustomTile extends SimpleTile {
         StaticTextItem descriptionField = new StaticTextItem("description");
         descriptionField.setVisible(false);
 
-        form.setFields(iconField, nameField, descriptionField);
+        StaticTextItem positionField = new StaticTextItem("position");
+        positionField.setVisible(false);
+        
+        form.setFields(iconField, nameField, descriptionField, positionField);
 
         addChild(form);
     }
