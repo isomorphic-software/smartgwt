@@ -101,6 +101,9 @@ public class MiniAppSample extends ShowcasePanel {
             }
         });
 
+// EDD: just to make it work in chrome emulation
+button.fireEvent(new ClickEvent(null));
+        
         layout.addMember(button);
 
         return layout;
