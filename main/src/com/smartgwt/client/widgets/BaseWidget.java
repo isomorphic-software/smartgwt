@@ -571,7 +571,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             ret = widget.getProperty(property);
         } else {
             var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
@@ -588,7 +588,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             ret = widget.getProperty(property);
         } else {
             var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
@@ -605,7 +605,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             ret = widget.getProperty(property);
         } else {
             var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
@@ -622,7 +622,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             ret = widget.getProperty(property);
         } else {
             var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
@@ -639,7 +639,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             ret = widget.getProperty(property);
         } else {
             var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
@@ -657,7 +657,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             ret = widget.getProperty(property);
         } else {
             var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
@@ -677,7 +677,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             ret = widget.getProperty(property);
         } else {
             var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
@@ -694,7 +694,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             ret = widget.getProperty(property);
         } else {
             var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
@@ -711,7 +711,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             ret = widget.getProperty(property);
         } else {
             var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
@@ -728,7 +728,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             ret = widget.getProperty(property);
         } else {
             var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
@@ -745,7 +745,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             ret = widget.getProperty(property);
         } else {
             var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
@@ -762,7 +762,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             ret = widget.getProperty(property);
         } else {
             var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
@@ -779,7 +779,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             ret = widget.getProperty(property);
         } else {
             var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
@@ -796,7 +796,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             ret = widget.getProperty(property);
         } else {
             var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
