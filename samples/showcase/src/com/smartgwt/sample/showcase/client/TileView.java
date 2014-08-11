@@ -395,7 +395,7 @@ public class TileView extends VLayout {
 
         if (searchText != null) {
             TreeNode[] children = tree.getAllNodes();
-            applyFilter(tree, children, data, searchText, maxResults, true);
+            applyFilterAccordingToRanking(tree, children, data, searchText, maxResults);
         } else {
             for (final String category : categories) {
                 if (category.equalsIgnoreCase("beta_samples")) {
@@ -413,7 +413,9 @@ public class TileView extends VLayout {
         tileGrid.setData((Record[])data.toArray(new Record[data.size()]));
     }
 
-    private void searchBetaSamples(Tree tree, TreeNode[] children, Set<TreeNode> data, String searchText, Integer maxResults, boolean skipCategories) {
+    private void searchBetaSamples(Tree tree, TreeNode[] children, Set<TreeNode> data, String searchText, 
+        Integer maxResults, boolean skipCategories) 
+    {
         for (int i = 0; i < children.length; i++) {
             if (maxResults != null && data.size() >= maxResults) return;
             final TreeNode child = children[i];
@@ -423,8 +425,6 @@ public class TileView extends VLayout {
                     final ExplorerTreeNode explorerTreeNode = (ExplorerTreeNode) child;
                     if (explorerTreeNode.getName().contains("BETA")) {
                         children[i].setAttribute("description", explorerTreeNode.getFactory().getDescription());
-                        int rank = rankSamples(explorerTreeNode.getName().toLowerCase(), 5);
-                        children[i].setAttribute("position", rank);
                         data.add(children[i]);
                     }
                 }
@@ -434,13 +434,17 @@ public class TileView extends VLayout {
         }
     }
 
-    private void applyFilter(Tree tree, TreeNode[] children, Set<TreeNode> data, String searchText, Integer maxResults, boolean skipCategories) {
-        for (int i = 0; i < children.length; i++) {
-            if (maxResults != null && data.size() >= maxResults) return;
-            TreeNode child = children[i];
-            if (!tree.hasChildren(child)) {
-                if (searchText != null) {
-                    searchText = searchText.toLowerCase();
+    private void applyFilterAccordingToRanking(Tree tree, TreeNode[] children, Set<TreeNode> data, 
+        String searchText, Integer maxResults) 
+    {
+        String[] arraySearchText = searchText.trim().split(" ");
+        for (int j = 0; j < children.length; j++) {
+            if (arraySearchText[j] == null || arraySearchText[j].length() == 0) continue;
+            for (int i = 0; i < children.length; i++) {
+                if (maxResults != null && data.size() >= maxResults) return;
+                TreeNode child = children[i];
+                if (!tree.hasChildren(child)) {
+                    searchText = arraySearchText[j].toLowerCase();
                     boolean isExplorerTreeNode = child instanceof ExplorerTreeNode;
                     if (isExplorerTreeNode) {
                         ExplorerTreeNode explorerTreeNode = (ExplorerTreeNode) child;
@@ -462,9 +466,20 @@ public class TileView extends VLayout {
                             }
                         }
                     }
-                } else {
-                    data.add(child);
                 }
+            }
+        }
+    }
+    
+    private void applyFilter(Tree tree, TreeNode[] children, Set<TreeNode> data, String searchText, 
+        Integer maxResults, boolean skipCategories) 
+    {
+        for (int i = 0; i < children.length; i++) {
+            if (maxResults != null && data.size() >= maxResults) return;
+            TreeNode child = children[i];
+            if (!tree.hasChildren(child)) {
+                if (searchText == null) data.add(child);
+
             } else if(!skipCategories) {
                 //skip categories when searching all nodes so that duplicates that exist in featured section and category are
                 //both not included
