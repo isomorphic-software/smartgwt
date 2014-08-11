@@ -142,4 +142,8 @@ public class DragReorderSample extends ShowcasePanel {
         return DESCRIPTION;
     }
 
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        return true;
+    }
 }
