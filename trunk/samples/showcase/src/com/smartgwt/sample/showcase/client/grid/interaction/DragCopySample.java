@@ -99,4 +99,8 @@ public class DragCopySample extends ShowcasePanel {
         return DESCRIPTION;
     }
 
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        return true;
+    }
 }

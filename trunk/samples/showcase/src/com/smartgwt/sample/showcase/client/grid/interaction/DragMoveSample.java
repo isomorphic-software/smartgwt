@@ -109,4 +109,9 @@ public class DragMoveSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
+
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        return true;
+    }
 }
