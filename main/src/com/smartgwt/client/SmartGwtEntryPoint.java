@@ -381,11 +381,11 @@ public class SmartGwtEntryPoint implements EntryPoint {
                             String message = "";
                             for (int i = 0; i < exceptions.length; i++) {
                                 if (i > 0) message += "\n";
-                                message += exceptions[i];
+                                message += SmartGwtExceptionUtil.toString(exceptions[i]);
                             }
                             SC.logWarn(message);
                         } else {
-                            SC.logWarn(exceptionSummary);
+                            SC.logWarn(SmartGwtExceptionUtil.toString(exceptionSummary, t));
                         }
                     } else {
                         // In development mode, details are sent to the GWT development
