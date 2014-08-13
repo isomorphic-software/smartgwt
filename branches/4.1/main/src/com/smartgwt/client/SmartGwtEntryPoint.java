@@ -63,7 +63,9 @@ public class SmartGwtEntryPoint implements EntryPoint {
         if ($wnd.isc.Browser.isIE && $wnd.isc.Browser.version >= 7) {
             $wnd.isc.EventHandler._IECanSetKeyCode = {};
         }
-        //debox Java primitive values for Javascript in hosted mode.
+        // Debox Javascript objects that wrap primitives for the benefit of Java in hosted mode.
+        // E.g. JS Boolean or Number must be converted to primitives to return them from JSNI.
+        // Note: Java boxing (e.g. java.lang.Boolean) is separate & requires adding extra code.
         $debox = function(val) {
             return @com.google.gwt.core.client.GWT::isScript()() ? val : function() {
             var v = val.apply(this, arguments);
@@ -378,11 +380,11 @@ public class SmartGwtEntryPoint implements EntryPoint {
                             String message = "";
                             for (int i = 0; i < exceptions.length; i++) {
                                 if (i > 0) message += "\n";
-                                message += exceptions[i];
+                                message += SmartGwtExceptionUtil.toString(exceptions[i]);
                             }
                             SC.logWarn(message);
                         } else {
-                            SC.logWarn(exceptionSummary);
+                            SC.logWarn(SmartGwtExceptionUtil.toString(exceptionSummary, t));
                         }
                     } else {
                         // In development mode, details are sent to the GWT development

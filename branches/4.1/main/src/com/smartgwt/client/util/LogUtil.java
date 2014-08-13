@@ -8,9 +8,6 @@ public class LogUtil {
     // production and development modes of GWT.  So only install a handler here if onerror()
     // is not supported by the framework as the standard means of error reporting.
     public static native void setJSNIErrorHandler() /*-{
-        if ($wnd != window) {
-            window.onerror = @com.smartgwt.client.util.LogUtil::handleOnError(Ljava/lang/String;Ljava/lang/String;ILjava/lang/Integer;);
-        }
         if (!$wnd.isc.Log.supportsOnError && !$wnd.isc.Log.fallThroughToOnError) {
             var oldOnError = $wnd.onerror;
             $wnd.onerror = function(msg, url, line, column) {
@@ -23,6 +20,9 @@ public class LogUtil {
                 if (result    != null) return result;
                 if (oldResult != null) return oldResult;
             };
+        }
+        if (window != $wnd && window.onerror == null) {
+            window.onerror = $wnd.onerror;
         }
     }-*/;
 
