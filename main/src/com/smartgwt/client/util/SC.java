@@ -747,4 +747,54 @@ public class SC {
     public static native void setScreenReaderMode(boolean newState) /*-{
         $wnd.isc.setScreenReaderMode(newState);
     }-*/;
+
+    /**
+     * Returns true if the method is supported by the class, meaning that it is not null
+     * and was not replaced by {@link #markUnsupportedMethods(String, String, String[])}. 
+     *
+     * @param className className to check
+     * @param methodName methodName to check
+     * @return boolean true if the method is not null and is not an unsupported method; false otherwise.
+     */
+    public static native boolean isMethodSupported(String className, String methodName) /*-{
+        return $wnd.isc[className].isMethodSupported(methodName);
+    }-*/;
+
+    /**
+     * Replaces each of the methods named in methodNames with a new implementation that
+     * simply logs a warning the first time the method is called, and nothing else.
+     * This can be used to mark methods of derived classes which do not support certain
+     * parent class methods as unsupported.
+     * <P>
+     * The messageTemplate parameter is a template for the warning message logged when
+     * the unsupported method is first called. The following variables in the template
+     * are substituted as follows:
+     * <table border="1">
+     * <tr>
+     *   <th>Variable</th>
+     *   <th>Substitution</th>
+     * </tr>
+     * <tr>
+     *   <td><code>$class</code></td>
+     *   <td>The +link{getClassName(),class name}.</td>
+     * </tr>
+     * <tr>
+     *   <td><code>$method</code></td>
+     *   <td>The name of the method.</td>
+     * </tr>
+     * </table>
+     * <P>
+     * If you want the literal string of a substitution variable to appear in the warning message,
+     * you can escape it by prefixing with a dollar sign. For example, to include "$class" in the
+     * warning message, use "$$class" in the template. 
+     *
+     * @param className className containing methods to mark
+     * @param messageTemplate template for the warning message logged when first called.
+     * 						  If null, the default template string "$class does not support
+     * 						  the $method() method." is used.
+     * @param methodNames the method names to mark as unsupported.
+     */
+    public static native void markUnsupportedMethods(String className, String messageTemplate, String[] methodNames) /*-{
+        $wnd.isc[className].markUnsupportedMethods(messageTemplate, methodNames);
+    }-*/;
 }
