@@ -96,6 +96,12 @@ class ApplicationPanel extends SplitPane {
         listPane.setHeight100();
 
         searchForm = new SearchForm(supplyItemDS);
+        searchForm.setHeight(60);
+        searchForm.addFindListener(new com.smartgwt.client.widgets.form.fields.events.ClickHandler() {
+        	public void onClick(com.smartgwt.client.widgets.form.fields.events.ClickEvent event) {
+        		findItems(null);
+        	}
+        });
 
         //when showing options in the combo-box, only show the options from the selected category if appropriate
         final ComboBoxItem itemNameCB = searchForm.getItemNameField();
