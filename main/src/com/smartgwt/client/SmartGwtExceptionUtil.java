@@ -55,24 +55,27 @@ public class SmartGwtExceptionUtil {
 
     private static String getStackTrace(Throwable throwable) {
         String trace = "";
-
-        StackTraceElement[] stack = throwable.getStackTrace();
-        for (int i = 0; i < stack.length; i++) {
-            if (i > 0) trace += "\n";
-            String frame = stackTraceElementToString(stack[i]);
-            if (frame != null) trace += frame;
+        for (StackTraceElement element : throwable.getStackTrace()) {
+            String frame = stackTraceElementToString(element);
+            if (frame != null) {
+                if (trace.length() > 0) trace += "\n";
+                trace += frame;
+            }
         }
         return trace;
     }
 
-    protected static String toString(String message, Throwable throwable) {
-        if (hasStackTrace(message)) {
-            // remove duplicate description at end of message
-            return message.replaceFirst("\\)[^)\r\n]*$", ")");
-        } else {
-            return message + "\n" + getStackTrace(throwable);
+    protected static native String toString(String message, Throwable throwable) /*-{
+        if (!@com.smartgwt.client.SmartGwtExceptionUtil::hasStackTrace(Ljava/lang/String;)(message)) {
+            var stackTrace = @com.smartgwt.client.SmartGwtExceptionUtil::getStackTrace(Ljava/lang/Throwable;)(throwable);
+            return message + "\n" + stackTrace;
         }
-    }
+        // Fix Chrome bug where description appears again at the end of stack
+        if ($wnd.isc.Browser.isChrome && $wnd.isc.Browser.version >= 35) {
+            message = message.replace(/\)[^)\r\n]*$/, ")");
+        }
+        return message;
+    }-*/;
 
     protected static String toString(Throwable throwable) {
         return toString(throwable.toString(), throwable);
