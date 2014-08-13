@@ -795,6 +795,6 @@ public class SC {
      * @param methodNames the method names to mark as unsupported.
      */
     public static native void markUnsupportedMethods(String className, String messageTemplate, String[] methodNames) /*-{
-        $wnd.isc[className].markUnsupportedMethods(messageTemplate, methodNames);
+        $wnd.isc[className].markUnsupportedMethods(messageTemplate, @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(methodNames));
     }-*/;
 }
