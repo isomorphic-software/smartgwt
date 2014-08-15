@@ -1,7 +1,8 @@
 package com.smartgwt.sample.showcase.client.grid.appearance;
 
-import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.i18n.client.NumberFormat;
+import java.util.Date;
+
+import com.smartgwt.client.util.NumberUtil;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.Canvas;
@@ -13,8 +14,6 @@ import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
-import java.util.Date;
-
 
 public class FormatValuesSample extends ShowcasePanel {
     private static final String DESCRIPTION = "This grid applies custom formatters to the \"Nationhood\" and \"Area\" columns. " + 
@@ -25,7 +24,7 @@ public class FormatValuesSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             FormatValuesSample panel = new FormatValuesSample();
             id = panel.getID();
             return panel;
@@ -79,7 +78,7 @@ public class FormatValuesSample extends ShowcasePanel {
         areaField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
                 if(value == null) return null;
-                return value + "km&sup2";
+                return NumberUtil.format((Integer)value, ",0") + " km&sup2";
             }
         });
 

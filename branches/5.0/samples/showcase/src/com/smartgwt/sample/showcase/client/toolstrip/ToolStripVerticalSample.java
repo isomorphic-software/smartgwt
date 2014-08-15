@@ -2,13 +2,10 @@ package com.smartgwt.sample.showcase.client.toolstrip;
 
 import com.smartgwt.client.types.SelectionType;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
 import com.smartgwt.client.widgets.toolbar.ToolStripButton;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-
-import java.util.LinkedHashMap;
 
 public class ToolStripVerticalSample extends ShowcasePanel {
     private static final String DESCRIPTION = "This is an example of a Vertical ToolStrip.";
@@ -16,7 +13,7 @@ public class ToolStripVerticalSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             ToolStripVerticalSample panel = new ToolStripVerticalSample();
             id = panel.getID();
             return panel;

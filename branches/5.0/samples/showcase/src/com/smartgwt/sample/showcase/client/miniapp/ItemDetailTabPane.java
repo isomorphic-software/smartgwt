@@ -15,12 +15,21 @@
 
 package com.smartgwt.sample.showcase.client.miniapp;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.form.DynamicForm;
-import com.smartgwt.client.widgets.form.fields.*;
+import com.smartgwt.client.widgets.form.fields.ButtonItem;
+import com.smartgwt.client.widgets.form.fields.CheckboxItem;
+import com.smartgwt.client.widgets.form.fields.DateItem;
+import com.smartgwt.client.widgets.form.fields.IPickTreeItem;
+import com.smartgwt.client.widgets.form.fields.SpinnerItem;
+import com.smartgwt.client.widgets.form.fields.TextAreaItem;
+import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.form.fields.events.ClickEvent;
 import com.smartgwt.client.widgets.form.fields.events.ClickHandler;
 import com.smartgwt.client.widgets.tab.Tab;
@@ -28,9 +37,7 @@ import com.smartgwt.client.widgets.tab.TabSet;
 import com.smartgwt.client.widgets.tab.events.TabSelectedEvent;
 import com.smartgwt.client.widgets.tab.events.TabSelectedHandler;
 import com.smartgwt.client.widgets.viewer.DetailViewer;
-
-import java.util.HashMap;
-import java.util.Map;
+//import com.smartgwt.sample.showcase.client.ShowcaseConfiguration;
 
 public class ItemDetailTabPane extends TabSet {
 
@@ -38,6 +45,8 @@ public class ItemDetailTabPane extends TabSet {
     private DynamicForm editorForm;
     private Label editorLabel;
     private ItemListGrid itemListGrid;
+    private Tab viewTab;
+    private Tab editTab;
 
     public ItemDetailTabPane(DataSource supplyItemDS, DataSource supplyCategoryDS, ItemListGrid itemListGrid) {
         this.itemListGrid = itemListGrid;
@@ -95,23 +104,23 @@ public class ItemDetailTabPane extends TabSet {
         editorForm.setColWidths(100, 200, 100, 200);
 
 
-        Tab viewTab = new Tab("View");
+        viewTab = new Tab("View");
         viewTab.setIcon("silk/application_form.png", 16);
         viewTab.setWidth(70);
         viewTab.setPane(itemViewer);
 
-        Tab editTab = new Tab("Edit");
+        editTab = new Tab("Edit");
         editTab.setIcon("demoApp/icon_edit.png", 16);
         editTab.setWidth(70);
         editTab.setPane(editorForm);
-
+        
         setTabs(viewTab, editTab);
-
+        
         addTabSelectedHandler(new TabSelectedHandler() {
             public void onTabSelected(TabSelectedEvent event) {
-                updateDetails();
+            		updateDetails();
             }
-        });
+        });        
     }
 
 
@@ -120,11 +129,11 @@ public class ItemDetailTabPane extends TabSet {
         if (selectedTab == 0) {
             //view tab : show empty message
             itemViewer.setData((Record[]) null);
-        } else {
+        } else if (selectedTab == 1) {
             // edit tab : show new record editor, or empty message
             if (selectedCategoryRecord != null) {
                 updateTab(1, editorForm);
-                Map initialValues = new HashMap();
+                Map<String, String> initialValues = new HashMap<String, String>();
                 initialValues.put("category", selectedCategoryRecord.getAttribute("categoryName"));
                 editorForm.editNewRecord(initialValues);
             } else {
@@ -144,4 +153,5 @@ public class ItemDetailTabPane extends TabSet {
             editorForm.editRecord(selectedRecord);
         }
     }
+    
 }

@@ -14,7 +14,7 @@ public class TranslucencySample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             TranslucencySample panel = new TranslucencySample();
             id = panel.getID();
             return panel;
@@ -36,7 +36,6 @@ public class TranslucencySample extends ShowcasePanel {
         //need to set useOpacityFilter:true to support setting of opacity on IE 7 and greater
         eyesImg.setUseOpacityFilter(true);
 
-        
         Slider slider = new Slider("");
         slider.setMinValue(0);
         slider.setMaxValue(100);
@@ -48,14 +47,14 @@ public class TranslucencySample extends ShowcasePanel {
         slider.setValue(100);
         slider.addValueChangedHandler(new ValueChangedHandler() {
             public void onValueChanged(ValueChangedEvent event) {
-                eyesImg.setOpacity(event.getValue());
+                eyesImg.setOpacity((int)event.getValue());
             }
         });
-        
+
         Canvas canvas = new Canvas();
         canvas.addChild(eyesImg);
         canvas.addChild(slider);
-        
+
         return canvas;
     }
 

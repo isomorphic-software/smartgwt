@@ -30,7 +30,7 @@ public class ValueHoverTipsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             ValueHoverTipsSample panel = new ValueHoverTipsSample();
             id = panel.getID();
             return panel;

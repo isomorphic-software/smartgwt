@@ -1,19 +1,13 @@
 package com.smartgwt.sample.showcase.client.grid.appearance;
 
-import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.i18n.client.NumberFormat;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.grid.CellFormatter;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CountrySampleData;
-
-import java.util.Date;
 
 
 public class FormatValuesBuiltinSample extends ShowcasePanel {
@@ -25,7 +19,7 @@ public class FormatValuesBuiltinSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             FormatValuesBuiltinSample panel = new FormatValuesBuiltinSample();
             id = panel.getID();
             return panel;

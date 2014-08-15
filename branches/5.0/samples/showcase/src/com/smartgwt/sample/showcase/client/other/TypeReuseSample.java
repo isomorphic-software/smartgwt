@@ -25,7 +25,7 @@ public class TypeReuseSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             TypeReuseSample panel = new TypeReuseSample();
             id = panel.getID();
             return panel;

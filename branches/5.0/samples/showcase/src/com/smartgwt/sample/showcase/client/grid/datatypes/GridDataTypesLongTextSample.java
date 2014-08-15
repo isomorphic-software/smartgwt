@@ -18,7 +18,7 @@ public class GridDataTypesLongTextSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridDataTypesLongTextSample panel = new GridDataTypesLongTextSample();
             id = panel.getID();
             return panel;

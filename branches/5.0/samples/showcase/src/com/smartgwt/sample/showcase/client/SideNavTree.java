@@ -19,6 +19,7 @@ package com.smartgwt.sample.showcase.client;
 import com.smartgwt.client.types.SelectionStyle;
 import com.smartgwt.client.types.SortArrow;
 import com.smartgwt.client.types.TreeModelType;
+import com.smartgwt.client.util.Browser;
 import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeGridField;
@@ -27,24 +28,24 @@ import com.smartgwt.sample.showcase.client.data.ShowcaseData;
 
 public class SideNavTree extends TreeGrid {
 
-    private String idSuffix = "";
+    static final String ID_SUFFIX = "";
 
-    private ExplorerTreeNode[] showcaseData = ShowcaseData.getData(idSuffix);
+    private ExplorerTreeNode[] showcaseData = ShowcaseData.getDataVersioned(ID_SUFFIX);
 
     public SideNavTree() {
         setWidth100();
         setHeight100();
         setSelectionType(SelectionStyle.SINGLE);
         setCustomIconProperty("icon");
-        setAnimateFolderTime(100);
-        setAnimateFolders(true);
-        setAnimateFolderSpeed(1000);
+        setAnimateFolders(Browser.getIsDesktop());
+        setAttribute("animateRowsMaxTime", 200, true);
         setNodeIcon("silk/application_view_list.png");
         setShowSortArrow(SortArrow.CORNER);
         setShowAllRecords(true);
         setLoadDataOnDemand(false);
         setCanSort(false);
-        
+        setShowHeader(false);
+
         TreeGridField field = new TreeGridField();
         field.setCanFilter(true);
         field.setName("nodeTitle");
@@ -57,13 +58,13 @@ public class SideNavTree extends TreeGrid {
         tree.setOpenProperty("isOpen");
         tree.setIdField("nodeID");
         tree.setParentIdField("parentNodeID");
-        tree.setRootValue("root" + idSuffix);
+        tree.setRootValue("root" + ID_SUFFIX);
 
         tree.setData(showcaseData);
 
         setData(tree);
     }
-
+ 
     public ExplorerTreeNode[] getShowcaseData() {
         return showcaseData;
     }

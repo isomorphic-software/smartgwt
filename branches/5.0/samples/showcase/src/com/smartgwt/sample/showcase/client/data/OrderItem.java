@@ -15,9 +15,10 @@
 
 package com.smartgwt.sample.showcase.client.data;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
 import java.util.Date;
+
+import com.smartgwt.client.data.Record;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 public class OrderItem extends ListGridRecord {
 
@@ -29,6 +30,10 @@ public class OrderItem extends ListGridRecord {
         setShipDate(shipDate);
         setQuantity(quantity);
         setUnitPrice(unitPrice);
+    }
+
+    public OrderItem(Record record) {
+        super(record.getJsObj());
     }
 
     public int getPk() {

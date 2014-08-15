@@ -19,7 +19,7 @@ public class MultipleSelectSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             MultipleSelectSample panel = new MultipleSelectSample();
             id = panel.getID();
             return panel;

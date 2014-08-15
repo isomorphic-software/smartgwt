@@ -30,7 +30,7 @@ public class SimpleGradientSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             SimpleGradientSample panel = new SimpleGradientSample();
             id = panel.getID();
             return panel;

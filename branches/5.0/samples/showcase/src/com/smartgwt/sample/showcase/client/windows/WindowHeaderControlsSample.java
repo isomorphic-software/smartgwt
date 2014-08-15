@@ -18,7 +18,7 @@ public class WindowHeaderControlsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             WindowHeaderControlsSample panel = new WindowHeaderControlsSample();
             id = panel.getID();
             return panel;

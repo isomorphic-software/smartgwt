@@ -1,12 +1,33 @@
 package com.smartgwt.sample.showcase.client.data;
 
+import com.google.gwt.safehtml.shared.SafeHtml;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcaseConfiguration;
 
 public class ExplorerTreeNode extends TreeNode {
 
-    public ExplorerTreeNode(String name, String nodeID, String parentNodeID, String icon, PanelFactory factory, boolean enabled, String idSuffix) {
+    public ExplorerTreeNode(SafeHtml name, String nodeID, String parentNodeID, String icon,
+            PanelFactory factory, boolean enabled, String idSuffix)
+    {
+        this(name.asString(), nodeID, parentNodeID, icon, factory, enabled, true, idSuffix, null);
+    }
+
+    public ExplorerTreeNode(String name, String nodeID, String parentNodeID, String icon, 
+                            PanelFactory factory, boolean enabled, String idSuffix)
+    {
+        this(name, nodeID, parentNodeID, icon, factory, enabled, true, idSuffix, null);
+    }
+
+    public ExplorerTreeNode(String name, String nodeID, String parentNodeID, String icon, 
+                            PanelFactory factory, boolean enabled, String idSuffix, String version)
+    {
+        this(name, nodeID, parentNodeID, icon, factory, enabled, true, idSuffix, version);
+    }
+
+    public ExplorerTreeNode(String name, String nodeID, String parentNodeID, String icon, 
+               PanelFactory factory, boolean enabled, boolean testEnabled, String idSuffix, String version)
+    {
         if (enabled) {
             setName(name);
         } else {
@@ -16,8 +37,10 @@ public class ExplorerTreeNode extends TreeNode {
         setThumbnail("thumbnails/" + nodeID.replace("-", "_") + ".gif");
         setParentNodeID(parentNodeID.replace("-", "_") + idSuffix);
         setIcon(icon);
-
+        setVersion(version);
         setFactory(factory);
+
+        if (!testEnabled) setTestDisabled();
 
         if (ShowcaseConfiguration.getSingleton().isOpenForTesting() && null != factory) {
             String className = factory.getClass().getName().replaceFirst("\\$.*$","");
@@ -34,7 +57,12 @@ public class ExplorerTreeNode extends TreeNode {
     public String getSampleClassName() {
         return getAttribute("sampleClassName");
     }
-
+    public void setVersion(String version) {
+        setAttribute("version",version);
+    }
+    public String getVersion() {
+        return getAttribute("version");
+    }
     public void setFactory(PanelFactory factory) {
         setAttribute("factory", factory);
     }
@@ -53,6 +81,9 @@ public class ExplorerTreeNode extends TreeNode {
 
     public void setParentNodeID(String value) {
         setAttribute("parentNodeID", value);
+    }
+    public String getParentNodeID() {
+        return getAttribute("parentNodeID");
     }
 
     public void setName(String name) {
@@ -91,6 +122,9 @@ public class ExplorerTreeNode extends TreeNode {
         return getAttributeAsString("iconSrc");
     }
 
+    public void setTestDisabled() {
+        setAttribute("testDisabled", true);
+    }
 
     @Override
     public boolean equals(Object o) {

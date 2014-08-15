@@ -17,7 +17,7 @@ public class TreeConnectorsSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             TreeConnectorsSample panel = new TreeConnectorsSample();
             id = panel.getID();
             return panel;

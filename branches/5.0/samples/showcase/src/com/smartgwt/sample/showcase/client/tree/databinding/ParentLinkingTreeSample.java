@@ -24,7 +24,7 @@ public class ParentLinkingTreeSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             ParentLinkingTreeSample panel = new ParentLinkingTreeSample();
             id = panel.getID();
             return panel;

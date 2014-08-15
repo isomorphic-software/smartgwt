@@ -1,11 +1,18 @@
 package com.smartgwt.sample.showcase.client.grid.appearance;
 
 import com.google.gwt.i18n.client.NumberFormat;
-import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Criteria;
+import com.smartgwt.client.data.Criterion;
+import com.smartgwt.client.data.DSCallback;
+import com.smartgwt.client.data.DSRequest;
+import com.smartgwt.client.data.DSResponse;
+import com.smartgwt.client.data.DataSource;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.fields.DataSourceIntegerField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.ListGridFieldType;
+import com.smartgwt.client.types.OperatorId;
 import com.smartgwt.client.types.SelectionStyle;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.util.ValueCallback;
@@ -41,7 +48,7 @@ public class GridPreferencesSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridPreferencesSample panel = new GridPreferencesSample();
             id = panel.getID();
             return panel;
@@ -56,7 +63,7 @@ public class GridPreferencesSample extends ShowcasePanel {
         }
     }
 
-    private static int PK_COUNTER;
+    private static int PK_COUNTER=0;
 
     public Canvas getViewPanel() {
 
@@ -119,14 +126,14 @@ public class GridPreferencesSample extends ShowcasePanel {
         countryGrid.setFields(countryCodeField, nameField, capitalField, populationField, areaField);
 
         //create another grid to display the preference name and viewState string
-        final ListGrid preferecesGrid = new ListGrid();
-        preferecesGrid.setHeight(300);
-        preferecesGrid.setWrapCells(true);
-        preferecesGrid.setFixedRecordHeights(false);
-        preferecesGrid.setCanEdit(true);
-        preferecesGrid.setEmptyMessage("No Saved Preferences");
-        preferecesGrid.setSelectionType(SelectionStyle.SINGLE);
-        preferecesGrid.setCanRemoveRecords(true);
+        final ListGrid preferencesGrid = new ListGrid();
+        preferencesGrid.setHeight(300);
+        preferencesGrid.setWrapCells(true);
+        preferencesGrid.setFixedRecordHeights(false);
+        preferencesGrid.setCanEdit(true);
+        preferencesGrid.setEmptyMessage("No Saved Preferences");
+        preferencesGrid.setSelectionType(SelectionStyle.SINGLE);
+        preferencesGrid.setCanRemoveRecords(true);
         final ListGridField name = new ListGridField("name", "Preference");
         ListGridField viewState = new ListGridField("viewState", "View State String");
         viewState.setEditorType(new TextAreaItem());
@@ -137,8 +144,8 @@ public class GridPreferencesSample extends ShowcasePanel {
                 return ((String) value).replace("\\r", "");
             }
         });
-        preferecesGrid.setFields(name, viewState);
-        preferecesGrid.setAutoFetchData(true);
+        preferencesGrid.setFields(name, viewState);
+        preferencesGrid.setAutoFetchData(true);
 
         //create a "preferences" DataSource to bind to SelectItem and Preferences ListGrid
         final DataSource preferencesDS = new DataSource();
@@ -150,7 +157,7 @@ public class GridPreferencesSample extends ShowcasePanel {
         DataSourceTextField stateField = new DataSourceTextField("viewState", "View State");
         preferencesDS.setFields(pkField, preferenceField, stateField);
         preferencesDS.setClientOnly(true);
-        preferecesGrid.setDataSource(preferencesDS);
+        preferencesGrid.setDataSource(preferencesDS);
 
         ToolStripButton formulaButton = new ToolStripButton("Formula Builder", "crystal/oo/sc_insertformula.png");
         formulaButton.setAutoFit(true);
@@ -173,38 +180,23 @@ public class GridPreferencesSample extends ShowcasePanel {
         ListGrid pickListProperties = new ListGrid();
         pickListProperties.setEmptyMessage("No Saved Preferences");
         preferenceSelectItem.setPickListProperties(pickListProperties);
+        preferenceSelectItem.setValueField("pk");
+        preferenceSelectItem.setDisplayField("name");
         preferenceSelectItem.setOptionDataSource(preferencesDS);
 
         //apply the selected preference from the SelectItem
         preferenceSelectItem.addChangedHandler(new ChangedHandler() {
             @Override
             public void onChanged(ChangedEvent event) {
-                String preferenceName = (String) preferenceSelectItem.getValue();
-                Criteria criteria = new Criteria("name", preferenceName);
+                Integer preferencePK = (Integer) preferenceSelectItem.getValue();
+                Criteria criteria = new Criterion("pk", OperatorId.EQUALS, preferencePK);
                 preferencesDS.fetchData(criteria, new DSCallback() {
                     @Override
                     public void execute(DSResponse response, Object rawData, DSRequest request) {
                         Record[] data = response.getData();
                         if (data.length != 0) {
-                            PreferenceRecord record = (PreferenceRecord) data[0];
-                            countryGrid.setViewState(record.getViewState());
-                        }
-                    }
-                });
-            }
-        });
-        preferenceSelectItem.addClickHandler(new com.smartgwt.client.widgets.form.fields.events.ClickHandler() {
-            @Override
-            public void onClick(com.smartgwt.client.widgets.form.fields.events.ClickEvent event) {
-                String preferenceName = (String) preferenceSelectItem.getValue();
-                Criteria criteria = new Criteria("name", preferenceName);
-                preferencesDS.fetchData(criteria, new DSCallback() {
-                    @Override
-                    public void execute(DSResponse response, Object rawData, DSRequest request) {
-                        Record[] data = response.getData();
-                        if (data.length != 0) {
-                            PreferenceRecord record = (PreferenceRecord) data[0];
-                            countryGrid.setViewState(record.getViewState());
+                            String selectedViewState = data[0].getAttribute("viewState");
+                            countryGrid.setViewState(selectedViewState);
                         }
                     }
                 });
@@ -221,7 +213,7 @@ public class GridPreferencesSample extends ShowcasePanel {
                         if (value != null && !value.equals("")) {
                             String viewState = countryGrid.getViewState();
                             PreferenceRecord record = new PreferenceRecord(PK_COUNTER++, value, viewState);
-                            preferecesGrid.addData(record);
+                            preferencesGrid.addData(record);
                             preferenceSelectItem.setValue(value);
                         }
                     }
@@ -248,7 +240,7 @@ public class GridPreferencesSample extends ShowcasePanel {
 
         VLayout preferencesGridLayout = new VLayout(0);
         preferencesGridLayout.setWidth(650);
-        preferencesGridLayout.addMember(preferecesGrid);
+        preferencesGridLayout.addMember(preferencesGrid);
 
         //toolstrip to attach to the preferences grid
         ToolStrip preferencesToolStrip = new ToolStrip();
@@ -259,10 +251,12 @@ public class GridPreferencesSample extends ShowcasePanel {
         restoreButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                Record record = preferecesGrid.getSelectedRecord();
+                Record record = preferencesGrid.getSelectedRecord();
                 if (record != null) {
                     String viewState = record.getAttribute("viewState");
+                    preferenceSelectItem.setValue(record.getAttribute("pk"));
                     countryGrid.setViewState(viewState);
+                    countryGrid.redraw();
                 }
             }
         });
@@ -274,7 +268,7 @@ public class GridPreferencesSample extends ShowcasePanel {
         layout.addDrawHandler(new DrawHandler() {
             @Override
             public void onDraw(DrawEvent event) {
-                preferecesGrid.addData(new PreferenceRecord(PK_COUNTER++, "Default", countryGrid.getViewState()));
+                preferencesGrid.addData(new PreferenceRecord(PK_COUNTER++, "Default", countryGrid.getViewState()));
             }
         });
 
@@ -284,7 +278,7 @@ public class GridPreferencesSample extends ShowcasePanel {
     /**
      * Record class for capturing grid preference
      */
-    class PreferenceRecord extends ListGridRecord {
+    class PreferenceRecord extends Record {
         PreferenceRecord(int pk, String name, String viewState) {
             setPk(pk);
             setName(name);

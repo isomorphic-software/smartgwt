@@ -8,7 +8,12 @@ import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
-import com.smartgwt.client.widgets.grid.events.*;
+import com.smartgwt.client.widgets.grid.events.CellClickEvent;
+import com.smartgwt.client.widgets.grid.events.CellClickHandler;
+import com.smartgwt.client.widgets.grid.events.CellContextClickEvent;
+import com.smartgwt.client.widgets.grid.events.CellContextClickHandler;
+import com.smartgwt.client.widgets.grid.events.CellDoubleClickEvent;
+import com.smartgwt.client.widgets.grid.events.CellDoubleClickHandler;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CountrySampleData;
@@ -19,7 +24,7 @@ public class CellClicksSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             CellClicksSample panel = new CellClicksSample();
             id = panel.getID();
             return panel;

@@ -65,4 +65,14 @@ public abstract class BeanFactoryForDataClass<BeanClass extends DataClass>
         // the right factory.
         ((DataClass) bean).setJsObj(jsObj);
     }
+
+    @Override
+    public boolean isFactoryCreated (BeanClass bean) {
+        return bean.isFactoryCreated();
+    }
+
+    @Override
+    protected void applyFactoryProperties (BeanClass bean) {
+        if (bean != null) bean.applyFactoryProperties();
+    }
 }

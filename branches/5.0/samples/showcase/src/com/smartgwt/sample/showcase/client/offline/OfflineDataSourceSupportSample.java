@@ -33,7 +33,7 @@ public class OfflineDataSourceSupportSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             OfflineDataSourceSupportSample panel = new OfflineDataSourceSupportSample();
             id = panel.getID();
             return panel;

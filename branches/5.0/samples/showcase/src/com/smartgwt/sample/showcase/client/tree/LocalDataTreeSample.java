@@ -16,7 +16,7 @@ public class LocalDataTreeSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             LocalDataTreeSample panel = new LocalDataTreeSample();
             id = panel.getID();
             return panel;

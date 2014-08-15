@@ -17,8 +17,15 @@ package com.smartgwt.sample.showcase.client.miniapp;
 
 import com.smartgwt.client.core.Rectangle;
 import com.smartgwt.client.util.Page;
-import com.smartgwt.client.widgets.*;
-import com.smartgwt.client.widgets.events.*;
+import com.smartgwt.client.widgets.AnimationCallback;
+import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.IButton;
+import com.smartgwt.client.widgets.Label;
+import com.smartgwt.client.widgets.Window;
+import com.smartgwt.client.widgets.events.ClickEvent;
+import com.smartgwt.client.widgets.events.ClickHandler;
+import com.smartgwt.client.widgets.events.CloseClickEvent;
+import com.smartgwt.client.widgets.events.CloseClickHandler;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
@@ -32,7 +39,7 @@ public class MiniAppSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             MiniAppSample panel = new MiniAppSample();
             id = panel.getID();
             return panel;
@@ -93,7 +100,7 @@ public class MiniAppSample extends ShowcasePanel {
                 );
             }
         });
-
+        
         layout.addMember(button);
 
         return layout;
@@ -128,10 +135,6 @@ public class MiniAppSample extends ShowcasePanel {
                 new SourceEntity("ItemSupplyXmlDS.java", "sourcegen/data/ItemSupplyXmlDS.java.html"),
                 new SourceEntity("SupplyCategoryXmlDS.java", "sourcegen/data/SupplyCategoryXmlDS.java.html")
         };
-    }
-
-    public String getSourceGenUrl() {
-        return null;
     }
 
     public String getIntro() {

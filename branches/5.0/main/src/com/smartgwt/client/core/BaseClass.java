@@ -305,10 +305,10 @@ public abstract class BaseClass {
         var ret;
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-            ret = widget.getProperty(property);
+            ret = widget.getPropertyValue(property);
         } else {
             var config = this.@com.smartgwt.client.core.BaseClass::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
@@ -322,10 +322,10 @@ public abstract class BaseClass {
         var ret;
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-            ret = widget.getProperty(property);
+            ret = widget.getPropertyValue(property);
         } else {
             var config = this.@com.smartgwt.client.core.BaseClass::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
@@ -339,10 +339,10 @@ public abstract class BaseClass {
         var ret;
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-            ret = widget.getProperty(property);
+            ret = widget.getPropertyValue(property);
         } else {
             var config = this.@com.smartgwt.client.core.BaseClass::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
@@ -356,10 +356,10 @@ public abstract class BaseClass {
         var ret;
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-            ret = widget.getProperty(property);
+            ret = widget.getPropertyValue(property);
         } else {
             var config = this.@com.smartgwt.client.core.BaseClass::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
@@ -373,10 +373,10 @@ public abstract class BaseClass {
         var ret;
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-            ret = widget.getProperty(property);
+            ret = widget.getPropertyValue(property);
         } else {
             var config = this.@com.smartgwt.client.core.BaseClass::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
@@ -390,10 +390,10 @@ public abstract class BaseClass {
         var ret;
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-            ret = widget.getProperty(property);
+            ret = widget.getPropertyValue(property);
         } else {
             var config = this.@com.smartgwt.client.core.BaseClass::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
@@ -407,10 +407,10 @@ public abstract class BaseClass {
         var ret;
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-            ret = widget.getProperty(property);
+            ret = widget.getPropertyValue(property);
         } else {
             var config = this.@com.smartgwt.client.core.BaseClass::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
@@ -424,10 +424,10 @@ public abstract class BaseClass {
         var ret;
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-            ret = widget.getProperty(property);
+            ret = widget.getPropertyValue(property);
         } else {
             var config = this.@com.smartgwt.client.core.BaseClass::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
@@ -441,10 +441,10 @@ public abstract class BaseClass {
         var ret;
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-            ret = widget.getProperty(property);
+            ret = widget.getPropertyValue(property);
         } else {
             var config = this.@com.smartgwt.client.core.BaseClass::config;
-            if(config[property] != undefined) {
+            if(config[property] !== undefined) {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;

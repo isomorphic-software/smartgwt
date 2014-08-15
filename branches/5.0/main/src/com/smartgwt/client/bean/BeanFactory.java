@@ -149,7 +149,7 @@ import java.lang.annotation.Target;
 // 1. The BeanFactory static method finds the right BeanFactory for the object.
 // 2. The BeanFactory instance picks out the correct BeanProperty.
 // 3. The BeanProperty looks at its BeanMethods, and if more than one, uses
-//    BeanValueType which BeanMethod is best for the value supplied.
+//    BeanValueType to determine which BeanMethod is best for the value supplied.
 // 4. The BeanProperty uses BeanValueType to convert the value to the type
 //    that the selected BeanMethod needs.
 // 5. The BeanMethod uses JSNI to call the actual setter.
@@ -165,8 +165,9 @@ import java.lang.annotation.Target;
  * <p>Once the appropriate subclass has been created, you can use the class via
  * the static methods.
  *
- * <p>For the moment, this class only works with subclasses of {@link
- * BaseWidget} or {@link FormItem}.
+ * <p>For the moment, this class only works with subclasses of 
+ * {@link com.smartgwt.client.widgets.BaseWidget} or 
+ * {@link com.smartgwt.client.widgets.form.fields.FormItem}.
  */
 public abstract class BeanFactory<BeanClass> {
     // --------------------
@@ -177,17 +178,24 @@ public abstract class BeanFactory<BeanClass> {
     * An interface which you can extend in order to register classes
     * with the <code>BeanFactory</code> reflection mechanism.
     *
+    * <p><b>Note</b>: While this mechanism continues to work, there is
+    * now an easier way to register classes for reflection, by annotating
+    * them with the {@link BeanFactory.Generate} annotation.
+    *
     * <p>In order to use a {@link BeanFactory} for a class, you need to
     * register it by generating a <code>BeanFactory</code> subclass for the
     * class. You can use {@link BeanFactory.CanvasMetaFactory} to scan the
     * class path and register every {@link Canvas} subclass (including your
     * custom subclasses), or use {@link BeanFactory.FormItemMetaFactory} to
-    * regiser every {@link FormItem} subclass. However, if you know that you
-    * only need to register some classes for reflection, then you can use
-    * <code>BeanFactory.MetaFactory</code> instead.
+    * regiser every {@link com.smartgwt.client.widgets.form.fields.FormItem} 
+    * subclass. However, if you know that you only need to register some
+    * classes for reflection, then you can use
+    * <code>BeanFactory.MetaFactory</code> instead (or, even more conveniently,
+    * the {@link BeanFactory.Generate} annotation).
     *
-    * <p>Usage is most easily explained with an example. First, you define an
-    * interface. (Note that it can be an inner interface.)
+    * <p>Usage of <code>BeanFactory.MetaFactory</code> is most easily explained
+    * with an example. First, you define an interface. (Note that it can be an
+    * inner interface.)
     *
     * <blockquote><pre>
     * public interface MyMetaFactory extends BeanFactory.MetaFactory {
@@ -237,6 +245,8 @@ public abstract class BeanFactory<BeanClass> {
     * the factories are used. However, you can modularize by creating some factories
     * first and other factories later, as long as each factory is created before
     * being used.
+    *
+    * @see BeanFactory.Generate
     */
     public static interface MetaFactory {
         // One understands that a factory to generate factories is in danger of
@@ -259,7 +269,11 @@ public abstract class BeanFactory<BeanClass> {
         // factory -- a factory that can create factories.
         //
         // So, MetaFactory is just a marker -- by defining an interface
-        // which extends it, you tell GWT to generate factories. 
+        // which extends it, you tell GWT to generate factories.
+        //
+        // Note that for most uses, BeanFactory.MetaFactory has now been superseded
+        // by the more convenient BeanFactory.Generate annotation, but the older
+        // method still works.
         
     }
 
@@ -287,14 +301,17 @@ public abstract class BeanFactory<BeanClass> {
     *
     * <p>Alternatively if only specific <code>Canvas</code> types need to be
     * instantiated and configured dynamically, you can generate specific
-    * factories by using the {@link BeanFactory.MetaFactory} interface instead.
+    * factories by annotating classes with the {@link BeanFactory.Generate}
+    * annotation instead.
     * 
     * <p>If there are only a limited number of types which require dynamic
     * configuration, it will save code size to use the
-    * <code>BeanFactory.MetaFactory</code> interface for those types. Once the
+    * <code>BeanFactory.Generate</code> annotation for those types. Once the
     * metadata is generated, GWT's opportunities to prune dead code are more
     * limited for those classes, since it cannot know what properties will be
     * set or retrieved at run-time.
+    *
+    * @see BeanFactory.Generate
     */
     public static interface CanvasMetaFactory {
 
@@ -324,16 +341,26 @@ public abstract class BeanFactory<BeanClass> {
     *
     * <p>Alternatively if only specific <code>FormItem</code> types need to be
     * instantiated and configured dynamically, you can generate specific
-    * factories by using the {@link BeanFactory.MetaFactory} interface instead.
+    * factories by annotating classes with the {@link BeanFactory.Generate}
+    * annotation instead.
     * 
     * <p>If there are only a limited number of types which require dynamic
     * configuration, it will save code size to use the
-    * <code>BeanFactory.MetaFactory</code> interface for those types. Once the
+    * <code>BeanFactory.Generate</code> interface for those types. Once the
     * metadata is generated, GWT's opportunities to prune dead code are more
     * limited for those classes, since it cannot know what properties will be
     * set or retrieved at run-time.
+    *
+    * @see BeanFactory.Generate
     */
     public static interface FormItemMetaFactory {
+
+    }
+
+    // This is a marker interface used internally to trigger processing of the
+    // BeanFactory.Generate annotations, via a call to GWT.create in
+    // com.smartgwt.client.SmartGwtEntryPoint.
+    public static interface AnnotationMetaFactory {
 
     }
 
@@ -364,6 +391,47 @@ public abstract class BeanFactory<BeanClass> {
         String value();
     }
 
+    /**
+     * Annotation which will trigger the generation of BeanFactories.
+     *
+     * <p>If no value is supplied, a BeanFactory will be generated for the class
+     * that the annotation is applied to. So, if you have a custom class for which you would like to generate
+     * a BeanFactory, you can just annotate it like this:
+     * <blockquote><pre>
+     * {@literal @}BeanFactory.Generate
+     * public MyCanvas extends Canvas {
+     *    ...
+     * }</pre></blockquote>
+     * <p>
+     * If you want to generate BeanFactories for framework classes, you can
+     * supply a value for the annotation, where the value is an array
+     * of class literals. For instance:
+     * <blockquote><pre>
+     * {@literal @}BeanFactory.Generate({ListGrid.class, TreeGrid.class})
+     * public interface EmptyInterface {
+     * }</pre></blockquote>
+     * <p>
+     * Note that when supplying values for the annotation, the class you
+     * annotate (here <code>EmptyInterface</code>) will <b>not</b> itself have
+     * a BeanFactory generated for it. Thus, you can use an empty inner interface
+     * for this purpose.
+     * <p>
+     * If you want to generate BeanFactories for all {@link Canvas}
+     * subclasses or all {@link com.smartgwt.client.widgets.form.fields.FormItem} 
+     * subclasses, you can use {@link BeanFactory.CanvasMetaFactory} or 
+     * {@link BeanFactory.FormItemMetaFactory} instead. However, that is less
+     * efficient if there are only a limited number of classes which need
+     * BeanFactories.
+     *
+     * @see BeanFactory.CanvasMetaFactory
+     * @see BeanFactory.FormItemMetaFactory
+     */
+    @Target(ElementType.TYPE)
+    @Retention(RetentionPolicy.RUNTIME)
+    public static @interface Generate {
+        Class[] value() default {};
+    }
+
     // ------------------------------------------
     // Static housekeeping properties and methods
     // ------------------------------------------
@@ -378,7 +446,7 @@ public abstract class BeanFactory<BeanClass> {
 
     private static native JavaScriptObject exportSGWTModule () /*-{
         var module = {
-            newInstance : $entry(@com.smartgwt.client.bean.BeanFactory::newInstance(Ljava/lang/String;)),
+            newInstance : $entry(@com.smartgwt.client.bean.BeanFactory::newInstance(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)),
 
             setProperty : $entry(function (obj, propName, value) {
                 // We need to pre-convert the value to a Java object, so that
@@ -636,6 +704,43 @@ public abstract class BeanFactory<BeanClass> {
         return sgwtModule;
     }
 
+    // When creating a new instance via the BeanFactory, we may store some
+    // properties here to be applied to the new instance. These properties are
+    // picked up by the no-arg constructor, and then immediately cleared here
+    // (so that they don't get picked up by any nested constructor calls).
+    //
+    // We do this instead of calling a constructor which takes properties,
+    // because we don't want to force developers to implement such a
+    // constructor in order to use the reflection mechanism.
+    //
+    // We can't simply apply the properties after the instance is constructed,
+    // because the constructor may trigger getOrCreateJsObj(), and the
+    // constructor on the SmartClient side may need the properties. However, we
+    // do wait until the instance is fully constructed unless
+    // getOrCreateJsObj() is called first.
+    private static Map<String, Object> factoryProperties;
+
+    public static Map<String, Object> getFactoryProperties () {
+        return factoryProperties;
+    }
+    
+    public static void clearFactoryProperties () {
+        factoryProperties = null;
+        factoryPropertiesClass = null;
+    }
+
+    // The class for which the factoryProperties are intended. Stashing this
+    // helps us avoid the complication of triggering a static initializer,
+    // which might itself create an instance before the instance for which the
+    // properties are intended. By keeping track of the class for which the
+    // properties are intended, we can limit the problem to static initializers
+    // which create an instance of that very class.
+    private static Class<?> factoryPropertiesClass;
+
+    public static Class<?> getFactoryPropertiesClass () {
+        return factoryPropertiesClass;
+    }
+
     // The factories, hashed by the fully-qualified class name of the base class.
     private static Map<String, BeanFactory<?>> factoriesByName = new HashMap<String, BeanFactory<?>>();
  
@@ -747,6 +852,106 @@ public abstract class BeanFactory<BeanClass> {
             return factory.newInstance();
         }
     }
+ 
+    /**
+     * Create an instance based on the provided class name, and apply the
+     * provided properties to it.
+     *
+     * The properties are applied after the instance is constructed with
+     * its no-arg constructor, unless the constructor triggers a call to
+     * getOrCreateJsObj(). In that case, the properties are applied before
+     * calling getOrCreateJsObj(), to ensure that the jsObj gets all the
+     * intended properties when it is constructed.
+     *
+     * @param className the class name
+     * @param properties a JavaScriptObject whose key/value pairs represent
+     *                   property names and values
+     * @return a new instance of the class, with the properties applied
+     * @throws IllegalStateException If no factory has been generated for the className
+     */
+    public static Object newInstance (String className, JavaScriptObject properties) {
+        BeanFactory<?> factory = BeanFactory.getFactory(className);
+        if (factory == null) {
+            throw noFactoryException(className);
+        } else {
+            return factory.newInstance(properties);
+        }
+    }
+
+    /**
+     * Create an instance based on the provided class object, and apply the
+     * provided properties to it.
+     *
+     * The properties are applied after the instance is constructed with
+     * its no-arg constructor, unless the constructor triggers a call to
+     * getOrCreateJsObj(). In that case, the properties are applied before
+     * calling getOrCreateJsObj(), to ensure that the jsObj gets all the
+     * intended properties when it is constructed.
+     *
+     * @param klass the class object
+     * @param properties a JavaScriptObject whose key/value pairs represent
+     *                   property names and values
+     * @return a new instance of the class, with the properties applied
+     * @throws IllegalStateException If no factory has been generated for the class
+     */
+    public static Object newInstance (Class<?> klass, JavaScriptObject properties) {
+        BeanFactory<?> factory = BeanFactory.getFactory(klass);
+        if (factory == null) {
+            throw noFactoryException(klass);
+        } else {
+            return factory.newInstance(properties);
+        }
+    }
+
+    /**
+     * Create an instance based on the provided class name, and apply the
+     * provided properties to it.
+     *
+     * The properties are applied after the instance is constructed with
+     * its no-arg constructor, unless the constructor triggers a call to
+     * getOrCreateJsObj(). In that case, the properties are applied before
+     * calling getOrCreateJsObj(), to ensure that the jsObj gets all the
+     * intended properties when it is constructed.
+     *
+     * @param className the class name
+     * @param properties a Map whose key/value pairs represent
+     *                   property names and values
+     * @return a new instance of the class, with the properties applied
+     * @throws IllegalStateException If no factory has been generated for the className
+     */
+    public static Object newInstance (String className, Map<String, Object> properties) {
+        BeanFactory<?> factory = BeanFactory.getFactory(className);
+        if (factory == null) {
+            throw noFactoryException(className);
+        } else {
+            return factory.newInstance(properties);
+        }
+    }
+
+    /**
+     * Create an instance based on the provided class object, and apply the
+     * provided properties to it.
+     *
+     * The properties are applied after the instance is constructed with
+     * its no-arg constructor, unless the constructor triggers a call to
+     * getOrCreateJsObj(). In that case, the properties are applied before
+     * calling getOrCreateJsObj(), to ensure that the jsObj gets all the
+     * intended properties when it is constructed.
+     *
+     * @param klass the class object
+     * @param properties a Map whose key/value pairs represent
+     *                   property names and values
+     * @return a new instance of the class, with the properties applied
+     * @throws IllegalStateException If no factory has been generated for the class
+     */
+    public static Object newInstance (Class<?> klass, Map<String, Object> properties) {
+        BeanFactory<?> factory = BeanFactory.getFactory(klass);
+        if (factory == null) {
+            throw noFactoryException(klass);
+        } else {
+            return factory.newInstance(properties);
+        }
+    }
 
     /**
      * Sets a property of a bean to a value.
@@ -776,6 +981,27 @@ public abstract class BeanFactory<BeanClass> {
                 // Need a different name for the instance method, since the signature
                 // is the same.
                 factory.doSetProperty(bean, property, value);
+            }
+        }
+    }
+   
+    /**
+     * Applies a Map of property names and values to a bean.
+     *
+     * @param bean The object whose properties are to be set
+     * @param properties A Map whose key/value pairs represent property names and values
+     * @throws IllegalStateException If no factory has been generated for the bean's class
+     * @throws IllegalArgumentException If there is no appropriate setter for a value
+     */
+    public static void setProperties (Object bean, Map<String, Object> properties) {
+        if (bean != null) {
+            BeanFactory<?> factory = BeanFactory.getFactory(bean.getClass());
+            if (factory == null) {
+                throw noFactoryException(bean.getClass());
+            } else {
+                // Need a different name for the instance method, since the signature
+                // is the same.
+                factory.doSetProperties(bean, properties);
             }
         }
     }
@@ -830,7 +1056,7 @@ public abstract class BeanFactory<BeanClass> {
     /**
      * Gets an array of the names of the properties of a class.
      *
-     * @param className The name of the class
+     * @param beanClassName The name of the class
      * @throws IllegalStateException If no factory has been generated for the class
      */
     public static String[] getAttributes (String beanClassName) {
@@ -845,7 +1071,7 @@ public abstract class BeanFactory<BeanClass> {
     /**
      * Gets an array of the names of the properties of a class.
      *
-     * @param klass The klass object
+     * @param beanClass The klass object
      * @throws IllegalStateException If no factory has been generated for the class
      */
     public static String[] getAttributes (Class<?> beanClass) {
@@ -888,7 +1114,7 @@ public abstract class BeanFactory<BeanClass> {
     /**
      * Indicates whether the class is defined by the SmartGWT framework.
      *
-     * @param klass The Class object
+     * @param beanClass The Class object
      * @throws IllegalStateException If no factory has been generated for the class
      */
     public static boolean isFrameworkClass (Class<?> beanClass) {
@@ -903,7 +1129,7 @@ public abstract class BeanFactory<BeanClass> {
     /**
      * Gets the default scClassName for the class.
      *
-     * @param klass The Class object
+     * @param beanClass The Class object
      * @throws IllegalStateException If no factory has been generated for the class
      */
     public static String getDefaultScClassName (Class<?> beanClass) {
@@ -1043,9 +1269,113 @@ public abstract class BeanFactory<BeanClass> {
         return getBeanClass().getName();
     }
 
-    // Create a new instance of the underlying class. Must be generated for
-    // all subclasses.
-    public abstract BeanClass newInstance ();
+    // Create an new instance of the factory's underlying class.
+    // Must be generated for all subclasses.
+    protected abstract BeanClass doNewInstance ();
+    
+    public BeanClass newInstance () {
+        return newInstance((Map<String, Object>) null);
+    }
+
+    @SuppressWarnings("unchecked")
+    public BeanClass newInstance (JavaScriptObject properties) {
+        if (properties == null) return newInstance();
+
+        Object javaProperties = BeanValueType.convertToJava(properties);
+        if (javaProperties instanceof Map) {
+            return newInstance ((Map<String, Object>) javaProperties);
+        } else {
+            throw new IllegalArgumentException("properties were not a plain JavaScript object");
+        }
+    }
+
+    // All calls to the various overloaded newInstance methods will end up here
+    public BeanClass newInstance (Map<String, Object> properties) {
+        // Always provide the factoryCreated property, so that we can test
+        // whether the properties were correctly applied. There is one scenario
+        // in which the properties will be applied to the wrong object: where
+        // (a) the BeanClass has a static initializer; (b) the static initializer
+        // has not previously run; and (c) the static initializer creates an 
+        // instance of the BeanClass. We can't check for that scenario in 
+        // advance, but we can check afterwards and try to recover.
+        if (properties == null) properties = new HashMap<String, Object>();
+        properties.put("factoryCreated", true);
+
+        // Trigger any static initializers before stashing the properties.
+        // This is a no-op unless the BeanClass defines a public static no-arg
+        // method named beanFactoryInit(). Doing so avoids the problem
+        // mentioned above re: static initializers.
+        triggerStaticInitializers();
+
+        // Stash the provided properties. See comments above on factoryProperties
+        factoryProperties = properties;
+        factoryPropertiesClass = getBeanClass();
+
+        // Construct the new instance. Note that the BeanClass will apply the
+        // properties if getOrCreateJsObj() is called before the constructor returns
+        BeanClass instance = doNewInstance();
+
+        // Apply the properties supplied by BeanFactory, if they haven't
+        // already been applied via getOrCreateJsObj().
+        applyFactoryProperties(instance);
+
+        // If the BeanClass is abstract, doNewInstance will return null and we
+        // don't need any further checking
+        if (instance == null) return instance;
+
+        // Check whether the properties were applied, by checking for the
+        // factoryCreated property we always supply
+        if (isFactoryCreated(instance)) {
+            // It worked!
+            return instance;
+        } else {
+            // In the static initializer scenario discussed above, we should be
+            // able to make it work just by trying again ... since we've now
+            // triggered the static initializer, the problem won't occur a
+            // second time. Note that we can't just apply the properties now
+            // to the already-created instance, because it may have already
+            // called getOrCreateJsObj(), and may have needed the properties
+            // then. We could possibly check whether the jsObj has been created ...
+            // if not, we could just apply the properties now rather than 
+            // recreating the object.
+            factoryProperties = properties;
+            factoryPropertiesClass = getBeanClass();
+            instance = doNewInstance();
+            applyFactoryProperties(instance);
+
+            if (isFactoryCreated(instance)) {
+                // It worked the second time. Now, it's still a problem,
+                // because the instance created by the static initializer will
+                // have received some unwanted properties, and we don't know
+                // what the effects of that are. Also, we've created two new instances
+                // instead of one (since we had to retry). So, we still log an error
+                // message.
+                String beanClassName = getBeanClassName();
+                SC.logWarn(
+                    "The BeanFactory for " + beanClassName + " failed to apply properties " +
+                    "to a new instance on the first attempt, but succeeded on the second " +
+                    "attempt. A known cause for this is where " + beanClassName + " has a " +
+                    "static initializer, the static initializer has not run yet, and the " +
+                    "static initializer itself creates an instance of " + beanClassName + ". " +
+                    "To work around this problem, define a static no-arg public method within " +
+                    beanClassName + " named beanFactoryInit(). BeanFactory will call that function " +
+                    "in order to trigger static initialization before trying to create " +
+                    "a new instance. Or, you can do something else to ensure that the " +
+                    "static initializer is called before creating instances of " +
+                    beanClassName + " via BeanFactory."
+                );
+                return instance;
+            } else {
+                // It failed again, so we better throw an exception
+                throw new IllegalStateException("BeanFactory for " + getBeanClassName() + " failed to apply properties to a new instance.");
+            }
+        }
+    }
+
+    protected void triggerStaticInitializers () {
+        // This is a no-op, unless a specific BeanClass defines a public static
+        // no-arg method names beanFactoryInit()
+    }
 
     // Sets a property of the bean to a value
     @SuppressWarnings("unchecked")
@@ -1077,6 +1407,19 @@ public abstract class BeanFactory<BeanClass> {
                 // which do need to be set from framework code. So, if we have no
                 // setter, we fall back on setting the property via Javascript.
                 setJavascriptProperty((BeanClass) bean, propertyName, value);
+            }
+        }
+    }
+
+    public void doSetProperties (Object bean, Map<String, Object> properties) {
+        for (Map.Entry<String, Object> entry : properties.entrySet()) {
+            Object key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (key instanceof String) {
+                doSetProperty(bean, (String) key, value);
+            } else {
+                throw new IllegalArgumentException("a property name was not a String");
             }
         }
     }
@@ -1167,6 +1510,11 @@ public abstract class BeanFactory<BeanClass> {
     
     // Sets the uncerlying JavaScriptObject.
     public abstract void doSetJsObj (Object bean, JavaScriptObject jsObj);
+
+    // Whether the bean was created by a BeanFactory
+    public abstract boolean isFactoryCreated (BeanClass bean);
+
+    protected abstract void applyFactoryProperties (BeanClass bean);
 
     public boolean isFrameworkClass () {
         // default to false, so we only need to generate a method when it is true

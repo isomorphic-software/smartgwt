@@ -25,14 +25,71 @@ import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.widgets.BaseWidget;
+import com.smartgwt.client.bean.BeanFactory;
 
 import java.util.Date;
 import java.util.Map;
 
 public class DataClass extends JsObject {
 
+    // Properties stashed by BeanFactory when calling the no-arg constructor.
+    // We pick them up immediately in the constructor so that they don't get
+    // applied to the wrong object (in case the constructor of a subclass
+    // triggers the construction of some other object -- which, admittedly,
+    // is unlikely in the case of DataClass, but better safe than sorry).
+    protected Map<String, Object> factoryProperties;
+
+    // Called by the generated BeanFactory once the instance is fully
+    // constructed.  Unlike the implementation in BaseWidget, we don't call
+    // this before creating the jsObj, because we're not supplying any
+    // properties to the SmartClient constructor. So, this is here just so that
+    // BeanFactory doesn't need to care whether it's dealing with a BaseWidget
+    // or a DataClass.
+    public void applyFactoryProperties () {
+        if (factoryProperties != null) {
+            // Make sure that this is re-entrant without infinite loop
+            Map<String, Object> properties = factoryProperties;
+            factoryProperties = null;
+
+            BeanFactory.setProperties(this, properties);
+        }
+    }
+    
+    // Tracks whether this object was created by a BeanFactory. The BeanFactory
+    // code will set this property via the reflection mechanism when creating
+    // an instance. Thus, it can check whether the property has been correctly
+    // applied. (That is, if factoryCreated is false for an object which 
+    // BeanFactory creates, then BeanFactory knows something went wrong).
+    //
+    // There is one known case where properties are not correctly applied via
+    // reflection: when (a) a class has a static initializer; (b) the static
+    // initializer is not triggered before the use of reflection to create an
+    // object of that class; and (c) the static initializer itself creates an
+    // object of that class. 
+    //
+    // We can't detect that case directly, but we can at least detect the
+    // resulting failure and try to recover (and generate a useful error
+    // message).
+    protected boolean factoryCreated;
+
+    public void setFactoryCreated (boolean createdByBeanFactory) {
+        factoryCreated = createdByBeanFactory;
+    }
+
+    public boolean isFactoryCreated () {
+        return factoryCreated;
+    }
+
     public DataClass() {
         super(JSOHelper.createObject());
+
+        // Stash any properties supplied by BeanFactory, if intended for an
+        // object of this class. The properties will be applied by generated
+        // BeanFactory code once the object is fully constructed.
+        if (getClass() == BeanFactory.getFactoryPropertiesClass()) {
+            factoryProperties = BeanFactory.getFactoryProperties();
+            BeanFactory.clearFactoryProperties();
+        }
     }
 
     public DataClass(JavaScriptObject jsObj) {
@@ -67,36 +124,6 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Set attribute value to an int.
-     * Value will be stored as a JavaScript Number on the underlying data object
-     * @param property
-     * @param value
-     */
-    public void setAttribute(String property, int value) {
-        JSOHelper.setAttribute(jsObj, property, value);
-    }
-
-    /**
-     * Set attribute value to a double.
-     * Value will be stored as a JavaScript Number on the underlying data object
-     * @param property
-     * @param value
-     */
-    public void setAttribute(String property, double value) {
-        JSOHelper.setAttribute(jsObj, property, value);
-    }
-
-    /**
-     * Set attribute value to a long.
-     * Value will be stored as a JavaScript Number on the underlying data object.
-     * @param property
-     * @param value
-     */
-    public void setAttribute(String property, long value) {
-        JSOHelper.setAttribute(jsObj, property, value);
-    }
-
-    /**
      * Returns attribute value as an Integer.
      * Applies to values stored as a JavaScript number on the underlying data object.
      * @param property
@@ -107,21 +134,31 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Set attribute value to a boolean.
-     * @param property
-     * @param value
+     * Returns attribute value set as a Boolean.  For convenience in checking boolean
+     * properties, <code>getAttributeAsBoolean</code> will return Boolean <code>false</code>
+     * if the attribute value is <code>null</code> or not a Boolean.  Use the two parameter
+     * variant of this API {@link #getAttributeAsBoolean(String, boolean)} if you want
+     * <code>null</code> returned for <code>null</code> attribute values.
+     * @param property the property name
+     * @return the property value
      */
-    public void setAttribute(String property, boolean value) {
-        JSOHelper.setAttribute(jsObj, property, value);
+    public Boolean getAttributeAsBoolean(String property) {
+        return getAttributeAsBoolean(property, false);
     }
 
     /**
-     * Returns attribute value set as a Boolean.
-     * @param property
-     * @return
+     * Returns attribute value set as a Boolean.  If the attribute value is <code>null</code>
+     * or not a Boolean, the return value depends upon <code>allowNull</code>.  If 
+     * <code>allowNull</code> is true, <code>null</code> will be returned; otherwise Boolean
+     * <code>false</code> will be returned.  For a simpler approach that never returns 
+     * <codE>null</code>, use the one parameter variant of this API 
+     * {@link #getAttributeAsBoolean(String)}.
+     * @param property the property name
+     * @param allowNull whether to allow null
+     * @return the property value
      */
-    public Boolean getAttributeAsBoolean(String property) {
-        return JSOHelper.getAttributeAsBoolean(jsObj, property);
+    public Boolean getAttributeAsBoolean(String property, boolean allowNull) {
+        return JSOHelper.getAttributeAsBoolean(jsObj, property, allowNull);
     }
 
     /**
@@ -153,26 +190,6 @@ public class DataClass extends JsObject {
      */
     public double[] getAttributeAsDoubleArray(String property) {
         return JSOHelper.getAttributeAsDoubleArray(jsObj, property);
-    }
-
-    /**
-     * Set attribute value to an int array.
-     * Value will be stored as a JavaScript Array of Numbers on the underlying data object.
-     * @param property
-     * @param value
-     */
-    public void setAttribute(String property, int[] value) {
-        JSOHelper.setAttribute(jsObj, property, value);
-    }
-
-    /**
-     * Set attribute value to an Integer array.
-     * Value will be stored as a JavaScript Array of Numbers on the underlying data object.
-     * @param property
-     * @param value
-     */
-    public void setAttribute(String property, Integer[] value) {
-        JSOHelper.setAttribute(jsObj, property, value);
     }
 
     /**
@@ -281,27 +298,6 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Set attribute value to a double array.
-     * Value will be stored as a JavaScript Array of Numbers on the underlying data object
-     * 
-     * @param property
-     * @param value
-     */
-    public void setAttribute(String property, double[] value) {
-    	JSOHelper.setAttribute(jsObj, property, value);
-    }
-
-    /**
-     * Set attribute value to a Boolean.
-     * 
-     * @param property
-     * @param value
-     */
-    public void setAttribute(String property, Boolean value) {
-        JSOHelper.setAttribute(jsObj, property, value);
-    }
-
-    /**
      * Set attribute value to a Map.
      * Value will be stored as a JavaScript Object on the underlying data object,
      * with property/value pairs matching the keys/values specified on the Map.
@@ -382,12 +378,31 @@ public class DataClass extends JsObject {
     }
 
     /**
-     * Set attribute value to a Double.
+     * Set attribute value to a boolean.
+     * @param property
+     * @param value
+     */
+    public void setAttribute(String property, boolean value) {
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
+
+    /**
+     * Set attribute value to a Boolean.
+     * 
+     * @param property
+     * @param value
+     */
+    public void setAttribute(String property, Boolean value) {
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
+
+    /**
+     * Set attribute value to an int.
      * Value will be stored as a JavaScript Number on the underlying data object
      * @param property
      * @param value
      */
-    public void setAttribute(String property, Double value) {
+    public void setAttribute(String property, int value) {
         JSOHelper.setAttribute(jsObj, property, value);
     }
 
@@ -402,6 +417,16 @@ public class DataClass extends JsObject {
     }
 
     /**
+     * Set attribute value to a long.
+     * Value will be stored as a JavaScript Number on the underlying data object.
+     * @param property
+     * @param value
+     */
+    public void setAttribute(String property, long value) {
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
+
+    /**
      * Set attribute value to a Float.
      * Value will be stored as a JavaScript Number on the underlying data object
      * @param property
@@ -409,6 +434,57 @@ public class DataClass extends JsObject {
      */
     public void setAttribute(String property, Float value) {
         JSOHelper.setAttribute(jsObj, property, value);
+    }
+
+    /**
+     * Set attribute value to a double.
+     * Value will be stored as a JavaScript Number on the underlying data object
+     * @param property
+     * @param value
+     */
+    public void setAttribute(String property, double value) {
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
+
+    /**
+     * Set attribute value to a Double.
+     * Value will be stored as a JavaScript Number on the underlying data object
+     * @param property
+     * @param value
+     */
+    public void setAttribute(String property, Double value) {
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
+
+    /**
+     * Set attribute value to an int array.
+     * Value will be stored as a JavaScript Array of Numbers on the underlying data object.
+     * @param property
+     * @param value
+     */
+    public void setAttribute(String property, int[] value) {
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
+
+    /**
+     * Set attribute value to an Integer array.
+     * Value will be stored as a JavaScript Array of Numbers on the underlying data object.
+     * @param property
+     * @param value
+     */
+    public void setAttribute(String property, Integer[] value) {
+        JSOHelper.setAttribute(jsObj, property, value);
+    }
+
+    /**
+     * Set attribute value to a double array.
+     * Value will be stored as a JavaScript Array of Numbers on the underlying data object
+     * 
+     * @param property
+     * @param value
+     */
+    public void setAttribute(String property, double[] value) {
+    	JSOHelper.setAttribute(jsObj, property, value);
     }
 
     /**

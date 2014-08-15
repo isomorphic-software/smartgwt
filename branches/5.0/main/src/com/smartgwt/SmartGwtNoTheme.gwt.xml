@@ -24,6 +24,10 @@
 	<generate-with class="com.smartgwt.rebind.MetaBeanFactoryGenerator">
         <when-type-assignable class="com.smartgwt.client.bean.BeanFactory.MetaFactory" />
     </generate-with>
+    
+	<generate-with class="com.smartgwt.rebind.AnnotationMetaBeanFactoryGenerator">
+        <when-type-assignable class="com.smartgwt.client.bean.BeanFactory.AnnotationMetaFactory" />
+    </generate-with>
 
 	<generate-with class="com.smartgwt.rebind.BeanValueTypeFactoryGenerator">
         <when-type-assignable class="com.smartgwt.client.bean.BeanValueType.MetaFactory" />

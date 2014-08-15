@@ -1,9 +1,12 @@
 package com.smartgwt.sample.showcase.client.menu;
 
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.menu.*;
-import com.smartgwt.client.widgets.menu.events.ClickHandler;
-import com.smartgwt.client.widgets.menu.events.MenuItemClickEvent;
+import com.smartgwt.client.widgets.layout.HStack;
+import com.smartgwt.client.widgets.menu.IMenuButton;
+import com.smartgwt.client.widgets.menu.Menu;
+import com.smartgwt.client.widgets.menu.MenuItem;
+import com.smartgwt.client.widgets.menu.MenuItemSeparator;
+import com.smartgwt.client.widgets.menu.MenuItemStringFunction;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
@@ -14,7 +17,7 @@ public class MenuAppearanceSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             MenuAppearanceSample panel = new MenuAppearanceSample();
             id = panel.getID();
             return panel;
@@ -80,10 +83,21 @@ public class MenuAppearanceSample extends ShowcasePanel {
 
         IMenuButton menuButton = new IMenuButton("File", menu);
         menuButton.setWidth(100);
-        return menuButton;
+
+        HStack layout = new HStack();
+        layout.setWidth100();
+        layout.setMembers(menuButton);
+        return layout;
     }
 
     public String getIntro() {
         return DESCRIPTION;
     }
+
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        // match SC Feature Explorer sample topology
+        return true;
+    }
+
 }

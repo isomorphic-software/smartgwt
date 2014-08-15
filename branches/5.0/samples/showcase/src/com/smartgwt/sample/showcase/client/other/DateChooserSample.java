@@ -6,7 +6,6 @@ import com.smartgwt.client.widgets.events.DataChangedEvent;
 import com.smartgwt.client.widgets.events.DataChangedHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.BlurbItem;
-import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
@@ -18,7 +17,7 @@ public class DateChooserSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             DateChooserSample panel = new DateChooserSample();
             id = panel.getID();
             return panel;

@@ -34,7 +34,7 @@ public class GaugeSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GaugeSample sample = new GaugeSample();
             id = sample.getID();
             return sample;
@@ -67,6 +67,10 @@ public class GaugeSample extends ShowcasePanel {
 
     public String getIntro() {
         return DESCRIPTION;
+    }
+
+    public boolean isTopIntro() {
+        return true;
     }
 
     @Override

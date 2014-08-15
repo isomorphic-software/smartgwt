@@ -12,7 +12,7 @@ public class HTMLFlowSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             HTMLFlowSample panel = new HTMLFlowSample();
             id = panel.getID();
             return panel;

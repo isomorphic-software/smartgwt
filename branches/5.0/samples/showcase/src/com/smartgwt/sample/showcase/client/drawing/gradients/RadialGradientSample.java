@@ -32,7 +32,7 @@ public class RadialGradientSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             RadialGradientSample panel = new RadialGradientSample();
             id = panel.getID();
             return panel;

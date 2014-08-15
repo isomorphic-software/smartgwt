@@ -15,7 +15,7 @@ public class HeaderHoverTipsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             HeaderHoverTipsSample panel = new HeaderHoverTipsSample();
             id = panel.getID();
             return panel;

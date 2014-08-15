@@ -42,11 +42,27 @@ public class SC {
         return $wnd.isc.ClassFactory.getNextGlobalIDForClass(simpleName);
     }-*/;
 
+    //>IDocument One complication is that in "keep globals" mode, the SGWT wrapper's current SC
+    // jsObj will actually also be bound under the old ID!  To avoid problems in this case, we
+    // don't immediately release it but merely update the ID class to the right value.  We also
+    // log a warning if we're not able to release the ID and it's not expected.//<IDocument
     public static native void releaseID(String className, String id) /*-{
         var simpleName = className.substring(className.lastIndexOf(".")+1);
         //replace any $ characters from inner class names with an underscore
         simpleName = simpleName.replace("$", "_");
-        return $wnd.isc.ClassFactory.releaseGlobalID(simpleName, id);
+        // handle "keep globals" mode where spurious $wnd bindings are present
+        if (id == null || $wnd.window[id] == null) {
+            $wnd.isc.ClassFactory.releaseGlobalID(simpleName, id);
+        } else {
+            if (!$wnd.isc.keepGlobals) {
+                var message = "Unexpected global binding found for ID " + id +
+                    " in SC::releaseID; unable to release it for use by a new SC JS object.";
+                @com.smartgwt.client.util.SC::logWarn(Ljava/lang/String;)(message);
+            }
+            else if ($wnd.isc.autoAssignedTempGlobals[id]) {
+                     $wnd.isc.autoAssignedTempGlobals[id] = simpleName;
+            }
+        }
     }-*/;
 
     public static native boolean keepGlobals() /*-{
@@ -123,12 +139,20 @@ public class SC {
     }-*/;
 
     /**
-     * Return true if Firebug is enabled.
+     * Returns <code>true</code> if Firebug is enabled.
      *
-     * @return true if firebug is enabled
+     * @return <code>true</code> if Firebug is enabled; <code>false</code> otherwise.
      */
     public static native boolean hasFirebug() /*-{
-        return ($wnd.isc.Browser.isMoz && $wnd.console != null && ($wnd.console.firebug != null || $wnd.console.exception != null));
+        // http://stackoverflow.com/questions/398111/javascript-that-detects-firebug
+        // Note that console.exception was added to Firefox 28, so we need to check whether console.exception
+        // is a native function or not.
+        // https://developer.mozilla.org/en-US/docs/Web/API/console.error
+        return ($wnd.isc.Browser.isMoz &&
+                $wnd.console != null &&
+                ($wnd.console.firebug != null ||
+                 ($wnd.console.exception != null &&
+                  ($wnd.isc.Browser.version <= 27 || $wnd.console.exception.toString().indexOf("[native code]") < 0))));
     }-*/;
 
     public static native boolean isIE()/*-{
@@ -320,6 +344,23 @@ public class SC {
     }-*/;
 
     /**
+     * If a dialog triggered via {@link #say(String)}, {@link #ask(String, BooleanCallback)},
+     * {@link #warn(String)}, {@link #confirm(String, BooleanCallback)} or {@link #askforValue(String, ValueCallback)}
+     * is currently visible, it will be dismissed.  The callback passed to the relevant method will never fire.
+     * <p>
+     * Note this is a rarely used API with very few valid use cases.  As an example, perhaps some kind of
+     * periodic (non-user triggered) event would cause an entire area of the UI to be removed (such as a tab)
+     * and the system wants to ensure that no modal dialogs are currently showing from that part of the UI.
+     * In this case, while <code>dismissCurrentDialog</code> could be used to ensure the part of the UI being
+     * removed didn't leave behind a modal dialog.
+     * <p>
+     * To clear a modal prompt shown by {@link #showPrompt(String)}, use {@link #clearPrompt()} instead.
+     */
+    public static native void dismissCurrentDialog() /*-{
+        $wnd.isc.dismissCurrentDialog();
+    }-*/;
+
+    /**
      * Show a modal prompt to the user. This method will display the message using the Dialog.Prompt singleton object.
      * <p>
      * <b>Note</b>: if this prompt is to be shown to the user during some slow logic, we advise calling this method, then
@@ -493,7 +534,7 @@ public class SC {
      * @param category category to log in, defaults to "Log"
      */
     public static native void logWarn(String message, String category) /*-{
-    	$wnd.isc.logWarn(message);
+    	$wnd.isc.logWarn(message, category);
 	}-*/;
 
     /**
@@ -646,7 +687,7 @@ public class SC {
     }
 
     /**
-     * Returns true is the optional Analytics module has been loaded.
+     * Returns true if the optional Analytics module has been loaded.
      *
      * @return true if Analytics module is loaded
      */
@@ -655,7 +696,7 @@ public class SC {
     }-*/;
 
     /**
-     * Returns true is the optional Charts module has been loaded.
+     * Returns true if the optional Charts module has been loaded.
      *
      * @return true if Charts module is loaded
      */
@@ -664,7 +705,7 @@ public class SC {
     }-*/;
 
     /**
-     * Returns true is the optional Drawing module has been loaded.
+     * Returns true if the optional Drawing module has been loaded.
      *
      * @return true if Drawing module is loaded
      */
@@ -673,7 +714,7 @@ public class SC {
     }-*/;
 
     /**
-     * Returns true is the optional PluginBridges module has been loaded.
+     * Returns true if the optional PluginBridges module has been loaded.
      *
      * @return true if PluginBridges module is loaded
      */
@@ -682,12 +723,21 @@ public class SC {
     }-*/;
 
     /**
-     * Returns true is the optional RealtimeMessaging module has been loaded.
+     * Returns true if the optional RealtimeMessaging module has been loaded.
      *
      * @return true if RealtimeMessaging module is loaded
      */
     public static native boolean hasRealtimeMessaging()/*-{
         return $wnd.isc.Messaging != null;
+    }-*/;
+
+    /**
+     * Returns true if the optional Dashboard &amp; Tools module is available.
+     * 
+     * @return true if Dashboard &amp; Tools module is available.
+     */
+    public static native boolean hasDashboardAndTools()/*-{
+        return ($wnd.isc.EditContext != null) && !$wnd.isc.EditContext.vbOnly;
     }-*/;
     
     /**
@@ -696,5 +746,55 @@ public class SC {
      */
     public static native void setScreenReaderMode(boolean newState) /*-{
         $wnd.isc.setScreenReaderMode(newState);
+    }-*/;
+
+    /**
+     * Returns true if the method is supported by the class, meaning that it is not null
+     * and was not replaced by {@link #markUnsupportedMethods(String, String, String[])}. 
+     *
+     * @param className className to check
+     * @param methodName methodName to check
+     * @return boolean true if the method is not null and is not an unsupported method; false otherwise.
+     */
+    public static native boolean isMethodSupported(String className, String methodName) /*-{
+        return $wnd.isc[className].isMethodSupported(methodName);
+    }-*/;
+
+    /**
+     * Replaces each of the methods named in methodNames with a new implementation that
+     * simply logs a warning the first time the method is called, and nothing else.
+     * This can be used to mark methods of derived classes which do not support certain
+     * parent class methods as unsupported.
+     * <P>
+     * The messageTemplate parameter is a template for the warning message logged when
+     * the unsupported method is first called. The following variables in the template
+     * are substituted as follows:
+     * <table border="1">
+     * <tr>
+     *   <th>Variable</th>
+     *   <th>Substitution</th>
+     * </tr>
+     * <tr>
+     *   <td><code>$class</code></td>
+     *   <td>The +link{getClassName(),class name}.</td>
+     * </tr>
+     * <tr>
+     *   <td><code>$method</code></td>
+     *   <td>The name of the method.</td>
+     * </tr>
+     * </table>
+     * <P>
+     * If you want the literal string of a substitution variable to appear in the warning message,
+     * you can escape it by prefixing with a dollar sign. For example, to include "$class" in the
+     * warning message, use "$$class" in the template. 
+     *
+     * @param className className containing methods to mark
+     * @param messageTemplate template for the warning message logged when first called.
+     * 						  If null, the default template string "$class does not support
+     * 						  the $method() method." is used.
+     * @param methodNames the method names to mark as unsupported.
+     */
+    public static native void markUnsupportedMethods(String className, String messageTemplate, String[] methodNames) /*-{
+        $wnd.isc[className].markUnsupportedMethods(messageTemplate, @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(methodNames));
     }-*/;
 }

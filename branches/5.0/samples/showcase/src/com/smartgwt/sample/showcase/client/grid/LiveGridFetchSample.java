@@ -18,7 +18,7 @@ public class LiveGridFetchSample extends ShowcasePanel {
     private static final String DESCRIPTION =
             "<p>Rows are fetched automatically as the user drags the scrollbar. Drag the scrollbar quickly to the bottom to " +
                     "fetch a range near the end (a prompt will appear during server fetch).</p><p>Scroll slowly back up to fill in the middle.</p>" +
-                    "<p>Another key unique feature of Smart GWT is lazy rendering of <b>columns</b>. Most browsers cannot handle displaying a large number of column and have serious performance issues." +
+                    "<p>Another key unique feature of Smart GWT is lazy rendering of <b>columns</b>. Most browsers cannot handle displaying a large number of columns and have serious performance issues." +
                     "Smart GWT however does not render all columns outside the visible area by default and only renders them as you scroll horizontally. You can however disable this feature if desired.</p>" +
                     "<p>You can control how far ahead of the currently visible area rows should be rendered. This is expressed as a ratio from viewport size to rendered area size. The default is 1.3.</p>" +
                     "<p>Tweaking drawAheadRatio allows you to make tradeoffs between continuous scrolling speed vs initial render time and render time when scrolling by large amounts.</p>";
@@ -26,7 +26,7 @@ public class LiveGridFetchSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             LiveGridFetchSample panel = new LiveGridFetchSample();
             id = panel.getID();
             return panel;
@@ -122,6 +122,7 @@ public class LiveGridFetchSample extends ShowcasePanel {
         final ListGrid listGrid = new ListGrid();
         listGrid.setWidth100();
         listGrid.setHeight100();
+        listGrid.setMinFieldWidth(80);
         listGrid.setAutoFetchData(true);
         listGrid.setDataSource(dataSource);
 

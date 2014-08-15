@@ -18,7 +18,7 @@ public class SimpleCalendarSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             SimpleCalendarSample panel = new SimpleCalendarSample();
             id = panel.getID();
             return panel;

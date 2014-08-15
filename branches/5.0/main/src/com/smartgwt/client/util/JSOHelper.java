@@ -39,7 +39,66 @@ import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.widgets.BaseWidget;
 
 /**
- * Internal helper class.
+ * Utility class containing many useful static helper methods.
+ * <p>
+ **/
+/*
+ * NOTES - low-level detail of how the JS -> Java conversion works:
+ * In SmartGwtEntryPoint, set up $wnd.SmartGWT.convertToJavaType():
+ * - Converts simple and primitive JS types to Java equivalents:
+ *   - string
+ *     - the object itself is returned (presumably GWT can automap JS String to Java)
+ *   - number
+ *     - If the stringified number contains a ".", convert to Double
+ *     - Otherwise, convert to Integer if the value is less than Integer.MAX_VALUE, otherwise Long
+ *   - boolean -> Boolean
+ *   - date -> java.util.Date (via JSOHelper.convertToJavaDate)
+ *   - object where _constructor is "DateRange" -> com.smartgwt.client.data.DateRange
+ *   - isJSO(object) == true -> return the object itself
+ *   - array -> return the result of calling JSOHelper.convertToJavaObjectArray(object)
+ *   - If none of the above, gives up and returns the object itself
+ *
+ * In SmartGwtEntryPoint, set up $wnd.SmartGWT.convertToJavaObject():
+ * - Converts complex objects to Java equivalents:
+ *   - null -> return null
+ *   - isc.isA.Object() == false -> return the result of calling convertToJavaType(object) - see above
+ *   - isc.isA.Date() == true -> return a java.util.Date (via JSOHelper.convertToJavaDate)
+ *   - isc.isAn.Array:
+ *     - Iterate over the array members and convert each by calling convertToJavaObject()
+ *     - Add each converted member to a JS array
+ *     - After the iteration, convert the JS array to either a Java array (via SOHelper.convertToJavaObjectArray)
+ *       or an ArrayList, depending on the setting of the incoming "listAsArray" parameter (second param)
+ *     - Return this array or ArrayList
+ *   - If the incoming "forceMap" parameter (third param) is not true (using exact !== test)
+ *     - isJSO(object) == true -> return the object itself
+ *     - Object has a non-null "__ref" property -> return the value of the "__ref" property
+ *     - isc.isA.Canvas() -> return the result of calling com.smartgwt.client.widgets.Canvas.getById()
+ *       with the object's "ID" property
+ *     - object has a "name" property of type String and a "form" property of type "DynamicForm"
+ *       - Create a DynamicForm object by calling com.smartgwt.client.widgets.form.DynamicForm.getOrCreateRef()
+ *         with the value of the object's "form" property
+ *       - Return the result of calling getField() on that form, passing in the object's "name" property
+ *     - object has a "_constructor" property of "RelativeDate" => return a new instance of 
+ *       com.smartgwt.client.data.RelativeDate, passing the object to the constructor that accepts a JSO
+ *     - isc.isAn.Instance() == true and the object has a getClassName() method -> return the result of
+ *       calling com.smartgwt.client.util.ObjectFactory.createInstance(), passing the object to the 
+ *       constructor that accepts a JSO
+ *   - If the incoming "forceMap" param is true
+ *     - The object has a "__ref" property, and it is a Java Map (checked with JSOHelper::isJavaMap()),
+ *       return the value of the object's __ref property
+ *   - If get to this point without having converted the object, we try to render it as a Map
+ *     - If the object has a property named the same as isc.Tree.getPrototype().treeProperty, we assume
+ *       it is a TreeNode and call isc.Tree.getCleanNodeData() on it
+ *     - Create a new empty map to contain the converted properties
+ *     - Iterate over the property names in object
+ *       - If the property name is not a string, skip
+ *       - If the property name is the same as isc.gwtModule, skip
+ *       - If the property value is an object with a "__ref" property and that __ref property refers 
+ *         to a native Java object (as defined by SmartGWT.isNativeJavaObject(), which ultimately calls
+ *         on to isJSO()), add the __ref object to the converted map
+ *       - Otherwise, convert the value by passing it to convertToJavaObject(), then add it to the 
+ *         converted map
+ *       - Return the converted map
  */
 public class JSOHelper {
 
@@ -483,10 +542,38 @@ public class JSOHelper {
         return jsCells;
     }
 
+    /**
+     * Returns attribute value set as a Boolean.  For convenience in checking boolean
+     * properties, <code>getAttributeAsBoolean</code> will return Boolean <code>false</code>
+     * if the attribute value is <code>null</code> or not a Boolean.  Use the three parameter
+     * variant of this API {@link #getAttributeAsBoolean(JavaScriptObject, String, boolean)}
+     * if you want <code>null</code> returned for <code>null</code> attribute values.
+     * @param elem the JavaScriptObject containing the property
+     * @param attr the property name
+     * @return the property value
+     */
+    public static boolean getAttributeAsBoolean(JavaScriptObject elem, String attr) {
+        return getAttributeAsBoolean(elem, attr, false);
+    }
 
-    public static native boolean getAttributeAsBoolean(JavaScriptObject elem, String attr) /*-{
-	    var ret = elem[attr];
-	    return (ret == null || ret === undefined) ? false : ret;
+    /**
+     * Returns attribute value set as a Boolean.  If the attribute value is <code>null</code>
+     * or not a Boolean, the return value depends upon <code>allowNull</code>.  If 
+     * <code>allowNull</code> is true, <code>null</code> will be returned; otherwise Boolean
+     * <code>false</code> will be returned.  For a simpler approach that never returns 
+     * <codE>null</code>, use the two parameter variant of this API 
+     * {@link #getAttributeAsBoolean(JavaScriptObject, String)}.
+     * @param elem the JavaScriptObject containing the property
+     * @param attr the property name
+     * @param allowNull whether to permit a <code>null</code> return value
+     * @return the property value
+     */
+    public static native Boolean getAttributeAsBoolean(JavaScriptObject elem, String attr, boolean allowNull) /*-{
+        var ret = elem[attr];
+        if ($wnd.isc.isA.Boolean(ret)) ret = ret.valueOf();
+        else if (!allowNull)         ret = false;
+        else                         return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 
     public static native Object getAttributeAsObject(JavaScriptObject elem, String attr) /*-{

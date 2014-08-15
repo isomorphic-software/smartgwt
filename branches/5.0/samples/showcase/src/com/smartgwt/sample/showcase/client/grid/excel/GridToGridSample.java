@@ -1,40 +1,24 @@
 package com.smartgwt.sample.showcase.client.grid.excel;
 
-import java.util.Map;
-import java.util.List;
-import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import com.google.gwt.core.client.EntryPoint;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.RecordList;
-import com.smartgwt.client.data.DataSource;
-import com.smartgwt.client.data.TextImportSettings;
-import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.types.Alignment;
-import com.smartgwt.client.types.Visibility;
-import com.smartgwt.client.types.EscapingMode;
-import com.smartgwt.client.types.LayoutPolicy;
-import com.smartgwt.client.types.VerticalAlignment;
-import com.smartgwt.client.widgets.Button;
+import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.Dialog;
 import com.smartgwt.client.widgets.IButton;
-import com.smartgwt.client.widgets.tab.Tab;
-import com.smartgwt.client.widgets.tab.TabSet;
-import com.smartgwt.client.widgets.layout.VLayout;
-import com.smartgwt.client.widgets.layout.HLayout;
-import com.smartgwt.client.widgets.form.DynamicForm;
-import com.smartgwt.client.widgets.grid.ListGrid;
-import com.smartgwt.client.widgets.grid.ListGridField;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-import com.smartgwt.client.widgets.grid.CellSelection;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
-import com.smartgwt.client.widgets.form.fields.FormItem;
-import com.smartgwt.client.widgets.form.fields.ButtonItem;
-import com.smartgwt.client.widgets.form.fields.TextAreaItem;
-import com.smartgwt.client.widgets.form.fields.StaticTextItem;
+import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.layout.HLayout;
+import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.tab.Tab;
+import com.smartgwt.client.widgets.tab.TabSet;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
@@ -47,7 +31,7 @@ public class GridToGridSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridToGridSample panel = new GridToGridSample();
             id = panel.getID();
             return panel;

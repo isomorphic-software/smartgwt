@@ -2,7 +2,6 @@ package com.smartgwt.sample.showcase.client.drawing;
 
 import com.smartgwt.client.types.Cursor;
 import com.smartgwt.client.types.Overflow;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Slider;
 import com.smartgwt.client.widgets.drawing.DrawCurve;
@@ -33,7 +32,7 @@ public class RotationSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             RotationSample panel = new RotationSample();
             id = panel.getID();
             return panel;

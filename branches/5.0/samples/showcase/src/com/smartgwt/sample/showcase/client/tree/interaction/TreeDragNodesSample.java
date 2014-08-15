@@ -22,7 +22,7 @@ public class TreeDragNodesSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             TreeDragNodesSample panel = new TreeDragNodesSample();
             id = panel.getID();
             return panel;

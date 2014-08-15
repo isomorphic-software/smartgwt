@@ -16,7 +16,7 @@ public class SliderSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             SliderSample panel = new SliderSample();
             id = panel.getID();
             return panel;
@@ -55,7 +55,7 @@ public class SliderSample extends ShowcasePanel {
             public void onDraw(DrawEvent event) {
                 vSlider.addValueChangedHandler(new ValueChangedHandler() {
                     public void onValueChanged(ValueChangedEvent event) {
-                        int value = event.getValue();
+                        double value = event.getValue();
                         if (hSlider.getValue() != value) {
                             hSlider.setValue(value);
                         }
@@ -68,7 +68,7 @@ public class SliderSample extends ShowcasePanel {
             public void onDraw(DrawEvent event) {
                 hSlider.addValueChangedHandler(new ValueChangedHandler() {
                     public void onValueChanged(ValueChangedEvent event) {
-                        int value = event.getValue();
+                        double value = event.getValue();
                         if (vSlider.getValue() != value) {
                             vSlider.setValue(value);
                         }

@@ -2,11 +2,11 @@ package com.smartgwt.sample.showcase.client.grid.databinding;
 
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.fields.DataSourceTextField;
-import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.sample.showcase.client.data.CountrySampleData;
+import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class GridDataBindingLocalDataSourceSample extends ShowcasePanel {
     private static final String DESCRIPTION = "This ListGrid binds to a client-only DataSource that loads data from a local data array. This "+
@@ -17,7 +17,7 @@ public class GridDataBindingLocalDataSourceSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridDataBindingLocalDataSourceSample panel = new GridDataBindingLocalDataSourceSample();
             id = panel.getID();
             return panel;

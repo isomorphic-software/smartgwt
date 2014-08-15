@@ -18,7 +18,7 @@ public class FormTypeSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
         	FormTypeSample panel = new FormTypeSample();
             id = panel.getID();
             return panel;
