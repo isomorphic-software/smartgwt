@@ -1,6 +1,5 @@
 package com.smartgwt.sample.showcase.client.grid.expando;
 
-import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.ExpansionMode;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGrid;
@@ -18,7 +17,7 @@ public class GridRowExpansionDetailFieldSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridRowExpansionDetailFieldSample panel = new GridRowExpansionDetailFieldSample();
             id = panel.getID();
             return panel;

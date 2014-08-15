@@ -1,5 +1,7 @@
 package com.smartgwt.sample.showcase.client.combobox;
 
+import java.util.LinkedHashMap;
+
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.ComboBoxItem;
@@ -12,15 +14,13 @@ import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
 
-import java.util.LinkedHashMap;
-
 public class ComboBoxStyledSample extends ShowcasePanel {
     private static final String DESCRIPTION = "A few examples of styled ComboBox and SelectItems";
 
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             ComboBoxStyledSample panel = new ComboBoxStyledSample();
             id = panel.getID();
             return panel;

@@ -16,15 +16,26 @@
 
 package com.smartgwt.sample.showcase.client.grid.editing;
 
+import java.util.Date;
+
 import com.smartgwt.client.types.ListGridEditEvent;
 import com.smartgwt.client.types.MultipleAppearance;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.form.fields.*;
-import com.smartgwt.client.widgets.grid.*;
+import com.smartgwt.client.widgets.form.fields.CheckboxItem;
+import com.smartgwt.client.widgets.form.fields.DateItem;
+import com.smartgwt.client.widgets.form.fields.FormItem;
+import com.smartgwt.client.widgets.form.fields.IntegerItem;
+import com.smartgwt.client.widgets.form.fields.PasswordItem;
+import com.smartgwt.client.widgets.form.fields.SelectItem;
+import com.smartgwt.client.widgets.form.fields.SliderItem;
+import com.smartgwt.client.widgets.form.fields.TextItem;
+import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridEditorContext;
+import com.smartgwt.client.widgets.grid.ListGridEditorCustomizer;
+import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-
-import java.util.Date;
 
 
 public class GridCellEditorCustomizerSample extends ShowcasePanel {
@@ -34,7 +45,7 @@ public class GridCellEditorCustomizerSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridCellEditorCustomizerSample panel = new GridCellEditorCustomizerSample();
             id = panel.getID();
             return panel;

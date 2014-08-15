@@ -1,7 +1,6 @@
 package com.smartgwt.sample.showcase.client.grid.expando;
 
 import com.smartgwt.client.data.DataSource;
-import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
@@ -28,7 +27,7 @@ public class GridRowExpansionEditorSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridRowExpansionEditorSample panel = new GridRowExpansionEditorSample();
             id = panel.getID();
             return panel;

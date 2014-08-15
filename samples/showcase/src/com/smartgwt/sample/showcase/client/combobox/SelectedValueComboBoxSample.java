@@ -23,7 +23,7 @@ public class SelectedValueComboBoxSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             SelectedValueComboBoxSample panel = new SelectedValueComboBoxSample();
             id = panel.getID();
             return panel;

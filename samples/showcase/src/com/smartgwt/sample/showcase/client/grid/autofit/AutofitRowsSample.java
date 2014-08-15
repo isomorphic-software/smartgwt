@@ -1,6 +1,5 @@
 package com.smartgwt.sample.showcase.client.grid.autofit;
 
-import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.widgets.Canvas;
@@ -13,7 +12,6 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CountrySampleData;
-import com.smartgwt.client.data.Record;
 
 public class AutofitRowsSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Click the buttons to show different numbers of records. The grid resizes to fit all rows without scrolling.";
@@ -21,7 +19,7 @@ public class AutofitRowsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             AutofitRowsSample panel = new AutofitRowsSample();
             id = panel.getID();
             return panel;

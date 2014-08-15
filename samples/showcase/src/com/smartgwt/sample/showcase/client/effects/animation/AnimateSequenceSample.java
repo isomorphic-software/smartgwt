@@ -19,7 +19,7 @@ public class AnimateSequenceSample extends ShowcasePanel {
 	public static class Factory implements PanelFactory {
 		private String id;
 
-		public Canvas create() {
+		public ShowcasePanel create() {
 			AnimateSequenceSample panel = new AnimateSequenceSample();
 			id = panel.getID();
 			return panel;

@@ -29,7 +29,7 @@ public class PatternReuseSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             PatternReuseSample panel = new PatternReuseSample();
             id = panel.getID();
             return panel;

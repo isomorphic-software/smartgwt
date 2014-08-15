@@ -6,8 +6,9 @@ import java.util.List;
 
 import com.smartgwt.sample.showcase.client.DebugConsoleCommand;
 import com.smartgwt.sample.showcase.client.ShowcaseConfiguration;
-import com.smartgwt.sample.showcase.client.autotest.effects.dragdrop.TestableRecordsAcrossWindowsSample;
+import com.smartgwt.sample.showcase.client.ShowcaseMessages;
 import com.smartgwt.sample.showcase.client.autotest.effects.dragdrop.TestablePortletAcrossWindowsSample;
+import com.smartgwt.sample.showcase.client.autotest.effects.dragdrop.TestableRecordsAcrossWindowsSample;
 import com.smartgwt.sample.showcase.client.basics.components.CreateSample;
 import com.smartgwt.sample.showcase.client.basics.components.LayerSample;
 import com.smartgwt.sample.showcase.client.basics.components.LayoutSample;
@@ -43,6 +44,7 @@ import com.smartgwt.sample.showcase.client.calendar.OverlappingEventsCalendarSam
 import com.smartgwt.sample.showcase.client.calendar.SimpleCalendarSample;
 import com.smartgwt.sample.showcase.client.calendar.SimpleTimelineSample;
 import com.smartgwt.sample.showcase.client.calendar.WorkdayCalendarSample;
+import com.smartgwt.sample.showcase.client.combobox.ComboBoxSpecialValuesSample;
 import com.smartgwt.sample.showcase.client.combobox.ComboBoxStyledSample;
 import com.smartgwt.sample.showcase.client.combobox.DropdownListGridSample;
 import com.smartgwt.sample.showcase.client.combobox.FormatDropDownSample;
@@ -57,7 +59,6 @@ import com.smartgwt.sample.showcase.client.combobox.SelectedValueComboBoxSample;
 import com.smartgwt.sample.showcase.client.dataintegration.json.FormServerJsonValidationSample;
 import com.smartgwt.sample.showcase.client.dataintegration.json.JsonSimpleSample;
 import com.smartgwt.sample.showcase.client.dataintegration.json.JsonXPathSample;
-//import com.smartgwt.sample.showcase.client.dataintegration.json.YahooJsonServicesSample;
 import com.smartgwt.sample.showcase.client.dataintegration.xml.FormServerXmlValidationSample;
 import com.smartgwt.sample.showcase.client.dataintegration.xml.RestfulDataSourceSample;
 import com.smartgwt.sample.showcase.client.dataintegration.xml.XmlXPathSample;
@@ -90,7 +91,9 @@ import com.smartgwt.sample.showcase.client.effects.dragdrop.DragListMoveSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragListSelectSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragMenuGridSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragMoveImageSample;
+import com.smartgwt.sample.showcase.client.effects.dragdrop.DragPanSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragResizeSample;
+import com.smartgwt.sample.showcase.client.effects.dragdrop.DragSnapToGridSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragTilesMoveSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragTrackerSample;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.DragTypesSample;
@@ -102,17 +105,6 @@ import com.smartgwt.sample.showcase.client.effects.looknfeel.CssStylesSample;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.EdgesSample;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.ShadowsSample;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.TranslucencySample;
-import com.smartgwt.sample.showcase.client.portalLayout.AddRemoveColumnsSample;
-import com.smartgwt.sample.showcase.client.portalLayout.PortletAnimationSample;
-import com.smartgwt.sample.showcase.client.portalLayout.PortletEventsSample;
-import com.smartgwt.sample.showcase.client.portalLayout.RearrangeSample;
-import com.smartgwt.sample.showcase.client.portalLayout.portletContents.DragComponentsSample;
-import com.smartgwt.sample.showcase.client.portalLayout.portletContents.WindowContentsSample;
-import com.smartgwt.sample.showcase.client.portalLayout.sizing.ColumnHeightSample;
-import com.smartgwt.sample.showcase.client.portalLayout.sizing.ColumnWidthSample;
-import com.smartgwt.sample.showcase.client.portalLayout.sizing.PortletHeightSample;
-import com.smartgwt.sample.showcase.client.portalLayout.sizing.PortletResizeSample;
-import com.smartgwt.sample.showcase.client.portalLayout.sizing.PortletWidthSample;
 import com.smartgwt.sample.showcase.client.forms.CustomPickerSample;
 import com.smartgwt.sample.showcase.client.forms.FormDataBindingSample;
 import com.smartgwt.sample.showcase.client.forms.FormFocusFirstSample;
@@ -120,6 +112,7 @@ import com.smartgwt.sample.showcase.client.forms.ListGridItemSample;
 import com.smartgwt.sample.showcase.client.forms.NestedEditorSample;
 import com.smartgwt.sample.showcase.client.forms.PickerControlsSample;
 import com.smartgwt.sample.showcase.client.forms.TextMaskingSample;
+import com.smartgwt.sample.showcase.client.forms.PickTreeSample;
 import com.smartgwt.sample.showcase.client.forms.controls.FormVariousControlsSample;
 import com.smartgwt.sample.showcase.client.forms.dependencies.FormConditionallyRequiredSample;
 import com.smartgwt.sample.showcase.client.forms.dependencies.FormDataboundDependentSelectsSample;
@@ -140,7 +133,15 @@ import com.smartgwt.sample.showcase.client.forms.validation.FormBuiltinsSample;
 import com.smartgwt.sample.showcase.client.forms.validation.FormRegularExpressionSample;
 import com.smartgwt.sample.showcase.client.forms.validation.FormTypeSample;
 import com.smartgwt.sample.showcase.client.forms.validation.FormValueTransformSample;
-import com.smartgwt.sample.showcase.client.grid.*;
+import com.smartgwt.sample.showcase.client.grid.GridCellWidgetsSample;
+import com.smartgwt.sample.showcase.client.grid.GridDataBoundDragDropSample;
+import com.smartgwt.sample.showcase.client.grid.GridDependentSelectsSample;
+import com.smartgwt.sample.showcase.client.grid.GridFilterBulderSample;
+import com.smartgwt.sample.showcase.client.grid.GridMultiLineSummariesSample;
+import com.smartgwt.sample.showcase.client.grid.GridNestedFilterBulderSample;
+import com.smartgwt.sample.showcase.client.grid.GridSummariesInHeaderSample;
+import com.smartgwt.sample.showcase.client.grid.GridSummariesSample;
+import com.smartgwt.sample.showcase.client.grid.LiveGridFetchSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.AlternateRecordStyleSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.AnimatedSelectionSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.CellStylesSample;
@@ -152,6 +153,7 @@ import com.smartgwt.sample.showcase.client.grid.appearance.ColumnTitlesSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.CustomHeaderMenuSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.EmptyGridSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.EmptyValuesSample;
+import com.smartgwt.sample.showcase.client.grid.appearance.FieldPickerSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.FormatValuesBuiltinSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.FormatValuesSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.FormulaSummaryBuilderSample;
@@ -161,7 +163,6 @@ import com.smartgwt.sample.showcase.client.grid.appearance.GridPreferencesSample
 import com.smartgwt.sample.showcase.client.grid.appearance.GridTopHeaderSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.HiliteCellsAddStyleSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.HiliteCellsReplaceStyleSample;
-import com.smartgwt.sample.showcase.client.grid.appearance.FieldPickerSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.MultilineSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.RollOverControlsSample;
 import com.smartgwt.sample.showcase.client.grid.appearance.RowNumberingSample;
@@ -172,11 +173,18 @@ import com.smartgwt.sample.showcase.client.grid.autofit.AutofitNewRecordsSample;
 import com.smartgwt.sample.showcase.client.grid.autofit.AutofitRowsSample;
 import com.smartgwt.sample.showcase.client.grid.autofit.AutofitValuesSample;
 import com.smartgwt.sample.showcase.client.grid.autofit.FreeSpaceSample;
+import com.smartgwt.sample.showcase.client.mobile.NavigationBarSample;
+import com.smartgwt.sample.showcase.client.mobile.SpinnerControlSample;
+import com.smartgwt.sample.showcase.client.mobile.MobileMenusSample;
+import com.smartgwt.sample.showcase.client.mobile.MobileSelectListSample;
+import com.smartgwt.sample.showcase.client.mobile.MobileComboBoxSample;
+import com.smartgwt.sample.showcase.client.mobile.MobileWindowsDialogsSample;
+import com.smartgwt.sample.showcase.client.mobile.MobileCalendarSample;
 import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingDataSourceFieldsSample;
 import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingInlineDataSample;
-import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingLocalDataSourceSample;
 import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingJSONDataSourceSample;
 import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingListGridFieldsSample;
+import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingLocalDataSourceSample;
 import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingMergedFieldsSample;
 import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingXMLDataSourceSample;
 import com.smartgwt.sample.showcase.client.grid.dataoperation.GridDataBoundAddSample;
@@ -195,7 +203,19 @@ import com.smartgwt.sample.showcase.client.grid.datatypes.GridDataTypesLinkTextS
 import com.smartgwt.sample.showcase.client.grid.datatypes.GridDataTypesListSample;
 import com.smartgwt.sample.showcase.client.grid.datatypes.GridDataTypesLongTextSample;
 import com.smartgwt.sample.showcase.client.grid.datatypes.GridDataTypesTextSample;
-import com.smartgwt.sample.showcase.client.grid.editing.*;
+import com.smartgwt.sample.showcase.client.grid.editing.GridCellEditorCustomizerSample;
+import com.smartgwt.sample.showcase.client.grid.editing.GridCustomEditorsSample;
+import com.smartgwt.sample.showcase.client.grid.editing.GridDataValidationSample;
+import com.smartgwt.sample.showcase.client.grid.editing.GridDisableEditingSample;
+import com.smartgwt.sample.showcase.client.grid.editing.GridEditAllRowsSample;
+import com.smartgwt.sample.showcase.client.grid.editing.GridEditByCellSample;
+import com.smartgwt.sample.showcase.client.grid.editing.GridEditByRowSample;
+import com.smartgwt.sample.showcase.client.grid.editing.GridEnterNewRowSample;
+import com.smartgwt.sample.showcase.client.grid.editing.GridMassUpdateSample;
+import com.smartgwt.sample.showcase.client.grid.editing.GridModalEditingSample;
+import com.smartgwt.sample.showcase.client.grid.excel.ExcelToGridSample;
+import com.smartgwt.sample.showcase.client.grid.excel.GridToExcelSample;
+import com.smartgwt.sample.showcase.client.grid.excel.GridToGridSample;
 import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionDetailFieldSample;
 import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionDetailsSample;
 import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionEditorSample;
@@ -210,8 +230,8 @@ import com.smartgwt.sample.showcase.client.grid.gridform.GridRecordRemoveSample;
 import com.smartgwt.sample.showcase.client.grid.gridform.XsdDataSourceSample;
 import com.smartgwt.sample.showcase.client.grid.grouping.GridCustomGroupingSample;
 import com.smartgwt.sample.showcase.client.grid.grouping.GridDynamicGroupingSample;
-import com.smartgwt.sample.showcase.client.grid.grouping.GroupedEditingSample;
 import com.smartgwt.sample.showcase.client.grid.grouping.GridGroupingModesSample;
+import com.smartgwt.sample.showcase.client.grid.grouping.GroupedEditingSample;
 import com.smartgwt.sample.showcase.client.grid.grouping.MultiGroupingSample;
 import com.smartgwt.sample.showcase.client.grid.hiliting.GridDataDrivenHilitingSample;
 import com.smartgwt.sample.showcase.client.grid.hiliting.GridFormulaHilitingSample;
@@ -220,6 +240,7 @@ import com.smartgwt.sample.showcase.client.grid.hiliting.GridUserDefinedHiliting
 import com.smartgwt.sample.showcase.client.grid.hover.GridCustomHoverSample;
 import com.smartgwt.sample.showcase.client.grid.hover.GridHoverRelatedRecordsSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.CellClicksSample;
+import com.smartgwt.sample.showcase.client.grid.interaction.CellSelectionSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.CheckboxSelectSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.DisabledRowsSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.DragCopySample;
@@ -228,19 +249,32 @@ import com.smartgwt.sample.showcase.client.grid.interaction.DragReorderSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.DragSelectSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.HeaderHoverTipsSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.MultipleSelectSample;
-import com.smartgwt.sample.showcase.client.grid.interaction.CellSelectionSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.RecordClicksSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.RolloverSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.SimpleSelectSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.SingleSelectSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.ValueHoverTipsSample;
-import com.smartgwt.sample.showcase.client.grid.sortfilter.*;
-import com.smartgwt.sample.showcase.client.grid.excel.*;
+import com.smartgwt.sample.showcase.client.grid.sortfilter.AdaptiveFilterSample;
+import com.smartgwt.sample.showcase.client.grid.sortfilter.AdaptiveSortSample;
+import com.smartgwt.sample.showcase.client.grid.sortfilter.DisableSortSample;
+import com.smartgwt.sample.showcase.client.grid.sortfilter.GridBigFilterSample;
+import com.smartgwt.sample.showcase.client.grid.sortfilter.GridDateRangeFilterSample;
+import com.smartgwt.sample.showcase.client.grid.sortfilter.GridDateRangePresetsSample;
+import com.smartgwt.sample.showcase.client.grid.sortfilter.GridDisableFilterSample;
+import com.smartgwt.sample.showcase.client.grid.sortfilter.GridExpressionFilter;
+import com.smartgwt.sample.showcase.client.grid.sortfilter.GridFilterSample;
+import com.smartgwt.sample.showcase.client.grid.sortfilter.GridLiveFilterSample;
+import com.smartgwt.sample.showcase.client.grid.sortfilter.GridSortSample;
+import com.smartgwt.sample.showcase.client.grid.sortfilter.MultiLevelSortSample;
+import com.smartgwt.sample.showcase.client.grid.sortfilter.SortArrowsSample;
+import com.smartgwt.sample.showcase.client.grid.sortfilter.SortDataTypesSample;
 import com.smartgwt.sample.showcase.client.gwtintegration.GwtShowcaseSample;
 import com.smartgwt.sample.showcase.client.layout.CenterAlignSample;
 import com.smartgwt.sample.showcase.client.layout.NestingSample;
 import com.smartgwt.sample.showcase.client.layout.UserSizingSample;
+import com.smartgwt.sample.showcase.client.layout.SplitPaneSample;
 import com.smartgwt.sample.showcase.client.menu.MenuAppearanceSample;
+import com.smartgwt.sample.showcase.client.menu.MenuCustomColumnsSample;
 import com.smartgwt.sample.showcase.client.menu.MenuSubmenusSample;
 import com.smartgwt.sample.showcase.client.menu.MenuTreeBindingSample;
 import com.smartgwt.sample.showcase.client.miniapp.MiniAppSample;
@@ -252,6 +286,17 @@ import com.smartgwt.sample.showcase.client.other.ProgressBarSample;
 import com.smartgwt.sample.showcase.client.other.SliderSample;
 import com.smartgwt.sample.showcase.client.other.TypeReuseSample;
 import com.smartgwt.sample.showcase.client.portal.SimplePortalManualSample;
+import com.smartgwt.sample.showcase.client.portalLayout.AddRemoveColumnsSample;
+import com.smartgwt.sample.showcase.client.portalLayout.PortletAnimationSample;
+import com.smartgwt.sample.showcase.client.portalLayout.PortletEventsSample;
+import com.smartgwt.sample.showcase.client.portalLayout.RearrangeSample;
+import com.smartgwt.sample.showcase.client.portalLayout.portletContents.DragComponentsSample;
+import com.smartgwt.sample.showcase.client.portalLayout.portletContents.WindowContentsSample;
+import com.smartgwt.sample.showcase.client.portalLayout.sizing.ColumnHeightSample;
+import com.smartgwt.sample.showcase.client.portalLayout.sizing.ColumnWidthSample;
+import com.smartgwt.sample.showcase.client.portalLayout.sizing.PortletHeightSample;
+import com.smartgwt.sample.showcase.client.portalLayout.sizing.PortletResizeSample;
+import com.smartgwt.sample.showcase.client.portalLayout.sizing.PortletWidthSample;
 import com.smartgwt.sample.showcase.client.printing.PrintingSample;
 import com.smartgwt.sample.showcase.client.sections.ExpandCollapseSample;
 import com.smartgwt.sample.showcase.client.sections.SectionsAddRemoveSample;
@@ -299,8 +344,10 @@ import com.smartgwt.sample.showcase.client.windows.WindowMinimizeSample;
 import com.smartgwt.sample.showcase.client.windows.WindowModalitySample;
 
 public class ShowcaseData {
+    private static final ShowcaseMessages M = ShowcaseMessages.INSTANCE;
 
     private String idSuffix;
+    private final String currentReleaseVersion = "4.1";
 
     public ShowcaseData(String idSuffix) {
         this.idSuffix = idSuffix;
@@ -308,11 +355,33 @@ public class ShowcaseData {
 
     private List<ExplorerTreeNode> data;
 
+    private ExplorerTreeNode[] getShowcaseDataVersioned() {
+        ExplorerTreeNode[] showcaseData = getData();
+        for (final ExplorerTreeNode explorerTreeNode : showcaseData) {
+            if (explorerTreeNode.getVersion() == null) {
+                continue;
+            } else if (Float.parseFloat(explorerTreeNode.getVersion()) > Float.parseFloat(currentReleaseVersion)) {
+                explorerTreeNode.setName(explorerTreeNode.getName() + "<sup style='color: red;font-size:10px;font-weight: 700;'> BETA</sup>");
+            } else if (Float.parseFloat(explorerTreeNode.getVersion()) == Float.parseFloat(currentReleaseVersion)) {
+                boolean exist = false;
+                for (final ExplorerTreeNode explorerTreeNode1 : showcaseData) {
+                    if ((explorerTreeNode1.getParentNodeID().equalsIgnoreCase("new_category")) &&
+                        (explorerTreeNode1.getNodeID().equals(explorerTreeNode.getNodeID()))) {
+                        exist = true;
+                    }
+                }
+                if (!exist) explorerTreeNode.setParentNodeID("new_category");
+            }
+        }
+        return showcaseData;
+    }
+
     private ExplorerTreeNode[] getData() {
         if (data == null) {
             data = new ArrayList<ExplorerTreeNode>();
             data.addAll(Arrays.asList(new ExplorerTreeNode[] {
-                    new ExplorerTreeNode("Featured Samples", "featured-category", "root", "silk/house.png", null, true, idSuffix),
+                    new ExplorerTreeNode(M.homeNodeName(), "main", "root", "silk/house.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Featured Samples", "featured-category", "root", "pieces/16/cube_green.png", null, true, idSuffix),
                     new ExplorerTreeNode("Demo Application", "featured-complete-app", "featured-category", "silk/layout_content.png", new MiniAppSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Smart GWT MVC", "featured-smartgwt-mvc", "featured-category", "silk/arrow_join.png", new TreeEditingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid Cell Widgets", "featured-grid-cell-widgets", "featured-category", null, new GridCellWidgetsSample.Factory(), true, idSuffix),
@@ -320,8 +389,35 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Nested Grid", "featured-nested-grid", "featured-category", "crystal/16/mimetypes/widget_doc.png", new GridRowExpansionRelatedRecordsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Tile Sort &amp; Filtering", "featured-tile-filtering", "featured-category", "silk/application_view_tile.png", new FilterSortTilingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Print Grid", "featured-print-grid", "featured-category", "silk/printer.png", new PrintingSample.Factory(), true, idSuffix),
+
+                    // Disabled for now. We don't want to expose this folder until we have a certain number of samples complete.
+//                    new ExplorerTreeNode("Mobile samples", "mobile", "root", "silk/phone.png", null, true, idSuffix),   
+//                  new ExplorerTreeNode("Responsive Design", "responsive-design", "mobile", "silk/calendar.png", new ResponsiveDesign.Factory(), false, idSuffix, "5.0"),
+//                  new ExplorerTreeNode("Dialing", "dialing", "mobile", "silk/phone.png", new DialingSample.Factory(), false, idSuffix, "5.0"),
+/*                    new FolderTreeNode("Adaptive UI", "adaptive-ui-ms", "mobile", "silk/phone.png", true, idSuffix) {{
+                            setDescription(
+                                    "Smart GWT components automatically adapt to the smaller screen size and "+
+                                    "different pointing behavior of mobile devices. "+
+                                    "<p>"+
+                                    "Components like Combo Boxes, Menus and Dialogs will automatically use the entire screen "+
+                                    "and offer alternative UI for dismissal and navigation (for example: submenus slide in)."+
+                                    "<p>"+
+                                    "Context menus and hovers can be triggered by finger taps or long touches. "+
+                                    "<p>"+
+                                    "Because of these and many other automatic behavior changes for mobile devices, you really "+
+                                    "can build cross-device applications with a single technology and single codebase."
+                            );
+                        }},                  
+                    new ExplorerTreeNode("Combo Box", "combobox-ms", "adaptive-ui-ms", null, new MobileComboBoxSample.Factory(), true, idSuffix, "5.0"),
+                    new ExplorerTreeNode("Select List", "selectlist-ms", "adaptive-ui-ms", null, new MobileSelectListSample.Factory(), true, idSuffix, "5.0"),
+                    new ExplorerTreeNode("Menus", "menus-ms", "adaptive-ui-ms", null, new MobileMenusSample.Factory(), true, idSuffix, "5.0"),
+                    new ExplorerTreeNode("Windows &amp; Dialogs", "windows-dialogs-ms", "adaptive-ui-ms", null, new MobileWindowsDialogsSample.Factory(), true, idSuffix, "5.0"),
+                    new ExplorerTreeNode("Calendar", "mobile-calendar-ms", "adaptive-ui-ms", null, new MobileCalendarSample.Factory(), true, idSuffix, "5.0"),
+                    new ExplorerTreeNode("Spinner Control", "spinner-control-ms", "adaptive-ui-ms", null, new SpinnerControlSample.Factory(), true, idSuffix, "5.0"),
+                    new ExplorerTreeNode("Navigation Bar Auto-fit", "navigation-bar-ms", "mobile", "silk/phone.png", new NavigationBarSample.Factory(), true, idSuffix, "5.0"),*/
+
                     new ExplorerTreeNode("Adv. Filter Builder", "featured-filter-builder-grid", "featured-category", "crystal/oo/sc_insertformula.png", new GridNestedFilterBulderSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Tree Grid", "featured-tree-grid", "featured-category", "silk/chart_organisation.png", new FrozenColumnsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Frozen Columns", "featured-tree-grid", "featured-category", "silk/chart_organisation.png", new FrozenColumnsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid Header Spans", "featured-grid-header-span", "featured-category", null, new GridHeaderSpansSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Live Grid", "featured-grid-live", "featured-category", "silk/application_put.png", new LiveGridFetchSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Vertical Tabs", "featured-vertical-tabs", "featured-category", "silk/tab.png", new OrientationSample.Factory(), true, idSuffix),
@@ -336,32 +432,13 @@ public class ShowcaseData {
                     new ExplorerTreeNode("XSD DataSource", "featured-xsd-ds", "featured-category", "silk/database_gear.png", new XsdDataSourceSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("GWT Integration", "featured-gwt-integration", "featured-category", "gwt/icon16.png", new GwtShowcaseSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Databound Dragging", "grid-db-dragging-featured-category", "featured-category", "silk/database_link.png", new GridDataBoundDragDropSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Adaptive Filter", "grid-adaptive-filter-featured-category", "featured-category", "crystal/16/actions/show_table_row.png", new AdaptiveFilterSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Adaptive Filter", "grid-adaptive-filter-featured-category", "featured-category", "silk/funnel.png", new AdaptiveFilterSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Formula &amp; Summary Builder", "formula-sumamry-builder-featured-category", "featured-category", "crystal/oo/sc_insertformula.png", new FormulaSummaryBuilderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid Summaries", "grid-summaries-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Offline Preferences", "grid-offline-pref-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new OfflinePreferencesSample.Factory(), true, idSuffix),
 
                     // New samples since previous release
                     new ExplorerTreeNode("New Samples", "new-category", "root", "silk/new.png", null, true, idSuffix),                     
-                    
-                    new ExplorerTreeNode("Field Picker", "grid-appearance-field-picker-new", "new-category", null, new FieldPickerSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Multi Grouping", "grid-grouping-multi-new", "new-category", null, new MultiGroupingSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Local DataSource", "grid-databinding-local-datasource-new", "new-category", null, 
-                                            new GridDataBindingLocalDataSourceSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portal Layout", "portal-layout-category-new", "new-category", "silk/application_view_tile.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Repositioning", "repositioning-portal-layout-new", "portal-layout-category-new", null, new RearrangeSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Adding and removing columns", "add-remove-columns-portal-layout-new", "portal-layout-category-new", null, new AddRemoveColumnsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portlet Contents", "portlet-contents-portal-layout-new", "portal-layout-category-new", "silk/application_view_tile.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Window contents", "window-contents-portal-layout-new", "portlet-contents-portal-layout-new", null, new WindowContentsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Dragging components", "drag-components-portal-layout-new", "portlet-contents-portal-layout-new", null, new DragComponentsSample.Factory(), true, idSuffix),
-                    
-                    new ExplorerTreeNode("Sizing", "sizing-portal-layout-new", "portal-layout-category-new", "silk/application_view_tile.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Column height", "column-height-portal-layout-new", "sizing-portal-layout-new", null, new ColumnHeightSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Column width", "column-width-portal-layout-new", "sizing-portal-layout-new", null, new ColumnWidthSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portlet height", "portlet-height-portal-layout-new", "sizing-portal-layout-new", null, new PortletHeightSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portlet width", "portlet-width-portal-layout-new", "sizing-portal-layout-new", null, new PortletWidthSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portlet resizing", "portlet-resizing-portal-layout-new", "sizing-portal-layout-new", null, new PortletResizeSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portlet Animation", "portlet-animation-portal-layout-new", "portal-layout-category-new", null, new PortletAnimationSample.Factory(), true, idSuffix),
                     // End of new samples
                     
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
@@ -379,7 +456,11 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Add on the fly", "select-other-combobox-category", "combobox-category", null, new SelectOtherFieldSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Picktree", "picktree-combobox-category", "combobox-category", null, new PickTreeFieldSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Multi-Select", "multi-select-combobox-category", "combobox-category", null, new SelectMultipleSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Multi ComboBox", "multicombobox-category", "combobox-category", null, new MultiComboBoxSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Multi ComboBox", "multicombobox-category", "combobox-category", null, new MultiComboBoxSample.Factory(), true, idSuffix, "4.1"),
+                    new ExplorerTreeNode("Special Values", "specialvalues-combobox-category", "combobox-category", null, new ComboBoxSpecialValuesSample.Factory(), true, idSuffix, "5.0"),
+                    // these samples are hidden because the "Mobile Samples" folder is hidden as well.
+                    //new ExplorerTreeNode("Mobile ComboBox", "combobox-mobile", "combobox-category", null, new MobileComboBoxSample.Factory(), true, idSuffix, "5.0"),
+                    //new ExplorerTreeNode("Mobile Select", "selectlist-mobile", "combobox-category", null, new MobileSelectListSample.Factory(), true, idSuffix, "5.0"),
 
                     new ExplorerTreeNode("Grids", "grid-category", "root", "silk/application_view_detail.png", null, true, idSuffix),
                     new ExplorerTreeNode("Appearance", "grid-appearance-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
@@ -397,6 +478,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("RollOver Controls", "grid-appearance-rollover-controls", "grid-appearance-category", null, new RollOverControlsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Format Values (Declared Formats)", "grid-appearance-format-values-builtin", "grid-appearance-category", null, new FormatValuesBuiltinSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Format Values (Custom Formatting)", "grid-appearance-format-values", "grid-appearance-category", null, new FormatValuesSample.Factory(), true, idSuffix),
+                    
                     new ExplorerTreeNode("Empty Values", "grid-appearance-empty-values", "grid-appearance-category", null, new EmptyValuesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Empty Grid", "grid-appearance-empty-grid", "grid-appearance-category", null, new EmptyGridSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Alternate Records", "grid-appearance-alternate", "grid-appearance-category", null, new AlternateRecordStyleSample.Factory(), true, idSuffix),
@@ -441,18 +523,22 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Disable Sort", "grid-sort-disable-sort", "grid-sort-category", null, new DisableSortSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Sort Arrows", "grid-sort-sort-arrows", "grid-sort-category", null, new SortArrowsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Data-Aware Sort", "grid-sort-datatypes", "grid-sort-category", null, new SortDataTypesSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Adaptive Sort", "grid-sort-adaptive-sort", "grid-sort-category", "crystal/16/actions/resizerow.png", new AdaptiveSortSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Adaptive Sort", "grid-sort-adaptive-sort", "grid-sort-category", "silk/table_relationship.png", new AdaptiveSortSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Filtering", "grid-filter-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Filter", "grid-sortfilter-filter", "grid-filter-category", null, new GridFilterSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Live Filter", "grid-sortfilter-live-filter", "grid-filter-category", null, new GridLiveFilterSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Adaptive Filter", "grid-sortfilter-adaptive-filter", "grid-filter-category", "crystal/16/actions/show_table_row.png", new AdaptiveFilterSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Adaptive Filter", "grid-sortfilter-adaptive-filter", "grid-filter-category", "silk/funnel.png", new AdaptiveFilterSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Custom Filter", "grid-custom-filter-builder", "grid-filter-category", null, new GridFilterBulderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Nested Filter", "grid-nested-filter-builder", "grid-filter-category", null, new GridNestedFilterBulderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Big Filter", "grid-big-filter", "grid-filter-category", null, new GridBigFilterSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Disable Filter", "grid-sortfilter-disable-filter", "grid-filter-category", null, new GridDisableFilterSample.Factory(), true, idSuffix),
+                    
                     new ExplorerTreeNode("Date Range Filtering", "grid-daterange-filtering", "grid-filter-category", null, new GridDateRangeFilterSample.Factory(), true, idSuffix),
+                    
                     new ExplorerTreeNode("Date Range (Presets)", "grid-daterange-presets", "grid-filter-category", null, new GridDateRangePresetsSample.Factory(), true, idSuffix),
+                    
+                    
                     new ExplorerTreeNode("Expression Filter", "grid-exp-filter", "grid-filter-category", null, new GridExpressionFilter.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Editing", "grid-editing-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
@@ -600,7 +686,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Load on Demand", "tiling-load-on-demand", "tiling-category", null, new LoadOnDemandTilingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Filter &amp; Sort", "tiling-filter-sort", "tiling-category", null, new FilterSortTilingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Tile Editing", "tiling-editing", "tiling-category", null, new TileEditingSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Custom Tiles", "tiling-custom", "tiling-category", null, new CustomTilesSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Custom Tiles", "tiling-custom", "tiling-category", null, new CustomTilesSample.Factory(), true, idSuffix, "4.1"),
 
                     new ExplorerTreeNode("Forms", "form-category", "root", "silk/vcard_edit.png", null, true, idSuffix),
 
@@ -646,14 +732,16 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Text Masking", "form-masking", "form-category", "silk/vcard_edit.png", new TextMaskingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Nested Editor", "nested-editor", "form-category", "silk/vcard_edit.png", new NestedEditorSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("ListGrid Item", "form-grid-item", "form-category", "silk/vcard_edit.png", new ListGridItemSample.Factory(), true, idSuffix),
-                    
+                    new ExplorerTreeNode("Tree", "form-picktree-item", "form-category", null, new PickTreeSample.Factory(), true, idSuffix),
+
                     new ExplorerTreeNode("Layout", "layout-category", "root", "widgets/container.png", null, true, idSuffix),
+                    new ExplorerTreeNode("SplitPane", "layout-splitpane", "layout-category", null, new SplitPaneSample.Factory(), false, idSuffix, "5.0"),              
                     new ExplorerTreeNode("Stack", "layout-stack", "layout-category", null, new StackSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Layout", "layout-layout", "layout-category", null, new LayoutSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Nesting", "layout-nesting", "layout-category", null, new NestingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("User Sizing", "layout-user-sizing", "layout-category", null, new UserSizingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Border Layout", "layout-border", "layout-category", null, new FreeSpaceSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Center Align", "layout-center-align", "layout-category", null, new CenterAlignSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Center Align", "layout-center-align", "layout-category", "crystal/16/actions/show_table_row.png", new CenterAlignSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Portal(manual)", "layout-portal-manual", "layout-category", "silk/application_view_tile.png", new SimplePortalManualSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Windows", "layout-windows-category", "root", "silk/application_cascade.png", null, true, idSuffix),
                     new ExplorerTreeNode("Auto Size", "layout-windows-autosize", "layout-windows-category", null, new WindowAutoSizeSample.Factory(), true, idSuffix),
@@ -663,6 +751,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Header Icons", "layout-windows-header-icons", "layout-windows-category", null, new WindowHeaderIconsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Header Controls", "layout-windows-header-controls", "layout-windows-category", null, new WindowHeaderControlsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Footer", "layout-windows-footer", "layout-windows-category", null, new WindowFooterSample.Factory(), true, idSuffix),
+                    // this sample is hidden because the "Mobile Samples" folder is hidden as well.
+//                    new ExplorerTreeNode("Mobile UI", "layout-windows-mobile-ui", "layout-windows-category", null, new MobileWindowsDialogsSample.Factory(), true, idSuffix, "5.0"),
 
                     new ExplorerTreeNode("Tabs", "layout-tabs-category", "root", "silk/tab.png", null, true, idSuffix),
                     new ExplorerTreeNode("Orientation", "layout-tabs-orientation", "layout-tabs-category", null, new OrientationSample.Factory(), true, idSuffix),
@@ -694,7 +784,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Portlet width", "portlet-width-portal-layout", "sizing-portal-layout", null, new PortletWidthSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Portlet resizing", "portlet-resizing-portal-layout", "sizing-portal-layout", null, new PortletResizeSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Portlet Animation", "portlet-animation-portal-layout", "portal-layout-category", null, new PortletAnimationSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portlet Events", "portlet-events-portal-layout", "portal-layout-category", null, new PortletEventsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Portlet Events", "portlet-events-portal-layout", "portal-layout-category", null, new PortletEventsSample.Factory(), true, idSuffix, "4.1"),
 
                     new ExplorerTreeNode("Buttons", "buttons-category", "root", "silk/brick.png", null, true, idSuffix),
                     new ExplorerTreeNode("Appearance", "buttons-category-appearance", "buttons-category", null, new ButtonAppearanceSample.Factory(), true, idSuffix),
@@ -707,8 +797,10 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Appearance", "menus-category-appearance", "menus-category", null, new MenuAppearanceSample.Factory(), true, idSuffix),
                     //new ExplorerTreeNode("Dynamic Items", "menus-category-dynamic", "menus-category", null, new MenuDynamicItemsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Sub Menus", "menus-category-submenus", "menus-category", null, new MenuSubmenusSample.Factory(), true, idSuffix),
-                    //new ExplorerTreeNode("Custom Columns", "menus-category-customcolumns", "menus-category", null, new MenuCustomColumnsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Tree Binding", "menus-category-treebinding", "menus-category", null, new MenuTreeBindingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Tree Binding", "menus-category-treebinding", "menus-category", "silk/chart_organisation.png", new MenuTreeBindingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Custom Columns", "menus-category-customcolumns", "menus-category", "silk/application_view_detail.png", new MenuCustomColumnsSample.Factory(), true, idSuffix, "4.1"),
+                    // this sample is hidden because the "Mobile Samples" folder is hidden as well.
+                    //new ExplorerTreeNode("Mobile UI", "menus-mobile-ui", "menus-category", null, new MobileMenusSample.Factory(), true, idSuffix, "5.0"),
 
                     new ExplorerTreeNode("ToolStrip", "toolstrip-category", "root", "silk/application_view_list.png", null, true, idSuffix),
                     new ExplorerTreeNode("ToolStrip", "toolstrip", "toolstrip-category", null, new ToolStripSample.Factory(), true, idSuffix),
@@ -754,10 +846,10 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Drag Effects", "effects-dd-effects", "effects-dd-category", null, new DragEffectsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag Resize", "effects-dd-resize", "effects-dd-category", null, new DragResizeSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag Tracker", "effects-dd-tracker", "effects-dd-category", null, new DragTrackerSample.Factory(), true, idSuffix),
-                    //new ExplorerTreeNode("Drag Pan", "effects-dd-pan", "effects-dd-category", null, new DragPanSample.Factory(), true, idSuffix),
-                    //new ExplorerTreeNode("Snap-to-Grid Dragging", "effects-dd-snap-to-grid", "effects-dd-category", null, null, false, idSuffix),
+                    new ExplorerTreeNode("Drag Pan", "effects-dd-pan", "effects-dd-category", null, new DragPanSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Snap-to-Grid Dragging", "effects-dd-snap-to-grid", "effects-dd-category", null, new DragSnapToGridSample.Factory(), true, idSuffix),
 
-                    new ExplorerTreeNode("Cross-Window Drag", "effects-cross-window-dd-category", "effects-dd-category", null, null, true, idSuffix),
+                    new ExplorerTreeNode("Cross-Window Drag", "effects-cross-window-dd-category", "effects-dd-category", null, null, true, idSuffix, "4.1"),
                     new ExplorerTreeNode("Native Drag Create", "effects-dd-native-drag-create", "effects-cross-window-dd-category", null, new NativeDragCreateSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Records across Windows", "effects-dd-records-across-windows", "effects-cross-window-dd-category", null, new RecordsAcrossWindowsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Portlet across Windows", "effects-dd-portlet-across-windows", "effects-cross-window-dd-category", null, new PortletAcrossWindowsSample.Factory(), true, idSuffix),
@@ -794,17 +886,17 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Modality", "basics-interaction-modality", "basics-interaction-category", null, new WindowModalitySample.Factory(), true, idSuffix),
 
 
-                    new ExplorerTreeNode("Drawing", "drawing", "root", "pieces/16/cube_blue.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Shape Gallery", "shape-gallery", "drawing", null, new ShapeGallerySample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Rotation", "rotation", "drawing", null, new RotationSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Zoom &amp; Pan", "zoom-and-pan", "drawing", null, new ZoomAndPanSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Lines &amp; Arrowheads", "lines-and-arrowheads", "drawing", null, new LinesAndArrowheadsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Mouse Events", "mouse-events", "drawing", null, new DrawingMouseEventsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Gradients", "gradients", "drawing", null, null, true, idSuffix),
-                    new ExplorerTreeNode("Simple Gradient", "simple-gradient", "gradients", null, new SimpleGradientSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Linear Gradient", "linear-gradient", "gradients", null, new LinearGradientSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Radial Gradient", "radial-gradient", "gradients", null, new RadialGradientSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Gauge", "gauge", "drawing", null, new GaugeSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Drawing", "drawing", "root", "silk/palette.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Shape Gallery", "shape-gallery", "drawing", "silk/palette.png", new ShapeGallerySample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Rotation", "rotation", "drawing", "silk/palette.png", new RotationSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Zoom &amp; Pan", "zoom-and-pan", "drawing", "silk/arrow_out.png", new ZoomAndPanSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Lines &amp; Arrowheads", "lines-and-arrowheads", "drawing", "silk/palette.png", new LinesAndArrowheadsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Mouse Events", "mouse-events", "drawing", "silk/palette.png", new DrawingMouseEventsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Gradients", "gradients", "drawing", "silk/palette.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Simple Gradient", "simple-gradient", "gradients", "silk/palette.png", new SimpleGradientSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Linear Gradient", "linear-gradient", "gradients", "silk/palette.png", new LinearGradientSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Radial Gradient", "radial-gradient", "gradients", "silk/palette.png", new RadialGradientSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Gauge", "gauge", "drawing", "silk/color_wheel.png", new GaugeSample.Factory(), true, idSuffix),
 
 
                     new ExplorerTreeNode("Effects", "effects-category", "root", "silk/shape_move_front.png", null, true, idSuffix),
@@ -850,5 +942,9 @@ public class ShowcaseData {
 
     public static ExplorerTreeNode[] getData(String idSuffix) {
         return new ShowcaseData(idSuffix).getData();
+    }
+
+    public static ExplorerTreeNode[] getDataVersioned(String idSuffix) {
+        return new ShowcaseData(idSuffix).getShowcaseDataVersioned();
     }
 }

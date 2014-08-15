@@ -18,7 +18,7 @@ public class MoveSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             MoveSample panel = new MoveSample();
             id = panel.getID();
             return panel;

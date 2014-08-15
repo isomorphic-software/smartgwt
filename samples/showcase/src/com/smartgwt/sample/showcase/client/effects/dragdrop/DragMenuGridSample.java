@@ -21,7 +21,7 @@ public class DragMenuGridSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             DragMenuGridSample panel = new DragMenuGridSample();
             id = panel.getID();
             return panel;
@@ -70,6 +70,10 @@ public class DragMenuGridSample extends ShowcasePanel {
         partNameField2.setWidth(140);
         ListGridField partNumField2 = new ListGridField("partNum", 80);
 
+        partSrcField2.setTitle("");
+        partNameField2.setTitle("Part Name");
+        partNumField2.setTitle("#");
+        
         partsGrid.setFields(partSrcField2, partNameField2, partNumField2);
 
         partsGrid.setData(new Record[] {

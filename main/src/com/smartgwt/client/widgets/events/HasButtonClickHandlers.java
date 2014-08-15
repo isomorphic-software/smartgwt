@@ -19,7 +19,6 @@ package com.smartgwt.client.widgets.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasButtonClickHandlers extends HasHandlers {
     /**
      * Fires when any button in this Dialog's toolbar is clicked.  Default implementation does nothing.
@@ -29,3 +28,4 @@ public interface HasButtonClickHandlers extends HasHandlers {
      */
     HandlerRegistration addButtonClickHandler(ButtonClickHandler handler);
 }
+

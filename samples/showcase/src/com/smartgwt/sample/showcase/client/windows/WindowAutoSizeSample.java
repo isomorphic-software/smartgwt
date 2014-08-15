@@ -14,7 +14,7 @@ public class WindowAutoSizeSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             WindowAutoSizeSample panel = new WindowAutoSizeSample();
             id = panel.getID();
             return panel;

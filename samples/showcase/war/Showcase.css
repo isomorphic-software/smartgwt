@@ -1,7 +1,5 @@
-.sgwtTitle {
-    font-family:Arial,Verdana,tahoma,serif;
-    color:#454545;
-    font-size:18px;
+.navBarHeader {
+    font: 18px Arial, Verdana, Tahoma, sans-serif !important;
 }
 
 .exampleSeparator {
@@ -9,6 +7,26 @@
     background-color:white; color:black;
     font-weight: bold;
     text-align: left;
+}
+
+.hoverTreeGridCustom {
+    border:1px solid #CCCCCC;
+    background-color:white;
+    -moz-box-shadow: 0 0 6px #E8E8E8;
+    -webkit-box-shadow: 0 0 6px#E8E8E8;
+    box-shadow: 0 0 6px #E8E8E8;
+    font-size:11px;
+    font-family: Calibri, "Lucida Sans Unicode","Lucida Grande","Trebuchet MS", Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    color:#363B30;
+}
+
+.showcaseTileGrid {
+    border: 6px solid transparent;
+    -moz-border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAAnRSTlMAAHaTzTgAAAA6SURBVHgBY9iOBhi2v0YBIIGHSACXwOOXINUvH8MFXp4HGXf+JVQATAEBkEWBAMJQTGsJuxSb59AAAOBGySGOFM5JAAAAAElFTkSuQmCC) 6 repeat;
+    -o-border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAAnRSTlMAAHaTzTgAAAA6SURBVHgBY9iOBhi2v0YBIIGHSACXwOOXINUvH8MFXp4HGXf+JVQATAEBkEWBAMJQTGsJuxSb59AAAOBGySGOFM5JAAAAAElFTkSuQmCC) 6 repeat;
+    -webkit-border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAAnRSTlMAAHaTzTgAAAA6SURBVHgBY9iOBhi2v0YBIIGHSACXwOOXINUvH8MFXp4HGXf+JVQATAEBkEWBAMJQTGsJuxSb59AAAOBGySGOFM5JAAAAAElFTkSuQmCC) 6 repeat;
+    border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAAnRSTlMAAHaTzTgAAAA6SURBVHgBY9iOBhi2v0YBIIGHSACXwOOXINUvH8MFXp4HGXf+JVQATAEBkEWBAMJQTGsJuxSb59AAAOBGySGOFM5JAAAAAElFTkSuQmCC) 6 repeat;
 }
 
 /* Buttons*/

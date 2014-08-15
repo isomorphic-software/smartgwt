@@ -22,7 +22,7 @@ public class GridEditByCellSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridEditByCellSample panel = new GridEditByCellSample();
             id = panel.getID();
             return panel;

@@ -16,7 +16,7 @@ public class AutoArrangeEventsCalendarSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             AutoArrangeEventsCalendarSample panel = new AutoArrangeEventsCalendarSample();
             id = panel.getID();
             return panel;

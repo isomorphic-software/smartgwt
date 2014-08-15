@@ -20,7 +20,7 @@ public class OrientationSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             OrientationSample panel = new OrientationSample();
             id = panel.getID();
             return panel;
@@ -89,7 +89,7 @@ public class OrientationSample extends ShowcasePanel {
                 leftTabSet.selectTab(1);
             }
         });
-        
+
         buttons.addMember(greeButton);
         buttons.addMember(blueButton);
 
@@ -98,7 +98,7 @@ public class OrientationSample extends ShowcasePanel {
         vLayout.addMember(topTabSet);
         vLayout.addMember(buttons);
         vLayout.addMember(leftTabSet);
-        vLayout.setHeight("auto");
+        vLayout.setHeight("*");
 
         return vLayout;
     }

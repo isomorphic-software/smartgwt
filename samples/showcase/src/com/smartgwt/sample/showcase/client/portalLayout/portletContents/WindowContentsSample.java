@@ -1,21 +1,13 @@
 package com.smartgwt.sample.showcase.client.portalLayout.portletContents;
 
-import com.smartgwt.client.types.Alignment;
-import com.smartgwt.client.types.DragAppearance;
-import com.smartgwt.client.types.ListGridFieldType;
-import com.smartgwt.client.widgets.AnimationCallback;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.Img;
-import com.smartgwt.client.widgets.ImgProperties;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-import com.smartgwt.client.widgets.layout.LayoutSpacer;
 import com.smartgwt.client.widgets.layout.PortalLayout;
 import com.smartgwt.client.widgets.layout.Portlet;
-import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
+import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class WindowContentsSample extends ShowcasePanel {
     private static final String DESCRIPTION = "A Porlet is a subclass of Window, so its contents can be defined in any of the ways "+
@@ -24,7 +16,7 @@ public class WindowContentsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             WindowContentsSample panel = new WindowContentsSample();
             id = panel.getID();
             return panel;

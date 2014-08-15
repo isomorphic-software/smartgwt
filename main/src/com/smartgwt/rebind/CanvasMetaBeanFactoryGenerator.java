@@ -54,7 +54,7 @@ public class CanvasMetaBeanFactoryGenerator extends Generator {
 
             for (JClassType classType : oracle.getTypes()) {
                 if (classType.isAssignableTo(canvasType) && isEligibleForGeneration(classType)) {
-                    BeanClass beanClass = new BeanClass(classType, oracle);
+                    BeanClass beanClass = new BeanClass(classType);
                     beanClass.generateFactory(logger, context);
 
                     // We have to instantiate the factory to register it in the BeanFactory static API

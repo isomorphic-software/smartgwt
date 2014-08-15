@@ -20,16 +20,9 @@ import com.smartgwt.client.types.Side;
 import com.smartgwt.client.types.TabTitleEditEvent;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.Img;
-import com.smartgwt.client.widgets.events.ClickEvent;
-import com.smartgwt.client.widgets.events.ClickHandler;
-import com.smartgwt.client.widgets.layout.HLayout;
-import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
-import com.smartgwt.client.widgets.tab.events.CloseClickHandler;
-import com.smartgwt.client.widgets.tab.events.TabCloseClickEvent;
 import com.smartgwt.client.widgets.tab.events.TabTitleChangedEvent;
 import com.smartgwt.client.widgets.tab.events.TabTitleChangedHandler;
 import com.smartgwt.sample.showcase.client.PanelFactory;
@@ -44,7 +37,7 @@ public class TabsEditableTitlesSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             TabsEditableTitlesSample panel = new TabsEditableTitlesSample();
             id = panel.getID();
             return panel;

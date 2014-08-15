@@ -25,7 +25,6 @@ import com.smartgwt.client.widgets.viewer.DetailViewer;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
-import com.smartgwt.sample.showcase.client.data.SupplyCategoryXmlDS;
 
 public class GridCustomHoverSample extends ShowcasePanel {
 
@@ -36,7 +35,7 @@ public class GridCustomHoverSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridCustomHoverSample panel = new GridCustomHoverSample();
             id = panel.getID();
             return panel;

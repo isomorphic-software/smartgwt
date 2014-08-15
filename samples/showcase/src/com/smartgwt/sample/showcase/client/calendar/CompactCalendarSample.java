@@ -1,5 +1,7 @@
 package com.smartgwt.sample.showcase.client.calendar;
 
+import java.util.Date;
+
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.fields.DataSourceDateField;
 import com.smartgwt.client.data.fields.DataSourceSequenceField;
@@ -14,8 +16,6 @@ import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CalendarData;
 
-import java.util.Date;
-
 public class CompactCalendarSample extends ShowcasePanel {
 
     private static final String DESCRIPTION = "Hover over the days with the check icon in them to see the events for " +
@@ -26,7 +26,7 @@ public class CompactCalendarSample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             CompactCalendarSample panel = new CompactCalendarSample();
             id = panel.getID();
             return panel;

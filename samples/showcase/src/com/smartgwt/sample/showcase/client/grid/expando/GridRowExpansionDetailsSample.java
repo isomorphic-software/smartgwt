@@ -18,7 +18,7 @@ public class GridRowExpansionDetailsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridRowExpansionDetailsSample panel = new GridRowExpansionDetailsSample();
             id = panel.getID();
             return panel;

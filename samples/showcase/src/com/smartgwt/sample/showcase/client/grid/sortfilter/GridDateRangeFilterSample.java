@@ -4,15 +4,12 @@ import com.smartgwt.client.data.Criterion;
 import com.smartgwt.client.data.DateRange;
 import com.smartgwt.client.data.RelativeDate;
 import com.smartgwt.client.types.TitleOrientation;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.Label;
-import com.smartgwt.client.widgets.events.ClickEvent;
-import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.events.DrawHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
+import com.smartgwt.client.widgets.form.fields.ButtonItem;
 import com.smartgwt.client.widgets.form.fields.DateRangeItem;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.layout.VLayout;
@@ -38,7 +35,7 @@ public class GridDateRangeFilterSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridDateRangeFilterSample panel = new GridDateRangeFilterSample();
             id = panel.getID();
             return panel;
@@ -55,6 +52,9 @@ public class GridDateRangeFilterSample extends ShowcasePanel {
 
     public Canvas getViewPanel() {
         VLayout layout = new VLayout(8);
+        layout.setHeight100();
+        layout.setWidth100();
+        layout.setMembersMargin(10);
 
         // ---------------------------------------------------------------------------------------
         // Seperate DynamicForm Example (DateRangeItem)
@@ -63,11 +63,9 @@ public class GridDateRangeFilterSample extends ShowcasePanel {
         dateRangeLabel.setHeight(25);
         dateRangeLabel.setContents("External DynamicForm (DateRangeItem)");
         dateRangeLabel.setBaseStyle("exampleSeparator");
-        layout.addMember(dateRangeLabel);
 
         DynamicForm form = new DynamicForm();
         form.setWidth(500);
-        form.setHeight(22);
         form.setTitleOrientation(TitleOrientation.TOP);
 
         final DateRangeItem rangeItem = new DateRangeItem("independence");
@@ -80,44 +78,37 @@ public class GridDateRangeFilterSample extends ShowcasePanel {
         dateRange.setRelativeEndDate(new RelativeDate("-1000m"));
         rangeItem.setValue(dateRange);
 
-        form.setItems(rangeItem);
-        layout.addMember(form);
-        
         // Create a ListGrid displaying data from the worldDS
         final ListGrid grid1 = new ListGrid();
         grid1.setWidth(595);
-        grid1.setHeight(200);
         grid1.setDataSource(WorldXmlDS.getInstance());
 
-        IButton searchButton = new IButton("Filter");
-        searchButton.setAutoFit(true);
-        searchButton.addClickHandler(new ClickHandler() {
+        ButtonItem searchButtonItem = new ButtonItem("Filter");
+        searchButtonItem.setAutoFit(true);
+        searchButtonItem.addClickHandler(new com.smartgwt.client.widgets.form.fields.events.ClickHandler() {
             @Override
-            public void onClick(ClickEvent event) {
+            public void onClick(com.smartgwt.client.widgets.form.fields.events.ClickEvent event) {
                 Criterion criteria = rangeItem.getCriterion();                
                 grid1.fetchData(criteria);
             }
         });
-        layout.addMember(searchButton);
-        layout.addMember(grid1);
+        form.setItems(rangeItem, searchButtonItem);
 
         // ---------------------------------------------------------------------------------------
         // Inline FilterEditor Example (MiniDateRangeItem)
-
         Label filterEditorLabel = new Label("FilterEditor (MiniDateRangeItem)");
         filterEditorLabel.setWidth(595);
         filterEditorLabel.setBaseStyle("exampleSeparator");
         filterEditorLabel.setHeight(25);
-        layout.addMember(filterEditorLabel);
 
         // Create a ListGrid displaying data from the worldDS and also displaying a FilterEditor
         final ListGrid grid2 = new ListGrid();
         grid2.setWidth(595);
-        grid2.setHeight(200);
         grid2.setDataSource(WorldXmlDS.getInstance());
         grid2.setAutoFetchData(true);
         grid2.setShowFilterEditor(true);
-        layout.addMember(grid2);
+
+        layout.setMembers(dateRangeLabel, form, grid1, filterEditorLabel, grid2);
 
         layout.addDrawHandler(new DrawHandler() {
             @Override

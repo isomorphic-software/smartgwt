@@ -22,7 +22,7 @@ public class ShadowsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             ShadowsSample panel = new ShadowsSample();
             id = panel.getID();
             return panel;
@@ -66,7 +66,7 @@ public class ShadowsSample extends ShowcasePanel {
             public void onDraw(DrawEvent event) {
                 softness.addValueChangedHandler(new ValueChangedHandler() {
                     public void onValueChanged(ValueChangedEvent event) {
-                        label.setShadowSoftness(event.getValue());
+                        label.setShadowSoftness((int)event.getValue());
                         label.updateShadow();
                     }
                 });
@@ -87,7 +87,7 @@ public class ShadowsSample extends ShowcasePanel {
             public void onDraw(DrawEvent event) {
                 offset.addValueChangedHandler(new ValueChangedHandler() {
                     public void onValueChanged(ValueChangedEvent event) {
-                        label.setShadowOffset(event.getValue());
+                        label.setShadowOffset((int)event.getValue());
                         label.updateShadow();
                     }
                 });

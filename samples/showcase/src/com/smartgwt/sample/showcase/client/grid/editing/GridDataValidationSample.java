@@ -21,7 +21,7 @@ public class GridDataValidationSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridDataValidationSample panel = new GridDataValidationSample();
             id = panel.getID();
             return panel;

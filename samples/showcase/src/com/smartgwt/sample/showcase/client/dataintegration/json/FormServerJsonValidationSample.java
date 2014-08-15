@@ -28,7 +28,7 @@ public class FormServerJsonValidationSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             FormServerJsonValidationSample panel = new FormServerJsonValidationSample();
             id = panel.getID();
             return panel;

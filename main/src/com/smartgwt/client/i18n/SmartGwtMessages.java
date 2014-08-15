@@ -5,6 +5,33 @@ package com.smartgwt.client.i18n;
  * 	/Users/sjivan/java/smartgwt-svn/trunk/main/src/com/smartgwt/client/i18n/SmartGwtMessages.properties'.
  */
 public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
+
+  /**
+   * Translated "Upload".
+   * 
+   * @return translated "Upload"
+   */
+  @DefaultMessage("Upload")
+  @Key("batchUploader_uploadButtonTitle")
+  String batchUploader_uploadButtonTitle();
+
+  /**
+   * Translated "Upload File".
+   * 
+   * @return translated "Upload File"
+   */
+  @DefaultMessage("Upload File")
+  @Key("batchUploader_uploadFileLabel")
+  String batchUploader_uploadFileLabel();
+
+  /**
+   * Translated "Records added".
+   * 
+   * @return translated "Records added"
+   */
+  @DefaultMessage("Records added")
+  @Key("batchUploader_commitConfirmationMessage")
+  String batchUploader_commitConfirmationMessage();
   
   /**
    * Translated "Either enter valid criteria or hit &#39;Cancel&#39; to abandon changes.".
@@ -186,6 +213,53 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Week")
   @Key("calendar_weekPrefix")
   String calendar_weekPrefix();
+
+
+  /**
+   * Translated "< $monthName".
+   * 
+   * @return translated "< $monthName"
+   */
+  @DefaultMessage("< $monthName")
+  @Key("calendar_monthButtonTitle")
+  String calendar_monthButtonTitle();
+
+  
+  /**
+   * Translated "Back".
+   * 
+   * @return translated "Back"
+   */
+  @DefaultMessage("Back")
+  @Key("calendar_backButtonTitle")
+  String calendar_backButtonTitle();
+
+  /**
+   * Translated "Sublane".
+   * 
+   * @return translated "Sublane"
+   */
+  @DefaultMessage("Sublane")
+  @Key("calendar_eventSublaneFieldTitle")
+  String calendar_eventSublaneFieldTitle();
+  
+  /**
+   * Translated "Duration".
+   * 
+   * @return translated "Duration"
+   */
+  @DefaultMessage("Duration")
+  @Key("calendar_eventDurationFieldTitle")
+  String calendar_eventDurationFieldTitle();
+
+  /**
+   * Translated "&nbsp".
+   * 
+   * @return translated "&nbsp"
+   */
+  @DefaultMessage("&nbsp")
+  @Key("calendar_eventDurationUnitFieldTitle")
+  String calendar_eventDurationUnitFieldTitle();
 
   /**
    * Translated "Loading...".
@@ -494,11 +568,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dataBoundComponent_unknownErrorMessage();
 
   /**
-   * Translated "Edit Hilites".
+   * Translated "Edit Highlights".
    * 
-   * @return translated "Edit Hilites"
+   * @return translated "Edit Highlights"
    */
-  @DefaultMessage("Edit Hilites")
+  @DefaultMessage("Edit Highlights")
   @Key("dataBoundComponent_editHilitesDialogTitle")
   String dataBoundComponent_editHilitesDialogTitle();
 
@@ -520,6 +594,16 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("dataBoundComponent_emptyExportMessage")
   String dataBoundComponent_emptyExportMessage();
   
+  
+  /**
+   * Translated "Edit Highlights...".
+   * 
+   * @return translated "Edit Highlights..."
+   */
+  @DefaultMessage("Edit Highlights...")
+  @Key("dataBoundComponent_editHilitesText")
+  String dataBoundComponent_editHilitesText();
+
   /**
    * Translated "This data not available while offline".
    * 
@@ -610,6 +694,24 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("facetChart_invalidPolynomialDegreeMessage")
   String facetChart_invalidPolynomialDegreeMessage();
   
+  /**
+   * Translated "Proportional".
+   * 
+   * @return translated "Proportional"
+   */
+  @DefaultMessage("Proportional")
+  @Key("facetChart_proportionalContextMenuItemTitle")
+  String facetChart_proportionalContextMenuItemTitle();
+
+  /**
+   * Translated "No tiles to show.".
+   * 
+   * @return translated "No tiles to show."
+   */
+  @DefaultMessage("No tiles to show.")
+  @Key("tileGrid_emptyMessage")
+  String tileGrid_emptyMessage();
+
   /**
    * Translated "Cancel".
    * 
@@ -1725,6 +1827,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String filterClause_valueItemTitle();
   
   /**
+   * Translated "Operator".
+   * 
+   * @return translated "Operator"
+   */
+  @DefaultMessage("Operator")
+  @Key("filterClause_operatorPickerTitle")
+  String filterClause_operatorPickerTitle();
+
+  /**
    * Translated "Is Frozen".
    * 
    * @return translated "Is Frozen"
@@ -1895,6 +2006,23 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("fieldPickerWindow_title")
   String fieldPickerWindow_title();
 
+  /**
+   * Translated "Remove".
+   * 
+   * @return translated "Remove"
+   */
+  @DefaultMessage("Remove")
+  @Key("fieldPicker_removeItemTitle")
+  String fieldPicker_removeItemTitle();
+
+    /**
+   * Translated "[No title specified]".
+   * 
+   * @return translated "[No title specified]"
+   */
+  @DefaultMessage("[No title specified]")
+  @Key("fieldPicker_emptyTitleHint")
+  String fieldPicker_emptyTitleHint();
 
   /**
    * Translated "null".
@@ -2573,11 +2701,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String hiliteEditor_availableFieldsColumnTitle();
 
   /**
-   * Translated "Advanced Hilite Editor".
+   * Translated "Advanced Highlight Editor".
    * 
-   * @return translated "Advanced Hilite Editor"
+   * @return translated "Advanced Highlight Editor"
    */
-  @DefaultMessage("Advanced Hilite Editor")
+  @DefaultMessage("Advanced Highlight Editor")
   @Key("advancedHiliteEditor_title")
   String advancedHiliteEditor_title();
 
@@ -3942,6 +4070,59 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("operators_iNotEndsWithFieldTitle")
   String operators_iNotEndsWithFieldTitle();
 
+  /**
+   * Translated "contains pattern (exact case)".
+   * 
+   * @return translated "contains pattern (exact case)"
+   */
+  @DefaultMessage("contains pattern (exact case)")
+  @Key("operators_containsPatternTitle")
+  String operators_containsPatternTitle();
+  
+  /**
+   * Translated "contains pattern".
+   * 
+   * @return translated "contains pattern"
+   */
+  @DefaultMessage("contains pattern")
+  @Key("operators_iContainsPatternTitle")
+  String operators_iContainsPatternTitle();
+  
+  /**
+   * Translated "starts with pattern (exact case)".
+   * 
+   * @return translated "starts with pattern (exact case)"
+   */
+  @DefaultMessage("starts with pattern (exact case)")
+  @Key("operators_startsWithPatternTitle")
+  String operators_startsWithPatternTitle();
+  
+  /**
+   * Translated "starts with pattern".
+   * 
+   * @return translated "starts with pattern"
+   */
+  @DefaultMessage("starts with pattern")
+  @Key("operators_iStartsWithPatternTitle")
+  String operators_iStartsWithPatternTitle();
+
+   /**
+   * Translated "ends with pattern (exact case)".
+   * 
+   * @return translated "ends with pattern (exact case)"
+   */
+  @DefaultMessage("ends with pattern (exact case)")
+  @Key("operators_endsWithPatternTitle")
+  String operators_endsWithPatternTitle();
+  
+  /**
+   * Translated "ends with pattern".
+   * 
+   * @return translated "ends with pattern"
+   */
+  @DefaultMessage("ends with pattern")
+  @Key("operators_iEndsWithPatternTitle")
+  String operators_iEndsWithPatternTitle();
   
   /**
    * Translated "No Items To Show".
@@ -3960,6 +4141,60 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("No items to show")
   @Key("pickList_emptyPickListMessage")
   String pickList_emptyPickListMessage();
+
+  /**
+   * Translated "No items to show".
+   * 
+   * @return translated "No items to show"
+   */
+  @DefaultMessage("No items to show")
+  @Key("selectItem_emptyPickListMessage")
+  String selectItem_emptyPickListMessage();
+
+  /**
+   * Translated "Done".
+   * 
+   * @return translated "Done"
+   */
+  @DefaultMessage("Done")
+  @Key("selectItem_pickerExitButtonTitle")
+  String selectItem_pickerExitButtonTitle();
+
+  /**
+   * Translated "No items to show".
+   * 
+   * @return translated "No items to show"
+   */
+  @DefaultMessage("No items to show")
+  @Key("comboBoxItem_emptyPickListMessage")
+  String comboBoxItem_emptyPickListMessage();
+
+  /**
+   * Translated "Search".
+   * 
+   * @return translated "Search"
+   */
+  @DefaultMessage("Search")
+  @Key("comboBoxItem_pickerSearchFieldHint")
+  String comboBoxItem_pickerSearchFieldHint();
+
+  /**
+   * Translated "Cancel".
+   * 
+   * @return translated "Cancel"
+   */
+  @DefaultMessage("Cancel")
+  @Key("comboBoxItem_pickerExitButtonTitle")
+  String comboBoxItem_pickerExitButtonTitle();
+
+  /**
+   * Translated "Accept".
+   * 
+   * @return translated "Accept"
+   */
+  @DefaultMessage("Accept")
+  @Key("comboBoxItem_pickerSaveButtonTitle")
+  String comboBoxItem_pickerSaveButtonTitle();
 
   /**
    * Translated "[Empty menu]".

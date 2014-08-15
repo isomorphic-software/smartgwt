@@ -21,7 +21,7 @@ public class SortArrowsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             SortArrowsSample panel = new SortArrowsSample();
             id = panel.getID();
             return panel;

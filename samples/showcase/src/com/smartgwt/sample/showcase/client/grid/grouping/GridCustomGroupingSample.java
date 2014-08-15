@@ -1,16 +1,22 @@
 package com.smartgwt.sample.showcase.client.grid.grouping;
 
+import java.util.Date;
+
 import com.google.gwt.i18n.client.NumberFormat;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.GroupStartOpen;
 import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.grid.*;
+import com.smartgwt.client.widgets.grid.CellFormatter;
+import com.smartgwt.client.widgets.grid.GroupNode;
+import com.smartgwt.client.widgets.grid.GroupTitleRenderer;
+import com.smartgwt.client.widgets.grid.GroupValueFunction;
+import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CountryXmlDS;
-
-import java.util.Date;
 
 public class GridCustomGroupingSample extends ShowcasePanel {
     private static final String DESCRIPTION = "You can specify custom grouping behavior for a field. Group by the Nationhood and Population fields to see examples of custom grouping.";
@@ -18,7 +24,7 @@ public class GridCustomGroupingSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             GridCustomGroupingSample panel = new GridCustomGroupingSample();
             id = panel.getID();
             return panel;

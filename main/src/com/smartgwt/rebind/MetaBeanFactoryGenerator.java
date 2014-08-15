@@ -109,7 +109,7 @@ public class MetaBeanFactoryGenerator extends Generator {
                     throw new UnableToCompleteException();
                 }
 
-                BeanClass beanClass = new BeanClass(beanClassType, typeOracle);
+                BeanClass beanClass = new BeanClass(beanClassType);
                 beanClass.generateFactory(logger, context);
                     
                 // We have to instantiate the factory to register it in the BeanFactory static API

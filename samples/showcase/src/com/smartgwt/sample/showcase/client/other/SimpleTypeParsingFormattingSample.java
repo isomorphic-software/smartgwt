@@ -2,7 +2,12 @@ package com.smartgwt.sample.showcase.client.other;
 
 import com.google.gwt.i18n.client.NumberFormat;
 import com.smartgwt.client.core.DataClass;
-import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.DataSource;
+import com.smartgwt.client.data.DataSourceField;
+import com.smartgwt.client.data.Record;
+import com.smartgwt.client.data.SimpleType;
+import com.smartgwt.client.data.SimpleTypeFormatter;
+import com.smartgwt.client.data.SimpleTypeParser;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.FieldType;
 import com.smartgwt.client.widgets.Canvas;
@@ -27,7 +32,7 @@ public class SimpleTypeParsingFormattingSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             SimpleTypeParsingFormattingSample panel = new SimpleTypeParsingFormattingSample();
             id = panel.getID();
             return panel;

@@ -16,7 +16,7 @@ public class DragTypesSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             DragTypesSample panel = new DragTypesSample();
             id = panel.getID();
             return panel;

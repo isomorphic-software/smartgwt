@@ -1,12 +1,10 @@
 package com.smartgwt.sample.showcase.client;
 
-import com.smartgwt.client.widgets.Canvas;
-
 public interface PanelFactory {
 
-    Canvas create();
+    public ShowcasePanel create();
 
-    String getID();
+    public String getID();
 
-    String getDescription();
+    public String getDescription();
 }

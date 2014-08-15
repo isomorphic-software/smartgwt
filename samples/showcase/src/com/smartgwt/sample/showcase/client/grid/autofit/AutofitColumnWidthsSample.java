@@ -2,7 +2,6 @@ package com.smartgwt.sample.showcase.client.grid.autofit;
 
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.AutoFitWidthApproach;
-import com.smartgwt.client.types.Autofit;
 import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGrid;
@@ -21,7 +20,7 @@ public class AutofitColumnWidthsSample extends ShowcasePanel {
     public static class Factory implements PanelFactory {
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             AutofitColumnWidthsSample panel = new AutofitColumnWidthsSample();
             id = panel.getID();
             return panel;

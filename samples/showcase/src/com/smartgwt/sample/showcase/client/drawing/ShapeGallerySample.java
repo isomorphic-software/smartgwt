@@ -26,7 +26,7 @@ public class ShapeGallerySample extends ShowcasePanel {
 
         private String id;
 
-        public Canvas create() {
+        public ShowcasePanel create() {
             ShapeGallerySample panel = new ShapeGallerySample();
             id = panel.getID();
             return panel;
