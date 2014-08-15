@@ -16,6 +16,7 @@
 package com.smartgwt.sample.showcase.client.miniapp;
 
 import com.google.gwt.i18n.client.NumberFormat;
+import com.smartgwt.client.bean.BeanFactory;
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.SelectionStyle;
@@ -26,6 +27,7 @@ import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridFieldIfFunction;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
+@BeanFactory.Generate({SpinnerItem.class})
 public class ItemListGrid extends ListGrid {
 
     public ItemListGrid(DataSource supplyItemDS) {
@@ -50,9 +52,10 @@ public class ItemListGrid extends ListGrid {
             }
         });
 
+        unitCost.setEditorType(SpinnerItem.class);
         SpinnerItem spinnerItem = new SpinnerItem();
         spinnerItem.setStep(0.01);
-        unitCost.setEditorType(spinnerItem);
+        unitCost.setEditorProperties(spinnerItem);
 
         ListGridField sku = new ListGridField("SKU");
         sku.setCanEdit(false);

@@ -22,7 +22,8 @@ import com.smartgwt.client.types.DeviceMode;
 import com.smartgwt.client.types.VisibilityMode;
 import com.smartgwt.client.util.Browser;
 import com.smartgwt.client.widgets.form.fields.ComboBoxItem;
-import com.smartgwt.client.widgets.form.fields.FilterCriteriaFunction;
+import com.smartgwt.client.widgets.form.fields.FormItemCriteriaFunction;
+import com.smartgwt.client.widgets.form.fields.FormItemFunctionContext;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.grid.events.CellContextClickEvent;
 import com.smartgwt.client.widgets.grid.events.CellContextClickHandler;
@@ -103,8 +104,9 @@ class ApplicationPanel extends SplitPane {
 
         //when showing options in the combo-box, only show the options from the selected category if appropriate
         final ComboBoxItem itemNameCB = searchForm.getItemNameField();
-        itemNameCB.setPickListFilterCriteriaFunction(new FilterCriteriaFunction() {
-            public Criteria getCriteria() {
+        itemNameCB.setPickListFilterCriteriaFunction(new FormItemCriteriaFunction() {
+            @Override
+            public Criteria getCriteria(FormItemFunctionContext itemContext) {
                 ListGridRecord record = categoryTree.getSelectedRecord();
                 if ((itemNameCB.getValue() != null) && record != null) {
                     Criteria criteria = new Criteria();
