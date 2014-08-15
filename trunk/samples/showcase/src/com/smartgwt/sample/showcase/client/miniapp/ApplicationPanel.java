@@ -71,11 +71,10 @@ class ApplicationPanel extends SplitPane {
                 setCurrentPane(CurrentPane.LIST);
             }
         });        
-        
+
         // Navigation
         SectionStack navigationPane = new SectionStack();
         navigationPane.setWidth(280);
-        navigationPane.setHeight100();
         navigationPane.setVisibilityMode(VisibilityMode.MULTIPLE);
         navigationPane.setAnimateSections(true);
 
@@ -90,10 +89,9 @@ class ApplicationPanel extends SplitPane {
         instructionsSection.setHidden(getDeviceMode()!=DeviceMode.DESKTOP);
 
         navigationPane.setSections(suppliesCategorySection, instructionsSection);
-        
+
         // List
         VLayout listPane = new VLayout();
-        listPane.setHeight100();
 
         searchForm = new SearchForm(supplyItemDS);
         searchForm.setHeight(60);
@@ -139,12 +137,12 @@ class ApplicationPanel extends SplitPane {
                 event.cancel();
             }
         });
-        
+
         listPane.addMembers(searchForm, itemList);        
-        
+
         // Detail
         detailPane = new ItemDetailTabPane(supplyItemDS, supplyCategoryDS, itemList);
-        
+
         // Layout
         setDetailPane(detailPane);
         setDetailTitle("Item Details");
