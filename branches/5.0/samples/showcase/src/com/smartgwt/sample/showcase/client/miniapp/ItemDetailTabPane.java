@@ -123,35 +123,32 @@ public class ItemDetailTabPane extends TabSet {
         });        
     }
 
-
     public void clearDetails(Record selectedCategoryRecord) {
-        int selectedTab = getSelectedTabNumber();
-        if (selectedTab == 0) {
-            //view tab : show empty message
-            itemViewer.setData((Record[]) null);
-        } else if (selectedTab == 1) {
-            // edit tab : show new record editor, or empty message
-            if (selectedCategoryRecord != null) {
-                updateTab(1, editorForm);
-                Map<String, String> initialValues = new HashMap<String, String>();
-                initialValues.put("category", selectedCategoryRecord.getAttribute("categoryName"));
-                editorForm.editNewRecord(initialValues);
-            } else {
-                updateTab(1, editorLabel);
-            }
+        //view tab : show empty message
+        itemViewer.setData((Record[]) null);
+
+        // edit tab : show new record editor, or empty message
+        if (selectedCategoryRecord != null) {
+            updateTab(1, editorForm);
+            Map<String, String> initialValues = new HashMap<String, String>();
+            initialValues.put("category", selectedCategoryRecord.getAttribute("categoryName"));
+            editorForm.editNewRecord(initialValues);
+        } else {
+            updateTab(1, editorLabel);
         }
     }
 
     public void updateDetails() {
         Record selectedRecord  = itemListGrid.getSelectedRecord();
-        int selectedTab = getSelectedTabNumber();
-        if (selectedTab == 0) {
-            //view tab : show empty message
-            itemViewer.setData(new Record[]{selectedRecord});
-        } else {
-            // edit tab : show record editor
-            editorForm.editRecord(selectedRecord);
+        if (selectedRecord != null) {
+            int selectedTab = getSelectedTabNumber();
+            if (selectedTab == 0) {
+                //view tab : show empty message
+                itemViewer.setData(new Record[]{selectedRecord});
+            } else {
+                // edit tab : show record editor
+                editorForm.editRecord(selectedRecord);
+            }
         }
     }
-    
 }
