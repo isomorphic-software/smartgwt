@@ -82,7 +82,7 @@ class ApplicationPanel extends SplitPane {
             public void onNodeClick(NodeClickEvent event) {
                 TreeNode node = event.getNode();
                 if (categoryTree.isSelected(node)) {
-                    String category = event.getNode().getAttribute("categoryName");
+                    String category = node.getAttribute("categoryName");
                     findItems(category);
                     setCurrentPane(CurrentPane.LIST);
                 }
