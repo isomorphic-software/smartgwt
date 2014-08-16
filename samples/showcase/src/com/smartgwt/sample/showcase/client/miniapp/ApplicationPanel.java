@@ -17,6 +17,7 @@ package com.smartgwt.sample.showcase.client.miniapp;
 
 import com.smartgwt.client.data.Criteria;
 import com.smartgwt.client.data.DataSource;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.CurrentPane;
 import com.smartgwt.client.types.DeviceMode;
 import com.smartgwt.client.types.VisibilityMode;
@@ -31,6 +32,8 @@ import com.smartgwt.client.widgets.grid.events.CellSavedEvent;
 import com.smartgwt.client.widgets.grid.events.CellSavedHandler;
 import com.smartgwt.client.widgets.grid.events.RecordClickEvent;
 import com.smartgwt.client.widgets.grid.events.RecordClickHandler;
+import com.smartgwt.client.widgets.grid.events.SelectionUpdatedEvent;
+import com.smartgwt.client.widgets.grid.events.SelectionUpdatedHandler;
 import com.smartgwt.client.widgets.layout.SectionStack;
 import com.smartgwt.client.widgets.layout.SectionStackSection;
 import com.smartgwt.client.widgets.layout.SplitPane;
@@ -38,6 +41,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.menu.Menu;
 import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.menu.events.MenuItemClickEvent;
+import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.client.widgets.tree.events.NodeClickEvent;
 import com.smartgwt.client.widgets.tree.events.NodeClickHandler;
 import com.smartgwt.sample.showcase.client.ShowcaseConfiguration;
@@ -59,19 +63,31 @@ class ApplicationPanel extends SplitPane {
         setWidth100();
         setHeight100();
         setLayoutMargin(20);
-        
+
         DataSource supplyCategoryDS = SupplyCategoryXmlDS.getInstance();
         DataSource supplyItemDS = ItemSupplyXmlDS.getInstance();
-        
+
         categoryTree = new CategoryTreeGrid(supplyCategoryDS);
         categoryTree.setAutoFetchData(true);
+        categoryTree.addSelectionUpdatedHandler(new SelectionUpdatedHandler() {
+            @Override
+            public void onSelectionUpdated(SelectionUpdatedEvent event) {
+                if (categoryTree.getSelectedRecord() == null) {
+                    itemList.setData(new Record[0]);
+                    detailPane.clearDetails(null);
+                }
+            }
+        });
         categoryTree.addNodeClickHandler(new NodeClickHandler() {
             public void onNodeClick(NodeClickEvent event) {
-                String category = event.getNode().getAttribute("categoryName");
-                findItems(category);
-                setCurrentPane(CurrentPane.LIST);
+                TreeNode node = event.getNode();
+                if (categoryTree.isSelected(node)) {
+                    String category = node.getAttribute("categoryName");
+                    findItems(category);
+                    setCurrentPane(CurrentPane.LIST);
+                }
             }
-        });        
+        });
 
         // Navigation
         SectionStack navigationPane = new SectionStack();
@@ -120,6 +136,14 @@ class ApplicationPanel extends SplitPane {
         setupContextMenu();
 
         itemList = new ItemListGrid(supplyItemDS);
+        itemList.addSelectionUpdatedHandler(new SelectionUpdatedHandler() {
+            @Override
+            public void onSelectionUpdated(SelectionUpdatedEvent event) {
+                if (itemList.getSelectedRecord() == null) {
+                    detailPane.clearDetails(categoryTree.getSelectedRecord());
+                }
+            }
+        });
         itemList.addRecordClickHandler(new RecordClickHandler() {
             public void onRecordClick(RecordClickEvent event) {
             	detailPane.updateDetails();
