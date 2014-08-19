@@ -27,7 +27,6 @@ import com.smartgwt.client.widgets.form.events.ItemChangedHandler;
 import com.smartgwt.client.widgets.form.fields.CheckboxItem;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.form.fields.FormItemIcon;
-import com.smartgwt.client.widgets.form.fields.PickerIcon;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.SliderItem;
 import com.smartgwt.client.widgets.form.fields.SpacerItem;
@@ -48,6 +47,11 @@ import com.smartgwt.sample.showcase.client.data.ShowcaseData;
 
 public class TileView extends VLayout {
     private static final ShowcaseMessages M = ShowcaseMessages.INSTANCE;
+
+    private static final native boolean _useRoundedSearchItem() /*-{
+        var isc = $wnd.isc;
+        return (!isc.Browser.isIE || isc.Browser.isIE9);
+    }-*/;
 
     private final boolean useDesktopMode;
 
@@ -173,14 +177,28 @@ public class TileView extends VLayout {
                 }
             }
         });
-        final PickerIcon findIcon = new PickerIcon(PickerIcon.SEARCH);
-        final PickerIcon cancelIcon = new PickerIcon(PickerIcon.CLEAR);
-        searchItem.setIcons(findIcon, cancelIcon);
-
+        final FormItemIcon searchIcon = new FormItemIcon();
+        searchIcon.setName("search");
+        searchIcon.setInline(true);
+        searchIcon.setAttribute("imgOnly", true);
+        searchIcon.setSrc("[SKINIMG]actions/view.png");
+        searchIcon.setWidth(16);
+        searchIcon.setHeight(16);
+        searchIcon.setShowRTL(true);
+        searchIcon.setHspace(5);
+        final FormItemIcon clearIcon = new FormItemIcon();
+        clearIcon.setName("clear");
+        clearIcon.setInline(true);
+        clearIcon.setAttribute("imgOnly", true);
+        clearIcon.setSrc("[SKINIMG]actions/close.png");
+        clearIcon.setWidth(10);
+        clearIcon.setHeight(10);
+        clearIcon.setHspace(3);
+        searchItem.setIcons(searchIcon, clearIcon);
+        if (_useRoundedSearchItem()) searchItem.setTextBoxStyle("explorerSearchItem");
         searchItem.addIconClickHandler(new IconClickHandler() {
             public void onIconClick(IconClickEvent event) {
-                FormItemIcon icon = event.getIcon();
-                if(icon.getSrc().equals(cancelIcon.getSrc())) {
+                if ("clear".equals(event.getIcon().getName())) {
                     filterForm.reset();
                     featuredCB.setValue(true);
                 }
