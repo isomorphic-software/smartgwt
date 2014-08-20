@@ -51,6 +51,20 @@ public class ExplorerTreeNode extends TreeNode {
             setIsOpen(true);
         }
     }
+
+    public ExplorerTreeNode(ExplorerTreeNode originalNode) {
+        setName           (originalNode.getName());
+        setNodeID         (originalNode.getNodeID());
+        setThumbnail      (originalNode.getThumbnail());
+        setParentNodeID   (originalNode.getParentNodeID());
+        setIcon           (originalNode.getIcon());
+        setVersion        (originalNode.getVersion());
+        setFactory        (originalNode.getFactory());
+        setSampleClassName(originalNode.getSampleClassName());
+        setIsOpen         (originalNode.getIsOpen());
+        if (originalNode.getTestDisabled()) setTestDisabled();
+    }
+
     public void setSampleClassName(String name) {
         setAttribute("sampleClassName",name);
     }
@@ -114,6 +128,10 @@ public class ExplorerTreeNode extends TreeNode {
         setAttribute("isOpen", isOpen);
     }
 
+    public Boolean getIsOpen() {
+        return getAttributeAsBoolean("isOpen");
+    }
+
     public void setIconSrc(String iconSrc) {
         setAttribute("iconSrc", iconSrc);
     }
@@ -124,6 +142,10 @@ public class ExplorerTreeNode extends TreeNode {
 
     public void setTestDisabled() {
         setAttribute("testDisabled", true);
+    }
+
+    public Boolean getTestDisabled() {
+        return getAttributeAsBoolean("testDisabled");
     }
 
     @Override
