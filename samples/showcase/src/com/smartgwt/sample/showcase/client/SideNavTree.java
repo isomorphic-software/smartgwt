@@ -30,7 +30,7 @@ public class SideNavTree extends TreeGrid {
 
     static final String ID_SUFFIX = "";
 
-    private ExplorerTreeNode[] showcaseData = ShowcaseData.getDataVersioned(ID_SUFFIX);
+    private ExplorerTreeNode[] showcaseData;
 
     public SideNavTree() {
         setWidth100();
@@ -60,12 +60,15 @@ public class SideNavTree extends TreeGrid {
         tree.setParentIdField("parentNodeID");
         tree.setRootValue("root" + ID_SUFFIX);
 
-        tree.setData(showcaseData);
+        tree.setData(ShowcaseData.getDataVersioned(ID_SUFFIX));
 
         setData(tree);
     }
- 
+
     public ExplorerTreeNode[] getShowcaseData() {
+        if (showcaseData == null) {
+            showcaseData = ExplorerTreeNode.arrayOfExplorerTreeNode(getTree().getAllNodes());
+        }
         return showcaseData;
     }
 }
