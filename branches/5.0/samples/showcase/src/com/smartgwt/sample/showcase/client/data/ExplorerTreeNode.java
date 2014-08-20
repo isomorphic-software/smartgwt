@@ -148,6 +148,13 @@ public class ExplorerTreeNode extends TreeNode {
         return getAttributeAsBoolean("testDisabled");
     }
 
+    // Java doesn't allow downcasting of arrays (e.g. from TreeNode[] to ExplorerTreeNode[])
+    public static ExplorerTreeNode[] arrayOfExplorerTreeNode(TreeNode[] data) {
+        ExplorerTreeNode[] convertedData = new ExplorerTreeNode[data.length];
+        for (int i = 0; i < data.length; i++) convertedData[i] = (ExplorerTreeNode) data[i];
+        return convertedData;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
