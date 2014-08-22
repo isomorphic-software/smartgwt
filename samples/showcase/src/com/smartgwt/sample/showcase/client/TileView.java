@@ -172,7 +172,7 @@ public class TileView extends VLayout {
         numSamplesItem.setTitleAlign(Alignment.LEFT);
         numSamplesItem.setMinValue(1);
         // grep '^ *new ExplorerTreeNode' ShowcaseData.java | grep -o 'new [^.,]*\.Factory()' | sort | uniq | wc
-        numSamplesItem.setMaxValue(329);
+        numSamplesItem.setMaxValue(323);
         numSamplesItem.setDefaultValue(100);
         numSamplesItem.setHeight(50);
         numSamplesItem.setOperator(OperatorId.LESS_THAN);
