@@ -12,6 +12,8 @@ public class TimelineData {
     private static int month = today.getMonth();
     private static int start = today.getDate();
 
+    public TimelineData() {
+    }
     public static CalendarEvent[] getRecords() {
         if (records == null) {
             records = getNewRecords();
@@ -23,7 +25,7 @@ public class TimelineData {
         return new CalendarEvent[]{
                 new CalendarEvent(1, "Add new Timeline view", "Add a new calendar Timeline component", new Date(year, month, start + 2), new Date(year, month, start + 8, 23, 59, 59), "darcyFeeney"),
                 new CalendarEvent(2, "ListGrid field autoSize", "Complex field-autosizing in ListGrid", new Date(year, month, start), new Date(year, month, start, 23, 59, 59), "kaiKong"),
-                new CalendarEvent(3, "PDF Import/Export", "Implement native PDF import/export", new Date(year, month, start + 1), new Date(year, month, start + 6, 23, 59, 59), "garretMonroe"),
+                new CalendarEvent(3, "PDF Import/Export", "Implement native PDF import/export", new Date(year, month, start + 1), new Date(year, month, start + 5, 23, 59, 59), "garretMonroe"),
                 new CalendarEvent(4, "Calculated Fields", "Formula and Summary fields for ListGrid", new Date(year, month, start), new Date(year, month, start + 4, 23, 59, 59), "charlesMadigan"),
                 new CalendarEvent(5, "ListGrid cell-level selection", "Implement spreadsheet-like selection in ListGrid", new Date(year, month, start + 7), new Date(year, month, start + 14, 23, 59, 59), "charlesMadigan"),
                 new CalendarEvent(6, "Text import", "Server text-import", new Date(year, month, start + 16), new Date(year, month, start + 20, 23, 59, 59), "charlesMadigan"),
@@ -41,7 +43,7 @@ public class TimelineData {
                 new CalendarEvent(16, "Dev Meeting", "Weekly dev meeting", new Date(year, month, start + 8), new Date(year, month, start + 8, 23, 59, 59), false, "testStyle", "charlesMadigen"),
                 new CalendarEvent(17, "Dev Meeting", "Weekly dev meeting", new Date(year, month, start + 15), new Date(year, month, start + 15, 23, 59, 59), false, "testStyle", "charlesMadigen"),
 
-                new CalendarEvent(18, "Oracle enhancements", "Add the following 11g-specific enhancements: ...", new Date(year, month, start + 7), new Date(year, month, start + 9, 23, 59, 59), "garretMonroe"),
+                new CalendarEvent(18, "Oracle enhancements", "Add the following 11g-specific enhancements: ...", new Date(year, month, start + 5), new Date(year, month, start + 7, 23, 59, 59), "garretMonroe"),
                 new CalendarEvent(19, "Client export", "Excel export alterations", new Date(year, month, start + 11), new Date(year, month, start + 14, 23, 59, 59), "garretMonroe"),
                 new CalendarEvent(20, "Record Components", "New ListGrid recordComponent modes: ...", new Date(year, month, start + 16), new Date(year, month, start + 20, 23, 59, 59), "garretMonroe"),
                 new CalendarEvent(21, "SQLDataSource", "Enhancements to customSQL support", new Date(year, month, start + 2), new Date(year, month, start + 4, 23, 59, 59), "kaiKong"),
