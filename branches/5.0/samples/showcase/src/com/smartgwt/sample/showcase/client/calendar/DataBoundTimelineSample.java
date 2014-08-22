@@ -9,11 +9,12 @@ import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.types.TimeUnit;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.calendar.HeaderLevel;
-import com.smartgwt.client.widgets.calendar.Lane;
+import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.calendar.Timeline;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.TimelineData;
+import com.smartgwt.sample.showcase.client.data.TimelineLaneData;
 
 public class DataBoundTimelineSample extends ShowcasePanel {
 
@@ -56,22 +57,12 @@ public class DataBoundTimelineSample extends ShowcasePanel {
         eventDS.setClientOnly(true);
         eventDS.setTestData(TimelineData.getRecords());
 
-        Lane[] developers = new Lane[]{
-                new Lane("charlesMadigen", "Charles Madigen"),
-                new Lane("tamaraKane", "Tamara Kane"),
-                new Lane("darcyFeeney", "Darcy Feeney"),
-                new Lane("kaiKong", "Kai Kong"),
-                new Lane("shelleyFewel", "Shelley Fewel"),
-                new Lane("garretMonroe", "Garret Monroe")
-            };
-
         Timeline calendar = new Timeline();
         calendar.setHeight(451);
         calendar.setStartDate(new Date(112, 5, 2));
         calendar.setEndDate(new Date(112, 5, 22));
         calendar.setData(TimelineData.getRecords());
-        calendar.setLanes(developers);
-        calendar.setCanResizeTimelineEvents(true);
+        calendar.setLanes(TimelineLaneData.getRecords());
         calendar.setCanEditLane(true);
         calendar.setShowEventDescriptions(false);
 
@@ -80,6 +71,7 @@ public class DataBoundTimelineSample extends ShowcasePanel {
             new HeaderLevel(TimeUnit.DAY)
         };
         calendar.setHeaderLevels(headerLevels);
+        calendar.setLaneFields(new ListGridField[]{ new ListGridField("title", "Developer", 120)});
         
         calendar.setDataSource(eventDS);
         calendar.setAutoFetchData(true);

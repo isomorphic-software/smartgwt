@@ -43,6 +43,10 @@ import com.smartgwt.sample.showcase.client.calendar.DataBoundTimelineSample;
 import com.smartgwt.sample.showcase.client.calendar.OverlappingEventsCalendarSample;
 import com.smartgwt.sample.showcase.client.calendar.SimpleCalendarSample;
 import com.smartgwt.sample.showcase.client.calendar.SimpleTimelineSample;
+import com.smartgwt.sample.showcase.client.calendar.TimelineFilteringSample;
+import com.smartgwt.sample.showcase.client.calendar.TimelineGroupingSample;
+import com.smartgwt.sample.showcase.client.calendar.TimelineResolutionSample;
+import com.smartgwt.sample.showcase.client.calendar.TimelineZonesAndIndicatorsSample;
 import com.smartgwt.sample.showcase.client.calendar.WorkdayCalendarSample;
 import com.smartgwt.sample.showcase.client.combobox.ComboBoxSpecialValuesSample;
 import com.smartgwt.sample.showcase.client.combobox.ComboBoxStyledSample;
@@ -698,6 +702,10 @@ public class ShowcaseData {
                     new ExplorerTreeNode("24h based Calendar", "calendar-24h", "calendar-category", null, new CalendarDateTimeFormatSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Simple Timeline", "simple-timeline", "calendar-category", null, new SimpleTimelineSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Databound Timeline", "databound-timeline", "calendar-category", null, new DataBoundTimelineSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Timeline Filtering", "timeline-filtering", "calendar-category", null, new TimelineFilteringSample.Factory(), true, idSuffix, "5.0"),
+                    new ExplorerTreeNode("Timeline Resolution", "timeline-resolution", "calendar-category", null, new TimelineResolutionSample.Factory(), true, idSuffix, "5.0"),
+                    new ExplorerTreeNode("Timeline Grouping", "timeline-grouping", "calendar-category", null, new TimelineGroupingSample.Factory(), true, idSuffix, "5.0"),
+                    new ExplorerTreeNode("Timeline Zones and Indicators", "timeline-zones-and-indicators", "calendar-category", null, new TimelineZonesAndIndicatorsSample.Factory(), true, idSuffix, "5.0"),
 
                     new ExplorerTreeNode("Data View / Tiling", "tiling-category", "root", "crystal/16/actions/view_icon.png", null, true, idSuffix),
                     new ExplorerTreeNode("Basic", "tiling-basic", "tiling-category", null, new BasicTilingSample.Factory(), true, idSuffix),
