@@ -519,7 +519,7 @@ public class Showcase implements EntryPoint, HistoryListener {
             valueMap.put("Enterprise", M.enterpriseSkinName());
             valueMap.put("EnterpriseBlue", M.enterpriseBlueSkinName());
             valueMap.put("Graphite", M.graphiteSkinName());
-            //valueMap.put("Simplicity", "Simplicity"); // no support for SplitPane
+            valueMap.put("Simplicity", "Simplicity");
             selectItem.setValueMap(valueMap);
             final String skinCookieName = "skin_name_2_4";
             String currentSkin = Cookies.getCookie(skinCookieName);
