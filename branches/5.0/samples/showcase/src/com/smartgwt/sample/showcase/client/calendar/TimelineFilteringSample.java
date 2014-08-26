@@ -2,14 +2,10 @@ package com.smartgwt.sample.showcase.client.calendar;
 
 import java.util.Date;
 
-import com.smartgwt.client.widgets.Canvas;
-import java.util.Date;
-
 import com.smartgwt.client.types.TimeUnit;
 import com.smartgwt.client.types.TitleOrientation;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.calendar.HeaderLevel;
-import com.smartgwt.client.widgets.calendar.Timeline;
+import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
@@ -84,51 +80,48 @@ public class TimelineFilteringSample extends ShowcasePanel {
         calendar.setData(TimelineData.getRecords());
 
         // install some customizers
-        /*
+        
         calendar.setShowDateCustomizer(new ShowDateCustomizer() {
 			@Override
-			public boolean showDate(Date date, CalendarView calendarView) {
+			public boolean shouldShowDate(Date date, CalendarView calendarView) {
 				if (date == null) return false;
-		        Boolean hideWednesdays = !(Boolean)hideWednesdaysItem.getValue();
-		        if (hideWednesdays && date.getDay() == 3) return false;
-				return true;
+		        Boolean hideWednesdays = (Boolean)hideWednesdaysItem.getValue();
+		        if (hideWednesdays == true && date.getDay() == 3) return false;
+	        	cancel();
+	        	return true;
 			}
 		});
-		*/
         
-        /*
+        
         calendar.setShowEventCustomizer(new ShowEventCustomizer() {
 			@Override
-			public boolean showEvent(CalendarEvent event, CalendarView calendarView) {
+			public boolean shouldShowEvent(CalendarEvent event, CalendarView calendarView) {
 		        String text = (String)eventItem.getValue();
-		        if (event != null && text != "") {
+		        if (event != null && text != null && text != "") {
 		        	String eventName = event.getName();
-		            if (!eventName.toLowerCase().contains(text.toLowerCase())) {
+		            if (eventName.toLowerCase().contains(text.toLowerCase()) == false) {
 		                return false;
 		            }
 		        }
+	        	cancel();
 		        return true;
-		        //return this.Super("shouldShowLane");
 			}
 		});
-		*/
         
-        /*
         calendar.setShowLaneCustomizer(new ShowLaneCustomizer() {
 			@Override
-			public boolean showLane(Lane lane, CalendarView calendarView) {
+			public boolean shouldShowLane(Lane lane, CalendarView calendarView) {
 		        String text = (String)laneItem.getValue();
-		        if (lane != null && text != "") {
+		        if (lane != null && text != null && text != "") {
 		        	String laneName = lane.getName();
-		            if (!laneName.toLowerCase().contains(text.toLowerCase())) {
+		            if (laneName.toLowerCase().contains(text.toLowerCase()) == false) {
 		                return false;
 		            }
 		        }
+	        	cancel();
 		        return true;
-		        //return this.Super("shouldShowLane");
 			}
 		});
-		*/
         
         layout.addMember(calendar);
         
@@ -149,17 +142,20 @@ public class TimelineFilteringSample extends ShowcasePanel {
     	eventItem.setTitle("Filter by Event Name");
     	eventItem.setTitleOrientation(TitleOrientation.TOP);
     	eventItem.setChangeOnKeypress(false);
+    	eventItem.setDefaultValue("");
     	eventItem.addChangedHandler(defaultChangedHandler);
     	
     	laneItem = new FormItem("laneItem");
     	laneItem.setTitle("Filter by Lane Name");
     	laneItem.setTitleOrientation(TitleOrientation.TOP);
     	laneItem.setChangeOnKeypress(false);
+    	laneItem.setDefaultValue("");
     	laneItem.addChangedHandler(defaultChangedHandler);
     	
     	hideUnusedLanesItem = new FormItem("hideUnusedLanesItem");
     	hideUnusedLanesItem.setTitle("Hide Unused Lanes");
     	hideUnusedLanesItem.setType("boolean");
+    	hideUnusedLanesItem.setDefaultValue(false);
     	hideUnusedLanesItem.setTitleOrientation(TitleOrientation.TOP);
     	hideUnusedLanesItem.addChangedHandler(new ChangedHandler() {
 			@Override
@@ -172,17 +168,20 @@ public class TimelineFilteringSample extends ShowcasePanel {
     	hideWednesdaysItem = new FormItem("hideWednesdaysItem");
     	hideWednesdaysItem.setTitle("Hide Wednesdays");
     	hideWednesdaysItem.setType("boolean");
+    	hideWednesdaysItem.setDefaultValue(false);
     	hideWednesdaysItem.setTitleOrientation(TitleOrientation.TOP);
     	hideWednesdaysItem.addChangedHandler(defaultChangedHandler);
 
-    	hideWeekendsItem = new FormItem("hideWednesdaysItem");
-    	hideWeekendsItem.setTitle("Hide Wednesdays");
+    	hideWeekendsItem = new FormItem("hideWeekendsItem");
+    	hideWeekendsItem.setTitle("Hide Weekends");
     	hideWeekendsItem.setType("boolean");
+    	hideWeekendsItem.setDefaultValue(false);
     	hideWeekendsItem.setTitleOrientation(TitleOrientation.TOP);
     	hideWeekendsItem.addChangedHandler(new ChangedHandler() {
 			@Override
 			public void onChanged(ChangedEvent event) {
-				calendar.setShowWeekends(!(Boolean)event.getValue());
+				Boolean value = (Boolean)event.getValue();
+				calendar.setShowWeekends(!value);
 				rebuildTimeline();
 			}
 		});
