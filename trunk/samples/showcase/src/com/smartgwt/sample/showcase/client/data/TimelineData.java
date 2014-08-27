@@ -26,9 +26,9 @@ public class TimelineData {
                 new CalendarEvent(1, "Add new Timeline view", "Add a new calendar Timeline component", new Date(year, month, start + 2), new Date(year, month, start + 8, 23, 59, 59), "darcyFeeney"),
                 new CalendarEvent(2, "ListGrid field autoSize", "Complex field-autosizing in ListGrid", new Date(year, month, start), new Date(year, month, start, 23, 59, 59), "kaiKong"),
                 new CalendarEvent(3, "PDF Import/Export", "Implement native PDF import/export", new Date(year, month, start + 1), new Date(year, month, start + 5, 23, 59, 59), "garretMonroe"),
-                new CalendarEvent(4, "Calculated Fields", "Formula and Summary fields for ListGrid", new Date(year, month, start), new Date(year, month, start + 4, 23, 59, 59), "charlesMadigan"),
-                new CalendarEvent(5, "ListGrid cell-level selection", "Implement spreadsheet-like selection in ListGrid", new Date(year, month, start + 7), new Date(year, month, start + 14, 23, 59, 59), "charlesMadigan"),
-                new CalendarEvent(6, "Text import", "Server text-import", new Date(year, month, start + 16), new Date(year, month, start + 20, 23, 59, 59), "charlesMadigan"),
+                new CalendarEvent(4, "Calculated Fields", "Formula and Summary fields for ListGrid", new Date(year, month, start), new Date(year, month, start + 4, 23, 59, 59), "charlesMadigen"),
+                new CalendarEvent(5, "ListGrid cell-level selection", "Implement spreadsheet-like selection in ListGrid", new Date(year, month, start + 7), new Date(year, month, start + 14, 23, 59, 59), "charlesMadigen"),
+                new CalendarEvent(6, "Text import", "Server text-import", new Date(year, month, start + 16), new Date(year, month, start + 20, 23, 59, 59), "charlesMadigen"),
                 new CalendarEvent(7, "TabIndex enhancements", "Enhance formItem tabindex handling", new Date(year, month, start + 9), new Date(year, month, start + 11, 23, 59, 59), "kaiKong"),
                 new CalendarEvent(8, "Visual Builder skin", "Skinning changes", new Date(year, month, start), new Date(year, month, start + 3, 23, 59, 59), "shelleyFewel"),
                 

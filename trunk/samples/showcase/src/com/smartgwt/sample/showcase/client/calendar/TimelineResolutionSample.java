@@ -3,8 +3,7 @@ package com.smartgwt.sample.showcase.client.calendar;
 import java.util.Date;
 
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.calendar.HeaderLevel;
-import com.smartgwt.client.widgets.calendar.Timeline;
+import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.grid.ListGridField;
@@ -20,10 +19,9 @@ import com.smartgwt.sample.showcase.client.data.TimelineLaneData;
 
 public class TimelineResolutionSample extends ShowcasePanel {
 
-    private static final String DESCRIPTION = "<p>This example uses a Timeline, a simple subclass of Calendar, to show a variety of " +
-            "development tasks assigned to developers over a 3-week period.  This timeline is bound " +
-            "to an array of event data. Drag events to alter their start dates, and resize events to " +
-            "alter their durations. Hover over an event to see it's details or click to edit them.</p>";
+    private static final String DESCRIPTION = "<p>This example demonstrates switching the " +
+            "resolution of a Timeline at runtime.  Click the various buttons to see the " +
+            "Timeline rebuilt with appropriate columns, range and granularity.</p>";
 
 
     public static class Factory implements PanelFactory {

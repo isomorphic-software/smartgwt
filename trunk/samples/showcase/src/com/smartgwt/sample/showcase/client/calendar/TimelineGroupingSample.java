@@ -3,9 +3,8 @@ package com.smartgwt.sample.showcase.client.calendar;
 import java.util.Date;
 
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.calendar.HeaderLevel;
 import com.smartgwt.client.widgets.grid.ListGridField;
-import com.smartgwt.client.widgets.calendar.Timeline;
+import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.types.TimeUnit;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
