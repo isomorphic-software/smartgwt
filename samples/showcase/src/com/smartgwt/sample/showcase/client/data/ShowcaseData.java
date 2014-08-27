@@ -373,7 +373,7 @@ public class ShowcaseData {
             }
         }
 
-        // move or modify samples, depending upon the current release
+        // copy new samples or mark beta samples, depending upon the current release
         for (final ExplorerTreeNode explorerTreeNode : data) {
             if (explorerTreeNode.getVersion() == null) {
                 continue;
@@ -390,10 +390,11 @@ public class ShowcaseData {
                     copiedNode.setNodeID(explorerTreeNode.getNodeID() + "-new");
                     copiedNode.setParentNodeID(newSampleParent.getNodeID());
                     newSamples.add(copiedNode);
-                    data.add(copiedNode);
                 }
             }
         }
+
+        data.addAll(newSamples);
     }
 
     private ExplorerTreeNode[] getData(boolean versioned) {
@@ -458,8 +459,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Offline Preferences", "grid-offline-pref-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new OfflinePreferencesSample.Factory(), true, idSuffix),
 
                     // New samples since previous release
-                    // Note: this node is auto-populated with copies of each node tagged "5.0"
-                    new ExplorerTreeNode("New Samples", "new-category", "root", "silk/new.png", null, true, idSuffix),
+                    // Note: this node is auto-populated with copies of each node tagged with the current release
+                    new ExplorerTreeNode("New Samples in " + currentReleaseVersion, "new-category", "root", "silk/new.png", null, true, idSuffix),
 
                     // End of new samples
                     
