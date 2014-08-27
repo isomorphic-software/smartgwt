@@ -954,3 +954,58 @@ html>body .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopRight {
 .explorerWelcomeViewDoc {
 	float: left;
 }
+
+.explorerSearchItem,
+.explorerSearchItemRTL,
+.explorerSearchItemFocused,
+.explorerSearchItemFocusedRTL,
+.explorerSearchItemDisabled,
+.explorerSearchItemDisabledRTL,
+.explorerSearchItemDisabledHint,
+.explorerSearchItemDisabledHintRTL,
+.explorerSearchItemError,
+.explorerSearchItemErrorRTL,
+.explorerSearchItemHint,
+.explorerSearchItemHintRTL {
+    border: 1px solid #888;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    padding: 4px 6px 4px 5px;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: Black;
+    font: 11px Arial, Verdana, sans-serif;
+
+    /* Apply text-overflow:ellipsis for browsers that support text-overflow on <input>
+       elements.
+       Opera was the only major browser to prefix text-overflow. However, -o-text-overflow
+       is omitted here because Opera Presto does not support text-overflow on <input>s. */
+    text-overflow: ellipsis;
+}
+
+.explorerSearchItemRTL,
+.explorerSearchItemFocusedRTL,
+.explorerSearchItemDisabledRTL,
+.explorerSearchItemDisabledHintRTL,
+.explorerSearchItemErrorRTL,
+.explorerSearchItemHintRTL {
+    padding: 4px 5px 4px 6px;
+}
+
+/* Hide IE10+'s clear button - we have our own.
+   http://support.microsoft.com/kb/2813492 */
+.explorerSearchItem::-ms-clear,
+.explorerSearchItemRTL::-ms-clear,
+.explorerSearchItemFocused::-ms-clear,
+.explorerSearchItemFocusedRTL::-ms-clear,
+.explorerSearchItemDisabled::-ms-clear,
+.explorerSearchItemDisabledRTL::-ms-clear,
+.explorerSearchItemDisabledHint::-ms-clear,
+.explorerSearchItemDisabledHintRTL::-ms-clear,
+.explorerSearchItemError::-ms-clear,
+.explorerSearchItemErrorRTL::-ms-clear,
+.explorerSearchItemHint::-ms-clear,
+.explorerSearchItemHintRTL::-ms-clear {
+    display: none;
+}
