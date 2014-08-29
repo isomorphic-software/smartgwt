@@ -351,7 +351,7 @@ public class ShowcaseData {
     private static final ShowcaseMessages M = ShowcaseMessages.INSTANCE;
 
     private String idSuffix;
-    private final String currentReleaseVersion = "4.1";
+    private final String currentReleaseVersion = "5.0";
 
     public ShowcaseData(String idSuffix) {
         this.idSuffix = idSuffix;
@@ -359,28 +359,45 @@ public class ShowcaseData {
 
     private List<ExplorerTreeNode> data;
 
-    private ExplorerTreeNode[] getShowcaseDataVersioned() {
-        ExplorerTreeNode[] showcaseData = getData();
-        for (final ExplorerTreeNode explorerTreeNode : showcaseData) {
+    private void updateShowcaseDataVersioned() {
+
+        // populate existing new sample node and parent node information
+        List<ExplorerTreeNode> newSamples = new ArrayList<ExplorerTreeNode>();
+        ExplorerTreeNode  newSampleParent = null;
+
+        for (final ExplorerTreeNode explorerTreeNode : data) {
+            if              (explorerTreeNode.getNodeID().equalsIgnoreCase("new_category")) {
+                newSampleParent = explorerTreeNode;
+            } else if (explorerTreeNode.getParentNodeID().equalsIgnoreCase("new_category")) {
+                newSamples.add(explorerTreeNode);
+            }
+        }
+
+        // copy new samples or mark beta samples, depending upon the current release
+        for (final ExplorerTreeNode explorerTreeNode : data) {
             if (explorerTreeNode.getVersion() == null) {
                 continue;
             } else if (Float.parseFloat(explorerTreeNode.getVersion()) > Float.parseFloat(currentReleaseVersion)) {
                 explorerTreeNode.setName(explorerTreeNode.getName() + "<sup style='color: red;font-size:10px;font-weight: 700;'> BETA</sup>");
             } else if (Float.parseFloat(explorerTreeNode.getVersion()) == Float.parseFloat(currentReleaseVersion)) {
                 boolean exist = false;
-                for (final ExplorerTreeNode explorerTreeNode1 : showcaseData) {
-                    if ((explorerTreeNode1.getParentNodeID().equalsIgnoreCase("new_category")) &&
-                        (explorerTreeNode1.getNodeID().equals(explorerTreeNode.getNodeID()))) {
-                        exist = true;
-                    }
+                for (final ExplorerTreeNode explorerTreeNode1 : newSamples) {
+                    // compare node names to check identify here
+                    if (explorerTreeNode1.equals(explorerTreeNode)) exist = true;
                 }
-                if (!exist) explorerTreeNode.setParentNodeID("new_category");
+                if (!exist) {
+                    ExplorerTreeNode copiedNode = new ExplorerTreeNode(explorerTreeNode);
+                    copiedNode.setNodeID(explorerTreeNode.getNodeID() + "-new");
+                    copiedNode.setParentNodeID(newSampleParent.getNodeID());
+                    newSamples.add(copiedNode);
+                }
             }
         }
-        return showcaseData;
+
+        data.addAll(newSamples);
     }
 
-    private ExplorerTreeNode[] getData() {
+    private ExplorerTreeNode[] getData(boolean versioned) {
         if (data == null) {
             data = new ArrayList<ExplorerTreeNode>();
             data.addAll(Arrays.asList(new ExplorerTreeNode[] {
@@ -442,7 +459,9 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Offline Preferences", "grid-offline-pref-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new OfflinePreferencesSample.Factory(), true, idSuffix),
 
                     // New samples since previous release
-                    new ExplorerTreeNode("New Samples", "new-category", "root", "silk/new.png", null, true, idSuffix),                     
+                    // Note: this node is auto-populated with copies of each node tagged with the current release
+                    new ExplorerTreeNode("New Samples in " + currentReleaseVersion, "new-category", "root", "silk/new.png", null, true, idSuffix),
+
                     // End of new samples
                     
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
@@ -740,7 +759,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Text Masking", "form-masking", "form-category", "silk/vcard_edit.png", new TextMaskingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Nested Editor", "nested-editor", "form-category", "silk/vcard_edit.png", new NestedEditorSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("ListGrid Item", "form-grid-item", "form-category", "silk/vcard_edit.png", new ListGridItemSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Tree", "form-picktree-item", "form-category", null, new PickTreeSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Tree", "form-picktree-item", "form-category", null, new PickTreeSample.Factory(), true, idSuffix, "5.0"),
 
                     new ExplorerTreeNode("Layout", "layout-category", "root", "widgets/container.png", null, true, idSuffix),
                     new ExplorerTreeNode("SplitPane", "layout-splitpane", "layout-category", null, new SplitPaneSample.Factory(), false, idSuffix, "5.0"),              
@@ -854,8 +873,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Drag Effects", "effects-dd-effects", "effects-dd-category", null, new DragEffectsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag Resize", "effects-dd-resize", "effects-dd-category", null, new DragResizeSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag Tracker", "effects-dd-tracker", "effects-dd-category", null, new DragTrackerSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Drag Pan", "effects-dd-pan", "effects-dd-category", null, new DragPanSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Snap-to-Grid Dragging", "effects-dd-snap-to-grid", "effects-dd-category", null, new DragSnapToGridSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Drag Pan", "effects-dd-pan", "effects-dd-category", null, new DragPanSample.Factory(), true, idSuffix, "5.0"),
+                    new ExplorerTreeNode("Snap-to-Grid Dragging", "effects-dd-snap-to-grid", "effects-dd-category", null, new DragSnapToGridSample.Factory(), true, idSuffix, "5.0"),
 
                     new ExplorerTreeNode("Cross-Window Drag", "effects-cross-window-dd-category", "effects-dd-category", null, null, true, idSuffix, "4.1"),
                     new ExplorerTreeNode("Native Drag Create", "effects-dd-native-drag-create", "effects-cross-window-dd-category", null, new NativeDragCreateSample.Factory(), true, idSuffix),
@@ -944,15 +963,17 @@ public class ShowcaseData {
                 data.add(new ExplorerTreeNode("Testable Records across Windows", "testable-effects-dd-records-across-windows", "effects-cross-window-dd-category", null, new TestableRecordsAcrossWindowsSample.Factory(), true, idSuffix));
                 data.add(new ExplorerTreeNode("Testable Portlet across Windows", "testable-effects-dd-portlet-across-windows", "effects-cross-window-dd-category", null, new TestablePortletAcrossWindowsSample.Factory(), true, idSuffix));
             }
+
+            if (versioned) updateShowcaseDataVersioned();
         }
         return data.toArray(new ExplorerTreeNode[data.size()]);
     }
 
     public static ExplorerTreeNode[] getData(String idSuffix) {
-        return new ShowcaseData(idSuffix).getData();
+        return new ShowcaseData(idSuffix).getData(false);
     }
 
     public static ExplorerTreeNode[] getDataVersioned(String idSuffix) {
-        return new ShowcaseData(idSuffix).getShowcaseDataVersioned();
+        return new ShowcaseData(idSuffix).getData(true);
     }
 }
