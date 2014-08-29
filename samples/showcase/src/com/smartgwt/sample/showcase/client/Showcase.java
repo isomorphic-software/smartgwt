@@ -22,6 +22,7 @@ import com.smartgwt.client.types.DeviceMode;
 import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.types.TabBarControls;
 import com.smartgwt.client.types.VerticalAlignment;
+import com.smartgwt.client.util.EventHandler;
 import com.smartgwt.client.util.AutoTest;
 import com.smartgwt.client.util.Browser;
 import com.smartgwt.client.util.Page;
@@ -201,7 +202,12 @@ public class Showcase implements EntryPoint, HistoryListener {
         searchItem.addKeyPressHandler(new KeyPressHandler() {
             @Override
             public void onKeyPress(KeyPressEvent event) {
-                if ("enter".equalsIgnoreCase(event.getKeyName())) {
+                String keyName = event.getKeyName();
+                if ("enter".equalsIgnoreCase(keyName)) {
+                    if (EventHandler.shiftKeyDown()) {
+                        findNode();
+                        return;
+                    }
                     String value = searchItem.getValueAsString();
                     if (value != null) {
                         value = value.trim();
@@ -212,6 +218,10 @@ public class Showcase implements EntryPoint, HistoryListener {
                             searchItem.clearValue();
                         }
                     }
+                }
+                if ("escape".equalsIgnoreCase(keyName)) {
+                    revertState();
+                    return;
                 }
             }
         });
@@ -811,7 +821,7 @@ public class Showcase implements EntryPoint, HistoryListener {
             disableDetailTools();
             final CommandTreeNode commandTreeNode = (CommandTreeNode)node;
             commandTreeNode.getCommand().execute();
-        }  else if (node instanceof FolderTreeNode && sideNav.getTree().hasChildren(node)) {
+        } else if (node instanceof FolderTreeNode && sideNav.getTree().hasChildren(node)) {
             final FolderTreeNode folderTreeNode = (FolderTreeNode)node;
             String panelID = folderTreeNode.getNodeID();
            
@@ -1103,9 +1113,15 @@ public class Showcase implements EntryPoint, HistoryListener {
         boolean findNext = ((lastMatch != null) && (lastValue.equalsIgnoreCase(search))) ? true : false;
         lastValue = search;
         ExplorerTreeNode[] des = sideNav.getShowcaseData();
+
         int startIndex = 0;
-        for (int i = 0; i < des.length; i++) {
-            startIndex = (lastMatch != null) ? (des[i].getName().matches(lastMatch.getName())) ? i : 0 : 0;
+        if (lastMatch != null) {
+            for (int i = 0; i < des.length; i++) {
+                if (des[i].getNodeID().equals(lastMatch.getNodeID())) {
+                    startIndex = i;
+                    break;
+                }
+            }
         }
         if (findNext) startIndex++;
 
@@ -1150,7 +1166,8 @@ public class Showcase implements EntryPoint, HistoryListener {
     }
 	
     private ExplorerTreeNode findNext (ExplorerTreeNode[] des, int startIndex, String search) {
-        for (final ExplorerTreeNode node : des) {
+        for (int i = startIndex; i < des.length; i++) {
+            ExplorerTreeNode node = des[i];
             if (node.getName().toLowerCase().contains(search)) {
                 lastName = node.getName();
                 String newValue = null;
