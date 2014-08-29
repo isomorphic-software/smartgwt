@@ -43,8 +43,10 @@ public class TimelineResolutionSample extends ShowcasePanel {
         }
     }
 
-    public final Timeline calendar = new Timeline();
-    
+    public Timeline calendar;
+    public void createCalendar() {
+    	calendar = new Timeline();    	
+    }
     public Canvas getViewPanel() {
         VLayout layout = new VLayout();
         layout.setWidth100();
@@ -60,6 +62,8 @@ public class TimelineResolutionSample extends ShowcasePanel {
             new HeaderLevel(TimeUnit.WEEK), 
             new HeaderLevel(TimeUnit.DAY)
         };
+        
+        createCalendar();
         
         calendar.setHeight(451);
         calendar.setStartDate(new Date(112, 5, 2));
