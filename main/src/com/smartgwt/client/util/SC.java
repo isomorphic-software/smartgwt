@@ -649,7 +649,7 @@ public class SC {
      * @param category category to check; defaults to "Log"
      */
     public static native boolean logIsInfoEnabled(String category) /*-{
-        return this.logIsEnabledFor(isc.Log.INFO, category);
+        return $wnd.isc.Log.logIsInfoEnabled(category);
     }-*/;
 
     /**
@@ -660,7 +660,7 @@ public class SC {
      * @param category category to check; defaults to "Log"
      */
     public static native boolean logIsDebugEnabled(String category) /*-{
-        return this.logIsEnabledFor(isc.Log.DEBUG, category);
+        return $wnd.isc.Log.logIsDebugEnabled(category);
     }-*/;
 
     /**
