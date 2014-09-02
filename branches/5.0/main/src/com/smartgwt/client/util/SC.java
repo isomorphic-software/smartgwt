@@ -642,6 +642,28 @@ public class SC {
 	}-*/;
 
     /**
+     * Check whether a message logged at "info" priority would be visible in the log.
+     * Use this method to avoid putting together expensive log messages if they will
+     * never appear in the log.
+     *
+     * @param category category to check; defaults to "Log"
+     */
+    public static native boolean logIsInfoEnabled(String category) /*-{
+        return this.logIsEnabledFor(isc.Log.INFO, category);
+    }-*/;
+
+    /**
+     * Check whether a message logged at "debug" priority would be visible in the log.
+     * Use this method to avoid putting together expensive log messages if they will
+     * never appear in the log.
+     *
+     * @param category category to check; defaults to "Log"
+     */
+    public static native boolean logIsDebugEnabled(String category) /*-{
+        return this.logIsEnabledFor(isc.Log.DEBUG, category);
+    }-*/;
+
+    /**
      * Setting this to true will result in the IE / Firebug / Safari debugger being invoked when a JavaScript error is encountered.
      * This is done by the execution of the commend "debugger;" when the error occurs. Setting this to true is useful
      * for debugging any javascript errors.
