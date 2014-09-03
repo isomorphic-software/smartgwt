@@ -8,26 +8,43 @@ import com.smartgwt.client.widgets.calendar.*;
  * Called to determine whether a particular event should be visible in the passed view
  */
 public abstract class ShowEventCustomizer {
+    private Calendar calendar;
+
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
+    }    
+
     /**
-     * Call cancel() to prevent the customization, and have the customizer return the result of the original method being customized
+     * Returns the Calendar being customized
+     * @return Calendar being customized
      */
-    public boolean cancelled = false;
-    public void cancel () {
-        this.cancelled = true;
+    public Calendar getCalendar() {
+        return this.calendar;
     }
-    public boolean isCancelled () {
-        return this.cancelled;
-    }
-    protected void setCancelled (boolean cancel) {
-        this.cancelled = cancel;
-    }
+
+    /**
+     * Call executeDefault() to run the original method for default behavior
+     */
+    public native boolean executeDefault(CalendarEvent event, CalendarView calendarView) /*-{
+        var calendarViewJS = calendarView == null ? null : calendarView.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var eventJS = event.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var calendarJ = this.@com.smartgwt.client.widgets.calendar.ShowEventCustomizer::getCalendar()();
+        var calendarJS = calendarJ.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        if (calendarJS == null) {
+            $wnd.isc.logWarn('no calendar');
+            return null;
+        }
+        var ret = calendarJS._shouldShowEvent(eventJS, calendarViewJS);
+        return ret;
+    }-*/;
         
     /**
-     * showEvent() should be implemented and return true if the passed event should be visible in the passed view
-     * To access the Calendar itself, use calendarView.getCalendar().
+     * shouldShowEvent() should be implemented and return true if the passed event should be visible in the passed view
+     * Use executeDefault() to run the original method to fall back on default behavior.
+     * To access the Calendar itself, call getCalendar() on the event or the calendarView.
      * @param event the event in question
      * @param calendarView the view in which the event will appear
-     * @return true if the event should be rendered in the passed view, or false otherwise - return null to fall back on default behavior
+     * @return true if the event should be rendered in the passed view, or false otherwise
      */
     public abstract boolean shouldShowEvent(CalendarEvent event, CalendarView calendarView);
 }

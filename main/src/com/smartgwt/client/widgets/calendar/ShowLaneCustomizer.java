@@ -8,26 +8,43 @@ import com.smartgwt.client.widgets.calendar.*;
  * Called to determine a particular lane should be visible in the passed view
  */
 public abstract class ShowLaneCustomizer {
+    private Calendar calendar;
+
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
+    }    
+
     /**
-     * Call cancel() to prevent the customization, and have the customizer return the result of the original method being customized
+     * Returns the Calendar being customized
+     * @return Calendar being customized
      */
-    public boolean cancelled = false;
-    public void cancel () {
-        this.cancelled = true;
-    }
-    public boolean isCancelled () {
-        return this.cancelled;
-    }
-    protected void setCancelled (boolean cancel) {
-        this.cancelled = cancel;
+    public Calendar getCalendar() {
+        return this.calendar;
     }
 
     /**
-     * showLane() should be implemented and return true if the passed lane should be visible in the passed view
-     * To access the Calendar itself, use calendarView.getCalendar().
+     * Call executeDefault() to run the original method for default behavior
+     */
+    public native boolean executeDefault(Lane lane, CalendarView calendarView) /*-{
+        var calendarViewJS = calendarView == null ? null : calendarView.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var laneJS = lane.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var calendarJ = this.@com.smartgwt.client.widgets.calendar.ShowLaneCustomizer::getCalendar()();
+        var calendarJS = calendarJ.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        if (calendarJS == null) {
+            $wnd.isc.logWarn('no calendar');
+            return null;
+        }
+        var ret = calendarJS._shouldShowLane(laneJS, calendarViewJS);
+        return ret;
+    }-*/;
+        
+    /**
+     * shouldShowLane() should be implemented and return true if the passed lane should be visible in the passed view
+     * Use executeDefault() to run the original method to fall back on default behavior.
+     * To access the Calendar itself, call getCalendar() on the event or the calendarView.
      * @param lane the lane in question
      * @param calendarView the view in which the lane exists
-     * @return true if the lane should be visible in the passed view, or false otherwise - return null to fall back on default behavior
+     * @return true if the lane should be visible in the passed view, or false otherwise
      */
     public abstract boolean shouldShowLane(Lane lane, CalendarView calendarView);
 }
