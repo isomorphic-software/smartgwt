@@ -91,8 +91,7 @@ public class TimelineFilteringSample extends ShowcasePanel {
 				if (date == null) return false;
 		        Boolean hideWednesdays = (Boolean)hideWednesdaysItem.getValue();
 		        if (hideWednesdays == true && date.getDay() == 3) return false;
-	        	cancel();
-	        	return true;
+	        	return executeDefault(date, calendarView);
 			}
 		});
         
@@ -107,8 +106,7 @@ public class TimelineFilteringSample extends ShowcasePanel {
 		                return false;
 		            }
 		        }
-	        	cancel();
-		        return true;
+	        	return executeDefault(event, calendarView);
 			}
 		});
         
@@ -122,8 +120,7 @@ public class TimelineFilteringSample extends ShowcasePanel {
 		                return false;
 		            }
 		        }
-	        	cancel();
-		        return true;
+	        	return executeDefault(lane, calendarView);
 			}
 		});
         
