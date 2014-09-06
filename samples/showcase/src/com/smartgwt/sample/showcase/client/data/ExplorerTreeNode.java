@@ -1,5 +1,8 @@
 package com.smartgwt.sample.showcase.client.data;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.sample.showcase.client.PanelFactory;
@@ -52,11 +55,10 @@ public class ExplorerTreeNode extends TreeNode {
         }
     }
 
-    public ExplorerTreeNode(ExplorerTreeNode originalNode) {
+    public ExplorerTreeNode(ExplorerTreeNode originalNode, String newNodeID) {
+        setNodeID         (newNodeID);
         setName           (originalNode.getName());
-        setNodeID         (originalNode.getNodeID());
         setThumbnail      (originalNode.getThumbnail());
-        setParentNodeID   (originalNode.getParentNodeID());
         setIcon           (originalNode.getIcon());
         setVersion        (originalNode.getVersion());
         setFactory        (originalNode.getFactory());
@@ -152,6 +154,11 @@ public class ExplorerTreeNode extends TreeNode {
     public static ExplorerTreeNode[] arrayOfExplorerTreeNode(TreeNode[] data) {
         ExplorerTreeNode[] convertedData = new ExplorerTreeNode[data.length];
         for (int i = 0; i < data.length; i++) convertedData[i] = (ExplorerTreeNode) data[i];
+        return convertedData;
+    }
+    public static List<ExplorerTreeNode> listOfExplorerTreeNode(TreeNode[] data) {
+        List<ExplorerTreeNode> convertedData = new ArrayList<ExplorerTreeNode>();
+        for (int i = 0; i < data.length; i++) convertedData.add((ExplorerTreeNode) data[i]);
         return convertedData;
     }
 

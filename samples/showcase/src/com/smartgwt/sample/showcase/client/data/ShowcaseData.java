@@ -177,6 +177,8 @@ import com.smartgwt.sample.showcase.client.grid.autofit.AutofitNewRecordsSample;
 import com.smartgwt.sample.showcase.client.grid.autofit.AutofitRowsSample;
 import com.smartgwt.sample.showcase.client.grid.autofit.AutofitValuesSample;
 import com.smartgwt.sample.showcase.client.grid.autofit.FreeSpaceSample;
+import com.smartgwt.sample.showcase.client.mobile.DialingSample;
+import com.smartgwt.sample.showcase.client.mobile.ResponsiveDesign;
 import com.smartgwt.sample.showcase.client.mobile.NavigationBarSample;
 import com.smartgwt.sample.showcase.client.mobile.SpinnerControlSample;
 import com.smartgwt.sample.showcase.client.mobile.MobileMenusSample;
@@ -349,9 +351,9 @@ import com.smartgwt.sample.showcase.client.windows.WindowModalitySample;
 
 public class ShowcaseData {
     private static final ShowcaseMessages M = ShowcaseMessages.INSTANCE;
+    private static final String CURRENT_RELEASE_VERSION = "5.0";
 
     private String idSuffix;
-    private final String currentReleaseVersion = "5.0";
 
     public ShowcaseData(String idSuffix) {
         this.idSuffix = idSuffix;
@@ -359,45 +361,7 @@ public class ShowcaseData {
 
     private List<ExplorerTreeNode> data;
 
-    private void updateShowcaseDataVersioned() {
-
-        // populate existing new sample node and parent node information
-        List<ExplorerTreeNode> newSamples = new ArrayList<ExplorerTreeNode>();
-        ExplorerTreeNode  newSampleParent = null;
-
-        for (final ExplorerTreeNode explorerTreeNode : data) {
-            if              (explorerTreeNode.getNodeID().equalsIgnoreCase("new_category")) {
-                newSampleParent = explorerTreeNode;
-            } else if (explorerTreeNode.getParentNodeID().equalsIgnoreCase("new_category")) {
-                newSamples.add(explorerTreeNode);
-            }
-        }
-
-        // copy new samples or mark beta samples, depending upon the current release
-        for (final ExplorerTreeNode explorerTreeNode : data) {
-            if (explorerTreeNode.getVersion() == null) {
-                continue;
-            } else if (Float.parseFloat(explorerTreeNode.getVersion()) > Float.parseFloat(currentReleaseVersion)) {
-                explorerTreeNode.setName(explorerTreeNode.getName() + "<sup style='color: red;font-size:10px;font-weight: 700;'> BETA</sup>");
-            } else if (Float.parseFloat(explorerTreeNode.getVersion()) == Float.parseFloat(currentReleaseVersion)) {
-                boolean exist = false;
-                for (final ExplorerTreeNode explorerTreeNode1 : newSamples) {
-                    // compare node names to check identify here
-                    if (explorerTreeNode1.equals(explorerTreeNode)) exist = true;
-                }
-                if (!exist) {
-                    ExplorerTreeNode copiedNode = new ExplorerTreeNode(explorerTreeNode);
-                    copiedNode.setNodeID(explorerTreeNode.getNodeID() + "-new");
-                    copiedNode.setParentNodeID(newSampleParent.getNodeID());
-                    newSamples.add(copiedNode);
-                }
-            }
-        }
-
-        data.addAll(newSamples);
-    }
-
-    private ExplorerTreeNode[] getData(boolean versioned) {
+    private ExplorerTreeNode[] getData() {
         if (data == null) {
             data = new ArrayList<ExplorerTreeNode>();
             data.addAll(Arrays.asList(new ExplorerTreeNode[] {
@@ -412,10 +376,10 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Print Grid", "featured-print-grid", "featured-category", "silk/printer.png", new PrintingSample.Factory(), true, idSuffix),
 
                     // Disabled for now. We don't want to expose this folder until we have a certain number of samples complete.
-//                    new ExplorerTreeNode("Mobile samples", "mobile", "root", "silk/phone.png", null, true, idSuffix),   
-//                  new ExplorerTreeNode("Responsive Design", "responsive-design", "mobile", "silk/calendar.png", new ResponsiveDesign.Factory(), false, idSuffix, "5.0"),
-//                  new ExplorerTreeNode("Dialing", "dialing", "mobile", "silk/phone.png", new DialingSample.Factory(), false, idSuffix, "5.0"),
-/*                    new FolderTreeNode("Adaptive UI", "adaptive-ui-ms", "mobile", "silk/phone.png", true, idSuffix) {{
+                    new ExplorerTreeNode("Mobile samples", "mobile", "root", "silk/phone.png", null, true, idSuffix),   
+                    new ExplorerTreeNode("Responsive Design", "responsive-design", "mobile", "silk/calendar.png", new ResponsiveDesign.Factory(), false, idSuffix, "5.0"),
+                    new ExplorerTreeNode("Dialing", "dialing", "mobile", "silk/phone.png", new DialingSample.Factory(), false, idSuffix, "5.0"),
+                    new FolderTreeNode("Adaptive UI", "adaptive-ui-ms", "mobile", "silk/phone.png", true, idSuffix) {{
                             setDescription(
                                     "Smart GWT components automatically adapt to the smaller screen size and "+
                                     "different pointing behavior of mobile devices. "+
@@ -435,7 +399,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Windows &amp; Dialogs", "windows-dialogs-ms", "adaptive-ui-ms", null, new MobileWindowsDialogsSample.Factory(), true, idSuffix, "5.0"),
                     new ExplorerTreeNode("Calendar", "mobile-calendar-ms", "adaptive-ui-ms", null, new MobileCalendarSample.Factory(), true, idSuffix, "5.0"),
                     new ExplorerTreeNode("Spinner Control", "spinner-control-ms", "adaptive-ui-ms", null, new SpinnerControlSample.Factory(), true, idSuffix, "5.0"),
-                    new ExplorerTreeNode("Navigation Bar Auto-fit", "navigation-bar-ms", "mobile", "silk/phone.png", new NavigationBarSample.Factory(), true, idSuffix, "5.0"),*/
+                    new ExplorerTreeNode("Navigation Bar Auto-fit", "navigation-bar-ms", "mobile", "silk/phone.png", new NavigationBarSample.Factory(), true, idSuffix, "5.0"),
 
                     new ExplorerTreeNode("Adv. Filter Builder", "featured-filter-builder-grid", "featured-category", "crystal/oo/sc_insertformula.png", new GridNestedFilterBulderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Frozen Columns", "featured-tree-grid", "featured-category", "silk/chart_organisation.png", new FrozenColumnsSample.Factory(), true, idSuffix),
@@ -460,7 +424,7 @@ public class ShowcaseData {
 
                     // New samples since previous release
                     // Note: this node is auto-populated with copies of each node tagged with the current release
-                    new ExplorerTreeNode("New Samples in " + currentReleaseVersion, "new-category", "root", "silk/new.png", null, true, idSuffix),
+                    new ExplorerTreeNode("New Samples in " + CURRENT_RELEASE_VERSION, "new-category", "root", "silk/new.png", null, true, idSuffix),
 
                     // End of new samples
                     
@@ -481,10 +445,6 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Multi-Select", "multi-select-combobox-category", "combobox-category", null, new SelectMultipleSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Multi ComboBox", "multicombobox-category", "combobox-category", null, new MultiComboBoxSample.Factory(), true, idSuffix, "4.1"),
                     new ExplorerTreeNode("Special Values", "specialvalues-combobox-category", "combobox-category", null, new ComboBoxSpecialValuesSample.Factory(), true, idSuffix, "5.0"),
-                    // these samples are hidden because the "Mobile Samples" folder is hidden as well.
-                    //new ExplorerTreeNode("Mobile ComboBox", "combobox-mobile", "combobox-category", null, new MobileComboBoxSample.Factory(), true, idSuffix, "5.0"),
-                    //new ExplorerTreeNode("Mobile Select", "selectlist-mobile", "combobox-category", null, new MobileSelectListSample.Factory(), true, idSuffix, "5.0"),
-
                     new ExplorerTreeNode("Grids", "grid-category", "root", "silk/application_view_detail.png", null, true, idSuffix),
                     new ExplorerTreeNode("Appearance", "grid-appearance-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Column Order", "grid-appearance-columnorder", "grid-appearance-category", null, new ColumnOrderSample.Factory(), true, idSuffix),
@@ -759,7 +719,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Text Masking", "form-masking", "form-category", "silk/vcard_edit.png", new TextMaskingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Nested Editor", "nested-editor", "form-category", "silk/vcard_edit.png", new NestedEditorSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("ListGrid Item", "form-grid-item", "form-category", "silk/vcard_edit.png", new ListGridItemSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Tree", "form-picktree-item", "form-category", null, new PickTreeSample.Factory(), true, idSuffix, "5.0"),
+                    new ExplorerTreeNode("Tree", "form-picktree-item", "form-category", null, new PickTreeSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Layout", "layout-category", "root", "widgets/container.png", null, true, idSuffix),
                     new ExplorerTreeNode("SplitPane", "layout-splitpane", "layout-category", null, new SplitPaneSample.Factory(), false, idSuffix, "5.0"),              
@@ -778,9 +738,6 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Header Icons", "layout-windows-header-icons", "layout-windows-category", null, new WindowHeaderIconsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Header Controls", "layout-windows-header-controls", "layout-windows-category", null, new WindowHeaderControlsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Footer", "layout-windows-footer", "layout-windows-category", null, new WindowFooterSample.Factory(), true, idSuffix),
-                    // this sample is hidden because the "Mobile Samples" folder is hidden as well.
-//                    new ExplorerTreeNode("Mobile UI", "layout-windows-mobile-ui", "layout-windows-category", null, new MobileWindowsDialogsSample.Factory(), true, idSuffix, "5.0"),
-
                     new ExplorerTreeNode("Tabs", "layout-tabs-category", "root", "silk/tab.png", null, true, idSuffix),
                     new ExplorerTreeNode("Orientation", "layout-tabs-orientation", "layout-tabs-category", null, new OrientationSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Align", "layout-tabs-align", "layout-tabs-category", null, new TabsAlignSample.Factory(), true, idSuffix),
@@ -873,8 +830,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Drag Effects", "effects-dd-effects", "effects-dd-category", null, new DragEffectsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag Resize", "effects-dd-resize", "effects-dd-category", null, new DragResizeSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag Tracker", "effects-dd-tracker", "effects-dd-category", null, new DragTrackerSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Drag Pan", "effects-dd-pan", "effects-dd-category", null, new DragPanSample.Factory(), true, idSuffix, "5.0"),
-                    new ExplorerTreeNode("Snap-to-Grid Dragging", "effects-dd-snap-to-grid", "effects-dd-category", null, new DragSnapToGridSample.Factory(), true, idSuffix, "5.0"),
+                    new ExplorerTreeNode("Drag Pan", "effects-dd-pan", "effects-dd-category", null, new DragPanSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Snap-to-Grid Dragging", "effects-dd-snap-to-grid", "effects-dd-category", null, new DragSnapToGridSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Cross-Window Drag", "effects-cross-window-dd-category", "effects-dd-category", null, null, true, idSuffix, "4.1"),
                     new ExplorerTreeNode("Native Drag Create", "effects-dd-native-drag-create", "effects-cross-window-dd-category", null, new NativeDragCreateSample.Factory(), true, idSuffix),
@@ -963,17 +920,15 @@ public class ShowcaseData {
                 data.add(new ExplorerTreeNode("Testable Records across Windows", "testable-effects-dd-records-across-windows", "effects-cross-window-dd-category", null, new TestableRecordsAcrossWindowsSample.Factory(), true, idSuffix));
                 data.add(new ExplorerTreeNode("Testable Portlet across Windows", "testable-effects-dd-portlet-across-windows", "effects-cross-window-dd-category", null, new TestablePortletAcrossWindowsSample.Factory(), true, idSuffix));
             }
-
-            if (versioned) updateShowcaseDataVersioned();
         }
         return data.toArray(new ExplorerTreeNode[data.size()]);
     }
 
-    public static ExplorerTreeNode[] getData(String idSuffix) {
-        return new ShowcaseData(idSuffix).getData(false);
+    public static String getCurrentReleaseVersion() { 
+        return CURRENT_RELEASE_VERSION; 
     }
 
-    public static ExplorerTreeNode[] getDataVersioned(String idSuffix) {
-        return new ShowcaseData(idSuffix).getData(true);
+    public static ExplorerTreeNode[] getData(String idSuffix) {
+        return new ShowcaseData(idSuffix).getData();
     }
 }

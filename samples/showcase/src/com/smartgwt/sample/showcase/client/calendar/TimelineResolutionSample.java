@@ -43,7 +43,7 @@ public class TimelineResolutionSample extends ShowcasePanel {
         }
     }
 
-    public final Timeline calendar = new Timeline();
+    public Timeline calendar;
     
     public Canvas getViewPanel() {
         VLayout layout = new VLayout();
@@ -61,6 +61,7 @@ public class TimelineResolutionSample extends ShowcasePanel {
             new HeaderLevel(TimeUnit.DAY)
         };
         
+        calendar = new Timeline();
         calendar.setHeight(451);
         calendar.setStartDate(new Date(112, 5, 2));
         calendar.setEndDate(new Date(112, 5, 22));
