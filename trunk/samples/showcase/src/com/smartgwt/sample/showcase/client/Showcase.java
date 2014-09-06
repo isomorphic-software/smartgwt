@@ -330,7 +330,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         homePanel.setWidth100();
         homePanel.setOverflow(Overflow.HIDDEN);
 
-        tileView = new TileView(useDesktopMode);
+        tileView = new TileView(sideNav.getShowcaseData(), useDesktopMode);
         tileView.setWidth100();
         homePanel.addMember(tileView);
 

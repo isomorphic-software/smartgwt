@@ -43,7 +43,7 @@ public class TimelineFilteringSample extends ShowcasePanel {
         }
     }
 
-    public Timeline calendar = new Timeline();
+    public Timeline calendar;
 	public FormItem eventItem;
 	public FormItem laneItem;
 	public FormItem hideUnusedLanesItem;
@@ -66,6 +66,7 @@ public class TimelineFilteringSample extends ShowcasePanel {
             new ListGridField("title", "Developer", 120)
         };
         
+        calendar = new Timeline();
         calendar.setHeight(451);
         calendar.setStartDate(new Date(112, 5, 2));
         calendar.setEndDate(new Date(112, 5, 22));

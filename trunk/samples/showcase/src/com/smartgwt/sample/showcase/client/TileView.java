@@ -61,7 +61,6 @@ public class TileView extends VLayout {
 
     private TileGrid tileGrid;
     private final String idSuffix = SideNavTree.ID_SUFFIX;
-    private TreeNode[] showcaseData = ShowcaseData.getDataVersioned(idSuffix);
     private DynamicForm filterForm;
 
     private TextItem searchItem;
@@ -101,7 +100,7 @@ public class TileView extends VLayout {
         BeanFactory<ShowcaseCustomTile> getShowcaseCustomTileFactory();  
     }
 
-    public TileView(boolean useDesktopMode) {
+    public TileView(TreeNode[] showcaseData, boolean useDesktopMode) {
         this.useDesktopMode = useDesktopMode;
         tree = new Tree();
         tree.setModelType(TreeModelType.PARENT);

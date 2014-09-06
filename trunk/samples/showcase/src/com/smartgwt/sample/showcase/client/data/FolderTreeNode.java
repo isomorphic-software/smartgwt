@@ -37,4 +37,10 @@ public class FolderTreeNode extends ExplorerTreeNode {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public FolderTreeNode(ExplorerTreeNode originalNode, String newNodeID) {
+        super(originalNode, newNodeID);
+        setDescription(((FolderTreeNode)originalNode).getDescription());
+    }
+
 }
