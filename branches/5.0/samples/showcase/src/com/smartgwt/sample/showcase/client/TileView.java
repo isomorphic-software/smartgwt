@@ -57,7 +57,6 @@ public class TileView extends VLayout {
 
     private TileGrid tileGrid;
     private final String idSuffix = SideNavTree.ID_SUFFIX;
-    private TreeNode[] showcaseData = ShowcaseData.getDataVersioned(idSuffix);
     private DynamicForm filterForm;
 
     private TextItem searchItem;
@@ -97,7 +96,7 @@ public class TileView extends VLayout {
         BeanFactory<ShowcaseCustomTile> getShowcaseCustomTileFactory();  
     }
 
-    public TileView(boolean useDesktopMode) {
+    public TileView(TreeNode[] showcaseData, boolean useDesktopMode) {
         this.useDesktopMode = useDesktopMode;
         tree = new Tree();
         tree.setModelType(TreeModelType.PARENT);
@@ -196,7 +195,7 @@ public class TileView extends VLayout {
             numSamplesItem.setTitleAlign(Alignment.LEFT);
             numSamplesItem.setMinValue(1.0);
             // grep '^ *new ExplorerTreeNode' ShowcaseData.java | grep -o 'new [^.,]*\.Factory()' | sort | uniq | wc
-            numSamplesItem.setMaxValue(332.0);
+            numSamplesItem.setMaxValue(341.0);
             numSamplesItem.setDefaultValue(100);
             numSamplesItem.setHeight(50);
             numSamplesItem.setOperator(OperatorId.LESS_THAN);
