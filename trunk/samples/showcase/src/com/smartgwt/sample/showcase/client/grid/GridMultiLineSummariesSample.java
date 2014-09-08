@@ -37,7 +37,6 @@ import com.smartgwt.client.widgets.grid.ListGridSummaryField;
 import com.smartgwt.client.widgets.grid.SummaryFunction;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.OrderItem;
 import com.smartgwt.sample.showcase.client.data.OrderItemLocalDS;
 
 public class GridMultiLineSummariesSample extends ShowcasePanel {
@@ -88,11 +87,9 @@ public class GridMultiLineSummariesSample extends ShowcasePanel {
         categoryField.setShowGridSummary(true);
         categoryField.setSummaryFunction(new SummaryFunction() {
             public Object getSummaryValue(Record[] records, ListGridField field) {
-                Set<String> uniqueCategories = new HashSet<String>();
-
-                for (int i = 0; i < records.length; i++) {
-                    Record record = records[i];
-                    uniqueCategories.add(((OrderItem) record).getCategory());
+                final Set<String> uniqueCategories = new HashSet<String>();
+                for (final Record record : records) {
+                    uniqueCategories.add(record.getAttribute("category"));
                 }
                 return uniqueCategories.size() + " Categories";
             }
