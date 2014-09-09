@@ -8,10 +8,14 @@ import com.smartgwt.client.types.GroupStartOpen;
 import com.smartgwt.client.types.RecordSummaryFunctionType;
 import com.smartgwt.client.types.SummaryFunctionType;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.grid.*;
+import com.smartgwt.client.widgets.grid.CellFormatter;
+import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.widgets.grid.ListGridSummaryField;
+import com.smartgwt.client.widgets.grid.SummaryFunction;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.OrderItem;
 import com.smartgwt.sample.showcase.client.data.OrderItemLocalDS;
 
 import java.util.HashSet;
@@ -60,11 +64,9 @@ public class GridSummariesSample extends ShowcasePanel {
         categoryField.setShowGridSummary(true);
         categoryField.setSummaryFunction(new SummaryFunction() {
             public Object getSummaryValue(Record[] records, ListGridField field) {
-                Set<String> uniqueCategories = new HashSet<String>();
-
-                for (int i = 0; i < records.length; i++) {
-                    Record record = records[i];
-                    uniqueCategories.add(((OrderItem) record).getCategory());
+                final Set<String> uniqueCategories = new HashSet<String>();
+                for (final Record record : records) {
+                    uniqueCategories.add(record.getAttribute("category"));
                 }
                 return uniqueCategories.size() + " Categories";
             }
