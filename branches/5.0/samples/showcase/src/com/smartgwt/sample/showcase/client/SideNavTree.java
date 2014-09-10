@@ -129,10 +129,9 @@ public class SideNavTree extends TreeGrid {
                 ExplorerTreeNode newSampleParent = parent instanceof ExplorerTreeNode ?
                     mobileSamples.get(((ExplorerTreeNode)parent).getNodeID() + "-new") : null;
 
-                String newId = explorerTreeNode.getNodeID() + "-new";
                 ExplorerTreeNode copiedNode = explorerTreeNode instanceof FolderTreeNode ?
-                                                  new FolderTreeNode(explorerTreeNode, newId) :
-                                                  new ExplorerTreeNode(explorerTreeNode, newId);
+                                           new   FolderTreeNode(explorerTreeNode, ID_SUFFIX) :
+                                           new ExplorerTreeNode(explorerTreeNode, ID_SUFFIX);
                 // track folders marked with current version tag; these must be copied
                 // with their hierarchy intact underneath the "new samples" folder
                 if (tree.isFolder(explorerTreeNode)) {
