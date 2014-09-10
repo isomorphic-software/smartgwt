@@ -55,8 +55,11 @@ public class ExplorerTreeNode extends TreeNode {
         }
     }
 
-    public ExplorerTreeNode(ExplorerTreeNode originalNode, String newNodeID) {
-        setNodeID         (newNodeID);
+    // create a copy of the provided node with "_new" added to the ID
+    public ExplorerTreeNode(ExplorerTreeNode originalNode, String idSuffix) {
+        String oldNodeID = originalNode.getNodeID();
+        setNodeID         (oldNodeID.substring(0, oldNodeID.length() - idSuffix.length()) +
+                           "_new" + idSuffix);
         setName           (originalNode.getName());
         setThumbnail      (originalNode.getThumbnail());
         setIcon           (originalNode.getIcon());
