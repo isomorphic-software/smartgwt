@@ -1328,7 +1328,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    * @return translated "Jan"
    */
   @DefaultMessage("Jan")
-  @Key("date_monthNames_1")
+  @Key("date_shortMonthNames_1")
   String date_shortMonthNames_1();
 
   /**
