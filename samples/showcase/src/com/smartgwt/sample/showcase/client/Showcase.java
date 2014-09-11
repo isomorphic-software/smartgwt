@@ -254,7 +254,7 @@ public class Showcase implements EntryPoint, HistoryListener {
                                    "margin-right:10px;\">" +
                                    "<b>Sample Description</b>: " + factory.getDescription();
 
-                        if (node.getName().contains("BETA")) {
+                        if (node.getHTML().contains("BETA")) {
                             customDiv +=
                                    "<br><br><span style='color: red;font-size:11px;font-weight: 700;'>BETA</span> : " +
                                    "This sample demonstrates features available in the next available version of " +
@@ -827,7 +827,7 @@ public class Showcase implements EntryPoint, HistoryListener {
            
             revertState();
 
-            final String folderName = folderTreeNode.getName();
+            final String folderName = folderTreeNode.getHTML();
             String icon = folderTreeNode.getIcon();
             if (icon == null) {
                 icon = "silk/plugin.png";
@@ -891,7 +891,7 @@ public class Showcase implements EntryPoint, HistoryListener {
                 showHomePanel();
             } else if ((factory = explorerTreeNode.getFactory()) != null) {
                 revertState();
-                final String sampleName = explorerTreeNode.getName();
+                final String sampleName = explorerTreeNode.getHTML();
                 String icon = explorerTreeNode.getIcon();
                 if (icon == null) {
                     icon = "silk/application_view_list.png";
@@ -909,7 +909,7 @@ public class Showcase implements EntryPoint, HistoryListener {
                         panel = autotest ? SampleResultsManager.create(mainTabSet, factory) : factory.create();
                         if (panel instanceof ShowcasePanel) {
                             String betaMessage = "";
-                            if (explorerTreeNode.getName().contains("BETA")) {
+                            if (explorerTreeNode.getHTML().contains("BETA")) {
                                 betaMessage = "<br><br><span style='color: red;font-size:11px;font-weight: 700;'>BETA</span> : "+
                                     "This sample demonstrates features available in the "+
                                     "<a href=\"http://www.smartclient.com/product/downloadOtherReleases.jsp#nextVersion\" target=\"_blank\"> "+
@@ -1013,7 +1013,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         sb.append("<td>");
         sb.append(imgHTML);
         sb.append("&nbsp;");
-        sb.append("<a target='_top' href='#" + node.getNodeID() + "'>" + node.getName() + "</a>");
+        sb.append("<a target='_top' href='#" + node.getNodeID() + "'>" + node.getHTML() + "</a>");
         sb.append("</td>");
     }
 
@@ -1088,7 +1088,7 @@ public class Showcase implements EntryPoint, HistoryListener {
 
     private void revertState() {
         if (lastMatch != null) {
-            lastMatch.setName(lastName);
+            lastMatch.setHTML(lastName);
             sideNav.refreshRow(sideNav.getRecordIndex(lastMatch));
         }
         lastValue = null;
@@ -1126,7 +1126,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         if (findNext) startIndex++;
 
         if (lastMatch != null) {
-            lastMatch.setName(lastName);
+            lastMatch.setHTML(lastName);
             lastName = null;
             sideNav.refreshRow(sideNav.getRecordIndex(lastMatch));
             lastMatch = null;
@@ -1169,17 +1169,17 @@ public class Showcase implements EntryPoint, HistoryListener {
         for (int i = startIndex; i < des.length; i++) {
             ExplorerTreeNode node = des[i];
             if (node.getName().toLowerCase().contains(search)) {
-                lastName = node.getName();
+                lastName = node.getHTML();
                 String newValue = null;
-                if (node.getName().matches("/<.*>/")) {
+                if (lastName.matches("/<.*>/")) {
                     // if it looks like html, make sure not to replace in tags
         	        RegExp searchRe = RegExp.compile("(^|>)([^<]*?)("+search+")", "ig");
-                    newValue = searchRe.replace(node.getName(), "$1$2<span style='background-color:#00B2FA;'>$3</span>");
+                    newValue = searchRe.replace(node.getHTML(), "$1$2<span style='background-color:#00B2FA;'>$3</span>");
                 } else {
                     RegExp searchRe = RegExp.compile("("+search+")", "ig");
-                    newValue = searchRe.replace(node.getName(), "<span style='background-color:#00B2FA;'>$1</span>");
+                    newValue = searchRe.replace(node.getHTML(), "<span style='background-color:#00B2FA;'>$1</span>");
                 }
-                node.setName(newValue);
+                node.setHTML(newValue);
                 return node;
             }
         }

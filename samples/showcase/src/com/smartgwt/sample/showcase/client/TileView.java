@@ -422,7 +422,7 @@ public class TileView extends VLayout {
                 boolean isExplorerTreeNode = child instanceof ExplorerTreeNode;
                 if (isExplorerTreeNode) {
                     final ExplorerTreeNode explorerTreeNode = (ExplorerTreeNode) child;
-                    if (explorerTreeNode.getName().contains("BETA")) {
+                    if (explorerTreeNode.getHTML().contains("BETA")) { // note that BETA tag is only in HTML
                         children[i].setAttribute("description", explorerTreeNode.getFactory().getDescription());
                         data.add(children[i]);
                     }
@@ -437,7 +437,7 @@ public class TileView extends VLayout {
         String searchText, Integer maxResults) 
     {
         String[] arraySearchText = searchText.trim().split(" ");
-        for (int j = 0; j < children.length; j++) {
+        for (int j = 0; j < arraySearchText.length; j++) {
             if (arraySearchText[j] == null || arraySearchText[j].length() == 0) continue;
             for (int i = 0; i < children.length; i++) {
                 if (maxResults != null && data.size() >= maxResults) return;
