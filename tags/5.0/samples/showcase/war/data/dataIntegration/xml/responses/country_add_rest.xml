@@ -1,0 +1,14 @@
+<!-- XML response to an add request. Should contain details of the newly added
+     record as stored on the server. 
+     Normally this response would be generated dynamically on the server. -->
+<response>
+    <status>0</status>
+    <data>
+        <record>
+            <countryCode>A1</countryCode>
+            <countryName>Saved Value</countryName>
+            <capital>Saved Value</capital>
+            <continent>Saved Value</continent>
+        </record>
+    </data>
+</response>

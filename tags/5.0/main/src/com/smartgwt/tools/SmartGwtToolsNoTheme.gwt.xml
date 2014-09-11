@@ -1,0 +1,10 @@
+<!--
+Packages the files required to run the Developer Console. You must inherit this
+module if you want to launch the Developer Console using SC.showConsole()
+-->        
+<module>
+
+    <inherits name="com.smartgwt.SmartGwtNoSmartClient"/>
+    <inherits name="com.smartclient.tools.SmartClientTools"/>
+
+</module>
