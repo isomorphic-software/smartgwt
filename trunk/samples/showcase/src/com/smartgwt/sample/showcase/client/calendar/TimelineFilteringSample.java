@@ -44,6 +44,9 @@ public class TimelineFilteringSample extends ShowcasePanel {
     }
 
     public Timeline calendar;
+    public void createCalendar() {
+    	calendar = new Timeline();    	
+    }
 	public FormItem eventItem;
 	public FormItem laneItem;
 	public FormItem hideUnusedLanesItem;
@@ -65,8 +68,8 @@ public class TimelineFilteringSample extends ShowcasePanel {
         ListGridField[] laneFields = new ListGridField[]{
             new ListGridField("title", "Developer", 120)
         };
+		createCalendar();
         
-        calendar = new Timeline();
         calendar.setHeight(451);
         calendar.setStartDate(new Date(112, 5, 2));
         calendar.setEndDate(new Date(112, 5, 22));
@@ -88,8 +91,7 @@ public class TimelineFilteringSample extends ShowcasePanel {
 				if (date == null) return false;
 		        Boolean hideWednesdays = (Boolean)hideWednesdaysItem.getValue();
 		        if (hideWednesdays == true && date.getDay() == 3) return false;
-	        	cancel();
-	        	return true;
+	        	return executeDefault(date, calendarView);
 			}
 		});
         
@@ -104,8 +106,7 @@ public class TimelineFilteringSample extends ShowcasePanel {
 		                return false;
 		            }
 		        }
-	        	cancel();
-		        return true;
+	        	return executeDefault(event, calendarView);
 			}
 		});
         
@@ -119,8 +120,7 @@ public class TimelineFilteringSample extends ShowcasePanel {
 		                return false;
 		            }
 		        }
-	        	cancel();
-		        return true;
+	        	return executeDefault(lane, calendarView);
 			}
 		});
         
