@@ -13,16 +13,16 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.grid.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasRecordCollapseHandlers extends HasHandlers {
     /**
-     * Handler fired when a record is collapsed in a grid with <code>canExpandRecords</code> set to  true. Allows the collapse
+     * Handler fired when a record is collapsed in a grid with <code>canExpandRecords</code> set to true. Allows the collapse
      * to be cancelled.
      *
      * @param handler the recordCollapse handler
@@ -30,3 +30,4 @@ public interface HasRecordCollapseHandlers extends HasHandlers {
      */
     HandlerRegistration addRecordCollapseHandler(RecordCollapseHandler handler);
 }
+

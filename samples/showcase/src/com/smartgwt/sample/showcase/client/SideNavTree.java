@@ -66,6 +66,7 @@ public class SideNavTree extends TreeGrid {
 
         tree.setModelType(TreeModelType.PARENT);
         tree.setNameProperty("nodeTitle");
+        tree.setTitleProperty("nodeHTML");
         tree.setOpenProperty("isOpen");
         tree.setIdField("nodeID");
         tree.setParentIdField("parentNodeID");
@@ -115,7 +116,7 @@ public class SideNavTree extends TreeGrid {
             if (explorerTreeNode.getVersion() == null) {
                 continue;
             } else if (Float.parseFloat(explorerTreeNode.getVersion()) >  releaseVersion) {
-                explorerTreeNode.setName(explorerTreeNode.getName() + 
+                explorerTreeNode.setHTML(explorerTreeNode.getHTML() + 
                     "<sup style='color: red;font-size:10px;font-weight: 700;'> BETA</sup>");
             } else if (Float.parseFloat(explorerTreeNode.getVersion()) == releaseVersion) {
                 boolean exist = false;
@@ -127,12 +128,12 @@ public class SideNavTree extends TreeGrid {
 
                 TreeNode parent = tree.getParent(explorerTreeNode);
                 ExplorerTreeNode newSampleParent = parent instanceof ExplorerTreeNode ?
-                    mobileSamples.get(((ExplorerTreeNode)parent).getNodeID() + "-new") : null;
+                    mobileSamples.get(((ExplorerTreeNode)parent).
+                                      getNodeID("_new" + ID_SUFFIX, ID_SUFFIX)) : null;
 
-                String newId = explorerTreeNode.getNodeID() + "-new";
                 ExplorerTreeNode copiedNode = explorerTreeNode instanceof FolderTreeNode ?
-                                                  new FolderTreeNode(explorerTreeNode, newId) :
-                                                  new ExplorerTreeNode(explorerTreeNode, newId);
+                                           new   FolderTreeNode(explorerTreeNode, ID_SUFFIX) :
+                                           new ExplorerTreeNode(explorerTreeNode, ID_SUFFIX);
                 // track folders marked with current version tag; these must be copied
                 // with their hierarchy intact underneath the "new samples" folder
                 if (tree.isFolder(explorerTreeNode)) {
@@ -152,10 +153,12 @@ public class SideNavTree extends TreeGrid {
             }
         }
         // move new mobile sample root node to bottom of new samples
-        if (mobileSamples.size() != 0) {
-            String originalMobileFolderId = mobileSamplesFolder.getNodeID() + "-new";
-            TreeNode newMobileSamplesFolder = tree.findById(originalMobileFolderId);
-            tree.move(newMobileSamplesFolder, newSamplesFolder);
+        if (mobileSamplesFolder != null) {
+            TreeNode newMobileSamplesFolder = 
+                tree.findById(mobileSamplesFolder.getNodeID("_new" + ID_SUFFIX, ID_SUFFIX));
+            if (newMobileSamplesFolder != null) {
+                tree.move(newMobileSamplesFolder, newSamplesFolder);
+            }
         }
 
         return showcaseData = getAllNodes();

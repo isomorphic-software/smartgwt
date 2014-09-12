@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.tile.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasSelectionChangedHandlers extends HasHandlers {
     /**
      * Called when selection changes within this tileGrid. Note this method fires for each record for which selection is
@@ -31,3 +31,4 @@ public interface HasSelectionChangedHandlers extends HasHandlers {
      */
     HandlerRegistration addSelectionChangedHandler(SelectionChangedHandler handler);
 }
+

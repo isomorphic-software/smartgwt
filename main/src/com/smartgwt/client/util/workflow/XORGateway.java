@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.util.workflow;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,13 +50,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
@@ -64,6 +78,8 @@ import com.google.gwt.event.shared.HasHandlers;
  * the propertyName in simple Criteria or the criterion.name in AdvancedCriterion to a be path of the form
  * "orderUser.name".  This should be a general enhancement applied across the entire Criteria/AdvancedCriteria system.
  */
+@BeanFactory.FrameworkClass
+@BeanFactory.ScClassName("XORGateway")
 public class XORGateway extends ProcessElement {
 
     public static XORGateway getOrCreateRef(JavaScriptObject jsObj) {
@@ -76,24 +92,22 @@ public class XORGateway extends ProcessElement {
         }
     }
 
+
     public XORGateway(){
         scClassName = "XORGateway";
     }
 
     public XORGateway(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "XORGateway";
+        setJavaScriptObject(jsObj);
     }
 
-    public XORGateway(String ID) {
-        setID(ID);
-        scClassName = "XORGateway";
-    }
 
     public XORGateway(String ID, String nextElement, String failureElement) {
         setID(ID);
 		setNextElement(nextElement);
 		setFailureElement(failureElement);
-        scClassName = "XORGateway";
+                scClassName = "XORGateway";
     }
 
     public native JavaScriptObject create()/*-{
@@ -101,15 +115,15 @@ public class XORGateway extends ProcessElement {
         var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
         return $wnd.isc[scClassName].create(config);
     }-*/;
+
     // ********************* Properties / Attributes ***********************
 
     /**
      * Simple or {@link com.smartgwt.client.data.AdvancedCriteria} to be applied to the task inputs.  These will be applied to
      * either the data indicated by the {@link com.smartgwt.client.util.workflow.Task#getInputField inputField} or to the
-     * "inputRecord" if multiple input fields are declared (see {@link com.smartgwt.client.util.workflow.XORGateway#getTaskIO
-     * taskIO}).
+     * "inputRecord" if multiple input fields are declared (see {@link com.smartgwt.client.docs.TaskIO}).
      *
-     * @param criteria criteria Default value is IR
+     * @param criteria  Default value is IR
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setCriteria(Criteria criteria)  throws IllegalStateException {
@@ -119,20 +133,19 @@ public class XORGateway extends ProcessElement {
     /**
      * Simple or {@link com.smartgwt.client.data.AdvancedCriteria} to be applied to the task inputs.  These will be applied to
      * either the data indicated by the {@link com.smartgwt.client.util.workflow.Task#getInputField inputField} or to the
-     * "inputRecord" if multiple input fields are declared (see {@link com.smartgwt.client.util.workflow.XORGateway#getTaskIO
-     * taskIO}).
-     *
+     * "inputRecord" if multiple input fields are declared (see {@link com.smartgwt.client.docs.TaskIO}).
      *
      * @return Criteria
      */
     public Criteria getCriteria()  {
         return new Criteria(getAttributeAsJavaScriptObject("criteria"));
     }
+    
 
     /**
      * ID of the next sequence or element to proceed to if the criteria do not match.
      *
-     * @param failureElement failureElement Default value is null
+     * @param failureElement  Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setFailureElement(String failureElement)  throws IllegalStateException {
@@ -142,12 +155,12 @@ public class XORGateway extends ProcessElement {
     /**
      * ID of the next sequence or element to proceed to if the criteria do not match.
      *
-     *
      * @return String
      */
     public String getFailureElement()  {
         return getAttributeAsString("failureElement");
     }
+    
 
     /**
      * ID of the next {@link com.smartgwt.client.util.workflow.Process#getSequences sequence} or {process.elements,element} to
@@ -155,7 +168,7 @@ public class XORGateway extends ProcessElement {
      * com.smartgwt.client.util.workflow.Process#getSequences sequence} and has a next element in the sequence,
      * <code>nextElement</code> does not need to be specified.
      *
-     * @param nextElement nextElement Default value is null
+     * @param nextElement  Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setNextElement(String nextElement)  throws IllegalStateException {
@@ -168,18 +181,18 @@ public class XORGateway extends ProcessElement {
      * com.smartgwt.client.util.workflow.Process#getSequences sequence} and has a next element in the sequence,
      * <code>nextElement</code> does not need to be specified.
      *
-     *
      * @return String
      */
     public String getNextElement()  {
         return getAttributeAsString("nextElement");
     }
+    
 
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
 
@@ -202,6 +215,5 @@ public class XORGateway extends ProcessElement {
     }
 
 }
-
 
 

@@ -13,6 +13,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.menu.events;
 
@@ -24,6 +25,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +41,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,18 +51,25 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class ItemClickEvent extends BrowserEvent<ItemClickHandler>  implements Cancellable {
     private boolean cancel = false;
 
@@ -93,7 +106,6 @@ public class ItemClickEvent extends BrowserEvent<ItemClickHandler>  implements C
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(ItemClickHandler handler) {
         handler.onItemClick(this);
@@ -112,7 +124,6 @@ public class ItemClickEvent extends BrowserEvent<ItemClickHandler>  implements C
         super(jsObj);
     }
 
-
     /**
      * false if event processing should be stopped, true to continue
      */
@@ -127,16 +138,17 @@ public class ItemClickEvent extends BrowserEvent<ItemClickHandler>  implements C
         return cancel;
     }
 
-    /**
-     * Index of the column clicked by the user. May be null if                                  this menu item was activated in response to a keyboard event.
+	/**
+     * Index of the column clicked by the user. May be null if                                  this menu item was activated in
+     * response to a keyboard event.
      *
      * @return Index of the column clicked by the user. May be null if                                  this menu item was activated in response to a keyboard event.
      */
-    public  native int getColNum() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.colNum;
+    public native int getColNum() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.colNum;
+        return ret;
     }-*/;
-
 
     /**
      * Pointer to the item in question.
@@ -146,6 +158,17 @@ public class ItemClickEvent extends BrowserEvent<ItemClickHandler>  implements C
     public  native MenuItem getItem() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
         var retVal = @com.smartgwt.client.widgets.menu.MenuItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
+        return retVal;
+    }-*/;
+
+    /**
+     * Pointer to the item in question as TreeNode. This method should be called if the Menu is populated with a Tree
+     *
+     * @return pointer to the selected TreeNode in question
+     */
+    public  native TreeNode getTreeNode() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var retVal = @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
         return retVal;
     }-*/;
 

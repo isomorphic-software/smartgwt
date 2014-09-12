@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.drawing;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,23 +50,31 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * DrawItem subclass to render triangles
  */
-public class DrawTriangle extends DrawItem {
+@BeanFactory.FrameworkClass
+@BeanFactory.ScClassName("DrawTriangle")
+public class DrawTriangle extends DrawPolygon {
 
     public static DrawTriangle getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -73,12 +86,14 @@ public class DrawTriangle extends DrawItem {
         }
     }
 
+
     public DrawTriangle(){
         scClassName = "DrawTriangle";
     }
 
     public DrawTriangle(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "DrawTriangle";
+        setJavaScriptObject(jsObj);
     }
 
     public native JavaScriptObject create()/*-{
@@ -86,72 +101,61 @@ public class DrawTriangle extends DrawItem {
         var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
         return $wnd.isc[scClassName].create(config);
     }-*/;
+
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Style of drawing the corners of triangle.
+     * Array of points of the triangle.
      *
-     * @param lineCap lineCap Default value is "butt"
-     */
-    public void setLineCap(LineCap lineCap) {
-        setAttribute("lineCap", lineCap == null ? null : lineCap.getValue(), true);
-    }
-
-    /**
-     * Style of drawing the corners of triangle.
-     *
-     *
-     * @return LineCap
-     */
-    public LineCap getLineCap()  {
-        return EnumUtil.getEnum(LineCap.values(), getAttribute("lineCap"));
-    }
-
-    /**
-     * Array of Points for the triangle.
-     *
-     * @param points points Default value is [[0,0], [50,50], [100,0]]
+     * @param points  Default value is [[0,0], [50,50], [100,0]]
      */
     public void setPoints(Point... points) {
         setAttribute("points", points, true);
     }
 
     /**
-     * Array of Points for the triangle.
+     * Array of points of the triangle.
      *
-     *
-     * @return Point
+     * @return Point...
      */
     public Point[] getPoints()  {
-        return Point.convertToPointArray(getAttributeAsJavaScriptObject("points"));
+        return com.smartgwt.client.util.ConvertTo.arrayOfPoint(getAttributeAsJavaScriptObject("points"));
     }
+    
 
     // ********************* Methods ***********************
-            
-    /**
-     * Executed when dragging first starts. Your widget can use this opportunity to set things up for the drag, such as setting
-     * the drag tracker. Returning false from this event handler will cancel the drag action entirely. <p> A drag action is
-     * considered to be begin when the mouse has moved {@link com.smartgwt.client.widgets.Canvas#getDragStartDistance
-     * dragStartDistance} with the left mouse down.
+	/**
+     * Get the <a href='http://en.wikipedia.org/wiki/Incenter#Coordinates_of_the_incenter'
+     * onclick="window.open('http://en.wikipedia.org/wiki/Incenter#Coordinates_of_the_incenter');return false;">incenter</a> of
+     * the triangle.
      *
-     * @return false to cancel drag action.
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_pan" target="examples">Drag pan Example</a>
+     * @return the incenter
      */
-    public native Boolean dragStart() /*-{
+    public native Point getCenter() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var retVal =self.dragStart();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        var ret = self.getCenter();
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.drawing.Point::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
+
+
+	/**
+     * Resize by the specified delta
+     * @param dX number of pixels to resize by horizontally
+     * @param dY number of pixels to resize by vertically
+     */
+    public native void resizeBy(int dX, int dY) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.resizeBy(dX, dY);
+    }-*/;
+
+
+
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 }
-
 
 

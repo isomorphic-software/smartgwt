@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.grid.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasRowMouseDownHandlers extends HasHandlers {
     /**
      * Called when a row receives a mousedown event.
@@ -29,3 +29,4 @@ public interface HasRowMouseDownHandlers extends HasHandlers {
      */
     HandlerRegistration addRowMouseDownHandler(RowMouseDownHandler handler);
 }
+

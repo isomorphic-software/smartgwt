@@ -31,14 +31,11 @@ public class ExplorerTreeNode extends TreeNode {
     public ExplorerTreeNode(String name, String nodeID, String parentNodeID, String icon, 
                PanelFactory factory, boolean enabled, boolean testEnabled, String idSuffix, String version)
     {
-        if (enabled) {
-            setName(name);
-        } else {
-            setName("<span style='color:808080'>" + name + "</span>");
-        }
-        setNodeID(nodeID.replace("-", "_") + idSuffix);
-        setThumbnail("thumbnails/" + nodeID.replace("-", "_") + ".gif");
+        setName(name.replaceAll("<.*?>", ""));
+        setHTML(enabled ? name : "<span style='color:808080'>" + name + "</span>");
+        setNodeID      (      nodeID.replace("-", "_") + idSuffix);
         setParentNodeID(parentNodeID.replace("-", "_") + idSuffix);
+        setThumbnail("thumbnails/" + nodeID.replace("-", "_") + ".gif");
         setIcon(icon);
         setVersion(version);
         setFactory(factory);
@@ -49,15 +46,16 @@ public class ExplorerTreeNode extends TreeNode {
             String className = factory.getClass().getName().replaceFirst("\\$.*$","");
             setSampleClassName(className);
         }
-        
         if(nodeID.equals("featured-category") || nodeID.equals("new-category")) {
             setIsOpen(true);
         }
     }
 
-    public ExplorerTreeNode(ExplorerTreeNode originalNode, String newNodeID) {
-        setNodeID         (newNodeID);
+    // create a copy of the provided node with "_new" added to the ID
+    public ExplorerTreeNode(ExplorerTreeNode originalNode, String idSuffix) {
+        setNodeID         (originalNode.getNodeID("_new" + idSuffix, idSuffix));
         setName           (originalNode.getName());
+        setHTML           (originalNode.getHTML());
         setThumbnail      (originalNode.getThumbnail());
         setIcon           (originalNode.getIcon());
         setVersion        (originalNode.getVersion());
@@ -95,6 +93,11 @@ public class ExplorerTreeNode extends TreeNode {
         return getAttribute("nodeID");
     }
 
+    public String getNodeID(String newSuffix, String oldSuffix) {
+        String nodeID = getAttribute("nodeID");
+        return nodeID.substring(0, nodeID.length() - oldSuffix.length()) + newSuffix;
+    }
+
     public void setParentNodeID(String value) {
         setAttribute("parentNodeID", value);
     }
@@ -108,6 +111,14 @@ public class ExplorerTreeNode extends TreeNode {
 
     public String getName() {
         return getAttributeAsString("nodeTitle");
+    }
+
+    public void setHTML(String html) {
+        setAttribute("nodeHTML", html);
+    }
+
+    public String getHTML() {
+        return getAttributeAsString("nodeHTML");
     }
 
     public void setIcon(String icon) {

@@ -29,8 +29,6 @@ public interface ShowcaseMessages extends Messages {
     public String enterpriseBlueSkinName();
     @DefaultMessage("Graphite")
     public String graphiteSkinName();
-    @DefaultMessage("Simplicity")
-    public String simplicitySkinName();
 
     @DefaultMessage("Print")
     public SafeHtml printButtonTitle();

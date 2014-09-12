@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,47 +16,51 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
- * Default buttons that you can use in your Dialogs. <P> On click these call canonical methods that you can override in
- * your Dialog. <P> Refer to these buttons via the syntax <code>isc.Dialog.OK</code> when passing them into {@link
- * com.smartgwt.client.widgets.Dialog#getButtons buttons} or into the <code>properties</code> argument of helper methods
- * such as {@link com.smartgwt.client.util.isc#say isc.say}.
+ * Default buttons that you can use in your Dialogs.
+ *  <p>
+ *  
+ *  Each <code>DialogButtons</code> enum value has a same-named static Button on the Dialog
+ *  class, and these buttons can be passed to {@link com.smartgwt.client.widgets.Dialog#getButtons Dialog.setButtons()}:
+ *  <pre>
+ *    Dialog.setButtons(Dialog.OK, Dialog.CANCEL);
+ *  </pre>
+ *  
+ *  
+ *  <p>
+ *  All buttons added via <code>setButtons</code> will fire the
+ *  {@link com.smartgwt.client.widgets.Dialog#addButtonClickHandler buttonClick event} (whether they are built-in or custom
+ *  buttons).  Built-in buttons automatically close a Dialog, with the exception of the
+ *  "Apply" button.
  */
 public enum DialogButtons implements ValueEnum {
     /**
-     * Button object to fire dialog's "okClick()" method on click. Title derived from {@link
-     * com.smartgwt.client.widgets.Dialog#OK_BUTTON_TITLE OK_BUTTON_TITLE}.
+     * Dismisses dialog. Title derived from {@link com.smartgwt.client.widgets.Dialog#OK_BUTTON_TITLE OK_BUTTON_TITLE}.
      */
     OK("ok"),
     /**
-     * Button object to fire dialog's "applyClick()" method on click. Title derived from {@link
-     * com.smartgwt.client.widgets.Dialog#APPLY_BUTTON_TITLE APPLY_BUTTON_TITLE}.
+     * Does not dismiss dialog. Handle via {@link com.smartgwt.client.widgets.Dialog#addButtonClickHandler Dialog.buttonClick} 
+     * Title derived from {@link com.smartgwt.client.widgets.Dialog#APPLY_BUTTON_TITLE APPLY_BUTTON_TITLE}.
      */
     APPLY("apply"),
     /**
-     * Button object to fire dialog's "yesClick()" method on click Title derived from {@link
-     * com.smartgwt.client.widgets.Dialog#YES_BUTTON_TITLE YES_BUTTON_TITLE}.
+     * Dismisses dialog. Title derived from {@link com.smartgwt.client.widgets.Dialog#YES_BUTTON_TITLE YES_BUTTON_TITLE}.
      */
     YES("yes"),
     /**
-     * Button object to fire dialog's "noClick()" method on click. Title derived from {@link
-     * com.smartgwt.client.widgets.Dialog#NO_BUTTON_TITLE NO_BUTTON_TITLE}.
+     * Dismisses dialog. Title derived from {@link com.smartgwt.client.widgets.Dialog#NO_BUTTON_TITLE NO_BUTTON_TITLE}.
      */
     NO("no"),
     /**
-     * Button object to fire dialog's "cancelClick()" method on click. Title derived from {@link
-     * com.smartgwt.client.widgets.Dialog#CANCEL_BUTTON_TITLE CANCEL_BUTTON_TITLE}.
+     * Dismisses dialog. Title derived from {@link com.smartgwt.client.widgets.Dialog#CANCEL_BUTTON_TITLE CANCEL_BUTTON_TITLE}.
      */
     CANCEL("cancel"),
     /**
-     * Button object to fire dialog's "doneClick()" method on click. Title derived from {@link
-     * com.smartgwt.client.widgets.Dialog#DONE_BUTTON_TITLE DONE_BUTTON_TITLE}.
+     * Dismisses dialog. Title derived from {@link com.smartgwt.client.widgets.Dialog#DONE_BUTTON_TITLE DONE_BUTTON_TITLE}.
      */
     DONE("done");
-
     private String value;
 
     DialogButtons(String value) {

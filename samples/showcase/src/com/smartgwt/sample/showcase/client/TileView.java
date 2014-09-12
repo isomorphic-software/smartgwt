@@ -29,6 +29,7 @@ import com.smartgwt.client.widgets.form.events.ItemChangedHandler;
 import com.smartgwt.client.widgets.form.fields.CheckboxItem;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.form.fields.FormItemIcon;
+import com.smartgwt.client.widgets.form.fields.PickerIcon;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.SliderItem;
 import com.smartgwt.client.widgets.form.fields.SpacerItem;
@@ -52,11 +53,6 @@ public class TileView extends VLayout {
     
     private Map<String, Integer> rankOfSamples = new HashMap<String, Integer>();
     private boolean considerForRanking = false;
-    private static final native boolean _useRoundedSearchItem() /*-{
-        var isc = $wnd.isc;
-        return (!isc.Browser.isIE || isc.Browser.isIE9);
-    }-*/;
-
     private final boolean useDesktopMode;
 
     private TileGrid tileGrid;
@@ -174,28 +170,14 @@ public class TileView extends VLayout {
                 }
             }
         });
-        final FormItemIcon searchIcon = new FormItemIcon();
-        searchIcon.setName("search");
-        searchIcon.setInline(true);
-        searchIcon.setAttribute("imgOnly", true);
-        searchIcon.setSrc("[SKINIMG]actions/view.png");
-        searchIcon.setWidth(16);
-        searchIcon.setHeight(16);
-        searchIcon.setShowRTL(true);
-        searchIcon.setHspace(5);
-        final FormItemIcon clearIcon = new FormItemIcon();
-        clearIcon.setName("clear");
-        clearIcon.setInline(true);
-        clearIcon.setAttribute("imgOnly", true);
-        clearIcon.setSrc("[SKINIMG]actions/close.png");
-        clearIcon.setWidth(10);
-        clearIcon.setHeight(10);
-        clearIcon.setHspace(3);
-        searchItem.setIcons(searchIcon, clearIcon);
-        if (_useRoundedSearchItem()) searchItem.setTextBoxStyle("explorerSearchItem");
+        final PickerIcon findIcon = new PickerIcon(PickerIcon.SEARCH);
+        final PickerIcon cancelIcon = new PickerIcon(PickerIcon.CLEAR);
+        searchItem.setIcons(findIcon, cancelIcon);
+
         searchItem.addIconClickHandler(new IconClickHandler() {
             public void onIconClick(IconClickEvent event) {
-                if ("clear".equals(event.getIcon().getName())) {
+                FormItemIcon icon = event.getIcon();
+                if(icon.getSrc().equals(cancelIcon.getSrc())) {
                     filterForm.reset();
                     featuredCB.setValue(true);
                     updateTiles(false);
@@ -213,7 +195,7 @@ public class TileView extends VLayout {
             numSamplesItem.setTitleAlign(Alignment.LEFT);
             numSamplesItem.setMinValue(1.0);
             // grep '^ *new ExplorerTreeNode' ShowcaseData.java | grep -o 'new [^.,]*\.Factory()' | sort | uniq | wc
-            numSamplesItem.setMaxValue(328.0);
+            numSamplesItem.setMaxValue(341.0);
             numSamplesItem.setDefaultValue(100);
             numSamplesItem.setHeight(50);
             numSamplesItem.setOperator(OperatorId.LESS_THAN);
@@ -440,7 +422,7 @@ public class TileView extends VLayout {
                 boolean isExplorerTreeNode = child instanceof ExplorerTreeNode;
                 if (isExplorerTreeNode) {
                     final ExplorerTreeNode explorerTreeNode = (ExplorerTreeNode) child;
-                    if (explorerTreeNode.getName().contains("BETA")) {
+                    if (explorerTreeNode.getHTML().contains("BETA")) { // note that BETA tag is only in HTML
                         children[i].setAttribute("description", explorerTreeNode.getFactory().getDescription());
                         data.add(children[i]);
                     }
@@ -455,7 +437,7 @@ public class TileView extends VLayout {
         String searchText, Integer maxResults) 
     {
         String[] arraySearchText = searchText.trim().split(" ");
-        for (int j = 0; j < children.length; j++) {
+        for (int j = 0; j < arraySearchText.length; j++) {
             if (arraySearchText[j] == null || arraySearchText[j].length() == 0) continue;
             for (int i = 0; i < children.length; i++) {
                 if (maxResults != null && data.size() >= maxResults) return;

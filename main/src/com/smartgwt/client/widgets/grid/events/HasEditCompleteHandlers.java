@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.grid.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasEditCompleteHandlers extends HasHandlers {
     /**
      * Callback fired when inline edits have been successfully saved. <P> No default implementation.
@@ -29,3 +29,4 @@ public interface HasEditCompleteHandlers extends HasHandlers {
      */
     HandlerRegistration addEditCompleteHandler(EditCompleteHandler handler);
 }
+

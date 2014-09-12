@@ -13,8 +13,10 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.tile.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface RecordClickHandler extends EventHandler {
@@ -23,7 +25,7 @@ public interface RecordClickHandler extends EventHandler {
      * perform some action when any record is clicked.<br> A record event handler can be specified either as a function to
      * execute, or as a string of script to evaluate. If the handler is defined as a string of script, all the parameters below
      * will be available as variables for use in the script.<br> If you want to cancel the click based on the parameters,
-     * Call {@link com.smartgwt.client.widgets.tile.events.RecordClickEvent#cancel()} from within {@link RecordClickHandler#onRecordClick}. Otherwise, return  true so that the click event be registered with the tile.
+     * Call {@link com.smartgwt.client.widgets.tile.events.RecordClickEvent#cancel()} from within {@link com.smartgwt.client.widgets.tile.events.RecordClickHandler#onRecordClick}. Otherwise, return  true so that the click event be registered with the tile.
      *
      * @param event the event
      */

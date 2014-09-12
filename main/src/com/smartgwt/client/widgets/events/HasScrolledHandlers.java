@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasScrolledHandlers extends HasHandlers {
     /**
      * Notification that this component has just scrolled.  Use with  observation. <P> Fires for both CSS and {@link
@@ -30,3 +30,4 @@ public interface HasScrolledHandlers extends HasHandlers {
      */
     HandlerRegistration addScrolledHandler(ScrolledHandler handler);
 }
+

@@ -13,14 +13,18 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface CloseClickHandler extends EventHandler {
     /**
-     * Handles a click on the close button of this window. The default implementation hides the window and returns false to
-     * cancel bubbling.  Override this method if you want other actions to be taken.
+     * Handles a click on the close button of this window. The default implementation calls {@link
+     * com.smartgwt.client.widgets.Window#close close()} and returns false to prevent bubbling of the click event. <P> 
+     * Developers may use <code>addCloseClickHandler()</code> to provide custom handling when the user clicks this button.
+     * Custom implementations may call <code>close()</code> to trigger the default behavior.
      *
      * @param event the event
      */
