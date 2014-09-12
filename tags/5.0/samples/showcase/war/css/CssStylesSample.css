@@ -1,0 +1,37 @@
+
+.exampleStyleOnline {
+    font-family: verdana,arial,helvetica,sans-serif;
+    font-size: 10px;
+    line-height: 16px;
+    padding: 4px;
+    border: 1px dotted black;
+}
+
+.exampleStyleLegal {
+    font-family: times new roman,times,serif;
+    font-size: 12px;
+    text-align: justify;
+    padding-left: 4px;
+    border-left: 1px solid black;
+    padding-right: 4px;
+    border-right: 1px solid black;
+}
+
+.exampleStyleCode {
+    font-family: lucida console,bitstream vera sans mono,courier new,monospace;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: black;
+    padding: 8px;
+}
+
+.exampleStyleInformal {
+    font-family: lucida handwriting,cursive;
+    font-size: 14px;
+    line-height: 22px;
+    color: midnightblue;
+    background-color: oldlace;
+    padding: 8px;
+    border: 2px solid midnightblue;
+}

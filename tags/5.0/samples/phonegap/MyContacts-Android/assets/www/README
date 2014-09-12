@@ -1,0 +1,5 @@
+After compiling the Smart GWT application in OBFUSCATED mode, copy the following files into this folder:
+
+MyContacts/war/cordova-2.0.0-android.js
+MyContacts/war/index.html
+MyContacts/war/mycontacts/
