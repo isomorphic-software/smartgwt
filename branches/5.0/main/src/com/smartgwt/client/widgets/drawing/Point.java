@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.drawing;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,22 +50,29 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * X/Y position in pixels, specified as an Array with two members, for example: [30, 50]
  */
+@BeanFactory.FrameworkClass
 public class Point extends RefDataClass {
 
     public static Point getOrCreateRef(JavaScriptObject jsObj) {
@@ -68,40 +80,39 @@ public class Point extends RefDataClass {
         return new Point(jsObj);
     }
 
+
     public Point(){
-        
+        this.setJsObj(JSOHelper.createJavaScriptArray());
     }
 
     public Point(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
 
-    public Point(int x, int y) {
-        setX(x);
-		setY(y);
-        
-    }
 
     // ********************* Properties / Attributes ***********************
+    
+    
 
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
 
-    public JavaScriptObject getAsJSArray() {         
-        return JSOHelper.convertToJavaScriptArray(new int[]{getX(),getY()});     
-    } 
-    
-    /*
-     * Overriding this method so that it returns an array of int values instead of an
-     *  object with 2 values, x and y.
-     */
-    public JavaScriptObject getJsObj() {
-        return this.getAsJSArray();
+    public Point(int x, int y) {
+        this();
+        setX(x);
+        setY(y);
+    }
+
+    public Point(double x, double y) {
+        this();
+        setX(x);
+        setY(y);
     }
 
     /**
@@ -110,7 +121,16 @@ public class Point extends RefDataClass {
      * @param x x Default value is 0
      */
     private void setX(int x) {
-        setAttribute("x", x);
+        JSOHelper.setArrayValue(getJsObj(), 0, x);
+    }
+
+    /**
+     * The x coordinate of this point.
+     *
+     * @param x x Default value is 0
+     */
+    private void setX(double x) {
+        JSOHelper.setArrayValue(getJsObj(), 0, x);
     }
 
     /**
@@ -120,7 +140,17 @@ public class Point extends RefDataClass {
      * @return int
      */
     public int getX()  {
-        return getAttributeAsInt("x");
+        return JSOHelper.getIntArrayValue(getJsObj(), 0);
+    }
+
+    /**
+     * The x coordinate of this point.
+     *
+     *
+     * @return double
+     */
+    public double getXAsDouble()  {
+        return JSOHelper.getdoubleArrayValue(getJsObj(), 0);
     }
 
     /**
@@ -129,7 +159,16 @@ public class Point extends RefDataClass {
      * @param y y Default value is 0
      */
     private void setY(int y) {
-        setAttribute("y", y);
+        JSOHelper.setArrayValue(getJsObj(), 1, y);
+    }
+
+    /**
+     * The y coordinate of this point.
+     *
+     * @param y y Default value is 0
+     */
+    private void setY(double y) {
+        JSOHelper.setArrayValue(getJsObj(), 1, y);
     }
 
     /**
@@ -139,26 +178,20 @@ public class Point extends RefDataClass {
      * @return int
      */
     public int getY()  {
-        return getAttributeAsInt("y");
+        return JSOHelper.getIntArrayValue(getJsObj(), 1);
     }
 
-    public static Point[] convertToPointArray(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new Point[]{};
-        }
-        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-        Point[] objects = new Point[componentsj.length];
-        for (int i = 0; i < componentsj.length; i++) {
-            JavaScriptObject componentJS = componentsj[i];
-            Point obj = (Point) RefDataClass.getRef(componentJS);
-            if (obj == null) obj = new Point(componentJS);
-            objects[i] = obj;
-        }
-        return objects;
+    /**
+     * The y coordinate of this point.
+     *
+     *
+     * @return double
+     */
+    public double getYAsDouble()  {
+        return JSOHelper.getdoubleArrayValue(getJsObj(), 1);
     }
 
 }
-
 
 
 

@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * ListGrids format data for viewing and editing based on the <i>type</i> attribute of the field.  This table describes how
  * the ListGrid deals with the various built-in types.
@@ -47,11 +49,13 @@ public enum ListGridFieldType implements ValueEnum {
      */
     FLOAT("float"),
     /**
-     * Expected to contain <code>Date</code> type data. Dates will be formatted using {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getDateFormatter dateFormatter} if specified, otherwise {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getDateFormatter dateFormatter}. If both these attributes are unset, dates are
-     * formatted using the standard   short display format for dates. <P> For editing, by default a {@link
-     * com.smartgwt.client.widgets.form.fields.DateItem} is used with {@link
+     * Field value should be a <code>Date</code> instance representing a logical date, with no time of day information. See
+     * {@link com.smartgwt.client.docs.DateFormatAndStorage} for details of the logical date type and how it is represented and
+     * manipulated. <P> Dates will be formatted using {@link com.smartgwt.client.widgets.grid.ListGridField#getDateFormatter
+     * ListGridField.dateFormatter} if specified, otherwise {@link com.smartgwt.client.widgets.grid.ListGrid#getDateFormatter
+     * ListGrid.dateFormatter}. If both these attributes are unset, dates are formatted using the standard {@link
+     * com.smartgwt.client.util.Date#setShortDisplayFormat short display format} for dates. <P> For editing, by default a
+     * {@link com.smartgwt.client.widgets.form.fields.DateItem} is used with {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} set to true, providing textual date entry
      * plus a pop-up date picker. The {@link com.smartgwt.client.widgets.form.fields.DateItem#getDateFormatter dateFormatter}
      * and {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} for the editor will be picked up
@@ -59,15 +63,31 @@ public enum ListGridFieldType implements ValueEnum {
      */
     DATE("date"),
     /**
-     * Expected to contain Time data encoded in javascript <code>Date</code> objects. Times will be formatted using {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getTimeFormatter timeFormatter} if specified,  otherwise {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getTimeFormatter timeFormatter}. <P> If both these attributes are unset, times
-     * are formatted using the standard  String for times. <P> For editing, by default a {@link
+     * Field value should be a <code>Date</code> instance representing a logical time, meaning time value that does not have a
+     * specific day and also has no timezone. See {@link com.smartgwt.client.docs.DateFormatAndStorage} for details of the
+     * logical time type and how it is represented and manipulated. <P> Times will be formatted using {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getTimeFormatter ListGridField.timeFormatter} if specified, otherwise
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getTimeFormatter ListGrid.timeFormatter}. <P> If both these attributes
+     * are unset, times are formatted using the standard String for times. <P> For editing, by default a {@link
      * com.smartgwt.client.widgets.form.fields.TimeItem} is used. The {@link
-     * com.smartgwt.client.widgets.form.fields.TimeItem#getTimeFormatter timeFormatter} for the editor will be picked up from 
+     * com.smartgwt.client.widgets.form.fields.TimeItem#getTimeFormatter timeFormatter} for the editor will be picked up from
      * the ListGridField, if specified.
      */
     TIME("time"),
+    /**
+     * Field value should be a <code>Date</code> instance representing a specific date and time value. See {@link
+     * com.smartgwt.client.docs.DateFormatAndStorage} for details of the datetime type and how it is represented and
+     * manipulated. <P> Dates will be formatted using {@link com.smartgwt.client.widgets.grid.ListGridField#getDateFormatter
+     * ListGridField.dateFormatter} if specified, otherwise {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDatetimeFormatter ListGrid.datetimeFormatter}. If both these attributes are
+     * unset, dates are formatted using the standard {@link com.smartgwt.client.util.Date#setShortDatetimeDisplayFormat short
+     * display format} for datetime values. <P> For editing, by default a {@link
+     * com.smartgwt.client.widgets.form.fields.DateTimeItem} is used, providing textual date entry plus a pop-up date picker.
+     * The {@link com.smartgwt.client.widgets.form.fields.DateItem#getDateFormatter dateFormatter} and {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} for the editor will be picked up from the
+     * ListGridField, if specified.
+     */
+    DATETIME("datetime"),
     /**
      * Same as <code>text</code>
      */
@@ -107,8 +127,8 @@ public enum ListGridFieldType implements ValueEnum {
      * button. <P> NOTE: for a field that shows different icons depending on the field value, see {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getValueIcons valueIcons}. <P> <code>type:"icon"</code> also defaults to
      * a small field width, accommodating just the icon with padding, and to a blank header title, so that the header shows the
-     * icon only.  <P> {@link com.smartgwt.client.widgets.grid.ListGridField#getIconWidth field.iconWidth} and related
-     * properties configure the size of the icon both in the header and in body cells. <P>  If you want the icon to appear only
+     * icon only. <P> {@link com.smartgwt.client.widgets.grid.ListGridField#getIconWidth field.iconWidth} and related
+     * properties configure the size of the icon both in the header and in body cells. <P> If you want the icon to appear only
      * in body cells and not in the header, set {@link com.smartgwt.client.widgets.grid.ListGridField#getCellIcon
      * field.cellIcon} instead, leaving field.icon null.
      */
@@ -132,7 +152,6 @@ public enum ListGridFieldType implements ValueEnum {
      * com.smartgwt.client.widgets.grid.ListGridField#getRecordSummaryFunction recordSummaryFunction} for more information
      */
     SUMMARY("summary");
-
     private String value;
 
     ListGridFieldType(String value) {

@@ -13,16 +13,16 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDragRepositionMoveHandlers extends HasHandlers {
     /**
-     * Executed every time the mouse moves while drag-repositioning. If this method does not Call {@link com.smartgwt.client.widgets.events.DragRepositionMoveEvent#cancel()} from within {@link DragRepositionMoveHandler#onDragRepositionMove}, the {@link
+     * Executed every time the mouse moves while drag-repositioning. If this method does not Call {@link com.smartgwt.client.widgets.events.DragRepositionMoveEvent#cancel()} from within {@link com.smartgwt.client.widgets.events.DragRepositionMoveHandler#onDragRepositionMove}, the {@link
      * com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} (or outline if {@link
      * com.smartgwt.client.widgets.Canvas#getDragAppearance dragAppearance} is set to "outline") will automatically be moved as
      * appropriate whenever the mouse moves.
@@ -32,3 +32,4 @@ public interface HasDragRepositionMoveHandlers extends HasHandlers {
      */
     HandlerRegistration addDragRepositionMoveHandler(DragRepositionMoveHandler handler);
 }
+

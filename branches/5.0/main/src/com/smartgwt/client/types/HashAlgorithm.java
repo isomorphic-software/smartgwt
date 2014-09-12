@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,12 +16,11 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Algorithms to use when hashing field values (see {@link com.smartgwt.client.docs.serverds.DataSourceField#storeWithHash
- * storeWithHash})
+ * DataSourceField.storeWithHash})
  */
 public enum HashAlgorithm implements ValueEnum {
     /**
@@ -29,7 +31,6 @@ public enum HashAlgorithm implements ValueEnum {
      * Secure Hashing Algorithm (SHA-1)
      */
     SHA("SHA");
-
     private String value;
 
     HashAlgorithm(String value) {

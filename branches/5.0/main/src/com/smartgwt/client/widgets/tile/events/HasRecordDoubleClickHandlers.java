@@ -13,23 +13,24 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.tile.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasRecordDoubleClickHandlers extends HasHandlers {
     /**
      * Executed when the tileGrid receives a 'doubleclick' event on a tile. The default implementation does nothing -- override
      * to perform some action when any record is doubleclicked.<br> A record event handler can be specified either as a
      * function to execute, or as a string of script to evaluate. If the handler is defined as a string of script, all the
      * parameters below will be available as variables for use in the script.<br> If you want to cancel the doubleclick based
-     * on the parameters, Call {@link com.smartgwt.client.widgets.tile.events.RecordDoubleClickEvent#cancel()} from within {@link RecordDoubleClickHandler#onRecordDoubleClick}. Otherwise, return  true so that the doubleclick event be registered with the tile.
+     * on the parameters, Call {@link com.smartgwt.client.widgets.tile.events.RecordDoubleClickEvent#cancel()} from within {@link com.smartgwt.client.widgets.tile.events.RecordDoubleClickHandler#onRecordDoubleClick}. Otherwise, return  true so that the doubleclick event be registered with the tile.
      *
      * @param handler the recordDoubleClick handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addRecordDoubleClickHandler(RecordDoubleClickHandler handler);
 }
+

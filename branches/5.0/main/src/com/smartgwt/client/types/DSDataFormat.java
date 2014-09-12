@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Indicates the format to be used for HTTP requests and responses when fulfilling DSRequests (eg, when {@link
  * com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData} is called). <P> Note that {@link
@@ -43,16 +45,27 @@ public enum DSDataFormat implements ValueEnum {
     XML("xml"),
     /**
      * Expect response in JSON <a href='http://json.org' onclick="window.open('http://json.org');return false;">(Java Script
-     * Object Notation)</a> format, ready to be eval()'d. Response should either be a naked object literal:<br>
-     * <code>&nbsp;&nbsp;&nbsp;&nbsp;{ "property":"value1", "property2" : "value2", ... }</code><br> or a string that evals to
-     * return a valid response object:<br> <code>&nbsp;&nbsp;&nbsp;&nbsp;var response = { "property":"value1", "property2" :
-     * "value2", ... }</code> <br> <code>&nbsp;&nbsp;&nbsp;&nbsp;response;</code><br> <P> A DSResponse will be derived from the
-     * returned JSON via the process described under {@link com.smartgwt.client.data.DataSource#transformResponse
-     * DataSource.transformResponse}. <P> As with <code>"xml"</code> responses, values for "date" or "datetime" fields should
-     * be specified as a String in  <a target=_blank href="http://www.w3.org/TR/xmlschema-2/#dateTime">XML Schema date
-     * format</a> and may include a timezone. In the absence of a timezone they will be assumed to be GMT. <P> Request format
-     * depends on the setting for {@link com.smartgwt.client.data.OperationBinding#getDataProtocol protocol}.  See also {@link
-     * com.smartgwt.client.data.XJSONDataSource}.
+     * Object Notation)</a>
+     *  format, ready to be eval()'d. Response should either be a naked object literal:
+     *  <pre>
+     *  { "property":"value1", "property2" : "value2", ... }
+     *  </pre>
+     *  or a string that evals to return a valid response object:
+     *  <pre>
+     *  var response = { "property":"value1", "property2" : "value2", ... }
+     *  response;
+     *  </pre>
+     *  <P>
+     *  A DSResponse will be derived from the returned JSON via the process described under
+     *  {@link com.smartgwt.client.data.DataSource#transformResponse DataSource.transformResponse}.
+     *  <P>
+     *  As with <code>"xml"</code> responses, values for "date" or "datetime" fields should be
+     *  specified as a String in 
+     *  <a target=_blank href="http://www.w3.org/TR/xmlschema-2/#dateTime">XML Schema date format</a>
+     *  and may include a timezone. In the absence of a timezone they will be assumed to be GMT.
+     *  <P>
+     *  Request format depends on the setting for {@link com.smartgwt.client.data.OperationBinding#getDataProtocol protocol}. 
+     *  See also {@link com.smartgwt.client.data.XJSONDataSource}.
      */
     JSON("json"),
     /**
@@ -66,7 +79,6 @@ public enum DSDataFormat implements ValueEnum {
      * respectively, and using <code>new Date()</code> to construct valid Dates.
      */
     CUSTOM("custom");
-
     private String value;
 
     DSDataFormat(String value) {

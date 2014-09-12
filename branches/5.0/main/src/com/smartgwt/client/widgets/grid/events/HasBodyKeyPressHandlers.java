@@ -13,20 +13,21 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.grid.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasBodyKeyPressHandlers extends HasHandlers {
     /**
-     * Handle a keyPress event on the body.   <P> Default implementation handles navigating between records with arrow keys,
-     * and activating records with space and enter.
+     * Handle a keyPress event on the body. <P> Default implementation handles navigating between records with arrow keys, and
+     * activating records with space and enter.
      *
      * @param handler the bodyKeyPress handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addBodyKeyPressHandler(BodyKeyPressHandler handler);
 }
+

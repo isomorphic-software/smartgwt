@@ -13,19 +13,24 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.grid.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasGroupByHandlers extends HasHandlers {
     /**
-     * Callback fired when the listGrid is grouped or ungrouped.  <var class="SmartGwt">This event may be cancelled</var>
+     * Callback fired when the user attempts to group or ungroup the listGrid, or when {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#groupBy ListGrid.groupBy} is called programmatically.  This event may be
+     * cancelled. <P> This notification is fired before the {@link com.smartgwt.client.widgets.grid.ListGrid#getGroupTree data}
+     * is updated to reflect the grouping. See also {@link com.smartgwt.client.widgets.grid.ListGrid#addGroupByCompleteHandler
+     * ListGrid.groupByComplete}.
      *
      * @param handler the groupBy handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addGroupByHandler(GroupByHandler handler);
 }
+

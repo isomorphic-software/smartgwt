@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * {@link com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol} affects how the data in the DSRequest
  * ({@link com.smartgwt.client.data.DSRequest#getData data})
@@ -71,13 +73,15 @@ public enum DSProtocol implements ValueEnum {
      */
     POSTMESSAGE("postMessage"),
     /**
-     * This setting entirely bypasses the Smart GWT comm system. Instead of the DataSource sending an HTTP request to the
-     * server, the developer is expected to implement {@link com.smartgwt.client.data.DataSource#transformRequest
-     * DataSource.transformRequest} to perform their own custom data manipulation logic, and then call {@link
+     * This setting entirely bypasses the Smart GWT comm system. Instead of the DataSource sending an HTTP request to a URL,
+     * the developer is expected to implement {@link com.smartgwt.client.data.DataSource#transformRequest
+     * DataSource.transformRequest} to perform their own custom logic, and then call {@link
      * com.smartgwt.client.data.DataSource#processResponse DataSource.processResponse} to handle the results of this action.
+     * This <code>dataProtocol</code> setting can be used to implement access to in-browser resources such as HTML5
+     * "localStorage", native APIs available to applications {@link com.smartgwt.client.docs.MobileDevelopment packaged as
+     * native applications}, or to implement the  {@link com.smartgwt.client.docs.DsFacade DataSource Facade pattern}.
      */
     CLIENTCUSTOM("clientCustom");
-
     private String value;
 
     DSProtocol(String value) {

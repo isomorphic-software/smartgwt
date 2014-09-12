@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.tableview.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasImageClickHandlers extends HasHandlers {
     /**
      * Executed when the user clicks on the image displayed in a record if {@link
@@ -30,3 +30,4 @@ public interface HasImageClickHandlers extends HasHandlers {
      */
     HandlerRegistration addImageClickHandler(ImageClickHandler handler);
 }
+

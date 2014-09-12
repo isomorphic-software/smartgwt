@@ -13,14 +13,20 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.form.fields.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface IconClickHandler extends EventHandler {
     /**
-     * StringMethod.      Default action to fire when the user clicks on a form item icon. May be overridden      by setting
-     * <code>click</code> on the form item icon directly.
+     * Notification method called when the user clicks on a form item icon.  <p>  The icon's {@link
+     * com.smartgwt.client.widgets.form.fields.FormItemIcon#addFormItemClickHandler FormItemIcon.formItemClick} method if any
+     * is called first. Then, if the clicked  icon is the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon picker icon}, the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#addPickerIconClickHandler FormItem.pickerIconClick} method is  called.
+     * Then, this method is called.
      *
      * @param event the event
      */

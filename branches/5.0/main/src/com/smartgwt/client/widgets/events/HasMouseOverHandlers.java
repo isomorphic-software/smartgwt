@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasMouseOverHandlers extends HasHandlers {
     /**
      * Executed when mouse enters this widget.  No default implementation.
@@ -29,3 +29,4 @@ public interface HasMouseOverHandlers extends HasHandlers {
      */
     HandlerRegistration addMouseOverHandler(MouseOverHandler handler);
 }
+

@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.form.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasItemKeyPressHandlers extends HasHandlers {
     /**
      * Handler fired when a FormItem within this form receives a keypress event. <P> Fires after the keyPress handler on the
@@ -31,3 +31,4 @@ public interface HasItemKeyPressHandlers extends HasHandlers {
      */
     HandlerRegistration addItemKeyPressHandler(ItemKeyPressHandler handler);
 }
+

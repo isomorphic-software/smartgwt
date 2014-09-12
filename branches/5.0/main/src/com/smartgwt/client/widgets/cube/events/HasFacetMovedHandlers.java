@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.cube.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasFacetMovedHandlers extends HasHandlers {
     /**
      * Notification fired when a facet is moved.
@@ -29,3 +29,4 @@ public interface HasFacetMovedHandlers extends HasHandlers {
      */
     HandlerRegistration addFacetMovedHandler(FacetMovedHandler handler);
 }
+

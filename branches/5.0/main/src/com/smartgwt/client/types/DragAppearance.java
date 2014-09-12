@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Different types of effects for showing dragging behavior.
  */
@@ -41,7 +43,6 @@ public enum DragAppearance implements ValueEnum {
      * especially for objects that take a significant amount of time to draw.
      */
     OUTLINE("outline");
-
     private String value;
 
     DragAppearance(String value) {

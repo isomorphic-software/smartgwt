@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Different styles of selection that a list, etc. might support
  */
@@ -36,7 +38,6 @@ public enum SelectionStyle implements ValueEnum {
      * select one or more items as a toggle so you don't need to hold down control keys to select  more than one object
      */
     SIMPLE("simple");
-
     private String value;
 
     SelectionStyle(String value) {

@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDragMoveHandlers extends HasHandlers {
     /**
      * Executed every time the mouse moves while dragging this canvas.
@@ -29,3 +29,4 @@ public interface HasDragMoveHandlers extends HasHandlers {
      */
     HandlerRegistration addDragMoveHandler(DragMoveHandler handler);
 }
+
