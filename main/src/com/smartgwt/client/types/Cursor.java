@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,12 +16,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * You can use whatever cursors are valid for your deployment platforms, but keep in mind that visual representation may
- * vary by browser and OS.
+ * vary by browser and OS. See the <a href='https://developer.mozilla.org/en-US/docs/Web/CSS/cursor'
+ * onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/CSS/cursor');return false;">MDN <code>cursor</code>
+ * page</a> for a live demonstration.
  */
 public enum Cursor implements ValueEnum {
     /**
@@ -103,7 +107,6 @@ public enum Cursor implements ValueEnum {
      * Use the "not-allowed" cursor.
      */
     NOT_ALLOWED("not-allowed");
-
     private String value;
 
     Cursor(String value) {

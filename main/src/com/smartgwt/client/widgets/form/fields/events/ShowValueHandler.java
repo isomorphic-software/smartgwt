@@ -13,13 +13,15 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.form.fields.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface ShowValueHandler extends EventHandler {
     /**
-     * This method will be called whenever this form item's value is being set via a programmatic call to e.g: {@link
+     * This method will be called whenever this FormItem's value is being set via a programmatic call to e.g: {@link
      * com.smartgwt.client.widgets.form.DynamicForm#setValues DynamicForm.setValues} or {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue} and may be overridden by CanvasItems
      * intended to support displaying data values to update the embedded Canvas to reflect the value passed in.

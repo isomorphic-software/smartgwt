@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.util.workflow;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,21 +50,42 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * Task that executes arbitrary code, either synchronous or asynchronous.  Override the {@link
- * com.smartgwt.client.util.workflow.ScriptTask#getExecute execute} method to provide custom logic.
+ * com.smartgwt.client.util.workflow.ScriptTask#execute execute()} method to provide custom logic.
  */
-public abstract class ScriptTask extends Task {
+@BeanFactory.FrameworkClass
+@BeanFactory.ScClassName("ScriptTask")
+public class ScriptTask extends Task {
+
+    public static ScriptTask getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
+        BaseClass obj = BaseClass.getRef(jsObj);
+        if(obj != null) {
+            return (ScriptTask) obj;
+        } else {
+            return new ScriptTask(jsObj);
+        }
+    }
 
 
     public ScriptTask(){
@@ -67,18 +93,21 @@ public abstract class ScriptTask extends Task {
     }
 
     public ScriptTask(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "ScriptTask";
+        setJavaScriptObject(jsObj);
     }
+
 
     public ScriptTask(String ID) {
         setID(ID);
-        scClassName = "ScriptTask";
+                scClassName = "ScriptTask";
     }
+
 
     public ScriptTask(String ID, String nextElement) {
         setID(ID);
 		setNextElement(nextElement);
-        scClassName = "ScriptTask";
+                scClassName = "ScriptTask";
     }
 
     public native JavaScriptObject create()/*-{
@@ -86,6 +115,7 @@ public abstract class ScriptTask extends Task {
         var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
         return $wnd.isc[scClassName].create(config);
     }-*/;
+
     // ********************* Properties / Attributes ***********************
 
     /**
@@ -95,7 +125,7 @@ public abstract class ScriptTask extends Task {
      * com.smartgwt.client.util.workflow.ScriptTask#setOutputData ScriptTask.setOutputData} or {@link
      * com.smartgwt.client.util.workflow.ScriptTask#setOutputRecord ScriptTask.setOutputRecord} is called.
      *
-     * @param isAsync isAsync Default value is false
+     * @param isAsync  Default value is false
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
     public void setIsAsync(Boolean isAsync)  throws IllegalStateException {
@@ -109,16 +139,33 @@ public abstract class ScriptTask extends Task {
      * com.smartgwt.client.util.workflow.ScriptTask#setOutputData ScriptTask.setOutputData} or {@link
      * com.smartgwt.client.util.workflow.ScriptTask#setOutputRecord ScriptTask.setOutputRecord} is called.
      *
-     *
      * @return Boolean
      */
     public Boolean getIsAsync()  {
-        return getAttributeAsBoolean("isAsync");
+        Boolean result = getAttributeAsBoolean("isAsync");
+        return result == null ? false : result;
     }
+    
 
     // ********************* Methods ***********************
-            
-    /**
+
+
+	/**
+     * Execute the task.
+     * @param input the task input
+     * @param inputRecord the task input record if an <code>inputFieldList</code> was specified. See {@link com.smartgwt.client.docs.TaskIO}
+     *
+     * @return the task output.  For multiple field output, call  {@link com.smartgwt.client.util.workflow.ScriptTask#setOutputRecord
+     * ScriptTask.setOutputRecord} instead, and return null
+     */
+    public native Object execute(Object input, Record inputRecord) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.execute(input, inputRecord.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return $wnd.SmartGWT.convertToJavaType(ret);
+    }-*/;
+
+
+	/**
      * Get the inputs to this task as specified by {@link com.smartgwt.client.util.workflow.Task#getInputField inputField}. <P>
      * For a task with a {@link com.smartgwt.client.util.workflow.Task#getInputFieldList inputFieldList}, use {@link
      * com.smartgwt.client.util.workflow.ScriptTask#getInputRecord ScriptTask.getInputRecord} to get access to other inputs.
@@ -131,8 +178,8 @@ public abstract class ScriptTask extends Task {
         var ret = self.getInputData();
         return $wnd.SmartGWT.convertToJavaType(ret);
     }-*/;
-            
-    /**
+
+	/**
      * Get all inputs to the task as specified by the  {@link com.smartgwt.client.util.workflow.Task#getInputFieldList
      * inputFieldList}, as a Record.
      *
@@ -142,27 +189,28 @@ public abstract class ScriptTask extends Task {
     public native Record getInputRecord() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var ret = self.getInputRecord();
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.data.Record::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
+        if(ret == null) return null;
+        return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-            
-    /**
+
+
+
+	/**
      * Set all outputs of the task as specified by the {@link com.smartgwt.client.util.workflow.Task#getOutputFieldList
      * outputFieldList}, by providing a Record.
      * @param outputRecord output record
+     * @see com.smartgwt.client.docs.TaskIO TaskIO overview and related methods
      */
     public native void setOutputRecord(Record outputRecord) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.setOutputRecord(outputRecord.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
+
+
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
 
@@ -206,17 +254,6 @@ public abstract class ScriptTask extends Task {
         onInit_ScriptTask();
     };
 
-    /**
-     * Execute the task.
-     * @param input the task input
-     * @param inputRecord the task input record if an <code>inputFieldList</code> was specified. See {@link com.smartgwt.client.docs.TaskIO}
-     *
-     * @return the task output.  For multiple field output, call  {@link com.smartgwt.client.util.workflow.ScriptTask#setOutputRecord
-     * ScriptTask.setOutputRecord} instead, and return null
-     */
-    public abstract Object execute(Object input, Record inputRecord);
-
 }
-
 
 

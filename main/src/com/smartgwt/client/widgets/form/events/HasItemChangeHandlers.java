@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.form.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasItemChangeHandlers extends HasHandlers {
     /**
      * Handler fired when there is a change() event fired on a FormItem within this form. <P> Fires after the change() handler
@@ -31,3 +31,4 @@ public interface HasItemChangeHandlers extends HasHandlers {
      */
     HandlerRegistration addItemChangeHandler(ItemChangeHandler handler);
 }
+

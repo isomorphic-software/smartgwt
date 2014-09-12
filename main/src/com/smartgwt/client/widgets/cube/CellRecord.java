@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.cube;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,16 +50,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
@@ -64,11 +75,16 @@ import com.google.gwt.event.shared.HasHandlers;
  * for {@link com.smartgwt.client.widgets.cube.CubeGrid#getValueProperty valueProperty}. <P> Cell records can contain any
  * other properties desired, such as cell ids, or values for facets not initially shown.
  */
+@BeanFactory.FrameworkClass
 public class CellRecord extends ListGridRecord {
 
     public static CellRecord getOrCreateRef(JavaScriptObject jsObj) {
+
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (CellRecord) obj;
@@ -77,21 +93,24 @@ public class CellRecord extends ListGridRecord {
         }
     }
 
+
     public CellRecord(){
         
     }
 
     public CellRecord(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
+
 
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Default property name denoting whether this record is enabled. Property name may be  modified for some grid via {@link
+     * Default property name denoting whether this record is enabled. Property name may be modified for some grid via {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty recordEnabledProperty}.
      *
-     * @param enabled enabled Default value is null
+     * @param enabled  Default value is null
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_disabled_rows" target="examples">Disabled rows Example</a>
      */
     public void setEnabled(Boolean enabled) {
@@ -99,24 +118,23 @@ public class CellRecord extends ListGridRecord {
     }
 
     /**
-     * Default property name denoting whether this record is enabled. Property name may be  modified for some grid via {@link
+     * Default property name denoting whether this record is enabled. Property name may be modified for some grid via {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty recordEnabledProperty}.
-     *
      *
      * @return Boolean
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_disabled_rows" target="examples">Disabled rows Example</a>
      */
     public Boolean getEnabled()  {
-        return getAttributeAsBoolean("enabled");
+        return getAttributeAsBoolean("enabled", true);
     }
+    
 
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 }
-
 
 

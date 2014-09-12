@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.tree;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,16 +50,22 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
@@ -65,11 +76,16 @@ import com.google.gwt.event.shared.HasHandlers;
  * com.smartgwt.client.widgets.grid.ListGridRecord} on the TreeNode (e.g. setting {@link
  * com.smartgwt.client.widgets.grid.ListGridRecord#getEnabled enabled}:<code>false</code> on the node).
  */
+@BeanFactory.FrameworkClass
 public class TreeNode extends ListGridRecord {
 
     public static TreeNode getOrCreateRef(JavaScriptObject jsObj) {
+
         if(jsObj == null) return null;
+
         RefDataClass obj = RefDataClass.getRef(jsObj);
+
+
         if(obj != null && obj instanceof TreeNode) {
             obj.setJsObj(jsObj);
             return (TreeNode) obj;
@@ -78,13 +94,16 @@ public class TreeNode extends ListGridRecord {
         }
     }
 
+
     public TreeNode(){
         
     }
 
     public TreeNode(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
+
 
     // ********************* Properties / Attributes ***********************
 
@@ -96,7 +115,7 @@ public class TreeNode extends ListGridRecord {
      * com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes canReparentNodes} is true.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param canAcceptDrop canAcceptDrop Default value is null
+     * @param canAcceptDrop  Default value is null
      */
     public void setCanAcceptDrop(Boolean canAcceptDrop) {
         setAttribute("canAcceptDrop", canAcceptDrop);
@@ -109,12 +128,12 @@ public class TreeNode extends ListGridRecord {
      * com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords} or  {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes canReparentNodes} is true.
      *
-     *
      * @return Boolean
      */
     public Boolean getCanAcceptDrop()  {
-        return getAttributeAsBoolean("canAcceptDrop");
+        return getAttributeAsBoolean("canAcceptDrop", true);
     }
+    
 
     /**
      * Governs whether this node can be dragged. Only has an effect if this node is displayed in a {@link
@@ -123,7 +142,7 @@ public class TreeNode extends ListGridRecord {
      * com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes canReparentNodes} is <code>true</code>.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param canDrag canDrag Default value is null
+     * @param canDrag  Default value is null
      */
     public void setCanDrag(Boolean canDrag) {
         setAttribute("canDrag", canDrag);
@@ -135,18 +154,19 @@ public class TreeNode extends ListGridRecord {
      * canDragRecordsOut}, {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords} or {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes canReparentNodes} is <code>true</code>.
      *
-     *
      * @return Boolean
      */
     public Boolean getCanDrag()  {
-        return getAttributeAsBoolean("canDrag");
+        return getAttributeAsBoolean("canDrag", true);
     }
+    
+    
 
     /**
-     * Default property name denoting whether this record is enabled. Property name may be  modified for some grid via {@link
+     * Default property name denoting whether this record is enabled. Property name may be modified for some grid via {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty recordEnabledProperty}.
      *
-     * @param enabled enabled Default value is null
+     * @param enabled  Default value is null
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_disabled_rows" target="examples">Disabled rows Example</a>
      */
     public void setEnabled(Boolean enabled) {
@@ -154,16 +174,16 @@ public class TreeNode extends ListGridRecord {
     }
 
     /**
-     * Default property name denoting whether this record is enabled. Property name may be  modified for some grid via {@link
+     * Default property name denoting whether this record is enabled. Property name may be modified for some grid via {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty recordEnabledProperty}.
-     *
      *
      * @return Boolean
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_disabled_rows" target="examples">Disabled rows Example</a>
      */
     public Boolean getEnabled()  {
-        return getAttributeAsBoolean("enabled");
+        return getAttributeAsBoolean("enabled", true);
     }
+    
 
     /**
      * This Property allows the developer to customize the icon displayed next to a node. Set <code>node.icon</code> to the URL
@@ -179,7 +199,7 @@ public class TreeNode extends ListGridRecord {
      * change the name of this property by setting  {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty
      * customIconProperty}.
      *
-     * @param icon icon Default value is null
+     * @param icon  See {@link com.smartgwt.client.docs.SCImgURL SCImgURL} . Default value is null
      */
     public void setIcon(String icon) {
         setAttribute("icon", icon);
@@ -199,15 +219,17 @@ public class TreeNode extends ListGridRecord {
      * change the name of this property by setting  {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty
      * customIconProperty}.
      *
-     *
-     * @return String
+     * @return  See {@link com.smartgwt.client.docs.SCImgURL SCImgURL} 
      */
     public String getIcon()  {
         return getAttributeAsString("icon");
     }
+    
+    
+    
 
     /**
-     * Provides a name for the node that is unique among it's immediate siblings, thus allowing a unique path to be used to
+     * Provides a name for the node that is unique among its immediate siblings, thus allowing a unique path to be used to
      * identify the node, similar to a file system.  See {@link com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath}.
      * <p> If the nameProperty is not set on a given node, the {@link com.smartgwt.client.widgets.tree.TreeNode#getId id} will
      * be used instead.  If this is also missing, {@link com.smartgwt.client.widgets.tree.Tree#getName Tree.getName} and {@link
@@ -220,7 +242,7 @@ public class TreeNode extends ListGridRecord {
      * Tree.getTitle}) if {@link com.smartgwt.client.widgets.tree.TreeNode#getTitle title} is not specified. <p> Note: the name
      * of this property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty}.
      *
-     * @param name name Default value is null, but see below
+     * @param name  Default value is null, but see below
      * @see com.smartgwt.client.widgets.tree.Tree#setNameProperty
      * @see com.smartgwt.client.widgets.tree.Tree#setPathDelim
      * @see com.smartgwt.client.widgets.tree.Tree#getPath
@@ -231,7 +253,7 @@ public class TreeNode extends ListGridRecord {
     }
 
     /**
-     * Provides a name for the node that is unique among it's immediate siblings, thus allowing a unique path to be used to
+     * Provides a name for the node that is unique among its immediate siblings, thus allowing a unique path to be used to
      * identify the node, similar to a file system.  See {@link com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath}.
      * <p> If the nameProperty is not set on a given node, the {@link com.smartgwt.client.widgets.tree.TreeNode#getId id} will
      * be used instead.  If this is also missing, {@link com.smartgwt.client.widgets.tree.Tree#getName Tree.getName} and {@link
@@ -244,7 +266,6 @@ public class TreeNode extends ListGridRecord {
      * Tree.getTitle}) if {@link com.smartgwt.client.widgets.tree.TreeNode#getTitle title} is not specified. <p> Note: the name
      * of this property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty}.
      *
-     *
      * @return String
      * @see com.smartgwt.client.widgets.tree.Tree#getNameProperty
      * @see com.smartgwt.client.widgets.tree.Tree#getPathDelim
@@ -254,6 +275,8 @@ public class TreeNode extends ListGridRecord {
     public String getName()  {
         return getAttributeAsString("name");
     }
+    
+    
 
     /**
      * For folder nodes showing custom icons (set via {@link com.smartgwt.client.widgets.tree.TreeNode#getIcon icon}), this
@@ -265,7 +288,7 @@ public class TreeNode extends ListGridRecord {
      * customIconDropProperty}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param showDropIcon showDropIcon Default value is false
+     * @param showDropIcon  Default value is false
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCustomIconProperty
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setShowCustomIconDrop
      */
@@ -282,14 +305,15 @@ public class TreeNode extends ListGridRecord {
      * name of this property by setting  {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconDropProperty
      * customIconDropProperty}.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconDrop
      */
     public Boolean getShowDropIcon()  {
-        return getAttributeAsBoolean("showDropIcon");
+        Boolean result = getAttributeAsBoolean("showDropIcon", true);
+        return result == null ? false : result;
     }
+    
 
     /**
      * For folder nodes showing custom icons (set via {@link com.smartgwt.client.widgets.tree.TreeNode#getIcon icon}), this
@@ -300,7 +324,7 @@ public class TreeNode extends ListGridRecord {
      * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconOpenProperty customIconOpenProperty}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param showOpenIcon showOpenIcon Default value is false
+     * @param showOpenIcon  Default value is false
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCustomIconProperty
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setShowCustomIconOpen
      */
@@ -316,14 +340,15 @@ public class TreeNode extends ListGridRecord {
      * showCustomIconOpen} for this node. <P>You can change the name of this property by setting  {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconOpenProperty customIconOpenProperty}.
      *
-     *
      * @return Boolean
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconOpen
      */
     public Boolean getShowOpenIcon()  {
-        return getAttributeAsBoolean("showOpenIcon");
+        Boolean result = getAttributeAsBoolean("showOpenIcon", true);
+        return result == null ? false : result;
     }
+    
 
     /**
      * The title of the node as it should appear next to the node icon in the {@link com.smartgwt.client.widgets.tree.Tree}. 
@@ -331,7 +356,7 @@ public class TreeNode extends ListGridRecord {
      * description in {@link com.smartgwt.client.widgets.tree.Tree#getTitle Tree.getTitle} for full details. <p> Note: the name
      * of this property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty titleProperty}.
      *
-     * @param title title Default value is null
+     * @param title  Default value is null
      * @see com.smartgwt.client.widgets.tree.Tree#setTitleProperty
      * @see com.smartgwt.client.widgets.tree.Tree#getTitle
      */
@@ -345,7 +370,6 @@ public class TreeNode extends ListGridRecord {
      * description in {@link com.smartgwt.client.widgets.tree.Tree#getTitle Tree.getTitle} for full details. <p> Note: the name
      * of this property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty titleProperty}.
      *
-     *
      * @return String
      * @see com.smartgwt.client.widgets.tree.Tree#getTitleProperty
      * @see com.smartgwt.client.widgets.tree.Tree#getTitle
@@ -353,12 +377,13 @@ public class TreeNode extends ListGridRecord {
     public String getTitle()  {
         return getAttributeAsString("title");
     }
+    
 
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 
     /**
@@ -433,6 +458,5 @@ public class TreeNode extends ListGridRecord {
     //TODO getChildren
 
 }
-
 
 

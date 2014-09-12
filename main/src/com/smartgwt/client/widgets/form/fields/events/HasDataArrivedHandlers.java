@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.form.fields.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDataArrivedHandlers extends HasHandlers {
     /**
      * If this item is showing a dataBound pickList, this notification method will be fired  when new data arrives from the
@@ -30,3 +30,4 @@ public interface HasDataArrivedHandlers extends HasHandlers {
      */
     HandlerRegistration addDataArrivedHandler(DataArrivedHandler handler);
 }
+

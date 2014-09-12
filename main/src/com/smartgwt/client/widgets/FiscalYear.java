@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -47,11 +52,14 @@ import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -62,18 +70,19 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * An object representing the start of a given Fiscal Year in the current locale.  <P> See {@link
+ * An object representing the start of a given Fiscal Year in the current locale. <P> See {@link
  * com.smartgwt.client.widgets.FiscalCalendar} for more information on how FiscalYears are set up and used.
  */
+@BeanFactory.FrameworkClass
 public class FiscalYear extends RefDataClass {
 
     public static FiscalYear getOrCreateRef(JavaScriptObject jsObj) {
-    
+
         if(jsObj == null) return null;
 
         RefDataClass obj = RefDataClass.getRef(jsObj);
 
- 
+
         if(obj != null) {
             obj.setJsObj(jsObj);
             return (FiscalYear) obj;
@@ -82,41 +91,41 @@ public class FiscalYear extends RefDataClass {
         }
     }
 
-    public void setJavaScriptObject(JavaScriptObject jsObj) {
-        this.jsObj = jsObj;
-    }
-
 
     public FiscalYear(){
         
     }
 
     public FiscalYear(JavaScriptObject jsObj){
+        
         setJavaScriptObject(jsObj);
     }
+
 
     public FiscalYear(int year, int month, int date) {
         setYear(year);
 		setMonth(month);
 		setDate(date);
-        
+                
     }
+
 
     public FiscalYear(int fiscalYear, int year, int month, int date) {
         setFiscalYear(fiscalYear);
 		setYear(year);
 		setMonth(month);
 		setDate(date);
-        
+                
     }
+
 
     // ********************* Properties / Attributes ***********************
 
     /**
      * The one-based day-number in the {@link com.smartgwt.client.widgets.FiscalYear#getMonth specified month} when this fiscal
-     *  year starts.
+     * year starts.
      *
-     * @param date date Default value is null
+     * @param date  Default value is null
      */
     public void setDate(Integer date) {
         setAttribute("date", date);
@@ -124,48 +133,48 @@ public class FiscalYear extends RefDataClass {
 
     /**
      * The one-based day-number in the {@link com.smartgwt.client.widgets.FiscalYear#getMonth specified month} when this fiscal
-     *  year starts.
-     *
+     * year starts.
      *
      * @return Integer
      */
     public Integer getDate()  {
         return getAttributeAsInt("date");
     }
+    
 
     /**
-     * The actual fiscal year that this date relates to.  <P> A fiscal year ends when the next one begins. A fiscal year may
+     * The actual fiscal year that this date relates to. <P> A fiscal year ends when the next one begins. A fiscal year may
      * span the boundary between two calendar years in which case the {@link
      * com.smartgwt.client.widgets.FiscalYear#getFiscalYear fiscalYear} value may not match the {@link
      * com.smartgwt.client.widgets.FiscalYear#getYear year} value. <P> For example fiscalYear 2020 may start in July of 2019
-     * and end in July of 2020. In this case the <code>fiscalYear</code> would be set to <code>2020</code> and the  {@link
+     * and end in July of 2020. In this case the <code>fiscalYear</code> would be set to <code>2020</code> and the {@link
      * com.smartgwt.client.widgets.FiscalYear#getYear year} would be set to <code>2019</code>
      *
-     * @param fiscalYear fiscalYear Default value is null
+     * @param fiscalYear  Default value is null
      */
     public void setFiscalYear(Integer fiscalYear) {
         setAttribute("fiscalYear", fiscalYear);
     }
 
     /**
-     * The actual fiscal year that this date relates to.  <P> A fiscal year ends when the next one begins. A fiscal year may
+     * The actual fiscal year that this date relates to. <P> A fiscal year ends when the next one begins. A fiscal year may
      * span the boundary between two calendar years in which case the {@link
      * com.smartgwt.client.widgets.FiscalYear#getFiscalYear fiscalYear} value may not match the {@link
      * com.smartgwt.client.widgets.FiscalYear#getYear year} value. <P> For example fiscalYear 2020 may start in July of 2019
-     * and end in July of 2020. In this case the <code>fiscalYear</code> would be set to <code>2020</code> and the  {@link
+     * and end in July of 2020. In this case the <code>fiscalYear</code> would be set to <code>2020</code> and the {@link
      * com.smartgwt.client.widgets.FiscalYear#getYear year} would be set to <code>2019</code>
-     *
      *
      * @return Integer
      */
     public Integer getFiscalYear()  {
         return getAttributeAsInt("fiscalYear");
     }
+    
 
     /**
      * The zero-based month-number when this fiscal year starts.
      *
-     * @param month month Default value is null
+     * @param month  Default value is null
      */
     public void setMonth(Integer month) {
         setAttribute("month", month);
@@ -174,17 +183,17 @@ public class FiscalYear extends RefDataClass {
     /**
      * The zero-based month-number when this fiscal year starts.
      *
-     *
      * @return Integer
      */
     public Integer getMonth()  {
         return getAttributeAsInt("month");
     }
+    
 
     /**
      * The 4-digit calendar year when this fiscal year starts.
      *
-     * @param year year Default value is null
+     * @param year  Default value is null
      */
     public void setYear(Integer year) {
         setAttribute("year", year);
@@ -193,36 +202,20 @@ public class FiscalYear extends RefDataClass {
     /**
      * The 4-digit calendar year when this fiscal year starts.
      *
-     *
      * @return Integer
      */
     public Integer getYear()  {
         return getAttributeAsInt("year");
     }
+    
 
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
 
-
-     public static FiscalYear[] convertToFiscalYearArray(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new FiscalYear[]{};
-        }
-        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-        FiscalYear[] objects = new FiscalYear[componentsj.length];
-        for (int i = 0; i < componentsj.length; i++) {
-            JavaScriptObject componentJS = componentsj[i];
-            FiscalYear obj = new FiscalYear(componentJS);
-            objects[i] = obj;
-        }
-        return objects;
-    }
+    // ***********************************************************
 
 }
-
 
 
 

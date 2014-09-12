@@ -13,6 +13,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.grid;
 
@@ -23,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -36,6 +40,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -46,11 +52,14 @@ import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
 import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -63,6 +72,7 @@ import com.google.gwt.event.shared.HasHandlers;
 /**
  * Group Summary.
  */
+@BeanFactory.FrameworkClass
 public class GroupSummary extends RefDataClass {
 
     public static GroupSummary getOrCreateRef(JavaScriptObject jsObj) {
@@ -80,18 +90,6 @@ public class GroupSummary extends RefDataClass {
         }
     }
 
-    public void setJavaScriptObject(JavaScriptObject jsObj) {
-        this.jsObj = jsObj;
-    }
-
-
-    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
-        $wnd.isc["GroupSummary"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.Canvas::getConfig()());
-    }-*/;
-
-    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
-        $wnd.isc["GroupSummary"].changeDefaults(autoChildName + "Defaults", defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getJsObj()());
-    }-*/;
 
     public GroupSummary(){
         
@@ -100,8 +98,8 @@ public class GroupSummary extends RefDataClass {
     public GroupSummary(JavaScriptObject jsObj){
         
         setJavaScriptObject(jsObj);
-        
     }
+
 
     // ********************* Properties / Attributes ***********************
 
@@ -112,6 +110,5 @@ public class GroupSummary extends RefDataClass {
     // ***********************************************************
 
 }
-
 
 

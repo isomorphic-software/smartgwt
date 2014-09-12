@@ -13,6 +13,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.events;
 
@@ -24,6 +25,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,6 +41,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
@@ -45,18 +51,25 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+
 public class KeyPressEvent extends BrowserEvent<KeyPressHandler>  implements Cancellable {
     private boolean cancel = false;
 
@@ -93,7 +106,6 @@ public class KeyPressEvent extends BrowserEvent<KeyPressHandler>  implements Can
         return TYPE;
     }
 
-
     @Override
     protected void dispatch(KeyPressHandler handler) {
         handler.onKeyPress(this);
@@ -112,10 +124,9 @@ public class KeyPressEvent extends BrowserEvent<KeyPressHandler>  implements Can
         super(jsObj);
     }
 
-
     /**
-     * Call this method to suppress native behavior in response to the keyPress, and prevent                    this event from bubbling
-     * to this widget's parent, or true or undefined to bubble.
+     * Call this method to suppress native behavior in response to the keyPress, and prevent                   this event from bubbling to
+     * this widget's parent, or true or undefined to bubble.
      */
     public void cancel() {
         cancel = true;
@@ -127,7 +138,6 @@ public class KeyPressEvent extends BrowserEvent<KeyPressHandler>  implements Can
     public boolean isCancelled() {
         return cancel;
     }
-
 
     /**
      * Return the name of the key for the event passed in. Note that this is only set reliably for keyboard events.

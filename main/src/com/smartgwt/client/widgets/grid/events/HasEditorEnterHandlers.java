@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.grid.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasEditorEnterHandlers extends HasHandlers {
     /**
      * Callback fired when the user first starts editing a cell. <P> This callback is typically used to establish dynamic
@@ -31,3 +31,4 @@ public interface HasEditorEnterHandlers extends HasHandlers {
      */
     HandlerRegistration addEditorEnterHandler(EditorEnterHandler handler);
 }
+

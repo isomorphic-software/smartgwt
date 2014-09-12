@@ -13,16 +13,16 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.form.fields.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasTitleHoverHandlers extends HasHandlers {
     /**
-     * Optional stringMethod to fire when the user hovers over this item's title. Call {@link com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent#cancel()} from within {@link TitleHoverHandler#onTitleHover} to suppress default behavior of
+     * Optional stringMethod to fire when the user hovers over this item's title. Call {@link com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent#cancel()} from within {@link com.smartgwt.client.widgets.form.fields.events.TitleHoverHandler#onTitleHover} to suppress default behavior of
      * showing a hover canvas containing the HTML returned by <code>formItem.titleHoverHTML()</code> / 
      * <code>form.titleHoverHTML()</code>.
      *
@@ -31,3 +31,4 @@ public interface HasTitleHoverHandlers extends HasHandlers {
      */
     HandlerRegistration addTitleHoverHandler(TitleHoverHandler handler);
 }
+

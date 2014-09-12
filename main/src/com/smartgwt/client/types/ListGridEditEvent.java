@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Event that will trigger inline editing.
  */
@@ -31,11 +33,10 @@ public enum ListGridEditEvent implements ValueEnum {
     /**
      * No mouse event will trigger editing. Editing must be programmatically started via {@link
      * com.smartgwt.client.widgets.grid.ListGrid#startEditing ListGrid.startEditing} (perhaps from an external button) or may
-     * be triggered by  keyboard navigation if {@link com.smartgwt.client.widgets.grid.ListGrid#getEditOnFocus editOnFocus} is
+     * be triggered by keyboard navigation if {@link com.smartgwt.client.widgets.grid.ListGrid#getEditOnFocus editOnFocus} is
      * set.
      */
     NONE("none");
-
     private String value;
 
     ListGridEditEvent(String value) {

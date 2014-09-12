@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.form.fields.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasKeyDownHandlers extends HasHandlers {
     /**
      * StringMethod fired in response to a keydown while focused in this form item.
@@ -29,3 +29,4 @@ public interface HasKeyDownHandlers extends HasHandlers {
      */
     HandlerRegistration addKeyDownHandler(KeyDownHandler handler);
 }
+

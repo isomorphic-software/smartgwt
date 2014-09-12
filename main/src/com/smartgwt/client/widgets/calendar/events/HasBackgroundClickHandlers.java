@@ -13,13 +13,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.calendar.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasBackgroundClickHandlers extends HasHandlers {
     /**
      * Callback fired when the mouse is clicked in a background-cell, ie, one without an  event.
@@ -29,3 +29,4 @@ public interface HasBackgroundClickHandlers extends HasHandlers {
      */
     HandlerRegistration addBackgroundClickHandler(BackgroundClickHandler handler);
 }
+
