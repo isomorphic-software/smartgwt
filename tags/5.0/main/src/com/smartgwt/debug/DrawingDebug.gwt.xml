@@ -1,4 +1,0 @@
-<module>
-    <inherits name="com.smartclient.debug.DrawingDebug"/>
-    <inherits name="com.smartgwt.DrawingNoScript"/>
-</module>
