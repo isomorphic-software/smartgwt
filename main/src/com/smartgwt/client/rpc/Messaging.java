@@ -116,17 +116,29 @@ public class Messaging {
 	 */
 	public static void subscribe(String channel, MessagingCallback callback) {
 	    checkMessagingLoaded();
-	    subscribeJS(channel, callback);
+	    subscribeJS(channel, callback, null);
 	}
 	
-	private static native void subscribeJS(String channel, MessagingCallback callback) /*-{
+	/**
+	 * Call to subscribe to channel.  This will cause a reconnect to the server - for this reason we
+	 * defer the actuall reconnect to allow for multiple subscribe() calls in sequence.
+	 * @param channel name of the channel we are subscribing to.
+	 * @param callback this will execute whenever data is received from the server on this messaging channel.
+	 * @param selector JMS selector used with Queues to filter the messages that arrive to the channel (optional).
+	 */
+	public static void subscribe(String channel, MessagingCallback callback, String selector) {
+	    checkMessagingLoaded();
+	    subscribeJS(channel, callback, selector);
+	}
+
+	private static native void subscribeJS(String channel, MessagingCallback callback, String selector) /*-{
 			
 		var jsCallback = function (data) {
 			if (callback == null) return;
 			callback.@com.smartgwt.client.rpc.MessagingCallback::execute(Ljava/lang/Object;)(data);
         };
         
-        $wnd.isc.Messaging.subscribe(channel, jsCallback);
+        $wnd.isc.Messaging.subscribe(channel, jsCallback, null, selector);
         
 	}-*/;
 	
