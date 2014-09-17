@@ -51,8 +51,8 @@ import com.smartgwt.sample.showcase.client.data.ShowcaseData;
 public class TileView extends VLayout {
     private static final ShowcaseMessages M = ShowcaseMessages.INSTANCE;
     
-    private Map<String, Integer> rankOfSamples = new HashMap<String, Integer>();
-    private boolean considerForRanking = false;
+    private Map<String, Integer> rankOfSamples;
+    private boolean considerForRanking;
     private final boolean useDesktopMode;
 
     private TileGrid tileGrid;
@@ -96,8 +96,9 @@ public class TileView extends VLayout {
         BeanFactory<ShowcaseCustomTile> getShowcaseCustomTileFactory();  
     }
 
-    public TileView(TreeNode[] showcaseData, boolean useDesktopMode) {
+    public TileView(TreeNode[] showcaseData, boolean useDesktopMode, boolean hasBetaSamples) {
         this.useDesktopMode = useDesktopMode;
+
         tree = new Tree();
         tree.setModelType(TreeModelType.PARENT);
         tree.setNameProperty("name");
@@ -166,7 +167,7 @@ public class TileView extends VLayout {
             public void onKeyPress(KeyPressEvent event) {
                 if ("Enter".equals(event.getKeyName())) {
                     searchItem.blurItem();
-                    updateTiles(true);
+                    updateTiles();
                 }
             }
         });
@@ -180,10 +181,8 @@ public class TileView extends VLayout {
                 if(icon.getSrc().equals(cancelIcon.getSrc())) {
                     filterForm.reset();
                     featuredCB.setValue(true);
-                    updateTiles(false);
-                } else {
-                    updateTiles(true);
                 }
+                updateTiles();
             }
         });
 
@@ -240,7 +239,7 @@ public class TileView extends VLayout {
             final LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
             valueMap.put("layout_sections_category", M.sectionsCategoryName().asString());
             valueMap.put("basics_category", M.basicsCategoryName().asString());
-            valueMap.put("beta_samples", M.betaSamplesName().asString());
+            if (hasBetaSamples) valueMap.put("beta_samples", M.betaSamplesName().asString());
             valueMap.put("buttons_category", M.buttonsCategoryName().asString());
             valueMap.put("calendar_category", M.calendarCategoryName().asString());
             valueMap.put("combobox_category", M.comboBoxCategoryName().asString());
@@ -307,6 +306,7 @@ public class TileView extends VLayout {
                     tilesCB, dragDropCB, drawingCB, effectsCB, featuredCB, formsCB, gridsCB, layoutCB, 
                     menusCB, newSamplesCB, otherControlsCB, portalLayoutCB, tabsCB, toolStripCB, 
                     treeCB, windowsCB));
+            if (!hasBetaSamples) filterFormItems.remove(betaSamplesCB);
         } else {
             filterFormItems.add(categoriesItem);
         }
@@ -316,29 +316,27 @@ public class TileView extends VLayout {
             public void onItemChanged(ItemChangedEvent event) {
                 FormItem item = event.getItem();
                 if (item instanceof CheckboxItem || item instanceof SliderItem || item == categoriesItem) {
-                    updateTiles(false);
+                    updateTiles();
                 }
             }
         });
 
         addMember(filterForm);
-
         addMember(tileGrid);
-
-        updateTiles(false);
+        updateTiles();
     }
 
     public void updateTiles(String searchText) {
         searchItem.setValue(searchText);
-        updateTiles(true);
+        updateTiles();
         // Don't focusInItem() on mobile because the browser will attempt to scroll the newly-focused
         // searchItem into view, as the SplitPane page transition is underway.
         if (useDesktopMode) filterForm.focusInItem(searchItem);
     }
 
-    private void updateTiles(boolean isSearchText) {
+    private void updateTiles() {
         final String searchText = (String)searchItem.getValue();
-        this.considerForRanking = isSearchText;
+        this.considerForRanking = searchText != null && searchText.length() > 0;
         final List<String> categories = new ArrayList<String>();
         if (!Browser.getIsTouch()) {
             if (featuredCB.getValueAsBoolean()) categories.add("featured_category");
@@ -388,9 +386,13 @@ public class TileView extends VLayout {
     }
 
     private void showTiles(String searchText, List<String> categories) {
-        final Set<TreeNode> data = new HashSet<TreeNode>();
 
-        final Integer maxResults = (numSamplesItem == null ? null : Integer.valueOf(numSamplesItem.getValueAsFloat().intValue()));
+        // clear any existing ranking from previous search
+        rankOfSamples = new HashMap<String, Integer>();
+
+        final Set<TreeNode> data = new HashSet<TreeNode>();
+        final Integer maxResults = numSamplesItem == null ? null : 
+            Integer.valueOf(numSamplesItem.getValueAsFloat().intValue());
 
         if (searchText != null) {
             TreeNode[] children = tree.getAllNodes();
@@ -433,35 +435,39 @@ public class TileView extends VLayout {
         }
     }
 
-    private void applyFilterAccordingToRanking(Tree tree, TreeNode[] children, Set<TreeNode> data, 
-        String searchText, Integer maxResults) 
+    private void applyFilterAccordingToRanking(Tree tree, TreeNode[] children, 
+            Set<TreeNode> data, String searchText, Integer maxResults)
     {
         String[] arraySearchText = searchText.trim().split(" ");
         for (int j = 0; j < arraySearchText.length; j++) {
             if (arraySearchText[j] == null || arraySearchText[j].length() == 0) continue;
+            searchText = arraySearchText[j].toLowerCase();
+
             for (int i = 0; i < children.length; i++) {
-                if (maxResults != null && data.size() >= maxResults) return;
+                // hit limit - continue accumulating rank for existing result nodes
+                if (maxResults != null && data.size() >= maxResults) {
+                    children = data.toArray(new TreeNode[0]);
+                    maxResults = null;
+                    break;
+                }
                 TreeNode child = children[i];
-                if (!tree.hasChildren(child)) {
-                    searchText = arraySearchText[j].toLowerCase();
-                    boolean isExplorerTreeNode = child instanceof ExplorerTreeNode;
-                    if (isExplorerTreeNode) {
-                        ExplorerTreeNode explorerTreeNode = (ExplorerTreeNode) child;
-                        //when searching through all nodes, skip the featured section to avoid duplicates
-                        if(explorerTreeNode.getNodeID().contains("featured")) continue;
-                        if (explorerTreeNode.getName().toLowerCase().contains(searchText)) {
-                            int rank = rankSamples(explorerTreeNode.getName().toLowerCase(), 5);
-                            child.setAttribute("position", rank);
-                            data.add(child);
-                        } else {
-                            PanelFactory factory = explorerTreeNode.getFactory();
-                            if (factory != null) {
-                                String description = factory.getDescription();
-                                if (description != null && description.toLowerCase().contains(searchText)) {
-                                    int rank = rankSamples(explorerTreeNode.getName().toLowerCase(), 1);
-                                    child.setAttribute("position", rank);
-                                    data.add(child);
-                                }
+                if (!tree.hasChildren(child) && child.getClass() == ExplorerTreeNode.class) {
+                    ExplorerTreeNode explorerTreeNode = (ExplorerTreeNode) child;
+                    String canonicalName = explorerTreeNode.getName().toLowerCase();
+                    if (canonicalName.contains(searchText)) {
+                        int rank = rankSamples(canonicalName, 5);
+                        child.setAttribute("position", rank);
+                        data.add(child);
+                    } else {
+                        PanelFactory factory = explorerTreeNode.getFactory();
+                        if (factory != null) {
+                            String description = factory.getDescription();
+                            if (description != null && 
+                                description.toLowerCase().contains(searchText)) 
+                            {
+                                int rank = rankSamples(canonicalName, 1);
+                                child.setAttribute("position", rank);
+                                data.add(child);
                             }
                         }
                     }

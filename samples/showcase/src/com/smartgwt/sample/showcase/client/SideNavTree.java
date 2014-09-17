@@ -42,6 +42,7 @@ public class SideNavTree extends TreeGrid {
         Float.parseFloat(ShowcaseData.getCurrentReleaseVersion());
 
     private ExplorerTreeNode[] showcaseData;
+    private boolean hasBetaSamples;
     private Tree tree = new Tree();
 
     public SideNavTree() {
@@ -118,6 +119,7 @@ public class SideNavTree extends TreeGrid {
             } else if (Float.parseFloat(explorerTreeNode.getVersion()) >  releaseVersion) {
                 explorerTreeNode.setHTML(explorerTreeNode.getHTML() + 
                     "<sup style='color: red;font-size:10px;font-weight: 700;'> BETA</sup>");
+                hasBetaSamples = true;
             } else if (Float.parseFloat(explorerTreeNode.getVersion()) == releaseVersion) {
                 boolean exist = false;
                 for (final ExplorerTreeNode explorerTreeNode1 : newSamples) {
@@ -162,5 +164,9 @@ public class SideNavTree extends TreeGrid {
         }
 
         return showcaseData = getAllNodes();
+    }
+
+    public boolean hasBetaSamples() {
+        return this.hasBetaSamples;
     }
 }
