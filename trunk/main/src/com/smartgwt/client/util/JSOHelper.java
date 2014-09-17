@@ -279,6 +279,20 @@ public class JSOHelper {
         setAttribute(elem, attr, JSOHelper.convertToJavaScriptArray(values));
     }
 
+    /**
+     * Set the value of attribute "attr" in object "elem" to the Object "value"
+     * <P> 
+     * This method converts the value passed in to an equivalent 
+     * object in JavaScript before storing on the underlying data object - see 
+     * {@link com.smartgwt.client.docs.JavaToJavaScriptConversion} for details of the conversions
+     * that take place.<br>
+     * Developers can use {@link #setObjectAttribute(JavaScriptObject, String, Object)} 
+     * to store Java objects without converting to JavaScript.
+     *
+     * @param elem the JavaScriptObject on which to set the attribute
+     * @param attr the attribute name
+     * @param value the attribute value.
+     */
     public static void setAttribute(JavaScriptObject elem, String attr, Object value) {
         if (value == null) {
             setNullAttribute(elem, attr);
@@ -585,6 +599,14 @@ public class JSOHelper {
 	    return ret;
     }-*/;
 
+    /**
+     * Returns attribute "attr" of JavaScriptObject "elem", converted to a Map following the rules described
+     * in the {@link com.smartgwt.client.docs.JavaScriptToJavaConversion JS -> Java conversion article}
+     *
+     * @param elem JavaScriptObject containing the attribute
+     * @param attr The attribute name
+     * @return The attribute converted to a Java Map
+     */
     public static Map getAttributeAsMap(JavaScriptObject elem, String attr) {
 	    JavaScriptObject value = getAttributeAsJavaScriptObject(elem, attr);
 	    if (value == null) return null;
@@ -738,32 +760,36 @@ public class JSOHelper {
     }-*/;
 
     /**
-     * Convert a JavaScriptObject to the appropriate type of JavaObject.
-     * Simple JavaScript objects (key:value pairs) will be converted to Map instances.
-     * JavaScript Arrays will be returned as a List or an Object Array depending on the listAsArray
-     * parameter
-     * Conversion is recursive, nested JavaScript objects and arrays will have their members converted
-     * as well
-     * JavaScript dates will be returned as Java Dates
-     * Simple Javascript types such as integers, floats and strings will be returned as the equivalent
-     * java object class (String, Integer, etc)
+     * Convert a JavaScriptObject to the appropriate type of Java Object, following the rules described
+     * in the {@link com.smartgwt.client.docs.JavaScriptToJavaConversion JS -> Java conversion article}
      *
      * @param object JavaScriptObject to convert
      * @param listAsArray Should arrays be converted to Object[] or List
-     * @return converted Java object. May be a Map, a List or an Object[] depending on the underlying JS
-     *   type.
+     * @return converted Java object. May be a Map, a List, an Object[], a JavaScriptObject, 
+     *         a Canvas or a FormItem, depending on the underlying JavaScript type
      */
     public static Object convertToJava(JavaScriptObject object, boolean listAsArray) {
         return convertToJava(object, listAsArray, false);
     }
 
+
+    /**
+     * Convert a JavaScriptObject to the appropriate type of Java Object, following the rules described
+     * in the {@link com.smartgwt.client.docs.JavaScriptToJavaConversion JS -> Java conversion article}.
+     * Any arrays encountered during conversion will be converted to Java <code>ArrayList</code>s
+     *
+     * @param object JavaScriptObject to convert
+     * @return converted Java object. May be a Map, a List, an Object[], a JavaScriptObject, 
+     *         a Canvas or a FormItem, depending on the underlying JavaScript type
+     */
     public static Object convertToJava(JavaScriptObject object) {
         return convertToJava(object, false);
     }
 
     /**
-     * Convert a Javascript object containing key:value pairs to a Map.
-     * @param jsObj the javascript object
+     * Convert a JavaScript object containing key:value pairs to a Java Map, following the rules described
+     * in the {@link com.smartgwt.client.docs.JavaScriptToJavaConversion JS -> Java conversion article}
+     * @param jsObj the JavaScript object to convert
      * @param listAsArray Should arrays be converted to Object[] or List
      * @return the map
      * @throws IllegalArgumentException if unable to convert the passed JavaScript object to a map
@@ -781,20 +807,24 @@ public class JSOHelper {
     }
 
     /**
-     * Convert a Javascript object containing key:value pairs to a Map.
-     * @param jsObj the javascript object
+     * Convert a JavaScript object containing key:value pairs to a Java Map, following the rules described
+     * in the {@link com.smartgwt.client.docs.JavaScriptToJavaConversion JS -> Java conversion article}.
+     * Any arrays encountered during the conversion process will be converted to Java <code>ArrayList</code>s
+     * @param jsObj the JavaScript object to convert
      * @return the map
-     * @throws IllegalArgumentException if unable to convert pass JavaScript object to a map
+     * @throws IllegalArgumentException if unable to convert the passed JavaScript object to a map
      */
     public static Map convertToMap(JavaScriptObject jsObj)  {
     	return convertToMap(jsObj, false);
     }
 
     /**
-     * Convert a Javascript object to an Object[]. If the Javascript object is not an array
-     * in Javascript, a new array will be created containing the converted object as the only entry.
-     * @param object
-     * @return
+     * Convert a JavaScript object to an Object[], following the rules described
+     * in the {@link com.smartgwt.client.docs.JavaScriptToJavaConversion JS -> Java conversion article}. 
+     * If the JavaScript object is not an array in Javascript, a new array will be created 
+     * containing the converted object as the only entry.
+     * @param object the JavaScript object to convert
+     * @return the JavaScript object converted to a Java Object array
      */
     public static Object[] convertToArray(JavaScriptObject object) {
     	Object javaObj = convertToJava(object, true);
@@ -805,10 +835,12 @@ public class JSOHelper {
     }
 
     /**
-     * Convert a Javascript object to a List. If the Javascript object is not an array
-     * in Javascript, a new List will be created containing the converted object as the only entry.
-     * @param object
-     * @return
+     * Convert a JavaScript object to a List, following the rules described
+     * in the {@link com.smartgwt.client.docs.JavaScriptToJavaConversion JS -> Java conversion article}. 
+     * If the JavaScript object is not an array in JavaScript, a new List will be created containing 
+     * the converted object as the only entry.
+     * @param object the JavaScript object to convert
+     * @return the JavaScript object converted to a Java List
      */
     public static List convertToList(JavaScriptObject object) {
     	Object javaObj = convertToJava(object, false);
@@ -936,7 +968,15 @@ public class JSOHelper {
         }
     }
 
-    public static JavaScriptObject convertToJavaScriptArray(Object[] array) {
+
+    /**
+     * Converts the parameter Object array to an equivalent Javascript array - see 
+     * {@link com.smartgwt.client.docs.JavaToJavaScriptConversion} for details of the conversions
+     * that take place.
+     *
+     * @param array the Java Object array to convert
+     */
+     public static JavaScriptObject convertToJavaScriptArray(Object[] array) {
         return convertToJavaScriptArray(array, false);
     }
 
@@ -1292,14 +1332,31 @@ public class JSOHelper {
         }
     }-*/;
 
+    /**
+     * Sets attribute "attr" on Javascript object "jsObj" to the JavaScript equivalent of "valueMap".
+     * See {@link com.smartgwt.client.docs.JavaToJavaScriptConversion} 
+     * for details of the conversions that take place.
+     *
+     * @param jsObj the JavaScript object on which to set the attribute
+     * @param attr the name of the attribute to set
+     * @param valueMap the Java Map to convert and apply as the attribute value
+     */
     public static void setAttribute(JavaScriptObject jsObj, String attr, Map valueMap) {
         JavaScriptObject valueJS = convertMapToJavascriptObject(valueMap);
         setAttribute(jsObj, attr, valueJS);
     }
 
+    /**
+     * Converts the parameter Map to an equivalent Javascript object - see 
+     * {@link com.smartgwt.client.docs.JavaToJavaScriptConversion} 
+     * for details of the conversions that take place.
+     *
+     * @param array the Java Map to convert
+     */
     public static JavaScriptObject convertMapToJavascriptObject(Map valueMap) {
         return convertMapToJavascriptObject(valueMap, false);
     }
+
 
     public static JavaScriptObject convertMapToJavascriptObject(Map valueMap, boolean strict) {
         if(valueMap == null) return null;
